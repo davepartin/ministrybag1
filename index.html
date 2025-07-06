@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MinistryBag Background</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            overflow: hidden;
+            background: #2C3E50;
+        }
+
+        .background-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        /* Base gradient */
+        .base-layer {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #F5E6D3 0%, #E8D5C4 50%, #D4A574 100%);
+        }
+
+        /* Corner curves */
+        .corner-curve {
+            position: absolute;
+            top: -10%;
+            left: -5%;
+            width: 40%;
+            height: 40%;
+        }
+
+        .corner-curve::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 0 0 100% 0;
+            background: radial-gradient(circle at top left,
+                #2C3E50 0%,
+                #34495E 20%,
+                #5B7065 40%,
+                transparent 70%
+            );
+            opacity: 0.8;
+        }
+
+        /* Vertical stripes container */
+        .vertical-stripes {
+            position: absolute;
+            top: 0;
+            right: 6px;
+            height: 100%;
+            display: flex;
+            gap: 3px;
+        }
+
+        /* Individual stripes */
+        .stripe {
+            width: 11px;
+            height: 100%;
+        }
+
+        .stripe-1 {
+            background: rgba(253, 208, 73, 0.4); /* Yellow with 40% opacity */
+        }
+
+        .stripe-2 {
+            background: rgba(230, 126, 34, 0.4); /* Orange with 40% opacity */
+        }
+
+        .stripe-3 {
+            background: rgba(194, 87, 26, 0.4); /* Burnt Orange with 40% opacity */
+        }
+
+        .stripe-4 {
+            background: rgba(128, 0, 32, 0.4); /* Maroon with 40% opacity */
+        }
+
+        .stripe-5 {
+            background: rgba(91, 112, 101, 0.4); /* Teal with 40% opacity */
+        }
+
+        /* Diagonal accent stripes */
+        .diagonal-accent {
+            position: absolute;
+            bottom: -20%;
+            right: -50%;
+            width: 200%;
+            height: 150%;
+            background: linear-gradient(45deg, 
+                transparent 20%,
+                rgba(91, 112, 101, 0.165) 20%,
+                rgba(91, 112, 101, 0.165) 25%,
+                rgba(139, 69, 19, 0.165) 25%,
+                rgba(139, 69, 19, 0.165) 30%,
+                rgba(194, 87, 26, 0.165) 30%,
+                rgba(194, 87, 26, 0.165) 35%,
+                rgba(230, 126, 34, 0.165) 35%,
+                rgba(230, 126, 34, 0.165) 40%,
+                rgba(243, 156, 18, 0.165) 40%,
+                rgba(243, 156, 18, 0.165) 45%,
+                rgba(253, 208, 73, 0.165) 45%,
+                rgba(253, 208, 73, 0.165) 50%,
+                transparent 50%
+            );
+            transform: rotate(-15deg);
+            opacity: 0.66;
+        }
+
+        /* Flow overlay for subtle texture */
+        .flow-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 60%;
+            overflow: hidden;
+        }
+
+        .flow-path {
+            position: absolute;
+            bottom: -10%;
+            left: -10%;
+            width: 120%;
+            height: 100%;
+        }
+
+        /* App Icons Grid Styles */
+        .app-icons-grid {
+            position: fixed;
+            top: calc(50% - 200px);
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            gap: 40px;
+            z-index: 999;
+        }
+
+        .app-icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .app-icon:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .icon-label {
+            color: white;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        @media (max-width: 768px) {
+            .vertical-stripes {
+                right: 3px;
+            }
+
+            .stripe {
+                width: 9px;
+            }
+
+            .app-icons-grid {
+                gap: 20px;
+            }
+
+            .app-icon {
+                padding: 15px;
+            }
+
+            .app-icon svg {
+                width: 50px;
+                height: 50px;
+            }
+
+            .icon-label {
+                font-size: 12px;
+            }
+
+            .corner-curve {
+                width: 50%;
+                height: 30%;
+            }
+
+            .diagonal-accent {
+                width: 250%;
+                height: 200%;
+                bottom: -40%;
+                right: -70%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <img src="ministrybagyellowlogo4.svg" alt="Ministry Bag Logo" style="position:fixed;top:15px;left:50%;transform:translateX(-50%);width:550px;max-width:90vw;z-index:1000;" />
+    
+    <!-- App Icons Grid -->
+    <div class="app-icons-grid">
+        <div class="app-icon">
+            <a href="https://davepartin.github.io/Heart52/" target="_blank" style="text-decoration: none; color: inherit;">
+                <svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" fill="#E74C3C"/>
+                </svg>
+                <span class="icon-label">Heart</span>
+            </a>
+        </div>
+        <div class="app-icon">
+            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M15.5 5.5c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zM5 12c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zM5 6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zM5 18c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zM9 12c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zM9 6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zM9 18c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zM13 12c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zM13 6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zM13 18c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zM17 12c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zM17 6c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zM17 18c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z" fill="#3498DB"/>
+            </svg>
+            <span class="icon-label">Bike</span>
+        </div>
+        <div class="app-icon">
+            <svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="5" fill="#F39C12"/>
+                <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" stroke="#F39C12" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <span class="icon-label">Sun</span>
+        </div>
+    </div>
+    
+    <div class="background-container">
+        <div class="base-layer"></div>
+        
+        <div class="diagonal-accent"></div>
+
+        <div class="flow-overlay">
+            <svg class="flow-path" viewBox="0 0 1200 600" preserveAspectRatio="none">
+                <path d="M0,600 Q100,400 300,450 T600,400 T900,480 T1200,450 L1200,600 Z" 
+                      fill="#2C3E50" opacity="0.15"/>
+                <path d="M0,600 Q150,450 350,500 T700,450 T1000,520 T1200,500 L1200,600 Z" 
+                      fill="#34495E" opacity="0.15"/>
+                <path d="M0,600 Q200,480 400,520 T800,480 T1200,540 L1200,600 Z" 
+                      fill="#5B7065" opacity="0.10"/>
+            </svg>
+        </div>
+
+        <div class="vertical-stripes">
+            <div class="stripe stripe-5"></div>
+            <div class="stripe stripe-4"></div>
+            <div class="stripe stripe-3"></div>
+            <div class="stripe stripe-2"></div>
+            <div class="stripe stripe-1"></div>
+        </div>
+    </div>
+</body>
+</html>
