@@ -497,7 +497,7 @@
 
         /* Ministry Bag Satchel Icon */
         .ministry-bag-icon {
-            position: fixed;
+            position: absolute;
             top: 20px;
             left: 20px;
             z-index: 1000;
@@ -926,6 +926,9 @@
     // Show the quick-jump navigation on home page
     document.getElementById('quick-jump').classList.remove('hidden');
     
+    // Show the ministry bag icon on home page
+    document.querySelector('.ministry-bag-icon').style.display = 'block';
+    
     updateNavigation('home');
     stopAudio();
 
@@ -941,6 +944,9 @@
     
     // Hide the quick-jump navigation on verse pages
     document.getElementById('quick-jump').classList.add('hidden');
+    
+    // Hide the ministry bag icon on verse pages
+    document.querySelector('.ministry-bag-icon').style.display = 'none';
     
     updateNavigation('verse');
     displayVerse();
