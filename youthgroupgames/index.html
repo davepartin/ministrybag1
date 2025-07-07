@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Youth Group Games Selector</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <h1>Youth Group Games Selector</h1>
+
+  <!-- Filter Controls -->
+  <div class="filters">
+    <label for="sizeFilter"><strong>Group Size:</strong></label>
+    <select id="sizeFilter">
+      <option value="">All Sizes</option>
+      <option value="small">Small (&lt; 10 players)</option>
+      <option value="medium">Medium (10-19 players)</option>
+      <option value="large">Large (20+ players)</option>
+    </select>
+
+    <label for="equipmentFilter" style="margin-left:20px;"><strong>Equipment Needed:</strong></label>
+    <select id="equipmentFilter">
+      <option value="">All</option>
+      <option value="false">No equipment</option>
+      <option value="true">Equipment required</option>
+    </select>
+  </div>
+
+  <!-- Game List Container -->
+  <div id="gameList" class="game-list">
+    <!-- Games will be injected here by the script -->
+    <noscript>Please enable JavaScript to use the game filter.</noscript>
+  </div>
+
+  <!-- Script to load data and handle filtering -->
+  <script>
+    const sizeFilter = document.getElementById('sizeFilter');
+    const equipmentFilter = document.getElementById('equipmentFilter');
+    const gameListContainer = document.getElementById('gameList');
+    let games = [];
+
+    fetch('games.json')
+      .then(response => response.json())
+      .then(data => {
+        games = data;
+        renderGameList();
+      })
+      .catch(err => {
+        console.error('Error loading games:', err);
+        gameListContainer.innerHTML = "<p>Could not load games data.</p>";
+      });
+
+    function renderGameList() {
+      gameListContainer.innerHTML = "";
+      const sizeValue = sizeFilter.value;
+      const equipValue = equipmentFilter.value;
+      games.forEach(game => {
+        let sizeMatch = !sizeValue || game.playerCountCategory === sizeValue || game.playerCountCategory === "any";
+        let equipMatch = !equipValue || String(game.equipmentRequired) === equipValue;
+        if (sizeMatch && equipMatch) {
+          const detailsEl = document.createElement('details');
+          const summaryEl = document.createElement('summary');
+          summaryEl.textContent = game.name + " - ";
+          const info = document.createElement('small');
+          info.textContent = `Players: ${game.players}, Equipment: ${game.equipment}`;
+          summaryEl.appendChild(info);
+          const rulesPara = document.createElement('p');
+          rulesPara.textContent = "Rules: " + game.rules;
+          detailsEl.appendChild(summaryEl);
+          detailsEl.appendChild(rulesPara);
+          gameListContainer.appendChild(detailsEl);
+        }
+      });
+      if (!gameListContainer.innerHTML.trim()) {
+        gameListContainer.innerHTML = "<p><em>No games match those filters.</em></p>";
+      }
+    }
+
+    sizeFilter.addEventListener('change', renderGameList);
+    equipmentFilter.addEventListener('change', renderGameList);
+  </script>
+
+</body>
+</html>
