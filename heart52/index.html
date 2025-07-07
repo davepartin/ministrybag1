@@ -498,12 +498,13 @@
         /* Ministry Bag Satchel Icon */
         .ministry-bag-icon {
             position: absolute;
-            top: 20px;
-            left: 20px;
+            top: 0;
+            left: 0;
             z-index: 1000;
             width: 50px;
             height: 50px;
             transition: transform 0.3s ease;
+            margin: 20px;
         }
 
         /* Container positioning for the icon */
@@ -608,6 +609,12 @@
 
     <script>
         let lastScrollY = 0;
+        
+        // Initialize ministry bag icon visibility on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Show the ministry bag icon on initial page load (home page)
+            document.querySelector('.ministry-bag-icon').style.display = 'block';
+        });
         // HEART-52 Complete Collection with updated verses from Google Sheet
         const verses = [
             {
