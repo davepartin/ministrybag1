@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christian Foundations Course</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="header">
+        <h1>Christian Foundations Course</h1>
+        <p>7 Sessions of Spiritual Growth and Biblical Foundation</p>
+    </div>
+
+    <nav class="nav-tabs">
+        <ul>
+            <li><button onclick="showSession(1)" class="active" id="tab-1">1. Introduction</button></li>
+            <li><button onclick="showSession(2)" id="tab-2">2. Salvation</button></li>
+            <li><button onclick="showSession(3)" id="tab-3">3. Prayer</button></li>
+            <li><button onclick="showSession(4)" id="tab-4">4. Bible</button></li>
+            <li><button onclick="showSession(5)" id="tab-5">5. Church</button></li>
+            <li><button onclick="showSession(6)" id="tab-6">6. Evangelism</button></li>
+            <li><button onclick="showSession(7)" id="tab-7">7. Repentance</button></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="overall-progress">
+            <h3>Course Progress</h3>
+            <div class="progress-bar">
+                <div class="progress-fill" id="overall-progress-fill"></div>
+            </div>
+            <p id="overall-progress-text">0 of 41 questions completed (0%)</p>
+            <div class="session-progress">
+                <div class="session-dot" id="dot-1"></div>
+                <div class="session-dot" id="dot-2"></div>
+                <div class="session-dot" id="dot-3"></div>
+                <div class="session-dot" id="dot-4"></div>
+                <div class="session-dot" id="dot-5"></div>
+                <div class="session-dot" id="dot-6"></div>
+                <div class="session-dot" id="dot-7"></div>
+            </div>
+        </div>
+
+        <!-- SESSION 1 -->
+        <div class="session active" id="session-1">
+            <div class="section">
+                <h2 class="section-title">Session 1: Introduction to the Course & Each Other</h2>
+                <p>Welcome to the Christian Foundations Course. Over the next 7 sessions, we hope to grow in our love for God and our neighbors together through developing some healthy spiritual foundations within a healthy caring relationship.</p>
+                
+                <h3 style="color: #3498db; margin: 2rem 0 1rem 0;">4 Objectives and 4 Elements</h3>
+                <p>This course is designed to...</p>
+                
+                <div style="margin: 1.5rem 0;">
+                    <p>1. Encourage your spiritual walk through a discipleship relationship by having a Weekly Meeting</p>
+                    <p>2. Develop a solid spiritual foundation on key biblical truths by having a Topical Study</p>
+                    <p>3. Start or strengthen your daily personal time with God by having a regular Quiet Time</p>
+                    <p>4. Help you grow by exploring, evaluating, and encouraging next steps by creating a Personal Challenge</p>
+                </div>
+
+                <h3 style="color: #3498db; margin: 2rem 0 1rem 0;">Peaks and Valleys Exercise</h3>
+                <div class="peaks-valleys">
+                    <p><strong>Draw Your Peaks and Valleys</strong></p>
+                    <p>On a sheet of paper, draw a simple timeline of your spiritual journey, like a line graph that goes up for your high points and down for your low points. Include about 6-8 highs and lows. At each point, write a date or your age and a couple words to describe what happened (for example: a key event, a person who influenced you, or a place that shaped you).</p>
+                    <p>Put a star where you became a follower of Christ.</p>
+                    <p>When you're done, take a photo of your timeline and bring it to your first meeting.</p>
+                </div>
+
+                <div class="question">1.1 - After finishing the "Peaks and Valleys Exercise", what are a few of your own personal observations?</div>
+                <textarea class="response-box" id="question-1-1" placeholder="Share your observations..." data-question="1.1 - Peaks and Valleys observations"></textarea>
+                <div class="saved-indicator" id="saved-1-1">✓ Response saved automatically</div>
+
+                <div class="question">1.2 - As you start this course, what are you looking forward to and what cautions do you have?</div>
+                <textarea class="response-box" id="question-1-2" placeholder="What excites you? What concerns you?" data-question="1.2 - Looking forward to and cautions"></textarea>
+                <div class="saved-indicator" id="saved-1-2">✓ Response saved automatically</div>
+
+                <div class="question">1.3 - Please share any questions or spiritual topics that you would like to talk about in these next couple of months.</div>
+                <textarea class="response-box" id="question-1-3" placeholder="What spiritual topics interest you?" data-question="1.3 - Questions and spiritual topics"></textarea>
+                <div class="saved-indicator" id="saved-1-3">✓ Response saved automatically</div>
+
+                <div class="question">1.4 - Will you commit to these 7 weeks of personal spiritual development?</div>
+                <div style="margin: 1rem 0;">
+                    <label style="display: block; margin-bottom: 1rem;"><input type="radio" name="commitment" value="Yes" id="commitment-yes"> Yes, I commit to this journey</label>
+                    <label style="display: block;"><input type="radio" name="commitment" value="No" id="commitment-no"> No, I cannot commit at this time</label>
+                </div>
+                <div class="saved-indicator" id="saved-1-4">✓ Response saved automatically</div>
+
+                <div class="agenda-box">
+                    <h3>Agenda for Weekly Meeting #1</h3>
+                    <p><strong>Review:</strong> Check-in, Share Peaks & Valleys Exercise, Review questions</p>
+                    <p><strong>Closing:</strong> Prayer requests and pray</p>
+                </div>
+
+                <div class="question">Prayer Requests for this week:</div>
+                <textarea class="response-box" id="question-1-prayer" placeholder="Share your prayer requests..." data-question="Session 1 Prayer Requests"></textarea>
+                <div class="saved-indicator" id="saved-1-prayer">✓ Response saved automatically</div>
+
+                <div class="question">Homework for this week:</div>
+                <p>1. Complete Session 2.</p>
+                <p>2. Have a 10-minute daily Quiet Time each day and reading John 1-3 this week.</p>
+                <p>3. Take a few notes in the box at the end of Session 2.</p>
+            </div>
+        </div>
+
+        <!-- SESSION 2 -->
+        <div class="session" id="session-2">
+            <div class="section">
+                <h2 class="section-title">Session 2: Salvation and Baptism</h2>
+                
+                <h3 style="color: #3498db; font-size: 1.5rem; margin-bottom: 1rem;">Salvation</h3>
+                <p>The term "salvation" describes deliverance, rescue, and redemption from spiritual bondage and the consequences of sin. It encompasses being saved from separation from God and instead being reconciled with God and granted eternal life.</p>
+                
+                <div class="verse">
+                    <strong>John 3:16-17</strong> For God so loved the world, that he gave his only Son, that whoever believes in him should not perish but have eternal life. For God did not send his Son into the world to condemn the world, but in order that the world might be saved through him.
+                </div>
+
+                <div class="question">2.1 - What do we learn about God, Jesus, and mankind from John 3:16,17?</div>
+                <textarea class="response-box" id="question-2-1" placeholder="Write something..." data-question="2.1 - God, Jesus, and mankind from John 3:16,17"></textarea>
+                <div class="saved-indicator" id="saved-2-1">✓ Response saved automatically</div>
+
+                <h3 style="color: #3498db; font-size: 1.5rem; margin: 2rem 0 1rem 0;">How can someone be saved and become a Christian?</h3>
+                <p>The "Romans Road" reveals the path to salvation:</p>
+                
+                <div style="margin: 1.5rem 0;">
+                    <p><strong>A - Admit Sin</strong> - We are in need</p>
+                    <div class="verse">Romans 3:23 For all have sinned and fall short of the glory of God<br>Romans 6:23 For the wages of sin is death, but the free gift of God is eternal life in Christ Jesus our Lord.</div>
+                    
+                    <p><strong>B - Believe Jesus as Savior</strong> - He died for our sins to save us</p>
+                    <div class="verse">Romans 5:8 but God shows his love for us in that while we were still sinners, Christ died for us.</div>
+                    
+                    <p><strong>C - Confess Jesus as Lord</strong> - Living under His Authority</p>
+                    <div class="verse">Romans 10:9 If you confess with your mouth that Jesus is Lord and believe in your heart that God raised him from the dead, you will be saved.</div>
+                </div>
+
+                <div class="question">2.2 - Share about your salvation experience.</div>
+                <textarea class="response-box" id="question-2-2" placeholder="Share your story..." data-question="2.2 - Salvation experience" style="min-height: 200px;"></textarea>
+                <div class="saved-indicator" id="saved-2-2">✓ Response saved automatically</div>
+
+                <div class="question">2.3 - What questions do you have about how someone can become Christian?</div>
+                <textarea class="response-box" id="question-2-3" placeholder="What questions do you have?" data-question="2.3 - Questions about becoming Christian"></textarea>
+                <div class="saved-indicator" id="saved-2-3">✓ Response saved automatically</div>
+
+                <h3 style="color: #3498db; font-size: 1.5rem; margin: 2rem 0 1rem 0;">Baptism</h3>
+                <p>Christian baptism is the immersion of a believer in water in the name of the Father, Son, and Holy Spirit. It symbolizes the believer's faith in a crucified, buried, and risen Savior.</p>
+                
+                <div class="verse">
+                    <strong>Romans 6:3-4</strong> All of us who have been baptized into Christ Jesus were baptized into his death? We were buried therefore with him by baptism into death, in order that, just as Christ was raised from the dead by the glory of the Father, we too might walk in newness of life.
+                </div>
+
+                <div class="question">2.4 - Why is it important for a Christian to be baptized?</div>
+                <textarea class="response-box" id="question-2-4" placeholder="Write your thoughts..." data-question="2.4 - Importance of baptism"></textarea>
+                <div class="saved-indicator" id="saved-2-4">✓ Response saved automatically</div>
+
+                <div class="question">2.5 - Have you been baptized, when? If not, do you want to be baptized? Why or why not?</div>
+                <textarea class="response-box" id="question-2-5" placeholder="Share your baptism experience or thoughts..." data-question="2.5 - Baptism experience"></textarea>
+                <div class="saved-indicator" id="saved-2-5">✓ Response saved automatically</div>
+
+                <h3 style="color: #3498db; font-size: 1.5rem; margin: 2rem 0 1rem 0;">You are a New Creation</h3>
+                <p>When you become a Christian by putting your faith in Jesus as Lord and Savior, you are a new creation. You have been adopted by the Father into the family of God.</p>
+                
+                <div class="verse">
+                    <strong>2 Corinthians 5:17,21</strong> Therefore, if anyone is in Christ, he is a new creation. The old has passed away; behold, the new has come...For our sake he made him to be sin who knew no sin, so that in him we might become the righteousness of God.
+                </div>
+
+                <div class="question">2.6 - How are you encouraged by 2 Cor. 5:17,21?</div>
+                <textarea class="response-box" id="question-2-6" placeholder="How does this encourage you?" data-question="2.6 - Encouraged by 2 Cor 5:17,21"></textarea>
+                <div class="saved-indicator" id="saved-2-6">✓ Response saved automatically</div>
+
+                <div class="question">Notes from Daily Quiet Times this week from John 1-3:</div>
+                <textarea class="response-box" id="question-2-notes" placeholder="Share your notes from reading John 1-3..." data-question="Session 2 - John 1-3 notes"></textarea>
+                <div class="saved-indicator" id="saved-2-notes">✓ Response saved automatically</div>
+
+                <div class="agenda-box">
+                    <h3>Agenda for Weekly Meeting #2</h3>
+                    <p><strong>Review:</strong> Check-in, Session 2 teachings, Quiet Time from John 1-3</p>
+                    <p><strong>Homework:</strong> Complete Session 3, Read John 4-6, Pray the Lord's Prayer</p>
+                </div>
+
+                <div class="question">Prayer Requests for this week:</div>
+                <textarea class="response-box" id="question-2-prayer" placeholder="Share your prayer requests..." data-question="Session 2 Prayer Requests"></textarea>
+                <div class="saved-indicator" id="saved-2-prayer">✓ Response saved automatically</div>
+            </div>
+        </div>
+
+        <!-- SESSION 3 -->
+        <div class="session" id="session-3">
+            <div class="section">
+                <h2 class="section-title">Session 3: Prayer</h2>
+                
+                <h3 style="color: #3498db; font-size: 1.5rem; margin-bottom: 1rem;">What is Prayer?</h3>
+                <p>Prayer is a conversation: talking with and listening to God. Prayer displays our dependence on a powerful and loving Father. Jesus taught us to pray in the Lord's Prayer, giving us a pattern with a humble heart.</p>
+                
+                <div class="verse">
+                    <strong>The Lord's Prayer</strong><br>
+                    Our Father, who is in heaven,<br>
+                    Holy is your name,<br>
+                    your kingdom come, your will be done<br>
+                    on earth as it is in heaven.<br>
+                    Give us this day our daily bread.<br>
+                    Forgive us our sins, as we forgive those who sin against us.<br>
+                    And lead us not into temptation, but deliver us from evil.<br>
+                    For yours is the kingdom, and the power, and the glory forever, Amen.
+                </div>
+
+                <div class="question">3.1 - How would you describe your prayer life right now?</div>
+                <textarea class="response-box" id="question-3-1" placeholder="Describe your current prayer life..." data-question="3.1 - Current prayer life"></textarea>
+                <div class="saved-indicator" id="saved-3-1">✓ Response saved automatically</div>
+
+                <h3 style="color: #3498db; font-size: 1.3rem; margin: 2rem 0 1rem 0;">STEP 1 - CONNECT RELATIONALLY</h3>
+                <p><em>"Our Father, who is in heaven"</em></p>
+                <p>God has adopted us as His children and loves for us to call Him our Father. Starting prayer by acknowledging our relationship with God is powerful for us and delights Him.</p>
+
+                <div class="question">3.2 - Why is it important to begin your prayers being reminded that God is your Father?</div>
+                <textarea class="response-box" id="question-3-2" placeholder="Why start with 'Our Father'?" data-question="3.2 - God as Father in prayer"></textarea>
+                <div class="saved-indicator" id="saved-3-2">✓ Response saved automatically</div>
+
+                <h3 style="color: #3498db; font-size: 1.3rem; margin: 2rem 0 1rem 0;">STEP 2 - WORSHIP HIS NAME</h3>
+                <p><em>"Holy is your name"</em></p>
+                <p>When we proclaim who He is, we worship Him by reminding ourselves how powerful and great our God is. He is love, grace, and forgiveness.</p>
+
+                <div class="question">3.3 - What are some names and attributes of God you can proclaim in your prayers to honor Him?</div>
+                <textarea class="response-box" id="question-3-3" placeholder="List God's names and attributes..." data-question="3.3 - God's names and attributes"></textarea>
+                <div class="saved-indicator" id="saved-3-3">✓ Response saved automatically</div>
+
+                <h3 style="color: #3498db; font-size: 1.3rem; margin: 2rem 0 1rem 0;">STEP 3 - PRAY HIS AGENDA FIRST</h3>
+                <p><em>"your kingdom come, your will be done on earth as it is in heaven"</em></p>
+                <p>Part of being a child of God is caring about what He cares about. We acknowledge His wisdom and sovereignty when we pray His agenda first.</p>
+
+                <div class="question">3.4 - What are some things that God cares about that you could pray about?</div>
+                <textarea class="response-box" id="question-3-4" placeholder="What does God care about?" data-question="3.4 - God's agenda"></textarea>
+                <div class="saved-indicator" id="saved-3-4">✓ Response saved automatically</div>
+
+                <h3 style="color: #3498db; font-size: 1.3rem; margin: 2rem 0 1rem 0;">STEP 4 - DEPEND ON HIM FOR EVERYTHING</h3>
+                <p><em>"Give us this day our daily bread."</em></p>
+                <p>God promises to supply all our needs. He wants us to come to Him with our problems, needs, and desires and to trust Him to provide.</p>
+
+                <div class="question">3.5 - What are some of your current needs that you want God to provide for?</div>
+                <textarea class="response-box" id="question-3-5" placeholder="List your current needs..." data-question="3.5 - Current needs"></textarea>
+                <div class="saved-indicator" id="saved-3-5">✓ Response saved automatically</div>
+
+                <h3 style="color: #3498db; font-size: 1.3rem; margin: 2rem 0 1rem 0;">STEP 5 - FORGIVE AND BE FORGIVEN</h3>
+                <p><em>"Forgive us our sins, as we forgive those who sin against us."</em></p>
+                <p>God has offered us complete forgiveness. When we receive His forgiveness, our hearts are more prepared to forgive others as well.</p>
+
+                <div class="question">3.6 - How does God's forgiveness help us forgive others?</div>
+                <textarea class="response-box" id="question-3-6" placeholder="How does forgiveness work?" data-question="3.6 - Forgiveness connection"></textarea>
+                <div class="saved-indicator" id="saved-3-6">✓ Response saved automatically</div>
+
+                <h3 style="color: #3498db; font-size: 1.3rem; margin: 2rem 0 1rem 0;">STEP 6 - ENGAGE IN SPIRITUAL WARFARE</h3>
+                <p><em>"And lead us not into temptation, but deliver us from evil."</em></p>
+                <p>We have an enemy trying to steal, kill, and destroy. As we pray, we take our stand against the enemy and fight from victory through Jesus.</p>
+
+                <div class="question">3.7 - How did you feel about incorporating the Lord's Prayer into your daily routine?</div>
+                <textarea class="response-box" id="question-3-7" placeholder="How was praying the Lord's Prayer?" data-question="3.7 - Lord's Prayer experience"></textarea>
+                <div class="saved-indicator" id="saved-3-7">✓ Response saved automatically</div>
+
+                <div class="question">Notes from Daily Quiet Times this week from John 4-6:</div>
+                <textarea class="response-box" id="question-3-notes" placeholder="Share your notes from reading John 4-6..." data-question="Session 3 - John 4-6 notes"></textarea>
+                <div class="saved-indicator" id="saved-3-notes">✓ Response saved automatically</div>
+
+                <div class="agenda-box">
+                    <h3>Agenda for Weekly Meeting #3</h3>
+                    <p><strong>Review:</strong> Check-in, Session 3 Prayer teaching, Quiet Time from John 4-6</p>
+                    <p><strong>Homework:</strong> Complete Session 4, Read John 7-9, Continue Lord's Prayer</p>
+                </div>
+
+                <div class="question">Prayer Requests for this week:</div>
+                <textarea class="response-box" id="question-3-prayer" placeholder="Share your prayer requests..." data-question="Session 3 Prayer Requests"></textarea>
+                <div class="saved-indicator" id="saved-3-prayer">✓ Response saved automatically</div>
+            </div>
+        </div>
+
+        <!-- SESSION 4 -->
+        <div class="session" id="session-4">
+            <div class="section">
+                <h2 class="section-title">Session 4: Bible</h2>
+                
+                <h3 style="color: #3498db; font-size: 1.5rem; margin-bottom: 1rem;">What is the Bible?</h3>
+                <p>The Bible is the Word of God to humanity, to be our guide, to instruct, and to bring us into relationship with Him. It serves as a road map for our spiritual journey, helping us understand God's character, the purpose of our lives, and the principles we should live by.</p>
+                
+                <div class="verse">
+                    <strong>2 Timothy 3:16-17</strong> All Scripture is breathed out by God and profitable for teaching, for reproof, for correction, and for training in righteousness, that the man of God may be complete, equipped for every good work.
+                </div>
+
+                <div class="question">4.1 - This course has encouraged you to read the Bible daily. How has consistently reading the book of John affected you personally?</div>
+                <textarea class="response-box" id="question-4-1" placeholder="How has reading John affected you?" data-question="4.1 - Reading John's impact"></textarea>
+                <div class="saved-indicator" id="saved-4-1">✓ Response saved automatically</div>
+
+                <h3 style="color: #3498db; font-size: 1.3rem; margin: 2rem 0 1rem 0;">The Bible should be: 1) Read Daily, 2) Studied, 3) Obeyed</h3>
+                
+                <h4 style="color: #2c3e50; margin: 1.5rem 0 1rem 0;">1) The Bible should be "Read Daily"</h4>
+                <p>The way we get to know someone is through conversation. When we read about God's journey, desires, and character, we begin to understand Him, which leads to an authentic relationship. God desires for us to know Him through His story from creation to the New Testament.</p>
+
+                <div class="question">4.2 - When is the best time each day for you to spend in God's Word? Which format do you prefer for engaging with the Bible such as a physical book, an app, or an audio version?</div>
+                <textarea class="response-box" id="question-4-2" placeholder="When and how do you prefer to read?" data-question="4.2 - Best time and format for Bible reading"></textarea>
+                <div class="saved-indicator" id="saved-4-2">✓ Response saved automatically</div>
+
+                <h4 style="color: #2c3e50; margin: 1.5rem 0 1rem 0;">2) The Bible should be "Studied"</h4>
+                <p>Reading is essential, but we must also dig deep and study it. Through study, we uncover cultural context, historical background, and the original intent. A great way to move from reading to deeper study is by asking these 2 key questions:</p>
+                <p><strong>1) What does this passage tell me about God?</strong> - Learn about God<br>
+                <strong>2) What does this passage tell me about mankind?</strong> - Learn about people</p>
+
+                <p style="margin: 1.5rem 0;"><strong>Let's study John 8:2-11:</strong></p>
+                <div class="verse">
+                    <strong>John 8:2-11</strong> Early in the morning (Jesus) he came again to the temple. All the people came to him, and he sat down and taught them. The scribes and the Pharisees brought a woman who had been caught in adultery, and placing her in the midst they said to him, "Teacher, this woman has been caught in the act of adultery. Now in the Law, Moses commanded us to stone such women. So what do you say?" This they said to test him, that they might have some charge to bring against him. Jesus bent down and wrote with his finger on the ground. And as they continued to ask him, he stood up and said to them, "Let him who is without sin among you be the first to throw a stone at her." And once more he bent down and wrote on the ground. But when they heard it, they went away one by one, beginning with the older ones, and Jesus was left alone with the woman standing before him. Jesus stood up and said to her, "Woman, where are they? Has no one condemned you?" She said, "No one, Lord." And Jesus said, "Neither do I condemn you; go, and from now on sin no more."
+                </div>
+
+                <div class="question">4.3 - In the above passage, answer "What does this passage tell me about God?"</div>
+                <textarea class="response-box" id="question-4-3" placeholder="What does this show about God?" data-question="4.3 - John 8:2-11 about God"></textarea>
+                <div class="saved-indicator" id="saved-4-3">✓ Response saved automatically</div>
+
+                <div class="question">4.4 - What does this passage tell me about mankind?</div>
+                <textarea class="response-box" id="question-4-4" placeholder="What does this show about people?" data-question="4.4 - John 8:2-11 about mankind"></textarea>
+                <div class="saved-indicator" id="saved-4-4">✓ Response saved automatically</div>
+
+                <h4 style="color: #2c3e50; margin: 1.5rem 0 1rem 0;">3) The Bible should be "Obeyed"</h4>
+                <p>Jesus tells us in Matthew 7:24 "Everyone then who hears these words of mine and does them will be like a wise man who built his house on the rock." True faith involves putting belief into action.</p>
+                
+                <p>The third question we can ask ourselves is:<br>
+                <strong>3) What is the passage telling me to do or believe?</strong> - "Because of this truth I will..."</p>
+
+                <div class="question">4.5 - What is the passage John 8:2-11 telling me to do or believe? What is the next step I will take? Because of this truth, I will...</div>
+                <textarea class="response-box" id="question-4-5" placeholder="What will you do because of this truth?" data-question="4.5 - John 8:2-11 application"></textarea>
+                <div class="saved-indicator" id="saved-4-5">✓ Response saved automatically</div>
+
+                <div class="question">Notes from Daily Quiet Times this week on John 7-9:</div>
+                <textarea class="response-box" id="question-4-notes" placeholder="Share your notes from reading John 7-9..." data-question="Session 4 - John 7-9 notes"></textarea>
+                <div class="saved-indicator" id="saved-4-notes">✓ Response saved automatically</div>
+
+                <div class="agenda-box">
+                    <h3>Agenda for Weekly Meeting #4</h3>
+                    <p><strong>Review:</strong> Check-in, Session 4 Bible teaching, Quiet Time from John 7-9</p>
+                    <p><strong>Homework:</strong> Complete Session 5, Read John 10-12 using the 3 questions, Memorize John 3:16</p>
+                </div>
+
+                <div class="question">Prayer Requests for this week:</div>
+                <textarea class="response-box" id="question-4-prayer" placeholder="Share your prayer requests..." data-question="Session 4 Prayer Requests"></textarea>
+                <div class="saved-indicator" id="saved-4-prayer">✓ Response saved automatically</div>
+            </div>
+        </div>
+
+        <!-- SESSION 5 -->
+        <div class="session" id="session-5">
+            <div class="section">
+                <h2 class="section-title">Session 5: Church</h2>
+                
+                <h3 style="color: #3498db; font-size: 1.5rem; margin-bottom: 1rem;">What is the Church?</h3>
+                <p>The Church is the "Body of Christ". We are a connected family of believers that continues the mission and message of Jesus. God sent the Holy Spirit to empower and unify the church around the Gospel.</p>
+                
+                <div class="verse">
+                    <strong>Ephesians 1:22-23</strong> And he (God the Father) put all things under his (Jesus') feet and gave him as head over all things to the church, which is his body, the fullness of him who fills all in all.
+                </div>
+
+                <div class="question">5.1 - Consider how Jesus lived His life. What are a few attitudes or actions that the church should follow and imitate? (ex. Jesus sacrificed, Jesus taught the truth, Jesus showed unconditional love...)</div>
+                <textarea class="response-box" id="question-5-1" placeholder="How should the church imitate Jesus?" data-question="5.1 - Church imitating Jesus"></textarea>
+                <div class="saved-indicator" id="saved-5-1">✓ Response saved automatically</div>
+
+                <h3 style="color: #3498db; font-size: 1.3rem; margin: 2rem 0 1rem 0;">Following Jesus, the church: 1) Loves, 2) Equips, 3) Serves</h3>
+                
+                <h4 style="color: #2c3e50; margin: 1.5rem 0 1rem 0;">1) The Church Loves</h4>
+                <div class="verse">
+                    <strong>John 13:34-35</strong> So now I am giving you a new commandment: Love each other. Just as I have loved you, you should love each other. Your love for one another will prove to the world that you are my disciples. ~Jesus
+                </div>
+
+                <div class="question">5.2 - Imagine a community who loves each other unconditionally, not based on what they do but based on who God says they are. Describe what these relationships would be like.</div>
+                <textarea class="response-box" id="question-5-2" placeholder="Describe unconditional love community..." data-question="5.2 - Unconditional love community"></textarea>
+                <div class="saved-indicator" id="saved-5-2">✓ Response saved automatically</div>
+
+                <div class="verse">
+                    <strong>Acts 2:42-47</strong> And they devoted themselves to the apostles' teaching and the fellowship, to the breaking of bread and the prayers. And awe came upon every soul, and many wonders and signs were being done through the apostles. And all who believed were together and had all things in common. And they were selling their possessions and belongings and distributing the proceeds to all, as any had need. And day by day, attending the temple together and breaking bread in their homes, they received their food with glad and generous hearts, praising God and having favor with all the people. And the Lord added to their number day by day those who were being saved.
+                </div>
+
+                <div class="question">5.3 - Acts 2:42-47 describes a group of believers that seems to meet often. How important is it for a Christian to gather with the church? If you attend church, how often and why do you go?</div>
+                <textarea class="response-box" id="question-5-3" placeholder="How important is gathering together?" data-question="5.3 - Importance of gathering"></textarea>
+                <div class="saved-indicator" id="saved-5-3">✓ Response saved automatically</div>
+
+                <h4 style="color: #2c3e50; margin: 1.5rem 0 1rem 0;">2) The Church Equips</h4>
+                <p>The early church devoted themselves to the apostles' teaching. Just as Jesus equipped His disciples through both word and deed, the Church provides Biblical teaching alongside practical examples of living out the faith.</p>
+
+                <div class="question">5.4 - In what ways have you been equipped by the church to live out your faith? What are some areas you would like more equipping?</div>
+                <textarea class="response-box" id="question-5-4" placeholder="How has the church equipped you?" data-question="5.4 - Church equipping"></textarea>
+                <div class="saved-indicator" id="saved-5-4">✓ Response saved automatically</div>
+
+                <h4 style="color: #2c3e50; margin: 1.5rem 0 1rem 0;">3) The Church Serves</h4>
+                <p>The early church was active in the community, selling possessions to help those in need. After Jesus washed the disciples' feet, He said in John 13:14-15 "If I then, your Lord and Teacher, have washed your feet, you also ought to wash one another's feet. For I have given you an example, that you also should do just as I have done to you."</p>
+
+                <div class="question">5.5 - What ways are you currently serving or ways you would like to serve in the community and in the church? (Community: Volunteer in a school, coach a team, scouts, work with the elderly... Church: Help with kids or youth, building and grounds teams, worship and tech team...)</div>
+                <textarea class="response-box" id="question-5-5" placeholder="How are you serving or want to serve?" data-question="5.5 - Serving opportunities"></textarea>
+                <div class="saved-indicator" id="saved-5-5">✓ Response saved automatically</div>
+
+                <div class="question">Notes from Daily Quiet Times this week from John 10-12:</div>
+                <textarea class="response-box" id="question-5-notes" placeholder="Share your notes from reading John 10-12..." data-question="Session 5 - John 10-12 notes"></textarea>
+                <div class="saved-indicator" id="saved-5-notes">✓ Response saved automatically</div>
+
+                <div class="agenda-box">
+                    <h3>Agenda for Weekly Meeting #5</h3>
+                    <p><strong>Review:</strong> Check-in, Session 5 Church teaching, Quiet Time from John 10-12</p>
+                    <p><strong>Homework:</strong> Complete Session 6, Read John 13-15 using the 3 Bible study questions</p>
+                </div>
+
+                <div class="question">Prayer Requests for this week:</div>
+                <textarea class="response-box" id="question-5-prayer" placeholder="Share your prayer requests..." data-question="Session 5 Prayer Requests"></textarea>
+                <div class="saved-indicator" id="saved-5-prayer">✓ Response saved automatically</div>
+            </div>
+        </div>
+
+        <!-- SESSION 6 -->
+        <div class="session" id="session-6">
+            <div class="section">
+                <h2 class="section-title">Session 6: Evangelism</h2>
+                
+                <h3 style="color: #3498db; font-size: 1.5rem; margin-bottom: 1rem;">What is Evangelism?</h3>
+                <p>Following Jesus includes not only personal spiritual growth but also sharing and offering the gospel to others. Each Christian is called by Jesus to make disciples where they live, work, play, and learn. This is your ministry.</p>
+                
+                <p>Your "Personal Ministry" is sharing the Gospel with people you know and random people you meet so they too can have a saving relationship with Jesus. Successful evangelism is the sharing of the Good News, and it is not dependent on the person's response.</p>
+
+                <div class="question">6.1 - If you had to score yourself from 1-10 on having spiritual conversations with others who are not Christian, what number would you be and why?</div>
+                <textarea class="response-box" id="question-6-1" placeholder="Rate yourself 1-10 and explain..." data-question="6.1 - Spiritual conversations self-rating"></textarea>
+                <div class="saved-indicator" id="saved-6-1">✓ Response saved automatically</div>
+
+                <div class="verse">
+                    <strong>Romans 1:16</strong> For I am not ashamed of the gospel, for it is the power of God for salvation to everyone who believes, to the Jew first and also to the Greek.
+                </div>
+
+                <h3 style="color: #3498db; font-size: 1.3rem; margin: 2rem 0 1rem 0;">Steps to Healthy Evangelism: 1) Care, 2) Pray, 3) Share, 4) Offer</h3>
+
+                <div class="question">6.2 - List three people who can be a part of your personal ministry.</div>
+                <textarea class="response-box" id="question-6-2" placeholder="Name three people..." data-question="6.2 - Three people for personal ministry"></textarea>
+                <div class="saved-indicator" id="saved-6-2">✓ Response saved automatically</div>
+
+                <h4 style="color: #2c3e50; margin: 1.5rem 0 1rem 0;">1) Care</h4>
+                <p>When we care, we create a foundation of trust and openness, making the Gospel more receptive. People don't care how much you know until they know how much you care. To truly love our neighbors as ourselves, we should care about their well-being now and into eternity.</p>
+
+                <div class="question">6.3 - What are some ways you could care for those in your life who are not yet followers of Jesus?</div>
+                <textarea class="response-box" id="question-6-3" placeholder="How can you show care?" data-question="6.3 - Ways to care for non-believers"></textarea>
+                <div class="saved-indicator" id="saved-6-3">✓ Response saved automatically</div>
+
+                <h4 style="color: #2c3e50; margin: 1.5rem 0 1rem 0;">2) Pray</h4>
+                <p>We should talk to God about people before we talk to people about God. Prayer aligns our hearts with God's and invites His presence and power into our efforts. Prayer prepares the soil of hearts we are sowing into.</p>
+
+                <div class="question">6.4 - How can you add praying for the lost to your daily quiet time?</div>
+                <textarea class="response-box" id="question-6-4" placeholder="How will you pray for the lost?" data-question="6.4 - Praying for the lost"></textarea>
+                <div class="saved-indicator" id="saved-6-4">✓ Response saved automatically</div>
+
+                <h4 style="color: #2c3e50; margin: 1.5rem 0 1rem 0;">3) Share</h4>
+                <p>Sharing the Gospel is the central act of evangelism, where we verbally communicate the good news of Jesus Christ. This often involves our personal story.</p>
+                
+                <div class="verse">
+                    <strong>Romans 10:14-15</strong> How then will they call on him in whom they have not believed? And how are they to believe in him of whom they have never heard? And how are they to hear without someone preaching? And how are they to preach unless they are sent? As it is written, "How beautiful are the feet of those who preach the good news!"
+                </div>
+
+                <p><strong>Roman Road - ABC's of the Gospel:</strong></p>
+                <p><strong>A - Admit</strong> you are a sinner and need a Savior. (Romans 3:23)<br>
+                <strong>B - Believe</strong> in Jesus as your Savior, His death and resurrection. (Romans 10:9)<br>
+                <strong>C - Confess</strong> Jesus as your Lord. (Romans 10:9)</p>
+
+                <div class="question">6.5 - If someone asked you, "How can I be a Christian?" what would you say?</div>
+                <textarea class="response-box" id="question-6-5" placeholder="How would you explain becoming a Christian?" data-question="6.5 - How to become a Christian explanation"></textarea>
+                <div class="saved-indicator" id="saved-6-5">✓ Response saved automatically</div>
+
+                <h4 style="color: #2c3e50; margin: 1.5rem 0 1rem 0;">4) Offer</h4>
+                <p>The final step is offering salvation through faith in Jesus Christ. This involves:</p>
+                <p><strong>1. A Question:</strong> "Do you want to accept Jesus as Savior and Lord?"<br>
+                <strong>2. A Prayer:</strong> Guide them in a salvation prayer<br>
+                <strong>3. An Encouragement:</strong> "Welcome to the family of God. Let's stay connected."</p>
+
+                <div class="question">6.6 - What is your next step in your personal ministry this week?</div>
+                <textarea class="response-box" id="question-6-6" placeholder="What's your next step?" data-question="6.6 - Next step in personal ministry"></textarea>
+                <div class="saved-indicator" id="saved-6-6">✓ Response saved automatically</div>
+
+                <div class="question">Notes from Daily Quiet Times this week from John 13-15:</div>
+                <textarea class="response-box" id="question-6-notes" placeholder="Share your notes from reading John 13-15..." data-question="Session 6 - John 13-15 notes"></textarea>
+                <div class="saved-indicator" id="saved-6-notes">✓ Response saved automatically</div>
+
+                <div class="agenda-box">
+                    <h3>Agenda for Weekly Meeting #6</h3>
+                    <p><strong>Review:</strong> Check-in, Session 6 Evangelism teaching, Quiet Time from John 13-15</p>
+                    <p><strong>Homework:</strong> Complete Session 7, Read John 16-21, Memorize the Roman Road</p>
+                </div>
+
+                <div class="question">Prayer Requests for this week:</div>
+                <textarea class="response-box" id="question-6-prayer" placeholder="Share your prayer requests..." data-question="Session 6 Prayer Requests"></textarea>
+                <div class="saved-indicator" id="saved-6-prayer">✓ Response saved automatically</div>
+            </div>
+        </div>
+
+        <!-- SESSION 7 -->
+        <div class="session" id="session-7">
+            <div class="section">
+                <h2 class="section-title">Session 7: Life of Repentance</h2>
+                
+                <p>Our final session focuses on living a life of repentance. We have learned that we must repent to be saved, but this is not the only time we will need to repent. When someone becomes a Christian, they begin a life of repentance.</p>
+                
+                <h3 style="color: #3498db; font-size: 1.5rem; margin: 2rem 0 1rem 0;">What is Repentance?</h3>
+                <p><strong>Repentance = A change of attitude and action from sin toward obedience to God.</strong> Repentance involves remorse of the heart that leads to right actions.</p>
+
+                <div class="question">7.1 - Why do you think we are sometimes slow to repent?</div>
+                <textarea class="response-box" id="question-7-1" placeholder="Why are we slow to repent?" data-question="7.1 - Why slow to repent"></textarea>
+                <div class="saved-indicator" id="saved-7-1">✓ Response saved automatically</div>
+
+                <div class="verse">
+                    <strong>Matthew 22:37-39</strong> "You shall love the Lord your God with all your heart and with all your soul and with all your mind. This is the great and first commandment. And a second is like it: You shall love your neighbor as yourself."
+                </div>
+
+                <div class="question">7.2 - How does repentance free us to love God and others? How could not repenting hinder us from loving?</div>
+                <textarea class="response-box" id="question-7-2" placeholder="How does repentance relate to love?" data-question="7.2 - Repentance and love"></textarea>
+                <div class="saved-indicator" id="saved-7-2">✓ Response saved automatically</div>
+
+                <h3 style="color: #3498db; font-size: 1.3rem; margin: 2rem 0 1rem 0;">Repentance strengthens our relationship with God and frees us for His mission</h3>
+                
+                <div class="verse">
+                    <strong>Hebrews 12:1-2</strong> Therefore, since we are surrounded by so great a cloud of witnesses, let us also lay aside every weight, and sin which clings so closely, and let us run with endurance the race that is set before us, looking to Jesus, the founder and perfecter of our faith, who for the joy that was set before him endured the cross, despising the shame, and is seated at the right hand of the throne of God.
+                </div>
+
+                <div class="question">7.3 - What is encouraging from the Hebrews passage above?</div>
+                <textarea class="response-box" id="question-7-3" placeholder="What encourages you from Hebrews 12:1-2?" data-question="7.3 - Encouraged by Hebrews 12"></textarea>
+                <div class="saved-indicator" id="saved-7-3">✓ Response saved automatically</div>
+
+                <div class="question">7.4 - What is holding you back from running freely for the mission of God? What weights do you need to lay aside that are clinging to you?</div>
+                <textarea class="response-box" id="question-7-4" placeholder="What's holding you back?" data-question="7.4 - Weights holding back"></textarea>
+                <div class="saved-indicator" id="saved-7-4">✓ Response saved automatically</div>
+
+                <div class="question">7.5 - If you were running at full speed for God, what would your life look like? How would your life be different?</div>
+                <textarea class="response-box" id="question-7-5" placeholder="What would running at full speed look like?" data-question="7.5 - Running at full speed for God"></textarea>
+                <div class="saved-indicator" id="saved-7-5">✓ Response saved automatically</div>
+
+                <div class="verse">
+                    <strong>Romans 8:1</strong> There is therefore now no condemnation for those who are in Christ Jesus.<br><br>
+                    <strong>John 8:34-36</strong> Jesus answered them, "Truly, truly, I say to you, everyone who practices sin is a slave to sin. The slave does not remain in the house forever; the son remains forever. So if the Son sets you free, you will be free indeed."
+                </div>
+
+                <div class="question">7.6 - How have these meetings, this course, reading the book of John, and having a quiet time helped you in your spiritual walk? (Final reflection on all 7 sessions: Introduction, Salvation and Baptism, Prayer, Bible, Church, Evangelism, Life of Repentance)</div>
+                <textarea class="response-box" id="question-7-6" placeholder="Reflect on the entire course..." data-question="7.6 - Course reflection" style="min-height: 200px;"></textarea>
+                <div class="saved-indicator" id="saved-7-6">✓ Response saved automatically</div>
+
+                <div class="question">Notes from Daily Quiet Times this week from John 16-21:</div>
+                <textarea class="response-box" id="question-7-notes" placeholder="Share your notes from reading John 16-21..." data-question="Session 7 - John 16-21 notes"></textarea>
+                <div class="saved-indicator" id="saved-7-notes">✓ Response saved automatically</div>
+
+                <div class="agenda-box">
+                    <h3>Agenda for Weekly Meeting #7 (Final Meeting)</h3>
+                    <p><strong>Review:</strong> Check-in, Session 7 Life of Repentance teaching, Quiet Time from John 16-21</p>
+                    <p><strong>Homework:</strong> Who could you take through this course to help them grow in their spiritual foundation?</p>
+                </div>
+
+                <div class="question">Prayer Requests for this week:</div>
+                <textarea class="response-box" id="question-7-prayer" placeholder="Share your prayer requests..." data-question="Session 7 Prayer Requests"></textarea>
+                <div class="saved-indicator" id="saved-7-prayer">✓ Response saved automatically</div>
+            </div>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="navigation-buttons">
+            <button class="btn btn-secondary" onclick="previousSession()" id="prev-btn" style="display: none;">← Previous Session</button>
+            <button class="btn" onclick="nextSession()" id="next-btn">Next Session →</button>
+        </div>
+
+        <!-- Export Section -->
+        <div class="export-section">
+            <h3>Share Your Journey</h3>
+            <p>Your responses are automatically saved on this device. Export your complete Christian Foundations journey to share with your discipler or keep for your records.</p>
+            <button class="btn btn-success" onclick="exportAllResponses()">📧 Email Complete Study</button>
+            <button class="btn btn-secondary" onclick="printAllResponses()">🖨️ Print All Sessions</button>
+            <button class="btn btn-secondary" onclick="clearAllData()" style="background: #e74c3c;">🗑️ Clear All Data</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
