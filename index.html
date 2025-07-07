@@ -142,13 +142,28 @@
 
         /* App Icons Grid Styles */
         .app-icons-grid {
-            position: fixed;
-            top: calc(50% - 200px);
-            left: 50%;
-            transform: translate(-50%, -50%);
-            display: flex;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
             gap: 40px;
+            justify-items: center;
+            align-items: start;
+            margin: 60px auto 0 auto;
+            max-width: 500px;
+            position: static;
             z-index: 999;
+        }
+
+        @media (max-width: 768px) {
+            .app-icons-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+                margin-top: 32px;
+                max-width: 340px;
+            }
+            .app-icon {
+                width: 100%;
+                margin-bottom: 0;
+            }
         }
 
         .app-icon {
