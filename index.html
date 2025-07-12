@@ -14,7 +14,7 @@
 
     body {
       min-height: 100vh;
-      background: #2C3E50;
+      background: #ffffff;
       overflow-x: hidden;
     }
 
@@ -30,7 +30,7 @@
     .logo {
       width: 550px;
       max-width: 90vw;
-      margin-bottom: 32px;
+      margin: 0 auto 32px;
     }
 
     .button-grid {
@@ -59,7 +59,7 @@
       box-shadow: 0 4px 16px rgba(26, 95, 122, 0.15);
     }
 
-    /* Background elements */
+    /* Remove old background styles and add new blue theme background styles */
     .background-container {
       position: fixed;
       top: 0;
@@ -67,84 +67,174 @@
       width: 100%;
       height: 100%;
       overflow: hidden;
-      z-index: 0;
     }
 
+    /* Base gradient - subtle white to light gray */
     .base-layer {
       position: absolute;
       width: 100%;
       height: 100%;
-      background: linear-gradient(135deg, #F5E6D3 0%, #E8D5C4 50%, #D4A574 100%);
+      background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 50%, #e9ecef 100%);
     }
 
+    /* Diagonal accent stripes with new blue theme */
+    .diagonal-accent {
+      position: absolute;
+      bottom: -30%;
+      right: -50%;
+      width: 200%;
+      height: 150%;
+      background: linear-gradient(45deg, 
+        transparent 20%,
+        rgba(0, 51, 102, 0.05) 20%,
+        rgba(0, 51, 102, 0.05) 25%,
+        rgba(51, 153, 204, 0.08) 25%,
+        rgba(51, 153, 204, 0.08) 30%,
+        rgba(0, 51, 102, 0.05) 30%,
+        rgba(0, 51, 102, 0.05) 35%,
+        rgba(51, 153, 204, 0.08) 35%,
+        rgba(51, 153, 204, 0.08) 40%,
+        rgba(108, 117, 125, 0.03) 40%,
+        rgba(108, 117, 125, 0.03) 45%,
+        transparent 45%
+      );
+      transform: rotate(-20deg);
+    }
+
+    /* Vertical stripes on the right - blue theme */
     .vertical-stripes {
       position: absolute;
-      top: 120px;
+      top: 0;
       right: 6px;
-      height: calc(100% - 120px);
+      height: 100%;
       display: flex;
       gap: 3px;
     }
 
     .stripe {
-      width: 11px;
+      width: 10px;
       height: 100%;
     }
 
-    .stripe-1 { background: rgba(253, 208, 73, 0.4); }
-    .stripe-2 { background: rgba(230, 126, 34, 0.4); }
-    .stripe-3 { background: rgba(194, 87, 26, 0.4); }
-    .stripe-4 { background: rgba(128, 0, 32, 0.4); }
-    .stripe-5 { background: rgba(91, 112, 101, 0.4); }
+    .stripe-1 {
+      background: rgba(0, 51, 102, 0.8); /* Dark blue */
+    }
 
-    .flow-overlay {
+    .stripe-2 {
+      background: rgba(0, 51, 102, 0.6); /* Dark blue lighter */
+    }
+
+    .stripe-3 {
+      background: rgba(51, 153, 204, 0.7); /* Light blue */
+    }
+
+    .stripe-4 {
+      background: rgba(51, 153, 204, 0.5); /* Light blue lighter */
+    }
+
+    .stripe-5 {
+      background: rgba(108, 117, 125, 0.3); /* Gray */
+    }
+
+    /* Subtle wave overlay at bottom */
+    .wave-overlay {
       position: absolute;
       bottom: 0;
       left: 0;
       width: 100%;
-      height: 60%;
+      height: 40%;
       overflow: hidden;
     }
 
-    .flow-path {
+    .wave-path {
       position: absolute;
-      bottom: -10%;
-      left: -10%;
-      width: 120%;
+      bottom: 0;
+      left: 0;
+      width: 100%;
       height: 100%;
     }
 
-    /* Diagonal accent stripes */
-    .diagonal-accent {
-        position: absolute;
-        bottom: -20%;
-        right: -50%;
-        width: 200%;
-        height: 150%;
-        background: linear-gradient(45deg, 
-            transparent 20%,
-            rgba(91, 112, 101, 0.165) 20%,
-            rgba(91, 112, 101, 0.165) 25%,
-            rgba(139, 69, 19, 0.165) 25%,
-            rgba(139, 69, 19, 0.165) 30%,
-            rgba(194, 87, 26, 0.165) 30%,
-            rgba(194, 87, 26, 0.165) 35%,
-            rgba(230, 126, 34, 0.165) 35%,
-            rgba(230, 126, 34, 0.165) 40%,
-            rgba(243, 156, 18, 0.165) 40%,
-            rgba(243, 156, 18, 0.165) 45%,
-            rgba(253, 208, 73, 0.165) 45%,
-            rgba(253, 208, 73, 0.165) 50%,
-            transparent 50%
-        );
-        transform: rotate(-15deg);
-        opacity: 0.66;
+    /* Angular accent lines */
+    .accent-lines {
+      position: absolute;
+      top: 10%;
+      left: -5%;
+      width: 40%;
+      height: 50%;
+      opacity: 0.6;
+    }
+
+    .line {
+      position: absolute;
+      height: 2px;
+      background: linear-gradient(to right, #003366 0%, transparent 100%);
+      transform-origin: left center;
+    }
+
+    .line-1 {
+      width: 300px;
+      top: 0;
+      transform: rotate(15deg);
+      opacity: 0.3;
+    }
+
+    .line-2 {
+      width: 250px;
+      top: 30px;
+      transform: rotate(15deg);
+      background: linear-gradient(to right, #3399CC 0%, transparent 100%);
+      opacity: 0.4;
+    }
+
+    .line-3 {
+      width: 200px;
+      top: 60px;
+      transform: rotate(15deg);
+      opacity: 0.2;
+    }
+
+    /* Corner gradient accent */
+    .corner-gradient {
+      position: absolute;
+      top: -20%;
+      right: -10%;
+      width: 50%;
+      height: 50%;
+      background: radial-gradient(circle at center,
+        rgba(51, 153, 204, 0.1) 0%,
+        rgba(51, 153, 204, 0.05) 30%,
+        transparent 70%
+      );
+      transform: rotate(45deg);
+    }
+
+    @media (max-width: 768px) {
+      .vertical-stripes {
+        right: 3px;
+      }
+
+      .stripe {
+        width: 8px;
+      }
+
+      .diagonal-accent {
+        bottom: -40%;
+        transform: rotate(-25deg);
+      }
+
+      .accent-lines {
+        width: 50%;
+      }
+
+      .line {
+        width: 150px !important;
+      }
     }
   </style>
 </head>
 <body>
   <div class="main-content">
-    <img src="ministrybagyellowlogo6.svg" alt="Ministry Bag Logo" class="logo" />
+    <img src="ministrybagblue.svg" alt="Ministry Bag Logo" class="logo" />
 
     <div class="button-grid">
       <a href="https://ministrybag.com/heart52" class="button-link">
@@ -161,12 +251,19 @@
 
   <div class="background-container">
     <div class="base-layer"></div>
+    <div class="corner-gradient"></div>
     <div class="diagonal-accent"></div>
-    <div class="flow-overlay">
-      <svg class="flow-path" viewBox="0 0 1200 600" preserveAspectRatio="none">
-        <path d="M0,600 Q100,400 300,450 T600,400 T900,480 T1200,450 L1200,600 Z" fill="#2C3E50" opacity="0.15"/>
-        <path d="M0,600 Q150,450 350,500 T700,450 T1000,520 T1200,500 L1200,600 Z" fill="#34495E" opacity="0.15"/>
-        <path d="M0,600 Q200,480 400,520 T800,480 T1200,540 L1200,600 Z" fill="#5B7065" opacity="0.10"/>
+    <div class="accent-lines">
+      <div class="line line-1"></div>
+      <div class="line line-2"></div>
+      <div class="line line-3"></div>
+    </div>
+    <div class="wave-overlay">
+      <svg class="wave-path" viewBox="0 0 1200 400" preserveAspectRatio="none">
+        <path d="M0,400 Q300,350 600,370 T1200,350 L1200,400 Z" 
+              fill="#003366" opacity="0.05"/>
+        <path d="M0,400 Q400,360 800,380 T1200,370 L1200,400 Z" 
+              fill="#3399CC" opacity="0.05"/>
       </svg>
     </div>
     <div class="vertical-stripes">
