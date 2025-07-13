@@ -79,6 +79,7 @@
             cursor: pointer;
             box-shadow: 0 4px 12px rgba(51, 153, 204, 0.5);
             color: white;
+            position: relative;
         }
         
         .game-item:hover {
@@ -120,6 +121,68 @@
             border-radius: 8px;
             margin: 20px 0;
         }
+        
+        .favorite-btn {
+            background: none;
+            border: none;
+            color: #FFD700;
+            font-size: 1.2em;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 50%;
+            transition: all 0.2s;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+        
+        .favorite-btn:hover {
+            transform: scale(1.1);
+            background: rgba(255, 215, 0, 0.1);
+        }
+        
+        .favorite-btn.favorited {
+            color: #FFD700;
+            text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+        }
+        
+        .game-item {
+            background: linear-gradient(135deg, #3399CC 0%, #66B2FF 100%);
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 8px;
+            transition: transform 0.2s;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(51, 153, 204, 0.5);
+            color: white;
+            position: relative;
+        }
+        
+        .game-item.favorite {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            box-shadow: 0 4px 12px rgba(255, 215, 0, 0.5);
+        }
+        
+        .game-item.favorite:hover {
+            box-shadow: 0 6px 16px rgba(255, 215, 0, 0.6);
+        }
+        
+        .favorites-toggle {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            color: #333;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(255, 215, 0, 0.3);
+        }
+        
+        .favorites-toggle:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(255, 215, 0, 0.4);
+        }
     </style>
 </head>
 <body>
@@ -155,6 +218,7 @@
 
     <script>
         let gamesData = [];
+        let favorites = JSON.parse(localStorage.getItem('youthGroupGameFavorites') || '[]');
         
         // Initialize the app
         function initApp() {
@@ -203,6 +267,22 @@
             document.getElementById('categoryFilter').addEventListener('change', updateGameList);
             document.getElementById('sizeFilter').addEventListener('change', updateGameList);
             document.getElementById('equipmentFilter').addEventListener('change', updateGameList);
+        }
+        
+        // Toggle favorite status
+        function toggleFavorite(gameId, event) {
+            event.preventDefault();
+            event.stopPropagation();
+            
+            const index = favorites.indexOf(gameId);
+            if (index > -1) {
+                favorites.splice(index, 1);
+            } else {
+                favorites.push(gameId);
+            }
+            
+            localStorage.setItem('youthGroupGameFavorites', JSON.stringify(favorites));
+            updateGameList();
         }
         
         // Filter logic
@@ -254,12 +334,25 @@
                 return true;
             });
 
-            console.log('Filtered games:', filtered.length);
+            // Sort games: favorites first, then alphabetically
+            const sorted = filtered.sort((a, b) => {
+                const aIsFavorite = favorites.includes(a.id);
+                const bIsFavorite = favorites.includes(b.id);
+                
+                if (aIsFavorite && !bIsFavorite) return -1;
+                if (!aIsFavorite && bIsFavorite) return 1;
+                return a.name.localeCompare(b.name);
+            });
+
+            console.log('Filtered games:', sorted.length);
 
             // Create list items for filtered games
-            filtered.forEach(game => {
+            sorted.forEach(game => {
                 const li = document.createElement('li');
                 li.className = 'game-item';
+                if (favorites.includes(game.id)) {
+                    li.classList.add('favorite');
+                }
                 
                 // Create the link that wraps the entire content
                 const a = document.createElement('a');
@@ -277,12 +370,19 @@
                 meta.textContent = 'Players: ' + game.players + ' | Equipment: ' + game.equipment;
                 a.appendChild(meta);
                 
+                // Create favorite button
+                const favoriteBtn = document.createElement('button');
+                favoriteBtn.className = 'favorite-btn';
+                favoriteBtn.innerHTML = favorites.includes(game.id) ? '★' : '☆';
+                favoriteBtn.onclick = (e) => toggleFavorite(game.id, e);
+                
                 // Add the link to the list item
                 li.appendChild(a);
+                li.appendChild(favoriteBtn);
                 listEl.appendChild(li);
             });
 
-            if (filtered.length === 0) {
+            if (sorted.length === 0) {
                 const msg = document.createElement('li');
                 msg.textContent = 'No games found matching those criteria.';
                 msg.style.listStyleType = 'none';
