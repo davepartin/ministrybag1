@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Games Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .game-item { margin: 10px 0; padding: 10px; border: 1px solid #ccc; }
+        .game-name { font-weight: bold; }
+        .game-meta { color: #666; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+    <h1>Simple Games Test</h1>
+    <div id="status">Loading...</div>
+    <div id="gameList"></div>
+
+    <script>
+        console.log('Simple test starting...');
+        
+        fetch('games.json')
+            .then(response => {
+                console.log('Response status:', response.status);
+                return response.json();
+            })
+            .then(data => {
+                console.log('Loaded games:', data.length);
+                document.getElementById('status').innerHTML = `Loaded ${data.length} games`;
+                
+                const gameList = document.getElementById('gameList');
+                
+                // Show first 10 games
+                data.slice(0, 10).forEach(game => {
+                    const div = document.createElement('div');
+                    div.className = 'game-item';
+                    div.innerHTML = `
+                        <div class="game-name">${game.name}</div>
+                        <div class="game-meta">Players: ${game.players} | Equipment: ${game.equipment}</div>
+                    `;
+                    gameList.appendChild(div);
+                });
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('status').innerHTML = `Error: ${error.message}`;
+            });
+    </script>
+</body>
+</html> 
