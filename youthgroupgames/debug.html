@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug JSON Loading</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .error { color: red; }
+        .success { color: green; }
+        .info { color: blue; }
+    </style>
+</head>
+<body>
+    <h1>Debug JSON Loading</h1>
+    <div id="output"></div>
+
+    <script>
+        const output = document.getElementById('output');
+        
+        function log(message, type = 'info') {
+            const div = document.createElement('div');
+            div.className = type;
+            div.textContent = new Date().toLocaleTimeString() + ': ' + message;
+            output.appendChild(div);
+        }
+        
+        log('Starting debug...');
+        log('Current URL: ' + window.location.href);
+        
+        // Test 1: Check if we can fetch the JSON file
+        log('Testing fetch of games.json...');
+        
+        fetch('games.json')
+            .then(response => {
+                log('Response received', 'success');
+                log('Status: ' + response.status);
+                log('OK: ' + response.ok);
+                log('Content-Type: ' + response.headers.get('content-type'));
+                
+                if (!response.ok) {
+                    throw new Error('HTTP ' + response.status);
+                }
+                
+                return response.json();
+            })
+            .then(data => {
+                log('JSON parsed successfully', 'success');
+                log('Data type: ' + typeof data);
+                log('Is array: ' + Array.isArray(data));
+                log('Number of games: ' + data.length);
+                
+                if (data.length > 0) {
+                    log('First game: ' + JSON.stringify(data[0], null, 2));
+                }
+            })
+            .catch(error => {
+                log('Error: ' + error.message, 'error');
+                log('Error stack: ' + error.stack, 'error');
+            });
+            
+        // Test 2: Try with absolute path
+        setTimeout(() => {
+            log('Testing with absolute path...');
+            fetch('/games.json')
+                .then(response => {
+                    log('Absolute path response status: ' + response.status);
+                    return response.json();
+                })
+                .then(data => {
+                    log('Absolute path success, games: ' + data.length);
+                })
+                .catch(error => {
+                    log('Absolute path error: ' + error.message, 'error');
+                });
+        }, 1000);
+    </script>
+</body>
+</html> 
