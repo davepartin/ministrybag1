@@ -10,9 +10,9 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 50%, #f0f2f5 100%);
             min-height: 100vh;
-            color: white;
+            color: #333;
             position: relative;
         }
         
@@ -23,7 +23,7 @@
             width: 50px;
             height: 50px;
             z-index: 1000;
-            filter: drop-shadow(0 0 5px rgba(255,255,255,0.8));
+            filter: drop-shadow(0 0 5px rgba(0,0,0,0.3));
             transition: transform 0.2s;
         }
         
@@ -34,15 +34,17 @@
         h1 {
             text-align: center;
             margin-bottom: 30px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            color: #333;
         }
         
         .filters {
-            background: rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.8);
             padding: 20px;
             border-radius: 10px;
             margin-bottom: 30px;
             backdrop-filter: blur(10px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
         
         .filters label {
@@ -50,13 +52,14 @@
             margin-right: 10px;
             margin-bottom: 10px;
             font-weight: bold;
+            color: #333;
         }
         
         .filters select {
             padding: 8px 12px;
             margin-right: 20px;
             margin-bottom: 10px;
-            border: none;
+            border: 1px solid #ddd;
             border-radius: 5px;
             background: white;
             color: #333;
@@ -68,17 +71,19 @@
         }
         
         .game-item {
-            background: rgba(255,255,255,0.1);
+            background: linear-gradient(135deg, #3399CC 0%, #66B2FF 100%);
             margin: 10px 0;
             padding: 15px;
             border-radius: 8px;
-            backdrop-filter: blur(10px);
             transition: transform 0.2s;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(51, 153, 204, 0.5);
+            color: white;
         }
         
         .game-item:hover {
             transform: translateY(-2px);
-            background: rgba(255,255,255,0.2);
+            box-shadow: 0 6px 16px rgba(51, 153, 204, 0.6);
         }
         
         .game-item a {
@@ -86,22 +91,26 @@
             text-decoration: none;
             font-weight: bold;
             font-size: 1.1em;
+            display: block;
+            width: 100%;
+            height: 100%;
         }
         
         .game-item a:hover {
-            text-decoration: underline;
+            text-decoration: none;
         }
         
         .game-meta {
             margin-top: 8px;
             font-size: 0.9em;
-            opacity: 0.8;
+            opacity: 0.9;
         }
         
         #status {
             text-align: center;
             padding: 20px;
             font-size: 1.2em;
+            color: #333;
         }
         
         .error {
@@ -251,15 +260,25 @@
             filtered.forEach(game => {
                 const li = document.createElement('li');
                 li.className = 'game-item';
+                
+                // Create the link that wraps the entire content
                 const a = document.createElement('a');
-                a.className = 'name';
-                a.textContent = game.name;
                 a.href = 'detail.html?id=' + game.id;
-                li.appendChild(a);
+                
+                // Create the game name div
+                const nameDiv = document.createElement('div');
+                nameDiv.className = 'name';
+                nameDiv.textContent = game.name;
+                a.appendChild(nameDiv);
+                
+                // Create the meta info div
                 const meta = document.createElement('div');
                 meta.className = 'game-meta';
                 meta.textContent = 'Players: ' + game.players + ' | Equipment: ' + game.equipment;
-                li.appendChild(meta);
+                a.appendChild(meta);
+                
+                // Add the link to the list item
+                li.appendChild(a);
                 listEl.appendChild(li);
             });
 
