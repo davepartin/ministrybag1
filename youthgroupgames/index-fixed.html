@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Youth Group Games</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: white;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .filters {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .filters label {
+            display: inline-block;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        
+        .filters select {
+            padding: 8px 12px;
+            margin-right: 20px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 5px;
+            background: white;
+            color: #333;
+        }
+        
+        .game-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .game-item {
+            background: rgba(255,255,255,0.1);
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+            transition: transform 0.2s;
+        }
+        
+        .game-item:hover {
+            transform: translateY(-2px);
+            background: rgba(255,255,255,0.2);
+        }
+        
+        .game-item a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        
+        .game-item a:hover {
+            text-decoration: underline;
+        }
+        
+        .game-meta {
+            margin-top: 8px;
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+        
+        #status {
+            text-align: center;
+            padding: 20px;
+            font-size: 1.2em;
+        }
+        
+        .error {
+            color: #ff6b6b;
+            background: rgba(255,107,107,0.1);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Youth Group Games</h1>
+    <div id="status">Loading games...</div>
+    
+    <div class="filters">
+        <label for="categoryFilter">Category:</label>
+        <select id="categoryFilter">
+            <option value="all" selected>All Categories</option>
+        </select>
+        
+        <label for="sizeFilter">Group Size:</label>
+        <select id="sizeFilter">
+            <option value="all" selected>Any Size</option>
+            <option value="small">Small (&lt; 10 players)</option>
+            <option value="medium">Medium (around 10-20)</option>
+            <option value="large">Large (20+)</option>
+        </select>
+        
+        <label for="equipmentFilter">Equipment:</label>
+        <select id="equipmentFilter">
+            <option value="all" selected>Any</option>
+            <option value="no">No equipment needed</option>
+            <option value="yes">Equipment required</option>
+        </select>
+    </div>
+    
+    <ul id="gameList" class="game-list"></ul>
+
+    <script>
+        let gamesData = [];
+        
+        // Initialize the app
+        function initApp() {
+            console.log('Initializing app...');
+            
+            // Fetch the games data
+            fetch('games.json')
+                .then(response => {
+                    console.log('Response status:', response.status);
+                    if (!response.ok) {
+                        throw new Error('HTTP ' + response.status);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Loaded games:', data.length);
+                    gamesData = data;
+                    document.getElementById('status').innerHTML = `Loaded ${data.length} games`;
+                    
+                    // Setup filters and display
+                    populateCategoryFilter();
+                    setupEventListeners();
+                    updateGameList();
+                })
+                .catch(error => {
+                    console.error('Error loading games:', error);
+                    document.getElementById('status').innerHTML = 
+                        `<div class="error">Error loading games: ${error.message}</div>`;
+                });
+        }
+        
+        // Populate category filter options
+        function populateCategoryFilter() {
+            const categorySelect = document.getElementById('categoryFilter');
+            const categories = [...new Set(gamesData.map(game => game.category))];
+            categories.forEach(cat => {
+                const opt = document.createElement('option');
+                opt.value = cat;
+                opt.textContent = cat;
+                categorySelect.appendChild(opt);
+            });
+        }
+        
+        // Setup event listeners
+        function setupEventListeners() {
+            document.getElementById('categoryFilter').addEventListener('change', updateGameList);
+            document.getElementById('sizeFilter').addEventListener('change', updateGameList);
+            document.getElementById('equipmentFilter').addEventListener('change', updateGameList);
+        }
+        
+        // Filter logic
+        function updateGameList() {
+            console.log('Updating game list...');
+            const catValue = document.getElementById('categoryFilter').value;
+            const sizeValue = document.getElementById('sizeFilter').value;
+            const equipValue = document.getElementById('equipmentFilter').value;
+            const listEl = document.getElementById('gameList');
+            listEl.innerHTML = ''; // clear current list
+
+            // Filter games based on selections
+            const filtered = gamesData.filter(game => {
+                // Category filter
+                if (catValue !== 'all' && game.category !== catValue) {
+                    return false;
+                }
+                // Equipment filter
+                if (equipValue === 'no') {
+                    if (game.equipment && game.equipment.toLowerCase() !== 'none') return false;
+                } else if (equipValue === 'yes') {
+                    if (!game.equipment || game.equipment.toLowerCase() === 'none') return false;
+                }
+                // Size filter
+                if (sizeValue !== 'all') {
+                    const playersStr = game.players.toLowerCase();
+                    if (sizeValue === 'small') {
+                        let minPlayers = extractMinPlayers(game.players);
+                        if (minPlayers === null) {
+                            if (playersStr.includes('large group') || playersStr.includes('20') || playersStr.includes('teams of 5') || playersStr.includes('20+')) {
+                                return false;
+                            }
+                        } else {
+                            if (minPlayers >= 10) return false;
+                        }
+                    } else if (sizeValue === 'medium') {
+                        let minPlayers = extractMinPlayers(game.players);
+                        let maxPlayers = extractMaxPlayers(game.players);
+                        if (minPlayers !== null && minPlayers > 15) return false;
+                        if (maxPlayers !== null && maxPlayers < 15) return false;
+                    } else if (sizeValue === 'large') {
+                        let maxPlayers = extractMaxPlayers(game.players);
+                        if (playersStr.includes('small group')) return false;
+                        if (maxPlayers !== null) {
+                            if (maxPlayers < 20) return false;
+                        }
+                    }
+                }
+                return true;
+            });
+
+            console.log('Filtered games:', filtered.length);
+
+            // Create list items for filtered games
+            filtered.forEach(game => {
+                const li = document.createElement('li');
+                li.className = 'game-item';
+                const a = document.createElement('a');
+                a.className = 'name';
+                a.textContent = game.name;
+                a.href = 'detail.html?id=' + game.id;
+                li.appendChild(a);
+                const meta = document.createElement('div');
+                meta.className = 'game-meta';
+                meta.textContent = 'Players: ' + game.players + ' | Equipment: ' + game.equipment;
+                li.appendChild(meta);
+                listEl.appendChild(li);
+            });
+
+            if (filtered.length === 0) {
+                const msg = document.createElement('li');
+                msg.textContent = 'No games found matching those criteria.';
+                msg.style.listStyleType = 'none';
+                listEl.appendChild(msg);
+            }
+        }
+
+        // Helper to extract minimum players from players string
+        function extractMinPlayers(playersStr) {
+            const numMatch = playersStr.match(/\d+/);
+            if (numMatch) {
+                let num = parseInt(numMatch[0]);
+                if (playersStr.includes('+')) {
+                    return num;
+                }
+                if (playersStr.includes('-')) {
+                    return num;
+                }
+                if (playersStr.toLowerCase().includes('teams of')) {
+                    return num * 2;
+                }
+                if (playersStr.includes('pairs') || playersStr.includes('pair')) {
+                    return 2;
+                }
+                if (playersStr.includes('large group')) {
+                    return 20;
+                }
+                if (playersStr.includes('any') || playersStr.includes('all')) {
+                    return 1;
+                }
+                if (playersStr.includes('two teams')) {
+                    return 2;
+                }
+                return num;
+            }
+            return null;
+        }
+
+        // Helper to extract maximum players from players string
+        function extractMaxPlayers(playersStr) {
+            const numMatches = playersStr.match(/\d+/g);
+            if (numMatches && numMatches.length > 1) {
+                if (playersStr.includes('-')) {
+                    return parseInt(numMatches[1]);
+                }
+            }
+            if (playersStr.includes('+')) {
+                return null;
+            }
+            if (playersStr.includes('large group') || playersStr.includes('20+')) {
+                return null;
+            }
+            if (numMatches && numMatches.length === 1) {
+                return parseInt(numMatches[0]);
+            }
+            return null;
+        }
+        
+        // Start the app when DOM is loaded
+        document.addEventListener('DOMContentLoaded', initApp);
+    </script>
+</body>
+</html> 
