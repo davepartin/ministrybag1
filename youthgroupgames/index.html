@@ -243,6 +243,7 @@
                     populateCategoryFilter();
                     setupEventListeners();
                     updateGameList();
+                    restoreScrollPosition(); // Restore scroll position after games are loaded
                 })
                 .catch(error => {
                     console.error('Error loading games:', error);
@@ -448,17 +449,28 @@
         // Save scroll position when leaving the page
         window.addEventListener('beforeunload', function() {
             localStorage.setItem('youthGroupGamesScrollPosition', window.scrollY);
+            console.log('Saved scroll position:', window.scrollY);
         });
         
-        // Restore scroll position when returning to the page
-        window.addEventListener('load', function() {
+        // Also save scroll position when clicking on game links
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.game-item a')) {
+                localStorage.setItem('youthGroupGamesScrollPosition', window.scrollY);
+                console.log('Saved scroll position on click:', window.scrollY);
+            }
+        });
+        
+        // Restore scroll position after games are loaded
+        function restoreScrollPosition() {
             const savedPosition = localStorage.getItem('youthGroupGamesScrollPosition');
+            console.log('Attempting to restore scroll position:', savedPosition);
             if (savedPosition) {
                 setTimeout(() => {
                     window.scrollTo(0, parseInt(savedPosition));
-                }, 100);
+                    console.log('Restored scroll position to:', parseInt(savedPosition));
+                }, 500);
             }
-        });
+        }
     </script>
 </body>
 </html> 
