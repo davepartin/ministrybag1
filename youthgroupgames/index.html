@@ -1,86 +1,251 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Youth Group Games Selector</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Youth Group Games</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 20px; 
+            background: #f8f9fa; 
+            color: #343a40; 
+        }
+        h1 { 
+            text-align: center; 
+        }
+        .filters { 
+            margin: 20px 0; 
+            text-align: center; 
+        }
+        .filters select { 
+            margin: 0 10px; 
+            padding: 5px; 
+            font-size: 1em; 
+        }
+        ul.game-list { 
+            list-style: none; 
+            padding: 0; 
+        }
+        li.game-item { 
+            background: #fff; 
+            margin: 10px auto; 
+            padding: 10px; 
+            border: 1px solid #ccc; 
+            border-radius: 4px; 
+            max-width: 600px; 
+        }
+        li.game-item a.name { 
+            font-weight: bold; 
+            font-size: 1.1em; 
+            color: #007bff; 
+            text-decoration: none; 
+        }
+        li.game-item a.name:hover { 
+            text-decoration: underline; 
+        }
+        .game-meta { 
+            font-size: 0.9em; 
+            margin-top: 5px; 
+        }
+    </style>
 </head>
 <body>
+    <h1>Youth Group Games</h1>
+    <div class="filters">
+        <!-- Filter dropdowns -->
+        <label for="categoryFilter">Category:</label>
+        <select id="categoryFilter">
+            <option value="all" selected>All Categories</option>
+        </select>
+        <label for="sizeFilter">Group Size:</label>
+        <select id="sizeFilter">
+            <option value="all" selected>Any Size</option>
+            <option value="small">Small (&lt; 10 players)</option>
+            <option value="medium">Medium (around 10-20)</option>
+            <option value="large">Large (20+)</option>
+        </select>
+        <label for="equipmentFilter">Equipment:</label>
+        <select id="equipmentFilter">
+            <option value="all" selected>Any</option>
+            <option value="no">No equipment needed</option>
+            <option value="yes">Equipment required</option>
+        </select>
+    </div>
+    <ul id="gameList" class="game-list"></ul>
 
-  <h1>Youth Group Games Selector</h1>
+    <script>
+        // Fetch the games data and initialize the app
+        let gamesData = [];
+        fetch('games.json')
+            .then(response => response.json())
+            .then(data => {
+                gamesData = data;
+                populateCategoryFilter();
+                updateGameList();
+            });
 
-  <!-- Filter Controls -->
-  <div class="filters">
-    <label for="sizeFilter"><strong>Group Size:</strong></label>
-    <select id="sizeFilter">
-      <option value="">All Sizes</option>
-      <option value="small">Small (&lt; 10 players)</option>
-      <option value="medium">Medium (10-19 players)</option>
-      <option value="large">Large (20+ players)</option>
-    </select>
-
-    <label for="equipmentFilter" style="margin-left:20px;"><strong>Equipment Needed:</strong></label>
-    <select id="equipmentFilter">
-      <option value="">All</option>
-      <option value="false">No equipment</option>
-      <option value="true">Equipment required</option>
-    </select>
-  </div>
-
-  <!-- Game List Container -->
-  <div id="gameList" class="game-list">
-    <!-- Games will be injected here by the script -->
-    <noscript>Please enable JavaScript to use the game filter.</noscript>
-  </div>
-
-  <!-- Script to load data and handle filtering -->
-  <script>
-    const sizeFilter = document.getElementById('sizeFilter');
-    const equipmentFilter = document.getElementById('equipmentFilter');
-    const gameListContainer = document.getElementById('gameList');
-    let games = [];
-
-    fetch('games.json')
-      .then(response => response.json())
-      .then(data => {
-        games = data;
-        renderGameList();
-      })
-      .catch(err => {
-        console.error('Error loading games:', err);
-        gameListContainer.innerHTML = "<p>Could not load games data.</p>";
-      });
-
-    function renderGameList() {
-      gameListContainer.innerHTML = "";
-      const sizeValue = sizeFilter.value;
-      const equipValue = equipmentFilter.value;
-      games.forEach(game => {
-        let sizeMatch = !sizeValue || game.playerCountCategory === sizeValue || game.playerCountCategory === "any";
-        let equipMatch = !equipValue || String(game.equipmentRequired) === equipValue;
-        if (sizeMatch && equipMatch) {
-          const detailsEl = document.createElement('details');
-          const summaryEl = document.createElement('summary');
-          summaryEl.textContent = game.name + " - ";
-          const info = document.createElement('small');
-          info.textContent = `Players: ${game.players}, Equipment: ${game.equipment}`;
-          summaryEl.appendChild(info);
-          const rulesPara = document.createElement('p');
-          rulesPara.textContent = "Rules: " + game.rules;
-          detailsEl.appendChild(summaryEl);
-          detailsEl.appendChild(rulesPara);
-          gameListContainer.appendChild(detailsEl);
+        // Populate category filter options
+        function populateCategoryFilter() {
+            const categorySelect = document.getElementById('categoryFilter');
+            // Collect unique categories from data
+            const categories = [...new Set(gamesData.map(game => game.category))];
+            categories.forEach(cat => {
+                const opt = document.createElement('option');
+                opt.value = cat;
+                opt.textContent = cat;
+                categorySelect.appendChild(opt);
+            });
         }
-      });
-      if (!gameListContainer.innerHTML.trim()) {
-        gameListContainer.innerHTML = "<p><em>No games match those filters.</em></p>";
-      }
-    }
 
-    sizeFilter.addEventListener('change', renderGameList);
-    equipmentFilter.addEventListener('change', renderGameList);
-  </script>
+        // Attach event listeners to filters
+        document.getElementById('categoryFilter').addEventListener('change', updateGameList);
+        document.getElementById('sizeFilter').addEventListener('change', updateGameList);
+        document.getElementById('equipmentFilter').addEventListener('change', updateGameList);
 
+        // Filter logic
+        function updateGameList() {
+            const catValue = document.getElementById('categoryFilter').value;
+            const sizeValue = document.getElementById('sizeFilter').value;
+            const equipValue = document.getElementById('equipmentFilter').value;
+            const listEl = document.getElementById('gameList');
+            listEl.innerHTML = ''; // clear current list
+
+            // Filter games based on selections
+            const filtered = gamesData.filter(game => {
+                // Category filter
+                if (catValue !== 'all' && game.category !== catValue) {
+                    return false;
+                }
+                // Equipment filter
+                if (equipValue === 'no') {
+                    if (game.equipment && game.equipment.toLowerCase() !== 'none') return false;
+                } else if (equipValue === 'yes') {
+                    if (!game.equipment || game.equipment.toLowerCase() === 'none') return false;
+                }
+                // Size filter
+                if (sizeValue !== 'all') {
+                    const playersStr = game.players.toLowerCase();
+                    // Determine if game fits the size category
+                    if (sizeValue === 'small') {
+                        // small: if game can be played with fewer than 10 players
+                        // If a minimum is defined and it's >= 10, exclude
+                        let minPlayers = extractMinPlayers(game.players);
+                        if (minPlayers === null) {
+                            // if no definitive min, use textual cues
+                            if (playersStr.includes('large group') || playersStr.includes('20') || playersStr.includes('teams of 5') || playersStr.includes('20+')) {
+                                return false;
+                            }
+                        } else {
+                            if (minPlayers >= 10) return false;
+                        }
+                    } else if (sizeValue === 'medium') {
+                        // medium: game can be played by around 10-20 people
+                        // require that min <= 15 and (max is null or max >= 15)
+                        let minPlayers = extractMinPlayers(game.players);
+                        let maxPlayers = extractMaxPlayers(game.players);
+                        if (minPlayers !== null && minPlayers > 15) return false;
+                        if (maxPlayers !== null && maxPlayers < 15) return false;
+                    } else if (sizeValue === 'large') {
+                        // large: game can accommodate 20 or more people
+                        let maxPlayers = extractMaxPlayers(game.players);
+                        // If game explicitly says small groups, skip
+                        if (playersStr.includes('small group')) return false;
+                        if (maxPlayers !== null) {
+                            if (maxPlayers < 20) return false;
+                        }
+                        // else if maxPlayers is null (no upper bound), then likely fine
+                        // If min is given as >=20, that's large anyway.
+                    }
+                }
+                return true;
+            });
+
+            // Create list items for filtered games
+            filtered.forEach(game => {
+                const li = document.createElement('li');
+                li.className = 'game-item';
+                const a = document.createElement('a');
+                a.className = 'name';
+                a.textContent = game.name;
+                a.href = 'detail.html?id=' + game.id;
+                li.appendChild(a);
+                const meta = document.createElement('div');
+                meta.className = 'game-meta';
+                meta.textContent = 'Players: ' + game.players + ' | Equipment: ' + game.equipment;
+                li.appendChild(meta);
+                listEl.appendChild(li);
+            });
+
+            if (filtered.length === 0) {
+                // If no games match, show a message
+                const msg = document.createElement('li');
+                msg.textContent = 'No games found matching those criteria.';
+                msg.style.listStyleType = 'none';
+                listEl.appendChild(msg);
+            }
+        }
+
+        // Helper to extract minimum players from players string
+        function extractMinPlayers(playersStr) {
+            // find first number in the string
+            const numMatch = playersStr.match(/\d+/);
+            if (numMatch) {
+                let num = parseInt(numMatch[0]);
+                if (playersStr.includes('+')) {
+                    // If "X+" pattern, then X is min
+                    return num;
+                }
+                if (playersStr.includes('-')) {
+                    // If "X-Y", X is min
+                    return num;
+                }
+                if (playersStr.toLowerCase().includes('teams of')) {
+                    // e.g. "Teams of 5" means min 10 (two teams)
+                    return num * 2;
+                }
+                if (playersStr.includes('pairs') || playersStr.includes('pair')) {
+                    return 2;
+                }
+                if (playersStr.includes('large group')) {
+                    return 20;
+                }
+                if (playersStr.includes('any') || playersStr.includes('all')) {
+                    return 1;
+                }
+                if (playersStr.includes('two teams')) {
+                    return 2;
+                }
+                // default to the number found
+                return num;
+            }
+            return null;
+        }
+
+        // Helper to extract maximum players from players string
+        function extractMaxPlayers(playersStr) {
+            // find numbers in the string
+            const numMatches = playersStr.match(/\d+/g);
+            if (numMatches && numMatches.length > 1) {
+                // If multiple numbers, second might be max
+                if (playersStr.includes('-')) {
+                    // "X-Y" format, Y is max
+                    return parseInt(numMatches[1]);
+                }
+            }
+            if (playersStr.includes('+')) {
+                // "X+" means no upper bound
+                return null;
+            }
+            if (playersStr.includes('large group') || playersStr.includes('20+')) {
+                return null; // no upper bound
+            }
+            // If only one number, that might be both min and max
+            if (numMatches && numMatches.length === 1) {
+                return parseInt(numMatches[0]);
+            }
+            return null;
+        }
+    </script>
 </body>
 </html>
