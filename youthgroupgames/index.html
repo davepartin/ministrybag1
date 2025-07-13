@@ -237,7 +237,7 @@
                 .then(data => {
                     console.log('Loaded games:', data.length);
                     gamesData = data;
-                    document.getElementById('status').innerHTML = `Loaded ${data.length} games`;
+                    document.getElementById('status').innerHTML = `Your favorite games will be displayed at the top.`;
                     
                     // Setup filters and display
                     populateCategoryFilter();
