@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test JSON Loading</title>
+</head>
+<body>
+    <h1>Testing JSON Loading</h1>
+    <div id="status">Loading...</div>
+    <div id="games"></div>
+
+    <script>
+        console.log('Starting test...');
+        
+        fetch('games.json')
+            .then(response => {
+                console.log('Response status:', response.status);
+                console.log('Response ok:', response.ok);
+                return response.json();
+            })
+            .then(data => {
+                console.log('Data loaded successfully!');
+                console.log('Number of games:', data.length);
+                console.log('First game:', data[0]);
+                
+                document.getElementById('status').innerHTML = 
+                    `✅ Success! Loaded ${data.length} games.`;
+                
+                // Show first few games
+                const gamesDiv = document.getElementById('games');
+                data.slice(0, 5).forEach(game => {
+                    gamesDiv.innerHTML += `<p><strong>${game.name}</strong> - ${game.category}</p>`;
+                });
+            })
+            .catch(error => {
+                console.error('Error loading games:', error);
+                document.getElementById('status').innerHTML = 
+                    `❌ Error: ${error.message}`;
+            });
+    </script>
+</body>
+</html> 
