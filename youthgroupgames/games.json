@@ -1,1 +1,1522 @@
-[Paste the entire JSON content here as shown previously]
+[
+  {
+    "id": 1,
+    "name": "Amoeba / Blob Tag",
+    "category": "Elimination & Tag Games",
+    "players": "10+",
+    "equipment": "None",
+    "rules": "When \"it\" tags someone, that person becomes part of the blob. Tagged players must join hands and run together to catch others. The blob grows as more people are tagged. Last person caught wins. Can split into two blobs when reaching 6+ people."
+  },
+  {
+    "id": 2,
+    "name": "Balloon Tag / Balloon Stomp",
+    "category": "Elimination & Tag Games",
+    "players": "10+",
+    "equipment": "Balloons, string",
+    "rules": "Each player ties a balloon to their ankle. Players try to stomp and pop other players' balloons while protecting their own. Last player with an intact balloon wins."
+  },
+  {
+    "id": 3,
+    "name": "British Bulldog",
+    "category": "Elimination & Tag Games",
+    "players": "15+",
+    "equipment": "None",
+    "rules": "Players line up on one side and must run to the other side without being caught. Catchers in the middle try to tag runners. Tagged players become catchers. Similar to sharks and minnows but on land."
+  },
+  {
+    "id": 4,
+    "name": "Centipede Tag",
+    "category": "Elimination & Tag Games",
+    "players": "10+",
+    "equipment": "None",
+    "rules": "When \"it\" tags someone, that person joins hands with \"it\". They continue tagging as a connected unit. The chain grows until everyone is caught."
+  },
+  {
+    "id": 5,
+    "name": "Circle Dodgeball",
+    "category": "Elimination & Tag Games",
+    "players": "10-20",
+    "equipment": "Soft ball",
+    "rules": "Players stand in a circle. One or more players in the center. Circle players try to hit center players with the ball below the waist. Hit players join the circle."
+  },
+  {
+    "id": 6,
+    "name": "Four Corners",
+    "category": "Elimination & Tag Games",
+    "players": "10+",
+    "equipment": "None",
+    "rules": "Label corners 1-4. One person counts to 10 with eyes closed while others choose corners. Counter calls a number and those in that corner are eliminated. Last person remaining wins."
+  },
+  {
+    "id": 7,
+    "name": "Freeze Tag / Stuck in the Mud",
+    "category": "Elimination & Tag Games",
+    "players": "10+",
+    "equipment": "None",
+    "rules": "Tagged players must freeze in place. For \"Stuck in the Mud\" variant, frozen players stand with legs apart and can be freed when someone crawls through their legs."
+  },
+  {
+    "id": 8,
+    "name": "Link Tag",
+    "category": "Elimination & Tag Games",
+    "players": "15+",
+    "equipment": "None",
+    "rules": "Players stand in pairs with linked arms. One person is \"it\", one is being chased. The chased person can link with any pair, causing the person on the opposite end to become the new chased person."
+  },
+  {
+    "id": 9,
+    "name": "River Bank",
+    "category": "Elimination & Tag Games",
+    "players": "10+",
+    "equipment": "Masking tape for lines",
+    "rules": "Mark three lines: \"Bank\", \"River\", \"Other Bank\". Players follow commands to jump to different areas. Wrong moves or slow reactions result in elimination."
+  },
+  {
+    "id": 10,
+    "name": "SPUD",
+    "category": "Elimination & Tag Games",
+    "players": "8-20",
+    "equipment": "Soft ball",
+    "rules": "Each player gets a number. Caller throws ball up and calls a number. That player must catch the ball while others scatter. When caught, player yells \"SPUD!\" and everyone freezes. Player takes 3 steps and throws at someone. Hit = letter, miss = thrower gets letter. Spell SPUD = eliminated."
+  },
+  {
+    "id": 11,
+    "name": "Birdie on a Perch",
+    "category": "Circle Games",
+    "players": "20+",
+    "equipment": "None",
+    "rules": "Partners separate into inner and outer circles walking opposite directions. When leader calls \"Birdie on a Perch!\", partners find each other. One partner kneels, other sits on knee. Last pair is eliminated."
+  },
+  {
+    "id": 12,
+    "name": "Change Seats / Over the Mountain / I Have Never",
+    "category": "Circle Games",
+    "players": "10-30",
+    "equipment": "Chairs (one less than players)",
+    "rules": "Person in the middle states something they've done or never done. All players for whom that is true must switch seats. The person left standing goes to the middle."
+  },
+  {
+    "id": 13,
+    "name": "Circle Soccer",
+    "category": "Circle Games",
+    "players": "15-25",
+    "equipment": "Soccer ball",
+    "rules": "Players stand in a circle with legs apart, touching neighbors' feet. Try to roll or hit the ball through others' legs while blocking with hands. If the ball goes through your legs, turn around and continue playing (now facing outward/backwards)."
+  },
+  {
+    "id": 14,
+    "name": "Find the Leader / Who's the Leader",
+    "category": "Circle Games",
+    "players": "10-20",
+    "equipment": "None",
+    "rules": "One person leaves the room. The group picks a leader who begins making subtle motions that everyone else copies. The guesser returns and has 3 tries to identify who the leader is."
+  },
+  {
+    "id": 15,
+    "name": "Look Up Look Down",
+    "category": "Circle Games",
+    "players": "10-20",
+    "equipment": "None",
+    "rules": "Players stand in a circle looking down. The leader says \"Look up!\" and everyone must quickly look at another player's face. If two players make direct eye contact, both scream and are out. Continue until one person remains."
+  },
+  {
+    "id": 16,
+    "name": "Pass the Bag",
+    "category": "Circle Games",
+    "players": "10+",
+    "equipment": "Bag with food items, music",
+    "rules": "Players sit in a circle and pass a bag around while music plays. When the music stops, whoever is holding the bag must reach in and eat one random item inside (which could be something silly like an onion, hot pepper, candy, etc.)."
+  },
+  {
+    "id": 17,
+    "name": "Signs / Silent Football",
+    "category": "Circle Games",
+    "players": "10-20",
+    "equipment": "None",
+    "rules": "Each player makes up a unique hand sign. One player starts by doing their own sign then someone else's sign (making \"eye contact\" with them if playing Silent Football). The person whose sign was done must respond by doing their own sign, then pass to another by doing that person's sign. A player in the middle tries to detect who has the \"sign\" (who is the leader passing it)."
+  },
+  {
+    "id": 18,
+    "name": "Spoons Card Game",
+    "category": "Circle Games",
+    "players": "3-8 per group",
+    "equipment": "Deck of cards, spoons (one less than players)",
+    "rules": "Players sit in a circle (or around a table). Deal 4 cards to each. All players simultaneously take one card from their hand and pass it to the left, trying to collect four of a kind. As soon as someone gets four of a kind, they grab a spoon from the center. Once one person grabs a spoon, everyone else must grab one too. Because there is one fewer spoon than players, one person will be left without a spoon and gets a letter (S, P, O, O, N). When someone spells SPOON from letters, they're out."
+  },
+  {
+    "id": 19,
+    "name": "Wink 'Em",
+    "category": "Circle Games",
+    "players": "15-25",
+    "equipment": "Chairs",
+    "rules": "Players sit in a circle, each with an empty chair in front of them except for one person who stands behind an empty chair. The person behind the empty chair winks at someone seated, who then tries to jump up and run to sit in the empty chair before the player standing behind them tags them. If tagged, they stay. If they escape, the person whose chair became empty is now the winker."
+  },
+  {
+    "id": 20,
+    "name": "Zip Bong",
+    "category": "Circle Games",
+    "players": "10-20",
+    "equipment": "None",
+    "rules": "Players stand in a circle and pass the word \"Zip\" around by saying it to the next person without showing their teeth. If someone says \"Bong\", the direction reverses. If you show your teeth or hesitate, you're out. Last person remaining wins."
+  },
+  {
+    "id": 21,
+    "name": "Balloon Relay Race",
+    "category": "Relay Games",
+    "players": "Teams of 5-10",
+    "equipment": "Balloons",
+    "rules": "Teams of two players must race to a turnaround point and back while keeping a balloon pressed between their bodies (e.g., between backs or foreheads). If the balloon drops, they must stop and reposition it before continuing. Then the next pair on the team goes. First team to have all pairs finish wins."
+  },
+  {
+    "id": 22,
+    "name": "Blanket Race",
+    "category": "Relay Games",
+    "players": "Teams of 6+",
+    "equipment": "Blankets",
+    "rules": "Each team has a blanket and carries one team member on the blanket to a designated point and back. Then they swap who rides the blanket. Continue until each team member has had a ride. The first team to carry all members wins."
+  },
+  {
+    "id": 23,
+    "name": "Clothes Relay",
+    "category": "Relay Games",
+    "players": "Teams of 5-10",
+    "equipment": "Oversized clothes",
+    "rules": "At the start, the first player on each team puts on a set of oversized clothes. They run to a cone and back, then take off the clothes and hand them to the next player, who must put them on and do the same. The cycle continues until all team members have run. The first team to finish wins."
+  },
+  {
+    "id": 24,
+    "name": "Cracker Whistle Relay",
+    "category": "Relay Games",
+    "players": "Teams of 5-10",
+    "equipment": "Saltine crackers",
+    "rules": "Each player in turn must eat 3 saltine crackers as fast as possible and then whistle a recognizable tune (or just whistle clearly). Once they successfully whistle, the next teammate goes. The first team whose members all complete the task wins."
+  },
+  {
+    "id": 25,
+    "name": "Dizzy Stick",
+    "category": "Relay Games",
+    "players": "Teams of 5-10",
+    "equipment": "Baseball bats or sticks",
+    "rules": "Each player runs to a baseball bat standing upright on the ground (or holds one end on their forehead and the other on the ground), places their forehead on the bat handle, and spins around the bat 10 times. Then, feeling dizzy, they attempt to run to a cone and back to tag the next person. First team to finish all players wins."
+  },
+  {
+    "id": 26,
+    "name": "Donut on String / Donut Relay",
+    "category": "Relay Games",
+    "players": "Teams of 5-10",
+    "equipment": "Donuts, string",
+    "rules": "Hang donuts from a string (or a horizontal pole) at about mouth height. Each player must eat an entire dangling donut without using their hands. This can be done as a relay (next teammate goes after the previous finishes) or as an individual race. First team (or person) to finish their donut wins."
+  },
+  {
+    "id": 27,
+    "name": "Lifesaver/Marshmallow Relay",
+    "category": "Relay Games",
+    "players": "Teams of 8+",
+    "equipment": "Toothpicks, Lifesavers or marshmallows",
+    "rules": "Each team lines up and each player holds a toothpick in their mouth. The first player has a candy (like a Lifesaver candy or a marshmallow) impaled on their toothpick. They must pass the candy to the next player's toothpick without using hands, just by moving their mouths. If the candy drops, it can be picked up and put back on the toothpick to continue. First team to pass the candy down the line wins."
+  },
+  {
+    "id": 28,
+    "name": "Over Under Relay",
+    "category": "Relay Games",
+    "players": "Teams of 8+",
+    "equipment": "Ball, balloon, or bucket of water",
+    "rules": "Teams line up one behind the other. The first person passes an object (like a ball or water-filled sponge) over their head to the next person; the next person passes it between their legs to the next, alternating over and under down the line. When it reaches the end, the last person runs to the front and continues the pattern. The first team to have their starting person return to the front wins."
+  },
+  {
+    "id": 29,
+    "name": "Paper Airplane Relay",
+    "category": "Relay Games",
+    "players": "Teams of 5+",
+    "equipment": "Paper",
+    "rules": "Each team member must quickly fold a paper airplane and then fly it. You can play either by measuring total distance flown (each team adds up their distances) or have targets each player must hit. Can also be relay style where each player must land their plane in a target before the next goes. The team with the farthest total distance or fastest completion wins."
+  },
+  {
+    "id": 30,
+    "name": "Toilet Paper Relay",
+    "category": "Relay Games",
+    "players": "Teams of 8+",
+    "equipment": "Toilet paper rolls",
+    "rules": "Teams line up and must pass a roll of toilet paper alternately over one person's head and then under the next person's legs, and so on, unrolling it as they go. The first team to completely unroll their roll (without breaking it, ideally) wins."
+  },
+  {
+    "id": 31,
+    "name": "Awesome Ball",
+    "category": "Active/Athletic Games",
+    "players": "10-30",
+    "equipment": "Soft ball, cones for goals",
+    "rules": "A combination of handball, ultimate frisbee, and basketball. Players cannot run while holding the ball; they must pass it. You score by throwing or bouncing the ball off a designated target or into a goal. Essentially it's a mash-up game with elements of multiple sports."
+  },
+  {
+    "id": 32,
+    "name": "Banana Ball",
+    "category": "Active/Athletic Games",
+    "players": "20+",
+    "equipment": "Soccer ball or football",
+    "rules": "Two games are played on one field simultaneously: one game of soccer (for the guys) and one game of rugby (for the girls) using the same ball. This chaotic mix means the ball is live for both games at all times. (Alternative: switch sports by round or by call.)"
+  },
+  {
+    "id": 33,
+    "name": "Car Push",
+    "category": "Active/Athletic Games",
+    "players": "Teams of 8-10",
+    "equipment": "Cars (in neutral)",
+    "rules": "In an open, safe area (like an empty parking lot), teams compete to push a car (with someone steering and the car in neutral) over a set distance as fast as possible. Make sure the area is flat and clear, and have people ready to brake. The fastest team wins."
+  },
+  {
+    "id": 34,
+    "name": "Dodgeball Variations",
+    "category": "Active/Athletic Games",
+    "players": "20+",
+    "equipment": "Soft balls",
+    "rules": "Standard dodgeball rules (hit below the waist = out, catch a ball = thrower out). You can add variations like a \"Medic\" (who can revive players), \"Prison\" (caught players go to opponent's side and can be freed by a teammate hitting them with a ball), or \"Doctor\" (one secret player can save teammates). Play until one team is eliminated."
+  },
+  {
+    "id": 35,
+    "name": "Earth Ball Square",
+    "category": "Active/Athletic Games",
+    "players": "20-40",
+    "equipment": "Large exercise/earth balls",
+    "rules": "Divide into four teams that form the sides of a square. Place one or more giant earth balls (big inflatable balls) in the center. Teams score points by pushing the balls so that they cross the opposite team's boundary line. Everyone can push any ball. After a time limit, count scores."
+  },
+  {
+    "id": 36,
+    "name": "Greased Watermelon Football",
+    "category": "Active/Athletic Games",
+    "players": "20+",
+    "equipment": "Watermelon, cooking oil, pool",
+    "rules": "In a swimming pool, teams attempt to move a greased watermelon to the opposing side's edge or goal. The watermelon is slippery from cooking oil, making it hard to grab. Full contact is generally allowed (since it's in a pool). The first team to move the watermelon to the other side wins."
+  },
+  {
+    "id": 37,
+    "name": "Human Foosball / Balloon Foosball",
+    "category": "Active/Athletic Games",
+    "players": "20+",
+    "equipment": "Balloon or ball, rope/tape",
+    "rules": "Mark a rectangular 'foosball' field and create rows for players using ropes or tape on the ground. Players must stay on their 'line' (can move side to side but not forwards/backwards, like foosball rods). Use a balloon or lightweight ball; players hit it to try to score on a goal like in soccer. Everyone must keep one foot on their line at all times."
+  },
+  {
+    "id": 38,
+    "name": "Ultimate Frisbee",
+    "category": "Active/Athletic Games",
+    "players": "14+",
+    "equipment": "Frisbee, cones",
+    "rules": "Two teams on a field try to score by passing a Frisbee and catching it in the opponent's end zone (marked by cones). You cannot run with the Frisbee, only pivot; once you catch it, you have to stop and pass. If the Frisbee is dropped or intercepted, it’s a turnover to the other team."
+  },
+  {
+    "id": 39,
+    "name": "Sock Wars",
+    "category": "Active/Athletic Games",
+    "players": "10-20",
+    "equipment": "Socks",
+    "rules": "All players remove their shoes and play in a defined small area (like a room or taped area). The objective is to remove other players' socks from their feet while keeping your own socks on. If both your socks get pulled off, you're out. Last player with a sock on wins."
+  },
+  {
+    "id": 40,
+    "name": "Animal Game",
+    "category": "Messy/Food Games",
+    "players": "Teams of 3-5",
+    "equipment": "None",
+    "rules": "Teams are given one hour to return with the largest live animal they can find. It must be done humanely and safely (so likely limited to insects, frogs, etc., not hurting any animals). This is more of a goofy contest to see what they come up with. Judges determine the 'largest' or most impressive find."
+  },
+  {
+    "id": 41,
+    "name": "Balloon Stick",
+    "category": "Messy/Food Games",
+    "players": "4-8",
+    "equipment": "Balloons, duct tape",
+    "rules": "One player on each team is wrapped in duct tape (sticky side out). Their teammates inflate balloons and stick as many as possible onto the taped person within a time limit. The team with the most balloons attached wins."
+  },
+  {
+    "id": 42,
+    "name": "Brain Freeze",
+    "category": "Messy/Food Games",
+    "players": "3-6",
+    "equipment": "Popsicles",
+    "rules": "A race to see who can eat four popsicles the fastest. Players will likely experience 'brain freeze' (the cold headache). First to finish all their popsicles wins."
+  },
+  {
+    "id": 43,
+    "name": "Cheeto Toss",
+    "category": "Messy/Food Games",
+    "players": "Teams of 2",
+    "equipment": "Shaving cream, Cheetos",
+    "rules": "One player covers their face (or a shower cap on their head) with shaving cream. Their partner stands at a distance and tosses Cheetos, trying to get them to stick in the shaving cream. After a time limit (e.g., 1 minute), the team with the most Cheetos stuck on the shaving cream wins."
+  },
+  {
+    "id": 44,
+    "name": "Egg Drop",
+    "category": "Messy/Food Games",
+    "players": "Teams of 3-4",
+    "equipment": "Eggs, various building materials",
+    "rules": "Each team is given an uncooked egg and a selection of materials (straws, tape, newspaper, etc.). They have a set time (e.g., 15-30 minutes) to build a contraption that will protect the egg when dropped from a height (like from a ladder or balcony). After building, each team’s egg contraption is dropped. If the egg survives uncracked, that team succeeds. You can declare overall winners by design elegance or drop height if multiple survive."
+  },
+  {
+    "id": 45,
+    "name": "Mike and Ike Toss",
+    "category": "Messy/Food Games",
+    "players": "Pairs",
+    "equipment": "Mike and Ike candies",
+    "rules": "Partners stand a short distance apart. One partner tosses Mike and Ike candies one at a time for the other to catch in their mouth. After each successful catch, they take a step farther apart. Continue until a drop happens. The pair with the farthest successful toss wins, or the most catches within a time."
+  },
+  {
+    "id": 46,
+    "name": "Fishbowl",
+    "category": "Drama/Performance Games",
+    "players": "8-20",
+    "equipment": "Paper, bowl",
+    "rules": "This game is a combination of Taboo, Charades, and Password. Divide into two teams. Each player writes down several words or phrases on paper, which are all put into a bowl. Round 1: Describe the word/phrase (like Taboo, you can say anything except the word) and teammates guess as many as possible in 1 minute. Round 2: using the same words, act them out silently (Charades). Round 3: use only one word as a clue (Password style). Keep score of how many each team guesses each round."
+  },
+  {
+    "id": 47,
+    "name": "Freeze (Improv Game)",
+    "category": "Drama/Performance Games",
+    "players": "10+",
+    "equipment": "None",
+    "rules": "Two volunteers begin an improvised scene on stage. At any point, someone in the audience can yell \"Freeze!\", and the actors immediately stop in their exact physical positions. The audience member comes up, taps one actor out, takes their place, and then starts a brand new scene while adopting the frozen positions as the starting point. Repeat with others calling freeze and swapping in. It's an improv exercise with rotating actors."
+  },
+  {
+    "id": 48,
+    "name": "Gargle That Tune",
+    "category": "Drama/Performance Games",
+    "players": "6+",
+    "equipment": "Water, cups",
+    "rules": "One player takes a sip of water and gargles a song (making garbled noise). The other players try to guess what the song is. The first to guess correctly wins a point (or wins that round and becomes the next gargler)."
+  },
+  {
+    "id": 49,
+    "name": "Movie in a Minute / Skits in a Bag",
+    "category": "Drama/Performance Games",
+    "players": "Teams of 4-6",
+    "equipment": "Props (optional)",
+    "rules": "Teams are given a famous movie title or a random theme and possibly a few prop objects. They have a short time (few minutes) to plan and then must perform a 60-second version of that movie or a skit incorporating the props/themes. It's fast-paced and funny to see abbreviated movies or creative skits."
+  },
+  {
+    "id": 50,
+    "name": "Human Etch-a-Sketch",
+    "category": "Drama/Performance Games",
+    "players": "Teams of 8+",
+    "equipment": "None",
+    "rules": "Teams use their bodies to form shapes, letters, or objects. One team member (or judge) calls out something to form (like a letter of the alphabet, a shape, an object). The team has to quickly arrange themselves on the ground to resemble that item as best as possible. A judge or opposing team picks which team’s formation is most accurate/creative for a point."
+  },
+  {
+    "id": 51,
+    "name": "Body Body (Murder in the Dark)",
+    "category": "Guessing/Memory Games",
+    "players": "15+",
+    "equipment": "Darkness",
+    "rules": "\"Body Body\" is a live-action murder mystery game played in the dark (similar to Mafia but physical). One person is secretly designated as the murderer. Everyone walks around in darkness. The murderer \"kills\" people by tapping them (or whispering 'you're dead'). If someone finds a \"body\" (a player who has been tapped and is lying down), they yell \"Body! Body!\" The lights go on and everyone gathers. They have a group discussion to accuse who the murderer is (like Mafia discussion). Then vote and eliminate someone. Lights off, repeat until murderer is caught or only a few left. A detective role can be added who can ask limited questions."
+  },
+  {
+    "id": 52,
+    "name": "Four on the Couch",
+    "category": "Guessing/Memory Games",
+    "players": "12+",
+    "equipment": "Chairs/couch, paper, pencil",
+    "rules": "Divide into two equal teams (guys vs girls works, or mixed). Arrange chairs in a circle and include one couch or four chairs designated as the 'couch'. The goal is to get four of your team members seated on the couch. Everyone writes their name on paper and puts it in a bowl. Then each person draws someone else's name; that's their secret identity for the game. One chair is left empty. Starting to the left of that empty seat, someone calls out a name from the bowl. Whoever is currently holding that name (because that's their identity) must get up and sit in the empty seat. They exchange their identity name slip with the person who called them (thus potentially changing their identity). The seat they vacated is now empty. Continue from the new empty seat. Each time someone from one team gets to the couch and the couch has 4 people from one team, that team wins. It’s a complex memory and strategy game."
+  },
+  {
+    "id": 53,
+    "name": "Gun Name Game",
+    "category": "Guessing/Memory Games",
+    "players": "15+",
+    "equipment": "None",
+    "rules": "This is a fast name-learning and reflex game. Everyone sits or stands in a circle. One player starts by forming a finger-gun and \"shooting\" someone by pointing and saying that person's name. The person whose name was called must duck. The two people on either side of the ducking person must quickly \"shoot\" each other by saying the other's name. The slower one (or the one who messes up the name) is out, or moves to another spot. Continue until a showdown between two people."
+  },
+  {
+    "id": 54,
+    "name": "Mafia / Werewolf",
+    "category": "Guessing/Memory Games",
+    "players": "8+",
+    "equipment": "Cards for roles",
+    "rules": "A classic group game. Roles are assigned (e.g., 2 Mafia, 1 Doctor, 1 Detective, rest Townspeople in a group of ~10). Through alternating night/day cycles: at night Mafia secretly choose a victim, Doctor can save someone, Detective can inspect someone; at day the whole group discusses and votes to eliminate a suspect. Continue until either all Mafia are eliminated (town wins) or Mafia outnumber townspeople (Mafia win)."
+  },
+  {
+    "id": 55,
+    "name": "Paper Telephone (Telestrations)",
+    "category": "Guessing/Memory Games",
+    "players": "6+",
+    "equipment": "Paper, pencils",
+    "rules": "This is the written/drawn version of the Telephone game. Each person gets a stack of paper equal to the number of players or a pre-made booklet. Everyone writes a funny/random phrase on the first page and passes their entire stack to the next person. Now each person draws a picture interpreting the phrase they received, then folds or hides the previous phrase and passes again. Next person writes a phrase describing that drawing, and so on, alternating writing and drawing until the stacks return to their originators. Then share the results by flipping through the evolving interpretations."
+  },
+  {
+    "id": 56,
+    "name": "Psychiatrist",
+    "category": "Guessing/Memory Games",
+    "players": "10+",
+    "equipment": "None",
+    "rules": "One person is the 'psychiatrist' and leaves the room. The remaining group agrees on a common quirk or 'syndrome' they all share (for example, everyone thinks they are the person to their right, or everyone answers as if they are underwater, or everyone begins each answer with a song lyric). The psychiatrist returns and can ask any question to any individual to diagnose the quirk. All patients (players) must act in accordance with the decided behavior. The psychiatrist has to figure out what the common trait is by the answers given."
+  },
+  {
+    "id": 57,
+    "name": "Back to Back",
+    "category": "Quick/Simple Games",
+    "players": "Any even number",
+    "equipment": "None",
+    "rules": "Players pair up, sit down back-to-back and link arms, then try to stand up together without unlinking arms. If successful, two pairs can join to form a group of four back-to-back (everyone in a chain) and attempt to stand, and so on, combining into larger groups. See how many can do it as one unit."
+  },
+  {
+    "id": 58,
+    "name": "Clumps / Mingle Game",
+    "category": "Quick/Simple Games",
+    "players": "20+",
+    "equipment": "None",
+    "rules": "Everyone mingles around the room. A leader calls out a number, and players must quickly form groups ('clumps') of that many people. Anyone who is not in a group of that size is eliminated. Continue with different numbers until only a few remain."
+  },
+  {
+    "id": 59,
+    "name": "Count the Fingers",
+    "category": "Quick/Simple Games",
+    "players": "Pairs",
+    "equipment": "None",
+    "rules": "Partners face off. On the count of 3, both players hold out any number of fingers on one hand while simultaneously shouting their guess of the total number of fingers extended between the two of them. The first to correctly guess the combined number of fingers wins."
+  },
+  {
+    "id": 60,
+    "name": "Ha Game",
+    "category": "Quick/Simple Games",
+    "players": "10-20",
+    "equipment": "None",
+    "rules": "Players stand in a circle and establish a rhythm (like patting legs or clapping). They go around taking turns saying 'Ha!' on their turn, but the number of 'Ha's is determined by where they point. This is a complex rhythm/coordination game often played with a pattern of pointing. If someone breaks the pattern or misses their 'Ha', they're out. (Note: there are many variations of the 'Ha' game with different rules.)"
+  },
+  {
+    "id": 61,
+    "name": "Kung Fu",
+    "category": "Quick/Simple Games",
+    "players": "8-20",
+    "equipment": "None",
+    "rules": "Players form a circle and on the count of three, they strike a pose as if in a martial arts stance. One player starts by making one swift martial arts style move (they can pivot on one foot, reach out an arm, etc.) trying to tag another player's hands. After their move, they must freeze in the new pose. Then the targeted player becomes the next to move, attempting to tag someone else. If a player's hand is tagged, that hand is out (put behind back). If both hands are tagged, the player is out. Last ninja standing wins."
+  },
+  {
+    "id": 62,
+    "name": "Musical Paper Plates",
+    "category": "Quick/Simple Games",
+    "players": "15+",
+    "equipment": "Paper plates, music",
+    "rules": "Similar to musical chairs but using paper plates on the floor as 'spots'. There is one fewer plate than players. As music plays, players walk around. When the music stops, everyone must find a paper plate to stand on. The player who fails to get to a plate is out. Remove one plate and continue until one winner remains."
+  },
+  {
+    "id": 63,
+    "name": "Ninja",
+    "category": "Quick/Simple Games",
+    "players": "6-15",
+    "equipment": "None",
+    "rules": "Players form a circle and on the count of three, jump into a ninja pose. Going around the circle, each player in turn can make one ninja move attempting to slap another player's hand. You must remain frozen except when it's your turn to move. If a player's hand is hit by another, that hand is out (put it behind back). If both hands are out, the player is eliminated. Last remaining ninja wins."
+  },
+  {
+    "id": 64,
+    "name": "Push Wars",
+    "category": "Quick/Simple Games",
+    "players": "Pairs",
+    "equipment": "None",
+    "rules": "Two players face each other, both with their feet together and palms touching each other (or each puts up their hands). The goal is to make the other player move their feet. They can only push with their palms (no grabbing). The first player to make the other step or lose balance wins."
+  },
+  {
+    "id": 65,
+    "name": "Rock Paper Scissors Variations",
+    "category": "Quick/Simple Games",
+    "players": "Varies",
+    "equipment": "None",
+    "rules": "There are many fun RPS variations: **RPS Train** – everyone pairs up for RPS; each time someone loses, they become a 'fan' and follow the winner, cheering them on as the winner challenges other winners. Eventually two final players each with a cheering train behind them face off. **RPS Baseball** – treat RPS outcomes as hits and outs to 'run bases'. **Extreme RPS** – team vs team where each team collectively decides on a move (Rock, Paper, or Scissors) and acts it out with their bodies or motions."
+  },
+  {
+    "id": 66,
+    "name": "Simon Says",
+    "category": "Quick/Simple Games",
+    "players": "10+",
+    "equipment": "None",
+    "rules": "A classic: one person is \"Simon\" who gives commands like \"Simon says touch your toes!\" Everyone must follow only if the command starts with \"Simon says\". If Simon gives a command without saying \"Simon says\" first, anyone who follows that command is out. The last player remaining becomes Simon for the next round."
+  },
+  {
+    "id": 67,
+    "name": "Slap Slap Draw",
+    "category": "Quick/Simple Games",
+    "players": "8-15",
+    "equipment": "None",
+    "rules": "This is a rhythm game. Players sit in a circle and establish a slap-clap rhythm. On a certain beat, two adjacent players face off with Rock-Paper-Scissors. The loser is out, or the loser has to move seats or otherwise indicate elimination. Continue the rhythm and the next two face off. It's a mix of maintaining rhythm and quick RPS battles. If someone breaks the rhythm, they are also out."
+  },
+  {
+    "id": 68,
+    "name": "Star Wars",
+    "category": "Quick/Simple Games",
+    "players": "Pairs",
+    "equipment": "None",
+    "rules": "Two players stand facing each other and extend one arm out as a \"lightsaber\" (index fingers extended). With their other hand behind their back, they try to tap the back of the other player's hand with their finger without getting their own hand hit. Essentially a quick reflex duel. First to tap the other's hand three times wins."
+  },
+  {
+    "id": 69,
+    "name": "Toe Tag",
+    "category": "Quick/Simple Games",
+    "players": "Pairs",
+    "equipment": "None",
+    "rules": "Two players face off in a small space. Each tries to gently step on the other's toes while avoiding having their own feet stepped on. No shoving or grabbing, just footwork. The first player to step on the other's foot 3 times wins."
+  },
+  {
+    "id": 70,
+    "name": "Trainwreck / Shuffle Your Buns",
+    "category": "Quick/Simple Games",
+    "players": "20+",
+    "equipment": "Chairs",
+    "rules": "Arrange chairs in several rows like a train (two columns back-to-back, like rows facing outward). One person stands in the middle of the 'train' without a chair. The person in the middle calls out a characteristic (e.g., \"Anyone wearing red\" or \"Anyone who plays soccer\"). All players for whom that is true must stand up and quickly find a new seat at least two chairs away from their old seat. Meanwhile, the person in the middle also tries to sit. One person will be left without a seat—that person becomes the new middle and calls the next characteristic. Alternatively, simply say 'Trainwreck!' and everyone must move."
+  },
+  {
+    "id": 71,
+    "name": "Back Scratch Encouragements",
+    "category": "Team Building/Cooperation",
+    "players": "15+",
+    "equipment": "None",
+    "rules": "Players stand in lines (like two lines facing each other or a single file circle). A leader calls out a characteristic or something like \"If you have been at camp before\" or \"if you have a pet,\" etc. If the statement applies to the person, they step forward and give a gentle back scratch or pat to the person in front of them. It's a nice way to physically encourage each other and learn about each other in a safe, positive way."
+  },
+  {
+    "id": 72,
+    "name": "Blanket Volleyball",
+    "category": "Team Building/Cooperation",
+    "players": "Teams of 4",
+    "equipment": "Blankets, balloon/beach ball",
+    "rules": "Split into two teams (on either side of a volleyball net or imaginary line). Each team of 4 holds the corners of a blanket, using it as a slingshot to catch and launch a light ball (like a balloon or beach ball) over the net to the other side. Teams work together to move and pull the blanket to fling the ball. Play like volleyball (3 catches then must send over)."
+  },
+  {
+    "id": 73,
+    "name": "Blind Leading the Blind",
+    "category": "Team Building/Cooperation",
+    "players": "Teams of 4-6",
+    "equipment": "Blindfolds, obstacles",
+    "rules": "Set up an obstacle course or a series of tasks. One member of each team is blindfolded and must navigate the course or complete tasks (like picking up specific objects) guided only by the other team members' instructions. The catch: the teammates can only use non-verbal signals or limited words (depending on how you set the rules) to guide the blindfolded player. Alternatively, all but one are blindfolded and one leader guides them all."
+  },
+  {
+    "id": 74,
+    "name": "Human Knots",
+    "category": "Team Building/Cooperation",
+    "players": "Groups of 8-12",
+    "equipment": "None",
+    "rules": "A classic team building activity. Everyone stands in a circle, reaches across with each hand, and grabs two different people's hands at random (not the person next to them). This creates a giant 'knot' of intertwined arms. The group must communicate and maneuver to untangle themselves into a single circle without letting go of hands. (They can change grips to rotate hands, but never break contact.)"
+  },
+  {
+    "id": 75,
+    "name": "Paper Maze",
+    "category": "Team Building/Cooperation",
+    "players": "10+",
+    "equipment": "Paper squares",
+    "rules": "Create a grid on the floor (like 6x6 or 8x8) with paper sheets as tiles. Secretly choose a 'correct path' through the grid. Players must work together to find the path. One player at a time steps onto the grid. If they step on a 'correct' square, the leader says nothing and they can continue. If they step on a 'wrong' square, the leader says 'BEEP' (or no) and the player must go back. Then the next player starts from the beginning of the path. As players discover the correct path square by square (by trial and error and memory), they must remember it and communicate it to the team. The goal is to have someone reach the end of the maze. Only one person on the grid at a time; no writing down clues, all memory and teamwork."
+  },
+  {
+    "id": 76,
+    "name": "Paper Plates Affirmation",
+    "category": "Team Building/Cooperation",
+    "players": "10+",
+    "equipment": "Paper plates, markers",
+    "rules": "Each person gets a paper plate taped to their back and a marker. For a set time, everyone mingles and writes positive messages or compliments on each other's plates (on their backs). At the end, you have a plate full of encouragement that you can keep and read. (This is more of a feel-good activity than a game/competition.)"
+  },
+  {
+    "id": 77,
+    "name": "Raise the Pole / Helium Stick",
+    "category": "Team Building/Cooperation",
+    "players": "8-12",
+    "equipment": "Light pole/stick",
+    "rules": "A lightweight rod or tent pole is placed across the team's index fingers (everyone holds it with two fingers). The task is to lower the pole to the ground together. It seems easy, but because any uneven pressure makes it rise, the pole often mysteriously goes up (hence sometimes called Helium Stick). The team has to really coordinate and communicate to slowly lower it without anyone losing contact."
+  },
+  {
+    "id": 78,
+    "name": "Turn Over a New Leaf",
+    "category": "Team Building/Cooperation",
+    "players": "8-15",
+    "equipment": "Tarp/blanket",
+    "rules": "Spread out a tarp on the floor. The entire group stands on it. The challenge is to flip the tarp over (to the other side) without anyone stepping off of it. They might try gradually bunching it up and shifting people. It's a coordination and strategy challenge that requires teamwork and often some creative thinking."
+  },
+  {
+    "id": 79,
+    "name": "Beach Tennis",
+    "category": "Unique/Creative Games",
+    "players": "4+",
+    "equipment": "Tennis ball, volleyball net",
+    "rules": "Played on a sand volleyball court, but with a tennis ball (or something similar). The ball can bounce once on sand per side (unlike regular volleyball). Essentially, it’s tennis rules (hit ball over net, one bounce allowed) on a beach court using hands or maybe paddles. You can experiment with rules, but it's a fun hybrid."
+  },
+  {
+    "id": 80,
+    "name": "Blind Shopping Cart",
+    "category": "Unique/Creative Games",
+    "players": "Teams of 3",
+    "equipment": "Shopping carts, blindfolds",
+    "rules": "For each team, one person sits in a shopping cart, one person pushes the cart but is blindfolded, and the third person stands or walks behind giving verbal directions. They must navigate an obstacle course (safely, at a walking pace!) or race to collect specific items (like retrieve objects scattered around). The sighted person cannot touch the cart, only guide with words. First team to complete the course or task wins."
+  },
+  {
+    "id": 81,
+    "name": "Body Spelling",
+    "category": "Unique/Creative Games",
+    "players": "Teams of 5+",
+    "equipment": "Phrase cards",
+    "rules": "Each team receives a word or short phrase. They must use their bodies together to spell out the letters or shape of that phrase on the floor or ground (like doing human letters that form words). The other team (or a judge) tries to guess the phrase. Alternatively, it can be competitive with two teams each making shapes while one judge times or scores them."
+  },
+  {
+    "id": 82,
+    "name": "Chocolate Bar Scramble",
+    "category": "Unique/Creative Games",
+    "players": "6-10 per group",
+    "equipment": "Wrapped chocolate, dice, winter clothes, utensils",
+    "rules": "Place a large chocolate bar, still wrapped, on a plate. Have nearby: heavy winter clothing (coat, gloves, etc.) and eating utensils (fork, knife). Players sit in a circle and take turns rolling a die, trying to roll a 6. When someone rolls a 6, they quickly put on the winter clothes and start trying to eat the chocolate bar with the utensils (cutting it open and eating pieces) as fast as possible. However, the rest of the group keeps rolling the die. As soon as another person rolls a 6, the current eater must stop, take off the clothes, and pass them and the utensils to the new roller, who now dons them and tries to eat. This continues until the chocolate bar is finished. It's chaotic and fun."
+  },
+  {
+    "id": 83,
+    "name": "Doggy Doggy Where's Your Bone",
+    "category": "Unique/Creative Games",
+    "players": "10-20",
+    "equipment": "Small object (\"bone\")",
+    "rules": "One person is the 'dog' and sits in the middle of the group (or with eyes closed). Underneath or behind the dog is a small object like a beanbag (the \"bone\"). The dog closes their eyes while someone is silently chosen to steal the bone and hide it behind their back. Then everyone sings, \"Doggy, doggy, where's your bone? Somebody stole it from your home. Guess who it might be.\" The dog opens their eyes and has three guesses to find who took the bone. If they guess right, the thief becomes the new dog; if not, you can reveal or have the dog do something silly as a penalty and remain dog for another round."
+  },
+  {
+    "id": 84,
+    "name": "Extreme Rock Paper Scissors",
+    "category": "Unique/Creative Games",
+    "players": "Two large teams",
+    "equipment": "None",
+    "rules": "Divide into two large teams. Each team huddles and as a group decides on Rock, Paper, or Scissors. Teams then line up facing each other. On the count of three, each team as a whole will 'throw' their choice (maybe by having everyone hold up fists for rock, open hands for paper, V for scissors, etc.). Determine which team wins that round (Rock beats Scissors, etc.). The losing team must turn and run to a safe zone while the winning team chases and tries to tag as many as possible. Tagged people join the other team. Repeat rounds until one team is entirely absorbed."
+  },
+  {
+    "id": 85,
+    "name": "Flip the Cup",
+    "category": "Unique/Creative Games",
+    "players": "Teams of 2",
+    "equipment": "Plastic cups",
+    "rules": "This can be played as a head-to-head team game. One team is designated as the 'right-side-up' team, the other as the 'upside-down' team. Scatter a bunch of plastic cups around an area, some oriented up, some down. On 'Go!', each team runs around flipping cups to their orientation (either opening up or opening down). After a time limit (say 1 minute), stop and count: if more cups are right-side-up, that team wins, and vice versa. It's like a frantic tidying/untidying battle."
+  },
+  {
+    "id": 86,
+    "name": "Gorilla Gun Man",
+    "category": "Unique/Creative Games",
+    "players": "Pairs",
+    "equipment": "None",
+    "rules": "This is a fun twist on rock-paper-scissors with your whole body. Two players stand back-to-back. On the count of three, they both jump around to face each other, simultaneously acting out one of three characters: a Gorilla (arms up and chest pounding), a Man (hands on hips, just standing), or a Gun (form a finger gun). Determine rules like Gorilla beats Man, Man beats Gun, Gun beats Gorilla (so it's a full cycle). If they choose the same, go again. It's silly and quick."
+  },
+  {
+    "id": 87,
+    "name": "Grog",
+    "category": "Unique/Creative Games",
+    "players": "20+",
+    "equipment": "List of objects (to hide)",
+    "rules": "\"Grog\" is a combination of scavenger hunt and freeze tag in the dark. You create a monster called the Grog by assembling, say, a flashlight (with battery, bulb, and casing hidden in different places). One person (or multiple) are designated as the Grog. The lights go out, and all players search for the hidden parts to reassemble the flashlight. If you encounter the Grog in the dark, they can \"tag\" (freeze) you. Frozen players can be unfrozen if another player taps them. The game ends if players manage to assemble the flashlight and turn it on (defeating the Grog) or if the Grog freezes everyone."
+  },
+  {
+    "id": 88,
+    "name": "In the Park",
+    "category": "Unique/Creative Games",
+    "players": "8+",
+    "equipment": "None",
+    "rules": "One person (the guesser) leaves the room or area. The others decide on an activity that they are all 'doing' in an imaginary park (like all brushing their teeth, or all flying a kite, etc.). The guesser comes back and approaches people one by one asking, \"What are you doing?\" The person must answer something that's *consistent* with the chosen activity, but not give it away. For example, if the activity is brushing teeth, someone might answer \"I'm washing my face\" (something also done in a bathroom). The guesser goes around asking multiple people. Everyone should be pantomiming their own made-up action that relates to the theme. The guesser can ask each person once or twice. Then they must guess what the actual activity is that everyone is doing in the park."
+  },
+  {
+    "id": 89,
+    "name": "Indoor Scavenger Hunt",
+    "category": "Unique/Creative Games",
+    "players": "Teams of 4-5",
+    "equipment": "List",
+    "rules": "Teams get a list of obscure or funny items to find around the house or building. For example: a clothing tag that says \"Made in China\", a spoon with a logo, a red paperclip, a dictionary opened to the word 'youth', etc. Or tasks like 'line up 5 people shortest to tallest' and take a photo. Each team must collect or photograph as many items as possible within a time limit. The team that finds the most items on the list wins."
+  },
+  {
+    "id": 90,
+    "name": "Islands",
+    "category": "Unique/Creative Games",
+    "players": "15+",
+    "equipment": "Cardboard pieces, music",
+    "rules": "Place pieces of cardboard (or paper) on the ground as 'islands'. They should be large enough for a few people to stand on. When music plays, everyone 'swims' (dances) around. When the music stops, the leader calls out a number, and people must get on an island with exactly that many people. If a group has too many or too few on an island, or someone can’t get on an island, they are out. Remove islands as rounds go on, like musical chairs."
+  },
+  {
+    "id": 91,
+    "name": "Kick the Can",
+    "category": "Unique/Creative Games",
+    "players": "10+",
+    "equipment": "Can",
+    "rules": "This is a hide-and-seek tag hybrid. Designate a can in an open area, 'the jail'. One person is 'It' and closes their eyes and counts while everyone else hides. It then goes searching. When It finds someone, they call out the name and location (or simply tags them) and both race to the can. If It gets there first, the found person goes to jail (near the can). If the hider gets there first, they kick the can, freeing any jailed players. It then resets the can and continues. The game ends when It has caught everyone in jail at the same time."
+  },
+  {
+    "id": 92,
+    "name": "M&M Wars",
+    "category": "Unique/Creative Games",
+    "players": "Two teams",
+    "equipment": "M&Ms, flags",
+    "rules": "This is a capture the flag variant played with M&Ms (or other colored tokens) as 'lives'. Each player starts with, say, 10 M&Ms. There are two flags (one for each team). If you get tagged on the opponent's side, instead of being out or going to jail, you must give one M&M to the player who tagged you and then return to your side (or to a spawn point). Once a player runs out of M&Ms, they are out of the game. You can also allow bribing/trading M&Ms. Play until one team captures the other's flag or eliminates the other team."
+  },
+  {
+    "id": 93,
+    "name": "Newspaper Game",
+    "category": "Unique/Creative Games",
+    "players": "Teams of 4",
+    "equipment": "Newspapers",
+    "rules": "Each team is given a stack of old newspapers and a list of things to do or find. For example: find a picture of an animal, find the word 'Bible', make the tallest hat possible, wrap one teammate like a mummy, etc., using only newspaper and tape. Or, first team to find a specific word or headline wins that round. You can be creative with tasks. It’s a combination of a scavenger hunt and quick construction using newspapers."
+  },
+  {
+    "id": 94,
+    "name": "Photo Scavenger Hunt",
+    "category": "Unique/Creative Games",
+    "players": "Teams of 4-5",
+    "equipment": "Cameras (phones)",
+    "rules": "Provide a list of scenarios or items each team must capture in photos or videos. For example: a human pyramid of at least 5 people, the whole team in front of a school sign, a member shaking hands with a police officer, something shaped like a letter Y, etc. Teams have a set time to go around and take pictures. At the end, gather and show the pictures, and optionally score creativity or number of tasks completed."
+  },
+  {
+    "id": 95,
+    "name": "Reverse Scavenger Hunt",
+    "category": "Unique/Creative Games",
+    "players": "Teams",
+    "equipment": "None",
+    "rules": "Instead of giving teams a list of items to collect, the leader calls out one item at a time (like \"a shoelace\" or \"a wristwatch\"). Teams race to produce that item and bring it to the leader or a judge. The first team to produce the item wins a point. This works best if you're in a space where people have access to bags or random items (like in a meeting room, or at camp where they run to their cabins). You can also do 'people' categories (\"someone who can speak another language\") and the team has to present a member that fits."
+  },
+  {
+    "id": 96,
+    "name": "Sardines",
+    "category": "Unique/Creative Games",
+    "players": "10+",
+    "equipment": "None",
+    "rules": "\"Sardines\" is reverse hide-and-seek. One person hides while everyone else counts. After counting, everyone splits up to find the one hidden person. If you find the hidden person, you quietly join them in hiding (squeeze in like sardines) instead of calling it out. Gradually more and more people hide together in the same spot. The last person wandering around becomes the next one to hide in the next round."
+  },
+  {
+    "id": 97,
+    "name": "Sled Roll",
+    "category": "Unique/Creative Games",
+    "players": "Teams of 6+",
+    "equipment": "Sleds or pieces of cardboard",
+    "rules": "Line teams up at a start line. Each team has a 'sled' (if no snow, a large piece of cardboard on grass works). One member sits or lays on the sled. The rest of the team lines up behind them and essentially 'logs rolls' the sled forward by having the team lay down on the ground behind the sled, allowing the rider to roll over them, then those in back run to the front and lay down again, like a conveyor belt. It's like the team is the rollers under a sled. They continue rolling their rider forward in this manner to a finish line. First team to get their rider across wins."
+  },
+  {
+    "id": 98,
+    "name": "Steal the Bacon Variations",
+    "category": "Unique/Creative Games",
+    "players": "Two teams",
+    "equipment": "Object (\"bacon\") - e.g., ball, cone, etc.",
+    "rules": "Teams line up on opposite sides and each person is numbered. An object (the 'bacon') is placed in the center. The leader calls a number, and the players from each team with that number run to the center. The goal is to grab the bacon and get it back to your side without being tagged by the other player. If tagged while holding it, the bacon goes to the other team. Variations: use a water balloon for bacon to make it messy, use a sock filled with flour (chalk sock), use funny objects like a rubber fish for laughter."
+  },
+  {
+    "id": 99,
+    "name": "Summertime (Word Game)",
+    "category": "Unique/Creative Games",
+    "players": "6-10",
+    "equipment": "None",
+    "rules": "A word-making game: Have the letters S-U-M-M-E-R-T-I-M-E written on pieces of paper or on each person's fingers (some letters may repeat). The group tries to form as many different words (at least 3 letters long) using only those letters as possible (like a human anagram solver). Alternatively, assign each player some of the letters and have them physically move to rearrange and spell words cooperatively."
+  },
+  {
+    "id": 100,
+    "name": "Tennis Two Square",
+    "category": "Unique/Creative Games",
+    "players": "2-4",
+    "equipment": "Tennis ball, court squares",
+    "rules": "On a four-square court or drawn boxes, play a game combining tennis and four-square. Two players (or two teams of doubles) stand in adjacent squares. The server bounces a tennis ball and hits it (with hand or a racket if allowed) into the opponent's square. It can bounce once in their square; they must then hit it back into the first square after at most one bounce. It's basically like a smaller tennis match on two squares. If the ball bounces twice in your square or goes out, the other scores."
+  },
+  {
+    "id": 101,
+    "name": "Ultimate Squidbee",
+    "category": "Unique/Creative Games",
+    "players": "Two teams",
+    "equipment": "Rubber squid (or similar object)",
+    "rules": "A silly variation of Ultimate Frisbee played with a floppy rubber squid (or any odd object). The rules of Ultimate (no running with the object, pass to advance, catch in end zone to score) remain, but the unpredictable nature of a floppy squid makes catching and throwing humorous and challenging."
+  },
+  {
+    "id": 102,
+    "name": "Pool Clothes Race",
+    "category": "Unique/Creative Games",
+    "players": "4+",
+    "equipment": "Clothes, pool",
+    "rules": "Have a pile of oversized clothes (shirts, pants, hats) at one end of the pool and an empty suitcase or laundry basket at the other end. Players (or teams relay-style) must swim across the pool, put on all the clothes from the pile, then swim back with the clothes on and place them in the suitcase. Swimming in clothes is hard because they drag in water. Fastest time or first team to do it wins."
+  },
+  {
+    "id": 103,
+    "name": "Water Balloon Toss",
+    "category": "Unique/Creative Games",
+    "players": "Pairs",
+    "equipment": "Water balloons",
+    "rules": "Partners line up facing each other, starting a short distance apart. Each pair has a water balloon. On \"go\", they toss it to their partner. If it’s caught without breaking, they both take a step back and toss again. Continue stepping back and tossing farther. The first time a team's balloon breaks they are out. Last pair with an unbroken balloon wins (or whoever got farthest apart)."
+  },
+  {
+    "id": 104,
+    "name": "Banana Through Pantyhose",
+    "category": "Upfront/Performance Games (Small Group)",
+    "players": "3-5",
+    "equipment": "Bananas, pantyhose, cups",
+    "rules": "This is a messy upfront challenge. Give each volunteer a peeled banana and a pair of pantyhose. They must chew the banana and then spit it into one leg of the pantyhose that is over their head (like a filter) and squeeze the banana mush through the stocking into a cup. It's a gross race to see who can get the most banana goop into the cup in a minute."
+  },
+  {
+    "id": 105,
+    "name": "Cinderfella",
+    "category": "Upfront/Performance Games (Small Group)",
+    "players": "3-4 pairs",
+    "equipment": "Blindfolds",
+    "rules": "This is like a twist on Cinderella's shoe. Blindfold three or four guys. Mix up one shoe from each of their female partners in front of them. On \"go\", the blindfolded guys must find and put the correct shoe on their partner's foot (the girl can call out directions, but the guy is blindfolded and on hands and knees possibly). First prince to correctly shoe his princess wins."
+  },
+  {
+    "id": 106,
+    "name": "Coke and Candle",
+    "category": "Upfront/Performance Games (Small Group)",
+    "players": "2",
+    "equipment": "Coke cans, candles, lighters",
+    "rules": "Two players face off. Each has a soda (Coke) and a candle. They light their candle and begin chugging their soda. They can only drink while their candle is lit. The twist is they can also attempt to blow out the opponent's candle (either by literally blowing or fanning). As soon as a player's candle is out, they must stop drinking until they get it relit. The first to finish their can of soda wins."
+  },
+  {
+    "id": 107,
+    "name": "Hair Stylist",
+    "category": "Upfront/Performance Games (Small Group)",
+    "players": "3 pairs",
+    "equipment": "Shaving cream",
+    "rules": "Bring up 3 pairs (perhaps guy/girl pairs). One partner is the 'stylist', the other is the 'client'. The stylists have a can of shaving cream and have 1 minute to create the most outrageous and impressive 'hairstyle' on their client's head using the shaving cream as hair. The audience judges who made the best hairdo."
+  },
+  {
+    "id": 108,
+    "name": "Hose Head Hockey",
+    "category": "Upfront/Performance Games (Small Group)",
+    "players": "2",
+    "equipment": "Pantyhose, tennis balls",
+    "rules": "Place a tennis ball into one leg of a pantyhose and then put the pantyhose on a player's head (like a cap with one leg hanging). The tennis ball leg hangs down in front of them. Two players face off; the objective is to swing your head so your hanging tennis ball wraps around the other person's and pulls their pantyhose off their head first. It looks ridiculous, like two elephants fighting with trunks."
+  },
+  {
+    "id": 109,
+    "name": "Human Musical Chairs",
+    "category": "Upfront/Performance Games (Small Group)",
+    "players": "6 guys, 7 girls",
+    "equipment": "Music",
+    "rules": "This is a twist on musical chairs using people as chairs. Arrange 6 guys on all fours on the ground (they are the 'chairs'). Have 7 girls ready to circle. When the music plays, girls walk around. When it stops, each girl must sit on a guy's back (gently). One girl will be left without a 'chair' (guy to sit on) and that pair (or just that girl) is out, and also remove one guy from being a chair. Continue until only one girl sitting on one guy remains. (Make sure guys are okay with carrying someone on their back and have them switch out if tired.)"
+  },
+  {
+    "id": 110,
+    "name": "Lemon/Licorice Eating",
+    "category": "Upfront/Performance Games (Small Group)",
+    "players": "2-4",
+    "equipment": "Lemons or licorice",
+    "rules": "Two options: **Lemon** – Give each player a lemon half or wedge and see who can eat it (rind and all) the fastest. Expect funny sour faces. **Licorice** – Blindfold players and give each a long piece of licorice rope. But secretly, as they eat, keep splicing on additional pieces of licorice so it never seems to end. The audience sees the trick but the blindfolded person doesn’t know why it's taking so long. Eventually reveal it."
+  },
+  {
+    "id": 111,
+    "name": "Money Elbow Catch",
+    "category": "Upfront/Performance Games (Small Group)",
+    "players": "2-4",
+    "equipment": "Coins",
+    "rules": "Give each player a stack of, say, 5 coins. They have to place the coins on their elbow (bend arm, raise forearm so elbow points forward) and then quickly swing their arm forward and try to catch all the coins in the same hand. If successful, add more coins each round. Whoever can catch the most coins from their elbow in one swoop wins."
+  },
+  {
+    "id": 112,
+    "name": "Mummy Twins",
+    "category": "Upfront/Performance Games (Small Group)",
+    "players": "Pairs",
+    "equipment": "Toilet paper",
+    "rules": "Pairs of players stand back-to-back. They are given several rolls of toilet paper and must wrap themselves together as a single 'mummy' without breaking apart. The pair that uses up all their toilet paper and achieves the best mummy wrap (fully covered, etc.) in the time wins. It tests cooperation and coordination because they have to turn together to wrap."
+  },
+  {
+    "id": 113,
+    "name": "Phone Book Basketball",
+    "category": "Upfront/Performance Games (Small Group)",
+    "players": "2-4",
+    "equipment": "Phone book, trash can",
+    "rules": "Give each player a large old phone book (or a portion of one). Place a trash can a short distance away. Players have 2 minutes to tear out pages from the phone book, crumple them into balls, and shoot as many baskets as possible into the trash can. They cannot move their feet (like a free throw). Count how many paper balls each made into the can."
+  },
+  {
+    "id": 114,
+    "name": "Q-Tip Shoot Off",
+    "category": "Upfront/Performance Games (Small Group)",
+    "players": "2",
+    "equipment": "Straws, Q-tips, cups",
+    "rules": "Two players stand a table width apart, each wearing a plastic cup on their head (attached to a cap or headband if possible). They are each armed with a straw and a pile of Q-tips (as darts). On 'go', they start blowing Q-tips through the straw trying to knock the cup off the opponent's head. First to do so wins, or whoever knocks off more in a time limit."
+  },
+  {
+    "id": 115,
+    "name": "Roxanne",
+    "category": "Upfront/Performance Games (Small Group)",
+    "players": "3",
+    "equipment": "Marshmallows, Coke, \"Roxanne\" song",
+    "rules": "Get three volunteers. Give each a can of Coke and a bag of marshmallows. Play the song \"Roxanne\" by The Police. Every time the word \"Roxanne\" is sung, the players must either eat a marshmallow or take a sip of Coke (you can assign one to marshmallow, one to Coke, etc., or have them do both). It's a race to see who can finish their marshmallows and drink by the end of the song. It's quite challenging because that word repeats a lot."
+  },
+  {
+    "id": 116,
+    "name": "Talk or Get Squirted",
+    "category": "Upfront/Performance Games (Small Group)",
+    "players": "1 speaker, others as squirters",
+    "equipment": "Water guns",
+    "rules": "Bring one person (or multiple one at a time) up front and give them a topic to speak about (like a mini improvised speech). They must continuously talk about the topic. Whenever they hesitate, say 'um/uh', or pause too long, the other leaders or participants gently squirt them with water guns. It's a challenge to keep talking without filler words. Go for a set time or until they stop."
+  },
+  {
+    "id": 117,
+    "name": "The Backpack Name Game",
+    "category": "Upfront/Performance Games (Small Group)",
+    "players": "10-20",
+    "equipment": "Backpack with objects",
+    "rules": "Fill a backpack with a variety of random objects (comb, spoon, sock, toy, etc.). In a circle, each person draws out an object and then has to introduce themselves including a fact or story that somehow relates to that object as a mnemonic device (e.g., pulls out a comb: \"Hi I'm Alex, and I once cut my own hair with a comb and scissors...\"). This helps learn names with a visual association."
+  },
+  {
+    "id": 118,
+    "name": "Toothpaste Cram",
+    "category": "Upfront/Performance Games (Small Group)",
+    "players": "3-5",
+    "equipment": "Empty tubes, toothpaste, tools",
+    "rules": "Give each player an empty toothpaste tube (washed out) and a plate full of toothpaste (or shaving cream for safety). Provide small tools (like straws, spoons, etc.) or they can just use their hands. They have a short time (2 minutes) to try to stuff as much toothpaste back into the tube as possible. After time, cap the tubes and see whose is the fullest (by weight or feel). It's messy and harder than it looks."
+  },
+  {
+    "id": 119,
+    "name": "Mr. Potato Head",
+    "category": "Upfront/Performance Games (Small Group)",
+    "players": "Teams of 4",
+    "equipment": "Potatoes, toothpicks, vegetables",
+    "rules": "Each team gets a large potato and a variety of vegetables, toothpicks, and other craft items. They must decorate the potato to create the funniest or most creative 'potato person' (like a Mr. Potato Head) within a time limit. You can assign themes or just free create. At the end, present each potato person and have judges (or crowd) vote on the best."
+  },
+  {
+    "id": 120,
+    "name": "Name Game (with sheet)",
+    "category": "Name Games",
+    "players": "20+",
+    "equipment": "Large sheet",
+    "rules": "Divide into two teams and have them sit on either side of a large held-up sheet (so neither team can see the other). Each team silently selects one player to go sit directly up against the sheet. On the count of 3, drop the sheet. The two players now see each other and must shout the other person's name as fast as possible. Whoever says the other's name first 'wins', and the slower person joins the other team. Then repeat with new people. It's a quick way to learn names; game ends when one team has everyone or time's up."
+  },
+  {
+    "id": 121,
+    "name": "Object Toss Name Game",
+    "category": "Name Games",
+    "players": "10-20",
+    "equipment": "Soft object (like a foam ball)",
+    "rules": "Have everyone stand in a circle. One person starts by tossing the soft object to someone across the circle while saying that person's name (if they know it; if not, they can ask quickly). That person then tosses to another, saying their name, and so on. After a warm-up, challenge the group to complete a cycle passing to everyone exactly once (establish an order) and time how fast they can go. Try to beat the record. This helps reinforce names by repetition."
+  },
+  {
+    "id": 122,
+    "name": "Pool Noodle Name Game",
+    "category": "Name Games",
+    "players": "10-20",
+    "equipment": "Pool noodle",
+    "rules": "Players stand in a circle with one person in the middle holding a pool noodle like a bat or club. The person in the middle will close their eyes (or just spin around). Meanwhile, someone on the outer circle starts by calling the name of someone else in the circle. The person in the middle opens eyes and rushes to tap that named person with the noodle. However, if the named person can call another person's name *before* they get hit, the middle person now changes target to that new person. If the middle person succeeds in lightly bopping someone before they say a new name, the bopped person becomes the new middle."
+  },
+  {
+    "id": 123,
+    "name": "Sock Bop Name Game",
+    "category": "Name Games",
+    "players": "10-20",
+    "equipment": "Sock with another sock balled up inside (makes a soft \"whacker\")",
+    "rules": "Similar to the pool noodle game, but using a long sock as a soft whip. One person in the middle with the sock tries to gently tag someone after a name is called. A rule variation: you cannot call the name of the person who just called one (can't bounce back). If tagged, you switch places."
+  },
+  {
+    "id": 124,
+    "name": "Gun Name Game",
+    "category": "Name Games",
+    "players": "10-20",
+    "equipment": "None",
+    "rules": "Players stand in a circle. One player in the center forms a finger-gun and 'shoots' someone by pointing at them and saying their name. That person must duck. The two people on either side of the ducking person then 'shoot' each other by turning and saying each other's name. The slower of the two (or if someone fails to duck in time) is out and steps out of the circle. Close up the circle and continue until a winner."
+  },
+  {
+    "id": 125,
+    "name": "Line Up By...",
+    "category": "Quick Line/Row Games",
+    "players": "Teams of 10+",
+    "equipment": "None",
+    "rules": "Split into two or more teams. Call out a category for ordering such as 'height', 'birthday month', 'shoe size', 'alphabetical by middle name', etc. Teams must quickly discuss and arrange themselves in a single line according to that criterion. First team to line up correctly and sit down wins the round. Emphasize working without speaking for an extra challenge in later rounds."
+  },
+  {
+    "id": 126,
+    "name": "Criss Cross",
+    "category": "Quick Line/Row Games",
+    "players": "4 teams",
+    "equipment": "None",
+    "rules": "Designate four corners of a room or field as A, B, C, D (or North, East, South, West). Divide the group into four teams and assign each to a corner. When the leader calls a method of movement (e.g., hopping, crawling, crab-walk, skipping), each team must move from their corner to the opposite corner (A<->C, B<->D) in that manner, without colliding with other teams crossing. It's chaotic but fun. First team to have all members to the opposite corner wins a point. Then assign new crossing pairs or movements."
+  },
+  {
+    "id": 127,
+    "name": "Quick Draw",
+    "category": "Quick Line/Row Games",
+    "players": "Pairs",
+    "equipment": "None",
+    "rules": "Two players stand back-to-back like in an old-fashioned duel. A referee calls out a number (or a simple math problem), and the duelers must both spin around to face each other and quickly hold up that total number of fingers between their two hands combined. Actually a simpler way: have each person hold up some fingers on one hand when they turn around, and whoever shouts out the sum of both players' fingers first wins. The loser is 'out' and the winner finds a new opponent, until one champion remains."
+  },
+  {
+    "id": 128,
+    "name": "Nibble-T-Bibble",
+    "category": "Quick Line/Row Games",
+    "players": "10+",
+    "equipment": "None",
+    "rules": "A silly command game like Simon Says with gibberish phrases. The leader gives instructions such as 'Nibble (something) Bibble', each corresponding to a certain action. For example, 'Nibblet bibble' means stand on one foot, 'Nobblet bobble' means hands on head, etc. It's essentially a custom Simon Says where only commands phrased a certain way are to be followed. If the leader doesn't say the exact nonsense phrase or mixes it up, those who follow get out."
+  },
+  {
+    "id": 129,
+    "name": "The Clap Game",
+    "category": "Quick Line/Row Games",
+    "players": "10+",
+    "equipment": "None",
+    "rules": "Players stand in a circle and must 'pass' a clap around the circle. One person starts by clapping once facing the next person, who immediately claps toward the next, and so on. If someone claps twice, the clap direction reverses (goes back the other way). If someone claps three times, it skips the next person. You must only clap on your turn when it's passed to you. If you break the rhythm or clap out of turn, you're out. Last person in wins."
+  },
+  {
+    "id": 130,
+    "name": "The Jump Rope Formula",
+    "category": "Quick Line/Row Games",
+    "players": "Groups of 10",
+    "equipment": "Jump rope",
+    "rules": "This is a challenge where a large jump rope is continuously turning and the group must figure out a pattern to get all members through without tripping. For example, the goal might be 'get everyone through the spinning rope one after the other without a miss'. They have to experiment with timing, spacing, and maybe find a formula like two people run through per turn, etc. Each failed attempt they try to adjust. It's partly an activity in problem-solving and cooperation."
+  },
+  {
+    "id": 131,
+    "name": "Food Relay",
+    "category": "Food-Based Challenges",
+    "players": "Teams",
+    "equipment": "Various foods in bags",
+    "rules": "Prepare several paper bags, each with a random food item (could be gross or nice or just odd combos). Teams line up. At a start signal, the first player from each team runs to a table, grabs a bag, must eat whatever's inside (or a sizable piece of it if it's big) before returning and tagging the next person. You can include things like a spoonful of mustard, a jar of baby food, a slice of lemon, etc. First team to finish all bags wins."
+  },
+  {
+    "id": 132,
+    "name": "Garlic Breath / Smelly Breath",
+    "category": "Food-Based Challenges",
+    "players": "4-6",
+    "equipment": "Strong foods, blindfolds",
+    "rules": "This is a gross guessing game. Blindfold 3-4 contestants and have volunteers each eat a very pungent food (like garlic cloves, onion, blue cheese, etc.). The blindfolded players have to smell each volunteer's breath and identify what they ate. Alternatively, have just one person eat something and multiple blindfolded guessers compete to identify the smell. Use strong or funny foods."
+  },
+  {
+    "id": 133,
+    "name": "Gum Sculpting",
+    "category": "Food-Based Challenges",
+    "players": "Teams of 4",
+    "equipment": "Bubble gum, toothpicks",
+    "rules": "Each team gets a pack of chewing gum. They must all chew the pieces to get gum to work with (they can chew one after another to supply more gum). Using only the chewed gum and toothpicks (as structural supports), teams have to create the most impressive sculpture they can within a time limit. Judge based on creativity, size, or recognizability of the sculpture."
+  },
+  {
+    "id": 134,
+    "name": "Doughnut String Race",
+    "category": "Food-Based Challenges",
+    "players": "4+",
+    "equipment": "Donuts, string",
+    "rules": "Tie strings through donuts (one per player) and hang them at about mouth level (you can have people hold the strings or tie them to a pole/branch). Without using hands, players must eat their entire doughnut off the string. First to finish their donut (nothing left dangling) wins."
+  },
+  {
+    "id": 135,
+    "name": "Circle Soccer",
+    "category": "Ball Games",
+    "players": "15-20",
+    "equipment": "Soccer ball",
+    "rules": "Players stand in a wide circle, legs apart, feet touching their neighbor's feet to form a goal gap under each person's legs. One or two soccer balls are in play. The objective is to kick the ball and try to get it through someone's 'goal' (their legs). You can block with your hands but can't move your feet. If the ball goes through your legs, you can either be out or just turn around and continue playing but now facing outward (meaning if it goes through again, then you're out)."
+  },
+  {
+    "id": 136,
+    "name": "Gym Ball / Big Ball",
+    "category": "Ball Games",
+    "players": "Two teams",
+    "equipment": "Large exercise ball",
+    "rules": "Use a giant exercise ball as the 'ball'. In a gym or open area, have two goals or end zones. Players can either throw or kick the ball (it’s bouncy and big). Score a point by hitting the opposing team's wall or knocking over a chair target, etc. Maybe 1 point for throwing/touching it to the wall, 5 points if you manage to kick it into the wall (harder to control). Essentially a big chaotic soccer/basketball with a huge ball."
+  },
+  {
+    "id": 137,
+    "name": "Pinball Soccer",
+    "category": "Ball Games",
+    "players": "20+",
+    "equipment": "Ball, paper squares",
+    "rules": "Mark a large circle or use a gym. Give each player a paper or carpet square to stand on (scattered around). Players cannot step off their square. They must pass a ball around by kicking or throwing (depending on rules), trying to hit other players with the ball or get it to goals, etc., but since no one can move off their spot, it becomes like human pinball. Possibly remove people when they're hit or allow bouncing off walls. Many variations possible."
+  },
+  {
+    "id": 138,
+    "name": "Sumo Ball",
+    "category": "Ball Games",
+    "players": "Pairs",
+    "equipment": "2 large exercise balls",
+    "rules": "Two players, each holding a large exercise ball against their chest, face each other in a circle or ring. At a signal, they run towards each other and collide like sumo wrestlers but the balls hit. The goal is to knock the other person out of the circle or off balance using the bounce of the balls. Best two out of three pushes wins. (Ensure a soft surface and careful supervision to avoid injury.)"
+  },
+  {
+    "id": 139,
+    "name": "Super Ninja Circle Ball",
+    "category": "Ball Games",
+    "players": "10-15",
+    "equipment": "Soft ball",
+    "rules": "This combines Ninja (as described earlier) with a ball. Players in a circle can take turns either making a 'ninja move' or instead choosing to throw a soft ball at another player's legs. If a player is hit by the ball (below knees) or tagged in Ninja style, they lose a 'life' or are out. If they catch the ball, maybe the thrower is out. It's somewhat experimental but basically encourages ninja moves and dodges while a ball is randomly thrown."
+  },
+  {
+    "id": 140,
+    "name": "Sponge Water Brigade",
+    "category": "Water Games",
+    "players": "Teams of 6+",
+    "equipment": "Buckets, sponges",
+    "rules": "Teams line up in relay style. At one end of each line is a bucket full of water, at the other end an empty bucket. Each team has one large sponge. The first person soaks the sponge in the full bucket, then passes it over their head (or under legs alternating) to the next person, down the line. The last person squeezes the remaining water into the empty bucket, then runs to the front and repeats until time is up. The team with the most water in their formerly empty bucket wins."
+  },
+  {
+    "id": 141,
+    "name": "Water Balloon Defense",
+    "category": "Water Games",
+    "players": "Teams",
+    "equipment": "Water balloons (different colors per team)",
+    "rules": "Each team has a stash of water balloons in a corner or area (each team’s balloons are a specific color for identification). Additionally, each team has a 'base' or area they defend. The goal is to protect your balloons while popping the other team's balloons. Players can throw balloons at each other (getting hit just gets you wet, but maybe you have unlimited lives or a respawn rule) but the real scoring is how many of the enemy's balloons you popped vs. how many of yours remain after a time limit. Team with more balloons remaining (or who popped all opponents') wins."
+  },
+  {
+    "id": 142,
+    "name": "Ultimate Sponge",
+    "category": "Water Games",
+    "players": "Two teams",
+    "equipment": "Large sponge, water buckets",
+    "rules": "Play like Ultimate Frisbee but use a big soaked sponge as the 'Frisbee'. Each team has a bucket or bin as an end zone goal. You score by dunking the sponge in the opposing team's bucket. The sponge will be dripping everywhere which adds to the fun. When someone has the sponge they cannot move (same as ultimate rules). Turnovers happen on drops, interceptions, out of bounds, etc. It's very wet and fun."
+  },
+  {
+    "id": 143,
+    "name": "Keys",
+    "category": "Unique Indoor Games",
+    "players": "15+",
+    "equipment": "Keys",
+    "rules": "This is more of a group brain teaser. Have everyone sit in a circle of chairs. One person is chosen to be \"It\" and leaves the room or closes eyes tightly. The leader gives a set of keys to someone in the circle who hides them in their lap or under their foot. Everyone then holds hands (or not, but it can add to misdirection) and the It is called back in. They walk around the inside of the circle and have to choose whose hands to grab. When they grab someone's hands, that person says nothing. However, the person *who actually has the keys* must jingle them at the exact moment It grabs any hands. The It hears the jingle and now must try to deduce who had the keys (because the jingle could come from anywhere since everyone's hands are linked or near each other). They get a few guesses. If they guess right, someone else becomes It; if not, they do another round."
+  },
+  {
+    "id": 144,
+    "name": "Limbo",
+    "category": "Unique Indoor Games",
+    "players": "10+",
+    "equipment": "Limbo stick, music",
+    "rules": "Turn on some tropical music and hold a stick or broom horizontally at a certain height. Players line up and one by one attempt to lean backward and go under the stick without touching it or falling. After everyone goes, lower the stick slightly and continue for another round. No crawling or touching the ground with hands allowed; must go under with back facing the floor. The stick keeps getting lower. If you fall or touch, you're out. Last person who can successfully limbo at the lowest height wins."
+  },
+  {
+    "id": 145,
+    "name": "Shapes",
+    "category": "Unique Indoor Games",
+    "players": "20+",
+    "equipment": "Tape, music",
+    "rules": "Tape various large shapes on the floor (triangle, circle, square, etc.) spread out around the room, enough shapes such that when divided some shapes will be empty each round. Like musical chairs: when music plays, everyone dances around. When music stops, the leader calls the name of a shape (or holds up a picture of one), and everyone must quickly move to stand inside a taped shape of that kind. Those who fail to find that shape in time or go to the wrong shape are eliminated. Remove a few shapes and continue."
+  },
+  {
+    "id": 146,
+    "name": "Outburst",
+    "category": "Unique Indoor Games",
+    "players": "Two teams",
+    "equipment": "Category cards",
+    "rules": "Use a commercial Outburst game or make your own category cards. One team draws a card that has a category (say 'Types of Fruit') and 10 listed answers (like apple, banana, etc.). They have 1 minute to shout as many items from that category as possible while the other team listens. The other team has the official list and counts how many of the top 10 the first team got. They get a point for each. Then vice versa. Alternatively, just play for fun points. It's loud but fun."
+  },
+  {
+    "id": 147,
+    "name": "Pictionary Relay",
+    "category": "Unique Indoor Games",
+    "players": "Teams of 6+",
+    "equipment": "Paper, markers, word cards",
+    "rules": "Similar to normal Pictionary but as a relay race: Each team forms a line. The first player is given a word and begins to draw it for their team (no talking). After 10 seconds, the leader says 'switch', the first player stops drawing and goes to the back of the line, and the second player comes up and continues the same drawing. They can add onto what's there. This continues rotating every few seconds. The team tries to guess at any time. If they guess it, they get a point. Then give the next word for the next round."
+  },
+  {
+    "id": 148,
+    "name": "Shoe Box Relay",
+    "category": "Creative Challenges",
+    "players": "Teams of 10",
+    "equipment": "Shoe boxes",
+    "rules": "Each team gets two shoe boxes to use as 'shoes'. The first player of each team puts their feet in the shoe boxes (one per foot). They must shuffle (since you can't really lift your feet) to a turnaround point and back to the start. Then they pass the boxes to the next teammate who does the same. If a player steps out of their boxes, they have to stop and get back in. First team to get all members through wins. (It's like a floppy foot race.)"
+  },
+  {
+    "id": 149,
+    "name": "Car Stuff",
+    "category": "Creative Challenges",
+    "players": "Teams",
+    "equipment": "Small cars (actual cars or maybe a van)",
+    "rules": "If available and safe: have an actual small car (like an old VW Beetle or similar). Teams have 30 seconds (or 1 minute) to fit as many people as possible inside the car completely (no limbs hanging out, doors must close). Remove side mirrors first to avoid damage. Count each team's max. People must fit fully inside, not just on top or clinging to outside. Alternatively, do the same with a camping tent or a defined small space if a car isn't available."
+  },
+  {
+    "id": 150,
+    "name": "Pocket Alphabet",
+    "category": "Creative Challenges",
+    "players": "Groups of 4-5",
+    "equipment": "None",
+    "rules": "Each team tries to find an object on their persons (in pockets, wallets, purses, clothing, etc.) for every letter of the alphabet A-Z. They list them or place them out. For example, A - apple (maybe someone has a snack), B - button (from clothing), C - coin, etc. Give a time limit (~5 minutes). The team that found the most letters of the alphabet with unique items wins."
+  },
+  {
+    "id": 151,
+    "name": "Clothes Pin Pinch",
+    "category": "Tag Variations",
+    "players": "20+",
+    "equipment": "8 clothespins per person",
+    "rules": "Give each player 8 clothespins and have them attach all 8 somewhere on their clothing (visible and accessible). When the music starts (or on 'Go!'), everyone tries to steal clothespins from others by grabbing them off. Meanwhile, they also want to protect their own. At the end of a set time, whoever has the fewest clothespins attached to them wins (meaning they successfully got rid of theirs without holding onto them, since presumably others took them). Or play elimination: if you lose all your clothespins you're out, and whoever collects the most by the end wins."
+  },
+  {
+    "id": 152,
+    "name": "Balloon Gauntlet",
+    "category": "Tag Variations",
+    "players": "20+",
+    "equipment": "Balloons, rolled newspapers",
+    "rules": "Form two lines of players (for example, girls form two parallel lines facing each other, creating a 'gauntlet' corridor). Tie a balloon to each boy's waist (or ankle) and one by one they must run through the corridor while all the girls try to pop the balloon by whacking it with rolled-up newspapers as they pass. If they make it through without their balloon popping, they succeed. Then switch (boys create gauntlet, girls run through)."
+  },
+  {
+    "id": 153,
+    "name": "Balloon Feet Smash",
+    "category": "Tag Variations",
+    "players": "15+",
+    "equipment": "Balloons, string",
+    "rules": "Tie a balloon to each player's ankle with a string (so the balloon drags on the ground). All players move around within a bounded area trying to stomp on others' balloons to pop them while protecting their own. If your balloon pops, you're out (or you sit out until last person). Last person with an intact balloon wins."
+  },
+  {
+    "id": 154,
+    "name": "Two Truths and a Lie",
+    "category": "Memory/Word Games",
+    "players": "Small groups",
+    "equipment": "None",
+    "rules": "Going around the group, each person says three statements about themselves: two true facts and one lie. The others must guess which one is the lie. It’s a good icebreaker to learn unusual things about people. Score can be kept for who guesses lies correctly if desired, but often it's played just for fun."
+  },
+  {
+    "id": 155,
+    "name": "Finish the Word",
+    "category": "Memory/Word Games",
+    "players": "4-8",
+    "equipment": "None",
+    "rules": "A word-building bluffing game. One person starts by saying a letter. Moving in a circle, each person adds one letter on their turn, with the goal of not completing a word. If you complete a word (of 3+ letters) on your turn, you get a penalty (like a point against you). If you think someone is bluffing (i.e., the sequence of letters can't form any word), you can challenge. If the challenged person can name a word that starts with those letters, the challenger loses; if they can't, the challenged loses. The objective is to force others to complete a word or challenge incorrectly."
+  },
+  {
+    "id": 156,
+    "name": "Common Ground",
+    "category": "Memory/Word Games",
+    "players": "Teams of 3-6",
+    "equipment": "Paper, pencils",
+    "rules": "Teams get 3 minutes to write down everything they have in common (all team members). For example, team finds out everyone has a sibling, everyone has been out of the country, everyone likes chocolate ice cream, etc. The team with the longest list of commonalities wins. This encourages sharing to find mutual facts."
+  },
+  {
+    "id": 157,
+    "name": "Music Trivia",
+    "category": "Memory/Word Games",
+    "players": "Any size",
+    "equipment": "Music player, candy prizes",
+    "rules": "Play short snippets of songs (intro or distinctive part). The first person or team to identify the song (and/or artist) gets a point or a piece of candy. Do this for a bunch of songs. You can tailor to your group (current pop songs, classic hits, theme songs, etc.). Keep track and award a prize to the player/team with most points."
+  },
+  {
+    "id": 158,
+    "name": "Sing Your Heart Out",
+    "category": "Memory/Word Games",
+    "players": "Teams",
+    "equipment": "Word cards",
+    "rules": "Prepare index cards, each with a common word (e.g., 'rain', 'love', 'star', 'river'). Two teams take turns. When it's a team's turn, flip a card to reveal the word. They have 20 seconds to sing a real song lyric containing that word. If they do, they get a point and the other team gets a chance with a new word. If they can't think of one, the other team can 'steal' by singing a song with that word to get the point. Play to a set number of points."
+  },
+  {
+    "id": 159,
+    "name": "Move If",
+    "category": "Mixer Games",
+    "players": "20+",
+    "equipment": "None",
+    "rules": "This is a get-to-know-you mixer that results in a fun chaos of moving. Arrange chairs in a circle, enough for everyone minus one (like musical chairs style). One person in the middle says 'Move if...' followed by a statement that is true about themselves or just any statement (e.g., 'Move if you have brown eyes', or 'Move if you've been to another country'). Anyone for whom that is true must get up and quickly swap seats with someone else who got up (they cannot return to their own seat). Meanwhile, the person in the middle tries to sit in an empty chair. One person will be left without a seat; they become the new middle and give the next 'Move if' statement. Often leads to people sitting on laps or funny pile-ups if there's confusion."
+  },
+  {
+    "id": 160,
+    "name": "Names on Backs",
+    "category": "Mixer Games",
+    "players": "20+",
+    "equipment": "Name stickers",
+    "rules": "Prepare pairs of famous names that go together (e.g., 'Mickey' and 'Minnie', 'Peanut Butter' and 'Jelly', 'Mario' and 'Luigi', or actual famous couples, etc.). Each player gets one name sticker on their back (so they can't see it). They must mingle and ask yes/no questions of others to figure out who they are. Once they know, they then have to find their matching pair (the person with the complementary name). When pairs find each other, they can sit down or keep mingling if it's a timed game."
+  },
+  {
+    "id": 161,
+    "name": "Bug Collecting",
+    "category": "Mixer Games",
+    "players": "15+",
+    "equipment": "Plastic bugs, flashlights",
+    "rules": "Scatter a large number of small plastic bug toys around a dark room or area (hide them under chairs, in corners, etc.). Turn off the lights. Give everyone a flashlight. On 'Go', players search for and collect as many bugs as they can within a time limit. At the end, whoever found the most bugs wins. (Alternatively, do teams with different color bugs to collect or a team total.)"
+  },
+  {
+    "id": 162,
+    "name": "Candy Teams",
+    "category": "Mixer Games",
+    "players": "Large group",
+    "equipment": "Different candies, tape",
+    "rules": "Before the meeting, tape a piece of candy under each chair (use a variety of candies, with multiple chairs having the same candy). When you announce 'Candy teams!', everyone must check under their chair, retrieve the candy, and then find all others with the same candy. Those people become a team and, as an icebreaker, they eat the candy and perhaps answer a discussion question together or do a quick task. It's a quick way to randomly group people."
+  },
+  {
+    "id": 163,
+    "name": "Match the Body Parts",
+    "category": "Mixer Games",
+    "players": "20+",
+    "equipment": "None",
+    "rules": "Have the group form two concentric circles (an inner circle and an outer circle), with equal numbers if possible, facing each other. The inner circle faces outward, each person paired with someone in the outer circle facing inward (like two rings of partners). A leader calls out two body parts, for example 'elbow to knee' or 'foot to foot' or 'back to back'. Every pair of partners must quickly touch those body parts together. The last pair to do so (or any pair that cannot) is eliminated. Then you can rotate one circle to give new pairings and call another set of body parts. Continue until one pair remains."
+  },
+  {
+    "id": 164,
+    "name": "Paper Maze Grid",
+    "category": "Mixer Games",
+    "players": "10+",
+    "equipment": "Paper squares",
+    "rules": "This is similar to the 'Paper Maze' described earlier (#75) but can be done as a mixer where one team tries to figure out the maze while others watch or multiple teams compete side by side with identical grids. It's a memory/communication activity in which the team tries to find the secret path through a grid by stepping square by square. Wrong step sends you back, so team members have to remember the correct sequence. It's cooperative and a good icebreaker for new teams."
+  },
+  {
+    "id": 165,
+    "name": "Sit Down If",
+    "category": "Mixer Games",
+    "players": "Any size",
+    "equipment": "None",
+    "rules": "Everyone starts standing. The leader reads statements: 'Sit down if ... (you have a sibling, you've ever broken a bone, you watched a movie this week, etc.)'. If that applies to you, you sit down. Keep going with statements (general to funny specifics) until only one person (or a few) are left standing — you can reward them or just acknowledge. It's a way to see commonalities and differences; often you purposely craft statements to gradually whittle down to just one or a few people."
+  },
+  {
+    "id": 166,
+    "name": "Snap Crackle Pop",
+    "category": "Mixer Games",
+    "players": "20+",
+    "equipment": "Cereal box fronts",
+    "rules": "Cut the front panel off a bunch of cereal boxes and then cut each front into pieces like a puzzle (maybe 5-10 pieces per box depending on group size; do a different cereal for every 3-5 people). Scatter all the pieces in a pile. Players have to find others with pieces that fit their cereal box and assemble the puzzle. Once they complete it, that group is formed (for further discussion or just as the goal itself). Name comes from Rice Krispies mascots Snap, Crackle, Pop but you can use any cereal."
+  },
+  {
+    "id": 167,
+    "name": "Speed Name Exchange",
+    "category": "Mixer Games",
+    "players": "20+",
+    "equipment": "None",
+    "rules": "Like speed dating for learning names. Pair up everyone (use a quick method). Each pair has 30 seconds to exchange names and one interesting fact. After 30 seconds, call 'Switch!' and everyone finds a new partner (or rotates in a circle format). Do several rounds. Then challenge people to see how many names they learned. You can make a game by calling out a fact and seeing who remembers the name of the person with that fact, etc."
+  },
+  {
+    "id": 168,
+    "name": "Jello Slurp Relay",
+    "category": "Gross/Messy Games",
+    "players": "Teams",
+    "equipment": "Jello, straws",
+    "rules": "Set up a relay race where each team has a bowl or cup of Jello. The first person must slurp the Jello through a straw (or maybe one pre-determined color of Jello bits) out of the bowl into another container or their mouth, until it's empty, then run back and tag the next player, who then does the same with their bowl. Alternatively, you can have one big bowl per team and they take turns, or transfer Jello from one bowl to another using straws. Messy and funny to watch. First team done wins."
+  },
+  {
+    "id": 169,
+    "name": "Pudding Pictionary",
+    "category": "Gross/Messy Games",
+    "players": "Teams of 4",
+    "equipment": "Pudding, plastic sheets",
+    "rules": "Lay out large plastic sheets or a tarp for a drawing area. Give each team a bowl of chocolate pudding and have one member be the 'artist' each round (switch out). The artist must draw clues by finger-painting with the pudding on the plastic sheet while their team guesses (like Pictionary). No talking or writing letters, just images. The twist is it's messy pudding instead of markers. Rotate artists each word. Either play timed rounds or first to X correct guesses."
+  },
+  {
+    "id": 170,
+    "name": "Whipped Cream Face Race",
+    "category": "Gross/Messy Games",
+    "players": "4-6",
+    "equipment": "Whipped cream, plastic wrap",
+    "rules": "Cover each contestant's face with a good amount of whipped cream (except eyes, they can wear goggles or cover eyes with plastic wrap for safety and still smear cream on it). On 'go', they must use only their facial muscles (no hands) to try to get all the whipped cream off their face — by wiggling, scrunching, etc. Alternatively, you can have them try to lick it off up into their mouth. The first person with a relatively clean face wins. Have towels handy!"
+  },
+  {
+    "id": 171,
+    "name": "Capture the Flag Variations",
+    "category": "Team Strategy Games",
+    "players": "Two teams",
+    "equipment": "Flags, boundaries",
+    "rules": "The classic outdoor large-group game. Each team has a territory and a 'flag' (any object) placed somewhere on their side. The goal is to infiltrate the other team's territory, grab their flag, and return it to your side. If an opponent tags you in their territory, you go to 'jail' (a designated area) until freed by a teammate tagging you. Many variations: multiple flags, hidden flags, an area that's safe around the flag, having 'medics' that can heal players instead of jail, etc."
+  },
+  {
+    "id": 172,
+    "name": "Counselor Hunt",
+    "category": "Team Strategy Games",
+    "players": "All",
+    "equipment": "List of counselors",
+    "rules": "This is usually done at a camp. The camp counselors or leaders hide all around the camp or building area. Campers (maybe in small groups or individually) have to find as many counselors as they can within a time. When they find one, the counselor signs their sheet (or gives them a code word). Some counselors might hide really hard and be worth more points if found. At the end, whoever found the most counselors wins. It's like hide-and-seek in reverse (the many hide, the many seek)."
+  },
+  {
+    "id": 173,
+    "name": "Mission Impossible",
+    "category": "Team Strategy Games",
+    "players": "Teams of 5",
+    "equipment": "Task cards",
+    "rules": "Set up a scenario where teams must complete a series of missions or retrieve objects from around an area without being caught by 'guards'. Maybe dim the lights and have leaders with flashlights patrolling. Think of it like a spy/stealth game in a building: teams have a checklist of things to do (like take a photo in the kitchen, find a code word in the lobby, etc.) but if a guard sees them (flashlight tags them), they must return to start. First team to finish all missions wins."
+  },
+  {
+    "id": 174,
+    "name": "Strobe Light Tag",
+    "category": "Special Equipment Games",
+    "players": "15+",
+    "equipment": "Strobe light",
+    "rules": "Play tag in a dark room only illuminated by a strobe light. The staccato lighting makes movements appear choppy and slow-motion, which is disorienting and fun. One person is It and tries to tag others. Because of the strobe, it's harder to see motion, giving hiding opportunities. Make sure the playing area is clear of obstacles for safety. Also note: some people prone to seizures or headaches might need to sit out due to the flashing."
+  },
+  {
+    "id": 175,
+    "name": "Glow Stick Hide and Seek",
+    "category": "Special Equipment Games",
+    "players": "10+",
+    "equipment": "Glow sticks",
+    "rules": "Each player gets a glow stick (the kind you snap to activate). In a dark area (outdoors at night or indoors with lights off), players hide. The seeker uses a UV flashlight or just their eyes to find the glowing players. Alternatively, have everyone hide their glow stick somewhere visible and the seeker has to find the sticks (like an Easter egg hunt in the dark). Or play like regular hide and seek but players have to keep their glow stick visible (can't cover it), so it becomes a game of sneaking in shadows despite a glowing beacon."
+  },
+  {
+    "id": 176,
+    "name": "Laser Tag Variation",
+    "category": "Special Equipment Games",
+    "players": "Teams",
+    "equipment": "Laser pointers, targets",
+    "rules": "If you don't have actual laser tag gear, a DIY version: give each player a paper target (like a bullseye or just a strip of paper) to attach to their chest. Armed with laser pointers, players try to hit others' targets with the laser (you can see the dot on the paper). If someone's target is hit, they are 'out' for 30 seconds or until a respawn condition. It's on the honor system unless you have refs. Alternatively, use those cheap laser pointer keychains with different shapes and you must mark a bingo card on others, but simple is better. Play in a not-too-bright area."
+  },
+  {
+    "id": 177,
+    "name": "Categories Speed Round",
+    "category": "Quick Thinking Games",
+    "players": "Circle of 10+",
+    "equipment": "Ball",
+    "rules": "Players sit in a circle. One person starts by naming a category (e.g., \"animals\", \"ice cream flavors\", etc.) then quickly tosses a ball to someone. That person must immediately say something from that category (e.g., \"lion\") and then toss the ball to someone else, who must say a different item (\"elephant\"), and so on. No repeats allowed. If someone hesitates too long or repeats an item, they're out (or they choose a new category and continue, depending on how you want to eliminate). Keep changing categories as people get stumped."
+  },
+  {
+    "id": 178,
+    "name": "Alphabet Categories",
+    "category": "Quick Thinking Games",
+    "players": "Teams",
+    "equipment": "None",
+    "rules": "Pick a category like 'countries', 'food', 'bands', etc. Teams take turns naming something in that category following the order of the alphabet. For example if the category is animals: Team A says 'Alligator' (A), Team B must say an animal that starts with B like 'Bear', Team A then C like 'Cat', etc. If a team can't name one on their turn within, say, 5 seconds, the other team gets a point. You can either reset at A after Z or use different category each round."
+  },
+  {
+    "id": 179,
+    "name": "Rhyme Time",
+    "category": "Quick Thinking Games",
+    "players": "Circle",
+    "equipment": "None",
+    "rules": "Players in a circle. The first player says a random word. The next person must quickly say a word that rhymes. Then the next person says a new word (starting a new rhyme chain), and the next must rhyme that, and so on alternating. If someone can't think of a rhyme or repeats a word, they're out. Continue until one remains. (For less competitive play, just go around rhyming until someone fails and have them start a new word.)"
+  },
+  {
+    "id": 180,
+    "name": "Rubber Chicken Game",
+    "category": "Silly/Fun Games",
+    "players": "Teams",
+    "equipment": "Rubber chicken",
+    "rules": "There are many games involving a rubber chicken: **Relay** – teams race while passing the rubber chicken instead of a baton; **Hot Potato** – pass the chicken around until music stops, whoever has it is out; **Capture the Chicken** – like capture the flag but with a rubber chicken; **Duck Duck Chicken** – like duck duck goose but you toss a chicken instead of tagging. Basically, incorporating a rubber chicken into any standard game makes it funnier."
+  },
+  {
+    "id": 181,
+    "name": "Pool Noodle Jousting",
+    "category": "Silly/Fun Games",
+    "players": "Pairs",
+    "equipment": "Pool noodles, platforms (sturdy chairs or stepping stools)",
+    "rules": "Two players stand on platforms (or milk crates, or low chairs) facing each other. Each is given a pool noodle as a lance. On 'go', they try to knock the other off their platform using the pool noodles (hits to body, legs, etc., are allowed; not the head). Best 2 out of 3 falls wins the joust. Surround with spotters or padding for safety. Tournament bracket optional."
+  },
+  {
+    "id": 182,
+    "name": "Marshmallow Launchers",
+    "category": "Silly/Fun Games",
+    "players": "Teams",
+    "equipment": "PVC pipe pieces or homemade launchers, marshmallows",
+    "rules": "Have teams construct mini marshmallow shooters (like out of PVC or the classic cup-and-balloon shooter or even spoons as catapults). Then host challenges: which team can shoot a marshmallow the farthest, or most accurately into a target like a bucket, or have a marshmallow war shootout (wear safety goggles). It's part building activity, part contest. Give supplies and time to build, then test them."
+  },
+  {
+    "id": 183,
+    "name": "Human Bowling",
+    "category": "Silly/Fun Games",
+    "players": "Teams of 10",
+    "equipment": "Playground ball",
+    "rules": "Set up 10-15 people (per team) as 'bowling pins' -- they stand in a triangle formation. One person on the opposing team is the 'bowler' and gently rolls a large soft ball into the cluster of humans-who-are-pins. Those pins can move minimally (maybe arms against chest, slight dodging allowed). Any person hit by the ball (or who falls over because someone else bumped them) is 'down'. See how many 'pins' the bowler knocks down in one roll. Rotate bowlers from each team. Variation: the pins can jump a tiny bit to avoid or lean, etc., for more challenge."
+  },
+  {
+    "id": 184,
+    "name": "Giant Jenga",
+    "category": "Silly/Fun Games",
+    "players": "4-8",
+    "equipment": "Large wooden blocks",
+    "rules": "Just like the classic Jenga game, but using oversized blocks (like 2x4 lumber cut into pieces) stacked maybe 4-5 feet high tower. Players take turns carefully removing one block from anywhere below the highest completed layer and placing it on top. The tower gets wobblier. You can add twist by writing challenges on blocks that the player must do when they remove them. The goal is not to be the one who makes it topple."
+  },
+  {
+    "id": 185,
+    "name": "Life-Size Board Games",
+    "category": "Silly/Fun Games",
+    "players": "Varies",
+    "equipment": "Depends on game",
+    "rules": "Create a giant board on the floor or ground using tape or chalk. You can do Checkers with people as pieces (wearing red/black shirts maybe). Chess where people are the pieces and one person is the commander calling moves. Tic-Tac-Toe using 9 chairs and people holding X or O signs. Even a life-size Candyland or Chutes & Ladders on a tarp with players as pawns walking the board. Use cards or giant dice to move. Essentially take a familiar board game and scale it up to human size."
+  },
+  {
+    "id": 186,
+    "name": "Christmas Light Scavenger Hunt",
+    "category": "Seasonal/Holiday Games",
+    "players": "Teams in cars",
+    "equipment": "List, cameras",
+    "rules": "Around Christmas, give each car/team a list of outdoor holiday decorations to find (e.g., Santa inflatable, nativity scene, house with all blue lights, etc.). Teams drive around neighborhoods to find as many as possible within a time limit, taking a photo of each as proof. Or if together in a van, just check them off. Could also involve riddles (e.g., 'Find Rudolph in a yard' etc.). The team that finds the most or completes the list first wins."
+  },
+  {
+    "id": 187,
+    "name": "Pumpkin Bowling",
+    "category": "Seasonal/Holiday Games",
+    "players": "Teams or individuals",
+    "equipment": "Small pumpkins, 2-liter bottles",
+    "rules": "In the fall, set up 2-liter soda bottles (filled with some water or sand for weight) as bowling pins. Use small roundish pumpkins as bowling balls. Players roll the pumpkins to knock down the 'pins'. The pumpkins won't roll straight, adding to fun. Can do standard 10-pin setup and scoring or just have each team knock down as many as possible with two rolls. After a while the pumpkins may crack, which is messy fun too."
+  },
+  {
+    "id": 188,
+    "name": "Easter Egg Relay",
+    "category": "Seasonal/Holiday Games",
+    "players": "Teams",
+    "equipment": "Plastic eggs, spoons",
+    "rules": "This is a series of mini relays all involving plastic Easter eggs: (1) classic spoon race – each team member carries an egg in a spoon across and back, then transfers to next without dropping. (2) Over/under – pass eggs alternating over head and between legs down the line. (3) Egg toss – partners toss increasing distances without dropping (if drop, start over short distance). (4) Hunt – final player must find a hidden egg in a certain area. First team to finish all tasks wins."
+  },
+  {
+    "id": 189,
+    "name": "Valentine's Balloon Pop",
+    "category": "Seasonal/Holiday Games",
+    "players": "Pairs",
+    "equipment": "Balloons with messages",
+    "rules": "Write a bunch of short valentines messages or words on slips of paper. Make two of each so there's a pair (like 'Be Mine', 'True Love', etc.). Put each slip in a separate balloon and inflate them. Each person grabs a balloon at random and must find the person with the matching message. But to see the message, they have to pop the balloons (fun if done by hugging the balloon between them or other no-hands way). Once everyone pairs up, you can have them do something like introduce themselves."
+  },
+  {
+    "id": 190,
+    "name": "Turkey Waddle Race",
+    "category": "Seasonal/Holiday Games",
+    "players": "Individuals",
+    "equipment": "Balloons",
+    "rules": "Great for Thanksgiving time. Each player places a balloon between their knees and must waddle (like a turkey) from the start to the finish line without dropping or popping the balloon. If the balloon drops, they must go back to where they dropped it and resume. If it pops, they're out or they get a penalty. First to the finish wins. You can race in heats if many players."
+  }
+]
