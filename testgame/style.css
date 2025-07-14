@@ -1,0 +1,14 @@
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background-color: #f3f3f3;
+  color: #333;
+}
+.player {
+  margin: 20px;
+  padding: 10px;
+  border: 1px solid #999;
+}
+.hand button, .modifiers button {
+  margin: 5px;
+}
