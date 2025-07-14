@@ -6,6 +6,7 @@ let yellowPoints = [1, 2, 3, 4, 5];
 let currentYellow = 0;
 
 function setup() {
+  console.log('Setup function called');
   drawYellow();
   setupPlayer('p1');
   setupPlayer('p2');
@@ -17,6 +18,7 @@ function drawYellow() {
 }
 
 function setupPlayer(playerId) {
+  console.log('Setting up player:', playerId);
   const hand = document.getElementById(`${playerId}-hand`);
   const mods = document.getElementById(`${playerId}-mods`);
   hand.innerHTML = '';
@@ -24,23 +26,31 @@ function setupPlayer(playerId) {
   attacks.forEach(atk => {
     const btn = document.createElement('button');
     btn.innerText = atk;
-    btn.onclick = () => selectAttack(playerId, atk);
+    btn.onclick = () => {
+      console.log('Attack button clicked:', atk);
+      selectAttack(playerId, atk);
+    };
     hand.appendChild(btn);
   });
   modifiers.forEach(mod => {
     const btn = document.createElement('button');
     btn.innerText = mod;
-    btn.onclick = () => selectModifier(playerId, mod);
+    btn.onclick = () => {
+      console.log('Modifier button clicked:', mod);
+      selectModifier(playerId, mod);
+    };
     mods.appendChild(btn);
   });
 }
 
 function selectAttack(playerId, value) {
+  console.log('selectAttack called:', playerId, value);
   window[playerId].attack = value;
   document.getElementById(`${playerId}-attack`).innerText = value;
 }
 
 function selectModifier(playerId, value) {
+  console.log('selectModifier called:', playerId, value);
   window[playerId].mod = value;
   document.getElementById(`${playerId}-mod`).innerText = value;
 }
