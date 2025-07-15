@@ -22,7 +22,7 @@
     .header {
       background: linear-gradient(135deg, #3399CC 0%, #1a5f7a 100%);
       color: white;
-      padding: 1.5rem;
+      padding: 1rem;
       box-shadow: 0 4px 16px rgba(51, 153, 204, 0.2);
       position: sticky;
       top: 0;
@@ -30,10 +30,17 @@
     }
 
     .header h1 {
-      text-align: center;
-      font-size: 2rem;
-      margin-bottom: 1rem;
+      text-align: left;
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      display: inline-block;
+      margin-left: 15px;
+    }
+    
+    .header-title-container {
+      text-align: center;
+      margin-bottom: 0.5rem;
     }
 
     /* Search Bar */
@@ -306,6 +313,10 @@
       justify-content: space-between;
       align-items: center;
     }
+    
+    .modal-header h2 {
+      font-size: 0.7em;
+    }
 
     .modal-close {
       background: none;
@@ -410,15 +421,18 @@
     }
     
     .satchel-logo {
-      position: absolute;
-      top: 15px;
-      left: 20px;
+      position: relative;
+      top: 0;
+      left: 0;
       width: 40px;
       height: 40px;
       z-index: 1000;
       filter: drop-shadow(0 0 5px rgba(0,0,0,0.3));
       transition: transform 0.2s;
       margin-bottom: 0;
+      display: inline-block;
+      vertical-align: top;
+      margin-right: 0;
     }
     
     .satchel-logo:hover {
@@ -427,11 +441,13 @@
   </style>
 </head>
 <body>
-  <a href="../index.html" class="satchel-logo">
-    <img src="../ministrybagsatchel1.svg" alt="Ministry Bag Home" width="40" height="40">
-  </a>
   <div class="header">
-    <h1>Worship Chords</h1>
+    <div class="header-title-container">
+      <a href="../index.html" class="satchel-logo">
+        <img src="../ministrybagsatchel1.svg" alt="Ministry Bag Home" width="40" height="40">
+      </a>
+      <h1>Worship Chords & Videos</h1>
+    </div>
     
     <div class="search-container">
       <input type="text" class="search-input" placeholder="Search for a song..." id="searchInput">
