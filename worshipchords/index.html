@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Worship Songs - Ministry Bag</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+      background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 50%, #e9ecef 100%);
+      min-height: 100vh;
+      color: #333;
+    }
+
+    /* Header */
+    .header {
+      background: linear-gradient(135deg, #3399CC 0%, #1a5f7a 100%);
+      color: white;
+      padding: 1.5rem;
+      box-shadow: 0 4px 16px rgba(51, 153, 204, 0.2);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header h1 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Search Bar */
+    .search-container {
+      max-width: 600px;
+      margin: 0 auto 1rem;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: none;
+      border-radius: 25px;
+      font-size: 1rem;
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      transition: box-shadow 0.3s ease;
+    }
+
+    .search-input:focus {
+      outline: none;
+      box-shadow: 0 4px 16px rgba(51, 153, 204, 0.3);
+    }
+
+    /* Alphabet Navigation */
+    .alphabet-nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .alphabet-btn {
+      padding: 0.5rem 1rem;
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      border-radius: 20px;
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+
+    .alphabet-btn:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: translateY(-2px);
+    }
+
+    .alphabet-btn.active {
+      background: #3399CC;
+      border-color: #3399CC;
+    }
+
+    /* Favorites Toggle */
+    .favorites-toggle {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    .favorites-btn {
+      background: #3399CC;
+      color: white;
+      border: none;
+      padding: 0.5rem 1.5rem;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(51, 153, 204, 0.3);
+    }
+
+    .favorites-btn:hover {
+      background: #2980b9;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(51, 153, 204, 0.4);
+    }
+
+    .favorites-btn.active {
+      background: #660000;
+    }
+
+    /* Main Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1rem;
+    }
+
+    /* Song List */
+    .song-list {
+      display: grid;
+      gap: 1rem;
+    }
+
+    /* Song Item */
+    .song-item {
+      background: white;
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .song-item::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: #3399CC;
+      transform: scaleY(0);
+      transition: transform 0.3s ease;
+    }
+
+    .song-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(51, 153, 204, 0.2);
+    }
+
+    .song-item:hover::before {
+      transform: scaleY(1);
+    }
+
+    .song-item.favorite {
+      background: linear-gradient(135deg, #fff5f5 0%, #ffe0e0 100%);
+      border: 1px solid #ffcccc;
+    }
+
+    .song-info {
+      flex: 1;
+    }
+
+    .song-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #3399CC;
+      margin-bottom: 0.5rem;
+    }
+
+    .song-key {
+      font-size: 0.9rem;
+      color: #666;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .key-badge {
+      background: #3399CC;
+      color: white;
+      padding: 0.2rem 0.6rem;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    /* Action Buttons */
+    .song-actions {
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+    }
+
+    .action-btn {
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+      color: white;
+    }
+
+    .action-btn,
+    .chords-btn,
+    .favorites-btn,
+    .alphabet-btn {
+      /* Add a 50% shadow to all buttons */
+      box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    }
+
+    .youtube-btn {
+      background: linear-gradient(135deg, #b0b0b0 0%, #888888 100%);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    }
+
+    .youtube-btn:hover {
+      background: linear-gradient(135deg, #888888 0%, #b0b0b0 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    }
+
+    .chords-btn {
+      background: #3399CC;
+      box-shadow: 0 2px 8px rgba(51, 153, 204, 0.2);
+    }
+
+    .chords-btn:hover {
+      background: #2179a5;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(51, 153, 204, 0.3);
+    }
+
+    .favorite-toggle {
+      background: none;
+      border: 2px solid #660000;
+      color: #660000;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      font-size: 1.2rem;
+    }
+
+    .favorite-toggle:hover {
+      background: #660000;
+      color: white;
+      transform: scale(1.1);
+    }
+
+    .favorite-toggle.active {
+      background: #660000;
+      color: white;
+    }
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 1000;
+      padding: 2rem;
+      overflow-y: auto;
+    }
+
+    .modal-content {
+      background: white;
+      max-width: 800px;
+      margin: 0 auto;
+      border-radius: 12px;
+      position: relative;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+
+    .modal-header {
+      background: linear-gradient(135deg, #3399CC 0%, #1a5f7a 100%);
+      color: white;
+      padding: 1.5rem;
+      border-radius: 12px 12px 0 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 2rem;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .modal-close:hover {
+      transform: rotate(90deg);
+    }
+
+    .modal-body {
+      padding: 2rem;
+    }
+
+    .youtube-container {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      border-radius: 8px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .youtube-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 8px;
+    }
+
+    /* No Results */
+    .no-results {
+      text-align: center;
+      padding: 3rem;
+      color: #666;
+      font-size: 1.1rem;
+    }
+
+    /* Section Headers */
+    .section-header {
+      background: linear-gradient(135deg, #3399CC 0%, #1a5f7a 100%);
+      color: white;
+      padding: 0.75rem 1.5rem;
+      margin: 2rem 0 1rem;
+      border-radius: 8px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      box-shadow: 0 2px 8px rgba(51, 153, 204, 0.2);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .section-header:first-child {
+      margin-top: 0;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header h1 {
+        font-size: 1.5rem;
+      }
+
+      .song-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+      }
+
+      .song-actions {
+        width: 100%;
+        justify-content: space-between;
+      }
+
+      .alphabet-nav {
+        gap: 0.25rem;
+      }
+
+      .alphabet-btn {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.9rem;
+      }
+
+      .modal {
+        padding: 1rem;
+      }
+    }
+
+    /* Icons */
+    .icon {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>Worship Chords</h1>
+    
+    <div class="search-container">
+      <input type="text" class="search-input" placeholder="Search for a song..." id="searchInput">
+    </div>
+    
+    <div class="alphabet-nav" id="alphabetNav">
+      <button class="alphabet-btn" data-range="A-G">A-G</button>
+      <button class="alphabet-btn" data-range="H-L">H-L</button>
+      <button class="alphabet-btn" data-range="M-R">M-R</button>
+      <button class="alphabet-btn" data-range="S-Z">S-Z</button>
+      <button class="alphabet-btn" data-range="ALL">All</button>
+    </div>
+    
+    <div class="favorites-toggle">
+      <button class="favorites-btn" id="favoritesToggle">
+        ❤️ Show Favorites Only
+      </button>
+    </div>
+  </div>
+
+  <div class="container">
+    <div id="favoritesSection" style="display: none;">
+      <div class="section-header">❤️ Favorite Songs</div>
+      <div id="favoritesList" class="song-list"></div>
+    </div>
+    
+    <div id="mainSection">
+      <div id="songsList" class="song-list"></div>
+    </div>
+    
+    <div id="noResults" class="no-results" style="display: none;">
+      No songs found. Try a different search or filter.
+    </div>
+  </div>
+
+  <!-- Modal for YouTube videos -->
+  <div id="youtubeModal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 id="modalTitle">Song Title</h2>
+        <button class="modal-close" onclick="closeModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="youtube-container" id="youtubeContainer"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Song data
+    const songs = [
+      { title: "10,000 Reasons (Bless the Lord)", key: "D", youtube: "https://youtu.be/RHi2s_Bdivo", chords: "https://drive.google.com/file/d/16HtjkW0JMmFbj3hcwIESkzqMpK07J5vr/view?usp=sharing" },
+      { title: "Amazing Grace (My Chains...)", key: "D", youtube: "https://youtu.be/b_KDB_7QeuM", chords: "https://drive.google.com/file/d/1GlClhtEaQJNGKkoMx_43xylHN9BgAJQe/view?usp=sharing" },
+      { title: "Battle Belongs", key: "A", youtube: "https://youtu.be/oLOeGPNEKqw?si=Rpk7rjnZ0nnsQeYM", chords: "https://drive.google.com/file/d/1159C3FF-jHSyXwv28fecZpKAh-cTcJW-/view?usp=sharing" },
+      { title: "Beautiful Things", key: "D", youtube: "https://youtu.be/ng4yj8B3IZM", chords: "https://drive.google.com/file/d/14rW3TEgjiZhoVWrQgoNxiTBMisdOTXA4/view?usp=sharing" },
+      { title: "Because He Lives", key: "G", youtube: "https://youtu.be/K2Crzcq33lg", chords: "https://drive.google.com/file/d/1U-zkckt_zlaQrg5Sre79vaijq6CtCfrM/view?usp=sharing" },
+      { title: "Behold Our God", key: "C", youtube: "https://youtu.be/ss1y_053B9I", chords: "https://drive.google.com/file/d/1edu1K3kqDuSgpEcfIBu5OWRbhwO-h3uq/view?usp=sharing" },
+      { title: "Blessed Be Your Name", key: "A", youtube: "https://www.youtube.com/watch?v=4eT6-PTcFjE", chords: "https://drive.google.com/file/d/1o_nU0Pjp_CJSln0gMTbFqLQiMyO2_RDn/view?usp=sharing" },
+      { title: "Build My Life", key: "E", youtube: "https://www.youtube.com/watch?v=eOpkPpE-dJY", chords: "https://drive.google.com/file/d/16VxRPFDRfLEuRdqXzc9P0c7MxQ_91Ahw/view?usp=sharing" },
+      { title: "Christ Be Magnified", key: "E", youtube: "https://youtu.be/Tj6uXqpMAhc?si=Of8WWyt3M2O2xKlN", chords: "https://drive.google.com/file/d/1y56kFmt9ePYfcKMq7M1ZynjIFEqhXT9M/view?usp=drive_link" },
+      { title: "Christ of Else I Die", key: "D", youtube: "https://www.youtube.com/watch?v=C5VUB7bhFSg", chords: "https://drive.google.com/file/d/19_FsEvvA0YrD88cKQW-mtdWUVZcpRkV8/view?usp=sharing" },
+      { title: "Christ the Lord Has Risen Today", key: "C", youtube: "https://youtu.be/JX44L-4RHQg", chords: "https://drive.google.com/file/d/1BD_sY_7FxN6wZ1mpRsUCAM7_zt1n_PBH/view?usp=sharing" },
+      { title: "Come Thou Fount", key: "D", youtube: "https://youtu.be/8twZqcRNjZ0", chords: "https://drive.google.com/file/d/1n_TTQnPITX8Yxwupx5W3S-iyrf8vv_l5/view" },
+      { title: "Cornerstone", key: "D", youtube: "https://youtu.be/-KpCHqMf2rQ", chords: "https://drive.google.com/file/d/1mg5cV3oiaGa5_p6S-QMlIfxd3jerUdqD/view?usp=sharing" },
+      { title: "Echo Holy", key: "G", youtube: "https://www.youtube.com/watch?v=6K7x4Ye0SPc", chords: "https://drive.google.com/file/d/1JrFYCaG-ZRBNycmfEDksTei-nNnNi4tK/view?usp=sharing" },
+      { title: "Enough", key: "E", youtube: "https://youtu.be/bp2poxYWchE", chords: "https://drive.google.com/file/d/1tOC7SJFnNWItHwkQhJxeKDqY1eXo2b_m/view?usp=sharing" },
+      { title: "Ever Be", key: "E", youtube: "https://youtu.be/JA78ObOwjj8", chords: "https://drive.google.com/file/d/11Sqs9kWxTfDzxbrephRIydbdtbIoDkns/view?usp=sharing" },
+      { title: "Forever", key: "A", youtube: "", chords: "https://drive.google.com/file/d/1SIo_f3OA_0oJQ40tNp2vL7VtEe3nq-A4/view?usp=sharing" },
+      { title: "Forever Reign", key: "A", youtube: "https://youtu.be/c-2MB6JgKOM", chords: "https://drive.google.com/file/d/1CO5tXOlzIQ2At-xwJDeN-wXpGpMVvlB-/view?usp=sharing" },
+      { title: "From the Inside Out", key: "D", youtube: "https://www.youtube.com/watch?v=cBgdD46exv8", chords: "https://drive.google.com/file/d/1ISFcMmbo-GLvtjqYJnbyQXarGbLkkSwb/view?usp=sharing" },
+      { title: "Give Us Clean Hands", key: "G", youtube: "https://youtu.be/q0JdIz55vLc", chords: "https://drive.google.com/file/d/188WPOHtKeLNEACtTKuK1zrqdwfwVUC80/view?usp=sharing" },
+      { title: "Glorious Day", key: "C", youtube: "https://youtu.be/2hN8FpPXTpU?si=qQTtj4vGyMXex7AI", chords: "https://drive.google.com/file/d/1ATdzeBTB9U7dhX02JM_yeeNfxOAm-HzY/view?usp=drive_link" },
+      { title: "God Is For Us", key: "D", youtube: "https://youtu.be/I7ZlSLpkVFA", chords: "https://drive.google.com/file/d/1yqCulrH3A3nIP-fJL0a_bXhFO0JKmKvK/view?usp=sharing" },
+      { title: "God Of Wonders", key: "G", youtube: "https://youtu.be/xkLDMopYbQ4?si=rFsQypONtu2SMOhX", chords: "https://drive.google.com/file/d/1HoqDzahwKuxSUb-ArQwR4NbqorYjDchv/view?usp=sharing" },
+      { title: "God So Loved", key: "E", youtube: "https://www.youtube.com/watch?v=zIl3EYyrP9M", chords: "https://drive.google.com/file/d/167DjNtXQk6AFAvyj5eswBpNrfu9dzVug/view?usp=sharing" },
+      { title: "Goodness of God", key: "C", youtube: "https://youtu.be/dJL6L6QgOd8", chords: "https://drive.google.com/file/d/1YCTJK9TeZuJWHRVFpSCHmtZyo85mm7jP/view?usp=sharing" },
+      { title: "Good Good Father", key: "E", youtube: "https://youtu.be/cNTvH-q1PLQ", chords: "https://drive.google.com/file/d/1iWiGwhkD2yYgBcknkyDrEN7M4o2eXC5z/view?usp=sharing" },
+      { title: "Great Are You Lord", key: "E", youtube: "https://youtu.be/kMIgZXawiVI", chords: "https://drive.google.com/file/d/1gmsfnc7_2gI5fpuEVMdSdTHMs4RlL-If/view?usp=sharing" },
+      { title: "Great Is Your Love", key: "E", youtube: "https://www.youtube.com/watch?v=dowhphJtp2k", chords: "https://drive.google.com/file/d/1BaF8TPoPPXF5DEysC--0hyBgxMVaxtF8/view?usp=sharing" },
+      { title: "Great Is Your Love to Me", key: "E", youtube: "https://youtu.be/DW-J2SXxRdg", chords: "https://drive.google.com/file/d/1BaF8TPoPPXF5DEysC--0hyBgxMVaxtF8/view?usp=sharing" },
+      { title: "Happy Day", key: "A", youtube: "https://youtu.be/-55fajEUWlY", chords: "https://drive.google.com/file/d/1WJ_rndzrK57L3YiFERq2cwkDOamWiHJD/view?usp=sharing" },
+      { title: "Here I Am To Worship", key: "E", youtube: "https://youtu.be/Tu7Q6PQOgXQ", chords: "https://drive.google.com/file/d/1BOrEHOHBoSJOIXz4LYkj4Um4MrbxU0eq/view?usp=sharing" },
+      { title: "Here Is Our King", key: "G", youtube: "https://youtu.be/I3WQvdwheIQ", chords: "https://drive.google.com/file/d/1HXfxRe4Vp7FwhbWY_-BsytIm6FlU3Ml6/view?usp=sharing" },
+      { title: "His Mercy is More", key: "E", youtube: "https://www.youtube.com/watch?v=M1qzIXlRSBs", chords: "https://drive.google.com/file/d/1C0uwzFaxF5B-M4tpWPsTAnPsIU8ySxrM/view?usp=sharing" },
+      { title: "Holy is the Lord", key: "G", youtube: "https://youtu.be/T7CCCAyWQKI", chords: "https://drive.google.com/file/d/1FnstQnCVgYiWY-ZlDADD-t6PWniNh4iy/view?usp=sharing" },
+      { title: "Holy Spirit", key: "E", youtube: "https://www.youtube.com/watch?v=hZlj8atf3y8", chords: "https://drive.google.com/file/d/1dBmsPJx8mRmWD5DyzlbXQQjm_lZjWR2N/view?usp=sharing" },
+      { title: "Hope Has a Name", key: "E", youtube: "https://youtu.be/-s5SqSzywL8", chords: "https://drive.google.com/file/d/1EbI2d8G12KaJYkVSUeDv6QtW6Xixa38A/view?usp=sharing" },
+      { title: "Hosanna", key: "D", youtube: "https://youtu.be/43aABIlVUVg", chords: "https://drive.google.com/file/d/1J_Tw4_bQ7lJliYxE_9kFhKqfZPx51cNv/view?usp=sharing" },
+      { title: "How Deep the Father's Love for Us", key: "E", youtube: "https://youtu.be/mkJykGlG0q8", chords: "https://drive.google.com/file/d/1Hf6iJt2RB7t5YYq0JCyv1PiESLacPgst/view?usp=sharing" },
+      { title: "How Great is Our God", key: "A", youtube: "https://youtu.be/oFkxkP85i5s", chords: "https://drive.google.com/file/d/1vVtvbxIZWpjrKqrMp36Cy9g2AHr5IGo5/view?usp=sharing" },
+      { title: "How Great Thou Art", key: "G", youtube: "https://www.youtube.com/watch?v=OtMYrxr5jQg", chords: "https://drive.google.com/file/d/1-8u64vijwSMi8870tjaR-K570YXr5w-T/view?usp=sharing" },
+      { title: "How He Loves Us", key: "C", youtube: "https://youtu.be/qbS0t2jwIt0", chords: "https://drive.google.com/file/d/1pi8yaFd3zkT5QR5QK6p91UziONufqFHF/view?usp=sharing" },
+      { title: "Hymn of Heaven", key: "C", youtube: "https://www.youtube.com/watch?v=o7FBV6iwbJA", chords: "https://drive.google.com/file/d/1N9CsZiQrGaeLF8FfV5UVvRZyZd2_Tg0C/view?usp=sharing" },
+      { title: "In Christ Alone", key: "D", youtube: "https://youtu.be/ovZkLyUTl-k", chords: "https://drive.google.com/file/d/1l6DEIex1vN6tTq6qEZDbUjN-ox4e96R3/view?usp=sharing" },
+      { title: "I've Witnessed It", key: "C", youtube: "https://youtu.be/v5zb50U_CSE?si=5c9piZBP6zWGmSzb", chords: "https://drive.google.com/file/d/1BInX9mdtezepPnzj3KzEQpM3JkJJ3e6S/view?usp=drive_link" },
+      { title: "Jesus is Better", key: "A", youtube: "https://youtu.be/l7EZSv8Ihxo", chords: "https://drive.google.com/file/d/1l6DEIex1vN6tTq6qEZDbUjN-ox4e96R3/view?usp=sharing" },
+      { title: "Jesus Messiah", key: "E", youtube: "https://www.youtube.com/watch?v=561uw4MG-T0", chords: "https://drive.google.com/file/d/1xxx9zZrN_ztQMhEj-uZo4n6wSp52XavN/view?usp=sharing" },
+      { title: "Jesus Paid it All", key: "C", youtube: "https://youtu.be/PkNj8SV9o9g", chords: "https://drive.google.com/file/d/1sYY00JoqNDyi8rnNCF0NF4j1WmNUMXJm/view?usp=sharing" },
+      { title: "Jesus Strong and Kind", key: "C", youtube: "https://youtu.be/FWilGDY-Bek", chords: "https://drive.google.com/file/d/18aX-WDwy1sC4w6PgBubYzJq1Iiv47bFg/view?usp=sharing" },
+      { title: "King of Kings", key: "D", youtube: "https://youtu.be/CG7GzCiNHSI", chords: "https://drive.google.com/file/d/1CZw1rTwL31X0espM3s-d9M7BJPwv5Mn_/view?usp=sharing" },
+      { title: "Lead Me to the Cross", key: "D", youtube: "https://www.youtube.com/watch?v=F9SHTKoDlfM", chords: "https://drive.google.com/file/d/1qFlF96bKuPL_gf9Mj0-Ov2wS-PHRoPjO/view?usp=sharing" },
+      { title: "Lion and the Lamb", key: "E", youtube: "https://youtu.be/jpQabeQtIOA", chords: "https://drive.google.com/file/d/1Eh--D_cyWPc8bmQKC5DnU9PPwAogom0w/view?usp=sharing" },
+      { title: "Living Hope", key: "C", youtube: "https://youtu.be/ZaDA95hC-HE", chords: "https://drive.google.com/file/d/1hfBomDtjgraHWWOS1AzkVj2_up-2BJEg/view?usp=sharing" },
+      { title: "Lord, I Need You", key: "A", youtube: "https://youtu.be/_aPA0CNeaKA", chords: "https://drive.google.com/file/d/1LgcjIv_6Jlw48-ARu-pHdNnSyor64GcK/view?usp=sharing" },
+      { title: "Lord Most High", key: "E", youtube: "https://youtu.be/4egnwpu3x7o", chords: "https://drive.google.com/file/d/1u-lHzvzGV7FpYR08o726R4o2FWuykqjT/view?usp=sharing" },
+      { title: "Make a Joyful Noise to the Lord", key: "G", youtube: "https://www.youtube.com/watch?v=-ks_5rpZPoE", chords: "https://drive.google.com/file/d/1qhJOYzKYlXygQfc98KXLxj8I9lcyz5Oq/view?usp=sharing" },
+      { title: "Man of Sorrows", key: "D", youtube: "https://youtu.be/v8sHzX2uKa8", chords: "https://drive.google.com/file/d/1246EOcEHgTsXKaUMSLAC_ZlMrmUbS-Dx/view?usp=sharing" },
+      { title: "Mighty to Save", key: "G", youtube: "https://youtu.be/oV4ZrDkxrRc", chords: "https://drive.google.com/file/d/13UAH9s2yL5G1DalM6g2vKAUJ-K6ykgSb/view?usp=sharing" },
+      { title: "Multiplied", key: "E", youtube: "https://youtu.be/F9Ax-Rj2RCI?si=dlA0IEq0-a3rzGyL", chords: "https://drive.google.com/file/d/1QDG_EHIOb2Aamy-2eYoS2ulOTA-l05IK/view?usp=sharing" },
+      { title: "No Longer Slaves", key: "E", youtube: "https://youtu.be/sfU6GUsZktg", chords: "https://drive.google.com/file/d/1GwtDjjE5THvfKmSmvY0UlT8yEDBsS2ch/view?usp=sharing" },
+      { title: "Not to Us", key: "G", youtube: "https://www.youtube.com/watch?v=bDqIfVvJPT8&t=11s", chords: "https://drive.google.com/file/d/1CA-Mx3UHTHHcvs9dVpxH1Lh04yUGUwKB/view?usp=sharing" },
+      { title: "O Come to the Altar", key: "G", youtube: "https://youtu.be/3WhFusiJGdk", chords: "https://drive.google.com/file/d/1noTghc9UPHYpAPf68-RQs3Z62q1rtxQj/view?usp=sharing" },
+      { title: "O Praise the Name", key: "G", youtube: "https://youtu.be/KKNivf5lsGE", chords: "https://drive.google.com/file/d/1fwZ42kDaxLPMirI9uHfmtyqOPP6ROWkO/view?usp=sharing" },
+      { title: "One Thing Remains", key: "E", youtube: "https://youtu.be/R8YQ79a2veA", chords: "https://drive.google.com/file/d/1bsQ6xgjA54C8MgyytuYEaAoJLEM1QzEj/view?usp=sharing" },
+      { title: "Our God", key: "G", youtube: "https://youtu.be/ppWET1_rX-E?si=tbH2SMmEVRUdKPdJ", chords: "https://drive.google.com/file/d/1NnRvV83OWkMmsHyS3W-pakwRfO19ltOk/view?usp=sharing" },
+      { title: "Resurrecting", key: "A", youtube: "https://www.youtube.com/watch?v=IjEmX-JGHZA", chords: "https://drive.google.com/file/d/1-SJXViQBh7iVTGDnl0dofQc3UPysFCl6/view?usp=sharing" },
+      { title: "Revelation Song", key: "D", youtube: "https://youtu.be/iRjLDJaUMvU?si=ok6kYgly0PiZmevH", chords: "https://drive.google.com/file/d/1lbZAg2s5buwrfJLiDBSbstceLdS1i96D/view?usp=sharing" },
+      { title: "Solid Rock", key: "E", youtube: "https://youtu.be/giBN4VWNxH4?si=6o32pCbL0aovLK6P", chords: "https://drive.google.com/file/d/1-DPaJpT2RdpzaopK_L3k76VEnYDCfpix/view?usp=sharing" },
+      { title: "Something Greater", key: "G", youtube: "https://youtu.be/NMc52CoR8oU?si=DIup4hUh2B2-1IBF", chords: "https://drive.google.com/file/d/1LlXPHoBK7qJkoDciEjnaL_vfnDQJVjpw/view?usp=sharing" },
+      { title: "The Blessing", key: "C", youtube: "https://youtu.be/ZhtMoLkundM?si=kmBWUNXakgVUROJd", chords: "https://drive.google.com/file/d/1tscBF1M0erPKqKSpHH8pHbxGVtGplArM/view?usp=sharing" },
+      { title: "The Great I Am", key: "C", youtube: "https://www.youtube.com/watch?v=-SwnFKWBvYo", chords: "https://drive.google.com/file/d/1m1v1RK1PhVj6J7ngh1XcGBPxhwTi8-6g/view?usp=sharing" },
+      { title: "This is Amazing Grace", key: "E", youtube: "https://youtu.be/x65OqXubqeQ?si=pRADrw4jYjosPo5M", chords: "https://drive.google.com/file/d/1xTzN2tKKIE-5105IMTDUwT7nMs4KZIIZ/view?usp=sharing" },
+      { title: "This is Our God", key: "A", youtube: "https://youtu.be/TXx3aI2qZ_s?si=KfCtvqSvKJG2zGkW", chords: "https://drive.google.com/file/d/1M5-7-PIV0Ixgq8pc3Nwv1NbzfJmTgfQx/view?usp=drive_link" },
+      { title: "What a Beautiful Name", key: "E", youtube: "https://www.youtube.com/watch?v=PssTbx_hGkc", chords: "https://drive.google.com/file/d/1I05RHveGQfyaPDWUZxbdykP8YRqZtEuG/view?usp=sharing" },
+      { title: "When I Think about the Lord", key: "G", youtube: "https://www.youtube.com/watch?v=mgwaMFu_RkA", chords: "https://drive.google.com/file/d/16EQB3ysmXZQcSiiby8Zcvep2b2DYcsJE/view?usp=sharing" },
+      { title: "Who You Say I Am", key: "A", youtube: "https://www.youtube.com/watch?v=N3YNAbgihPE", chords: "https://drive.google.com/file/d/1afOHMGinEf8NdhY3IDmktOxLxL7DboJ9/view?usp=sharing" },
+      { title: "Wonderful Cross", key: "D", youtube: "https://youtu.be/H0mfU70tl1U?si=rgnoMMA7MefLt_d5", chords: "https://drive.google.com/file/d/14HxwOq7fxIGHKLye0-OCmkELn0fq2lx9/view?usp=sharing" },
+      { title: "Worthy of More", key: "E", youtube: "https://youtu.be/MC5th753nsI?si=Tqmf4HBqM6H-N0YP", chords: "https://drive.google.com/file/d/1OuOj6hW3lkHcYlLkv0or7h32V8e3UKen/view?usp=sharing" },
+      { title: "Yet Not I but Through Christ in Me", key: "C", youtube: "https://youtu.be/8lyVQ_kw2XA", chords: "https://drive.google.com/file/d/1DGc5dVhWe5Fg1f5FPFBgf-neSqs3rJEL/view?usp=sharing" },
+      { title: "Your Grace is Enough", key: "G", youtube: "https://youtu.be/tXLzVNwZrUE?si=3idBCXA_gsqQXoza", chords: "https://drive.google.com/file/d/1r7Kcq1uWe5T_yurxFVbvrj5wLyyGDx39/view?usp=sharing" },
+      { title: "Your Love Defends Me", key: "G", youtube: "https://youtu.be/k3JDr8d6wdM", chords: "https://drive.google.com/file/d/1JYp9AUdXNW6REQVan8GIAiVgC7Xqc7tD/view?usp=sharing" },
+      { title: "You've Already Won", key: "E", youtube: "https://youtu.be/gDhciWxCJb4?si=HpWQ-y7wkGSBL-ha", chords: "https://drive.google.com/file/d/1Luj0XZc9hsCxTHnxkKN61qneiNtJHJkL/view?usp=drive_link" }
+    ];
+
+    // Initialize favorites from localStorage
+    let favorites = JSON.parse(localStorage.getItem('worshipFavorites')) || [];
+    let showFavoritesOnly = false;
+    let currentFilter = 'ALL';
+    let searchTerm = '';
+
+    // Function to save favorites to localStorage
+    function saveFavorites() {
+      localStorage.setItem('worshipFavorites', JSON.stringify(favorites));
+    }
+
+    // Function to toggle favorite status
+    function toggleFavorite(songTitle) {
+      const index = favorites.indexOf(songTitle);
+      if (index > -1) {
+        favorites.splice(index, 1);
+      } else {
+        favorites.push(songTitle);
+      }
+      saveFavorites();
+      renderSongs();
+    }
+
+    // Function to extract YouTube video ID
+    function getYouTubeId(url) {
+      const match = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\s]+)/);
+      return match ? match[1] : null;
+    }
+
+    // Function to open YouTube modal
+    function openYouTube(song) {
+      const modal = document.getElementById('youtubeModal');
+      const modalTitle = document.getElementById('modalTitle');
+      const youtubeContainer = document.getElementById('youtubeContainer');
+      
+      modalTitle.textContent = `${song.title} (Key of ${song.key})`;
+      const videoId = getYouTubeId(song.youtube);
+      
+      if (videoId) {
+        youtubeContainer.innerHTML = `
+          <iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1" 
+                  allowfullscreen allow="autoplay; encrypted-media"></iframe>
+        `;
+        modal.style.display = 'block';
+      } else {
+        window.open(song.youtube, '_blank');
+      }
+    }
+
+    // Function to close modal
+    function closeModal() {
+      const modal = document.getElementById('youtubeModal');
+      const youtubeContainer = document.getElementById('youtubeContainer');
+      youtubeContainer.innerHTML = '';
+      modal.style.display = 'none';
+    }
+
+    // Function to filter songs by alphabet range
+    function filterByRange(range) {
+      currentFilter = range;
+      document.querySelectorAll('.alphabet-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.range === range);
+      });
+      renderSongs();
+    }
+
+    // Function to check if song matches filter
+    function matchesFilter(song) {
+      const firstLetter = song.title[0].toUpperCase();
+      
+      switch(currentFilter) {
+        case 'A-G':
+          return firstLetter >= 'A' && firstLetter <= 'G';
+        case 'H-L':
+          return firstLetter >= 'H' && firstLetter <= 'L';
+        case 'M-R':
+          return firstLetter >= 'M' && firstLetter <= 'R';
+        case 'S-Z':
+          return firstLetter >= 'S' && firstLetter <= 'Z';
+        default:
+          return true;
+      }
+    }
+
+    // Function to render songs
+    function renderSongs() {
+      const songsList = document.getElementById('songsList');
+      const favoritesList = document.getElementById('favoritesList');
+      const favoritesSection = document.getElementById('favoritesSection');
+      const mainSection = document.getElementById('mainSection');
+      const noResults = document.getElementById('noResults');
+      
+      // Clear lists
+      songsList.innerHTML = '';
+      favoritesList.innerHTML = '';
+      
+      // Filter songs
+      let filteredSongs = songs.filter(song => {
+        const matchesSearch = song.title.toLowerCase().includes(searchTerm.toLowerCase());
+        const matchesAlphabet = matchesFilter(song);
+        return matchesSearch && matchesAlphabet;
+      });
+      
+      // Separate favorites
+      const favoriteSongs = filteredSongs.filter(song => favorites.includes(song.title));
+      const regularSongs = filteredSongs.filter(song => !favorites.includes(song.title));
+      
+      // Show/hide sections
+      if (showFavoritesOnly) {
+        favoritesSection.style.display = 'block';
+        mainSection.style.display = 'none';
+        
+        if (favoriteSongs.length === 0) {
+          favoritesList.innerHTML = '<p class="no-results">No favorite songs found with current filters.</p>';
+        } else {
+          favoriteSongs.forEach(song => {
+            favoritesList.appendChild(createSongElement(song, true));
+          });
+        }
+      } else {
+        favoritesSection.style.display = favoriteSongs.length > 0 ? 'block' : 'none';
+        mainSection.style.display = 'block';
+        
+        // Render favorites
+        favoriteSongs.forEach(song => {
+          favoritesList.appendChild(createSongElement(song, true));
+        });
+        
+        // Group regular songs by first letter
+        const grouped = {};
+        regularSongs.forEach(song => {
+          const firstLetter = song.title[0].toUpperCase();
+          if (!grouped[firstLetter]) {
+            grouped[firstLetter] = [];
+          }
+          grouped[firstLetter].push(song);
+        });
+        
+        // Render regular songs with section headers
+        Object.keys(grouped).sort().forEach(letter => {
+          const header = document.createElement('div');
+          header.className = 'section-header';
+          header.innerHTML = `${letter}`;
+          songsList.appendChild(header);
+          
+          grouped[letter].forEach(song => {
+            songsList.appendChild(createSongElement(song, false));
+          });
+        });
+      }
+      
+      // Show no results message if needed
+      noResults.style.display = filteredSongs.length === 0 ? 'block' : 'none';
+    }
+
+    // Function to create song element
+    function createSongElement(song, isFavorite) {
+      const songItem = document.createElement('div');
+      songItem.className = `song-item ${isFavorite ? 'favorite' : ''}`;
+      
+      songItem.innerHTML = `
+        <div class="song-info">
+          <div class="song-title">${song.title}</div>
+          <div class="song-key">
+            Key of <span class="key-badge">${song.key}</span>
+          </div>
+        </div>
+        <div class="song-actions">
+          ${song.youtube ? `
+            <button class="action-btn youtube-btn" onclick='openYouTube(${JSON.stringify(song)})'>
+              ▶️ Play
+            </button>
+          ` : ''}
+          <a href="${song.chords}" target="_blank" class="action-btn chords-btn">
+            📄 Chords
+          </a>
+          <button class="favorite-toggle ${favorites.includes(song.title) ? 'active' : ''}" 
+                  onclick="toggleFavorite('${song.title}')">
+            ${favorites.includes(song.title) ? '❤️' : '🤍'}
+          </button>
+        </div>
+      `;
+      
+      return songItem;
+    }
+
+    // Event listeners
+    document.getElementById('searchInput').addEventListener('input', (e) => {
+      searchTerm = e.target.value;
+      renderSongs();
+    });
+
+    document.getElementById('favoritesToggle').addEventListener('click', () => {
+      showFavoritesOnly = !showFavoritesOnly;
+      const btn = document.getElementById('favoritesToggle');
+      btn.classList.toggle('active', showFavoritesOnly);
+      btn.textContent = showFavoritesOnly ? '📋 Show All Songs' : '❤️ Show Favorites Only';
+      renderSongs();
+    });
+
+    // Alphabet navigation
+    document.querySelectorAll('.alphabet-btn').forEach(btn => {
+      btn.addEventListener('click', () => filterByRange(btn.dataset.range));
+    });
+
+    // Close modal when clicking outside
+    window.addEventListener('click', (e) => {
+      const modal = document.getElementById('youtubeModal');
+      if (e.target === modal) {
+        closeModal();
+      }
+    });
+
+    // Initial render
+    filterByRange('ALL');
+  </script>
+</body>
+</html>
