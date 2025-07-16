@@ -48,6 +48,40 @@
       margin-bottom: 0.4rem;
     }
 
+    .header-title-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .satchel-logo {
+      position: relative;
+      top: 0;
+      left: 0;
+      width: 50px;
+      height: 50px;
+      margin-right: 15px;
+      display: block;
+    }
+
+    .header-title-row h1 {
+      margin: 0;
+      font-size: 1.728rem;
+      text-align: center;
+    }
+
+    @media (max-width: 768px) {
+      .satchel-logo {
+        width: 30px;
+        height: 30px;
+        margin-right: 10px;
+      }
+      .header-title-row h1 {
+        font-size: 1.05rem;
+      }
+    }
+
     /* Search Bar */
     .search-container {
       max-width: 600px;
@@ -449,33 +483,39 @@
     .satchel-logo:hover {
       transform: scale(1.1);
     }
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+      position: relative;
+    }
   </style>
 </head>
 <body>
   <div class="header">
-    <div class="header-title-container">
-      <a href="../index.html" class="satchel-logo">
-        <img src="../ministrybagsatchel1.svg" alt="Ministry Bag Home" width="40" height="40">
-      </a>
-      <h1>Worship Chords & Videos</h1>
-    </div>
-    
-    <div class="search-container">
-      <input type="text" class="search-input" placeholder="Search for a song..." id="searchInput">
-    </div>
-    
-    <div class="alphabet-nav" id="alphabetNav">
-      <button class="alphabet-btn" data-range="A-G">A-G</button>
-      <button class="alphabet-btn" data-range="H-L">H-L</button>
-      <button class="alphabet-btn" data-range="M-R">M-R</button>
-      <button class="alphabet-btn" data-range="S-Z">S-Z</button>
-      <button class="alphabet-btn" data-range="ALL">All</button>
-    </div>
-    
-    <div class="favorites-toggle">
-      <button class="favorites-btn" id="favoritesToggle">
-        ❤️ Show Favorites Only
-      </button>
+    <div class="header-inner">
+      <div class="header-title-row">
+        <a href="../index.html" class="satchel-logo">
+          <img src="../ministrybagsatchel1.svg" alt="Ministry Bag Home" width="40" height="40">
+        </a>
+        <h1>Worship Chords & Videos</h1>
+      </div>
+      
+      <div class="search-container">
+        <input type="text" class="search-input" placeholder="Search for a song..." id="searchInput">
+      </div>
+      <div class="alphabet-nav" id="alphabetNav">
+        <button class="alphabet-btn" data-range="A-G">A-G</button>
+        <button class="alphabet-btn" data-range="H-L">H-L</button>
+        <button class="alphabet-btn" data-range="M-R">M-R</button>
+        <button class="alphabet-btn" data-range="S-Z">S-Z</button>
+        <button class="alphabet-btn" data-range="ALL">All</button>
+      </div>
+      <div class="favorites-toggle">
+        <button class="favorites-btn" id="favoritesToggle">
+          ❤️ Show Favorites Only
+        </button>
+      </div>
     </div>
   </div>
 
