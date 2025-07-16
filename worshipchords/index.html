@@ -504,6 +504,7 @@
       </div>
       <div class="modal-body">
         <div class="youtube-container" id="youtubeContainer"></div>
+        <div class="chords-pdf-container" id="chordsPdfContainer" style="margin-top: 24px;"></div>
       </div>
     </div>
   </div>
@@ -628,6 +629,7 @@
       const modal = document.getElementById('youtubeModal');
       const modalTitle = document.getElementById('modalTitle');
       const youtubeContainer = document.getElementById('youtubeContainer');
+      const chordsPdfContainer = document.getElementById('chordsPdfContainer');
       
       modalTitle.textContent = `${song.title} (Key of ${song.key})`;
       const videoId = getYouTubeId(song.youtube);
@@ -637,6 +639,20 @@
           <iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1" 
                   allowfullscreen allow="autoplay; encrypted-media"></iframe>
         `;
+        if (song.chords) {
+          // Try to convert Google Drive or direct PDF links to embeddable format
+          let pdfUrl = song.chords;
+          if (pdfUrl.includes('drive.google.com')) {
+            // Convert to Google Drive preview link
+            const match = pdfUrl.match(/\/d\/([\w-]+)/);
+            if (match) {
+              pdfUrl = `https://drive.google.com/file/d/${match[1]}/preview`;
+            }
+          }
+          chordsPdfContainer.innerHTML = `<iframe src="${pdfUrl}" width="100%" height="500px" style="border-radius:8px;border:1px solid #ccc;"></iframe>`;
+        } else {
+          chordsPdfContainer.innerHTML = '';
+        }
         modal.style.display = 'block';
       } else {
         window.open(song.youtube, '_blank');
@@ -647,7 +663,9 @@
     function closeModal() {
       const modal = document.getElementById('youtubeModal');
       const youtubeContainer = document.getElementById('youtubeContainer');
+      const chordsPdfContainer = document.getElementById('chordsPdfContainer');
       youtubeContainer.innerHTML = '';
+      chordsPdfContainer.innerHTML = '';
       modal.style.display = 'none';
     }
 
