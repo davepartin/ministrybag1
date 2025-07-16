@@ -22,7 +22,7 @@
     .header {
       background: linear-gradient(135deg, #3399CC 0%, #1a5f7a 100%);
       color: white;
-      padding: 1rem;
+      padding: 0.8rem;
       box-shadow: 0 4px 16px rgba(51, 153, 204, 0.2);
       position: sticky;
       top: 0;
@@ -35,23 +35,23 @@
     }
 
     .header h1 {
-      text-align: left;
-      font-size: 1.2rem;
-      margin-bottom: 0.5rem;
+      text-align: center;
+      font-size: 1.728rem;
+      margin-bottom: 0.4rem;
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-      display: inline-block;
-      margin-left: 15px;
+      display: block;
+      margin-left: 0;
     }
     
     .header-title-container {
       text-align: center;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.4rem;
     }
 
     /* Search Bar */
     .search-container {
       max-width: 600px;
-      margin: 0 auto 1rem;
+      margin: 0 auto 0.8rem;
     }
 
     .search-input {
@@ -76,7 +76,7 @@
       justify-content: center;
       flex-wrap: wrap;
       gap: 0.5rem;
-      margin-bottom: 1rem;
+      margin-bottom: 0.8rem;
     }
 
     .alphabet-btn {
@@ -103,7 +103,7 @@
     /* Favorites Toggle */
     .favorites-toggle {
       text-align: center;
-      margin-bottom: 1rem;
+      margin-bottom: 0.8rem;
     }
 
     .favorites-btn {
@@ -433,16 +433,17 @@
     .satchel-logo {
       position: relative;
       top: -5px;
-      left: 0;
+      left: 15px;
       width: 50px;
       height: 50px;
       z-index: 1000;
       filter: drop-shadow(0 0 5px rgba(0,0,0,0.3));
       transition: transform 0.2s;
       margin-bottom: 0;
-      display: inline-block;
+      display: block;
       vertical-align: top;
       margin-right: 0;
+      position: absolute;
     }
     
     .satchel-logo:hover {
