@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preaching Training - MinistryBag.com</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #4a4a4a;
+            background: linear-gradient(135deg, #f5f3f0 0%, #ede8e3 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            width: 100%;
+            box-sizing: border-box;
+            min-width: 0;
+        }
+        
+        .header {
+            margin-bottom: 20px;
+            padding: 20px;
+            background: #f5f3f0;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(139, 115, 85, 0.2);
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .header-logo {
+            max-width: 100%;
+            height: auto;
+            max-height: 120px;
+            display: block;
+        }
+        
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 10px;
+            width: 100%;
+        }
+        
+        .tab-btn {
+            padding: 12px 24px;
+            background: #d4c4a8;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            color: #5d4e37;
+            transition: all 0.3s ease;
+            margin: 5px;
+            flex: 0 1 auto;
+            min-width: 0;
+        }
+        
+        .tab-btn:hover {
+            background: #b8a082;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .tab-btn.active {
+            background: #8b7355;
+            color: white;
+            box-shadow: 0 5px 15px rgba(139, 115, 85, 0.4);
+        }
+        
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        #build {
+            width: 100%;
+            min-width: 0;
+            box-sizing: border-box;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .framework-visual {
+            text-align: center;
+            margin: 40px 0;
+            padding: 30px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        .building-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        .step-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            border-left: 5px solid #8b7355;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            width: 100%;
+            box-sizing: border-box;
+            min-width: 0;
+        }
+        
+        .step-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+        
+        .step-number {
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            background: #8b7355;
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        
+        .step-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            margin: 15px 0 10px 0;
+            color: #5d4e37;
+        }
+        
+        .step-description {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .expanded-content {
+            display: none;
+            margin-top: 20px;
+            padding: 20px;
+            background: #f8f6f3;
+            border-radius: 10px;
+            border-left: 3px solid #a68b5b;
+        }
+        
+        .expanded-content.show {
+            display: block;
+        }
+        
+        .success-criteria {
+            margin-top: 15px;
+            padding: 15px;
+            background: #e8f5e8;
+            border-radius: 8px;
+            border-left: 3px solid #4caf50;
+        }
+        
+        .success-criteria h4 {
+            color: #2e7d32;
+            margin-bottom: 10px;
+        }
+        
+        .pillars-process {
+            background: #fff8f0;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 3px solid #ff9800;
+        }
+        
+        .pillars-process ol {
+            padding-left: 20px;
+        }
+        
+        .pillars-process li {
+            margin: 8px 0;
+            font-weight: 500;
+        }
+        
+        .foundations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        .teacher-section {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            width: 100%;
+            box-sizing: border-box;
+            min-width: 0;
+        }
+        
+        .teacher-section h2 {
+            color: #8b7355;
+            margin-bottom: 20px;
+            font-size: 1.6em;
+            border-bottom: 2px solid #d4c4a8;
+            padding-bottom: 10px;
+        }
+        
+        .quote-highlight {
+            background: #f0f8ff;
+            padding: 20px;
+            border-left: 4px solid #4682b4;
+            border-radius: 8px;
+            font-style: italic;
+            margin: 15px 0;
+            font-size: 1.1em;
+        }
+        
+        .build-section {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            margin: 20px 0;
+            width: 100%;
+            box-sizing: border-box;
+            min-width: 0;
+            overflow: hidden;
+        }
+        
+        .form-group {
+            margin: 25px 0;
+            width: 100%;
+            min-width: 0;
+            box-sizing: border-box;
+        }
+        
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #5d4e37;
+            width: 100%;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+        
+        .form-group textarea {
+            width: 100%;
+            min-height: 120px;
+            padding: 15px;
+            border: 2px solid #d4c4a8;
+            border-radius: 8px;
+            font-family: inherit;
+            resize: vertical;
+            transition: border-color 0.3s ease;
+            box-sizing: border-box;
+            min-width: 0;
+            max-width: 100%;
+        }
+        
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #8b7355;
+            box-shadow: 0 0 10px rgba(139, 115, 85, 0.2);
+        }
+        
+        .reminder-box {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            color: #856404;
+        }
+        
+        .reminder-box strong {
+            color: #5d4e37;
+        }
+        
+        .progress-tracker {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        
+        .progress-bar {
+            background: #e9ecef;
+            height: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            background: linear-gradient(90deg, #8b7355, #a68b5b);
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        .save-btn {
+            background: linear-gradient(135deg, #8b7355 0%, #a68b5b 100%);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 20px 10px;
+            width: auto;
+            min-width: 200px;
+            box-sizing: border-box;
+        }
+        
+        .save-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(139, 115, 85, 0.3);
+        }
+        
+
+        
+        .architectural-diagram {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            margin: 30px 0;
+        }
+        
+        .structure-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #f8f6f3;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .structure-image {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 15px;
+        }
+        
+        .overlay {
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            pointer-events: auto;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .overlay-text {
+            background: rgba(139, 115, 85, 0.6);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 0.9em;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+            backdrop-filter: blur(2px);
+            white-space: nowrap;
+            transition: all 0.3s ease;
+        }
+        
+        .overlay:hover .overlay-text {
+            background: rgba(139, 115, 85, 1);
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+        }
+        
+        .overlay:active .overlay-text {
+            transform: scale(0.95);
+        }
+        
+        .overlay-text small {
+            font-size: 0.7em;
+            opacity: 0.9;
+            display: block;
+            margin-top: 2px;
+        }
+        
+        /* Position overlays on the image */
+        .capstone-overlay {
+            top: calc(8% + 10px);
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .keystone-overlay {
+            top: calc(25% + 20px);
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 5;
+        }
+        
+        .pillar1-overlay {
+            top: 45%;
+            left: 25%;
+            transform: translateX(-50%);
+        }
+        
+        .pillar2-overlay {
+            top: 45%;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+        }
+        
+        .pillar3-overlay {
+            top: 45%;
+            left: 75%;
+            transform: translateX(-50%);
+        }
+        
+        .foundation-overlay {
+            bottom: calc(8% - 25px);
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .cornerstone-overlay {
+            bottom: calc(8% + 15px);
+            left: 15%;
+            transform: translateX(-50%);
+        }
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+        .structure-explanation {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            max-width: 600px;
+            text-align: center;
+        }
+        
+        .structure-explanation ul {
+            text-align: left;
+            padding-left: 20px;
+            margin-top: 15px;
+        }
+        
+        .structure-explanation li {
+            margin: 10px 0;
+            line-height: 1.5;
+        }
+        
+        .architectural-icon {
+            font-size: 4em;
+            margin: 5px 0 2px 0;
+            color: #d4c4a8;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+                max-width: 100%;
+            }
+            
+            .header {
+                padding: 15px;
+            }
+            
+            .header-logo {
+                max-height: 100px;
+            }
+            
+            .nav-tabs {
+                flex-direction: column;
+                align-items: center;
+                gap: 8px;
+            }
+            
+            .tab-btn {
+                width: 100%;
+                max-width: 250px;
+                margin: 3px;
+                padding: 10px 20px;
+            }
+            
+            .building-steps {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .foundations-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+
+            
+            .build-section {
+                padding: 20px;
+                margin: 15px 0;
+            }
+            
+            .form-group textarea {
+                min-height: 100px;
+                padding: 12px;
+            }
+            
+            .step-card {
+                padding: 20px;
+            }
+            
+            .teacher-section {
+                padding: 20px;
+            }
+            
+
+            
+            .framework-visual {
+                padding: 20px;
+                margin: 30px 0;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .header {
+                padding: 12px;
+            }
+            
+            .header-logo {
+                max-height: 80px;
+            }
+            
+            .nav-tabs {
+                gap: 5px;
+            }
+            
+            .tab-btn {
+                padding: 8px 16px;
+                font-size: 0.9em;
+            }
+            
+            .build-section {
+                padding: 15px;
+                margin: 10px 0;
+            }
+            
+            .form-group textarea {
+                min-height: 80px;
+                padding: 10px;
+            }
+            
+            .step-card {
+                padding: 15px;
+            }
+            
+            .teacher-section {
+                padding: 15px;
+            }
+            
+
+            
+            .framework-visual {
+                padding: 15px;
+                margin: 20px 0;
+            }
+            
+            .building-steps {
+                gap: 15px;
+            }
+            
+            .foundations-grid {
+                gap: 15px;
+            }
+            
+
+        }
+        
+        @media (max-width: 360px) {
+            .container {
+                padding: 8px;
+            }
+            
+            .header {
+                padding: 10px;
+            }
+            
+            .header-logo {
+                max-height: 70px;
+            }
+            
+            .build-section {
+                padding: 12px;
+                margin: 8px 0;
+            }
+            
+            .step-card {
+                padding: 12px;
+            }
+            
+            .teacher-section {
+                padding: 12px;
+            }
+            
+
+            
+            .framework-visual {
+                padding: 12px;
+                margin: 15px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <a href="../index.html" style="text-decoration: none; display: block;">
+                    <img src="ministrybagsatchel1.svg" alt="MinistryBag" style="max-width: 80px; height: auto;">
+                </a>
+                <img src="Preaching_Training_Logo_Transparent2.png" alt="Preaching Training Logo" class="header-logo">
+            </div>
+        </div>
+        
+        <div class="nav-tabs">
+            <button class="tab-btn active" onclick="showTab('framework')">The Framework</button>
+            <button class="tab-btn" onclick="showTab('build')">Build Your Sermon</button>
+            <button class="tab-btn" onclick="showTab('foundations')">Preaching Guidance</button>
+        </div>
+        
+        <div id="framework" class="tab-content active">
+            <div class="framework-visual">
+                <h2>The Five Step Framework</h2>
+                <div class="architectural-diagram">
+                    <div class="structure-visual">
+                        <img src="sermonstructurebuilding.png" alt="Sermon Structure Building" class="structure-image">
+                        
+                        <!-- Text Overlays -->
+                        <div class="overlay capstone-overlay" onclick="toggleExpanded(5)">
+                            <div class="overlay-text">Capstone<br><small>Unity & Conclusion</small></div>
+                        </div>
+                        
+                        <div class="overlay keystone-overlay" onclick="toggleExpanded(4)">
+                            <div class="overlay-text">Keystone<br><small>Christ Connection</small></div>
+                        </div>
+                        
+                        <div class="overlay pillar1-overlay" onclick="toggleExpanded(3)">
+                            <div class="overlay-text">Pillar 1<br><small>Point 1</small></div>
+                        </div>
+                        
+                        <div class="overlay pillar2-overlay" onclick="toggleExpanded(3)">
+                            <div class="overlay-text">Pillar 2<br><small>Point 2</small></div>
+                        </div>
+                        
+                        <div class="overlay pillar3-overlay" onclick="toggleExpanded(3)">
+                            <div class="overlay-text">Pillar 3<br><small>Point 3</small></div>
+                        </div>
+                        
+                        <div class="overlay foundation-overlay" onclick="toggleExpanded(1)">
+                            <div class="overlay-text">Foundation<br><small>Text Context</small></div>
+                        </div>
+                        
+                        <div class="overlay cornerstone-overlay" onclick="toggleExpanded(2)">
+                            <div class="overlay-text">Cornerstone<br><small>Consider Jesus</small></div>
+                        </div>
+                    </div>
+                    <div class="structure-explanation">
+                        <p><strong>Build your sermon from the ground up:</strong></p>
+                        <ul>
+                            <li><strong>1. Foundation:</strong> Enter the text's world (historical, literary context)</li>
+                            <li><strong>2. Cornerstone:</strong> Consider Jesus - how would He approach this topic?</li>
+                            <li><strong>3. Three Pillars:</strong> Your main supporting points that flow naturally from the text</li>
+                            <li><strong>4. Keystone:</strong> Christ connects and unifies all three pillars</li>
+                            <li><strong>5. Capstone:</strong> Brings everything together in unity and conclusion</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="building-steps">
+                <div class="step-card" onclick="toggleExpanded(1)">
+                    <div class="step-number">1</div>
+                    <div class="step-title">Foundation - Enter the Text's World</div>
+                    <div class="step-description">Like the solid base of a classical structure, gather the foundational pieces by exploring the context of the Bible passage, including its literary, historical, and emotional aspects.</div>
+                    <div id="expanded-1" class="expanded-content">
+                        <p><strong>Process:</strong> Stand in the writer's and reader's shoes. Survey the site: What's being constructed here? Why was it designed? How did it resonate with the first inhabitants?</p>
+                        <div class="reminder-box">
+                            <strong>Preaching Insights:</strong> "Pray before you write. Saturate with prayer." Begin every sermon preparation in communion with God.
+                        </div>
+                        <div class="success-criteria">
+                            <h4>✓ Success Criteria</h4>
+                            <p>You can describe the original context of the text in 2-3 clear sentences.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step-card" onclick="toggleExpanded(2)">
+                    <div class="step-number">2</div>
+                    <div class="step-title">Cornerstone - Consider Jesus</div>
+                    <div class="step-description">Like the cornerstone that determines the entire building's orientation, before crafting your sermon structure, ask: "How would Jesus approach this topic? What does the Gospel say about this?"</div>
+                    <div id="expanded-2" class="expanded-content">
+                        <p><strong>Process:</strong> Let Christ's character and the Gospel message inform your thinking from the very beginning.</p>
+                        <div class="reminder-box">
+                            <strong>Piper's Insight:</strong> Preaching must display "the majesty of God in Christ" - this is where true authority comes from.
+                        </div>
+                        <div class="success-criteria">
+                            <h4>✓ Success Criteria</h4>
+                            <p>You can articulate how Jesus/Gospel connects to this text before you begin outlining.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step-card" onclick="toggleExpanded(3)">
+                    <div class="step-number">3</div>
+                    <div class="step-title">Pillars - 3 Supporting Points</div>
+                    <div class="step-description">Like the three classical columns that support the entablature, build 3 key sections that align with the text's natural flow, designed to connect with your congregation.</div>
+                    <div id="expanded-3" class="expanded-content">
+                        <p><strong>Process:</strong> Design each pillar to connect with your congregation, ensuring varied points of engagement. Anchor each segment to the sermon's central theme.</p>
+                        <div class="pillars-process">
+                            <h4>The 8-Step Process for Each Pillar:</h4>
+                            <ol>
+                                <li><strong>Read the Text</strong> — Slow and Clear</li>
+                                <li><strong>State the Point</strong> — What's the truth here?</li>
+                                <li><strong>Explain the Scene</strong> — The people, need, action, teaching, or command</li>
+                                <li><strong>Draw the Principle</strong> — What does this show us about God or life?</li>
+                                <li><strong>Add Velcro (Illustration)</strong> — Something relatable or personal to help it stick</li>
+                                <li><strong>Connect</strong> — Restate the point now that people understand more</li>
+                                <li><strong>Challenge</strong> — Ask a practical, pointed question that hits the need</li>
+                                <li><strong>Transition Smoothly</strong> — Lead into the next section with a linking sentence</li>
+                            </ol>
+                        </div>
+                        <div class="reminder-box">
+                            <strong>Merida's Heart:</strong> Approach each point with "love for people" - shepherd their hearts with genuine compassion.
+                        </div>
+                        <div class="success-criteria">
+                            <h4>✓ Success Criteria</h4>
+                            <p>Each division flows naturally from the text (not imposed), your illustration genuinely illuminates the principle, and your application connects authentically to our people today.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step-card" onclick="toggleExpanded(4)">
+                    <div class="step-number">4</div>
+                    <div class="step-title">Keystone - The Christ Connection</div>
+                    <div class="step-description">Like the keystone at the apex of the arch that locks all the voussoirs in place, identify where Jesus anchors the text. Show how Christ is the key that holds all three pillars together.</div>
+                    <div id="expanded-4" class="expanded-content">
+                        <p><strong>Process:</strong> Connect His life, death, resurrection, or Spirit-presence to the passage's tension or need. Show how Christ gives meaning to the entire structure.</p>
+                        <div class="reminder-box">
+                            <strong>Piper's Goal:</strong> "The goal is the glory of God" - Christ should appear as both foundation and unifying element.
+                        </div>
+                        <div class="success-criteria">
+                            <h4>✓ Success Criteria</h4>
+                            <p>Christ appears as both foundation and unifying element, creating one cohesive Gospel-centered message.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step-card" onclick="toggleExpanded(5)">
+                    <div class="step-number">5</div>
+                    <div class="step-title">Capstone - Bring It All Together</div>
+                    <div class="step-description">Like the pediment that crowns the entire structure, create unity in your conclusion, helping people see how all elements work together to form one complete, beautiful message.</div>
+                    <div id="expanded-5" class="expanded-content">
+                        <p><strong>Process:</strong></p>
+                        <ul style="padding-left: 20px; margin: 15px 0;">
+                            <li>Revisit the opening story with resolution if it connects</li>
+                            <li>Lay out the three pillars in sequence, showcasing the sermon's architecture</li>
+                            <li>Call the church to build their lives on this foundation</li>
+                            <li>Review the 3 points clearly and memorably</li>
+                            <li>Pray for alignment between God's Word and the congregation's response</li>
+                        </ul>
+                        <div class="reminder-box">
+                            <strong>Preaching Insights:</strong> "30 minutes is a good amount of time" - respect your people's attention while delivering the complete message.
+                        </div>
+                        <div class="success-criteria">
+                            <h4>✓ Success Criteria</h4>
+                            <p>The conclusion brings unity to the entire sermon, helping people see how all elements work together to create one compelling, Christ-centered message.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="foundations" class="tab-content">
+            <div class="foundations-grid">
+                <div class="teacher-section">
+                    <h2>John Piper: Expository Exultation</h2>
+                    <div class="quote-highlight">
+                        "Preaching is the heralding of God's Word with a passion for God's glory."
+                    </div>
+                    <h3>The Four Pillars:</h3>
+                    <ol style="padding-left: 20px;">
+                        <li><strong>Expository:</strong> Rooted in God's Word, not the preacher's ideas. Authority comes from faithfully unfolding Scripture.</li>
+                        <li><strong>Exultation:</strong> Not cold explanation but worship. The preacher must feel and rejoice in the truth.</li>
+                        <li><strong>The Goal:</strong> The glory of God. Magnifying God's supremacy and displaying His majesty in Christ.</li>
+                        <li><strong>Head, Hearts, and Hands Together:</strong> Truth, Passion, and Action - all three must be present.</li>
+                    </ol>
+                </div>
+                
+                <div class="teacher-section">
+                    <h2>Tony Merida: Seven Qualities of Great Preaching</h2>
+                    <ol style="padding-left: 20px;">
+                        <li><strong>Love for the Word and Christ:</strong> Let the Word transform the preacher first</li>
+                        <li><strong>Love for people:</strong> Pastoral warmth and genuine compassion</li>
+                        <li><strong>Gifts of the Spirit:</strong> Being faithful to what God has given</li>
+                        <li><strong>Practice of Progress:</strong> Through suffering, dependence, repentance, and forgiveness</li>
+                        <li><strong>Mentorship and Models:</strong> Learning from others to develop</li>
+                        <li><strong>Training and Experience:</strong> Remaining learners as teachers</li>
+                        <li><strong>Holiness and Prayer:</strong> Personal character anchoring ministry effectiveness</li>
+                    </ol>
+                </div>
+                
+                <div class="teacher-section">
+                    <h2>Preaching Insights: Practical Wisdom</h2>
+                    <ul style="padding-left: 20px;">
+                        <li>Preach because I have something to say, not because I have to say something</li>
+                        <li>Live sermons are most people's regular Bible Study</li>
+                        <li>Preaching needs to be about people learning, not just a preacher teaching</li>
+                        <li>Pray before you write. Pray before you preach. Saturate with prayer</li>
+                        <li>30 minutes is a good amount of time for a sermon</li>
+                        <li>The preacher's passion is the bridge that helps people care about the passage</li>
+                    </ul>
+                    
+                    <h3 style="color: #8b7355; margin: 20px 0 15px 0; border-bottom: 2px solid #d4c4a8; padding-bottom: 8px;">Time Management</h3>
+                    <ul style="padding-left: 20px; margin-bottom: 20px;">
+                        <li><strong>Introduction:</strong> 3-5 minutes</li>
+                        <li><strong>Each Pillar:</strong> 6-8 minutes</li>
+                        <li><strong>Christ Connection:</strong> 3-5 minutes</li>
+                        <li><strong>Conclusion:</strong> 3-5 minutes</li>
+                        <li><strong>Total:</strong> ~30 minutes</li>
+                    </ul>
+                    
+
+                </div>
+            </div>
+        </div>
+        
+        <div id="build" class="tab-content">
+            <div class="progress-tracker">
+                <h3>Sermon Building Progress</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <p id="progressText">0% Complete - Ready to begin</p>
+            </div>
+            
+            <div class="build-section">
+                <h2>Step 1: Foundation - Enter the Text's World</h2>
+                <div class="reminder-box">
+                    <strong>Remember:</strong> Pray before you write.
+                </div>
+                <div class="form-group">
+                    <label for="textReference">Scripture Reference:</label>
+                    <textarea id="textReference" placeholder="Enter the Bible passage you'll be preaching from..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="historicalContext">Historical & Literary Context (2-3 sentences):</label>
+                    <textarea id="historicalContext" placeholder="What's being constructed here? Why was it designed? How did it resonate with the first inhabitants?"></textarea>
+                </div>
+            </div>
+            
+            <div class="build-section">
+                <h2>Step 2: Cornerstone - Consider Jesus</h2>
+                <div class="reminder-box">
+                    <strong>Piper's Focus:</strong> Display the majesty of God in Christ - this is your authority.
+                </div>
+                <div class="form-group">
+                    <label for="jesusConnection">How does Jesus/Gospel connect to this text?</label>
+                    <textarea id="jesusConnection" placeholder="Before outlining, articulate how Christ's character and the Gospel message inform this passage..."></textarea>
+                </div>
+            </div>
+            
+            <div class="build-section">
+                <h2>Step 3: Pillars - Three Supporting Points</h2>
+                <div class="reminder-box">
+                    <strong>Merida's Heart:</strong> Approach each point with love for people - shepherd their hearts.
+                </div>
+                
+                <h3>Pillar 1:</h3>
+                <div class="form-group">
+                    <label for="pillar1Point">Point 1 - What's the truth here?</label>
+                    <textarea id="pillar1Point" placeholder="State your first main point clearly..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="pillar1Explanation">Explanation & Principle:</label>
+                    <textarea id="pillar1Explanation" placeholder="Explain the scene and draw the principle - what does this show us about God or life?"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="pillar1Illustration">Illustration (Velcro):</label>
+                    <textarea id="pillar1Illustration" placeholder="Something relatable or personal to help it stick..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="pillar1Challenge">Challenge/Application:</label>
+                    <textarea id="pillar1Challenge" placeholder="Ask a practical, pointed question that hits the need..."></textarea>
+                </div>
+                
+                <h3>Pillar 2:</h3>
+                <div class="form-group">
+                    <label for="pillar2Point">Point 2 - What's the truth here?</label>
+                    <textarea id="pillar2Point" placeholder="State your second main point clearly..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="pillar2Explanation">Explanation & Principle:</label>
+                    <textarea id="pillar2Explanation" placeholder="Explain the scene and draw the principle..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="pillar2Illustration">Illustration (Velcro):</label>
+                    <textarea id="pillar2Illustration" placeholder="Something relatable or personal to help it stick..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="pillar2Challenge">Challenge/Application:</label>
+                    <textarea id="pillar2Challenge" placeholder="Ask a practical, pointed question..."></textarea>
+                </div>
+                
+                <h3>Pillar 3:</h3>
+                <div class="form-group">
+                    <label for="pillar3Point">Point 3 - What's the truth here?</label>
+                    <textarea id="pillar3Point" placeholder="State your third main point clearly..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="pillar3Explanation">Explanation & Principle:</label>
+                    <textarea id="pillar3Explanation" placeholder="Explain the scene and draw the principle..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="pillar3Illustration">Illustration (Velcro):</label>
+                    <textarea id="pillar3Illustration" placeholder="Something relatable or personal to help it stick..."></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="pillar3Challenge">Challenge/Application:</label>
+                    <textarea id="pillar3Challenge" placeholder="Ask a practical, pointed question..."></textarea>
+                </div>
+            </div>
+            
+            <div class="build-section">
+                <h2>Step 4: Keystone - The Christ Connection</h2>
+                <div class="reminder-box">
+                    <strong>The Goal:</strong> Show how Christ holds all three pillars together and gives meaning to the entire structure.
+                </div>
+                <div class="form-group">
+                    <label for="christKeystone">How does Christ unify all three points?</label>
+                    <textarea id="christKeystone" placeholder="Connect His life, death, resurrection, or Spirit-presence to create one cohesive Gospel-centered message..."></textarea>
+                </div>
+            </div>
+            
+            <div class="build-section">
+                <h2>Step 5: Capstone - Bring It All Together</h2>
+                <div class="reminder-box">
+                    <strong>Preaching Insights:</strong> Keep it around 30 minutes - respect your people's attention while delivering the complete message.
+                </div>
+                <div class="form-group">
+                    <label for="conclusion">Conclusion - Unity and Call:</label>
+                    <textarea id="conclusion" placeholder="Review the 3 points clearly, call the church to build their lives on this foundation, and pray for alignment..."></textarea>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin: 30px 0;">
+                <button class="save-btn" onclick="emailSermon()">Email Outline</button>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="sermonOutline" style="display: none; background: white; padding: 30px; margin: 20px 0; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.1);">
+        <h2 style="text-align: center; color: #8b7355; margin-bottom: 30px;">📜 Your Sermon Outline</h2>
+        <div id="outlineContent"></div>
+    </div>
+
+    <script>
+        function showTab(tabName) {
+            // Hide all tab content
+            const allTabs = document.querySelectorAll('.tab-content');
+            allTabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Remove active class from all tab buttons
+            const allButtons = document.querySelectorAll('.tab-btn');
+            allButtons.forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected tab and activate button
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+        
+        function toggleExpanded(stepNumber) {
+            const expandedContent = document.getElementById(`expanded-${stepNumber}`);
+            const stepCard = expandedContent.closest('.step-card');
+            
+            // Toggle the expanded content
+            expandedContent.classList.toggle('show');
+            
+            // If we're expanding (not collapsing), scroll to the step card
+            if (expandedContent.classList.contains('show')) {
+                // Small delay to allow the expansion animation to start
+                setTimeout(() => {
+                    stepCard.scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'start',
+                        inline: 'nearest'
+                    });
+                }, 100);
+            }
+        }
+        
+        function updateProgress() {
+            const fields = [
+                'textReference', 'historicalContext', 'jesusConnection',
+                'pillar1Point', 'pillar1Explanation', 'pillar1Illustration', 'pillar1Challenge',
+                'pillar2Point', 'pillar2Explanation', 'pillar2Illustration', 'pillar2Challenge',
+                'pillar3Point', 'pillar3Explanation', 'pillar3Illustration', 'pillar3Challenge',
+                'christKeystone', 'conclusion'
+            ];
+            
+            let completedFields = 0;
+            fields.forEach(fieldId => {
+                const field = document.getElementById(fieldId);
+                if (field && field.value.trim() !== '') {
+                    completedFields++;
+                }
+            });
+            
+            const percentage = Math.round((completedFields / fields.length) * 100);
+            const progressFill = document.getElementById('progressFill');
+            const progressText = document.getElementById('progressText');
+            
+            progressFill.style.width = percentage + '%';
+            progressText.textContent = `${percentage}% Complete`;
+            
+            if (percentage === 100) {
+                progressText.textContent = `${percentage}% Complete - Ready to preach! 🎉`;
+            } else if (percentage >= 75) {
+                progressText.textContent = `${percentage}% Complete - Almost there!`;
+            } else if (percentage >= 50) {
+                progressText.textContent = `${percentage}% Complete - Good progress!`;
+            } else if (percentage >= 25) {
+                progressText.textContent = `${percentage}% Complete - Building momentum`;
+            } else if (percentage > 0) {
+                progressText.textContent = `${percentage}% Complete - Great start!`;
+            }
+        }
+        
+        function generateSermonOutline() {
+            const outline = `
+                <div style="font-family: Georgia, serif; line-height: 1.8; color: #4a4a4a;">
+                    <h3 style="color: #8b7355; border-bottom: 2px solid #d4c4a8; padding-bottom: 10px;">
+                        📖 ${document.getElementById('textReference').value || 'Scripture Reference'}
+                    </h3>
+                    
+                    <div style="margin: 20px 0; padding: 15px; background: #f8f6f3; border-left: 4px solid #8b7355; border-radius: 5px;">
+                        <strong>Foundation - Context:</strong><br>
+                        ${document.getElementById('historicalContext').value || 'Historical and literary context...'}
+                    </div>
+                    
+                    <div style="margin: 20px 0; padding: 15px; background: #f0f8ff; border-left: 4px solid #4682b4; border-radius: 5px;">
+                        <strong>Cornerstone - Christ Connection:</strong><br>
+                        ${document.getElementById('jesusConnection').value || 'How Jesus connects to this text...'}
+                    </div>
+                    
+                    <div style="margin: 20px 0;">
+                        <h4 style="color: #8b7355; margin-bottom: 15px;"><img src="sermonstructurebuilding.png" alt="Sermon Structure Building" style="width: 72px; height: 108px; vertical-align: middle; margin-right: 8px;"> Three Pillars:</h4>
+                        
+                        <div style="margin: 15px 0; padding: 15px; border: 1px solid #d4c4a8; border-radius: 8px;">
+                            <strong>1. ${document.getElementById('pillar1Point').value || 'Point 1'}</strong><br>
+                            <em>Explanation:</em> ${document.getElementById('pillar1Explanation').value || 'Explanation and principle...'}<br>
+                            <em>Illustration:</em> ${document.getElementById('pillar1Illustration').value || 'Illustration...'}<br>
+                            <em>Challenge:</em> ${document.getElementById('pillar1Challenge').value || 'Application and challenge...'}
+                        </div>
+                        
+                        <div style="margin: 15px 0; padding: 15px; border: 1px solid #d4c4a8; border-radius: 8px;">
+                            <strong>2. ${document.getElementById('pillar2Point').value || 'Point 2'}</strong><br>
+                            <em>Explanation:</em> ${document.getElementById('pillar2Explanation').value || 'Explanation and principle...'}<br>
+                            <em>Illustration:</em> ${document.getElementById('pillar2Illustration').value || 'Illustration...'}<br>
+                            <em>Challenge:</em> ${document.getElementById('pillar2Challenge').value || 'Application and challenge...'}
+                        </div>
+                        
+                        <div style="margin: 15px 0; padding: 15px; border: 1px solid #d4c4a8; border-radius: 8px;">
+                            <strong>3. ${document.getElementById('pillar3Point').value || 'Point 3'}</strong><br>
+                            <em>Explanation:</em> ${document.getElementById('pillar3Explanation').value || 'Explanation and principle...'}<br>
+                            <em>Illustration:</em> ${document.getElementById('pillar3Illustration').value || 'Illustration...'}<br>
+                            <em>Challenge:</em> ${document.getElementById('pillar3Challenge').value || 'Application and challenge...'}
+                        </div>
+                    </div>
+                    
+                    <div style="margin: 20px 0; padding: 15px; background: #fff3cd; border-left: 4px solid #ffc107; border-radius: 5px;">
+                        <strong>Keystone - Unity in Christ:</strong><br>
+                        ${document.getElementById('christKeystone').value || 'How Christ unifies all three points...'}
+                    </div>
+                    
+                    <div style="margin: 20px 0; padding: 15px; background: #e8f5e8; border-left: 4px solid #4caf50; border-radius: 5px;">
+                        <strong>Capstone - Conclusion:</strong><br>
+                        ${document.getElementById('conclusion').value || 'Bringing it all together...'}
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 10px;">
+                        <p style="font-style: italic; color: #666;">
+                            "Preach the word; be ready in season and out of season; reprove, rebuke, and exhort, with complete patience and teaching." - 2 Timothy 4:2
+                        </p>
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('outlineContent').innerHTML = outline;
+            document.getElementById('sermonOutline').style.display = 'block';
+            document.getElementById('sermonOutline').scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        function emailSermon() {
+            // Create beautifully formatted sermon outline
+            const outline = `
+${document.getElementById('textReference').value || 'Scripture Reference'}
+
+FOUNDATION - Context:
+${document.getElementById('historicalContext').value || 'Historical and literary context...'}
+
+CORNERSTONE - Christ Connection:
+${document.getElementById('jesusConnection').value || 'How Jesus connects to this text...'}
+
+THREE PILLARS:
+
+1. ${document.getElementById('pillar1Point').value || 'Point 1'}
+   • Explanation: ${document.getElementById('pillar1Explanation').value || 'Explanation and principle...'}
+   • Illustration: ${document.getElementById('pillar1Illustration').value || 'Illustration...'}
+   • Challenge: ${document.getElementById('pillar1Challenge').value || 'Application and challenge...'}
+
+2. ${document.getElementById('pillar2Point').value || 'Point 2'}
+   • Explanation: ${document.getElementById('pillar2Explanation').value || 'Explanation and principle...'}
+   • Illustration: ${document.getElementById('pillar2Illustration').value || 'Illustration...'}
+   • Challenge: ${document.getElementById('pillar2Challenge').value || 'Application and challenge...'}
+
+3. ${document.getElementById('pillar3Point').value || 'Point 3'}
+   • Explanation: ${document.getElementById('pillar3Explanation').value || 'Explanation and principle...'}
+   • Illustration: ${document.getElementById('pillar3Illustration').value || 'Illustration...'}
+   • Challenge: ${document.getElementById('pillar3Challenge').value || 'Application and challenge...'}
+
+KEYSTONE - Unity in Christ:
+${document.getElementById('christKeystone').value || 'How Christ unifies all three points...'}
+
+CAPSTONE - Conclusion:
+${document.getElementById('conclusion').value || 'Bringing it all together...'}
+
+---
+"Preach the word; be ready in season and out of season; reprove, rebuke, and exhort, with complete patience and teaching." - 2 Timothy 4:2
+
+Generated using Preaching Training - MinistryBag.com
+            `;
+            
+            // Create email subject and body
+            const subject = encodeURIComponent('Sermon Outline - ' + (document.getElementById('textReference').value || 'Scripture Reference'));
+            const body = encodeURIComponent(outline);
+            
+            // Create mailto link
+            const mailtoLink = `mailto:?subject=${subject}&body=${body}`;
+            
+            // Open email client
+            window.location.href = mailtoLink;
+        }
+        
+        // Add event listeners for progress tracking
+        document.addEventListener('DOMContentLoaded', function() {
+            const buildTabInputs = document.querySelectorAll('#build textarea');
+            buildTabInputs.forEach(input => {
+                input.addEventListener('input', updateProgress);
+                input.addEventListener('blur', updateProgress);
+            });
+            
+            // Initial progress check
+            updateProgress();
+        });
+        
+        // Auto-save functionality (stores in memory for the session)
+        function autoSave() {
+            const formData = {};
+            const inputs = document.querySelectorAll('#build textarea');
+            inputs.forEach(input => {
+                formData[input.id] = input.value;
+            });
+            // In a real app, this would save to a backend or localStorage
+            // For this demo, we'll just store in memory
+            window.currentSermon = formData;
+        }
+        
+        // Auto-save every 30 seconds
+        setInterval(autoSave, 30000);
+        
+        // Save on input changes
+        document.addEventListener('DOMContentLoaded', function() {
+            const inputs = document.querySelectorAll('#build textarea');
+            inputs.forEach(input => {
+                input.addEventListener('input', autoSave);
+            });
+        });
+    </script>
+</body>
+</html>
