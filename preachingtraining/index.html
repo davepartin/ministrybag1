@@ -40,6 +40,13 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            gap: 20px;
+            position: relative;
+        }
+        
+        .header-content a {
+            z-index: 10;
+            position: relative;
         }
         
         .header-logo {
@@ -677,8 +684,8 @@
     <div class="container">
         <div class="header">
             <div class="header-content">
-                <a href="../index.html" style="text-decoration: none; display: block;">
-                    <img src="../ministrybagsatchel1.svg" alt="MinistryBag" style="max-width: 80px; height: auto;">
+                <a href="../index.html" style="text-decoration: none; display: block; border: 2px solid red; background: rgba(255,0,0,0.1);">
+                    <img src="../ministrybagsatchel1.svg" alt="MinistryBag" style="max-width: 80px; height: auto; display: block;">
                 </a>
                 <img src="Preaching_Training_Logo_Transparent2.png" alt="Preaching Training Logo" class="header-logo">
             </div>
