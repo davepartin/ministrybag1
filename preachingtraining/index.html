@@ -685,6 +685,7 @@
             <button class="tab-btn active" onclick="showTab('framework')">The Framework</button>
             <button class="tab-btn" onclick="showTab('build')">Build Your Sermon</button>
             <button class="tab-btn" onclick="showTab('foundations')">Preaching Guidance</button>
+            <button class="tab-btn" onclick="downloadPDF()">Download PDF</button>
         </div>
         
         <div id="framework" class="tab-content active">
@@ -904,9 +905,7 @@
             
             <div class="build-section">
                 <h2>Step 1: Foundation - Enter the Text's World</h2>
-                <div class="reminder-box">
-                    <strong>Remember:</strong> Pray before you write.
-                </div>
+
                 <div class="form-group">
                     <label for="textReference">Scripture Reference:</label>
                     <textarea id="textReference" placeholder="Enter the Bible passage you'll be preaching from..."></textarea>
@@ -919,9 +918,7 @@
             
             <div class="build-section">
                 <h2>Step 2: Cornerstone - Consider Jesus</h2>
-                <div class="reminder-box">
-                    <strong>Piper's Focus:</strong> Display the majesty of God in Christ - this is your authority.
-                </div>
+
                 <div class="form-group">
                     <label for="jesusConnection">How does Jesus/Gospel connect to this text?</label>
                     <textarea id="jesusConnection" placeholder="Before outlining, articulate how Christ's character and the Gospel message inform this passage..."></textarea>
@@ -930,9 +927,7 @@
             
             <div class="build-section">
                 <h2>Step 3: Pillars - Three Supporting Points</h2>
-                <div class="reminder-box">
-                    <strong>Merida's Heart:</strong> Approach each point with love for people - shepherd their hearts.
-                </div>
+
                 
                 <h3>Pillar 1:</h3>
                 <div class="form-group">
@@ -991,9 +986,7 @@
             
             <div class="build-section">
                 <h2>Step 4: Keystone - The Christ Connection</h2>
-                <div class="reminder-box">
-                    <strong>The Goal:</strong> Show how Christ holds all three pillars together and gives meaning to the entire structure.
-                </div>
+
                 <div class="form-group">
                     <label for="christKeystone">How does Christ unify all three points?</label>
                     <textarea id="christKeystone" placeholder="Connect His life, death, resurrection, or Spirit-presence to create one cohesive Gospel-centered message..."></textarea>
@@ -1002,9 +995,7 @@
             
             <div class="build-section">
                 <h2>Step 5: Capstone - Bring It All Together</h2>
-                <div class="reminder-box">
-                    <strong>Preaching Insights:</strong> Keep it around 30 minutes - respect your people's attention while delivering the complete message.
-                </div>
+
                 <div class="form-group">
                     <label for="conclusion">Conclusion - Unity and Call:</label>
                     <textarea id="conclusion" placeholder="Review the 3 points clearly, call the church to build their lives on this foundation, and pray for alignment..."></textarea>
@@ -1013,6 +1004,7 @@
             
             <div style="text-align: center; margin: 30px 0;">
                 <button class="save-btn" onclick="emailSermon()">Email Outline</button>
+                <a href="Building a Structured Sermon PDF.pdf" download class="save-btn" style="text-decoration: none; display: inline-block;">Download PDF Guide</a>
             </div>
         </div>
 
@@ -1213,6 +1205,19 @@ Generated using Preaching Training - MinistryBag.com
             
             // Open email client
             window.location.href = mailtoLink;
+        }
+        
+        function downloadPDF() {
+            // Create a temporary link element to trigger the download
+            const link = document.createElement('a');
+            link.href = 'Building a Structured Sermon PDF.pdf';
+            link.download = 'Building a Structured Sermon PDF.pdf';
+            link.style.display = 'none';
+            
+            // Append to body, click, and remove
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
         }
         
         // Add event listeners for progress tracking
