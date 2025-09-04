@@ -40,18 +40,24 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 20px;
             position: relative;
         }
         
         .header-content a {
             z-index: 10;
-            position: relative;
+            position: absolute;
+            top: 0px;
+            left: 10px;
         }
         
         .satchel-logo {
             text-decoration: none;
             display: block;
+        }
+        
+        .satchel-logo img {
+            width: 40px;
+            height: 40px;
         }
         
         .header-logo {
@@ -694,7 +700,7 @@
         <div class="header">
             <div class="header-content">
                 <a href="../index.html" class="satchel-logo">
-                    <img src="../ministrybagsatchel1.svg" alt="Ministry Bag Home" width="80" height="80">
+                    <img src="../ministrybagsatchel1.svg" alt="Ministry Bag Home">
                 </a>
                 <img src="Preaching_Training_Logo_Transparent2.png" alt="Preaching Training Logo" class="header-logo">
             </div>
