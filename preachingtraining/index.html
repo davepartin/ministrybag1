@@ -1237,13 +1237,18 @@ Generated using Preaching Training - MinistryBag.com
         }
         
         function downloadPDF() {
-            // For iOS home screen apps (standalone mode), we need to navigate directly
-            // and provide a way back. Check if running as standalone app.
+            // For iOS home screen apps (standalone mode), open in external browser
+            // This allows users to view PDF and easily return to the web app
             if (window.navigator.standalone) {
-                // Running as iOS home screen app
-                if (confirm('This will open the PDF. You can use the back arrow at the top to return to the sermon builder.')) {
-                    window.location.href = 'Building a Structured Sermon PDF.pdf';
-                }
+                // Running as iOS home screen app - open in Safari/Chrome
+                // Use a blank anchor tag with target="_blank" to force external browser
+                const a = document.createElement('a');
+                a.href = window.location.origin + window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/')) + '/Building a Structured Sermon PDF.pdf';
+                a.target = '_system'; // Try to open in system browser
+                a.rel = 'noopener noreferrer';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
             } else {
                 // Normal browser - open in new tab
                 window.open('Building a Structured Sermon PDF.pdf', '_blank');
