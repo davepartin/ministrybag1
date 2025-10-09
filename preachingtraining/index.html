@@ -1234,16 +1234,9 @@ Generated using Preaching Training - MinistryBag.com
         }
         
         function downloadPDF() {
-            // Create a temporary link element to trigger the download
-            const link = document.createElement('a');
-            link.href = 'Building a Structured Sermon PDF.pdf';
-            link.download = 'Building a Structured Sermon PDF.pdf';
-            link.style.display = 'none';
-            
-            // Append to body, click, and remove
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
+            // Open PDF in a new tab instead of forcing download
+            // This allows users to view it and easily navigate back
+            window.open('Building a Structured Sermon PDF.pdf', '_blank');
         }
         
         function saveSermonData() {
