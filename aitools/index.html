@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Tools for Ministry Leaders | MinistryBag</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #6B46C1;
+            --secondary: #EC4899;
+            --accent: #F59E0B;
+            --dark: #1F2937;
+            --light: #F9FAFB;
+            --gradient: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: var(--light);
+        }
+        
+        .hero {
+            background: var(--gradient);
+            color: white;
+            padding: 4rem 1rem 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .tagline {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .ai-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+            animation: glow 2s ease-in-out infinite;
+        }
+        
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(255,255,255,0.3); }
+            50% { box-shadow: 0 0 30px rgba(255,255,255,0.5); }
+        }
+        
+        .presenters {
+            font-size: 1.1rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .section {
+            padding: 4rem 0;
+        }
+        
+        .section:nth-child(even) {
+            background: white;
+        }
+        
+        h2 {
+            font-size: 2.25rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+            text-align: center;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #6B7280;
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+        
+        .grid {
+            display: grid;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        }
+        
+        .grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+        
+        .card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.07);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            border-color: var(--primary);
+        }
+        
+        .card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .icon {
+            width: 24px;
+            height: 24px;
+            flex-shrink: 0;
+        }
+        
+        .card ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .card li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .card li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+        
+        .tool-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .tool-card {
+            background: var(--gradient);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .tool-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
+            transform: rotate(45deg);
+            transition: all 0.5s ease;
+        }
+        
+        .tool-card:hover {
+            transform: scale(1.05);
+        }
+        
+        .tool-card:hover::before {
+            top: -20%;
+            left: -20%;
+        }
+        
+        .tool-name {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .tool-desc {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .prompt-box {
+            background: #F3F4F6;
+            border-left: 4px solid var(--accent);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+            position: relative;
+        }
+        
+        .prompt-box h4 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        .prompt-text {
+            font-family: 'Courier New', monospace;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: #374151;
+        }
+        
+        .copy-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            transition: all 0.3s ease;
+        }
+        
+        .copy-btn:hover {
+            background: #D97706;
+            transform: scale(1.05);
+        }
+        
+        .copy-btn.copied {
+            background: #10B981;
+        }
+        
+        .examples-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .example-card {
+            background: linear-gradient(135deg, #667EEA 0%, #764BA2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .example-card::after {
+            content: '→';
+            position: absolute;
+            right: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            opacity: 0.5;
+            transition: all 0.3s ease;
+        }
+        
+        .example-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+        
+        .example-card:hover::after {
+            right: 1rem;
+            opacity: 1;
+        }
+        
+        .example-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .example-desc {
+            opacity: 0.9;
+            font-size: 0.95rem;
+        }
+        
+        .cta-section {
+            background: var(--gradient);
+            color: white;
+            padding: 4rem 1rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+        
+        .cta-section h2 {
+            color: white;
+            margin-bottom: 2rem;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background: white;
+            color: var(--primary);
+        }
+        
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        .live-demo {
+            background: #FEF3C7;
+            border: 2px dashed var(--accent);
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            margin: 2rem 0;
+        }
+        
+        .live-demo h3 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+        
+        .timer {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+        }
+        
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.75rem; }
+            .grid { gap: 1rem; }
+            .section { padding: 2rem 0; }
+        }
+        
+        .pulse {
+            animation: pulse-text 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse-text {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="container">
+            <div class="ai-badge">✨ This page was created by AI in under 60 seconds</div>
+            <h1>AI Tools for Ministry Leaders</h1>
+            <p class="tagline">Transform Your Ministry with Artificial Intelligence</p>
+            <p class="presenters">Presented by Dave Partin & Matt | MinistryBag.com</p>
+        </div>
+    </header>
+
+    <!-- Quick Wins Section -->
+    <section class="section">
+        <div class="container">
+            <h2>🚀 Quick Wins You Can Use TODAY</h2>
+            <p class="subtitle">No technical skills required - just copy, paste, and customize</p>
+            
+            <div class="grid grid-2">
+                <div class="card">
+                    <h3>
+                        <span class="icon">📖</span>
+                        Sermon Preparation
+                    </h3>
+                    <ul>
+                        <li>Generate sermon illustrations from any passage</li>
+                        <li>Create discussion questions for small groups</li>
+                        <li>Find modern analogies for biblical concepts</li>
+                        <li>Develop sermon series themes</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>
+                        <span class="icon">💬</span>
+                        Communication & Outreach
+                    </h3>
+                    <ul>
+                        <li>Draft personalized emails to congregants</li>
+                        <li>Create social media content calendars</li>
+                        <li>Write newsletter articles</li>
+                        <li>Generate event descriptions</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>
+                        <span class="icon">📚</span>
+                        Teaching & Discipleship
+                    </h3>
+                    <ul>
+                        <li>Create Bible study guides</li>
+                        <li>Generate memory verse activities</li>
+                        <li>Design curriculum outlines</li>
+                        <li>Build interactive lesson plans</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>
+                        <span class="icon">⚙️</span>
+                        Administration
+                    </h3>
+                    <ul>
+                        <li>Draft volunteer job descriptions</li>
+                        <li>Create meeting agendas</li>
+                        <li>Generate budget reports</li>
+                        <li>Write grant proposals</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Tools Section -->
+    <section class="section">
+        <div class="container">
+            <h2>🛠️ Your AI Toolkit</h2>
+            <p class="subtitle">Click any tool to get started (all have free versions)</p>
+            
+            <div class="tool-grid">
+                <a href="https://claude.ai" target="_blank" class="tool-card">
+                    <div class="tool-name">Claude</div>
+                    <div class="tool-desc">Best for writing & complex tasks</div>
+                </a>
+                
+                <a href="https://chat.openai.com" target="_blank" class="tool-card">
+                    <div class="tool-name">ChatGPT</div>
+                    <div class="tool-desc">Most versatile & widely used</div>
+                </a>
+                
+                <a href="https://gemini.google.com" target="_blank" class="tool-card">
+                    <div class="tool-name">Gemini</div>
+                    <div class="tool-desc">Great with Google Workspace</div>
+                </a>
+                
+                <a href="https://www.perplexity.ai" target="_blank" class="tool-card">
+                    <div class="tool-name">Perplexity</div>
+                    <div class="tool-desc">Best for research & citations</div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Prompts Section -->
+    <section class="section">
+        <div class="container">
+            <h2>📝 Copy & Paste Prompts</h2>
+            <p class="subtitle">Click "Copy" and paste these directly into any AI tool</p>
+            
+            <div class="prompt-box">
+                <button class="copy-btn" onclick="copyPrompt(this, 'prompt1')">Copy</button>
+                <h4>Sermon Illustration Generator</h4>
+                <div class="prompt-text" id="prompt1">I'm preaching on [BIBLE PASSAGE] this Sunday. The main point is [YOUR MAIN POINT]. Can you give me 3 modern-day illustrations or stories that would help my congregation understand this concept? Please make them relatable to everyday life and include a mix of personal, historical, and contemporary examples.</div>
+            </div>
+            
+            <div class="prompt-box">
+                <button class="copy-btn" onclick="copyPrompt(this, 'prompt2')">Copy</button>
+                <h4>Small Group Discussion Builder</h4>
+                <div class="prompt-text" id="prompt2">Create a small group discussion guide for [BIBLE PASSAGE]. Include: 
+1) An icebreaker question
+2) 3 observation questions about the text
+3) 2 interpretation questions about the meaning
+4) 2 application questions for daily life
+5) A closing prayer prompt
+Make it suitable for a 45-minute discussion with 6-8 adults.</div>
+            </div>
+            
+            <div class="prompt-box">
+                <button class="copy-btn" onclick="copyPrompt(this, 'prompt3')">Copy</button>
+                <h4>Email Draft Assistant</h4>
+                <div class="prompt-text" id="prompt3">Help me write a warm, pastoral email about [TOPIC/SITUATION]. The tone should be encouraging and grace-filled. Include:
+- A personal greeting
+- Acknowledgment of the situation
+- Biblical encouragement
+- Practical next steps
+- An offer of continued support
+Keep it under 200 words and end with an appropriate blessing.</div>
+            </div>
+            
+            <div class="prompt-box">
+                <button class="copy-btn" onclick="copyPrompt(this, 'prompt4')">Copy</button>
+                <h4>Social Media Content Creator</h4>
+                <div class="prompt-text" id="prompt4">Create 5 social media posts for our church's [PLATFORM: Facebook/Instagram/Twitter] about [TOPIC/EVENT]. Include:
+- Engaging opening lines
+- Relevant scripture or quote
+- Call to action
+- Appropriate hashtags
+- Emoji suggestions
+Vary the style between informational, inspirational, and invitational. Keep each post under [WORD COUNT] words.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Real Examples Section -->
+    <section class="section">
+        <div class="container">
+            <h2>✨ Real Projects Built with AI</h2>
+            <p class="subtitle">Dave's actual ministry tools - all created with AI assistance</p>
+            
+            <div class="examples-grid">
+                <a href="https://davepartin.github.io/bible-memory/" target="_blank" class="example-card">
+                    <div class="example-title">Heart52</div>
+                    <div class="example-desc">Bible memory app with 52 verses for 52 weeks</div>
+                </a>
+                
+                <a href="https://davepartin.github.io/typesight/" target="_blank" class="example-card">
+                    <div class="example-title">TypeSight</div>
+                    <div class="example-desc">Dyslexia learning tool for sight words & typing</div>
+                </a>
+                
+                <a href="https://ministrybag.com" target="_blank" class="example-card">
+                    <div class="example-title">MinistryBag</div>
+                    <div class="example-desc">Central hub for ministry resources & tools</div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Live Demo Section -->
+    <section class="section">
+        <div class="container">
+            <div class="live-demo">
+                <h3>⏱️ LIVE CHALLENGE</h3>
+                <p>Watch us build something useful for your ministry in...</p>
+                <div class="timer pulse">2:00</div>
+                <p>Real-time AI demonstration during our session!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Advanced Section -->
+    <section class="section">
+        <div class="container">
+            <h2>🎯 Level Up: Advanced Uses</h2>
+            <p class="subtitle">Once you're comfortable with the basics</p>
+            
+            <div class="grid grid-3">
+                <div class="card">
+                    <h3>📊 Data Analysis</h3>
+                    <ul>
+                        <li>Attendance pattern insights</li>
+                        <li>Giving trends analysis</li>
+                        <li>Survey response summaries</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>🎨 Creative Projects</h3>
+                    <ul>
+                        <li>Worship service themes</li>
+                        <li>VBS curriculum design</li>
+                        <li>Drama script writing</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>🤖 Automation</h3>
+                    <ul>
+                        <li>Visitor follow-up sequences</li>
+                        <li>Prayer request management</li>
+                        <li>Event planning workflows</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <div class="cta-section">
+        <div class="container">
+            <h2>Ready to Transform Your Ministry?</h2>
+            <p style="margin-bottom: 2rem; font-size: 1.1rem;">Start with one tool, one prompt, one experiment today</p>
+            
+            <div class="button-group">
+                <a href="https://claude.ai" target="_blank" class="btn btn-primary">Try Claude Now (It's Free)</a>
+                <a href="https://ministrybag.com" target="_blank" class="btn btn-primary">Visit MinistryBag</a>
+            </div>
+            
+            <p style="margin-top: 2rem; opacity: 0.9;">Questions? Reach out to Dave & Matt after the session!</p>
+        </div>
+    </div>
+
+    <script>
+        function copyPrompt(button, promptId) {
+            const promptText = document.getElementById(promptId).textContent;
+            navigator.clipboard.writeText(promptText).then(() => {
+                button.textContent = 'Copied!';
+                button.classList.add('copied');
+                setTimeout(() => {
+                    button.textContent = 'Copy';
+                    button.classList.remove('copied');
+                }, 2000);
+            });
+        }
+        
+        // Animated timer for demo
+        function startTimer() {
+            let time = 120; // 2 minutes in seconds
+            const timerElement = document.querySelector('.timer');
+            
+            setInterval(() => {
+                const minutes = Math.floor(time / 60);
+                const seconds = time % 60;
+                timerElement.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+                
+                if (time > 0) {
+                    time--;
+                } else {
+                    timerElement.textContent = "GO!";
+                }
+            }, 1000);
+        }
+        
+        // Start timer when page loads (you can trigger this during your presentation)
+        // startTimer();
+    </script>
+</body>
+</html>
