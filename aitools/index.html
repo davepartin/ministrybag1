@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Tools for Ministry Leaders | MinistryBag</title>
+    <title>AI Tools for Ministry Leaders | Study Notes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Caveat:wght@400;600&family=Inconsolata&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,250 +13,348 @@
         }
         
         :root {
-            --primary: #6B46C1;
-            --secondary: #EC4899;
-            --accent: #F59E0B;
-            --dark: #1F2937;
-            --light: #F9FAFB;
-            --gradient: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            --paper: #FAF7F0;
+            --paper-dark: #F4EFE4;
+            --ink: #2C2C2C;
+            --ink-light: #5A5A5A;
+            --accent: #2D5A3D;
+            --accent-light: #4A7C5D;
+            --burgundy: #8B2635;
+            --coffee: #D4A574;
+            --sticky-yellow: #FFF5B4;
         }
         
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-            line-height: 1.6;
-            color: var(--dark);
-            background: var(--light);
-        }
-        
-        .hero {
-            background: var(--gradient);
-            color: white;
-            padding: 4rem 1rem 3rem;
-            text-align: center;
+            font-family: 'Crimson Text', serif;
+            line-height: 1.7;
+            color: var(--ink);
+            background: var(--paper);
             position: relative;
-            overflow: hidden;
+            font-size: 18px;
         }
         
-        .hero::before {
+        body::before {
             content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-            animation: pulse 4s ease-in-out infinite;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                repeating-linear-gradient(
+                    var(--paper) 0px,
+                    var(--paper) 24px,
+                    #E8E3D8 25px,
+                    #E8E3D8 26px
+                ),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><filter id="paper"><feTurbulence baseFrequency="0.04" numOctaves="5" /></filter><rect width="100" height="100" filter="url(%23paper)" opacity="0.02"/></svg>');
+            pointer-events: none;
+            opacity: 0.3;
+            z-index: 1;
         }
         
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 0.5; }
-            50% { transform: scale(1.1); opacity: 0.8; }
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 50px;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--burgundy) 0%, var(--burgundy) 70%, transparent 100%);
+            opacity: 0.2;
+            z-index: 1;
+        }
+        
+        .coffee-stain {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, 
+                transparent 30%, 
+                rgba(212, 165, 116, 0.05) 31%, 
+                rgba(212, 165, 116, 0.08) 50%, 
+                transparent 52%
+            );
+            pointer-events: none;
+        }
+        
+        .coffee-stain-1 {
+            top: 100px;
+            right: 150px;
+            transform: rotate(45deg);
+        }
+        
+        .coffee-stain-2 {
+            bottom: 300px;
+            left: 100px;
+            width: 120px;
+            height: 120px;
+            transform: rotate(-30deg);
         }
         
         .container {
-            max-width: 1200px;
+            max-width: 900px;
             margin: 0 auto;
-            padding: 0 1rem;
+            padding: 0 80px 0 100px;
+            position: relative;
+            z-index: 2;
         }
         
-        h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+        .hero {
+            padding: 4rem 0 3rem;
+            text-align: center;
             position: relative;
-            z-index: 1;
+        }
+        
+        .hero h1 {
+            font-size: 3.8rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--ink);
+            position: relative;
+            letter-spacing: -0.5px;
+            line-height: 1.2;
+            font-family: 'Crimson Text', serif;
+        }
+        
+        .hero h1::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 2px;
+            background: var(--accent);
+            margin: 1.5rem auto 0;
         }
         
         .tagline {
-            font-size: 1.25rem;
+            font-style: italic;
+            color: var(--ink-light);
             margin-bottom: 2rem;
-            opacity: 0.95;
-            position: relative;
-            z-index: 1;
+            font-size: 1.2rem;
         }
         
-        .ai-badge {
+        .sticky-note {
             display: inline-block;
-            background: rgba(255,255,255,0.2);
-            backdrop-filter: blur(10px);
-            padding: 0.5rem 1.5rem;
-            border-radius: 50px;
-            font-size: 0.875rem;
-            margin-bottom: 2rem;
+            background: var(--sticky-yellow);
+            padding: 3rem 2rem;
+            transform: rotate(-2deg);
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
             position: relative;
-            z-index: 1;
-            animation: glow 2s ease-in-out infinite;
+            font-family: 'Caveat', cursive;
+            font-size: 1.8rem;
+            color: var(--ink);
+            margin: 2rem 0;
         }
         
-        @keyframes glow {
-            0%, 100% { box-shadow: 0 0 20px rgba(255,255,255,0.3); }
-            50% { box-shadow: 0 0 30px rgba(255,255,255,0.5); }
+        .sticky-note::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 20px;
+            background: rgba(200,200,200,0.3);
+            border-radius: 50%;
         }
         
         .presenters {
-            font-size: 1.1rem;
-            position: relative;
-            z-index: 1;
+            margin-top: 2rem;
+            font-style: italic;
+            color: var(--ink-light);
         }
         
         .section {
-            padding: 4rem 0;
+            padding: 3rem 0;
+            position: relative;
+            z-index: 2;
         }
         
-        .section:nth-child(even) {
-            background: white;
+        .section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+            font-weight: 400;
+            position: relative;
+            padding-left: 40px;
         }
         
-        h2 {
-            font-size: 2.25rem;
-            margin-bottom: 1rem;
-            color: var(--primary);
-            text-align: center;
+        .section h2::before {
+            content: '§';
+            position: absolute;
+            left: 0;
+            color: var(--burgundy);
+            font-size: 2.5rem;
         }
         
-        .subtitle {
-            text-align: center;
-            color: #6B7280;
-            margin-bottom: 3rem;
+        .marginal-note {
+            position: absolute;
+            right: -60px;
+            width: 150px;
+            font-size: 0.85rem;
+            color: var(--ink-light);
+            font-style: italic;
+            line-height: 1.4;
+            font-family: 'Caveat', cursive;
             font-size: 1.1rem;
+            transform: rotate(-1deg);
+        }
+        
+        .underline {
+            text-decoration: underline;
+            text-decoration-color: var(--accent);
+            text-decoration-thickness: 2px;
+            text-underline-offset: 4px;
+        }
+        
+        .highlight {
+            background: linear-gradient(transparent 60%, rgba(45, 90, 61, 0.2) 60%);
+            padding: 0 4px;
         }
         
         .grid {
             display: grid;
             gap: 2rem;
-            margin-bottom: 2rem;
+            margin: 2rem 0;
         }
         
         .grid-2 {
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        }
-        
-        .grid-3 {
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
         }
         
         .card {
-            background: white;
+            background: var(--paper-dark);
             padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.07);
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
+            position: relative;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.08);
+            border: 1px solid rgba(0,0,0,0.05);
+            transform: rotate(-0.5deg);
         }
         
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-            border-color: var(--primary);
+        .card:nth-child(even) {
+            transform: rotate(0.5deg);
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            background: var(--paper);
+            z-index: -1;
+            transform: rotate(0.5deg);
         }
         
         .card h3 {
-            color: var(--primary);
+            color: var(--accent);
             margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .icon {
-            width: 24px;
-            height: 24px;
-            flex-shrink: 0;
+            font-size: 1.5rem;
+            font-weight: 600;
         }
         
         .card ul {
             list-style: none;
-            padding: 0;
         }
         
         .card li {
-            padding: 0.5rem 0;
+            margin: 0.5rem 0;
             padding-left: 1.5rem;
             position: relative;
         }
         
         .card li::before {
-            content: "→";
+            content: '→';
             position: absolute;
             left: 0;
-            color: var(--accent);
-            font-weight: bold;
+            color: var(--burgundy);
+            font-family: 'Caveat', cursive;
+            font-size: 1.3rem;
         }
         
         .tool-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
+            gap: 1.5rem;
             margin: 2rem 0;
         }
         
         .tool-card {
-            background: var(--gradient);
-            color: white;
+            background: white;
             padding: 1.5rem;
-            border-radius: 12px;
             text-align: center;
             text-decoration: none;
-            transition: all 0.3s ease;
+            color: var(--ink);
             position: relative;
-            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 2px solid var(--accent);
+            display: block;
         }
         
-        .tool-card::before {
+        .tool-card::after {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
-            transform: rotate(45deg);
-            transition: all 0.5s ease;
+            top: 10px;
+            right: 10px;
+            width: 20px;
+            height: 20px;
+            background: var(--burgundy);
+            border-radius: 50%;
+            clip-path: polygon(0 0, 100% 0, 100% 80%, 50% 100%, 0 80%);
         }
         
         .tool-card:hover {
-            transform: scale(1.05);
-        }
-        
-        .tool-card:hover::before {
-            top: -20%;
-            left: -20%;
+            transform: translateY(-3px) rotate(1deg);
+            box-shadow: 3px 3px 12px rgba(0,0,0,0.1);
         }
         
         .tool-name {
-            font-size: 1.25rem;
-            font-weight: bold;
+            font-size: 1.3rem;
+            font-weight: 600;
             margin-bottom: 0.5rem;
-            position: relative;
-            z-index: 1;
+            color: var(--accent);
         }
         
         .tool-desc {
             font-size: 0.9rem;
-            opacity: 0.9;
-            position: relative;
-            z-index: 1;
+            color: var(--ink-light);
+            font-style: italic;
         }
         
         .prompt-box {
-            background: #F3F4F6;
-            border-left: 4px solid var(--accent);
+            background: white;
+            border-left: 3px solid var(--accent);
             padding: 1.5rem;
-            border-radius: 8px;
-            margin: 1.5rem 0;
+            margin: 2rem 0;
             position: relative;
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.05);
+        }
+        
+        .prompt-box::before {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            font-size: 4rem;
+            color: var(--accent);
+            opacity: 0.2;
+            font-family: 'Crimson Text', serif;
         }
         
         .prompt-box h4 {
             color: var(--accent);
             margin-bottom: 1rem;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
+            font-weight: 600;
         }
         
         .prompt-text {
-            font-family: 'Courier New', monospace;
+            font-family: 'Inconsolata', monospace;
             font-size: 0.95rem;
-            line-height: 1.5;
-            color: #374151;
+            line-height: 1.6;
+            color: var(--ink-light);
         }
         
         .copy-btn {
@@ -265,217 +364,264 @@
             background: var(--accent);
             color: white;
             border: none;
-            padding: 0.5rem 1rem;
-            border-radius: 6px;
+            padding: 0.4rem 1rem;
             cursor: pointer;
             font-size: 0.875rem;
+            font-family: 'Caveat', cursive;
+            font-size: 1.1rem;
             transition: all 0.3s ease;
+            transform: rotate(2deg);
         }
         
         .copy-btn:hover {
-            background: #D97706;
-            transform: scale(1.05);
+            transform: rotate(-2deg) scale(1.05);
+            background: var(--accent-light);
         }
         
         .copy-btn.copied {
-            background: #10B981;
+            background: var(--accent-light);
         }
         
         .examples-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
             margin: 2rem 0;
         }
         
         .example-card {
-            background: linear-gradient(135deg, #667EEA 0%, #764BA2 100%);
-            color: white;
+            background: var(--paper-dark);
             padding: 2rem;
-            border-radius: 12px;
             text-decoration: none;
-            transition: all 0.3s ease;
+            color: var(--ink);
             position: relative;
-            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px dashed var(--accent);
         }
         
         .example-card::after {
             content: '→';
             position: absolute;
-            right: 1.5rem;
-            top: 50%;
-            transform: translateY(-50%);
+            bottom: 1rem;
+            right: 1rem;
+            font-family: 'Caveat', cursive;
             font-size: 2rem;
-            opacity: 0.5;
-            transition: all 0.3s ease;
+            color: var(--burgundy);
+            transform: rotate(-20deg);
         }
         
         .example-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-        }
-        
-        .example-card:hover::after {
-            right: 1rem;
-            opacity: 1;
+            background: white;
+            transform: translateY(-3px);
+            box-shadow: 3px 3px 12px rgba(0,0,0,0.1);
         }
         
         .example-title {
             font-size: 1.5rem;
-            font-weight: bold;
+            font-weight: 600;
             margin-bottom: 0.5rem;
+            color: var(--accent);
         }
         
         .example-desc {
-            opacity: 0.9;
+            font-style: italic;
             font-size: 0.95rem;
+            color: var(--ink-light);
+        }
+        
+        .torn-edge {
+            position: relative;
+            margin: 3rem 0;
+        }
+        
+        .torn-edge::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 0;
+            right: 0;
+            height: 20px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 20"><path d="M0,10 Q5,5 10,10 T20,10 T30,10 T40,10 T50,10 T60,10 T70,10 T80,10 T90,10 T100,10 L100,20 L0,20" fill="%23FAF7F0"/></svg>');
+            background-size: 100px 20px;
+            background-repeat: repeat-x;
+            opacity: 0.5;
         }
         
         .cta-section {
-            background: var(--gradient);
-            color: white;
-            padding: 4rem 1rem;
+            padding: 4rem 0;
             text-align: center;
-            margin-top: 4rem;
+            position: relative;
+            z-index: 2;
+            margin-top: 3rem;
+            border-top: 2px solid var(--accent);
+            background: linear-gradient(to bottom, transparent, rgba(45, 90, 61, 0.05));
         }
         
         .cta-section h2 {
-            color: white;
+            text-align: center;
+            padding-left: 0;
             margin-bottom: 2rem;
+        }
+        
+        .cta-section h2::before {
+            display: none;
         }
         
         .button-group {
             display: flex;
-            gap: 1rem;
+            gap: 2rem;
             justify-content: center;
             flex-wrap: wrap;
+            margin-top: 2rem;
         }
         
         .btn {
             display: inline-block;
             padding: 1rem 2rem;
-            border-radius: 8px;
             text-decoration: none;
-            font-weight: bold;
+            font-weight: 600;
             transition: all 0.3s ease;
+            position: relative;
+            font-size: 1.1rem;
         }
         
         .btn-primary {
-            background: white;
-            color: var(--primary);
+            background: var(--accent);
+            color: white;
+            border: 2px solid var(--accent);
         }
         
         .btn-primary:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-        }
-        
-        .live-demo {
-            background: #FEF3C7;
-            border: 2px dashed var(--accent);
-            padding: 2rem;
-            border-radius: 12px;
-            text-align: center;
-            margin: 2rem 0;
-        }
-        
-        .live-demo h3 {
+            background: white;
             color: var(--accent);
-            margin-bottom: 1rem;
+            transform: rotate(1deg);
         }
         
-        .timer {
-            font-size: 3rem;
-            font-weight: bold;
-            color: var(--primary);
+        .handwritten {
+            font-family: 'Caveat', cursive;
+            color: var(--burgundy);
+            font-size: 1.2rem;
             margin: 1rem 0;
-            font-family: 'Courier New', monospace;
+            transform: rotate(-2deg);
+            display: inline-block;
+        }
+        
+        .arrow-sketch {
+            position: absolute;
+            width: 100px;
+            height: 50px;
+            right: -120px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+        .arrow-sketch::after {
+            content: '←';
+            font-family: 'Caveat', cursive;
+            font-size: 3rem;
+            color: var(--burgundy);
+            position: absolute;
+            transform: scaleX(-1) rotate(10deg);
         }
         
         @media (max-width: 768px) {
-            h1 { font-size: 2rem; }
-            h2 { font-size: 1.75rem; }
-            .grid { gap: 1rem; }
-            .section { padding: 2rem 0; }
-        }
-        
-        .pulse {
-            animation: pulse-text 2s ease-in-out infinite;
-        }
-        
-        @keyframes pulse-text {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
+            .container {
+                padding: 0 40px;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero h1::first-letter {
+                font-size: 3.5rem;
+            }
+            
+            .section h2 {
+                font-size: 1.8rem;
+                padding-left: 30px;
+            }
+            
+            .marginal-note {
+                position: static;
+                width: 100%;
+                margin: 1rem 0;
+                background: var(--sticky-yellow);
+                padding: 1rem;
+            }
+            
+            .arrow-sketch {
+                display: none;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Coffee Stains -->
+    <div class="coffee-stain coffee-stain-1"></div>
+    <div class="coffee-stain coffee-stain-2"></div>
+
     <!-- Hero Section -->
     <header class="hero">
         <div class="container">
-            <div class="ai-badge">✨ This page was created by AI in under 60 seconds</div>
             <h1>AI Tools for Ministry Leaders</h1>
-            <p class="tagline">Transform Your Ministry with Artificial Intelligence</p>
-            <p class="presenters">Presented by Dave Partin & Matt | MinistryBag.com</p>
+            <p class="tagline">"Transform Your Ministry Workflows with AI"</p>
+            
+            <div class="sticky-note">
+                This entire page was created by AI in 60 seconds!<br>
+                (...but then i edited it in <a href="https://cursor.com" target="_blank" style="color: var(--ink); text-decoration: underline;">cursor</a>)
+            </div>
+            
+            <p class="presenters">Study notes compiled by Matt and Dave</p>
         </div>
     </header>
 
     <!-- Quick Wins Section -->
-    <section class="section">
+    <section class="section torn-edge">
         <div class="container">
-            <h2>🚀 Quick Wins You Can Use TODAY</h2>
-            <p class="subtitle">No technical skills required - just copy, paste, and customize</p>
+            <h2>Chapter 1: Quick Wins</h2>
+            <span class="marginal-note">Start here! No tech skills needed</span>
+            
+            <p style="margin-bottom: 2rem;">These are <span class="underline">practical applications</span> you can implement <span class="highlight">today</span> in your ministry:</p>
             
             <div class="grid grid-2">
                 <div class="card">
-                    <h3>
-                        <span class="icon">📖</span>
-                        Sermon Preparation
-                    </h3>
+                    <h3>Sermon Preparation</h3>
                     <ul>
-                        <li>Generate sermon illustrations from any passage</li>
-                        <li>Create discussion questions for small groups</li>
-                        <li>Find modern analogies for biblical concepts</li>
-                        <li>Develop sermon series themes</li>
+                        <li>Generate sermon illustrations</li>
+                        <li>Create discussion questions</li>
+                        <li>Find modern analogies</li>
+                        <li>Develop series themes</li>
                     </ul>
                 </div>
                 
                 <div class="card">
-                    <h3>
-                        <span class="icon">💬</span>
-                        Communication & Outreach
-                    </h3>
+                    <h3>Communication</h3>
                     <ul>
-                        <li>Draft personalized emails to congregants</li>
-                        <li>Create social media content calendars</li>
-                        <li>Write newsletter articles</li>
-                        <li>Generate event descriptions</li>
+                        <li>Draft pastoral emails</li>
+                        <li>Create social content</li>
+                        <li>Write newsletters</li>
+                        <li>Design event descriptions</li>
                     </ul>
                 </div>
                 
                 <div class="card">
-                    <h3>
-                        <span class="icon">📚</span>
-                        Teaching & Discipleship
-                    </h3>
+                    <h3>Teaching & Discipleship</h3>
                     <ul>
-                        <li>Create Bible study guides</li>
-                        <li>Generate memory verse activities</li>
-                        <li>Design curriculum outlines</li>
-                        <li>Build interactive lesson plans</li>
+                        <li>Build study guides</li>
+                        <li>Create memory verses</li>
+                        <li>Design curriculum</li>
+                        <li>Plan lessons</li>
                     </ul>
                 </div>
                 
                 <div class="card">
-                    <h3>
-                        <span class="icon">⚙️</span>
-                        Administration
-                    </h3>
+                    <h3>Administration</h3>
                     <ul>
-                        <li>Draft volunteer job descriptions</li>
-                        <li>Create meeting agendas</li>
-                        <li>Generate budget reports</li>
-                        <li>Write grant proposals</li>
+                        <li>Write job descriptions</li>
+                        <li>Create agendas</li>
+                        <li>Generate reports</li>
+                        <li>Draft proposals</li>
                     </ul>
                 </div>
             </div>
@@ -485,47 +631,59 @@
     <!-- AI Tools Section -->
     <section class="section">
         <div class="container">
-            <h2>🛠️ Your AI Toolkit</h2>
-            <p class="subtitle">Click any tool to get started (all have free versions)</p>
+            <h2>Chapter 2: Your Toolkit</h2>
+            <span class="marginal-note">All have free versions!</span>
+            
+            <p style="margin-bottom: 2rem;">Click any tool below to get started:</p>
             
             <div class="tool-grid">
                 <a href="https://claude.ai" target="_blank" class="tool-card">
                     <div class="tool-name">Claude</div>
-                    <div class="tool-desc">Best for writing & complex tasks</div>
+                    <div class="tool-desc">Best for writing & complexity</div>
                 </a>
                 
                 <a href="https://chat.openai.com" target="_blank" class="tool-card">
                     <div class="tool-name">ChatGPT</div>
-                    <div class="tool-desc">Most versatile & widely used</div>
+                    <div class="tool-desc">Most versatile</div>
                 </a>
                 
                 <a href="https://gemini.google.com" target="_blank" class="tool-card">
                     <div class="tool-name">Gemini</div>
-                    <div class="tool-desc">Great with Google Workspace</div>
+                    <div class="tool-desc">Google integration</div>
                 </a>
                 
                 <a href="https://www.perplexity.ai" target="_blank" class="tool-card">
                     <div class="tool-name">Perplexity</div>
-                    <div class="tool-desc">Best for research & citations</div>
+                    <div class="tool-desc">Research focused</div>
+                </a>
+                
+                <a href="https://x.ai" target="_blank" class="tool-card">
+                    <div class="tool-name">Grok</div>
+                    <div class="tool-desc">Real-time information</div>
+                </a>
+                
+                <a href="https://notebooklm.google.com" target="_blank" class="tool-card">
+                    <div class="tool-name">NotebookLM</div>
+                    <div class="tool-desc">Document analysis</div>
                 </a>
             </div>
         </div>
     </section>
 
     <!-- Prompts Section -->
-    <section class="section">
+    <section class="section torn-edge">
         <div class="container">
-            <h2>📝 Copy & Paste Prompts</h2>
-            <p class="subtitle">Click "Copy" and paste these directly into any AI tool</p>
+            <h2>Chapter 3: Copy & Paste Prompts</h2>
+            <span class="marginal-note">Tested & ready to use</span>
             
             <div class="prompt-box">
-                <button class="copy-btn" onclick="copyPrompt(this, 'prompt1')">Copy</button>
+                <button class="copy-btn" onclick="copyPrompt(this, 'prompt1')">Copy this</button>
                 <h4>Sermon Illustration Generator</h4>
                 <div class="prompt-text" id="prompt1">I'm preaching on [BIBLE PASSAGE] this Sunday. The main point is [YOUR MAIN POINT]. Can you give me 3 modern-day illustrations or stories that would help my congregation understand this concept? Please make them relatable to everyday life and include a mix of personal, historical, and contemporary examples.</div>
             </div>
             
             <div class="prompt-box">
-                <button class="copy-btn" onclick="copyPrompt(this, 'prompt2')">Copy</button>
+                <button class="copy-btn" onclick="copyPrompt(this, 'prompt2')">Copy this</button>
                 <h4>Small Group Discussion Builder</h4>
                 <div class="prompt-text" id="prompt2">Create a small group discussion guide for [BIBLE PASSAGE]. Include: 
 1) An icebreaker question
@@ -537,8 +695,8 @@ Make it suitable for a 45-minute discussion with 6-8 adults.</div>
             </div>
             
             <div class="prompt-box">
-                <button class="copy-btn" onclick="copyPrompt(this, 'prompt3')">Copy</button>
-                <h4>Email Draft Assistant</h4>
+                <button class="copy-btn" onclick="copyPrompt(this, 'prompt3')">Copy this</button>
+                <h4>Pastoral Email Assistant</h4>
                 <div class="prompt-text" id="prompt3">Help me write a warm, pastoral email about [TOPIC/SITUATION]. The tone should be encouraging and grace-filled. Include:
 - A personal greeting
 - Acknowledgment of the situation
@@ -549,8 +707,8 @@ Keep it under 200 words and end with an appropriate blessing.</div>
             </div>
             
             <div class="prompt-box">
-                <button class="copy-btn" onclick="copyPrompt(this, 'prompt4')">Copy</button>
-                <h4>Social Media Content Creator</h4>
+                <button class="copy-btn" onclick="copyPrompt(this, 'prompt4')">Copy this</button>
+                <h4>Social Media Creator</h4>
                 <div class="prompt-text" id="prompt4">Create 5 social media posts for our church's [PLATFORM: Facebook/Instagram/Twitter] about [TOPIC/EVENT]. Include:
 - Engaging opening lines
 - Relevant scripture or quote
@@ -558,6 +716,7 @@ Keep it under 200 words and end with an appropriate blessing.</div>
 - Appropriate hashtags
 - Emoji suggestions
 Vary the style between informational, inspirational, and invitational. Keep each post under [WORD COUNT] words.</div>
+                <div class="arrow-sketch"></div>
             </div>
         </div>
     </section>
@@ -565,71 +724,72 @@ Vary the style between informational, inspirational, and invitational. Keep each
     <!-- Real Examples Section -->
     <section class="section">
         <div class="container">
-            <h2>✨ Real Projects Built with AI</h2>
-            <p class="subtitle">Dave's actual ministry tools - all created with AI assistance</p>
+            <h2>Chapter 4: Real Examples</h2>
+            <span class="marginal-note">Dave's actual projects!</span>
+            
+            <p style="margin-bottom: 2rem;">These tools were all built with AI assistance:</p>
             
             <div class="examples-grid">
-                <a href="https://davepartin.github.io/bible-memory/" target="_blank" class="example-card">
+                <a href="https://ministrybag.com/heart52/" target="_blank" class="example-card">
                     <div class="example-title">Heart52</div>
-                    <div class="example-desc">Bible memory app with 52 verses for 52 weeks</div>
+                    <div class="example-desc">Bible memory app - 52 verses for 52 weeks</div>
                 </a>
                 
                 <a href="https://davepartin.github.io/typesight/" target="_blank" class="example-card">
                     <div class="example-title">TypeSight</div>
-                    <div class="example-desc">Dyslexia learning tool for sight words & typing</div>
+                    <div class="example-desc">Dyslexia tool for sight words & typing</div>
                 </a>
                 
                 <a href="https://ministrybag.com" target="_blank" class="example-card">
                     <div class="example-title">MinistryBag</div>
-                    <div class="example-desc">Central hub for ministry resources & tools</div>
+                    <div class="example-desc">Central hub for ministry resources</div>
                 </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Live Demo Section -->
-    <section class="section">
-        <div class="container">
-            <div class="live-demo">
-                <h3>⏱️ LIVE CHALLENGE</h3>
-                <p>Watch us build something useful for your ministry in...</p>
-                <div class="timer pulse">2:00</div>
-                <p>Real-time AI demonstration during our session!</p>
             </div>
         </div>
     </section>
 
     <!-- Advanced Section -->
-    <section class="section">
+    <section class="section torn-edge">
         <div class="container">
-            <h2>🎯 Level Up: Advanced Uses</h2>
-            <p class="subtitle">Once you're comfortable with the basics</p>
+            <h2>Chapter 5: Advanced Applications</h2>
+            <span class="marginal-note">Once you're comfortable</span>
             
-            <div class="grid grid-3">
+            <p style="margin-bottom: 2rem;">After mastering the basics, explore these <span class="highlight">advanced uses</span>:</p>
+            
+            <div class="grid grid-2">
                 <div class="card">
-                    <h3>📊 Data Analysis</h3>
+                    <h3>Data Analysis</h3>
                     <ul>
-                        <li>Attendance pattern insights</li>
-                        <li>Giving trends analysis</li>
-                        <li>Survey response summaries</li>
+                        <li>Attendance patterns</li>
+                        <li>Giving trends</li>
+                        <li>Survey summaries</li>
                     </ul>
                 </div>
                 
                 <div class="card">
-                    <h3>🎨 Creative Projects</h3>
+                    <h3>Creative Projects</h3>
                     <ul>
-                        <li>Worship service themes</li>
-                        <li>VBS curriculum design</li>
-                        <li>Drama script writing</li>
+                        <li>Service themes</li>
+                        <li>VBS curriculum</li>
+                        <li>Drama scripts</li>
                     </ul>
                 </div>
                 
                 <div class="card">
-                    <h3>🤖 Automation</h3>
+                    <h3>Automation</h3>
                     <ul>
-                        <li>Visitor follow-up sequences</li>
-                        <li>Prayer request management</li>
-                        <li>Event planning workflows</li>
+                        <li>Follow-up sequences</li>
+                        <li>Prayer management</li>
+                        <li>Event workflows</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Content Creation</h3>
+                    <ul>
+                        <li>Devotional series</li>
+                        <li>Study materials</li>
+                        <li>Training resources</li>
                     </ul>
                 </div>
             </div>
@@ -639,15 +799,21 @@ Vary the style between informational, inspirational, and invitational. Keep each
     <!-- CTA Section -->
     <div class="cta-section">
         <div class="container">
-            <h2>Ready to Transform Your Ministry?</h2>
-            <p style="margin-bottom: 2rem; font-size: 1.1rem;">Start with one tool, one prompt, one experiment today</p>
+            <h2>Final Thoughts</h2>
+            
+            <p style="font-size: 1.2rem; margin-bottom: 2rem; font-style: italic;">
+                "Start with one tool, one prompt, one experiment today"
+            </p>
             
             <div class="button-group">
-                <a href="https://claude.ai" target="_blank" class="btn btn-primary">Try Claude Now (It's Free)</a>
+                <a href="https://claude.ai" target="_blank" class="btn btn-primary">Try Claude (Free)</a>
                 <a href="https://ministrybag.com" target="_blank" class="btn btn-primary">Visit MinistryBag</a>
             </div>
             
-            <p style="margin-top: 2rem; opacity: 0.9;">Questions? Reach out to Dave & Matt after the session!</p>
+            <p class="handwritten" style="margin-top: 3rem; font-size: 1.5rem;">
+                Questions? Find us after the session!<br>
+                - Dave & Matt
+            </p>
         </div>
     </div>
 
@@ -658,32 +824,11 @@ Vary the style between informational, inspirational, and invitational. Keep each
                 button.textContent = 'Copied!';
                 button.classList.add('copied');
                 setTimeout(() => {
-                    button.textContent = 'Copy';
+                    button.textContent = 'Copy this';
                     button.classList.remove('copied');
                 }, 2000);
             });
         }
-        
-        // Animated timer for demo
-        function startTimer() {
-            let time = 120; // 2 minutes in seconds
-            const timerElement = document.querySelector('.timer');
-            
-            setInterval(() => {
-                const minutes = Math.floor(time / 60);
-                const seconds = time % 60;
-                timerElement.textContent = `${minutes}:${seconds.toString().padStart(2, '0')}`;
-                
-                if (time > 0) {
-                    time--;
-                } else {
-                    timerElement.textContent = "GO!";
-                }
-            }, 1000);
-        }
-        
-        // Start timer when page loads (you can trigger this during your presentation)
-        // startTimer();
     </script>
 </body>
 </html>
