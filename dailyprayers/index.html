@@ -382,7 +382,7 @@
       </div>
     </div>
 
-    <h2 class="section-main-title">Create My Daily Prayers</h2>
+    <h2 class="section-main-title">Customize My Daily Prayers</h2>
 
     <!-- Family Prayer Section -->
     <div class="prayer-section">
@@ -420,11 +420,12 @@
     </div>
 
     <!-- Generate Prayer Button -->
-    <button class="btn btn-primary" onclick="generatePrayer()">Create My Daily Prayers</button>
+    <button class="btn btn-primary" onclick="generatePrayer()">Customize My Daily Prayers</button>
   </div>
 
   <script>
     const GENERATED_PRAYER_KEY = 'lordsPrayerApp_generated';
+    let memberCounter = 0;
 
     // Prayer attributes
     const attributes = [
@@ -441,7 +442,8 @@
 
     // Add family member
     function addFamilyMember(name = '', selectedAttrs = [], customText = '') {
-      const memberId = 'member_' + Date.now();
+      memberCounter += 1;
+      const memberId = `member_${Date.now()}_${memberCounter}`;
       const memberDiv = document.createElement('div');
       memberDiv.className = 'family-member';
       memberDiv.id = memberId;
@@ -621,6 +623,7 @@ For yours is the kingdom, and the power, and the glory forever, Amen.`;
         
         // Load family members
         if (data.familyMembers && data.familyMembers.length > 0) {
+          document.getElementById('familyMembers').innerHTML = '';
           data.familyMembers.forEach(member => {
             addFamilyMember(member.name, member.selectedAttrs, member.customText);
           });
