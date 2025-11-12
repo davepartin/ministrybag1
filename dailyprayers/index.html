@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lord's Prayer - MinistryBag</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600&family=Great+Vibes&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 50%, #e9ecef 100%);
+      min-height: 100vh;
+      color: #003366;
+      padding: 20px;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .app-title {
+      font-family: 'Inter', sans-serif;
+      font-size: 46px;
+      font-weight: 600;
+      color: #003366;
+      text-align: center;
+      margin-bottom: 20px;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .app-title a {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    .app-title img {
+      height: 48px;
+      width: auto;
+    }
+
+    /* Lord's Prayer Section */
+    .lords-prayer {
+      background: white;
+      padding: 30px 25px;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(0, 51, 102, 0.1);
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .lords-prayer h1 {
+      font-family: 'Inter', sans-serif;
+      font-size: 32px;
+      color: #003366;
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+
+    .prayer-text {
+      font-family: 'Inter', sans-serif;
+      font-size: 20px;
+      line-height: 1.8;
+      color: #003366;
+      text-align: left;
+    }
+
+    .prayer-text p {
+      margin-bottom: 16px;
+    }
+
+    .decorative-line {
+      width: 80px;
+      height: 2px;
+      background: linear-gradient(to right, transparent, #3399CC, transparent);
+      margin: 20px auto;
+    }
+
+    /* Section Cards */
+    .prayer-section {
+      background: white;
+      padding: 25px 20px;
+      border-radius: 15px;
+      box-shadow: 0 2px 15px rgba(0, 51, 102, 0.08);
+      margin-bottom: 20px;
+    }
+
+    .section-header {
+      margin-bottom: 20px;
+      font-size: 18px;
+      font-weight: 600;
+      color: #003366;
+    }
+
+    .section-main-title {
+      font-family: 'Crimson Text', serif;
+      font-size: 32px;
+      color: #003366;
+      text-align: center;
+      margin: 40px 0 20px;
+      font-weight: 600;
+    }
+
+    /* Family Section */
+    .family-member {
+      background: #f8f9fa;
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+
+    .family-member input {
+      width: 100%;
+      padding: 10px;
+      border: 2px solid #e9ecef;
+      border-radius: 8px;
+      font-size: 16px;
+      margin-bottom: 15px;
+      transition: border-color 0.3s;
+    }
+
+    .family-member input:focus {
+      outline: none;
+      border-color: #3399CC;
+    }
+
+    .attribute-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .attribute-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: #6c757d;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      margin-bottom: 6px;
+    }
+
+    .attr-btn {
+      padding: 8px 16px;
+      border: 2px solid #3399CC;
+      background: white;
+      border-radius: 20px;
+      color: #3399CC;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .attr-btn.selected {
+      background: #F39C12;
+      border-color: #F39C12;
+      color: white;
+      transform: scale(1.05);
+    }
+
+    .attr-btn:hover {
+      transform: scale(1.05);
+    }
+
+    .custom-request {
+      width: 100%;
+      padding: 10px;
+      border: 2px solid #e9ecef;
+      border-radius: 8px;
+      font-size: 14px;
+      resize: none;
+      transition: border-color 0.3s;
+    }
+
+    .custom-request:focus {
+      outline: none;
+      border-color: #3399CC;
+    }
+
+    .remove-member {
+      background: #dc3545;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+
+    /* Church Section */
+    .standard-prayer {
+      font-style: italic;
+      color: #6c757d;
+      line-height: 1.6;
+      margin-bottom: 15px;
+      padding: 15px;
+      background: #f8f9fa;
+      border-radius: 8px;
+    }
+
+    /* Lost Section */
+    .names-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
+
+    .name-input {
+      flex: 1;
+      min-width: 120px;
+      padding: 10px;
+      border: 2px solid #e9ecef;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    /* Buttons */
+    .btn {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .btn-add {
+      background: #3399CC;
+      color: white;
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    .btn-add:hover {
+      background: #2980b9;
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: #003366;
+      color: white;
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    .btn-primary:hover {
+      background: #002244;
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: #6c757d;
+      color: white;
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    .btn-secondary:hover {
+      background: #5a6268;
+      transform: translateY(-2px);
+    }
+
+    /* Generated Prayer */
+    .generated-prayer {
+      background: linear-gradient(to bottom, #fffef9, #ffffff);
+      border: 2px solid #F39C12;
+      padding: 25px;
+      border-radius: 15px;
+      margin-bottom: 30px;
+      display: none;
+    }
+
+    .generated-prayer.show {
+      display: block;
+      animation: fadeIn 0.5s;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .generated-prayer h2 {
+      color: #003366;
+      margin-bottom: 20px;
+      font-size: 24px;
+      text-align: center;
+    }
+
+    .prayer-content {
+      font-size: 16px;
+      line-height: 1.8;
+      white-space: pre-line;
+      color: #003366;
+    }
+
+    .action-buttons {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .action-buttons .btn {
+      flex: 1;
+    }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      .app-title {
+        font-size: 36px;
+      }
+
+      .app-title img {
+        height: 36px;
+      }
+
+      .section-main-title {
+        font-size: 28px;
+      }
+
+      .lords-prayer {
+        padding: 25px 20px;
+      }
+
+      .lords-prayer h1 {
+        font-size: 28px;
+      }
+      
+      .prayer-text {
+        font-size: 18px;
+      }
+
+      .attr-btn {
+        font-size: 13px;
+        padding: 6px 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="app-title">
+      <a href="https://ministrybag.com/" target="_blank" rel="noopener noreferrer" aria-label="Ministry Bag home">
+        <img src="ministrybagsatchel1.svg" alt="Ministry Bag logo">
+      </a>
+      <span>Daily Prayers</span>
+    </div>
+    <!-- Lord's Prayer -->
+    <div class="lords-prayer">
+      <h1>The Lord's Prayer</h1>
+      <div class="decorative-line"></div>
+      <div class="prayer-text">
+        <p>Our Father, who is in heaven, holy is your name. Your kingdom come, your will be done on earth as it is in heaven. Give us this day our daily bread. Forgive us our sins, as we forgive those who sin against us. And lead us not into temptation, but deliver us from evil. For yours is the kingdom, and the power, and the glory forever. Amen.</p>
+      </div>
+    </div>
+
+    <!-- Generated Prayer Display -->
+    <div class="generated-prayer" id="generatedPrayer">
+      <h2>My Daily Prayers</h2>
+      <div class="prayer-content" id="prayerContent"></div>
+      <div class="action-buttons">
+        <button class="btn btn-secondary" onclick="emailPrayer()">Email Prayer</button>
+      </div>
+    </div>
+
+    <h2 class="section-main-title">Create My Daily Prayers</h2>
+
+    <!-- Family Prayer Section -->
+    <div class="prayer-section">
+      <div class="section-header">
+        <span>Pray for Family/Others</span>
+      </div>
+      <div id="familyMembers"></div>
+      <button class="btn btn-add" onclick="addFamilyMember()">+ Add Another Person</button>
+    </div>
+
+    <!-- Church Prayer Section -->
+    <div class="prayer-section">
+      <div class="section-header">
+        <span>Pray for Church</span>
+      </div>
+      <div class="standard-prayer">
+        I pray for my church family. May we grow in our love for God and love our neighbors. Help us be bold in sharing the Gospel, serve one another faithfully, and make disciples who make disciples. Continue to strengthen our leaders and may our church be a light in our community.
+      </div>
+      <textarea class="custom-request" id="churchCustom" rows="2" placeholder="Add specific church prayer requests (optional)..."></textarea>
+    </div>
+
+    <!-- Lost Prayer Section -->
+    <div class="prayer-section">
+      <div class="section-header">
+        <span>Pray for the Lost</span>
+      </div>
+      <div class="names-container" id="lostNames">
+        <input type="text" class="name-input lost-name" placeholder="Name" oninput="updateLostPrayerPreview()" onchange="saveData()">
+      </div>
+      <button class="btn btn-add" onclick="addLostName()">+ Add Another Person</button>
+      <textarea class="custom-request" id="lostCustom" rows="2" placeholder="Add specific prayer requests (optional)..." oninput="updateLostPrayerPreview()" onchange="saveData()"></textarea>
+      <div class="standard-prayer" id="lostPrayerPreview">
+        I pray that [name] will grow in knowing You, turning from sin, accepting You as Savior and Lord, and loving You above all. Use me today to be Your light in their life.
+      </div>
+    </div>
+
+    <!-- Generate Prayer Button -->
+    <button class="btn btn-primary" onclick="generatePrayer()">Create My Daily Prayers</button>
+  </div>
+
+  <script>
+    // Prayer attributes
+    const attributes = [
+      'Love', 'Joy', 'Peace', 'Patience', 'Kindness',
+      'Faith', 'Self-control', 'Hope', 'Wisdom', 'Healing',
+      'Strength', 'Protection', 'Forgiveness', 'Humility', 'Courage',
+      'Contentment'
+    ];
+
+    // Load saved data on page load
+    window.onload = function() {
+      loadSavedData();
+    };
+
+    // Add family member
+    function addFamilyMember(name = '', selectedAttrs = [], customText = '') {
+      const memberId = 'member_' + Date.now();
+      const memberDiv = document.createElement('div');
+      memberDiv.className = 'family-member';
+      memberDiv.id = memberId;
+      
+      memberDiv.innerHTML = `
+        <input type="text" placeholder="Type name here" value="${name}" onchange="saveData()">
+        <div class="attribute-label">Choose growth areas:</div>
+        <div class="attribute-buttons" id="${memberId}_attrs"></div>
+        <textarea class="custom-request" rows="2" placeholder="Specific prayer request (optional)..." onchange="saveData()">${customText}</textarea>
+        <button class="remove-member" onclick="removeFamilyMember('${memberId}')">Remove Person</button>
+      `;
+      
+      document.getElementById('familyMembers').appendChild(memberDiv);
+      
+      // Add attribute buttons
+      const attrsContainer = document.getElementById(`${memberId}_attrs`);
+      attributes.forEach(attr => {
+        const btn = document.createElement('button');
+        btn.className = 'attr-btn';
+        if (selectedAttrs.includes(attr)) {
+          btn.classList.add('selected');
+        }
+        btn.textContent = attr;
+        btn.onclick = function() {
+          this.classList.toggle('selected');
+          saveData();
+        };
+        attrsContainer.appendChild(btn);
+      });
+    }
+
+    // Remove family member
+    function removeFamilyMember(memberId) {
+      document.getElementById(memberId).remove();
+      saveData();
+    }
+
+    function createLostNameInput(value = '') {
+      const input = document.createElement('input');
+      input.type = 'text';
+      input.className = 'name-input lost-name';
+      input.placeholder = 'Name';
+      input.value = value;
+      input.oninput = updateLostPrayerPreview;
+      input.onchange = saveData;
+      return input;
+    }
+
+    // Add lost name input
+    function addLostName() {
+      const input = createLostNameInput();
+      document.getElementById('lostNames').appendChild(input);
+      input.focus();
+      updateLostPrayerPreview();
+    }
+
+    // Generate prayer
+    function generatePrayer() {
+      let prayer = '';
+      
+      // Family prayers
+      const familyMembers = document.querySelectorAll('.family-member');
+      if (familyMembers.length > 0) {
+        familyMembers.forEach(member => {
+          const nameInput = member.querySelector('input[type="text"]');
+          const name = nameInput.value;
+          if (name) {
+            const selectedAttrs = [];
+            member.querySelectorAll('.attr-btn.selected').forEach(btn => {
+              selectedAttrs.push(btn.textContent.toLowerCase());
+            });
+            
+            if (selectedAttrs.length > 0) {
+              prayer += `Lord, I pray that ${name} will grow in ${selectedAttrs.join(', ')}.`;
+            } else {
+              prayer += `Lord, I pray that ${name} will grow closer to You.`;
+            }
+            
+            const customText = member.querySelector('.custom-request').value;
+            if (customText) {
+              prayer += ` ${customText}`;
+            }
+            prayer += '\n\n';
+          }
+        });
+      }
+      
+      // Church prayer
+    prayer += 'I pray for my church family. May we grow in our love for God and love our neighbors. Help us be bold in sharing the Gospel, serve one another faithfully, and make disciples who make disciples. Continue to strengthen our leaders and may our church be a light in our community.';
+      const churchCustom = document.getElementById('churchCustom').value;
+      if (churchCustom) {
+        prayer += ` ${churchCustom}`;
+      }
+      prayer += '\n\n';
+      
+      // Lost prayer
+      const lostNames = [];
+      document.querySelectorAll('.lost-name').forEach(input => {
+        if (input.value) lostNames.push(input.value);
+      });
+      
+      if (lostNames.length > 0) {
+        prayer += `I pray for ${lostNames.join(' and ')}...that they would know You. That they would repent of their sins, accept You as Savior and Lord, and love You above all. Use me today to be Your light in their lives.`;
+        const lostCustom = document.getElementById('lostCustom').value;
+        if (lostCustom) {
+          prayer += ` ${lostCustom}`;
+        }
+        prayer += '\n\n';
+      }
+      
+      prayer += 'In Jesus\' name, Amen.';
+      
+      // Display prayer
+      document.getElementById('prayerContent').textContent = prayer;
+      document.getElementById('generatedPrayer').classList.add('show');
+      
+      // Smooth scroll to prayer
+      document.getElementById('generatedPrayer').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    // Email prayer
+    function emailPrayer() {
+      const lordsPrayer = `The Lord's Prayer
+
+Our Father, who is in heaven,
+Holy is your name,
+your kingdom come, your will be done
+on earth as it is in heaven.
+Give us this day, our daily bread.
+Forgive us our sins, as we forgive those who sin against us.
+And lead us not into temptation, but deliver us from evil.
+For yours is the kingdom, and the power, and the glory forever, Amen.`;
+      
+      const personalPrayer = document.getElementById('prayerContent').textContent;
+      const fullPrayer = lordsPrayer + '\n\n---\n\nMy Daily Prayers\n\n' + personalPrayer;
+      const date = new Date().toLocaleDateString();
+      const subject = `My Prayer - ${date}`;
+      const body = encodeURIComponent(fullPrayer);
+      
+      window.location.href = `mailto:?subject=${subject}&body=${body}`;
+    }
+
+    // Save data to localStorage
+    function saveData() {
+      const data = {
+        familyMembers: [],
+        churchCustom: document.getElementById('churchCustom').value,
+        lostNames: [],
+        lostCustom: document.getElementById('lostCustom').value
+      };
+      
+      // Save family members
+      document.querySelectorAll('.family-member').forEach(member => {
+        const name = member.querySelector('input[type="text"]').value;
+        const selectedAttrs = [];
+        member.querySelectorAll('.attr-btn.selected').forEach(btn => {
+          selectedAttrs.push(btn.textContent);
+        });
+        const customText = member.querySelector('.custom-request').value;
+        data.familyMembers.push({ name, selectedAttrs, customText });
+      });
+      
+      // Save lost names
+      document.querySelectorAll('.lost-name').forEach(input => {
+        if (input.value) data.lostNames.push(input.value);
+      });
+      
+      localStorage.setItem('lordsPrayerApp', JSON.stringify(data));
+    }
+
+    // Load saved data
+    function loadSavedData() {
+      const savedData = localStorage.getItem('lordsPrayerApp');
+      if (savedData) {
+        const data = JSON.parse(savedData);
+        
+        // Load family members
+        if (data.familyMembers && data.familyMembers.length > 0) {
+          data.familyMembers.forEach(member => {
+            addFamilyMember(member.name, member.selectedAttrs, member.customText);
+          });
+        } else {
+          // Add one empty family member by default
+          addFamilyMember();
+        }
+        
+        // Load church custom
+        if (data.churchCustom) {
+          document.getElementById('churchCustom').value = data.churchCustom;
+        }
+        
+        // Load lost names
+        if (data.lostNames && data.lostNames.length > 0) {
+          document.getElementById('lostNames').innerHTML = '';
+          data.lostNames.forEach(name => {
+            const input = createLostNameInput(name);
+            document.getElementById('lostNames').appendChild(input);
+          });
+        }
+        
+        // Load lost custom
+        if (data.lostCustom) {
+          document.getElementById('lostCustom').value = data.lostCustom;
+        }
+        
+        updateLostPrayerPreview();
+      } else {
+        // Add one empty family member by default for new users
+        addFamilyMember();
+        updateLostPrayerPreview();
+      }
+    }
+
+    function updateLostPrayerPreview() {
+      const lostInputs = Array.from(document.querySelectorAll('.lost-name'));
+      const names = lostInputs
+        .map(input => input.value.trim())
+        .filter(name => name.length > 0);
+      const custom = document.getElementById('lostCustom').value.trim();
+      const namesText = names.length > 0 ? names.join(' and ') : '[name]';
+      let previewText = `I pray for ${namesText}...that they would know You. That they would repent of their sins, accept You as Savior and Lord, and love You above all. Use me today to be Your light in their lives.`;
+      if (custom) {
+        previewText += ` ${custom}`;
+      }
+      document.getElementById('lostPrayerPreview').textContent = previewText;
+    }
+  </script>
+</body>
+</html>
