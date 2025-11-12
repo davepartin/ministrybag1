@@ -424,6 +424,8 @@
   </div>
 
   <script>
+    const GENERATED_PRAYER_KEY = 'lordsPrayerApp_generated';
+
     // Prayer attributes
     const attributes = [
       'Love', 'Joy', 'Peace', 'Patience', 'Kindness',
@@ -555,6 +557,7 @@
       // Display prayer
       document.getElementById('prayerContent').textContent = prayer;
       document.getElementById('generatedPrayer').classList.add('show');
+      localStorage.setItem(GENERATED_PRAYER_KEY, prayer);
       
       // Smooth scroll to prayer
       document.getElementById('generatedPrayer').scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -646,10 +649,12 @@ For yours is the kingdom, and the power, and the glory forever, Amen.`;
         }
         
         updateLostPrayerPreview();
+        loadGeneratedPrayer();
       } else {
         // Add one empty family member by default for new users
         addFamilyMember();
         updateLostPrayerPreview();
+        loadGeneratedPrayer();
       }
     }
 
@@ -665,6 +670,14 @@ For yours is the kingdom, and the power, and the glory forever, Amen.`;
         previewText += ` ${custom}`;
       }
       document.getElementById('lostPrayerPreview').textContent = previewText;
+    }
+
+    function loadGeneratedPrayer() {
+      const savedPrayer = localStorage.getItem(GENERATED_PRAYER_KEY);
+      if (savedPrayer) {
+        document.getElementById('prayerContent').textContent = savedPrayer;
+        document.getElementById('generatedPrayer').classList.add('show');
+      }
     }
   </script>
 </body>
