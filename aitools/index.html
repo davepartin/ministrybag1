@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Tools for Ministry Leaders | Study Notes</title>
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Caveat:wght@400;600&family=Inconsolata&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=Caveat:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Space+Mono&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -13,26 +13,71 @@
         }
         
         :root {
-            --paper: #FAF7F0;
-            --paper-dark: #F4EFE4;
-            --ink: #2C2C2C;
-            --ink-light: #5A5A5A;
+            --paper: #FDFBF7;
+            --paper-dark: #F5F0E6;
+            --paper-shadow: #EDE7DB;
+            --ink: #1A1A1A;
+            --ink-medium: #4A4A4A;
+            --ink-light: #6B6B6B;
             --accent: #2D5A3D;
             --accent-light: #4A7C5D;
+            --accent-bright: #3E9B5F;
             --burgundy: #8B2635;
+            --burgundy-light: #A43545;
             --coffee: #D4A574;
-            --sticky-yellow: #FFF5B4;
+            --coffee-dark: #B08968;
+            --sticky-yellow: #FFF9D4;
+            --sticky-blue: #D4E7FF;
+            --sticky-pink: #FFE4E9;
+            --highlight-yellow: rgba(255, 235, 59, 0.3);
+            --highlight-green: rgba(76, 175, 80, 0.2);
+            --highlight-blue: rgba(33, 150, 243, 0.2);
         }
-        
+
+        /* Loading Animation */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--paper);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s, visibility 0.5s;
+        }
+
+        .loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .loader-text {
+            font-family: 'Caveat', cursive;
+            font-size: 2rem;
+            color: var(--accent);
+            animation: write 2s infinite;
+        }
+
+        @keyframes write {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        /* Base Styles */
         body {
             font-family: 'Crimson Text', serif;
-            line-height: 1.7;
+            line-height: 1.8;
             color: var(--ink);
             background: var(--paper);
             position: relative;
             font-size: 18px;
+            overflow-x: hidden;
         }
-        
+
+        /* Enhanced Paper Background */
         body::before {
             content: '';
             position: fixed;
@@ -42,574 +87,1012 @@
             bottom: 0;
             background: 
                 repeating-linear-gradient(
-                    var(--paper) 0px,
-                    var(--paper) 24px,
-                    #E8E3D8 25px,
-                    #E8E3D8 26px
+                    transparent 0px,
+                    transparent 27px,
+                    rgba(200, 190, 180, 0.4) 28px,
+                    rgba(200, 190, 180, 0.4) 29px
                 ),
-                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><filter id="paper"><feTurbulence baseFrequency="0.04" numOctaves="5" /></filter><rect width="100" height="100" filter="url(%23paper)" opacity="0.02"/></svg>');
+                radial-gradient(ellipse at top left, var(--paper) 0%, var(--paper-dark) 100%);
             pointer-events: none;
-            opacity: 0.3;
             z-index: 1;
         }
-        
+
+        /* Paper texture overlay */
         body::after {
             content: '';
             position: fixed;
             top: 0;
-            left: 50px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200"><filter id="paper"><feTurbulence baseFrequency="0.02" numOctaves="5" seed="5" /></filter><rect width="200" height="200" filter="url(%23paper)" opacity="0.03"/></svg>');
+            pointer-events: none;
+            z-index: 1;
+            mix-blend-mode: multiply;
+        }
+
+        /* Enhanced Margin Line */
+        .margin-line {
+            position: fixed;
+            top: 0;
+            left: 60px;
             width: 2px;
             height: 100%;
-            background: linear-gradient(to bottom, var(--burgundy) 0%, var(--burgundy) 70%, transparent 100%);
-            opacity: 0.2;
-            z-index: 1;
-        }
-        
-        .coffee-stain {
-            position: absolute;
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            background: radial-gradient(circle at 30% 30%, 
-                transparent 30%, 
-                rgba(212, 165, 116, 0.05) 31%, 
-                rgba(212, 165, 116, 0.08) 50%, 
-                transparent 52%
+            background: linear-gradient(
+                to bottom,
+                var(--burgundy) 0%,
+                var(--burgundy) 60%,
+                transparent 90%
             );
-            pointer-events: none;
-        }
-        
-        .coffee-stain-1 {
-            top: 100px;
-            right: 150px;
-            transform: rotate(45deg);
-        }
-        
-        .coffee-stain-2 {
-            bottom: 300px;
-            left: 100px;
-            width: 120px;
-            height: 120px;
-            transform: rotate(-30deg);
-        }
-        
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 0 80px 0 100px;
-            position: relative;
+            opacity: 0.25;
             z-index: 2;
         }
-        
+
+        .margin-line::before {
+            content: '';
+            position: absolute;
+            left: -1px;
+            top: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(
+                to bottom,
+                transparent,
+                rgba(139, 38, 53, 0.1) 20%,
+                rgba(139, 38, 53, 0.1) 80%,
+                transparent
+            );
+        }
+
+        /* Navigation */
+        .nav-sticky {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: var(--sticky-blue);
+            padding: 1rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transform: rotate(2deg);
+            transition: transform 0.3s;
+        }
+
+        .nav-sticky:hover {
+            transform: rotate(0deg) scale(1.05);
+        }
+
+        .nav-sticky ul {
+            list-style: none;
+            font-family: 'Caveat', cursive;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .nav-sticky a {
+            color: var(--ink);
+            text-decoration: none;
+            transition: all 0.3s;
+            display: block;
+            padding: 0.3rem 0;
+        }
+
+        .nav-sticky a:hover {
+            color: var(--accent);
+            transform: translateX(5px);
+            display: inline-block;
+        }
+
+        /* Enhanced Coffee Stains */
+        .coffee-stain {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+            filter: blur(1px);
+        }
+
+        .coffee-stain-1 {
+            top: 120px;
+            right: 200px;
+            width: 180px;
+            height: 180px;
+            background: radial-gradient(
+                circle at 35% 35%,
+                transparent 25%,
+                rgba(212, 165, 116, 0.06) 26%,
+                rgba(212, 165, 116, 0.12) 45%,
+                rgba(212, 165, 116, 0.08) 55%,
+                transparent 56%
+            );
+            transform: rotate(45deg);
+            animation: fadeIn 2s ease-out;
+        }
+
+        .coffee-stain-2 {
+            bottom: 250px;
+            left: 120px;
+            width: 140px;
+            height: 140px;
+            background: radial-gradient(
+                circle at 40% 40%,
+                transparent 30%,
+                rgba(176, 137, 104, 0.05) 31%,
+                rgba(176, 137, 104, 0.1) 48%,
+                transparent 50%
+            );
+            transform: rotate(-30deg);
+            animation: fadeIn 2.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Container */
+        .container {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 0 100px 0 120px;
+            position: relative;
+            z-index: 3;
+        }
+
+        /* Enhanced Hero Section */
         .hero {
-            padding: 4rem 0 3rem;
+            padding: 5rem 0 4rem;
             text-align: center;
             position: relative;
+            animation: slideDown 1s ease-out;
         }
-        
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         .hero h1 {
-            font-size: 3.8rem;
-            font-weight: 600;
+            font-size: clamp(2.5rem, 5vw, 4.2rem);
+            font-weight: 700;
             margin-bottom: 1.5rem;
             color: var(--ink);
             position: relative;
-            letter-spacing: -0.5px;
-            line-height: 1.2;
-            font-family: 'Crimson Text', serif;
+            letter-spacing: -1px;
+            line-height: 1.1;
+            text-shadow: 2px 2px 0 var(--paper-dark);
         }
-        
+
+        .hero h1 .accent-word {
+            color: var(--accent);
+            position: relative;
+            display: inline-block;
+            animation: pulse 3s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
         .hero h1::after {
             content: '';
             display: block;
-            width: 80px;
-            height: 2px;
-            background: var(--accent);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-bright));
             margin: 1.5rem auto 0;
+            border-radius: 2px;
         }
-        
+
         .tagline {
             font-style: italic;
-            color: var(--ink-light);
+            color: var(--ink-medium);
             margin-bottom: 2rem;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.3s forwards;
         }
-        
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+        }
+
+        /* Enhanced Sticky Notes */
         .sticky-note {
             display: inline-block;
             background: var(--sticky-yellow);
-            padding: 3rem 2rem;
-            transform: rotate(-2deg);
-            box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+            padding: 2.5rem 3rem;
+            transform: rotate(-3deg);
+            box-shadow: 
+                0 6px 20px rgba(0,0,0,0.08),
+                0 2px 4px rgba(0,0,0,0.05);
             position: relative;
             font-family: 'Caveat', cursive;
-            font-size: 1.8rem;
+            font-size: 1.6rem;
+            font-weight: 500;
             color: var(--ink);
-            margin: 2rem 0;
+            margin: 2.5rem 0;
+            transition: all 0.3s;
+            cursor: default;
         }
-        
+
+        .sticky-note:hover {
+            transform: rotate(-1deg) scale(1.02);
+            box-shadow: 
+                0 8px 25px rgba(0,0,0,0.12),
+                0 4px 8px rgba(0,0,0,0.08);
+        }
+
         .sticky-note::before {
             content: '';
             position: absolute;
-            top: -10px;
+            top: -15px;
             left: 50%;
             transform: translateX(-50%);
-            width: 40px;
-            height: 20px;
-            background: rgba(200,200,200,0.3);
+            width: 50px;
+            height: 25px;
+            background: linear-gradient(to bottom, rgba(200,200,200,0.4), rgba(200,200,200,0.2));
             border-radius: 50%;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
-        
+
         .presenters {
-            margin-top: 2rem;
+            margin-top: 2.5rem;
             font-style: italic;
             color: var(--ink-light);
+            font-size: 1.1rem;
         }
-        
+
+        /* Enhanced Sections */
         .section {
-            padding: 3rem 0;
+            padding: 4rem 0;
             position: relative;
-            z-index: 2;
+            z-index: 3;
+            scroll-margin-top: 80px;
         }
-        
+
         .section h2 {
-            font-size: 2.2rem;
-            margin-bottom: 0.5rem;
-            color: var(--accent);
-            font-weight: 400;
-            position: relative;
-            padding-left: 40px;
-        }
-        
-        .section h2::before {
-            content: '§';
-            position: absolute;
-            left: 0;
-            color: var(--burgundy);
             font-size: 2.5rem;
+            margin-bottom: 0.8rem;
+            color: var(--accent);
+            font-weight: 600;
+            position: relative;
+            padding-left: 0;
+            transition: all 0.3s;
         }
-        
+
+        .section h2:hover {
+            color: var(--accent-bright);
+        }
+
+        /* Marginal Notes */
         .marginal-note {
             position: absolute;
-            right: -60px;
-            width: 150px;
-            font-size: 0.85rem;
+            right: -80px;
+            width: 180px;
+            font-size: 1.2rem;
             color: var(--ink-light);
             font-style: italic;
             line-height: 1.4;
             font-family: 'Caveat', cursive;
-            font-size: 1.1rem;
-            transform: rotate(-1deg);
+            transform: rotate(-2deg);
+            opacity: 0.8;
+            transition: all 0.3s;
         }
-        
+
+        .marginal-note:hover {
+            opacity: 1;
+            transform: rotate(0deg) scale(1.05);
+        }
+
+        /* Text Effects */
         .underline {
-            text-decoration: underline;
-            text-decoration-color: var(--accent);
-            text-decoration-thickness: 2px;
-            text-underline-offset: 4px;
+            text-decoration: none;
         }
-        
+
         .highlight {
-            background: linear-gradient(transparent 60%, rgba(45, 90, 61, 0.2) 60%);
-            padding: 0 4px;
+            background: linear-gradient(transparent 50%, var(--highlight-yellow) 50%);
+            padding: 2px 6px;
+            border-radius: 3px;
+            transition: all 0.3s;
         }
-        
-        .grid {
-            display: grid;
-            gap: 2rem;
-            margin: 2rem 0;
+
+        .highlight:hover {
+            background: linear-gradient(transparent 30%, var(--highlight-green) 30%);
         }
-        
-        .grid-2 {
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-        }
-        
+
+        /* Enhanced Cards */
         .card {
-            background: var(--paper-dark);
+            background: linear-gradient(145deg, var(--paper), var(--paper-dark));
+            border-radius: 10px;
             padding: 2rem;
+            box-shadow: 
+                0 10px 30px rgba(0,0,0,0.08),
+                inset 0 1px 0 rgba(255,255,255,0.5);
+            transition: all 0.4s;
             position: relative;
-            box-shadow: 2px 2px 10px rgba(0,0,0,0.08);
-            border: 1px solid rgba(0,0,0,0.05);
-            transform: rotate(-0.5deg);
+            overflow: hidden;
         }
-        
-        .card:nth-child(even) {
-            transform: rotate(0.5deg);
-        }
-        
+
         .card::before {
             content: '';
             position: absolute;
-            top: -5px;
-            left: -5px;
-            right: -5px;
-            bottom: -5px;
-            background: var(--paper);
-            z-index: -1;
-            transform: rotate(0.5deg);
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s;
         }
-        
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 
+                0 15px 40px rgba(0,0,0,0.12),
+                inset 0 1px 0 rgba(255,255,255,0.7);
+        }
+
         .card h3 {
+            font-size: 1.6rem;
             color: var(--accent);
             margin-bottom: 1rem;
-            font-size: 1.5rem;
             font-weight: 600;
+            position: relative;
+            padding-bottom: 0.5rem;
         }
-        
+
+        .card h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--burgundy);
+            transition: width 0.3s;
+        }
+
+        .card:hover h3::after {
+            width: 60px;
+        }
+
         .card ul {
             list-style: none;
+            padding-left: 0;
         }
-        
+
         .card li {
-            margin: 0.5rem 0;
+            padding: 0.4rem 0;
             padding-left: 1.5rem;
             position: relative;
+            transition: all 0.3s;
         }
-        
+
         .card li::before {
             content: '→';
             position: absolute;
             left: 0;
             color: var(--burgundy);
-            font-family: 'Caveat', cursive;
-            font-size: 1.3rem;
+            font-weight: bold;
+            transition: all 0.3s;
         }
-        
+
+        .card li:hover {
+            transform: translateX(5px);
+            color: var(--accent);
+        }
+
+        .card li:hover::before {
+            transform: translateX(-3px);
+        }
+
+        /* Grid Layouts */
+        .grid {
+            display: grid;
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .grid-2 {
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        }
+
+        .grid-3 {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+
+        /* Enhanced Tool Grid */
         .tool-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 1.5rem;
-            margin: 2rem 0;
+            margin: 3rem 0;
         }
-        
+
         .tool-card {
             background: white;
-            padding: 1.5rem;
+            border: 2px solid var(--paper-shadow);
+            border-radius: 12px;
+            padding: 2rem 1.5rem;
             text-align: center;
             text-decoration: none;
             color: var(--ink);
+            transition: all 0.4s;
             position: relative;
-            transition: all 0.3s ease;
-            border: 2px solid var(--accent);
-            display: block;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
-        
-        .tool-card::after {
+
+        .tool-card::before {
             content: '';
             position: absolute;
-            top: 10px;
-            right: 10px;
-            width: 20px;
-            height: 20px;
-            background: var(--burgundy);
-            border-radius: 50%;
-            clip-path: polygon(0 0, 100% 0, 100% 80%, 50% 100%, 0 80%);
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-bright));
+            transform: scaleX(0);
+            transition: transform 0.4s;
+            transform-origin: left;
         }
-        
+
+        .tool-card:hover::before {
+            transform: scaleX(1);
+        }
+
         .tool-card:hover {
-            transform: translateY(-3px) rotate(1deg);
-            box-shadow: 3px 3px 12px rgba(0,0,0,0.1);
+            transform: translateY(-8px) rotate(1deg);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+            border-color: var(--accent-light);
         }
-        
+
         .tool-name {
-            font-size: 1.3rem;
+            font-size: 1.5rem;
             font-weight: 600;
-            margin-bottom: 0.5rem;
             color: var(--accent);
+            margin-bottom: 0.5rem;
+            font-family: 'Inter', sans-serif;
         }
-        
+
         .tool-desc {
-            font-size: 0.9rem;
             color: var(--ink-light);
+            font-size: 0.95rem;
             font-style: italic;
         }
-        
+
+        /* Enhanced Prompt Boxes */
         .prompt-box {
-            background: white;
-            border-left: 3px solid var(--accent);
-            padding: 1.5rem;
-            margin: 2rem 0;
+            background: linear-gradient(135deg, white, var(--paper));
+            border-left: 5px solid var(--accent);
+            padding: 2rem;
+            margin: 2.5rem 0;
             position: relative;
-            box-shadow: 2px 2px 8px rgba(0,0,0,0.05);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: all 0.3s;
         }
-        
-        .prompt-box::before {
-            content: '"';
-            position: absolute;
-            top: -20px;
-            left: 20px;
-            font-size: 4rem;
-            color: var(--accent);
-            opacity: 0.2;
-            font-family: 'Crimson Text', serif;
+
+        .prompt-box:hover {
+            transform: translateX(5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
         }
-        
+
         .prompt-box h4 {
             color: var(--accent);
+            font-size: 1.4rem;
             margin-bottom: 1rem;
-            font-size: 1.2rem;
             font-weight: 600;
         }
-        
+
         .prompt-text {
-            font-family: 'Inconsolata', monospace;
-            font-size: 0.95rem;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.9rem;
             line-height: 1.6;
-            color: var(--ink-light);
+            color: var(--ink-medium);
+            background: var(--paper);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px dashed var(--paper-shadow);
         }
-        
+
         .copy-btn {
             position: absolute;
-            top: 1rem;
-            right: 1rem;
+            top: 1.5rem;
+            right: 1.5rem;
             background: var(--accent);
             color: white;
             border: none;
-            padding: 0.4rem 1rem;
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
             cursor: pointer;
-            font-size: 0.875rem;
-            font-family: 'Caveat', cursive;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            transform: rotate(2deg);
+            transition: all 0.3s;
+            box-shadow: 0 3px 10px rgba(45, 90, 61, 0.2);
         }
-        
+
         .copy-btn:hover {
-            transform: rotate(-2deg) scale(1.05);
-            background: var(--accent-light);
+            background: var(--accent-bright);
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(45, 90, 61, 0.3);
         }
-        
+
         .copy-btn.copied {
-            background: var(--accent-light);
+            background: var(--accent-bright);
+            animation: success 0.5s;
         }
-        
+
+        @keyframes success {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        /* Enhanced Example Cards */
         .examples-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
-            margin: 2rem 0;
-        }
-        
-        .example-card {
-            background: var(--paper-dark);
-            padding: 2rem;
-            text-decoration: none;
-            color: var(--ink);
-            position: relative;
-            transition: all 0.3s ease;
-            border: 1px dashed var(--accent);
-        }
-        
-        .example-card::after {
-            content: '→';
-            position: absolute;
-            bottom: 1rem;
-            right: 1rem;
-            font-family: 'Caveat', cursive;
-            font-size: 2rem;
-            color: var(--burgundy);
-            transform: rotate(-20deg);
-        }
-        
-        .example-card:hover {
-            background: white;
-            transform: translateY(-3px);
-            box-shadow: 3px 3px 12px rgba(0,0,0,0.1);
-        }
-        
-        .example-title {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            color: var(--accent);
-        }
-        
-        .example-desc {
-            font-style: italic;
-            font-size: 0.95rem;
-            color: var(--ink-light);
-        }
-        
-        .torn-edge {
-            position: relative;
             margin: 3rem 0;
         }
-        
+
+        .example-card {
+            background: var(--sticky-pink);
+            padding: 2.5rem 2rem;
+            text-decoration: none;
+            color: var(--ink);
+            transform: rotate(-1deg);
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            position: relative;
+        }
+
+        .example-card:nth-child(2) {
+            background: var(--sticky-blue);
+            transform: rotate(1deg);
+        }
+
+        .example-card:nth-child(3) {
+            background: var(--sticky-yellow);
+            transform: rotate(-2deg);
+        }
+
+        .example-card:hover {
+            transform: rotate(0deg) scale(1.05);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            z-index: 10;
+        }
+
+        .example-title {
+            font-family: 'Caveat', cursive;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .example-desc {
+            font-size: 1rem;
+            color: var(--ink-medium);
+            line-height: 1.4;
+        }
+
+        /* Torn Edge Effect */
+        .torn-edge {
+            position: relative;
+            padding-bottom: 5rem;
+        }
+
         .torn-edge::after {
             content: '';
             position: absolute;
-            bottom: -20px;
+            bottom: 0;
             left: 0;
             right: 0;
-            height: 20px;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 20"><path d="M0,10 Q5,5 10,10 T20,10 T30,10 T40,10 T50,10 T60,10 T70,10 T80,10 T90,10 T100,10 L100,20 L0,20" fill="%23FAF7F0"/></svg>');
-            background-size: 100px 20px;
-            background-repeat: repeat-x;
-            opacity: 0.5;
+            height: 30px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 30" preserveAspectRatio="none"><path d="M0,15 Q30,0 60,15 T120,15 T180,15 T240,15 T300,15 T360,15 T420,15 T480,15 T540,15 T600,15 T660,15 T720,15 T780,15 T840,15 T900,15 T960,15 T1020,15 T1080,15 T1140,15 T1200,15 L1200,30 L0,30 Z" fill="%23FDFBF7"/></svg>');
+            background-size: cover;
         }
-        
+
+        /* Enhanced CTA Section */
         .cta-section {
-            padding: 4rem 0;
+            background: linear-gradient(135deg, var(--paper-dark), var(--paper));
+            padding: 5rem 0;
             text-align: center;
             position: relative;
-            z-index: 2;
-            margin-top: 3rem;
-            border-top: 2px solid var(--accent);
-            background: linear-gradient(to bottom, transparent, rgba(45, 90, 61, 0.05));
+            margin-top: 4rem;
+            overflow: hidden;
         }
-        
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            left: -100px;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, var(--accent-light) 0%, transparent 70%);
+            opacity: 0.1;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(100px, 50px); }
+        }
+
         .cta-section h2 {
-            text-align: center;
-            padding-left: 0;
-            margin-bottom: 2rem;
+            font-size: 2.8rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
         }
-        
-        .cta-section h2::before {
-            display: none;
-        }
-        
+
+        /* Button Styles */
         .button-group {
             display: flex;
-            gap: 2rem;
+            gap: 1.5rem;
             justify-content: center;
             flex-wrap: wrap;
-            margin-top: 2rem;
+            margin: 3rem 0;
         }
-        
+
         .btn {
-            display: inline-block;
-            padding: 1rem 2rem;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
             text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            position: relative;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
             font-size: 1.1rem;
+            transition: all 0.4s;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
         }
-        
+
         .btn-primary {
-            background: var(--accent);
+            background: linear-gradient(135deg, var(--accent), var(--accent-bright));
             color: white;
-            border: 2px solid var(--accent);
+            box-shadow: 0 5px 20px rgba(45, 90, 61, 0.3);
         }
-        
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn-primary:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
         .btn-primary:hover {
-            background: white;
-            color: var(--accent);
-            transform: rotate(1deg);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(45, 90, 61, 0.4);
         }
-        
+
+        /* Handwritten Text */
         .handwritten {
             font-family: 'Caveat', cursive;
-            color: var(--burgundy);
-            font-size: 1.2rem;
-            margin: 1rem 0;
-            transform: rotate(-2deg);
-            display: inline-block;
+            font-weight: 600;
+            color: var(--ink-medium);
         }
-        
-        .arrow-sketch {
+
+        /* Doodle Elements */
+        .doodle-arrow {
             position: absolute;
             width: 100px;
             height: 50px;
             right: -120px;
             top: 50%;
             transform: translateY(-50%);
+            opacity: 0.5;
         }
-        
-        .arrow-sketch::after {
-            content: '←';
-            font-family: 'Caveat', cursive;
+
+        .doodle-arrow::after {
+            content: '↗';
             font-size: 3rem;
             color: var(--burgundy);
             position: absolute;
-            transform: scaleX(-1) rotate(10deg);
+            animation: bounce 2s ease-in-out infinite;
         }
-        
-        @media (max-width: 768px) {
+
+        @keyframes bounce {
+            0%, 100% { transform: translate(0, 0) rotate(-45deg); }
+            50% { transform: translate(10px, -10px) rotate(-45deg); }
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 1024px) {
+            .nav-sticky {
+                display: none;
+            }
+
+            .marginal-note {
+                position: relative;
+                right: auto;
+                width: 100%;
+                margin: 1rem 0;
+                transform: none;
+                background: var(--sticky-yellow);
+                padding: 1rem;
+                border-radius: 5px;
+            }
+
             .container {
                 padding: 0 40px;
             }
-            
+
+            .margin-line {
+                left: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                font-size: 16px;
+            }
+
             .hero h1 {
                 font-size: 2.5rem;
             }
-            
-            .hero h1::first-letter {
-                font-size: 3.5rem;
-            }
-            
+
             .section h2 {
-                font-size: 1.8rem;
-                padding-left: 30px;
+                font-size: 2rem;
+                padding-left: 0;
             }
-            
-            .marginal-note {
-                position: static;
+
+            .container {
+                padding: 0 20px;
+            }
+
+            .tool-grid,
+            .examples-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .grid-2,
+            .grid-3 {
+                grid-template-columns: 1fr;
+            }
+
+            .button-group {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
                 width: 100%;
-                margin: 1rem 0;
-                background: var(--sticky-yellow);
-                padding: 1rem;
+                max-width: 300px;
             }
-            
-            .arrow-sketch {
+
+            .prompt-box {
+                padding: 1.5rem;
+            }
+
+            .copy-btn {
+                position: relative;
+                top: auto;
+                right: auto;
+                margin-bottom: 1rem;
+                display: block;
+                width: auto;
+            }
+
+            .margin-line {
                 display: none;
             }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .sticky-note {
+                transform: none;
+                padding: 2rem 1.5rem;
+                margin: 1.5rem 0;
+            }
+
+            .section {
+                padding: 3rem 0;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            body {
+                background: white;
+            }
+
+            body::before,
+            body::after,
+            .margin-line,
+            .coffee-stain,
+            .nav-sticky,
+            .loader {
+                display: none;
+            }
+
+            .btn {
+                border: 2px solid var(--accent);
+                color: var(--accent);
+                background: none;
+            }
+        }
+
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Accessibility Improvements */
+        a:focus,
+        button:focus {
+            outline: 3px solid var(--accent-bright);
+            outline-offset: 3px;
+        }
+
+        /* Skip to Content Link */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--accent);
+            color: white;
+            padding: 8px;
+            text-decoration: none;
+            z-index: 10000;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
+        /* Better Quote Styling */
+        blockquote {
+            border-left: 4px solid var(--burgundy);
+            padding-left: 1.5rem;
+            margin: 2rem 0;
+            font-style: italic;
+            color: var(--ink-medium);
+        }
+
+        /* Enhanced Lists */
+        ul.fancy-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        ul.fancy-list li {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 0.8rem;
+        }
+
+        ul.fancy-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent-bright);
+            font-weight: bold;
+            font-size: 1.2rem;
         }
     </style>
 </head>
 <body>
-    <!-- Coffee Stains -->
+    <!-- Loading Animation -->
+    <div class="loader" id="loader">
+        <div class="loader-text">Loading your study notes...</div>
+    </div>
+
+    <!-- Skip to Content -->
+    <a href="#main" class="skip-link">Skip to main content</a>
+
+    <!-- Navigation Sticky Note -->
+    <nav class="nav-sticky" aria-label="Page sections">
+        <ul>
+            <li><a href="#intro">Introduction</a></li>
+            <li><a href="#tools">Tools</a></li>
+            <li><a href="#prompts">Prompts</a></li>
+            <li><a href="#examples">Examples</a></li>
+            <li><a href="#advanced">Advanced</a></li>
+            <li><a href="#cta">Get Started</a></li>
+        </ul>
+    </nav>
+
+    <!-- Background Elements -->
+    <div class="margin-line"></div>
     <div class="coffee-stain coffee-stain-1"></div>
     <div class="coffee-stain coffee-stain-2"></div>
 
     <!-- Hero Section -->
-    <header class="hero">
+    <header class="hero" id="main">
         <div class="container">
-            <h1>AI Tools for Ministry Leaders</h1>
-            <p class="tagline">"Transform Your Ministry Workflows with AI"</p>
+            <h1>AI Tools for <span class="accent-word">Ministry Leaders</span></h1>
+            <p class="tagline">Practical AI Applications for Kingdom Work</p>
             
             <div class="sticky-note">
-                This entire page was created by AI in 60 seconds!<br>
-                (...but then i edited it in <a href="https://cursor.com" target="_blank" style="color: var(--ink); text-decoration: underline;">cursor</a>)
+                Your complete guide to leveraging AI<br>
+                in ministry without the tech overwhelm
             </div>
             
-            <p class="presenters">Study notes compiled by Matt and Dave</p>
+            <p class="presenters">
+                <span class="handwritten">Presented by Dave Partin & Matt | Learning Community 2024</span>
+            </p>
         </div>
     </header>
 
-    <!-- Quick Wins Section -->
-    <section class="section torn-edge">
+    <!-- Introduction Section -->
+    <section class="section" id="intro">
         <div class="container">
-            <h2>Chapter 1: Quick Wins</h2>
-            <span class="marginal-note">Start here! No tech skills needed</span>
+            <h2>Chapter 1: Why This Matters</h2>
+            <span class="marginal-note">Time-saving ministry magic</span>
             
-            <p style="margin-bottom: 2rem;">These are <span class="underline">practical applications</span> you can implement <span class="highlight">today</span> in your ministry:</p>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem;">
+                AI isn't replacing ministry—it's <span class="highlight">amplifying your impact</span> 
+                by handling the repetitive tasks so you can focus on <span class="underline">what matters most: people</span>.
+            </p>
             
-            <div class="grid grid-2">
+            <div class="grid grid-3">
                 <div class="card">
-                    <h3>Sermon Preparation</h3>
-                    <ul>
+                    <h3>Preaching & Teaching</h3>
+                    <ul class="fancy-list">
                         <li>Generate sermon illustrations</li>
-                        <li>Create discussion questions</li>
-                        <li>Find modern analogies</li>
-                        <li>Develop series themes</li>
+                        <li>Research biblical context</li>
+                        <li>Create study questions</li>
+                        <li>Build message outlines</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Pastoral Care</h3>
+                    <ul class="fancy-list">
+                        <li>Develop care resources</li>
+                        <li>Follow-up templates</li>
                     </ul>
                 </div>
                 
                 <div class="card">
                     <h3>Communication</h3>
-                    <ul>
-                        <li>Draft pastoral emails</li>
-                        <li>Create social content</li>
-                        <li>Write newsletters</li>
-                        <li>Design event descriptions</li>
+                    <ul class="fancy-list">
+                        <li>Social media posts</li>
+                        <li>Newsletter content</li>
+                        <li>Event descriptions</li>
+                        <li>Website copy</li>
                     </ul>
                 </div>
                 
                 <div class="card">
-                    <h3>Teaching & Discipleship</h3>
-                    <ul>
+                    <h3>Education Ministry</h3>
+                    <ul class="fancy-list">
                         <li>Build study guides</li>
-                        <li>Create memory verses</li>
                         <li>Design curriculum</li>
                         <li>Plan lessons</li>
                     </ul>
@@ -617,11 +1100,20 @@
                 
                 <div class="card">
                     <h3>Administration</h3>
-                    <ul>
+                    <ul class="fancy-list">
                         <li>Write job descriptions</li>
                         <li>Create agendas</li>
                         <li>Generate reports</li>
                         <li>Draft proposals</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Creative Ministry</h3>
+                    <ul class="fancy-list">
+                        <li>Service themes</li>
+                        <li>Drama scripts</li>
+                        <li>Visual concepts</li>
                     </ul>
                 </div>
             </div>
@@ -629,12 +1121,14 @@
     </section>
 
     <!-- AI Tools Section -->
-    <section class="section">
+    <section class="section" id="tools">
         <div class="container">
-            <h2>Chapter 2: Your Toolkit</h2>
+            <h2>Chapter 2: Your AI Toolkit</h2>
             <span class="marginal-note">All have free versions!</span>
             
-            <p style="margin-bottom: 2rem;">Click any tool below to get started:</p>
+            <p style="margin-bottom: 2rem; font-size: 1.1rem;">
+                Click any tool below to <span class="highlight">start exploring today</span>:
+            </p>
             
             <div class="tool-grid">
                 <a href="https://claude.ai" target="_blank" class="tool-card">
@@ -644,7 +1138,7 @@
                 
                 <a href="https://chat.openai.com" target="_blank" class="tool-card">
                     <div class="tool-name">ChatGPT</div>
-                    <div class="tool-desc">Most versatile</div>
+                    <div class="tool-desc">Most versatile tool</div>
                 </a>
                 
                 <a href="https://gemini.google.com" target="_blank" class="tool-card">
@@ -671,15 +1165,16 @@
     </section>
 
     <!-- Prompts Section -->
-    <section class="section torn-edge">
+    <section class="section torn-edge" id="prompts">
         <div class="container">
             <h2>Chapter 3: Copy & Paste Prompts</h2>
-            <span class="marginal-note">Tested & ready to use</span>
+            <span class="marginal-note">Tested & ministry-ready</span>
             
             <div class="prompt-box">
                 <button class="copy-btn" onclick="copyPrompt(this, 'prompt1')">Copy this</button>
                 <h4>Sermon Illustration Generator</h4>
                 <div class="prompt-text" id="prompt1">I'm preaching on [BIBLE PASSAGE] this Sunday. The main point is [YOUR MAIN POINT]. Can you give me 3 modern-day illustrations or stories that would help my congregation understand this concept? Please make them relatable to everyday life and include a mix of personal, historical, and contemporary examples.</div>
+                <div class="doodle-arrow"></div>
             </div>
             
             <div class="prompt-box">
@@ -714,114 +1209,170 @@ Keep it under 200 words and end with an appropriate blessing.</div>
 - Relevant scripture or quote
 - Call to action
 - Appropriate hashtags
-- Emoji suggestions
 Vary the style between informational, inspirational, and invitational. Keep each post under [WORD COUNT] words.</div>
-                <div class="arrow-sketch"></div>
+            </div>
+            
+            <div class="prompt-box">
+                <button class="copy-btn" onclick="copyPrompt(this, 'prompt5')">Copy this</button>
+                <h4>Prayer Guide Builder</h4>
+                <div class="prompt-text" id="prompt5">Create a 7-day prayer guide focused on [THEME/TOPIC]. For each day include:
+- A short scripture passage (2-3 verses)
+- A brief devotional thought (50-75 words)
+- 3 specific prayer prompts
+- A practical action step
+Make it accessible for both new believers and mature Christians. Format it in a way that's easy to follow daily.</div>
             </div>
         </div>
     </section>
 
     <!-- Real Examples Section -->
-    <section class="section">
+    <section class="section" id="examples">
         <div class="container">
-            <h2>Chapter 4: Real Examples</h2>
-            <span class="marginal-note">Dave's actual projects!</span>
+            <h2>Chapter 4: Real Ministry Examples</h2>
+            <span class="marginal-note">Dave's actual AI projects!</span>
             
-            <p style="margin-bottom: 2rem;">These tools were all built with AI assistance:</p>
+            <p style="margin-bottom: 2rem; font-size: 1.1rem;">
+                These ministry tools were all built with AI assistance:
+            </p>
             
             <div class="examples-grid">
                 <a href="https://ministrybag.com/heart52/" target="_blank" class="example-card">
                     <div class="example-title">Heart52</div>
-                    <div class="example-desc">Bible memory app - 52 verses for 52 weeks</div>
+                    <div class="example-desc">Bible memory app - 52 verses for 52 weeks. A complete scripture memorization system.</div>
                 </a>
                 
                 <a href="https://davepartin.github.io/typesight/" target="_blank" class="example-card">
                     <div class="example-title">TypeSight</div>
-                    <div class="example-desc">Dyslexia tool for sight words & typing</div>
+                    <div class="example-desc">Dyslexia tool for sight words & typing. Helping kids learn through interactive practice.</div>
                 </a>
                 
                 <a href="https://ministrybag.com" target="_blank" class="example-card">
                     <div class="example-title">MinistryBag</div>
-                    <div class="example-desc">Central hub for ministry resources</div>
+                    <div class="example-desc">Central hub for ministry resources. Free tools for pastors and church leaders.</div>
                 </a>
             </div>
+            
+            <blockquote>
+                "AI helped me create these tools in hours instead of months. It's not about the tech—it's about serving people better."
+                <footer>— Dave Partin</footer>
+            </blockquote>
         </div>
     </section>
 
     <!-- Advanced Section -->
-    <section class="section torn-edge">
+    <section class="section torn-edge" id="advanced">
         <div class="container">
             <h2>Chapter 5: Advanced Applications</h2>
-            <span class="marginal-note">Once you're comfortable</span>
+            <span class="marginal-note">Level up when ready!</span>
             
-            <p style="margin-bottom: 2rem;">After mastering the basics, explore these <span class="highlight">advanced uses</span>:</p>
+            <p style="margin-bottom: 2rem; font-size: 1.1rem;">
+                After mastering the basics, explore these <span class="highlight">advanced ministry applications</span>:
+            </p>
             
             <div class="grid grid-2">
                 <div class="card">
                     <h3>Data Analysis</h3>
                     <ul>
-                        <li>Attendance patterns</li>
-                        <li>Giving trends</li>
-                        <li>Survey summaries</li>
+                        <li>Attendance patterns & trends</li>
+                        <li>Giving analysis & projections</li>
+                        <li>Survey summaries & insights</li>
+                        <li>Community demographic research</li>
                     </ul>
                 </div>
                 
                 <div class="card">
                     <h3>Creative Projects</h3>
                     <ul>
-                        <li>Service themes</li>
-                        <li>VBS curriculum</li>
-                        <li>Drama scripts</li>
+                        <li>Complete service themes</li>
+                        <li>VBS curriculum development</li>
+                        <li>Drama scripts & sketches</li>
+                        <li>Worship experience design</li>
                     </ul>
                 </div>
                 
                 <div class="card">
                     <h3>Automation</h3>
                     <ul>
-                        <li>Follow-up sequences</li>
-                        <li>Prayer management</li>
-                        <li>Event workflows</li>
+                        <li>Guest follow-up sequences</li>
+                        <li>Prayer request management</li>
+                        <li>Event planning workflows</li>
+                        <li>Volunteer scheduling systems</li>
                     </ul>
                 </div>
                 
                 <div class="card">
                     <h3>Content Creation</h3>
                     <ul>
-                        <li>Devotional series</li>
-                        <li>Study materials</li>
-                        <li>Training resources</li>
+                        <li>Devotional series writing</li>
+                        <li>Bible study materials</li>
+                        <li>Leadership training resources</li>
+                        <li>Discipleship pathways</li>
                     </ul>
                 </div>
+            </div>
+            
+            <div style="margin-top: 3rem; padding: 2rem; background: var(--sticky-blue); transform: rotate(-1deg); box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+                <h3 style="font-family: 'Caveat', cursive; font-size: 1.8rem; color: var(--accent);">
+                    Pro Tip: Start Small! 
+                </h3>
+                <p style="font-family: 'Caveat', cursive; font-size: 1.4rem;">
+                    Pick ONE tool and ONE use case this week. Master it before moving on. 
+                    Success comes from consistency, not complexity!
+                </p>
             </div>
         </div>
     </section>
 
     <!-- CTA Section -->
-    <div class="cta-section">
+    <section class="cta-section" id="cta">
         <div class="container">
-            <h2>Final Thoughts</h2>
+            <h2>Your Next Step</h2>
             
-            <p style="font-size: 1.2rem; margin-bottom: 2rem; font-style: italic;">
-                "Start with one tool, one prompt, one experiment today"
+            <p style="font-size: 1.3rem; margin-bottom: 2rem; font-style: italic; color: var(--ink-medium);">
+                "The harvest is plentiful, but the workers are few. 
+                Let's multiply our efforts with wisdom and technology."
             </p>
             
             <div class="button-group">
-                <a href="https://claude.ai" target="_blank" class="btn btn-primary">Try Claude (Free)</a>
-                <a href="https://ministrybag.com" target="_blank" class="btn btn-primary">Visit MinistryBag</a>
+                <a href="https://claude.ai" target="_blank" class="btn btn-primary">
+                    Start with Claude (Free)
+                </a>
+                <a href="https://ministrybag.com" target="_blank" class="btn btn-primary">
+                    Explore MinistryBag
+                </a>
             </div>
-            
-            <p class="handwritten" style="margin-top: 3rem; font-size: 1.5rem;">
-                Questions? Find us after the session!<br>
-                - Dave & Matt
-            </p>
         </div>
-    </div>
+    </section>
 
     <script>
+        // Remove loader after page loads
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('hidden');
+            }, 500);
+        });
+
+        // Copy prompt function with enhanced feedback
         function copyPrompt(button, promptId) {
             const promptText = document.getElementById(promptId).textContent;
             navigator.clipboard.writeText(promptText).then(() => {
-                button.textContent = 'Copied!';
+                const originalText = button.textContent;
+                button.textContent = '✓ Copied!';
+                button.classList.add('copied');
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.classList.remove('copied');
+                }, 2000);
+            }).catch(() => {
+                // Fallback for browsers that don't support clipboard API
+                const textArea = document.createElement('textarea');
+                textArea.value = promptText;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                
+                button.textContent = '✓ Copied!';
                 button.classList.add('copied');
                 setTimeout(() => {
                     button.textContent = 'Copy this';
@@ -829,6 +1380,56 @@ Vary the style between informational, inspirational, and invitational. Keep each
                 }, 2000);
             });
         }
+
+        // Add smooth reveal animations on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.8s ease-out forwards';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards and prompt boxes
+        document.querySelectorAll('.card, .prompt-box, .tool-card, .example-card').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Add parallax effect to coffee stains
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const stain1 = document.querySelector('.coffee-stain-1');
+            const stain2 = document.querySelector('.coffee-stain-2');
+            
+            if (stain1) {
+                stain1.style.transform = `rotate(${45 + scrolled * 0.02}deg) translateY(${scrolled * 0.1}px)`;
+            }
+            if (stain2) {
+                stain2.style.transform = `rotate(${-30 - scrolled * 0.02}deg) translateY(${-scrolled * 0.1}px)`;
+            }
+        });
+
+        // Add keyboard navigation for accessibility
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                // Close any open modals or reset focus
+                document.activeElement.blur();
+            }
+        });
+
+        // Progressive enhancement for print styles
+        window.addEventListener('beforeprint', () => {
+            document.body.classList.add('printing');
+        });
+
+        window.addEventListener('afterprint', () => {
+            document.body.classList.remove('printing');
+        });
     </script>
 </body>
 </html>
