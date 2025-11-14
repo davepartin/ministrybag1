@@ -19,7 +19,6 @@ let currentSession = 1;
                 radio.addEventListener('change', function() {
                     responses['commitment'] = this.value;
                     localStorage.setItem('christianFoundationsResponses', JSON.stringify(responses));
-                    showSavedIndicator('saved-1-4');
                 });
             });
         });
@@ -96,10 +95,6 @@ let currentSession = 1;
             
             responses[questionId] = answer;
             localStorage.setItem('christianFoundationsResponses', JSON.stringify(responses));
-            
-            // Show saved indicator
-            const indicatorId = 'saved-' + questionId.replace('question-', '').replace('-', '-');
-            showSavedIndicator(indicatorId);
         }
         
         function showSavedIndicator(indicatorId) {
