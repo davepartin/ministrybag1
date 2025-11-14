@@ -384,6 +384,18 @@
 
     <h2 class="section-main-title">Customize My Daily Prayers</h2>
 
+    <!-- Personal Prayer Section -->
+    <div class="prayer-section">
+      <div class="section-header">
+        <span>Pray for Myself</span>
+      </div>
+      <div class="standard-prayer" style="margin-bottom: 15px;">
+        Create in me a clean heart, O God, and renew a right spirit within me. Help me grow in:
+      </div>
+      <div class="attribute-buttons" id="personalAttrs"></div>
+      <textarea class="custom-request" id="personalCustom" rows="2" placeholder="Add specific prayer request (optional)..." onchange="saveData()"></textarea>
+    </div>
+
     <!-- Family Prayer Section -->
     <div class="prayer-section">
       <div class="section-header">
@@ -399,7 +411,7 @@
         <span>Pray for Church</span>
       </div>
       <div class="standard-prayer">
-        I pray for my church family. May we grow in our love for God and love our neighbors. Help us be bold in sharing the Gospel, serve one another faithfully, and make disciples who make disciples. Continue to strengthen our leaders and may our church be a light in our community.
+        I pray for my church family. May we grow in our love for God and our neighbors. Help us be bold in sharing the Gospel, serve one another faithfully, and make disciples who make disciples. Continue to strengthen our leaders and may our church be a light in our community.
       </div>
       <textarea class="custom-request" id="churchCustom" rows="2" placeholder="Add specific church prayer requests (optional)..."></textarea>
     </div>
@@ -434,6 +446,35 @@
       'Strength', 'Protection', 'Forgiveness', 'Humility', 'Courage',
       'Contentment'
     ];
+
+    // Helper function to format attributes with "and" before last item
+    function formatAttributes(attrs) {
+      if (attrs.length === 0) return '';
+      if (attrs.length === 1) return attrs[0];
+      if (attrs.length === 2) return attrs.join(' and ');
+      const last = attrs[attrs.length - 1];
+      const rest = attrs.slice(0, -1);
+      return rest.join(', ') + ', and ' + last;
+    }
+
+    // Initialize personal attribute buttons
+    function initPersonalAttributes(selectedAttrs = []) {
+      const container = document.getElementById('personalAttrs');
+      container.innerHTML = '';
+      attributes.forEach(attr => {
+        const btn = document.createElement('button');
+        btn.className = 'attr-btn';
+        if (selectedAttrs.includes(attr)) {
+          btn.classList.add('selected');
+        }
+        btn.textContent = attr;
+        btn.onclick = function() {
+          this.classList.toggle('selected');
+          saveData();
+        };
+        container.appendChild(btn);
+      });
+    }
 
     // Load saved data on page load
     window.onload = function() {
@@ -504,6 +545,25 @@
     function generatePrayer() {
       let prayer = '';
       
+      // Personal prayer
+      const personalAttrs = [];
+      document.querySelectorAll('#personalAttrs .attr-btn.selected').forEach(btn => {
+        personalAttrs.push(btn.textContent.toLowerCase());
+      });
+      const personalCustom = document.getElementById('personalCustom').value;
+      
+      if (personalAttrs.length > 0 || personalCustom) {
+        if (personalAttrs.length > 0) {
+          prayer += `Create in me a clean heart, O God, and renew a right spirit within me. Help me grow in ${formatAttributes(personalAttrs)}.`;
+        } else {
+          prayer += `Create in me a clean heart, O God, and renew a right spirit within me.`;
+        }
+        if (personalCustom) {
+          prayer += ` ${personalCustom}`;
+        }
+        prayer += '\n\n';
+      }
+      
       // Family prayers
       const familyMembers = document.querySelectorAll('.family-member');
       if (familyMembers.length > 0) {
@@ -517,7 +577,7 @@
             });
             
             if (selectedAttrs.length > 0) {
-              prayer += `Lord, I pray that ${name} will grow in ${selectedAttrs.join(', ')}.`;
+              prayer += `Lord, I pray that ${name} will grow in ${formatAttributes(selectedAttrs)}.`;
             } else {
               prayer += `Lord, I pray that ${name} will grow closer to You.`;
             }
@@ -532,7 +592,7 @@
       }
       
       // Church prayer
-    prayer += 'I pray for my church family. May we grow in our love for God and love our neighbors. Help us be bold in sharing the Gospel, serve one another faithfully, and make disciples who make disciples. Continue to strengthen our leaders and may our church be a light in our community.';
+    prayer += 'I pray for my church family. May we grow in our love for God and our neighbors. Help us be bold in sharing the Gospel, serve one another faithfully, and make disciples who make disciples. Continue to strengthen our leaders and may our church be a light in our community.';
       const churchCustom = document.getElementById('churchCustom').value;
       if (churchCustom) {
         prayer += ` ${churchCustom}`;
@@ -590,11 +650,18 @@ For yours is the kingdom, and the power, and the glory forever, Amen.`;
     // Save data to localStorage
     function saveData() {
       const data = {
+        personalAttrs: [],
+        personalCustom: document.getElementById('personalCustom').value,
         familyMembers: [],
         churchCustom: document.getElementById('churchCustom').value,
         lostNames: [],
         lostCustom: document.getElementById('lostCustom').value
       };
+      
+      // Save personal attributes
+      document.querySelectorAll('#personalAttrs .attr-btn.selected').forEach(btn => {
+        data.personalAttrs.push(btn.textContent);
+      });
       
       // Save family members
       document.querySelectorAll('.family-member').forEach(member => {
@@ -620,6 +687,13 @@ For yours is the kingdom, and the power, and the glory forever, Amen.`;
       const savedData = localStorage.getItem('lordsPrayerApp');
       if (savedData) {
         const data = JSON.parse(savedData);
+        
+        // Load personal attributes
+        const personalAttrs = data.personalAttrs || [];
+        initPersonalAttributes(personalAttrs);
+        if (data.personalCustom) {
+          document.getElementById('personalCustom').value = data.personalCustom;
+        }
         
         // Load family members
         if (data.familyMembers && data.familyMembers.length > 0) {
@@ -654,6 +728,8 @@ For yours is the kingdom, and the power, and the glory forever, Amen.`;
         updateLostPrayerPreview();
         loadGeneratedPrayer();
       } else {
+        // Initialize personal attributes for new users
+        initPersonalAttributes();
         // Add one empty family member by default for new users
         addFamilyMember();
         updateLostPrayerPreview();
