@@ -25,12 +25,14 @@
             color: #003366;
             background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 50%, #e9ecef 100%);
             min-height: 100vh;
+            padding-bottom: 100px; /* Extra space at absolute bottom */
         }
 
         .container {
             max-width: 800px;
             margin: 0 auto;
             padding: 20px;
+            position: relative;
         }
 
         /* Header */
@@ -266,7 +268,7 @@
             font-family: Arial, sans-serif;
         }
 
-        /* Memory training display - match the verse display exactly */
+        /* Memory training display */
         .memory-display {
             background: rgba(0, 51, 102, 0.05);
             border-radius: 15px;
@@ -333,42 +335,83 @@
 
         /* Speed controls */
         .speed-controls {
-            margin-top: 20px;
-            margin-bottom: 20px;
-            padding: 20px;
+            margin: 20px auto;
+            padding: 15px;
             background: rgba(255,255,255,0.8);
             border-radius: 15px;
             backdrop-filter: blur(10px);
-        }
-
-        .speed-heading {
+            max-width: 400px;
             text-align: center;
-            margin-bottom: 15px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #003366;
-        }
-
-        .speed-control-row {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
         }
 
         .speed-label {
             color: #003366;
-            font-weight: 500;
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .speed-toggles {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .speed-btn {
+            padding: 8px 20px;
+            background: white;
+            border: 2px solid #003366;
+            color: #003366;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .speed-btn.active {
+            background: #003366;
+            color: white;
         }
 
         /* Memory training instruction */
         .memory-instruction {
             text-align: center;
             margin: 20px 0 15px 0;
-            font-size: 1rem;
-            font-weight: 400;
+            font-size: 1.1rem;
+            font-weight: 600;
             color: #003366;
-            line-height: 1.4;
+        }
+        
+        .section-title {
+             text-align: center;
+            margin: 20px 0 20px 0;
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: #003366;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-top: 1px solid rgba(0, 51, 102, 0.1);
+            padding-top: 30px;
+        }
+
+        /* Section Spacer for Scrolling */
+        .scroll-spacer {
+            height: 5vh; /* Minimal spacing between sections */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ccc;
+            font-size: 0.8rem;
+            font-style: italic;
+        }
+        
+        .scroll-spacer::after {
+            content: "↓ Scroll down for more ↓";
+            opacity: 0.5;
+        }
+        
+        .scroll-spacer-bottom {
+             height: 30vh; /* Space at bottom to clear previous game when scrolling */
         }
 
         /* Memory training controls */
@@ -403,15 +446,121 @@
             border-color: #3399CC;
         }
 
+        /* THE SPECIAL HIDDEN WORD STYLE */
         .blank {
-            background: #e9ecef;
-            color: #e9ecef;
-            padding: 2px 8px;
-            border-radius: 6px;
+            display: inline-block;
+            background-color: #003366; /* Dark background to cover */
+            color: rgba(255, 255, 255, 0.15); /* Very faint text */
+            border-radius: 4px;
             margin: 0 2px;
-            border: 2px solid #3399CC;
-            box-shadow: 0 4px 8px rgba(51, 153, 204, 0.3);
-            user-select: none;
+            padding: 0 4px;
+            
+            /* This clips the text so only the top 35% is visible */
+            /* Looks like tops of letters poking out */
+            clip-path: polygon(0 0, 100% 0, 100% 40%, 0 40%); 
+            
+            /* Ensure box takes up full height but we only see top of text content via clip */
+            line-height: 1.6; 
+            vertical-align: bottom;
+            
+            /* Prevent selection to avoid cheating */
+            user-select: none; 
+            
+            /* Make it look like a dark bubble */
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            
+            position: relative;
+            top: 5px; /* Nudge down slightly for effect */
+        }
+
+        /* GAME STYLES */
+        .game-section {
+            margin-top: 20px;
+            padding: 20px;
+            background: #f0f4f8;
+            border-radius: 15px;
+            border: 2px solid rgba(0, 51, 102, 0.1);
+        }
+        
+        .game-container {
+            text-align: left;
+            font-size: 1.2rem;
+            line-height: 2.5; /* More line height for inputs */
+            margin-bottom: 20px;
+        }
+        
+        .game-input {
+            border: none;
+            border-bottom: 2px solid #3399CC;
+            background: white;
+            font-size: 1.1rem;
+            color: #003366;
+            padding: 2px 0; /* Less horizontal padding */
+            margin: 0 3px;
+            text-align: center;
+            border-radius: 4px 4px 0 0;
+            transition: all 0.2s;
+            font-family: monospace; /* Monospace helps with letter counting spacing */
+            letter-spacing: 2px;
+        }
+        
+        .game-input:focus {
+            outline: none;
+            border-bottom-color: #003366;
+            background: #e6f3ff;
+            transform: scale(1.05);
+        }
+        
+        .game-input.correct {
+            background-color: #d4edda;
+            border-bottom-color: #28a745;
+            color: #155724;
+        }
+        
+        .game-input.incorrect {
+            background-color: #f8d7da;
+            border-bottom-color: #dc3545;
+            color: #721c24;
+        }
+
+        .game-controls {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .game-btn {
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            transition: transform 0.2s;
+            font-size: 1rem;
+        }
+        
+        .btn-check {
+            background: #28a745;
+            color: white;
+        }
+        
+        .btn-reset {
+            background: #6c757d;
+            color: white;
+        }
+        
+        .game-btn:hover {
+            transform: scale(1.05);
+            opacity: 0.9;
+        }
+        
+        .game-feedback {
+            text-align: center;
+            font-weight: bold;
+            min-height: 1.5em;
+            margin-top: 10px;
+            color: #28a745;
         }
 
         /* Responsive design */
@@ -471,30 +620,15 @@
                 margin: 15px 0 12px 0;
                 padding: 0 10px;
             }
+            
+            .game-input {
+                font-size: 1rem;
+            }
         }
 
         /* Hidden class for view switching */
         .hidden {
             display: none !important;
-        }
-
-        /* Loading animation */
-        .loading {
-            text-align: center;
-            color: #667eea;
-            font-size: 1.1rem;
-        }
-
-        .loading::after {
-            content: '...';
-            animation: dots 1.5s steps(5, end) infinite;
-        }
-
-        @keyframes dots {
-            0%, 20% { content: '.'; }
-            40% { content: '..'; }
-            60% { content: '...'; }
-            80%, 100% { content: '....'; }
         }
 
         /* Ministry Bag Satchel Icon */
@@ -509,11 +643,6 @@
             margin: 20px;
         }
 
-        /* Container positioning for the icon */
-        .container {
-            position: relative;
-        }
-
         .ministry-bag-icon:hover {
             transform: scale(1.1);
         }
@@ -526,11 +655,7 @@
             <img src="ministrybagsatchel1.svg" alt="Ministry Bag" width="50" height="50" style="filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.6));">
         </a>
         <header class="header">
-           <img
-  src="heart52logo1.svg"
-  alt="Heart-52 Logo"
-  class="logo"
-/>
+           <img src="heart52logo1.svg" alt="Heart-52 Logo" class="logo" />
 
             <p>52 Verses. 52 Weeks.<br> 
                 God's Word in Your Heart.</p>
@@ -562,9 +687,7 @@
             <!-- Verse View -->
             <div id="verse-view" class="hidden">
                 <div class="verse-page">
-                    <div class="week-indicator-simple" id="current-week-indicator">
-                        <!-- Week indicator will be populated by JavaScript -->
-                    </div>
+                    <div class="week-indicator-simple" id="current-week-indicator"></div>
                     
                     <div class="verse-display">
                         <div class="verse-theme-display" id="current-verse-theme"></div>
@@ -584,26 +707,63 @@
                         </button>
                     </div>
 
-                    <div class="speed-controls" id="speed-controls">
-                        <!-- Speed control will be added by JavaScript -->
+                    <div class="speed-controls">
+                        <label class="speed-label">Voice Speed</label>
+                        <div class="speed-toggles">
+                            <button class="speed-btn active" id="speed-normal" onclick="setSpeed(1.0)">Normal</button>
+                            <button class="speed-btn" id="speed-fast" onclick="setSpeed(1.25)">Faster</button>
+                        </div>
                     </div>
 
+                    <!-- SPACER FOR SCROLLING -->
+                    <div class="scroll-spacer"></div>
+
+                    <div class="section-title">Memory Practice</div>
                     <div class="memory-instruction">
-                        Test your memory by hiding words.<br>
-                        Choose your difficulty:
+                        Test your memory by hiding words.
                     </div>
 
                     <div class="training-controls">
-                        <button class="level-btn" onclick="setMemoryLevel(0)">Full Text</button>
-                        <button class="level-btn active" onclick="setMemoryLevel(1)">Level 1 (25%)</button>
-                        <button class="level-btn" onclick="setMemoryLevel(2)">Level 2 (50%)</button>
-                        <button class="level-btn" onclick="setMemoryLevel(3)">Level 3 (75%)</button>
+                        <button class="level-btn" onclick="setMemoryLevel(0)">Show All</button>
+                        <button class="level-btn active" onclick="setMemoryLevel(1)">Level 1</button>
+                        <button class="level-btn" onclick="setMemoryLevel(2)">Level 2</button>
+                        <button class="level-btn" onclick="setMemoryLevel(3)">Level 3</button>
                     </div>
 
                     <div class="memory-display">
                         <div class="memory-ref" id="memory-ref"></div>
                         <div class="memory-text" id="memory-text"></div>
                     </div>
+                    
+                    <!-- SPACER FOR SCROLLING -->
+                    <div class="scroll-spacer"></div>
+                    
+                    <!-- NEW GAME SECTION -->
+                    <div class="section-title">Fill in the Blanks Game</div>
+                    <div class="memory-instruction">
+                        Type the missing words to lock them in your heart.
+                    </div>
+                    
+                    <div class="training-controls">
+                        <button class="level-btn game-level-btn active" onclick="initGame(1)">Level 1</button>
+                        <button class="level-btn game-level-btn" onclick="initGame(2)">Level 2</button>
+                        <button class="level-btn game-level-btn" onclick="initGame(3)">Level 3</button>
+                    </div>
+
+                    <div class="game-section">
+                        <div class="game-container" id="game-container">
+                            <!-- Game content goes here -->
+                        </div>
+                        <div class="game-feedback" id="game-feedback"></div>
+                        <div class="game-controls">
+                            <button class="game-btn btn-reset" onclick="resetGame()">Reset</button>
+                            <button class="game-btn btn-check" onclick="checkGame()">Check Answers</button>
+                        </div>
+                    </div>
+                    
+                    <!-- SPACER AT BOTTOM -->
+                    <div class="scroll-spacer-bottom"></div>
+
                 </div>
             </div>
         </main>
@@ -612,278 +772,71 @@
     <script>
         let lastScrollY = 0;
         
-        // Initialize ministry bag icon visibility on page load
+        // Initialize ministry bag icon visibility
         document.addEventListener('DOMContentLoaded', function() {
-            // Show the ministry bag icon on initial page load (home page)
             document.querySelector('.ministry-bag-icon').style.display = 'block';
         });
-        // HEART-52 Complete Collection with updated verses from Google Sheet
+        
+        // HEART-52 Complete Collection
         const verses = [
-            {
-                reference: "Psalm 119:11",
-                theme: "God's Word",
-                text: "I have stored up your word in my heart, that I might not sin against you."
-            },
-            {
-                reference: "John 3:16",
-                theme: "The Gospel",
-                text: "For God so loved the world, that he gave his only Son, that whoever believes in him should not perish but have eternal life."
-            },
-            {
-                reference: "Romans 3:23",
-                theme: "Admit Sin",
-                text: "For all have sinned and fall short of the glory of God,"
-            },
-            {
-                reference: "Romans 6:23",
-                theme: "Admit Sin",
-                text: "For the wages of sin is death, but the free gift of God is eternal life in Christ Jesus our Lord."
-            },
-            {
-                reference: "Romans 5:8",
-                theme: "Believe in Jesus as Savior",
-                text: "God shows his love for us in that while we were still sinners, Christ died for us."
-            },
-            {
-                reference: "Romans 10:9",
-                theme: "Confess Jesus as Lord",
-                text: "If you confess with your mouth that Jesus is Lord and believe in your heart that God raised him from the dead, you will be saved."
-            },
-            {
-                reference: "Colossians 2:6-7",
-                theme: "Discipleship",
-                text: "As you received Christ Jesus the Lord, so walk in him, rooted and built up in him and established in the faith, just as you were taught, abounding in thanksgiving."
-            },
-            {
-                reference: "Matthew 28:19-20",
-                theme: "Evangelism",
-                text: "Go therefore and make disciples of all nations, baptizing them in the name of the Father and of the Son and of the Holy Spirit, teaching them to observe all that I have commanded you. And behold, I am with you always, to the end of the age."
-            },
-            {
-                reference: "Romans 15:7",
-                theme: "Family of God",
-                text: "Welcome one another as Christ has welcomed you, for the glory of God."
-            },
-            {
-                reference: "2 Corinthians 5:17",
-                theme: "Identity in Christ",
-                text: "If anyone is in Christ, he is a new creation. The old has passed away; behold, the new has come."
-            },
-            {
-                reference: "John 1:12",
-                theme: "Identity in Christ",
-                text: "To all who did receive him, who believed in his name, he gave the right to become children of God,"
-            },
-            {
-                reference: "Romans 8:1",
-                theme: "Identity in Christ",
-                text: "There is therefore now no condemnation for those who are in Christ Jesus."
-            },
-            {
-                reference: "Matthew 6:9-13",
-                theme: "Prayer",
-                text: "Pray then like this: Our Father in heaven, hallowed be your name. Your kingdom come, your will be done, on earth as it is in heaven. Give us this day our daily bread, and forgive us our debts, as we also have forgiven our debtors. And lead us not into temptation, but deliver us from evil."
-            },
-            {
-                reference: "Ephesians 2:8-9",
-                theme: "Salvation",
-                text: "For by grace you have been saved through faith. And this is not your own doing; it is the gift of God, not a result of works, so that no one may boast."
-            },
-            {
-                reference: "Romans 8:28",
-                theme: "Trust in God",
-                text: "We know that for those who love God all things work together for good, for those who are called according to his purpose."
-            },
-            {
-                reference: "Romans 12:1-2",
-                theme: "Living Sacrifice",
-                text: "I appeal to you therefore, brothers, by the mercies of God, to present your bodies as a living sacrifice, holy and acceptable to God, which is your spiritual worship. Do not be conformed to this world, but be transformed by the renewal of your mind, that by testing you may discern what is the will of God, what is good and acceptable and perfect."
-            },
-            {
-                reference: "Galatians 2:20",
-                theme: "Identity in Christ",
-                text: "I have been crucified with Christ. It is no longer I who live, but Christ who lives in me. And the life I now live in the flesh I live by faith in the Son of God, who loved me and gave himself for me."
-            },
-            {
-                reference: "1 Corinthians 6:19-20",
-                theme: "Holiness",
-                text: "Do you not know that your body is a temple of the Holy Spirit within you, whom you have from God? You are not your own, for you were bought with a price. So glorify God in your body."
-            },
-            {
-                reference: "2 Timothy 3:16-17",
-                theme: "God's Word",
-                text: "All Scripture is breathed out by God and profitable for teaching, for reproof, for correction, and for training in righteousness, that the man of God may be complete, equipped for every good work."
-            },
-            {
-                reference: "Hebrews 4:12",
-                theme: "God's Word",
-                text: "For the word of God is living and active, sharper than any two-edged sword, piercing to the division of soul and of spirit, of joints and of marrow, and discerning the thoughts and intentions of the heart."
-            },
-            {
-                reference: "Matthew 22:37-39",
-                theme: "Love God and Others",
-                text: "And he said to him, 'You shall love the Lord your God with all your heart and with all your soul and with all your mind. This is the great and first commandment. And a second is like it: You shall love your neighbor as yourself.'"
-            },
-            {
-                reference: "John 14:6",
-                theme: "Salvation",
-                text: "Jesus said to him, 'I am the way, and the truth, and the life. No one comes to the Father except through me.'"
-            },
-            {
-                reference: "John 15:5",
-                theme: "Identity in Christ",
-                text: "I am the vine; you are the branches. Whoever abides in me and I in him, he it is that bears much fruit, for apart from me you can do nothing."
-            },
-            {
-                reference: "1 John 1:9",
-                theme: "Forgiveness",
-                text: "If we confess our sins, he is faithful and just to forgive us our sins and to cleanse us from all unrighteousness."
-            },
-            {
-                reference: "Proverbs 3:5-6",
-                theme: "Trust in God",
-                text: "Trust in the Lord with all your heart, and do not lean on your own understanding. In all your ways acknowledge him, and he will make straight your paths."
-            },
-            {
-                reference: "Philippians 4:6-7",
-                theme: "Prayer & Peace",
-                text: "Do not be anxious about anything, but in everything by prayer and supplication with thanksgiving let your requests be made known to God. And the peace of God, which surpasses all understanding, will guard your hearts and your minds in Christ Jesus."
-            },
-            {
-                reference: "Philippians 4:13",
-                theme: "Strength in Christ",
-                text: "I can do all things through him who strengthens me."
-            },
-            {
-                reference: "Philippians 1:6",
-                theme: "Growth in Christ",
-                text: "I am sure of this, that he who began a good work in you will bring it to completion at the day of Jesus Christ."
-            },
-            {
-                reference: "Philippians 2:3-5",
-                theme: "Humility",
-                text: "Do nothing from selfish ambition or conceit, but in humility count others more significant than yourselves. Let each of you look not only to his own interests, but also to the interests of others. Have this mind among yourselves, which is yours in Christ Jesus,"
-            },
-            {
-                reference: "Galatians 5:22-23",
-                theme: "Character",
-                text: "The fruit of the Spirit is love, joy, peace, patience, kindness, goodness, faithfulness, gentleness, self-control; against such things there is no law."
-            },
-            {
-                reference: "Colossians 3:23",
-                theme: "Work for the Lord",
-                text: "Whatever you do, work heartily, as for the Lord and not for men,"
-            },
-            {
-                reference: "Ephesians 4:29",
-                theme: "Speech",
-                text: "Let no corrupting talk come out of your mouths, but only such as is good for building up, as fits the occasion, that it may give grace to those who hear."
-            },
-            {
-                reference: "Ephesians 4:32",
-                theme: "Kindness & Forgiveness",
-                text: "Be kind to one another, tenderhearted, forgiving one another, as God in Christ forgave you."
-            },
-            {
-                reference: "Ephesians 6:1-3",
-                theme: "Family",
-                text: "Children, obey your parents in the Lord, for this is right. 'Honor your father and mother' (this is the first commandment with a promise), 'that it may go well with you and that you may live long in the land.'"
-            },
-            {
-                reference: "1 Thessalonians 5:16-18",
-                theme: "Joy & Prayer",
-                text: "Rejoice always, pray without ceasing, give thanks in all circumstances; for this is the will of God in Christ Jesus for you."
-            },
-            {
-                reference: "Matthew 6:33",
-                theme: "Seek the Kingdom",
-                text: "Seek first the kingdom of God and his righteousness, and all these things will be added to you."
-            },
-            {
-                reference: "Matthew 5:16",
-                theme: "Witness",
-                text: "Let your light shine before others, so that they may see your good works and give glory to your Father who is in heaven."
-            },
-            {
-                reference: "Psalm 23:4",
-                theme: "God's Care",
-                text: "Even though I walk through the valley of the shadow of death, I will fear no evil, for you are with me; your rod and your staff, they comfort me."
-            },
-            {
-                reference: "Joshua 1:9",
-                theme: "Courage",
-                text: "Have I not commanded you? Be strong and courageous. Do not be frightened, and do not be dismayed, for the Lord your God is with you wherever you go."
-            },
-            {
-                reference: "James 1:22",
-                theme: "Obedience",
-                text: "Be doers of the word, and not hearers only, deceiving yourselves."
-            },
-            {
-                reference: "Matthew 7:7",
-                theme: "Prayer",
-                text: "Ask, and it will be given to you; seek, and you will find; knock, and it will be opened to you."
-            },
-            {
-                reference: "John 10:10",
-                theme: "Abundant Life",
-                text: "The thief comes only to steal and kill and destroy. I came that they may have life and have it abundantly."
-            },
-            {
-                reference: "Micah 6:8",
-                theme: "Justice & Mercy",
-                text: "He has told you, O man, what is good; and what does the Lord require of you but to do justice, and to love kindness, and to walk humbly with your God?"
-            },
-            {
-                reference: "Hebrews 11:1",
-                theme: "Faith",
-                text: "Now faith is the assurance of things hoped for, the conviction of things not seen."
-            },
-            {
-                reference: "Psalm 37:4",
-                theme: "Desire God",
-                text: "Delight yourself in the Lord, and he will give you the desires of your heart."
-            },
-            {
-                reference: "Philippians 3:8",
-                theme: "Treasure Christ",
-                text: "I count everything as loss because of the surpassing worth of knowing Christ Jesus my Lord. For his sake I have suffered the loss of all things and count them as rubbish, in order that I may gain Christ"
-            },
-            {
-                reference: "Matthew 6:34",
-                theme: "Trust in God",
-                text: "Do not be anxious about tomorrow, for tomorrow will be anxious for itself. Sufficient for the day is its own trouble."
-            },
-            {
-                reference: "James 4:17",
-                theme: "Obedience",
-                text: "So whoever knows the right thing to do and fails to do it, for him it is sin."
-            },
-            {
-                reference: "Matthew 7:12",
-                theme: "Golden Rule",
-                text: "Whatever you want men to do to you, do also to them, for this is the Law and the Prophets."
-            },
-            {
-                reference: "Genesis 1:1",
-                theme: "Creator God",
-                text: "In the beginning, God created the heavens and the earth."
-            },
-            {
-                reference: "2 Peter 1:3",
-                theme: "God's Provision",
-                text: "His divine power has granted to us all things that pertain to life and godliness, through the knowledge of him who called us to his own glory and excellence,"
-            },
-            {
-                reference: "Revelation 3:20",
-                theme: "Invitation",
-                text: "Behold, I stand at the door and knock. If anyone hears my voice and opens the door, I will come in to him and eat with him, and he with me."
-            }
+            { reference: "Psalm 119:11", theme: "God's Word", text: "I have stored up your word in my heart, that I might not sin against you." },
+            { reference: "John 3:16", theme: "The Gospel", text: "For God so loved the world, that he gave his only Son, that whoever believes in him should not perish but have eternal life." },
+            { reference: "Romans 3:23", theme: "Admit Sin", text: "For all have sinned and fall short of the glory of God," },
+            { reference: "Romans 6:23", theme: "Admit Sin", text: "For the wages of sin is death, but the free gift of God is eternal life in Christ Jesus our Lord." },
+            { reference: "Romans 5:8", theme: "Believe in Jesus as Savior", text: "God shows his love for us in that while we were still sinners, Christ died for us." },
+            { reference: "Romans 10:9", theme: "Confess Jesus as Lord", text: "If you confess with your mouth that Jesus is Lord and believe in your heart that God raised him from the dead, you will be saved." },
+            { reference: "Colossians 2:6-7", theme: "Discipleship", text: "As you received Christ Jesus the Lord, so walk in him, rooted and built up in him and established in the faith, just as you were taught, abounding in thanksgiving." },
+            { reference: "Matthew 28:19-20", theme: "Evangelism", text: "Go therefore and make disciples of all nations, baptizing them in the name of the Father and of the Son and of the Holy Spirit, teaching them to observe all that I have commanded you. And behold, I am with you always, to the end of the age." },
+            { reference: "Romans 15:7", theme: "Family of God", text: "Welcome one another as Christ has welcomed you, for the glory of God." },
+            { reference: "2 Corinthians 5:17", theme: "Identity in Christ", text: "If anyone is in Christ, he is a new creation. The old has passed away; behold, the new has come." },
+            { reference: "John 1:12", theme: "Identity in Christ", text: "To all who did receive him, who believed in his name, he gave the right to become children of God," },
+            { reference: "Romans 8:1", theme: "Identity in Christ", text: "There is therefore now no condemnation for those who are in Christ Jesus." },
+            { reference: "Matthew 6:9-13", theme: "Prayer", text: "Pray then like this: Our Father in heaven, hallowed be your name. Your kingdom come, your will be done, on earth as it is in heaven. Give us this day our daily bread, and forgive us our debts, as we also have forgiven our debtors. And lead us not into temptation, but deliver us from evil." },
+            { reference: "Ephesians 2:8-9", theme: "Salvation", text: "For by grace you have been saved through faith. And this is not your own doing; it is the gift of God, not a result of works, so that no one may boast." },
+            { reference: "Romans 8:28", theme: "Trust in God", text: "We know that for those who love God all things work together for good, for those who are called according to his purpose." },
+            { reference: "Romans 12:1-2", theme: "Living Sacrifice", text: "I appeal to you therefore, brothers, by the mercies of God, to present your bodies as a living sacrifice, holy and acceptable to God, which is your spiritual worship. Do not be conformed to this world, but be transformed by the renewal of your mind, that by testing you may discern what is the will of God, what is good and acceptable and perfect." },
+            { reference: "Galatians 2:20", theme: "Identity in Christ", text: "I have been crucified with Christ. It is no longer I who live, but Christ who lives in me. And the life I now live in the flesh I live by faith in the Son of God, who loved me and gave himself for me." },
+            { reference: "1 Corinthians 6:19-20", theme: "Holiness", text: "Do you not know that your body is a temple of the Holy Spirit within you, whom you have from God? You are not your own, for you were bought with a price. So glorify God in your body." },
+            { reference: "2 Timothy 3:16-17", theme: "God's Word", text: "All Scripture is breathed out by God and profitable for teaching, for reproof, for correction, and for training in righteousness, that the man of God may be complete, equipped for every good work." },
+            { reference: "Hebrews 4:12", theme: "God's Word", text: "For the word of God is living and active, sharper than any two-edged sword, piercing to the division of soul and of spirit, of joints and of marrow, and discerning the thoughts and intentions of the heart." },
+            { reference: "Matthew 22:37-39", theme: "Love God and Others", text: "And he said to him, 'You shall love the Lord your God with all your heart and with all your soul and with all your mind. This is the great and first commandment. And a second is like it: You shall love your neighbor as yourself.'" },
+            { reference: "John 14:6", theme: "Salvation", text: "Jesus said to him, 'I am the way, and the truth, and the life. No one comes to the Father except through me.'" },
+            { reference: "John 15:5", theme: "Identity in Christ", text: "I am the vine; you are the branches. Whoever abides in me and I in him, he it is that bears much fruit, for apart from me you can do nothing." },
+            { reference: "1 John 1:9", theme: "Forgiveness", text: "If we confess our sins, he is faithful and just to forgive us our sins and to cleanse us from all unrighteousness." },
+            { reference: "Proverbs 3:5-6", theme: "Trust in God", text: "Trust in the Lord with all your heart, and do not lean on your own understanding. In all your ways acknowledge him, and he will make straight your paths." },
+            { reference: "Philippians 4:6-7", theme: "Prayer & Peace", text: "Do not be anxious about anything, but in everything by prayer and supplication with thanksgiving let your requests be made known to God. And the peace of God, which surpasses all understanding, will guard your hearts and your minds in Christ Jesus." },
+            { reference: "Philippians 4:13", theme: "Strength in Christ", text: "I can do all things through him who strengthens me." },
+            { reference: "Philippians 1:6", theme: "Growth in Christ", text: "I am sure of this, that he who began a good work in you will bring it to completion at the day of Jesus Christ." },
+            { reference: "Philippians 2:3-5", theme: "Humility", text: "Do nothing from selfish ambition or conceit, but in humility count others more significant than yourselves. Let each of you look not only to his own interests, but also to the interests of others. Have this mind among yourselves, which is yours in Christ Jesus," },
+            { reference: "Galatians 5:22-23", theme: "Character", text: "The fruit of the Spirit is love, joy, peace, patience, kindness, goodness, faithfulness, gentleness, self-control; against such things there is no law." },
+            { reference: "Colossians 3:23", theme: "Work for the Lord", text: "Whatever you do, work heartily, as for the Lord and not for men," },
+            { reference: "Ephesians 4:29", theme: "Speech", text: "Let no corrupting talk come out of your mouths, but only such as is good for building up, as fits the occasion, that it may give grace to those who hear." },
+            { reference: "Ephesians 4:32", theme: "Kindness & Forgiveness", text: "Be kind to one another, tenderhearted, forgiving one another, as God in Christ forgave you." },
+            { reference: "Ephesians 6:1-3", theme: "Family", text: "Children, obey your parents in the Lord, for this is right. 'Honor your father and mother' (this is the first commandment with a promise), 'that it may go well with you and that you may live long in the land.'" },
+            { reference: "1 Thessalonians 5:16-18", theme: "Joy & Prayer", text: "Rejoice always, pray without ceasing, give thanks in all circumstances; for this is the will of God in Christ Jesus for you." },
+            { reference: "Matthew 6:33", theme: "Seek the Kingdom", text: "Seek first the kingdom of God and his righteousness, and all these things will be added to you." },
+            { reference: "Matthew 5:16", theme: "Witness", text: "Let your light shine before others, so that they may see your good works and give glory to your Father who is in heaven." },
+            { reference: "Psalm 23:4", theme: "God's Care", text: "Even though I walk through the valley of the shadow of death, I will fear no evil, for you are with me; your rod and your staff, they comfort me." },
+            { reference: "Joshua 1:9", theme: "Courage", text: "Have I not commanded you? Be strong and courageous. Do not be frightened, and do not be dismayed, for the Lord your God is with you wherever you go." },
+            { reference: "James 1:22", theme: "Obedience", text: "Be doers of the word, and not hearers only, deceiving yourselves." },
+            { reference: "Matthew 7:7", theme: "Prayer", text: "Ask, and it will be given to you; seek, and you will find; knock, and it will be opened to you." },
+            { reference: "John 10:10", theme: "Abundant Life", text: "The thief comes only to steal and kill and destroy. I came that they may have life and have it abundantly." },
+            { reference: "Micah 6:8", theme: "Justice & Mercy", text: "He has told you, O man, what is good; and what does the Lord require of you but to do justice, and to love kindness, and to walk humbly with your God?" },
+            { reference: "Hebrews 11:1", theme: "Faith", text: "Now faith is the assurance of things hoped for, the conviction of things not seen." },
+            { reference: "Psalm 37:4", theme: "Desire God", text: "Delight yourself in the Lord, and he will give you the desires of your heart." },
+            { reference: "Philippians 3:8", theme: "Treasure Christ", text: "I count everything as loss because of the surpassing worth of knowing Christ Jesus my Lord. For his sake I have suffered the loss of all things and count them as rubbish, in order that I may gain Christ" },
+            { reference: "Matthew 6:34", theme: "Trust in God", text: "Do not be anxious about tomorrow, for tomorrow will be anxious for itself. Sufficient for the day is its own trouble." },
+            { reference: "James 4:17", theme: "Obedience", text: "So whoever knows the right thing to do and fails to do it, for him it is sin." },
+            { reference: "Matthew 7:12", theme: "Golden Rule", text: "Whatever you want men to do to you, do also to them, for this is the Law and the Prophets." },
+            { reference: "Genesis 1:1", theme: "Creator God", text: "In the beginning, God created the heavens and the earth." },
+            { reference: "2 Peter 1:3", theme: "God's Provision", text: "His divine power has granted to us all things that pertain to life and godliness, through the knowledge of him who called us to his own glory and excellence," },
+            { reference: "Revelation 3:20", theme: "Invitation", text: "Behold, I stand at the door and knock. If anyone hears my voice and opens the door, I will come in to him and eat with him, and he with me." }
         ];
 
         // Global variables
         let currentVerse = null;
         let currentMemoryLevel = 1;
+        let currentGameLevel = 1;
         let speechSynthesis = window.speechSynthesis;
         let currentUtterance = null;
         let isLooping = false;
@@ -897,9 +850,8 @@
         function initializeApp() {
             populateVerseList();
             showHome();
-            addAudioControls();
             
-            // Initialize voices when they're available
+            // Initialize voices
             if (speechSynthesis.getVoices().length === 0) {
                 speechSynthesis.addEventListener('voiceschanged', () => {
                     console.log('Voices loaded');
@@ -917,7 +869,6 @@
                 verseItem.className = 'verse-item';
                 verseItem.onclick = () => showVerse(index);
 
-                // Create 5-word hint instead of 3-word
                 const firstFiveWords = verse.text.split(' ').slice(0, 5).join(' ') + '...';
 
                 verseItem.innerHTML = `
@@ -933,57 +884,42 @@
 
         // Navigation functions
         function showHome() {
-    document.getElementById('home-view').classList.remove('hidden');
-    document.getElementById('verse-view').classList.add('hidden');
-    
-    // Show the quick-jump navigation on home page
-    document.getElementById('quick-jump').classList.remove('hidden');
-    
-    // Show the ministry bag icon on home page
-    document.querySelector('.ministry-bag-icon').style.display = 'block';
-    
-    updateNavigation('home');
-    stopAudio();
-
-    window.scrollTo(0, lastScrollY);
+            document.getElementById('home-view').classList.remove('hidden');
+            document.getElementById('verse-view').classList.add('hidden');
+            document.getElementById('quick-jump').classList.remove('hidden');
+            document.querySelector('.ministry-bag-icon').style.display = 'block';
+            updateNavigation('home');
+            stopAudio();
+            window.scrollTo(0, lastScrollY);
         }
 
         function showVerse(index) {
-    lastScrollY = window.scrollY;
+            lastScrollY = window.scrollY;
+            currentVerse = verses[index];
+            document.getElementById('home-view').classList.add('hidden');
+            document.getElementById('verse-view').classList.remove('hidden');
+            document.getElementById('quick-jump').classList.add('hidden');
+            document.querySelector('.ministry-bag-icon').style.display = 'none';
+            
+            updateNavigation('verse');
+            displayVerse();
+            updateMemoryText();
+            
+            // Initialize game for this verse
+            initGame(1);
 
-    currentVerse = verses[index];
-    document.getElementById('home-view').classList.add('hidden');
-    document.getElementById('verse-view').classList.remove('hidden');
-    
-    // Hide the quick-jump navigation on verse pages
-    document.getElementById('quick-jump').classList.add('hidden');
-    
-    // Hide the ministry bag icon on verse pages
-    document.querySelector('.ministry-bag-icon').style.display = 'none';
-    
-    updateNavigation('verse');
-    displayVerse();
-    updateMemoryText();
-
-    window.scrollTo(0, 0);
+            window.scrollTo(0, 0);
         }
 
-        // Quick jump functionality
         function jumpToWeek(weekNumber) {
-            const targetIndex = weekNumber - 1; // Convert to 0-based index
+            const targetIndex = weekNumber - 1;
             const verseItems = document.querySelectorAll('.verse-item');
-            
             if (verseItems[targetIndex]) {
-                // Smooth scroll to the target verse
                 verseItems[targetIndex].scrollIntoView({
                     behavior: 'smooth',
                     block: 'center'
                 });
-                
-                // Add highlight animation
                 verseItems[targetIndex].classList.add('verse-highlight');
-                
-                // Remove highlight class after animation completes
                 setTimeout(() => {
                     verseItems[targetIndex].classList.remove('verse-highlight');
                 }, 2000);
@@ -993,149 +929,98 @@
         function updateNavigation(activeView) {
             const navButtons = document.querySelectorAll('.nav-btn');
             navButtons.forEach(btn => btn.classList.remove('active'));
-
             if (activeView === 'home') {
                 navButtons[0].classList.add('active');
             }
         }
 
-        // Display current verse
         function displayVerse() {
             if (!currentVerse) return;
-
             document.getElementById('current-verse-theme').textContent = currentVerse.theme;
             document.getElementById('current-verse-text').textContent = currentVerse.text;
             document.getElementById('current-verse-ref').textContent = currentVerse.reference;
             
-            // Update week indicator
             const weekIndicator = document.getElementById('current-week-indicator');
             const weekNumber = verses.indexOf(currentVerse) + 1;
             weekIndicator.textContent = `Week ${weekNumber}`;
-            
-            // Apply styling directly via JavaScript
             weekIndicator.style.fontSize = '1.5rem';
             weekIndicator.style.fontWeight = 'bold';
             weekIndicator.style.color = '#93C5FD';
-            weekIndicator.style.opacity = '0.8';
-            weekIndicator.style.fontFamily = 'Arial, sans-serif';
-            weekIndicator.style.textAlign = 'center';
             weekIndicator.style.marginBottom = '20px';
-            weekIndicator.style.background = 'none';
-            weekIndicator.style.border = 'none';
-            weekIndicator.style.padding = '0';
         }
 
-        // Audio functions
+        // --- UPDATED AUDIO ENGINE (Male Voice Priority) ---
+
+        function getBestVoice(voices) {
+            // Filter for English voices only
+            const englishVoices = voices.filter(v => v.lang.includes('en'));
+            
+            if (englishVoices.length === 0) return voices[0]; // Fallback
+
+            // Ranking system updated for Male preferences
+            return englishVoices.sort((a, b) => {
+                const getScore = (voice) => {
+                    let score = 0;
+                    const name = voice.name.toLowerCase();
+                    
+                    // Male Priority
+                    if (name.includes('male')) score += 5;
+                    if (name.includes('david')) score += 10; 
+                    if (name.includes('daniel')) score += 10;
+                    if (name.includes('mark')) score += 10;
+                    if (name.includes('guy')) score += 8;
+                    if (name.includes('alex')) score += 8;
+                    
+                    // Quality indicators
+                    if (name.includes('enhanced')) score += 2;
+                    if (name.includes('premium')) score += 2;
+                    
+                    return score;
+                };
+                
+                return getScore(b) - getScore(a); // Sort descending
+            })[0];
+        }
+
         function playOnce() {
             if (!currentVerse) return;
-
             stopAudio();
             
             let voices = speechSynthesis.getVoices();
             if (voices.length === 0) {
                 speechSynthesis.addEventListener('voiceschanged', () => {
                     voices = speechSynthesis.getVoices();
-                    playOnceWithVoices(voices);
+                    playTextWithBestVoice(voices);
                 });
                 return;
             }
-            
-            playOnceWithVoices(voices);
+            playTextWithBestVoice(voices);
         }
 
-        function playOnceWithVoices(voices) {
-            console.log('All available voices:');
-            voices.forEach((voice, index) => {
-                console.log(`${index}: ${voice.name} (${voice.lang})`);
-            });
+        function playTextWithBestVoice(voices) {
+            const selectedVoice = getBestVoice(voices);
+            console.log("Playing with voice:", selectedVoice.name); // Debugging
             
-            let selectedVoice = null;
-            
-            const hasGoogleVoices = voices.some(voice => voice.name.includes('Google'));
-            const hasMobileVoices = voices.some(voice => 
-                voice.name.includes('Samantha') || 
-                voice.name.includes('Alex') || 
-                voice.name.includes('Fred') ||
-                voice.name.includes('Daniel')
-            );
-            
-            if (hasMobileVoices) {
-                console.log('📱 Mobile device detected - using mobile voices');
-                
-                const mobileVoices = [
-                    'Daniel (en-GB)',
-                    'Daniel (Enhanced)',
-                    'Daniel',
-                    'Oliver (en-GB)',
-                    'Oliver',
-                    'Alex',
-                    'Tom'
-                ];
-                
-                for (const voiceName of mobileVoices) {
-                    selectedVoice = voices.find(voice => 
-                        voice.name === voiceName || 
-                        voice.name.includes(voiceName) ||
-                        (voice.name.includes('Daniel') && voice.name.includes('en-GB'))
-                    );
-                    if (selectedVoice) {
-                        console.log('✅ Found mobile voice:', selectedVoice.name);
-                        break;
-                    }
-                }
-            } else {
-                console.log('🖥️ Desktop device detected - using Google voices');
-                
-                const desktopVoices = [
-                    'Google UK English Male',
-                    'Google US English',
-                    'Microsoft David - English (United States)'
-                ];
-                
-                for (const voiceName of desktopVoices) {
-                    selectedVoice = voices.find(voice => voice.name === voiceName);
-                    if (selectedVoice) {
-                        console.log('✅ Found desktop voice:', selectedVoice.name);
-                        break;
-                    }
-                }
-            }
-            
-            if (!selectedVoice) {
-                console.log('⚠️ No preferred voices found, looking for alternatives...');
-                
-                const avoidVoices = ['Karen', 'Princess', 'Bad News', 'Bells', 'Boing'];
-                
-                selectedVoice = voices.find(voice => 
-                    voice.lang.startsWith('en') && 
-                    !avoidVoices.some(badVoice => voice.name.includes(badVoice))
-                );
-                
-                console.log('🔄 Using fallback voice:', selectedVoice?.name || 'Default');
-            }
-            
-            const fullText = formatTextForSpeech(currentVerse.text) + '. ' + currentVerse.reference + '.';
+            const fullText = formatTextForSpeech(currentVerse.text) + '. ' + currentVerse.reference;
             currentUtterance = new SpeechSynthesisUtterance(fullText);
             
             if (selectedVoice) {
                 currentUtterance.voice = selectedVoice;
-                console.log('🎵 Play Once using voice:', selectedVoice.name);
             }
             
             currentUtterance.rate = speechRate;
-            currentUtterance.pitch = 1.0;
-            currentUtterance.volume = 1;
+            
+            // Slight pitch adjustment for naturalness
+            if (selectedVoice && selectedVoice.name.includes('Google')) {
+                currentUtterance.pitch = 1.0;
+            } else {
+                currentUtterance.pitch = 1.0; 
+            }
 
             updateAudioButtons('playing');
             
-            currentUtterance.onend = () => {
-                updateAudioButtons('stopped');
-            };
-            
-            currentUtterance.onerror = (event) => {
-                console.log('Speech error:', event.error);
-                updateAudioButtons('stopped');
-            };
+            currentUtterance.onend = () => updateAudioButtons('stopped');
+            currentUtterance.onerror = () => updateAudioButtons('stopped');
 
             speechSynthesis.speak(currentUtterance);
         }
@@ -1143,92 +1028,19 @@
         function playLoop() {
             if (!isLooping || !currentVerse) return;
 
-            const voices = speechSynthesis.getVoices();
-            let selectedVoice = null;
+            let voices = speechSynthesis.getVoices();
+            const selectedVoice = getBestVoice(voices);
             
-            const hasMobileVoices = voices.some(voice => 
-                voice.name.includes('Samantha') || 
-                voice.name.includes('Alex') || 
-                voice.name.includes('Fred') ||
-                voice.name.includes('Daniel')
-            );
-            
-            if (hasMobileVoices) {
-                const mobileVoices = [
-                    'Daniel (en-GB)',
-                    'Daniel (Enhanced)',
-                    'Daniel',
-                    'Oliver (en-GB)',
-                    'Oliver',
-                    'Alex',
-                    'Tom',
-                    'Siri Voice 5 (Enhanced)'
-                ];
-                
-                for (const voiceName of mobileVoices) {
-                    selectedVoice = voices.find(voice => 
-                        voice.name === voiceName || 
-                        voice.name.includes(voiceName) ||
-                        (voice.name.includes('Daniel') && voice.name.includes('en-GB'))
-                    );
-                    if (selectedVoice) {
-                        console.log('🔁 Loop using mobile voice:', selectedVoice.name);
-                        break;
-                    }
-                }
-            } else {
-                const desktopVoices = [
-                    'Google UK English Male',
-                    'Google US English',
-                    'Microsoft David - English (United States)'
-                ];
-                
-                for (const voiceName of desktopVoices) {
-                    selectedVoice = voices.find(voice => voice.name === voiceName);
-                    if (selectedVoice) {
-                        console.log('🔁 Loop using desktop voice:', selectedVoice.name);
-                        break;
-                    }
-                }
-            }
-            
-            if (!selectedVoice) {
-                const avoidVoices = ['Karen', 'Princess', 'Bad News', 'Bells', 'Boing'];
-                selectedVoice = voices.find(voice => 
-                    voice.lang.startsWith('en') && 
-                    !avoidVoices.some(badVoice => voice.name.includes(badVoice))
-                );
-                console.log('🔁 Loop using fallback voice:', selectedVoice?.name || 'Default');
-            }
-            
-            const fullText = formatTextForSpeech(currentVerse.text) + '. ' + currentVerse.reference + '.';
+            const fullText = formatTextForSpeech(currentVerse.text) + '. ' + currentVerse.reference;
             currentUtterance = new SpeechSynthesisUtterance(fullText);
             
-            if (selectedVoice) {
-                currentUtterance.voice = selectedVoice;
-            }
-            
+            if (selectedVoice) currentUtterance.voice = selectedVoice;
             currentUtterance.rate = speechRate;
-            currentUtterance.pitch = 1.0;
-            currentUtterance.volume = 1;
 
             currentUtterance.onend = () => {
-                if (isLooping) {
-                    setTimeout(() => {
-                        if (isLooping) playLoop();
-                    }, 1000);
-                }
+                if (isLooping) setTimeout(() => { if (isLooping) playLoop(); }, 1000);
             };
             
-            currentUtterance.onerror = (event) => {
-                console.log('Speech synthesis loop error:', event.error);
-                if (isLooping) {
-                    setTimeout(() => {
-                        if (isLooping) playLoop();
-                    }, 1000);
-                }
-            };
-
             speechSynthesis.speak(currentUtterance);
         }
 
@@ -1242,7 +1054,6 @@
 
         function startLoop() {
             if (!currentVerse) return;
-
             isLooping = true;
             updateAudioButtons('looping');
             playLoop();
@@ -1266,159 +1077,201 @@
             loopBtn.disabled = false;
             stopBtn.disabled = false;
 
-            switch(state) {
-                case 'playing':
-                    playBtn.classList.add('active');
-                    playBtn.disabled = true;
-                    break;
-                case 'looping':
-                    loopBtn.classList.add('active');
-                    loopBtn.textContent = '⏸️ Stop Loop';
-                    playBtn.disabled = true;
-                    break;
-                case 'stopped':
-                    loopBtn.textContent = '🔁 Loop';
-                    break;
+            if (state === 'playing') {
+                playBtn.classList.add('active');
+                playBtn.disabled = true;
+            } else if (state === 'looping') {
+                loopBtn.classList.add('active');
+                loopBtn.textContent = '⏸️ Stop Loop';
+                playBtn.disabled = true;
+            } else {
+                loopBtn.textContent = '🔁 Loop';
             }
         }
 
-        // Memory training functions
-        function setMemoryLevel(level) {
-            currentMemoryLevel = level;
-            updateMemoryLevelButtons();
-            updateMemoryText();
+        function setSpeed(rate) {
+            speechRate = rate;
+            document.getElementById('speed-normal').classList.toggle('active', rate === 1.0);
+            document.getElementById('speed-fast').classList.toggle('active', rate === 1.25);
+            // If currently playing, restart to apply speed
+            if (speechSynthesis.speaking) {
+                const wasLooping = isLooping;
+                stopAudio();
+                if (wasLooping) startLoop(); else playOnce();
+            }
         }
 
-        function updateMemoryLevelButtons() {
-            const levelButtons = document.querySelectorAll('.level-btn');
-            levelButtons.forEach((btn, index) => {
-                btn.classList.toggle('active', index === currentMemoryLevel);
-            });
+        // --- MEMORY LOGIC ---
+        function setMemoryLevel(level) {
+            currentMemoryLevel = level;
+            const btns = document.querySelectorAll('.training-controls .level-btn:not(.game-level-btn)');
+            btns.forEach((btn, i) => btn.classList.toggle('active', i === level));
+            updateMemoryText();
         }
 
         function updateMemoryText() {
             if (!currentVerse) return;
-
             const memoryTextElement = document.getElementById('memory-text');
-            const memoryRefElement = document.getElementById('memory-ref');
-            let displayText = currentVerse.text;
-
-            if (currentMemoryLevel > 0) {
-                displayText = createMemoryText(currentVerse.text, currentMemoryLevel);
+            document.getElementById('memory-ref').textContent = currentVerse.reference;
+            
+            if (currentMemoryLevel === 0) {
+                memoryTextElement.innerHTML = currentVerse.text;
+            } else {
+                memoryTextElement.innerHTML = createHiddenText(currentVerse.text, currentMemoryLevel);
             }
-
-            memoryTextElement.innerHTML = displayText;
-            // Add the verse reference to the memory training section
-            memoryRefElement.textContent = currentVerse.reference;
         }
 
-        function createMemoryText(text, level) {
+        function createHiddenText(text, level) {
             const words = text.split(' ');
-            let removalPercentage;
-
-            switch(level) {
-                case 1: removalPercentage = 0.25; break; // 25%
-                case 2: removalPercentage = 0.5; break;  // 50%
-                case 3: removalPercentage = 0.75; break; // 75%
-                default: return text;
-            }
-
-            const wordsToRemove = Math.floor(words.length * removalPercentage);
-            const indicesToRemove = new Set();
-
-            while (indicesToRemove.size < wordsToRemove) {
-                const randomIndex = Math.floor(Math.random() * words.length);
-                indicesToRemove.add(randomIndex);
-            }
-
+            
+            // Deterministic hiding based on word index and level
             return words.map((word, index) => {
-                if (indicesToRemove.has(index)) {
-                    return `<span class="blank">${'_'.repeat(Math.max(3, word.length))}</span>`;
+                // Simple pseudo-random logic
+                const shouldHide = ((index + level) % 4) < (level); 
+                if (shouldHide) {
+                    // Note: class 'blank' has the blackout/top-visible CSS
+                    return `<span class="blank">${word}</span>`;
                 }
                 return word;
             }).join(' ');
         }
 
-        // Format text for better speech synthesis
+        // --- NEW TYPING GAME LOGIC (Upgraded) ---
+        function initGame(level) {
+            currentGameLevel = level;
+            
+            // Update buttons
+            const gameBtns = document.querySelectorAll('.game-level-btn');
+            gameBtns.forEach((btn, i) => btn.classList.toggle('active', i + 1 === level));
+            
+            renderGame();
+        }
+
+        function renderGame() {
+            const container = document.getElementById('game-container');
+            document.getElementById('game-feedback').textContent = '';
+            container.innerHTML = '';
+            
+            if (!currentVerse) return;
+            
+            const words = currentVerse.text.split(' ');
+            let html = '';
+            
+            words.forEach((word, index) => {
+                // Clean word for checking later
+                const cleanWord = word.replace(/[.,;!?"]/g, '');
+                const wordLen = cleanWord.length;
+                
+                let shouldHide = false;
+                if (currentGameLevel === 1) shouldHide = (index % 4 === 1); // 25%
+                else if (currentGameLevel === 2) shouldHide = (index % 2 === 1); // 50%
+                else if (currentGameLevel === 3) shouldHide = (index % 4 !== 0); // 75%
+                
+                if (shouldHide) {
+                    // Calculate width based on word length (roughly 12px per char + padding)
+                    const width = Math.max(30, wordLen * 14 + 10);
+                    
+                    // Add data-length and maxlength to enforce character limit
+                    html += `<input type="text" class="game-input" 
+                            style="width:${width}px" 
+                            data-original="${word}" 
+                            data-clean="${cleanWord}"
+                            maxlength="${wordLen}"
+                            autocomplete="off"> `;
+                } else {
+                    html += `<span>${word}</span> `;
+                }
+            });
+            
+            container.innerHTML = html;
+            
+            // Add input listeners for auto-advance
+            const inputs = container.querySelectorAll('input');
+            inputs.forEach((input, idx) => {
+                // Check length on input
+                input.addEventListener('input', function(e) {
+                    const max = parseInt(this.getAttribute('maxlength'));
+                    if (this.value.length >= max) {
+                        // Try to move to next input
+                        if (idx + 1 < inputs.length) {
+                            inputs[idx + 1].focus();
+                        } else {
+                            // If last input, maybe lose focus or check?
+                            // Optional: this.blur(); 
+                            // Optional: checkGame();
+                        }
+                    }
+                });
+
+                // Check Enter key
+                input.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') checkGame();
+                });
+            });
+        }
+        
+        function checkGame() {
+            const inputs = document.querySelectorAll('.game-input');
+            let allCorrect = true;
+            let mistakes = 0;
+            
+            inputs.forEach(input => {
+                const userVal = input.value.trim().toLowerCase().replace(/[.,;!?"]/g, '');
+                const originalClean = input.dataset.clean.toLowerCase();
+                
+                if (userVal === originalClean) {
+                    input.classList.add('correct');
+                    input.classList.remove('incorrect');
+                } else {
+                    input.classList.add('incorrect');
+                    input.classList.remove('correct');
+                    allCorrect = false;
+                    mistakes++;
+                }
+            });
+            
+            const feedback = document.getElementById('game-feedback');
+            if (allCorrect && inputs.length > 0) {
+                feedback.textContent = "🎉 Perfect! You've stored this word in your heart!";
+                feedback.style.color = "#28a745";
+            } else if (inputs.length === 0) {
+                feedback.textContent = "";
+            } else {
+                feedback.textContent = `Keep going! ${mistakes} word${mistakes > 1 ? 's' : ''} to fix.`;
+                feedback.style.color = "#dc3545";
+            }
+        }
+        
+        function resetGame() {
+            renderGame();
+        }
+
         function formatTextForSpeech(text) {
             return text
                 .replace(/,/g, ', ')
                 .replace(/;/g, '; ')
                 .replace(/\./g, '. ')
                 .replace(/\bvs?\.\s/gi, 'verse ')
-                .replace(/\bch\.\s/gi, 'chapter ')
-                .replace(/\bPs\.\s/gi, 'Psalm ')
-                .replace(/\bMt\.\s/gi, 'Matthew ')
-                .replace(/\bMk\.\s/gi, 'Mark ')
-                .replace(/\bLk\.\s/gi, 'Luke ')
-                .replace(/\bJn\.\s/gi, 'John ')
                 .replace(/(\d+):(\d+)/g, '$1 verse $2');
         }
 
-        // Add audio controls for speed adjustment
-        function addAudioControls() {
-            const speedControls = document.getElementById('speed-controls');
-            
-            speedControls.innerHTML = `
-                <div class="speed-control-row">
-                    <label for="speed-slider" class="speed-label">Speed:</label>
-                    <input type="range" id="speed-slider" min="0.5" max="1.5" step="0.1" value="1.0" 
-                           onchange="updateSpeechSpeed(this.value)">
-                    <span id="speed-display" class="speed-display">1.0x</span>
-                </div>
-            `;
-        }
-
-        function updateSpeechSpeed(rate) {
-            speechRate = parseFloat(rate);
-            document.getElementById('speed-display').textContent = rate + 'x';
-        }
-
-        // Handle browser back button
+        // Handle back button
         window.addEventListener('popstate', function(event) {
-            if (event.state && event.state.view === 'verse') {
-                // Handle back to verse view if needed
-            } else {
-                showHome();
-            }
+            showHome();
         });
 
-        // Add keyboard shortcuts
+        // Keyboard shortcuts
         document.addEventListener('keydown', function(event) {
             if (document.getElementById('verse-view').classList.contains('hidden')) return;
+            
+            // Don't trigger shortcuts if typing in game
+            if (event.target.tagName === 'INPUT') return;
 
             switch(event.key) {
-                case ' ':
-                    event.preventDefault();
-                    playOnce();
-                    break;
-                case 'l':
-                    event.preventDefault();
-                    toggleLoop();
-                    break;
-                case 's':
-                    event.preventDefault();
-                    stopAudio();
-                    break;
-                case '1':
-                    event.preventDefault();
-                    setMemoryLevel(1);
-                    break;
-                case '2':
-                    event.preventDefault();
-                    setMemoryLevel(2);
-                    break;
-                case '3':
-                    event.preventDefault();
-                    setMemoryLevel(3);
-                    break;
-                case '0':
-                    event.preventDefault();
-                    setMemoryLevel(0);
-                    break;
-                case 'Escape':
-                    showHome();
-                    break;
+                case ' ': event.preventDefault(); playOnce(); break;
+                case 'l': event.preventDefault(); toggleLoop(); break;
+                case 's': event.preventDefault(); stopAudio(); break;
+                case 'Escape': showHome(); break;
             }
         });
     </script>
