@@ -203,9 +203,9 @@
     "id": 26,
     "name": "Donut on String / Donut Relay",
     "category": "Relay Games",
-    "players": "Teams of 5-10",
+    "players": "4+ (individual) or Teams of 5-10 (relay)",
     "equipment": "Donuts, string",
-    "rules": "Hang donuts from a string (or a horizontal pole) at about mouth height. Each player must eat an entire dangling donut without using their hands. This can be done as a relay (next teammate goes after the previous finishes) or as an individual race. First team (or person) to finish their donut wins."
+    "rules": "Tie strings through donuts (one per player) and hang them at about mouth level (you can have people hold the strings or tie them to a pole/branch). Without using hands, players must eat their entire donut off the string. Can be played as an individual race (first to finish their donut wins) or as a relay where the next teammate goes after the previous finishes. First team (or person) to finish their donut wins."
   },
   {
     "id": 27,
@@ -414,14 +414,6 @@
     "players": "12+",
     "equipment": "Chairs/couch, paper, pencil",
     "rules": "Divide into two equal teams (guys vs girls works, or mixed). Arrange chairs in a circle and include one couch or four chairs designated as the 'couch'. The goal is to get four of your team members seated on the couch. Everyone writes their name on paper and puts it in a bowl. Then each person draws someone else's name; that's their secret identity for the game. One chair is left empty. Starting to the left of that empty seat, someone calls out a name from the bowl. Whoever is currently holding that name (because that's their identity) must get up and sit in the empty seat. They exchange their identity name slip with the person who called them (thus potentially changing their identity). The seat they vacated is now empty. Continue from the new empty seat. Each time someone from one team gets to the couch and the couch has 4 people from one team, that team wins. It’s a complex memory and strategy game."
-  },
-  {
-    "id": 53,
-    "name": "Gun Name Game",
-    "category": "Guessing/Memory Games",
-    "players": "15+",
-    "equipment": "None",
-    "rules": "This is a fast name-learning and reflex game. Everyone sits or stands in a circle. One player starts by forming a finger-gun and \"shooting\" someone by pointing and saying that person's name. The person whose name was called must duck. The two people on either side of the ducking person must quickly \"shoot\" each other by saying the other's name. The slower one (or the one who messes up the name) is out, or moves to another spot. Continue until a showdown between two people."
   },
   {
     "id": 54,
@@ -1062,14 +1054,6 @@
     "players": "Teams of 4",
     "equipment": "Bubble gum, toothpicks",
     "rules": "Each team gets a pack of chewing gum. They must all chew the pieces to get gum to work with (they can chew one after another to supply more gum). Using only the chewed gum and toothpicks (as structural supports), teams have to create the most impressive sculpture they can within a time limit. Judge based on creativity, size, or recognizability of the sculpture."
-  },
-  {
-    "id": 134,
-    "name": "Doughnut String Race",
-    "category": "Food-Based Challenges",
-    "players": "4+",
-    "equipment": "Donuts, string",
-    "rules": "Tie strings through donuts (one per player) and hang them at about mouth level (you can have people hold the strings or tie them to a pole/branch). Without using hands, players must eat their entire doughnut off the string. First to finish their donut (nothing left dangling) wins."
   },
   {
     "id": 136,

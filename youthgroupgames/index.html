@@ -194,24 +194,14 @@
     <div id="status">Loading games...</div>
     
     <div class="filters">
+        <div style="margin-bottom: 15px;">
+            <label for="searchBox" style="display: block; margin-bottom: 5px;">Search:</label>
+            <input type="text" id="searchBox" placeholder="Search games by name or description..." style="width: 100%; max-width: 500px; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 1em;">
+        </div>
+        
         <label for="categoryFilter">Category:</label>
         <select id="categoryFilter">
             <option value="all" selected>All Categories</option>
-        </select>
-        
-        <label for="sizeFilter">Group Size:</label>
-        <select id="sizeFilter">
-            <option value="all" selected>Any Size</option>
-            <option value="small">Small (&lt; 10 players)</option>
-            <option value="medium">Medium (around 10-20)</option>
-            <option value="large">Large (20+)</option>
-        </select>
-        
-        <label for="equipmentFilter">Equipment:</label>
-        <select id="equipmentFilter">
-            <option value="all" selected>Any</option>
-            <option value="no">No equipment needed</option>
-            <option value="yes">Equipment required</option>
         </select>
     </div>
     
@@ -267,8 +257,7 @@
         // Setup event listeners
         function setupEventListeners() {
             document.getElementById('categoryFilter').addEventListener('change', updateGameList);
-            document.getElementById('sizeFilter').addEventListener('change', updateGameList);
-            document.getElementById('equipmentFilter').addEventListener('change', updateGameList);
+            document.getElementById('searchBox').addEventListener('input', updateGameList);
         }
         
         // Toggle favorite status
@@ -291,48 +280,30 @@
         function updateGameList() {
             console.log('Updating game list...');
             const catValue = document.getElementById('categoryFilter').value;
-            const sizeValue = document.getElementById('sizeFilter').value;
-            const equipValue = document.getElementById('equipmentFilter').value;
+            const searchValue = document.getElementById('searchBox').value.toLowerCase().trim();
             const listEl = document.getElementById('gameList');
             listEl.innerHTML = ''; // clear current list
 
             // Filter games based on selections
             const filtered = gamesData.filter(game => {
+                // Search filter - search in name, rules, equipment, and category
+                if (searchValue) {
+                    const searchableText = (
+                        game.name + ' ' + 
+                        (game.rules || '') + ' ' + 
+                        (game.equipment || '') + ' ' + 
+                        (game.category || '')
+                    ).toLowerCase();
+                    if (!searchableText.includes(searchValue)) {
+                        return false;
+                    }
+                }
+                
                 // Category filter
                 if (catValue !== 'all' && game.category !== catValue) {
                     return false;
                 }
-                // Equipment filter
-                if (equipValue === 'no') {
-                    if (game.equipment && game.equipment.toLowerCase() !== 'none') return false;
-                } else if (equipValue === 'yes') {
-                    if (!game.equipment || game.equipment.toLowerCase() === 'none') return false;
-                }
-                // Size filter
-                if (sizeValue !== 'all') {
-                    const playersStr = game.players.toLowerCase();
-                    if (sizeValue === 'small') {
-                        let minPlayers = extractMinPlayers(game.players);
-                        if (minPlayers === null) {
-                            if (playersStr.includes('large group') || playersStr.includes('20') || playersStr.includes('teams of 5') || playersStr.includes('20+')) {
-                                return false;
-                            }
-                        } else {
-                            if (minPlayers >= 10) return false;
-                        }
-                    } else if (sizeValue === 'medium') {
-                        let minPlayers = extractMinPlayers(game.players);
-                        let maxPlayers = extractMaxPlayers(game.players);
-                        if (minPlayers !== null && minPlayers > 15) return false;
-                        if (maxPlayers !== null && maxPlayers < 15) return false;
-                    } else if (sizeValue === 'large') {
-                        let maxPlayers = extractMaxPlayers(game.players);
-                        if (playersStr.includes('small group')) return false;
-                        if (maxPlayers !== null) {
-                            if (maxPlayers < 20) return false;
-                        }
-                    }
-                }
+                
                 return true;
             });
 
@@ -392,56 +363,6 @@
             }
         }
 
-        // Helper to extract minimum players from players string
-        function extractMinPlayers(playersStr) {
-            const numMatch = playersStr.match(/\d+/);
-            if (numMatch) {
-                let num = parseInt(numMatch[0]);
-                if (playersStr.includes('+')) {
-                    return num;
-                }
-                if (playersStr.includes('-')) {
-                    return num;
-                }
-                if (playersStr.toLowerCase().includes('teams of')) {
-                    return num * 2;
-                }
-                if (playersStr.includes('pairs') || playersStr.includes('pair')) {
-                    return 2;
-                }
-                if (playersStr.includes('large group')) {
-                    return 20;
-                }
-                if (playersStr.includes('any') || playersStr.includes('all')) {
-                    return 1;
-                }
-                if (playersStr.includes('two teams')) {
-                    return 2;
-                }
-                return num;
-            }
-            return null;
-        }
-
-        // Helper to extract maximum players from players string
-        function extractMaxPlayers(playersStr) {
-            const numMatches = playersStr.match(/\d+/g);
-            if (numMatches && numMatches.length > 1) {
-                if (playersStr.includes('-')) {
-                    return parseInt(numMatches[1]);
-                }
-            }
-            if (playersStr.includes('+')) {
-                return null;
-            }
-            if (playersStr.includes('large group') || playersStr.includes('20+')) {
-                return null;
-            }
-            if (numMatches && numMatches.length === 1) {
-                return parseInt(numMatches[0]);
-            }
-            return null;
-        }
         
         // Start the app when DOM is loaded
         document.addEventListener('DOMContentLoaded', initApp);
