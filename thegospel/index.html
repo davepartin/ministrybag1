@@ -47,7 +47,7 @@
             flex: 0 0 auto;
             align-items: flex-start;
             padding-top: 20px;
-            padding-bottom: 2.5px;
+            padding-bottom: 0px;
         }
 
         .media-container img,
@@ -72,7 +72,12 @@
         /* Content area for step15 - raised up under picture */
         .content-area.step15-active {
             padding-top: 0px;
-            margin-top: -10px;
+            margin-top: -20px;
+        }
+
+        /* Reduce top margin of summary text on step15 */
+        .content-area.step15-active .summary-text {
+            margin-top: 0px;
         }
 
         .explanation {
@@ -158,6 +163,7 @@
             padding: 15px;
             background: #f0f7ff;
             border-radius: 4px;
+            margin-bottom: 15px;
         }
 
         .contact-info a {
@@ -168,6 +174,35 @@
 
         .contact-info a:hover {
             text-decoration: underline;
+        }
+
+        .download-diagram {
+            margin-top: 15px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .download-button {
+            display: inline-block;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: 600;
+            color: white;
+            background: #4a90e2;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s;
+            font-family: inherit;
+        }
+
+        .download-button:hover {
+            background: #357abd;
+        }
+
+        .download-button:active {
+            transform: scale(0.98);
         }
 
         .response-page {
@@ -245,7 +280,7 @@
             display: none;
             position: absolute;
             bottom: 90px;
-            left: 20px;
+            right: 20px;
             z-index: 1000;
             background: transparent;
             border: none;
@@ -371,6 +406,9 @@
                 </div>
                 <div class="next-steps" id="nextSteps"></div>
                 <div class="contact-info" id="contact"></div>
+                <div class="download-diagram" id="downloadDiagram" style="display: none;">
+                    <button class="download-button" id="downloadButton">Download Diagram</button>
+                </div>
                 <!-- Navigation buttons inside content area for step15 -->
                 <div class="navigation-in-content" id="navigationInContent" style="display: none;">
                     <button class="nav-button back-button" id="backBtnInContent" disabled>Back</button>
@@ -596,6 +634,12 @@
                     '<a href="mailto:dave@neighborhoodchurchOP.com">dave@neighborhoodchurchOP.com</a>'
                 );
                 
+                // Show download button on step15
+                const downloadDiagram = document.getElementById('downloadDiagram');
+                if (downloadDiagram) {
+                    downloadDiagram.style.display = 'block';
+                }
+                
                 // Hide main navigation and show navigation in content
                 mainNavigation.style.display = 'none';
                 navigationInContent.style.display = 'flex';
@@ -603,6 +647,12 @@
                 // Show main navigation and hide navigation in content
                 mainNavigation.style.display = 'flex';
                 navigationInContent.style.display = 'none';
+                
+                // Hide download button when not on step15
+                const downloadDiagram = document.getElementById('downloadDiagram');
+                if (downloadDiagram) {
+                    downloadDiagram.style.display = 'none';
+                }
                 
                 // Show media container and hide response page
                 const mediaContainer = document.querySelector('.media-container');
@@ -726,6 +776,20 @@
                 updateDisplay();
                 // Scroll to top
                 window.scrollTo(0, 0);
+            });
+        }
+
+        // Download button handler
+        const downloadButton = document.getElementById('downloadButton');
+        if (downloadButton) {
+            downloadButton.addEventListener('click', () => {
+                // Create a temporary anchor element to trigger download
+                const link = document.createElement('a');
+                link.href = 'step15.png';
+                link.download = 'gospel-diagram.png';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
             });
         }
 
