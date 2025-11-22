@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>The Gospel Diagram - MinistryBag</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #f5f5f5;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .container {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+
+        /* Step Counter - Always at top */
+        .step-counter {
+            flex: 0 0 auto;
+            position: relative;
+            text-align: center;
+            padding: 10px;
+            font-size: 14px;
+            color: #888;
+            background: white;
+            border-bottom: 1px solid #f0f0f0;
+            z-index: 10;
+        }
+
+        .step-counter-title {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 11px;
+            color: #aaa;
+            font-style: italic;
+        }
+
+        /* Media Display Area */
+        .media-container {
+            flex: 0 0 auto; /* Don't expand unnecessarily, let content push */
+            display: flex;
+            align-items: flex-start; /* Align to top */
+            justify-content: center;
+            background: white;
+            padding: 0; /* Remove padding to sit flush */
+            width: 100%;
+            max-height: 50vh; /* Cap height so text is always visible */
+            overflow: hidden;
+        }
+
+        /* Media container for step15 */
+        .media-container.step15-active {
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+
+        .media-container img,
+        .media-container video {
+            max-width: 100%;
+            max-height: 50vh; /* Match container max-height */
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            display: none;
+        }
+
+        .media-container img.active,
+        .media-container video.active {
+            display: block;
+        }
+
+        /* Content Area */
+        .content-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            padding-top: 10px; /* Small gap from media */
+            overflow-y: auto;
+            background: white;
+            /* Ensure space for fixed nav */
+            padding-bottom: calc(80px + env(safe-area-inset-bottom)); 
+        }
+
+        /* Content area for step15 */
+        .content-area.step15-active {
+            padding-top: 0px;
+        }
+
+        .explanation {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #333;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        .verse {
+            font-size: 16px;
+            line-height: 1.7;
+            color: #555;
+            font-style: italic;
+            padding: 15px;
+            background: #f0f7ff;
+            border-left: 4px solid #4a90e2;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+
+        .verse-reference {
+            display: block;
+            margin-top: 8px;
+            font-weight: 600;
+            color: #4a90e2;
+            font-style: normal;
+        }
+
+        .footer-text {
+            margin-top: 15px;
+            font-size: 16px;
+            color: #666;
+            font-style: italic;
+        }
+
+        .summary-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            margin: 20px 0;
+            text-align: left;
+        }
+
+        .prayer-section {
+            margin-top: 25px;
+        }
+
+        .prayer-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .prayer-intro {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .prayer-text {
+            font-size: 17px;
+            line-height: 1.8;
+            color: #333;
+            padding: 20px;
+            background: #fffbf0;
+            border-left: 4px solid #f39c12;
+            border-radius: 4px;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        .next-steps {
+            font-size: 16px;
+            line-height: 1.7;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .contact-info {
+            font-size: 16px;
+            color: #555;
+            padding: 15px;
+            background: #f0f7ff;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+
+        .contact-info a {
+            color: #4a90e2;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .download-diagram {
+            margin-top: 15px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .download-button {
+            display: inline-block;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: 600;
+            color: white;
+            background: #4a90e2;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s;
+            font-family: inherit;
+        }
+
+        .response-page {
+            display: none;
+        }
+
+        .response-page.active {
+            display: block;
+        }
+
+        /* Navigation - Fixed at bottom */
+        .navigation {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            gap: 10px;
+            padding: 15px 20px;
+            padding-bottom: calc(15px + env(safe-area-inset-bottom));
+            background: white;
+            border-top: 1px solid #e0e0e0;
+            z-index: 1000;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+        }
+
+        .nav-button {
+            flex: 1;
+            padding: 15px;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+
+        .nav-button:active {
+            transform: scale(0.98);
+        }
+
+        .back-button {
+            background: #e0e0e0;
+            color: #333;
+        }
+
+        .back-button:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .next-button {
+            background: #4a90e2;
+            color: white;
+        }
+
+        .start-over-button {
+            background: #27ae60;
+            color: white;
+        }
+
+        /* Navigation inside content area */
+        .navigation-in-content {
+            display: flex;
+            gap: 10px;
+            padding: 20px 0;
+            margin-top: 20px;
+        }
+
+        /* Logo Button */
+        .logo-button {
+            display: none;
+            position: absolute;
+            bottom: 90px;
+            right: 20px;
+            z-index: 1000;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+            transition: opacity 0.2s;
+        }
+
+        .logo-button.active {
+            display: block;
+        }
+
+        .logo-button img {
+            height: 40px;
+            width: auto;
+        }
+
+        /* Loading state */
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            color: #888;
+        }
+
+        @media (max-width: 480px) {
+            .explanation {
+                font-size: 16px;
+            }
+            
+            .verse {
+                font-size: 14px;
+            }
+
+            .nav-button {
+                padding: 12px;
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="https://ministrybag.com/" class="logo-button" id="logoButton">
+            <img src="ministrybagsatchel1.svg" alt="MinistryBag Home">
+        </a>
+        <div class="step-counter">
+            <span id="stepDisplay">Step 1 of 14</span>
+            <span class="step-counter-title">the Gospel Diagram</span>
+        </div>
+
+        <div class="media-container">
+            <div class="loading" id="loading">Loading...</div>
+            <img id="step1" src="step01thegospeldiagram.png" class="active" alt="Gospel Diagram Introduction">
+            <video id="step2" src="step02god.mp4" playsinline preload="auto"></video>
+            <video id="step3" src="Step03bodyspirit.mp4" playsinline preload="auto"></video>
+            <video id="step4" src="step04relationship.mp4" playsinline preload="auto"></video>
+            <video id="step5" src="step05sin.mp4" playsinline preload="auto"></video>
+            <video id="step6" src="step06newpath.mp4" playsinline preload="auto"></video>
+            <video id="step7" src="step07goodlife.mp4" playsinline preload="auto"></video>
+            <video id="step8" src="step08cross.mp4" playsinline preload="auto"></video>
+            <video id="step9" src="step09sinoncross.mp4" playsinline preload="auto"></video>
+            <video id="step10" src="step10restored.mp4" playsinline preload="auto"></video>
+            <video id="step11" src="step11choose.mp4" playsinline preload="auto"></video>
+            <video id="step12" src="step12deathofbody.mp4" playsinline preload="auto"></video>
+            <video id="step13" src="step13Heaven.mp4" playsinline preload="auto"></video>
+            <video id="step14" src="step14Hell.mp4" playsinline preload="auto"></video>
+            <img id="step15" src="step15.png" alt="Gospel Diagram">
+        </div>
+
+        <div class="content-area">
+            <div class="explanation" id="explanation">
+                One way to explain Christianity is through this simple diagram.
+            </div>
+            <div class="verse" id="verse" style="display: none;">
+                <span id="verseText"></span>
+                <span class="verse-reference" id="verseReference"></span>
+            </div>
+            <div class="footer-text" id="footer" style="display: none;"></div>
+            
+            <!-- Response Page Content -->
+            <div class="response-page" id="responsePage">
+                <div class="summary-text" id="summary"></div>
+                <div class="prayer-section">
+                    <div class="prayer-title" id="prayerTitle"></div>
+                    <div class="prayer-intro" id="prayerIntro"></div>
+                    <div class="prayer-text" id="prayerText"></div>
+                </div>
+                <div class="next-steps" id="nextSteps"></div>
+                <div class="contact-info" id="contact"></div>
+                <div class="download-diagram" id="downloadDiagram" style="display: none;">
+                    <button class="download-button" id="downloadButton">Download Diagram</button>
+                </div>
+                <!-- Navigation buttons inside content area for step15 -->
+                <div class="navigation-in-content" id="navigationInContent" style="display: none;">
+                    <button class="nav-button back-button" id="backBtnInContent" disabled>Back</button>
+                    <button class="nav-button start-over-button" id="startOverBtnInContent">Start Over</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="navigation">
+            <button class="nav-button back-button" id="backBtn" disabled>Back</button>
+            <button class="nav-button next-button" id="nextBtn">Next</button>
+            <button class="nav-button start-over-button" id="startOverBtn" style="display: none;">Start Over</button>
+        </div>
+    </div>
+
+    <script>
+        const steps = [
+            {
+                id: 'step1',
+                type: 'image',
+                explanation: 'How can a person believe in Jesus and have eternal life?',
+                verse: {
+                    text: 'For God so loved the world, that he gave his only Son, that whoever believes in him should not perish but have eternal life.',
+                    reference: 'John 3:16'
+                },
+                footer: 'Let\'s walk through this together.'
+            },
+            {
+                id: 'step2',
+                type: 'video',
+                explanation: 'In the beginning, there was God…',
+                verse: {
+                    text: 'In the beginning God created the heavens and the earth.',
+                    reference: 'Genesis 1:1'
+                }
+            },
+            {
+                id: 'step3',
+                type: 'video',
+                explanation: 'And God created man with a body and a spirit.',
+                verse: null
+            },
+            {
+                id: 'step4',
+                type: 'video',
+                explanation: 'God loves us and has a wonderful plan for our lives.',
+                verse: {
+                    text: 'Jesus said, "I came that they may have life and have it abundantly."',
+                    reference: 'John 10:10'
+                }
+            },
+            {
+                id: 'step5',
+                type: 'video',
+                explanation: 'Sin is anything we think, say, or do that goes against God, and our sin has separated us from God.',
+                verse: {
+                    text: 'For all have sinned and fall short of the glory of God.',
+                    reference: 'Romans 3:23'
+                }
+            },
+            {
+                id: 'step6',
+                type: 'video',
+                explanation: 'The punishment of sin is spiritual death, leaving us separated from God.',
+                verse: {
+                    text: 'For the wages of sin is death…',
+                    reference: 'Romans 6:23'
+                }
+            },
+            {
+                id: 'step7',
+                type: 'video',
+                explanation: 'These arrows illustrate that we are continually trying to reach God and the abundant life through our own efforts, such as a good life, philosophy, or religion… but in the end, we fall short.',
+                verse: null
+            },
+            {
+                id: 'step8',
+                type: 'video',
+                explanation: 'Our relationship with God can be restored by putting our faith in the death and resurrection of Jesus.',
+                verse: {
+                    text: 'But God shows his love for us in that while we were still sinners, Christ died for us.',
+                    reference: 'Romans 5:8'
+                }
+            },
+            {
+                id: 'step9',
+                type: 'video',
+                explanation: 'There is a great exchange; Jesus takes our sin and gives us His perfection.',
+                verse: {
+                    text: 'God made him who had no sin to be sin for us, so that in him we might become the righteousness of God.',
+                    reference: '2 Corinthians 5:21'
+                }
+            },
+            {
+                id: 'step10',
+                type: 'video',
+                explanation: 'To receive Jesus as Savior and Lord is to believe in His death and resurrection for salvation and to follow Him in obedience as the Lord of your life.',
+                verse: {
+                    text: 'If you confess with your mouth that Jesus is Lord and believe in your heart that God raised him from the dead, you will be saved.',
+                    reference: 'Romans 10:9'
+                }
+            },
+            {
+                id: 'step11',
+                type: 'video',
+                explanation: 'Each of us has a choice to receive Jesus or not.',
+                verse: {
+                    text: 'But to all who did receive him, who believed in his name, he gave the right to become children of God.',
+                    reference: 'John 1:12'
+                }
+            },
+            {
+                id: 'step12',
+                type: 'video',
+                explanation: 'If we choose to receive Jesus or not, one more thing is sure to happen someday… we will die.',
+                verse: null
+            },
+            {
+                id: 'step13',
+                type: 'video',
+                explanation: 'Those who receive Jesus as Savior and Lord will live forever with God in Heaven.',
+                verse: {
+                    text: 'Jesus said, "For this is the will of my Father, that everyone who looks on the Son and believes in him should have eternal life, and I will raise him up on the last day."',
+                    reference: 'John 6:40'
+                }
+            },
+            {
+                id: 'step14',
+                type: 'video',
+                explanation: 'Those who reject Jesus remain separated from God forever, and Jesus calls this place hell.',
+                verse: {
+                    text: 'Whoever believes in the Son has eternal life; whoever does not obey the Son shall not see life, but the wrath of God remains on him.',
+                    reference: 'John 3:36'
+                }
+            },
+            {
+                id: 'step15',
+                type: 'response',
+                explanation: 'Consider this diagram now as you read John 3:16 one more time.',
+                verse: {
+                    text: 'For God so loved the world, that he gave his only Son, that whoever believes in him should not perish but have eternal life.',
+                    reference: 'John 3:16'
+                },
+                summary: 'God loves you, Jesus came for you, and you can receive eternal life through Him.',
+                prayerTitle: 'A Prayer to Receive Jesus',
+                prayerIntro: '',
+                prayer: '"Jesus, I want to know You. I believe You died on the cross for my sins and rose again. I open my heart and receive You as my Savior and Lord. Thank You for forgiving all my sins and giving me eternal life. Help me follow You from this day forward. Amen."',
+                nextSteps: 'Jesus hears every sincere prayer. If this reflects the desire of your heart, you are now a Christian and a child of God. You should tell a Christian you know, find a healthy church, and be baptized.',
+                contact: 'You can email me at dave@neighborhoodchurchOP.com if you like. I will be praying for you.'
+            }
+        ];
+
+        let currentStep = 0;
+        let currentVideo = null;
+
+        const backBtn = document.getElementById('backBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const startOverBtn = document.getElementById('startOverBtn');
+        const backBtnInContent = document.getElementById('backBtnInContent');
+        const startOverBtnInContent = document.getElementById('startOverBtnInContent');
+        const navigationInContent = document.getElementById('navigationInContent');
+        const mainNavigation = document.querySelector('.navigation');
+        const stepDisplay = document.getElementById('stepDisplay');
+        const explanationEl = document.getElementById('explanation');
+        const verseEl = document.getElementById('verse');
+        const verseTextEl = document.getElementById('verseText');
+        const verseReferenceEl = document.getElementById('verseReference');
+
+        function updateDisplay() {
+            const step = steps[currentStep];
+            
+            // Handle response page separately
+            if (step.type === 'response') {
+                // Show media container with step15 image
+                const mediaContainer = document.querySelector('.media-container');
+                mediaContainer.style.display = 'flex';
+                mediaContainer.classList.add('step15-active');
+                
+                // Hide all media first
+                document.querySelectorAll('.media-container img, .media-container video').forEach(el => {
+                    el.classList.remove('active');
+                    if (el.tagName === 'VIDEO') {
+                        el.pause();
+                        el.currentTime = 0;
+                    }
+                });
+                
+                // Show step15 image
+                const step15Img = document.getElementById('step15');
+                if (step15Img) {
+                    step15Img.classList.add('active');
+                }
+                
+                // Hide regular content
+                explanationEl.style.display = 'none';
+                verseEl.style.display = 'none';
+                document.getElementById('footer').style.display = 'none';
+                
+                // Show response page and add step15-active class
+                const responsePage = document.getElementById('responsePage');
+                responsePage.classList.add('active');
+                document.querySelector('.content-area').classList.add('step15-active');
+                
+                // Populate response page
+                explanationEl.style.display = 'block';
+                explanationEl.textContent = step.explanation;
+                
+                if (step.verse) {
+                    verseTextEl.textContent = step.verse.text;
+                    verseReferenceEl.textContent = step.verse.reference;
+                    verseEl.style.display = 'block';
+                }
+                
+                document.getElementById('summary').textContent = step.summary;
+                document.getElementById('prayerTitle').textContent = step.prayerTitle;
+                const prayerIntroEl = document.getElementById('prayerIntro');
+                prayerIntroEl.textContent = step.prayerIntro;
+                prayerIntroEl.style.display = step.prayerIntro ? 'block' : 'none';
+                document.getElementById('prayerText').textContent = step.prayer;
+                document.getElementById('nextSteps').textContent = step.nextSteps;
+                document.getElementById('contact').innerHTML = step.contact.replace(
+                    'dave@neighborhoodchurchOP.com',
+                    '<a href="mailto:dave@neighborhoodchurchOP.com">dave@neighborhoodchurchOP.com</a>'
+                );
+                
+                // Show download button on step15
+                const downloadDiagram = document.getElementById('downloadDiagram');
+                if (downloadDiagram) {
+                    downloadDiagram.style.display = 'block';
+                }
+                
+                // Hide main navigation and show navigation in content
+                mainNavigation.style.display = 'none';
+                navigationInContent.style.display = 'flex';
+            } else {
+                // Show main navigation and hide navigation in content
+                mainNavigation.style.display = 'flex';
+                navigationInContent.style.display = 'none';
+                
+                // Hide download button when not on step15
+                const downloadDiagram = document.getElementById('downloadDiagram');
+                if (downloadDiagram) {
+                    downloadDiagram.style.display = 'none';
+                }
+                
+                // Show media container and hide response page
+                const mediaContainer = document.querySelector('.media-container');
+                mediaContainer.style.display = 'flex';
+                mediaContainer.classList.remove('step15-active');
+                document.getElementById('responsePage').classList.remove('active');
+                document.querySelector('.content-area').classList.remove('step15-active');
+                
+                // Hide all media
+                document.querySelectorAll('.media-container img, .media-container video').forEach(el => {
+                    el.classList.remove('active');
+                    if (el.tagName === 'VIDEO') {
+                        el.pause();
+                        el.currentTime = 0;
+                    }
+                });
+
+                // Show current media
+                const mediaEl = document.getElementById(step.id);
+                mediaEl.classList.add('active');
+
+                // Play video if it's a video
+                if (step.type === 'video') {
+                    currentVideo = mediaEl;
+                    mediaEl.onended = function() {
+                        // Video will naturally freeze on last frame
+                    };
+                    mediaEl.play().catch(err => {
+                        console.log('Autoplay prevented, user interaction needed');
+                    });
+                } else {
+                    currentVideo = null;
+                }
+
+                // Update text content
+                explanationEl.style.display = 'block';
+                explanationEl.textContent = step.explanation;
+
+                // Update verse
+                if (step.verse) {
+                    verseTextEl.textContent = step.verse.text;
+                    verseReferenceEl.textContent = step.verse.reference;
+                    verseEl.style.display = 'block';
+                } else {
+                    verseEl.style.display = 'none';
+                }
+
+                // Update footer text if present
+                const footerEl = document.getElementById('footer');
+                if (step.footer) {
+                    footerEl.textContent = step.footer;
+                    footerEl.style.display = 'block';
+                } else {
+                    footerEl.style.display = 'none';
+                }
+            }
+
+            // Update step counter
+            stepDisplay.textContent = `Step ${currentStep + 1} of ${steps.length}`;
+
+            // Show/hide logo button (only on step 1)
+            const logoButton = document.getElementById('logoButton');
+            if (logoButton) {
+                if (currentStep === 0) {
+                    logoButton.classList.add('active');
+                } else {
+                    logoButton.classList.remove('active');
+                }
+            }
+
+            // Update button states
+            backBtn.disabled = currentStep === 0;
+            if (backBtnInContent) {
+                backBtnInContent.disabled = currentStep === 0;
+            }
+            
+            if (currentStep === steps.length - 1) {
+                nextBtn.style.display = 'none'; // Hide Next button on final page
+                startOverBtn.style.display = 'block'; // Show Start Over button (for main nav, though it's hidden)
+            } else {
+                nextBtn.textContent = 'Next';
+                nextBtn.style.display = 'block';
+                startOverBtn.style.display = 'none'; // Hide Start Over button
+            }
+        }
+
+        backBtn.addEventListener('click', () => {
+            if (currentStep > 0) {
+                currentStep--;
+                updateDisplay();
+            }
+        });
+
+        nextBtn.addEventListener('click', () => {
+            if (currentStep < steps.length - 1) {
+                currentStep++;
+                updateDisplay();
+            }
+        });
+
+        startOverBtn.addEventListener('click', () => {
+            currentStep = 0;
+            updateDisplay();
+            // Scroll to top
+            window.scrollTo(0, 0);
+        });
+
+        // Event handlers for buttons inside content area
+        if (backBtnInContent) {
+            backBtnInContent.addEventListener('click', () => {
+                if (currentStep > 0) {
+                    currentStep--;
+                    updateDisplay();
+                }
+            });
+        }
+
+        if (startOverBtnInContent) {
+            startOverBtnInContent.addEventListener('click', () => {
+                currentStep = 0;
+                updateDisplay();
+                // Scroll to top
+                window.scrollTo(0, 0);
+            });
+        }
+
+        // Download button handler
+        const downloadButton = document.getElementById('downloadButton');
+        if (downloadButton) {
+            downloadButton.addEventListener('click', () => {
+                // Create a temporary anchor element to trigger download
+                const link = document.createElement('a');
+                link.href = 'step15.png';
+                link.download = 'gospel-diagram.png';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                
+                // Open ministrybag.com in a new tab/window
+                window.open('https://ministrybag.com/', '_blank');
+            });
+        }
+
+        // Preload all videos
+        window.addEventListener('load', () => {
+            const videos = document.querySelectorAll('video');
+            videos.forEach(video => {
+                video.load();
+            });
+        });
+
+        // Handle video click to replay if needed
+        document.querySelectorAll('video').forEach(video => {
+            video.addEventListener('click', () => {
+                if (video.ended) {
+                    video.currentTime = 0;
+                    video.play();
+                }
+            });
+        });
+
+        // Initialize
+        updateDisplay();
+    </script>
+</body>
+</html>
