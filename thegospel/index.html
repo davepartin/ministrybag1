@@ -218,8 +218,11 @@
             display: flex;
             gap: 10px;
             padding: 15px 20px;
+            padding-bottom: calc(15px + env(safe-area-inset-bottom));
             background: white;
             border-top: 1px solid #e0e0e0;
+            position: relative;
+            z-index: 1000;
         }
 
         .nav-button {
@@ -353,6 +356,27 @@
             .nav-button {
                 padding: 12px;
                 font-size: 15px;
+            }
+
+            /* Fix navigation on mobile - ensure it's above browser UI */
+            .navigation {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                max-width: 600px;
+                margin: 0 auto;
+                z-index: 9999;
+                padding-bottom: calc(15px + env(safe-area-inset-bottom));
+            }
+
+            /* Add padding to content area to prevent overlap with fixed navigation */
+            .content-area {
+                padding-bottom: calc(90px + env(safe-area-inset-bottom));
+            }
+
+            .container {
+                padding-bottom: calc(80px + env(safe-area-inset-bottom));
             }
         }
     </style>
