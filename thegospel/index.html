@@ -363,6 +363,24 @@
                 font-size: 15px;
             }
 
+            /* Media container on mobile - align to top, remove side padding to eliminate grey lines */
+            .media-container {
+                align-items: flex-start;
+                padding: 5px 0px 5px 0px;
+                background: white;
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            .media-container img,
+            .media-container video {
+                width: 100%;
+                max-width: 100%;
+                display: block;
+                margin: 0;
+                padding: 0;
+            }
+
             /* Fix navigation on mobile - ensure it's above browser UI */
             .navigation {
                 position: fixed;
@@ -378,10 +396,12 @@
             /* Add padding to content area to prevent overlap with fixed navigation */
             .content-area {
                 padding-bottom: calc(90px + env(safe-area-inset-bottom));
+                padding-top: 2px;
             }
 
             .container {
                 padding-bottom: calc(80px + env(safe-area-inset-bottom));
+                overflow-x: hidden;
             }
         }
     </style>
@@ -819,6 +839,9 @@
                 document.body.appendChild(link);
                 link.click();
                 document.body.removeChild(link);
+                
+                // Open ministrybag.com in a new tab/window
+                window.open('https://ministrybag.com/', '_blank');
             });
         }
 
