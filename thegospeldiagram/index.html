@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -15,25 +16,32 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             background: #f5f5f5;
             height: 100vh;
+            height: 100dvh;
+            /* Mobile viewport height fix */
             display: flex;
             flex-direction: column;
             overflow: hidden;
+            /* Prevent body scroll */
         }
 
         .container {
             position: relative;
             display: flex;
             flex-direction: column;
-            height: 100vh;
+            height: 100%;
+            /* Fill body */
             max-width: 600px;
             margin: 0 auto;
             background: white;
-            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            /* Prevent container scroll */
         }
 
         /* Step Counter - Always at top */
         .step-counter {
             flex: 0 0 auto;
+            /* Never shrink or grow */
             position: relative;
             text-align: center;
             padding: 10px;
@@ -55,14 +63,17 @@
 
         /* Media Display Area */
         .media-container {
-            flex: 0 0 auto; /* Don't expand unnecessarily, let content push */
+            flex: 0 0 auto;
+            /* Never shrink or grow */
             display: flex;
-            align-items: flex-start; /* Align to top */
+            align-items: flex-start;
+            /* Align to top */
             justify-content: center;
             background: white;
-            padding: 0; /* Remove padding to sit flush */
+            padding: 0;
             width: 100%;
-            max-height: 50vh; /* Cap height so text is always visible */
+            max-height: 50vh;
+            /* Cap height */
             overflow: hidden;
         }
 
@@ -75,7 +86,7 @@
         .media-container img,
         .media-container video {
             max-width: 100%;
-            max-height: 50vh; /* Match container max-height */
+            max-height: 50vh;
             width: auto;
             height: auto;
             object-fit: contain;
@@ -90,14 +101,20 @@
         /* Content Area */
         .content-area {
             flex: 1;
+            /* Take remaining space */
             display: flex;
             flex-direction: column;
             padding: 20px;
-            padding-top: 10px; /* Small gap from media */
+            padding-top: 10px;
             overflow-y: auto;
+            /* Enable internal scrolling */
+            -webkit-overflow-scrolling: touch;
+            /* Smooth scrolling on iOS */
+            overscroll-behavior: contain;
+            /* Prevent scroll chaining */
             background: white;
             /* Ensure space for fixed nav */
-            padding-bottom: calc(80px + env(safe-area-inset-bottom)); 
+            padding-bottom: calc(80px + env(safe-area-inset-bottom));
         }
 
         /* Content area for step15 */
@@ -243,7 +260,7 @@
             background: white;
             border-top: 1px solid #e0e0e0;
             z-index: 1000;
-            box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
         }
 
         .nav-button {
@@ -255,7 +272,6 @@
             border-radius: 8px;
             cursor: pointer;
             transition: all 0.2s;
-            font-family: inherit;
         }
 
         .nav-button:active {
@@ -294,13 +310,16 @@
         .logo-button {
             display: none;
             position: absolute;
-            bottom: 90px;
-            right: 20px;
-            z-index: 1000;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 20;
             background: transparent;
             border: none;
             cursor: pointer;
-            padding: 5px;
+            padding: 0;
+            height: 24px;
+            /* Smaller size to fit */
             transition: opacity 0.2s;
         }
 
@@ -308,9 +327,42 @@
             display: block;
         }
 
+        .logo-button:hover {
+            opacity: 0.8;
+        }
+
         .logo-button img {
-            height: 40px;
+            height: 100%;
             width: auto;
+        }
+
+        /* Step Counter */
+        .step-counter {
+            flex: 0 0 auto;
+            position: relative;
+            text-align: center;
+            padding: 10px;
+            font-size: 14px;
+            color: #888;
+            background: white;
+            border-bottom: 1px solid #e0e0e0;
+            height: 44px;
+            /* Fixed height to ensure alignment */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .step-counter-title {
+            position: absolute;
+            top: 50%;
+            right: 15px;
+            transform: translateY(-50%);
+            font-size: 11px;
+            color: #aaa;
+            font-style: italic;
+            margin: 0;
+            /* Reset margin */
         }
 
         /* Loading state */
@@ -321,11 +373,22 @@
             color: #888;
         }
 
+        /* Hide media when not active */
+        .media-container img,
+        .media-container video {
+            display: none;
+        }
+
+        .media-container img.active,
+        .media-container video.active {
+            display: block;
+        }
+
         @media (max-width: 480px) {
             .explanation {
                 font-size: 16px;
             }
-            
+
             .verse {
                 font-size: 14px;
             }
@@ -337,12 +400,13 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container">
-        <a href="https://ministrybag.com/" class="logo-button" id="logoButton">
-            <img src="ministrybagsatchel1.svg" alt="MinistryBag Home">
-        </a>
         <div class="step-counter">
+            <a href="https://ministrybag.com/" class="logo-button" id="logoButton">
+                <img src="ministrybagsatchel1.svg" alt="MinistryBag Home">
+            </a>
             <span id="stepDisplay">Step 1 of 14</span>
             <span class="step-counter-title">the Gospel Diagram</span>
         </div>
@@ -375,7 +439,7 @@
                 <span class="verse-reference" id="verseReference"></span>
             </div>
             <div class="footer-text" id="footer" style="display: none;"></div>
-            
+
             <!-- Response Page Content -->
             <div class="response-page" id="responsePage">
                 <div class="summary-text" id="summary"></div>
@@ -559,14 +623,14 @@
 
         function updateDisplay() {
             const step = steps[currentStep];
-            
+
             // Handle response page separately
             if (step.type === 'response') {
                 // Show media container with step15 image
                 const mediaContainer = document.querySelector('.media-container');
                 mediaContainer.style.display = 'flex';
                 mediaContainer.classList.add('step15-active');
-                
+
                 // Hide all media first
                 document.querySelectorAll('.media-container img, .media-container video').forEach(el => {
                     el.classList.remove('active');
@@ -575,33 +639,33 @@
                         el.currentTime = 0;
                     }
                 });
-                
+
                 // Show step15 image
                 const step15Img = document.getElementById('step15');
                 if (step15Img) {
                     step15Img.classList.add('active');
                 }
-                
+
                 // Hide regular content
                 explanationEl.style.display = 'none';
                 verseEl.style.display = 'none';
                 document.getElementById('footer').style.display = 'none';
-                
+
                 // Show response page and add step15-active class
                 const responsePage = document.getElementById('responsePage');
                 responsePage.classList.add('active');
                 document.querySelector('.content-area').classList.add('step15-active');
-                
+
                 // Populate response page
                 explanationEl.style.display = 'block';
                 explanationEl.textContent = step.explanation;
-                
+
                 if (step.verse) {
                     verseTextEl.textContent = step.verse.text;
                     verseReferenceEl.textContent = step.verse.reference;
                     verseEl.style.display = 'block';
                 }
-                
+
                 document.getElementById('summary').textContent = step.summary;
                 document.getElementById('prayerTitle').textContent = step.prayerTitle;
                 const prayerIntroEl = document.getElementById('prayerIntro');
@@ -613,13 +677,13 @@
                     'dave@neighborhoodchurchOP.com',
                     '<a href="mailto:dave@neighborhoodchurchOP.com">dave@neighborhoodchurchOP.com</a>'
                 );
-                
+
                 // Show download button on step15
                 const downloadDiagram = document.getElementById('downloadDiagram');
                 if (downloadDiagram) {
                     downloadDiagram.style.display = 'block';
                 }
-                
+
                 // Hide main navigation and show navigation in content
                 mainNavigation.style.display = 'none';
                 navigationInContent.style.display = 'flex';
@@ -627,20 +691,20 @@
                 // Show main navigation and hide navigation in content
                 mainNavigation.style.display = 'flex';
                 navigationInContent.style.display = 'none';
-                
+
                 // Hide download button when not on step15
                 const downloadDiagram = document.getElementById('downloadDiagram');
                 if (downloadDiagram) {
                     downloadDiagram.style.display = 'none';
                 }
-                
+
                 // Show media container and hide response page
                 const mediaContainer = document.querySelector('.media-container');
                 mediaContainer.style.display = 'flex';
                 mediaContainer.classList.remove('step15-active');
                 document.getElementById('responsePage').classList.remove('active');
                 document.querySelector('.content-area').classList.remove('step15-active');
-                
+
                 // Hide all media
                 document.querySelectorAll('.media-container img, .media-container video').forEach(el => {
                     el.classList.remove('active');
@@ -657,7 +721,7 @@
                 // Play video if it's a video
                 if (step.type === 'video') {
                     currentVideo = mediaEl;
-                    mediaEl.onended = function() {
+                    mediaEl.onended = function () {
                         // Video will naturally freeze on last frame
                     };
                     mediaEl.play().catch(err => {
@@ -693,10 +757,10 @@
             // Update step counter
             stepDisplay.textContent = `Step ${currentStep + 1} of ${steps.length}`;
 
-            // Show/hide logo button (only on step 1)
+            // Show/hide logo button (only on step 1 and step 15)
             const logoButton = document.getElementById('logoButton');
             if (logoButton) {
-                if (currentStep === 0) {
+                if (currentStep === 0 || currentStep === steps.length - 1) {
                     logoButton.classList.add('active');
                 } else {
                     logoButton.classList.remove('active');
@@ -708,7 +772,7 @@
             if (backBtnInContent) {
                 backBtnInContent.disabled = currentStep === 0;
             }
-            
+
             if (currentStep === steps.length - 1) {
                 nextBtn.style.display = 'none'; // Hide Next button on final page
                 startOverBtn.style.display = 'block'; // Show Start Over button (for main nav, though it's hidden)
@@ -770,7 +834,7 @@
                 document.body.appendChild(link);
                 link.click();
                 document.body.removeChild(link);
-                
+
                 // Open ministrybag.com in a new tab/window
                 window.open('https://ministrybag.com/', '_blank');
             });
@@ -798,4 +862,5 @@
         updateDisplay();
     </script>
 </body>
+
 </html>
