@@ -827,16 +827,8 @@
         const downloadButton = document.getElementById('downloadButton');
         if (downloadButton) {
             downloadButton.addEventListener('click', () => {
-                // Create a temporary anchor element to trigger download
-                const link = document.createElement('a');
-                link.href = 'step15.png';
-                link.download = 'gospel-diagram.png';
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-
-                // Open ministrybag.com in a new tab/window
-                window.open('https://ministrybag.com/', '_blank');
+                // Open the image in a new tab/window
+                window.open('step15.png', '_blank');
             });
         }
 
