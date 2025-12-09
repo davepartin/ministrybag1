@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>From Sermons to Systems: 4 Areas to Use AI Effectively in Ministry | Presentation Notes</title>
-    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=Caveat:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Space+Mono&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=Caveat:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Space+Mono&display=swap"
+        rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         :root {
             --paper: #FDFBF7;
             --paper-dark: #F5F0E6;
@@ -62,8 +65,15 @@
         }
 
         @keyframes write {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 1; }
+
+            0%,
+            100% {
+                opacity: 0.3;
+            }
+
+            50% {
+                opacity: 1;
+            }
         }
 
         /* Base Styles */
@@ -85,13 +95,11 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: 
-                repeating-linear-gradient(
-                    transparent 0px,
+            background:
+                repeating-linear-gradient(transparent 0px,
                     transparent 27px,
                     rgba(200, 190, 180, 0.4) 28px,
-                    rgba(200, 190, 180, 0.4) 29px
-                ),
+                    rgba(200, 190, 180, 0.4) 29px),
                 radial-gradient(ellipse at top left, var(--paper) 0%, var(--paper-dark) 100%);
             pointer-events: none;
             z-index: 1;
@@ -118,12 +126,10 @@
             left: 60px;
             width: 2px;
             height: 100%;
-            background: linear-gradient(
-                to bottom,
-                var(--burgundy) 0%,
-                var(--burgundy) 60%,
-                transparent 90%
-            );
+            background: linear-gradient(to bottom,
+                    var(--burgundy) 0%,
+                    var(--burgundy) 60%,
+                    transparent 90%);
             opacity: 0.25;
             z-index: 2;
         }
@@ -135,13 +141,11 @@
             top: 0;
             width: 4px;
             height: 100%;
-            background: linear-gradient(
-                to bottom,
-                transparent,
-                rgba(139, 38, 53, 0.1) 20%,
-                rgba(139, 38, 53, 0.1) 80%,
-                transparent
-            );
+            background: linear-gradient(to bottom,
+                    transparent,
+                    rgba(139, 38, 53, 0.1) 20%,
+                    rgba(139, 38, 53, 0.1) 80%,
+                    transparent);
         }
 
         /* Navigation */
@@ -152,7 +156,7 @@
             z-index: 1000;
             background: var(--sticky-blue);
             padding: 1rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             transform: rotate(2deg);
             transition: transform 0.3s;
         }
@@ -195,14 +199,12 @@
             right: 200px;
             width: 180px;
             height: 180px;
-            background: radial-gradient(
-                circle at 35% 35%,
-                transparent 25%,
-                rgba(212, 165, 116, 0.06) 26%,
-                rgba(212, 165, 116, 0.12) 45%,
-                rgba(212, 165, 116, 0.08) 55%,
-                transparent 56%
-            );
+            background: radial-gradient(circle at 35% 35%,
+                    transparent 25%,
+                    rgba(212, 165, 116, 0.06) 26%,
+                    rgba(212, 165, 116, 0.12) 45%,
+                    rgba(212, 165, 116, 0.08) 55%,
+                    transparent 56%);
             transform: rotate(45deg);
             animation: fadeIn 2s ease-out;
         }
@@ -212,20 +214,23 @@
             left: 120px;
             width: 140px;
             height: 140px;
-            background: radial-gradient(
-                circle at 40% 40%,
-                transparent 30%,
-                rgba(176, 137, 104, 0.05) 31%,
-                rgba(176, 137, 104, 0.1) 48%,
-                transparent 50%
-            );
+            background: radial-gradient(circle at 40% 40%,
+                    transparent 30%,
+                    rgba(176, 137, 104, 0.05) 31%,
+                    rgba(176, 137, 104, 0.1) 48%,
+                    transparent 50%);
             transform: rotate(-30deg);
             animation: fadeIn 2.5s ease-out;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
 
         /* Container */
@@ -250,6 +255,7 @@
                 opacity: 0;
                 transform: translateY(-30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -275,8 +281,15 @@
         }
 
         @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
         }
 
         .hero h1::after {
@@ -303,6 +316,7 @@
                 opacity: 1;
                 transform: translateY(0);
             }
+
             from {
                 opacity: 0;
                 transform: translateY(20px);
@@ -315,9 +329,9 @@
             background: var(--sticky-yellow);
             padding: 2.5rem 3rem;
             transform: rotate(-3deg);
-            box-shadow: 
-                0 6px 20px rgba(0,0,0,0.08),
-                0 2px 4px rgba(0,0,0,0.05);
+            box-shadow:
+                0 6px 20px rgba(0, 0, 0, 0.08),
+                0 2px 4px rgba(0, 0, 0, 0.05);
             position: relative;
             font-family: 'Caveat', cursive;
             font-size: 1.6rem;
@@ -330,9 +344,9 @@
 
         .sticky-note:hover {
             transform: rotate(-1deg) scale(1.02);
-            box-shadow: 
-                0 8px 25px rgba(0,0,0,0.12),
-                0 4px 8px rgba(0,0,0,0.08);
+            box-shadow:
+                0 8px 25px rgba(0, 0, 0, 0.12),
+                0 4px 8px rgba(0, 0, 0, 0.08);
         }
 
         .sticky-note::before {
@@ -343,9 +357,9 @@
             transform: translateX(-50%);
             width: 50px;
             height: 25px;
-            background: linear-gradient(to bottom, rgba(200,200,200,0.4), rgba(200,200,200,0.2));
+            background: linear-gradient(to bottom, rgba(200, 200, 200, 0.4), rgba(200, 200, 200, 0.2));
             border-radius: 50%;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         .presenters {
@@ -418,9 +432,9 @@
             background: linear-gradient(145deg, var(--paper), var(--paper-dark));
             border-radius: 10px;
             padding: 2rem;
-            box-shadow: 
-                0 10px 30px rgba(0,0,0,0.08),
-                inset 0 1px 0 rgba(255,255,255,0.5);
+            box-shadow:
+                0 10px 30px rgba(0, 0, 0, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5);
             transition: all 0.4s;
             position: relative;
             overflow: hidden;
@@ -433,7 +447,7 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
             opacity: 0;
             transition: opacity 0.3s;
         }
@@ -444,9 +458,9 @@
 
         .card:hover {
             transform: translateY(-5px);
-            box-shadow: 
-                0 15px 40px rgba(0,0,0,0.12),
-                inset 0 1px 0 rgba(255,255,255,0.7);
+            box-shadow:
+                0 15px 40px rgba(0, 0, 0, 0.12),
+                inset 0 1px 0 rgba(255, 255, 255, 0.7);
         }
 
         .card h3 {
@@ -537,7 +551,7 @@
             transition: all 0.4s;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
         }
 
         .tool-card::before {
@@ -559,7 +573,7 @@
 
         .tool-card:hover {
             transform: translateY(-8px) rotate(1deg);
-            box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
             border-color: var(--accent-light);
         }
 
@@ -584,13 +598,13 @@
             padding: 2rem;
             margin: 2.5rem 0;
             position: relative;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
             transition: all 0.3s;
         }
 
         .prompt-box:hover {
             transform: translateX(5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
         }
 
         .prompt-box h4 {
@@ -640,9 +654,17 @@
         }
 
         @keyframes success {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-            100% { transform: scale(1); }
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.2);
+            }
+
+            100% {
+                transform: scale(1);
+            }
         }
 
         /* Enhanced Example Cards */
@@ -660,7 +682,7 @@
             color: var(--ink);
             transform: rotate(-1deg);
             transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
             position: relative;
         }
 
@@ -676,7 +698,7 @@
 
         .example-card:hover {
             transform: rotate(0deg) scale(1.05);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
             z-index: 10;
         }
 
@@ -734,8 +756,15 @@
         }
 
         @keyframes float {
-            0%, 100% { transform: translate(0, 0); }
-            50% { transform: translate(100px, 50px); }
+
+            0%,
+            100% {
+                transform: translate(0, 0);
+            }
+
+            50% {
+                transform: translate(100px, 50px);
+            }
         }
 
         .cta-section h2 {
@@ -780,7 +809,7 @@
             left: 50%;
             width: 0;
             height: 0;
-            background: rgba(255,255,255,0.2);
+            background: rgba(255, 255, 255, 0.2);
             border-radius: 50%;
             transform: translate(-50%, -50%);
             transition: width 0.6s, height 0.6s;
@@ -823,8 +852,15 @@
         }
 
         @keyframes bounce {
-            0%, 100% { transform: translate(0, 0) rotate(-45deg); }
-            50% { transform: translate(10px, -10px) rotate(-45deg); }
+
+            0%,
+            100% {
+                transform: translate(0, 0) rotate(-45deg);
+            }
+
+            50% {
+                transform: translate(10px, -10px) rotate(-45deg);
+            }
         }
 
         /* Mobile Responsiveness */
@@ -1047,7 +1083,7 @@
             padding: 2rem;
             margin: 2rem 0;
             position: relative;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
         }
 
         .matts-prompt-box h3 {
@@ -1083,8 +1119,146 @@
             margin-bottom: 1rem;
             line-height: 1.8;
         }
+
+        /* Mobile Nav */
+        .mobile-menu-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 2000;
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 0.8rem;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            display: none;
+        }
+
+        .mobile-menu-btn svg {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+        }
+
+        @media (max-width: 1024px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-sticky {
+                display: none;
+            }
+        }
+
+        .mobile-nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(253, 251, 247, 0.98);
+            z-index: 1999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+
+        .mobile-nav-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .mobile-nav-overlay ul {
+            list-style: none;
+            text-align: center;
+        }
+
+        .mobile-nav-overlay a {
+            font-size: 2rem;
+            color: var(--ink);
+            text-decoration: none;
+            font-family: 'Caveat', cursive;
+            display: block;
+            margin: 1.5rem 0;
+            transition: color 0.3s;
+        }
+
+        .mobile-nav-overlay a:hover {
+            color: var(--accent);
+        }
+
+        /* Back to Top */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--accent);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            background: var(--accent-bright);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--paper-dark);
+            padding: 3rem 0;
+            text-align: center;
+            border-top: 1px solid var(--paper-shadow);
+            position: relative;
+            z-index: 3;
+        }
+
+        .footer p {
+            color: var(--ink-light);
+            font-size: 1rem;
+        }
+
+        .footer a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        /* Animations */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
 </head>
+
 <body>
     <!-- Loading Animation -->
     <div class="loader" id="loader">
@@ -1095,9 +1269,12 @@
     <a href="#main" class="skip-link">Skip to main content</a>
 
     <!-- Navigation Sticky Note -->
+    <!-- Navigation Sticky Note -->
     <nav class="nav-sticky" aria-label="Page sections">
         <ul>
             <li><a href="#intro">Introduction</a></li>
+            <li><a href="#ideas">10 Ideas</a></li>
+            <li><a href="#dangers">Dangers</a></li>
             <li><a href="#tools">Tools</a></li>
             <li><a href="#prompts">Prompts</a></li>
             <li><a href="#examples">Examples</a></li>
@@ -1106,6 +1283,27 @@
         </ul>
     </nav>
 
+    <!-- Mobile Nav Button -->
+    <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Toggle menu">
+        <svg viewBox="0 0 24 24">
+            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
+        </svg>
+    </button>
+
+    <!-- Mobile Nav Overlay -->
+    <div class="mobile-nav-overlay" id="mobileNav">
+        <ul>
+            <li><a href="#intro" onclick="toggleMobileMenu()">Introduction</a></li>
+            <li><a href="#ideas" onclick="toggleMobileMenu()">10 AI Ideas</a></li>
+            <li><a href="#dangers" onclick="toggleMobileMenu()">Dangers</a></li>
+            <li><a href="#tools" onclick="toggleMobileMenu()">Tools</a></li>
+            <li><a href="#prompts" onclick="toggleMobileMenu()">Prompts</a></li>
+            <li><a href="#examples" onclick="toggleMobileMenu()">Examples</a></li>
+            <li><a href="#advanced" onclick="toggleMobileMenu()">Advanced</a></li>
+            <li><a href="#cta" onclick="toggleMobileMenu()">Get Started</a></li>
+        </ul>
+    </div>
+
     <!-- Background Elements -->
     <div class="margin-line"></div>
     <div class="coffee-stain coffee-stain-1"></div>
@@ -1113,327 +1311,513 @@
 
     <!-- Main Content Wrapper -->
     <div class="main-content-section" id="main-content">
-    <!-- Hero Section -->
-    <header class="hero" id="main">
-        <div class="container">
-            <h1>From Sermons to Systems: <span class="accent-word">4 Areas to Use AI Effectively in Ministry</span></h1>
-            <p class="tagline">Presenters: Matt Miller and Dave Partin</p>
-            
-            <div class="sticky-note">
-                Presentation Notes<br>
-                Helping Leaders Leverage AI Effectively
-            </div>
-        </div>
-    </header>
+        <!-- Hero Section -->
+        <header class="hero" id="main">
+            <div class="container">
+                <h1>From Sermons to Systems: <span class="accent-word">4 Areas to Use AI Effectively in Ministry</span>
+                </h1>
 
-    <!-- Introduction Section -->
-    <section class="section" id="intro">
-        <div class="container">
-            <h2>Introduction</h2>
-            <span class="marginal-note">Getting started</span>
-            
-            <div class="card" style="margin-bottom: 2rem;">
-                <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Question:</h3>
-                <p style="font-size: 1.2rem; line-height: 1.8;">
-                    What is the ministry task that requires the most of your time?
-                </p>
+
+                <div class="sticky-note">
+                    Presentation Notes<br>
+                    Helping Leaders Leverage AI Effectively
+                </div>
             </div>
-            
-            <h3 style="color: var(--accent); font-size: 1.8rem; margin: 2.5rem 0 1rem 0;">The Big Idea</h3>
-            <div class="card" style="margin-bottom: 2rem;">
-                <p style="font-size: 1.2rem; line-height: 1.8; text-align: center;">
-                    AI can help you spend more time doing what only you can do (and more time doing what you want to do).
-                </p>
-            </div>
-            
-            <h3 style="color: var(--accent); font-size: 1.8rem; margin: 2.5rem 0 1rem 0;">Our Goal</h3>
-            <div class="prompt-box" style="margin-bottom: 2rem;">
-                <ul style="font-size: 1.1rem; line-height: 1.8; margin-top: 1rem;">
-                    <li>Make you <strong>AWARE</strong></li>
-                    <li>Give you <strong>CONFIDENCE</strong></li>
-                    <li>Provide you with <strong>TOOLS</strong></li>
-                </ul>
-            </div>
-                
-            <h3 style="color: var(--accent); font-size: 1.8rem; margin: 2.5rem 0 1rem 0;">The Core Workflow</h3>
-            <div class="card" style="margin-bottom: 2.5rem;">
-                <h3 style="font-size: 1.5rem; text-align: center; margin-bottom: 1rem;">Human (You think) > AI (Assists) > Human (You do the work)</h3>
-            </div>
-            
-            <h2 style="margin-top: 3rem; margin-bottom: 1.5rem;">4 Core Areas to Use AI</h2>
-            
-            <h2 style="margin-top: 3rem; margin-bottom: 1.5rem;">1. Biblical Research</h2>
-            <div class="card" style="margin-bottom: 2rem;">
-                <h3>Use AI for:</h3>
-                    <ul class="fancy-list">
-                    <li>Hitting your defined theological center</li>
-                    <li>Comparing commentaries</li>
-                    <li>Understanding theological positions</li>
-                    <li>Historical and cultural insights</li>
-                </ul>
-                
-                <div style="background: #fff3cd; padding: 1.5rem; border-radius: 8px; margin-top: 1.5rem; border-left: 4px solid #f39c12;">
-                    <h4 style="color: #856404; margin-bottom: 1rem;">Important Note:</h4>
-                    <p style="color: #856404; line-height: 1.8;">
-                        You should never ask an AI model for theological interpretation or spiritual guidance without first giving it clear parameters — like your translation preference, doctrinal framework, and theological boundaries.
+        </header>
+
+        <!-- Introduction Section -->
+        <section class="section" id="intro">
+            <div class="container">
+                <h2>Introduction</h2>
+                <span class="marginal-note">Getting started</span>
+
+                <div class="card" style="margin-bottom: 2rem;">
+                    <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Question:</h3>
+                    <p style="font-size: 1.2rem; line-height: 1.8;">
+                        If you had a full-time assistant with you all the time, and who was really good with computers
+                        and had the internet memorized, what would you ask them to help you with?
                     </p>
                 </div>
+
+                <h3 style="color: var(--accent); font-size: 1.8rem; margin: 2.5rem 0 1rem 0;">The Big Idea</h3>
+                <div class="card" style="margin-bottom: 2rem;">
+                    <p style="font-size: 1.2rem; line-height: 1.8; text-align: center;">
+                        AI can help you spend time on what only you can do and often the things you want to be doing.
+                    </p>
                 </div>
-                
-            <h2 style="margin-top: 3rem; margin-bottom: 1.5rem;">2. Sermon / Lesson Development</h2>
-            <div class="card" style="margin-bottom: 2rem;">
-                <h3>Use AI for:</h3>
+
+                <h3 style="color: var(--accent); font-size: 1.8rem; margin: 2.5rem 0 1rem 0;">Our Goal</h3>
+                <div class="prompt-box" style="margin-bottom: 2rem;">
+                    <ul style="font-size: 1.1rem; line-height: 1.8; margin-top: 1rem;">
+                        <li>Make you <strong>AWARE</strong></li>
+                        <li>Give you <strong>CONFIDENCE</strong></li>
+                        <li>Provide you with <strong>TOOLS</strong></li>
+                    </ul>
+                </div>
+
+                <h3 style="color: var(--accent); font-size: 1.8rem; margin: 2.5rem 0 1rem 0;">The Core Workflow</h3>
+                <div class="card" style="margin-bottom: 2.5rem;">
+                    <h3 style="font-size: 1.5rem; text-align: center; margin-bottom: 1rem;">Human (You think) > AI
+                        (Assists) > Human (You do the work)</h3>
+                </div>
+
+                <h2 style="margin-top: 3rem; margin-bottom: 1.5rem;">4 Core Areas to Use AI</h2>
+
+                <h2 style="margin-top: 3rem; margin-bottom: 1.5rem;">1. Biblical Research</h2>
+                <div class="card" style="margin-bottom: 2rem;">
+                    <h3>Use AI for:</h3>
                     <ul class="fancy-list">
-                    <li>Creating potential outlines</li>
-                    <li>Brainstorming illustrations and applications</li>
-                    <li>Summarizing commentaries for clarity</li>
+                        <li>Hitting your defined theological center</li>
+                        <li>Comparing commentaries</li>
+                        <li>Understanding theological positions</li>
+                        <li>Historical and cultural insights</li>
                     </ul>
+
+                    <div
+                        style="background: #fff3cd; padding: 1.5rem; border-radius: 8px; margin-top: 1.5rem; border-left: 4px solid #f39c12;">
+                        <h4 style="color: #856404; margin-bottom: 1rem;">Important Note:</h4>
+                        <p style="color: #856404; line-height: 1.8;">
+                            You should never ask an AI model for theological interpretation or spiritual guidance
+                            without first giving it clear parameters — like your translation preference, doctrinal
+                            framework, and theological boundaries.
+                        </p>
+                    </div>
                 </div>
-                
-            <h2 style="margin-top: 3rem; margin-bottom: 1.5rem;">3. Communication</h2>
-            <div class="card" style="margin-bottom: 2rem;">
-                <h3>Use AI for:</h3>
+
+                <h2 style="margin-top: 3rem; margin-bottom: 1.5rem;">2. Sermon / Lesson Development</h2>
+                <div class="card" style="margin-bottom: 2rem;">
+                    <h3>Use AI for:</h3>
                     <ul class="fancy-list">
-                    <li>Proofing your message to make sure you accomplished all you set out to</li>
+                        <li>Creating potential outlines</li>
+                        <li>Brainstorming illustrations and applications</li>
+                        <li>Summarizing commentaries for clarity</li>
                     </ul>
                 </div>
-                
-            <h2 style="margin-top: 3rem; margin-bottom: 1.5rem;">4. Leadership and Administration</h2>
-            <div class="card" style="margin-bottom: 2rem;">
-                <h3>Use AI for:</h3>
+
+                <h2 style="margin-top: 3rem; margin-bottom: 1.5rem;">3. Communication</h2>
+                <div class="card" style="margin-bottom: 2rem;">
+                    <h3>Use AI for:</h3>
                     <ul class="fancy-list">
-                    <li>Create a template for a weekly update</li>
-                    <li>Writing job descriptions, check-lists, or meeting summaries</li>
-                    <li>Create policy drafts and by-laws</li>
-                    <li>Analyzing attendance or giving trends</li>
-                    </ul>
-            </div>
-        </div>
-    </section>
-
-    <!-- AI Tools Section -->
-    <section class="section" id="tools">
-        <div class="container">
-            <h2>Tools and Conclusion</h2>
-            <span class="marginal-note">Recommended AI tools</span>
-            
-            <h3 style="color: var(--accent); font-size: 1.8rem; margin: 2.5rem 0 1rem 0;">Our Favorites</h3>
-            
-            <p style="margin-bottom: 2rem; font-size: 1.1rem;">
-                Click any tool below to explore:
-            </p>
-            
-            <div class="tool-grid">
-                <a href="https://chat.openai.com" target="_blank" class="tool-card">
-                    <div class="tool-name">ChatGPT / ChatGPT Atlas</div>
-                    <div class="tool-desc">Versatile AI assistant</div>
-                </a>
-                
-                <a href="https://claude.ai" target="_blank" class="tool-card">
-                    <div class="tool-name">Claude</div>
-                    <div class="tool-desc">Best for writing & complexity</div>
-                </a>
-                
-                <a href="https://notebooklm.google.com" target="_blank" class="tool-card">
-                    <div class="tool-name">NotebookLM</div>
-                    <div class="tool-desc">Document analysis</div>
-                </a>
-                
-                <a href="https://cursor.sh" target="_blank" class="tool-card">
-                    <div class="tool-name">Cursor</div>
-                    <div class="tool-desc">AI-powered code editor</div>
-                </a>
-                
-                <a href="https://gemini.google.com" target="_blank" class="tool-card">
-                    <div class="tool-name">Gemini</div>
-                    <div class="tool-desc">Google integration</div>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Prompts Section -->
-    <section class="section torn-edge" id="prompts">
-        <div class="container">
-            <h2>Copy & Paste Prompts</h2>
-            <span class="marginal-note">Tested & ministry-ready</span>
-            
-            <div class="example-card" style="cursor: pointer; transform: rotate(-1deg); margin-bottom: 2rem; border: 3px solid var(--accent); box-shadow: 0 8px 25px rgba(0,0,0,0.2);" onclick="showMattsPrompts()">
-                <div class="example-title" style="font-size: 2rem; margin-bottom: 1rem;">Click here for Pastor Matt's extensive prompt process</div>
-                <div class="example-desc" style="font-size: 1.1rem; line-height: 1.6;">A comprehensive AI assistant prompt designed for expository, gospel-centered sermon preparation with resource gathering and quality evaluation modes. Includes Mode 1 (Resource Gathering) and Mode 2 (Sermon Evaluation) with detailed guidelines.</div>
-                <div style="margin-top: 1rem; font-weight: 600; color: var(--accent);">→ View Full Prompt</div>
-            </div>
-            
-            <div class="prompt-box">
-                <button class="copy-btn" onclick="copyPrompt(this, 'prompt1')">Copy this</button>
-                <h4>Sermon Illustration Generator</h4>
-                <div class="prompt-text" id="prompt1">I'm preaching on [BIBLE PASSAGE] this Sunday. The main point is [YOUR MAIN POINT]. Can you give me 3 modern-day illustrations or stories that would help my congregation understand this concept? Please make them relatable to everyday life and include a mix of personal, historical, and contemporary examples.</div>
-                <div class="doodle-arrow"></div>
-            </div>
-            
-            <div class="prompt-box">
-                <button class="copy-btn" onclick="copyPrompt(this, 'prompt2')">Copy this</button>
-                <h4>Small Group Discussion Builder</h4>
-                <div class="prompt-text" id="prompt2">Create a small group discussion guide for [BIBLE PASSAGE]. Include: 
-1) An icebreaker question
-2) 3 observation questions about the text
-3) 2 interpretation questions about the meaning
-4) 2 application questions for daily life
-5) A closing prayer prompt
-Make it suitable for a 45-minute discussion with 6-8 adults.</div>
-            </div>
-            
-            <div class="prompt-box">
-                <button class="copy-btn" onclick="copyPrompt(this, 'prompt3')">Copy this</button>
-                <h4>Pastoral Email Assistant</h4>
-                <div class="prompt-text" id="prompt3">Help me write a warm, pastoral email about [TOPIC/SITUATION]. The tone should be encouraging and grace-filled. Include:
-- A personal greeting
-- Acknowledgment of the situation
-- Biblical encouragement
-- Practical next steps
-- An offer of continued support
-Keep it under 200 words and end with an appropriate blessing.</div>
-            </div>
-            
-            <div class="prompt-box">
-                <button class="copy-btn" onclick="copyPrompt(this, 'prompt4')">Copy this</button>
-                <h4>Social Media Creator</h4>
-                <div class="prompt-text" id="prompt4">Create 5 social media posts for our church's [PLATFORM: Facebook/Instagram/Twitter] about [TOPIC/EVENT]. Include:
-- Engaging opening lines
-- Relevant scripture or quote
-- Call to action
-- Appropriate hashtags
-Vary the style between informational, inspirational, and invitational. Keep each post under [WORD COUNT] words.</div>
-            </div>
-            
-            <div class="prompt-box">
-                <button class="copy-btn" onclick="copyPrompt(this, 'prompt5')">Copy this</button>
-                <h4>Prayer Guide Builder</h4>
-                <div class="prompt-text" id="prompt5">Create a 7-day prayer guide focused on [THEME/TOPIC]. For each day include:
-- A short scripture passage (2-3 verses)
-- A brief devotional thought (50-75 words)
-- 3 specific prayer prompts
-- A practical action step
-Make it accessible for both new believers and mature Christians. Format it in a way that's easy to follow daily.</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Real Examples Section -->
-    <section class="section" id="examples">
-        <div class="container">
-            <h2>Real Ministry Examples</h2>
-            <span class="marginal-note">Dave's actual AI projects!</span>
-            
-            <p style="margin-bottom: 2rem; font-size: 1.1rem;">
-                These ministry tools were all built with AI assistance:
-            </p>
-            
-            <div class="examples-grid">
-                <a href="https://ministrybag.com/heart52/" target="_blank" class="example-card">
-                    <div class="example-title">Heart52</div>
-                    <div class="example-desc">Bible memory app - 52 verses for 52 weeks. A complete scripture memorization system.</div>
-                </a>
-                
-                <a href="https://davepartin.github.io/typesight/" target="_blank" class="example-card">
-                    <div class="example-title">TypeSight</div>
-                    <div class="example-desc">Dyslexia tool for sight words & typing. Helping kids learn through interactive practice.</div>
-                </a>
-                
-                <a href="https://ministrybag.com" target="_blank" class="example-card">
-                    <div class="example-title">MinistryBag</div>
-                    <div class="example-desc">Central hub for ministry resources. Free tools for pastors and church leaders.</div>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Advanced Section -->
-    <section class="section torn-edge" id="advanced">
-        <div class="container">
-            <h2>Advanced Applications</h2>
-            <span class="marginal-note">Level up when ready!</span>
-            
-            <p style="margin-bottom: 2rem; font-size: 1.1rem;">
-                After mastering the basics, explore these <span class="highlight">advanced ministry applications</span>:
-            </p>
-            
-            <div class="grid grid-2">
-                <div class="card">
-                    <h3>Data Analysis</h3>
-                    <ul>
-                        <li>Attendance patterns & trends</li>
-                        <li>Giving analysis & projections</li>
-                        <li>Survey summaries & insights</li>
-                        <li>Community demographic research</li>
+                        <li>Proofreading your writing to make sure you accomplished all you set out to do. Ask for ideas
+                            on how to make it better, clearer, shorter, sharper, lighter, or stronger.</li>
                     </ul>
                 </div>
-                
-                <div class="card">
-                    <h3>Creative Projects</h3>
-                    <ul>
-                        <li>Complete service themes</li>
-                        <li>VBS curriculum development</li>
-                        <li>Drama scripts & sketches</li>
-                        <li>Worship experience design</li>
-                    </ul>
-                </div>
-                
-                <div class="card">
-                    <h3>Automation</h3>
-                    <ul>
-                        <li>Guest follow-up sequences</li>
-                        <li>Prayer request management</li>
-                        <li>Event planning workflows</li>
-                        <li>Volunteer scheduling systems</li>
-                    </ul>
-                </div>
-                
-                <div class="card">
-                    <h3>Content Creation</h3>
-                    <ul>
-                        <li>Devotional series writing</li>
-                        <li>Bible study materials</li>
-                        <li>Leadership training resources</li>
-                        <li>Discipleship pathways</li>
+
+                <h2 style="margin-top: 3rem; margin-bottom: 1.5rem;">4. Leadership and Administration</h2>
+                <div class="card" style="margin-bottom: 2rem;">
+                    <h3>Use AI for:</h3>
+                    <ul class="fancy-list">
+                        <li>Create a template for a weekly update</li>
+                        <li>Writing job descriptions, check-lists, or meeting summaries</li>
+                        <li>Create policy drafts and by-laws</li>
+                        <li>Analyzing attendance or giving trends</li>
                     </ul>
                 </div>
             </div>
-            
-            <div style="margin-top: 3rem; padding: 2rem; background: var(--sticky-blue); transform: rotate(-1deg); box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
-                <h3 style="font-family: 'Caveat', cursive; font-size: 1.8rem; color: var(--accent);">
-                    Pro Tip: Start Small! 
-                </h3>
-                <p style="font-family: 'Caveat', cursive; font-size: 1.4rem;">
-                    Pick ONE tool and ONE use case this week. Master it before moving on. 
-                    Success comes from consistency, not complexity!
+        </section>
+
+        <!-- 10 AI Tool Ideas Section -->
+        <section class="section" id="ideas">
+            <div class="container">
+                <h2>10 AI Tool Ideas</h2>
+                <span class="marginal-note">Quick wins for ministry</span>
+
+                <p style="margin-bottom: 2rem; font-size: 1.1rem;">
+                    Here are practical ways you can start using AI today:
                 </p>
-            </div>
-        </div>
-    </section>
 
-    <!-- CTA Section -->
-    <section class="cta-section" id="cta">
-        <div class="container">
-            <h2>Your Next Step</h2>
-            
-            <p style="font-size: 1.3rem; margin-bottom: 2rem; font-style: italic; color: var(--ink-medium);">
-                "The harvest is plentiful, but the workers are few. 
-                Let's multiply our efforts with wisdom and technology."
-            </p>
-            
-            <div class="button-group">
-                <a href="https://claude.ai" target="_blank" class="btn btn-primary">
-                    Start with Claude (Free)
-                </a>
-                <a href="https://ministrybag.com" target="_blank" class="btn btn-primary">
-                    Explore MinistryBag
-                </a>
+                <div class="grid grid-3">
+                    <div class="card">
+                        <h3>1. Creative/Visual</h3>
+                        <ul>
+                            <li>T-shirts</li>
+                            <li>Slide backgrounds</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h3>2. Smart Assistant/Admin</h3>
+                        <ul>
+                            <li>Spreadsheets</li>
+                            <li>Data analysis</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h3>3. Ministry/Pastoral</h3>
+                        <ul>
+                            <li>Parable Examples</li>
+                            <li>Denomination Comparisons</li>
+                            <li>Care emails</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h3>4. Theological Mentorship</h3>
+                        <ul>
+                            <li>Piper/Keller roleplay</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h3>5. Staff Development</h3>
+                        <ul>
+                            <li>Training</li>
+                            <li>Difficult Conversations</li>
+                            <li>Hiring</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h3>6. Family & Home</h3>
+                        <ul>
+                            <li>Devo ideas for varied ages</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h3>7. Strategic Systems</h3>
+                        <ul>
+                            <li>Church planting timelines</li>
+                            <li>Demographics</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h3>8. Coding/Builder</h3>
+                        <ul>
+                            <li>Websites</li>
+                            <li>Web apps</li>
+                            <li>Debugging</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h3>9. Cultural Translation</h3>
+                        <ul>
+                            <li>Apologetics</li>
+                            <li>Cultural Debates</li>
+                        </ul>
+                    </div>
+
+                    <div class="card" style="background: var(--sticky-yellow); transform: rotate(1deg);">
+                        <h3 style="color: var(--ink);">10. Your Idea Here</h3>
+                        <p>What will you build?</p>
+                    </div>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+
+        <!-- Be Aware of the Dangers Section -->
+        <section class="section" id="dangers">
+            <div class="container">
+                <h2 style="color: var(--burgundy);">Be Aware of the Dangers</h2>
+                <span class="marginal-note">Proceed with caution</span>
+
+                <div class="grid grid-2">
+                    <div class="card animate-on-scroll" style="border-left: 4px solid var(--burgundy);">
+                        <h3 style="color: var(--burgundy);">1. Spiritual Atrophy
+                        </h3>
+                        <p style="font-size: 1.1rem; line-height: 1.6;">
+                            Bypassing the hard work of study for the sake of efficiency robs you of your unique voice
+                            and the personal conviction that only comes from wrestling with the Spirit, the Text, and
+                            your Context.
+                        </p>
+                    </div>
+
+                    <div class="card animate-on-scroll" style="border-left: 4px solid var(--burgundy);">
+                        <h3 style="color: var(--burgundy);">2. The Joy of the Writing
+                        </h3>
+                        <p style="font-size: 1.1rem; line-height: 1.6;">
+                            Creation is a reflection of the Creator, and outsourcing the entire creative process robs
+                            you of the deep joy and satisfaction found in crafting words yourself.
+                        </p>
+                    </div>
+
+                    <div class="card animate-on-scroll" style="border-left: 4px solid var(--burgundy);">
+                        <h3 style="color: var(--burgundy);">3. Theological
+                            Hallucination
+                        </h3>
+                        <p style="font-size: 1.1rem; line-height: 1.6;">
+                            AI models predict the next likely word, not the truth, meaning they can confidently present
+                            subtle heresy as fact if you aren't vigilant.
+                        </p>
+                    </div>
+
+                    <div class="card animate-on-scroll" style="border-left: 4px solid var(--burgundy);">
+                        <h3 style="color: var(--burgundy);">4. Caution is Key
+                        </h3>
+                        <p style="font-size: 1.1rem; line-height: 1.6;">
+                            This is a very powerful tool that can possibly guide us to cure every possible disease, but
+                            it can also be used to start a pandemic.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI Tools Section -->
+        <section class="section" id="tools">
+            <div class="container">
+                <h2>Tools and Conclusion</h2>
+                <span class="marginal-note">Recommended AI tools</span>
+
+                <h3 style="color: var(--accent); font-size: 1.8rem; margin: 2.5rem 0 1rem 0;">Our Favorites</h3>
+
+                <p style="margin-bottom: 2rem; font-size: 1.1rem;">
+                    Click any tool below to explore:
+                </p>
+
+                <div class="tool-grid">
+                    <a href="https://chat.openai.com" target="_blank" class="tool-card">
+                        <div class="tool-name">ChatGPT / ChatGPT Atlas</div>
+                        <div class="tool-desc">Versatile AI assistant</div>
+                    </a>
+
+                    <a href="https://claude.ai" target="_blank" class="tool-card">
+                        <div class="tool-name">Claude</div>
+                        <div class="tool-desc">Best for writing & complexity</div>
+                    </a>
+
+                    <a href="https://notebooklm.google.com" target="_blank" class="tool-card">
+                        <div class="tool-name">NotebookLM</div>
+                        <div class="tool-desc">Document analysis</div>
+                    </a>
+
+                    <a href="https://cursor.sh" target="_blank" class="tool-card">
+                        <div class="tool-name">Cursor</div>
+                        <div class="tool-desc">AI-powered code editor</div>
+                    </a>
+
+                    <a href="https://gemini.google.com" target="_blank" class="tool-card">
+                        <div class="tool-name">Gemini</div>
+                        <div class="tool-desc">Google integration</div>
+                    </a>
+
+                    <a href="#" class="tool-card">
+                        <div class="tool-name">Antigravity</div>
+                        <div class="tool-desc">Agentic AI Coding Assistant</div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Prompts Section -->
+        <section class="section torn-edge" id="prompts">
+            <div class="container">
+                <h2>Copy & Paste Prompts</h2>
+                <span class="marginal-note">Tested & ministry-ready</span>
+
+                <div class="example-card"
+                    style="cursor: pointer; transform: rotate(-1deg); margin-bottom: 2rem; border: 3px solid var(--accent); box-shadow: 0 8px 25px rgba(0,0,0,0.2);"
+                    onclick="showMattsPrompts()">
+                    <div class="example-title" style="font-size: 2rem; margin-bottom: 1rem;">Click here for Pastor
+                        Matt's extensive sermon prompt process</div>
+                    <div class="example-desc" style="font-size: 1.1rem; line-height: 1.6;">A comprehensive AI assistant
+                        prompt designed for expository, gospel-centered sermon preparation with resource gathering and
+                        quality evaluation modes. Includes Mode 1 (Resource Gathering) and Mode 2 (Sermon Evaluation)
+                        with detailed guidelines.</div>
+                    <div style="margin-top: 1rem; font-weight: 600; color: var(--accent);">→ View Full Prompt</div>
+                </div>
+
+                <div class="prompt-box">
+                    <button class="copy-btn" onclick="copyPrompt(this, 'prompt1')">Copy this</button>
+                    <h4>Sermon Illustration Generator</h4>
+                    <div class="prompt-text" id="prompt1">I'm preaching on [BIBLE PASSAGE] this Sunday. The main point
+                        is [YOUR MAIN POINT]. Can you give me 3 modern-day illustrations or stories that would help my
+                        congregation understand this concept? Please make them relatable to everyday life and include a
+                        mix of personal, historical, and contemporary examples.</div>
+                    <div class="doodle-arrow"></div>
+                </div>
+
+                <div class="prompt-box">
+                    <button class="copy-btn" onclick="copyPrompt(this, 'prompt2')">Copy this</button>
+                    <h4>Small Group Discussion Builder</h4>
+                    <div class="prompt-text" id="prompt2">Create a small group discussion guide for [BIBLE PASSAGE].
+                        Include:
+                        1) An icebreaker question
+                        2) 3 observation questions about the text
+                        3) 2 interpretation questions about the meaning
+                        4) 2 application questions for daily life
+                        5) A closing prayer prompt
+                        Make it suitable for a 45-minute discussion with 6-8 adults.</div>
+                </div>
+
+                <div class="prompt-box">
+                    <button class="copy-btn" onclick="copyPrompt(this, 'prompt3')">Copy this</button>
+                    <h4>Pastoral Email Assistant</h4>
+                    <div class="prompt-text" id="prompt3">Help me write a warm, pastoral email about [TOPIC/SITUATION].
+                        The tone should be encouraging and grace-filled. Include:
+                        - A personal greeting
+                        - Acknowledgment of the situation
+                        - Biblical encouragement
+                        - Practical next steps
+                        - An offer of continued support
+                        Keep it under 200 words and end with an appropriate blessing.</div>
+                </div>
+
+                <div class="prompt-box">
+                    <button class="copy-btn" onclick="copyPrompt(this, 'prompt4')">Copy this</button>
+                    <h4>Social Media Creator</h4>
+                    <div class="prompt-text" id="prompt4">Create 5 social media posts for our church's [PLATFORM:
+                        Facebook/Instagram/Twitter] about [TOPIC/EVENT]. Include:
+                        - Engaging opening lines
+                        - Relevant scripture or quote
+                        - Call to action
+                        - Appropriate hashtags
+                        Vary the style between informational, inspirational, and invitational. Keep each post under
+                        [WORD COUNT] words.</div>
+                </div>
+
+                <div class="prompt-box">
+                    <button class="copy-btn" onclick="copyPrompt(this, 'prompt5')">Copy this</button>
+                    <h4>Prayer Guide Builder</h4>
+                    <div class="prompt-text" id="prompt5">Create a 7-day prayer guide focused on [THEME/TOPIC]. For each
+                        day include:
+                        - A short scripture passage (2-3 verses)
+                        - A brief devotional thought (50-75 words)
+                        - 3 specific prayer prompts
+                        - A practical action step
+                        Make it accessible for both new believers and mature Christians. Format it in a way that's easy
+                        to follow daily.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Real Examples Section -->
+        <section class="section" id="examples">
+            <div class="container">
+                <h2>Real Ministry Examples</h2>
+                <span class="marginal-note">Dave's actual AI projects!</span>
+
+                <p style="margin-bottom: 2rem; font-size: 1.1rem;">
+                    These ministry tools were all built with AI assistance:
+                </p>
+
+                <div class="examples-grid">
+                    <a href="https://ministrybag.com/heart52/" target="_blank" class="example-card">
+                        <div class="example-title">Heart52</div>
+                        <div class="example-desc">Bible memory app - 52 verses for 52 weeks. A complete scripture
+                            memorization system.</div>
+                    </a>
+
+                    <a href="https://davepartin.github.io/typesight/" target="_blank" class="example-card">
+                        <div class="example-title">TypeSight</div>
+                        <div class="example-desc">Dyslexia tool for sight words & typing. Helping kids learn through
+                            interactive practice.</div>
+                    </a>
+
+                    <a href="https://ministrybag.com" target="_blank" class="example-card">
+                        <div class="example-title">MinistryBag</div>
+                        <div class="example-desc">Central hub for ministry resources. Free tools for pastors and church
+                            leaders.</div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Advanced Section -->
+        <section class="section torn-edge" id="advanced">
+            <div class="container">
+                <h2>Advanced Applications</h2>
+                <span class="marginal-note">Level up when ready!</span>
+
+                <p style="margin-bottom: 2rem; font-size: 1.1rem;">
+                    After mastering the basics, explore these <span class="highlight">advanced ministry
+                        applications</span>:
+                </p>
+
+                <div class="grid grid-2">
+                    <div class="card">
+                        <h3>Data Analysis</h3>
+                        <ul>
+                            <li>Attendance patterns & trends</li>
+                            <li>Giving analysis & projections</li>
+                            <li>Survey summaries & insights</li>
+                            <li>Community demographic research</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h3>Creative Projects</h3>
+                        <ul>
+                            <li>Complete service themes</li>
+                            <li>VBS curriculum development</li>
+                            <li>Drama scripts & sketches</li>
+                            <li>Worship experience design</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h3>Automation</h3>
+                        <ul>
+                            <li>Guest follow-up sequences</li>
+                            <li>Prayer request management</li>
+                            <li>Event planning workflows</li>
+                            <li>Volunteer scheduling systems</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h3>Content Creation</h3>
+                        <ul>
+                            <li>Devotional series writing</li>
+                            <li>Bible study materials</li>
+                            <li>Leadership training resources</li>
+                            <li>Discipleship pathways</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div
+                    style="margin-top: 3rem; padding: 2rem; background: var(--sticky-blue); transform: rotate(-1deg); box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+                    <h3 style="font-family: 'Caveat', cursive; font-size: 1.8rem; color: var(--accent);">
+                        Pro Tip: Start Small!
+                    </h3>
+                    <p style="font-family: 'Caveat', cursive; font-size: 1.4rem;">
+                        Pick ONE tool and ONE use case this week. Master it before moving on.
+                        Success comes from consistency, not complexity!
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section" id="cta">
+            <div class="container">
+                <h2>Your Next Step</h2>
+
+                <p style="font-size: 1.3rem; margin-bottom: 2rem; font-style: italic; color: var(--ink-medium);">
+                    "The harvest is plentiful, but the workers are few.
+                    Let's multiply our efforts with wisdom and technology."
+                </p>
+
+                <div class="button-group">
+                    <a href="https://claude.ai" target="_blank" class="btn btn-primary">
+                        Start with Claude (Free)
+                    </a>
+                    <a href="https://ministrybag.com" target="_blank" class="btn btn-primary">
+                        Explore MinistryBag
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <p>&copy; 2025 <a href="https://ministrybag.com" target="_blank">MinistryBag.com</a>. All rights
+                    reserved.</p>
+                <p style="margin-top: 0.5rem; font-size: 0.9rem;">Helping Leaders Leverage AI Effectively.</p>
+            </div>
+        </footer>
     </div>
     <!-- End Main Content -->
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" aria-label="Back to top">
+        ↑
+    </button>
 
     <!-- Matt's Prompts Section -->
     <section class="section matts-prompts-section" id="matts-prompts">
@@ -1441,8 +1825,9 @@ Make it accessible for both new believers and mature Christians. Format it in a 
             <button class="back-button" onclick="showMainContent()">
                 ← Back to Main Page
             </button>
-            
-            <h1 style="font-size: 2.5rem; margin-bottom: 1rem; color: var(--accent);">Pastor Matt's Prompt for Sermon Research and Study Guides</h1>
+
+            <h1 style="font-size: 2.5rem; margin-bottom: 1rem; color: var(--accent);">Pastor Matt's Prompt for Sermon
+                Research and Study Guides</h1>
             <p style="font-size: 1.2rem; margin-bottom: 2rem; color: var(--ink-medium);">
                 AI assistant prompt designed for expository, gospel-centered sermon preparation
             </p>
@@ -1451,15 +1836,18 @@ Make it accessible for both new believers and mature Christians. Format it in a 
                 <button class="copy-btn" onclick="copyPrompt(this, 'matts-full-prompt')">Copy Full Prompt</button>
                 <h3>PASTOR MATT'S SERMON RESOURCE + QUALITY CHECK ASSISTANT</h3>
                 <p><strong>For weekly sermon preparation at New City Church (Shawnee, KS)</strong></p>
-                
+
                 <h4>ROLE & PURPOSE</h4>
                 <p>You are assisting Pastor Matt Miller, Lead Pastor of New City Church.</p>
                 <p>Matt preaches expository, gospel-centered sermons using the Christian Standard Bible (CSB).</p>
                 <p>Your role is not to write his sermon but to:</p>
                 <ul>
-                    <li>Identify and organize biblical, theological, historical, and cultural resources that help him write faithfully.</li>
+                    <li>Identify and organize biblical, theological, historical, and cultural resources that help him
+                        write faithfully.</li>
                     <li>Provide cross-references, background insights, and commentary recommendations.</li>
-                    <li>Review his finished sermon to ensure it's biblically faithful, gospel-centered, doctrinally sound, clear, and aligned with New City Church's mission: Helping people who are far from God find and follow Jesus.</li>
+                    <li>Review his finished sermon to ensure it's biblically faithful, gospel-centered, doctrinally
+                        sound, clear, and aligned with New City Church's mission: Helping people who are far from God
+                        find and follow Jesus.</li>
                 </ul>
 
                 <h4>WEEKLY DETAILS (Matt fills these in)</h4>
@@ -1478,21 +1866,29 @@ Make it accessible for both new believers and mature Christians. Format it in a 
                 <p>When Matt says: "Let's gather resources" or "Lets work on," do the following:</p>
                 <p>Provide concise, organized insights without writing sermon content:</p>
                 <ul>
-                    <li><strong>Exegetical Summary</strong> – Outline the text's structure, main verbs, and author's purpose.</li>
+                    <li><strong>Exegetical Summary</strong> – Outline the text's structure, main verbs, and author's
+                        purpose.</li>
                     <li><strong>Key Words</strong> – Offer relevant Greek/Hebrew terms (with brief meaning).</li>
                     <li><strong>Cross-References</strong> – 5–7 passages that illuminate the same theme.</li>
-                    <li><strong>Theological Themes</strong> – What the passage reveals about God, mankind, sin, grace, and Christ.</li>
-                    <li><strong>Contextual Background</strong> – Author, audience, historical setting, and cultural notes.</li>
+                    <li><strong>Theological Themes</strong> – What the passage reveals about God, mankind, sin, grace,
+                        and Christ.</li>
+                    <li><strong>Contextual Background</strong> – Author, audience, historical setting, and cultural
+                        notes.</li>
                     <li><strong>Trusted Commentaries</strong> – Recommend 3–5 scholarly and pastoral resources.</li>
-                    <li><strong>Church History Insight</strong> – Summarize how early church fathers or reformers understood this text.</li>
-                    <li><strong>Illustration/Connection Ideas</strong> – Real-life tensions, cultural parallels, or common experiences that could help "Grab Them."</li>
-                    <li><strong>Prayer Focus</strong> – A short line Matt could pray while studying ("Lord, help me see Your character in this text before I teach it.")</li>
+                    <li><strong>Church History Insight</strong> – Summarize how early church fathers or reformers
+                        understood this text.</li>
+                    <li><strong>Illustration/Connection Ideas</strong> – Real-life tensions, cultural parallels, or
+                        common experiences that could help "Grab Them."</li>
+                    <li><strong>Prayer Focus</strong> – A short line Matt could pray while studying ("Lord, help me see
+                        Your character in this text before I teach it.")</li>
                 </ul>
-                <p><strong>Never write sermon paragraphs. Only provide research, frameworks, or insights Matt can use as he writes - unless Matt specifically asks for writing help.</strong></p>
+                <p><strong>Never write sermon paragraphs. Only provide research, frameworks, or insights Matt can use as
+                        he writes - unless Matt specifically asks for writing help.</strong></p>
 
                 <h4>MODE 2 — SERMON EVALUATION</h4>
-                <p>When Matt pastes in a sermon draft or outline and says: "Review this message," evaluate it under these categories and give concise, pastoral feedback.</p>
-                
+                <p>When Matt pastes in a sermon draft or outline and says: "Review this message," evaluate it under
+                    these categories and give concise, pastoral feedback.</p>
+
                 <h4>1. Biblical Faithfulness (Simeon Trust Standard)</h4>
                 <ul>
                     <li>Is the main idea clearly derived from the text?</li>
@@ -1524,9 +1920,12 @@ Make it accessible for both new believers and mature Christians. Format it in a 
 
                 <h4>5. Vision Alignment (Church Planter Focus)</h4>
                 <ul>
-                    <li>Does the sermon reinforce why New City Church exists (To inspire people to trust in and live like Jesus)?</li>
-                    <li>Does this passage provide a natural opportunity to encourage baptism (as a response of obedience, identification with Christ, or testimony of faith)?</li>
-                    <li>Does this passage provide a natural opportunity to encourage giving (as worship, trust in God's provision, partnership in mission, or gratitude for grace)?</li>
+                    <li>Does the sermon reinforce why New City Church exists (To inspire people to trust in and live
+                        like Jesus)?</li>
+                    <li>Does this passage provide a natural opportunity to encourage baptism (as a response of
+                        obedience, identification with Christ, or testimony of faith)?</li>
+                    <li>Does this passage provide a natural opportunity to encourage giving (as worship, trust in God's
+                        provision, partnership in mission, or gratitude for grace)?</li>
                     <li>Does it speak to both believers and those far from God?</li>
                     <li>Does it call people toward mission or discipleship?</li>
                     <li>Does it reflect hope, joy, and love for the local church?</li>
@@ -1547,8 +1946,10 @@ Make it accessible for both new believers and mature Christians. Format it in a 
                 <ul>
                     <li><strong>Word Study:</strong> "Give me key word meanings for [verse/word]."</li>
                     <li><strong>Background:</strong> "Explain the cultural setting of [text]."</li>
-                    <li><strong>Cross-References:</strong> "Show me where this theme appears elsewhere in Scripture."</li>
-                    <li><strong>Historical Insight:</strong> "How did the early church or reformers interpret this passage?"</li>
+                    <li><strong>Cross-References:</strong> "Show me where this theme appears elsewhere in Scripture."
+                    </li>
+                    <li><strong>Historical Insight:</strong> "How did the early church or reformers interpret this
+                        passage?"</li>
                     <li><strong>Clarity Check:</strong> "Identify any sentences that might confuse a new believer."</li>
                     <li><strong>Gospel Check:</strong> "Show where I could highlight Jesus more clearly."</li>
                 </ul>
@@ -1557,7 +1958,8 @@ Make it accessible for both new believers and mature Christians. Format it in a 
                 <ul>
                     <li>Do not use any icons or emojis.</li>
                     <li>Do not replace words or phrases unless I ask you to do so.</li>
-                    <li>When it makes sense and is not forced, look for ways to help me include our mission, vision, and values.</li>
+                    <li>When it makes sense and is not forced, look for ways to help me include our mission, vision, and
+                        values.</li>
                 </ul>
 
                 <h4>MISSION, VISION, AND VALUES</h4>
@@ -1568,189 +1970,206 @@ Make it accessible for both new believers and mature Christians. Format it in a 
                     <li>To know others and for you to be known.</li>
                     <li>To makes disciples that make disciples that make disciples.</li>
                     <li>To become extremely generous.</li>
-                    <li>That our city would be better because we are in it and that are city recognizes the positive impact we are making.</li>
+                    <li>That our city would be better because we are in it and that are city recognizes the positive
+                        impact we are making.</li>
                 </ol>
 
                 <h4>QUOTE RECOMMENDATIONS</h4>
-                <p>Help me identify quotes that best support my message. I love pastors such as Oswald Chambers, Charles Spurgeon, Andrew Murry, and others like them. Also include when appropriate quotes from famous people who speak into the topic of the specific passage.</p>
+                <p>Help me identify quotes that best support my message. I love pastors such as Oswald Chambers, Charles
+                    Spurgeon, Andrew Murry, and others like them. Also include when appropriate quotes from famous
+                    people who speak into the topic of the specific passage.</p>
 
                 <h4>MESSAGE STRUCTURE</h4>
                 <p>I build my message in this outline:</p>
                 <ol>
                     <li><strong>Grab Them</strong> - an opening that will get my listener's attention.</li>
-                    <li><strong>Teach Them</strong> - the majority of my message where connect my listener to God's Word.</li>
+                    <li><strong>Teach Them</strong> - the majority of my message where connect my listener to God's
+                        Word.</li>
                     <li><strong>Ask Them</strong> - What does the passage demand of me and how might I be obedient?</li>
                 </ol>
             </div>
-            
+
             <div class="prompt-box" style="margin-top: 3rem;">
                 <button class="copy-btn" onclick="copyPrompt(this, 'matts-full-prompt')">Copy Full Prompt</button>
                 <h4>Full Prompt Text (for easy copying)</h4>
                 <div class="prompt-text" id="matts-full-prompt">PASTOR MATT'S SERMON RESOURCE + QUALITY CHECK ASSISTANT
 
-For weekly sermon preparation at New City Church (Shawnee, KS)
+                    For weekly sermon preparation at New City Church (Shawnee, KS)
 
-ROLE & PURPOSE
+                    ROLE & PURPOSE
 
-You are assisting Pastor Matt Miller, Lead Pastor of New City Church.
+                    You are assisting Pastor Matt Miller, Lead Pastor of New City Church.
 
-Matt preaches expository, gospel-centered sermons using the Christian Standard Bible (CSB).
+                    Matt preaches expository, gospel-centered sermons using the Christian Standard Bible (CSB).
 
-Your role is not to write his sermon but to:
+                    Your role is not to write his sermon but to:
 
-Identify and organize biblical, theological, historical, and cultural resources that help him write faithfully.
+                    Identify and organize biblical, theological, historical, and cultural resources that help him write
+                    faithfully.
 
-Provide cross-references, background insights, and commentary recommendations.
+                    Provide cross-references, background insights, and commentary recommendations.
 
-Review his finished sermon to ensure it's biblically faithful, gospel-centered, doctrinally sound, clear, and aligned with New City Church's mission:
-Helping people who are far from God find and follow Jesus.
+                    Review his finished sermon to ensure it's biblically faithful, gospel-centered, doctrinally sound,
+                    clear, and aligned with New City Church's mission:
+                    Helping people who are far from God find and follow Jesus.
 
-WEEKLY DETAILS (Matt fills these in)
+                    WEEKLY DETAILS (Matt fills these in)
 
-Series Title: [insert]
-Sermon Title: [insert]
-Primary Text (CSB): [insert passage]
-Big Idea: [insert]
-Bottom Line: [insert phrase]
-Main Objective: [what you want people to understand, feel, and do]
-Theme or Focus: [insert topic or virtue]
-Campus: Shawnee
+                    Series Title: [insert]
+                    Sermon Title: [insert]
+                    Primary Text (CSB): [insert passage]
+                    Big Idea: [insert]
+                    Bottom Line: [insert phrase]
+                    Main Objective: [what you want people to understand, feel, and do]
+                    Theme or Focus: [insert topic or virtue]
+                    Campus: Shawnee
 
-MODE 1 — RESOURCE GATHERING
+                    MODE 1 — RESOURCE GATHERING
 
-When Matt says: "Let's gather resources" or "Lets work on," do the following:
+                    When Matt says: "Let's gather resources" or "Lets work on," do the following:
 
-Provide concise, organized insights without writing sermon content:
+                    Provide concise, organized insights without writing sermon content:
 
-Exegetical Summary – Outline the text's structure, main verbs, and author's purpose.
+                    Exegetical Summary – Outline the text's structure, main verbs, and author's purpose.
 
-Key Words – Offer relevant Greek/Hebrew terms (with brief meaning).
+                    Key Words – Offer relevant Greek/Hebrew terms (with brief meaning).
 
-Cross-References – 5–7 passages that illuminate the same theme.
+                    Cross-References – 5–7 passages that illuminate the same theme.
 
-Theological Themes – What the passage reveals about God, mankind, sin, grace, and Christ.
+                    Theological Themes – What the passage reveals about God, mankind, sin, grace, and Christ.
 
-Contextual Background – Author, audience, historical setting, and cultural notes.
+                    Contextual Background – Author, audience, historical setting, and cultural notes.
 
-Trusted Commentaries – Recommend 3–5 scholarly and pastoral resources.
+                    Trusted Commentaries – Recommend 3–5 scholarly and pastoral resources.
 
-Church History Insight – Summarize how early church fathers or reformers understood this text.
+                    Church History Insight – Summarize how early church fathers or reformers understood this text.
 
-Illustration/Connection Ideas – Real-life tensions, cultural parallels, or common experiences that could help "Grab Them."
+                    Illustration/Connection Ideas – Real-life tensions, cultural parallels, or common experiences that
+                    could help "Grab Them."
 
-Prayer Focus – A short line Matt could pray while studying ("Lord, help me see Your character in this text before I teach it.")
+                    Prayer Focus – A short line Matt could pray while studying ("Lord, help me see Your character in
+                    this text before I teach it.")
 
-Never write sermon paragraphs. Only provide research, frameworks, or insights Matt can use as he writes - unless Matt specifically asks for writing help.
+                    Never write sermon paragraphs. Only provide research, frameworks, or insights Matt can use as he
+                    writes - unless Matt specifically asks for writing help.
 
-MODE 2 — SERMON EVALUATION
+                    MODE 2 — SERMON EVALUATION
 
-When Matt pastes in a sermon draft or outline and says: "Review this message," evaluate it under these categories and give concise, pastoral feedback.
+                    When Matt pastes in a sermon draft or outline and says: "Review this message," evaluate it under
+                    these categories and give concise, pastoral feedback.
 
-1. Biblical Faithfulness (Simeon Trust Standard)
+                    1. Biblical Faithfulness (Simeon Trust Standard)
 
-Is the main idea clearly derived from the text?
+                    Is the main idea clearly derived from the text?
 
-Does the sermon's structure reflect the text's structure?
+                    Does the sermon's structure reflect the text's structure?
 
-Are applications rooted in what the passage actually teaches?
+                    Are applications rooted in what the passage actually teaches?
 
-2. Gospel Centrality (Tim Keller Standard)
+                    2. Gospel Centrality (Tim Keller Standard)
 
-Is Jesus clearly presented as the fulfillment of the text?
+                    Is Jesus clearly presented as the fulfillment of the text?
 
-Does the message move from problem → grace → response?
+                    Does the message move from problem → grace → response?
 
-Would a guest hear good news, not just moral improvement?
+                    Would a guest hear good news, not just moral improvement?
 
-3. Doctrinal Soundness (Early Church Standard)
+                    3. Doctrinal Soundness (Early Church Standard)
 
-Does the message align with the Apostles' and Nicene Creeds?
+                    Does the message align with the Apostles' and Nicene Creeds?
 
-Is it Trinitarian and Christ-focused?
+                    Is it Trinitarian and Christ-focused?
 
-Any theological imbalances, omissions, or unclear statements?
+                    Any theological imbalances, omissions, or unclear statements?
 
-4. Communication Clarity (Andy Stanley Standard)
+                    4. Communication Clarity (Andy Stanley Standard)
 
-Is there one dominant Big Idea?
+                    Is there one dominant Big Idea?
 
-Is the Bottom Line memorable and repeatable?
+                    Is the Bottom Line memorable and repeatable?
 
-Does the flow make emotional and logical sense (curiosity → clarity → conviction → hope)?
+                    Does the flow make emotional and logical sense (curiosity → clarity → conviction → hope)?
 
-Are any words or concepts too insider-focused for new listeners?
+                    Are any words or concepts too insider-focused for new listeners?
 
-5. Vision Alignment (Church Planter Focus)
+                    5. Vision Alignment (Church Planter Focus)
 
-Does the sermon reinforce why New City Church exists (To inspire people to trust in and live like Jesus)?
+                    Does the sermon reinforce why New City Church exists (To inspire people to trust in and live like
+                    Jesus)?
 
-Does this passage provide a natural opportunity to encourage baptism (as a response of obedience, identification with Christ, or testimony of faith)?
+                    Does this passage provide a natural opportunity to encourage baptism (as a response of obedience,
+                    identification with Christ, or testimony of faith)?
 
-Does this passage provide a natural opportunity to encourage giving (as worship, trust in God's provision, partnership in mission, or gratitude for grace)?
+                    Does this passage provide a natural opportunity to encourage giving (as worship, trust in God's
+                    provision, partnership in mission, or gratitude for grace)?
 
-Does it speak to both believers and those far from God?
+                    Does it speak to both believers and those far from God?
 
-Does it call people toward mission or discipleship?
+                    Does it call people toward mission or discipleship?
 
-Does it reflect hope, joy, and love for the local church?
+                    Does it reflect hope, joy, and love for the local church?
 
-6. Spiritual Tone (Pastoral Integrity)
+                    6. Spiritual Tone (Pastoral Integrity)
 
-Does it sound like a shepherd, not a performer?
+                    Does it sound like a shepherd, not a performer?
 
-Does it depend on the Spirit's power, not human polish?
+                    Does it depend on the Spirit's power, not human polish?
 
-Does it lead to worship and faith rather than guilt?
+                    Does it lead to worship and faith rather than guilt?
 
-Provide specific notes on strengths and suggestions for improvement in each category.
+                    Provide specific notes on strengths and suggestions for improvement in each category.
 
-Never rewrite sections unless Matt explicitly asks.
+                    Never rewrite sections unless Matt explicitly asks.
 
-OPTIONAL SUPPORT PROMPTS
+                    OPTIONAL SUPPORT PROMPTS
 
-If Matt requests deeper help, respond accordingly:
+                    If Matt requests deeper help, respond accordingly:
 
-Word Study: "Give me key word meanings for [verse/word]."
+                    Word Study: "Give me key word meanings for [verse/word]."
 
-Background: "Explain the cultural setting of [text]."
+                    Background: "Explain the cultural setting of [text]."
 
-Cross-References: "Show me where this theme appears elsewhere in Scripture."
+                    Cross-References: "Show me where this theme appears elsewhere in Scripture."
 
-Historical Insight: "How did the early church or reformers interpret this passage?"
+                    Historical Insight: "How did the early church or reformers interpret this passage?"
 
-Clarity Check: "Identify any sentences that might confuse a new believer."
+                    Clarity Check: "Identify any sentences that might confuse a new believer."
 
-Gospel Check: "Show where I could highlight Jesus more clearly."
+                    Gospel Check: "Show where I could highlight Jesus more clearly."
 
-Do not use any icons or emojis.
+                    Do not use any icons or emojis.
 
-Do not replace words or phrases unless I ask you to do so.
+                    Do not replace words or phrases unless I ask you to do so.
 
-When it makes sense and is not forced, look for ways to help me include our mission, vision, and values.
+                    When it makes sense and is not forced, look for ways to help me include our mission, vision, and
+                    values.
 
-Mission - to inspire you to trust in and live like Jesus.
+                    Mission - to inspire you to trust in and live like Jesus.
 
-Vision - to establish a New City Church in every city in Kansas City metro.
+                    Vision - to establish a New City Church in every city in Kansas City metro.
 
-4 Values -
+                    4 Values -
 
-1) To know others and for you to be known.
+                    1) To know others and for you to be known.
 
-2) To makes disciples that make disciples that make disciples.
+                    2) To makes disciples that make disciples that make disciples.
 
-3) To become extremely generous.
+                    3) To become extremely generous.
 
-4) That our city would be better because we are in it and that are city recognizes the positive impact we are making.
+                    4) That our city would be better because we are in it and that are city recognizes the positive
+                    impact we are making.
 
-Help me identify quotes that best support my message. I love pastors such as Oswald Chambers, Charles Spurgeon, Andrew Murry, and others like them. Also include when appropriate quotes from famous people who speak into the topic of the specific passage.
+                    Help me identify quotes that best support my message. I love pastors such as Oswald Chambers,
+                    Charles Spurgeon, Andrew Murry, and others like them. Also include when appropriate quotes from
+                    famous people who speak into the topic of the specific passage.
 
-I build my message in this outline:
+                    I build my message in this outline:
 
-Grab Them - and opening that will get my listener's attention.
+                    Grab Them - and opening that will get my listener's attention.
 
-Teach Them - the majority of my message where connect my listener to God's Word.
+                    Teach Them - the majority of my message where connect my listener to God's Word.
 
-Ask Them - What does the passage demand of me and how might I be obedient?</div>
+                    Ask Them - What does the passage demand of me and how might I be obedient?</div>
             </div>
         </div>
     </section>
@@ -1795,7 +2214,7 @@ Ask Them - What does the passage demand of me and how might I be obedient?</div>
                 textArea.select();
                 document.execCommand('copy');
                 document.body.removeChild(textArea);
-                
+
                 button.textContent = '✓ Copied!';
                 button.classList.add('copied');
                 setTimeout(() => {
@@ -1814,13 +2233,18 @@ Ask Them - What does the passage demand of me and how might I be obedient?</div>
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.style.animation = 'fadeInUp 0.8s ease-out forwards';
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('visible');
+                        }
+                    });
                 }
             });
         }, observerOptions);
 
         // Observe all cards and prompt boxes
         document.querySelectorAll('.card, .prompt-box, .tool-card, .example-card').forEach(el => {
+            el.classList.add('animate-on-scroll'); // Add animation class
             observer.observe(el);
         });
 
@@ -1829,7 +2253,7 @@ Ask Them - What does the passage demand of me and how might I be obedient?</div>
             const scrolled = window.pageYOffset;
             const stain1 = document.querySelector('.coffee-stain-1');
             const stain2 = document.querySelector('.coffee-stain-2');
-            
+
             if (stain1) {
                 stain1.style.transform = `rotate(${45 + scrolled * 0.02}deg) translateY(${scrolled * 0.1}px)`;
             }
@@ -1838,11 +2262,40 @@ Ask Them - What does the passage demand of me and how might I be obedient?</div>
             }
         });
 
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const overlay = document.getElementById('mobileNav');
+            overlay.classList.toggle('active');
+
+            // Toggle body scroll
+            if (overlay.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        }
+
         // Add keyboard navigation for accessibility
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
+                // Close mobile menu if open
+                const overlay = document.getElementById('mobileNav');
+                if (overlay.classList.contains('active')) {
+                    toggleMobileMenu();
+                }
                 // Close any open modals or reset focus
                 document.activeElement.blur();
+            }
+        });
+
+        // Back to Top Button logic
+        window.addEventListener('scroll', () => {
+            const backToTop = document.querySelector('.back-to-top');
+            if (window.scrollY > 500) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
             }
         });
 
@@ -1856,4 +2309,5 @@ Ask Them - What does the passage demand of me and how might I be obedient?</div>
         });
     </script>
 </body>
+
 </html>
