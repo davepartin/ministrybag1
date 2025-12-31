@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -60,22 +61,8 @@
       max-width: 800px;
       justify-items: center;
     }
-    .button-grid a:nth-child(4) {
-      margin-top: 30px;
-    }
-    .button-grid a:nth-child(5) {
-      margin-top: 30px;
-    }
-    .button-grid a:nth-child(6) {
-      margin-top: 30px;
-    }
-    .button-grid a:nth-child(7) {
-      margin-top: 30px;
-    }
-    .button-grid a:nth-child(8) {
-      margin-top: 30px;
-    }
-    .button-grid a:nth-child(9) {
+
+    .button-grid a:nth-child(n+4) {
       margin-top: 30px;
     }
 
@@ -121,20 +108,19 @@
       right: -50%;
       width: 200%;
       height: 150%;
-      background: linear-gradient(45deg, 
-        transparent 20%,
-        rgba(0, 51, 102, 0.05) 20%,
-        rgba(0, 51, 102, 0.05) 25%,
-        rgba(51, 153, 204, 0.08) 25%,
-        rgba(51, 153, 204, 0.08) 30%,
-        rgba(0, 51, 102, 0.05) 30%,
-        rgba(0, 51, 102, 0.05) 35%,
-        rgba(51, 153, 204, 0.08) 35%,
-        rgba(51, 153, 204, 0.08) 40%,
-        rgba(108, 117, 125, 0.03) 40%,
-        rgba(108, 117, 125, 0.03) 45%,
-        transparent 45%
-      );
+      background: linear-gradient(45deg,
+          transparent 20%,
+          rgba(0, 51, 102, 0.05) 20%,
+          rgba(0, 51, 102, 0.05) 25%,
+          rgba(51, 153, 204, 0.08) 25%,
+          rgba(51, 153, 204, 0.08) 30%,
+          rgba(0, 51, 102, 0.05) 30%,
+          rgba(0, 51, 102, 0.05) 35%,
+          rgba(51, 153, 204, 0.08) 35%,
+          rgba(51, 153, 204, 0.08) 40%,
+          rgba(108, 117, 125, 0.03) 40%,
+          rgba(108, 117, 125, 0.03) 45%,
+          transparent 45%);
       transform: rotate(-20deg);
     }
 
@@ -154,15 +140,18 @@
     }
 
     .stripe-1 {
-      background: rgba(108, 117, 125, 0.5); /* Gray */
+      background: rgba(108, 117, 125, 0.5);
+      /* Gray */
     }
 
     .stripe-2 {
-      background: rgba(51, 153, 204, 0.5); /* Light blue */
+      background: rgba(51, 153, 204, 0.5);
+      /* Light blue */
     }
 
     .stripe-3 {
-      background: rgba(0, 51, 102, 0.5); /* Dark blue */
+      background: rgba(0, 51, 102, 0.5);
+      /* Dark blue */
     }
 
     /* Subtle wave overlay at bottom */
@@ -230,10 +219,9 @@
       width: 50%;
       height: 50%;
       background: radial-gradient(circle at center,
-        rgba(51, 153, 204, 0.1) 0%,
-        rgba(51, 153, 204, 0.05) 30%,
-        transparent 70%
-      );
+          rgba(51, 153, 204, 0.1) 0%,
+          rgba(51, 153, 204, 0.05) 30%,
+          transparent 70%);
       transform: rotate(45deg);
     }
 
@@ -265,6 +253,7 @@
     }
   </style>
 </head>
+
 <body>
   <div class="main-content">
     <img src="ministrybagblue.svg" alt="Ministry Bag Logo" class="logo" />
@@ -281,6 +270,9 @@
       </a>
       <a href="christianfoundations/index.html" class="button-link">
         <img src="christianfoundationscoursebutton1.svg" alt="Christian Foundations Course" class="button-img" />
+      </a>
+      <a href="https://ministrybag.com/weeklyconnectiontime/" class="button-link">
+        <img src="weeklyconnectiontime.png" alt="Weekly Connection Time" class="button-img" />
       </a>
       <a href="https://ministrybag.com/youthgroupgames/index.html" class="button-link">
         <img src="youthgroupgamesbutton1.svg" alt="Youth Group Games" class="button-img" />
@@ -311,10 +303,8 @@
     </div>
     <div class="wave-overlay">
       <svg class="wave-path" viewBox="0 0 1200 400" preserveAspectRatio="none">
-        <path d="M0,400 Q300,350 600,370 T1200,350 L1200,400 Z" 
-              fill="#003366" opacity="0.05"/>
-        <path d="M0,400 Q400,360 800,380 T1200,370 L1200,400 Z" 
-              fill="#3399CC" opacity="0.05"/>
+        <path d="M0,400 Q300,350 600,370 T1200,350 L1200,400 Z" fill="#003366" opacity="0.05" />
+        <path d="M0,400 Q400,360 800,380 T1200,370 L1200,400 Z" fill="#3399CC" opacity="0.05" />
       </svg>
     </div>
     <div class="vertical-stripes">
@@ -324,4 +314,5 @@
     </div>
   </div>
 </body>
+
 </html>
