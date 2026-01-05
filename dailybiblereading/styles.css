@@ -1,0 +1,366 @@
+:root {
+    --primary: #2D6A4F;
+    /* Deep green */
+    --secondary: #40916C;
+    --accent: #D8F3DC;
+    --bg: #F8F9FA;
+    --text: #1B4332;
+    --card-bg: #FFFFFF;
+    --bubble-empty: #E9ECEF;
+    --bubble-border: #CED4DA;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    padding: 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Header */
+.main-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.logo-link {
+    display: block;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.logo {
+    width: 50px;
+}
+
+h1 {
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+}
+
+.subtitle {
+    color: #666;
+    margin-bottom: 1.5rem;
+}
+
+/* Progress Bar */
+.progress-bar-container {
+    background: #E9ECEF;
+    height: 10px;
+    border-radius: 5px;
+    max-width: 400px;
+    margin: 0 auto 0.5rem;
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    background: var(--primary);
+    height: 100%;
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+.progress-text {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* Calendar Grid */
+.year-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.month-card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.month-title {
+    text-align: center;
+    font-weight: bold;
+    color: var(--primary);
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+.days-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+    justify-items: center;
+}
+
+.day-bubble {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid var(--bubble-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: white;
+}
+
+.day-bubble:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+    transform: scale(1.1);
+}
+
+.day-bubble.completed {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    color: white;
+}
+
+/* Reading View */
+.view {
+    display: none;
+}
+
+.view.active {
+    display: block;
+    animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.back-btn {
+    background: white;
+    border: 1px solid #ddd;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    color: #555;
+    transition: all 0.2s;
+}
+
+.back-btn:hover {
+    background: #f0f0f0;
+}
+
+.reading-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.reading-nav {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.nav-btn {
+    background: transparent;
+    border: 1px solid var(--primary);
+    color: var(--primary);
+    padding: 5px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.nav-btn:hover {
+    background: var(--accent);
+}
+
+/* Scripture Sections */
+.scripture-section {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    margin-bottom: 30px;
+}
+
+.section-label {
+    color: #888;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
+
+.scripture-section h4 {
+    color: var(--primary);
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 10px;
+}
+
+.bible-text {
+    font-family: 'Georgia', serif;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #333;
+}
+
+.verse-num {
+    font-size: 0.75rem;
+    vertical-align: super;
+    color: #999;
+    margin-right: 4px;
+    font-weight: bold;
+}
+
+/* Completion Area */
+.completion-area {
+    background: var(--accent);
+    padding: 30px;
+    border-radius: 12px;
+    margin-top: 40px;
+}
+
+.mark-complete-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.custom-checkbox {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: var(--primary);
+    font-weight: bold;
+}
+
+.custom-checkbox input {
+    display: none;
+}
+
+.checkmark {
+    width: 24px;
+    height: 24px;
+    border: 2px solid var(--primary);
+    border-radius: 5px;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    transition: all 0.2s;
+}
+
+.custom-checkbox input:checked+.checkmark {
+    background: var(--primary);
+}
+
+.custom-checkbox input:checked+.checkmark:after {
+    content: '✓';
+    color: white;
+    font-size: 16px;
+}
+
+.notes-section textarea {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    min-height: 100px;
+    font-family: inherit;
+    margin-bottom: 10px;
+}
+
+.primary-btn {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.primary-btn:hover {
+    background: var(--secondary);
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    .calendar-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Notes List View */
+.notes-list-container {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.note-card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    border-left: 5px solid var(--primary);
+}
+
+.note-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.note-card-title {
+    font-weight: bold;
+    color: var(--primary);
+    font-size: 1.1rem;
+}
+
+.note-card-date {
+    color: #888;
+    font-size: 0.85rem;
+}
+
+.note-card-body {
+    white-space: pre-wrap;
+    color: #444;
+    line-height: 1.6;
+}
+
+.empty-notes {
+    text-align: center;
+    color: #666;
+    margin-top: 40px;
+    font-size: 1.1rem;
+}

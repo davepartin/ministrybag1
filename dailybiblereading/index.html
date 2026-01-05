@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Bible Reading - 365 Plan</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="/ministrybagsatchel1.svg" type="image/svg+xml">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Logo -->
+        <a href="https://ministrybag.com/" class="logo-link">
+            <img src="ministrybagsatchel1.svg" alt="MinistryBag" class="logo">
+        </a>
+
+        <!-- Home View: Year Calendar -->
+        <div id="homeView" class="view active">
+            <header class="main-header">
+                <h1>Bible in a Year</h1>
+                <p class="subtitle">Select a day to start reading</p>
+                <div class="progress-bar-container">
+                    <div class="progress-bar-fill" id="overallProgress"></div>
+                </div>
+                <p class="progress-text"><span id="daysCompleted">0</span>/365 Days Completed</p>
+
+                <button id="viewAllNotesBtn" class="secondary-btn" style="margin-top: 20px;">View All Notes</button>
+            </header>
+
+            <div class="year-grid" id="yearGrid">
+                <!-- Javascript will populate 12 months here -->
+            </div>
+        </div>
+
+        <!-- All Notes View -->
+        <div id="allNotesView" class="view">
+            <button id="backToHomeFromNotesBtn" class="back-btn">← Back to Calendar</button>
+            <div class="reading-header">
+                <h2>All My Notes</h2>
+                <p class="subtitle">Your reflections throughout the year</p>
+            </div>
+
+            <div id="notesListContainer" class="notes-list-container">
+                <!-- Notes will be injected here -->
+                <p>Loading notes...</p>
+            </div>
+        </div>
+
+        <!-- Reading View -->
+        <div id="readingView" class="view">
+            <button id="backToCalendarBtn" class="back-btn">← Back to Calendar</button>
+
+            <div class="reading-header">
+                <h2 id="dayTitle">January 1</h2>
+                <div class="reading-nav">
+                    <button id="prevDayBtn" class="nav-btn">← Prev</button>
+                    <button id="nextDayBtn" class="nav-btn">Next →</button>
+                </div>
+            </div>
+
+            <!-- Reading Content -->
+            <div id="readingContent" class="reading-content">
+                <!-- OT Section -->
+                <div class="scripture-section">
+                    <h3 class="section-label">Old Testament</h3>
+                    <h4 id="otReference">Loading...</h4>
+                    <div id="otText" class="bible-text">Loading...</div>
+                </div>
+
+                <!-- NT Section -->
+                <div class="scripture-section">
+                    <h3 class="section-label">New Testament</h3>
+                    <h4 id="ntReference">Loading...</h4>
+                    <div id="ntText" class="bible-text">Loading...</div>
+                </div>
+            </div>
+
+            <!-- Completion & Notes -->
+            <div class="completion-area">
+                <div class="mark-complete-wrapper">
+                    <label class="custom-checkbox">
+                        <input type="checkbox" id="markDayComplete">
+                        <span class="checkmark"></span>
+                        <span class="label-text">I have read for today</span>
+                    </label>
+                </div>
+
+                <div class="notes-section">
+                    <h3>My Notes</h3>
+                    <textarea id="dailyNotes" placeholder="Reflections on today's reading..."></textarea>
+                    <button id="saveNotesBtn" class="primary-btn">Save Notes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
