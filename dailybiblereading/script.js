@@ -119,6 +119,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Listeners
     document.getElementById('backToCalendarBtn').addEventListener('click', showHome);
+    document.getElementById('backToCalendarBtnBottom').addEventListener('click', showHome);
     document.getElementById('backToHomeFromNotesBtn').addEventListener('click', showHome);
     document.getElementById('markDayComplete').addEventListener('change', toggleDayComplete);
     document.getElementById('saveNotesBtn').addEventListener('click', saveDailyNote);
