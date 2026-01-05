@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Bible Reading - MinistryBag</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="/ministrybagsatchel1.svg" type="image/svg+xml">
+</head>
+<body>
+    <div class="container">
+        <!-- Logo -->
+        <a href="/" class="logo-link">
+            <img src="/ministrybagsatchel1.svg" alt="MinistryBag" class="logo">
+        </a>
+
+        <!-- Main View -->
+        <div id="mainView" class="view active">
+            <h1>Daily Bible Reading</h1>
+            <p class="subtitle">Read the NET Bible and track your progress</p>
+
+            <!-- Reading Plan Selector -->
+            <div class="plan-selector">
+                <h2>Choose Your Reading Plan</h2>
+                <div class="plan-buttons">
+                    <button class="plan-btn" data-plan="sequential">
+                        <h3>Sequential</h3>
+                        <p>Genesis → Revelation</p>
+                    </button>
+                    <button class="plan-btn" data-plan="newtestament">
+                        <h3>New Testament</h3>
+                        <p>Matthew → Revelation</p>
+                    </button>
+                    <button class="plan-btn" data-plan="gospels">
+                        <h3>Gospels & Acts</h3>
+                        <p>Life of Jesus & Early Church</p>
+                    </button>
+                    <button class="plan-btn" data-plan="custom">
+                        <h3>Custom</h3>
+                        <p>Choose your own passage</p>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Quick Stats -->
+            <div class="stats-card">
+                <h3>Your Progress</h3>
+                <div class="stats-grid">
+                    <div class="stat">
+                        <span class="stat-number" id="chaptersRead">0</span>
+                        <span class="stat-label">Chapters Read</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number" id="notesCount">0</span>
+                        <span class="stat-label">Notes Written</span>
+                    </div>
+                </div>
+                <button id="viewNotesBtn" class="secondary-btn">View All Notes</button>
+            </div>
+        </div>
+
+        <!-- Reading View -->
+        <div id="readingView" class="view">
+            <button id="backToMainBtn" class="back-btn">← Back to Plans</button>
+
+            <div class="reading-header">
+                <h2 id="passageTitle">Loading...</h2>
+                <div class="reading-controls">
+                    <button id="prevChapterBtn" class="nav-btn">← Previous</button>
+                    <button id="nextChapterBtn" class="nav-btn">Next →</button>
+                </div>
+            </div>
+
+            <!-- Custom Passage Selector -->
+            <div id="customSelector" class="custom-selector" style="display: none;">
+                <select id="bookSelect"></select>
+                <select id="chapterSelect"></select>
+                <button id="loadPassageBtn" class="primary-btn">Load Passage</button>
+            </div>
+
+            <!-- Bible Text -->
+            <div id="bibleText" class="bible-text">
+                <p class="loading">Loading passage...</p>
+            </div>
+
+            <!-- Mark as Read -->
+            <div class="read-checkbox">
+                <label>
+                    <input type="checkbox" id="markReadCheckbox">
+                    <span>I have read this chapter</span>
+                </label>
+            </div>
+
+            <!-- Notes Section -->
+            <div class="notes-section">
+                <h3>My Notes</h3>
+                <textarea id="notesTextarea" placeholder="Write your thoughts, reflections, or questions about this passage..."></textarea>
+                <button id="saveNotesBtn" class="primary-btn">Save Notes</button>
+            </div>
+
+            <!-- Copyright -->
+            <div class="copyright">
+                <p><small>Scripture quoted from the NET Bible®, copyright ©1996, 2019 by Biblical Studies Press, L.L.C. Used by permission. All rights reserved.</small></p>
+            </div>
+        </div>
+
+        <!-- Notes Summary View -->
+        <div id="notesView" class="view">
+            <button id="backToMainFromNotesBtn" class="back-btn">← Back to Plans</button>
+
+            <h2>All My Notes</h2>
+
+            <div class="notes-summary-controls">
+                <input type="text" id="notesSearchInput" placeholder="Search notes...">
+                <button id="exportNotesBtn" class="secondary-btn">Export All Notes</button>
+            </div>
+
+            <div id="notesList" class="notes-list">
+                <p class="empty-state">No notes yet. Start reading and add your first note!</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
