@@ -28,25 +28,39 @@ body {
     margin: 0 auto;
 }
 
-/* Header */
-.main-header {
-    text-align: center;
+/* Global Header */
+.global-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
     margin-bottom: 2rem;
 }
 
 .logo-link {
     display: block;
-    text-align: center;
-    margin-bottom: 1rem;
+    /* Remove default margins/text-align */
+    margin: 0;
 }
 
 .logo {
-    width: 50px;
+    width: 60px;
+    /* Slightly larger for balance */
+    display: block;
 }
 
-h1 {
+.app-title {
     color: var(--primary);
-    margin-bottom: 0.5rem;
+    font-size: 1.8rem;
+    margin: 0;
+    /* Let flexbox handle spacing */
+    line-height: 1.2;
+}
+
+/* Old Header overrides */
+.main-header {
+    text-align: center;
+    margin-bottom: 2rem;
 }
 
 .subtitle {

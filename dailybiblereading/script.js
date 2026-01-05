@@ -386,22 +386,25 @@ function renderAllNotes() {
         // Passages
         const title = `${item.readings.ot} / ${item.readings.nt}`;
 
-        // Date
-        // If we have a written date, use it. Else use "Day X".
-        let dateStr = "";
-        if (item.date) {
-            dateStr = item.date.toLocaleDateString() + " " + item.date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-        } else {
-            // Reverse lookup Month/Day from dayIdx
-            // Re-calc month/day for display "Jan 1"
-            // Or just "Reading Day X"
-            dateStr = `Reading Day ${item.dayIdx + 1}`;
+        // Calculate Month/Day from dayIdx (0-365)
+        let tempCount = 0;
+        let mName = "";
+        let dNum = 0;
+
+        for (let m = 0; m < 12; m++) {
+            if (item.dayIdx < tempCount + DAYS_IN_MONTH[m]) {
+                mName = MONTHS[m];
+                dNum = item.dayIdx - tempCount + 1;
+                break;
+            }
+            tempCount += DAYS_IN_MONTH[m];
         }
+
+        const readingDateStr = `${mName} ${dNum}`;
 
         card.innerHTML = `
             <div class="note-card-header">
-                <div class="note-card-title">${title}</div>
-                <div class="note-card-date">${dateStr}</div>
+                <div class="note-card-title">${readingDateStr} - ${title}</div>
             </div>
             <div class="note-card-body">${item.text}</div>
         `;
