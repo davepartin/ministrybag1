@@ -128,6 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('nextDayBtn').addEventListener('click', () => changeDay(1));
 
     document.getElementById('viewAllNotesBtn').addEventListener('click', showAllNotes);
+    document.getElementById('emailNotesBtn').addEventListener('click', emailAllNotes);
 });
 
 // --- CALENDAR UI ---
@@ -412,6 +413,58 @@ function renderAllNotes() {
         // Optional: Make card clickable to jump to reading?
         container.appendChild(card);
     });
+}
+
+function emailAllNotes() {
+    const notes = JSON.parse(localStorage.getItem('dbr_notes_daily') || '{}');
+    const keys = Object.keys(notes).map(k => parseInt(k));
+
+    if (keys.length === 0) {
+        alert("No notes to email.");
+        return;
+    }
+
+    const noteList = keys.map(dayIdx => {
+        const raw = notes[dayIdx];
+        let text = "";
+        if (typeof raw === 'object' && raw !== null) {
+            text = raw.text;
+        } else {
+            text = raw;
+        }
+        const readings = DAILY_READINGS[dayIdx];
+        return { dayIdx, text, readings };
+    });
+
+    noteList.sort((a, b) => a.dayIdx - b.dayIdx);
+
+    let body = "Daily Bible Reading - My Notes\n\n";
+
+    noteList.forEach(item => {
+        // Calculate Month/Day
+        let tempCount = 0;
+        let mName = "";
+        let dNum = 0;
+        for (let m = 0; m < 12; m++) {
+            if (item.dayIdx < tempCount + DAYS_IN_MONTH[m]) {
+                mName = MONTHS[m];
+                dNum = item.dayIdx - tempCount + 1;
+                break;
+            }
+            tempCount += DAYS_IN_MONTH[m];
+        }
+
+        const dateStr = `${mName} ${dNum}`;
+        const title = `${item.readings.ot} / ${item.readings.nt}`;
+
+        body += `--- ${dateStr} --- ${title} ---\n`;
+        body += `${item.text}\n\n`;
+    });
+
+    const subject = encodeURIComponent("My Daily Bible Reading Notes");
+    const mailBody = encodeURIComponent(body);
+
+    window.location.href = `mailto:?subject=${subject}&body=${mailBody}`;
 }
 
 // --- PERSISTENCE ---
