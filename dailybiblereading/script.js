@@ -739,14 +739,11 @@ function getBestVoice() {
     const voices = window.speechSynthesis.getVoices();
     if (voices.length === 0) return null;
 
-    // Priority 1: Specific high-quality iOS/Mac voices + Premium/Enhanced tags
-    // iOS/macOS often has 'Siri', 'Samantha', 'Daniel'.
-    // 'Premium' or 'Enhanced' usually indicates better quality.
+    // Priority 1: STRICTLY Siri (User Request)
+    // "Samantha" is the legacy name for the original Siri voice on iOS/macOS, so we keep it as a fallback.
     const preferred = [
-        "Siri", "Ava", "Samantha", "Daniel", "Karen", "Moira", "Rishi", "Tessa", // Apple
-        "Google US English", // Android/Chrome
-        "Microsoft Zira", "Microsoft David", // Windows
-        "Premium", "Enhanced" // Generic quality indicators
+        "Siri",      // Modern iOS voices often just say "Siri"
+        "Samantha"   // The classic Siri voice identifier
     ];
 
     for (let name of preferred) {
@@ -755,7 +752,10 @@ function getBestVoice() {
         if (found) return found;
     }
 
-    // Priority 2: English (US first)
+    // Fallback: If absolutely no Siri/Samantha, we still return *something* or the feature breaks.
+    // But we removed the other 'decent' voices (Ava, Daniel) per user request to avoid "bad" ones.
+
+    // Priority 2: English (US first) - hoping system default is good if Siri isn't named explicitly.
     const enUS = voices.find(v => v.lang === 'en-US');
     if (enUS) return enUS;
 
