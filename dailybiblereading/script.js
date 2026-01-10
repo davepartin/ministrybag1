@@ -122,6 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('backToCalendarBtnBottom').addEventListener('click', showHome);
     document.getElementById('backToHomeFromNotesBtn').addEventListener('click', showHome);
     document.getElementById('markDayComplete').addEventListener('change', toggleDayComplete);
+    document.getElementById('markDayCompleteTop').addEventListener('change', toggleDayComplete);
     document.getElementById('saveNotesBtn').addEventListener('click', saveDailyNote);
 
     document.getElementById('prevDayBtn').addEventListener('click', () => changeDay(-1));
@@ -144,9 +145,12 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('listenBtn').addEventListener('click', toggleAudio);
     document.getElementById('stopBtn').addEventListener('click', stopAudio);
 
-    // Pre-load voices
+    // Pre-load voices - crucial for iOS which loads async
     if (window.speechSynthesis) {
         window.speechSynthesis.getVoices();
+        if (window.speechSynthesis.onvoiceschanged !== undefined) {
+            window.speechSynthesis.onvoiceschanged = () => { window.speechSynthesis.getVoices(); };
+        }
     }
 });
 
@@ -289,7 +293,9 @@ async function loadReadingContent() {
 
     // Checkbox State
     const completed = JSON.parse(localStorage.getItem('dbr_completed_days') || '[]');
-    document.getElementById('markDayComplete').checked = completed.includes(STATE.dayOfYear);
+    const isCompleted = completed.includes(STATE.dayOfYear);
+    document.getElementById('markDayComplete').checked = isCompleted;
+    document.getElementById('markDayCompleteTop').checked = isCompleted;
 
     // Notes State
     const notes = JSON.parse(localStorage.getItem('dbr_notes_daily') || '{}');
@@ -560,6 +566,11 @@ function emailAllNotes() {
 
 function toggleDayComplete(e) {
     const isComplete = e.target.checked;
+
+    // Sync both checkboxes
+    document.getElementById('markDayComplete').checked = isComplete;
+    document.getElementById('markDayCompleteTop').checked = isComplete;
+
     let completed = JSON.parse(localStorage.getItem('dbr_completed_days') || '[]');
 
     if (isComplete) {
@@ -722,26 +733,32 @@ function playReading() {
     window.speechSynthesis.speak(utter);
 }
 
+
+
 function getBestVoice() {
     const voices = window.speechSynthesis.getVoices();
     if (voices.length === 0) return null;
 
-    // Priority 1: Specific high-quality iOS/Mac voices
+    // Priority 1: Specific high-quality iOS/Mac voices + Premium/Enhanced tags
+    // iOS/macOS often has 'Siri', 'Samantha', 'Daniel'.
+    // 'Premium' or 'Enhanced' usually indicates better quality.
     const preferred = [
-        "Samantha", "Daniel", "Karen", "Moira", "Rishi", "Tessa", // Apple
+        "Siri", "Ava", "Samantha", "Daniel", "Karen", "Moira", "Rishi", "Tessa", // Apple
         "Google US English", // Android/Chrome
-        "Microsoft Zira", "Microsoft David" // Windows
+        "Microsoft Zira", "Microsoft David", // Windows
+        "Premium", "Enhanced" // Generic quality indicators
     ];
 
     for (let name of preferred) {
-        const found = voices.find(v => v.name.includes(name));
+        // Case insensitive match
+        const found = voices.find(v => v.name.toLowerCase().includes(name.toLowerCase()));
         if (found) return found;
     }
 
-    // Priority 2: English
-    const en = voices.find(v => v.lang.startsWith('en-US')); // US English
-    if (en) return en;
+    // Priority 2: English (US first)
+    const enUS = voices.find(v => v.lang === 'en-US');
+    if (enUS) return enUS;
 
-    const anyEn = voices.find(v => v.lang.startsWith('en')); // Any English
-    return anyEn || voices[0];
+    const en = voices.find(v => v.lang.startsWith('en')); // Any English
+    return en || voices[0];
 }
