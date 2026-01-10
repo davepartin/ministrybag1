@@ -57,6 +57,21 @@
 
             <div class="reading-header">
                 <h2 id="dayTitle">January 1</h2>
+
+                <div class="text-size-controls">
+                    <button class="text-size-btn" data-size="sm" title="Small Text">A</button>
+                    <button class="text-size-btn active" data-size="md" title="Medium Text">A</button>
+                    <button class="text-size-btn" data-size="lg" title="Large Text">A</button>
+                </div>
+
+                <div class="audio-controls">
+                    <button id="listenBtn" class="primary-btn"
+                        style="display: inline-flex; align-items: center; gap: 8px;">
+                        <span>▶ Listen</span>
+                    </button>
+                    <button id="stopBtn" class="secondary-btn hidden" style="display: none;">Stop</button>
+                </div>
+
                 <div class="reading-nav">
                     <button id="prevDayBtn" class="nav-btn">← Prev</button>
                     <button id="nextDayBtn" class="nav-btn">Next →</button>

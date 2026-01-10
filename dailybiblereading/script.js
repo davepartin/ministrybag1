@@ -129,6 +129,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
     document.getElementById('viewAllNotesBtn').addEventListener('click', showAllNotes);
     document.getElementById('emailNotesBtn').addEventListener('click', emailAllNotes);
+
+    // Text Size Listeners
+    document.querySelectorAll('.text-size-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const size = e.target.closest('button').dataset.size;
+            setTextSize(size);
+        });
+    });
+
+    initTextSize();
+
+    // Audio Listeners
+    document.getElementById('listenBtn').addEventListener('click', toggleAudio);
+    document.getElementById('stopBtn').addEventListener('click', stopAudio);
+
+    // Pre-load voices
+    if (window.speechSynthesis) {
+        window.speechSynthesis.getVoices();
+    }
 });
 
 // --- CALENDAR UI ---
@@ -202,6 +221,7 @@ function openDay(monthIdx, day, dayOfYear) {
 
     // View Switch
     hideAllViews();
+    stopAudio(); // Stop audio when switching pages
     document.getElementById('readingView').classList.add('active');
     window.scrollTo(0, 0);
 
@@ -210,6 +230,7 @@ function openDay(monthIdx, day, dayOfYear) {
 
 function showHome() {
     hideAllViews();
+    stopAudio();
     document.getElementById('homeView').classList.add('active');
     updateCalendarState(); // Refresh in case we marked complete
 }
@@ -262,6 +283,10 @@ async function loadReadingContent() {
     document.getElementById('ntReference').textContent = readings.nt;
     document.getElementById('ntText').innerHTML = 'Loading...';
 
+    // Apply current text size to newly loaded content containers (just in case)
+    const savedSize = localStorage.getItem('dbr_text_size') || 'md';
+    setTextSize(savedSize);
+
     // Checkbox State
     const completed = JSON.parse(localStorage.getItem('dbr_completed_days') || '[]');
     document.getElementById('markDayComplete').checked = completed.includes(STATE.dayOfYear);
@@ -311,25 +336,89 @@ async function fetchText(section, ref) {
 }
 
 async function fetchOneRef(reference) {
-    const url = `https://labs.bible.org/api/?passage=${encodeURIComponent(reference)}&type=json`;
+    // formatting=para returns HTML paragraphs. 
+    // We remove type=json so it defaults to HTML (or we could explicitly add type=html, but default is fine).
+    const url = `https://labs.bible.org/api/?passage=${encodeURIComponent(reference)}&formatting=para`;
     const res = await fetch(url);
-    const data = await res.json();
+    const html = await res.text();
 
-    if (!data) return "";
+    if (!html) return "";
 
-    let html = "";
-    let curChap = "";
-    let curBook = "";
+    return processHtml(html, reference);
+}
 
-    data.forEach(v => {
-        if (v.bookname !== curBook || v.chapter !== curChap) {
-            html += `<h5>${v.bookname} ${v.chapter}</h5>`;
-            curBook = v.bookname;
-            curChap = v.chapter;
-        }
-        html += `<span class="verse-num">${v.verse}</span> ${v.text} `;
+function processHtml(html, reference) {
+    // 1. Detect Book Name (e.g. "Genesis 1" -> "Genesis", "1 Kings 12" -> "1 Kings")
+    // Simple heuristic: everything before the last number? 
+    // Actually, reference might be "Genesis 1" or "Genesis 1-2".
+    // Let's just grab the book name from the reference string roughly.
+    // Or we can rely on the fact that the API text doesn't explicitly give us the Book Name in the HTML body easily 
+    // except for maybe checking the class... but the class is just bodytext.
+
+    // Let's try to extract Book Name from the `reference` argument passed in.
+    // "1 Kings 5" -> "1 Kings"
+    // "Genesis 1" -> "Genesis"
+    const bookMatch = reference.match(/^((?:\d\s)?[A-Za-z\s]+)/);
+    const bookName = bookMatch ? bookMatch[1].trim() : "";
+
+    // 2. Parse HTML to inject Chapter Headings
+    // The API returns: <p class="bodytext"><b>1:1</b> Verse text...</p>
+    // Or just <b>1</b> if it continues.
+    // Chapter transitions look like: ... end of ch 1 </p> <p class="bodytext"><b>2:1</b> ...
+    // So we look for <b>(\d+):1</b> pattern inside the HTML string.
+
+    // We want to insert `<h5>BookName ChapterNum</h5>` BEFORE the paragraph that starts the new chapter.
+    // Since it's a string, we can regex replace.
+
+    // Regex to find Chapter:1 pattern literally in the <b> tag.
+    // The pattern is usually `<b>{chapter}:1</b>`. 
+    // Example: <b>2:1</b>
+
+    // We need to be careful. Is it always at the START of a p tag? Usually yes for a new chapter.
+    // replace: (<p [^>]*>\s*<b>(\d+):1<\/b>)
+    // with: <h5>BookName $2</h5> $1
+
+    // Also handle the VERY FIRST chapter if it's 1:1, it might just be <b>1:1</b>.
+    // But we might want a header for the very first chapter regardless.
+
+    // Let's try a regex replacer.
+    let processedHtml = html;
+
+    // Pattern 1: Chapter Headings
+    // <p ...><b>Ch:1</b>
+    // We catch the whole opening tag sequence to put the header before it.
+    // Note: older API responses might vary slightly in spacing. 
+    // `<b>12:1</b>`
+    const chapterRegex = /(<p[^>]*>\s*<b>(\d+):1<\/b>)/gi;
+
+    processedHtml = processedHtml.replace(chapterRegex, (match, p1, chapterNum) => {
+        return `<h5>${bookName} ${chapterNum}</h5>${p1}`;
     });
-    return html;
+
+    // Pattern 2: Verse Numbers
+    // The API wraps verse numbers in <b> tags. e.g. <b>1:1</b> or <b>2</b>
+    // But it also wraps OT quotes in <b> tags e.g. <b>Look!</b>.
+    // We only want to style the numbers as superscripts.
+    // Regex: <b> followed by digits, optional colon+digits, then </b>
+    const verseNumRegex = /<b>(\d+(?::\d+)?)<\/b>/gi;
+
+    processedHtml = processedHtml.replace(verseNumRegex, (match, number) => {
+        return `<b class="verse-num">${number}</b>`;
+    });
+
+    // Check if the very first verse is 1:1 of a chapter but NOT caught by the above 
+    // (e.g. if the user asked for "Gen 1" and the API just returned it starting with <p...<b>1:1</b>)
+    // The regex above should catch it acting on the string.
+
+    // What if the reading doesn't start at verse 1?
+    // "Genesis 1:5-10". It will just show text. That is fine.
+    // "Genesis 1:1". It will start with <b>1:1</b>. The regex detects it and adds "Genesis 1".
+
+    // One edge case: The API might return multiple books? e.g. "Gen 50; Ex 1"
+    // Our fetchText function handles splitting by semicolon, so `fetchOneRef` only ever sees one continuous block (usually one book).
+    // So `bookName` variable is reliable for that block.
+
+    return processedHtml;
 }
 
 function renderAllNotes() {
@@ -497,4 +586,162 @@ function saveDailyNote() {
 
     localStorage.setItem('dbr_notes_daily', JSON.stringify(notes));
     alert("Note saved");
+}
+
+// --- TEXT SIZE ---
+
+function initTextSize() {
+    const savedSize = localStorage.getItem('dbr_text_size') || 'md';
+    setTextSize(savedSize);
+}
+
+function setTextSize(size) {
+    if (!['sm', 'md', 'lg'].includes(size)) return;
+
+    // Save
+    localStorage.setItem('dbr_text_size', size);
+
+    // active class on buttons
+    document.querySelectorAll('.text-size-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.dataset.size === size) btn.classList.add('active');
+    });
+
+    // Apply to text containers
+    const containers = [
+        document.getElementById('otText'),
+        document.getElementById('ntText')
+    ];
+
+    containers.forEach(el => {
+        if (!el) return;
+        el.classList.remove('text-sm', 'text-md', 'text-lg');
+        el.classList.add(`text-${size}`);
+    });
+}
+
+// --- TEXT TO SPEECH ---
+
+let currentUtterance = null;
+let isSpeaking = false;
+let isPaused = false;
+
+function toggleAudio() {
+    if (isSpeaking) {
+        if (isPaused) {
+            // Resume
+            window.speechSynthesis.resume();
+            isPaused = false;
+            updateAudioUI('playing');
+        } else {
+            // Pause
+            window.speechSynthesis.pause();
+            isPaused = true;
+            updateAudioUI('paused');
+        }
+        return;
+    }
+
+    // Start fresh
+    playReading();
+}
+
+function stopAudio() {
+    if (window.speechSynthesis) {
+        window.speechSynthesis.cancel();
+    }
+    isSpeaking = false;
+    isPaused = false;
+    updateAudioUI('idle');
+}
+
+function updateAudioUI(state) {
+    // state: 'idle', 'playing', 'paused'
+    const listenBtn = document.getElementById('listenBtn');
+    const stopBtn = document.getElementById('stopBtn');
+    const listenSpan = listenBtn.querySelector('span');
+
+    if (state === 'idle') {
+        listenBtn.style.display = 'inline-flex';
+        listenSpan.textContent = '▶ Listen';
+        stopBtn.style.display = 'none';
+        listenBtn.classList.remove('active-audio-btn'); // Optional styling
+    } else if (state === 'playing') {
+        listenBtn.style.display = 'inline-flex';
+        listenSpan.textContent = '⏸ Pause';
+        stopBtn.style.display = 'inline-block';
+    } else if (state === 'paused') {
+        listenBtn.style.display = 'inline-flex';
+        listenSpan.textContent = '▶ Resume';
+        stopBtn.style.display = 'inline-block';
+    }
+}
+
+function playReading() {
+    if (!window.speechSynthesis) {
+        alert("Text-to-speech is not supported in this browser.");
+        return;
+    }
+
+    // Cancel any current speaking just in case
+    window.speechSynthesis.cancel();
+
+    const otText = document.getElementById('otText').innerText;
+    const ntText = document.getElementById('ntText').innerText;
+    const title = document.getElementById('dayTitle').textContent;
+    const otRef = document.getElementById('otReference').textContent;
+    const ntRef = document.getElementById('ntReference').textContent;
+
+    // Construct text to read
+    let fullText = `${title}. Old Testament Reading: ${otRef}. ${otText}. New Testament Reading: ${ntRef}. ${ntText}`;
+
+    const utter = new SpeechSynthesisUtterance(fullText);
+
+    // Select Voice
+    const voice = getBestVoice();
+    if (voice) utter.voice = voice;
+
+    // Events
+    utter.onstart = () => {
+        isSpeaking = true;
+        isPaused = false;
+        updateAudioUI('playing');
+    };
+    utter.onend = () => {
+        isSpeaking = false;
+        isPaused = false;
+        updateAudioUI('idle');
+    };
+    utter.onerror = (e) => {
+        console.error("Speech error", e);
+        isSpeaking = false;
+        isPaused = false;
+        updateAudioUI('idle');
+    };
+
+    window.speechSynthesis.speak(utter);
+}
+
+function getBestVoice() {
+    const voices = window.speechSynthesis.getVoices();
+    if (voices.length === 0) return null;
+
+    // Priority 1: Specific high-quality iOS/Mac voices
+    const preferred = [
+        "Samantha", "Daniel", "Karen", "Moira", "Rishi", "Tessa", // Apple
+        "Google US English", // Android/Chrome
+        "Microsoft Zira", "Microsoft David" // Windows
+    ];
+
+    for (let name of preferred) {
+        const found = voices.find(v => v.name.includes(name));
+        if (found) return found;
+    }
+
+    // Priority 2: English
+    const en = voices.find(v => v.lang.startsWith('en-US')); // US English
+    if (en) return en;
+
+    const anyEn = voices.find(v => v.lang.startsWith('en')); // Any English
+    return anyEn || voices[0];
 }
