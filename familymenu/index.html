@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Family Menu Picker</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            500: '#3b82f6',
+                            600: '#2563eb',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <style>
+        /* Hide scrollbar for clean UI but keep functionality */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 text-slate-900 font-sans min-h-screen pb-24 relative select-none">
+
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-10 safe-top">
+        <div class="max-w-md mx-auto px-4 py-4 flex justify-between items-center">
+            <div>
+                <h1 class="text-xl font-bold text-slate-800">Family Menu</h1>
+                <p class="text-xs text-slate-500">Pick this week's meals!</p>
+            </div>
+            <button onclick="toggleSettings()" class="p-2 text-slate-400 hover:text-brand-600 transition-colors">
+                <span class="material-icons-round">settings</span>
+            </button>
+        </div>
+    </header>
+
+    <main class="max-w-md mx-auto p-4 space-y-6">
+
+        <!-- Add New Item Section (Collapsible or visible) -->
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-100 p-4">
+            <h2 class="text-sm font-semibold text-slate-700 mb-3 flex items-center">
+                <span class="material-icons-round text-brand-500 text-lg mr-2">add_circle</span>
+                Add New Dish
+            </h2>
+            <form id="addForm" onsubmit="handleAddItem(event)" class="space-y-3">
+                <div>
+                    <input type="text" id="dishName" placeholder="Dish Name (e.g. Tacos)" required
+                        class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-500 transition-all text-sm">
+                </div>
+                <div>
+                    <label class="block w-full cursor-pointer group">
+                        <div
+                            class="flex items-center justify-center w-full h-12 px-4 transition bg-slate-50 border-2 border-slate-200 border-dashed rounded-xl group-hover:bg-brand-50 group-hover:border-brand-300">
+                            <span class="flex items-center space-x-2 text-slate-400 group-hover:text-brand-500">
+                                <span class="material-icons-round text-lg">photo_camera</span>
+                                <span class="text-xs font-medium" id="fileLabel">Upload Photo</span>
+                            </span>
+                            <input type="file" id="dishImage" accept="image/*" class="hidden"
+                                onchange="updateFileLabel(this)">
+                        </div>
+                    </label>
+                </div>
+                <button type="submit"
+                    class="w-full bg-brand-600 hover:bg-brand-700 text-white font-semibold py-3 px-4 rounded-xl transition-all shadow-md shadow-brand-500/20 active:scale-95 flex justify-center items-center">
+                    Add to Menu
+                </button>
+            </form>
+        </div>
+
+        <!-- Menu List -->
+        <div id="menuList" class="space-y-3 pb-8">
+            <!-- Items injected here -->
+            <div class="text-center py-10 text-slate-400">
+                <span class="material-icons-round text-4xl mb-2 opacity-30">restaurant_menu</span>
+                <p>No meals yet. Add some above!</p>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Bottom Actions -->
+    <div
+        class="fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-md border-t border-slate-200 p-4 z-20 safe-bottom">
+        <div class="max-w-md mx-auto">
+            <!-- Selection Summary -->
+            <div id="selectionSummary" class="mb-3 hidden">
+                <p class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Selected for Menu:</p>
+                <div class="flex flex-wrap gap-2" id="selectionTags">
+                    <!-- Tags injected here -->
+                </div>
+            </div>
+
+            <div class="flex gap-3">
+                <button onclick="sendSms()"
+                    class="flex-1 bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-xl shadow-lg shadow-green-500/30 transition-all active:scale-95 flex items-center justify-center gap-2">
+                    <span class="material-icons-round">sms</span>
+                    Text Mom
+                    <span id="countBadge"
+                        class="hidden bg-white text-green-600 text-xs px-2 py-0.5 rounded-full ml-1">0</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- Settings Modal -->
+    <div id="settingsModal"
+        class="fixed inset-0 bg-black/50 z-50 hidden flex items-center justify-center p-4 backdrop-blur-sm">
+        <div class="bg-white rounded-2xl w-full max-w-sm p-6 shadow-2xl transform transition-all scale-100">
+            <h3 class="text-lg font-bold text-slate-800 mb-4">Settings</h3>
+            <div class="mb-4">
+                <label class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2 block">Mom's Phone
+                    Number</label>
+                <input type="tel" id="momPhoneInput" placeholder="123-456-7890"
+                    class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-500 transition-all">
+                <p class="text-xs text-slate-400 mt-2">Used to generate the text message.</p>
+            </div>
+            <div class="flex justify-end">
+                <button onclick="saveSettings()"
+                    class="bg-slate-800 text-white px-6 py-2 rounded-xl font-medium">Done</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // State
+        let items = JSON.parse(localStorage.getItem('menuItems')) || [];
+        let momPhone = localStorage.getItem('momPhone') || '';
+
+        // Init
+        document.addEventListener('DOMContentLoaded', () => {
+            renderList();
+            document.getElementById('momPhoneInput').value = momPhone;
+            updateBadge();
+        });
+
+        // Add Item
+        async function handleAddItem(e) {
+            e.preventDefault();
+            const nameInput = document.getElementById('dishName');
+            const fileInput = document.getElementById('dishImage');
+
+            if (!nameInput.value) return;
+
+            const name = nameInput.value.trim();
+            let image = null;
+
+            // Process image if selected
+            if (fileInput.files && fileInput.files[0]) {
+                try {
+                    image = await toBase64(fileInput.files[0]);
+                } catch (err) {
+                    console.error('Error converting image', err);
+                    alert('Could not upload image. Try a smaller one.');
+                    return;
+                }
+            }
+
+            const newItem = {
+                id: Date.now().toString(),
+                name,
+                image,
+                selected: false
+            };
+
+            items.unshift(newItem); // Add to top
+            saveItems();
+            renderList();
+
+            // Reset form
+            nameInput.value = '';
+            fileInput.value = '';
+            document.getElementById('fileLabel').textContent = 'Upload Photo';
+        }
+
+        // Toggle Selection
+        function toggleSelect(id) {
+            const item = items.find(i => i.id === id);
+            if (item) {
+                item.selected = !item.selected;
+                saveItems();
+                renderList();
+            }
+        }
+
+        // Delete Item
+        function deleteItem(e, id) {
+            e.stopPropagation(); // Prevent toggling selection
+            if (confirm('Remove this meal?')) {
+                items = items.filter(i => i.id !== id);
+                saveItems();
+                renderList();
+            }
+        }
+
+        // Render List
+        function renderList() {
+            const listEl = document.getElementById('menuList');
+            const placeholder = `
+                <div class="text-center py-10 text-slate-400">
+                    <span class="material-icons-round text-4xl mb-2 opacity-30">restaurant_menu</span>
+                    <p>No meals yet. Add some above!</p>
+                </div>`;
+
+            if (items.length === 0) {
+                listEl.innerHTML = placeholder;
+                updateBadge();
+                return;
+            }
+
+            listEl.innerHTML = items.map(item => `
+                <div onclick="toggleSelect('${item.id}')" 
+                    class="relative overflow-hidden rounded-2xl transition-all duration-300 cursor-pointer group select-none
+                    ${item.selected
+                    ? 'ring-4 ring-green-500 ring-offset-2'
+                    : 'bg-white shadow-sm border border-slate-100 hover:shadow-md'}
+                    ">
+                    
+                    ${item.image ? `
+                        <div class="h-40 w-full overflow-hidden">
+                            <img src="${item.image}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="${item.name}">
+                            <!-- Gradient Overlay for text readability -->
+                            <div class="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-black/70 to-transparent"></div>
+                        </div>
+                    ` : `
+                        <div class="h-24 bg-gradient-to-br from-brand-50 to-brand-100 flex items-center justify-center">
+                            <span class="material-icons-round text-brand-200 text-4xl">restaurant</span>
+                        </div>
+                    `}
+
+                    <!-- Content -->
+                    <div class="${item.image ? 'absolute bottom-0 left-0 right-0 p-4 text-white' : 'p-4 text-slate-800'} flex justify-between items-center">
+                        <span class="font-bold text-lg leading-tight shadow-black/50 ${item.image ? 'drop-shadow-sm' : ''}">${item.name}</span>
+                        
+                        ${item.selected ? `
+                            <div class="bg-green-500 text-white rounded-full p-1 shadow-lg animate-pulse">
+                                <span class="material-icons-round text-xl block">check</span>
+                            </div>
+                        ` : ''}
+                    </div>
+
+                    <!-- Delete Button (Top Right) -->
+                    <button onclick="deleteItem(event, '${item.id}')" class="absolute top-2 right-2 bg-white/90 p-1.5 rounded-full text-slate-400 hover:text-red-500 shadow-sm opacity-0 group-hover:opacity-100 transition-opacity">
+                        <span class="material-icons-round text-sm block">delete</span>
+                    </button>
+                    
+                </div>
+            `).join('');
+
+            updateBadge();
+        }
+
+        // SMS Function
+        function sendSms() {
+            const selected = items.filter(i => i.selected);
+            if (selected.length === 0) {
+                alert("Please select some meals first!");
+                return;
+            }
+
+            let phone = momPhone;
+            if (!phone) {
+                phone = prompt("Enter Mom's phone number:");
+                if (phone) {
+                    momPhone = phone;
+                    localStorage.setItem('momPhone', phone);
+                    document.getElementById('momPhoneInput').value = phone;
+                } else {
+                    return;
+                }
+            }
+
+            const menuText = selected.map(i => `• ${i.name}`).join('%0A');
+            const body = `Hey Mom! Here is the menu for the week:%0A%0A${menuText}`;
+            window.location.href = `sms:${phone}?&body=${body}`;
+            // Note: iOS uses '&', Android sometimes likes '?' but '&' is safer for general cross-platform body param in sms: uri
+            // Standard: sms:12345678?body=Hello
+            if (navigator.userAgent.match(/iPhone|iPad|iPod/i)) {
+                window.location.href = `sms:${phone}&body=${body}`;
+            } else {
+                window.location.href = `sms:${phone}?body=${body}`;
+            }
+        }
+
+        // Settings / Utils
+        function toggleSettings() {
+            const modal = document.getElementById('settingsModal');
+            modal.classList.toggle('hidden');
+        }
+
+        function saveSettings() {
+            const val = document.getElementById('momPhoneInput').value.trim();
+            if (val) {
+                momPhone = val;
+                localStorage.setItem('momPhone', val);
+            }
+            toggleSettings();
+        }
+
+        function saveItems() {
+            localStorage.setItem('menuItems', JSON.stringify(items));
+            updateBadge();
+        }
+
+        function updateBadge() {
+            const selectedItems = items.filter(i => i.selected);
+            const count = selectedItems.length;
+            const badge = document.getElementById('countBadge');
+            const summaryDiv = document.getElementById('selectionSummary');
+            const tagsContainer = document.getElementById('selectionTags');
+
+            // Update Badge
+            if (count > 0) {
+                badge.textContent = count;
+                badge.classList.remove('hidden');
+
+                // Update Summary
+                summaryDiv.classList.remove('hidden');
+                tagsContainer.innerHTML = selectedItems.map(item => `
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                        ${item.name}
+                    </span>
+                `).join('');
+
+            } else {
+                badge.classList.add('hidden');
+                summaryDiv.classList.add('hidden');
+            }
+        }
+
+        function updateFileLabel(input) {
+            const label = document.getElementById('fileLabel');
+            if (input.files && input.files.length > 0) {
+                label.textContent = "Photo Selected";
+                label.classList.add('text-brand-600');
+            } else {
+                label.textContent = "Upload Photo";
+                label.classList.remove('text-brand-600');
+            }
+        }
+
+        function toBase64(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = error => reject(error);
+            });
+        }
+    </script>
+</body>
+
+</html>
