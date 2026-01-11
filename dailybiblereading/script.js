@@ -148,8 +148,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Pre-load voices - crucial for iOS which loads async
     if (window.speechSynthesis) {
         window.speechSynthesis.getVoices();
+        populateVoiceList();
         if (window.speechSynthesis.onvoiceschanged !== undefined) {
-            window.speechSynthesis.onvoiceschanged = () => { window.speechSynthesis.getVoices(); };
+            window.speechSynthesis.onvoiceschanged = populateVoiceList;
         }
     }
 });
@@ -688,6 +689,55 @@ function updateAudioUI(state) {
     }
 }
 
+function populateVoiceList() {
+    const voiceSelect = document.getElementById('voiceSelect');
+    if (!window.speechSynthesis) return;
+
+    let voices = window.speechSynthesis.getVoices();
+    if (voices.length === 0) return;
+
+    // Filter: English only
+    let englishVoices = voices.filter(v => v.lang.startsWith('en'));
+
+    englishVoices.sort((a, b) => {
+        const nameA = a.name.toLowerCase();
+        const nameB = b.name.toLowerCase();
+
+        const isGoodA = nameA.includes('siri') || nameA.includes('premium') || nameA.includes('enhanced') || nameA.includes('natural');
+        const isGoodB = nameB.includes('siri') || nameB.includes('premium') || nameB.includes('enhanced') || nameB.includes('natural');
+
+        const isBadA = nameA.includes('compact');
+        const isBadB = nameB.includes('compact');
+
+        if (isGoodA && !isGoodB) return -1;
+        if (!isGoodA && isGoodB) return 1;
+        if (isBadA && !isBadB) return 1;
+        if (!isBadA && isBadB) return -1;
+        return nameA.localeCompare(nameB);
+    });
+
+    voiceSelect.innerHTML = '';
+
+    englishVoices.forEach(voice => {
+        const option = document.createElement('option');
+        option.textContent = voice.name;
+        option.value = voice.name; // Use name as value
+        voiceSelect.appendChild(option);
+    });
+
+    // Auto-select "Siri" or "Samantha" if available
+    const currentVal = voiceSelect.value;
+    if (!currentVal) {
+        const bestMatch = englishVoices.find(v => {
+            const n = v.name.toLowerCase();
+            return n.includes('siri') || n.includes('samantha');
+        });
+        if (bestMatch) {
+            voiceSelect.value = bestMatch.name;
+        }
+    }
+}
+
 function playReading() {
     if (!window.speechSynthesis) {
         alert("Text-to-speech is not supported in this browser.");
@@ -708,9 +758,14 @@ function playReading() {
 
     const utter = new SpeechSynthesisUtterance(fullText);
 
-    // Select Voice
-    const voice = getBestVoice();
-    if (voice) utter.voice = voice;
+    // Select Voice from Dropdown
+    const voices = window.speechSynthesis.getVoices();
+    const selectedName = document.getElementById('voiceSelect').value;
+
+    const selectedVoice = voices.find(v => v.name === selectedName);
+    if (selectedVoice) {
+        utter.voice = selectedVoice;
+    }
 
     // Events
     utter.onstart = () => {
@@ -733,41 +788,3 @@ function playReading() {
     window.speechSynthesis.speak(utter);
 }
 
-
-
-function getBestVoice() {
-    const voices = window.speechSynthesis.getVoices();
-    if (voices.length === 0) return null;
-
-    // Filter for English voices first to narrow down
-    // Prioritize en-US, then any 'en'
-    let englishVoices = voices.filter(v => v.lang === 'en-US');
-    if (englishVoices.length === 0) {
-        englishVoices = voices.filter(v => v.lang.startsWith('en'));
-    }
-    // If absolutely no English, fall back to all voices
-    const candidates = englishVoices.length > 0 ? englishVoices : voices;
-
-    // Strategy 1: Look for "Siri" or "Samantha" specifically (Highest Priority)
-    // Many iOS voices are named "Siri male", "Siri female", or "Samantha".
-    const siriMatch = candidates.find(v => {
-        const name = v.name.toLowerCase();
-        return name.includes('siri') || name.includes('samantha');
-    });
-    if (siriMatch) return siriMatch;
-
-    // Strategy 2: Look for "Premium" or "Enhanced" quality (High Priority)
-    // iOS/Mac often labels high quality voices with these keywords.
-    const premiumMatch = candidates.find(v => {
-        const name = v.name.toLowerCase();
-        return name.includes('premium') || name.includes('enhanced');
-    });
-    if (premiumMatch) return premiumMatch;
-
-    // Strategy 3: Best available English US voice (Medium Priority)
-    // If we're here, we didn't find Siri/Premium. Just return the first en-US candidate.
-    if (englishVoices.length > 0) return englishVoices[0];
-
-    // Fallback: Anything
-    return voices[0];
-}
