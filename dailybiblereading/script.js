@@ -739,26 +739,35 @@ function getBestVoice() {
     const voices = window.speechSynthesis.getVoices();
     if (voices.length === 0) return null;
 
-    // Priority 1: STRICTLY Siri (User Request)
-    // "Samantha" is the legacy name for the original Siri voice on iOS/macOS, so we keep it as a fallback.
-    const preferred = [
-        "Siri",      // Modern iOS voices often just say "Siri"
-        "Samantha"   // The classic Siri voice identifier
-    ];
-
-    for (let name of preferred) {
-        // Case insensitive match
-        const found = voices.find(v => v.name.toLowerCase().includes(name.toLowerCase()));
-        if (found) return found;
+    // Filter for English voices first to narrow down
+    // Prioritize en-US, then any 'en'
+    let englishVoices = voices.filter(v => v.lang === 'en-US');
+    if (englishVoices.length === 0) {
+        englishVoices = voices.filter(v => v.lang.startsWith('en'));
     }
+    // If absolutely no English, fall back to all voices
+    const candidates = englishVoices.length > 0 ? englishVoices : voices;
 
-    // Fallback: If absolutely no Siri/Samantha, we still return *something* or the feature breaks.
-    // But we removed the other 'decent' voices (Ava, Daniel) per user request to avoid "bad" ones.
+    // Strategy 1: Look for "Siri" or "Samantha" specifically (Highest Priority)
+    // Many iOS voices are named "Siri male", "Siri female", or "Samantha".
+    const siriMatch = candidates.find(v => {
+        const name = v.name.toLowerCase();
+        return name.includes('siri') || name.includes('samantha');
+    });
+    if (siriMatch) return siriMatch;
 
-    // Priority 2: English (US first) - hoping system default is good if Siri isn't named explicitly.
-    const enUS = voices.find(v => v.lang === 'en-US');
-    if (enUS) return enUS;
+    // Strategy 2: Look for "Premium" or "Enhanced" quality (High Priority)
+    // iOS/Mac often labels high quality voices with these keywords.
+    const premiumMatch = candidates.find(v => {
+        const name = v.name.toLowerCase();
+        return name.includes('premium') || name.includes('enhanced');
+    });
+    if (premiumMatch) return premiumMatch;
 
-    const en = voices.find(v => v.lang.startsWith('en')); // Any English
-    return en || voices[0];
+    // Strategy 3: Best available English US voice (Medium Priority)
+    // If we're here, we didn't find Siri/Premium. Just return the first en-US candidate.
+    if (englishVoices.length > 0) return englishVoices[0];
+
+    // Fallback: Anything
+    return voices[0];
 }
