@@ -148,10 +148,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Pre-load voices - crucial for iOS which loads async
     if (window.speechSynthesis) {
         window.speechSynthesis.getVoices();
-        populateVoiceList();
-        if (window.speechSynthesis.onvoiceschanged !== undefined) {
-            window.speechSynthesis.onvoiceschanged = populateVoiceList;
-        }
+        // We no longer need populateVoiceList or a listener for it, 
+        // as we act dynamically when Play is clicked.
     }
 });
 
@@ -689,53 +687,19 @@ function updateAudioUI(state) {
     }
 }
 
-function populateVoiceList() {
-    const voiceSelect = document.getElementById('voiceSelect');
-    if (!window.speechSynthesis) return;
+function getTextClean(elementId) {
+    const original = document.getElementById(elementId);
+    if (!original) return "";
 
-    let voices = window.speechSynthesis.getVoices();
-    if (voices.length === 0) return;
+    // Clone to avoid modifying the visible DOM
+    const clone = original.cloneNode(true);
 
-    // Filter: English only
-    let englishVoices = voices.filter(v => v.lang.startsWith('en'));
+    // Remove verse numbers
+    const verseNums = clone.querySelectorAll('.verse-num');
+    verseNums.forEach(el => el.remove());
 
-    englishVoices.sort((a, b) => {
-        const nameA = a.name.toLowerCase();
-        const nameB = b.name.toLowerCase();
-
-        const isGoodA = nameA.includes('siri') || nameA.includes('premium') || nameA.includes('enhanced') || nameA.includes('natural');
-        const isGoodB = nameB.includes('siri') || nameB.includes('premium') || nameB.includes('enhanced') || nameB.includes('natural');
-
-        const isBadA = nameA.includes('compact');
-        const isBadB = nameB.includes('compact');
-
-        if (isGoodA && !isGoodB) return -1;
-        if (!isGoodA && isGoodB) return 1;
-        if (isBadA && !isBadB) return 1;
-        if (!isBadA && isBadB) return -1;
-        return nameA.localeCompare(nameB);
-    });
-
-    voiceSelect.innerHTML = '';
-
-    englishVoices.forEach(voice => {
-        const option = document.createElement('option');
-        option.textContent = voice.name;
-        option.value = voice.name; // Use name as value
-        voiceSelect.appendChild(option);
-    });
-
-    // Auto-select "Siri" or "Samantha" if available
-    const currentVal = voiceSelect.value;
-    if (!currentVal) {
-        const bestMatch = englishVoices.find(v => {
-            const n = v.name.toLowerCase();
-            return n.includes('siri') || n.includes('samantha');
-        });
-        if (bestMatch) {
-            voiceSelect.value = bestMatch.name;
-        }
-    }
+    // Get text
+    return clone.innerText;
 }
 
 function playReading() {
@@ -747,44 +711,97 @@ function playReading() {
     // Cancel any current speaking just in case
     window.speechSynthesis.cancel();
 
-    const otText = document.getElementById('otText').innerText;
-    const ntText = document.getElementById('ntText').innerText;
+    // Get Data
     const title = document.getElementById('dayTitle').textContent;
     const otRef = document.getElementById('otReference').textContent;
     const ntRef = document.getElementById('ntReference').textContent;
+    const otBody = getTextClean('otText');
+    const ntBody = getTextClean('ntText');
 
-    // Construct text to read
-    let fullText = `${title}. Old Testament Reading: ${otRef}. ${otText}. New Testament Reading: ${ntRef}. ${ntText}`;
-
-    const utter = new SpeechSynthesisUtterance(fullText);
-
-    // Select Voice from Dropdown
+    // Force Voice: Daniel
     const voices = window.speechSynthesis.getVoices();
-    const selectedName = document.getElementById('voiceSelect').value;
-
-    const selectedVoice = voices.find(v => v.name === selectedName);
-    if (selectedVoice) {
-        utter.voice = selectedVoice;
+    let danielVoice = voices.find(v => v.name.toLowerCase().includes('daniel'));
+    if (!danielVoice) {
+        danielVoice = voices.find(v => v.lang.startsWith('en'));
     }
 
-    // Events
-    utter.onstart = () => {
+    // Create Utterances
+    const uIntro = new SpeechSynthesisUtterance(`${title}. Old Testament Reading: ${otRef}.`);
+    const uOt = new SpeechSynthesisUtterance(otBody);
+    const uBridge = new SpeechSynthesisUtterance(`New Testament Reading: ${ntRef}.`);
+    const uNt = new SpeechSynthesisUtterance(ntBody);
+
+    const parts = [uIntro, uOt, uBridge, uNt];
+
+    parts.forEach(u => {
+        if (danielVoice) u.voice = danielVoice;
+        u.onerror = (e) => {
+            console.error("Speech error", e);
+            // Don't stop everything on one error, but maybe log it
+        };
+    });
+
+    // 1. INTRO
+    uIntro.onstart = () => {
         isSpeaking = true;
         isPaused = false;
         updateAudioUI('playing');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     };
-    utter.onend = () => {
-        isSpeaking = false;
-        isPaused = false;
-        updateAudioUI('idle');
+
+    // 2. OT BODY (Scroll)
+    uOt.onboundary = (e) => syncScroll(e, 'otText');
+
+    // 3. BRIDGE (Scroll to NT)
+    uBridge.onstart = () => {
+        const el = document.getElementById('ntReference');
+        if (el) {
+            const y = el.getBoundingClientRect().top + window.scrollY - (window.innerHeight * 0.2);
+            window.scrollTo({ top: y, behavior: 'smooth' });
+        }
     };
-    utter.onerror = (e) => {
-        console.error("Speech error", e);
+
+    // 4. NT BODY (Scroll)
+    uNt.onboundary = (e) => syncScroll(e, 'ntText');
+
+    // END
+    uNt.onend = () => {
         isSpeaking = false;
-        isPaused = false;
         updateAudioUI('idle');
     };
 
-    window.speechSynthesis.speak(utter);
+    // Handle cancel/stop globally? 
+    // If user clicks Stop, window.speechSynthesis.cancel() kills all queries.
+    // But we need to reset UI state if it was stopped mid-stream manually.
+    // The global onend/onerror on utterances sometimes fire on cancel.
+    // We'll rely on our stopAudio function to reset UI.
+
+    // Queue them up
+    parts.forEach(u => window.speechSynthesis.speak(u));
 }
 
+function syncScroll(event, elementId) {
+    if (event.name !== 'word') return;
+
+    // Throttle slightly? Maybe not needed for smooth behavior
+    const element = document.getElementById(elementId);
+    if (!element) return;
+
+    const UtteranceTextLength = event.target.text.length;
+    const current = event.charIndex;
+    if (UtteranceTextLength === 0) return;
+
+    const progress = current / UtteranceTextLength;
+
+    // Approximate position
+    const elTop = element.offsetTop;
+    const elHeight = element.offsetHeight;
+
+    // Pixel offset within the element
+    const currentPixel = elHeight * progress;
+
+    // Scroll so that line is at ~30% viewport height
+    const targetY = elTop + currentPixel - (window.innerHeight * 0.3);
+
+    window.scrollTo({ top: targetY, behavior: 'smooth' });
+}
