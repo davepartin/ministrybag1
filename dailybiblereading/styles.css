@@ -513,3 +513,77 @@ select.secondary-btn {
     margin-top: 40px;
     font-size: 1.1rem;
 }
+
+/* Fixed Top Audio Header */
+.audio-header-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: white;
+    z-index: 1000;
+    border-bottom: 1px solid #eaeaea;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    padding: 10px 0;
+    display: flex;
+    /* Ensure centering */
+    justify-content: center;
+}
+
+.audio-header-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+/* Audio Player Customization (Browser dependent, but width helps) */
+audio {
+    outline: none;
+}
+
+/* Add padding to body so fixed header doesn't cover top content */
+body {
+    padding-top: 80px;
+    padding-bottom: 40px;
+}
+
+/* ESV Text Formatting */
+.esv-text {
+    line-height: 1.6;
+    color: #333;
+}
+
+.esv-text p {
+    margin-bottom: 1em;
+    text-align: justify;
+}
+
+/* Headings */
+.esv-text h2,
+.esv-text h3,
+.esv-text h4 {
+    color: var(--primary);
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+    font-weight: 700;
+}
+
+.esv-text h3 {
+    font-size: 1.2rem;
+}
+
+/* Verse Numbers */
+.chapter-num,
+.verse-num {
+    font-size: 0.75em;
+    font-weight: bold;
+    color: #999;
+    vertical-align: super;
+    margin-right: 2px;
+}
+
+/* Poetry / Indentation */
+.esv-text .indent {
+    margin-left: 1.5em;
+}

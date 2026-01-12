@@ -10,6 +10,14 @@
 </head>
 
 <body>
+    <div class="audio-header-bar">
+        <div class="container audio-header-content">
+            <audio id="audioPlayer" controls style="width: 100%; max-width: 600px; height: 40px; border-radius: 20px;">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+    </div>
+
     <div class="container">
         <!-- Global Header -->
         <header class="global-header">
@@ -72,15 +80,7 @@
                     <button class="text-size-btn" data-size="lg" title="Large Text">A</button>
                 </div>
 
-                <div class="audio-controls">
-                    <button id="listenBtn" class="primary-btn"
-                        style="display: inline-flex; align-items: center; gap: 8px;">
-                        <span>▶ Listen</span>
-                    </button>
-                    <button id="stopBtn" class="secondary-btn hidden" style="display: none;">Stop</button>
 
-
-                </div>
 
                 <div class="reading-nav">
                     <button id="prevDayBtn" class="nav-btn">← Prev</button>
@@ -124,6 +124,15 @@
             <button id="backToCalendarBtnBottom" class="back-btn" style="margin-top: 20px;">← Back to Calendar</button>
         </div>
     </div>
+
+    <!-- ESV Copyright -->
+    <footer
+        style="text-align: center; padding: 20px; color: #666; font-size: 0.85rem; background: #f9f9f9; border-top: 1px solid #eee; margin-top: 40px;">
+        Scripture quotations are from the ESV® Bible (The Holy Bible, English Standard Version®),
+        copyright © 2001 by Crossway, a publishing ministry of Good News Publishers.
+        Used by permission. All rights reserved. <a href="https://www.esv.org" target="_blank"
+            style="color: #666;">www.esv.org</a>
+    </footer>
 
     <script src="script.js"></script>
 </body>

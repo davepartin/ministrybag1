@@ -1,5 +1,5 @@
 // --- READING PLAN GENERATION ---
-// Simple algo: 
+// Simple algo:
 // OT: 929 chapters / 365 days = ~2.54/day (Alternate 2,3)
 // NT: 260 chapters / 365 days = ~0.71/day (Read 1/day, finish early? Or loop?)
 // User req: "Old testament and New Testament... Each day you will read a little of each."
@@ -140,17 +140,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     initTextSize();
+    initCalendar();
+    loadProgress();
 
     // Audio Listeners
-    document.getElementById('listenBtn').addEventListener('click', toggleAudio);
-    document.getElementById('stopBtn').addEventListener('click', stopAudio);
+    // No specific listeners needed for native <audio> controls
 
-    // Pre-load voices - crucial for iOS which loads async
-    if (window.speechSynthesis) {
-        window.speechSynthesis.getVoices();
-        // We no longer need populateVoiceList or a listener for it, 
-        // as we act dynamically when Play is clicked.
-    }
+
+
 });
 
 // --- CALENDAR UI ---
@@ -223,9 +220,11 @@ function openDay(monthIdx, day, dayOfYear) {
     STATE.dayOfYear = dayOfYear;
 
     // View Switch
-    hideAllViews();
-    stopAudio(); // Stop audio when switching pages
+    stopAudioPlayer(); // Stop audio when switching pages
+
+    document.getElementById('homeView').classList.remove('active');
     document.getElementById('readingView').classList.add('active');
+
     window.scrollTo(0, 0);
 
     loadReadingContent();
@@ -233,7 +232,7 @@ function openDay(monthIdx, day, dayOfYear) {
 
 function showHome() {
     hideAllViews();
-    stopAudio();
+    stopAudioPlayer();
     document.getElementById('homeView').classList.add('active');
     updateCalendarState(); // Refresh in case we marked complete
 }
@@ -307,124 +306,81 @@ async function loadReadingContent() {
         document.getElementById('dailyNotes').value = noteData || '';
     }
 
-    // Fetch
-    fetchText('ot', readings.ot);
-    fetchText('nt', readings.nt);
+    // Fetch Text
+    // Combine references for ESV text fetch? 
+    // ESV API supports `q=Gen 1; Matt 1`. 
+    // We can just fetch them separately to populate the separate divs easily.
+    fetchESVText('ot', readings.ot);
+    fetchESVText('nt', readings.nt);
+
+    // Fetch Audio
+    // For audio, we WANT to combine them so it plays as one track.
+    // "Genesis 1; Matthew 1"
+    const combinedRef = `${readings.ot}; ${readings.nt}`;
+    fetchESVAudio(combinedRef);
 }
 
-async function fetchText(section, ref) {
-    // NET API
-    // Handle split references "Gen 1-2; Ps 5"
-    // The Labs API supports semicolons? Or need to loop?
-    // Let's try raw. If fails, we might need to split.
-    // NET Labs API generally handles single ranges well. "Gen 1-2".
-    // Does it handle "Gen 50; Ex 1"?
-    // If ref contains ";", split and fetch separately, then join.
+// ESV API CONSTANTS
+const ESV_API_TOKEN = 'Token 2462db5844d5daa44d678177521bbf2f0db3253a';
 
+async function fetchESVText(section, ref) {
     const container = document.getElementById(section + 'Text');
+    container.innerHTML = '<p class="loading-text">Loading...</p>';
 
     try {
-        if (ref.includes(';')) {
-            const parts = ref.split(';');
-            let fullHtml = "";
-            for (let part of parts) {
-                fullHtml += await fetchOneRef(part.trim());
+        const url = `https://api.esv.org/v3/passage/html/?q=${encodeURIComponent(ref)}&include-headings=true&include-verse-numbers=true&include-footnotes=false&include-chapter-numbers=false&include-audio-link=false&include-short-copyright=false`;
+
+        const res = await fetch(url, {
+            headers: {
+                'Authorization': ESV_API_TOKEN
             }
-            container.innerHTML = fullHtml;
+        });
+
+        const data = await res.json();
+
+        if (data.passages && data.passages.length > 0) {
+            // Join all passages (if multiple)
+            container.innerHTML = data.passages.join('');
+            container.classList.add('esv-text');
         } else {
-            container.innerHTML = await fetchOneRef(ref);
+            container.innerHTML = '<p>Text not available.</p>';
         }
     } catch (e) {
-        container.innerHTML = "Error loading text.";
-        console.error(e);
+        console.error("Error fetching ESV text:", e);
+        container.innerHTML = '<p>Error loading text.</p>';
     }
 }
 
-async function fetchOneRef(reference) {
-    // formatting=para returns HTML paragraphs. 
-    // We remove type=json so it defaults to HTML (or we could explicitly add type=html, but default is fine).
-    const url = `https://labs.bible.org/api/?passage=${encodeURIComponent(reference)}&formatting=para`;
-    const res = await fetch(url);
-    const html = await res.text();
+async function fetchESVAudio(ref) {
+    const player = document.getElementById('audioPlayer');
+    // Optional: set a 'loading' state on player?
 
-    if (!html) return "";
+    try {
+        const url = `https://api.esv.org/v3/passage/audio/?q=${encodeURIComponent(ref)}`;
 
-    return processHtml(html, reference);
+        const res = await fetch(url, {
+            headers: {
+                'Authorization': ESV_API_TOKEN
+            }
+        });
+
+        if (!res.ok) throw new Error('Audio fetch failed');
+
+        const blob = await res.blob();
+        const audioUrl = URL.createObjectURL(blob);
+
+        player.src = audioUrl;
+        // player.play(); // Auto-play might be blocked, better to let user click.
+
+    } catch (e) {
+        console.error("Error fetching ESV audio:", e);
+        // Maybe alert user?
+    }
 }
+// Removed legacy fetchText, fetchOneRef, processHtml functions
 
-function processHtml(html, reference) {
-    // 1. Detect Book Name (e.g. "Genesis 1" -> "Genesis", "1 Kings 12" -> "1 Kings")
-    // Simple heuristic: everything before the last number? 
-    // Actually, reference might be "Genesis 1" or "Genesis 1-2".
-    // Let's just grab the book name from the reference string roughly.
-    // Or we can rely on the fact that the API text doesn't explicitly give us the Book Name in the HTML body easily 
-    // except for maybe checking the class... but the class is just bodytext.
 
-    // Let's try to extract Book Name from the `reference` argument passed in.
-    // "1 Kings 5" -> "1 Kings"
-    // "Genesis 1" -> "Genesis"
-    const bookMatch = reference.match(/^((?:\d\s)?[A-Za-z\s]+)/);
-    const bookName = bookMatch ? bookMatch[1].trim() : "";
-
-    // 2. Parse HTML to inject Chapter Headings
-    // The API returns: <p class="bodytext"><b>1:1</b> Verse text...</p>
-    // Or just <b>1</b> if it continues.
-    // Chapter transitions look like: ... end of ch 1 </p> <p class="bodytext"><b>2:1</b> ...
-    // So we look for <b>(\d+):1</b> pattern inside the HTML string.
-
-    // We want to insert `<h5>BookName ChapterNum</h5>` BEFORE the paragraph that starts the new chapter.
-    // Since it's a string, we can regex replace.
-
-    // Regex to find Chapter:1 pattern literally in the <b> tag.
-    // The pattern is usually `<b>{chapter}:1</b>`. 
-    // Example: <b>2:1</b>
-
-    // We need to be careful. Is it always at the START of a p tag? Usually yes for a new chapter.
-    // replace: (<p [^>]*>\s*<b>(\d+):1<\/b>)
-    // with: <h5>BookName $2</h5> $1
-
-    // Also handle the VERY FIRST chapter if it's 1:1, it might just be <b>1:1</b>.
-    // But we might want a header for the very first chapter regardless.
-
-    // Let's try a regex replacer.
-    let processedHtml = html;
-
-    // Pattern 1: Chapter Headings
-    // <p ...><b>Ch:1</b>
-    // We catch the whole opening tag sequence to put the header before it.
-    // Note: older API responses might vary slightly in spacing. 
-    // `<b>12:1</b>`
-    const chapterRegex = /(<p[^>]*>\s*<b>(\d+):1<\/b>)/gi;
-
-    processedHtml = processedHtml.replace(chapterRegex, (match, p1, chapterNum) => {
-        return `<h5>${bookName} ${chapterNum}</h5>${p1}`;
-    });
-
-    // Pattern 2: Verse Numbers
-    // The API wraps verse numbers in <b> tags. e.g. <b>1:1</b> or <b>2</b>
-    // But it also wraps OT quotes in <b> tags e.g. <b>Look!</b>.
-    // We only want to style the numbers as superscripts.
-    // Regex: <b> followed by digits, optional colon+digits, then </b>
-    const verseNumRegex = /<b>(\d+(?::\d+)?)<\/b>/gi;
-
-    processedHtml = processedHtml.replace(verseNumRegex, (match, number) => {
-        return `<b class="verse-num">${number}</b>`;
-    });
-
-    // Check if the very first verse is 1:1 of a chapter but NOT caught by the above 
-    // (e.g. if the user asked for "Gen 1" and the API just returned it starting with <p...<b>1:1</b>)
-    // The regex above should catch it acting on the string.
-
-    // What if the reading doesn't start at verse 1?
-    // "Genesis 1:5-10". It will just show text. That is fine.
-    // "Genesis 1:1". It will start with <b>1:1</b>. The regex detects it and adds "Genesis 1".
-
-    // One edge case: The API might return multiple books? e.g. "Gen 50; Ex 1"
-    // Our fetchText function handles splitting by semicolon, so `fetchOneRef` only ever sees one continuous block (usually one book).
-    // So `bookName` variable is reliable for that block.
-
-    return processedHtml;
-}
+// Legacy fetchers removed. Using ESV API.
 
 function renderAllNotes() {
     const container = document.getElementById('notesListContainer');
@@ -630,178 +586,13 @@ function setTextSize(size) {
     });
 }
 
-// --- TEXT TO SPEECH ---
+// --- LEGACY AUDIO ENGINE REMOVED ---
+// Replaced by native HTML5 <audio> using ESV API audio blobs.
 
-let currentUtterance = null;
-let isSpeaking = false;
-let isPaused = false;
-
-function toggleAudio() {
-    if (isSpeaking) {
-        if (isPaused) {
-            // Resume
-            window.speechSynthesis.resume();
-            isPaused = false;
-            updateAudioUI('playing');
-        } else {
-            // Pause
-            window.speechSynthesis.pause();
-            isPaused = true;
-            updateAudioUI('paused');
-        }
-        return;
+function stopAudioPlayer() {
+    const player = document.getElementById('audioPlayer');
+    if (player) {
+        player.pause();
+        player.src = ""; // Clear source
     }
-
-    // Start fresh
-    playReading();
-}
-
-function stopAudio() {
-    if (window.speechSynthesis) {
-        window.speechSynthesis.cancel();
-    }
-    isSpeaking = false;
-    isPaused = false;
-    updateAudioUI('idle');
-}
-
-function updateAudioUI(state) {
-    // state: 'idle', 'playing', 'paused'
-    const listenBtn = document.getElementById('listenBtn');
-    const stopBtn = document.getElementById('stopBtn');
-    const listenSpan = listenBtn.querySelector('span');
-
-    if (state === 'idle') {
-        listenBtn.style.display = 'inline-flex';
-        listenSpan.textContent = '▶ Listen';
-        stopBtn.style.display = 'none';
-        listenBtn.classList.remove('active-audio-btn'); // Optional styling
-    } else if (state === 'playing') {
-        listenBtn.style.display = 'inline-flex';
-        listenSpan.textContent = '⏸ Pause';
-        stopBtn.style.display = 'inline-block';
-    } else if (state === 'paused') {
-        listenBtn.style.display = 'inline-flex';
-        listenSpan.textContent = '▶ Resume';
-        stopBtn.style.display = 'inline-block';
-    }
-}
-
-function getTextClean(elementId) {
-    const original = document.getElementById(elementId);
-    if (!original) return "";
-
-    // Clone to avoid modifying the visible DOM
-    const clone = original.cloneNode(true);
-
-    // Remove verse numbers
-    const verseNums = clone.querySelectorAll('.verse-num');
-    verseNums.forEach(el => el.remove());
-
-    // Get text
-    return clone.innerText;
-}
-
-function playReading() {
-    if (!window.speechSynthesis) {
-        alert("Text-to-speech is not supported in this browser.");
-        return;
-    }
-
-    // Cancel any current speaking just in case
-    window.speechSynthesis.cancel();
-
-    // Get Data
-    const title = document.getElementById('dayTitle').textContent;
-    const otRef = document.getElementById('otReference').textContent;
-    const ntRef = document.getElementById('ntReference').textContent;
-    const otBody = getTextClean('otText');
-    const ntBody = getTextClean('ntText');
-
-    // Force Voice: Daniel
-    const voices = window.speechSynthesis.getVoices();
-    let danielVoice = voices.find(v => v.name.toLowerCase().includes('daniel'));
-    if (!danielVoice) {
-        danielVoice = voices.find(v => v.lang.startsWith('en'));
-    }
-
-    // Create Utterances
-    const uIntro = new SpeechSynthesisUtterance(`${title}. Old Testament Reading: ${otRef}.`);
-    const uOt = new SpeechSynthesisUtterance(otBody);
-    const uBridge = new SpeechSynthesisUtterance(`New Testament Reading: ${ntRef}.`);
-    const uNt = new SpeechSynthesisUtterance(ntBody);
-
-    const parts = [uIntro, uOt, uBridge, uNt];
-
-    parts.forEach(u => {
-        if (danielVoice) u.voice = danielVoice;
-        u.onerror = (e) => {
-            console.error("Speech error", e);
-            // Don't stop everything on one error, but maybe log it
-        };
-    });
-
-    // 1. INTRO
-    uIntro.onstart = () => {
-        isSpeaking = true;
-        isPaused = false;
-        updateAudioUI('playing');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    };
-
-    // 2. OT BODY (Scroll)
-    uOt.onboundary = (e) => syncScroll(e, 'otText');
-
-    // 3. BRIDGE (Scroll to NT)
-    uBridge.onstart = () => {
-        const el = document.getElementById('ntReference');
-        if (el) {
-            const y = el.getBoundingClientRect().top + window.scrollY - (window.innerHeight * 0.2);
-            window.scrollTo({ top: y, behavior: 'smooth' });
-        }
-    };
-
-    // 4. NT BODY (Scroll)
-    uNt.onboundary = (e) => syncScroll(e, 'ntText');
-
-    // END
-    uNt.onend = () => {
-        isSpeaking = false;
-        updateAudioUI('idle');
-    };
-
-    // Handle cancel/stop globally? 
-    // If user clicks Stop, window.speechSynthesis.cancel() kills all queries.
-    // But we need to reset UI state if it was stopped mid-stream manually.
-    // The global onend/onerror on utterances sometimes fire on cancel.
-    // We'll rely on our stopAudio function to reset UI.
-
-    // Queue them up
-    parts.forEach(u => window.speechSynthesis.speak(u));
-}
-
-function syncScroll(event, elementId) {
-    if (event.name !== 'word') return;
-
-    // Throttle slightly? Maybe not needed for smooth behavior
-    const element = document.getElementById(elementId);
-    if (!element) return;
-
-    const UtteranceTextLength = event.target.text.length;
-    const current = event.charIndex;
-    if (UtteranceTextLength === 0) return;
-
-    const progress = current / UtteranceTextLength;
-
-    // Approximate position
-    const elTop = element.offsetTop;
-    const elHeight = element.offsetHeight;
-
-    // Pixel offset within the element
-    const currentPixel = elHeight * progress;
-
-    // Scroll so that line is at ~30% viewport height
-    const targetY = elTop + currentPixel - (window.innerHeight * 0.3);
-
-    window.scrollTo({ top: targetY, behavior: 'smooth' });
 }
