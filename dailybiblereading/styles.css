@@ -169,18 +169,20 @@ body {
 }
 
 .back-btn {
-    background: white;
-    border: 1px solid #ddd;
+    background: var(--primary);
+    border: 1px solid var(--primary);
     padding: 8px 16px;
     border-radius: 20px;
     cursor: pointer;
     margin-bottom: 20px;
-    color: #555;
+    color: white;
+    font-weight: bold;
     transition: all 0.2s;
 }
 
 .back-btn:hover {
-    background: #f0f0f0;
+    background: var(--secondary);
+    border-color: var(--secondary);
 }
 
 .reading-header {
@@ -574,7 +576,6 @@ body {
 }
 
 /* Verse Numbers */
-.chapter-num,
 .verse-num {
     font-size: 0.75em;
     font-weight: bold;
@@ -583,7 +584,109 @@ body {
     margin-right: 2px;
 }
 
+/* Chapter Numbers */
+.chapter-num {
+    display: block;
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--primary);
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+    font-family: 'Georgia', serif;
+    /* Or similar serif */
+}
+
 /* Poetry / Indentation */
 .esv-text .indent {
     margin-left: 1.5em;
+}
+
+/* Hide App's own Reference Header to avoid redundancy */
+#otReference,
+#ntReference {
+    display: none;
+}
+
+/* Hide default ESV range header (e.g. Genesis 1-3) */
+h2.extra_text,
+.esv-text h2.extra_text,
+.esv-text .extra_text {
+    display: none !important;
+}
+
+/* Custom Chapter Header (e.g. "Genesis 1") */
+.custom-chapter-header {
+    margin-top: 15px;
+    /* Reduced from 60px to be closer to section title */
+    margin-bottom: 20px;
+    font-size: 2.5rem;
+    color: var(--primary);
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 10px;
+}
+
+/* Audio Header Updates */
+.audio-header-content {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    /* Space between player and speed control */
+    max-width: 800px;
+    /* Give it enough room */
+    margin: 0 auto;
+}
+
+.speed-control-wrapper select {
+    background-color: #f1f1f1;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    padding: 5px 10px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #333;
+    height: 40px;
+    /* Match audio player height */
+    cursor: pointer;
+    outline: none;
+}
+
+.speed-control-wrapper select:hover {
+    background-color: #e0e0e0;
+}
+
+/* Audio Track Select - Refined for visibility */
+.audio-track-select {
+    background-color: var(--primary);
+    color: #ffffff;
+    /* Explicit hex white */
+    padding: 0 10px;
+    /* Reset padding */
+    border: 1px solid var(--primary);
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    min-width: 100px;
+    max-width: 180px;
+    height: 35px;
+    line-height: 35px;
+    /* Vertical align */
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    text-align-last: center;
+    /* Reverting appearance reset to ensure native controls handle text properly if custom fails */
+    /* -webkit-appearance: none; */
+    /* appearance: none; */
+    display: none;
+    /* Hidden by default on homepage */
+}
+
+/* Ensure text is black in dropdown list */
+.audio-track-select option {
+    background-color: white;
+    color: #000000;
+}
+
+.audio-track-select:hover {
+    opacity: 0.9;
 }

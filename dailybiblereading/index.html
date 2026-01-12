@@ -12,9 +12,21 @@
 <body>
     <div class="audio-header-bar">
         <div class="container audio-header-content">
-            <audio id="audioPlayer" controls style="width: 100%; max-width: 600px; height: 40px; border-radius: 20px;">
+            <select id="audioTrackSelect" class="audio-track-select" title="Select Chapter">
+                <option value="">Select Day</option>
+            </select>
+            <audio id="audioPlayer" controls style="flex-grow: 1; height: 40px; border-radius: 20px;">
                 Your browser does not support the audio element.
             </audio>
+            <div class="speed-control-wrapper">
+                <select id="audioSpeed" title="Playback Speed">
+                    <option value="0.75">0.75x</option>
+                    <option value="1">1x</option>
+                    <option value="1.25" selected>1.25x</option>
+                    <option value="1.5">1.5x</option>
+                    <option value="2">2x</option>
+                </select>
+            </div>
         </div>
     </div>
 

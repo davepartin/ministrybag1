@@ -142,6 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initTextSize();
     initCalendar();
     loadProgress();
+    initAudioControls();
 
     // Audio Listeners
     // No specific listeners needed for native <audio> controls
@@ -161,6 +162,7 @@ function initCalendar() {
     MONTHS.forEach((monthName, mIdx) => {
         const card = document.createElement('div');
         card.className = 'month-card';
+        card.id = `month-card-${mIdx}`; // ID for navigation
 
         const title = document.createElement('div');
         title.className = 'month-title';
@@ -235,6 +237,20 @@ function showHome() {
     stopAudioPlayer();
     document.getElementById('homeView').classList.add('active');
     updateCalendarState(); // Refresh in case we marked complete
+
+    // Scroll to current month if we were viewing a day
+    if (STATE.currentMonth !== undefined && STATE.currentMonth !== null) {
+        setTimeout(() => {
+            const monthCard = document.getElementById(`month-card-${STATE.currentMonth}`);
+            if (monthCard) {
+                monthCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }, 100);
+    }
+
+    // Hide Audio Selection on Home
+    const select = document.getElementById('audioTrackSelect');
+    if (select) select.style.display = 'none';
 }
 
 function showAllNotes() {
@@ -310,25 +326,73 @@ async function loadReadingContent() {
     // Combine references for ESV text fetch? 
     // ESV API supports `q=Gen 1; Matt 1`. 
     // We can just fetch them separately to populate the separate divs easily.
-    fetchESVText('ot', readings.ot);
-    fetchESVText('nt', readings.nt);
+    // Fetch Text - Wait for both so we can queue audio in order
+    // CLEAR containers first because we will append
+    document.getElementById('otText').innerHTML = '';
+    document.getElementById('ntText').innerHTML = '';
 
-    // Fetch Audio
-    // For audio, we WANT to combine them so it plays as one track.
-    // "Genesis 1; Matthew 1"
-    const combinedRef = `${readings.ot}; ${readings.nt}`;
-    fetchESVAudio(combinedRef);
+    STATE.playlist = []; // Reset playlist
+
+    // Expand OT Readings
+    const otChapters = expandReading(readings.ot);
+    for (const ref of otChapters) {
+        // Fetch and Append
+        await fetchESVText('ot', ref, true);
+    }
+
+    // Expand NT Readings
+    const ntChapters = expandReading(readings.nt);
+    for (const ref of ntChapters) {
+        await fetchESVText('nt', ref, true);
+    }
+
+    // Build Playlist & UI
+    updatePlaylistUI();
+
+    // Start Player (First track prepared)
+    STATE.currentTrackIndex = 0;
+    playNextTrack(false);
+}
+
+// Helper: Expand "Genesis 1-3" -> ["Genesis 1", "Genesis 2", "Genesis 3"]
+function expandReading(ref) {
+    // Basic regex for "Book C-C"
+    // e.g. "Genesis 1-3", "1 John 1-2", "Psalm 119:1-8" (keep partial as one unit?)
+    // If it contains colon, treat range as single unit for now (complex to split verses).
+    if (ref.includes(':')) return [ref];
+
+    const match = ref.match(/^(.+?) (\d+)-(\d+)$/);
+    if (match) {
+        const book = match[1];
+        const start = parseInt(match[2]);
+        const end = parseInt(match[3]);
+        const list = [];
+        for (let c = start; c <= end; c++) {
+            list.push(`${book} ${c}`);
+        }
+        return list;
+    }
+    // Single chapter or complex string we don't handle -> return as is
+    return [ref];
 }
 
 // ESV API CONSTANTS
 const ESV_API_TOKEN = 'Token 2462db5844d5daa44d678177521bbf2f0db3253a';
 
-async function fetchESVText(section, ref) {
+async function fetchESVText(section, ref, append = false) {
     const container = document.getElementById(section + 'Text');
-    container.innerHTML = '<p class="loading-text">Loading...</p>';
+
+    // Create a specific container for THIS chapter so we can scope it
+    const chapterDiv = document.createElement('div');
+    chapterDiv.className = 'esv-chapter-block'; // New class for styling if needed
+    chapterDiv.dataset.ref = ref;
+
+    if (!append) {
+        container.innerHTML = '<p class="loading-text">Loading...</p>';
+    }
 
     try {
-        const url = `https://api.esv.org/v3/passage/html/?q=${encodeURIComponent(ref)}&include-headings=true&include-verse-numbers=true&include-footnotes=false&include-chapter-numbers=false&include-audio-link=false&include-short-copyright=false`;
+        const url = `https://api.esv.org/v3/passage/html/?q=${encodeURIComponent(ref)}&include-headings=true&include-verse-numbers=true&include-footnotes=false&include-chapter-numbers=true&include-audio-link=true&include-short-copyright=false`;
 
         const res = await fetch(url, {
             headers: {
@@ -339,42 +403,261 @@ async function fetchESVText(section, ref) {
         const data = await res.json();
 
         if (data.passages && data.passages.length > 0) {
-            // Join all passages (if multiple)
-            container.innerHTML = data.passages.join('');
-            container.classList.add('esv-text');
+            chapterDiv.innerHTML = data.passages.join('');
+
+            // --- Extract Audio for THIS chapter ---
+            const link = chapterDiv.querySelector('a.mp3link');
+            if (link && link.href) {
+                // Determine Title
+                const title = abbreviateRef(ref);
+                STATE.playlist.push({
+                    src: link.href,
+                    title: title,
+                    ref: ref
+                });
+            }
+
+            // --- Header Injection & Verse 1 Fix (Scoped to this chapterDiv) ---
+            processChapterContent(chapterDiv, ref);
+
+            // Append to main container
+            if (!append) container.innerHTML = ''; // Clear if not appending (legacy safety)
+            container.appendChild(chapterDiv);
+
         } else {
-            container.innerHTML = '<p>Text not available.</p>';
+            if (!append) container.innerHTML = '<p>Text not available.</p>';
         }
     } catch (e) {
         console.error("Error fetching ESV text:", e);
-        container.innerHTML = '<p>Error loading text.</p>';
+        if (!append) container.innerHTML = '<p>Error loading text.</p>';
     }
 }
 
-async function fetchESVAudio(ref) {
+function processChapterContent(container, ref) {
+    // 1. Extract Book Name
+    const bookName = ref.replace(/ \d+[-–:,\d]*$/, '').trim();
+
+    // 2. Find Verse 1s
+    const verse1s = container.querySelectorAll('[id^="v"]');
+
+    verse1s.forEach(v => {
+        const id = v.id;
+        if (id.length >= 9 && id.substring(6, 9) === '001') {
+            const chapterStr = id.substring(3, 6);
+            const chapter = parseInt(chapterStr, 10);
+
+            // Create Header
+            const h3 = document.createElement('h3');
+            h3.textContent = `${bookName} ${chapter}`;
+            h3.className = 'custom-chapter-header';
+
+            const parent = v.closest('p') || v.parentElement;
+            if (parent) {
+                parent.parentNode.insertBefore(h3, parent);
+            }
+
+            // Fix Verse 1
+            if (v.textContent.trim().includes(':')) {
+                v.textContent = '1 ';
+                v.className = 'verse-num';
+            }
+        }
+    });
+}
+
+function updatePlaylistUI() {
+    const select = document.getElementById('audioTrackSelect');
+    if (!select) return;
+
+    // Show only if we have tracks
+    if (STATE.playlist.length > 0) {
+        select.style.display = 'block';
+    } else {
+        select.style.display = 'none';
+        return;
+    }
+
+    select.innerHTML = '';
+
+    STATE.playlist.forEach((track, index) => {
+        const opt = document.createElement('option');
+        opt.value = index;
+
+        // Add "Play All" visual cue to the first track
+        if (index === 0) {
+            opt.textContent = `Play All (${track.title})`;
+        } else {
+            opt.textContent = track.title;
+        }
+
+        select.appendChild(opt);
+    });
+
+    // Explicitly set the selected index (more robust than value)
+    if (STATE.playlist.length > 0) {
+        select.selectedIndex = STATE.currentTrackIndex;
+    }
+
+    // Ensure Speed
     const player = document.getElementById('audioPlayer');
-    // Optional: set a 'loading' state on player?
+    const speedSelect = document.getElementById('audioSpeed');
+    if (speedSelect && player) player.playbackRate = parseFloat(speedSelect.value);
+}
 
-    try {
-        const url = `https://api.esv.org/v3/passage/audio/?q=${encodeURIComponent(ref)}`;
+// ... abbreviateRef keeps same ...
 
-        const res = await fetch(url, {
-            headers: {
-                'Authorization': ESV_API_TOKEN
+// playPlaylist removed. Logic is in updatePlaylistUI.
+
+function playNextTrack(autoPlay = true) {
+    const player = document.getElementById('audioPlayer');
+    const select = document.getElementById('audioTrackSelect');
+
+    if (STATE.currentTrackIndex >= STATE.playlist.length) return;
+
+    const track = STATE.playlist[STATE.currentTrackIndex];
+    player.src = track.src;
+
+    // Sync Select
+    if (select) select.value = STATE.currentTrackIndex;
+
+    if (autoPlay) {
+        player.play().catch(e => console.log("Auto-play prevented:", e));
+    }
+}
+
+// --- Audio Playlist System ---
+async function setupAudioPlaylist() {
+    STATE.playlist = [];
+    STATE.currentTrackIndex = 0;
+
+    // We no longer fetch audio separately. We extracted links from the text HTML.
+    // However, text fetching is async. We need to wait or just check DOM.
+    // Better: extractAudioLinks() called after both texts load.
+
+    // But texts load individually. 
+    // Let's create a helper to queue audio.
+}
+
+function queueAudioFromContainer(containerId) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+
+    // ESV audio link is usually in <a class="mp3link" href="...">
+    const link = container.querySelector('a.mp3link');
+    if (link && link.href) {
+        // Use title (e.g. "Genesis 1" or "Genesis 1-3") or fallback
+        const titleRef = link.getAttribute('title') || (containerId === 'otText' ? 'OT' : 'NT');
+
+        STATE.playlist.push({
+            src: link.href,
+            title: abbreviateRef(titleRef)
+        });
+    }
+}
+
+function abbreviateRef(ref) {
+    if (!ref) return "";
+
+    const parts = ref.split(' ');
+    const bookParts = [];
+    const numParts = [];
+
+    parts.forEach(p => {
+        if (/^\d+[-–:\d]*$/.test(p)) numParts.push(p);
+        else bookParts.push(p);
+    });
+
+    let bookName = bookParts.join(' ');
+
+    const map = {
+        'Genesis': 'Gen', 'Exodus': 'Exo', 'Leviticus': 'Lev', 'Numbers': 'Num', 'Deuteronomy': 'Deu',
+        'Joshua': 'Jos', 'Judges': 'Jud', 'Ruth': 'Rut', '1 Samuel': '1 Sam', '2 Samuel': '2 Sam',
+        '1 Kings': '1 Kgs', '2 Kings': '2 Kgs', '1 Chronicles': '1 Chr', '2 Chronicles': '2 Chr',
+        'Ezra': 'Ezr', 'Nehemiah': 'Neh', 'Esther': 'Est', 'Job': 'Job', 'Psalms': 'Psa', 'Proverbs': 'Pro',
+        'Ecclesiastes': 'Ecc', 'Song of Solomon': 'Song', 'Isaiah': 'Isa', 'Jeremiah': 'Jer', 'Lamentations': 'Lam',
+        'Ezekiel': 'Eze', 'Daniel': 'Dan', 'Hosea': 'Hos', 'Joel': 'Joe', 'Amos': 'Amo', 'Obadiah': 'Oba',
+        'Jonah': 'Jon', 'Micah': 'Mic', 'Nahum': 'Nah', 'Habakkuk': 'Hab', 'Zephaniah': 'Zep',
+        'Haggai': 'Hag', 'Zechariah': 'Zec', 'Malachi': 'Mal',
+        'Matthew': 'Mat', 'Mark': 'Mar', 'Luke': 'Luk', 'John': 'Joh', 'Acts': 'Act',
+        'Romans': 'Rom', '1 Corinthians': '1 Cor', '2 Corinthians': '2 Cor', 'Galatians': 'Gal',
+        'Ephesians': 'Eph', 'Philippians': 'Phi', 'Colossians': 'Col',
+        '1 Thessalonians': '1 The', '2 Thessalonians': '2 The', '1 Timothy': '1 Tim', '2 Timothy': '2 Tim',
+        'Titus': 'Tit', 'Philemon': 'Phm', 'Hebrews': 'Heb', 'James': 'Jas',
+        '1 Peter': '1 Pet', '2 Peter': '2 Pet', '1 John': '1 Jn', '2 John': '2 Jn', '3 John': '3 Jn',
+        'Jude': 'Jud', 'Revelation': 'Rev'
+    };
+
+    if (map[bookName]) bookName = map[bookName];
+    else if (bookName.length > 3) bookName = bookName.substring(0, 3);
+
+    return `${bookName} ${numParts.join(' ')}`;
+}
+
+function playPlaylist() {
+    const player = document.getElementById('audioPlayer');
+    if (STATE.playlist.length === 0) return;
+
+    // Continuous Playback: Auto-play next tracks
+    player.onended = () => {
+        STATE.currentTrackIndex++;
+        if (STATE.currentTrackIndex < STATE.playlist.length) {
+            playNextTrack(true);
+        }
+    };
+
+    const speedSelect = document.getElementById('audioSpeed');
+    if (speedSelect) player.playbackRate = parseFloat(speedSelect.value);
+
+    // Initial Load: DO NOT Auto-play
+    STATE.currentTrackIndex = 0;
+    playNextTrack(false);
+}
+
+function playNextTrack(autoPlay = true) {
+    const player = document.getElementById('audioPlayer');
+    const label = document.getElementById('audioTrackLabel');
+
+    if (STATE.currentTrackIndex >= STATE.playlist.length) return;
+
+    const track = STATE.playlist[STATE.currentTrackIndex];
+    player.src = track.src;
+
+    if (label) label.textContent = track.title;
+
+    if (autoPlay) {
+        player.play().catch(e => console.log("Auto-play prevented:", e));
+    }
+}
+
+// Ensure speed control works
+// Ensure speed control and playlist listeners work
+function initAudioControls() {
+    const speedSelect = document.getElementById('audioSpeed');
+    const player = document.getElementById('audioPlayer');
+    const select = document.getElementById('audioTrackSelect');
+
+    if (speedSelect && player) {
+        speedSelect.addEventListener('change', (e) => {
+            player.playbackRate = parseFloat(e.target.value);
+        });
+    }
+
+    if (player) {
+        // Global 'ended' listener for Auto-Advance
+        player.addEventListener('ended', () => {
+            STATE.currentTrackIndex++;
+            if (STATE.currentTrackIndex < STATE.playlist.length) {
+                playNextTrack(true);
             }
         });
+    }
 
-        if (!res.ok) throw new Error('Audio fetch failed');
-
-        const blob = await res.blob();
-        const audioUrl = URL.createObjectURL(blob);
-
-        player.src = audioUrl;
-        // player.play(); // Auto-play might be blocked, better to let user click.
-
-    } catch (e) {
-        console.error("Error fetching ESV audio:", e);
-        // Maybe alert user?
+    if (select) {
+        // Global 'change' listener for manual selection
+        select.addEventListener('change', (e) => {
+            STATE.currentTrackIndex = parseInt(e.target.value);
+            playNextTrack(true);
+        });
     }
 }
 // Removed legacy fetchText, fetchOneRef, processHtml functions
