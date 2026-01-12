@@ -377,7 +377,7 @@ function expandReading(ref) {
 }
 
 // ESV API CONSTANTS
-const ESV_API_TOKEN = 'Token 2462db5844d5daa44d678177521bbf2f0db3253a';
+// ESV_API_TOKEN loaded from config.js
 
 async function fetchESVText(section, ref, append = false) {
     const container = document.getElementById(section + 'Text');
