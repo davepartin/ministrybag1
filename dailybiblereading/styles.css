@@ -690,3 +690,38 @@ h2.extra_text,
 .audio-track-select:hover {
     opacity: 0.9;
 }
+
+/* Mobile Optimizations for Audio Player */
+@media (max-width: 480px) {
+    .audio-header-content {
+        gap: 5px;
+        /* Tighter gap */
+        padding: 5px;
+        /* Less outer padding */
+    }
+
+    .audio-track-select {
+        min-width: 60px;
+        max-width: 100px;
+        /* Force smaller width */
+        font-size: 0.75rem;
+        /* Smaller text */
+        padding: 0 5px;
+        height: 32px;
+        line-height: 32px;
+    }
+
+    /* Speed Control - Compact */
+    .speed-control-wrapper select {
+        height: 32px;
+        font-size: 0.75rem;
+        padding: 0 5px;
+        width: 55px;
+        /* Fixed small width */
+    }
+
+    /* Adjust player to fit */
+    #audioPlayer {
+        height: 32px;
+    }
+}

@@ -482,14 +482,7 @@ function updatePlaylistUI() {
     STATE.playlist.forEach((track, index) => {
         const opt = document.createElement('option');
         opt.value = index;
-
-        // Add "Play All" visual cue to the first track
-        if (index === 0) {
-            opt.textContent = `Play All (${track.title})`;
-        } else {
-            opt.textContent = track.title;
-        }
-
+        opt.textContent = track.title;
         select.appendChild(opt);
     });
 
