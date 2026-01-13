@@ -5,7 +5,7 @@ import re
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 CONTENT_DIR = os.path.join(BASE_DIR, 'content')
 TEMPLATE_FILE = os.path.join(BASE_DIR, 'template.html')
-OUTPUT_FILE = os.path.join(BASE_DIR, 'dont-waste-your-life-app.html')
+OUTPUT_FILE = os.path.join(BASE_DIR, 'index.html')
 
 # Chapter definitions: key, filename, title
 CHAPTERS = [
