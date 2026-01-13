@@ -1,4 +1,5 @@
 // --- READING PLAN GENERATION ---
+console.log("Script loaded v3 - Debugging");
 // Simple algo:
 // OT: 929 chapters / 365 days = ~2.54/day (Alternate 2,3)
 // NT: 260 chapters / 365 days = ~0.71/day (Read 1/day, finish early? Or loop?)
@@ -110,8 +111,23 @@ function getNextReading(books, cursor, count, loop = false) {
 const STATE = {
     currentMonth: 0,
     currentDay: 1, // 1-31
-    dayOfYear: 0 // 0-365
+    dayOfYear: 0, // 0-365
+    playlist: [], // {title, url, type}
+    currentTrackIndex: 0
 };
+
+// Chapter Summaries Data
+let CHAPTER_SUMMARIES = {};
+
+// Load chapter summaries JSON
+// Load chapter summaries JSON
+fetch('biblechaptersummaries.json')
+    .then(response => response.json())
+    .then(data => {
+        CHAPTER_SUMMARIES = data;
+        console.log('Chapter summaries loaded:', Object.keys(data).length, 'chapters');
+    })
+    .catch(error => console.error('Error loading chapter summaries:', error));
 
 document.addEventListener('DOMContentLoaded', () => {
     initCalendar();
@@ -125,10 +141,23 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('markDayCompleteTop').addEventListener('change', toggleDayComplete);
     document.getElementById('saveNotesBtn').addEventListener('click', saveDailyNote);
 
-    document.getElementById('prevDayBtn').addEventListener('click', () => changeDay(-1));
-    document.getElementById('nextDayBtn').addEventListener('click', () => changeDay(1));
+
 
     document.getElementById('viewAllNotesBtn').addEventListener('click', showAllNotes);
+
+    // Chapter Summaries Listeners
+    const viewSummariesBtn = document.getElementById('viewChapterSummariesBtn');
+    if (viewSummariesBtn) viewSummariesBtn.addEventListener('click', showBookSelection);
+
+    const backToHomeFromBooksBtn = document.getElementById('backToHomeFromBooksBtn');
+    if (backToHomeFromBooksBtn) backToHomeFromBooksBtn.addEventListener('click', showHome);
+
+    const backToBooksBtn = document.getElementById('backToBooksBtn');
+    if (backToBooksBtn) backToBooksBtn.addEventListener('click', showBookSelection);
+
+    const backToBooksBtnBottom = document.getElementById('backToBooksBtnBottom');
+    if (backToBooksBtnBottom) backToBooksBtnBottom.addEventListener('click', showBookSelection);
+
     document.getElementById('emailNotesBtn').addEventListener('click', emailAllNotes);
 
     // Text Size Listeners
@@ -869,6 +898,119 @@ function stopAudioPlayer() {
     const player = document.getElementById('audioPlayer');
     if (player) {
         player.pause();
-        player.src = ""; // Clear source
+        player.currentTime = 0;
     }
+}
+
+// --- CHAPTER SUMMARIES ---
+
+// ============= BOOK SELECTION & CHAPTER SUMMARIES V2 =============
+
+function showBookSelection() {
+    console.log("showBookSelection called");
+    hideAllViews();
+    stopAudioPlayer();
+    document.getElementById('bookSelectionView').classList.add('active');
+    renderBookSelection();
+}
+
+function renderBookSelection() {
+    const container = document.getElementById('bookSelectionContainer');
+    container.innerHTML = '';
+
+    // Get all unique book names from the summaries
+    const summaryKeys = Object.keys(CHAPTER_SUMMARIES);
+    const books = new Set();
+
+    summaryKeys.forEach(key => {
+        // "Genesis 1" -> "Genesis"
+        const lastSpaceIndex = key.lastIndexOf(' ');
+        const bookName = key.substring(0, lastSpaceIndex);
+        books.add(bookName);
+    });
+
+    if (books.size === 0) {
+        container.innerHTML = '<p class="empty-notes">Loading chapter summaries...</p>';
+        return;
+    }
+
+    // Define the order of Bible books
+    const bookOrder = [
+        'Genesis', 'Exodus', 'Leviticus', 'Numbers', 'Deuteronomy',
+        'Joshua', 'Judges', 'Ruth', '1 Samuel', '2 Samuel',
+        '1 Kings', '2 Kings', '1 Chronicles', '2 Chronicles',
+        'Ezra', 'Nehemiah', 'Esther', 'Job', 'Psalm', 'Proverbs',
+        'Ecclesiastes', 'Song', 'Isaiah', 'Jeremiah', 'Lamentations',
+        'Ezekiel', 'Daniel', 'Hosea', 'Joel', 'Amos', 'Obadiah',
+        'Jonah', 'Micah', 'Nahum', 'Habakkuk', 'Zephaniah',
+        'Haggai', 'Zechariah', 'Malachi',
+        'Matthew', 'Mark', 'Luke', 'John', 'Acts', 'Romans',
+        '1 Corinthians', '2 Corinthians', 'Galatians', 'Ephesians',
+        'Philippians', 'Colossians', '1 Thessalonians', '2 Thessalonians',
+        '1 Timothy', '2 Timothy', 'Titus', 'Philemon', 'Hebrews',
+        'James', '1 Peter', '2 Peter', '1 John', '2 John', '3 John',
+        'Jude', 'Revelation'
+    ];
+
+    // Sort books in biblical order
+    const sortedBooks = Array.from(books).sort((a, b) => {
+        const aIndex = bookOrder.findIndex(book => a.startsWith(book));
+        const bIndex = bookOrder.findIndex(book => b.startsWith(book));
+        if (aIndex === -1) return 1; // Put unknown books at the end
+        if (bIndex === -1) return -1;
+        return aIndex - bIndex;
+    });
+
+    sortedBooks.forEach(bookName => {
+        const bookCard = document.createElement('div');
+        bookCard.className = 'book-card';
+        bookCard.textContent = bookName;
+        bookCard.onclick = () => showChapterSummaries(bookName);
+        container.appendChild(bookCard);
+    });
+}
+
+function showChapterSummaries(bookName) {
+    hideAllViews();
+    stopAudioPlayer();
+    document.getElementById('chapterSummariesView').classList.add('active');
+    document.getElementById('summariesBookTitle').textContent = bookName;
+    renderChapterSummaries(bookName);
+}
+
+function renderChapterSummaries(bookName) {
+    const container = document.getElementById('summariesListContainer');
+    container.innerHTML = '';
+
+    // Get all chapters for this book
+    const chapters = Object.keys(CHAPTER_SUMMARIES)
+        .filter(key => key.startsWith(bookName + ' '))
+        .sort((a, b) => {
+            // Extract chapter numbers and sort numerically
+            const aMatch = a.match(/\d+/g);
+            const bMatch = b.match(/\d+/g);
+            if (!aMatch || !bMatch) return 0;
+            const aNum = parseInt(aMatch[aMatch.length - 1]);
+            const bNum = parseInt(bMatch[bMatch.length - 1]);
+            return aNum - bNum;
+        });
+
+    if (chapters.length === 0) {
+        container.innerHTML = '<p class="empty-notes">No summaries available for this book yet.</p>';
+        return;
+    }
+
+    chapters.forEach(chapterKey => {
+        const card = document.createElement('div');
+        card.className = 'note-card summary-card';
+
+        card.innerHTML = `
+            <div class="note-card-header">
+                <div class="note-card-title">${chapterKey}</div>
+            </div>
+            <div class="note-card-body">${CHAPTER_SUMMARIES[chapterKey]}</div>
+        `;
+
+        container.appendChild(card);
+    });
 }

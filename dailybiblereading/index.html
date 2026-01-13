@@ -48,12 +48,40 @@
                 </div>
                 <p class="progress-text"><span id="daysCompleted">0</span>/365 Days Completed</p>
 
-                <button id="viewAllNotesBtn" class="secondary-btn" style="margin-top: 20px;">View All Notes</button>
+                <button id="viewAllNotesBtn" class="primary-btn" style="margin-top: 20px;">View All Notes</button>
+                <button id="viewChapterSummariesBtn" class="secondary-btn"
+                    style="margin-top: 20px; margin-left: 10px; background-color: var(--primary); color: white;">Bible
+                    Chapter Summaries</button>
             </header>
 
             <div class="year-grid" id="yearGrid">
                 <!-- Javascript will populate 12 months here -->
             </div>
+        </div>
+
+        <!-- Book Selection View -->
+        <div id="bookSelectionView" class="view">
+            <button id="backToHomeFromBooksBtn" class="back-btn">← Back to Calendar</button>
+            <div class="reading-header">
+                <h2>Select a Book</h2>
+                <p class="subtitle">Choose a book to view chapter summaries</p>
+            </div>
+            <div id="bookSelectionContainer" class="book-selection-grid">
+                <!-- Books inserted via JS -->
+            </div>
+        </div>
+
+        <!-- Chapter Summaries View -->
+        <div id="chapterSummariesView" class="view">
+            <button id="backToBooksBtn" class="back-btn">← Back to Books</button>
+            <div class="reading-header">
+                <h2 id="summariesBookTitle">Book Title</h2>
+                <p class="subtitle">Chapter summaries</p>
+            </div>
+            <div id="summariesListContainer" class="notes-list-container">
+                <!-- Summaries will be dynamically inserted here -->
+            </div>
+            <button id="backToBooksBtnBottom" class="back-btn" style="margin-top: 20px;">← Back to Books</button>
         </div>
 
         <!-- All Notes View -->
@@ -94,10 +122,7 @@
 
 
 
-                <div class="reading-nav">
-                    <button id="prevDayBtn" class="nav-btn">← Prev</button>
-                    <button id="nextDayBtn" class="nav-btn">Next →</button>
-                </div>
+
             </div>
 
             <!-- Reading Content -->
@@ -148,7 +173,7 @@
 
     <!-- Config (loaded first for API keys) -->
     <script src="config.js"></script>
-    <script src="script.js"></script>
+    <script src="script.js?v=5"></script>
 </body>
 
 </html>
