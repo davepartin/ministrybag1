@@ -364,33 +364,9 @@
         </div>
 
         <div class="reading-section">
-            <h2 class="chapter-title" id="chapterTitle">Preface</h2>
+            <h2 class="chapter-title" id="chapterTitle">Loading...</h2>
             <div class="book-text size-medium" id="bookText">
-                <p><strong>Note:</strong> This is a demo interface. To complete the app, you'll need to add the full
-                    chapter text from the book. For now, here's a sample from the Preface:</p>
-
-                <p>Believe it or not, Bob Dylan figures into this story. The reason I mention Dylan here is that between
-                    the first publication of this book (2003) and now (2017), he was awarded the Nobel Prize for
-                    Literature. Astonishing. The Nobel Prize website says the prize was "for having created new poetic
-                    expressions within the great American song tradition."</p>
-
-                <p>There is tension between the Dylan in my story and the Dylan of the Nobel Prize acceptance speech.
-                    After telling us about how the classics Moby-Dick, All Quiet on the Western Front, and The Odyssey
-                    shaped his work, Dylan asks, "So what does it all mean?" I sat up with expectation. That's what this
-                    book is about. What does life mean?</p>
-
-                <p>The peculiar twist is that this joy makes God look like the supreme Treasure that he is. The unwasted
-                    life is based on the discovery that our deepest joy and God's beautiful majesty reach their apex
-                    together.</p>
-
-                <p>There is a warning. The path of God-exalting joy will cost you your life. Jesus said, "Whoever loses
-                    his life for my sake and the gospel's will save it" (Mark 8:35). In other words, it is better to
-                    lose your life than to waste it.</p>
-
-                <p>If you live gladly to make others glad in God, your life will be hard, your risks will be high, and
-                    your joy will be full. This is not a book about how to avoid a wounded life, but how to avoid a
-                    wasted life. Some of you will die in the service of Christ. That will not be a tragedy. Treasuring
-                    life above Christ is a tragedy.</p>
+                <p>Please wait while the study guide loads.</p>
             </div>
         </div>
 
@@ -549,7 +525,15 @@ Study completed: ${new Date().toLocaleDateString()}
         window.addEventListener('DOMContentLoaded', () => {
             const savedSize = localStorage.getItem('textSize') || 'medium';
             setTextSize(savedSize);
-            loadAnswers();
+
+            // Default to Chapter 1
+            const select = document.getElementById('chapterSelect');
+            if (select) {
+                select.value = 'ch1';
+                loadChapter();
+            } else {
+                loadAnswers();
+            }
         });
 
         // Chapter data - you can expand this with full chapter text
