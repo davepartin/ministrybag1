@@ -69,9 +69,6 @@
             align-items: center;
             flex-wrap: wrap;
             gap: 1rem;
-            position: sticky;
-            top: 85px;
-            z-index: 99;
         }
 
         .text-size-controls {
@@ -301,12 +298,25 @@
         }
 
         @media (max-width: 600px) {
-            .controls {
-                top: 75px;
+            .app-header h1 {
+                font-size: 1.2rem;
             }
 
-            .app-header h1 {
-                font-size: 1.3rem;
+            .chapter-title {
+                font-size: 1.2rem;
+            }
+
+            h2 {
+                font-size: 1.1rem;
+            }
+
+            h3 {
+                font-size: 1rem;
+            }
+
+            .book-text {
+                text-align: left;
+                /* Fix word spacing */
             }
 
             .text-size-controls {
@@ -322,6 +332,48 @@
         #endMarker {
             scroll-margin-top: 100px;
         }
+
+        /* Home Page Styles */
+        .home-view {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 1rem;
+        }
+
+        .chapter-btn {
+            display: block;
+            width: 100%;
+            padding: 1.2rem;
+            margin-bottom: 1rem;
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            text-align: left;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2c3e50;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            line-height: 1.4;
+        }
+
+        .chapter-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-color: #3498db;
+            background: #fdfdfd;
+        }
+
+        .chapter-btn .btn-subtitle {
+            display: block;
+            font-size: 0.85rem;
+            color: #7f8c8d;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.4rem;
+        }
     </style>
 </head>
 
@@ -336,88 +388,97 @@
         </div>
     </div>
 
-    <div class="controls">
-        <div class="text-size-controls">
-            <span class="text-size-label">Text Size:</span>
-            <button class="btn btn-size" onclick="setTextSize('small')">A</button>
-            <button class="btn btn-size active" onclick="setTextSize('medium')">A</button>
-            <button class="btn btn-size" onclick="setTextSize('large')">A</button>
-        </div>
-        <button class="btn btn-secondary" onclick="skipToEnd()">Skip to Questions</button>
+    <div id="home-view" class="home-view">
+        {{ HOME_BUTTONS }}
     </div>
 
-    <div class="container">
-        <div class="chapter-selector">
-            <label for="chapterSelect">Select Chapter:</label>
-            <select id="chapterSelect" onchange="loadChapter()">
-                <option value="preface">Preface</option>
-                <option value="ch1">Chapter 1: My Search for a Single Passion to Live By</option>
-                <option value="ch2">Chapter 2: Breakthrough—The Beauty of Christ, My Joy</option>
-                <option value="ch3">Chapter 3: Boasting Only in the Cross</option>
-                <option value="ch4">Chapter 4: Magnifying Christ Through Pain and Death</option>
-                <option value="ch5">Chapter 5: Risk Is Right—Better to Lose Your Life Than to Waste It</option>
-                <option value="ch6">Chapter 6: The Goal of Life—Gladly Making Others Glad in God</option>
-                <option value="ch7">Chapter 7: Living to Prove He Is More Precious Than Life</option>
-                <option value="ch8">Chapter 8: Making Much of Christ from 8 to 5</option>
-                <option value="ch9">Chapter 9: The Majesty of Christ in Missions and Mercy</option>
-            </select>
+    <div id="chapter-view" style="display: none;">
+        <div class="controls">
+            <div class="text-size-controls">
+                <span class="text-size-label">Text Size:</span>
+                <button class="btn btn-size" onclick="setTextSize('small')">A</button>
+                <button class="btn btn-size active" onclick="setTextSize('medium')">A</button>
+                <button class="btn btn-size" onclick="setTextSize('large')">A</button>
+            </div>
+            <button class="btn btn-secondary" onclick="showHome()">Home</button>
+            <button class="btn btn-secondary" onclick="skipToEnd()">Skip to Questions</button>
         </div>
 
-        <div class="reading-section">
-            <h2 class="chapter-title" id="chapterTitle">Loading...</h2>
-            <div class="book-text size-medium" id="bookText">
-                <p>Please wait while the study guide loads.</p>
+        <div class="container">
+            <div class="chapter-selector">
+                <label for="chapterSelect">Select Chapter:</label>
+                <select id="chapterSelect" onchange="loadChapter()">
+                    <option value="preface">Preface</option>
+                    <option value="ch1">Chapter 1: My Search for a Single Passion to Live By</option>
+                    <option value="ch2">Chapter 2: Breakthrough—The Beauty of Christ, My Joy</option>
+                    <option value="ch3">Chapter 3: Boasting Only in the Cross</option>
+                    <option value="ch4">Chapter 4: Magnifying Christ Through Pain and Death</option>
+                    <option value="ch5">Chapter 5: Risk Is Right—Better to Lose Your Life Than to Waste It</option>
+                    <option value="ch6">Chapter 6: The Goal of Life—Gladly Making Others Glad in God</option>
+                    <option value="ch7">Chapter 7: Living to Prove He Is More Precious Than Life</option>
+                    <option value="ch8">Chapter 8: Making Much of Christ from 8 to 5</option>
+                    <option value="ch9">Chapter 9: The Majesty of Christ in Missions and Mercy</option>
+                </select>
+            </div>
+
+            <div class="reading-section">
+                <h2 class="chapter-title" id="chapterTitle">Loading...</h2>
+                <div class="book-text size-medium" id="bookText">
+                    <p>Please wait while the study guide loads.</p>
+                </div>
+            </div>
+
+            <div class="questions-section" id="endMarker">
+                <h3 class="questions-title">Reflection Questions</h3>
+
+                <div class="question-block">
+                    <label class="question-label">1. What is the main point or key idea of this chapter?</label>
+                    <textarea class="answer-input" id="q1" placeholder="Write your answer here..."></textarea>
+                </div>
+
+                <div class="question-block">
+                    <label class="question-label">2. How does this chapter help you understand what it means to not
+                        waste
+                        your life?</label>
+                    <textarea class="answer-input" id="q2" placeholder="Write your answer here..."></textarea>
+                </div>
+
+                <div class="question-block">
+                    <label class="question-label">3. What specific truth or concept from this chapter struck you most
+                        powerfully? Why?</label>
+                    <textarea class="answer-input" id="q3" placeholder="Write your answer here..."></textarea>
+                </div>
+
+                <div class="question-block">
+                    <label class="question-label">4. How does this chapter challenge your current thinking or way of
+                        living?</label>
+                    <textarea class="answer-input" id="q4" placeholder="Write your answer here..."></textarea>
+                </div>
+
+                <div class="question-block">
+                    <label class="question-label">5. What is one practical way you can apply this chapter's teaching
+                        this
+                        week?</label>
+                    <textarea class="answer-input" id="q5" placeholder="Write your answer here..."></textarea>
+                </div>
+
+                <div class="overall-thoughts">
+                    <label class="question-label">Overall Thoughts on This Chapter</label>
+                    <textarea class="answer-input" id="overall"
+                        placeholder="Any additional reflections, questions, or insights you want to remember..."></textarea>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button class="btn btn-large btn-email" onclick="emailAnswers()">📧 Email All Answers</button>
+            </div>
+
+            <div class="footer">
+                <p>Content adapted from Don't Waste Your Life by John Piper</p>
+                <p>&copy; Desiring God Foundation | desiringGod.org</p>
             </div>
         </div>
-
-        <div class="questions-section" id="endMarker">
-            <h3 class="questions-title">Reflection Questions</h3>
-
-            <div class="question-block">
-                <label class="question-label">1. What is the main point or key idea of this chapter?</label>
-                <textarea class="answer-input" id="q1" placeholder="Write your answer here..."></textarea>
-            </div>
-
-            <div class="question-block">
-                <label class="question-label">2. How does this chapter help you understand what it means to not waste
-                    your life?</label>
-                <textarea class="answer-input" id="q2" placeholder="Write your answer here..."></textarea>
-            </div>
-
-            <div class="question-block">
-                <label class="question-label">3. What specific truth or concept from this chapter struck you most
-                    powerfully? Why?</label>
-                <textarea class="answer-input" id="q3" placeholder="Write your answer here..."></textarea>
-            </div>
-
-            <div class="question-block">
-                <label class="question-label">4. How does this chapter challenge your current thinking or way of
-                    living?</label>
-                <textarea class="answer-input" id="q4" placeholder="Write your answer here..."></textarea>
-            </div>
-
-            <div class="question-block">
-                <label class="question-label">5. What is one practical way you can apply this chapter's teaching this
-                    week?</label>
-                <textarea class="answer-input" id="q5" placeholder="Write your answer here..."></textarea>
-            </div>
-
-            <div class="overall-thoughts">
-                <label class="question-label">Overall Thoughts on This Chapter</label>
-                <textarea class="answer-input" id="overall"
-                    placeholder="Any additional reflections, questions, or insights you want to remember..."></textarea>
-            </div>
-        </div>
-
-        <div class="action-buttons">
-            <button class="btn btn-large btn-email" onclick="emailAnswers()">📧 Email All Answers</button>
-        </div>
-
-        <div class="footer">
-            <p>Content adapted from Don't Waste Your Life by John Piper</p>
-            <p>&copy; Desiring God Foundation | desiringGod.org</p>
-        </div>
-    </div>
+    </div> <!-- End of chapter-view -->
 
     <script>
         // Store answers in localStorage
@@ -463,22 +524,7 @@
             document.getElementById('endMarker').scrollIntoView({ behavior: 'smooth' });
         }
 
-        function loadChapter() {
-            const select = document.getElementById('chapterSelect');
-            const chapterId = select.value;
-            const chapterInfo = chapterData[chapterId];
 
-            if (chapterInfo) {
-                document.getElementById('chapterTitle').textContent = chapterInfo.title;
-                document.getElementById('bookText').innerHTML = chapterInfo.html;
-            }
-
-            // Load saved answers for this chapter
-            loadAnswers();
-
-            // Scroll to top
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
 
         function emailAnswers() {
             const chapter = document.getElementById('chapterSelect').value;
@@ -526,18 +572,49 @@ Study completed: ${new Date().toLocaleDateString()}
             const savedSize = localStorage.getItem('textSize') || 'medium';
             setTextSize(savedSize);
 
-            // Default to Chapter 1
-            const select = document.getElementById('chapterSelect');
-            if (select) {
-                select.value = 'ch1';
-                loadChapter();
-            } else {
-                loadAnswers();
-            }
+            // Show Home Page by default
+            showHome();
         });
 
         // Chapter data - you can expand this with full chapter text
         const chapterData = {{ CHAPTER_DATA }};
+
+        function showHome() {
+            const homeView = document.getElementById('home-view');
+            if (homeView) homeView.style.display = 'block';
+
+            const chapterView = document.getElementById('chapter-view');
+            if (chapterView) chapterView.style.display = 'none';
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function loadChapter(chapterId) {
+            // If called without arg (from select change), get value
+            if (!chapterId) {
+                chapterId = document.getElementById('chapterSelect').value;
+            } else {
+                // If called with arg (dictated by home button), update select
+                const select = document.getElementById('chapterSelect');
+                if (select) select.value = chapterId;
+            }
+
+            const chapterInfo = chapterData[chapterId];
+            if (chapterInfo) {
+                document.getElementById('chapterTitle').textContent = chapterInfo.title;
+                document.getElementById('bookText').innerHTML = chapterInfo.html;
+
+                // Switch views
+                document.getElementById('home-view').style.display = 'none';
+                document.getElementById('chapter-view').style.display = 'block';
+
+                // Load saved answers for this chapter
+                loadAnswers();
+
+                // Scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
     </script>
 </body>
 

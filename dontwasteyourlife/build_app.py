@@ -98,6 +98,36 @@ def build():
     json_str = json.dumps(chapter_data, indent=4)
     final_html = re.sub(r'\{\{\s*CHAPTER_DATA\s*\}\}', lambda x: json_str, template)
     
+    # Generate Home Buttons HTML
+    buttons_html = []
+    for key, filename, title in CHAPTERS:
+        # Extract "Chapter X" or "Preface" for subtitle if possible
+        display_title = title
+        subtitle = "Chapter"
+        
+        if ":" in title:
+            parts = title.split(":", 1)
+            subtitle = parts[0].strip()
+            display_title = parts[1].strip()
+        elif "Preface" in title:
+            subtitle = "Introduction"
+            display_title = title
+        elif "Index" in title:
+            subtitle = "Reference"
+        elif "Resources" in title:
+            subtitle = "Backmatter"
+            
+        btn = f'''
+        <button class="chapter-btn" onclick="loadChapter('{key}')">
+            <span class="btn-subtitle">{subtitle}</span>
+            {display_title}
+        </button>
+        '''
+        buttons_html.append(btn.strip())
+        
+    final_buttons_html = "\n".join(buttons_html)
+    final_html = re.sub(r'\{\{\s*HOME_BUTTONS\s*\}\}', lambda x: final_buttons_html, final_html)
+    
     # OPTIONAL: Construct <select> options if we can find the injection point
     # We look for <select id="citation-source" ...> or similar?
     # No, the chapter selector is likely <select id="chapter-select"> or similar class.
