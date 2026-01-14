@@ -1,5 +1,3 @@
-# General Index
-
 ## Abednego, 77–78
 
 ## Abishai, 76, 78

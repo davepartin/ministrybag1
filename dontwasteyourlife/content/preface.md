@@ -1,5 +1,3 @@
-# Preface
-
 Believe it or not, Bob Dylan figures into this story. The reason I mention Dylan here is that between the first publication of this book (2003) and now (2017), he was awarded the Nobel Prize for Literature. Astonishing. The Nobel Prize website says the prize was “for having created new poetic expressions within the great American song tradition.”
 
 There is tension between the Dylan in my story and the Dylan of the Nobel Prize acceptance speech. After telling us about how the classics Moby-Dick, All Quiet on the Western Front, and The Odyssey shaped his work, Dylan asks, “So what does it all mean?” I sat up with expectation. That’s what this book is about. What does life mean?

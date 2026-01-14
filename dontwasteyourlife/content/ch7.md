@@ -1,5 +1,3 @@
-# Living to Prove He Is More Precious Than Life
-
 To make others glad in God with an everlasting gladness, our lives must show that he is more precious than life. “Because your steadfast love is better than life, my lips will praise you” (Ps. 63:3).
 
 To do this we must make sacrificial life choices rooted in the as- surance that magnifying Christ through generosity and mercy is more satisfying than selfishness. If we walk away from risk to keep ourselves safe and solvent, we will waste our lives. This chapter is about the kind of lifestyle that may keep that from happening.

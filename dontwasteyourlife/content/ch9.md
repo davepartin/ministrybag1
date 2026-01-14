@@ -1,5 +1,3 @@
-# The Majesty of Christ in Missions and Mercy
-
 ## The Majesty of Christ
 
 in Missions and Mercy:

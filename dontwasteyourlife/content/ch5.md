@@ -1,5 +1,3 @@
-# Risk Is Right—Better to Lose Your Life Than to Waste It
-
 ## Risk Is Right—Better to Lose
 
 ## Your Life Than to Waste It

@@ -1,8 +1,4 @@
-# Breakthrough—The Beauty of Christ, My Joy
 
-## Breakthrough—
-
-## The Beauty of Christ, My Joy
 
 In 1968 I had no idea what it would mean for me to be a minis- ter of the Word. Being a pastor was as far from my expectations as being a pastor’s wife was from Noël’s. What then? Would it mean being a teacher, a missionary, a writer, maybe a professor of literature with good theology? All I knew was that ultimate Reality had suddenly centered for me on the Word of God. The great Point and Purpose and Essence that I longed to link up with was now connected unbreakably with the Bible. The mandate was clear: “Do your best to present yourself to God as one approved, a worker who has no need to be ashamed, rightly handling the word of truth” (2 Tim. 2:15). For me, that meant seminary, with a focus on understanding and rightly handling the Bible.
 

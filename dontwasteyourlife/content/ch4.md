@@ -1,5 +1,3 @@
-# Magnifying Christ Through Pain and Death
-
 ## Magnifying Christ through
 
 ## Pain and Death

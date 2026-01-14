@@ -1,5 +1,3 @@
-# My Search for a Single Passion to Live By
-
 My father was an evangelist. When I was a boy, there were rare occasions when my mother and sister and I traveled with him and heard him preach. I trembled to hear my father preach. In spite of the predictable opening humor, the whole thing struck me as absolutely blood-earnest. There was a certain squint to his eye and a tightening of his lips when the avalanche of biblical texts came to a climax in application.
 
 ## “I’ve Wasted It, I’ve Wasted It”

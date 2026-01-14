@@ -1,5 +1,3 @@
-# Boasting Only in the Cross
-
 ## Boasting Only in the Cross,
 
 the Blazing Center of the Glory of God The opposite of wasting your life is living life by a single God- exalting, soul-satisfying passion. The well-lived life must be God- exalting and soul-satisfying because that is why God created us (Isa. 43:7; Ps. 90:14). That was the burden of chapter 2. And “passion” is the right word (or, if you prefer, zeal, fervor, ardor, blood-earnestness) because God commands us to love him with all our heart (Matt. 22:37), and Jesus reminds us that he spits lukewarm people out of his mouth (Rev. 3:16). The opposite of wasting your life is to live by a single, soul-satisfying passion for the supremacy of God in all things.

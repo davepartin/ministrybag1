@@ -1,5 +1,3 @@
-# The Goal of Life—Gladly Making Others Glad in God
-
 ## The Goal of Life—Gladly
 
 ## Making Others Glad in God
