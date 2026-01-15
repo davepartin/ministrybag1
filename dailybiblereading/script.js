@@ -378,6 +378,9 @@ async function loadReadingContent() {
     // Build Playlist & UI
     updatePlaylistUI();
 
+    // Build Chapter Navigation Buttons
+    updateChapterNav(otChapters, ntChapters);
+
     // Start Player (First track prepared)
     STATE.currentTrackIndex = 0;
     playNextTrack(false);
@@ -767,6 +770,40 @@ function renderAllNotes() {
 
         // Optional: Make card clickable to jump to reading?
         container.appendChild(card);
+    });
+}
+
+function updateChapterNav(otChapters, ntChapters) {
+    const navContainer = document.getElementById('chapterNav');
+    if (!navContainer) return;
+
+    navContainer.innerHTML = ''; // Clear existing
+
+    const allChapters = [...otChapters, ...ntChapters];
+
+    allChapters.forEach(ref => {
+        const btn = document.createElement('button');
+        btn.className = 'chapter-jump-btn';
+        btn.textContent = abbreviateRef(ref);
+
+        btn.addEventListener('click', () => {
+            const target = document.querySelector(`.esv-chapter-block[data-ref="${ref}"]`);
+            if (target) {
+                // Adjust scroll position for fixed header (approx 80px)
+                const headerOffset = 85;
+                const elementPosition = target.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: "smooth"
+                });
+            } else {
+                console.warn('Scroll target not found for:', ref);
+            }
+        });
+
+        navContainer.appendChild(btn);
     });
 }
 

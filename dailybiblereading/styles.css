@@ -825,3 +825,35 @@ h2.extra_text,
         font-size: 0.8rem;
     }
 }
+/* Chapter Jump Navigation */
+.chapter-nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+.chapter-jump-btn {
+    background-color: var(--primary); /* Deep green */
+    color: white;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.chapter-jump-btn:hover {
+    background-color: var(--secondary);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.chapter-jump-btn:active {
+    transform: translateY(0);
+}
