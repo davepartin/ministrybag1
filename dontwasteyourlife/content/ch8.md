@@ -1,0 +1,279 @@
+secular calling. But his way of distinguishing them was not based on any superior “spiritual estate.”
+
+It is pure invention that pope, bishops, priests and monks are to be called the “spiritual estate”; princes, lords, artisans and farmers the “temporal estate.” That is indeed a fine bit of lying and hypocrisy. . . . All Christians are truly of the “spiritual estate,” and there is among them no difference at all but that of office. . . . To make it still clearer. If a little group of pious Christian laymen were taken captive and set down in a wilder - ness, and had among them no priest consecrated by a bishop, and if there in the wilderness they were to agree in choosing one of themselves, married or unmarried, and were to charge him with the office of baptizing, saying mass, absolving and preaching, such a man would be as truly a priest as though all bishops and popes had consecrated him. . . . There is really no difference between laymen and priests, princes and bishops, “spirituals” and “temporals,” as they call them, except that of office and work. . . . A cobbler, a smith, a farmer, each has the work and office of his trade, and yet they are all alike consecrated priests and bishops, and everyone by means of his own work or office must benefit and serve every other, that in this way many kinds of work may be done for the bodily and spiritual welfare of the community, even as all the members of the body serve one another.
+
+The Bible makes it plain that God’s will is for his people to be scattered like salt and light among the whole range of secu- lar vocations. Enclaves of Christians living only with Christians and working only with Christians would not accomplish God’s whole purpose in the world. That does not mean Christian orders or ministries or mission outposts are wrong. It means they are
+
+<div class="footnote">1. Martin Luther, “An Open Letter to the Christian Nobility,” in Three Treatises (Phila- delphia, PA: Fortress, 1960), 14–17. See Gene Edward Veith Jr., God at Work: Your Chris- tian Vocation in All of Life (Wheaton, IL: Crossway, 2002) for an exposition for laypeople of Luther’s doctrine of vocation. See also Os Guinness, The Call: Finding and Fulfilling the Central Purpose of Your Life (Nashville: Word, 1998), and Paul Helm, Callings: The Gospel in the World (Edinburgh: Banner of Truth, 1998).</div>
+
+**[Page 128]**
+
+exceptional. The vast majority of Christians are meant to live in the world and work among unbelievers. This is their “office,” their “calling,” as Luther would say. We will see why this is God’s will in a moment.
+
+## Partnership of Ox and People
+
+Not everyone should be a missionary or a pastor. There is to be a partnership between goers and senders. Concerning pastors in the church Paul says, “You shall not muzzle an ox when it treads out the grain” (1 Tim. 5:18), meaning: pay your pastor. But that implies that some folks must be earning grain to put under the poor ox’s nose. This is also the pattern for missionaries in the New Testament. “Do your best to speed Zenas the lawyer and Apollos on their way; see that they lack nothing” (Titus 3:13). In other words, not everybody should go to minister with Paul; some should stay behind, work, and supply the ones who go. Similarly Paul planned for the Roman church to be his supply base as he headed for Spain: “I hope to see you in passing as I go to Spain, and to be helped on my journey there by you, once I have enjoyed your company for a while” (Rom. 15:24).
+
+He assumed they would be gainfully employed so they could give. That’s why he said to the Thessalonian believers, “Work with your hands . . . so that you may . . . be dependent on no one” (1 Thess. 4:11–12). In fact, Paul was so provoked by the idle busybodies in Thessalonica that he wrote in a second letter: We were not idle when we were with you, nor did we eat any- one’s bread without paying for it, but with toil and labor we worked night and day, that we might not be a burden to any of you. . . . If anyone is not willing to work, let him not eat.
+
+For we hear that some among you walk in idleness, not busy at work, but busybodies. (2 Thess. 3:7–11) Similarly, he said to the Ephesians, “Let the thief no longer steal, but rather let him labor, doing honest work with his own hands,
+
+## Making Much of Christ from 8 to 5 127
+
+so that he may have something to share with anyone in need”
+
+(Eph. 4:28).
+
+## Stay in Your Job “with God”
+
+The call to be a Christian was not a call to leave your secular voca - tion. That’s the clear point of 1 Co rin thi ans 7:17–24. Paul sums up his teaching there with these words: “So, brothers, in whatever condition each was called, there let him remain with God” (v. 24). Paul had a high view of the providence of God—that God had sovereignly “assigned” or “called” unbelievers to positions in life where their conversion would have significant impact for his glory.
+
+“Only let each person lead the life that the Lord has assigned to him, and to which God has called him” (v. 17). Paul does not mean that changing jobs is wrong in the Christian life—otherwise no one could become a vocational pastor or missionary except very young people (unlike Jesus who changed from carpentry to full-time ministry when he was thirty, Luke 3:23). What Paul does mean is that when we are converted we should not jump to the conclusion, my job must change. Rather our thought should be, God has put me here, and I should now display his worth in this job. As verse 24 says, “there let him remain with God.”
+
+Therefore, the burning question for most Christians should be: How can my life count for the glory of God in my secular vocation? I am assuming from all that has been said in this book so far that the aim of life is the same, whether in a secular voca-tion or in a church or mission vocation. Our aim is to joyfully magnify Christ—to make him look great by all we do. Boasting only in the cross, our aim is to enjoy making much of him by the way we work. The question is, How? The Bible points to at least six answers.
+
+<div class="footnote">1. We can make much of God in our secular job through the fel- lowship that we enjoy with him throughout the day in all our work.</div>
+
+In other words, we enjoy God’s being there for us as we listen
+
+**[Page 130]**
+
+to his voice, and talk to him, and cast all our burdens on him, and experience his guidance and care. The biblical pointer to this truth is 1 Co rin thi ans 7:24. When you are converted, stay in your job and enjoy God’s presence. “In whatever condition each was called, there let him remain with God.” These last two words are important. Christians do not just go to work. They go to work “with God.” They do not just do a job. They do their job “with God.” God is with them.
+
+## A More Personal Promise
+
+This is not the same as the general promises made to the church as a whole. God promises to the church corporately, “I will make my dwelling among them and walk among them, and I will be their God, and they shall be my people” (2 Cor. 6:16). The promise for you in your secular job is different. When the saints are at work in their secular employment, they are scattered. They are not to-gether in church. So the command to “remain there with God”
+
+is a promise that you may know God’s fellowship personally and individually on the job.
+
+## Breathing Out Continual Thanks to God for All Things
+
+One way to enjoy God’s presence and fellowship is through thank- ful awareness that your ability to do any work at all, including this work, is owing to his grace. “He himself gives to all mankind life and breath and everything” (Acts 17:25). All your faculties of sight and hearing and touch, all your motor skills with hands and legs, all your mental acts of observing and organizing and assessing, all your skills that make you good at this particular job—all these things are God’s gifts. To know this can fill you with a sense of continual thankful- ness offered up to God in prayer. “I give thanks to you, O Lord my God, with my whole heart, and I will glorify your name forever” (Ps. 86:12). Sometimes the wonder of who God is will rise up in us while we work, and we will whisper his praise: “Bless the Lord, O my soul! O Lord my God, you are very great!” (Ps. 104:1).
+
+## Making Much of Christ from 8 to 5 129
+
+When you add to this the awareness that you depend on God for every future minute of life and for all the help you need, your thankfulness flows over into faith for each upcoming moment and for the remainder of the day and week and month and year and decade. This is faith in future grace. It can be expressed in prayer to God with biblical words like, “I trust in you, O Lord; I say, ‘You are my God’” (Ps. 31:14). Or you can say, “Your steadfast love never ceases; your mercies never come to an end; they are new every morning (and every afternoon!); great is your faithfulness!”
+
+(paraphrase of Lam. 3:22–23).
+
+## Taking the Promises to Work
+
+Supporting this thankfulness and praise and trust are the prom- ises of God that you can take to work every day—written in your Bible or memorized in your head. This is the way God speaks to you through the day. He encourages you, “Fear not, for I am with you; be not dismayed, for I am your God; I will strengthen you, I will help you, I will uphold you with my righteous right hand”
+
+(Isa. 41:10). He reminds you that the challenges of the afternoon are not too hard for him to manage: “Behold, I am the Lord, the God of all flesh. Is anything too hard for me?” (Jer. 32:27). He tells you not to be anxious, but to ask him for whatever you need (Phil. 4:6), and says, “Cast all your anxieties on me, for I care for you”
+
+(paraphrase of 1 Pet. 5:7). And he promises to guide you through the day: “I will instruct you and teach you in the way you should go; I will counsel you with my eye upon you” (Ps. 32:8).
+
+In this way we fellowship with God, listening to him through his Word and thanking him and praising him and calling on him for all we need. It is an honor to God if you stay in your secular job “with God” in this way. This is not a wasted life. God delights in being trusted and enjoyed. It shows his value. And when we remind ourselves that none of these undeserved blessings could be ours apart from the death of Christ in our place, every heartbeat of joy in God becomes a boasting in the cross.
+
+**[Page 132]**
+
+<div class="footnote">2. We make much of Christ in our secular work by the joyful, trusting, God-exalting design of our creativity and industry.It is helpful to ask how human beings differ from beavers and hummingbirds and spiders and ants. It helps get at the essence of how humans honor God with their work. These creatures are very hard workers and make very intricate and amazing things. So there must be more to our God-honoring work than such creativ-ity and industry—unless we are willing to say that we glorify God with our work no differently than the animals.</div>
+
+## Deputies of God Subduing the Earth for His Glory
+
+What’s the difference? Consider the first biblical words about man’s creation. “So God created man in his own image, in the image of God he created him; male and female he created them. And God blessed them. And God said to them, ‘Be fruitful and multiply and fill the earth and subdue it and have dominion over the fish of the sea and over the birds of the heavens and over every living thing that moves on the earth’” (Gen. 1:27–28). Our creation in God’s image leads directly to our privilege and duty to subdue the earth and have dominion over it. In other words, we should be busy understanding and shaping and designing and using God’s creation in a way that calls attention to his worth and wakens worship.
+
+Being in the image of God means at least that we should image forth God. We should reflect what he is really like. And we should do that not to make ourselves look great (as imagers) but to make him look great (as Creator). People make images of famous people to honor them. God made man in his own image so that he would be seen and enjoyed and honored through what man does.
+
+Then he said, first of all, that what man does is work. He sub- dues and takes dominion over the earth. This implies that part of what it means to be human is to exercise lordship over creation and give the world shape and order and design that reflects the truth and beauty of God. God makes man, so to speak, his rul-
+
+## Making Much of Christ from 8 to 5 131
+
+ing deputy and endows him with God-like rights and capacities to subdue the world—to use it and shape it for good purposes, especially the purpose of magnifying the Creator.
+
+## Work Is Not a Curse; Futility Is
+
+So if you go all the way back, before the origin of sin, there are no negative connotations about secular work. According to Genesis 2:2, God himself rested from his work of creation, implying that work is a good, God-like thing. And the capstone of that divine work was man, a creature in God’s own image designed to carry on the work of ruling and shaping and designing creation. There- fore, at the heart of the meaning of work is creativity. If you are God, your work is to create out of nothing. If you are not God, but like God—that is, if you are human—your work is to take what God has made and shape it and use it to make him look great.
+
+## How We Differ from Beavers
+
+But here is where the beavers come in. A beaver subdues his sur - roundings and shapes a dam for a good purpose, a house. He seems to enjoy his work; and even the diligence and skill of the beaver reflects the glory of God’s wisdom.
+
+All things bright and beautiful, All creatures great and small,All things wise and wonderful, The Lord God made them all.
+
+And God is glorified in them all. “Let the rivers clap their hands . . . the hills sing for joy . . . [and] the heavens declare the glory of God” (Ps. 98:8; 19:1). So what is the difference between a human being at work and a beaver at work? Or for that matter, a bee or a hummingbird or an ant? They all work hard; they subdue their surroundings and shape them into amazing structures that
+
+<div class="footnote">2. Cecil F. Alexander, “All Things Bright and Beautiful” (1848).</div>
+
+**[Page 134]**
+
+serve good purposes. The difference is that humans are morally self-conscious and make choices about their work on the basis of motives that may or may not honor God.
+
+No beaver or bee or hummingbird or ant consciously relies on God. No beaver ponders the divine pattern of order and beauty and makes a moral choice to pursue excellence because God is excellent. No beaver ever pondered the preciousness and purpose of God and decided for God’s sake to make a dam for another beaver and not for himself. But humans have all these potentials, because we are created in God’s image. We are created to image forth God in these ways. When God commissions us to subdue the earth—to shape it and use it—he doesn’t mean do it like a beaver. He means do it like a human, a morally self-conscious person who is responsible to do his work intentionally for the glory of his Maker.
+
+To be sure, when God sends us forth to work as his image- bearers, our ditches are to be dug straight, our pipe-fittings are not to leak, our cabinet corners should be flush, our surgical incisions should be clean, our word processing accurate and ap-pealing, and our meals nutritious and attractive, because God is a God of order and beauty and competence. But cats are clean, and ants are industrious, and spiders produce orderly and beauti- ful works. And all of them are dependent on God. Therefore, the essence of our work as humans must be that it is done in con-scious reliance on God’s power, and in conscious quest of God’s pattern of excellence, and in deliberate aim to reflect God’s glory.
+
+## Doing Good Work and Sleeping Well
+
+When you work like this—no matter what your vocation is—you can have a sweet sense of peace at the end of the day. It has not been wasted. God has not created us to be idle. Therefore, those who abandon creative productivity lose the joy of God-dependent, world-shaping, God-reflecting purposeful work. “Sweet is the sleep of a laborer, whether he eats little or much, but the full
+
+## Making Much of Christ from 8 to 5 133
+
+stomach of the rich will not let him sleep” (Eccles. 5:12). Jonathan Edwards made it a rule that personal piety to the neglect of secular duties is hypocritical. He described his own wife (“the person”) to illustrate the opposite: “Oh how good,” said the person once, “it is to work for God in the daytime, and at night to lie down under his smiles!” High experiences and religious affections in this person have not been attended with any disposition at all to neglect the necessary business of a secular calling, to spend time in read-ing and prayer, and other exercises of devotion; but worldly business has been attended with great alacrity, as part of the service of God; the person declaring that it being done thus, “’tis found to be as good as prayer.”
+
+True personal piety feeds the purposeful work of secular voca- tions rather than undermining it. Idleness does not grow in the soil of fellowship with God. Therefore, people who spend their lives mainly in idleness or frivolous leisure are rarely as happy as those who work. Retired people who are truly happy have sought creative, useful, God-honoring ways to stay active and productive for the sake of man’s good and God’s glory.
+
+To be sure, we should help each other find and keep work. We should care about the larger problem of unemployment. It is not first an economic problem, though it is that. It is first a theologi-cal problem. Human beings are created in the image of God and are endowed with traits of their Creator that fit them for creative, useful, joyful, God-exalting work. Therefore, extensive idleness (when you have the ability to work) brings down the oppression of guilt and futility.
+
+So the second way we make much of God in our secular work is through the joyful, trusting, God-exalting design of our creativ-ity and industry. God created us for work so that by consciously
+
+<div class="footnote">3. Jonathan Edwards, “Thoughts Concerning the Revival,” in The Great Awakening, ed.</div>
+
+## C. C. Goen, vol. 4 of The Works of Jonathan Edwards (New Haven, CT: Yale University
+
+Press, 1972), 340.
+
+**[Page 136]**
+
+relying on his power and consciously shaping the world after his excellence, we might be satisfied in him, and he might be glorified in us. And when we remember that all this God-exalting creativ- ity and all this joy is only possible for undeserving sinners like us because of the death of Christ, every hour of labor becomes a boasting in the cross.
+
+<div class="footnote">3. We make much of Christ in our secular work when it confirms and enhances the portrait of Christ’s glory that people hear in the spoken gospel.</div>
+
+There is no point in overstating the case for the value of secular work. It is not the gospel. By itself, it does not save anyone. In fact, with no spoken words about Jesus Christ, our secular work will not awaken wonder for the glory of Christ. That is why the New Testament modestly calls our work an adornment of the gospel.
+
+In addressing slaves, Paul says they are “to be well-pleasing, not argumentative, not pilfering, but showing all good faith, so that in everything they may adorn the doctrine of God our Savior”
+
+(Titus 2:9–10). The point here is not to endorse slavery (which Paul undermined more indirectly by calling the converted slave, Onesimus, “no longer . . . a slave but . . . a beloved brother,”
+
+Philem. 16), but to show that the way we do our work “adorns”
+
+the doctrine of God.
+
+In other words, our work is not the beautiful woman, but the necklace. The beautiful woman is the gospel—“the doctrine of God our Savior.” So one crucial meaning of our secular work is that the way we do it will increase or decrease the attractive- ness of the gospel we profess before unbelievers. Of course, the great assumption is that they know we are Christians. The whole point of the text breaks down if there is nothing for our work to “adorn.” Thinking that our work will glorify God when people do not know we are Christians is like admiring an effective ad on TV that never mentions the product. People may be impressed but won’t know what to buy.
+
+## Making Much of Christ from 8 to 5 135
+
+## Removing Stumbling Blocks for Faith
+
+There is another place where Paul expresses the modest role of our work in relation to the gospel. In 1 Thessalonians 4:11 he tells the church, “Aspire to live quietly, and to mind your own af- fairs, and to work with your hands, as we instructed you, so that you may walk properly before outsiders and be dependent on no one.” The point here is not that our work will save anyone. The point is that if we live and work well, obstacles will be removed.
+
+In other words, good, honest work is not the saving gospel of God, but a crooked Christian car salesmen is a blemish on the gospel and puts a roadblock in the way of seeing the beauty of Christ.
+
+And sloth may be a greater stumbling block than crime. Should Christians be known in their offices as the ones you go to if you have a problem, but not the ones to go to with a complex profes- sional issue? It doesn’t have to be either-or. The biblical mandate is: “Whatever you do, work heartily, as for the Lord and not for men” (Col. 3:23; cf. Eph. 6:7).
+
+So the third way we make much of God in our secular work is by having such high standards of excellence and such integrity and such manifest goodwill that we put no obstacles in the way of the gospel but rather call attention to the all-satisfying beauty of Christ. When we adorn the gospel with our work, we are not wasting our lives. And when we call to mind that the adornment itself (our God-dependent, God-shaped, God-exalting work) was purchased for us by the blood of Christ, and that the beauty we adorn is itself the gospel of Christ’s death, then all our tender adornment becomes a boasting in the cross.
+
+<div class="footnote">4. We make much of Christ in our secular work by earning enough money to keep us from depending on others, while focusing on the helpfulness of our work rather than financial rewards.</div>
+
+God intended from the beginning that satisfying work would pro- vide for our needs. God worked at the beginning (Gen. 2:2), and the humans he created in his image would work. Before sin entered
+
+**[Page 138]**
+
+the world, that work would be without futility and frustration. It would unite beautifully with God’s abundant provision to meet every need. It would make the earth subject to man’s material needs without ruining the earth (Gen. 1:28). At the beginning, the homestead of man was a garden of fruit trees, not a hard field to be plowed and planted. “Out of the ground the Lord God made to spring up every tree that is pleasant to the sight and good for food” (Gen. 2:9). Not only that, “a river flowed out of Eden to water the garden” (v. 10).
+
+## Happy Work before the Fall; Then Sweating and Fretting
+
+In this all-supplying paradise God said, at first, “there was no man to work the ground” (v. 5). Then he made man from the ground, and, in his creation, Adam became a son working with his Father in the stewardship of creation. The essence of work was not sus-tenance of life. God gave himself as the sustainer. Man was free, not from work, but in work, to be creative without the anxiety of providing food and clothing.
+
+What changed with the entrance of sin into the world was not that man had to work, but that work became hard with the futility and frustration of the fallen creation. The Lord said to
+
+## Adam:
+
+Because you have listened to the voice of your wife and have eaten of the tree of which I commanded you, “You shall not eat of it,” cursed is the ground because of you; in pain you shall eat of it all the days of your life; thorns and thistles it shall bring forth for you; and you shall eat the plants of the field. By the sweat of your face you shall eat bread, till you return to the ground. (Gen. 3:17–19) When man and woman chose to be self-reliant and rejected God’s fatherly guidance and provision, God subjected them to the very thing they chose: self-reliance. From now on, he says, if you eat, it will be because you toil and sweat. So they were driven from
+
+## Making Much of Christ from 8 to 5 137
+
+the garden of happy work to the ground of anxious toil. The curse under which we live today is not that we must work. The curse is that, in our work, we struggle with weariness and frustration and calamities and anxiety. And all this is doubly burdensome because now by this very toil we must keep ourselves alive. “In toil you shall eat of the ground. . . . In the sweat of your face you shall eat bread.”
+
+## Christ Took the Curse on Himself,
+
+and We Are Being Freed But hasn’t Christ come to lift the curse from his people? Yes.
+
+“Christ redeemed us from the curse of the law by becoming a curse for us—for it is written, ‘Cursed is everyone who is hanged on a tree’” (Gal. 3:13). However, the curse is not lifted totally all at once. God saves us in stages. Christ delivered a mortal blow to evil when he died for sin and rose again. But not every enemy is yet put under his feet. For example, death is part of the curse we still experience. Christ conquered death for his people, but only partly now. We still die, but the “sting” of death, the hopelessness of death, is removed because our sins are forgiven in Christ and he is risen (1 Cor. 15:54–55)!
+
+Similarly, we must still work hard to provide for our needs.
+
+Christ says, “Do not be anxious about your life, what you will eat or what you will drink, nor about your body, what you will put on. . . . Your heavenly Father knows that you need them all. But seek first the kingdom of God and his righteousness, and all these things will be added to you” (Matt. 6:25, 32–33). He says, “Come to me, all who labor and are heavy laden, and I will give you rest” (Matt. 11:28). He says, “Be steadfast, immovable, always abound-ing in the work of the Lord, knowing that in the Lord your labor is not in vain” (1 Cor. 15:58). In other words, God does not want his children to be burdened with the frustration and futility and depressing weariness of work. That much of the curse he aims to lift from us even in this age.
+
+**[Page 140]**
+
+## Paradise Is Not Here Yet
+
+But just as death will be a reality to the end of this age, so must we work in this fallen age against many obstacles that often make work hard. Not yet may we return to paradise and pick fruit in someone else’s garden. That’s the mistake they made at Thessa- lonica. Some were quitting their jobs and being idle because they thought that Christ would come very soon. Paradise was at hand. So Paul wrote to them, “If anyone is not willing to work, let him not eat. For we hear that some of you walk in idleness, not busy at work, but busybodies. Now such persons we command and encourage in the Lord Jesus Christ to do their work quietly and to earn their own living” (2 Thess. 3:10–12). Able-bodied people who choose to live in idleness and eat the fruit of another’s sweat are in rebellion against God’s design. If we can, we should earn our own living.
+
+How then do Christians make much of Christ in working “to earn their own living”? First, by conforming willingly to God’s design for this age. It is an act of obedience that honors his au-thority. Second, by removing stumbling blocks from unbelievers who would regard the lazy dependence of Christians on others as an evidence that our God is not worthy of following. “Work with your hands . . . so that you may live properly before outsiders and be dependent on no one” (1 Thess. 4:11–12). We honor God by earning our living because this clears the way for non-Christians to see Christ for who he really is. Aimless, unproductive Christians contradict the creative, purposeful, powerful, merciful God we love. They waste their lives.
+
+## Do Not Labor for the Food That Perishes
+
+Third, we make much of God by earning our own living when we focus not on financial profit but on the benefit our product or service brings to society. This is paradoxical. I am saying, yes, we should earn enough money to meet our needs. But, no, we should not make that the primary focus of why we work. One of the most
+
+## Making Much of Christ from 8 to 5 139
+
+striking things Jesus ever said was, “Do not work for the food that perishes, but for the food that endures to eternal life, which the Son of Man will give to you” (John 6:27). Do not labor for the food that perishes! “The food that perishes” simply means all ordinary food and provision. So this is striking! It seems to say the exact opposite of what I am saying. What does he mean?
+
+We know from all we have seen so far that Jesus does not mean it is wrong to earn your own living and eat your own bread. Evidently then, he means that when we work for the food that perishes, there should be a significant sense in which we are not working for that food, but for something more. In other words, don’t focus on mere material things in your work. Don’t labor merely with a view to the perishable things you can buy with your earnings. Work with an eye not mainly to your money, but your usefulness. Work with a view to benefiting people with what you make or do.
+
+Christ has lifted the curse of work. He has replaced anxious toil with trust in God’s promise to supply our needs (Phil. 4:19) and has thus awakened in us a different passion in our work. We turn with joy to the call of Jesus: Seek the kingdom of God first and his righteousness, and the food that perishes will be added to you. So don’t labor for the food that perishes. Labor to love people and honor God. Think of new ways that your work can bless people. Stop thinking mainly of profitability, and think mainly of how helpful your product or service can become.
+
+## Do Your Business Dealings but Stay Free from Them
+
+How do you get up in the morning and go to work not for the food that perishes—not mainly for the profit? This is really a spiritual discovery, attained through much prayer and longing. My words of explanation won’t make it happen. But maybe the Holy Spirit will use these words to advance your quest. Paul said in 1 Co rin thi ans 7:30–31 that since we live in a time of great urgency, “those who buy [should buy] as though they had no goods, and those who deal
+
+**[Page 142]**
+
+with the world as though they had no dealings with it.” I think this is another way of saying, yes, labor, but do not labor for the food that perishes. Go ahead and purchase, but act as though you have no goods. Do your business dealings, but stay free from them. The financial outcome of these dealings is not your life.
+
+## Say You Are a Stockbroker
+
+Suppose you are a Christian stockbroker and have watched the market tumble. What it means to you not to labor for the food that perishes is that your true life is not jeopardized. Your peace and joy are not destroyed. Your resolve to do the best you can for your clients remains the same—even if you advise them to get out of the market and use their money a different way for God’s glory. You are not working for the food that perishes. Your goal is to enjoy Christ’s being exalted in the way you work. Jesus said, “I have food to eat that you do not know about. . . . My food is to do the will of him who sent me and to accomplish his work”
+
+(John 4:32–34). None of us in our vocations should aim mainly at the food that perishes—leave that to the Lord. We should aim instead to do the will of him who sent us. And his will is that we treasure him above all else and live like it.
+
+The Christian stockbroker will say in the face of a falling market, “The main food I want from this job is still there. I am hungry above all to pass this test of faith and have a deep restfulness in the goodness and power of Christ. I am hungry to enjoy his name being esteemed as others see my demeanor and my integrity and give Christ glory.” And to that end he labors for the food that endures to eternal life. He labors, rising early for prayer and meditation and holding Christ near to his heart all day. In that security he thinks of the good of others and serves them. That is a wonder, not a wasted life.
+
+Jesus calls us to be aliens and exiles in the world. Not by taking us out of the world, but by changing, at the root, how we view the world and how we do our work in it. If we simply work to earn a living—if we labor for the bread that perishes—we will waste our lives. But
+
+## Making Much of Christ from 8 to 5 141
+
+if we labor with the sweet assurance that God will supply all our needs—that Christ died to purchase every undeserved blessing—then all our labor will be a labor of love and a boasting only in the cross.
+
+<div class="footnote">5. We make much of Christ in our secular work by earning money with the desire to use our money to make others glad in God.</div>
+
+Everything I said in chapter 7 assumed that we had money to use in a radical way to show that Christ and not money is our Treasure. But money does not grow on trees; we work for it. We provide some service or make some product that others will pay for. So my point here is that, as we work, we should dream of how to use our excess money to make others glad in God. Of course, we should use all our money to make others glad in God, in the sense that our whole life has this aim. But the point here is that our secular work can become a great God-exalting blessing to the world if we aim to take the earnings we don’t need for ourselves (and we need far less than we think) and meet the needs of others in the name of Jesus.
+
+## The Able-Bodied Earners Help the Victims of Loss
+
+God clearly tells us that we should work to provide the needs of those who can’t meet their own needs. It’s true that everyone should work if he can, and that, in general, if you work you will have what you need. “Whoever works his land will have plenty of bread” (Prov.
+
+12:11). But this general rule is not absolute. Drought may strike your farm; thieves may steal what you’ve earned; disability may end your earning power. All that is part of the curse that sin brought into the world. But God, in his mercy, wills that the work of the able-bodied supply the needs of the helpless, especially in hard times.
+
+Three passages of Scripture make this plain. In 1 Timothy 5:8 Paul speaks to children and grandchildren regarding the aged wid- ows: “If anyone does not provide for his relatives, and especially for members of his own household, he has denied the faith and is worse than an unbeliever.” In Acts 20:35 Paul refers to his own manual labor and then says, “In all things I have shown you that
+
+**[Page 144]**
+
+by working hard in this way we must help the weak and remem- ber the words of the Lord Jesus, how he himself said, ‘It is more blessed to give than to receive.’” Then in Ephesians 4:28 Paul doesn’t settle for saying, “Don’t steal, work!” He says, “Let the thief no longer steal, but rather let him labor, doing honest work with his own hands, so that he may have something to share with anyone in need.” You can steal to have. Or you can work to have. Or you can work to have to give. When the third option comes from joy in God’s goodness, it makes him look great in the world.
+
+<div class="footnote">6. We make much of Christ in our secular work by treating the web of relationships it creates as a gift of God to be loved by shar - ing the gospel and by practical deeds of help.I put this last not because it is least important but because some who put it first never say anything else about the importance of secular work. I have made this mistake myself. Personal evangelism is so important that it is easy to think of it as the only important thing in life. But we have seen that the Bible puts a lot of emphasis on adorning the gospel, not merely saying the gospel. But now I want to say that speaking the good news of Christ is part of why God put you in your job. He has woven you into the fabric of others’ lives so that you will tell them the gospel. Without this, all our adorning behavior may lack the one thing that could make it life-giving.</div>
+
+The Christian’s calling includes making his or her mouth a fountain of life. “The mouth of the righteous is a fountain of life”
+
+(Prov. 10:11). The link with eternal life is faith in Jesus Christ.
+
+No nice feelings about you as a good employee will save anyone.
+
+People must know the gospel, which is the power of God unto eternal life (Rom. 1:16). “Faith comes from hearing, and hearing through the word of Christ” (Rom. 10:17).
+
+The early church was a “gospelling” band of people. They spoke the gospel. When the believers were driven out of Jerusalem because of persecution after Stephen’s martyrdom, they “went about preaching the word”—literally, “evangelizing or gospelling
+
+## Making Much of Christ from 8 to 5 143
+
+the word” (Acts 8:4). The gospel was on their lips in all their new relationships. Their self-identity was “proclaimers”: “You are a chosen race, a royal priesthood, a holy nation, a people for his own possession, that you may proclaim the excellencies of him who called you out of darkness into his marvelous light” (1 Pet. 2:9). Freely they had received. Freely they gave.
+
+They were moved by the words of Jesus concerning the value of a single human life: “What does it profit a man to gain the whole world and forfeit his life? For what can a man give in return for his life?” (Mark 8:36–37). They felt the weight of what C. S. Lewis spoke twenty centuries later when he pondered the relationship between winning one soul to Christ, on the one hand, and the value of his own vocation as an Oxford scholar of English Literature on the other hand: The Christian will take literature a little less seriously than the cultured Pagan. . . . The unbeliever is always apt to make a kind of religion of his aesthetic experiences . . . and he com- monly wishes to maintain his superiority to the great mass of mankind who turn to books for mere recreation. But the Christian knows from the outset that the salvation of a single soul is more important than the production or preservation of all the epics and tragedies in the world: and as for superiority, he knows that the vulgar since they include most of the poor probably include most of the superiors.
+
+The point is not that Lewis quit his work and became a full- time evangelist, nor that you should. The point is that he saw the meaning of his work in proper perspective and knew that more than one thing gave it significance. To each of the five ways that we have mentioned above, Lewis would add that his vocation created a web of relationships in which he could speak the gospel. Once when he was criticized for oversimplifying the gospel, he responded to his critic:
+
+<div class="footnote">4. C. S. Lewis, “Christianity and Literature,” in Christian Reflections (Grand Rapids, MI: Eerd mans, 1967), 10.</div>
+
+**[Page 146]**
+
+[He] would be a more helpful critic if he advised a cure as well as asserting many diseases. How does he himself do such work? What methods, and with what success, does he employ when he is trying to convert the great mass of storekeepers, lawyers, realtors, morticians, policemen and artisans who sur - round him in his own city?
+
+Perhaps one other thing should be mentioned in regard to the relationships created by where we live and work. For many of you, the move toward missions and deeds of mercy will not be a move away from your work but with your work to another, more needy, less-reached part of the world. Christians should seriously ask not only what their vocation is, but where it should be lived out. We should not assume that teachers and carpenters and computer pro- grammers and managers and CPAs and doctors and pilots should do their work in America. That very vocation may be better used in a country that is otherwise hard to get into, or in a place where pov-erty makes access to the gospel difficult. In this way the web of rela- tionships created by our work is not only strategic but intentional.
+
+## Conclusion
+
+In conclusion, secular work is not a waste when we make much of Christ from 8 to 5. God’s will in this age is that his people be scat-tered like salt and light in all legitimate vocations. His aim is to be known, because knowing him is life and joy. He does not call us out of the world. He does not remove the need to work. He does not destroy society and culture. Through his scattered saints he spreads a passion for his supremacy in all things for the joy of all peoples. If you work like the world, you will waste your life, no matter how rich you get. But if your work creates a web of redemptive relationships and becomes an adornment for the gospel of the glory of Christ, your satisfaction will last forever and God will be exalted in your joy.
+
+<div class="footnote">5. C. S. Lewis, “Rejoinder to Dr. Pittenger,” in God in the Dock: Essays on Theology and Ethics (Grand Rapids, MI: Eerd mans, 1970), 183.</div>

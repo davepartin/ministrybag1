@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Don't Waste Your Life - Study Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.7;
+            color: #2c3e50;
+            background: #f8f9fa;
+            padding: 0;
+        }
+
+        .app-header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 1rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .header-logo {
+            width: 48px;
+            height: auto;
+            transition: transform 0.2s;
+        }
+
+        .header-logo:hover {
+            transform: scale(1.1);
+        }
+
+        .header-content {
+            text-align: left;
+        }
+
+        .app-header h1 {
+            font-size: 1.4rem;
+            margin-bottom: 0.2rem;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+
+        .app-header .subtitle {
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+
+        .controls {
+            background: white;
+            padding: 1rem;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .text-size-controls {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .text-size-label {
+            font-size: 0.85rem;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .btn {
+            padding: 0.6rem 1rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.2s;
+            touch-action: manipulation;
+        }
+
+        .btn-primary {
+            background: #3498db;
+            color: white;
+        }
+
+        .btn-primary:active {
+            background: #2980b9;
+            transform: scale(0.98);
+        }
+
+        .btn-secondary {
+            background: #95a5a6;
+            color: white;
+        }
+
+        .btn-secondary:active {
+            background: #7f8c8d;
+            transform: scale(0.98);
+        }
+
+        .btn-size {
+            background: #ecf0f1;
+            color: #2c3e50;
+            padding: 0.5rem 0.8rem;
+            min-width: 40px;
+        }
+
+        .btn-size.active {
+            background: #3498db;
+            color: white;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0;
+        }
+
+        .chapter-selector {
+            background: white;
+            padding: 1rem;
+            margin: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .chapter-selector label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .chapter-selector select {
+            width: 100%;
+            padding: 0.7rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 1rem;
+            background: white;
+        }
+
+        .reading-section {
+            background: white;
+            padding: 1.5rem;
+            margin: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .chapter-title {
+            color: #2c3e50;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 0.5rem;
+        }
+
+        .book-text {
+            color: #34495e;
+            margin-bottom: 2rem;
+            text-align: justify;
+        }
+
+        .book-text.size-small {
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .book-text.size-medium {
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        .book-text.size-large {
+            font-size: 1.3rem;
+            line-height: 1.8;
+        }
+
+        .footnote {
+            font-size: 0.75rem;
+            color: #95a5a6;
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+
+        .questions-section {
+            background: white;
+            padding: 1.5rem;
+            margin: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .questions-title {
+            color: #2c3e50;
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .question-block {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 6px;
+            border-left: 4px solid #3498db;
+        }
+
+        .question-label {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 0.7rem;
+            font-size: 1rem;
+            display: block;
+        }
+
+        .answer-input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-family: inherit;
+            line-height: 1.5;
+            resize: vertical;
+            min-height: 100px;
+            transition: border-color 0.2s;
+        }
+
+        .answer-input:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+
+        .overall-thoughts {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: #fff9e6;
+            border-radius: 6px;
+            border-left: 4px solid #f39c12;
+        }
+
+        .overall-thoughts .question-label {
+            color: #e67e22;
+        }
+
+        .action-buttons {
+            background: white;
+            padding: 1.5rem;
+            margin: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .btn-large {
+            padding: 1rem 1.5rem;
+            font-size: 1.1rem;
+            width: 100%;
+        }
+
+        .btn-email {
+            background: #27ae60;
+            color: white;
+        }
+
+        .btn-email:active {
+            background: #229954;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 2rem 1rem;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 600px) {
+            .app-header h1 {
+                font-size: 1.2rem;
+            }
+
+            .chapter-title {
+                font-size: 1.2rem;
+            }
+
+            h2 {
+                font-size: 1.1rem;
+            }
+
+            h3 {
+                font-size: 1rem;
+            }
+
+            .book-text {
+                text-align: left;
+                /* Fix word spacing */
+            }
+
+            .text-size-controls {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .btn {
+                font-size: 0.85rem;
+            }
+        }
+
+        #endMarker {
+            scroll-margin-top: 100px;
+        }
+
+        /* Home Page Styles */
+        .home-view {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 1rem;
+        }
+
+        .chapter-btn {
+            display: block;
+            width: 100%;
+            padding: 1.2rem;
+            margin-bottom: 1rem;
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            text-align: left;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2c3e50;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            line-height: 1.4;
+        }
+
+        .chapter-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-color: #3498db;
+            background: #fdfdfd;
+        }
+
+        .chapter-btn .btn-subtitle {
+            display: block;
+            font-size: 0.85rem;
+            color: #7f8c8d;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.4rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app-header">
+        <a href="https://ministrybag.com/" target="_blank">
+            <img src="ministrybagsatchel1.svg" alt="Ministry Bag" class="header-logo">
+        </a>
+        <div class="header-content">
+            <h1>Don't Waste Your Life</h1>
+            <div class="subtitle">by John Piper - Interactive Study Guide</div>
+        </div>
+    </div>
+
+    <div id="home-view" class="home-view">
+        {{ HOME_BUTTONS }}
+    </div>
+
+    <div id="chapter-view" style="display: none;">
+        <div class="controls">
+            <div class="text-size-controls">
+                <span class="text-size-label">Text Size:</span>
+                <button class="btn btn-size" onclick="setTextSize('small')">A</button>
+                <button class="btn btn-size active" onclick="setTextSize('medium')">A</button>
+                <button class="btn btn-size" onclick="setTextSize('large')">A</button>
+            </div>
+            <button class="btn btn-secondary" onclick="showHome()">Home</button>
+            <button class="btn btn-secondary" onclick="skipToEnd()">Skip to Questions</button>
+        </div>
+
+        <div class="container">
+            <div class="chapter-selector">
+                <label for="chapterSelect">Select Chapter:</label>
+                <select id="chapterSelect" onchange="loadChapter()">
+                    <option value="preface">Preface</option>
+                    <option value="ch1">Chapter 1: My Search for a Single Passion to Live By</option>
+                    <option value="ch2">Chapter 2: Breakthrough—The Beauty of Christ, My Joy</option>
+                    <option value="ch3">Chapter 3: Boasting Only in the Cross</option>
+                    <option value="ch4">Chapter 4: Magnifying Christ Through Pain and Death</option>
+                    <option value="ch5">Chapter 5: Risk Is Right—Better to Lose Your Life Than to Waste It</option>
+                    <option value="ch6">Chapter 6: The Goal of Life—Gladly Making Others Glad in God</option>
+                    <option value="ch7">Chapter 7: Living to Prove He Is More Precious Than Life</option>
+                    <option value="ch8">Chapter 8: Making Much of Christ from 8 to 5</option>
+                    <option value="ch9">Chapter 9: The Majesty of Christ in Missions and Mercy</option>
+                </select>
+            </div>
+
+            <div class="reading-section">
+                <h2 class="chapter-title" id="chapterTitle">Loading...</h2>
+                <div class="book-text size-medium" id="bookText">
+                    <p>Please wait while the study guide loads.</p>
+                </div>
+            </div>
+
+            <div class="questions-section" id="endMarker">
+                <h3 class="questions-title">Reflection Questions</h3>
+
+                <div class="question-block">
+                    <label class="question-label">1. What is the main point or key idea of this chapter?</label>
+                    <textarea class="answer-input" id="q1" placeholder="Write your answer here..."></textarea>
+                </div>
+
+                <div class="question-block">
+                    <label class="question-label">2. How does this chapter help you understand what it means to not
+                        waste
+                        your life?</label>
+                    <textarea class="answer-input" id="q2" placeholder="Write your answer here..."></textarea>
+                </div>
+
+                <div class="question-block">
+                    <label class="question-label">3. What specific truth or concept from this chapter struck you most
+                        powerfully? Why?</label>
+                    <textarea class="answer-input" id="q3" placeholder="Write your answer here..."></textarea>
+                </div>
+
+                <div class="question-block">
+                    <label class="question-label">4. How does this chapter challenge your current thinking or way of
+                        living?</label>
+                    <textarea class="answer-input" id="q4" placeholder="Write your answer here..."></textarea>
+                </div>
+
+                <div class="question-block">
+                    <label class="question-label">5. What is one practical way you can apply this chapter's teaching
+                        this
+                        week?</label>
+                    <textarea class="answer-input" id="q5" placeholder="Write your answer here..."></textarea>
+                </div>
+
+                <div class="overall-thoughts">
+                    <label class="question-label">Overall Thoughts on This Chapter</label>
+                    <textarea class="answer-input" id="overall"
+                        placeholder="Any additional reflections, questions, or insights you want to remember..."></textarea>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button class="btn btn-large btn-email" onclick="emailAnswers()">📧 Email All Answers</button>
+            </div>
+
+            <div class="footer">
+                <p>Content from Don't Waste Your Life by John Piper</p>
+                <p>&copy; Desiring God Foundation | desiringGod.org</p>
+            </div>
+        </div>
+    </div> <!-- End of chapter-view -->
+
+    <script>
+        // Store answers in localStorage
+        function saveAnswer(questionId) {
+            const chapter = document.getElementById('chapterSelect').value;
+            const answer = document.getElementById(questionId).value;
+            localStorage.setItem(`${chapter}_${questionId}`, answer);
+        }
+
+        // Load saved answers for current chapter
+        function loadAnswers() {
+            const chapter = document.getElementById('chapterSelect').value;
+            ['q1', 'q2', 'q3', 'q4', 'q5', 'overall'].forEach(id => {
+                const saved = localStorage.getItem(`${chapter}_${id}`);
+                if (saved) {
+                    document.getElementById(id).value = saved;
+                }
+            });
+        }
+
+        // Auto-save answers as user types
+        ['q1', 'q2', 'q3', 'q4', 'q5', 'overall'].forEach(id => {
+            document.getElementById(id).addEventListener('input', () => saveAnswer(id));
+        });
+
+        function setTextSize(size) {
+            const bookText = document.getElementById('bookText');
+            bookText.className = 'book-text size-' + size;
+
+            // Update button states
+            document.querySelectorAll('.btn-size').forEach((btn, index) => {
+                btn.classList.remove('active');
+            });
+
+            if (size === 'small') document.querySelectorAll('.btn-size')[0].classList.add('active');
+            if (size === 'medium') document.querySelectorAll('.btn-size')[1].classList.add('active');
+            if (size === 'large') document.querySelectorAll('.btn-size')[2].classList.add('active');
+
+            localStorage.setItem('textSize', size);
+        }
+
+        function skipToEnd() {
+            document.getElementById('endMarker').scrollIntoView({ behavior: 'smooth' });
+        }
+
+
+
+        function emailAnswers() {
+            const chapter = document.getElementById('chapterSelect').value;
+            const chapterTitle = document.getElementById('chapterSelect').options[document.getElementById('chapterSelect').selectedIndex].text;
+
+            const q1 = document.getElementById('q1').value;
+            const q2 = document.getElementById('q2').value;
+            const q3 = document.getElementById('q3').value;
+            const q4 = document.getElementById('q4').value;
+            const q5 = document.getElementById('q5').value;
+            const overall = document.getElementById('overall').value;
+
+            const subject = encodeURIComponent(`Don't Waste Your Life - ${chapterTitle}`);
+            const body = encodeURIComponent(`Don't Waste Your Life Study
+${chapterTitle}
+${'='.repeat(60)}
+
+QUESTION 1: What is the main point or key idea of this chapter?
+${q1 || '[No answer provided]'}
+
+QUESTION 2: How does this chapter help you understand what it means to not waste your life?
+${q2 || '[No answer provided]'}
+
+QUESTION 3: What specific truth or concept from this chapter struck you most powerfully? Why?
+${q3 || '[No answer provided]'}
+
+QUESTION 4: How does this chapter challenge your current thinking or way of living?
+${q4 || '[No answer provided]'}
+
+QUESTION 5: What is one practical way you can apply this chapter's teaching this week?
+${q5 || '[No answer provided]'}
+
+OVERALL THOUGHTS:
+${overall || '[No thoughts provided]'}
+
+${'='.repeat(60)}
+Study completed: ${new Date().toLocaleDateString()}
+`);
+
+            window.location.href = `mailto:?subject=${subject}&body=${body}`;
+        }
+
+        // Load saved text size on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedSize = localStorage.getItem('textSize') || 'medium';
+            setTextSize(savedSize);
+
+            // Show Home Page by default
+            showHome();
+        });
+
+        // Chapter data - you can expand this with full chapter text
+        const chapterData = {{ CHAPTER_DATA }};
+
+        function showHome() {
+            const homeView = document.getElementById('home-view');
+            if (homeView) homeView.style.display = 'block';
+
+            const chapterView = document.getElementById('chapter-view');
+            if (chapterView) chapterView.style.display = 'none';
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function loadChapter(chapterId) {
+            // If called without arg (from select change), get value
+            if (!chapterId) {
+                chapterId = document.getElementById('chapterSelect').value;
+            } else {
+                // If called with arg (dictated by home button), update select
+                const select = document.getElementById('chapterSelect');
+                if (select) select.value = chapterId;
+            }
+
+            const chapterInfo = chapterData[chapterId];
+            if (chapterInfo) {
+                document.getElementById('chapterTitle').textContent = chapterInfo.title;
+                document.getElementById('bookText').innerHTML = chapterInfo.html;
+
+                // Switch views
+                document.getElementById('home-view').style.display = 'none';
+                document.getElementById('chapter-view').style.display = 'block';
+
+                // Load saved answers for this chapter
+                loadAnswers();
+
+                // Scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+    </script>
+</body>
+
+</html>
