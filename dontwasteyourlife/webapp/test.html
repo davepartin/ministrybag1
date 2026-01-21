@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test - Don't Waste Your Life</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 40px; max-width: 800px; margin: 0 auto; }
+        .test { background: #f0f0f0; padding: 20px; margin: 10px 0; border-radius: 8px; }
+        .success { background: #d4edda; color: #155724; }
+        .error { background: #f8d7da; color: #721c24; }
+        button { padding: 10px 20px; font-size: 16px; cursor: pointer; margin: 10px 5px; }
+    </style>
+</head>
+<body>
+    <h1>Diagnostic Test Page</h1>
+
+    <div id="tests"></div>
+
+    <h2>Test Chapter Link</h2>
+    <a href="reader.html?chapter=1" style="display: inline-block; padding: 20px; background: #007bff; color: white; text-decoration: none; border-radius: 8px;">
+        Click Here to Go to Chapter 1
+    </a>
+
+    <button onclick="location.href='reader.html?chapter=0'">Go to Preface</button>
+    <button onclick="location.href='index.html'">Back to Home</button>
+
+    <script src="book-data.js"></script>
+    <script>
+        const testsDiv = document.getElementById('tests');
+
+        function addTest(name, passed, message) {
+            const div = document.createElement('div');
+            div.className = 'test ' + (passed ? 'success' : 'error');
+            div.innerHTML = `<strong>${name}:</strong> ${passed ? '✓ PASS' : '✗ FAIL'}<br>${message}`;
+            testsDiv.appendChild(div);
+        }
+
+        // Test 1: Check if BOOK_DATA loaded
+        addTest('Book Data Loaded', typeof BOOK_DATA !== 'undefined',
+            typeof BOOK_DATA !== 'undefined' ?
+            `BOOK_DATA is loaded with ${BOOK_DATA.chapters?.length || 0} chapters` :
+            'BOOK_DATA is not defined');
+
+        // Test 2: Check chapters
+        if (typeof BOOK_DATA !== 'undefined') {
+            addTest('Chapters Available', BOOK_DATA.chapters && BOOK_DATA.chapters.length > 0,
+                `Found ${BOOK_DATA.chapters?.length || 0} chapters`);
+
+            // Test 3: List chapters
+            if (BOOK_DATA.chapters && BOOK_DATA.chapters.length > 0) {
+                const chapterList = BOOK_DATA.chapters.map(ch => `Chapter ${ch.number}: ${ch.title}`).join('<br>');
+                addTest('Chapter Details', true, chapterList);
+            }
+        }
+
+        // Test 4: Test link navigation
+        addTest('Navigation Test', true, 'Click the blue link above to test navigation to Chapter 1');
+
+        console.log('Full BOOK_DATA:', BOOK_DATA);
+    </script>
+</body>
+</html>
