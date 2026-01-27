@@ -45,10 +45,7 @@
     <nav class="main-nav">
         <div class="nav-container">
             <a href="index.html" class="logo">
-                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect width="40" height="40" rx="8" fill="#5CB85C" />
-                    <path d="M20 10L12 16V30H17V23H23V30H28V16L20 10Z" fill="white" />
-                </svg>
+                <img src="logo_NC3.png" alt="Neighborhood Church Logo" class="logo-img">
                 <span>neighborhood church</span>
             </a>
 
@@ -59,7 +56,7 @@
             </button>
 
             <div class="nav-links">
-                <a href="about.html">Our Story</a>
+                <a href="about.html">About</a>
                 <a href="sundays.html">Sundays</a>
                 <a href="community.html">Community</a>
                 <a href="leadership.html">Leadership</a>
@@ -75,6 +72,16 @@
             <h1>You don't have to do life alone.</h1>
             <p class="hero-subtitle">We're a church family in Overland Park learning to love God<br>and our neighbors
                 together, and there's room at the table for you.</p>
+
+            <div class="hero-service-info">
+                <p class="service-time"><strong>Join Us Sundays 10:30 AM</strong></p>
+                <div class="service-location-row">
+                    <span class="service-address">8600 W 91st Terrace, OP</span>
+                    <span class="separator">|</span>
+                    <a href="https://www.google.com/maps/search/?api=1&query=8600+W+91st+Terrace,+Overland+Park,+KS+66212"
+                        target="_blank" class="service-link">Get Directions</a>
+                </div>
+            </div>
             <div class="hero-cta">
                 <a href="#visit" class="btn btn-primary">Plan Your First Visit</a>
                 <a href="#story" class="btn btn-secondary">Our Story</a>
@@ -128,34 +135,7 @@
         </div>
     </section>
 
-    <!-- Service Info Banner -->
-    <section class="service-banner">
-        <div class="banner-content">
-            <div class="service-info">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" />
-                    <path d="M12 6V12L16 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-                </svg>
-                <div>
-                    <p class="banner-label">Join Us Sundays</p>
-                    <p class="banner-time">10:30 AM</p>
-                </div>
-            </div>
-            <div class="service-info">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        d="M12 2C8.13 2 5 5.13 5 9C5 14.25 12 22 12 22C12 22 19 14.25 19 9C19 5.13 15.87 2 12 2ZM12 11.5C10.62 11.5 9.5 10.38 9.5 9C9.5 7.62 10.62 6.5 12 6.5C13.38 6.5 14.5 7.62 14.5 9C14.5 10.38 13.38 11.5 12 11.5Z"
-                        fill="currentColor" />
-                </svg>
-                <div>
-                    <p class="banner-label">Location</p>
-                    <p class="banner-time">8600 W 91st Terrace, OP</p>
-                </div>
-            </div>
-            <a href="https://www.google.com/maps/search/?api=1&query=8600+W+91st+Terrace,+Overland+Park,+KS+66212"
-                target="_blank" class="btn btn-outline">Get Directions</a>
-        </div>
-    </section>
+
 
     <!-- First Visit Section -->
     <section class="first-visit" id="visit">
@@ -168,26 +148,11 @@
 
         <div class="visit-image">
             <!-- Replace with your actual Sunday gathering photo -->
-            <img src="https://images.unsplash.com/photo-1438232992991-995b7058bbb3?w=1200&h=600&fit=crop"
-                alt="Sunday gathering at Neighborhood Church">
+            <img src="pic_sanctuarfromback.png" alt="Sunday gathering at Neighborhood Church">
         </div>
 
         <div class="visit-grid">
-            <div class="visit-card">
-                <div class="visit-icon" style="background-color: #66B3CC;">
-                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
-                            stroke="white" stroke-width="2" />
-                        <path d="M8 12L11 15L16 9" stroke="white" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round" />
-                    </svg>
-                </div>
-                <h3>Come As You Are</h3>
-                <p>No dress code, no performance, no pretense. Whether you're wearing jeans or a suit, whether you've
-                    been following Jesus for decades or are just curious, you're welcome here. We're a gathering of
-                    regular people who need grace every single day.</p>
-            </div>
+
 
             <div class="visit-card">
                 <div class="visit-icon" style="background-color: #5CB85C;">
@@ -200,10 +165,11 @@
                             stroke-linejoin="round" />
                     </svg>
                 </div>
-                <h3>What Happens Sunday</h3>
-                <p>We gather at 10:30 AM for about 75 minutes. You'll find coffee, friendly faces, worship through
-                    music, and teaching from the Bible (we use the ESV). Our teaching is conversational and grounded in
-                    Scripture, combining seminary depth with street-level clarity.</p>
+                <h3>What Happens on Sunday</h3>
+                <p>We gather at 10:30 AM and spend about 75 minutes together. You will find good coffee, welcoming
+                    people, worship through music, and clear teaching from the Bible using the ESV. Our teaching is
+                    conversational and deeply rooted in Scripture, bringing thoughtful biblical depth in a way that
+                    connects to everyday life.</p>
             </div>
 
             <div class="visit-card">
@@ -222,9 +188,11 @@
                     </svg>
                 </div>
                 <h3>Kids Are Welcome</h3>
-                <p>Your children are part of our family too. We have engaging, age-appropriate classes during the sermon
-                    where kids learn about Jesus in a safe, fun environment. Parents, you can worship knowing your kids
-                    are cared for and learning too.</p>
+                <p>Your children are part of our family too. We offer a nursery for birth to 5 years for the entire
+                    service. School-aged kids (K-5th grade) stay with their families during the worship portion and then
+                    leave for engaging, age-appropriate classes during the sermon where they learn about Jesus in a
+                    safe, fun environment.
+                </p>
             </div>
 
             <div class="visit-card">
@@ -245,17 +213,13 @@
             </div>
         </div>
 
-        <div class="visit-cta">
-            <h3>Still have questions?</h3>
-            <p>We'd love to hear from you. Reach out and we'll get back to you quickly.</p>
-            <a href="connect.html" class="btn btn-primary">Get In Touch</a>
-        </div>
+
     </section>
 
     <!-- Our Rhythm Section -->
     <section class="rhythm-section">
         <div class="section-header">
-            <span class="section-tag">How We Follow Jesus</span>
+            <img src="NC_Logo_Green.png" alt="Neighborhood Church Logo" class="rhythm-logo">
             <h2>Be. Bless. Belong.</h2>
             <p class="section-intro">This is our rhythm: the heartbeat of how we live as followers of Jesus. It's
                 simple,
@@ -309,8 +273,16 @@
         </div>
         <div class="story-image">
             <!-- Replace with Dave or church leadership photo -->
-            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&h=800&fit=crop"
-                alt="Pastor Dave">
+            <img src="pic_paulbaptismtall.png" alt="Neighborhood Church community">
+        </div>
+    </section>
+
+
+    <section class="final-cta-section">
+        <div class="visit-cta">
+            <h3>Still have questions?</h3>
+            <p>We'd love to hear from you. Reach out and we'll get back to you quickly.</p>
+            <a href="connect.html" class="btn btn-primary">Get In Touch</a>
         </div>
     </section>
 
@@ -319,10 +291,7 @@
         <div class="footer-container">
             <div class="footer-brand">
                 <div class="footer-logo">
-                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect width="40" height="40" rx="8" fill="#5CB85C" />
-                        <path d="M20 10L12 16V30H17V23H23V30H28V16L20 10Z" fill="white" />
-                    </svg>
+                    <img src="logo_NC3.png" alt="Neighborhood Church Logo" class="logo-img">
                     <span>neighborhood church</span>
                 </div>
                 <p class="footer-tagline">Loving God and our neighbors together</p>
@@ -344,7 +313,7 @@
                     <ul>
                         <li><a href="community.html">Community Groups</a></li>
                         <li><a href="give.html">Give</a></li>
-                        <li><a href="https://www.youtube.com/@neighborhoodchurchop" target="_blank">Watch Online</a>
+                        <li><a href="https://www.youtube.com/@neighborhoodchurchop/streams" target="_blank">Watch Online</a>
                         </li>
                     </ul>
                 </div>
@@ -363,7 +332,7 @@
         <div class="footer-bottom">
             <p>&copy; 2026 Neighborhood Church. All rights reserved.</p>
             <div class="social-links">
-                <a href="https://www.youtube.com/@neighborhoodchurchop" target="_blank" aria-label="YouTube">
+                <a href="https://www.youtube.com/@neighborhoodchurchop/streams" target="_blank" aria-label="YouTube">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                         <path
                             d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z" />
