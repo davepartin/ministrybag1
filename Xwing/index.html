@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>X-Wing Miniatures Game Helper</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>X-WING</h1>
+            <div class="subtitle">Miniatures Game Helper</div>
+        </div>
+
+        <!-- Setup Screen -->
+        <div id="setupScreen" class="setup-screen">
+            <h2>Game Setup</h2>
+            
+            <div class="setup-question">
+                <label>How many players?</label>
+                <div class="button-group">
+                    <button onclick="game.selectPlayers(2)" id="players2">2 Players</button>
+                </div>
+            </div>
+
+            <div class="setup-question">
+                <label>Which scenario are you playing?</label>
+                <div class="button-group">
+                    <button onclick="game.selectScenario('satellite')" id="scenario1">Assault at Satellite Array</button>
+                    <button onclick="game.selectScenario('chance')" id="scenario2">Chance Engagement</button>
+                    <button onclick="game.selectScenario('salvage')" id="scenario3">Salvage Mission</button>
+                    <button onclick="game.selectScenario('scramble')" id="scenario4">Scramble Transmissions</button>
+                </div>
+            </div>
+
+            <div class="setup-question">
+                <label>Are you familiar with X-Wing or is this your first game?</label>
+                <div class="button-group">
+                    <button onclick="game.selectExperience('beginner')" id="exp1">First Time / Beginner</button>
+                    <button onclick="game.selectExperience('intermediate')" id="exp2">Some Experience</button>
+                    <button onclick="game.selectExperience('expert')" id="exp3">Experienced Player</button>
+                </div>
+            </div>
+
+            <button class="primary" onclick="game.startGame()" id="startBtn" disabled>Start Game</button>
+        </div>
+
+        <!-- Game Screen -->
+        <div id="gameScreen" class="game-screen">
+            <div class="game-header">
+                <div class="game-info">
+                    <h2 id="currentPhaseName">Planning Phase</h2>
+                    <p id="gameStatus">Round 1 of 12</p>
+                </div>
+                <div class="button-group">
+                    <button onclick="ui.showQuickRef()">Quick Reference</button>
+                    <button onclick="game.resetGame()" style="background: #ff4444; border-color: #ff6666;">Reset Game</button>
+                </div>
+            </div>
+
+            <!-- Phase Tracker -->
+            <div class="phase-tracker" id="phaseTracker">
+                <div class="phase-card active" data-phase="0">
+                    <div class="phase-icon">📋</div>
+                    <div class="phase-name">Planning</div>
+                </div>
+                <div class="phase-card" data-phase="1">
+                    <div class="phase-icon">⚙️</div>
+                    <div class="phase-name">System</div>
+                </div>
+                <div class="phase-card" data-phase="2">
+                    <div class="phase-icon">🚀</div>
+                    <div class="phase-name">Activation</div>
+                </div>
+                <div class="phase-card" data-phase="3">
+                    <div class="phase-icon">⚔️</div>
+                    <div class="phase-name">Engagement</div>
+                </div>
+                <div class="phase-card" data-phase="4">
+                    <div class="phase-icon">🔄</div>
+                    <div class="phase-name">End</div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="main-content">
+                <div class="content-panel">
+                    <h3 id="mainContentTitle">What do you want to do?</h3>
+                    <div id="mainContentArea" class="action-grid">
+                        <!-- Dynamic content goes here -->
+                    </div>
+                </div>
+
+                <div class="sidebar">
+                    <div class="sidebar-panel">
+                        <h4>Current Phase</h4>
+                        <p id="phaseDescription" style="color: #aaa; font-size: 0.9em;">Select an action to continue</p>
+                    </div>
+
+                    <div class="sidebar-panel">
+                        <h4>Quick Tips</h4>
+                        <div id="quickTips">
+                            <!-- Dynamic tips go here -->
+                        </div>
+                    </div>
+
+                    <div class="sidebar-panel">
+                        <h4>Tools</h4>
+                        <button onclick="ui.showDiceRoller()" style="width: 100%; margin-bottom: 10px;">🎲 Dice Roller</button>
+                        <button onclick="ui.showScenarioInfo()" style="width: 100%;">📜 Scenario Info</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation -->
+            <div class="nav-buttons">
+                <button onclick="game.previousPhase()">← Previous Phase</button>
+                <button onclick="game.nextPhase()" class="primary">Next Phase →</button>
+            </div>
+        </div>
+
+        <!-- Overlay for modals -->
+        <div class="overlay" id="overlay" onclick="ui.closeDetail()"></div>
+
+        <!-- Detail Panel -->
+        <div class="detail-panel" id="detailPanel">
+            <div class="detail-header">
+                <h3 id="detailTitle">Detail</h3>
+                <button class="close-btn" onclick="ui.closeDetail()">Close</button>
+            </div>
+            <div class="detail-content" id="detailContent">
+                <!-- Dynamic detail content -->
+            </div>
+        </div>
+    </div>
+
+    <script src="gameData.js"></script>
+    <script src="gameLogic.js"></script>
+    <script src="uiController.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
