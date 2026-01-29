@@ -350,8 +350,9 @@ svg {
     background-color: #000000;
 }
 
-.bg-opacity-75 {
-    opacity: 0.75;
+
+.bg-black-75 {
+    background-color: rgba(0, 0, 0, 0.75);
 }
 
 .items-center {

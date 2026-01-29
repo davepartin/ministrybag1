@@ -5,7 +5,7 @@ const { useState } = React;
 const { createElement: e } = React;
 
 // SVG Icon Components
-const Users = ({ size = 24, className = "" }) => 
+const Users = ({ size = 24, className = "" }) =>
     e('svg', { xmlns: "http://www.w3.org/2000/svg", width: size, height: size, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round", className },
         e('path', { d: "M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" }),
         e('circle', { cx: "9", cy: "7", r: "4" }),
@@ -272,14 +272,14 @@ function MD2GameHelper() {
     };
 
     // Collapsible Section Component
-    const CollapsibleSection = ({ title, children, sectionId }) => 
+    const CollapsibleSection = ({ title, children, sectionId }) =>
         e('div', { className: 'collapsible' },
-            e('button', { 
+            e('button', {
                 onClick: () => toggleSection(sectionId),
                 className: 'btn-collapse'
             },
                 e('span', { className: 'font-semibold text-purple-200' }, title),
-                expandedSection === sectionId 
+                expandedSection === sectionId
                     ? e(ChevronUp, { size: 20, className: 'text-purple-400' })
                     : e(ChevronDown, { size: 20, className: 'text-purple-400' })
             ),
@@ -295,7 +295,7 @@ function MD2GameHelper() {
                 e('ul', { className: 'space-y-2 text-gray-300' },
                     e('li', { className: 'flex items-start' },
                         e('span', { className: 'text-purple-400 mr-2' }, '•'),
-                        e('span', null, 
+                        e('span', null,
                             e('strong', null, 'Movement:'), ' Gain 2 movement points (move zones, open doors, interact)'
                         )
                     ),
@@ -324,8 +324,8 @@ function MD2GameHelper() {
                     e('p', null, e('strong', null, 'When a hero spends 1 MP to open a door to a new chamber:')),
                     e('ol', { className: 'list-decimal list-inside space-y-2 ml-2' },
                         e('li', null, e('strong', null, 'Draw a Door Card'), ' and resolve any event'),
-                        e('li', null, 
-                            e('strong', null, 'Spawn Monsters:'), 
+                        e('li', null,
+                            e('strong', null, 'Spawn Monsters:'),
                             ` Draw from the Mob deck matching the Dungeon Level. Place 1 leader + ${playerCount} minion${playerCount > 1 ? 's' : ''}. If that mob type is already in play, activate that mob immediately instead!`
                         ),
                         e('li', null, e('strong', null, 'Draw Monster Item:'), ' Draw 1 card from Monster Item deck (matching Dungeon Level) and place under the Mob card'),
@@ -550,7 +550,7 @@ function MD2GameHelper() {
         );
 
     const renderPhaseContent = () => {
-        switch(currentPhase) {
+        switch (currentPhase) {
             case 'hero': return renderHeroPhase();
             case 'enemy': return renderEnemyPhase();
             case 'levelup': return renderLevelUpPhase();
@@ -599,8 +599,8 @@ function MD2GameHelper() {
         const heroClass = heroClasses.find(c => c.id === selectedClass);
         if (!heroClass) return null;
 
-        return e('div', { 
-            className: 'fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4',
+        return e('div', {
+            className: 'fixed inset-0 bg-black-75 flex items-start justify-center p-4 overflow-y-auto',
             style: { zIndex: 1000 },
             onClick: closeClassReference
         },
@@ -616,7 +616,7 @@ function MD2GameHelper() {
                     }, '×')
                 ),
                 e('p', { className: 'text-gray-300 mb-4 italic' }, heroClass.description),
-                
+
                 e('div', { className: 'space-y-4' },
                     e('div', null,
                         e('h3', { className: 'text-lg font-semibold text-purple-300 mb-2' }, '📦 Setup'),
@@ -629,7 +629,7 @@ function MD2GameHelper() {
                             )
                         )
                     ),
-                    
+
                     e('div', null,
                         e('h3', { className: 'text-lg font-semibold text-green-300 mb-2' }, '🎮 Gameplay'),
                         e('ul', { className: 'space-y-1 text-gray-200' },
@@ -641,7 +641,7 @@ function MD2GameHelper() {
                             )
                         )
                     ),
-                    
+
                     e('div', null,
                         e('h3', { className: 'text-lg font-semibold text-yellow-300 mb-2' }, '💡 Tips'),
                         e('ul', { className: 'space-y-1 text-gray-200' },
@@ -654,7 +654,7 @@ function MD2GameHelper() {
                         )
                     )
                 ),
-                
+
                 e('button', {
                     onClick: closeClassReference,
                     className: 'btn-next mt-6'
