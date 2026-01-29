@@ -600,12 +600,12 @@ function MD2GameHelper() {
         if (!heroClass) return null;
 
         return e('div', {
-            className: 'fixed inset-0 bg-black-75 flex items-start justify-center p-4 overflow-y-auto',
+            className: 'fixed inset-0 bg-black-90 flex items-start justify-center p-4 overflow-y-auto',
             style: { zIndex: 1000 },
             onClick: closeClassReference
         },
             e('div', {
-                className: 'card p-6 max-w-2xl w-full max-h-screen overflow-y-auto',
+                className: 'card bg-gray-800 p-6 max-w-2xl w-full max-h-screen overflow-y-auto',
                 onClick: (e) => e.stopPropagation()
             },
                 e('div', { className: 'flex items-center justify-between mb-4' },
