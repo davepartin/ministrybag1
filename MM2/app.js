@@ -1,4 +1,5 @@
 'use strict';
+console.log("MM2 Game Helper Loaded");
 
 const { useState } = React;
 const { createElement: e } = React;
