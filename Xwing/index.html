@@ -3,134 +3,277 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>X-Wing Miniatures Game Helper</title>
+    <title>X-Wing Beginner's Guide</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>X-WING</h1>
-            <div class="subtitle">Miniatures Game Helper</div>
-        </div>
-
-        <!-- Setup Screen -->
-        <div id="setupScreen" class="setup-screen">
-            <h2>Game Setup</h2>
-            
-            <div class="setup-question">
-                <label>How many players?</label>
-                <div class="button-group">
-                    <button onclick="game.selectPlayers(2)" id="players2">2 Players</button>
-                </div>
+    <!-- Welcome Screen -->
+    <div id="welcome-screen" class="screen active">
+        <div class="welcome-container">
+            <div class="logo-container">
+                <div class="x-wing-logo">X-WING</div>
+                <div class="subtitle">Interactive Beginner's Guide</div>
             </div>
 
-            <div class="setup-question">
-                <label>Which scenario are you playing?</label>
-                <div class="button-group">
-                    <button onclick="game.selectScenario('satellite')" id="scenario1">Assault at Satellite Array</button>
-                    <button onclick="game.selectScenario('chance')" id="scenario2">Chance Engagement</button>
-                    <button onclick="game.selectScenario('salvage')" id="scenario3">Salvage Mission</button>
-                    <button onclick="game.selectScenario('scramble')" id="scenario4">Scramble Transmissions</button>
-                </div>
-            </div>
+            <div class="welcome-content">
+                <p class="welcome-text">Welcome, Pilot! This guide will walk you through your first X-Wing game step by step.</p>
 
-            <div class="setup-question">
-                <label>Are you familiar with X-Wing or is this your first game?</label>
-                <div class="button-group">
-                    <button onclick="game.selectExperience('beginner')" id="exp1">First Time / Beginner</button>
-                    <button onclick="game.selectExperience('intermediate')" id="exp2">Some Experience</button>
-                    <button onclick="game.selectExperience('expert')" id="exp3">Experienced Player</button>
-                </div>
-            </div>
-
-            <button class="primary" onclick="game.startGame()" id="startBtn" disabled>Start Game</button>
-        </div>
-
-        <!-- Game Screen -->
-        <div id="gameScreen" class="game-screen">
-            <div class="game-header">
-                <div class="game-info">
-                    <h2 id="currentPhaseName">Planning Phase</h2>
-                    <p id="gameStatus">Round 1 of 12</p>
-                </div>
-                <div class="button-group">
-                    <button onclick="ui.showQuickRef()">Quick Reference</button>
-                    <button onclick="game.resetGame()" style="background: #ff4444; border-color: #ff6666;">Reset Game</button>
-                </div>
-            </div>
-
-            <!-- Phase Tracker -->
-            <div class="phase-tracker" id="phaseTracker">
-                <div class="phase-card active" data-phase="0">
-                    <div class="phase-icon">📋</div>
-                    <div class="phase-name">Planning</div>
-                </div>
-                <div class="phase-card" data-phase="1">
-                    <div class="phase-icon">⚙️</div>
-                    <div class="phase-name">System</div>
-                </div>
-                <div class="phase-card" data-phase="2">
-                    <div class="phase-icon">🚀</div>
-                    <div class="phase-name">Activation</div>
-                </div>
-                <div class="phase-card" data-phase="3">
-                    <div class="phase-icon">⚔️</div>
-                    <div class="phase-name">Engagement</div>
-                </div>
-                <div class="phase-card" data-phase="4">
-                    <div class="phase-icon">🔄</div>
-                    <div class="phase-name">End</div>
-                </div>
-            </div>
-
-            <!-- Main Content -->
-            <div class="main-content">
-                <div class="content-panel">
-                    <h3 id="mainContentTitle">What do you want to do?</h3>
-                    <div id="mainContentArea" class="action-grid">
-                        <!-- Dynamic content goes here -->
+                <div class="feature-cards">
+                    <div class="feature-card">
+                        <div class="feature-icon">🎯</div>
+                        <div class="feature-title">Step-by-Step</div>
+                        <div class="feature-desc">Guided walkthrough of each phase</div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🎲</div>
+                        <div class="feature-title">Dice Roller</div>
+                        <div class="feature-desc">Built-in attack & defense dice</div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📖</div>
+                        <div class="feature-title">Rules Reference</div>
+                        <div class="feature-desc">Quick access to all rules</div>
                     </div>
                 </div>
 
-                <div class="sidebar">
-                    <div class="sidebar-panel">
-                        <h4>Current Phase</h4>
-                        <p id="phaseDescription" style="color: #aaa; font-size: 0.9em;">Select an action to continue</p>
-                    </div>
+                <button class="btn btn-primary btn-large" onclick="app.startGuide()">
+                    <span class="btn-icon">🚀</span>
+                    Start Learning
+                </button>
 
-                    <div class="sidebar-panel">
-                        <h4>Quick Tips</h4>
-                        <div id="quickTips">
-                            <!-- Dynamic tips go here -->
+                <button class="btn btn-secondary" onclick="app.showRulesFromWelcome()">
+                    <span class="btn-icon">📚</span>
+                    View Rules Reference
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Game Screen -->
+    <div id="game-screen" class="screen">
+        <header class="game-header">
+            <div class="header-left">
+                <button class="btn btn-icon-only" onclick="app.goToWelcome()" title="Back to Start">
+                    <span>🏠</span>
+                </button>
+                <div class="round-indicator">
+                    <span class="round-label">Round</span>
+                    <span class="round-number" id="round-number">1</span>
+                </div>
+            </div>
+            <div class="header-center">
+                <h1 class="current-phase-title" id="current-phase-title">Planning Phase</h1>
+            </div>
+            <div class="header-right">
+                <button class="btn btn-icon-only" onclick="app.showDiceRoller()" title="Dice Roller">
+                    <span>🎲</span>
+                </button>
+                <button class="btn btn-icon-only" onclick="app.showRules()" title="Rules Reference">
+                    <span>📖</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Phase Progress Bar -->
+        <div class="phase-tracker">
+            <div class="phase-item" data-phase="0">
+                <div class="phase-icon">📋</div>
+                <div class="phase-name">Planning</div>
+            </div>
+            <div class="phase-connector"></div>
+            <div class="phase-item" data-phase="1">
+                <div class="phase-icon">⚙️</div>
+                <div class="phase-name">System</div>
+            </div>
+            <div class="phase-connector"></div>
+            <div class="phase-item" data-phase="2">
+                <div class="phase-icon">✈️</div>
+                <div class="phase-name">Activation</div>
+            </div>
+            <div class="phase-connector"></div>
+            <div class="phase-item" data-phase="3">
+                <div class="phase-icon">💥</div>
+                <div class="phase-name">Engagement</div>
+            </div>
+            <div class="phase-connector"></div>
+            <div class="phase-item" data-phase="4">
+                <div class="phase-icon">🔄</div>
+                <div class="phase-name">End</div>
+            </div>
+        </div>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Step-by-Step Walkthrough -->
+            <div class="walkthrough-container">
+                <div class="step-card" id="step-card">
+                    <div class="step-header">
+                        <div class="step-number" id="step-number">Step 1</div>
+                        <div class="step-title" id="step-title">Set Your Maneuver Dials</div>
+                    </div>
+                    <div class="step-content" id="step-content">
+                        <!-- Dynamic content loaded here -->
+                    </div>
+                    <div class="step-tips" id="step-tips">
+                        <!-- Tips loaded here -->
+                    </div>
+                </div>
+
+                <!-- Navigation -->
+                <div class="step-navigation">
+                    <button class="btn btn-nav" id="btn-prev" onclick="app.previousStep()">
+                        <span class="nav-icon">◀</span>
+                        <span class="nav-text">Previous</span>
+                    </button>
+                    <div class="step-progress">
+                        <div class="progress-dots" id="progress-dots">
+                            <!-- Dots generated dynamically -->
                         </div>
                     </div>
-
-                    <div class="sidebar-panel">
-                        <h4>Tools</h4>
-                        <button onclick="ui.showDiceRoller()" style="width: 100%; margin-bottom: 10px;">🎲 Dice Roller</button>
-                        <button onclick="ui.showScenarioInfo()" style="width: 100%;">📜 Scenario Info</button>
-                    </div>
+                    <button class="btn btn-nav btn-primary" id="btn-next" onclick="app.nextStep()">
+                        <span class="nav-text">Next</span>
+                        <span class="nav-icon">▶</span>
+                    </button>
                 </div>
             </div>
 
-            <!-- Navigation -->
-            <div class="nav-buttons">
-                <button onclick="game.previousPhase()">← Previous Phase</button>
-                <button onclick="game.nextPhase()" class="primary">Next Phase →</button>
+            <!-- Quick Actions Sidebar -->
+            <aside class="quick-actions">
+                <h3 class="sidebar-title">Quick Tools</h3>
+
+                <button class="tool-btn" onclick="app.showDiceRoller()">
+                    <div class="tool-icon">
+                        <div class="dice-preview attack">
+                            <span class="dice-face">💥</span>
+                        </div>
+                        <div class="dice-preview defense">
+                            <span class="dice-face">🛡️</span>
+                        </div>
+                    </div>
+                    <span class="tool-label">Roll Dice</span>
+                </button>
+
+                <button class="tool-btn" onclick="app.showManeuverGuide()">
+                    <div class="tool-icon maneuver-colors">
+                        <span class="color-dot blue"></span>
+                        <span class="color-dot white"></span>
+                        <span class="color-dot red"></span>
+                    </div>
+                    <span class="tool-label">Maneuver Colors</span>
+                </button>
+
+                <button class="tool-btn" onclick="app.showTokenGuide()">
+                    <div class="tool-icon token-icons">
+                        <span class="token focus">●</span>
+                        <span class="token evade">◆</span>
+                    </div>
+                    <span class="tool-label">Token Guide</span>
+                </button>
+
+                <button class="tool-btn" onclick="app.showRangeGuide()">
+                    <div class="tool-icon range-icon">
+                        <span class="range-bar"></span>
+                    </div>
+                    <span class="tool-label">Range & Combat</span>
+                </button>
+            </aside>
+        </main>
+    </div>
+
+    <!-- Rules Reference Screen -->
+    <div id="rules-screen" class="screen">
+        <header class="rules-header">
+            <button class="btn btn-icon-only" onclick="app.closeRules()" title="Back">
+                <span>←</span>
+            </button>
+            <h1>Rules Reference</h1>
+            <div class="search-container">
+                <input type="text" id="rules-search" placeholder="Search rules..." oninput="app.searchRules(this.value)">
+            </div>
+        </header>
+
+        <div class="rules-container">
+            <nav class="rules-nav" id="rules-nav">
+                <!-- Generated dynamically -->
+            </nav>
+            <main class="rules-content" id="rules-content">
+                <!-- Content loaded dynamically -->
+            </main>
+        </div>
+    </div>
+
+    <!-- Modal Overlay -->
+    <div class="modal-overlay" id="modal-overlay" onclick="app.closeModal()">
+        <div class="modal-content" id="modal-content" onclick="event.stopPropagation()">
+            <button class="modal-close" onclick="app.closeModal()">×</button>
+            <div class="modal-body" id="modal-body">
+                <!-- Dynamic content -->
             </div>
         </div>
+    </div>
 
-        <!-- Overlay for modals -->
-        <div class="overlay" id="overlay" onclick="ui.closeDetail()"></div>
+    <!-- Dice Roller Modal -->
+    <div class="dice-modal" id="dice-modal">
+        <div class="dice-modal-content">
+            <button class="modal-close" onclick="app.closeDiceRoller()">×</button>
+            <h2 class="dice-title">Dice Roller</h2>
 
-        <!-- Detail Panel -->
-        <div class="detail-panel" id="detailPanel">
-            <div class="detail-header">
-                <h3 id="detailTitle">Detail</h3>
-                <button class="close-btn" onclick="ui.closeDetail()">Close</button>
+            <div class="dice-section">
+                <div class="dice-type attack-dice">
+                    <h3><span class="dice-icon attack">🔴</span> Attack Dice</h3>
+                    <div class="dice-controls">
+                        <button class="dice-count-btn" onclick="app.adjustDice('attack', -1)">−</button>
+                        <span class="dice-count" id="attack-count">3</span>
+                        <button class="dice-count-btn" onclick="app.adjustDice('attack', 1)">+</button>
+                    </div>
+                    <button class="btn btn-attack" onclick="app.rollAttack()">Roll Attack</button>
+                    <div class="dice-results" id="attack-results"></div>
+                </div>
+
+                <div class="dice-type defense-dice">
+                    <h3><span class="dice-icon defense">🟢</span> Defense Dice</h3>
+                    <div class="dice-controls">
+                        <button class="dice-count-btn" onclick="app.adjustDice('defense', -1)">−</button>
+                        <span class="dice-count" id="defense-count">2</span>
+                        <button class="dice-count-btn" onclick="app.adjustDice('defense', 1)">+</button>
+                    </div>
+                    <button class="btn btn-defense" onclick="app.rollDefense()">Roll Defense</button>
+                    <div class="dice-results" id="defense-results"></div>
+                </div>
             </div>
-            <div class="detail-content" id="detailContent">
-                <!-- Dynamic detail content -->
+
+            <div class="dice-legend">
+                <h4>Dice Faces</h4>
+                <div class="legend-grid">
+                    <div class="legend-item">
+                        <span class="die attack hit">💥</span>
+                        <span>Hit</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="die attack crit">☠️</span>
+                        <span>Critical</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="die attack focus">👁️</span>
+                        <span>Focus</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="die attack blank">○</span>
+                        <span>Blank</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="die defense evade">🛡️</span>
+                        <span>Evade</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="die defense focus">👁️</span>
+                        <span>Focus</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="die defense blank">○</span>
+                        <span>Blank</span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

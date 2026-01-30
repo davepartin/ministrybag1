@@ -1,878 +1,1405 @@
 // gameData.js - Contains all game rules, content, and reference data
 
 const gameData = {
-    scenarios: {
-        satellite: {
-            name: 'Assault at the Satellite Array',
-            description: 'Take control of 5 satellites placed on the board',
-            objectives: [
-                'Place 1 satellite in center of play area',
-                'Place 4 more satellites at range 3 of center',
-                'Starting Round 2: Earn 1 point per satellite you control',
-                'Control = more ships at range 0-1 (medium/large count as 2 ships)'
-            ],
-            special: 'Satellites are scenario features that cannot be moved or destroyed'
-        },
-        chance: {
-            name: 'Chance Engagement',
-            description: 'Contest the central satellite',
-            objectives: [
-                'Place 1 satellite in center of play area',
-                'Starting Round 2: 1 point if you contest (ships at range 0-2)',
-                '+1 bonus point if only you are contesting',
-                'Half points when ships reduced to half health'
-            ],
-            special: 'Earn points for both damaging and destroying ships'
-        },
-        salvage: {
-            name: 'Salvage Mission',
-            description: 'Retrieve 5 supply caches using Tow action',
-            objectives: [
-                'Place 5 supply caches on the board',
-                'Perform Tow action at range 0-1 to pick up cache',
-                'Starting Round 2: 1 point per cache on your ships',
-                'Towing ships cannot Barrel Roll, Boost, Rotate, SLAM, or Cloak'
-            ],
-            special: 'Supply caches are jettisoned if ship takes crit damage or is destroyed'
-        },
-        scramble: {
-            name: 'Scramble the Transmissions',
-            description: 'Scramble 3 satellites with Scramble action',
-            objectives: [
-                'Place 3 satellites on the board',
-                'Perform Scramble action at range 0-1 to place your marker',
-                'Starting Round 2: 1 point per satellite you control',
-                'Your marker shows control - only one marker per satellite'
-            ],
-            special: 'Scrambling a satellite removes opponent marker'
-        }
+    // Step-by-step walkthrough content for each phase
+    phaseSteps: {
+        planning: [
+            {
+                title: 'Set Your Maneuver Dials',
+                content: `
+                    <p>Each player secretly selects a maneuver for every ship they control.</p>
+                    <p><strong>How to do it:</strong></p>
+                    <ul>
+                        <li>Find the <strong>maneuver dial</strong> for each of your ships</li>
+                        <li>Turn the dial to select your desired maneuver</li>
+                        <li>Place the dial <strong>facedown</strong> next to that ship</li>
+                        <li>You can look at your own dials, but don't let your opponent see!</li>
+                    </ul>
+                    <div class="info-box gold">
+                        <h4>Understanding the Dial</h4>
+                        <p>The dial shows all maneuvers your ship can perform. Each maneuver has:</p>
+                        <ul>
+                            <li><strong>Speed</strong> (1-5) - How far the ship moves</li>
+                            <li><strong>Direction</strong> - Straight, bank, turn, or special</li>
+                            <li><strong>Color</strong> - Blue, white, or red (see below)</li>
+                        </ul>
+                    </div>
+                `,
+                tip: 'Try to predict where your opponent will move. Setting up good firing positions while staying out of enemy arcs is key to winning!'
+            },
+            {
+                title: 'Understanding Maneuver Colors',
+                content: `
+                    <p>Maneuvers are color-coded to show their difficulty:</p>
+                    <div class="maneuver-grid">
+                        <div class="maneuver-card blue">
+                            <div class="maneuver-color-indicator">😊</div>
+                            <h3>Blue</h3>
+                            <p><strong>Easy!</strong></p>
+                            <p>Remove 1 stress token after executing</p>
+                        </div>
+                        <div class="maneuver-card white">
+                            <div class="maneuver-color-indicator">😐</div>
+                            <h3>White</h3>
+                            <p><strong>Normal</strong></p>
+                            <p>No effect on stress</p>
+                        </div>
+                        <div class="maneuver-card red">
+                            <div class="maneuver-color-indicator">😰</div>
+                            <h3>Red</h3>
+                            <p><strong>Difficult!</strong></p>
+                            <p>Gain 1 stress token after executing</p>
+                        </div>
+                    </div>
+                `,
+                tip: 'If your ship is stressed, you cannot select red maneuvers! Plan ahead to avoid getting stuck.'
+            },
+            {
+                title: 'Determine First Player',
+                content: `
+                    <p>Both players roll to see who goes first this round.</p>
+                    <p><strong>How to roll:</strong></p>
+                    <ul>
+                        <li>Each player rolls <strong>3 attack dice</strong> (red dice)</li>
+                        <li>Compare results in this order:</li>
+                    </ul>
+                    <ol style="margin-left: 25px; margin-top: 10px;">
+                        <li>Most <strong>💥 Hit</strong> results wins</li>
+                        <li>If tied, most <strong>👁️ Focus</strong> results wins</li>
+                        <li>If still tied, most <strong>○ Blank</strong> results wins</li>
+                        <li>If still tied, reroll!</li>
+                    </ol>
+                    <div class="info-box tip">
+                        <h4>Why First Player Matters</h4>
+                        <p>The first player's ships act first whenever initiative values are tied. This can be crucial during combat!</p>
+                    </div>
+                `,
+                tip: 'Use the dice roller in the sidebar to roll for first player!'
+            }
+        ],
+
+        system: [
+            {
+                title: 'System Phase Overview',
+                content: `
+                    <p>The System Phase is for special abilities that happen <strong>before</strong> ships move.</p>
+                    <div class="info-box gold">
+                        <h4>Activation Order</h4>
+                        <p>Ships activate in <strong>initiative order: lowest to highest</strong></p>
+                        <p>Example: A ship with initiative 2 acts before a ship with initiative 4</p>
+                    </div>
+                    <p><strong>Common System Phase abilities:</strong></p>
+                    <ul>
+                        <li>💣 Dropping or launching bombs/mines</li>
+                        <li>👻 Decloaking (for ships with cloak)</li>
+                        <li>⚡ Special pilot abilities that say "During System Phase"</li>
+                    </ul>
+                `,
+                tip: 'If neither player has System Phase abilities, you can skip straight to Activation Phase!'
+            },
+            {
+                title: 'Using System Phase Abilities',
+                content: `
+                    <p>If you have ships with System Phase abilities:</p>
+                    <ol style="margin-left: 25px;">
+                        <li>Start with the <strong>lowest initiative</strong> ship</li>
+                        <li>Resolve any System Phase abilities for that ship</li>
+                        <li>Move to the next lowest initiative ship</li>
+                        <li>Continue until all ships have had a chance to act</li>
+                    </ol>
+                    <div class="info-box warning">
+                        <h4>No System Abilities?</h4>
+                        <p>If your ships don't have any abilities that trigger during System Phase, simply proceed to the Activation Phase.</p>
+                    </div>
+                `
+            }
+        ],
+
+        activation: [
+            {
+                title: 'Activation Phase Overview',
+                content: `
+                    <p>This is where ships <strong>move</strong> and <strong>take actions</strong>!</p>
+                    <div class="info-box gold">
+                        <h4>Activation Order</h4>
+                        <p>Ships activate in <strong>initiative order: lowest to highest</strong></p>
+                        <p>This means lower initiative ships move first, which can be a disadvantage - higher initiative pilots see where enemies are before choosing their action!</p>
+                    </div>
+                    <p><strong>Each ship follows these steps:</strong></p>
+                    <ol style="margin-left: 25px;">
+                        <li>Reveal maneuver dial</li>
+                        <li>Execute maneuver</li>
+                        <li>Perform action (if not stressed)</li>
+                    </ol>
+                `,
+                tip: 'Complete all steps for one ship before moving to the next ship!'
+            },
+            {
+                title: 'Step 1: Reveal Dial',
+                content: `
+                    <p>When it's your ship's turn to activate:</p>
+                    <ul>
+                        <li>Flip the maneuver dial <strong>faceup</strong></li>
+                        <li>Place it next to the ship card so everyone can see</li>
+                        <li>This shows which maneuver the ship will execute</li>
+                    </ul>
+                    <div class="info-box tip">
+                        <h4>Reading the Dial</h4>
+                        <p>The revealed maneuver shows:</p>
+                        <ul>
+                            <li><strong>Speed</strong> - The number (1-5)</li>
+                            <li><strong>Bearing</strong> - The arrow shape (straight, bank, turn, etc.)</li>
+                            <li><strong>Difficulty</strong> - The color (blue, white, or red)</li>
+                        </ul>
+                    </div>
+                `,
+                tip: 'Once revealed, you must execute that maneuver - no take-backs!'
+            },
+            {
+                title: 'Step 2: Execute Maneuver',
+                content: `
+                    <p><strong>How to move your ship:</strong></p>
+                    <ol style="margin-left: 25px;">
+                        <li>Find the <strong>matching template</strong> (same speed and shape)</li>
+                        <li>Place template between the ship's <strong>front guides</strong></li>
+                        <li>Slide template until it's flush against the base</li>
+                        <li>Pick up your ship</li>
+                        <li>Place ship at the other end of the template</li>
+                        <li>Slide the ship's <strong>rear guides</strong> into the template</li>
+                        <li>Remove the template</li>
+                    </ol>
+                    <div class="info-box gold">
+                        <h4>After Moving - Check Difficulty!</h4>
+                        <ul>
+                            <li><span class="text-blue"><strong>Blue maneuver:</strong></span> Remove 1 stress token</li>
+                            <li><strong>White maneuver:</strong> No effect</li>
+                            <li><span class="text-red"><strong>Red maneuver:</strong></span> Gain 1 stress token</li>
+                        </ul>
+                    </div>
+                `,
+                tip: 'Take your time placing templates precisely - even small differences can affect combat!'
+            },
+            {
+                title: 'Step 3: Perform Action',
+                content: `
+                    <p>After moving, your ship may perform <strong>one action</strong> from its action bar.</p>
+                    <div class="info-box warning">
+                        <h4>⚠️ Stressed Ships Skip This Step!</h4>
+                        <p>If your ship has any stress tokens, it <strong>cannot</strong> perform actions.</p>
+                    </div>
+                    <h3 style="margin-top: 20px;">Common Actions:</h3>
+                    <div class="token-grid" style="margin-top: 15px;">
+                        <div class="token-card focus">
+                            <div class="token-symbol">●</div>
+                            <div class="token-info">
+                                <h4>Focus</h4>
+                                <p>Gain a focus token. Spend it to change all focus results to hits or evades.</p>
+                            </div>
+                        </div>
+                        <div class="token-card evade">
+                            <div class="token-symbol">◆</div>
+                            <div class="token-info">
+                                <h4>Evade</h4>
+                                <p>Gain an evade token. Spend to add 1 evade result when defending.</p>
+                            </div>
+                        </div>
+                        <div class="token-card lock">
+                            <div class="token-symbol">⊕</div>
+                            <div class="token-info">
+                                <h4>Lock</h4>
+                                <p>Lock an enemy at range 0-3. Spend to reroll attack dice against them.</p>
+                            </div>
+                        </div>
+                    </div>
+                `,
+                tip: 'Focus is the most versatile action for beginners - it helps both attack AND defense!'
+            },
+            {
+                title: 'What If Ships Overlap?',
+                content: `
+                    <p>Sometimes your maneuver causes your ship to land on another ship. When this happens:</p>
+                    <ol style="margin-left: 25px;">
+                        <li><strong>Slide backward</strong> along the template until not overlapping</li>
+                        <li><strong>Place ship</strong> touching the last ship you backed over</li>
+                        <li><strong>Still check difficulty</strong> (gain/remove stress as normal)</li>
+                    </ol>
+                    <div class="info-box warning">
+                        <h4>Overlapping a Friendly Ship:</h4>
+                        <ul>
+                            <li>Roll 1 attack die - on hit/crit, suffer 1 damage</li>
+                            <li>Skip your action step</li>
+                        </ul>
+                    </div>
+                    <div class="info-box tip">
+                        <h4>Overlapping an Enemy Ship:</h4>
+                        <ul>
+                            <li>You may perform a Focus or Calculate action (as red - gain stress)</li>
+                            <li>Skip your normal action step</li>
+                        </ul>
+                    </div>
+                `,
+                tip: 'Intentionally blocking enemy ships is a powerful tactic! It denies them their action.'
+            }
+        ],
+
+        engagement: [
+            {
+                title: 'Engagement Phase Overview',
+                content: `
+                    <p>This is where ships <strong>attack</strong> each other!</p>
+                    <div class="info-box gold">
+                        <h4>Engagement Order - REVERSED!</h4>
+                        <p>Ships engage in <strong>initiative order: highest to lowest</strong></p>
+                        <p>This is the OPPOSITE of Activation Phase!</p>
+                        <p><strong>Higher initiative = shoot first = can destroy enemies before they fire!</strong></p>
+                    </div>
+                    <p>Each ship that engages may perform <strong>one attack</strong> against an enemy in range and arc.</p>
+                `,
+                tip: 'Higher initiative pilots are valuable because they can eliminate threats before taking fire!'
+            },
+            {
+                title: 'Declare Your Target',
+                content: `
+                    <p>Before attacking, you must have a valid target:</p>
+                    <div class="info-box gold">
+                        <h4>Two Requirements:</h4>
+                        <ol style="margin-left: 20px;">
+                            <li><strong>In Arc</strong> - Target must be in your firing arc (usually front arc)</li>
+                            <li><strong>In Range</strong> - Target must be at range 1-3</li>
+                        </ol>
+                    </div>
+                    <p><strong>How to measure range:</strong></p>
+                    <ul>
+                        <li>Place the range ruler from your ship to the target</li>
+                        <li>Measure from the closest points of both bases</li>
+                        <li>The range band touched determines the range</li>
+                    </ul>
+                    <div class="range-visual" style="margin-top: 15px;">
+                        <div class="range-segment range-1">Range 1<br>+1 attack die!</div>
+                        <div class="range-segment range-2">Range 2<br>Standard</div>
+                        <div class="range-segment range-3">Range 3<br>+1 defense die</div>
+                    </div>
+                `,
+                tip: 'Getting to Range 1 is worth the risk - that extra attack die is powerful!'
+            },
+            {
+                title: 'Roll Attack Dice',
+                content: `
+                    <p>The attacker rolls red dice equal to their ship's <strong>attack value</strong>.</p>
+                    <div class="info-box gold">
+                        <h4>Attack Value</h4>
+                        <p>Find the red number on your ship card - that's how many dice you roll!</p>
+                        <p><strong>Range 1 Bonus:</strong> Roll +1 additional attack die</p>
+                    </div>
+                    <h3 style="margin-top: 20px;">Attack Dice Results:</h3>
+                    <div class="legend-grid" style="margin-top: 15px;">
+                        <div class="legend-item">
+                            <span class="die attack">💥</span>
+                            <span><strong>Hit</strong><br>1 damage</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="die attack">☠️</span>
+                            <span><strong>Crit</strong><br>1 critical damage</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="die attack">👁️</span>
+                            <span><strong>Focus</strong><br>Needs token to count</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="die attack">○</span>
+                            <span><strong>Blank</strong><br>No effect</span>
+                        </div>
+                    </div>
+                `,
+                tip: 'Use the dice roller in the sidebar! Tap "Roll Dice" for quick access.'
+            },
+            {
+                title: 'Roll Defense Dice',
+                content: `
+                    <p>The defender rolls green dice equal to their ship's <strong>agility value</strong>.</p>
+                    <div class="info-box gold">
+                        <h4>Agility Value</h4>
+                        <p>Find the green number on your ship card - that's how many dice you roll!</p>
+                        <p><strong>Range 3 Bonus:</strong> Roll +1 additional defense die</p>
+                        <p><strong>Obstructed:</strong> Roll +1 additional defense die</p>
+                    </div>
+                    <h3 style="margin-top: 20px;">Defense Dice Results:</h3>
+                    <div class="legend-grid" style="margin-top: 15px;">
+                        <div class="legend-item">
+                            <span class="die defense">🛡️</span>
+                            <span><strong>Evade</strong><br>Cancels 1 hit</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="die defense">👁️</span>
+                            <span><strong>Focus</strong><br>Needs token to count</span>
+                        </div>
+                        <div class="legend-item">
+                            <span class="die defense">○</span>
+                            <span><strong>Blank</strong><br>No effect</span>
+                        </div>
+                    </div>
+                `,
+                tip: 'Agile ships with high defense values are harder to hit but often have weaker attacks.'
+            },
+            {
+                title: 'Modify Dice',
+                content: `
+                    <p>After rolling, both players can spend tokens to modify their dice.</p>
+                    <div class="info-box gold">
+                        <h4>Modification Order:</h4>
+                        <ol style="margin-left: 20px;">
+                            <li>Defender modifies attacker's dice first</li>
+                            <li>Attacker modifies their own dice</li>
+                            <li>Attacker modifies defender's dice</li>
+                            <li>Defender modifies their own dice</li>
+                        </ol>
+                    </div>
+                    <h3 style="margin-top: 20px;">Common Modifications:</h3>
+                    <ul>
+                        <li><strong>Focus Token:</strong> Change ALL focus results to hits (attack) or evades (defense)</li>
+                        <li><strong>Evade Token:</strong> Add 1 evade result to your defense roll</li>
+                        <li><strong>Lock Token:</strong> Reroll any number of attack dice against locked ship</li>
+                    </ul>
+                `,
+                tip: 'Focus tokens are powerful because they can change MULTIPLE dice at once!'
+            },
+            {
+                title: 'Compare Results & Deal Damage',
+                content: `
+                    <p><strong>Neutralize Results:</strong></p>
+                    <ul>
+                        <li>Each 🛡️ Evade result cancels one 💥 Hit result</li>
+                        <li>Cancel ALL Hits first, then Evades can cancel ☠️ Crits</li>
+                    </ul>
+                    <div class="info-box warning">
+                        <h4>Dealing Damage</h4>
+                        <p>For each uncanceled hit/crit result:</p>
+                        <ol style="margin-left: 20px;">
+                            <li><strong>Shields first:</strong> Flip shield tokens to inactive (red) side</li>
+                            <li><strong>Then hull:</strong> Draw damage cards from the damage deck</li>
+                        </ol>
+                        <p><strong>💥 Hit:</strong> Damage card facedown (just counts as damage)</p>
+                        <p><strong>☠️ Crit:</strong> Damage card faceup (has negative effect!)</p>
+                    </div>
+                    <div class="info-box gold">
+                        <h4>Ship Destruction</h4>
+                        <p>A ship is <strong>destroyed</strong> when its damage cards equal or exceed its hull value!</p>
+                    </div>
+                `,
+                tip: 'Shields absorb both hits AND crits - they\'re very valuable!'
+            }
+        ],
+
+        end: [
+            {
+                title: 'End Phase Overview',
+                content: `
+                    <p>The End Phase wraps up the round with cleanup and scoring.</p>
+                    <div class="info-box gold">
+                        <h4>End Phase Steps:</h4>
+                        <ol style="margin-left: 20px;">
+                            <li>Remove circular tokens</li>
+                            <li>Recover charges</li>
+                            <li>Check victory conditions</li>
+                            <li>Score scenario objectives (Round 2+)</li>
+                        </ol>
+                    </div>
+                `,
+                tip: 'Don\'t forget to check victory conditions - the game might be over!'
+            },
+            {
+                title: 'Remove Circular Tokens',
+                content: `
+                    <p>Remove all <strong>circular</strong> tokens from all ships:</p>
+                    <div class="info-box success">
+                        <h4>Remove These (Circular Tokens):</h4>
+                        <ul>
+                            <li>Focus tokens</li>
+                            <li>Evade tokens</li>
+                            <li>Calculate tokens</li>
+                            <li>Disarm tokens</li>
+                        </ul>
+                    </div>
+                    <div class="info-box warning">
+                        <h4>DO NOT Remove These (Square Tokens):</h4>
+                        <ul>
+                            <li><strong>Stress tokens</strong> - removed by blue maneuvers</li>
+                            <li><strong>Lock tokens</strong> - stay until spent</li>
+                            <li><strong>Ion tokens</strong> - removed after ion maneuver</li>
+                            <li><strong>Strain tokens</strong> - removed by other effects</li>
+                        </ul>
+                    </div>
+                `,
+                tip: 'Easy rule: Round tokens go away each round. Square tokens stay!'
+            },
+            {
+                title: 'Recover Charges',
+                content: `
+                    <p>Some upgrade cards have <strong>charges</strong> that can be spent and recovered.</p>
+                    <div class="info-box gold">
+                        <h4>How to Recover:</h4>
+                        <ul>
+                            <li>Look for the <strong>↻ symbol</strong> next to a card's charge limit</li>
+                            <li>If present, recover <strong>1 charge</strong> during End Phase</li>
+                            <li>Cannot exceed the card's maximum charges</li>
+                        </ul>
+                    </div>
+                    <p><strong>Force charges</strong> (purple) also recover this way if the card shows ↻.</p>
+                `,
+                tip: 'Not all charges recover! Check for the recovery symbol on each card.'
+            },
+            {
+                title: 'Check Victory Conditions',
+                content: `
+                    <p>The game can end in three ways:</p>
+                    <div class="info-box gold">
+                        <h4>1. All Enemy Ships Destroyed</h4>
+                        <p>If only one player has ships remaining, that player wins <strong>immediately</strong>!</p>
+                    </div>
+                    <div class="info-box gold">
+                        <h4>2. 20+ Mission Points</h4>
+                        <p>If a player has <strong>20 or more mission points</strong> AND has more points than their opponent, that player wins!</p>
+                    </div>
+                    <div class="info-box gold">
+                        <h4>3. End of Round 12</h4>
+                        <p>After completing Round 12, the player with the most mission points wins!</p>
+                    </div>
+                `,
+                tip: 'You earn mission points from destroying ships AND completing scenario objectives!'
+            },
+            {
+                title: 'Score Objectives (Round 2+)',
+                content: `
+                    <p>Starting from <strong>Round 2</strong>, score points for scenario objectives.</p>
+                    <div class="info-box gold">
+                        <h4>Ways to Earn Mission Points:</h4>
+                        <ul>
+                            <li><strong>Destroying ships:</strong> Earn points equal to the ship's squad point value</li>
+                            <li><strong>Scenario objectives:</strong> Control satellites, tow caches, scramble transmissions, etc.</li>
+                            <li><strong>Half points:</strong> Some scenarios give points for damaging ships to half health</li>
+                        </ul>
+                    </div>
+                    <p>Track your mission points throughout the game!</p>
+                `,
+                tip: 'Don\'t focus only on destruction - scenario objectives can win games!'
+            },
+            {
+                title: 'Start Next Round',
+                content: `
+                    <p>If no one has won, begin the next round!</p>
+                    <ol style="margin-left: 25px;">
+                        <li>Increment the round counter</li>
+                        <li>Return to the <strong>Planning Phase</strong></li>
+                        <li>Set new maneuver dials for all ships</li>
+                        <li>Roll for first player again</li>
+                    </ol>
+                    <div class="info-box tip">
+                        <h4>Remember!</h4>
+                        <p>Stress tokens carry over between rounds. Plan your blue maneuvers carefully to remove stress!</p>
+                    </div>
+                `
+            }
+        ]
     },
 
-    phaseContent: {
-        planning: {
-            actions: [
-                { id: 'planningSteps', icon: '📝', title: 'Set Maneuver Dials', description: 'Choose secret maneuvers for all ships' },
-                { id: 'determineFirstPlayer', icon: '🎲', title: 'Determine First Player', description: 'Roll 3 attack dice' },
-                { id: 'maneuverColors', icon: '🎨', title: 'Maneuver Difficulty', description: 'Blue, White, Red explained' },
-                { id: 'stressRules', icon: '⚠️', title: 'Stress Rules', description: 'What stressed ships cannot do' }
-            ],
-            tips: [
-                '<strong>Tip:</strong> Predict where your opponent will move!',
-                '<strong>Remember:</strong> Stressed ships cannot do red maneuvers',
-                '<strong>Blue:</strong> Remove stress | <strong>Red:</strong> Gain stress'
+    // Rules reference categories and content
+    rulesCategories: [
+        {
+            name: 'Game Basics',
+            items: [
+                { id: 'overview', icon: '📖', title: 'Game Overview' },
+                { id: 'components', icon: '🎮', title: 'Game Components' },
+                { id: 'round-structure', icon: '🔄', title: 'Round Structure' },
+                { id: 'initiative', icon: '⚡', title: 'Initiative' }
             ]
         },
-        system: {
-            actions: [
-                { id: 'systemPhaseOrder', icon: '📊', title: 'Activation Order', description: 'Lowest initiative to highest' },
-                { id: 'dropDevices', icon: '💣', title: 'Drop/Launch Devices', description: 'Bombs, mines, and devices' },
-                { id: 'specialAbilities', icon: '⚡', title: 'System Abilities', description: 'Special ship abilities' },
-                { id: 'skipSystem', icon: '⏭️', title: 'Skip This Phase', description: 'No system abilities? Continue' }
-            ],
-            tips: [
-                '<strong>Lowest initiative first</strong>',
-                'If no ships have System abilities, skip this phase',
-                'Common: Dropping bombs, decloaking'
+        {
+            name: 'Movement',
+            items: [
+                { id: 'maneuvers', icon: '✈️', title: 'Maneuvers' },
+                { id: 'templates', icon: '📐', title: 'Templates' },
+                { id: 'difficulty', icon: '🎨', title: 'Difficulty Colors' },
+                { id: 'advanced-moves', icon: '🌀', title: 'Advanced Maneuvers' }
             ]
         },
-        activation: {
-            actions: [
-                { id: 'activationSteps', icon: '🚀', title: 'Ship Activation Steps', description: 'Reveal, move, action' },
-                { id: 'executeManeuver', icon: '✈️', title: 'Execute Maneuver', description: 'How to move ships' },
-                { id: 'performActions', icon: '⚡', title: 'Perform Actions', description: 'Focus, Lock, Boost, etc.' },
-                { id: 'overlapping', icon: '💥', title: 'Overlapping Ships', description: 'What happens when ships collide' },
-                { id: 'advancedManeuvers', icon: '🎯', title: 'Advanced Maneuvers', description: 'K-turns, Tallon Rolls, etc.' }
-            ],
-            tips: [
-                '<strong>Lowest initiative activates first</strong>',
-                'Ships move before taking actions',
-                'Stressed ships skip the action step'
+        {
+            name: 'Actions',
+            items: [
+                { id: 'actions-overview', icon: '⚡', title: 'Actions Overview' },
+                { id: 'focus', icon: '🎯', title: 'Focus' },
+                { id: 'evade', icon: '🛡️', title: 'Evade' },
+                { id: 'lock', icon: '🔒', title: 'Target Lock' },
+                { id: 'barrel-roll', icon: '↔️', title: 'Barrel Roll' },
+                { id: 'boost', icon: '⏩', title: 'Boost' }
             ]
         },
-        engagement: {
-            actions: [
-                { id: 'engagementOrder', icon: '📊', title: 'Engagement Order', description: 'Highest initiative to lowest' },
-                { id: 'attackSteps', icon: '⚔️', title: 'Perform Attack', description: 'Complete attack sequence' },
-                { id: 'diceRoller', icon: '🎲', title: 'Roll Dice', description: 'Attack and defense dice' },
-                { id: 'rangeRules', icon: '📏', title: 'Range & Arc Rules', description: 'Targeting requirements' },
-                { id: 'damageRules', icon: '💔', title: 'Dealing Damage', description: 'Shields and hull damage' }
-            ],
-            tips: [
-                '<strong>Highest initiative shoots first!</strong>',
-                '<strong>Range 1:</strong> +1 attack die',
-                '<strong>Range 3:</strong> +1 defense die'
+        {
+            name: 'Combat',
+            items: [
+                { id: 'attack-sequence', icon: '⚔️', title: 'Attack Sequence' },
+                { id: 'range', icon: '📏', title: 'Range & Bonuses' },
+                { id: 'dice', icon: '🎲', title: 'Dice Results' },
+                { id: 'damage', icon: '💔', title: 'Damage & Destruction' }
             ]
         },
-        end: {
-            actions: [
-                { id: 'endPhaseCleanup', icon: '🧹', title: 'Remove Tokens', description: 'Clean up circular tokens' },
-                { id: 'chargeRecovery', icon: '🔋', title: 'Recover Charges', description: 'Cards with recovery arrows' },
-                { id: 'victoryCheck', icon: '🏆', title: 'Check Victory', description: 'Has anyone won?' },
-                { id: 'scenarioScoring', icon: '📊', title: 'Score Objectives', description: 'Earn mission points' }
-            ],
-            tips: [
-                'Remove: Focus, Evade, Calculate, Disarm tokens',
-                'Recover charges on cards with ↻ symbol',
-                'Check if anyone has won'
+        {
+            name: 'Tokens',
+            items: [
+                { id: 'green-tokens', icon: '🟢', title: 'Green Tokens' },
+                { id: 'red-tokens', icon: '🔴', title: 'Red Tokens' },
+                { id: 'stress', icon: '😰', title: 'Stress' }
+            ]
+        },
+        {
+            name: 'Special Rules',
+            items: [
+                { id: 'obstacles', icon: '🪨', title: 'Obstacles' },
+                { id: 'overlapping', icon: '💥', title: 'Overlapping' },
+                { id: 'arcs', icon: '📐', title: 'Firing Arcs' }
             ]
         }
-    },
+    ],
 
-    detailContent: {
-        planningSteps: {
-            title: 'Planning Phase Steps',
+    rules: {
+        'overview': {
+            icon: '📖',
+            title: 'Game Overview',
             content: `
-                <ul class="step-list">
-                    <li>
-                        <strong>Set Maneuver Dials</strong>
-                        Each player secretly chooses a maneuver for each of their ships using the maneuver dial. The dial shows all available maneuvers for that ship type.
-                    </li>
-                    <li>
-                        <strong>Assign Dials Facedown</strong>
-                        Place the dial facedown next to the corresponding ship. You can look at or change your dials during this phase, but once you proceed to System Phase, they're locked in!
-                    </li>
-                    <li>
-                        <strong>Determine First Player</strong>
-                        Both players roll 3 attack dice. The player with the most Hit results becomes first player. If tied, most Focus results wins. Still tied? Most blanks. Still tied? Reroll.
-                    </li>
+                <p>X-Wing is a tactical miniatures game where you command starfighters in fast-paced space combat.</p>
+
+                <h3>The Goal</h3>
+                <p>Destroy enemy ships while completing scenario objectives to earn <strong>mission points</strong>. The first player to reach 20+ points with more than their opponent wins - or the player with the most points after 12 rounds.</p>
+
+                <h3>Each Round</h3>
+                <p>Every round follows the same five phases:</p>
+                <ol style="margin-left: 25px;">
+                    <li><strong>Planning Phase</strong> - Secretly set maneuver dials</li>
+                    <li><strong>System Phase</strong> - Special abilities (bombs, decloak, etc.)</li>
+                    <li><strong>Activation Phase</strong> - Move ships and take actions</li>
+                    <li><strong>Engagement Phase</strong> - Ships attack each other</li>
+                    <li><strong>End Phase</strong> - Cleanup, recover charges, check victory</li>
+                </ol>
+
+                <h3>Key Concepts</h3>
+                <ul>
+                    <li><strong>Initiative</strong> determines action order - lower moves first, higher shoots first</li>
+                    <li><strong>Actions</strong> give your ships tokens that modify dice</li>
+                    <li><strong>Range</strong> affects combat - close is better for attacking, far is better for defending</li>
                 </ul>
-                <div class="info-box warning">
-                    <strong>⚠️ Critical:</strong> Stressed ships CANNOT set or execute red maneuvers!
-                </div>
             `
         },
 
-        determineFirstPlayer: {
-            title: 'Determine First Player',
+        'components': {
+            icon: '🎮',
+            title: 'Game Components',
             content: `
-                <div class="subsection">
-                    <h4>Rolling for First Player</h4>
-                    <p>At the start of each round, players roll to determine who goes first that round.</p>
-                    <ul class="step-list">
-                        <li>
-                            <strong>Both players roll 3 attack dice</strong>
-                            Use the red attack dice from your core set.
-                        </li>
-                        <li>
-                            <strong>Compare Hit results</strong>
-                            Player with most Hits wins. If tied, continue to next step.
-                        </li>
-                        <li>
-                            <strong>Compare Focus results</strong>
-                            Player with most Focus results wins. If tied, continue.
-                        </li>
-                        <li>
-                            <strong>Compare Blank results</strong>
-                            Player with most blanks wins. If still tied, reroll all dice.
-                        </li>
-                    </ul>
-                </div>
-                <div class="info-box tip">
-                    <strong>Why It Matters:</strong> The first player's ships act first during tied initiative values in System and Activation phases, and in all timing conflicts.
-                </div>
-            `
-        },
-
-        maneuverColors: {
-            title: 'Maneuver Difficulty',
-            content: `
-                <div class="subsection">
-                    <h4>Maneuver Difficulty Colors</h4>
-                    <p>Each maneuver has a difficulty color that affects your ship:</p>
-                </div>
-                <div class="info-box" style="background: rgba(77, 166, 255, 0.2); border-color: #4da6ff;">
-                    <h4 style="color: #4da6ff;">🔵 BLUE - Easy Maneuvers</h4>
-                    <p><strong>Effect:</strong> After executing, <span class="highlight">REMOVE 1 stress token</span> from your ship.</p>
-                    <p style="margin-top: 10px;"><strong>Example:</strong> Your ship has 1 stress. You execute a blue maneuver. Remove the stress token. Your ship is no longer stressed!</p>
-                </div>
-                <div class="info-box" style="background: rgba(255, 255, 255, 0.1); border-color: #ccc;">
-                    <h4 style="color: #ccc;">⚪ WHITE - Standard Maneuvers</h4>
-                    <p><strong>Effect:</strong> No effect on stress.</p>
-                    <p style="margin-top: 10px;">Most maneuvers are white. They don't help or hurt your stress situation.</p>
-                </div>
-                <div class="info-box" style="background: rgba(255, 68, 68, 0.2); border-color: #ff4444;">
-                    <h4 style="color: #ff4444;">🔴 RED - Difficult Maneuvers</h4>
-                    <p><strong>Effect:</strong> After executing, <span class="highlight">GAIN 1 stress token</span>.</p>
-                    <p style="margin-top: 10px;"><strong>Example:</strong> K-turns, tight turns, and advanced maneuvers are often red. They're powerful but stressful!</p>
-                </div>
-                <div class="info-box warning">
-                    <strong>⚠️ Stressed Ships:</strong> Cannot execute red maneuvers OR perform actions!
-                </div>
-            `
-        },
-
-        stressRules: {
-            title: 'Stress Rules',
-            content: `
-                <div class="subsection">
-                    <h4>What is Stress?</h4>
-                    <p>A ship is <strong>STRESSED</strong> while it has one or more stress tokens. Stress represents the pilot being overwhelmed, making mistakes, or pushing their ship too hard.</p>
-                </div>
-                <div class="info-box warning">
-                    <h4>Stressed Ships CANNOT:</h4>
-                    <ul class="bullet-list">
-                        <li><strong>Execute red maneuvers</strong> - Cannot set or execute any red maneuver</li>
-                        <li><strong>Perform actions</strong> - Must skip the Perform Action step entirely</li>
-                    </ul>
-                </div>
-                <div class="subsection">
-                    <h4>How to Remove Stress</h4>
-                    <ul class="bullet-list">
-                        <li><strong>Execute a blue maneuver</strong> - Removes 1 stress token</li>
-                        <li><strong>Special abilities</strong> - Some cards let you remove stress</li>
-                    </ul>
-                </div>
-                <div class="info-box tip">
-                    <strong>Strategic Note:</strong> Plan ahead! If your ship is stressed, you'll need to use blue or white maneuvers next turn. Avoid getting into situations where stress limits your options.
-                </div>
-            `
-        },
-
-        systemPhaseOrder: {
-            title: 'System Phase Activation Order',
-            content: `
-                <div class="subsection">
-                    <p>Ships with System Phase abilities activate in <strong>initiative order (lowest to highest)</strong></p>
-                </div>
-                <div class="info-box">
-                    <h4>Common System Phase Actions:</h4>
-                    <ul class="bullet-list">
-                        <li><strong>Dropping or launching devices</strong> (bombs, mines)</li>
-                        <li><strong>Decloaking</strong> - Ships with cloak tokens</li>
-                        <li><strong>Deploying or docking</strong> - Large ships with docked fighters</li>
-                        <li><strong>Special abilities</strong> that say "During System Phase"</li>
-                    </ul>
-                </div>
-                <div class="info-box tip">
-                    <strong>💡 Tip:</strong> If no ships have System Phase abilities, you can skip this phase entirely and proceed directly to Activation Phase.
-                </div>
-            `
-        },
-
-        dropDevices: {
-            title: 'Dropping & Launching Devices',
-            content: `
-                <div class="subsection">
-                    <h4>What are Devices?</h4>
-                    <p>Devices are bombs and mines that ships can deploy during the System Phase. They're represented by physical markers placed on the board.</p>
-                </div>
-                <div class="subsection">
-                    <h4>Dropping a Device</h4>
-                    <ul class="step-list">
-                        <li><strong>Take the template</strong> indicated on your upgrade card (usually [1 straight])</li>
-                        <li><strong>Place template at ship's REAR guides</strong></li>
-                        <li><strong>Place device at other end</strong> of template, then remove template</li>
-                    </ul>
-                </div>
-                <div class="subsection">
-                    <h4>Launching a Device</h4>
-                    <ul class="step-list">
-                        <li><strong>Take the template</strong> indicated on your upgrade card</li>
-                        <li><strong>Place template at ship's FRONT guides</strong></li>
-                        <li><strong>Place device at other end</strong> of template, then remove template</li>
-                    </ul>
-                </div>
-                <div class="info-box">
-                    <h4>Types of Devices:</h4>
-                    <p><strong>Bombs:</strong> Detonate at end of Activation Phase, affecting nearby ships</p>
-                    <p><strong>Mines:</strong> Detonate when a ship moves through or overlaps them</p>
-                </div>
-            `
-        },
-
-        specialAbilities: {
-            title: 'System Phase Abilities',
-            content: `
-                <div class="subsection">
-                    <h4>Using System Phase Abilities</h4>
-                    <p>Some ships and upgrades have abilities that specifically say they can be used "During the System Phase."</p>
-                </div>
-                <div class="info-box">
-                    <h4>Examples Include:</h4>
-                    <ul class="bullet-list">
-                        <li><strong>Decloaking</strong> - Ships with cloak tokens can decloak</li>
-                        <li><strong>Jam actions</strong> - Some ships can jam during System Phase</li>
-                        <li><strong>Coordinate actions</strong> - Certain abilities grant this</li>
-                        <li><strong>Special pilot abilities</strong> - Check your pilot cards</li>
-                    </ul>
-                </div>
-                <div class="info-box tip">
-                    <strong>Remember:</strong> System Phase abilities activate in initiative order, starting with the lowest initiative ship.
-                </div>
-            `
-        },
-
-        skipSystem: {
-            title: 'Skip System Phase',
-            content: `
-                <div class="subsection">
-                    <h4>When to Skip</h4>
-                    <p>If <strong>no ships on the board</strong> have abilities that trigger during the System Phase, you can skip this phase entirely and proceed directly to Activation Phase.</p>
-                </div>
-                <div class="info-box tip">
-                    <p>This is common in games where players aren't using:</p>
-                    <ul class="bullet-list">
-                        <li>Bombs or mines</li>
-                        <li>Cloaking devices</li>
-                        <li>Special System Phase pilot abilities</li>
-                    </ul>
-                </div>
-                <div class="subsection">
-                    <h4>Quick Check</h4>
-                    <p>Ask: "Does anyone have a System Phase ability to resolve?" If everyone says no, move to Activation Phase.</p>
-                </div>
-            `
-        },
-
-        activationSteps: {
-            title: 'Ship Activation Steps',
-            content: `
-                <div class="subsection">
-                    <p>Ships activate in <strong>initiative order (lowest to highest)</strong>. When a ship activates, follow these steps:</p>
-                </div>
-                <ul class="step-list">
-                    <li>
-                        <strong>Reveal Dial</strong>
-                        Flip the ship's assigned dial faceup and place it next to the ship card so everyone can see the chosen maneuver.
-                    </li>
-                    <li>
-                        <strong>Execute Maneuver</strong>
-                        Use the matching template to move the ship. Place template at front guides, move ship to other end, check difficulty.
-                    </li>
-                    <li>
-                        <strong>Check Difficulty</strong>
-                        Blue: Remove 1 stress | White: No effect | Red: Gain 1 stress
-                    </li>
-                    <li>
-                        <strong>Perform Action</strong>
-                        If not stressed, ship may perform ONE action from its action bar. Stressed ships skip this step.
-                    </li>
+                <h3>Ship Components</h3>
+                <ul>
+                    <li><strong>Ship Base</strong> - The plastic stand your ship sits on</li>
+                    <li><strong>Ship Card</strong> - Shows pilot ability, stats, and action bar</li>
+                    <li><strong>Maneuver Dial</strong> - Used to secretly select maneuvers</li>
+                    <li><strong>ID Tokens</strong> - Match ships to their cards</li>
                 </ul>
-                <div class="info-box warning">
-                    <strong>⚠️ Important:</strong> Complete ALL steps for one ship before moving to the next ship!
-                </div>
-            `
-        },
 
-        executeManeuver: {
-            title: 'Executing a Maneuver',
-            content: `
-                <div class="subsection">
-                    <h4>How to Move Your Ship</h4>
-                </div>
-                <ul class="step-list">
-                    <li>
-                        <strong>Take Matching Template</strong>
-                        Find the template that matches the speed and bearing (shape) of your revealed maneuver.
-                    </li>
-                    <li>
-                        <strong>Place Template</strong>
-                        Slide the template between the ship's front guides so it's flush against the base.
-                    </li>
-                    <li>
-                        <strong>Move Ship</strong>
-                        Pick up the ship and place it at the opposite end of the template. Slide the ship's rear guides into the template.
-                    </li>
-                    <li>
-                        <strong>Return Template</strong>
-                        Remove the template from the play area.
-                    </li>
+                <h3>Ship Statistics</h3>
+                <p>Every ship card shows these key values:</p>
+                <ul>
+                    <li><span class="text-red"><strong>Attack</strong></span> - Red number, how many attack dice you roll</li>
+                    <li><span class="text-green"><strong>Agility</strong></span> - Green number, how many defense dice you roll</li>
+                    <li><span class="text-gold"><strong>Hull</strong></span> - Yellow number, how much damage before destruction</li>
+                    <li><span class="text-blue"><strong>Shields</strong></span> - Blue number, damage absorbed before hull</li>
                 </ul>
-                <div class="info-box">
-                    <h4>After Moving:</h4>
-                    <p>Check the difficulty color of the maneuver:</p>
-                    <ul class="bullet-list">
-                        <li><span class="badge blue">BLUE</span> Remove 1 stress token</li>
-                        <li><span class="badge">WHITE</span> No effect</li>
-                        <li><span class="badge red">RED</span> Gain 1 stress token</li>
-                    </ul>
-                </div>
-            `
-        },
 
-        performActions: {
-            title: 'Performing Actions',
-            content: `
-                <div class="subsection">
-                    <h4>Action Rules</h4>
-                    <p>After executing a maneuver (if not stressed), a ship may perform ONE action from its action bar.</p>
-                </div>
-                <div class="info-box warning">
-                    <strong>⚠️ Stressed ships cannot perform actions!</strong> They must skip this step.
-                </div>
-                <div class="subsection">
-                    <h4>Common Actions:</h4>
-                </div>
-                <div class="info-box">
-                    <h4>🎯 Focus</h4>
-                    <p>Gain a focus token. When attacking or defending, spend it to change all your focus results to hits or evades.</p>
-                </div>
-                <div class="info-box">
-                    <h4>🛡️ Evade</h4>
-                    <p>Gain an evade token. When defending, spend it to change 1 blank or focus result to an evade.</p>
-                </div>
-                <div class="info-box">
-                    <h4>🎯 Target Lock</h4>
-                    <p>Choose an enemy ship at range 0-3. Assign a lock token to it. When attacking that ship, spend the lock to reroll any number of attack dice.</p>
-                </div>
-                <div class="info-box">
-                    <h4>↔️ Barrel Roll</h4>
-                    <p>Reposition your ship sideways using the [1 straight] template. Ship can move left or right, and slightly forward, backward, or straight across.</p>
-                </div>
-                <div class="info-box">
-                    <h4>⚡ Boost</h4>
-                    <p>Move your ship forward using a [1 straight], [1 left bank], or [1 right bank] template. Great for closing distance or getting into position.</p>
-                </div>
-                <div class="info-box">
-                    <h4>🔢 Calculate</h4>
-                    <p>Gain a calculate token. When attacking or defending, spend it to change 1 focus result to a hit or evade.</p>
-                </div>
-                <div class="info-box tip">
-                    <strong>Red Actions:</strong> Some actions are red (shown in red on the action bar). After performing a red action, gain 1 stress token.
-                </div>
-            `
-        },
-
-        overlapping: {
-            title: 'Overlapping Ships',
-            content: `
-                <div class="subsection">
-                    <h4>What Happens When Ships Collide</h4>
-                    <p>Sometimes a ship's maneuver would cause it to overlap (be on top of) another ship. When this happens:</p>
-                </div>
-                <ul class="step-list">
-                    <li>
-                        <strong>Back Up</strong>
-                        Move the ship backward along the template until it's no longer overlapping any other ship's base. Keep the middle line of the template aligned with the hashmarks on the ship.
-                    </li>
-                    <li>
-                        <strong>Place Ship</strong>
-                        Once no longer overlapping, place the ship so it's touching the last ship it backed over. This is called a "partial execution."
-                    </li>
-                    <li>
-                        <strong>Check Difficulty</strong>
-                        Still check the maneuver difficulty (gain/remove stress) as normal.
-                    </li>
-                    <li>
-                        <strong>Resolve Overlap Effect</strong>
-                        See below based on whether you overlapped friend or foe.
-                    </li>
+                <h3>Templates</h3>
+                <p>Plastic templates show exactly how far and in what direction ships move:</p>
+                <ul>
+                    <li><strong>Straight templates</strong> - Speed 1-5</li>
+                    <li><strong>Bank templates</strong> - Gentle curves</li>
+                    <li><strong>Turn templates</strong> - Sharp 90° turns</li>
                 </ul>
-                <div class="info-box warning">
-                    <h4>If You Overlapped a Friendly Ship:</h4>
-                    <ul class="bullet-list">
-                        <li>Roll 1 attack die</li>
-                        <li>On a Hit or Crit result, suffer 1 damage</li>
-                        <li>Skip your Perform Action step</li>
-                    </ul>
-                </div>
-                <div class="info-box">
-                    <h4>If You Overlapped an Enemy Ship:</h4>
-                    <ul class="bullet-list">
-                        <li>If not stressed, you MAY perform a Focus or Calculate action (treat as red - gain stress)</li>
-                        <li>Skip your Perform Action step (you already acted or chose not to)</li>
-                    </ul>
-                </div>
-                <div class="info-box tip">
-                    <strong>Strategy:</strong> Blocking enemy ships is a powerful tactic! By moving into their path, you can deny them their action for the turn.
-                </div>
+
+                <h3>Dice</h3>
+                <ul>
+                    <li><strong>Attack Dice (Red)</strong> - Hit, Crit, Focus, Blank</li>
+                    <li><strong>Defense Dice (Green)</strong> - Evade, Focus, Blank</li>
+                </ul>
             `
         },
 
-        advancedManeuvers: {
+        'round-structure': {
+            icon: '🔄',
+            title: 'Round Structure',
+            content: `
+                <h3>1. Planning Phase</h3>
+                <ul>
+                    <li>All players secretly set maneuver dials for each ship</li>
+                    <li>Roll 3 attack dice to determine first player for the round</li>
+                    <li>Dials are placed facedown - once set, they're locked in!</li>
+                </ul>
+
+                <h3>2. System Phase</h3>
+                <ul>
+                    <li>Ships with System Phase abilities act (lowest to highest initiative)</li>
+                    <li>Common abilities: dropping bombs, decloaking</li>
+                    <li>Skip if no ships have System Phase abilities</li>
+                </ul>
+
+                <h3>3. Activation Phase</h3>
+                <ul>
+                    <li>Ships activate lowest to highest initiative</li>
+                    <li>Each ship: Reveal dial → Execute maneuver → Perform action</li>
+                    <li>Stressed ships skip the action step</li>
+                </ul>
+
+                <h3>4. Engagement Phase</h3>
+                <ul>
+                    <li>Ships engage highest to lowest initiative (reversed!)</li>
+                    <li>Each ship may perform one attack</li>
+                    <li>Ships destroyed at the same initiative can still shoot back</li>
+                </ul>
+
+                <h3>5. End Phase</h3>
+                <ul>
+                    <li>Remove all circular tokens (Focus, Evade, Calculate, Disarm)</li>
+                    <li>Recover charges on cards with the ↻ symbol</li>
+                    <li>Check victory conditions</li>
+                    <li>Score scenario objectives (starting Round 2)</li>
+                </ul>
+            `
+        },
+
+        'initiative': {
+            icon: '⚡',
+            title: 'Initiative',
+            content: `
+                <h3>What is Initiative?</h3>
+                <p>Initiative is a number (0-6) that determines when your ship acts. Each pilot has an initiative value shown on their card.</p>
+
+                <h3>When Does It Matter?</h3>
+                <div class="info-box gold">
+                    <h4>System & Activation Phases</h4>
+                    <p><strong>Lowest initiative acts FIRST</strong></p>
+                    <p>Ships with low initiative must commit to their movement before seeing where high initiative ships go.</p>
+                </div>
+
+                <div class="info-box tip">
+                    <h4>Engagement Phase</h4>
+                    <p><strong>Highest initiative acts FIRST</strong></p>
+                    <p>High initiative pilots can destroy enemies before they get to shoot!</p>
+                </div>
+
+                <h3>Tied Initiative</h3>
+                <p>When two ships have the same initiative:</p>
+                <ul>
+                    <li>The <strong>first player's</strong> ships act first</li>
+                    <li>First player is determined each round by rolling dice</li>
+                </ul>
+
+                <h3>Strategic Implications</h3>
+                <ul>
+                    <li><strong>High initiative:</strong> See where enemies move, shoot first</li>
+                    <li><strong>Low initiative:</strong> Move first, can block enemy ships</li>
+                    <li><strong>Mixed squads:</strong> Use low initiative to block, high to kill</li>
+                </ul>
+            `
+        },
+
+        'maneuvers': {
+            icon: '✈️',
+            title: 'Maneuvers',
+            content: `
+                <h3>Maneuver Components</h3>
+                <p>Every maneuver has three parts:</p>
+                <ul>
+                    <li><strong>Speed</strong> - Number 0-5, how far the ship moves</li>
+                    <li><strong>Bearing</strong> - Direction (straight, bank, turn, etc.)</li>
+                    <li><strong>Difficulty</strong> - Color indicating stress effect</li>
+                </ul>
+
+                <h3>Bearing Types</h3>
+                <ul>
+                    <li><strong>Straight</strong> - Move directly forward</li>
+                    <li><strong>Bank</strong> - Gentle curve (45°)</li>
+                    <li><strong>Turn</strong> - Sharp curve (90°)</li>
+                    <li><strong>Koiogran Turn</strong> - Straight forward, then 180° flip</li>
+                    <li><strong>Segnor's Loop</strong> - Bank with 180° flip</li>
+                    <li><strong>Tallon Roll</strong> - Turn with extra 90° rotation</li>
+                    <li><strong>Stationary</strong> - Don't move at all</li>
+                    <li><strong>Reverse</strong> - Move backward</li>
+                </ul>
+
+                <h3>Executing a Maneuver</h3>
+                <ol style="margin-left: 25px;">
+                    <li>Take the matching template</li>
+                    <li>Place between ship's front guides</li>
+                    <li>Pick up ship, place at other end of template</li>
+                    <li>Slide ship's rear guides into template</li>
+                    <li>Remove template</li>
+                    <li>Apply difficulty effect (stress)</li>
+                </ol>
+            `
+        },
+
+        'templates': {
+            icon: '📐',
+            title: 'Templates',
+            content: `
+                <h3>Using Templates</h3>
+                <p>Templates are precision tools that ensure consistent movement.</p>
+
+                <h3>Standard Templates</h3>
+                <ul>
+                    <li><strong>Straight 1-5</strong> - Five different lengths</li>
+                    <li><strong>Bank 1-3</strong> - Gentle 45° curves</li>
+                    <li><strong>Turn 1-3</strong> - Sharp 90° curves</li>
+                </ul>
+
+                <h3>Template Placement</h3>
+                <div class="info-box gold">
+                    <h4>For Forward Maneuvers:</h4>
+                    <ol style="margin-left: 20px;">
+                        <li>Place template at FRONT guides</li>
+                        <li>Move ship to other end</li>
+                        <li>Ship's REAR guides slide into template</li>
+                    </ol>
+                </div>
+
+                <div class="info-box tip">
+                    <h4>For Reverse Maneuvers:</h4>
+                    <ol style="margin-left: 20px;">
+                        <li>Place template at REAR guides</li>
+                        <li>Move ship to other end</li>
+                        <li>Ship's FRONT guides slide into template</li>
+                    </ol>
+                </div>
+
+                <h3>Tips</h3>
+                <ul>
+                    <li>Keep templates flat on the table</li>
+                    <li>Push template flush against ship base</li>
+                    <li>Don't bump other ships when placing templates</li>
+                </ul>
+            `
+        },
+
+        'difficulty': {
+            icon: '🎨',
+            title: 'Difficulty Colors',
+            content: `
+                <h3>Blue Maneuvers (Easy)</h3>
+                <div class="info-box" style="border-color: #4da6ff; background: rgba(77, 166, 255, 0.1);">
+                    <p>After executing a blue maneuver, <strong>remove 1 stress token</strong> from your ship.</p>
+                    <p>Use these to recover from stress!</p>
+                </div>
+
+                <h3>White Maneuvers (Standard)</h3>
+                <div class="info-box" style="border-color: #ccc; background: rgba(255, 255, 255, 0.1);">
+                    <p>No effect on stress. Most maneuvers are white.</p>
+                    <p>Your bread-and-butter movements.</p>
+                </div>
+
+                <h3>Red Maneuvers (Difficult)</h3>
+                <div class="info-box" style="border-color: #ff4444; background: rgba(255, 68, 68, 0.1);">
+                    <p>After executing a red maneuver, <strong>gain 1 stress token</strong>.</p>
+                    <p>Powerful moves like K-turns are often red!</p>
+                </div>
+
+                <h3>Important Rules</h3>
+                <ul>
+                    <li>Stressed ships <strong>cannot</strong> execute red maneuvers</li>
+                    <li>If you must execute a red maneuver while stressed, you execute a white [2 straight] instead</li>
+                    <li>Difficulty is checked AFTER the maneuver is complete</li>
+                </ul>
+            `
+        },
+
+        'advanced-moves': {
+            icon: '🌀',
             title: 'Advanced Maneuvers',
             content: `
-                <div class="subsection">
-                    <h4>Special Maneuvers Beyond Basic Movement</h4>
-                </div>
-                <div class="info-box" style="border-left: 4px solid #4da6ff;">
-                    <h4 style="color: #4da6ff;">Koiogran Turn (K-Turn)</h4>
-                    <p><strong>What it does:</strong> Move straight forward and rotate 180°</p>
-                    <p><strong>How to execute:</strong> Execute like a straight maneuver, but slide the ship's FRONT guides into the template end instead of rear guides. Ship ends facing opposite direction.</p>
-                    <p><strong>Note:</strong> If ship can't fully execute, it doesn't rotate.</p>
-                </div>
-                <div class="info-box" style="border-left: 4px solid #44ff44;">
-                    <h4 style="color: #44ff44;">Tallon Roll</h4>
-                    <p><strong>What it does:</strong> Tight curve with additional 90° rotation in same direction</p>
-                    <p><strong>How to execute:</strong> Execute like a turn or bank, then rotate the ship an additional 90° in the same direction. Align hashmark to left, middle, or right of template end.</p>
-                    <p><strong>Note:</strong> If ship can't fully execute, it doesn't rotate.</p>
-                </div>
-                <div class="info-box" style="border-left: 4px solid #ff44ff;">
-                    <h4 style="color: #ff44ff;">Segnor's Loop</h4>
-                    <p><strong>What it does:</strong> Shallow curve then turn around (180°)</p>
-                    <p><strong>How to execute:</strong> Uses the same template as bank maneuvers. Ship ends facing opposite direction after completing the curve.</p>
-                    <p><strong>Note:</strong> If ship can't fully execute, it doesn't turn around.</p>
-                </div>
-                <div class="info-box" style="border-left: 4px solid #ffd700;">
-                    <h4 style="color: #ffd700;">Stationary Maneuver</h4>
-                    <p><strong>What it does:</strong> Ship doesn't move</p>
-                    <p><strong>How to execute:</strong> No template used. Ship stays in place but still counts as having executed a maneuver. Check difficulty normally.</p>
-                </div>
-                <div class="info-box" style="border-left: 4px solid #ff4444;">
-                    <h4 style="color: #ff4444;">Reverse Maneuvers</h4>
-                    <p><strong>What it does:</strong> Move ship backward</p>
-                    <p><strong>How to execute:</strong> Place template at ship's REAR guides instead of front. Then slide ship's FRONT guides into the template end.</p>
-                    <p><strong>Includes:</strong> Reverse straight and reverse bank maneuvers.</p>
-                </div>
-            `
-        },
-
-        engagementOrder: {
-            title: 'Engagement Order',
-            content: `
-                <div class="subsection">
-                    <h4>Who Shoots First?</h4>
-                    <p>During the Engagement Phase, ships engage in <strong>initiative order (highest to lowest)</strong>.</p>
-                    <p>This is the OPPOSITE of Activation Phase!</p>
-                </div>
-                <div class="info-box">
-                    <h4>Why It Matters</h4>
-                    <p>Higher initiative pilots get to shoot first. This is huge! They can destroy enemy ships before those ships get a chance to fire back.</p>
-                </div>
-                <div class="subsection">
-                    <h4>Engagement Order Example</h4>
-                    <p>If you have ships with initiative 2, 4, and 5, they engage in this order:</p>
-                    <ol style="margin-left: 20px; margin-top: 10px;">
-                        <li>Initiative 5 ship engages (attacks)</li>
-                        <li>Initiative 4 ship engages (attacks)</li>
-                        <li>Initiative 2 ship engages (attacks)</li>
-                    </ol>
-                </div>
-                <div class="info-box tip">
-                    <strong>Tied Initiative:</strong> If both players have ships with the same initiative, the first player's ships engage first.
-                </div>
-                <div class="info-box warning">
-                    <h4>Simultaneous Fire Rule</h4>
-                    <p>If a ship is destroyed during the Engagement Phase, it's removed AFTER all ships with the same initiative have engaged. This means a destroyed ship might still get to shoot!</p>
-                </div>
-            `
-        },
-
-        attackSteps: {
-            title: 'Performing an Attack',
-            content: `
-                <div class="subsection">
-                    <h4>Complete Attack Sequence</h4>
-                </div>
-                <ul class="step-list">
-                    <li>
-                        <strong>1. DECLARE TARGET</strong>
-                        Choose an enemy ship in your firing arc at range 0-3. Measure range to the closest point of the target that's in your arc.
-                    </li>
-                    <li>
-                        <strong>2. ROLL ATTACK DICE</strong>
-                        Roll red dice equal to your ship's attack value. <strong>Range 1 bonus:</strong> +1 die. Defender modifies dice first, then attacker.
-                    </li>
-                    <li>
-                        <strong>3. ROLL DEFENSE DICE</strong>
-                        Defender rolls green dice equal to their agility. <strong>Range 3 bonus:</strong> +1 die. <strong>Obstructed:</strong> +1 die. Attacker modifies first, then defender.
-                    </li>
-                    <li>
-                        <strong>4. NEUTRALIZE RESULTS</strong>
-                        Each Evade cancels 1 Hit (cancel all Hits first), then Evades cancel Crits. Attack HITS if any Hit or Crit results remain.
-                    </li>
-                    <li>
-                        <strong>5. DEAL DAMAGE</strong>
-                        Defender loses shields first, then takes damage cards. Hit = facedown card. Crit = faceup card (resolve effect). Ship destroyed when damage cards equal or exceed hull value.
-                    </li>
+                <h3>Koiogran Turn (K-Turn)</h3>
+                <p>Move straight forward, then rotate 180°.</p>
+                <ul>
+                    <li>Use straight template</li>
+                    <li>Ship's FRONT guides go into template end (not rear)</li>
+                    <li>Ship ends facing opposite direction</li>
                 </ul>
-                <div class="info-box">
-                    <h4>Attack Dice Results:</h4>
-                    <p><strong>⚫ Hit:</strong> 1 damage | <strong>⚡ Crit:</strong> 1 critical damage | <strong>🎯 Focus:</strong> Can be spent | <strong>Blank:</strong> No effect</p>
-                </div>
-                <div class="info-box">
-                    <h4>Defense Dice Results:</h4>
-                    <p><strong>🛡️ Evade:</strong> Cancel 1 hit | <strong>🎯 Focus:</strong> Can be spent | <strong>Blank:</strong> No effect</p>
-                </div>
+
+                <h3>Segnor's Loop</h3>
+                <p>Bank maneuver with 180° rotation.</p>
+                <ul>
+                    <li>Use bank template</li>
+                    <li>Ship ends facing opposite direction</li>
+                    <li>Like a K-turn but with a curve</li>
+                </ul>
+
+                <h3>Tallon Roll</h3>
+                <p>Turn or bank with extra 90° rotation.</p>
+                <ul>
+                    <li>Execute turn/bank as normal</li>
+                    <li>Then rotate ship 90° in same direction</li>
+                    <li>Align to left, center, or right of template end</li>
+                </ul>
+
+                <h3>Stationary (0-Speed)</h3>
+                <p>Ship doesn't move but still activates.</p>
+                <ul>
+                    <li>No template used</li>
+                    <li>Ship stays in place</li>
+                    <li>Still check difficulty color!</li>
+                </ul>
+
+                <h3>Reverse Maneuvers</h3>
+                <p>Ship moves backward.</p>
+                <ul>
+                    <li>Template at REAR guides</li>
+                    <li>Ship's FRONT guides to template end</li>
+                </ul>
             `
         },
 
-        rangeRules: {
-            title: 'Range & Arc Rules',
+        'actions-overview': {
+            icon: '⚡',
+            title: 'Actions Overview',
             content: `
-                <div class="subsection">
-                    <h4>Targeting Requirements</h4>
-                    <p>To attack an enemy ship, TWO conditions must be met:</p>
-                    <ol style="margin-left: 20px; margin-top: 10px;">
-                        <li>Target must be in your firing arc (usually front 90° arc)</li>
-                        <li>Target must be at range 0-3</li>
-                    </ol>
+                <h3>What Are Actions?</h3>
+                <p>Actions are special abilities ships can perform after moving during the Activation Phase.</p>
+
+                <h3>Action Rules</h3>
+                <ul>
+                    <li>Ships perform <strong>one action</strong> per activation</li>
+                    <li>Actions are shown on the ship's <strong>action bar</strong></li>
+                    <li><strong>Stressed ships cannot perform actions!</strong></li>
+                </ul>
+
+                <h3>Action Colors</h3>
+                <div class="info-box" style="border-color: #fff;">
+                    <h4>White Actions</h4>
+                    <p>Normal actions with no additional effect.</p>
                 </div>
-                <div class="info-box">
-                    <h4>Measuring Range</h4>
-                    <p>Place the range ruler so one end touches the closest point of your ship's base (in the firing arc), aiming toward the closest point of the target's base. The range is determined by which band the target falls in.</p>
+                <div class="info-box" style="border-color: #ff4444; background: rgba(255, 68, 68, 0.1);">
+                    <h4>Red Actions</h4>
+                    <p>After performing, <strong>gain 1 stress token</strong>.</p>
                 </div>
-                <div class="subsection">
-                    <h4>Range Bonuses</h4>
-                    <ul class="bullet-list">
-                        <li><strong>Range 0:</strong> Ships are touching. Special rules apply (see below).</li>
-                        <li><strong>Range 1:</strong> Attacker rolls +1 attack die</li>
-                        <li><strong>Range 2:</strong> No bonuses</li>
-                        <li><strong>Range 3:</strong> Defender rolls +1 defense die</li>
+                <div class="info-box" style="border-color: #9933ff; background: rgba(153, 51, 255, 0.1);">
+                    <h4>Purple Actions</h4>
+                    <p>Require spending a <strong>Force charge</strong> to perform.</p>
+                </div>
+
+                <h3>Linked Actions</h3>
+                <p>Some action bars show linked actions (arrow between two icons). After performing the first action, you may immediately perform the linked action as a red action.</p>
+            `
+        },
+
+        'focus': {
+            icon: '🎯',
+            title: 'Focus',
+            content: `
+                <h3>Focus Action</h3>
+                <p>Gain 1 focus token and place it near your ship.</p>
+
+                <h3>Using Focus Tokens</h3>
+                <p>During an attack or defense:</p>
+                <ul>
+                    <li>Spend the focus token</li>
+                    <li>Change <strong>ALL</strong> focus results (👁️) to:</li>
+                    <li><strong>Hits</strong> (when attacking), or</li>
+                    <li><strong>Evades</strong> (when defending)</li>
+                </ul>
+
+                <div class="info-box gold">
+                    <h4>Why Focus is Great</h4>
+                    <ul>
+                        <li>Works on BOTH attack AND defense</li>
+                        <li>Changes ALL focus results, not just one</li>
+                        <li>Most versatile action for beginners</li>
                     </ul>
                 </div>
+
+                <h3>Timing</h3>
+                <ul>
+                    <li>Can only spend during dice modification step</li>
+                    <li>Removed at End Phase if not spent</li>
+                </ul>
+            `
+        },
+
+        'evade': {
+            icon: '🛡️',
+            title: 'Evade',
+            content: `
+                <h3>Evade Action</h3>
+                <p>Gain 1 evade token and place it near your ship.</p>
+
+                <h3>Using Evade Tokens</h3>
+                <p>When defending:</p>
+                <ul>
+                    <li>Spend the evade token</li>
+                    <li>Add 1 evade result (🛡️) to your roll</li>
+                    <li>This is in addition to any evades you rolled!</li>
+                </ul>
+
+                <div class="info-box tip">
+                    <h4>Evade vs Focus</h4>
+                    <ul>
+                        <li><strong>Evade:</strong> Guaranteed +1 evade result when defending</li>
+                        <li><strong>Focus:</strong> Can change multiple dice, works on attack too</li>
+                    </ul>
+                    <p>Evade is better when you expect to defend multiple times or rolled no focus results.</p>
+                </div>
+
+                <h3>Timing</h3>
+                <ul>
+                    <li>Can only spend during dice modification step while defending</li>
+                    <li>Removed at End Phase if not spent</li>
+                </ul>
+            `
+        },
+
+        'lock': {
+            icon: '🔒',
+            title: 'Target Lock',
+            content: `
+                <h3>Lock Action</h3>
+                <p>Choose an enemy ship at range 0-3 and assign a lock token to it.</p>
+
+                <h3>Using Lock Tokens</h3>
+                <p>When attacking a locked ship:</p>
+                <ul>
+                    <li>Spend the lock token</li>
+                    <li><strong>Reroll any number</strong> of your attack dice</li>
+                    <li>Great for turning blanks into hits!</li>
+                </ul>
+
+                <div class="info-box gold">
+                    <h4>Lock Token Properties</h4>
+                    <ul>
+                        <li>Stays on target until spent or target destroyed</li>
+                        <li>NOT removed at End Phase</li>
+                        <li>You can only have one lock on each enemy</li>
+                        <li>Multiple ships can lock the same enemy</li>
+                    </ul>
+                </div>
+
+                <h3>Strategic Uses</h3>
+                <ul>
+                    <li>Set up locks before combat range</li>
+                    <li>Great with high-attack weapons</li>
+                    <li>Some abilities require having a lock</li>
+                </ul>
+            `
+        },
+
+        'barrel-roll': {
+            icon: '↔️',
+            title: 'Barrel Roll',
+            content: `
+                <h3>Barrel Roll Action</h3>
+                <p>Reposition your ship sideways using the [1 straight] template.</p>
+
+                <h3>How to Barrel Roll</h3>
+                <ol style="margin-left: 25px;">
+                    <li>Take the [1 straight] template</li>
+                    <li>Place it touching your ship's LEFT or RIGHT side</li>
+                    <li>The template can be forward, centered, or backward</li>
+                    <li>Pick up ship and place on other side of template</li>
+                    <li>Ship must not overlap anything</li>
+                </ol>
+
+                <div class="info-box tip">
+                    <h4>Common Uses</h4>
+                    <ul>
+                        <li>Dodge out of enemy firing arcs</li>
+                        <li>Line up a shot you would have missed</li>
+                        <li>Avoid landing on obstacles</li>
+                    </ul>
+                </div>
+
+                <h3>Restrictions</h3>
+                <ul>
+                    <li>Cannot overlap ships, obstacles, or leave play area</li>
+                    <li>Some ships have restricted barrel roll options</li>
+                </ul>
+            `
+        },
+
+        'boost': {
+            icon: '⏩',
+            title: 'Boost',
+            content: `
+                <h3>Boost Action</h3>
+                <p>Move your ship forward using a speed 1 template.</p>
+
+                <h3>How to Boost</h3>
+                <ol style="margin-left: 25px;">
+                    <li>Choose: [1 straight], [1 left bank], or [1 right bank]</li>
+                    <li>Place template at ship's front guides</li>
+                    <li>Move ship to other end of template</li>
+                    <li>Ship must not overlap anything</li>
+                </ol>
+
+                <div class="info-box tip">
+                    <h4>Common Uses</h4>
+                    <ul>
+                        <li>Close distance to get into Range 1</li>
+                        <li>Escape from enemy arcs</li>
+                        <li>Fine-tune position after movement</li>
+                    </ul>
+                </div>
+
+                <h3>Restrictions</h3>
+                <ul>
+                    <li>Cannot overlap ships or obstacles</li>
+                    <li>Cannot leave the play area</li>
+                    <li>No stress effect (unless red action)</li>
+                </ul>
+            `
+        },
+
+        'attack-sequence': {
+            icon: '⚔️',
+            title: 'Attack Sequence',
+            content: `
+                <h3>Complete Attack Steps</h3>
+                <ol style="margin-left: 25px;">
+                    <li><strong>Declare Target</strong>
+                        <ul>
+                            <li>Choose enemy in your firing arc</li>
+                            <li>Must be at range 1-3</li>
+                            <li>Measure range to confirm</li>
+                        </ul>
+                    </li>
+                    <li><strong>Roll Attack Dice</strong>
+                        <ul>
+                            <li>Roll dice equal to your attack value</li>
+                            <li>Range 1: +1 attack die</li>
+                        </ul>
+                    </li>
+                    <li><strong>Roll Defense Dice</strong>
+                        <ul>
+                            <li>Defender rolls dice equal to agility</li>
+                            <li>Range 3: +1 defense die</li>
+                            <li>Obstructed: +1 defense die</li>
+                        </ul>
+                    </li>
+                    <li><strong>Modify Dice</strong>
+                        <ul>
+                            <li>Defender modifies attacker's dice</li>
+                            <li>Attacker modifies their own dice</li>
+                            <li>Attacker modifies defender's dice</li>
+                            <li>Defender modifies their own dice</li>
+                        </ul>
+                    </li>
+                    <li><strong>Neutralize Results</strong>
+                        <ul>
+                            <li>Each evade cancels one hit</li>
+                            <li>Cancel ALL hits before crits</li>
+                        </ul>
+                    </li>
+                    <li><strong>Deal Damage</strong>
+                        <ul>
+                            <li>Shields absorb damage first</li>
+                            <li>Hits = facedown damage cards</li>
+                            <li>Crits = faceup damage cards</li>
+                        </ul>
+                    </li>
+                </ol>
+            `
+        },
+
+        'range': {
+            icon: '📏',
+            title: 'Range & Bonuses',
+            content: `
+                <h3>Measuring Range</h3>
+                <p>Use the range ruler to measure from the closest points of both ship bases.</p>
+
+                <h3>Range Bonuses</h3>
+                <div class="range-bonuses">
+                    <div class="range-bonus-card range-1">
+                        <h4>Range 1</h4>
+                        <p>Attacker: <strong>+1 attack die</strong></p>
+                        <p>Close combat is deadly!</p>
+                    </div>
+                    <div class="range-bonus-card range-2">
+                        <h4>Range 2</h4>
+                        <p>No bonuses</p>
+                        <p>Standard combat range</p>
+                    </div>
+                    <div class="range-bonus-card range-3">
+                        <h4>Range 3</h4>
+                        <p>Defender: <strong>+1 defense die</strong></p>
+                        <p>Harder to hit at distance</p>
+                    </div>
+                </div>
+
+                <h3>Range 0 (Touching)</h3>
                 <div class="info-box warning">
                     <h4>Special Range 0 Rules</h4>
-                    <p><strong>When attacking at range 0 with primary weapon:</strong></p>
-                    <ul class="bullet-list">
+                    <ul>
                         <li>Cannot add bonus dice</li>
-                        <li>Attacker cannot modify their dice (defender can still modify)</li>
-                    </ul>
-                    <p><strong>When defending at range 0:</strong></p>
-                    <ul class="bullet-list">
-                        <li>Enemy cannot reduce, cancel, or modify your defense dice</li>
+                        <li>Attacker cannot modify their dice</li>
+                        <li>Defender dice cannot be modified by attacker</li>
                     </ul>
                 </div>
-                <div class="info-box tip">
-                    <strong>Obstruction:</strong> If your attack line passes through an obstacle (asteroid, debris, gas cloud), the defender gets +1 defense die.
-                </div>
+
+                <h3>Obstruction</h3>
+                <p>If the attack line passes through an obstacle, the defender gets +1 defense die (obstructed).</p>
             `
         },
 
-        damageRules: {
-            title: 'Dealing Damage',
+        'dice': {
+            icon: '🎲',
+            title: 'Dice Results',
             content: `
-                <div class="subsection">
-                    <h4>How Ships Take Damage</h4>
-                </div>
-                <ul class="step-list">
-                    <li>
-                        <strong>Lose Shields First</strong>
-                        For each damage, flip 1 shield token to its inactive (red) side. Shields absorb both regular and critical damage.
-                    </li>
-                    <li>
-                        <strong>Take Damage Cards</strong>
-                        Once shields are gone, draw damage cards from the damage deck for each remaining damage.
-                    </li>
-                    <li>
-                        <strong>Regular Damage (Hit ⚫)</strong>
-                        Deal damage card FACEDOWN. It counts toward ship destruction but has no other effect.
-                    </li>
-                    <li>
-                        <strong>Critical Damage (Crit ⚡)</strong>
-                        Deal damage card FACEUP and resolve its text immediately. Crits have ongoing negative effects!
-                    </li>
+                <h3>Attack Dice (Red)</h3>
+                <ul>
+                    <li><strong>💥 Hit (3/8)</strong> - 1 damage</li>
+                    <li><strong>☠️ Critical Hit (1/8)</strong> - 1 critical damage</li>
+                    <li><strong>👁️ Focus (2/8)</strong> - No effect unless modified</li>
+                    <li><strong>○ Blank (2/8)</strong> - No effect</li>
                 </ul>
+
+                <h3>Defense Dice (Green)</h3>
+                <ul>
+                    <li><strong>🛡️ Evade (3/8)</strong> - Cancels 1 hit</li>
+                    <li><strong>👁️ Focus (2/8)</strong> - No effect unless modified</li>
+                    <li><strong>○ Blank (3/8)</strong> - No effect</li>
+                </ul>
+
+                <h3>Dice Modification</h3>
+                <ul>
+                    <li><strong>Focus token</strong> - Change all focus results</li>
+                    <li><strong>Lock token</strong> - Reroll any attack dice</li>
+                    <li><strong>Evade token</strong> - Add 1 evade result</li>
+                    <li><strong>Force</strong> - Change 1 focus to hit/evade</li>
+                </ul>
+            `
+        },
+
+        'damage': {
+            icon: '💔',
+            title: 'Damage & Destruction',
+            content: `
+                <h3>Suffering Damage</h3>
+                <p>For each uncanceled hit or crit result:</p>
+                <ol style="margin-left: 25px;">
+                    <li><strong>Shields First</strong> - Flip active shield to inactive</li>
+                    <li><strong>Then Hull</strong> - Draw damage card(s)</li>
+                </ol>
+
+                <h3>Damage Cards</h3>
+                <ul>
+                    <li><strong>Hit (💥)</strong> = Facedown damage card</li>
+                    <li><strong>Crit (☠️)</strong> = Faceup damage card (resolve text!)</li>
+                </ul>
+
+                <h3>Ship Destruction</h3>
                 <div class="info-box warning">
-                    <h4>Ship Destruction</h4>
-                    <p>A ship is <strong>DESTROYED</strong> when the total number of damage cards (faceup + facedown) equals or exceeds its hull value.</p>
-                    <p><strong>Example:</strong> Ship with 3 hull has 3 damage cards = destroyed</p>
+                    <p>A ship is <strong>destroyed</strong> when total damage cards (faceup + facedown) equals or exceeds hull value.</p>
                 </div>
-                <div class="subsection">
-                    <h4>Damage Order</h4>
-                    <p>All regular damage (Hits) is suffered before critical damage (Crits).</p>
-                    <p><strong>Example:</strong> You suffer 2 Hits and 1 Crit. First deal 2 facedown cards, then 1 faceup card.</p>
-                </div>
-                <div class="info-box">
-                    <h4>Repairing Damage</h4>
-                    <p>Some abilities let you repair damage cards:</p>
-                    <ul class="bullet-list">
-                        <li><strong>Repair faceup card:</strong> Flip it facedown</li>
-                        <li><strong>Repair facedown card:</strong> Discard it completely</li>
-                    </ul>
-                </div>
+
+                <h3>Simultaneous Fire</h3>
+                <p>If a ship is destroyed during Engagement Phase, it's removed AFTER all ships at the same initiative have engaged. Destroyed ships can shoot back!</p>
+
+                <h3>Repairing Damage</h3>
+                <ul>
+                    <li><strong>Repair faceup card</strong> = Flip it facedown</li>
+                    <li><strong>Repair facedown card</strong> = Discard it</li>
+                </ul>
             `
         },
 
-        endPhaseCleanup: {
-            title: 'End Phase Cleanup',
+        'green-tokens': {
+            icon: '🟢',
+            title: 'Green Tokens',
             content: `
-                <div class="subsection">
-                    <h4>Remove All Circular Tokens</h4>
-                    <p>At the end of each round, remove these tokens from ALL ships:</p>
-                </div>
-                <div class="info-box">
-                    <h4>Green Tokens (Positive, Circular)</h4>
-                    <ul class="bullet-list">
-                        <li>Focus tokens</li>
-                        <li>Evade tokens</li>
-                        <li>Calculate tokens</li>
-                        <li>Cloak tokens (if any)</li>
-                    </ul>
-                </div>
-                <div class="info-box">
-                    <h4>Orange Tokens (Negative, Circular)</h4>
-                    <ul class="bullet-list">
-                        <li>Disarm tokens</li>
-                    </ul>
-                </div>
+                <h3>Green Tokens (Positive Effects)</h3>
+                <p>These tokens help your ship and are removed at End Phase.</p>
+
+                <h3>Focus Token</h3>
+                <ul>
+                    <li>Gained from Focus action</li>
+                    <li>Spend to change ALL focus results to hits/evades</li>
+                    <li>Removed at End Phase</li>
+                </ul>
+
+                <h3>Evade Token</h3>
+                <ul>
+                    <li>Gained from Evade action</li>
+                    <li>Spend to ADD 1 evade result when defending</li>
+                    <li>Removed at End Phase</li>
+                </ul>
+
+                <h3>Calculate Token</h3>
+                <ul>
+                    <li>Gained from Calculate action (droids)</li>
+                    <li>Spend to change 1 focus result to hit/evade</li>
+                    <li>Removed at End Phase</li>
+                </ul>
+
+                <h3>Reinforce Token</h3>
+                <ul>
+                    <li>Gained from Reinforce action (large ships)</li>
+                    <li>Adds evade result when defending from chosen arc</li>
+                    <li>Removed at End Phase</li>
+                </ul>
+            `
+        },
+
+        'red-tokens': {
+            icon: '🔴',
+            title: 'Red Tokens',
+            content: `
+                <h3>Red Tokens (Negative Effects)</h3>
+                <p>These tokens hinder your ship and must be removed through specific means.</p>
+
+                <h3>Stress Token</h3>
+                <ul>
+                    <li>Cannot perform actions</li>
+                    <li>Cannot execute red maneuvers</li>
+                    <li>Remove by executing blue maneuver</li>
+                </ul>
+
+                <h3>Ion Token</h3>
+                <ul>
+                    <li>Ionized ships execute ion maneuver ([1 straight])</li>
+                    <li>Can only perform Focus action</li>
+                    <li>Removed after ion maneuver</li>
+                    <li>Small = 1+ ion, Medium = 2+, Large = 3+</li>
+                </ul>
+
+                <h3>Strain Token</h3>
+                <ul>
+                    <li>Roll 1 fewer defense die</li>
+                    <li>Removed after defending or completing action</li>
+                </ul>
+
+                <h3>Disarm Token</h3>
+                <ul>
+                    <li>Cannot perform attacks</li>
+                    <li>Removed at End Phase (circular)</li>
+                </ul>
+            `
+        },
+
+        'stress': {
+            icon: '😰',
+            title: 'Stress',
+            content: `
+                <h3>What is Stress?</h3>
+                <p>Stress represents your pilot being overwhelmed or pushed to their limits.</p>
+
+                <h3>How to Gain Stress</h3>
+                <ul>
+                    <li>Execute a red maneuver</li>
+                    <li>Perform a red action</li>
+                    <li>Some card effects and obstacles</li>
+                </ul>
+
+                <h3>Effects of Stress</h3>
                 <div class="info-box warning">
-                    <h4>DO NOT Remove These:</h4>
-                    <ul class="bullet-list">
-                        <li><strong>Stress tokens</strong> (red, square - removed by blue maneuvers)</li>
-                        <li><strong>Ion tokens</strong> (red, square - removed after ion maneuver)</li>
-                        <li><strong>Strain tokens</strong> (red, square - removed by blue maneuvers or special abilities)</li>
-                        <li><strong>Lock tokens</strong> (assigned to other ships)</li>
+                    <h4>Stressed Ships CANNOT:</h4>
+                    <ul>
+                        <li>Execute red maneuvers</li>
+                        <li>Perform actions of any kind</li>
                     </ul>
                 </div>
-                <div class="info-box tip">
-                    <strong>Easy Memory Aid:</strong> If it's circular (round token), it gets removed at End Phase. If it's square, it stays until specifically removed.
-                </div>
-            `
-        },
 
-        chargeRecovery: {
-            title: 'Charge Recovery',
-            content: `
-                <div class="subsection">
-                    <h4>Recovering Charges</h4>
-                    <p>Many upgrade cards use charges to limit how often they can be used. During the End Phase, some charges recover.</p>
-                </div>
-                <div class="info-box">
-                    <h4>Which Charges Recover?</h4>
-                    <p>Look for the <strong>recovery arrow (↻)</strong> symbol next to the charge limit on the card.</p>
-                    <p>If a card has this symbol, it recovers 1 charge during the End Phase.</p>
-                </div>
-                <ul class="step-list">
-                    <li>
-                        <strong>Find Cards with ↻ Symbol</strong>
-                        Check all your ship and upgrade cards for the recovery arrow.
-                    </li>
-                    <li>
-                        <strong>Flip 1 Charge to Active</strong>
-                        Take 1 inactive (spent) charge and flip it to its active (charged) side.
-                    </li>
-                    <li>
-                        <strong>Maximum = Charge Limit</strong>
-                        You cannot exceed the charge limit shown on the card.
-                    </li>
+                <h3>Removing Stress</h3>
+                <ul>
+                    <li><strong>Execute a blue maneuver</strong> - Most common</li>
+                    <li>Some abilities and upgrades</li>
                 </ul>
-                <div class="subsection">
-                    <h4>Force Charges</h4>
-                    <p>Force charges (purple) work the same way. If a pilot has Force capacity and a recovery arrow, they recover 1 Force charge at End Phase.</p>
-                </div>
-                <div class="info-box tip">
-                    <strong>Example:</strong> Proton Torpedoes have 2 charges with ↻. You spent 1 charge this round. At End Phase, recover it - you're back to 2 charges.
-                </div>
+
+                <h3>Forced Maneuver</h3>
+                <p>If you reveal a red maneuver while stressed, you must execute a [2 straight] white maneuver instead.</p>
             `
         },
 
-        victoryCheck: {
-            title: 'Victory Conditions',
+        'obstacles': {
+            icon: '🪨',
+            title: 'Obstacles',
             content: `
-                <div class="subsection">
-                    <h4>When Does the Game End?</h4>
-                    <p>Check these conditions at the end of the End Phase:</p>
-                </div>
-                <ul class="step-list">
-                    <li>
-                        <strong>All Enemy Ships Destroyed</strong>
-                        If only one player has ships remaining in the play area, that player wins immediately.
-                    </li>
-                    <li>
-                        <strong>20+ Mission Points</strong>
-                        If a player has 20 or more mission points AND has more mission points than their opponent, the game ends and that player wins.
-                    </li>
-                    <li>
-                        <strong>Round 12 Complete</strong>
-                        After the 12th round ends, the game ends. The player with the most mission points wins.
-                    </li>
+                <h3>Asteroid</h3>
+                <ul>
+                    <li><strong>Overlapping:</strong> Suffer 1 damage, skip action</li>
+                    <li><strong>Moving through:</strong> Roll attack die - on hit/crit, suffer 1 damage</li>
+                    <li><strong>At range 0:</strong> Cannot attack</li>
+                    <li><strong>Obstruction:</strong> Defender gets +1 defense die</li>
                 </ul>
-                <div class="info-box">
-                    <h4>How to Earn Mission Points</h4>
-                    <ul class="bullet-list">
-                        <li><strong>Opponent's deficit:</strong> Earned at game start if opponent's squad costs less than 20 points</li>
-                        <li><strong>Destroying ships:</strong> Earn points equal to destroyed ship's squad point value</li>
-                        <li><strong>Scenario objectives:</strong> Varies by scenario - controlling satellites, towing caches, etc.</li>
-                    </ul>
-                </div>
-                <div class="info-box tip">
-                    <strong>Strategy:</strong> You don't have to destroy all enemy ships to win! Focusing on scenario objectives while staying alive can be just as effective.
-                </div>
+
+                <h3>Debris Cloud</h3>
+                <ul>
+                    <li><strong>Overlapping:</strong> Gain 1 stress, skip action</li>
+                    <li><strong>Moving through:</strong> Roll attack die - on crit, suffer 1 damage</li>
+                    <li><strong>At range 0:</strong> Cannot attack</li>
+                    <li><strong>Obstruction:</strong> Defender gets +1 defense die</li>
+                </ul>
+
+                <h3>Gas Cloud</h3>
+                <ul>
+                    <li><strong>Overlapping:</strong> Gain 1 strain, break locks</li>
+                    <li><strong>Moving through:</strong> Roll attack die - on focus, gain ion token</li>
+                    <li><strong>At range 0:</strong> Cannot attack OR be locked</li>
+                    <li><strong>Obstruction:</strong> Defender gets +1 defense die</li>
+                </ul>
             `
         },
 
-        scenarioScoring: {
-            title: 'Scenario Scoring',
+        'overlapping': {
+            icon: '💥',
+            title: 'Overlapping',
             content: `
-                <div class="subsection">
-                    <h4>Earning Mission Points from Objectives</h4>
-                    <p>Each scenario has specific ways to earn mission points. Scoring usually happens during the End Phase, starting from Round 2.</p>
-                </div>
-                <div id="scenarioScoringContent">
-                    <!-- This will be populated dynamically based on selected scenario -->
-                </div>
-                <div class="info-box tip">
-                    <strong>Remember:</strong> You earn mission points from BOTH destroying enemy ships AND completing scenario objectives!
-                </div>
+                <h3>Overlapping Ships</h3>
+                <p>When your maneuver would cause you to overlap another ship:</p>
+                <ol style="margin-left: 25px;">
+                    <li>Slide back along template until not overlapping</li>
+                    <li>Place ship touching the last overlapped ship</li>
+                    <li>Check maneuver difficulty normally</li>
+                    <li>Apply overlap effects</li>
+                </ol>
+
+                <h3>Overlapping Friendly Ship</h3>
+                <ul>
+                    <li>Roll 1 attack die</li>
+                    <li>On hit/crit: suffer 1 damage</li>
+                    <li>Skip Perform Action step</li>
+                </ul>
+
+                <h3>Overlapping Enemy Ship</h3>
+                <ul>
+                    <li>May perform Focus or Calculate as red action</li>
+                    <li>Skip normal Perform Action step</li>
+                </ul>
+
+                <h3>Overlapping Obstacles</h3>
+                <p>Ships do NOT slide back when overlapping obstacles - they suffer the obstacle's effect instead.</p>
+            `
+        },
+
+        'arcs': {
+            icon: '📐',
+            title: 'Firing Arcs',
+            content: `
+                <h3>What Are Arcs?</h3>
+                <p>Arcs are the zones around your ship where you can target enemies. Most ships have a front arc.</p>
+
+                <h3>Standard Arcs</h3>
+                <ul>
+                    <li><strong>Front Arc</strong> - 90° cone from front of ship (most common)</li>
+                    <li><strong>Rear Arc</strong> - 90° cone from back of ship</li>
+                    <li><strong>Full Front Arc</strong> - 180° from front (entire front half)</li>
+                    <li><strong>Bullseye Arc</strong> - Narrow strip directly ahead</li>
+                    <li><strong>Turret Arc</strong> - 90° arc that can rotate</li>
+                </ul>
+
+                <h3>Checking Arc</h3>
+                <p>A ship is "in arc" if any part of its base is inside your firing arc. Use the arc lines printed on your ship base.</p>
+
+                <h3>Full Arc (360°)</h3>
+                <p>Some weapons can fire in any direction. These still require range measurement but ignore arc restrictions.</p>
             `
         }
-    },
-
-    quickReference: {
-        title: 'Quick Reference Guide',
-        content: `
-            <div class="subsection">
-                <h4>Initiative Order</h4>
-                <ul class="bullet-list">
-                    <li><strong>Planning:</strong> Set dials, roll for first player</li>
-                    <li><strong>System:</strong> Lowest → Highest</li>
-                    <li><strong>Activation:</strong> Lowest → Highest</li>
-                    <li><strong>Engagement:</strong> Highest → Lowest</li>
-                </ul>
-            </div>
-
-            <div class="subsection">
-                <h4>Combat Bonuses</h4>
-                <ul class="bullet-list">
-                    <li><strong>Range 1 Attack:</strong> +1 attack die</li>
-                    <li><strong>Range 3 Defense:</strong> +1 defense die</li>
-                    <li><strong>Obstructed:</strong> +1 defense die</li>
-                    <li><strong>At range 0 of obstacle:</strong> Cannot attack</li>
-                </ul>
-            </div>
-
-            <div class="subsection">
-                <h4>Token Effects</h4>
-                <ul class="bullet-list">
-                    <li><strong>Focus:</strong> Change all focus to hits/evades</li>
-                    <li><strong>Evade:</strong> Change 1 blank/focus to evade</li>
-                    <li><strong>Calculate:</strong> Change 1 focus to hit/evade</li>
-                    <li><strong>Lock:</strong> Reroll any attack dice vs locked ship</li>
-                    <li><strong>Stress:</strong> Cannot do actions or red maneuvers</li>
-                </ul>
-            </div>
-
-            <div class="subsection">
-                <h4>Obstacles</h4>
-                <ul class="bullet-list">
-                    <li><strong>Asteroid:</strong> 1 dmg + roll die (hit/crit = +1 dmg)</li>
-                    <li><strong>Debris:</strong> 1 stress + roll die (dmg on hit/crit)</li>
-                    <li><strong>Gas Cloud:</strong> Break locks, 1 strain, roll for ion</li>
-                    <li>Cannot attack while at range 0 of asteroid/debris/gas</li>
-                </ul>
-            </div>
-
-            <div class="subsection">
-                <h4>Special Tokens</h4>
-                <ul class="bullet-list">
-                    <li><strong>Ion:</strong> 1+ for small, 2+ medium, 3+ large = ionized</li>
-                    <li><strong>Ionized ship:</strong> Executes ion maneuver, only Focus action</li>
-                    <li><strong>Disarm:</strong> Cannot perform attacks</li>
-                    <li><strong>Strain:</strong> -1 defense die when defending</li>
-                </ul>
-            </div>
-
-            <div class="subsection">
-                <h4>Force Charges</h4>
-                <ul class="bullet-list">
-                    <li>Spend to change focus to hit (attack) or evade (defense)</li>
-                    <li>Can spend multiple per roll</li>
-                    <li>Recover during End Phase (if card has ↻)</li>
-                    <li>Force capacity shown in purple on card</li>
-                </ul>
-            </div>
-
-            <div class="subsection">
-                <h4>Common Mistakes</h4>
-                <ul class="bullet-list">
-                    <li><strong>Stressed ships cannot:</strong> Execute red maneuvers OR perform actions</li>
-                    <li><strong>Range bonuses:</strong> Only apply to primary weapon attacks (unless special weapon shows range bonus icon)</li>
-                    <li><strong>Overlapping obstacles:</strong> Ship does NOT back up - just suffers obstacle effect</li>
-                    <li><strong>Each ship attacks only once per round</strong> (unless special ability grants bonus attack)</li>
-                    <li><strong>Circular tokens removed at End Phase:</strong> Focus, Evade, Calculate, Disarm</li>
-                </ul>
-            </div>
-        `
     }
 };
