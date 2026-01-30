@@ -522,7 +522,6 @@ button {
 
 .card-content {
     background-color: #581c87;
-    background-color: rgba(88, 28, 135, 0.5);
     border-radius: 0.5rem;
     padding: 1rem;
     border: 1px solid #c084fc;
@@ -530,7 +529,6 @@ button {
 
 .card-red {
     background-color: #7f1d1d;
-    background-color: rgba(127, 29, 29, 0.5);
     border-radius: 0.5rem;
     padding: 1rem;
     border: 1px solid #f87171;
@@ -538,7 +536,6 @@ button {
 
 .card-green {
     background-color: #14532d;
-    background-color: rgba(20, 83, 45, 0.5);
     border-radius: 0.5rem;
     padding: 1rem;
     border: 1px solid #4ade80;
@@ -592,7 +589,7 @@ button {
 .tip-box {
     margin-top: 0.75rem;
     padding: 0.75rem;
-    background-color: rgba(113, 63, 18, 0.3);
+    background-color: #713f12;
     border-radius: 0.25rem;
     border: 1px solid #ca8a04;
 }
@@ -600,7 +597,7 @@ button {
 .success-box {
     margin-top: 0.75rem;
     padding: 0.75rem;
-    background-color: rgba(20, 83, 45, 0.3);
+    background-color: #14532d;
     border-radius: 0.25rem;
 }
 

@@ -63,6 +63,18 @@ const Home = ({ size = 24, className = "" }) =>
         e('polyline', { points: "9 22 9 12 15 12 15 22" })
     );
 
+const Book = ({ size = 24, className = "" }) =>
+    e('svg', { xmlns: "http://www.w3.org/2000/svg", width: size, height: size, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round", className },
+        e('path', { d: "M4 19.5A2.5 2.5 0 0 1 6.5 17H20" }),
+        e('path', { d: "M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" })
+    );
+
+const ArrowLeft = ({ size = 24, className = "" }) =>
+    e('svg', { xmlns: "http://www.w3.org/2000/svg", width: size, height: size, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round", className },
+        e('line', { x1: "19", y1: "12", x2: "5", y2: "12" }),
+        e('polyline', { points: "12 19 5 12 12 5" })
+    );
+
 // Main App Component
 function MD2GameHelper() {
     const [playerCount, setPlayerCount] = useState(null);
@@ -72,6 +84,7 @@ function MD2GameHelper() {
     const [roundNumber, setRoundNumber] = useState(1);
     const [showClassReference, setShowClassReference] = useState(false);
     const [selectedClass, setSelectedClass] = useState(null);
+    const [showHowToPlay, setShowHowToPlay] = useState(false);
 
     const phases = [
         { id: 'hero', name: 'Hero Phase', icon: Sword },
@@ -677,6 +690,380 @@ function MD2GameHelper() {
             )
         );
 
+    // How to Play Section
+    const renderHowToPlay = () =>
+        e('div', { className: 'min-h-screen bg-gradient p-4' },
+            e('div', { className: 'max-w-4xl mx-auto' },
+                // Header
+                e('div', { className: 'card p-4 mb-4' },
+                    e('div', { className: 'flex items-center justify-between' },
+                        e('div', null,
+                            e('h1', { className: 'text-2xl font-bold text-white' }, 'How to Play'),
+                            e('p', { className: 'text-purple-300' }, 'Massive Darkness 2: Hellscape')
+                        ),
+                        e('button', { onClick: () => setShowHowToPlay(false), className: 'btn-reset' },
+                            e(ArrowLeft, { size: 20 }),
+                            'Back'
+                        )
+                    )
+                ),
+
+                // Game Overview
+                e('div', { className: 'card p-6 mb-4' },
+                    e('h2', { className: 'text-xl font-bold text-purple-300 mb-3' }, 'Game Overview'),
+                    e('p', { className: 'text-gray-300 mb-3' },
+                        'Massive Darkness 2: Hellscape is a cooperative dungeon-crawling game for 1-6 players. You play as Lightbringers - chosen heroes trained to fight the growing Darkness.'
+                    ),
+                    e('p', { className: 'text-gray-300 mb-3' },
+                        'Choose a Quest, explore Dungeons, fight monsters, gear up, and end the Darkness once and for all!'
+                    ),
+                    e('div', { className: 'card-content mt-4' },
+                        e('h3', { className: 'font-semibold text-purple-200 mb-2' }, 'Win & Lose Conditions'),
+                        e('ul', { className: 'space-y-2 text-gray-300' },
+                            e('li', { className: 'flex items-start' },
+                                e('span', { className: 'text-green-400 mr-2' }, '✓'),
+                                e('span', null, e('strong', null, 'WIN:'), ' Complete the Quest objective')
+                            ),
+                            e('li', { className: 'flex items-start' },
+                                e('span', { className: 'text-red-400 mr-2' }, '✗'),
+                                e('span', null, e('strong', null, 'LOSE:'), ' Need to spend a Lifebringer token when none are left, or fail a Quest-specific condition')
+                            )
+                        )
+                    )
+                ),
+
+                // Game Structure
+                e('div', { className: 'card p-6 mb-4' },
+                    e('h2', { className: 'text-xl font-bold text-purple-300 mb-3' }, 'Game Structure'),
+                    e('p', { className: 'text-gray-300 mb-4' }, 'Each round has 4 phases:'),
+                    e('div', { className: 'grid grid-cols-2 gap-3' },
+                        e('div', { className: 'card-content' },
+                            e('h3', { className: 'font-semibold text-purple-200' }, '1. Hero Phase'),
+                            e('p', { className: 'text-gray-300 text-sm' }, 'Heroes take turns performing actions')
+                        ),
+                        e('div', { className: 'card-red' },
+                            e('h3', { className: 'font-semibold text-red-200' }, '2. Enemy Phase'),
+                            e('p', { className: 'text-gray-300 text-sm' }, 'Monsters attack and move')
+                        ),
+                        e('div', { className: 'card-green' },
+                            e('h3', { className: 'font-semibold text-green-200' }, '3. Level Up Phase'),
+                            e('p', { className: 'text-gray-300 text-sm' }, 'Spend XP to improve heroes')
+                        ),
+                        e('div', { className: 'card-content' },
+                            e('h3', { className: 'font-semibold text-purple-200' }, '4. Darkness Phase'),
+                            e('p', { className: 'text-gray-300 text-sm' }, 'Darkness grows, may spawn enemies')
+                        )
+                    )
+                ),
+
+                // Setup
+                e('div', { className: 'card p-6 mb-4' },
+                    e(CollapsibleSection, { title: 'Game Setup', sectionId: 'howto-setup' },
+                        e('div', { className: 'space-y-4' },
+                            e('ol', { className: 'list-decimal list-inside space-y-3 text-gray-300' },
+                                e('li', null, e('strong', null, 'Choose Heroes:'), ' Each player picks a hero, takes their card, miniature, dashboard, and colored base'),
+                                e('li', null, e('strong', null, 'Set Up Dashboard:'), ' Place hero card in slot, insert level pegs (start at level 1, 0 XP), take health/mana tokens as shown on hero card'),
+                                e('li', null, e('strong', null, 'Choose Starting Skill:'), ' Pick 1 level 1 skill card from your class'),
+                                e('li', null, e('strong', null, 'Choose Starting Items:'), ' Pick 1 starting weapon, take 1 Battered Leather Armor, and 1 potion (Health or Mana)'),
+                                e('li', null, e('strong', null, 'Lifebringer Tokens:'), ' Place based on player count (1-2 players: 1 token, 3-4: 2 tokens, 5-6: 3 tokens)'),
+                                e('li', null, e('strong', null, 'Prepare Decks:'), ' Sort and shuffle Mob cards, Roaming Monster cards, Item cards, Mob Items, and Door cards'),
+                                e('li', null, e('strong', null, 'Set Up Quest:'), ' Arrange tiles, place doors and tokens as instructed by chosen Quest'),
+                                e('li', null, e('strong', null, 'Spawn Starting Enemies:'), ' Draw from Level 1-2 Mob deck, place leaders + minions (equal to player count)'),
+                                e('li', null, e('strong', null, 'Treasure Bag:'), ' Add Common and Rare treasure tokens as instructed'),
+                                e('li', null, e('strong', null, 'Darkness Track:'), ' Place with 9-space side up, marker on space 1')
+                            )
+                        )
+                    )
+                ),
+
+                // Basic Concepts
+                e('div', { className: 'card p-6 mb-4' },
+                    e('h2', { className: 'text-xl font-bold text-purple-300 mb-3' }, 'Basic Concepts'),
+
+                    e(CollapsibleSection, { title: 'The Dice', sectionId: 'howto-dice' },
+                        e('div', { className: 'space-y-3' },
+                            e('div', { className: 'grid grid-cols-2 gap-3' },
+                                e('div', { className: 'info-box' },
+                                    e('h4', { className: 'font-semibold text-yellow-300' }, 'Yellow Attack Die'),
+                                    e('p', { className: 'text-sm text-gray-300' }, 'More mana results')
+                                ),
+                                e('div', { className: 'info-box' },
+                                    e('h4', { className: 'font-semibold text-orange-300' }, 'Orange Attack Die'),
+                                    e('p', { className: 'text-sm text-gray-300' }, 'More damage results')
+                                ),
+                                e('div', { className: 'info-box' },
+                                    e('h4', { className: 'font-semibold text-blue-300' }, 'Blue Defense Die'),
+                                    e('p', { className: 'text-sm text-gray-300' }, 'Blocks damage')
+                                ),
+                                e('div', { className: 'info-box' },
+                                    e('h4', { className: 'font-semibold text-purple-300' }, 'Purple Shadow Die'),
+                                    e('p', { className: 'text-sm text-gray-300' }, 'Heroes only, in shadow zones')
+                                )
+                            ),
+                            e('div', { className: 'info-box mt-3' },
+                                e('h4', { className: 'font-semibold text-gray-300' }, 'Black Enemy Die'),
+                                e('p', { className: 'text-sm text-gray-300' }, 'Enemies only, 1 per minion in combat')
+                            ),
+                            e('div', { className: 'mt-4' },
+                                e('h4', { className: 'font-semibold text-white mb-2' }, 'Dice Results:'),
+                                e('ul', { className: 'space-y-1 text-gray-300 text-sm' },
+                                    e('li', null, '⚔️ ', e('strong', null, 'Sword'), ' = 1 damage dealt'),
+                                    e('li', null, '🛡️ ', e('strong', null, 'Shield'), ' = blocks 1 damage'),
+                                    e('li', null, '⚡ ', e('strong', null, 'Lightning'), ' = restore 1 mana (attacker only)'),
+                                    e('li', null, '☠️ ', e('strong', null, 'Skull'), ' = 1 unblockable wound to hero'),
+                                    e('li', null, '💀 ', e('strong', null, 'Monster Icon'), ' = triggers enemy special ability'),
+                                    e('li', null, '👁️ ', e('strong', null, 'Eye'), ' = triggers hero shadow ability')
+                                )
+                            )
+                        )
+                    ),
+
+                    e(CollapsibleSection, { title: 'Shadow & Light Zones', sectionId: 'howto-shadow' },
+                        e('div', { className: 'space-y-3' },
+                            e('p', { className: 'text-gray-300' }, 'Each zone on the tiles is either a Light Zone or Shadow Zone (darker appearance).'),
+                            e('div', { className: 'card-content' },
+                                e('h4', { className: 'font-semibold text-purple-200 mb-2' }, 'When in a Shadow Zone:'),
+                                e('ul', { className: 'space-y-1 text-gray-300' },
+                                    e('li', null, '• Add the purple Shadow Die when attacking'),
+                                    e('li', null, '• Can trigger your Shadow Ability when you roll 👁️'),
+                                    e('li', null, '• Some skills only work in Shadow')
+                                )
+                            )
+                        )
+                    ),
+
+                    e(CollapsibleSection, { title: 'Treasure & Items', sectionId: 'howto-treasure' },
+                        e('div', { className: 'space-y-3' },
+                            e('p', { className: 'text-gray-300 mb-2' }, 'There are 3 rarity levels of Treasure:'),
+                            e('ul', { className: 'space-y-2 text-gray-300' },
+                                e('li', null, e('span', { className: 'text-green-400' }, '● Common'), ' - Most common, generally least powerful'),
+                                e('li', null, e('span', { className: 'text-blue-400' }, '● Rare'), ' - Harder to find, impressive items'),
+                                e('li', null, e('span', { className: 'text-purple-400' }, '● Epic'), ' - Very special, amazing power')
+                            ),
+                            e('p', { className: 'text-gray-300 mt-3' }, 'When you collect a Treasure token, draw a card from the matching deck, then return the token to the bag.'),
+                            e('div', { className: 'tip-box' },
+                                e('p', { className: 'text-yellow-200' }, 'As heroes level up, more Rare and Epic tokens are added to the Treasure bag!')
+                            )
+                        )
+                    ),
+
+                    e(CollapsibleSection, { title: 'Enemy Types', sectionId: 'howto-enemies' },
+                        e('div', { className: 'space-y-4' },
+                            e('div', { className: 'card-red' },
+                                e('h4', { className: 'font-semibold text-red-200' }, 'Mobs'),
+                                e('p', { className: 'text-gray-300 text-sm' }, 'Groups with 1 Leader and multiple Minions. Minions protect the Leader - kill all Minions before the Leader can take wounds. When you kill a Mob Leader, collect treasure from their card and gain XP.')
+                            ),
+                            e('div', { className: 'card-red' },
+                                e('h4', { className: 'font-semibold text-red-200' }, 'Roaming Monsters'),
+                                e('p', { className: 'text-gray-300 text-sm' }, 'Strong enemies that act alone. Follow their card\'s special activation rules. Health = card value × number of heroes.')
+                            ),
+                            e('div', { className: 'card-red' },
+                                e('h4', { className: 'font-semibold text-red-200' }, 'Bosses'),
+                                e('p', { className: 'text-gray-300 text-sm' }, 'Unique powerful enemies with special abilities. Often connected to Quest objectives. Have their own Boss Track.')
+                            )
+                        )
+                    )
+                ),
+
+                // Hero Actions
+                e('div', { className: 'card p-6 mb-4' },
+                    e('h2', { className: 'text-xl font-bold text-purple-300 mb-3' }, 'Hero Actions'),
+                    e('p', { className: 'text-gray-300 mb-4' }, 'Each hero gets 3 actions per turn. Actions can be repeated.'),
+
+                    e(CollapsibleSection, { title: 'Move Action', sectionId: 'howto-move' },
+                        e('div', { className: 'space-y-3' },
+                            e('p', { className: 'text-gray-300' }, 'Gain 2 Movement Points (MP). Spend MP to:'),
+                            e('ul', { className: 'space-y-2 text-gray-300 ml-4' },
+                                e('li', null, '• ', e('strong', null, '1 MP:'), ' Move to an adjacent zone (no diagonals)'),
+                                e('li', null, '• ', e('strong', null, '1 MP:'), ' Open a door in your zone'),
+                                e('li', null, '• ', e('strong', null, '1 MP:'), ' Interact with objects (if no enemies present)')
+                            ),
+                            e('div', { className: 'warning-box' },
+                                e('p', { className: 'text-red-200' },
+                                    e('strong', null, 'Reaction Damage:'), ' When leaving a zone with enemies, take 1 wound per enemy miniature in that zone!'
+                                )
+                            )
+                        )
+                    ),
+
+                    e(CollapsibleSection, { title: 'Attack Action (Combat)', sectionId: 'howto-attack' },
+                        e('div', { className: 'space-y-3' },
+                            e('p', { className: 'text-gray-300 mb-2' }, e('strong', null, 'Attack Types:')),
+                            e('ul', { className: 'space-y-2 text-gray-300 ml-4' },
+                                e('li', null, e('strong', null, 'Melee:'), ' Must be in same zone as target'),
+                                e('li', null, e('strong', null, 'Magic:'), ' Same zone OR 1 zone away (needs line of sight)'),
+                                e('li', null, e('strong', null, 'Ranged:'), ' Must be 1+ zones away, NOT same zone (needs line of sight)')
+                            ),
+                            e('p', { className: 'text-gray-300 mt-3 mb-2' }, e('strong', null, 'Combat Steps:')),
+                            e('ol', { className: 'list-decimal list-inside space-y-1 text-gray-300 ml-2' },
+                                e('li', null, 'Gather attacker\'s weapon dice'),
+                                e('li', null, 'Add Shadow Die if in shadow zone'),
+                                e('li', null, 'Add defender\'s Defense dice'),
+                                e('li', null, 'Add 1 Enemy Die per minion (for mobs)'),
+                                e('li', null, 'Roll all dice together'),
+                                e('li', null, 'Apply abilities and rerolls'),
+                                e('li', null, 'Calculate wounds: ⚔️ minus 🛡️')
+                            ),
+                            e('div', { className: 'tip-box' },
+                                e('p', { className: 'text-yellow-200' }, 'Maximum dice per roll: 3 Attack dice of each color, 5 Defense dice, 1 Shadow die, 6 Enemy dice')
+                            )
+                        )
+                    ),
+
+                    e(CollapsibleSection, { title: 'Trade & Equip Action', sectionId: 'howto-trade' },
+                        e('div', { className: 'space-y-2 text-gray-300' },
+                            e('p', null, 'When you take this action, ALL heroes in your zone may:'),
+                            e('ul', { className: 'space-y-1 ml-4' },
+                                e('li', null, '• Give items to each other freely'),
+                                e('li', null, '• Equip/unequip any number of items'),
+                                e('li', null, '• Discard unwanted items')
+                            ),
+                            e('p', { className: 'mt-2' }, 'Items must be equipped in the correct slot to be used. Unequipped items stay in your Inventory.')
+                        )
+                    ),
+
+                    e(CollapsibleSection, { title: 'Special Actions', sectionId: 'howto-special' },
+                        e('div', { className: 'space-y-2 text-gray-300' },
+                            e('p', null, 'Use abilities marked with [Action] on skills or items.'),
+                            e('p', null, 'Examples: drinking from a fountain, using certain class abilities')
+                        )
+                    ),
+
+                    e(CollapsibleSection, { title: 'Recover Action', sectionId: 'howto-recover' },
+                        e('div', { className: 'text-gray-300' },
+                            e('p', null, 'Restore health or mana equal to your current level.')
+                        )
+                    )
+                ),
+
+                // Opening Doors
+                e('div', { className: 'card p-6 mb-4' },
+                    e('h2', { className: 'text-xl font-bold text-purple-300 mb-3' }, 'Opening Doors'),
+                    e('p', { className: 'text-gray-300 mb-3' }, 'When a hero first opens a door to a Chamber:'),
+                    e('ol', { className: 'list-decimal list-inside space-y-2 text-gray-300 ml-2' },
+                        e('li', null, e('strong', null, 'Draw a Door Card'), ' - Resolve its event'),
+                        e('li', null, e('strong', null, 'Spawn Enemies'), ' - Draw Mob card, place 1 Leader + Minions equal to player count'),
+                        e('li', null, e('strong', null, 'Mob Equipment'), ' - Draw 1 Mob Item card, place under Mob card'),
+                        e('li', null, e('strong', null, 'Mob Treasure'), ' - Draw treasure tokens as shown on Mob card'),
+                        e('li', null, e('strong', null, 'Zone Treasure'), ' - Place treasure for each spawn icon in the chamber')
+                    ),
+                    e('div', { className: 'tip-box' },
+                        e('p', { className: 'text-yellow-200' },
+                            e('strong', null, 'Important:'), ' If the Mob drawn is already in play, don\'t spawn duplicates - instead activate the existing Mob immediately!'
+                        )
+                    )
+                ),
+
+                // Interacting with Objects
+                e('div', { className: 'card p-6 mb-4' },
+                    e('h2', { className: 'text-xl font-bold text-purple-300 mb-3' }, 'Zone Objects'),
+
+                    e(CollapsibleSection, { title: 'Chests', sectionId: 'howto-chests' },
+                        e('div', { className: 'space-y-2 text-gray-300' },
+                            e('p', null, e('strong', null, 'Regular Chest:'), ' Draw 2 tokens, pick 1, keep that card, return both tokens'),
+                            e('p', null, e('strong', null, 'Greater Chest:'), ' Draw 3 tokens, pick 2, keep those cards, return all 3 tokens'),
+                            e('p', { className: 'text-yellow-300 mt-2' }, 'Place a Disabled token on the chest after using it.')
+                        )
+                    ),
+
+                    e(CollapsibleSection, { title: 'Fountains & Forges', sectionId: 'howto-fountain' },
+                        e('div', { className: 'space-y-2 text-gray-300' },
+                            e('p', null, e('strong', null, 'Fountain:'), ' Spend a Special Action to heal 4 health'),
+                            e('p', null, e('strong', null, 'Forge:'), ' Discard any 3 items to draw 1 item one rarity higher than the lowest discarded')
+                        )
+                    ),
+
+                    e(CollapsibleSection, { title: 'Traps', sectionId: 'howto-traps' },
+                        e('div', { className: 'space-y-2 text-gray-300' },
+                            e('p', null, e('strong', null, 'Spike Trap:'), ' When entering, roll 1 orange die - take 1 wound per ⚔️ rolled'),
+                            e('p', null, e('strong', null, 'Bear Trap:'), ' When entering, roll 1 orange die - lose 1 action if any ⚔️ rolled'),
+                            e('p', { className: 'text-gray-400 mt-2 italic' }, 'Traps trigger for heroes only, not enemies.')
+                        )
+                    ),
+
+                    e(CollapsibleSection, { title: 'Pillars & Special Zones', sectionId: 'howto-pillars' },
+                        e('div', { className: 'space-y-2 text-gray-300' },
+                            e('p', null, e('strong', null, 'Pillars:'), ' Block line of sight for ranged/magic attacks'),
+                            e('p', null, e('strong', null, 'Abyss:'), ' Cannot enter these zones'),
+                            e('p', null, e('strong', null, 'Portals:'), ' Where enemies spawn during Darkness Phase')
+                        )
+                    )
+                ),
+
+                // Leveling Up
+                e('div', { className: 'card p-6 mb-4' },
+                    e('h2', { className: 'text-xl font-bold text-purple-300 mb-3' }, 'Leveling Up'),
+                    e('div', { className: 'grid grid-cols-2 gap-3 mb-4' },
+                        e('div', { className: 'info-box' },
+                            e('p', { className: 'text-gray-300' }, 'Level 1→2: ', e('strong', null, '5 XP'))
+                        ),
+                        e('div', { className: 'info-box' },
+                            e('p', { className: 'text-gray-300' }, 'Level 2→3: ', e('strong', null, '10 XP'))
+                        ),
+                        e('div', { className: 'info-box' },
+                            e('p', { className: 'text-gray-300' }, 'Level 3→4: ', e('strong', null, '15 XP'))
+                        ),
+                        e('div', { className: 'info-box' },
+                            e('p', { className: 'text-gray-300' }, 'Level 4→5: ', e('strong', null, '20 XP'))
+                        )
+                    ),
+                    e('p', { className: 'text-gray-300 mb-2' }, e('strong', null, 'When you level up:')),
+                    e('ol', { className: 'list-decimal list-inside space-y-1 text-gray-300 ml-2' },
+                        e('li', null, 'Spend required XP'),
+                        e('li', null, 'Move level peg up'),
+                        e('li', null, 'Increase max health OR max mana (gain tokens immediately)'),
+                        e('li', null, 'Add treasure tokens to bag (shown on Level token)'),
+                        e('li', null, 'Gain a new skill card')
+                    ),
+                    e('div', { className: 'success-box' },
+                        e('p', { className: 'text-green-200' },
+                            e('strong', null, 'XP Sources:'), ' 1 XP per enemy killed, +2 XP for Mob Leaders (all heroes), +4 XP for Roaming Monsters (all heroes)'
+                        )
+                    )
+                ),
+
+                // Dungeon Level
+                e('div', { className: 'card p-6 mb-4' },
+                    e('h2', { className: 'text-xl font-bold text-purple-300 mb-3' }, 'Dungeon Level'),
+                    e('p', { className: 'text-gray-300 mb-3' },
+                        'The Dungeon Level equals the ', e('strong', null, 'highest hero level'), ' in the party. This determines which decks to draw enemies and items from:'
+                    ),
+                    e('ul', { className: 'space-y-2 text-gray-300 ml-4' },
+                        e('li', null, '• Hero Levels 1-2: Use Level 1-2 decks'),
+                        e('li', null, '• Hero Levels 3-4: Use Level 3-4 decks'),
+                        e('li', null, '• Hero Level 5: Use Level 5 decks')
+                    )
+                ),
+
+                // Hero Classes Quick Overview
+                e('div', { className: 'card p-6 mb-4' },
+                    e('h2', { className: 'text-xl font-bold text-purple-300 mb-3' }, 'Hero Classes'),
+                    e('div', { className: 'grid grid-cols-2 gap-3' },
+                        heroClasses.map(heroClass =>
+                            e('div', { key: heroClass.id, className: 'info-box' },
+                                e('h4', { className: 'font-semibold text-white' }, heroClass.name),
+                                e('p', { className: 'text-gray-300 text-sm' }, heroClass.description)
+                            )
+                        )
+                    ),
+                    e('p', { className: 'text-gray-400 text-center mt-4 italic' }, 'Tap "Start Game" and use the Class Reference buttons for detailed class guides!')
+                ),
+
+                // Back Button
+                e('div', { className: 'text-center mt-6 mb-8' },
+                    e('button', {
+                        onClick: () => setShowHowToPlay(false),
+                        className: 'btn-primary'
+                    }, 'Back to Main Menu')
+                )
+            )
+        );
+
+    // How to Play Screen
+    if (showHowToPlay) {
+        return renderHowToPlay();
+    }
+
     // Player Selection Screen
     if (!gameStarted) {
         return e('div', { className: 'min-h-screen bg-gradient p-6' },
@@ -685,7 +1072,7 @@ function MD2GameHelper() {
                     e('h1', { className: 'text-4xl font-bold text-white mb-2' }, 'Massive Darkness 2'),
                     e('p', { className: 'text-purple-300 text-lg' }, 'Game Helper')
                 ),
-                e('div', { className: 'card p-8' },
+                e('div', { className: 'card p-8 mb-4' },
                     e('div', { className: 'flex items-center justify-center mb-6' },
                         e(Users, { size: 32, className: 'text-purple-400 mr-3' }),
                         e('h2', { className: 'text-2xl font-semibold text-white' }, 'How many players?')
@@ -698,6 +1085,15 @@ function MD2GameHelper() {
                                 className: 'btn-primary'
                             }, count)
                         )
+                    )
+                ),
+                e('div', { className: 'card p-6' },
+                    e('button', {
+                        onClick: () => setShowHowToPlay(true),
+                        className: 'w-full flex items-center justify-center gap-3 bg-gray-700 hover:bg-gray-600 text-white font-semibold py-4 px-6 rounded-lg transition-colors'
+                    },
+                        e(Book, { size: 28, className: 'text-purple-400' }),
+                        e('span', { className: 'text-xl' }, 'How to Play')
                     )
                 )
             )
