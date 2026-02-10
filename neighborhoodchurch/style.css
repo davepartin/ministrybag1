@@ -52,6 +52,8 @@
 
 html {
     scroll-behavior: smooth;
+    font-size: 85%;
+    /* Scaled down as requested (approx 13.6px base) */
 }
 
 body {
@@ -369,8 +371,10 @@ ul {
     content: '';
     position: absolute;
     top: -20px;
-    left: -20px;
+    left: -30px;
+    /* Shift 30px to the left */
     width: 100%;
+    /* Restored to 100% */
     height: 100%;
     background: var(--nc-green);
     border-radius: var(--radius-lg);
@@ -378,13 +382,51 @@ ul {
     opacity: 0.2;
 }
 
+@media (max-width: 768px) {
+
+    .carousel-container,
+    .hero-image::before,
+    .visit-image img,
+    .ministry-gallery,
+    .story-image img,
+    .camp-image img {
+        width: 100% !important;
+        /* Full width on mobile */
+        left: 0;
+        transform: none;
+    }
+
+    .hero-image::before {
+        top: -10px;
+        left: -10px;
+        width: calc(100% + 20px) !important;
+        /* Slight offset for mobile frame effect */
+        height: calc(100% + 20px);
+    }
+}
+
 /* Carousel Styles */
 .carousel-container {
     position: relative;
     width: 100%;
+    /* Restored to 100% */
+    margin: 0 auto;
+    /* Centered */
     height: 600px;
     border-radius: var(--radius-lg);
     overflow: hidden;
+    box-shadow: var(--shadow-lg);
+}
+
+.visit-image img {
+    width: 80%;
+    /* Scaled to 80% */
+    display: block;
+    margin: 0 auto;
+    /* Centered */
+    height: 500px;
+    object-fit: cover;
+    border-radius: var(--radius-lg);
     box-shadow: var(--shadow-lg);
 }
 
@@ -1843,6 +1885,10 @@ form {
     display: grid;
     gap: 1rem;
     height: 480px;
+    width: 80%;
+    /* Scaled to 80% */
+    margin: 0 auto;
+    /* Centered */
 }
 
 .ministry-gallery-3 {
@@ -1867,6 +1913,30 @@ form {
     height: 100%;
     object-fit: cover;
     transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.story-image img {
+    width: 80%;
+    /* Scaled to 80% */
+    display: block;
+    margin: 0 auto;
+    /* Centered */
+    height: 600px;
+    object-fit: cover;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+}
+
+.camp-image img {
+    width: 80%;
+    /* Scaled to 80% */
+    display: block;
+    margin: 0 auto;
+    /* Centered */
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    transform: rotate(2deg);
+    transition: var(--transition);
 }
 
 .gallery-img:hover img {
