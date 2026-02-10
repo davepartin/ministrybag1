@@ -15,13 +15,31 @@ if (hamburger && navLinks) {
         }
     });
 
+    // Mobile Dropdown Toggle
+    const dropdowns = document.querySelectorAll('.dropdown');
+    
+    dropdowns.forEach(dropdown => {
+        const btn = dropdown.querySelector('.dropbtn');
+        if (btn) {
+            btn.addEventListener('click', (e) => {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    dropdown.classList.toggle('active');
+                }
+            });
+        }
+    });
+
     // Close menu when clicking on a link
-    const navItems = navLinks.querySelectorAll('a');
+    const navItems = navLinks.querySelectorAll('a:not(.dropbtn)');
     navItems.forEach(item => {
         item.addEventListener('click', () => {
             navLinks.classList.remove('nav-active');
             hamburger.classList.remove('active');
             document.body.style.overflow = '';
+            
+            // Close all dropdowns
+            dropdowns.forEach(d => d.classList.remove('active'));
         });
     });
 
