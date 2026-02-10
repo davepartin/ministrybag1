@@ -13,6 +13,7 @@
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script src="https://js.churchcenter.com/modal/v1"></script>
 </head>
 
 <body>
@@ -72,46 +73,34 @@
         <div class="hero-image" style="display: none;"></div>
     </section>
 
-    <!-- Form Section -->
-    <section class="form-container">
-        <form action="#" method="POST">
-            <div class="form-group">
-                <label>Name</label>
-                <input type="text" name="name" placeholder="Your full name" required>
+    <!-- Connect Card Section -->
+    <section class="connect-card-section">
+        <div class="connect-card-box">
+            <div class="connect-card-icon">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--nc-green)" stroke-width="1.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                    <polyline points="22,6 12,13 2,6" />
+                </svg>
             </div>
-            <div class="form-group">
-                <label>Email</label>
-                <input type="email" name="email" placeholder="Email address" required>
-            </div>
-            <div class="form-group">
-                <label>How can we serve you?</label>
-                <select name="interest">
-                    <option value="visit">I'm planning a visit</option>
-                    <option value="group">I'd like to join a Neighborhood Group</option>
-                    <option value="prayer">I have a prayer request</option>
-                    <option value="other">Other</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Message (Optional)</label>
-                <textarea name="message" rows="4" placeholder="Anything else you'd like us to know?"></textarea>
-            </div>
-            <button type="submit" class="submit-btn">Send to Neighborhood Church</button>
-        </form>
+            <h2>Fill Out Our Connect Card</h2>
+            <p>Whether you're planning your first visit, want to join a group, need prayer, or just want to say hello
+                — we'd love to hear from you. Fill out our quick connect card and someone from our team will be in
+                touch soon.</p>
+            <a href="https://neighborhoodchurch.churchcenter.com/people/forms/1153362?open-in-church-center-modal=true"
+                class="btn btn-primary connect-card-btn">Open Connect Card</a>
+        </div>
     </section>
 
     <!-- Contact Details -->
     <section class="contact-details">
-        <h2>Reach Out Anytime</h2>
+
         <div class="contact-grid">
             <div>
                 <h3 style="color: var(--nc-green);">Call or Text</h3>
                 <p><a href="tel:+19132749070">(913) 274-9070</a></p>
             </div>
-            <div>
-                <h3 style="color: var(--nc-blue);">Email</h3>
-                <p><a href="mailto:dave@neighborhoodchurchOP.com">dave@neighborhoodchurchOP.com</a></p>
-            </div>
+
             <div>
                 <h3 style="color: var(--nc-pink);">Visit</h3>
                 <p>8600 W 91st Terrace<br>Overland Park, KS 66212</p>

@@ -1969,6 +1969,44 @@ form {
     text-transform: uppercase;
 }
 
+/* Connect Card Section */
+.connect-card-section {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 0 5% 4rem;
+}
+
+.connect-card-box {
+    background: var(--nc-white);
+    border: 1px solid var(--nc-light-gray);
+    border-radius: var(--radius-lg);
+    padding: 3.5rem;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+}
+
+.connect-card-icon {
+    margin-bottom: 1.5rem;
+}
+
+.connect-card-box h2 {
+    margin-bottom: 1.25rem;
+}
+
+.connect-card-box p {
+    color: var(--nc-gray);
+    line-height: 1.8;
+    margin-bottom: 2rem;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.connect-card-btn {
+    font-size: 1.15rem;
+    padding: 1.25rem 2.5rem;
+}
+
 /* Ministry CTA Section */
 .ministry-cta {
     background: var(--nc-off-white);
