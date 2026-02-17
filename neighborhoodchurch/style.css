@@ -320,6 +320,23 @@ ul {
 /* ===================================
    Hero Section
    =================================== */
+.hero-banner {
+    width: 100%;
+    height: 70vh;
+    overflow: hidden;
+    position: relative;
+    margin-top: 0;
+}
+
+.hero-banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+    /* Focus slightly higher */
+}
+
+/* Update standard hero to have less top padding */
 .hero {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -552,6 +569,72 @@ ul {
 
 .btn-outline:hover {
     background: var(--nc-green);
+    color: var(--nc-white);
+}
+
+.btn-outline-blue {
+    color: var(--nc-blue);
+    border-color: var(--nc-blue);
+}
+
+.btn-outline-blue:hover {
+    background-color: var(--nc-green);
+    border-color: var(--nc-green);
+    color: var(--nc-white);
+}
+
+.btn-outline-men {
+    color: #5a7d4c;
+    border-color: #5a7d4c;
+}
+
+.btn-outline-men:hover {
+    background-color: #5a7d4c;
+    border-color: #5a7d4c;
+    color: var(--nc-white);
+}
+
+.btn-outline-women {
+    color: var(--nc-pink);
+    border-color: var(--nc-pink);
+}
+
+.btn-outline-women:hover {
+    background-color: var(--nc-pink);
+    border-color: var(--nc-pink);
+    color: var(--nc-white);
+}
+
+.btn-outline-joy {
+    color: #d4a731;
+    border-color: #d4a731;
+}
+
+.btn-outline-joy:hover {
+    background-color: #d4a731;
+    border-color: #d4a731;
+    color: var(--nc-white);
+}
+
+.btn-outline-youngadults {
+    color: #6B46C1 !important;
+    border-color: #6B46C1 !important;
+}
+
+.btn-outline-youngadults:hover {
+    background-color: #6B46C1 !important;
+    border-color: #6B46C1 !important;
+    color: var(--nc-white) !important;
+}
+
+.btn-outline-serve {
+    color: var(--nc-pink);
+    border-color: var(--nc-pink);
+}
+
+.btn-outline-serve:hover {
+    background-color: var(--nc-pink);
+    border-color: var(--nc-pink);
     color: var(--nc-white);
 }
 
@@ -1859,11 +1942,17 @@ form {
     padding: 0.5rem 1.25rem;
     border-radius: var(--radius-full);
     font-weight: 700;
-    font-size: 0.85rem;
+    font-size: 1.15rem;
     font-family: var(--font-heading);
     text-transform: uppercase;
     letter-spacing: 1px;
     margin-bottom: 1.25rem;
+}
+
+#serve .ministry-gallery-3 {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    height: 500px;
 }
 
 .ministry-text h2 {
@@ -1902,6 +1991,83 @@ form {
     height: 400px;
 }
 
+#men .ministry-gallery-2 {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    height: 500px;
+    width: 66%;
+}
+
+#joyclub .ministry-gallery-3 {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1.5fr 1fr;
+    height: 500px;
+}
+
+#joyclub .ministry-gallery-3 .gallery-img:first-child {
+    grid-column: span 2;
+}
+
+.ministry-gallery-grid {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    height: 500px;
+}
+
+/* Kids Highlight Section (Sundays Page) */
+.kids-highlight {
+    background-color: var(--nc-off-white);
+    border-radius: var(--radius-lg);
+    padding: 3rem;
+    margin: 4rem 0;
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    border-left: 6px solid var(--nc-green);
+}
+
+.kids-highlight-content {
+    flex: 1;
+}
+
+.kids-highlight-image {
+    flex: 1;
+}
+
+.kids-highlight-image img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    transform: rotate(2deg);
+    transition: var(--transition);
+}
+
+.kids-highlight:hover .kids-highlight-image img {
+    transform: rotate(0) scale(1.02);
+}
+
+@media (max-width: 900px) {
+    .kids-highlight {
+        flex-direction: column;
+        text-align: center;
+        padding: 2rem;
+    }
+
+    .kids-highlight-image img {
+        height: 300px;
+        transform: rotate(0);
+    }
+
+    .ministry-gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: repeat(3, 1fr);
+        height: 600px;
+    }
+}
+
+
 .gallery-img {
     border-radius: var(--radius-md);
     overflow: hidden;
@@ -1937,6 +2103,36 @@ form {
     box-shadow: var(--shadow-lg);
     transform: rotate(2deg);
     transition: var(--transition);
+}
+
+.camp-video-wrapper {
+    position: relative;
+    padding-bottom: 45%;
+    /* 16:9 Aspect Ratio approx for 80% width */
+    height: 0;
+    width: 80%;
+    /* Match existing image width */
+    margin: 0 auto;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    transform: rotate(2deg);
+    /* Keep the fun rotation */
+    transition: var(--transition);
+    background: #000;
+}
+
+.camp-video-wrapper:hover {
+    transform: rotate(0deg) scale(1.02);
+}
+
+.camp-video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
 }
 
 .gallery-img:hover img {
