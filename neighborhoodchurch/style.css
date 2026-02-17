@@ -1991,7 +1991,20 @@ form {
     height: 400px;
 }
 
+.ministry-gallery-4 {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    height: 600px;
+}
+
 #men .ministry-gallery-2 {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    height: 500px;
+    width: 66%;
+}
+
+#women .ministry-gallery-2 {
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr;
     height: 500px;
