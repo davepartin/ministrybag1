@@ -200,4 +200,26 @@ document.addEventListener('DOMContentLoaded', () => {
     const container = document.querySelector('.carousel-container');
     container.addEventListener('mouseenter', () => clearInterval(autoPlayInterval));
     container.addEventListener('mouseleave', startAutoPlay);
+
+    // Touch swipe support for mobile
+    let touchStartX = 0;
+    let touchEndX = 0;
+    const SWIPE_THRESHOLD = 50; // minimum px to count as a swipe
+
+    container.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    container.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        const diff = touchStartX - touchEndX;
+        if (Math.abs(diff) >= SWIPE_THRESHOLD) {
+            if (diff > 0) {
+                nextSlide(); // swiped left → go forward
+            } else {
+                prevSlide(); // swiped right → go back
+            }
+            resetAutoPlay();
+        }
+    }, { passive: true });
 });

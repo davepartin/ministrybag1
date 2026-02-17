@@ -52,8 +52,7 @@
 
 html {
     scroll-behavior: smooth;
-    font-size: 85%;
-    /* Scaled down as requested (approx 13.6px base) */
+    font-size: 90%;
 }
 
 body {
@@ -1402,7 +1401,7 @@ form {
         gap: 3rem;
     }
 
-    .hero-image,
+    /* Only push story-image above its text on tablet — hero text stays first */
     .story-image {
         order: -1;
     }
@@ -1410,6 +1409,18 @@ form {
     .hero-image img,
     .story-image img {
         height: 400px;
+    }
+
+    .carousel-container {
+        height: 400px;
+    }
+
+    .hero {
+        min-height: auto;
+    }
+
+    .hero-banner {
+        height: 50vh;
     }
 
     .footer-container {
@@ -1548,6 +1559,14 @@ form {
         min-height: auto;
     }
 
+    .hero-banner {
+        height: 35vh;
+    }
+
+    .carousel-container {
+        height: 300px;
+    }
+
     .hero-cta {
         flex-direction: column;
     }
@@ -1654,7 +1673,7 @@ form {
     background: var(--nc-off-white);
     flex-wrap: wrap;
     position: sticky;
-    top: 0;
+    top: 72px; /* offset for sticky main nav so the two don't overlap */
     z-index: 100;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
