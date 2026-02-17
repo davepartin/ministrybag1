@@ -6,7 +6,7 @@ if (hamburger && navLinks) {
     hamburger.addEventListener('click', () => {
         navLinks.classList.toggle('nav-active');
         hamburger.classList.toggle('active');
-        
+
         // Prevent body scroll when menu is open
         if (navLinks.classList.contains('nav-active')) {
             document.body.style.overflow = 'hidden';
@@ -17,7 +17,7 @@ if (hamburger && navLinks) {
 
     // Mobile Dropdown Toggle
     const dropdowns = document.querySelectorAll('.dropdown');
-    
+
     dropdowns.forEach(dropdown => {
         const btn = dropdown.querySelector('.dropbtn');
         if (btn) {
@@ -37,7 +37,7 @@ if (hamburger && navLinks) {
             navLinks.classList.remove('nav-active');
             hamburger.classList.remove('active');
             document.body.style.overflow = '';
-            
+
             // Close all dropdowns
             dropdowns.forEach(d => d.classList.remove('active'));
         });
@@ -77,13 +77,13 @@ const nav = document.querySelector('.main-nav');
 
 window.addEventListener('scroll', () => {
     const currentScroll = window.pageYOffset;
-    
+
     if (currentScroll > 100) {
         nav.style.boxShadow = '0 4px 16px rgba(0, 0, 0, 0.1)';
     } else {
         nav.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.08)';
     }
-    
+
     lastScroll = currentScroll;
 });
 
@@ -105,7 +105,7 @@ const observer = new IntersectionObserver((entries) => {
 // Observe elements for animation
 document.addEventListener('DOMContentLoaded', () => {
     const animateElements = document.querySelectorAll('.visit-card, .rhythm-card, .story-content');
-    
+
     animateElements.forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(30px)';
@@ -140,11 +140,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const updateSlidePosition = (index) => {
         track.style.transform = `translateX(-${index * 100}%)`;
-        
+
         // Update dots
         dots.forEach(dot => dot.classList.remove('active'));
         dots[index].classList.add('active');
-        
+
         currentSlideIndex = index;
     };
 
@@ -184,7 +184,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Auto Play
     const startAutoPlay = () => {
-        autoPlayInterval = setInterval(nextSlide, 5000);
+        clearInterval(autoPlayInterval); // Clear any existing interval first
+        autoPlayInterval = setInterval(nextSlide, 3000);
     };
 
     const resetAutoPlay = () => {
@@ -194,7 +195,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Start
     startAutoPlay();
-    
+
     // Pause on hover
     const container = document.querySelector('.carousel-container');
     container.addEventListener('mouseenter', () => clearInterval(autoPlayInterval));
