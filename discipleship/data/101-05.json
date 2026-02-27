@@ -1,0 +1,121 @@
+{
+  "id": "5",
+  "title": "Lesson 5: Church",
+  "blocks": [
+    {
+      "type": "heading",
+      "text": "What is the Church?"
+    },
+    {
+      "type": "text",
+      "text": "The Church is the \"Body of Christ\". We are a connected family of believers that continues the mission and message of Jesus. God sent the Holy Spirit to empower and unify the church around the Gospel."
+    },
+    {
+      "type": "verse",
+      "reference": "Ephesians 1:22-23",
+      "text": "And he (God the Father) put all things under his (Jesus') feet and gave him as head over all things to the church, which is his body, the fullness of him who fills all in all."
+    },
+    {
+      "type": "question",
+      "id": "5-1",
+      "text": "5.1 - Consider how Jesus lived His life. What are a few attitudes or actions that the church should follow and imitate? (ex. Jesus sacrificed, Jesus taught the truth, Jesus showed unconditional love...)",
+      "data_question": "5.1 - Church imitating Jesus"
+    },
+    {
+      "type": "heading",
+      "text": "Following Jesus, the church: 1) Loves, 2) Equips, 3) Serves",
+      "subheading": true
+    },
+    {
+      "type": "subheading2",
+      "text": "1) The Church Loves"
+    },
+    {
+      "type": "verse",
+      "reference": "John 13:34-35",
+      "text": "So now I am giving you a new commandment: Love each other. Just as I have loved you, you should love each other. Your love for one another will prove to the world that you are my disciples. ~Jesus"
+    },
+    {
+      "type": "question",
+      "id": "5-2",
+      "text": "5.2 - Imagine a community who loves each other unconditionally, not based on what they do but based on who God says they are. Describe what these relationships would be like.",
+      "data_question": "5.2 - Unconditional love community"
+    },
+    {
+      "type": "verse",
+      "reference": "Acts 2:42-47",
+      "text": "And they devoted themselves to the apostles' teaching and the fellowship, to the breaking of bread and the prayers. And awe came upon every soul, and many wonders and signs were being done through the apostles. And all who believed were together and had all things in common. And they were selling their possessions and belongings and distributing the proceeds to all, as any had need. And day by day, attending the temple together and breaking bread in their homes, they received their food with glad and generous hearts, praising God and having favor with all the people. And the Lord added to their number day by day those who were being saved."
+    },
+    {
+      "type": "question",
+      "id": "5-3",
+      "text": "5.3 - Acts 2:42-47 describes a group of believers that seems to meet often. How important is it for a Christian to gather with the church? If you attend church, how often and why do you go?",
+      "data_question": "5.3 - Importance of gathering"
+    },
+    {
+      "type": "subheading2",
+      "text": "2) The Church Equips"
+    },
+    {
+      "type": "text",
+      "text": "The early church devoted themselves to the apostles' teaching. Just as Jesus equipped His disciples through both word and deed, the Church provides Biblical teaching alongside practical examples of living out the faith."
+    },
+    {
+      "type": "question",
+      "id": "5-4",
+      "text": "5.4 - In what ways have you been equipped by the church to live out your faith? What are some areas you would like more equipping?",
+      "data_question": "5.4 - Church equipping"
+    },
+    {
+      "type": "subheading2",
+      "text": "3) The Church Serves"
+    },
+    {
+      "type": "text",
+      "text": "The early church was active in the community, selling possessions to help those in need. After Jesus washed the disciples' feet, He said in John 13:14-15 \"If I then, your Lord and Teacher, have washed your feet, you also ought to wash one another's feet. For I have given you an example, that you also should do just as I have done to you.\""
+    },
+    {
+      "type": "question",
+      "id": "5-5",
+      "text": "5.5 - What ways are you currently serving or ways you would like to serve in the community and in the church? (Community: Volunteer in a school, coach a team, scouts, work with the elderly... Church: Help with kids or youth, building and grounds teams, worship and tech team...)",
+      "data_question": "5.5 - Serving opportunities"
+    },
+    {
+      "type": "bible_reading",
+      "heading": "Read the Gospel of John",
+      "chapters": [
+        {
+          "ref": "John 13"
+        },
+        {
+          "ref": "John 14"
+        },
+        {
+          "ref": "John 15"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Closing Reflections"
+    },
+    {
+      "type": "question",
+      "id": "101-05-key",
+      "text": "What is one key thing you learned from this lesson?",
+      "height": "short"
+    },
+    {
+      "type": "question",
+      "id": "101-05-step",
+      "text": "What is one step you are going to take this week?",
+      "height": "short"
+    },
+    {
+      "type": "question",
+      "id": "101-05-prayer",
+      "text": "What is a prayer request for this week?",
+      "height": "short"
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "id": "5",
+  "title": "Lesson 5: The Bible's 10 Eras",
+  "description": "Answering common objections with grace and truth.",
+  "blocks": [
+    {
+      "type": "heading",
+      "text": "Speaking Truth in Love"
+    },
+    {
+      "type": "text",
+      "text": "People have real, painful questions about faith. Apologetics isn't about winning an argument; it's about clearing away the intellectual debris so people can see Jesus. We must answer questions with gentleness and profound respect."
+    },
+    {
+      "type": "verse",
+      "reference": "Colossians 4:6",
+      "text": "Let your speech always be gracious, seasoned with salt, so that you may know how you ought to answer each person."
+    },
+    {
+      "type": "question",
+      "id": "203-6-1",
+      "text": "6.1 - What is a common objection to Christianity you've heard from friends, and how would you respond graciously?",
+      "data_question": "6.1 - Common objection response"
+    },
+    {
+      "type": "heading",
+      "text": "BLESS Check-in"
+    },
+    {
+      "type": "question",
+      "id": "203-06-bless",
+      "text": "Who are you currently BLESSing? Who are you praying for and actively moving toward? What is one specific step you are taking this week?",
+      "height": "tall"
+    },
+    {
+      "type": "heading",
+      "text": "Closing Reflections"
+    },
+    {
+      "type": "question",
+      "id": "203-06-key",
+      "text": "What is one key thing you learned from this lesson?",
+      "height": "short"
+    },
+    {
+      "type": "question",
+      "id": "203-06-step",
+      "text": "What is one step you are going to take this week?",
+      "height": "short"
+    },
+    {
+      "type": "question",
+      "id": "203-06-prayer",
+      "text": "What is a prayer request for this week?",
+      "height": "short"
+    }
+  ]
+}

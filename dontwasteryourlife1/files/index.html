@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Don't Waste Your Life - Study Guide</title>
+    <meta name="description" content="An interactive study guide for John Piper's 'Don't Waste Your Life'">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1>Don't Waste Your Life</h1>
+                <p class="subtitle">by John Piper</p>
+                <p class="tagline">Discover God's purpose for your one precious life</p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="chapters-grid" id="chaptersGrid">
+            <!-- Chapters will be loaded here by JavaScript -->
+            <div class="loading">Loading chapters...</div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p class="footer-text">Your progress is automatically saved on your device</p>
+            <button id="resetProgress" class="btn-secondary">Reset All Progress</button>
+            <p class="footer-note">Page numbers match the printed book</p>
+        </footer>
+    </div>
+
+    <script src="book-data-fixed.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

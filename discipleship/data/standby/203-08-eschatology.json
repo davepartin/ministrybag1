@@ -1,0 +1,58 @@
+{
+  "id": "8",
+  "title": "Lesson 8: Last Things (Eschatology)",
+  "description": "Caring for the poor and marginalized as a reflection of God's heart.",
+  "blocks": [
+    {
+      "type": "heading",
+      "text": "Reflecting God's Justice"
+    },
+    {
+      "type": "text",
+      "text": "The Gospel doesn't just save our souls; it transforms how we treat the vulnerable. God has always had a special care for the poor, the orphan, the widow, and the marginalized."
+    },
+    {
+      "type": "verse",
+      "reference": "Micah 6:8",
+      "text": "He has told you, O man, what is good; and what does the Lord require of you but to do justice, and to love kindness, and to walk humbly with your God?"
+    },
+    {
+      "type": "question",
+      "id": "203-9-1",
+      "text": "9.1 - What is one practical way you or your small group can show kindness to the vulnerable in your community?",
+      "data_question": "9.1 - Showing kindness to vulnerable"
+    },
+    {
+      "type": "heading",
+      "text": "BLESS Check-in"
+    },
+    {
+      "type": "question",
+      "id": "203-09-bless",
+      "text": "Who are you currently BLESSing? Who are you praying for and actively moving toward? What is one specific step you are taking this week?",
+      "height": "tall"
+    },
+    {
+      "type": "heading",
+      "text": "Closing Reflections"
+    },
+    {
+      "type": "question",
+      "id": "203-09-key",
+      "text": "What is one key thing you learned from this lesson?",
+      "height": "short"
+    },
+    {
+      "type": "question",
+      "id": "203-09-step",
+      "text": "What is one step you are going to take this week?",
+      "height": "short"
+    },
+    {
+      "type": "question",
+      "id": "203-09-prayer",
+      "text": "What is a prayer request for this week?",
+      "height": "short"
+    }
+  ]
+}

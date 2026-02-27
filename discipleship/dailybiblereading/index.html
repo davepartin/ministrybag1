@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Bible Reading - 365 Plan</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="/ministrybagsatchel1.svg" type="image/svg+xml">
+</head>
+
+<body>
+    <div class="audio-header-bar">
+        <div class="container audio-header-content">
+            <select id="audioTrackSelect" class="audio-track-select" title="Select Chapter">
+                <option value="">Select Day</option>
+            </select>
+            <audio id="audioPlayer" controls style="flex-grow: 1; height: 40px; border-radius: 20px;">
+                Your browser does not support the audio element.
+            </audio>
+            <div class="speed-control-wrapper">
+                <select id="audioSpeed" title="Playback Speed">
+                    <option value="0.75">0.75x</option>
+                    <option value="1">1x</option>
+                    <option value="1.25" selected>1.25x</option>
+                    <option value="1.5">1.5x</option>
+                    <option value="2">2x</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Global Header -->
+        <header class="global-header">
+            <a href="https://ministrybag.com/" class="logo-link">
+                <img src="ministrybagsatchel1.svg" alt="MinistryBag" class="logo">
+            </a>
+            <h1 class="app-title">Daily Bible Reading</h1>
+        </header>
+
+        <!-- Home View: Year Calendar -->
+        <div id="homeView" class="view active">
+            <header class="main-header">
+                <p class="subtitle">Select a day to start reading</p>
+                <div class="progress-bar-container">
+                    <div class="progress-bar-fill" id="overallProgress"></div>
+                </div>
+                <p class="progress-text"><span id="daysCompleted">0</span>/365 Days Completed</p>
+
+                <button id="viewAllNotesBtn" class="primary-btn" style="margin-top: 20px;">View All Notes</button>
+                <button id="viewChapterSummariesBtn" class="secondary-btn"
+                    style="margin-top: 20px; margin-left: 10px; background-color: var(--primary); color: white;">Bible
+                    Chapter Summaries</button>
+            </header>
+
+            <div class="year-grid" id="yearGrid">
+                <!-- Javascript will populate 12 months here -->
+            </div>
+        </div>
+
+        <!-- Book Selection View -->
+        <div id="bookSelectionView" class="view">
+            <button id="backToHomeFromBooksBtn" class="back-btn">← Back to Calendar</button>
+            <div class="reading-header">
+                <h2>Select a Book</h2>
+                <p class="subtitle">Choose a book to view chapter summaries</p>
+            </div>
+            <div id="bookSelectionContainer" class="book-selection-grid">
+                <!-- Books inserted via JS -->
+            </div>
+        </div>
+
+        <!-- Chapter Summaries View -->
+        <div id="chapterSummariesView" class="view">
+            <button id="backToBooksBtn" class="back-btn">← Back to Books</button>
+            <div class="reading-header">
+                <h2 id="summariesBookTitle">Book Title</h2>
+                <p class="subtitle">Chapter summaries</p>
+            </div>
+            <div id="summariesListContainer" class="notes-list-container">
+                <!-- Summaries will be dynamically inserted here -->
+            </div>
+            <button id="backToBooksBtnBottom" class="back-btn" style="margin-top: 20px;">← Back to Books</button>
+        </div>
+
+        <!-- All Notes View -->
+        <div id="allNotesView" class="view">
+            <button id="backToHomeFromNotesBtn" class="back-btn">← Back to Calendar</button>
+            <div class="reading-header">
+                <h2>All My Notes</h2>
+                <p class="subtitle">Your reflections throughout the year</p>
+                <button id="emailNotesBtn" class="primary-btn" style="margin-top: 15px;">Email My Notes</button>
+            </div>
+
+            <div id="notesListContainer" class="notes-list-container">
+                <!-- Notes will be injected here -->
+                <p>Loading notes...</p>
+            </div>
+        </div>
+
+        <!-- Reading View -->
+        <div id="readingView" class="view">
+            <button id="backToCalendarBtn" class="back-btn">← Back to Calendar</button>
+
+            <div class="reading-header">
+                <h2 id="dayTitle">January 1</h2>
+
+                <div class="mark-complete-wrapper" style="margin-bottom: 15px;">
+                    <label class="custom-checkbox">
+                        <input type="checkbox" id="markDayCompleteTop">
+                        <span class="checkmark"></span>
+                        <span class="label-text" style="font-size: 1rem;">I have read for today</span>
+                    </label>
+                </div>
+
+                <div class="text-size-controls">
+                    <button class="text-size-btn" data-size="sm" title="Small Text">A</button>
+                    <button class="text-size-btn active" data-size="md" title="Medium Text">A</button>
+                    <button class="text-size-btn" data-size="lg" title="Large Text">A</button>
+                </div>
+
+                <div id="chapterNav" class="chapter-nav">
+                    <!-- Buttons injected via JS -->
+                </div>
+
+
+
+
+            </div>
+
+            <!-- Reading Content -->
+            <div id="readingContent" class="reading-content">
+                <!-- OT Section -->
+                <div class="scripture-section">
+                    <h3 class="section-label">Old Testament</h3>
+                    <h4 id="otReference">Loading...</h4>
+                    <div id="otText" class="bible-text">Loading...</div>
+                </div>
+
+                <!-- NT Section -->
+                <div class="scripture-section">
+                    <h3 class="section-label">New Testament</h3>
+                    <h4 id="ntReference">Loading...</h4>
+                    <div id="ntText" class="bible-text">Loading...</div>
+                </div>
+            </div>
+
+            <!-- Completion & Notes -->
+            <div class="completion-area">
+                <div class="mark-complete-wrapper">
+                    <label class="custom-checkbox">
+                        <input type="checkbox" id="markDayComplete">
+                        <span class="checkmark"></span>
+                        <span class="label-text">I have read for today</span>
+                    </label>
+                </div>
+
+                <div class="notes-section">
+                    <h3>My Notes</h3>
+                    <textarea id="dailyNotes" placeholder="Reflections on today's reading..."></textarea>
+                    <button id="saveNotesBtn" class="primary-btn">Save Notes</button>
+                </div>
+            </div>
+            <button id="backToCalendarBtnBottom" class="back-btn" style="margin-top: 20px;">← Back to Calendar</button>
+        </div>
+    </div>
+
+    <!-- ESV Copyright -->
+    <footer
+        style="text-align: center; padding: 20px; color: #666; font-size: 0.85rem; background: #f9f9f9; border-top: 1px solid #eee; margin-top: 40px;">
+        Scripture quotations are from the ESV® Bible (The Holy Bible, English Standard Version®),
+        copyright © 2001 by Crossway, a publishing ministry of Good News Publishers.
+        Used by permission. All rights reserved. <a href="https://www.esv.org" target="_blank"
+            style="color: #666;">www.esv.org</a>
+    </footer>
+
+    <!-- Config (loaded first for API keys) -->
+    <script src="config.js"></script>
+    <script src="script.js?v=5"></script>
+</body>
+
+</html>

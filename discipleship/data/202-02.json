@@ -1,0 +1,48 @@
+{
+  "id": "2",
+  "title": "Lesson 2: Loving Your Home Family",
+  "description": "Establishing a gospel-centered home where your family is your first mission field - and where forgiveness is most needed and most tested. Covers marriage, singleness, household life as discipleship, and the hard work of forgiving the people closest to you.",
+  "blocks": [
+    {
+      "type": "heading",
+      "text": "Gospel in the Home"
+    },
+    {
+      "type": "text",
+      "text": "Whether married or single, our homes are meant to display the love of the Gospel. It involves practicing forgiveness, choosing service over selfishness, and keeping Christ at the center of our daily interactions."
+    },
+    {
+      "type": "verse",
+      "reference": "Colossians 3:12-13",
+      "text": "Put on then, as God's chosen ones, holy and beloved, compassionate hearts, kindness, humility, meekness, and patience... forgiving each other; as the Lord has forgiven you, so you also must forgive."
+    },
+    {
+      "type": "question",
+      "id": "202-5-1",
+      "text": "5.1 - In what practical way can you show 'compassionate hearts, kindness, and patience' in your home this week?",
+      "data_question": "5.1 - Showing kindness at home"
+    },
+    {
+      "type": "heading",
+      "text": "Closing Reflections"
+    },
+    {
+      "type": "question",
+      "id": "202-05-key",
+      "text": "What is one key thing you learned from this lesson?",
+      "height": "short"
+    },
+    {
+      "type": "question",
+      "id": "202-05-step",
+      "text": "What is one step you are going to take this week?",
+      "height": "short"
+    },
+    {
+      "type": "question",
+      "id": "202-05-prayer",
+      "text": "What is a prayer request for this week?",
+      "height": "short"
+    }
+  ]
+}

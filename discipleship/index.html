@@ -1,0 +1,2611 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Planting Orchards Discipleship Series</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Cormorant+Garamond:ital,wght@1,400;1,500&family=Raleway:wght@700;800&display=swap" rel="stylesheet">
+    <style>
+        /* ============================================
+           RESET & BASE
+           ============================================ */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg: #FAFAF8;
+            --surface: #FFFFFF;
+            --surface-warm: #F7F6F3;
+            --text-primary: #1A1A1A;
+            --text-secondary: #5C5C5C;
+            --text-tertiary: #8A8A8A;
+            --accent: #2D6A4F;
+            --accent-light: #D8F3DC;
+            --accent-hover: #1B4332;
+            --border: #E8E6E1;
+            --border-light: #F0EEE9;
+            --verse-bg: #F9F7F2;
+            --verse-border: #B7A98F;
+            --box-bg: #F5F0E8;
+            --box-border: #D9CEBD;
+            --agenda-bg: #EDF4F8;
+            --agenda-border: #B8D4E3;
+            --blue-heading: #2B5A83;
+            --radius: 16px;
+            --radius-sm: 12px;
+            --radius-xs: 8px;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.06), 0 1px 4px rgba(0, 0, 0, 0.04);
+            --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            --max-w: 640px;
+            --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+        }
+
+        html {
+            font-size: 16px;
+            -webkit-text-size-adjust: 100%;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font);
+            background: var(--bg);
+            color: var(--text-primary);
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100dvh;
+        }
+
+        /* ============================================
+           LAYOUT
+           ============================================ */
+        .app-container {
+            max-width: var(--max-w);
+            margin: 0 auto;
+            min-height: 100dvh;
+            position: relative;
+        }
+
+        /* ============================================
+           HOME VIEW
+           ============================================ */
+        .home-view {
+            padding: 0 20px;
+            padding-top: max(env(safe-area-inset-top), 8px);
+            padding-bottom: 48px;
+            transition: opacity var(--transition), transform var(--transition);
+        }
+
+        .home-view.hidden {
+            display: none;
+        }
+
+        .home-header {
+            text-align: center;
+            margin-bottom: 12px;
+        }
+
+        .home-title {
+            font-family: 'Cinzel', Georgia, serif;
+            font-size: 1.65rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            color: var(--text-primary);
+            margin: 0 0 2px 0;
+            padding-top: 20px;
+            line-height: 1.2;
+        }
+
+        .home-title-series {
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.68rem;
+            font-weight: 300;
+            letter-spacing: 0.36em;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            margin: 0 0 4px 0;
+        }
+
+        .home-logo {
+            width: 580px;
+            max-width: 88%;
+            height: auto;
+            margin: 8px auto 2px;
+            display: block;
+        }
+
+        .home-tagline {
+            margin-top: 10px;
+            padding: 0 20px;
+        }
+
+        .home-tagline-verse {
+            font-family: var(--font);
+            font-style: italic;
+            font-weight: 400;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin: 0 0 4px 0;
+        }
+
+        .home-tagline-verse strong {
+            font-style: normal;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .home-tagline-ref {
+            font-family: var(--font);
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--text-tertiary);
+            margin-top: 4px;
+        }
+
+        /* Course Cards */
+        .level-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .level-card {
+            background: var(--surface);
+            border: 1px solid transparent;
+            border-radius: var(--radius);
+            padding: 20px;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.03), 0 2px 8px rgba(0, 0, 0, 0.03);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            cursor: pointer;
+            transition: all var(--transition);
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+            width: 100%;
+            text-align: left;
+            font-family: inherit;
+            font-size: inherit;
+        }
+
+        .level-card:active {
+            transform: scale(0.98);
+        }
+
+        .level-card .level-marker {
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .level-card .level-info h2 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 2px;
+        }
+
+        .level-card .level-info p {
+            font-size: 0.85rem;
+            color: var(--text-tertiary);
+        }
+
+        .level-card .level-arrow {
+            margin-left: auto;
+            color: var(--text-tertiary);
+            font-size: 1.1rem;
+            flex-shrink: 0;
+            transition: transform var(--transition);
+        }
+
+        .level-card.open .level-arrow {
+            transform: rotate(90deg);
+            color: var(--accent);
+        }
+
+        /* Course color themes - matched to Rooted Discipleship logo */
+        .level-card[data-series="101"] .level-marker {
+            color: #1E6FA0;
+            background: #DCEEFB;
+        }
+
+        .level-card[data-series="201"] .level-marker {
+            color: #1A6B55;
+            background: #D4F2E8;
+        }
+
+        .level-card[data-series="202"] .level-marker {
+            color: #1D6B3F;
+            background: #D1EDD9;
+        }
+
+        .level-card[data-series="203"] .level-marker {
+            color: #1A5C38;
+            background: #CCE6D4;
+        }
+
+        .level-card[data-series="301"] .level-marker {
+            color: #9A3A5E;
+            background: #FCE4ED;
+        }
+
+        /* Home page accordion dropdown */
+        .level-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .level-dropdown {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s ease;
+            background: var(--surface);
+            border-left: 1px solid var(--border-light);
+            border-right: 1px solid var(--border-light);
+            border-bottom: 0px solid var(--border-light);
+            border-radius: 0 0 var(--radius) var(--radius);
+        }
+
+        .level-dropdown.open {
+            max-height: 900px;
+            border-bottom-width: 1px;
+        }
+
+        .level-dropdown-lesson {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-top: 1px solid var(--border-light);
+            background: var(--surface);
+            transition: background var(--transition);
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+        }
+
+        .level-dropdown-lesson:last-child {
+            border-radius: 0 0 var(--radius) var(--radius);
+        }
+
+        .level-dropdown-lesson:active {
+            background: var(--surface-warm);
+        }
+
+        .level-dropdown-num {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .level-dropdown-title {
+            flex: 1;
+            font-size: 0.85rem;
+            color: var(--text-primary);
+            line-height: 1.3;
+        }
+
+        .level-dropdown-check {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            border: 2px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.6rem;
+            color: transparent;
+            flex-shrink: 0;
+            transition: all var(--transition);
+        }
+
+        .level-dropdown-check.done {
+            color: white;
+        }
+
+        /* ============================================
+           THE TREE BUTTON (home screen)
+           ============================================ */
+        .home-tree-btn-wrap {
+            padding: 8px 0 4px;
+            text-align: center;
+        }
+
+        .home-tree-btn {
+            background: none;
+            border: 2px solid #1E6FA0;
+            border-radius: var(--radius);
+            padding: 13px 24px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #1E6FA0;
+            cursor: pointer;
+            font-family: var(--font);
+            width: 100%;
+            letter-spacing: 0.01em;
+            transition: background var(--transition), color var(--transition);
+        }
+
+        .home-tree-btn:active {
+            background: #DCEEFB;
+        }
+
+        /* ============================================
+           TREE VIEW (full-screen takeover)
+           ============================================ */
+        .tree-view {
+            display: none;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .tree-view.active {
+            display: flex;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            background: var(--bg);
+            z-index: 100;
+            overflow-y: auto;
+        }
+
+        .tree-topbar {
+            position: sticky;
+            top: 0;
+            background: var(--surface);
+            border-bottom: 1px solid var(--border-light);
+            padding: 12px 20px;
+            padding-top: max(env(safe-area-inset-top), 12px);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 10;
+        }
+
+        .tree-close-btn {
+            background: none;
+            border: none;
+            font-size: 2rem;
+            color: var(--text-secondary);
+            cursor: pointer;
+            padding: 0;
+            line-height: 1;
+        }
+
+        .tree-topbar-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .tree-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 16px 24px 40px;
+        }
+
+        /* Desktop: 5-column grid */
+        .tree-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 12px;
+            align-items: start;
+        }
+
+        .tree-course-section {
+            border: 2px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            background: var(--surface);
+        }
+
+        .tree-course-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 12px;
+            border-bottom: 2px solid var(--border);
+        }
+
+        .tree-course-badge {
+            width: 34px;
+            height: 34px;
+            border-radius: var(--radius-xs);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.72rem;
+            font-weight: 700;
+            flex-shrink: 0;
+            background: rgba(255,255,255,0.5);
+        }
+
+        .tree-course-name {
+            font-size: 0.82rem;
+            font-weight: 700;
+            flex: 1;
+            line-height: 1.2;
+        }
+
+        .tree-course-progress {
+            font-size: 0.72rem;
+            font-weight: 600;
+            opacity: 0.75;
+        }
+
+        .tree-lesson-list {
+            padding: 4px 0;
+        }
+
+        .tree-lesson-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 7px 10px;
+            cursor: pointer;
+            transition: background var(--transition);
+        }
+
+        .tree-lesson-row:active {
+            background: var(--surface-warm);
+        }
+
+        .tree-lesson-num {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.65rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .tree-lesson-topic {
+            flex: 1;
+            font-size: 0.78rem;
+            color: var(--text-primary);
+            line-height: 1.3;
+        }
+
+        .tree-lesson-check {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            border: 2px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.55rem;
+            color: transparent;
+            flex-shrink: 0;
+            transition: all var(--transition);
+        }
+
+        .tree-lesson-check.done {
+            color: white;
+        }
+
+        /* Mobile: single column stacked */
+        @media (max-width: 900px) {
+            .tree-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .tree-course-name {
+                font-size: 0.95rem;
+            }
+
+            .tree-lesson-topic {
+                font-size: 0.9rem;
+            }
+
+            .tree-lesson-num {
+                width: 28px;
+                height: 28px;
+                font-size: 0.72rem;
+            }
+
+            .tree-lesson-check {
+                width: 20px;
+                height: 20px;
+                font-size: 0.7rem;
+            }
+
+            .tree-lesson-row {
+                padding: 9px 14px;
+                gap: 10px;
+            }
+        }
+
+        /* ============================================
+           LESSON VIEW (full-screen takeover)
+           ============================================ */
+        .lesson-view {
+            display: none;
+            flex-direction: column;
+            min-height: 100dvh;
+        }
+
+        .lesson-view.active {
+            display: flex;
+        }
+
+        /* Top bar */
+        .lesson-topbar {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(250, 250, 248, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-light);
+            padding: 12px 20px;
+            padding-top: max(env(safe-area-inset-top), 12px);
+        }
+
+        .topbar-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .back-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--accent);
+            cursor: pointer;
+            padding: 4px 8px 4px 0;
+            font-family: inherit;
+            -webkit-tap-highlight-color: transparent;
+            line-height: 1;
+        }
+
+        .topbar-title {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .topbar-title h2 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .topbar-title h2 .course-keyword {
+            font-weight: 700;
+        }
+
+        .course-keyword.c101 {
+            color: #1E6FA0;
+        }
+
+        .course-keyword.c201 {
+            color: #1A6B55;
+        }
+
+        .course-keyword.c202 {
+            color: #1D6B3F;
+        }
+
+        .course-keyword.c203 {
+            color: #1A5C38;
+        }
+
+        .course-keyword.c301 {
+            color: #9A3A5E;
+        }
+
+        /* Topbar series badge */
+        .topbar-series-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            border-radius: var(--radius-sm);
+            font-size: 0.75rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .topbar-series-badge.c101 { color: #1E6FA0; background: #DCEEFB; }
+        .topbar-series-badge.c201 { color: #1A6B55; background: #D4F2E8; }
+        .topbar-series-badge.c202 { color: #1D6B3F; background: #D1EDD9; }
+        .topbar-series-badge.c203 { color: #1A5C38; background: #CCE6D4; }
+        .topbar-series-badge.c301 { color: #9A3A5E; background: #FCE4ED; }
+
+        .topbar-title .session-label {
+            font-size: 0.75rem;
+            color: var(--text-tertiary);
+            font-weight: 500;
+        }
+
+        /* Progress bar */
+        .progress-track {
+            height: 3px;
+            background: var(--border-light);
+            width: 100%;
+            margin-top: 8px;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--accent);
+            border-radius: 3px;
+            transition: width 0.4s ease;
+        }
+
+        /* TOC (Table of Contents) */
+        .toc-panel {
+            display: none;
+            padding: 16px 20px;
+            background: var(--surface);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .toc-panel.open {
+            display: block;
+        }
+
+        .toc-toggle {
+            background: var(--accent);
+            border: none;
+            border-radius: var(--radius-xs);
+            padding: 6px 14px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: white;
+            cursor: pointer;
+            font-family: inherit;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .toc-header {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            padding: 0 12px 8px;
+            border-bottom: 1px solid var(--border-light);
+            margin-bottom: 8px;
+        }
+
+        .toc-list {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .toc-item-number {
+            font-weight: 600;
+            color: var(--text-muted);
+            min-width: 20px;
+        }
+
+        .toc-item-num {
+            font-weight: 600;
+            color: var(--accent);
+            opacity: 0.6;
+            margin-right: 2px;
+        }
+
+        .toc-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 12px;
+            border-radius: var(--radius-xs);
+            cursor: pointer;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            transition: all var(--transition);
+            background: none;
+            border: none;
+            width: 100%;
+            text-align: left;
+            font-family: inherit;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .toc-item:active {
+            background: var(--surface-warm);
+        }
+
+        .toc-item.current {
+            background: var(--accent-light);
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .toc-check {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 0.7rem;
+            color: transparent;
+            transition: all var(--transition);
+        }
+
+        .toc-check.done {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: white;
+        }
+
+        .toc-item-title {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Lesson content area */
+        .lesson-content {
+            flex: 1;
+            padding: 24px 20px;
+            padding-bottom: 120px;
+        }
+
+        /* Session blocks */
+        .session {
+            display: none;
+            animation: slideIn 0.3s ease;
+        }
+
+        .session.active {
+            display: block;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .session-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+
+        .session-description {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 32px;
+        }
+
+        /* Content blocks */
+        .block-heading {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--blue-heading);
+            margin-top: 40px;
+            margin-bottom: 16px;
+            line-height: 1.3;
+        }
+
+        .block-subheading {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-top: 32px;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+
+        .block-subheading2 {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+            margin-top: 28px;
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        .block-text {
+            font-size: 1rem;
+            color: var(--text-primary);
+            line-height: 1.75;
+            margin-bottom: 16px;
+        }
+
+        .block-text strong {
+            font-weight: 600;
+        }
+
+        /* Image blocks */
+        .block-image {
+            text-align: center;
+            margin: 4px 0 24px;
+        }
+
+        .block-image img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            border-radius: 12px;
+        }
+
+        /* Scripture verses */
+        .block-verse {
+            background: var(--verse-bg);
+            border-left: 3px solid var(--verse-border);
+            border-radius: 0 var(--radius-xs) var(--radius-xs) 0;
+            padding: 20px;
+            margin: 24px 0;
+        }
+
+        .verse-ref {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .verse-text {
+            font-size: 1rem;
+            color: var(--text-primary);
+            line-height: 1.75;
+            font-style: italic;
+        }
+
+        /* List blocks */
+        .block-list {
+            margin: 20px 0;
+            padding-left: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .block-list p {
+            font-size: 1rem;
+            color: var(--text-primary);
+            line-height: 1.7;
+            padding-left: 16px;
+            border-left: 2px solid var(--accent-light);
+        }
+
+        /* Box blocks */
+        .block-box {
+            background: var(--box-bg);
+            border: 1px solid var(--box-border);
+            border-radius: var(--radius);
+            padding: 24px;
+            margin: 24px 0;
+        }
+
+        .block-box .box-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+
+        .block-box p {
+            font-size: 1rem;
+            color: var(--text-primary);
+            line-height: 1.7;
+            margin-bottom: 12px;
+        }
+
+        .block-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Agenda blocks */
+        .block-agenda {
+            background: var(--agenda-bg);
+            border: 1px solid var(--agenda-border);
+            border-radius: var(--radius);
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .block-agenda .agenda-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--blue-heading);
+            margin-bottom: 12px;
+        }
+
+        .block-agenda p {
+            font-size: 1rem;
+            color: var(--text-primary);
+            line-height: 1.7;
+            margin-bottom: 8px;
+        }
+
+        /* Homework blocks */
+        .block-homework {
+            background: var(--surface-warm);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .block-homework .hw-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+
+        .block-homework p {
+            font-size: 1rem;
+            color: var(--text-primary);
+            line-height: 1.7;
+            margin-bottom: 8px;
+        }
+
+        /* Question blocks */
+        .block-question {
+            margin: 32px 0;
+        }
+
+        .question-label {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+            line-height: 1.5;
+            display: block;
+        }
+
+        .question-textarea {
+            width: 100%;
+            min-height: 120px;
+            padding: 16px;
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius-sm);
+            font-family: var(--font);
+            font-size: 1rem;
+            line-height: 1.65;
+            color: var(--text-primary);
+            background: var(--surface);
+            resize: none;
+            overflow: hidden;
+            transition: border-color var(--transition), box-shadow var(--transition);
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        .question-textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(45, 106, 79, 0.1);
+        }
+
+        .question-textarea::placeholder {
+            color: var(--text-tertiary);
+        }
+
+        .question-textarea.tall {
+            min-height: 180px;
+        }
+
+        .question-textarea.short {
+            min-height: 80px;
+        }
+
+
+        /* Commitment blocks */
+        .block-commitment {
+            margin: 32px 0;
+        }
+
+        .commitment-label {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 14px;
+            display: block;
+        }
+
+        .commitment-options {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .commitment-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px;
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: all var(--transition);
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .commitment-option:has(input:checked) {
+            border-color: var(--accent);
+            background: rgba(45, 106, 79, 0.04);
+        }
+
+        .commitment-option input[type="radio"] {
+            width: 20px;
+            height: 20px;
+            accent-color: var(--accent);
+            flex-shrink: 0;
+        }
+
+        .commitment-option span {
+            font-size: 1rem;
+            color: var(--text-primary);
+        }
+
+        /* Romans Road special block */
+        .block-romans-road {
+            margin: 24px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .romans-step-label {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .romans-step-label strong {
+            color: var(--blue-heading);
+        }
+
+        /* ============================================
+           STICKY BOTTOM NAV
+           ============================================ */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(250, 250, 248, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-top: 1px solid var(--border-light);
+            padding: 12px 20px;
+            padding-bottom: max(env(safe-area-inset-bottom), 12px);
+            display: none;
+        }
+
+        .bottom-nav.active {
+            display: block;
+        }
+
+        .bottom-nav-inner {
+            max-width: var(--max-w);
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .nav-btn {
+            flex: 1;
+            padding: 14px 16px;
+            border-radius: var(--radius-sm);
+            font-family: inherit;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition);
+            -webkit-tap-highlight-color: transparent;
+            border: none;
+        }
+
+        .nav-btn-prev {
+            background: var(--surface);
+            border: 1.5px solid var(--border);
+            color: var(--text-secondary);
+        }
+
+        .nav-btn-next {
+            background: var(--accent);
+            color: white;
+        }
+
+        .nav-btn-next:active {
+            background: var(--accent-hover);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.4;
+            pointer-events: none;
+        }
+
+        .nav-session-num {
+            font-size: 0.75rem;
+            color: var(--text-tertiary);
+            font-weight: 600;
+            text-align: center;
+            white-space: nowrap;
+            min-width: 44px;
+        }
+
+        /* ============================================
+           EXPORT LINE
+           ============================================ */
+        .export-line {
+            border-top: 1px solid var(--border-light);
+            padding: 20px 0 8px;
+            margin-top: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .export-line .export-hint {
+            font-size: 0.85rem;
+            color: var(--text-tertiary);
+            line-height: 1.4;
+        }
+
+        .export-link {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--accent);
+            background: none;
+            border: none;
+            font-family: inherit;
+            cursor: pointer;
+            white-space: nowrap;
+            padding: 8px 0;
+            -webkit-tap-highlight-color: transparent;
+            transition: opacity var(--transition);
+        }
+
+        .export-link:active {
+            opacity: 0.6;
+        }
+
+        /* ============================================
+           LOADING
+           ============================================ */
+        .loading-spinner {
+            text-align: center;
+            padding: 60px 0;
+        }
+
+        .spinner {
+            width: 36px;
+            height: 36px;
+            border: 3px solid var(--border);
+            border-top-color: var(--accent);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 0 auto 16px;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .loading-text {
+            font-size: 0.9rem;
+            color: var(--text-tertiary);
+        }
+
+        /* ============================================
+           EMPTY STATE
+           ============================================ */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-tertiary);
+            font-size: 0.95rem;
+        }
+
+        /* ============================================
+           BIBLE READING SECTION
+           ============================================ */
+        .bible-reading-section {
+            margin-top: 48px;
+            padding-top: 32px;
+            border-top: 1px solid var(--border-light);
+        }
+
+        .bible-reading-section .reading-intro {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 24px;
+        }
+
+        .bible-reading-section .reading-heading {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--blue-heading);
+            margin-bottom: 16px;
+        }
+
+        .chapter-group {
+            margin-bottom: 16px;
+        }
+
+        .chapter-card {
+            background: var(--surface);
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: border-color var(--transition), background var(--transition);
+        }
+
+        .chapter-card.completed {
+            border-color: var(--accent);
+        }
+
+        .chapter-card.completed .chapter-card-header {
+            background: var(--accent-hover);
+        }
+
+        .chapter-card.completed .chapter-done-badge {
+            display: flex;
+        }
+
+        .chapter-card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 16px;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+            background: var(--accent);
+            border-radius: var(--radius);
+            transition: background var(--transition), border-radius var(--transition);
+        }
+
+        .chapter-card.open .chapter-card-header {
+            border-radius: var(--radius) var(--radius) 0 0;
+        }
+
+        .chapter-card-title-wrap {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .chapter-card-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: white;
+            transition: color var(--transition);
+        }
+
+        .chapter-done-badge {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.25);
+            color: white;
+            font-size: 0.7rem;
+            flex-shrink: 0;
+        }
+
+        .chapter-card-toggle {
+            font-size: 1.4rem;
+            color: rgba(255,255,255,0.8);
+            transition: transform var(--transition), color var(--transition);
+            flex-shrink: 0;
+            width: 28px;
+            text-align: center;
+        }
+
+        .chapter-card-toggle.open {
+            transform: rotate(180deg);
+            color: white;
+        }
+
+        .chapter-card-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+        }
+
+        .chapter-card-body.open {
+            max-height: none;
+        }
+
+        .chapter-card-content {
+            padding: 0 16px 16px;
+        }
+
+        /* Notes area outside accordion  -  always visible */
+        .chapter-notes-outer {
+            padding: 8px 0 0;
+        }
+
+        /* Audio player inside chapter */
+        .chapter-audio {
+            margin-bottom: 16px;
+        }
+
+        .chapter-audio audio {
+            width: 100%;
+            height: 40px;
+            border-radius: var(--radius-xs);
+        }
+
+        .chapter-audio-label {
+            font-size: 0.8rem;
+            color: var(--text-tertiary);
+            margin-bottom: 6px;
+        }
+
+        /* ESV text styling */
+        .esv-text {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: var(--text-primary);
+            max-height: 60vh;
+            overflow-y: auto;
+            padding: 16px;
+            background: var(--verse-bg);
+            border-radius: var(--radius-xs);
+            margin-bottom: 16px;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .esv-text h2 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin: 0 0 12px;
+        }
+
+        .esv-text .verse-num {
+            font-weight: 700;
+            font-size: 0.75rem;
+            color: var(--accent);
+            vertical-align: super;
+            margin-right: 2px;
+        }
+
+        .esv-text h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--blue-heading);
+            margin: 20px 0 8px;
+        }
+
+        .esv-text h4,
+        .esv-text .heading {
+            font-size: 0.95rem;
+            font-weight: 600;
+            font-style: italic;
+            color: var(--text-secondary);
+            margin: 16px 0 6px;
+        }
+
+        .esv-text p {
+            margin-bottom: 12px;
+        }
+
+        .esv-text .mp3link,
+        .esv-text .audio-link {
+            display: none;
+        }
+
+        .esv-loading {
+            text-align: center;
+            padding: 24px;
+            color: var(--text-tertiary);
+            font-size: 0.9rem;
+        }
+
+        /* Chapter completion row */
+        .chapter-card-footer {
+            padding: 12px 16px;
+            border-top: 1px solid var(--border-light);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .chapter-complete-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .chapter-complete-row input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            accent-color: var(--accent);
+            flex-shrink: 0;
+        }
+
+        .chapter-complete-row label {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            cursor: pointer;
+        }
+
+        .chapter-notes-textarea {
+            width: 100%;
+            min-height: 110px;
+            padding: 12px;
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius-xs);
+            font-family: var(--font);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--text-primary);
+            background: var(--surface);
+            resize: none;
+            overflow: hidden;
+            transition: border-color var(--transition), box-shadow var(--transition);
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        .chapter-notes-textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(45, 106, 79, 0.1);
+        }
+
+        .chapter-notes-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 4px;
+            display: block;
+        }
+
+        /* ============================================
+           SESSION COMPLETE CHECKBOX
+           ============================================ */
+        .session-complete-bar {
+            margin-top: 48px;
+            padding: 20px;
+            background: var(--surface);
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+            transition: all var(--transition);
+        }
+
+        .session-complete-bar.checked {
+            border-color: var(--accent);
+            background: rgba(45, 106, 79, 0.04);
+        }
+
+        .session-complete-bar input[type="checkbox"] {
+            width: 22px;
+            height: 22px;
+            accent-color: var(--accent);
+            flex-shrink: 0;
+            cursor: pointer;
+        }
+
+        .session-complete-bar label {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            cursor: pointer;
+            flex: 1;
+        }
+
+        .session-complete-bar.checked label {
+            color: var(--accent);
+        }
+
+        /* ============================================
+           UTILITIES
+           ============================================ */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app-container">
+
+        <!-- ============================
+             HOME VIEW
+             ============================ -->
+        <div class="home-view" id="home-view">
+            <div class="home-header">
+                <h1 class="home-title">Planting Orchards</h1>
+                <p class="home-title-series">Discipleship Series</p>
+                <img src="images/rooted-logo.png" alt="Planting Orchards Discipleship Series" class="home-logo"
+                    onerror="this.style.display='none'">
+                <div class="home-tagline">
+                    <p class="home-tagline-verse">"Those that were sown on the good soil are the ones who <strong>hear the word</strong> and <strong>accept it</strong> and <strong>bear fruit</strong>, thirtyfold and sixtyfold and a hundredfold."</p>
+                    <p class="home-tagline-ref">Mark 4:20</p>
+                </div>
+            </div>
+
+            <div class="level-stack">
+                <div class="level-item" id="level-item-101">
+                    <button class="level-card" data-series="101" onclick="toggleCourseDropdown('101')">
+                        <div class="level-marker">101</div>
+                        <div class="level-info">
+                            <h2>Starting in Discipleship</h2>
+                            <p>Good Soil</p>
+                        </div>
+                        <div class="level-arrow">&#8250;</div>
+                    </button>
+                    <div class="level-dropdown" id="level-dropdown-101"></div>
+                </div>
+
+                <div class="level-item" id="level-item-201">
+                    <button class="level-card" data-series="201" onclick="toggleCourseDropdown('201')">
+                        <div class="level-marker">201</div>
+                        <div class="level-info">
+                            <h2>Growing Deep in Discipleship</h2>
+                            <p>Deep Roots</p>
+                        </div>
+                        <div class="level-arrow">&#8250;</div>
+                    </button>
+                    <div class="level-dropdown" id="level-dropdown-201"></div>
+                </div>
+
+                <div class="level-item" id="level-item-202">
+                    <button class="level-card" data-series="202" onclick="toggleCourseDropdown('202')">
+                        <div class="level-marker">202</div>
+                        <div class="level-info">
+                            <h2>Growing Up in Discipleship</h2>
+                            <p>Strong Branches</p>
+                        </div>
+                        <div class="level-arrow">&#8250;</div>
+                    </button>
+                    <div class="level-dropdown" id="level-dropdown-202"></div>
+                </div>
+
+                <div class="level-item" id="level-item-203">
+                    <button class="level-card" data-series="203" onclick="toggleCourseDropdown('203')">
+                        <div class="level-marker">203</div>
+                        <div class="level-info">
+                            <h2>Growing Out in Discipleship</h2>
+                            <p>Healthy Fruit</p>
+                        </div>
+                        <div class="level-arrow">&#8250;</div>
+                    </button>
+                    <div class="level-dropdown" id="level-dropdown-203"></div>
+                </div>
+
+                <div class="level-item" id="level-item-301">
+                    <button class="level-card" data-series="301" onclick="toggleCourseDropdown('301')">
+                        <div class="level-marker">301</div>
+                        <div class="level-info">
+                            <h2>Leading in Discipleship</h2>
+                            <p>Caring for an Orchard</p>
+                        </div>
+                        <div class="level-arrow">&#8250;</div>
+                    </button>
+                    <div class="level-dropdown" id="level-dropdown-301"></div>
+                </div>
+            </div>
+
+            <div class="home-tree-btn-wrap">
+                <button class="home-tree-btn" onclick="openTree()">Browse All Courses and Lessons</button>
+            </div>
+        </div>
+
+        <!-- ============================
+             TREE VIEW
+             ============================ -->
+        <div class="tree-view" id="tree-view">
+            <div class="tree-topbar">
+                <button class="tree-close-btn" onclick="closeTree()">&#8249;</button>
+                <span class="tree-topbar-title">All Courses and Lessons</span>
+            </div>
+            <div class="tree-content" id="tree-content"></div>
+        </div>
+
+        <!-- ============================
+             LESSON VIEW
+             ============================ -->
+        <div class="lesson-view" id="lesson-view">
+            <!-- Top bar -->
+            <div class="lesson-topbar">
+                <div class="topbar-row">
+                    <button class="back-btn" onclick="goHome()" aria-label="Back to courses">&#8249;</button>
+                    <div id="topbar-series-badge" class="topbar-series-badge"></div>
+                    <div class="topbar-title">
+                        <h2 id="topbar-series-name">Starting in Discipleship</h2>
+                        <div class="session-label" id="topbar-session-label">Lesson 1 of 7</div>
+                    </div>
+                    <button class="toc-toggle" id="toc-toggle-btn" onclick="toggleTOC()">All Lessons</button>
+                </div>
+                <div class="progress-track">
+                    <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+                </div>
+            </div>
+
+            <!-- TOC Panel -->
+            <div class="toc-panel" id="toc-panel">
+                <div class="toc-header" id="toc-header"></div>
+                <div class="toc-list" id="toc-list"></div>
+            </div>
+
+            <!-- Lesson content -->
+            <div class="lesson-content" id="lessons-list">
+                <div class="loading-spinner" id="loading-indicator">
+                    <div class="spinner"></div>
+                    <div class="loading-text">Loading lessons...</div>
+                </div>
+                <!-- Export line gets moved to end of container by JS -->
+            </div>
+        </div>
+
+        <!-- ============================
+             STICKY BOTTOM NAV
+             ============================ -->
+        <div class="bottom-nav" id="bottom-nav">
+            <div class="bottom-nav-inner">
+                <button class="nav-btn nav-btn-prev" id="prev-btn" onclick="previousSession()">&#8249; Previous</button>
+                <div class="nav-session-num" id="nav-session-num">1 / 7</div>
+                <button class="nav-btn nav-btn-next" id="next-btn" onclick="nextSession()">Next &#8250;</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ============================================
+        // VERSION - bump this when JSON content changes
+        // to bust browser cache on data files
+        // ============================================
+        const BUILD_VERSION = '20260227u';
+
+        // ============================================
+        // STATE
+        // ============================================
+        let currentSeries = '';
+        let currentSession = 1;
+        let totalSessions = 0;
+        let responses = {};
+        let sessionData = {};
+
+        try {
+            responses = JSON.parse(localStorage.getItem('christianFoundationsResponses') || '{}');
+        } catch (e) {
+            responses = {};
+        }
+
+        let completionData = {};
+        try {
+            completionData = JSON.parse(localStorage.getItem('foundationsCompletionData') || '{}');
+        } catch (e) {
+            completionData = {};
+        }
+
+        const seriesTitles = {
+            '101': 'Starting in Discipleship',
+            '201': 'Growing Deep in Discipleship',
+            '202': 'Growing Up in Discipleship',
+            '203': 'Growing Out in Discipleship',
+            '301': 'Leading in Discipleship'
+        };
+
+        // ============================================
+        // NAVIGATION
+        // ============================================
+        // ============================================
+        // HOME PAGE COURSE ACCORDION
+        // ============================================
+        let cachedCurriculum = null;
+
+        async function getCurriculumData() {
+            if (!cachedCurriculum) {
+                cachedCurriculum = await loadCurriculumFromCSV();
+            }
+            return cachedCurriculum;
+        }
+
+        async function toggleCourseDropdown(seriesId) {
+            const card = document.querySelector(`#level-item-${seriesId} .level-card`);
+            const dropdown = document.getElementById(`level-dropdown-${seriesId}`);
+            const isOpen = dropdown.classList.contains('open');
+
+            // Close all dropdowns and reset arrows
+            document.querySelectorAll('.level-dropdown').forEach(d => d.classList.remove('open'));
+            document.querySelectorAll('.level-card').forEach(c => c.classList.remove('open'));
+
+            if (!isOpen) {
+                // Always rebuild so completion checks are fresh from current completionData
+                const courses = await getCurriculumData();
+                const course = courses.find(c => c.id === seriesId);
+                const meta = COURSE_META[seriesId];
+                let html = '';
+                if (course && meta) {
+                    course.lessons.forEach(lesson => {
+                        const isDone = !!completionData[`complete-${seriesId}-${lesson.num}`];
+                        html += `<div class="level-dropdown-lesson" onclick="openFromDropdown('${seriesId}', ${lesson.num})">
+                            <div class="level-dropdown-num" style="background:${meta.bg}; color:${meta.color};">${lesson.num}</div>
+                            <span class="level-dropdown-title">${lesson.topic}</span>
+                            <div class="level-dropdown-check ${isDone ? 'done' : ''}" style="${isDone ? 'background:' + meta.color + '; border-color:' + meta.color + ';' : ''}">&#10003;</div>
+                        </div>`;
+                    });
+                }
+                dropdown.innerHTML = html;
+                dropdown.classList.add('open');
+                card.classList.add('open');
+            }
+        }
+
+        function openFromDropdown(seriesId, lessonNum) {
+            // Close dropdowns before navigating
+            document.querySelectorAll('.level-dropdown').forEach(d => d.classList.remove('open'));
+            document.querySelectorAll('.level-card').forEach(c => c.classList.remove('open'));
+            openSeries(seriesId);
+            setTimeout(() => showSession(lessonNum), 400);
+        }
+
+        function openSeries(seriesId) {
+            document.getElementById('home-view').classList.add('hidden');
+            document.getElementById('lesson-view').classList.add('active');
+            document.getElementById('bottom-nav').classList.add('active');
+            const meta = COURSE_META[seriesId];
+            if (meta) {
+                document.documentElement.style.setProperty('--accent', meta.color);
+                document.documentElement.style.setProperty('--accent-light', meta.bg);
+                document.documentElement.style.setProperty('--accent-hover', meta.hover);
+            }
+            loadSeries(seriesId);
+        }
+
+        function goHome() {
+            document.getElementById('lesson-view').classList.remove('active');
+            document.getElementById('bottom-nav').classList.remove('active');
+            document.getElementById('home-view').classList.remove('hidden');
+            document.getElementById('toc-panel').classList.remove('open');
+            window.scrollTo({ top: 0 });
+        }
+
+        // ============================================
+        // THE TREE - Full Curriculum Overview
+        // Reads live from curriculum-toc.csv
+        // ============================================
+        const COURSE_META = {
+            '101': { name: 'Starting in Discipleship',    color: '#1E6FA0', bg: '#DCEEFB', hover: '#175580' },
+            '201': { name: 'Growing Deep in Discipleship', color: '#1A6B55', bg: '#D4F2E8', hover: '#135040' },
+            '202': { name: 'Growing Up in Discipleship',   color: '#1D6B3F', bg: '#D1EDD9', hover: '#155030' },
+            '203': { name: 'Growing Out in Discipleship',  color: '#1A5C38', bg: '#CCE6D4', hover: '#134528' },
+            '301': { name: 'Leading in Discipleship',      color: '#9A3A5E', bg: '#FCE4ED', hover: '#7A2E4B' }
+        };
+
+        function parseCSVLine(line) {
+            const fields = [];
+            let current = '';
+            let inQuotes = false;
+            for (let i = 0; i < line.length; i++) {
+                const ch = line[i];
+                if (ch === '"') {
+                    inQuotes = !inQuotes;
+                } else if (ch === ',' && !inQuotes) {
+                    fields.push(current.trim());
+                    current = '';
+                } else {
+                    current += ch;
+                }
+            }
+            fields.push(current.trim());
+            return fields;
+        }
+
+        async function loadCurriculumFromCSV() {
+            const response = await fetch('curriculum-toc.csv');
+            const text = await response.text();
+            const lines = text.split('\n').slice(1); // skip header row
+
+            const courses = [];
+            let currentCourse = null;
+
+            for (const line of lines) {
+                if (!line.trim()) continue;
+                const cols = parseCSVLine(line);
+                if (!cols[0]) continue;
+
+                // Course header row: col 1 is empty (e.g. "101 - Starting in Discipleship,,,,")
+                if (!cols[1]) {
+                    const match = cols[0].match(/^(\d{3})/);
+                    if (match && COURSE_META[match[1]]) {
+                        currentCourse = { id: match[1], ...COURSE_META[match[1]], lessons: [] };
+                        courses.push(currentCourse);
+                    }
+                    continue;
+                }
+
+                // Lesson row: col 1 is lesson ID like "101.01"
+                if (currentCourse && cols[1] && cols[2]) {
+                    const parts = cols[1].split('.');
+                    const num = parts[1] ? parseInt(parts[1], 10) : null;
+                    if (num) {
+                        currentCourse.lessons.push({ num, topic: cols[2] });
+                    }
+                }
+            }
+            return courses;
+        }
+
+        async function openTree() {
+            document.getElementById('home-view').classList.add('hidden');
+            document.getElementById('tree-view').classList.add('active');
+            document.getElementById('tree-content').innerHTML =
+                '<p style="padding:20px;color:var(--text-muted);">Loading...</p>';
+            window.scrollTo({ top: 0 });
+            try {
+                const courses = await loadCurriculumFromCSV();
+                buildTreeContent(courses);
+            } catch (e) {
+                document.getElementById('tree-content').innerHTML =
+                    '<p style="padding:20px;color:var(--text-muted);">Could not load curriculum data.</p>';
+            }
+        }
+
+        function closeTree() {
+            document.getElementById('tree-view').classList.remove('active');
+            document.getElementById('home-view').classList.remove('hidden');
+            window.scrollTo({ top: 0 });
+        }
+
+        function buildTreeContent(courses) {
+            const container = document.getElementById('tree-content');
+            let html = '<div class="tree-grid">';
+
+            courses.forEach(course => {
+                const total = course.lessons.length;
+                const done = course.lessons.filter(l =>
+                    !!completionData[`complete-${course.id}-${l.num}`]
+                ).length;
+
+                html += `
+                <div class="tree-course-section" style="border-color:${course.color};">
+                    <div class="tree-course-header" style="background:${course.bg}; color:${course.color}; border-bottom-color:${course.color};">
+                        <div class="tree-course-badge" style="color:${course.color};">${course.id}</div>
+                        <span class="tree-course-name">${course.name}</span>
+                        <span class="tree-course-progress">${done}/${total}</span>
+                    </div>
+                    <div class="tree-lesson-list">`;
+
+                course.lessons.forEach(lesson => {
+                    const isComplete = !!completionData[`complete-${course.id}-${lesson.num}`];
+                    html += `
+                        <div class="tree-lesson-row" onclick="openTreeLesson('${course.id}', ${lesson.num})">
+                            <div class="tree-lesson-num" style="background:${course.bg}; color:${course.color};">${lesson.num}</div>
+                            <span class="tree-lesson-topic">${lesson.topic}</span>
+                            <div class="tree-lesson-check ${isComplete ? 'done' : ''}" style="${isComplete ? 'background:' + course.color + '; border-color:' + course.color + ';' : ''}">&#10003;</div>
+                        </div>`;
+                });
+
+                html += `    </div>
+                </div>`;
+            });
+
+            html += '</div>';
+            container.innerHTML = html;
+        }
+
+        function openTreeLesson(seriesId, lessonNum) {
+            document.getElementById('tree-view').classList.remove('active');
+            openSeries(seriesId);
+            setTimeout(() => showSession(lessonNum), 400);
+        }
+
+        function toggleTOC() {
+            const panel = document.getElementById('toc-panel');
+            const isOpening = !panel.classList.contains('open');
+            panel.classList.toggle('open');
+            if (isOpening) {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        // ============================================
+        // LOAD SERIES
+        // ============================================
+        async function loadSeries(seriesId) {
+            currentSeries = seriesId;
+            sessionData = {};
+
+            const loadingEl = document.getElementById('loading-indicator');
+            if (loadingEl) loadingEl.style.display = 'block';
+
+            // Clear old sessions
+            document.querySelectorAll('#lessons-list .session').forEach(el => el.remove());
+            const existingExport = document.getElementById('export-section');
+            if (existingExport) existingExport.remove();
+
+            // Update topbar
+            const fullTitle = seriesTitles[seriesId] || 'The Walk Discipleship';
+            const firstSpace = fullTitle.indexOf(' ');
+            const secondSpace = fullTitle.indexOf(' ', firstSpace + 1);
+            const keywordEnd = fullTitle.startsWith('Growing') ? secondSpace : firstSpace;
+            const colorClass = `c${seriesId}`;
+            const titleHTML = keywordEnd > -1
+                ? `<span class="course-keyword ${colorClass}">${fullTitle.slice(0, keywordEnd)}</span>${fullTitle.slice(keywordEnd)}`
+                : `<span class="course-keyword ${colorClass}">${fullTitle}</span>`;
+            document.getElementById('topbar-series-name').innerHTML = titleHTML;
+            const badge = document.getElementById('topbar-series-badge');
+            badge.textContent = seriesId;
+            badge.className = `topbar-series-badge c${seriesId}`;
+
+            // Fetch all possible sessions
+            const MAX = 20;
+            const promises = [];
+
+            for (let i = 1; i <= MAX; i++) {
+                const fileNum = i.toString().padStart(2, '0');
+                promises.push(
+                    fetch(`data/${seriesId}-${fileNum}.json?v=${BUILD_VERSION}`)
+                        .then(res => { if (!res.ok) throw new Error('404'); return res.json(); })
+                        .then(data => { sessionData[i] = data; })
+                        .catch(() => { })
+                );
+            }
+
+            await Promise.allSettled(promises);
+
+            const loaded = Object.keys(sessionData).map(Number);
+            totalSessions = loaded.length > 0 ? Math.max(...loaded) : 0;
+
+            if (loadingEl) loadingEl.style.display = 'none';
+
+            if (totalSessions === 0) {
+                document.getElementById('lessons-list').innerHTML +=
+                    '<div class="empty-state">This content is coming soon.</div>';
+                return;
+            }
+
+            buildUI();
+            buildTOC();
+            currentSession = 1;
+            showSession(1);
+        }
+
+        // ============================================
+        // BUILD UI
+        // ============================================
+        function buildUI() {
+            const container = document.getElementById('lessons-list');
+
+            for (let i = 1; i <= totalSessions; i++) {
+                if (!sessionData[i]) continue;
+                const data = sessionData[i];
+
+                const div = document.createElement('div');
+                div.className = 'session';
+                div.id = `session-${i}`;
+
+                let html = '';
+                html += `<h1 class="session-title">${data.title}</h1>`;
+                if (data.description) {
+                    html += `<p class="session-description">${data.description}</p>`;
+                }
+
+                if (data.blocks) {
+                    data.blocks.forEach(b => {
+                        switch (b.type) {
+                            case 'heading':
+                                if (b.subheading) {
+                                    html += `<h4 class="block-subheading">${b.text}</h4>`;
+                                } else {
+                                    html += `<h3 class="block-heading">${b.text}</h3>`;
+                                }
+                                break;
+
+                            case 'subheading':
+                                html += `<h3 class="block-heading">${b.text}</h3>`;
+                                break;
+
+                            case 'subheading2':
+                                html += `<h4 class="block-subheading2">${b.text}</h4>`;
+                                break;
+
+                            case 'text':
+                                html += `<p class="block-text">${b.text}</p>`;
+                                break;
+
+                            case 'image':
+                                html += `<div class="block-image"><img src="${b.src}" alt="${b.alt || ''}" onerror="this.style.display='none'"></div>`;
+                                break;
+
+                            case 'verse':
+                                html += `<div class="block-verse">
+                                    <span class="verse-ref">${b.reference}</span>
+                                    <div class="verse-text">${b.text}</div>
+                                </div>`;
+                                break;
+
+                            case 'list':
+                                html += `<div class="block-list">`;
+                                b.items.forEach(item => {
+                                    html += `<p>${item}</p>`;
+                                });
+                                html += `</div>`;
+                                break;
+
+                            case 'box':
+                                html += `<div class="block-box">
+                                    <div class="box-title">${b.title}</div>`;
+                                b.content.forEach(item => {
+                                    html += `<p>${item}</p>`;
+                                });
+                                html += `</div>`;
+                                break;
+
+                            case 'question':
+                                const heightClass = b.height === 'tall' ? 'tall' : b.height === 'short' ? 'short' : '';
+                                html += `<div class="block-question">
+                                    <label class="question-label" for="question-${currentSeries}-${b.id}">${b.text}</label>
+                                    <textarea
+                                        class="question-textarea ${heightClass}"
+                                        id="question-${currentSeries}-${b.id}"
+                                        data-question="${b.data_question || ''}"
+                                        oninput="autoGrow(this); saveResponse(this);"
+                                    ></textarea>
+                                </div>`;
+                                break;
+
+                            case 'commitment':
+                                html += `<div class="block-commitment">
+                                    <div class="commitment-label">${b.text}</div>
+                                    <div class="commitment-options">
+                                        <label class="commitment-option">
+                                            <input type="radio" name="commitment-${currentSeries}" value="Yes"
+                                                id="commitment-yes-${currentSeries}"
+                                                onchange="saveCommitment(this)">
+                                            <span>Yes, I commit to this journey</span>
+                                        </label>
+                                        <label class="commitment-option">
+                                            <input type="radio" name="commitment-${currentSeries}" value="No"
+                                                id="commitment-no-${currentSeries}"
+                                                onchange="saveCommitment(this)">
+                                            <span>No, I cannot commit at this time</span>
+                                        </label>
+                                    </div>
+                                </div>`;
+                                break;
+
+                            case 'agenda':
+                                html += `<div class="block-agenda">
+                                    <div class="agenda-title">${b.title}</div>`;
+                                b.items.forEach(item => {
+                                    html += `<p>${item}</p>`;
+                                });
+                                html += `</div>`;
+                                break;
+
+                            case 'homework':
+                                html += `<div class="block-homework">
+                                    <div class="hw-title">${b.text}</div>`;
+                                b.items.forEach(item => {
+                                    html += `<p>${item}</p>`;
+                                });
+                                html += `</div>`;
+                                break;
+
+                            case 'romans_road':
+                                html += `<div class="block-romans-road">
+                                    <div>
+                                        <p class="romans-step-label"><strong>A  -  Admit Sin</strong>  -  We are in need</p>
+                                        <div class="block-verse">
+                                            <span class="verse-ref">Romans 3:23</span>
+                                            <div class="verse-text">For all have sinned and fall short of the glory of God</div>
+                                        </div>
+                                        <div class="block-verse" style="margin-top: 8px;">
+                                            <span class="verse-ref">Romans 6:23</span>
+                                            <div class="verse-text">For the wages of sin is death, but the free gift of God is eternal life in Christ Jesus our Lord.</div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <p class="romans-step-label"><strong>B  -  Believe Jesus as Savior</strong>  -  He died for our sins to save us</p>
+                                        <div class="block-verse">
+                                            <span class="verse-ref">Romans 5:8</span>
+                                            <div class="verse-text">but God shows his love for us in that while we were still sinners, Christ died for us.</div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <p class="romans-step-label"><strong>C  -  Confess Jesus as Lord</strong>  -  Living under His Authority</p>
+                                        <div class="block-verse">
+                                            <span class="verse-ref">Romans 10:9</span>
+                                            <div class="verse-text">If you confess with your mouth that Jesus is Lord and believe in your heart that God raised him from the dead, you will be saved.</div>
+                                        </div>
+                                    </div>
+                                </div>`;
+                                break;
+
+                            case 'bible_reading':
+                                html += `<div class="bible-reading-section">`;
+                                if (b.intro) {
+                                    html += `<p class="reading-intro">${b.intro}</p>`;
+                                }
+                                html += `<h3 class="reading-heading">${b.heading || 'Read the Word This Week'}</h3>`;
+                                b.chapters.forEach(ch => {
+                                    const chId = ch.ref.replace(/\s+/g, '-');
+                                    const checkId = `reading-check-${currentSeries}-${chId}`;
+                                    const notesId = `reading-notes-${currentSeries}-${chId}`;
+                                    html += `
+                                    <div class="chapter-group">
+                                        <div class="chapter-card" id="card-${currentSeries}-${chId}">
+                                            <div class="chapter-card-header" onclick="toggleChapter('${currentSeries}-${chId}')">
+                                                <div class="chapter-card-title-wrap">
+                                                    <div class="chapter-card-title">Open ${ch.ref}</div>
+                                                </div>
+                                                <div class="chapter-done-badge" id="badge-${currentSeries}-${chId}">&#10003;</div>
+                                                <div class="chapter-card-toggle" id="toggle-${currentSeries}-${chId}">&#9662;</div>
+                                            </div>
+                                            <div class="chapter-card-body" id="body-${currentSeries}-${chId}">
+                                                <div class="chapter-card-content">
+                                                    <div class="chapter-audio" id="audio-wrap-${currentSeries}-${chId}" style="display:none;">
+                                                        <div class="chapter-audio-label">Listen to ${ch.ref}</div>
+                                                        <audio controls preload="none" id="audio-${currentSeries}-${chId}"></audio>
+                                                    </div>
+                                                    <div class="esv-text" id="esv-${currentSeries}-${chId}">
+                                                        <div class="esv-loading">Loading ${ch.ref}...</div>
+                                                    </div>
+                                                </div>
+                                                <div class="chapter-card-footer">
+                                                    <div class="chapter-complete-row">
+                                                        <input type="checkbox" id="${checkId}" onchange="saveReadingCheck(this, '${currentSeries}-${chId}')">
+                                                        <label for="${checkId}">I've read ${ch.ref}</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="chapter-notes-outer">
+                                            <label class="chapter-notes-label">Notes from ${ch.ref}</label>
+                                            <textarea class="chapter-notes-textarea" id="${notesId}"
+                                                oninput="autoGrow(this); saveReadingNotes(this, '${currentSeries}-${chId}');"
+                                            ></textarea>
+                                        </div>
+                                    </div>`;
+                                });
+                                html += `</div>`;
+                                break;
+                        }
+                    });
+                }
+
+                // Session complete checkbox at the bottom
+                const completeId = `session-complete-${currentSeries}-${i}`;
+                html += `
+                <div class="session-complete-bar" id="bar-${completeId}" onclick="toggleSessionComplete('${currentSeries}', ${i})">
+                    <input type="checkbox" id="${completeId}"
+                        onchange="saveSessionComplete(this, '${currentSeries}', ${i})"
+                        onclick="event.stopPropagation()">
+                    <label for="${completeId}">I have completed this lesson</label>
+                </div>`;
+
+                div.innerHTML = html;
+                container.appendChild(div);
+            }
+
+            // Add export line at the very end
+            const oldExport = document.getElementById('export-section');
+            if (oldExport) oldExport.remove();
+
+            const exportDiv = document.createElement('div');
+            exportDiv.className = 'export-line';
+            exportDiv.id = 'export-section';
+            const seriesName = seriesTitles[currentSeries] || 'this series';
+            exportDiv.innerHTML = `
+                <span class="export-hint">Responses save automatically</span>
+                <button class="export-link" onclick="exportAllResponses()">Email ${seriesName} &rarr;</button>
+            `;
+            container.appendChild(exportDiv);
+
+            // Restore saved responses
+            loadAllResponses();
+            loadReadingData();
+            loadSessionCompletion();
+
+            // Auto-grow all textareas that have content
+            document.querySelectorAll('.question-textarea').forEach(ta => {
+                if (ta.value) autoGrow(ta);
+            });
+        }
+
+        // ============================================
+        // TABLE OF CONTENTS
+        // ============================================
+        function buildTOC() {
+            const list = document.getElementById('toc-list');
+            list.innerHTML = '';
+
+            // Set the TOC header to the short course name
+            const headerEl = document.getElementById('toc-header');
+            const shortNames = {
+                '101': 'Starting',
+                '201': 'Growing Deep',
+                '202': 'Growing Up',
+                '203': 'Growing Out',
+                '301': 'Leading'
+            };
+            headerEl.textContent = shortNames[currentSeries] || 'Lessons';
+
+            for (let i = 1; i <= totalSessions; i++) {
+                if (!sessionData[i]) continue;
+
+                const btn = document.createElement('button');
+                btn.className = 'toc-item';
+                btn.id = `toc-item-${i}`;
+                btn.onclick = () => { showSession(i); toggleTOC(); };
+
+                const title = sessionData[i].title.replace(/^Lesson\s+\d+:\s*/i, '');
+                const isComplete = isSessionComplete(currentSeries, i);
+
+                btn.innerHTML = `
+                    <div class="toc-check ${isComplete ? 'done' : ''}" id="toc-check-${i}">&#10003;</div>
+                    <span class="toc-item-title"><span class="toc-item-num">${i}.</span> ${title}</span>
+                `;
+
+                list.appendChild(btn);
+            }
+        }
+
+        function isSessionComplete(series, sessionNum) {
+            const key = `complete-${series}-${sessionNum}`;
+            return !!completionData[key];
+        }
+
+        function updateTOCHighlight() {
+            document.querySelectorAll('.toc-item').forEach((item, idx) => {
+                item.classList.toggle('current', idx + 1 === currentSession);
+            });
+        }
+
+        // ============================================
+        // SESSION NAVIGATION
+        // ============================================
+        function showSession(num) {
+            document.querySelectorAll('.session').forEach(s => s.classList.remove('active'));
+
+            const sess = document.getElementById(`session-${num}`);
+            if (sess) sess.classList.add('active');
+
+            currentSession = num;
+            updateNav();
+            updateTOCHighlight();
+
+            // Scroll lesson content to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function nextSession() {
+            if (currentSession < totalSessions) showSession(currentSession + 1);
+        }
+
+        function previousSession() {
+            if (currentSession > 1) showSession(currentSession - 1);
+        }
+
+        function updateNav() {
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const numLabel = document.getElementById('nav-session-num');
+            const topLabel = document.getElementById('topbar-session-label');
+            const progressFill = document.getElementById('progress-fill');
+
+            prevBtn.disabled = currentSession <= 1;
+            nextBtn.disabled = currentSession >= totalSessions;
+
+            numLabel.textContent = `${currentSession} / ${totalSessions}`;
+            topLabel.textContent = `Lesson ${currentSession} of ${totalSessions}`;
+
+            const pct = totalSessions > 0 ? (currentSession / totalSessions) * 100 : 0;
+            progressFill.style.width = pct + '%';
+        }
+
+        // ============================================
+        // AUTO-GROW TEXTAREAS
+        // ============================================
+        function autoGrow(el) {
+            el.style.height = 'auto';
+            const minH = el.classList.contains('tall') ? 180 :
+                el.classList.contains('short') ? 80 : 120;
+            el.style.height = Math.max(el.scrollHeight, minH) + 'px';
+        }
+
+        // ============================================
+        // SAVE / LOAD RESPONSES
+        // ============================================
+        function saveResponse(el) {
+            responses[el.id] = el.value;
+            localStorage.setItem('christianFoundationsResponses', JSON.stringify(responses));
+
+        }
+
+        function saveCommitment(el) {
+            responses[`commitment-${currentSeries}`] = el.value;
+            localStorage.setItem('christianFoundationsResponses', JSON.stringify(responses));
+
+        }
+
+        function loadAllResponses() {
+            document.querySelectorAll('.question-textarea').forEach(ta => {
+                if (responses[ta.id]) ta.value = responses[ta.id];
+            });
+
+            document.querySelectorAll('input[type="radio"]').forEach(r => {
+                const key = `commitment-${currentSeries}`;
+                if (responses[key] && responses[key] === r.value) {
+                    r.checked = true;
+                }
+            });
+        }
+
+        // ============================================
+        // SESSION COMPLETION
+        // ============================================
+        function toggleSessionComplete(series, sessionNum) {
+            const cb = document.getElementById(`session-complete-${series}-${sessionNum}`);
+            if (cb) {
+                cb.checked = !cb.checked;
+                saveSessionComplete(cb, series, sessionNum);
+            }
+        }
+
+        function saveSessionComplete(el, series, sessionNum) {
+            const key = `complete-${series}-${sessionNum}`;
+            completionData[key] = el.checked;
+            localStorage.setItem('foundationsCompletionData', JSON.stringify(completionData));
+
+            // Update the bar visual
+            const bar = document.getElementById(`bar-session-complete-${series}-${sessionNum}`);
+            if (bar) bar.classList.toggle('checked', el.checked);
+
+            // Update TOC checkmark
+            const tocCheck = document.getElementById(`toc-check-${sessionNum}`);
+            if (tocCheck) tocCheck.classList.toggle('done', el.checked);
+        }
+
+        function loadSessionCompletion() {
+            for (let i = 1; i <= totalSessions; i++) {
+                const key = `complete-${currentSeries}-${i}`;
+                const cb = document.getElementById(`session-complete-${currentSeries}-${i}`);
+                if (cb && completionData[key]) {
+                    cb.checked = true;
+                    const bar = document.getElementById(`bar-session-complete-${currentSeries}-${i}`);
+                    if (bar) bar.classList.add('checked');
+                }
+            }
+        }
+
+        // ============================================
+        // BIBLE READING  -  ESV API
+        // ============================================
+        const ESV_API_TOKEN = 'Token 7e4b8df428bed84fc9ee3afd18c666fb64775e06';
+        let readingData = {};
+        try {
+            readingData = JSON.parse(localStorage.getItem('foundationsReadingData') || '{}');
+        } catch (e) { readingData = {}; }
+
+        function toggleChapter(chId) {
+            const body = document.getElementById('body-' + chId);
+            const toggle = document.getElementById('toggle-' + chId);
+            const card = document.getElementById('card-' + chId);
+            if (!body) return;
+
+            const isOpen = body.classList.contains('open');
+
+            if (!isOpen) {
+                body.classList.add('open');
+                toggle.classList.add('open');
+                if (card) card.classList.add('open');
+
+                // Fetch ESV text if not loaded yet
+                const esvEl = document.getElementById('esv-' + chId);
+                if (esvEl && esvEl.querySelector('.esv-loading')) {
+                    const ref = esvEl.querySelector('.esv-loading').textContent.replace('Loading ', '').replace('...', '');
+                    fetchChapterESV(chId, ref);
+                }
+            } else {
+                body.classList.remove('open');
+                toggle.classList.remove('open');
+                if (card) card.classList.remove('open');
+            }
+        }
+
+        async function fetchChapterESV(chId, ref) {
+            const esvEl = document.getElementById('esv-' + chId);
+            const audioWrap = document.getElementById('audio-wrap-' + chId);
+            const audioEl = document.getElementById('audio-' + chId);
+
+            try {
+                const url = `https://api.esv.org/v3/passage/html/?q=${encodeURIComponent(ref)}&include-headings=true&include-verse-numbers=true&include-footnotes=false&include-chapter-numbers=false&include-audio-link=true&include-short-copyright=false`;
+
+                const res = await fetch(url, {
+                    headers: { 'Authorization': ESV_API_TOKEN }
+                });
+
+                const data = await res.json();
+
+                if (data.passages && data.passages.length > 0) {
+                    esvEl.innerHTML = data.passages.join('');
+
+                    // Extract audio link FIRST before any DOM changes (it may be inside the h2)
+                    const mp3Link = esvEl.querySelector('a.mp3link')
+                                 || esvEl.querySelector('a[href*=".mp3"]')
+                                 || esvEl.querySelector('a.audio-link');
+                    const audioSrc = (mp3Link && mp3Link.href) || data.audio_link || '';
+                    if (audioSrc && audioEl) {
+                        audioEl.src = audioSrc;
+                        audioWrap.style.display = 'block';
+                        if (mp3Link) mp3Link.style.display = 'none';
+                    }
+
+                    // Clean passage title AFTER extracting audio - strip verse range e.g. "John 2 (1-51)" → "John 2"
+                    const passageTitle = esvEl.querySelector('h2');
+                    if (passageTitle) {
+                        const titleText = passageTitle.textContent.replace(/\s*\(.*?\)/g, '').trim();
+                        passageTitle.textContent = titleText;
+                    }
+                } else {
+                    esvEl.innerHTML = '<p style="color: var(--text-tertiary);">Text not available.</p>';
+                }
+            } catch (e) {
+                console.error('ESV fetch error:', e);
+                esvEl.innerHTML = '<p style="color: var(--text-tertiary);">Could not load text. Check your connection.</p>';
+            }
+        }
+
+        function saveReadingCheck(el, chId) {
+            readingData['check-' + chId] = el.checked;
+            localStorage.setItem('foundationsReadingData', JSON.stringify(readingData));
+
+            // Update card visual state (border + header background + badge)
+            const card = document.getElementById('card-' + chId);
+            if (card) card.classList.toggle('completed', el.checked);
+        }
+
+        function saveReadingNotes(el, chId) {
+            readingData['notes-' + chId] = el.value;
+            localStorage.setItem('foundationsReadingData', JSON.stringify(readingData));
+        }
+
+        function loadReadingData() {
+            // Restore checkboxes
+            document.querySelectorAll('.chapter-card input[type="checkbox"]').forEach(cb => {
+                const chId = cb.id.replace('reading-check-', '');
+                if (readingData['check-' + chId]) {
+                    cb.checked = true;
+                    const card = document.getElementById('card-' + chId);
+                    if (card) card.classList.add('completed');
+                }
+            });
+
+            // Restore notes
+            document.querySelectorAll('.chapter-notes-textarea').forEach(ta => {
+                const chId = ta.id.replace('reading-notes-', '');
+                if (readingData['notes-' + chId]) {
+                    ta.value = readingData['notes-' + chId];
+                    autoGrow(ta);
+                }
+            });
+        }
+
+        // ============================================
+        // EXPORT
+        // ============================================
+        function exportAllResponses() {
+            let body = `${seriesTitles[currentSeries] || 'The Walk Discipleship'} - Complete Journey\n`;
+            body += '='.repeat(50) + '\n\n';
+
+            for (let s = 1; s <= totalSessions; s++) {
+                const d = sessionData[s];
+                if (!d) continue;
+
+                body += d.title + '\n' + '-'.repeat(d.title.length) + '\n\n';
+
+                const sess = document.getElementById(`session-${s}`);
+                if (sess) {
+                    sess.querySelectorAll('.question-textarea').forEach(ta => {
+                        const q = ta.dataset.question || ta.id;
+                        body += q + '\n' + (ta.value || '[No response]') + '\n\n';
+                    });
+                }
+
+                if (s === 1 && responses[`commitment-${currentSeries}`]) {
+                    body += 'Course Commitment\n' + responses[`commitment-${currentSeries}`] + '\n\n';
+                }
+
+                body += '\n';
+            }
+
+            const subject = `My ${seriesTitles[currentSeries] || 'The Walk Discipleship'} Journey`;
+            window.location.href = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        }
+
+        // ============================================
+        // KEYBOARD NAV
+        // ============================================
+        document.addEventListener('keydown', e => {
+            if (!document.getElementById('lesson-view').classList.contains('active')) return;
+            if ((e.ctrlKey || e.metaKey) && e.key === 'ArrowLeft') { e.preventDefault(); previousSession(); }
+            if ((e.ctrlKey || e.metaKey) && e.key === 'ArrowRight') { e.preventDefault(); nextSession(); }
+        });
+
+        // Periodic save
+        setInterval(() => {
+            if (Object.keys(responses).length) {
+                localStorage.setItem('christianFoundationsResponses', JSON.stringify(responses));
+            }
+        }, 30000);
+    </script>
+</body>
+
+</html>

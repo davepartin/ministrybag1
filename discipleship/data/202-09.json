@@ -1,0 +1,48 @@
+{
+  "id": "9",
+  "title": "Lesson 9: Fighting for Purity",
+  "description": "Life Skill: Honoring God with our bodies and minds.",
+  "blocks": [
+    {
+      "type": "heading",
+      "text": "Living with Integrity"
+    },
+    {
+      "type": "text",
+      "text": "Our bodies and minds are temples of the Holy Spirit. Pursuing personal purity is an intentional daily act of honoring God, protecting our relationships, and dwelling in His holiness."
+    },
+    {
+      "type": "verse",
+      "reference": "1 Corinthians 6:19-20",
+      "text": "Or do you not know that your body is a temple of the Holy Spirit within you, whom you have from God? You are not your own, for you were bought with a price. So glorify God in your body."
+    },
+    {
+      "type": "question",
+      "id": "201-9-1",
+      "text": "9.1 - What is one habit or boundary you can establish to better protect your mind and heart?",
+      "data_question": "9.1 - Guarding mind and heart"
+    },
+    {
+      "type": "heading",
+      "text": "Closing Reflections"
+    },
+    {
+      "type": "question",
+      "id": "201-09-key",
+      "text": "What is one key thing you learned from this lesson?",
+      "height": "short"
+    },
+    {
+      "type": "question",
+      "id": "201-09-step",
+      "text": "What is one step you are going to take this week?",
+      "height": "short"
+    },
+    {
+      "type": "question",
+      "id": "201-09-prayer",
+      "text": "What is a prayer request for this week?",
+      "height": "short"
+    }
+  ]
+}

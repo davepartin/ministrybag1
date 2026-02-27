@@ -1,0 +1,48 @@
+{
+  "id": "9",
+  "title": "Lesson 9: Suffering and Trials",
+  "description": "Communicating with the Father using the ACTS model or Lord's Prayer model.",
+  "blocks": [
+    {
+      "type": "heading",
+      "text": "Growing Through Prayer"
+    },
+    {
+      "type": "text",
+      "text": "Prayer is our vital connection to God. Using models like ACTS (Adoration, Confession, Thanksgiving, Supplication) helps structure our conversation and deepens our reliance on Him."
+    },
+    {
+      "type": "verse",
+      "reference": "Philippians 4:6",
+      "text": "Do not be anxious about anything, but in everything by prayer and supplication with thanksgiving let your requests be made known to God."
+    },
+    {
+      "type": "question",
+      "id": "201-7-1",
+      "text": "7.1 - What is one specific area you have been anxious about that you need to hand over in prayer?",
+      "data_question": "7.1 - Handing over anxiety"
+    },
+    {
+      "type": "heading",
+      "text": "Closing Reflections"
+    },
+    {
+      "type": "question",
+      "id": "201-07-key",
+      "text": "What is one key thing you learned from this lesson?",
+      "height": "short"
+    },
+    {
+      "type": "question",
+      "id": "201-07-step",
+      "text": "What is one step you are going to take this week?",
+      "height": "short"
+    },
+    {
+      "type": "question",
+      "id": "201-07-prayer",
+      "text": "What is a prayer request for this week?",
+      "height": "short"
+    }
+  ]
+}

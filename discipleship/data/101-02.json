@@ -1,0 +1,130 @@
+{
+  "id": "2",
+  "title": "Lesson 2: Salvation and Baptism",
+  "blocks": [
+    {
+      "type": "heading",
+      "text": "Salvation"
+    },
+    {
+      "type": "text",
+      "text": "The term \"salvation\" describes deliverance, rescue, and redemption from spiritual bondage and the consequences of sin. It encompasses being saved from separation from God and instead being reconciled with God and granted eternal life."
+    },
+    {
+      "type": "verse",
+      "reference": "John 3:16-17",
+      "text": "For God so loved the world, that he gave his only Son, that whoever believes in him should not perish but have eternal life. For God did not send his Son into the world to condemn the world, but in order that the world might be saved through him."
+    },
+    {
+      "type": "question",
+      "id": "2-1",
+      "text": "2.1 - What do we learn about God, Jesus, and mankind from John 3:16,17?",
+      "data_question": "2.1 - God, Jesus, and mankind from John 3:16,17"
+    },
+    {
+      "type": "heading",
+      "text": "How can someone be saved and become a Christian?"
+    },
+    {
+      "type": "text",
+      "text": "The \"Romans Road\" reveals the path to salvation:"
+    },
+    {
+      "type": "romans_road"
+    },
+    {
+      "type": "question",
+      "id": "2-2",
+      "text": "2.2 - Share about your salvation experience.",
+      "data_question": "2.2 - Salvation experience",
+      "height": "tall"
+    },
+    {
+      "type": "question",
+      "id": "2-3",
+      "text": "2.3 - What questions do you have about how someone can become Christian?",
+      "data_question": "2.3 - Questions about becoming Christian"
+    },
+    {
+      "type": "heading",
+      "text": "Baptism"
+    },
+    {
+      "type": "text",
+      "text": "Christian baptism is the immersion of a believer in water in the name of the Father, Son, and Holy Spirit. It symbolizes the believer's faith in a crucified, buried, and risen Savior."
+    },
+    {
+      "type": "verse",
+      "reference": "Romans 6:3-4",
+      "text": "All of us who have been baptized into Christ Jesus were baptized into his death? We were buried therefore with him by baptism into death, in order that, just as Christ was raised from the dead by the glory of the Father, we too might walk in newness of life."
+    },
+    {
+      "type": "question",
+      "id": "2-4",
+      "text": "2.4 - Why is it important for a Christian to be baptized?",
+      "data_question": "2.4 - Importance of baptism"
+    },
+    {
+      "type": "question",
+      "id": "2-5",
+      "text": "2.5 - Have you been baptized, when? If not, do you want to be baptized? Why or why not?",
+      "data_question": "2.5 - Baptism experience"
+    },
+    {
+      "type": "heading",
+      "text": "You are a New Creation"
+    },
+    {
+      "type": "text",
+      "text": "When you become a Christian by putting your faith in Jesus as Lord and Savior, you are a new creation. You have been adopted by the Father into the family of God."
+    },
+    {
+      "type": "verse",
+      "reference": "2 Corinthians 5:17,21",
+      "text": "Therefore, if anyone is in Christ, he is a new creation. The old has passed away; behold, the new has come...For our sake he made him to be sin who knew no sin, so that in him we might become the righteousness of God."
+    },
+    {
+      "type": "question",
+      "id": "2-6",
+      "text": "2.6 - How are you encouraged by 2 Cor. 5:17,21?",
+      "data_question": "2.6 - Encouraged by 2 Cor 5:17,21"
+    },
+    {
+      "type": "bible_reading",
+      "heading": "Read the Gospel of John",
+      "chapters": [
+        {
+          "ref": "John 4"
+        },
+        {
+          "ref": "John 5"
+        },
+        {
+          "ref": "John 6"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Closing Reflections"
+    },
+    {
+      "type": "question",
+      "id": "101-02-key",
+      "text": "What is one key thing you learned from this lesson?",
+      "height": "short"
+    },
+    {
+      "type": "question",
+      "id": "101-02-step",
+      "text": "What is one step you are going to take this week?",
+      "height": "short"
+    },
+    {
+      "type": "question",
+      "id": "101-02-prayer",
+      "text": "What is a prayer request for this week?",
+      "height": "short"
+    }
+  ]
+}

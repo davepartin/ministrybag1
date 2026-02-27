@@ -1,0 +1,58 @@
+{
+  "id": "6",
+  "title": "Lesson 6: Answering Hard Questions",
+  "description": "Recognizing the enemy and fighting with spiritual weapons.",
+  "blocks": [
+    {
+      "type": "heading",
+      "text": "The Unseen Battle"
+    },
+    {
+      "type": "text",
+      "text": "We are part of an unseen spiritual battle. Our enemy hates God and hates when people come to know Him. Our weapons are not physical, but rather the Gospel, prayer, truth, and faith."
+    },
+    {
+      "type": "verse",
+      "reference": "Ephesians 6:11-12",
+      "text": "Put on the whole armor of God, that you may be able to stand against the schemes of the devil. For we do not wrestle against flesh and blood..."
+    },
+    {
+      "type": "question",
+      "id": "203-7-1",
+      "text": "7.1 - In what areas of your life or ministry do you feel the most spiritual resistance right now?",
+      "data_question": "7.1 - Spiritual resistance"
+    },
+    {
+      "type": "heading",
+      "text": "BLESS Check-in"
+    },
+    {
+      "type": "question",
+      "id": "203-07-bless",
+      "text": "Who are you currently BLESSing? Who are you praying for and actively moving toward? What is one specific step you are taking this week?",
+      "height": "tall"
+    },
+    {
+      "type": "heading",
+      "text": "Closing Reflections"
+    },
+    {
+      "type": "question",
+      "id": "203-07-key",
+      "text": "What is one key thing you learned from this lesson?",
+      "height": "short"
+    },
+    {
+      "type": "question",
+      "id": "203-07-step",
+      "text": "What is one step you are going to take this week?",
+      "height": "short"
+    },
+    {
+      "type": "question",
+      "id": "203-07-prayer",
+      "text": "What is a prayer request for this week?",
+      "height": "short"
+    }
+  ]
+}

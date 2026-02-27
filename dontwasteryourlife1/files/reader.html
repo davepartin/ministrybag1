@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reading - Don't Waste Your Life</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="reader-body">
+    <div class="reader-container">
+        <!-- Navigation Bar -->
+        <nav class="reader-nav">
+            <a href="index.html" class="btn-back" title="Back to chapters">
+                <span class="icon">←</span> Chapters
+            </a>
+            <h2 id="chapterTitle" class="chapter-title-nav">Loading...</h2>
+            <div class="nav-controls">
+                <button id="textSizeBtn" class="btn-icon" title="Adjust text size">
+                    <span class="icon">A</span>
+                </button>
+                <button id="listenBtn" class="btn-icon" title="Listen to chapter">
+                    <span class="icon">🎧</span>
+                </button>
+            </div>
+        </nav>
+
+        <!-- Text Size Selector -->
+        <div id="textSizeSelector" class="text-size-selector hidden">
+            <button class="size-btn" data-size="small">A</button>
+            <button class="size-btn active" data-size="medium">A</button>
+            <button class="size-btn" data-size="large">A</button>
+        </div>
+
+        <!-- Audio Controls -->
+        <div id="audioControls" class="audio-controls hidden">
+            <button id="playPauseBtn" class="btn-audio">
+                <span class="icon">▶️</span>
+                <span class="text">Play</span>
+            </button>
+            <button id="stopBtn" class="btn-audio">
+                <span class="icon">⏹️</span>
+                <span class="text">Stop</span>
+            </button>
+            <div class="audio-settings">
+                <label>
+                    Speed:
+                    <select id="speedControl">
+                        <option value="0.75">0.75x</option>
+                        <option value="1" selected>1x</option>
+                        <option value="1.25">1.25x</option>
+                        <option value="1.5">1.5x</option>
+                        <option value="2">2x</option>
+                    </select>
+                </label>
+                <label>
+                    Jump to page:
+                    <select id="pageJump">
+                        <option value="">Select page...</option>
+                    </select>
+                </label>
+            </div>
+        </div>
+
+        <!-- Chapter Content -->
+        <article id="chapterContent" class="chapter-content text-medium">
+            <div class="loading">Loading chapter...</div>
+        </article>
+
+        <!-- Reflection Questions -->
+        <section id="reflectionSection" class="reflection-section" style="display: none;">
+            <div class="reflection-header">
+                <h2>Reflection Questions</h2>
+                <p class="reflection-intro">
+                    Take time to deeply consider these questions. Your answers are automatically 
+                    saved on your device.
+                </p>
+            </div>
+
+            <div id="questionsContainer" class="questions-container">
+                <!-- Questions will be loaded here -->
+            </div>
+
+            <div class="reflection-actions">
+                <button id="emailAnswers" class="btn-primary">
+                    <span class="icon">📧</span> Email My Answers
+                </button>
+                <button id="clearAnswers" class="btn-secondary">
+                    Clear All Answers
+                </button>
+            </div>
+        </section>
+
+        <!-- Progress Indicator -->
+        <div class="progress-indicator" id="progressIndicator">
+            <span id="progressText">Loading...</span>
+        </div>
+    </div>
+
+    <script src="book-data-fixed.js"></script>
+    <script src="reader.js"></script>
+</body>
+</html>

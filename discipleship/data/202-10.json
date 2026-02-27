@@ -1,0 +1,58 @@
+{
+  "id": "10",
+  "title": "Lesson 10: Discovering Your Gifts",
+  "description": "Life Skill: The 3-minute testimony (Before, How, After).",
+  "blocks": [
+    {
+      "type": "heading",
+      "text": "The Power of Your Story"
+    },
+    {
+      "type": "text",
+      "text": "The greatest tool you have is your own story of what Jesus has done for you. Learning to clearly communicate your life before Christ, how you met Him, and the difference He makes now is a vital skill."
+    },
+    {
+      "type": "verse",
+      "reference": "1 Peter 3:15",
+      "text": "But in your hearts honor Christ the Lord as holy, always being prepared to make a defense to anyone who asks you for a reason for the hope that is in you; yet do it with gentleness and respect."
+    },
+    {
+      "type": "question",
+      "id": "203-4-1",
+      "text": "4.1 - Try drafting the outline of your story in three sentences: Before Christ, Meeting Christ, and Life Now. What are they?",
+      "data_question": "4.1 - Draft of testimony"
+    },
+    {
+      "type": "heading",
+      "text": "BLESS Check-in"
+    },
+    {
+      "type": "question",
+      "id": "203-04-bless",
+      "text": "Who are you currently BLESSing? Who are you praying for and actively moving toward? What is one specific step you are taking this week?",
+      "height": "tall"
+    },
+    {
+      "type": "heading",
+      "text": "Closing Reflections"
+    },
+    {
+      "type": "question",
+      "id": "203-04-key",
+      "text": "What is one key thing you learned from this lesson?",
+      "height": "short"
+    },
+    {
+      "type": "question",
+      "id": "203-04-step",
+      "text": "What is one step you are going to take this week?",
+      "height": "short"
+    },
+    {
+      "type": "question",
+      "id": "203-04-prayer",
+      "text": "What is a prayer request for this week?",
+      "height": "short"
+    }
+  ]
+}

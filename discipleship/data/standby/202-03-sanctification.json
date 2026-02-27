@@ -1,0 +1,48 @@
+{
+  "id": "3",
+  "title": "Lesson 3: Sanctification & Growth",
+  "description": "How God progressively conforms us to the image of Christ.",
+  "blocks": [
+    {
+      "type": "heading",
+      "text": "Growing More Like Jesus"
+    },
+    {
+      "type": "text",
+      "text": "Sanctification is the lifelong process of becoming more like Jesus. It requires patience and grace, as God works slowly but surely to transform our desires, thoughts, and actions."
+    },
+    {
+      "type": "verse",
+      "reference": "Philippians 1:6",
+      "text": "And I am sure of this, that he who began a good work in you will bring it to completion at the day of Jesus Christ."
+    },
+    {
+      "type": "question",
+      "id": "202-2-1",
+      "text": "2.1 - Looking back over the past year, in what specific way has God changed or grown your character?",
+      "data_question": "2.1 - Character growth"
+    },
+    {
+      "type": "heading",
+      "text": "Closing Reflections"
+    },
+    {
+      "type": "question",
+      "id": "202-02-key",
+      "text": "What is one key thing you learned from this lesson?",
+      "height": "short"
+    },
+    {
+      "type": "question",
+      "id": "202-02-step",
+      "text": "What is one step you are going to take this week?",
+      "height": "short"
+    },
+    {
+      "type": "question",
+      "id": "202-02-prayer",
+      "text": "What is a prayer request for this week?",
+      "height": "short"
+    }
+  ]
+}

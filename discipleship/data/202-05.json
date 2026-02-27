@@ -1,0 +1,48 @@
+{
+  "id": "5",
+  "title": "Lesson 5: The Biblical Storyline",
+  "description": "Creation, Fall, Redemption, Restoration - the four-chapter story of the Bible, with Jesus at the center of the Old and New Testament.",
+  "blocks": [
+    {
+      "type": "heading",
+      "text": "The Grand Narrative"
+    },
+    {
+      "type": "text",
+      "text": "The Bible is not just a collection of disconnected stories. It forms one cohesive narrative: God's perfect design in Creation, our rebellion in the Fall, His rescue mission through Redemption in Christ, and the ultimate promise of Restoration."
+    },
+    {
+      "type": "verse",
+      "reference": "Revelation 21:5",
+      "text": "And he who was seated on the throne said, 'Behold, I am making all things new.'"
+    },
+    {
+      "type": "question",
+      "id": "202-3-1",
+      "text": "3.1 - How does seeing the whole story of the Bible (from Creation to Restoration) give you hope for the future?",
+      "data_question": "3.1 - Hope from the Biblical storyline"
+    },
+    {
+      "type": "heading",
+      "text": "Closing Reflections"
+    },
+    {
+      "type": "question",
+      "id": "202-03-key",
+      "text": "What is one key thing you learned from this lesson?",
+      "height": "short"
+    },
+    {
+      "type": "question",
+      "id": "202-03-step",
+      "text": "What is one step you are going to take this week?",
+      "height": "short"
+    },
+    {
+      "type": "question",
+      "id": "202-03-prayer",
+      "text": "What is a prayer request for this week?",
+      "height": "short"
+    }
+  ]
+}

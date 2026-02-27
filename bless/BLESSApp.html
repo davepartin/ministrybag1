@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>BLESS Rhythms</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Brand Colors */
+            --color-primary: #6366f1; /* Indigo */
+            --color-secondary: #ec4899; /* Pink */
+            --color-bg: #f8fafc;
+            --color-surface: #ffffff;
+            --color-text: #1e293b;
+            --color-text-light: #64748b;
+            
+            /* Rhythm Colors */
+            --color-prayer: #f97316;
+            --color-listen: #8b5cf6;
+            --color-eat: #10b981;
+            --color-serve: #3b82f6;
+            --color-story: #ef4444;
+
+            /* UI Tokens */
+            --radius-lg: 20px;
+            --radius-md: 12px;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1);
+            --safe-area-bottom: env(safe-area-inset-bottom, 20px);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #e2e8f0; /* Desktop background */
+            color: var(--color-text);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        /* Phone Container */
+        .app-frame {
+            width: 100%;
+            max-width: 480px;
+            height: 100%;
+            max-height: 900px;
+            background: var(--color-bg);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+        }
+
+        /* Desktop "Device" Styling */
+        @media (min-width: 481px) {
+            .app-frame {
+                height: 90vh;
+                border-radius: 40px;
+                border: 8px solid #1e293b;
+            }
+        }
+
+        /* Content Area */
+        .content-scroll {
+            flex: 1;
+            overflow-y: auto;
+            scroll-behavior: smooth;
+            padding-bottom: calc(80px + var(--safe-area-bottom)); /* Space for nav */
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .header {
+            padding: 24px 20px 10px;
+            background: var(--color-surface);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            box-shadow: var(--shadow-sm);
+        }
+
+        h1 {
+            font-size: 1.75rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 4px;
+        }
+
+        .subtitle {
+            font-size: 0.9rem;
+            color: var(--color-text-light);
+            font-weight: 500;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--color-surface);
+            border-radius: var(--radius-lg);
+            padding: 20px;
+            margin: 16px 20px;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.2s;
+        }
+
+        .card:active {
+            transform: scale(0.98);
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin: 24px 20px 12px;
+            color: var(--color-text);
+        }
+
+        /* Bottom Navigation */
+        .bottom-nav {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-around;
+            padding: 12px 10px calc(12px + var(--safe-area-bottom));
+            z-index: 20;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            background: none;
+            border: none;
+            color: var(--color-text-light);
+            cursor: pointer;
+            width: 60px;
+        }
+
+        .nav-icon {
+            font-size: 1.5rem;
+            transition: transform 0.2s;
+        }
+
+        .nav-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .nav-item.active {
+            color: var(--color-primary);
+        }
+        
+        .nav-item.active .nav-icon {
+            transform: translateY(-2px);
+        }
+
+        /* Rhythm Grid */
+        .rhythm-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            padding: 0 20px;
+        }
+
+        .rhythm-card {
+            background: var(--color-surface);
+            padding: 16px;
+            border-radius: var(--radius-md);
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .rhythm-card:active {
+            background: #f1f5f9;
+        }
+
+        .rhythm-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 12px;
+            font-size: 1.5rem;
+            color: white;
+            font-weight: bold;
+        }
+
+        /* Tracker Items */
+        .tracker-item {
+            display: flex;
+            align-items: center;
+            padding: 16px;
+            background: var(--color-surface);
+            border-radius: var(--radius-md);
+            margin: 0 20px 12px;
+            gap: 16px;
+            box-shadow: var(--shadow-sm);
+            border: 2px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .tracker-item.checked {
+            background: #f0fdf4;
+            border-color: #10b981;
+        }
+
+        .checkbox {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 2px solid #cbd5e1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .tracker-item.checked .checkbox {
+            background: #10b981;
+            border-color: #10b981;
+        }
+
+        /* Views */
+        .view {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        .view.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Form Inputs */
+        input[type="text"] {
+            width: 100%;
+            padding: 16px;
+            border: 1px solid #e2e8f0;
+            border-radius: var(--radius-md);
+            font-size: 1rem;
+            margin-bottom: 12px;
+            background: #f8fafc;
+            font-family: inherit;
+        }
+        
+        input[type="text"]:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            background: white;
+        }
+
+        /* Helper Classes */
+        .text-c { text-align: center; }
+        .mt-4 { margin-top: 1rem; }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            color: white;
+            border: none;
+            padding: 16px 32px;
+            border-radius: 100px;
+            font-weight: 600;
+            font-size: 1rem;
+            box-shadow: var(--shadow-md);
+            width: 100%;
+            cursor: pointer;
+        }
+
+        /* Detail View Styles */
+        .detail-header {
+            padding: 40px 20px 20px;
+            color: white;
+            border-radius: 0 0 30px 30px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            backdrop-filter: blur(5px);
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-frame">
+        <div class="header">
+            <h1>BLESS Rhythms</h1>
+            <p class="subtitle">Living on Mission</p>
+        </div>
+
+        <div class="content-scroll" id="mainContent">
+            
+            <!-- HOME VIEW -->
+            <div id="view-home" class="view active">
+                <div class="card" style="background: linear-gradient(135deg, #6366f1, #8b5cf6); color: white;">
+                    <h2 style="font-size: 1.5rem; margin-bottom: 8px;">Welcome</h2>
+                    <p style="opacity: 0.9;">BLESS is a natural way to live on mission where you live, work, and play.</p>
+                </div>
+
+                <h3 class="section-title">The 5 Rhythms</h3>
+                <div class="rhythm-grid">
+                    <div class="rhythm-card" onclick="showRhythmDetail('prayer')" style="border-bottom: 4px solid var(--color-prayer)">
+                        <div class="rhythm-icon" style="background: var(--color-prayer)">P</div>
+                        <div style="font-weight: 600;">Prayer</div>
+                    </div>
+                    <div class="rhythm-card" onclick="showRhythmDetail('listen')" style="border-bottom: 4px solid var(--color-listen)">
+                        <div class="rhythm-icon" style="background: var(--color-listen)">L</div>
+                        <div style="font-weight: 600;">Listen</div>
+                    </div>
+                    <div class="rhythm-card" onclick="showRhythmDetail('eat')" style="border-bottom: 4px solid var(--color-eat)">
+                        <div class="rhythm-icon" style="background: var(--color-eat)">E</div>
+                        <div style="font-weight: 600;">Eat</div>
+                    </div>
+                    <div class="rhythm-card" onclick="showRhythmDetail('serve')" style="border-bottom: 4px solid var(--color-serve)">
+                        <div class="rhythm-icon" style="background: var(--color-serve)">S</div>
+                        <div style="font-weight: 600;">Serve</div>
+                    </div>
+                    <div class="rhythm-card" onclick="showRhythmDetail('story')" style="border-bottom: 4px solid var(--color-story)">
+                        <div class="rhythm-icon" style="background: var(--color-story)">S</div>
+                        <div style="font-weight: 600;">Story</div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3 style="margin-bottom: 10px;">Quick Tracker</h3>
+                    <p style="color: var(--color-text-light); margin-bottom: 15px; font-size: 0.9rem;">Check off today's rhythms.</p>
+                    <div id="quick-tracker"></div>
+                    <button class="btn-primary mt-4" onclick="switchTab('tracker')">Go to Full Tracker</button>
+                </div>
+            </div>
+
+            <!-- TRACKER VIEW -->
+            <div id="view-tracker" class="view">
+                <h3 class="section-title">Today's Progress</h3>
+                <div id="full-tracker"></div>
+                
+                <div style="padding: 20px;">
+                    <button style="background: none; border: 1px solid #cbd5e1; color: #64748b; padding: 12px; width: 100%; border-radius: 12px;" onclick="resetTracker()">Reset Today</button>
+                </div>
+            </div>
+
+            <!-- PRAYER LIST VIEW -->
+            <div id="view-prayers" class="view">
+                <div class="card" style="background: #fff7ed; border-left: 4px solid var(--color-prayer);">
+                    <p style="color: #c2410c; font-weight: 500;">Tip: Pray for 3-5 people daily who don't know Jesus yet.</p>
+                </div>
+                
+                <h3 class="section-title">My Prayer List</h3>
+                <div style="padding: 0 20px;">
+                    <input type="text" id="prayer1" placeholder="Name 1" oninput="savePrayers()">
+                    <input type="text" id="prayer2" placeholder="Name 2" oninput="savePrayers()">
+                    <input type="text" id="prayer3" placeholder="Name 3" oninput="savePrayers()">
+                    <input type="text" id="prayer4" placeholder="Name 4" oninput="savePrayers()">
+                    <input type="text" id="prayer5" placeholder="Name 5" oninput="savePrayers()">
+                </div>
+            </div>
+
+             <!-- GUIDE VIEW -->
+             <div id="view-guide" class="view">
+                <div class="card">
+                    <h3>Guide & Discussion</h3>
+                    <p style="color: var(--color-text-light); margin-top: 8px; font-size: 0.95rem;">Use these questions for your small group or personal reflection.</p>
+                </div>
+
+                <div class="card">
+                    <h4 style="color: var(--color-primary);">Reflection</h4>
+                    <p class="mt-4"><strong>Q1:</strong> Which rhythm comes most naturally to you?</p>
+                    <hr style="margin: 16px 0; border: 0; border-top: 1px solid #f1f5f9;">
+                    <p><strong>Q2:</strong> Who are three people you encounter regularly who don't know Jesus?</p>
+                </div>
+
+                <div class="card" style="background: #f0f9ff;">
+                    <h4>Scripture</h4>
+                    <p style="margin-top: 10px; font-style: italic;">"Let your light shine before others..." - Matthew 5:16</p>
+                </div>
+            </div>
+
+            <!-- RHYTHM DETAIL VIEW (Overlay) -->
+            <div id="view-detail" class="view" style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: white; z-index: 50; overflow-y: auto;">
+                <div id="detail-content"></div>
+            </div>
+        </div>
+
+        <!-- BOTTOM NAV -->
+        <nav class="bottom-nav">
+            <button class="nav-item active" onclick="switchTab('home')">
+                <span class="nav-icon">🏠</span>
+                <span class="nav-label">Home</span>
+            </button>
+            <button class="nav-item" onclick="switchTab('tracker')">
+                <span class="nav-icon">✅</span>
+                <span class="nav-label">Tracker</span>
+            </button>
+            <button class="nav-item" onclick="switchTab('prayers')">
+                <span class="nav-icon">🙏</span>
+                <span class="nav-label">Prayers</span>
+            </button>
+            <button class="nav-item" onclick="switchTab('guide')">
+                <span class="nav-icon">📖</span>
+                <span class="nav-label">Guide</span>
+            </button>
+        </nav>
+
+    </div>
+
+    <!-- DATA & LOGIC -->
+    <script>
+        // RHYTHM DATA
+        const rhythms = {
+            prayer: {
+                color: '#f97316',
+                title: 'Begin with Prayer',
+                icon: 'P',
+                desc: 'Talk to God about people before talking to people about God.',
+                content: `
+                    <h4>Breathe In: Listening Prayer</h4>
+                    <p style="margin: 10px 0; color: #475569;">Prayer isn't just asking; it's listening. Ask God: "Where are You already at work?"</p>
+                    <div style="background: #fff7ed; padding: 15px; border-radius: 12px; margin: 20px 0;">
+                        <strong>Action:</strong> Create a list of 3-5 people. Pray for them daily.
+                    </div>
+                `
+            },
+            listen: {
+                color: '#8b5cf6',
+                title: 'Listen',
+                icon: 'L',
+                desc: 'People care how much we know when they know how much we care.',
+                content: `
+                    <h4>Breathe In: Curiosity</h4>
+                    <p style="margin: 10px 0; color: #475569;">Ask questions. Listen to their story, hopes, and hurts.</p>
+                    <div style="background: #f5f3ff; padding: 15px; border-radius: 12px; margin: 20px 0;">
+                        <strong>Action:</strong> In your next conversation, ask 3 genuine questions before speaking about yourself.
+                    </div>
+                `
+            },
+            eat: {
+                color: '#10b981',
+                title: 'Eat',
+                icon: 'E',
+                desc: 'Eating together moves relationships from faces to friends.',
+                content: `
+                    <h4>Breathe In: Hospitality</h4>
+                    <p style="margin: 10px 0; color: #475569;">Jesus ate His way through the gospels. Meals build friendship.</p>
+                    <div style="background: #ecfdf5; padding: 15px; border-radius: 12px; margin: 20px 0;">
+                        <strong>Action:</strong> Invite a neighbor, coworker, or friend for coffee or a meal this week.
+                    </div>
+                `
+            },
+            serve: {
+                color: '#3b82f6',
+                title: 'Serve',
+                icon: 'S',
+                desc: 'Display Jesus by sharing our time, talents, and treasures.',
+                content: `
+                    <h4>Breathe In: Generosity</h4>
+                    <p style="margin: 10px 0; color: #475569;">Look for tangible needs. Help move, babysit, or listen.</p>
+                    <div style="background: #eff6ff; padding: 15px; border-radius: 12px; margin: 20px 0;">
+                        <strong>Action:</strong> Ask God to show you one tangible need you can meet this week.
+                    </div>
+                `
+            },
+            story: {
+                color: '#ef4444',
+                title: 'Story',
+                icon: 'S',
+                desc: 'Share how Jesus has changed your story.',
+                content: `
+                    <h4>Breathe In: Preparation</h4>
+                    <p style="margin: 10px 0; color: #475569;">Your story is powerful. Share your transition from brokenness to redemption.</p>
+                    <div style="background: #fef2f2; padding: 15px; border-radius: 12px; margin: 20px 0;">
+                        <strong>Action:</strong> Write your testimony in 3 sentences. Practice sharing it.
+                    </div>
+                `
+            }
+        };
+
+        const trackerData = [
+            { id: 'prayer', name: 'Begin with Prayer', color: '#f97316' },
+            { id: 'listen', name: 'Listen', color: '#8b5cf6' },
+            { id: 'eat', name: 'Eat', color: '#10b981' },
+            { id: 'serve', name: 'Serve', color: '#3b82f6' },
+            { id: 'story', name: 'Story', color: '#ef4444' }
+        ];
+
+        // --- NAVIGATION ---
+        function switchTab(viewId) {
+            // Hide Detail View if open
+            document.getElementById('view-detail').style.display = 'none';
+
+            // Update Views
+            document.querySelectorAll('.view').forEach(el => {
+                if(el.id !== 'view-detail') el.classList.remove('active');
+            });
+            document.getElementById('view-' + viewId).classList.add('active');
+
+            // Update Nav Icons
+            document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+            // Find button that triggers this view
+            const navButtons = document.querySelectorAll('.nav-item');
+            if(viewId === 'home') navButtons[0].classList.add('active');
+            if(viewId === 'tracker') navButtons[1].classList.add('active');
+            if(viewId === 'prayers') navButtons[2].classList.add('active');
+            if(viewId === 'guide') navButtons[3].classList.add('active');
+
+            window.scrollTo(0,0);
+            renderTracker(); 
+        }
+
+        function showRhythmDetail(key) {
+            const data = rhythms[key];
+            const detailView = document.getElementById('view-detail');
+            const content = document.getElementById('detail-content');
+            
+            content.innerHTML = `
+                <div class="detail-header" style="background: ${data.color}">
+                    <button class="back-btn" onclick="document.getElementById('view-detail').style.display='none'">← Back</button>
+                    <h1 style="color: white; margin-top: 40px; font-size: 2rem;">${data.title}</h1>
+                    <p style="opacity: 0.9; margin-top: 10px;">${data.desc}</p>
+                </div>
+                <div style="padding: 20px;">
+                    ${data.content}
+                    
+                    <h4 style="margin-top: 30px; margin-bottom: 20px;">Mark as Done Today</h4>
+                    <div class="tracker-item" id="detail-tracker-btn" onclick="toggleTracker('${key}')">
+                        <div class="checkbox">✓</div>
+                        <div style="font-weight: 500;">I did this today</div>
+                    </div>
+                </div>
+            `;
+            
+            detailView.style.display = 'block';
+            updateDetailTrackerState(key);
+        }
+
+        // --- TRACKER LOGIC ---
+        function renderTracker() {
+            const today = new Date().toDateString();
+            const saved = JSON.parse(localStorage.getItem('blessTracker') || '{}');
+            const todaysData = saved[today] || {};
+
+            const generateHTML = (item) => `
+                <div class="tracker-item ${todaysData[item.id] ? 'checked' : ''}" onclick="toggleTracker('${item.id}')">
+                    <div class="checkbox" style="${todaysData[item.id] ? `background:${item.color};border-color:${item.color}` : ''}">
+                         ${todaysData[item.id] ? '✓' : ''}
+                    </div>
+                    <div style="font-weight: 500; color: var(--color-text);">${item.name}</div>
+                </div>
+            `;
+
+            document.getElementById('quick-tracker').innerHTML = trackerData.map(generateHTML).join('');
+            document.getElementById('full-tracker').innerHTML = trackerData.map(generateHTML).join('');
+        }
+
+        function toggleTracker(id) {
+            const today = new Date().toDateString();
+            const saved = JSON.parse(localStorage.getItem('blessTracker') || '{}');
+            
+            if (!saved[today]) saved[today] = {};
+            saved[today][id] = !saved[today][id];
+            
+            localStorage.setItem('blessTracker', JSON.stringify(saved));
+            renderTracker();
+            updateDetailTrackerState(id);
+        }
+
+        function updateDetailTrackerState(id) {
+            const btn = document.getElementById('detail-tracker-btn');
+            if(!btn) return;
+            
+            const today = new Date().toDateString();
+            const saved = JSON.parse(localStorage.getItem('blessTracker') || '{}');
+            const isChecked = saved[today]?.[id];
+
+            if(isChecked) {
+                btn.classList.add('checked');
+                btn.querySelector('.checkbox').innerHTML = '✓';
+            } else {
+                btn.classList.remove('checked');
+                btn.querySelector('.checkbox').innerHTML = '';
+            }
+        }
+
+        function resetTracker() {
+            if(confirm('Reset today?')) {
+                const today = new Date().toDateString();
+                const saved = JSON.parse(localStorage.getItem('blessTracker') || '{}');
+                delete saved[today];
+                localStorage.setItem('blessTracker', JSON.stringify(saved));
+                renderTracker();
+            }
+        }
+
+        // --- PRAYER LIST ---
+        function savePrayers() {
+            const prayers = {};
+            for(let i=1; i<=5; i++) {
+                prayers['prayer'+i] = document.getElementById('prayer'+i).value;
+            }
+            localStorage.setItem('blessPrayers', JSON.stringify(prayers));
+        }
+
+        function loadPrayers() {
+            const saved = JSON.parse(localStorage.getItem('blessPrayers') || '{}');
+            for(let i=1; i<=5; i++) {
+                const val = saved['prayer'+i];
+                if(val) document.getElementById('prayer'+i).value = val;
+            }
+        }
+
+        // --- INIT ---
+        document.addEventListener('DOMContentLoaded', () => {
+            loadPrayers();
+            renderTracker();
+        });
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,134 @@
+{
+  "id": "4",
+  "title": "Lesson 4: Bible",
+  "blocks": [
+    {
+      "type": "heading",
+      "text": "What is the Bible?"
+    },
+    {
+      "type": "text",
+      "text": "The Bible is the Word of God to humanity, to be our guide, to instruct, and to bring us into relationship with Him. It serves as a road map for our spiritual journey, helping us understand God's character, the purpose of our lives, and the principles we should live by."
+    },
+    {
+      "type": "verse",
+      "reference": "2 Timothy 3:16-17",
+      "text": "All Scripture is breathed out by God and profitable for teaching, for reproof, for correction, and for training in righteousness, that the man of God may be complete, equipped for every good work."
+    },
+    {
+      "type": "question",
+      "id": "4-1",
+      "text": "4.1 - This course has encouraged you to read the Bible daily. How has consistently reading the book of John affected you personally?",
+      "data_question": "4.1 - Reading John's impact"
+    },
+    {
+      "type": "heading",
+      "text": "The Bible should be: 1) Read Daily, 2) Studied, 3) Obeyed",
+      "subheading": true
+    },
+    {
+      "type": "subheading2",
+      "text": "1) The Bible should be \"Read Daily\""
+    },
+    {
+      "type": "text",
+      "text": "The way we get to know someone is through conversation. When we read about God's journey, desires, and character, we begin to understand Him, which leads to an authentic relationship. God desires for us to know Him through His story from creation to the New Testament."
+    },
+    {
+      "type": "question",
+      "id": "4-2",
+      "text": "4.2 - When is the best time each day for you to spend in God's Word? Which format do you prefer for engaging with the Bible such as a physical book, an app, or an audio version?",
+      "data_question": "4.2 - Best time and format for Bible reading"
+    },
+    {
+      "type": "subheading2",
+      "text": "2) The Bible should be \"Studied\""
+    },
+    {
+      "type": "text",
+      "text": "Reading is essential, but we must also dig deep and study it. Through study, we uncover cultural context, historical background, and the original intent. A great way to move from reading to deeper study is by asking these 2 key questions:"
+    },
+    {
+      "type": "text",
+      "text": "<strong>1) What does this passage tell me about God?</strong> - Learn about God<br>\n<strong>2) What does this passage tell me about mankind?</strong> - Learn about people"
+    },
+    {
+      "type": "text",
+      "text": "<strong>Let's study John 8:2-11:</strong>",
+      "class": "my-6"
+    },
+    {
+      "type": "verse",
+      "reference": "John 8:2-11",
+      "text": "Early in the morning (Jesus) he came again to the temple. All the people came to him, and he sat down and taught them. The scribes and the Pharisees brought a woman who had been caught in adultery, and placing her in the midst they said to him, \"Teacher, this woman has been caught in the act of adultery. Now in the Law, Moses commanded us to stone such women. So what do you say?\" This they said to test him, that they might have some charge to bring against him. Jesus bent down and wrote with his finger on the ground. And as they continued to ask him, he stood up and said to them, \"Let him who is without sin among you be the first to throw a stone at her.\" And once more he bent down and wrote on the ground. But when they heard it, they went away one by one, beginning with the older ones, and Jesus was left alone with the woman standing before him. Jesus stood up and said to her, \"Woman, where are they? Has no one condemned you?\" She said, \"No one, Lord.\" And Jesus said, \"Neither do I condemn you; go, and from now on sin no more.\"",
+      "custom_class": "my-6"
+    },
+    {
+      "type": "question",
+      "id": "4-3",
+      "text": "4.3 - In the above passage, answer \"What does this passage tell me about God?\"",
+      "data_question": "4.3 - John 8:2-11 about God"
+    },
+    {
+      "type": "question",
+      "id": "4-4",
+      "text": "4.4 - What does this passage tell me about mankind?",
+      "data_question": "4.4 - John 8:2-11 about mankind"
+    },
+    {
+      "type": "subheading2",
+      "text": "3) The Bible should be \"Obeyed\""
+    },
+    {
+      "type": "text",
+      "text": "Jesus tells us in Matthew 7:24 \"Everyone then who hears these words of mine and does them will be like a wise man who built his house on the rock.\" True faith involves putting belief into action."
+    },
+    {
+      "type": "text",
+      "text": "The third question we can ask ourselves is:<br>\n<strong>3) What is the passage telling me to do or believe?</strong> - \"Because of this truth I will...\""
+    },
+    {
+      "type": "question",
+      "id": "4-5",
+      "text": "4.5 - What is the passage John 8:2-11 telling me to do or believe? What is the next step I will take? Because of this truth, I will...",
+      "data_question": "4.5 - John 8:2-11 application"
+    },
+    {
+      "type": "bible_reading",
+      "heading": "Read the Gospel of John",
+      "chapters": [
+        {
+          "ref": "John 10"
+        },
+        {
+          "ref": "John 11"
+        },
+        {
+          "ref": "John 12"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Closing Reflections"
+    },
+    {
+      "type": "question",
+      "id": "101-04-key",
+      "text": "What is one key thing you learned from this lesson?",
+      "height": "short"
+    },
+    {
+      "type": "question",
+      "id": "101-04-step",
+      "text": "What is one step you are going to take this week?",
+      "height": "short"
+    },
+    {
+      "type": "question",
+      "id": "101-04-prayer",
+      "text": "What is a prayer request for this week?",
+      "height": "short"
+    }
+  ]
+}

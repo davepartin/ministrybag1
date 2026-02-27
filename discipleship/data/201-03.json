@@ -1,0 +1,48 @@
+{
+  "id": "3",
+  "title": "Lesson 3: The Spirit-Filled Walk - God the Holy Spirit",
+  "description": "The Father loves you. The Son redeems you. And now the Spirit lives in you. This lesson introduces the third person of the Trinity - who the Holy Spirit is, what He does in your daily life, and what it means to walk in His power and presence rather than your own strength. This is the primary home for teaching on the person and work of the Spirit - anything about the Spirit that does not fit in 202.08 (Sanctification & the Fruit of the Spirit) belongs here.",
+  "blocks": [
+    {
+      "type": "heading",
+      "text": "Empowered by the Spirit"
+    },
+    {
+      "type": "text",
+      "text": "Living the Christian life is impossible in our own strength. Jesus gave us the Holy Spirit to empower us, guide us, and produce the 'fruit' of His character within us daily."
+    },
+    {
+      "type": "verse",
+      "reference": "Galatians 5:22-23",
+      "text": "But the fruit of the Spirit is love, joy, peace, patience, kindness, goodness, faithfulness, gentleness, self-control; against such things there is no law."
+    },
+    {
+      "type": "question",
+      "id": "202-1-1",
+      "text": "1.1 - Which Fruit of the Spirit do you see growing in your life recently, and which one are you struggling with?",
+      "data_question": "1.1 - Fruit of the Spirit"
+    },
+    {
+      "type": "heading",
+      "text": "Closing Reflections"
+    },
+    {
+      "type": "question",
+      "id": "202-01-key",
+      "text": "What is one key thing you learned from this lesson?",
+      "height": "short"
+    },
+    {
+      "type": "question",
+      "id": "202-01-step",
+      "text": "What is one step you are going to take this week?",
+      "height": "short"
+    },
+    {
+      "type": "question",
+      "id": "202-01-prayer",
+      "text": "What is a prayer request for this week?",
+      "height": "short"
+    }
+  ]
+}

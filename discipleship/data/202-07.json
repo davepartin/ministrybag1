@@ -1,0 +1,48 @@
+{
+  "id": "7",
+  "title": "Lesson 7: Baptism & the Lord's Table",
+  "description": "The meaning and beauty of Baptism and the Lord's Supper.",
+  "blocks": [
+    {
+      "type": "heading",
+      "text": "Visible Signs of Invisible Grace"
+    },
+    {
+      "type": "text",
+      "text": "Jesus gave the church two beautiful practices: Baptism (marking our entry into the new life in Christ) and the Lord's Supper (an ongoing remembrance of His sacrifice and our unity)."
+    },
+    {
+      "type": "verse",
+      "reference": "1 Corinthians 11:26",
+      "text": "For as often as you eat this bread and drink the cup, you proclaim the Lord's death until he comes."
+    },
+    {
+      "type": "question",
+      "id": "202-9-1",
+      "text": "9.1 - How does participating in communion (the Lord's Supper) help center your heart back on the Gospel?",
+      "data_question": "9.1 - Meaning of communion"
+    },
+    {
+      "type": "heading",
+      "text": "Closing Reflections"
+    },
+    {
+      "type": "question",
+      "id": "202-09-key",
+      "text": "What is one key thing you learned from this lesson?",
+      "height": "short"
+    },
+    {
+      "type": "question",
+      "id": "202-09-step",
+      "text": "What is one step you are going to take this week?",
+      "height": "short"
+    },
+    {
+      "type": "question",
+      "id": "202-09-prayer",
+      "text": "What is a prayer request for this week?",
+      "height": "short"
+    }
+  ]
+}

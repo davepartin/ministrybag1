@@ -1,0 +1,170 @@
+{
+  "id": "3",
+  "title": "Lesson 3: Prayer",
+  "blocks": [
+    {
+      "type": "heading",
+      "text": "What is Prayer?"
+    },
+    {
+      "type": "text",
+      "text": "Prayer is a conversation: talking with and listening to God. Prayer displays our dependence on a powerful and loving Father. Jesus taught us to pray in the Lord's Prayer, giving us a pattern with a humble heart."
+    },
+    {
+      "type": "verse",
+      "reference": "The Lord's Prayer",
+      "text": "Our Father, who is in heaven,<br>\nHoly is your name,<br>\nyour kingdom come, your will be done<br>\non earth as it is in heaven.<br>\nGive us this day our daily bread.<br>\nForgive us our sins, as we forgive those who sin against us.<br>\nAnd lead us not into temptation, but deliver us from evil.<br>\nFor yours is the kingdom, and the power, and the glory forever, Amen."
+    },
+    {
+      "type": "question",
+      "id": "3-1",
+      "text": "3.1 - How would you describe your prayer life right now?",
+      "data_question": "3.1 - Current prayer life"
+    },
+    {
+      "type": "subheading",
+      "text": "STEP 1 - CONNECT RELATIONALLY"
+    },
+    {
+      "type": "text",
+      "text": "<em>\"Our Father, who is in heaven\"</em>"
+    },
+    {
+      "type": "text",
+      "text": "God has adopted us as His children and loves for us to call Him our Father. Starting prayer by acknowledging our relationship with God is powerful for us and delights Him."
+    },
+    {
+      "type": "question",
+      "id": "3-2",
+      "text": "3.2 - Why is it important to begin your prayers being reminded that God is your Father?",
+      "data_question": "3.2 - God as Father in prayer"
+    },
+    {
+      "type": "subheading",
+      "text": "STEP 2 - WORSHIP HIS NAME"
+    },
+    {
+      "type": "text",
+      "text": "<em>\"Holy is your name\"</em>"
+    },
+    {
+      "type": "text",
+      "text": "When we proclaim who He is, we worship Him by reminding ourselves how powerful and great our God is. He is love, grace, and forgiveness."
+    },
+    {
+      "type": "question",
+      "id": "3-3",
+      "text": "3.3 - What are some names and attributes of God you can proclaim in your prayers to honor Him?",
+      "data_question": "3.3 - God's names and attributes"
+    },
+    {
+      "type": "subheading",
+      "text": "STEP 3 - PRAY HIS AGENDA FIRST"
+    },
+    {
+      "type": "text",
+      "text": "<em>\"your kingdom come, your will be done on earth as it is in heaven\"</em>"
+    },
+    {
+      "type": "text",
+      "text": "Part of being a child of God is caring about what He cares about. We acknowledge His wisdom and sovereignty when we pray His agenda first."
+    },
+    {
+      "type": "question",
+      "id": "3-4",
+      "text": "3.4 - What are some things that God cares about that you could pray about?",
+      "data_question": "3.4 - God's agenda"
+    },
+    {
+      "type": "subheading",
+      "text": "STEP 4 - DEPEND ON HIM FOR EVERYTHING"
+    },
+    {
+      "type": "text",
+      "text": "<em>\"Give us this day our daily bread.\"</em>"
+    },
+    {
+      "type": "text",
+      "text": "God promises to supply all our needs. He wants us to come to Him with our problems, needs, and desires and to trust Him to provide."
+    },
+    {
+      "type": "question",
+      "id": "3-5",
+      "text": "3.5 - What are some of your current needs that you want God to provide for?",
+      "data_question": "3.5 - Current needs"
+    },
+    {
+      "type": "subheading",
+      "text": "STEP 5 - FORGIVE AND BE FORGIVEN"
+    },
+    {
+      "type": "text",
+      "text": "<em>\"Forgive us our sins, as we forgive those who sin against us.\"</em>"
+    },
+    {
+      "type": "text",
+      "text": "God has offered us complete forgiveness. When we receive His forgiveness, our hearts are more prepared to forgive others as well."
+    },
+    {
+      "type": "question",
+      "id": "3-6",
+      "text": "3.6 - How does God's forgiveness help us forgive others?",
+      "data_question": "3.6 - Forgiveness connection"
+    },
+    {
+      "type": "subheading",
+      "text": "STEP 6 - ENGAGE IN SPIRITUAL WARFARE"
+    },
+    {
+      "type": "text",
+      "text": "<em>\"And lead us not into temptation, but deliver us from evil.\"</em>"
+    },
+    {
+      "type": "text",
+      "text": "We have an enemy trying to steal, kill, and destroy. As we pray, we take our stand against the enemy and fight from victory through Jesus."
+    },
+    {
+      "type": "question",
+      "id": "3-7",
+      "text": "3.7 - How did you feel about incorporating the Lord's Prayer into your daily routine?",
+      "data_question": "3.7 - Lord's Prayer experience"
+    },
+    {
+      "type": "bible_reading",
+      "heading": "Read the Gospel of John",
+      "chapters": [
+        {
+          "ref": "John 7"
+        },
+        {
+          "ref": "John 8"
+        },
+        {
+          "ref": "John 9"
+        }
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Closing Reflections"
+    },
+    {
+      "type": "question",
+      "id": "101-03-key",
+      "text": "What is one key thing you learned from this lesson?",
+      "height": "short"
+    },
+    {
+      "type": "question",
+      "id": "101-03-step",
+      "text": "What is one step you are going to take this week?",
+      "height": "short"
+    },
+    {
+      "type": "question",
+      "id": "101-03-prayer",
+      "text": "What is a prayer request for this week?",
+      "height": "short"
+    }
+  ]
+}

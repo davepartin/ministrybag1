@@ -1,0 +1,58 @@
+{
+  "id": "10",
+  "title": "Lesson 10: Your Calling at NC",
+  "description": "The goal of making disciples who make disciples.",
+  "blocks": [
+    {
+      "type": "heading",
+      "text": "Passing the Baton"
+    },
+    {
+      "type": "text",
+      "text": "The ultimate goal of our growth in Christ is to pour into others what has been poured into us. True discipleship is multiplication: making disciples who will inevitably go and make more disciples."
+    },
+    {
+      "type": "verse",
+      "reference": "2 Timothy 2:2",
+      "text": "And what you have heard from me in the presence of many witnesses entrust to faithful men, who will be able to teach others also."
+    },
+    {
+      "type": "question",
+      "id": "203-10-1",
+      "text": "10.1 - As you finish this 200 level series, who is one person you can begin discipling and passing these truths on to?",
+      "data_question": "10.1 - Discipling someone else"
+    },
+    {
+      "type": "heading",
+      "text": "BLESS Check-in"
+    },
+    {
+      "type": "question",
+      "id": "203-10-bless",
+      "text": "Who are you currently BLESSing? Who are you praying for and actively moving toward? What is one specific step you are taking this week?",
+      "height": "tall"
+    },
+    {
+      "type": "heading",
+      "text": "Closing Reflections"
+    },
+    {
+      "type": "question",
+      "id": "203-10-key",
+      "text": "What is one key thing you learned from this lesson?",
+      "height": "short"
+    },
+    {
+      "type": "question",
+      "id": "203-10-step",
+      "text": "What is one step you are going to take this week?",
+      "height": "short"
+    },
+    {
+      "type": "question",
+      "id": "203-10-prayer",
+      "text": "What is a prayer request for this week?",
+      "height": "short"
+    }
+  ]
+}
