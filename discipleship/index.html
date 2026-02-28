@@ -7,7 +7,9 @@
     <title>Planting Orchards Discipleship Series</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Cormorant+Garamond:ital,wght@1,400;1,500&family=Raleway:wght@700;800&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Cormorant+Garamond:ital,wght@1,400;1,500&family=Raleway:wght@700;800&display=swap"
+        rel="stylesheet">
     <style>
         /* ============================================
            RESET & BASE
@@ -440,7 +442,7 @@
             font-size: 0.72rem;
             font-weight: 700;
             flex-shrink: 0;
-            background: rgba(255,255,255,0.5);
+            background: rgba(255, 255, 255, 0.5);
         }
 
         .tree-course-name {
@@ -638,11 +640,30 @@
             flex-shrink: 0;
         }
 
-        .topbar-series-badge.c101 { color: #1E6FA0; background: #DCEEFB; }
-        .topbar-series-badge.c201 { color: #1A6B55; background: #D4F2E8; }
-        .topbar-series-badge.c202 { color: #1D6B3F; background: #D1EDD9; }
-        .topbar-series-badge.c203 { color: #1A5C38; background: #CCE6D4; }
-        .topbar-series-badge.c301 { color: #9A3A5E; background: #FCE4ED; }
+        .topbar-series-badge.c101 {
+            color: #1E6FA0;
+            background: #DCEEFB;
+        }
+
+        .topbar-series-badge.c201 {
+            color: #1A6B55;
+            background: #D4F2E8;
+        }
+
+        .topbar-series-badge.c202 {
+            color: #1D6B3F;
+            background: #D1EDD9;
+        }
+
+        .topbar-series-badge.c203 {
+            color: #1A5C38;
+            background: #CCE6D4;
+        }
+
+        .topbar-series-badge.c301 {
+            color: #9A3A5E;
+            background: #FCE4ED;
+        }
 
         .topbar-title .session-label {
             font-size: 0.75rem;
@@ -990,6 +1011,54 @@
             margin-bottom: 8px;
         }
 
+        /* Tool / Resource card */
+        .block-tool {
+            background: var(--surface);
+            border: 2px solid var(--accent);
+            border-radius: var(--radius);
+            padding: 24px;
+            margin: 36px 0;
+            text-align: center;
+        }
+
+        .block-tool-icon {
+            font-size: 2rem;
+            margin-bottom: 8px;
+        }
+
+        .block-tool-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .block-tool-desc {
+            font-size: 0.92rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .block-tool-btn {
+            display: inline-block;
+            padding: 12px 28px;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: var(--radius-sm);
+            font-family: inherit;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background var(--transition);
+        }
+
+        .block-tool-btn:active {
+            background: var(--accent-hover);
+        }
+
         /* Question blocks */
         .block-question {
             margin: 32px 0;
@@ -1329,7 +1398,7 @@
             width: 22px;
             height: 22px;
             border-radius: 50%;
-            background: rgba(255,255,255,0.25);
+            background: rgba(255, 255, 255, 0.25);
             color: white;
             font-size: 0.7rem;
             flex-shrink: 0;
@@ -1337,7 +1406,7 @@
 
         .chapter-card-toggle {
             font-size: 1.4rem;
-            color: rgba(255,255,255,0.8);
+            color: rgba(255, 255, 255, 0.8);
             transition: transform var(--transition), color var(--transition);
             flex-shrink: 0;
             width: 28px;
@@ -1579,7 +1648,9 @@
                 <img src="images/rooted-logo.png" alt="Planting Orchards Discipleship Series" class="home-logo"
                     onerror="this.style.display='none'">
                 <div class="home-tagline">
-                    <p class="home-tagline-verse">"Those that were sown on the good soil are the ones who <strong>hear the word</strong> and <strong>accept it</strong> and <strong>bear fruit</strong>, thirtyfold and sixtyfold and a hundredfold." <span class="home-tagline-ref">Mark 4:20</span></p>
+                    <p class="home-tagline-verse">"Those that were sown on the good soil are the ones who <strong>hear
+                            the word</strong> and <strong>accept it</strong> and <strong>bear fruit</strong>, thirtyfold
+                        and sixtyfold and a hundredfold." <span class="home-tagline-ref">Mark 4:20</span></p>
                 </div>
             </div>
 
@@ -1699,7 +1770,8 @@
             <!-- Bottom nav - flows at end of lesson content -->
             <div class="bottom-nav" id="bottom-nav">
                 <div class="bottom-nav-inner">
-                    <button class="nav-btn nav-btn-prev" id="prev-btn" onclick="previousSession()">&#8249; Previous</button>
+                    <button class="nav-btn nav-btn-prev" id="prev-btn" onclick="previousSession()">&#8249;
+                        Previous</button>
                     <div class="nav-session-num" id="nav-session-num">1 / 7</div>
                     <button class="nav-btn nav-btn-next" id="next-btn" onclick="nextSession()">Next &#8250;</button>
                 </div>
@@ -1712,7 +1784,7 @@
         // VERSION - bump this when JSON content changes
         // to bust browser cache on data files
         // ============================================
-        const BUILD_VERSION = '20260227w';
+        const BUILD_VERSION = '20260228e';
 
         // ============================================
         // STATE
@@ -1822,11 +1894,11 @@
         // Reads live from curriculum-toc.csv
         // ============================================
         const COURSE_META = {
-            '101': { name: 'Starting in Discipleship',    color: '#1E6FA0', bg: '#DCEEFB', hover: '#175580' },
+            '101': { name: 'Starting in Discipleship', color: '#1E6FA0', bg: '#DCEEFB', hover: '#175580' },
             '201': { name: 'Growing Deep in Discipleship', color: '#1A6B55', bg: '#D4F2E8', hover: '#135040' },
-            '202': { name: 'Growing Up in Discipleship',   color: '#1D6B3F', bg: '#D1EDD9', hover: '#155030' },
-            '203': { name: 'Growing Out in Discipleship',  color: '#1A5C38', bg: '#CCE6D4', hover: '#134528' },
-            '301': { name: 'Leading in Discipleship',      color: '#9A3A5E', bg: '#FCE4ED', hover: '#7A2E4B' }
+            '202': { name: 'Growing Up in Discipleship', color: '#1D6B3F', bg: '#D1EDD9', hover: '#155030' },
+            '203': { name: 'Growing Out in Discipleship', color: '#1A5C38', bg: '#CCE6D4', hover: '#134528' },
+            '301': { name: 'Leading in Discipleship', color: '#9A3A5E', bg: '#FCE4ED', hover: '#7A2E4B' }
         };
 
         function parseCSVLine(line) {
@@ -1849,7 +1921,7 @@
         }
 
         async function loadCurriculumFromCSV() {
-            const response = await fetch('curriculum-toc.csv');
+            const response = await fetch(`curriculum-toc.csv?v=${BUILD_VERSION}`);
             const text = await response.text();
             const lines = text.split('\n').slice(1); // skip header row
 
@@ -2170,12 +2242,21 @@
                                 </div>`;
                                 break;
 
+                            case 'tool':
+                                html += `<div class="block-tool">
+                                    <div class="block-tool-icon">${b.icon || ''}</div>
+                                    <div class="block-tool-title">${b.title}</div>
+                                    <p class="block-tool-desc">${b.description}</p>
+                                    <a class="block-tool-btn" href="${b.url}" target="_blank" rel="noopener noreferrer">${b.buttonText || 'Open Tool'}</a>
+                                </div>`;
+                                break;
+
                             case 'bible_reading':
                                 html += `<div class="bible-reading-section">`;
+                                html += `<h3 class="reading-heading">${b.heading || 'Read the Word This Week'}</h3>`;
                                 if (b.intro) {
                                     html += `<p class="reading-intro">${b.intro}</p>`;
                                 }
-                                html += `<h3 class="reading-heading">${b.heading || 'Read the Word This Week'}</h3>`;
                                 b.chapters.forEach(ch => {
                                     const chId = ch.ref.replace(/\s+/g, '-');
                                     const checkId = `reading-check-${currentSeries}-${chId}`;
@@ -2245,7 +2326,7 @@
             exportDiv.id = 'export-section';
             const seriesName = seriesTitles[currentSeries] || 'this series';
             exportDiv.innerHTML = `
-                <span class="export-hint">Responses save automatically</span>
+                <span class="export-hint">Responses save automatically on this device</span>
                 <button class="export-link" onclick="exportAllResponses()">Email ${seriesName} &rarr;</button>
             `;
             container.appendChild(exportDiv);
@@ -2481,8 +2562,8 @@
 
                     // Extract audio link FIRST before any DOM changes (it may be inside the h2)
                     const mp3Link = esvEl.querySelector('a.mp3link')
-                                 || esvEl.querySelector('a[href*=".mp3"]')
-                                 || esvEl.querySelector('a.audio-link');
+                        || esvEl.querySelector('a[href*=".mp3"]')
+                        || esvEl.querySelector('a.audio-link');
                     const audioSrc = (mp3Link && mp3Link.href) || data.audio_link || '';
                     if (audioSrc && audioEl) {
                         audioEl.src = audioSrc;

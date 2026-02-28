@@ -8,7 +8,7 @@
     },
     {
       "type": "text",
-      "text": "Prayer is a conversation: talking with and listening to God. Prayer displays our dependence on a powerful and loving Father. Jesus taught us to pray in the Lord's Prayer, giving us a pattern with a humble heart."
+      "text": "Prayer is a conversation: talking with and listening to God. Prayer displays our dependence on a powerful and loving Father. Jesus taught us to pray in the Lord's Prayer, giving us a pattern to follow. Read the prayer below."
     },
     {
       "type": "verse",
@@ -126,12 +126,32 @@
     {
       "type": "question",
       "id": "3-7",
-      "text": "3.7 - How did you feel about incorporating the Lord's Prayer into your daily routine?",
-      "data_question": "3.7 - Lord's Prayer experience"
+      "text": "3.7 - What temptations or spiritual battles do you need God's help with right now?",
+      "data_question": "3.7 - Spiritual battles"
+    },
+    {
+      "type": "text",
+      "text": "You just walked through the six steps of the Lord's Prayer. Now it is time to make it personal. We built a tool that helps you take what you just learned and turn it into your own daily prayers. You can pray for yourself, your family, your church, and people who do not yet know Jesus. Your prayers will be saved on your device so you can come back to them each day."
+    },
+    {
+      "type": "tool",
+      "title": "Build Your Daily Prayers",
+      "description": "Use the Lord's Prayer as a pattern to create your own personalized daily prayers. Add the people and needs that are on your heart right now.",
+      "url": "https://ministrybag.com/dailyprayers/",
+      "buttonText": "Open the Daily Prayers Tool"
+    },
+    {
+      "type": "heading",
+      "text": "Lesson Review"
+    },
+    {
+      "type": "text",
+      "text": "You have walked through the Lord's Prayer step by step and discovered how Jesus gave us a pattern that touches every part of life, from worship to forgiveness to spiritual warfare. Use the Daily Prayers tool to start putting that pattern into practice this week."
     },
     {
       "type": "bible_reading",
-      "heading": "Read the Gospel of John",
+      "heading": "Introduction to John 7, 8, and 9",
+      "intro": "In John 7-9, Jesus continues to challenge what people think they know about God and about who He is. You will see Him defend a woman caught in her worst moment and restore sight to a man who had never seen. Pay attention to what these moments reveal about the character of Jesus.",
       "chapters": [
         {
           "ref": "John 7"

@@ -23,11 +23,10 @@
     },
     {
       "type": "heading",
-      "text": "The Bible should be: 1) Read Daily, 2) Studied, 3) Obeyed",
-      "subheading": true
+      "text": "The Bible should be: 1) Read Daily, 2) Studied, 3) Obeyed"
     },
     {
-      "type": "subheading2",
+      "type": "heading",
       "text": "1) The Bible should be \"Read Daily\""
     },
     {
@@ -41,7 +40,7 @@
       "data_question": "4.2 - Best time and format for Bible reading"
     },
     {
-      "type": "subheading2",
+      "type": "heading",
       "text": "2) The Bible should be \"Studied\""
     },
     {
@@ -76,26 +75,40 @@
       "data_question": "4.4 - John 8:2-11 about mankind"
     },
     {
-      "type": "subheading2",
+      "type": "heading",
       "text": "3) The Bible should be \"Obeyed\""
     },
     {
       "type": "text",
-      "text": "Jesus tells us in Matthew 7:24 \"Everyone then who hears these words of mine and does them will be like a wise man who built his house on the rock.\" True faith involves putting belief into action."
+      "text": "True faith involves putting belief into action. Reading and studying the Bible only becomes transformative when we let it change how we live."
+    },
+    {
+      "type": "verse",
+      "reference": "Matthew 7:24",
+      "text": "Everyone then who hears these words of mine and does them will be like a wise man who built his house on the rock."
     },
     {
       "type": "text",
-      "text": "The third question we can ask ourselves is:<br>\n<strong>3) What is the passage telling me to do or believe?</strong> - \"Because of this truth I will...\""
+      "text": "The third question to ask when studying any passage is: <strong>What is this passage telling me to do or believe?</strong> Answer it by completing this sentence: \"Because of this truth, I will...\""
     },
     {
       "type": "question",
       "id": "4-5",
-      "text": "4.5 - What is the passage John 8:2-11 telling me to do or believe? What is the next step I will take? Because of this truth, I will...",
+      "text": "4.5 - Looking back at John 8:2-11, complete this sentence: Because of this truth, I will...",
       "data_question": "4.5 - John 8:2-11 application"
     },
     {
+      "type": "heading",
+      "text": "Lesson Review"
+    },
+    {
+      "type": "text",
+      "text": "You have learned three ways to engage the Bible, reading it daily, studying it deeply, and obeying what it says. These three habits practiced together over time will shape your life more than almost anything else you can do."
+    },
+    {
       "type": "bible_reading",
-      "heading": "Read the Gospel of John",
+      "heading": "Introduction to John 10, 11, and 12",
+      "intro": "In John 10-12, Jesus calls Himself the Good Shepherd who lays down His life for His sheep, raises Lazarus from the dead after four days in the tomb, and enters Jerusalem as King. As you read, try using the three study questions you learned today: what does this tell me about God, what does it tell me about people, and what is it asking me to do?",
       "chapters": [
         {
           "ref": "John 10"

@@ -1,7 +1,7 @@
 {
   "id": "1",
   "title": "Lesson 1: Welcome. Let's Start Growing.",
-  "description": "Following Jesus is the greatest decision you will ever make. This study is designed to help you build a strong spiritual foundation as you begin this new life in Christ.",
+  "description": "Following Jesus is the greatest decision you will ever make. This study is designed to help you build a strong spiritual foundation as you grow in your faith.",
   "blocks": [
     {
       "type": "image",
@@ -23,7 +23,7 @@
     },
     {
       "type": "heading",
-      "text": "What This Study Will Do"
+      "text": "The Goal of the 101 \"Starting in Discipleship\" Course"
     },
     {
       "type": "text",
@@ -125,8 +125,17 @@
       "text": "Each lesson includes three chapters of John. You can read them, listen to them, or both. You do not need to finish them all in one sitting. Spread them across your week and let the words settle into your heart. Take notes on anything that stands out to you. God will use this time."
     },
     {
+      "type": "heading",
+      "text": "Lesson Review"
+    },
+    {
+      "type": "text",
+      "text": "You have taken your first honest look at where you are spiritually and what you are hoping God will do in your life. That kind of honesty with God is the best possible starting point for everything ahead."
+    },
+    {
       "type": "bible_reading",
-      "heading": "Read and Listen to the Gospel of John",
+      "heading": "Introduction to John 1, 2, and 3",
+      "intro": "In John 1-3, you will meet Jesus through the eyes of those who encountered Him first, as the Word made flesh, the Lamb of God, and the one who tells Nicodemus that a person must be born again. Pay attention to how different people respond to Jesus and ask yourself how you are responding to Him.",
       "chapters": [
         {
           "ref": "John 1"
