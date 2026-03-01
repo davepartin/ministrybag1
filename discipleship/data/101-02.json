@@ -30,7 +30,46 @@
       "text": "The ABCs of the Steps of Salvation: \"The Romans Road\""
     },
     {
-      "type": "romans_road"
+      "type": "stepper",
+      "steps": [
+        {
+          "label": "A",
+          "title": "Admit Sin",
+          "subtitle": "We are in need",
+          "verses": [
+            {
+              "ref": "Romans 3:23",
+              "text": "For all have sinned and fall short of the glory of God"
+            },
+            {
+              "ref": "Romans 6:23",
+              "text": "For the wages of sin is death, but the free gift of God is eternal life in Christ Jesus our Lord."
+            }
+          ]
+        },
+        {
+          "label": "B",
+          "title": "Believe Jesus as Savior",
+          "subtitle": "He died for our sins to save us",
+          "verses": [
+            {
+              "ref": "Romans 5:8",
+              "text": "but God shows his love for us in that while we were still sinners, Christ died for us."
+            }
+          ]
+        },
+        {
+          "label": "C",
+          "title": "Confess Jesus as Lord",
+          "subtitle": "Living under the Authority of the Resurrected Jesus",
+          "verses": [
+            {
+              "ref": "Romans 10:9",
+              "text": "If you confess with your mouth that Jesus is Lord and believe in your heart that God raised him from the dead, you will be saved."
+            }
+          ]
+        }
+      ]
     },
     {
       "type": "question",
@@ -42,8 +81,8 @@
     {
       "type": "question",
       "id": "2-3",
-      "text": "2.3 - What questions do you have about how someone can become Christian?",
-      "data_question": "2.3 - Questions about becoming Christian"
+      "text": "2.3 - If someone asked you how they can be a Christian, what would you say?",
+      "data_question": "2.3 - If someone asked you how they can be a Christian, what would you say?"
     },
     {
       "type": "heading",
@@ -95,7 +134,7 @@
     },
     {
       "type": "heading",
-      "text": "Lesson Review"
+      "text": "Lesson 2 Review"
     },
     {
       "type": "text",

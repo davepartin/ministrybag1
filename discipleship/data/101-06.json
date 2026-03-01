@@ -18,8 +18,8 @@
     {
       "type": "question",
       "id": "6-1",
-      "text": "6.1 - If you had to score yourself from 1-10 on having spiritual conversations with others who are not Christian, what number would you be and why?",
-      "data_question": "6.1 - Spiritual conversations self-rating"
+      "text": "6.1 - Think about the person or people God used to bring you to faith. Who were they, and what did they do that made a difference in your life?",
+      "data_question": "6.1 - Who God used to bring you to faith"
     },
     {
       "type": "verse",
@@ -27,12 +27,17 @@
       "text": "For I am not ashamed of the gospel, for it is the power of God for salvation to everyone who believes, to the Jew first and also to the Greek."
     },
     {
+      "type": "image",
+      "src": "images/203-02-bless-logo.png",
+      "alt": "BLESS Rhythms"
+    },
+    {
       "type": "heading",
       "text": "Introduction to the BLESS Rhythm"
     },
     {
       "type": "text",
-      "text": "At Neighborhood Church we use a simple rhythm called BLESS to help us live on mission: <strong>B</strong>egin with Prayer, <strong>L</strong>isten, <strong>E</strong>at, <strong>S</strong>erve, <strong>S</strong>tory. We will go much deeper into each of these in a future course, but here is a taste of what living on mission looks like."
+      "text": "A simple rhythm called BLESS can help us live on mission every day: <strong>B</strong>egin with Prayer, <strong>L</strong>isten, <strong>E</strong>at, <strong>S</strong>erve, <strong>S</strong>tory. We will go much deeper into each of these in a future course, but here is a taste of what living on mission looks like."
     },
     {
       "type": "question",
@@ -41,7 +46,7 @@
       "data_question": "6.2 - Three people for personal ministry"
     },
     {
-      "type": "subheading2",
+      "type": "heading",
       "text": "Listen & Serve"
     },
     {
@@ -55,7 +60,7 @@
       "data_question": "6.3 - Ways to care for non-believers"
     },
     {
-      "type": "subheading2",
+      "type": "heading",
       "text": "Begin with Prayer"
     },
     {
@@ -69,7 +74,7 @@
       "data_question": "6.4 - Praying for the lost"
     },
     {
-      "type": "subheading2",
+      "type": "heading",
       "text": "Story - Share What Happened to You"
     },
     {
@@ -100,7 +105,7 @@
       "data_question": "6.5 - How to become a Christian explanation"
     },
     {
-      "type": "subheading2",
+      "type": "heading",
       "text": "Offer"
     },
     {
@@ -124,7 +129,7 @@
     },
     {
       "type": "heading",
-      "text": "Lesson Review"
+      "text": "Lesson 6 Review"
     },
     {
       "type": "text",

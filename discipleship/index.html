@@ -209,7 +209,7 @@
         .level-card .level-arrow {
             margin-left: auto;
             color: var(--text-tertiary);
-            font-size: 1.1rem;
+            font-size: 2.2rem;
             flex-shrink: 0;
             transition: transform var(--transition);
         }
@@ -578,20 +578,39 @@
         }
 
         .back-btn {
-            background: none;
+            background: rgba(45, 106, 79, 0.08);
             border: none;
-            font-size: 1.5rem;
+            font-size: 0.95rem;
+            font-weight: 600;
             color: var(--accent);
             cursor: pointer;
-            padding: 4px 8px 4px 0;
+            padding: 8px 12px;
+            border-radius: 20px;
             font-family: inherit;
+            display: flex;
+            align-items: center;
+            gap: 6px;
             -webkit-tap-highlight-color: transparent;
             line-height: 1;
+            transition: background var(--transition);
+        }
+
+        .back-btn:active {
+            background: rgba(45, 106, 79, 0.15);
+        }
+
+        .topbar-center {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            min-width: 0;
         }
 
         .topbar-title {
-            flex: 1;
             min-width: 0;
+            text-align: left;
         }
 
         .topbar-title h2 {
@@ -801,7 +820,7 @@
         .lesson-content {
             flex: 1;
             padding: 24px 20px;
-            padding-bottom: 120px;
+            padding-bottom: 48px;
         }
 
         /* Session blocks */
@@ -833,6 +852,20 @@
             letter-spacing: -0.02em;
             margin-bottom: 8px;
             line-height: 1.3;
+        }
+
+        .session-header {
+            margin-bottom: 4px;
+        }
+
+        .session-course-logo {
+            float: right;
+            width: 168px;
+            height: 168px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin: 0 0 12px 16px;
+            opacity: 0.85;
         }
 
         .session-description {
@@ -919,6 +952,16 @@
             color: var(--text-primary);
             line-height: 1.75;
             font-style: italic;
+        }
+
+        .verse-text sup {
+            font-size: 0.65rem;
+            font-weight: 700;
+            color: var(--accent);
+            font-style: normal;
+            vertical-align: super;
+            line-height: 0;
+            margin-right: 1px;
         }
 
         /* List blocks */
@@ -1272,6 +1315,15 @@
 
         .export-link:active {
             opacity: 0.6;
+        }
+
+        .esv-footnote {
+            margin-top: 16px;
+            padding-top: 12px;
+            border-top: 1px solid var(--border-light);
+            font-size: 0.75rem;
+            color: var(--text-tertiary);
+            line-height: 1.6;
         }
 
         /* ============================================
@@ -1739,11 +1791,16 @@
             <!-- Top bar -->
             <div class="lesson-topbar">
                 <div class="topbar-row">
-                    <button class="back-btn" onclick="goHome()" aria-label="Back to courses">&#8249;</button>
-                    <div id="topbar-series-badge" class="topbar-series-badge"></div>
-                    <div class="topbar-title">
-                        <h2 id="topbar-series-name">Starting in Discipleship</h2>
-                        <div class="session-label" id="topbar-session-label">Lesson 1 of 7</div>
+                    <button class="back-btn" onclick="goHome()" aria-label="Back to courses">
+                        <span style="font-size: 1.2rem; transform: translateY(-1px);">&#8249;</span>
+                        Back
+                    </button>
+                    <div class="topbar-center">
+                        <div id="topbar-series-badge" class="topbar-series-badge"></div>
+                        <div class="topbar-title">
+                            <h2 id="topbar-series-name">Starting in Discipleship</h2>
+                            <div class="session-label" id="topbar-session-label">Lesson 1 of 7</div>
+                        </div>
                     </div>
                     <button class="toc-toggle" id="toc-toggle-btn" onclick="toggleTOC()">All Lessons</button>
                 </div>
@@ -1767,6 +1824,10 @@
                 <!-- Export line gets moved to end of container by JS -->
             </div>
 
+            <p class="esv-footnote">Scripture quotations are from the ESV&reg; Bible (The Holy Bible, English Standard
+                Version&reg;), copyright &copy; 2001 by Crossway, a publishing ministry of Good News Publishers. Used by
+                permission. All rights reserved.</p>
+
             <!-- Bottom nav - flows at end of lesson content -->
             <div class="bottom-nav" id="bottom-nav">
                 <div class="bottom-nav-inner">
@@ -1784,7 +1845,7 @@
         // VERSION - bump this when JSON content changes
         // to bust browser cache on data files
         // ============================================
-        const BUILD_VERSION = '20260228e';
+        const BUILD_VERSION = '20260301a';
 
         // ============================================
         // STATE
@@ -1894,7 +1955,7 @@
         // Reads live from curriculum-toc.csv
         // ============================================
         const COURSE_META = {
-            '101': { name: 'Starting in Discipleship', color: '#1E6FA0', bg: '#DCEEFB', hover: '#175580' },
+            '101': { name: 'Starting in Discipleship', color: '#1E6FA0', bg: '#DCEEFB', hover: '#175580', logo: 'images/101-starting-logo.png' },
             '201': { name: 'Growing Deep in Discipleship', color: '#1A6B55', bg: '#D4F2E8', hover: '#135040' },
             '202': { name: 'Growing Up in Discipleship', color: '#1D6B3F', bg: '#D1EDD9', hover: '#155030' },
             '203': { name: 'Growing Out in Discipleship', color: '#1A5C38', bg: '#CCE6D4', hover: '#134528' },
@@ -2105,6 +2166,11 @@
                 div.id = `session-${i}`;
 
                 let html = '';
+                const meta = COURSE_META[currentSeries];
+                const showLogo = meta && meta.logo && i > 1;
+                if (showLogo) {
+                    html += `<img class="session-course-logo" src="${meta.logo}" alt="${meta.name}">`;
+                }
                 html += `<h1 class="session-title">${data.title}</h1>`;
                 if (data.description) {
                     html += `<p class="session-description">${data.description}</p>`;
@@ -2212,34 +2278,56 @@
                                 html += `</div>`;
                                 break;
 
-                            case 'romans_road':
-                                html += `<div class="block-romans-road">
-                                    <div>
-                                        <p class="romans-step-label"><strong>A  -  Admit Sin</strong>  -  We are in need</p>
-                                        <div class="block-verse">
-                                            <span class="verse-ref">Romans 3:23</span>
-                                            <div class="verse-text">For all have sinned and fall short of the glory of God</div>
+                            case 'stepper':
+                                html += `<div class="stepper-section" style="margin: 32px 0 32px 16px; position: relative;">`;
+                                // Vertical track line
+                                html += `<div style="position: absolute; left: 15px; top: 10px; bottom: 20px; width: 2px; background: var(--border); z-index: 1;"></div>`;
+
+                                b.steps.forEach((step, idx) => {
+                                    const stepId = `step-${currentSeries}-${b.id || idx}`;
+                                    const isFirst = idx === 0;
+
+                                    html += `
+                                    <div class="stepper-item" id="item-${stepId}" style="display: flex; gap: 24px; margin-bottom: 24px; position: relative; z-index: 2; opacity: ${isFirst ? '1' : '0.4'}; transition: opacity 0.4s ease;">
+                                        <!-- Node -->
+                                        <div class="stepper-node" id="node-${stepId}" style="width: 32px; height: 32px; border-radius: 50%; background: ${isFirst ? 'var(--accent)' : 'var(--surface)'}; border: 2px solid ${isFirst ? 'var(--accent)' : 'var(--border)'}; color: ${isFirst ? 'white' : 'var(--text-tertiary)'}; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; flex-shrink: 0; transition: all 0.4s ease; margin-top: 2px;">
+                                            ${step.label}
                                         </div>
-                                        <div class="block-verse" style="margin-top: 8px;">
-                                            <span class="verse-ref">Romans 6:23</span>
-                                            <div class="verse-text">For the wages of sin is death, but the free gift of God is eternal life in Christ Jesus our Lord.</div>
+                                        
+                                        <!-- Content Card -->
+                                        <div class="stepper-content" style="flex: 1; background: var(--surface); border: 1px solid var(--border-light); border-radius: var(--radius); padding: 20px; box-shadow: var(--shadow-sm);">
+                                            <h3 style="margin: 0 0 4px 0; font-size: 1.1rem; color: var(--text-primary);">${step.title}</h3>
+                                            ${step.subtitle ? `<p style="margin: 0 0 12px 0; font-size: 0.9rem; color: var(--text-secondary);">${step.subtitle}</p>` : ''}
+                                            
+                                            <div class="stepper-verses" id="verses-${stepId}" style="max-height: ${isFirst ? '1000px' : '0'}; overflow: hidden; transition: max-height 0.6s ease;">
+                                                <div style="padding-top: 8px;">
+                                                    ${step.verses.map(v => `
+                                                    <div class="block-verse" style="margin-top: 0; margin-bottom: 12px;">
+                                                        <span class="verse-ref">${v.ref}</span>
+                                                        <div class="verse-text">${v.text}</div>
+                                                    </div>`).join('')}
+                                                    
+                                                    ${idx < b.steps.length - 1 ? `
+                                                    <button class="block-tool-btn" id="btn-${stepId}" style="margin-top: 12px; width: 100%; border-radius: 20px; padding: 10px;" onclick="
+                                                        this.style.display = 'none';
+                                                        const nextNode = document.getElementById('node-step-${currentSeries}-${b.id || (idx + 1)}');
+                                                        const nextItem = document.getElementById('item-step-${currentSeries}-${b.id || (idx + 1)}');
+                                                        const nextVerses = document.getElementById('verses-step-${currentSeries}-${b.id || (idx + 1)}');
+                                                        if (nextNode) {
+                                                            nextNode.style.background = 'var(--accent)';
+                                                            nextNode.style.borderColor = 'var(--accent)';
+                                                            nextNode.style.color = 'white';
+                                                        }
+                                                        if (nextItem) nextItem.style.opacity = '1';
+                                                        if (nextVerses) nextVerses.style.maxHeight = '1000px';
+                                                    ">Next</button>
+                                                    ` : ''}
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div>
-                                        <p class="romans-step-label"><strong>B  -  Believe Jesus as Savior</strong>  -  He died for our sins to save us</p>
-                                        <div class="block-verse">
-                                            <span class="verse-ref">Romans 5:8</span>
-                                            <div class="verse-text">but God shows his love for us in that while we were still sinners, Christ died for us.</div>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <p class="romans-step-label"><strong>C  -  Confess Jesus as Lord</strong>  -  Living under His Authority</p>
-                                        <div class="block-verse">
-                                            <span class="verse-ref">Romans 10:9</span>
-                                            <div class="verse-text">If you confess with your mouth that Jesus is Lord and believe in your heart that God raised him from the dead, you will be saved.</div>
-                                        </div>
-                                    </div>
-                                </div>`;
+                                    </div>`;
+                                });
+                                html += `</div>`;
                                 break;
 
                             case 'tool':
@@ -2312,6 +2400,25 @@
                         onclick="event.stopPropagation()">
                     <label for="${completeId}">I have completed this lesson</label>
                 </div>`;
+
+                if (i === totalSessions) {
+                    const seriesOrder = ['101', '201', '202', '203', '301'];
+                    const currentIndex = seriesOrder.indexOf(currentSeries);
+                    if (currentIndex !== -1 && currentIndex < seriesOrder.length - 1) {
+                        const nextSeries = seriesOrder[currentIndex + 1];
+                        const nextMeta = COURSE_META[nextSeries];
+                        if (nextMeta) {
+                            const shortName = nextMeta.name.replace(' in Discipleship', '');
+                            html += `
+                            <div style="margin-top: 40px; text-align: center;">
+                                <button class="block-tool-btn" style="background:${nextMeta.color}; width: 100%; max-width: 320px; font-size: 1.05rem;" onclick="goHome(); setTimeout(() => toggleCourseDropdown('${nextSeries}'), 300);">
+                                    Go to ${nextSeries} ${shortName} &rarr;
+                                </button>
+                            </div>
+                            `;
+                        }
+                    }
+                }
 
                 div.innerHTML = html;
                 container.appendChild(div);
@@ -2515,7 +2622,9 @@
         let readingData = {};
         try {
             readingData = JSON.parse(localStorage.getItem('foundationsReadingData') || '{}');
-        } catch (e) { readingData = {}; }
+        } catch (e) {
+            readingData = {};
+        }
 
         function toggleChapter(chId) {
             const body = document.getElementById('body-' + chId);
@@ -2620,7 +2729,6 @@
                 }
             });
         }
-
         // ============================================
         // EXPORT
         // ============================================
