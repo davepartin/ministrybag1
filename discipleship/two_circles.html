@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Throne of Your Life</title>
+    <style>
+        :root {
+            --ink: #14213d;
+            --muted: #5c677d;
+            --bg-top: #f7efe2;
+            --bg-bottom: #e5edf7;
+            --card: #ffffff;
+            --line: #d5dde8;
+            --self: #ba181b;
+            --self-soft: #ffe5e5;
+            --jesus: #0a5c86;
+            --jesus-soft: #dbf0fb;
+            --throne-wood: #7c4f2d;
+            --throne-trim: #e6b15e;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            padding: 24px;
+            font-family: "Avenir Next", "Segoe UI", Helvetica, Arial, sans-serif;
+            background: linear-gradient(170deg, var(--bg-top), var(--bg-bottom));
+            color: var(--ink);
+        }
+
+        .interaction-container {
+            width: min(920px, 100%);
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(20, 33, 61, 0.12);
+            padding: 28px 22px 26px;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: clamp(1.55rem, 4.5vw, 2.15rem);
+            text-align: center;
+            letter-spacing: 0.02em;
+        }
+
+        .subtitle {
+            margin: 8px 0 18px;
+            color: var(--muted);
+            text-align: center;
+            font-size: 1rem;
+        }
+
+        .choice-group {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .visual-section {
+            display: grid;
+            grid-template-columns: minmax(320px, 380px) 1fr;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .choice-btn {
+            border: 1px solid var(--line);
+            background: #f7fafc;
+            color: var(--ink);
+            border-radius: 14px;
+            padding: 12px 10px;
+            font-size: 0.98rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+        }
+
+        .choice-btn:hover {
+            transform: translateY(-1px);
+            border-color: #9cb0cf;
+        }
+
+        .choice-btn[aria-pressed="true"] {
+            background: #edf4ff;
+            border-color: #457eb8;
+            box-shadow: 0 0 0 2px rgba(69, 126, 184, 0.16);
+        }
+
+        .life-circle-container {
+            position: relative;
+            width: min(92vw, 360px);
+            height: min(92vw, 360px);
+            margin: 0 auto;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid #2a3f5f;
+            background:
+                radial-gradient(circle at center, #ffffff 45%, #edf3fb 100%);
+            box-shadow: inset 0 0 20px rgba(18, 37, 65, 0.1);
+        }
+
+        .interest-dot {
+            position: absolute;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: #364f73;
+            z-index: 1;
+            opacity: 0.85;
+        }
+
+        .throne-wrap {
+            position: absolute;
+            inset: 0;
+            display: grid;
+            place-items: center;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .throne-icon {
+            width: 214px;
+            height: 214px;
+            filter: drop-shadow(0 9px 12px rgba(0, 0, 0, 0.2));
+        }
+
+        .entity {
+            position: absolute;
+            left: 56%;
+            width: 98px;
+            height: 98px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            text-align: center;
+            font-weight: 800;
+            letter-spacing: 0.06em;
+            font-size: 0.95rem;
+            border: 2px solid transparent;
+            transition: left 0.7s cubic-bezier(0.2, 0.8, 0.2, 1),
+                top 0.7s cubic-bezier(0.2, 0.8, 0.2, 1),
+                transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1),
+                opacity 0.45s ease,
+                background 0.4s ease,
+                color 0.4s ease,
+                box-shadow 0.4s ease;
+            z-index: 3;
+            user-select: none;
+            pointer-events: none;
+        }
+
+        .entity-self {
+            color: var(--self);
+            background: var(--self-soft);
+            border-color: #df9ca0;
+        }
+
+        .entity-jesus {
+            color: var(--jesus);
+            background: var(--jesus-soft);
+            border-color: #89bfd8;
+        }
+
+        .life-circle-container:not(.christ-mode) .entity-self {
+            left: 56%;
+            top: 57%;
+            transform: translate(-50%, -84%) scale(1.1);
+            box-shadow: 0 9px 24px rgba(186, 24, 27, 0.22);
+        }
+
+        .life-circle-container:not(.christ-mode) .entity-jesus {
+            left: 31%;
+            top: 80%;
+            transform: translate(-50%, -50%) scale(0.82);
+            opacity: 0.72;
+        }
+
+        .life-circle-container.christ-mode .entity-jesus {
+            left: 56%;
+            top: 57%;
+            transform: translate(-50%, -84%) scale(1.1);
+            box-shadow: 0 10px 25px rgba(10, 92, 134, 0.24);
+        }
+
+        .life-circle-container.christ-mode .entity-self {
+            left: 31%;
+            top: 80%;
+            transform: translate(-50%, -50%) scale(0.82);
+            opacity: 0.72;
+        }
+
+        .state-note {
+            margin: 12px 0 0;
+            text-align: left;
+            font-size: 0.92rem;
+            color: var(--muted);
+            min-height: 1.3rem;
+        }
+
+        .teaching-panel {
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            background: linear-gradient(180deg, #fbfdff 0%, #f4f8fd 100%);
+            padding: 14px 14px 12px;
+        }
+
+        .teaching-title {
+            margin: 0 0 10px;
+            font-size: 1.35rem;
+            line-height: 1.2;
+        }
+
+        .teaching-list {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            display: grid;
+            gap: 9px;
+        }
+
+        .teaching-item {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            align-items: start;
+            gap: 9px;
+            line-height: 1.32;
+            color: #223450;
+            font-size: 1rem;
+        }
+
+        .legend-token {
+            min-width: 26px;
+            min-height: 26px;
+            border-radius: 999px;
+            display: inline-grid;
+            place-items: center;
+            font-weight: 800;
+            font-size: 0.95rem;
+            border: 1px solid #afbccf;
+            background: #fff;
+            color: #1a2e49;
+            margin-top: 1px;
+        }
+
+        .prompt-box {
+            margin: 12px 0 0;
+            border-top: 1px dashed #bac8dc;
+            padding-top: 10px;
+            color: #2d405f;
+            font-size: 0.98rem;
+            line-height: 1.35;
+        }
+
+        @media (max-width: 560px) {
+            .interaction-container {
+                padding: 22px 14px 20px;
+                border-radius: 18px;
+            }
+
+            .visual-section {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .choice-btn {
+                font-size: 0.9rem;
+                padding: 11px 8px;
+            }
+
+            .entity {
+                width: 88px;
+                height: 88px;
+                font-size: 0.88rem;
+            }
+
+            .throne-icon {
+                width: 194px;
+                height: 194px;
+            }
+
+            .state-note {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="interaction-container">
+        <h1>These Two Circles Represent Two Kinds of Lives</h1>
+        <p class="subtitle">Tap who is on the throne and watch how the whole life circle changes.</p>
+
+        <div class="choice-group" role="group" aria-label="Select who sits on the throne">
+            <button class="choice-btn" id="selectSelf" data-mode="self" aria-pressed="true">SELF on the throne</button>
+            <button class="choice-btn" id="selectChrist" data-mode="christ" aria-pressed="false">JESUS on the throne</button>
+        </div>
+
+        <div class="visual-section">
+            <div>
+                <div class="life-circle-container" id="lifeCircle">
+                    <div class="throne-wrap" aria-hidden="true">
+                        <svg class="throne-icon" viewBox="0 0 260 220" fill="none">
+                            <path d="M88 25 C84 67 90 109 99 144" stroke="#1d130a" stroke-width="10" stroke-linecap="round" />
+                            <path d="M88 27 C89 61 93 96 99 127" stroke="var(--throne-trim)" stroke-width="5" stroke-linecap="round" />
+                            <path d="M100 121 L175 121" stroke="#1d130a" stroke-width="10" stroke-linecap="round" />
+                            <path d="M102 121 L175 121" stroke="var(--throne-trim)" stroke-width="5" stroke-linecap="round" />
+                            <path d="M96 147 L186 147" stroke="#1d130a" stroke-width="10" stroke-linecap="round" />
+                            <path d="M98 147 L184 147" stroke="var(--throne-trim)" stroke-width="5" stroke-linecap="round" />
+                            <path d="M173 121 L183 147" stroke="#1d130a" stroke-width="9" stroke-linecap="round" />
+                            <path d="M90 86 L149 86" stroke="#1d130a" stroke-width="9" stroke-linecap="round" />
+                            <path d="M90 86 L149 86" stroke="var(--throne-trim)" stroke-width="4" stroke-linecap="round" />
+                            <path d="M88 86 L82 118" stroke="#1d130a" stroke-width="8" stroke-linecap="round" />
+                            <path d="M102 147 L96 184" stroke="#1d130a" stroke-width="10" stroke-linecap="round" />
+                            <path d="M182 147 L189 183" stroke="#1d130a" stroke-width="10" stroke-linecap="round" />
+                            <path d="M108 25 L114 25" stroke="var(--throne-trim)" stroke-width="7" stroke-linecap="round" />
+                        </svg>
+                    </div>
+
+                    <div class="entity entity-self">SELF</div>
+                    <div class="entity entity-jesus">JESUS</div>
+                </div>
+                <p class="state-note" id="stateNote">Self is currently in the seat. Tap JESUS to compare.</p>
+            </div>
+
+            <aside class="teaching-panel" aria-live="polite">
+                <h2 class="teaching-title" id="teachingTitle">Self-Directed Life</h2>
+                <ul class="teaching-list">
+                    <li class="teaching-item">
+                        <span class="legend-token" id="token1">S</span>
+                        <span id="point1">Self is on the throne.</span>
+                    </li>
+                    <li class="teaching-item">
+                        <span class="legend-token" id="token2">+</span>
+                        <span id="point2">Jesus is outside the life.</span>
+                    </li>
+                    <li class="teaching-item">
+                        <span class="legend-token" id="token3">o</span>
+                        <span id="point3">Interests are directed by self and can lead to frustration.</span>
+                    </li>
+                </ul>
+                <p class="prompt-box" id="reflectionPrompt">
+                    Which circle best represents your life right now? Which circle would you like to represent your life?
+                </p>
+            </aside>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const lifeCircle = document.getElementById("lifeCircle");
+            const stateNote = document.getElementById("stateNote");
+            const selectSelf = document.getElementById("selectSelf");
+            const selectChrist = document.getElementById("selectChrist");
+            const teachingTitle = document.getElementById("teachingTitle");
+            const token1 = document.getElementById("token1");
+            const token2 = document.getElementById("token2");
+            const token3 = document.getElementById("token3");
+            const point1 = document.getElementById("point1");
+            const point2 = document.getElementById("point2");
+            const point3 = document.getElementById("point3");
+
+            const numDots = 10;
+            const dotSize = 14;
+            const dots = [];
+            let animationFrameId = null;
+            let isChristMode = false;
+            let containerSize = lifeCircle.clientWidth;
+            let center = containerSize / 2;
+
+            function clampInsideCircle(dot) {
+                const dx = dot.x + dotSize / 2 - center;
+                const dy = dot.y + dotSize / 2 - center;
+                const distanceFromCenter = Math.sqrt(dx * dx + dy * dy);
+                const edge = containerSize / 2 - dotSize;
+
+                if (distanceFromCenter > edge) {
+                    const angle = Math.atan2(dy, dx);
+                    dot.x = center + edge * Math.cos(angle) - dotSize / 2;
+                    dot.y = center + edge * Math.sin(angle) - dotSize / 2;
+                }
+            }
+
+            function initializeDots() {
+                for (let i = 0; i < numDots; i += 1) {
+                    const dotEl = document.createElement("div");
+                    dotEl.className = "interest-dot";
+                    lifeCircle.appendChild(dotEl);
+
+                    const dot = {
+                        element: dotEl,
+                        x: Math.random() * (containerSize - dotSize),
+                        y: Math.random() * (containerSize - dotSize),
+                        vx: (Math.random() - 0.5) * 3.8,
+                        vy: (Math.random() - 0.5) * 3.8
+                    };
+
+                    clampInsideCircle(dot);
+                    dots.push(dot);
+                }
+            }
+
+            function animateChaos() {
+                dots.forEach((dot) => {
+                    dot.x += dot.vx;
+                    dot.y += dot.vy;
+
+                    const dx = dot.x + dotSize / 2 - center;
+                    const dy = dot.y + dotSize / 2 - center;
+                    const distanceFromCenter = Math.sqrt(dx * dx + dy * dy);
+
+                    if (distanceFromCenter > containerSize / 2 - dotSize) {
+                        if (dot.x < center) {
+                            dot.vx = Math.abs(dot.vx);
+                        } else {
+                            dot.vx = -Math.abs(dot.vx);
+                        }
+                        if (dot.y < center) {
+                            dot.vy = Math.abs(dot.vy);
+                        } else {
+                            dot.vy = -Math.abs(dot.vy);
+                        }
+                    }
+
+                    dot.element.style.transition = "none";
+                    dot.element.style.left = `${dot.x}px`;
+                    dot.element.style.top = `${dot.y}px`;
+                });
+
+                animationFrameId = requestAnimationFrame(animateChaos);
+            }
+
+            function startChaos() {
+                cancelAnimationFrame(animationFrameId);
+                animationFrameId = requestAnimationFrame(animateChaos);
+            }
+
+            function organizeDots() {
+                cancelAnimationFrame(animationFrameId);
+                animationFrameId = null;
+
+                const radius = containerSize * 0.37;
+                const angleStep = (2 * Math.PI) / numDots;
+
+                dots.forEach((dot, index) => {
+                    const angle = index * angleStep;
+                    const targetX = center + radius * Math.cos(angle) - dotSize / 2;
+                    const targetY = center + radius * Math.sin(angle) - dotSize / 2;
+
+                    dot.x = targetX;
+                    dot.y = targetY;
+                    dot.vx = (Math.random() - 0.5) * 3.8;
+                    dot.vy = (Math.random() - 0.5) * 3.8;
+
+                    dot.element.style.transition = "all 0.75s cubic-bezier(0.22, 0.61, 0.36, 1)";
+                    dot.element.style.left = `${targetX}px`;
+                    dot.element.style.top = `${targetY}px`;
+                });
+            }
+
+            function updateTeachingContent(mode) {
+                if (mode === "christ") {
+                    teachingTitle.textContent = "Christ-Directed Life";
+                    token1.textContent = "+";
+                    token2.textContent = "S";
+                    token3.textContent = "o";
+                    point1.textContent = "Jesus is in your life and on the throne.";
+                    point2.textContent = "Self is yielding to Jesus.";
+                    point3.textContent = "Interests are directed by Jesus, bringing harmony with God's plan.";
+                } else {
+                    teachingTitle.textContent = "Self-Directed Life";
+                    token1.textContent = "S";
+                    token2.textContent = "+";
+                    token3.textContent = "o";
+                    point1.textContent = "Self is on the throne.";
+                    point2.textContent = "Jesus is outside the life.";
+                    point3.textContent = "Interests are directed by self and can lead to frustration.";
+                }
+            }
+
+            function setMode(mode) {
+                isChristMode = mode === "christ";
+                lifeCircle.classList.toggle("christ-mode", isChristMode);
+
+                selectSelf.setAttribute("aria-pressed", String(!isChristMode));
+                selectChrist.setAttribute("aria-pressed", String(isChristMode));
+
+                if (isChristMode) {
+                    stateNote.textContent = "Jesus is currently in the seat. Tap SELF to compare.";
+                    organizeDots();
+                } else {
+                    stateNote.textContent = "Self is currently in the seat. Tap JESUS to compare.";
+                    startChaos();
+                }
+
+                updateTeachingContent(mode);
+            }
+
+            function handleResize() {
+                containerSize = lifeCircle.clientWidth;
+                center = containerSize / 2;
+                dots.forEach((dot) => {
+                    clampInsideCircle(dot);
+                    dot.element.style.left = `${dot.x}px`;
+                    dot.element.style.top = `${dot.y}px`;
+                });
+                if (isChristMode) {
+                    organizeDots();
+                }
+            }
+
+            selectSelf.addEventListener("click", () => setMode("self"));
+            selectChrist.addEventListener("click", () => setMode("christ"));
+            window.addEventListener("resize", handleResize);
+
+            initializeDots();
+            setMode("self");
+        });
+    </script>
+</body>
+
+</html>

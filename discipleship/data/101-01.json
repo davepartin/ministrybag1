@@ -1,6 +1,7 @@
 {
   "id": "1",
   "title": "Lesson 1: Welcome. Let's Start Growing.",
+  "displayTitle": "Welcome.<br>Let's Start Growing.",
   "description": "Following Jesus is the greatest decision you will ever make. This study is designed to help you build a strong spiritual foundation as you grow in your faith.",
   "blocks": [
     {
@@ -10,7 +11,7 @@
     },
     {
       "type": "heading",
-      "text": "Planting Orchards Discipleship Series"
+      "text": "Planting Orchards<br>Discipleship Series"
     },
     {
       "type": "verse",
@@ -23,23 +24,11 @@
     },
     {
       "type": "heading",
-      "text": "The Goal of the 101 \"Starting in Discipleship\" Course"
+      "text": "What to Expect in This Course"
     },
     {
       "type": "text",
-      "text": "Over the next seven lessons, you will explore some of the most important truths of the Christian faith. Each lesson is built to help you grow in three specific ways:"
-    },
-    {
-      "type": "list",
-      "items": [
-        "1. Develop a solid spiritual foundation on key biblical truths through a <strong>Topical Study</strong>",
-        "2. Strengthen your relationship with God through a <strong>Daily Devotional Time</strong>",
-        "3. Help you grow by exploring, evaluating, and encouraging next steps through a <strong>Personal Challenge</strong>"
-      ]
-    },
-    {
-      "type": "text",
-      "text": "You do not need to rush. Each lesson is designed to be completed at your own pace. Read the teaching, sit with the Scripture, and write your thoughts in the response text boxes."
+      "text": "These seven lessons will walk you through some of the most important truths you will need as you begin following Jesus. Each lesson is designed to work with you in three simple ways: giving you something to learn, questions to help you process, and some steps to take. May this study move from your head, into your heart, and then to your hands as you learn to love God and your neighbors."
     },
     {
       "type": "heading",
@@ -154,19 +143,19 @@
     },
     {
       "type": "question",
-      "id": "101-01-key",
+      "id": "1-key",
       "text": "What is one key thing you learned from this lesson?",
       "height": "short"
     },
     {
       "type": "question",
-      "id": "101-01-step",
+      "id": "1-step",
       "text": "What is one step you are going to take this week?",
       "height": "short"
     },
     {
       "type": "question",
-      "id": "101-01-prayer",
+      "id": "1-prayer",
       "text": "What is a prayer request for this week?",
       "height": "short"
     }

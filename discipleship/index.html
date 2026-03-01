@@ -274,10 +274,19 @@
             padding: 10px 20px;
             cursor: pointer;
             border-top: 1px solid var(--border-light);
+            border-left: none;
+            border-right: none;
+            border-bottom: none;
             background: var(--surface);
             transition: background var(--transition);
             -webkit-tap-highlight-color: transparent;
             user-select: none;
+            width: 100%;
+            text-align: left;
+            font-family: inherit;
+            font-size: inherit;
+            -webkit-appearance: none;
+            appearance: none;
         }
 
         .level-dropdown-lesson:last-child {
@@ -286,6 +295,11 @@
 
         .level-dropdown-lesson:active {
             background: var(--surface-warm);
+        }
+
+        .level-dropdown-lesson:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: -2px;
         }
 
         .level-dropdown-num {
@@ -571,57 +585,103 @@
             padding-top: max(env(safe-area-inset-top), 12px);
         }
 
-        .topbar-row {
+        /* ── Row 1: course identity ── */
+        .topbar-row-1 {
             display: flex;
             align-items: center;
-            gap: 12px;
+            justify-content: space-between;
+            gap: 8px;
         }
 
         .back-btn {
             background: rgba(45, 106, 79, 0.08);
             border: none;
-            font-size: 0.95rem;
-            font-weight: 600;
             color: var(--accent);
             cursor: pointer;
-            padding: 8px 12px;
+            padding: 6px 10px;
             border-radius: 20px;
             font-family: inherit;
             display: flex;
             align-items: center;
-            gap: 6px;
+            justify-content: center;
             -webkit-tap-highlight-color: transparent;
             line-height: 1;
             transition: background var(--transition);
+            flex-shrink: 0;
         }
 
         .back-btn:active {
             background: rgba(45, 106, 79, 0.15);
         }
 
-        .topbar-center {
+        .topbar-course-name {
             flex: 1;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
+            gap: 7px;
             min-width: 0;
         }
 
-        .topbar-title {
-            min-width: 0;
-            text-align: left;
-        }
-
-        .topbar-title h2 {
-            font-size: 1.05rem;
-            font-weight: 600;
-            color: var(--text-primary);
+        .topbar-course-name h2 {
+            font-size: 0.97rem;
+            font-weight: 700;
+            color: var(--accent);
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+            margin: 0;
         }
 
+        .toc-menu-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 6px 4px;
+            color: var(--accent);
+            font-size: 1.3rem;
+            line-height: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--radius-xs);
+            -webkit-tap-highlight-color: transparent;
+            flex-shrink: 0;
+            transition: background var(--transition);
+        }
+
+        .toc-menu-btn:active {
+            background: var(--accent-light);
+        }
+
+        /* ── Row 2: lesson title + count ── */
+        .topbar-row-2 {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            margin-top: 7px;
+        }
+
+        .topbar-lesson-title {
+            font-size: 0.82rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .topbar-lesson-count {
+            font-size: 0.75rem;
+            color: var(--text-tertiary);
+            font-weight: 500;
+            flex-shrink: 0;
+        }
+
+        /* keep for any legacy refs */
         .topbar-title h2 .course-keyword {
             font-weight: 700;
         }
@@ -646,17 +706,18 @@
             color: #9A3A5E;
         }
 
-        /* Topbar series badge */
+        /* Topbar series badge — small inline pill */
         .topbar-series-badge {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 38px;
-            height: 38px;
-            border-radius: var(--radius-sm);
-            font-size: 0.75rem;
+            width: 34px;
+            height: 20px;
+            border-radius: 5px;
+            font-size: 0.68rem;
             font-weight: 700;
             flex-shrink: 0;
+            letter-spacing: 0.02em;
         }
 
         .topbar-series-badge.c101 {
@@ -684,19 +745,13 @@
             background: #FCE4ED;
         }
 
-        .topbar-title .session-label {
-            font-size: 0.75rem;
-            color: var(--text-tertiary);
-            font-weight: 500;
-        }
-
         /* Progress bar */
         .progress-track {
-            height: 3px;
+            height: 4px;
             background: var(--border-light);
             width: 100%;
             margin-top: 8px;
-            border-radius: 3px;
+            border-radius: 4px;
             overflow: hidden;
         }
 
@@ -820,7 +875,7 @@
         .lesson-content {
             flex: 1;
             padding: 24px 20px;
-            padding-bottom: 48px;
+            padding-bottom: 8px;
         }
 
         /* Session blocks */
@@ -1266,6 +1321,15 @@
             background: var(--accent-hover);
         }
 
+        .nav-btn-next.go-to-next-course {
+            background: #2E7D4F;
+            font-size: 0.85rem;
+        }
+
+        .nav-btn-next.go-to-next-course:active {
+            background: #225C3A;
+        }
+
         .nav-btn:disabled {
             opacity: 0.4;
             pointer-events: none;
@@ -1285,45 +1349,143 @@
            ============================================ */
         .export-line {
             border-top: 1px solid var(--border-light);
-            padding: 20px 0 8px;
-            margin-top: 40px;
+            padding: 14px 0 4px;
+            margin-top: 24px;
             display: flex;
+            flex-direction: column;
             align-items: center;
-            justify-content: space-between;
-            gap: 12px;
+            gap: 10px;
         }
 
         .export-line .export-hint {
-            font-size: 0.85rem;
+            font-size: 0.78rem;
             color: var(--text-tertiary);
             line-height: 1.4;
+            text-align: center;
         }
 
         .export-link {
             font-size: 0.9rem;
             font-weight: 600;
             color: var(--accent);
-            background: none;
+            background: var(--accent-light);
             border: none;
             font-family: inherit;
             cursor: pointer;
             white-space: nowrap;
-            padding: 8px 0;
+            padding: 10px 24px;
+            border-radius: 20px;
             -webkit-tap-highlight-color: transparent;
             transition: opacity var(--transition);
         }
 
         .export-link:active {
-            opacity: 0.6;
+            opacity: 0.7;
         }
 
         .esv-footnote {
-            margin-top: 16px;
-            padding-top: 12px;
+            margin: 0;
+            padding: 8px 20px 4px;
             border-top: 1px solid var(--border-light);
-            font-size: 0.75rem;
+            font-size: 0.67rem;
             color: var(--text-tertiary);
-            line-height: 1.6;
+            line-height: 1.5;
+            opacity: 0.65;
+        }
+
+        /* ============================================
+           EXPORT BUTTONS ROW
+           ============================================ */
+        .export-buttons {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            flex-wrap: nowrap;
+            width: 100%;
+        }
+
+        .export-buttons .export-link {
+            flex: 1;
+            text-align: center;
+            font-size: 0.82rem;
+            padding: 10px 12px;
+        }
+
+        .export-pdf-btn {
+            background: var(--accent-light);
+            border: none;
+            color: var(--accent);
+        }
+
+        .export-pdf-btn:active {
+            opacity: 0.7;
+        }
+
+        /* ============================================
+           PRINT / SAVE AS PDF
+           ============================================ */
+        @media print {
+            body.printing .lesson-topbar,
+            body.printing .toc-panel,
+            body.printing .bottom-nav,
+            body.printing .session-complete-bar,
+            body.printing .export-line,
+            body.printing .esv-footnote,
+            body.printing .session-course-logo,
+            body.printing .bible-reading-section,
+            body.printing .accordion-btn {
+                display: none !important;
+            }
+
+            body.printing [data-print-hide] {
+                display: none !important;
+            }
+
+            body.printing .lesson-content {
+                padding: 0 20px !important;
+            }
+
+            body.printing .session-title {
+                font-size: 1.4rem;
+                margin-bottom: 8px;
+            }
+
+            body.printing .block-heading {
+                color: #1E5F8C;
+            }
+
+            body.printing .verse-block {
+                border-left: 3px solid #1E5F8C;
+                padding: 8px 12px;
+                background: #f5f9fc;
+            }
+
+            body.printing .question-block {
+                page-break-inside: avoid;
+            }
+
+            body.printing .question-textarea {
+                height: auto !important;
+                min-height: 40px !important;
+                overflow: visible !important;
+                border: 1px solid #ddd !important;
+                background: #fafafa !important;
+                padding: 8px !important;
+                font-size: 0.85rem !important;
+                color: #333 !important;
+                white-space: pre-wrap !important;
+                word-break: break-word !important;
+                resize: none !important;
+            }
+
+            body.printing .commitment-block,
+            body.printing .box-block {
+                page-break-inside: avoid;
+            }
+
+            @page {
+                margin: 1.2cm 1.5cm;
+            }
         }
 
         /* ============================================
@@ -1632,8 +1794,8 @@
            SESSION COMPLETE CHECKBOX
            ============================================ */
         .session-complete-bar {
-            margin-top: 48px;
-            padding: 20px;
+            margin-top: 32px;
+            padding: 16px 20px;
             background: var(--surface);
             border: 1.5px solid var(--border);
             border-radius: var(--radius);
@@ -1723,7 +1885,7 @@
                     <button class="level-card" data-series="201" onclick="toggleCourseDropdown('201')">
                         <div class="level-marker">201</div>
                         <div class="level-info">
-                            <h2>Growing Deep in Discipleship</h2>
+                            <h2>Growing Deep</h2>
                             <p>Deep Roots</p>
                         </div>
                         <div class="level-arrow">&#8250;</div>
@@ -1735,7 +1897,7 @@
                     <button class="level-card" data-series="202" onclick="toggleCourseDropdown('202')">
                         <div class="level-marker">202</div>
                         <div class="level-info">
-                            <h2>Growing Up in Discipleship</h2>
+                            <h2>Growing Up</h2>
                             <p>Strong Branches</p>
                         </div>
                         <div class="level-arrow">&#8250;</div>
@@ -1747,7 +1909,7 @@
                     <button class="level-card" data-series="203" onclick="toggleCourseDropdown('203')">
                         <div class="level-marker">203</div>
                         <div class="level-info">
-                            <h2>Growing Out in Discipleship</h2>
+                            <h2>Growing Out</h2>
                             <p>Healthy Fruit</p>
                         </div>
                         <div class="level-arrow">&#8250;</div>
@@ -1790,20 +1952,23 @@
         <div class="lesson-view" id="lesson-view">
             <!-- Top bar -->
             <div class="lesson-topbar">
-                <div class="topbar-row">
+                <!-- Row 1: Back · Course Name · Menu -->
+                <div class="topbar-row-1">
                     <button class="back-btn" onclick="goHome()" aria-label="Back to courses">
-                        <span style="font-size: 1.2rem; transform: translateY(-1px);">&#8249;</span>
-                        Back
+                        <span style="font-size: 1.5rem; line-height: 1;">&#8249;</span>
                     </button>
-                    <div class="topbar-center">
+                    <div class="topbar-course-name">
                         <div id="topbar-series-badge" class="topbar-series-badge"></div>
-                        <div class="topbar-title">
-                            <h2 id="topbar-series-name">Starting in Discipleship</h2>
-                            <div class="session-label" id="topbar-session-label">Lesson 1 of 7</div>
-                        </div>
+                        <h2 id="topbar-series-name">Starting in Discipleship</h2>
                     </div>
-                    <button class="toc-toggle" id="toc-toggle-btn" onclick="toggleTOC()">All Lessons</button>
+                    <button class="toc-menu-btn" id="toc-toggle-btn" onclick="toggleTOC()" aria-label="All lessons">&#9776;</button>
                 </div>
+                <!-- Row 2: Lesson title · X of Y -->
+                <div class="topbar-row-2">
+                    <div class="topbar-lesson-title" id="topbar-lesson-title">Welcome. Let's Start Growing.</div>
+                    <div class="topbar-lesson-count" id="topbar-session-label">1 of 7</div>
+                </div>
+                <!-- Progress bar -->
                 <div class="progress-track">
                     <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
                 </div>
@@ -1845,7 +2010,7 @@
         // VERSION - bump this when JSON content changes
         // to bust browser cache on data files
         // ============================================
-        const BUILD_VERSION = '20260301a';
+        const BUILD_VERSION = '20260301l';
 
         // ============================================
         // STATE
@@ -1855,6 +2020,8 @@
         let totalSessions = 0;
         let responses = {};
         let sessionData = {};
+        let currentSeriesTopics = {};
+        let loadedSessionNums = [];
 
         try {
             responses = JSON.parse(localStorage.getItem('christianFoundationsResponses') || '{}');
@@ -1871,9 +2038,9 @@
 
         const seriesTitles = {
             '101': 'Starting in Discipleship',
-            '201': 'Growing Deep in Discipleship',
-            '202': 'Growing Up in Discipleship',
-            '203': 'Growing Out in Discipleship',
+            '201': 'Growing Deep',
+            '202': 'Growing Up',
+            '203': 'Growing Out',
             '301': 'Leading in Discipleship'
         };
 
@@ -1910,11 +2077,11 @@
                 if (course && meta) {
                     course.lessons.forEach(lesson => {
                         const isDone = !!completionData[`complete-${seriesId}-${lesson.num}`];
-                        html += `<div class="level-dropdown-lesson" onclick="openFromDropdown('${seriesId}', ${lesson.num})">
+                        html += `<button type="button" class="level-dropdown-lesson" onclick="openFromDropdown('${seriesId}', ${lesson.num})" aria-label="Open lesson ${lesson.num}: ${lesson.topic}">
                             <div class="level-dropdown-num" style="background:${meta.bg}; color:${meta.color};">${lesson.num}</div>
                             <span class="level-dropdown-title">${lesson.topic}</span>
                             <div class="level-dropdown-check ${isDone ? 'done' : ''}" style="${isDone ? 'background:' + meta.color + '; border-color:' + meta.color + ';' : ''}">&#10003;</div>
-                        </div>`;
+                        </button>`;
                     });
                 }
                 dropdown.innerHTML = html;
@@ -1956,47 +2123,78 @@
         // ============================================
         const COURSE_META = {
             '101': { name: 'Starting in Discipleship', color: '#1E6FA0', bg: '#DCEEFB', hover: '#175580', logo: 'images/101-starting-logo.png' },
-            '201': { name: 'Growing Deep in Discipleship', color: '#1A6B55', bg: '#D4F2E8', hover: '#135040' },
-            '202': { name: 'Growing Up in Discipleship', color: '#1D6B3F', bg: '#D1EDD9', hover: '#155030' },
-            '203': { name: 'Growing Out in Discipleship', color: '#1A5C38', bg: '#CCE6D4', hover: '#134528' },
+            '201': { name: 'Growing Deep', color: '#1A6B55', bg: '#D4F2E8', hover: '#135040' },
+            '202': { name: 'Growing Up', color: '#1D6B3F', bg: '#D1EDD9', hover: '#155030' },
+            '203': { name: 'Growing Out', color: '#1A5C38', bg: '#CCE6D4', hover: '#134528' },
             '301': { name: 'Leading in Discipleship', color: '#9A3A5E', bg: '#FCE4ED', hover: '#7A2E4B' }
         };
 
-        function parseCSVLine(line) {
-            const fields = [];
-            let current = '';
+        function parseCSV(text) {
+            const rows = [];
+            let row = [];
+            let cell = '';
             let inQuotes = false;
-            for (let i = 0; i < line.length; i++) {
-                const ch = line[i];
+
+            for (let i = 0; i < text.length; i++) {
+                const ch = text[i];
+                const next = text[i + 1];
+
                 if (ch === '"') {
-                    inQuotes = !inQuotes;
-                } else if (ch === ',' && !inQuotes) {
-                    fields.push(current.trim());
-                    current = '';
-                } else {
-                    current += ch;
+                    if (inQuotes && next === '"') {
+                        // Escaped quote inside quoted cell.
+                        cell += '"';
+                        i += 1;
+                    } else {
+                        inQuotes = !inQuotes;
+                    }
+                    continue;
                 }
+
+                if (ch === ',' && !inQuotes) {
+                    row.push(cell);
+                    cell = '';
+                    continue;
+                }
+
+                if ((ch === '\n' || ch === '\r') && !inQuotes) {
+                    // Handle CRLF by skipping the LF after CR.
+                    if (ch === '\r' && next === '\n') i += 1;
+                    row.push(cell);
+                    const hasAnyValue = row.some(v => v !== '');
+                    if (hasAnyValue) rows.push(row);
+                    row = [];
+                    cell = '';
+                    continue;
+                }
+
+                cell += ch;
             }
-            fields.push(current.trim());
-            return fields;
+
+            // Flush trailing cell/row.
+            row.push(cell);
+            const hasAnyValue = row.some(v => v !== '');
+            if (hasAnyValue) rows.push(row);
+            return rows;
         }
 
         async function loadCurriculumFromCSV() {
             const response = await fetch(`curriculum-toc.csv?v=${BUILD_VERSION}`);
-            const text = await response.text();
-            const lines = text.split('\n').slice(1); // skip header row
+            const text = (await response.text()).replace(/^\uFEFF/, '');
+            const rows = parseCSV(text);
+            const lessonRows = rows.slice(1); // skip header row
 
             const courses = [];
             let currentCourse = null;
 
-            for (const line of lines) {
-                if (!line.trim()) continue;
-                const cols = parseCSVLine(line);
+            for (const cols of lessonRows) {
                 if (!cols[0]) continue;
+                const col0 = cols[0].trim();
+                const col1 = (cols[1] || '').trim();
+                const col2 = (cols[2] || '').trim();
 
                 // Course header row: col 1 is empty (e.g. "101 - Starting in Discipleship,,,,")
-                if (!cols[1]) {
-                    const match = cols[0].match(/^(\d{3})/);
+                if (!col1) {
+                    const match = col0.match(/^(\d{3})/);
                     if (match && COURSE_META[match[1]]) {
                         currentCourse = { id: match[1], ...COURSE_META[match[1]], lessons: [] };
                         courses.push(currentCourse);
@@ -2005,11 +2203,11 @@
                 }
 
                 // Lesson row: col 1 is lesson ID like "101.01"
-                if (currentCourse && cols[1] && cols[2]) {
-                    const parts = cols[1].split('.');
+                if (currentCourse && col1 && col2) {
+                    const parts = col1.split('.');
                     const num = parts[1] ? parseInt(parts[1], 10) : null;
                     if (num) {
-                        currentCourse.lessons.push({ num, topic: cols[2] });
+                        currentCourse.lessons.push({ num, topic: col2 });
                     }
                 }
             }
@@ -2095,6 +2293,8 @@
         async function loadSeries(seriesId) {
             currentSeries = seriesId;
             sessionData = {};
+            currentSeriesTopics = {};
+            loadedSessionNums = [];
 
             const loadingEl = document.getElementById('loading-indicator');
             if (loadingEl) loadingEl.style.display = 'block';
@@ -2118,6 +2318,17 @@
             badge.textContent = seriesId;
             badge.className = `topbar-series-badge c${seriesId}`;
 
+            // Build topic map from curriculum-toc.csv so lesson naming is consistent everywhere.
+            const courses = await getCurriculumData();
+            const course = courses.find(c => c.id === seriesId);
+            if (course && course.lessons) {
+                course.lessons.forEach(lesson => {
+                    currentSeriesTopics[lesson.num] = lesson.topic;
+                });
+            }
+            const expectedLessonNums = Object.keys(currentSeriesTopics).map(Number);
+            const expectedMaxLessonNum = expectedLessonNums.length > 0 ? Math.max(...expectedLessonNums) : 0;
+
             // Fetch all possible sessions
             const MAX = 20;
             const promises = [];
@@ -2127,15 +2338,25 @@
                 promises.push(
                     fetch(`data/${seriesId}-${fileNum}.json?v=${BUILD_VERSION}`)
                         .then(res => { if (!res.ok) throw new Error('404'); return res.json(); })
-                        .then(data => { sessionData[i] = data; })
-                        .catch(() => { })
+                        .then(data => {
+                            const validated = validateLessonData(seriesId, i, data);
+                            if (validated) {
+                                sessionData[i] = validated;
+                            }
+                        })
+                        .catch((err) => {
+                            // Warn only for lessons expected by the curriculum TOC to avoid noisy logs.
+                            if (i <= expectedMaxLessonNum) {
+                                console.warn(`Failed to load lesson file data/${seriesId}-${fileNum}.json`, err);
+                            }
+                        })
                 );
             }
 
             await Promise.allSettled(promises);
 
-            const loaded = Object.keys(sessionData).map(Number);
-            totalSessions = loaded.length > 0 ? Math.max(...loaded) : 0;
+            loadedSessionNums = Object.keys(sessionData).map(Number).sort((a, b) => a - b);
+            totalSessions = loadedSessionNums.length;
 
             if (loadingEl) loadingEl.style.display = 'none';
 
@@ -2147,8 +2368,93 @@
 
             buildUI();
             buildTOC();
-            currentSession = 1;
-            showSession(1);
+            currentSession = loadedSessionNums[0];
+            showSession(currentSession);
+        }
+
+        function validateLessonData(seriesId, lessonNum, data) {
+            const lessonRef = `${seriesId}-${String(lessonNum).padStart(2, '0')}`;
+            if (!data || typeof data !== 'object' || Array.isArray(data)) {
+                console.error(`[Lesson ${lessonRef}] Invalid JSON root: expected object.`);
+                return null;
+            }
+
+            if (!Array.isArray(data.blocks)) {
+                console.error(`[Lesson ${lessonRef}] Missing or invalid "blocks" array.`);
+                return null;
+            }
+
+            const valid = { ...data };
+            let skippedBlocks = 0;
+            const validatedBlocks = [];
+
+            const requireString = (value) => typeof value === 'string' && value.trim().length > 0;
+
+            const blockIsValid = (block) => {
+                if (!block || typeof block !== 'object' || Array.isArray(block)) return false;
+                if (!requireString(block.type)) return false;
+
+                switch (block.type) {
+                    case 'heading':
+                    case 'subheading':
+                    case 'subheading2':
+                    case 'text':
+                        return requireString(block.text);
+                    case 'image':
+                        return requireString(block.src);
+                    case 'verse':
+                        return requireString(block.reference) && requireString(block.text);
+                    case 'list':
+                        return Array.isArray(block.items);
+                    case 'box':
+                        return requireString(block.title) && Array.isArray(block.content);
+                    case 'question':
+                        return requireString(block.id) && requireString(block.text);
+                    case 'commitment':
+                        return requireString(block.text);
+                    case 'agenda':
+                        return requireString(block.title) && Array.isArray(block.items);
+                    case 'homework':
+                        return requireString(block.text) && Array.isArray(block.items);
+                    case 'stepper':
+                        return Array.isArray(block.steps);
+                    case 'tool':
+                        return requireString(block.title) && requireString(block.url);
+                    case 'bible_reading':
+                        return Array.isArray(block.chapters) &&
+                            block.chapters.every(ch => ch && typeof ch === 'object' && requireString(ch.ref));
+                    default:
+                        return false;
+                }
+            };
+
+            data.blocks.forEach((block, idx) => {
+                if (blockIsValid(block)) {
+                    validatedBlocks.push(block);
+                } else {
+                    skippedBlocks += 1;
+                    const type = block && block.type ? block.type : 'unknown';
+                    console.warn(`[Lesson ${lessonRef}] Skipping invalid block at index ${idx} (type: ${type}).`, block);
+                }
+            });
+
+            if (!requireString(valid.title)) {
+                console.warn(`[Lesson ${lessonRef}] Missing/invalid title. Using fallback title.`);
+                valid.title = `Lesson ${lessonNum}`;
+            }
+
+            if (typeof valid.description !== 'undefined' && typeof valid.description !== 'string') {
+                console.warn(`[Lesson ${lessonRef}] Invalid description type. Removing description.`);
+                delete valid.description;
+            }
+
+            valid.blocks = validatedBlocks;
+
+            if (skippedBlocks > 0) {
+                console.warn(`[Lesson ${lessonRef}] Validation complete: ${skippedBlocks} invalid block(s) skipped.`);
+            }
+
+            return valid;
         }
 
         // ============================================
@@ -2157,21 +2463,22 @@
         function buildUI() {
             const container = document.getElementById('lessons-list');
 
-            for (let i = 1; i <= totalSessions; i++) {
-                if (!sessionData[i]) continue;
-                const data = sessionData[i];
+            loadedSessionNums.forEach((sessionNum, idx) => {
+                const data = sessionData[sessionNum];
 
                 const div = document.createElement('div');
                 div.className = 'session';
-                div.id = `session-${i}`;
+                div.id = `session-${sessionNum}`;
 
                 let html = '';
                 const meta = COURSE_META[currentSeries];
-                const showLogo = meta && meta.logo && i > 1;
+                const showLogo = meta && meta.logo && idx > 0;
                 if (showLogo) {
                     html += `<img class="session-course-logo" src="${meta.logo}" alt="${meta.name}">`;
                 }
-                html += `<h1 class="session-title">${data.title}</h1>`;
+                const topicTitle = currentSeriesTopics[sessionNum] || data.title.replace(/^Lesson\s+\d+:\s*/i, '');
+                const h1Title = data.displayTitle || topicTitle;
+                html += `<h1 class="session-title">Lesson ${sessionNum}: ${h1Title}</h1>`;
                 if (data.description) {
                     html += `<p class="session-description">${data.description}</p>`;
                 }
@@ -2392,37 +2699,19 @@
                 }
 
                 // Session complete checkbox at the bottom
-                const completeId = `session-complete-${currentSeries}-${i}`;
+                const completeId = `session-complete-${currentSeries}-${sessionNum}`;
                 html += `
-                <div class="session-complete-bar" id="bar-${completeId}" onclick="toggleSessionComplete('${currentSeries}', ${i})">
+                <div class="session-complete-bar" id="bar-${completeId}" onclick="toggleSessionComplete('${currentSeries}', ${sessionNum})">
                     <input type="checkbox" id="${completeId}"
-                        onchange="saveSessionComplete(this, '${currentSeries}', ${i})"
+                        onchange="saveSessionComplete(this, '${currentSeries}', ${sessionNum})"
                         onclick="event.stopPropagation()">
                     <label for="${completeId}">I have completed this lesson</label>
                 </div>`;
 
-                if (i === totalSessions) {
-                    const seriesOrder = ['101', '201', '202', '203', '301'];
-                    const currentIndex = seriesOrder.indexOf(currentSeries);
-                    if (currentIndex !== -1 && currentIndex < seriesOrder.length - 1) {
-                        const nextSeries = seriesOrder[currentIndex + 1];
-                        const nextMeta = COURSE_META[nextSeries];
-                        if (nextMeta) {
-                            const shortName = nextMeta.name.replace(' in Discipleship', '');
-                            html += `
-                            <div style="margin-top: 40px; text-align: center;">
-                                <button class="block-tool-btn" style="background:${nextMeta.color}; width: 100%; max-width: 320px; font-size: 1.05rem;" onclick="goHome(); setTimeout(() => toggleCourseDropdown('${nextSeries}'), 300);">
-                                    Go to ${nextSeries} ${shortName} &rarr;
-                                </button>
-                            </div>
-                            `;
-                        }
-                    }
-                }
 
                 div.innerHTML = html;
                 container.appendChild(div);
-            }
+            });
 
             // Add export line at the very end
             const oldExport = document.getElementById('export-section');
@@ -2434,7 +2723,10 @@
             const seriesName = seriesTitles[currentSeries] || 'this series';
             exportDiv.innerHTML = `
                 <span class="export-hint">Responses save automatically on this device</span>
-                <button class="export-link" onclick="exportAllResponses()">Email ${seriesName} &rarr;</button>
+                <div class="export-buttons">
+                    <button class="export-link" onclick="exportAllResponses()">Email Lesson &rarr;</button>
+                    <button class="export-link export-pdf-btn" onclick="printLesson()">Save PDF &#8595;</button>
+                </div>
             `;
             container.appendChild(exportDiv);
 
@@ -2467,24 +2759,23 @@
             };
             headerEl.textContent = shortNames[currentSeries] || 'Lessons';
 
-            for (let i = 1; i <= totalSessions; i++) {
-                if (!sessionData[i]) continue;
-
+            loadedSessionNums.forEach((sessionNum) => {
                 const btn = document.createElement('button');
                 btn.className = 'toc-item';
-                btn.id = `toc-item-${i}`;
-                btn.onclick = () => { showSession(i); toggleTOC(); };
+                btn.id = `toc-item-${sessionNum}`;
+                btn.dataset.sessionNum = String(sessionNum);
+                btn.onclick = () => { showSession(sessionNum); toggleTOC(); };
 
-                const title = sessionData[i].title.replace(/^Lesson\s+\d+:\s*/i, '');
-                const isComplete = isSessionComplete(currentSeries, i);
+                const title = currentSeriesTopics[sessionNum] || sessionData[sessionNum].title.replace(/^Lesson\s+\d+:\s*/i, '');
+                const isComplete = isSessionComplete(currentSeries, sessionNum);
 
                 btn.innerHTML = `
-                    <div class="toc-check ${isComplete ? 'done' : ''}" id="toc-check-${i}">&#10003;</div>
-                    <span class="toc-item-title"><span class="toc-item-num">${i}.</span> ${title}</span>
+                    <div class="toc-check ${isComplete ? 'done' : ''}" id="toc-check-${sessionNum}">&#10003;</div>
+                    <span class="toc-item-title"><span class="toc-item-num">${sessionNum}.</span> ${title}</span>
                 `;
 
                 list.appendChild(btn);
-            }
+            });
         }
 
         function isSessionComplete(series, sessionNum) {
@@ -2493,8 +2784,9 @@
         }
 
         function updateTOCHighlight() {
-            document.querySelectorAll('.toc-item').forEach((item, idx) => {
-                item.classList.toggle('current', idx + 1 === currentSession);
+            document.querySelectorAll('.toc-item').forEach(item => {
+                const sessionNum = Number(item.dataset.sessionNum);
+                item.classList.toggle('current', sessionNum === currentSession);
             });
         }
 
@@ -2502,12 +2794,14 @@
         // SESSION NAVIGATION
         // ============================================
         function showSession(num) {
+            if (!loadedSessionNums.length) return;
+            const targetNum = sessionData[num] ? num : loadedSessionNums[0];
             document.querySelectorAll('.session').forEach(s => s.classList.remove('active'));
 
-            const sess = document.getElementById(`session-${num}`);
+            const sess = document.getElementById(`session-${targetNum}`);
             if (sess) sess.classList.add('active');
 
-            currentSession = num;
+            currentSession = targetNum;
             updateNav();
             updateTOCHighlight();
 
@@ -2516,11 +2810,17 @@
         }
 
         function nextSession() {
-            if (currentSession < totalSessions) showSession(currentSession + 1);
+            const idx = loadedSessionNums.indexOf(currentSession);
+            if (idx > -1 && idx < loadedSessionNums.length - 1) {
+                showSession(loadedSessionNums[idx + 1]);
+            }
         }
 
         function previousSession() {
-            if (currentSession > 1) showSession(currentSession - 1);
+            const idx = loadedSessionNums.indexOf(currentSession);
+            if (idx > 0) {
+                showSession(loadedSessionNums[idx - 1]);
+            }
         }
 
         function updateNav() {
@@ -2530,13 +2830,36 @@
             const topLabel = document.getElementById('topbar-session-label');
             const progressFill = document.getElementById('progress-fill');
 
-            prevBtn.disabled = currentSession <= 1;
-            nextBtn.disabled = currentSession >= totalSessions;
+            const currentIndex = loadedSessionNums.indexOf(currentSession);
+            const isLastLesson = currentIndex >= totalSessions - 1;
+            prevBtn.disabled = currentIndex <= 0;
 
-            numLabel.textContent = `${currentSession} / ${totalSessions}`;
-            topLabel.textContent = `Lesson ${currentSession} of ${totalSessions}`;
+            // On last lesson of 101, show green "Go to 201" button instead of disabled Next
+            if (isLastLesson && currentSeries === '101') {
+                nextBtn.disabled = false;
+                nextBtn.classList.add('go-to-next-course');
+                nextBtn.textContent = 'Go to 201 Growing Deep';
+                nextBtn.onclick = () => { openSeries('201'); };
+            } else {
+                nextBtn.disabled = isLastLesson;
+                nextBtn.classList.remove('go-to-next-course');
+                nextBtn.innerHTML = 'Next &#8250;';
+                nextBtn.onclick = nextSession;
+            }
 
-            const pct = totalSessions > 0 ? (currentSession / totalSessions) * 100 : 0;
+            const ordinal = currentIndex > -1 ? currentIndex + 1 : 1;
+            numLabel.textContent = `${ordinal} / ${totalSessions}`;
+            topLabel.textContent = `${ordinal} of ${totalSessions}`;
+
+            // Update lesson title in row 2
+            const lessonTitleEl = document.getElementById('topbar-lesson-title');
+            if (lessonTitleEl) {
+                const topicTitle = currentSeriesTopics[currentSession] ||
+                    (sessionData[currentSession] ? sessionData[currentSession].title.replace(/^Lesson\s+\d+:\s*/i, '') : '');
+                lessonTitleEl.textContent = topicTitle;
+            }
+
+            const pct = totalSessions > 0 ? (ordinal / totalSessions) * 100 : 0;
             progressFill.style.width = pct + '%';
         }
 
@@ -2604,15 +2927,15 @@
         }
 
         function loadSessionCompletion() {
-            for (let i = 1; i <= totalSessions; i++) {
-                const key = `complete-${currentSeries}-${i}`;
-                const cb = document.getElementById(`session-complete-${currentSeries}-${i}`);
+            loadedSessionNums.forEach((sessionNum) => {
+                const key = `complete-${currentSeries}-${sessionNum}`;
+                const cb = document.getElementById(`session-complete-${currentSeries}-${sessionNum}`);
                 if (cb && completionData[key]) {
                     cb.checked = true;
-                    const bar = document.getElementById(`bar-session-complete-${currentSeries}-${i}`);
+                    const bar = document.getElementById(`bar-session-complete-${currentSeries}-${sessionNum}`);
                     if (bar) bar.classList.add('checked');
                 }
-            }
+            });
         }
 
         // ============================================
@@ -2732,17 +3055,34 @@
         // ============================================
         // EXPORT
         // ============================================
+        function printLesson() {
+            // Hide all sessions except the current one
+            const sessions = document.querySelectorAll('#lessons-list .session');
+            sessions.forEach(s => {
+                if (s.id !== `session-${currentSession}`) {
+                    s.setAttribute('data-print-hide', '1');
+                }
+            });
+            document.body.classList.add('printing');
+            window.print();
+            // Clean up after print dialog closes
+            setTimeout(() => {
+                document.body.classList.remove('printing');
+                document.querySelectorAll('[data-print-hide]').forEach(s => s.removeAttribute('data-print-hide'));
+            }, 1000);
+        }
+
         function exportAllResponses() {
             let body = `${seriesTitles[currentSeries] || 'The Walk Discipleship'} - Complete Journey\n`;
             body += '='.repeat(50) + '\n\n';
 
-            for (let s = 1; s <= totalSessions; s++) {
-                const d = sessionData[s];
-                if (!d) continue;
+            loadedSessionNums.forEach((sessionNum, idx) => {
+                const d = sessionData[sessionNum];
+                if (!d) return;
 
                 body += d.title + '\n' + '-'.repeat(d.title.length) + '\n\n';
 
-                const sess = document.getElementById(`session-${s}`);
+                const sess = document.getElementById(`session-${sessionNum}`);
                 if (sess) {
                     sess.querySelectorAll('.question-textarea').forEach(ta => {
                         const q = ta.dataset.question || ta.id;
@@ -2750,12 +3090,12 @@
                     });
                 }
 
-                if (s === 1 && responses[`commitment-${currentSeries}`]) {
+                if (idx === 0 && responses[`commitment-${currentSeries}`]) {
                     body += 'Course Commitment\n' + responses[`commitment-${currentSeries}`] + '\n\n';
                 }
 
                 body += '\n';
-            }
+            });
 
             const subject = `My ${seriesTitles[currentSeries] || 'The Walk Discipleship'} Journey`;
             window.location.href = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;

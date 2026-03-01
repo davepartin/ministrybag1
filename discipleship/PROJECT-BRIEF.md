@@ -216,7 +216,8 @@ Note: `agenda` and `homework` block types still render in the HTML engine for ba
 ## Key Technical Details
 - localStorage key: `christianFoundationsResponses`
 - ESV Bible API Token: `7e4b8df428bed84fc9ee3afd18c666fb64775e06`
-- Question IDs in JSON use the file-based format: `201-01-3` (series-lesson-question)
+- Question IDs in JSON use the lesson-scoped format: `lesson-question` (examples: `1-1`, `1-key`, `1-step`, `1-prayer`)
+- The app auto-namespaces question storage keys by series at runtime: `question-{series}-{id}` (example textarea id: `question-101-1-key`)
 - Display labels shown to users use the dot format: `1.3` (lesson.question)
 - Commitment keys: `commitment-{series}` (e.g., `commitment-101`)
 - Keyboard nav: Ctrl/Cmd + Arrow Left/Right to move between lessons
