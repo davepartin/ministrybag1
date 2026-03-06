@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Curriculum Matrix Planner</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            margin: 20px;
+            background: #f4f6f8;
+            color: #333;
+        }
+
+        h1 {
+            margin-top: 0;
+            color: #1a1a1a;
+            margin-bottom: 5px;
+        }
+
+        p.subtitle {
+            color: #555;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        .course-section {
+            background: white;
+            margin-bottom: 30px;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            overflow-x: auto;
+        }
+
+        .course-title {
+            font-size: 1.5rem;
+            border-bottom: 2px solid #eaeaea;
+            padding-bottom: 10px;
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed;
+            min-width: 1200px;
+        }
+
+        th,
+        td {
+            border: 1px solid #e0e0e0;
+            padding: 12px;
+            text-align: left;
+            vertical-align: top;
+            font-size: 0.85rem;
+            word-wrap: break-word;
+        }
+
+        th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #495057;
+        }
+
+        th:nth-child(1) {
+            width: 5%;
+        }
+
+        /* ID */
+        th:nth-child(2) {
+            width: 13%;
+        }
+
+        /* Topic */
+        th:nth-child(3),
+        th:nth-child(4),
+        th:nth-child(5),
+        th:nth-child(6),
+        th:nth-child(7),
+        th:nth-child(8) {
+            width: 13.6%;
+        }
+
+        .seek {
+            background-color: #ffebee;
+            color: #c62828;
+            border-left: 4px solid #f44336;
+        }
+
+        .draft {
+            background-color: #fff8e1;
+            color: #d84315;
+            border-left: 4px solid #ffb300;
+        }
+
+        .done {
+            background-color: #f1f8e9;
+            color: #2e7d32;
+            border-left: 4px solid #4caf50;
+        }
+
+        .cell-content {
+            max-height: 120px;
+            overflow-y: auto;
+            line-height: 1.4;
+        }
+
+        .stats {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #e3f2fd;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            border-left: 4px solid #2196f3;
+        }
+
+        .idea-tag {
+            font-weight: bold;
+            background: #ffecb3;
+            padding: 2px 4px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            color: #d84315;
+            display: inline-block;
+            margin-bottom: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Curriculum Matrix Planner</h1>
+    <p class="subtitle">Visualizing the <code>curriculum-toc.csv</code> master document. Replace "seek" directly in the
+        CSV to update this dashboard.</p>
+
+    <div class="stats" id="stats">Loading matrix data...</div>
+    <div id="planner-container"></div>
+
+    <script>
+        function parseCSVFile(text) {
+            const rows = [];
+            const lines = text.split(/\r?\n/);
+
+            let i = 0;
+            while (i < lines.length) {
+                let line = lines[i];
+                if (!line.trim() && i === lines.length - 1) break;
+
+                // If a line has an odd number of quotes, it's a multi-line field
+                while ((line.match(/"/g) || []).length % 2 !== 0 && i + 1 < lines.length) {
+                    i++;
+                    line += "\\n" + lines[i];
+                }
+
+                // Regex to split by comma, respecting quotes
+                const row = [];
+                let re = /"([^"]*(?:""[^"]*)*)"|([^,]+)/g;
+                let match;
+                let lastIndex = 0;
+
+                // Fast path for simple rows (no quotes)
+                if (line.indexOf('"') === -1) {
+                    rows.push(line.split(','));
+                    i++;
+                    continue;
+                }
+
+                // Handle quoted columns
+                const parsedRow = [];
+                let inQuotes = false;
+                let buffer = '';
+                for (let c = 0; c < line.length; c++) {
+                    const char = line[c];
+                    if (char === '"') {
+                        if (inQuotes && line[c + 1] === '"') {
+                            buffer += '"';
+                            c++;
+                        } else {
+                            inQuotes = !inQuotes;
+                        }
+                    } else if (char === ',' && !inQuotes) {
+                        parsedRow.push(buffer);
+                        buffer = '';
+                    } else {
+                        buffer += char;
+                    }
+                }
+                parsedRow.push(buffer);
+
+                if (parsedRow.length > 0 && !(parsedRow.length === 1 && parsedRow[0] === '')) {
+                    rows.push(parsedRow);
+                }
+                i++;
+            }
+            return rows;
+        }
+
+        fetch('curriculum-toc.csv?v=' + Date.now())
+            .then(res => res.text())
+            .then(csv => {
+                const rows = parseCSVFile(csv);
+                const headers = rows[0];
+
+                const getInd = name => headers.findIndex(h => h && h.trim() === name);
+                const cCourse = getInd('Course');
+                const cLesson = getInd('Lesson');
+                const cTopic = getInd('Topic');
+                const cVerse = getInd('Key Verse');
+                const cFrame = getInd('Key Framework');
+                const cStory = getInd('Key Story');
+                const cLine = getInd('Key Line');
+                const cQuestion = getInd('Key Question');
+                const cBible = getInd('Key Bible Chapters');
+
+                let html = '';
+                let currentCourse = '';
+                let seekCount = 0;
+                let ideaCount = 0;
+                let totalFields = 0;
+
+                const getStatusClass = (text) => {
+                    const t = text ? text.trim() : '';
+                    if (!t || t.toLowerCase() === 'seek') { seekCount++; return 'seek'; }
+                    if (t.includes('[IDEA]')) { ideaCount++; return 'draft'; }
+                    if (t.length > 2 && t.toLowerCase() !== 'seek') { return 'done'; }
+                    return '';
+                };
+
+
+                const verseSnippets = {
+                    "John 1:12": "To all who did receive him, who believed...",
+                    "Romans 10:9-10": "If you confess with your mouth that Jesus is Lord...",
+                    "Matthew 6:9": "Pray then like this: Our Father in heaven...",
+                    "2 Timothy 3:16": "All Scripture is breathed out by God and profitable...",
+                    "2 Timothy 3:16-17": "All Scripture is breathed out by God and profitable...",
+                    "Acts 2:42": "And they devoted themselves to the apostles' teaching...",
+                    "Acts 2:42-47": "And they devoted themselves to the apostles' teaching...",
+                    "Romans 10:15": "And how are they to preach unless they are sent...",
+                    "1 John 1:9": "If we confess our sins, he is faithful and just...",
+                    "Matthew 22:37": "You shall love the Lord your God with all your heart...",
+                    "Matthew 22:39": "You shall love your neighbor as yourself...",
+                    "1 John 3:1": "See what kind of love the Father has given to us...",
+                    "Galatians 5:25": "If we live by the Spirit, let us also keep in step...",
+                    "Galatians 5:22-23": "But the fruit of the Spirit is love, joy, peace...",
+                    "John 15:4-5": "Abide in me, and I in you. As the branch cannot...",
+                    "John 4:23-24": "But the hour is coming, and is now here, when the true worshipers...",
+                    "Romans 3:23": "For all have sinned and fall short of the glory of God...",
+                    "Ephesians 2:8-9": "For by grace you have been saved through faith...",
+                    "Hebrews 11:1": "Now faith is the assurance of things hoped for...",
+                    "James 1:2-4": "Count it all joy, my brothers, when you meet trials...",
+                    "2 Corinthians 9:7": "Each one must give as he has decided in his heart...",
+                    "Ephesians 5:25": "Husbands, love your wives, as Christ loved the church...",
+                    "1 Peter 2:9-10": "But you are a chosen race, a royal priesthood...",
+                    "Revelation 21:5": "And he who was seated on the throne said, 'Behold...'",
+                    "2 Timothy 2:15": "Do your best to present yourself to God as one approved...",
+                    "1 Corinthians 11:26": "For as often as you eat this bread and drink the cup...",
+                    "1 Thessalonians 4:3": "For this is the will of God, your sanctification...",
+                    "Romans 12:6-8": "Having gifts that differ according to the grace given to us...",
+                    "Matthew 28:19-20": "Go therefore and make disciples of all nations...",
+                    "Matthew 5:16": "In the same way, let your light shine before others...",
+                    "1 Peter 4:9-10": "Show hospitality to one another without grumbling...",
+                    "Romans 10:14": "How then will they call on him in whom they have not believed...",
+                    "Daniel 6:4": "Then the high officials and the satraps sought to find a ground...",
+                    "1 Peter 3:15": "But in your hearts honor Christ the Lord as holy, always being prepared...",
+                    "Ephesians 6:10-12": "Finally, be strong in the Lord and in the strength of his might...",
+                    "2 Timothy 2:2": "And what you have heard from me in the presence of many...",
+                    "Ephesians 4:1": "I therefore, a prisoner for the Lord, urge you to walk in a manner...",
+                    "1 Timothy 3:2-7": "Therefore an overseer must be above reproach, the husband of one wife...",
+                    "Colossians 1:9-10": "And so, from the day we heard, we have not ceased to pray for you...",
+                    "Hebrews 10:24-25": "And let us consider how to stir up one another to love and good works...",
+                    "Nehemiah 8:8": "They read from the book, from the Law of God, clearly...",
+                    "Mark 10:45": "For even the Son of Man came not to be served but to serve...",
+                    "1 Corinthians 9:24-27": "Do you not know that in a race all the runners run...",
+                    "Matthew 18:15-17": "If your brother sins against you, go and tell him his fault..."
+                };
+
+                const formatCell = (text, isVerse = false) => {
+                    if (!text || text.trim() === '' || text.trim().toLowerCase() === 'seek') {
+                        return '<span style="color:#ef5350; font-weight:bold; font-size: 0.8rem;">(seek)</span>';
+                    }
+                    let formatted = text;
+                    if (formatted.includes('[IDEA]')) {
+                        formatted = formatted.replace('\\[IDEA\\]', '').replace('[IDEA]', '<span class="idea-tag">IDEA</span><br>');
+                    }
+
+                    if (isVerse) {
+                        const snippet = verseSnippets[text.trim()];
+                        if (snippet) {
+                            formatted += `<div style="margin-top: 8px; font-size: 0.75rem; color: #666; font-style: italic; border-top: 1px dotted #ccc; padding-top: 4px;">"${snippet}"</div>`;
+                        }
+                    }
+
+                    return formatted;
+                };
+
+                for (let i = 1; i < rows.length; i++) {
+                    const r = rows[i];
+                    if (r.length < 5) continue;
+
+                    const courseId = r[cCourse];
+                    if (courseId && courseId.includes(' - ')) {
+                        if (currentCourse !== '') html += `</tbody></table></div>`;
+                        currentCourse = courseId;
+                        html += `
+                        <div class="course-section">
+                            <h2 class="course-title">${currentCourse}</h2>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Lesson</th>
+                                        <th>Topic</th>
+                                        <th>Key Verse</th>
+                                        <th>Key Framework</th>
+                                        <th>Key Story</th>
+                                        <th>Key Line</th>
+                                        <th>Key Question</th>
+                                        <th>Bible Chapters</th>
+                                    </tr>
+                                </thead>
+                                <tbody>`;
+                        continue;
+                    }
+
+                    if (!r[cLesson]) continue;
+
+                    totalFields += 6; // Tracking Verse, Framework, Story, Line, Question, Bible
+
+                    let rowSeekCount = 0;
+                    let rowIdeaCount = 0;
+                    const cIndexes = [cVerse, cFrame, cStory, cLine, cQuestion, cBible];
+
+                    for (let cIdx of cIndexes) {
+                        const val = r[cIdx] ? r[cIdx].trim() : '';
+                        if (!val || val.toLowerCase() === 'seek') rowSeekCount++;
+                        else if (val.includes('[IDEA]')) rowIdeaCount++;
+                    }
+
+                    const rowDone = 6 - rowSeekCount - rowIdeaCount;
+                    const rowPercent = Math.round((rowDone / 6) * 100);
+
+                    let pctColor = '#4caf50'; // Green if 100%
+                    if (rowPercent < 100 && rowPercent > 0) pctColor = '#ff9800'; // Orange if partial
+                    if (rowPercent === 0) pctColor = '#f44336'; // Red if 0%
+
+                    html += `<tr>`;
+                    html += `<td><strong>${r[cLesson]}</strong></td>`;
+                    html += `<td>
+                        <strong>${r[cTopic]}</strong><br>
+                        <div style="margin-top: 8px; font-size: 1.4rem; font-weight: 800; color: ${pctColor};">${rowPercent}%</div>
+                        <div style="font-size: 0.7rem; color: #777;">completed</div>
+                    </td>`;
+
+                    html += `<td class="${getStatusClass(r[cVerse])}"><div class="cell-content">${formatCell(r[cVerse], true)}</div></td>`;
+                    html += `<td class="${getStatusClass(r[cFrame])}"><div class="cell-content">${formatCell(r[cFrame])}</div></td>`;
+                    html += `<td class="${getStatusClass(r[cStory])}"><div class="cell-content">${formatCell(r[cStory])}</div></td>`;
+                    html += `<td class="${getStatusClass(r[cLine])}"><div class="cell-content">${formatCell(r[cLine])}</div></td>`;
+                    html += `<td class="${getStatusClass(r[cQuestion])}"><div class="cell-content">${formatCell(r[cQuestion])}</div></td>`;
+                    html += `<td class="${getStatusClass(r[cBible])}"><div class="cell-content">${formatCell(r[cBible])}</div></td>`;
+
+                    html += `</tr>`;
+                }
+
+                if (currentCourse !== '') html += `</tbody></table></div>`;
+
+                document.getElementById('planner-container').innerHTML = html;
+
+                const doneFields = totalFields - seekCount - ideaCount;
+                const percentDone = Math.round((doneFields / totalFields) * 100);
+
+                document.getElementById('stats').innerHTML = `
+                    <strong>Matrix Progress:</strong> ${percentDone}% Locked In<br>
+                    <div style="font-size: 0.9em; color: #555; margin-top: 5px; display: flex; gap: 15px;">
+                        <span><strong style="color: #c62828;">${seekCount}</strong> needs work</span>
+                        <span><strong style="color: #f57f17;">${ideaCount}</strong> ideas to review</span>
+                        <span><strong style="color: #2e7d32;">${doneFields}</strong> approved fields</span>
+                    </div>
+                `;
+            });
+    </script>
+</body>
+
+</html>

@@ -1,15 +1,86 @@
 {
   "id": "7",
-  "title": "Lesson 7: How God Makes Us Right",
-  "description": "Exploring how we are declared righteous by God's unmerited favor.",
+  "version": "v01",
+  "title": "Lesson 7: How God Makes Us Right - Justification by Grace",
+  "description": "Exploring how we are declared righteous by God's unmerited favor. This lesson makes sense of the great exchange at the cross and frees us from the exhausting project of trying to earn what God has already given.",
   "blocks": [
     {
+      "type": "text",
+      "text": "In the last lesson, you took an honest look at sin - how it entered, how deep it goes, and how it fractures every relationship we have. If that lesson hit you hard, this one is the answer. Because the same God who watched Adam and Eve hide in the garden did not turn away in anger. He came looking. And what He did next is the hinge on which all of history turns."
+    },
+    {
       "type": "heading",
-      "text": "The Gift of Grace"
+      "text": "The Problem We Could Not Solve"
     },
     {
       "type": "text",
-      "text": "Justification means God declares us righteous, not because we earned it, but because Jesus paid our debt. This grace is entirely unmerited and sets us free from the pressure to perform for God's love."
+      "text": "Here is the problem that no amount of human effort could ever fix. God is perfectly just. He cannot simply ignore sin the way a grandfather waves off a grandchild's misbehavior. Every crime demands a response proportionate to its offense. Sin against an infinite God carries infinite consequences. And every single human being is guilty of it."
+    },
+    {
+      "type": "text",
+      "text": "At the same time, God is perfectly loving. He does not want the people He made and treasures to be separated from Him forever. These two things - His justice and His love - both had to be satisfied. And the only way they could be satisfied was if someone bore the full penalty of sin <em>and</em> presented a perfect righteousness in exchange."
+    },
+    {
+      "type": "text",
+      "text": "No human being could do that. We needed someone who was fully human to stand in our place, and who was fully without sin to withstand the full weight of God's justice. That is the only person who could do what needed to be done. That person is Jesus."
+    },
+    {
+      "type": "verse",
+      "reference": "Romans 3:25-26",
+      "text": "God put forward [Christ] as a propitiation by his blood, to be received by faith. This was to show God's righteousness, because in his divine forbearance he had passed over former sins. It was to show his righteousness at the present time, so that he might be just and the justifier of the one who has faith in Jesus."
+    },
+    {
+      "type": "question",
+      "id": "201-07-1",
+      "text": "7.1 - Before you understood grace, how did you think a person became right with God? What did your childhood or early life tell you about how God judges people?",
+      "height": "tall"
+    },
+    {
+      "type": "heading",
+      "text": "What Justification Means"
+    },
+    {
+      "type": "text",
+      "text": "The word justification is a legal term. Picture a courtroom. You are standing before the judge. The prosecutor reads your rap sheet - every lie, every selfish choice, every moment you fell short of what God is. The ledger is full and it is all accurate. The verdict should be guilty. The sentence is death."
+    },
+    {
+      "type": "text",
+      "text": "But then someone else walks into the courtroom. He takes the rap sheet and signs His name at the bottom. He hands the judge His own record - a record of perfect obedience, complete righteousness, a life without a single violation. The judge looks at you and then at the record. And He says: <em>not guilty.</em>"
+    },
+    {
+      "type": "text",
+      "text": "That is justification. Not God pretending the sin did not happen. Not God lowering the standard. God <em>satisfying</em> the standard at infinite cost to Himself, and then crediting that satisfaction to your account. The word <em>propitiation</em> in Romans 3:25 means the wrath of God was absorbed - fully, finally, completely - in the death of His Son. There is nothing left for you to pay."
+    },
+    {
+      "type": "verse",
+      "reference": "2 Corinthians 5:21",
+      "text": "For our sake he made him to be sin who knew no sin, so that in him we might become the righteousness of God."
+    },
+    {
+      "type": "text",
+      "text": "Read that again. He became sin for you so that you could become the righteousness of God. Not just forgiven. Not just pardoned with a blank record. Clothed in the full righteousness of Christ. Grace does not lower the bar. Jesus jumps over it for you - and then puts you on the other side."
+    },
+    {
+      "type": "question",
+      "id": "201-07-2",
+      "text": "7.2 - What does it mean to you personally that Jesus did not just clear your record but placed His own righteousness on your account? How does that shift the way you think about standing before God?",
+      "height": "tall"
+    },
+    {
+      "type": "heading",
+      "text": "The Thief Who Got It First"
+    },
+    {
+      "type": "text",
+      "text": "Of all the people in the New Testament, one man receives the clearest demonstration of what justification looks like stripped of every human contribution. He is hanging on a cross next to Jesus - convicted not of a misunderstanding but of an actual crime. His record is not improved by this moment. He cannot undo his life. He cannot repay his victims, complete a program, or demonstrate a track record of changed behavior."
+    },
+    {
+      "type": "text",
+      "text": "He has only one thing to offer. He turns to Jesus and says, <em>\"Jesus, remember me when you come into your kingdom\"</em> (Luke 23:42). That is it. And Jesus says, <em>\"Truly, I say to you, today you will be with me in paradise.\"</em>"
+    },
+    {
+      "type": "text",
+      "text": "The thief on the cross did not earn paradise. He received it. He had no good works to point to, no religious record to offer, no time to build one. And yet he was the first person Jesus explicitly welcomed into the kingdom. This is the nail in the coffin of every performance-based religion. Justification is entirely about what Jesus did, not what you do."
     },
     {
       "type": "verse",
@@ -18,9 +89,71 @@
     },
     {
       "type": "question",
-      "id": "201-4-1",
-      "text": "4.1 - How does relying on God's grace rather than your own works bring freedom to your life?",
-      "data_question": "4.1 - Freedom in grace"
+      "id": "201-07-3",
+      "text": "7.3 - The thief on the cross had nothing to offer God except a desperate request. What does his story say to the part of you that has been trying to earn God's approval?",
+      "height": "tall"
+    },
+    {
+      "type": "heading",
+      "text": "Grace Does Not Make You Lazy"
+    },
+    {
+      "type": "text",
+      "text": "One of the most common objections to the doctrine of grace goes like this: if God has already forgiven everything and salvation is totally free, then why would anyone try to live a holy life? Paul anticipated this exact question in Romans 6 and answered it clearly:"
+    },
+    {
+      "type": "verse",
+      "reference": "Romans 6:1-2",
+      "text": "What shall we say then? Are we to continue in sin that grace may abound? By no means! How can we who died to sin still live in it?"
+    },
+    {
+      "type": "text",
+      "text": "Paul's answer is not a threat. It is an identity question. You are not the same person you were before Christ. You have died to sin - not in the sense that temptation is gone, but in the sense that sin no longer defines you or owns you. A dead man is not tempted by the things that tempted him when he was alive. You have been transferred from one kingdom to another. Grace does not eliminate the desire to live differently. It creates it."
+    },
+    {
+      "type": "text",
+      "text": "Remember what we said in Lesson 1: <em>we are not fighting sin to have a relationship with God. We are fighting sin because we have a relationship with God.</em> Justification does not end the fight against sin. It changes the motivation. You are no longer fighting to earn your standing. You are fighting from it."
+    },
+    {
+      "type": "question",
+      "id": "201-07-4",
+      "text": "7.4 - Are you trying to pay God back for a gift He freely gave you? Where in your spiritual life do you most feel the pressure to earn what you already have?",
+      "height": "tall"
+    },
+    {
+      "type": "heading",
+      "text": "The Freedom That Follows"
+    },
+    {
+      "type": "text",
+      "text": "Here is what happens to a person who genuinely grasps justification by grace. Guilt loses its power. Not because sin is minimized, but because everything sin should have cost you has already been paid. Shame loses its voice. Not because the past is erased, but because the past does not have the final word over who you are. Fear of God's judgment loses its grip. Not because God is not a judge, but because the sentence has already been served."
+    },
+    {
+      "type": "verse",
+      "reference": "Romans 8:1",
+      "text": "There is therefore now no condemnation for those who are in Christ Jesus."
+    },
+    {
+      "type": "text",
+      "text": "No condemnation. Not a little condemnation. Not condemnation held in reserve as a threat. None. The person who is in Christ stands before God not as a probationer trying to stay out of trouble but as a fully accepted, fully loved, fully righteous child in the Son. That reality - when you let it sink into the bones of your daily life - changes how you walk into every room, how you handle failure, how you respond when other people sin against you, and how you pray."
+    },
+    {
+      "type": "question",
+      "id": "201-07-5",
+      "text": "7.5 - Romans 8:1 says there is 'no condemnation' for those in Christ Jesus. In what part of your daily life do you most struggle to believe that? What would be different if you really let that truth stand?",
+      "height": "tall"
+    },
+    {
+      "type": "heading",
+      "text": "This Week's Practice"
+    },
+    {
+      "type": "text",
+      "text": "This week, read Titus 3:4-7 slowly and then re-read it. Every time you feel the pull to perform for God's approval - to pray just a little longer to make up for yesterday, to behave better so God will bless you today - pause and say out loud: <em>\"I am justified. The sentence has been served. Jesus paid it all.\"</em> You are not reminding God of something He forgot. You are reorienting yourself to the reality He has established."
+    },
+    {
+      "type": "text",
+      "text": "Also this week, read Romans 5:1-11. Notice how many good things Paul says flow from justification - peace with God, access to grace, hope, love. These are not things you earn after justification. They are things that come <em>with</em> it. Justification is not the starting line of a race you still have to run. It is the gift you open when you receive Jesus."
     },
     {
       "type": "heading",
@@ -28,19 +161,19 @@
     },
     {
       "type": "question",
-      "id": "201-04-key",
+      "id": "201-07-key",
       "text": "What is one key thing you learned from this lesson?",
       "height": "short"
     },
     {
       "type": "question",
-      "id": "201-04-step",
+      "id": "201-07-step",
       "text": "What is one step you are going to take this week?",
       "height": "short"
     },
     {
       "type": "question",
-      "id": "201-04-prayer",
+      "id": "201-07-prayer",
       "text": "What is a prayer request for this week?",
       "height": "short"
     }

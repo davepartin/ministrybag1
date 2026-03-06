@@ -1,26 +1,153 @@
 {
   "id": "8",
-  "title": "Lesson 8: Trusting and Turning",
-  "description": "Our active response to the Gospel: turning and trusting.",
+  "version": "v01",
+  "title": "Lesson 8: Trusting and Turning - Faith and Repentance",
+  "description": "Our active response to the gospel: turning from sin and trusting in Christ. This lesson explores why faith and repentance are not two different things but two sides of the same coin - the indivisible response to a God who freely saves.",
   "blocks": [
     {
+      "type": "text",
+      "text": "In the last lesson, you discovered what God did in Christ - how the penalty of sin was absorbed at the cross and how His righteousness was credited to you. That is the gospel. But a gift that is never received stays on the table. This lesson is about what it looks like to actually reach out and take it. To respond. That moment of response has two sides, and they always go together: <strong>faith</strong> and <strong>repentance.</strong>"
+    },
+    {
       "type": "heading",
-      "text": "Turning to God"
+      "text": "Two Sides of One Coin"
     },
     {
       "type": "text",
-      "text": "True faith involves more than just agreement with facts; it requires a turning away from our old way of life (repentance) and a complete resting in Christ's finished work (faith)."
+      "text": "When Jesus began His public ministry, he announced it in twelve words: <em>\"The time is fulfilled, and the kingdom of God is at hand; repent and believe in the gospel\"</em> (Mark 1:15). Two actions. One movement. You cannot have one without the other."
+    },
+    {
+      "type": "text",
+      "text": "Think of faith and repentance as two sides of the same coin. You cannot flip the heads side without the tails side coming with it. Faith is turning <em>toward</em> God - trusting the person and work of Jesus Christ with your whole self, betting your life on the reliability of what He said and did. Repentance is turning <em>from</em> sin - changing your mind about who you are, who God is, and what you want, and walking in a new direction."
+    },
+    {
+      "type": "text",
+      "text": "Neither one is just a feeling. Faith is not a warm fuzzy sense that maybe things will work out. Repentance is not just feeling bad about something you did. Both of them show up in your direction - in where you are pointed and where you are walking."
     },
     {
       "type": "verse",
-      "reference": "Mark 1:15",
-      "text": "The time is fulfilled, and the kingdom of God is at hand; repent and believe in the gospel."
+      "reference": "Hebrews 11:1",
+      "text": "Now faith is the assurance of things hoped for, the conviction of things not seen."
     },
     {
       "type": "question",
-      "id": "201-5-1",
-      "text": "5.1 - What is something practical you need to turn away from in order to trust God more fully?",
-      "data_question": "5.1 - Turning away"
+      "id": "201-08-1",
+      "text": "8.1 - When you think about someone you truly trust - a person you would bet your safety on - what makes them trustworthy? What would it mean to extend that same kind of trust to God?",
+      "height": "tall"
+    },
+    {
+      "type": "heading",
+      "text": "What Faith Actually Is"
+    },
+    {
+      "type": "text",
+      "text": "The classic definition of biblical faith has three movements: <strong>Knowledge, Assent, and Trust.</strong>"
+    },
+    {
+      "type": "list",
+      "items": [
+        "<strong>Knowledge</strong> - understanding the content of the gospel. Who Jesus is, what He did, what is being offered. You cannot trust someone you know nothing about. Faith is not a leap into the dark - it is a step toward a Person you have reason to believe.",
+        "<strong>Assent</strong> - agreeing that the content is true. The facts are not just information for your head - you believe them. You accept that Jesus died for your sin and rose from the dead.",
+        "<strong>Trust</strong> - personally committing to Jesus, not just the ideas about Him. This is where faith goes beyond the mind and into the will. You are not just believing <em>about</em> Jesus the way you believe about a historical figure. You are entrusting your whole self to Him."
+      ]
+    },
+    {
+      "type": "text",
+      "text": "Here is an old illustration that persists because it is still the clearest: imagine standing at the edge of a gorge with a tightrope walker who has crossed the gorge a hundred times without falling. He asks if you believe he can carry you across. You say yes. Then he says, <em>\"Get on my back.\"</em> That is the moment where knowledge and assent become trust. Many people believe facts about Jesus. Far fewer have climbed on His back."
+    },
+    {
+      "type": "question",
+      "id": "201-08-2",
+      "text": "8.2 - Which of the three movements of faith - Knowledge, Assent, or Trust - is the hardest step for you? Where do you get stuck?",
+      "height": "tall"
+    },
+    {
+      "type": "heading",
+      "text": "What Repentance Actually Is"
+    },
+    {
+      "type": "text",
+      "text": "Repentance gets misunderstood more than almost any other word in the Christian life. People use it to mean feeling guilty, crying in church, or promising to do better. But the Greek word for repentance - <em>metanoia</em> - literally means a change of mind. A complete U-turn in how you see things."
+    },
+    {
+      "type": "text",
+      "text": "Repentance is not just feeling bad about sin. It is changing your mind about sin - seeing it the way God sees it, as a broken cistern that cannot hold water, a counterfeit that robs you of something real. It is changing your mind about yourself - admitting that your way has not been working. It is changing your mind about God - coming to believe that His way is better, that His commands are not prison walls but guardrails on a road that leads somewhere good."
+    },
+    {
+      "type": "text",
+      "text": "And then repentance <em>walks</em>. It does not just feel differently. It moves differently. Zacchaeus is the picture. He was a tax collector, universally hated for cheating people. The moment he encountered Jesus, something shifted. He did not just feel convicted. He stood up and said: <em>\"Behold, Lord, the half of my goods I give to the poor. And if I have defrauded anyone of anything, I restore it fourfold\"</em> (Luke 19:8). That is repentance. Not remorse. Redirection."
+    },
+    {
+      "type": "verse",
+      "reference": "2 Corinthians 7:10",
+      "text": "For godly grief produces a repentance that leads to salvation without regret, whereas worldly grief produces death."
+    },
+    {
+      "type": "text",
+      "text": "There is a difference between <em>worldly grief</em> (feeling bad because you got caught or because your sin is costing you) and <em>godly grief</em> (feeling the weight of how your sin has offended God and stolen from your own life). Worldly grief makes you feel terrible without changing direction. Godly grief leads to genuine repentance - and Paul says that repentance produces no regret. It is the beginning of something good, not just the end of something bad."
+    },
+    {
+      "type": "question",
+      "id": "201-08-3",
+      "text": "8.3 - Is there an area of your life right now where you have been feeling guilty (worldly grief) but not actually changing direction (godly repentance)? What is keeping you stuck?",
+      "height": "tall"
+    },
+    {
+      "type": "heading",
+      "text": "Ongoing Faith and Repentance"
+    },
+    {
+      "type": "text",
+      "text": "Faith and repentance are not one-time events. They are the air you breathe as a follower of Jesus. Martin Luther began his 95 Theses with this sentence: <em>\"When our Lord and Master Jesus Christ said 'repent,' he willed the entire life of believers to be one of repentance.\"</em> He was not saying you get saved over and over again. He was saying that repentance - this ongoing turning away from trusting yourself and turning toward trusting God - is the posture of the whole Christian life."
+    },
+    {
+      "type": "text",
+      "text": "Every morning is a micro-version of conversion. You wake up in a world that is filled with alternatives to trusting God - your own plans, other people's approval, comfort and security. And every morning you have the choice to turn toward Jesus or to turn toward something else. Every time you catch yourself living as an orphan instead of an adopted child, faith and repentance are the way back home."
+    },
+    {
+      "type": "verse",
+      "reference": "Psalm 32:3-5",
+      "text": "For when I kept silent, my bones wasted away through my groaning all day long. For day and night your hand was heavy upon me; my strength was dried up as by the heat of summer. I acknowledged my sin to you, and I did not cover my iniquity; I said, 'I will confess my transgressions to the Lord,' and you forgave the iniquity of my sin."
+    },
+    {
+      "type": "text",
+      "text": "David's account in Psalm 32 is one of the most honest descriptions of the cost of unrepentance in the Bible - the wasting away, the heaviness, the dryness. And then the immediate relief when he simply confessed. The cover-up is always harder than the truth. And the truth always leads somewhere better."
+    },
+    {
+      "type": "question",
+      "id": "201-08-4",
+      "text": "8.4 - What is one specific, concrete area in your life where God is asking you to change direction today - not just to feel differently, but to actually walk differently? What would the first practical step look like?",
+      "height": "tall"
+    },
+    {
+      "type": "heading",
+      "text": "The Freedom on the Other Side"
+    },
+    {
+      "type": "text",
+      "text": "Here is the thing about genuine faith and repentance: they do not feel like sacrifice once you have walked through the door. C.S. Lewis compared it to a boy giving up a muddy puddle because he has been offered a holiday at the sea. The loss feels significant from the outside. From the inside, once you have tasted the sea, the puddle loses its appeal entirely."
+    },
+    {
+      "type": "text",
+      "text": "The life of faith on the other side of repentance is not a smaller, more restricted life. It is the life Jesus called <em>abundant</em> in John 10:10. The boundaries of God's commands are not prison walls - they are the banks of a river. They give the water direction and speed. Without them, the water just spreads out and stagnates. With them, it flows somewhere."
+    },
+    {
+      "type": "question",
+      "id": "201-08-5",
+      "text": "8.5 - Has there ever been a time in your life when you turned away from something you thought you needed - and found out the other side was actually better? How does that story help you trust God with a current area of needed repentance?",
+      "height": "tall"
+    },
+    {
+      "type": "heading",
+      "text": "This Week's Practice"
+    },
+    {
+      "type": "text",
+      "text": "Each night this week, take 3 minutes for what the Puritans called examination of conscience. Ask two simple questions before you sleep: <em>Where did I trust myself instead of God today?</em> And <em>Where did I walk away from what I know is right?</em> Do not wallow in guilt. Just name it honestly, hand it to God, and receive His forgiveness (1 John 1:9). This practice builds the habit of daily repentance that keeps the heart tender and free."
+    },
+    {
+      "type": "text",
+      "text": "Also this week, read the story of Zacchaeus in Luke 19:1-10. Watch how quickly repentance moved from a changed heart to a changed action. Notice what Jesus said when it happened: <em>\"Today salvation has come to this house.\"</em> Salvation showed up in Zacchaeus's living room, and it showed up walking."
     },
     {
       "type": "heading",
@@ -28,19 +155,19 @@
     },
     {
       "type": "question",
-      "id": "201-05-key",
+      "id": "201-08-key",
       "text": "What is one key thing you learned from this lesson?",
       "height": "short"
     },
     {
       "type": "question",
-      "id": "201-05-step",
+      "id": "201-08-step",
       "text": "What is one step you are going to take this week?",
       "height": "short"
     },
     {
       "type": "question",
-      "id": "201-05-prayer",
+      "id": "201-08-prayer",
       "text": "What is a prayer request for this week?",
       "height": "short"
     }

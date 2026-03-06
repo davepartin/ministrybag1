@@ -1,19 +1,105 @@
 {
   "id": "4",
-  "title": "Lesson 4: Personal Testimony and Gospel Diagram",
-  "description": "Life Skill: Learning to explain the good news clearly, simply, and reproducibly - so you can share it with anyone.",
+  "version": "v02",
+  "title": "Lesson 4: Sharing Your Story and Jesus' Story",
+  "description": "The STORY rhythm of BLESS comes to life. Learn to craft your personal testimony and clearly share the gospel using tools you can use anywhere.",
   "blocks": [
     {
       "type": "text",
-      "text": "Lessons 2 through 4 have been building your relational infrastructure for mission: being sent, noticing people, building genuine friendships, and crafting your personal story. This lesson gives you a tool for the moment when someone who trusts you asks the question you have been hoping for: \"So what do you actually believe?\" Or maybe it's not that direct - maybe it's \"Why do you seem so different?\" or \"What keeps you from being afraid?\" However the door opens, you need to be ready to walk through it with clarity. This lesson is about learning to explain the gospel simply enough that anyone can follow it - and clearly enough that it is actually good news."
+      "text": "Over the last three lessons you have built a foundation for living on mission. Lesson 1 gave you the vision and your Personal Ministry Map. Lesson 2 gave you BLESS - five rhythms for everyday mission. Lesson 3 showed you how your table and your home are frontline tools for the gospel. Now this final lesson gives you the words. This is the STORY rhythm of BLESS fully unpacked: how to share what Jesus has done in your life, and how to explain the gospel clearly enough that anyone can understand it."
     },
     {
       "type": "heading",
-      "text": "Drawing the Gospel"
+      "text": "Why Your Story Matters"
     },
     {
       "type": "text",
-      "text": "Sometimes words alone are not enough. A simple diagram - something you can sketch on a napkin or a whiteboard - gives a visual shape to a story that people need to be able to see, not just hear. It also gives you a framework to remember under pressure. When a conversation takes an unexpected turn toward spiritual things, having a clear mental picture of the gospel keeps you from rambling or forgetting where you are headed."
+      "text": "Here is a simple definition of witnessing: <strong>Witnessing is taking a good look at the Lord Jesus and then telling others what you have seen.</strong> That is it. You do not need a theology degree or a list of memorized arguments. You need your experience of Jesus, clearly articulated, ready to share."
+    },
+    {
+      "type": "text",
+      "text": "People are drawn to stories. They may push back on doctrine or tune out a theological argument, but they almost never argue with someone's genuine experience. When you say, \"Here is what my life was like, here is what happened, here is what is different now\" - that is personal, honest, and hard to dismiss. Your testimony is one of the most powerful evangelism tools you have. And unlike a gospel diagram that you need to learn, your testimony is something you already own. You just need to organize it."
+    },
+    {
+      "type": "verse",
+      "reference": "1 Peter 3:15-16",
+      "text": "But in your hearts honor Christ the Lord as holy, always being prepared to make a defense to anyone who asks you for a reason for the hope that is in you; yet do it with gentleness and respect, having a good conscience, so that, when you are slandered, those who revile your good behavior in Christ may be put to shame."
+    },
+    {
+      "type": "text",
+      "text": "Peter says <em>always be prepared</em> - not always be presenting. Preparation is the internal work. You develop your story so that when the moment comes - when a friend asks why you seem different, when a coworker asks what keeps you grounded, when a neighbor opens up about a hard season - you are ready. Not polished. Not perfect. Just ready."
+    },
+    {
+      "type": "question",
+      "id": "203-04-1",
+      "text": "4.1 - How comfortable do you feel sharing your faith with others right now? Rate yourself 1-10. What makes you comfortable or uncomfortable about it?",
+      "height": "tall"
+    },
+    {
+      "type": "heading",
+      "text": "The Three Barriers"
+    },
+    {
+      "type": "text",
+      "text": "There are three common reasons people hesitate to share their faith. See if you recognize yourself in any of them:"
+    },
+    {
+      "type": "list",
+      "items": [
+        "<strong>Fear of rejection.</strong> \"What if they think I am weird?\" Remember: when someone rejects the gospel, they are rejecting Jesus, not you. Your job is to offer - the response is between them and God.",
+        "<strong>Not knowing what to say.</strong> \"I am not a preacher. I do not know the Bible well enough.\" That is why you prepare. This lesson gives you a framework you can practice until it feels natural.",
+        "<strong>No models.</strong> \"I have never seen anyone do it in a way that was not awkward.\" Spend time with people who share their faith naturally. Watch how they do it - often it is far simpler than you think."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "203-04-2",
+      "text": "4.2 - Which of the three barriers resonates most with you? What is one practical step you could take to begin overcoming it?",
+      "height": "tall"
+    },
+    {
+      "type": "heading",
+      "text": "Tool 1: Write Your Testimony"
+    },
+    {
+      "type": "text",
+      "text": "Your personal testimony can be as simple as three short paragraphs and should be shareable in 3-5 minutes. Think of it as three movements of one story:"
+    },
+    {
+      "type": "list",
+      "items": [
+        "<strong>Paragraph 1: Your life before Christ.</strong> Tell a little of your background. Did you grow up in a church family? Were you far from God? What did life look like - what were your struggles, your attitude, what was missing?",
+        "<strong>Paragraph 2: Your decision to follow Jesus.</strong> How did you come to understand what Jesus had done for you? Who told you? When and where did it happen? What clicked? Include some points of the gospel: Jesus died for you, He rose again, and you put your faith in Him.",
+        "<strong>Paragraph 3: Your life now.</strong> What difference has Jesus made in your life? If the difference has been gradual, say that. If dramatic, tell the story. What are you looking forward to in your relationship with God? What does following Jesus look like for you right now?"
+      ]
+    },
+    {
+      "type": "text",
+      "text": "A helpful tip: feel free to include a Bible verse that was meaningful in your decision or Christian life. Not a whole passage - just a verse that anchored you. Something you can share naturally."
+    },
+    {
+      "type": "text",
+      "text": "[PLACEHOLDER: Testimony Framework infographic - three panels showing Before / Decision / Now with prompts in each]"
+    },
+    {
+      "type": "question",
+      "id": "203-04-3",
+      "text": "4.3 - Write your testimony here using the three-paragraph framework above. Write it in plain, ordinary language - the way you would tell a friend over coffee. This is your first draft - you can refine it later.",
+      "height": "tall"
+    },
+    {
+      "type": "question",
+      "id": "203-04-4",
+      "text": "4.4 - What did you learn about yourself as you wrote down your testimony? What opportunities could you use your story to share God's story and impact another person's story?",
+      "height": "tall"
+    },
+    {
+      "type": "heading",
+      "text": "Tool 2: Share the Gospel Clearly"
+    },
+    {
+      "type": "text",
+      "text": "Your testimony opens the door. But there may come a moment when someone needs to hear not just your story, but <strong>His story</strong> - the gospel itself, clear and simple. For that, you need a framework. Something you can explain in a few minutes and something the person you share it with could turn around and share with someone else."
     },
     {
       "type": "verse",
@@ -21,104 +107,85 @@
       "text": "How then will they call on him in whom they have not believed? And how are they to believe in him of whom they have never heard? And how are they to hear without someone preaching?"
     },
     {
+      "type": "text",
+      "text": "The gospel has a shape. It moves through four essential movements, and every good gospel presentation covers all four. Leaving one out creates confusion:"
+    },
+    {
+      "type": "list",
+      "items": [
+        "<strong>God's Design.</strong> God made us for relationship with Him. We were created in His image, for His glory, to know Him and be known by Him.",
+        "<strong>Our Problem.</strong> Sin broke the relationship. Every person has chosen their own way over God's way, and the result is separation - not just moral failure, but relational distance from the God we were made for.",
+        "<strong>God's Solution.</strong> God did not leave us in the gap. He sent Jesus - fully God, fully human - to live the life we could not and die the death we deserved. The resurrection proves that death did not have the final word.",
+        "<strong>Our Response.</strong> The gospel is not just information to agree with. It requires a response: turn from sin and trust in Jesus. This is the hinge between knowing the story and being part of it."
+      ]
+    },
+    {
+      "type": "text",
+      "text": "Here are two tools you can use to practice sharing these four movements visually. Both are designed to be drawn on a napkin, a whiteboard, or shared from your phone:"
+    },
+    {
+      "type": "text",
+      "text": "<strong>The Gospel Diagram</strong> - A visual tool that walks through the four movements of the gospel. Watch the training video and practice drawing it: <a href='https://ministrybag.com/thegospeldiagram/'>ministrybag.com/thegospeldiagram</a>"
+    },
+    {
+      "type": "text",
+      "text": "[PLACEHOLDER: Gospel Diagram image - a simple visual showing God's Design / Brokenness / Jesus / Response]"
+    },
+    {
+      "type": "text",
+      "text": "<strong>3 Circles</strong> - Another powerful way to share the gospel visually, developed by the North American Mission Board. Learn and practice it here: <a href='https://www.namb.net/evangelism/3circles/'>namb.net/evangelism/3circles</a>"
+    },
+    {
+      "type": "text",
+      "text": "You do not need to master both. Pick one. Learn it well enough that you could draw it from memory and walk someone through it naturally. Then practice - with a Christian friend first, then with someone on your Personal Ministry Map."
+    },
+    {
       "type": "question",
-      "id": "203-05-1",
-      "text": "5.1 - Why is it important to have a clear, reproducible way to explain the gospel rather than just improvising? What tends to happen when you try to share your faith without a framework?",
+      "id": "203-04-5",
+      "text": "4.5 - In your own words, walk through each of the four gospel movements as if you were explaining them to a friend over coffee. Don't copy the text above - say it the way YOU would say it.",
+      "height": "tall"
+    },
+    {
+      "type": "question",
+      "id": "203-04-6",
+      "text": "4.6 - What was your experience watching or practicing the Gospel Diagram or 3 Circles? Which one felt more natural to you and why?",
       "height": "tall"
     },
     {
       "type": "heading",
-      "text": "The Four Movements"
+      "text": "Faithful, Not Successful"
     },
     {
       "type": "text",
-      "text": "The gospel has a shape. It moves through four essential movements, and every gospel presentation worth knowing covers all four. Leaving one out creates confusion. The four movements are: God's design, our problem, God's solution, and our response."
+      "text": "Here is something that will take the pressure off: <strong>\"successful evangelism\" is not dependent on the response of the person, but on your faithfulness and boldness to offer the Good News.</strong> Everyone is on their own path, taking steps each day toward or away from a decision to follow Christ. When you share your faith, you become a step in their story. You may be the first step or the tenth. You may be the one who plants and someone else waters. Only God makes things grow (1 Corinthians 3:6-7). God gets the glory, and you get the joy of offering His grace and truth to others."
     },
     {
       "type": "verse",
-      "reference": "Romans 3:23",
-      "text": "For all have sinned and fall short of the glory of God."
-    },
-    {
-      "type": "verse",
-      "reference": "Romans 6:23",
-      "text": "For the wages of sin is death, but the free gift of God is eternal life in Christ Jesus our Lord."
-    },
-    {
-      "type": "verse",
-      "reference": "Romans 5:8",
-      "text": "But God shows his love for us in that while we were still sinners, Christ died for us."
-    },
-    {
-      "type": "verse",
-      "reference": "Romans 10:9",
-      "text": "If you confess with your mouth that Jesus is Lord and believe in your heart that God raised him from the dead, you will be saved."
+      "reference": "Revelation 12:11",
+      "text": "And they have conquered him by the blood of the Lamb and by the word of their testimony, for they loved not their lives even unto death."
     },
     {
       "type": "text",
-      "text": "Movement 1 - God's Design: God made us for relationship with him. We were created in his image, for his glory, to know him and be known by him. That is what we were built for. Movement 2 - Our Problem: Sin broke the relationship. Every person has chosen their own way over God's way, and the result is separation. Not just moral failure - relational distance from the God we were made for. Movement 3 - God's Solution: God did not leave us in the gap. He sent Jesus - fully God, fully human - to live the life we couldn't and die the death we deserved. The resurrection proves that death did not have the final word. Movement 4 - Our Response: The gospel is not just information to agree with. It requires a response: turn from sin and trust in Jesus. This is the hinge between knowing the story and being part of it."
-    },
-    {
-      "type": "question",
-      "id": "203-05-2",
-      "text": "5.2 - In your own words, walk through each of the four movements. Don't copy the text above - say it in the way you would say it to a friend over coffee. Write it out as if you're talking, not writing an essay.",
-      "height": "tall"
+      "text": "The blood of the Lamb and the word of your testimony. Those are the two weapons. Jesus already supplied the first one. The second one is yours to use."
     },
     {
       "type": "heading",
-      "text": "The Bridge"
+      "text": "BLESS Review and Personal Ministry Check-In"
     },
     {
       "type": "text",
-      "text": "One of the most portable gospel diagrams is the Bridge Illustration. Picture two cliffs facing each other with a deep gap between them. On one side is God - holy, loving, perfect. On the other side is humanity - broken, separated, unable to reach across. Every human attempt to close the gap - religion, good works, self-improvement - falls short. Then draw a cross lying horizontally between the two cliffs, connecting them. The cross is the only bridge. It cost Jesus everything to build it. And it is wide enough for anyone who will step onto it."
-    },
-    {
-      "type": "text",
-      "text": "This is not the only diagram, but it is one of the clearest. Its power is in the visual: the gap is real, the cross is the only solution, and the response required is to walk across. You can draw it in thirty seconds on any available surface, and it invites conversation rather than ending it."
+      "text": "You have now learned all five BLESS rhythms in detail. You have a Personal Ministry Map, a hospitality strategy, a written testimony, and a gospel tool. Look back at where you started in Lesson 1. Look at the names you wrote down. The mission is not abstract anymore - it has names and faces."
     },
     {
       "type": "question",
-      "id": "203-05-3",
-      "text": "5.3 - Without looking back at the description, try to draw and label the Bridge Illustration from memory. Then write: what part of this diagram do you find most difficult to explain clearly, and why?",
-      "height": "tall"
-    },
-    {
-      "type": "heading",
-      "text": "Making It Your Own"
-    },
-    {
-      "type": "text",
-      "text": "The goal is not to recite a formula. It is to know the story of the gospel so thoroughly that you can tell it naturally, in your own voice, in whatever form the moment calls for. Sometimes it takes ten minutes. Sometimes it takes ten seconds. The framework gives you the bones - your voice, your story, and the Spirit give it flesh."
-    },
-    {
-      "type": "verse",
-      "reference": "1 Peter 3:15",
-      "text": "But in your hearts honor Christ the Lord as holy, always being prepared to make a defense to anyone who asks you for a reason for the hope that is in you; yet do it with gentleness and respect."
-    },
-    {
-      "type": "text",
-      "text": "Peter says always be prepared - not always be presenting. Preparation is the internal work. The actual conversation is guided by the Spirit, responsive to the other person, and marked by gentleness and respect. You are not trying to win an argument. You are inviting someone to cross a bridge that has already been built for them."
-    },
-    {
-      "type": "question",
-      "id": "203-05-4",
-      "text": "5.4 - Write out a 60-second version of the gospel in your own words, as if a friend just asked you: \"What do you actually believe, and why does it matter?\" Don't use religious jargon. Just say it plainly.",
+      "id": "203-04-7",
+      "text": "4.7 - Look back at your prayer list from Lesson 2 and your Personal Ministry Map from Lesson 1. Who are you currently BLESSing? What is working? What has been harder than you expected?",
       "height": "tall"
     },
     {
       "type": "question",
-      "id": "203-05-5",
-      "text": "5.5 - Who is one specific person you could share the gospel with in the next 30 days? What is one step you could take to create or invite that conversation?",
-      "height": "tall"
-    },
-    {
-      "type": "heading",
-      "text": "BLESS Check-in"
-    },
-    {
-      "type": "question",
-      "id": "203-05-bless",
-      "text": "Who are you currently BLESSing? Who are you praying for and actively moving toward? What is one specific step you are taking this week?",
+      "id": "203-04-8",
+      "text": "4.8 - Pray and ask God to highlight one person from your map. Write their name. Now write what the situation and conversation might look like if you shared your testimony and the gospel with them. Where would you be? What would you say? What questions might they have?",
       "height": "tall"
     },
     {
@@ -127,19 +194,19 @@
     },
     {
       "type": "question",
-      "id": "203-05-key",
+      "id": "203-04-key",
       "text": "What is one key thing you learned from this lesson?",
       "height": "short"
     },
     {
       "type": "question",
-      "id": "203-05-step",
+      "id": "203-04-step",
       "text": "What is one step you are going to take this week?",
       "height": "short"
     },
     {
       "type": "question",
-      "id": "203-05-prayer",
+      "id": "203-04-prayer",
       "text": "What is a prayer request for this week?",
       "height": "short"
     }

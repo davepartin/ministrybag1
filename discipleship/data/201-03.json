@@ -1,15 +1,173 @@
 {
   "id": "3",
+  "version": "v01",
   "title": "Lesson 3: The Spirit-Filled Walk - God the Holy Spirit",
-  "description": "The Father loves you. The Son redeems you. And now the Spirit lives in you. This lesson introduces the third person of the Trinity - who the Holy Spirit is, what He does in your daily life, and what it means to walk in His power and presence rather than your own strength. This is the primary home for teaching on the person and work of the Spirit - anything about the Spirit that does not fit in 202.08 (Sanctification & the Fruit of the Spirit) belongs here.",
+  "description": "The Father loves you. The Son redeems you. And now the Spirit lives in you. This lesson introduces the third person of the Trinity - who the Holy Spirit is, what He does in your daily life, and what it means to walk in His power and presence rather than your own strength.",
   "blocks": [
     {
+      "type": "text",
+      "text": "Over the last two lessons you have encountered two persons of the Trinity. You met God the Father - the One who delights in you and runs toward you. Then you met God the Son - the One who exchanged His righteousness for your guilt and made you an adopted child of God. Now the Trinity is complete. You are about to meet the One who does not just love you from heaven or save you through history, but who actually lives <em>inside you</em> right now. That is God the Holy Spirit."
+    },
+    {
       "type": "heading",
-      "text": "Empowered by the Spirit"
+      "text": "The Promise Jesus Made"
     },
     {
       "type": "text",
-      "text": "Living the Christian life is impossible in our own strength. Jesus gave us the Holy Spirit to empower us, guide us, and produce the 'fruit' of His character within us daily."
+      "text": "The night before His crucifixion, Jesus told His disciples something that must have felt devastating: He was leaving. They had given up everything to follow Him. Now He was going away. But His next words turned grief into something else entirely:"
+    },
+    {
+      "type": "verse",
+      "reference": "John 14:16-17",
+      "text": "And I will ask the Father, and he will give you another Helper, to be with you forever, even the Spirit of truth, whom the world cannot receive, because it neither sees him nor knows him. You know him, for he dwells with you and will be in you."
+    },
+    {
+      "type": "text",
+      "text": "Jesus called Him <em>another Helper</em> - the Greek word is <em>Paraclete</em>, which means Counselor, Comforter, Advocate, one who walks alongside. Jesus was saying: I am going, but you will not be left alone. You will have someone even closer than a teacher standing in front of you. You will have the Spirit of God living <em>inside</em> you. That is not a downgrade. That is the upgrade."
+    },
+    {
+      "type": "question",
+      "id": "201-03-1",
+      "text": "3.1 - Before this lesson, how would you have described the Holy Spirit in one sentence? What has been your honest experience with or understanding of Him?",
+      "height": "tall"
+    },
+    {
+      "type": "heading",
+      "text": "Who the Spirit Is - and What He Does"
+    },
+    {
+      "type": "text",
+      "text": "The Holy Spirit is not a force, a feeling, or a spiritual energy. He is a Person - the third person of the Trinity. He has a mind, a will, and emotions. He can be grieved (Ephesians 4:30), quenched (1 Thessalonians 5:19), and lied to (Acts 5:3). And He has a clear purpose. Jesus said:"
+    },
+    {
+      "type": "verse",
+      "reference": "John 16:13-14",
+      "text": "When the Spirit of truth comes, he will guide you into all the truth, for he will not speak on his own authority, but whatever he hears he will speak, and he will declare to you the things that are to come. He will glorify me, for he will take what is mine and declare it to you."
+    },
+    {
+      "type": "text",
+      "text": "The Spirit's primary ambition is not your comfort or your empowerment - it is <strong>Christ's glory.</strong> The Spirit came to point people to Jesus, not to Himself. This is the deepest diagnostic for the Spirit-filled life: a person walking in the Spirit becomes less focused on self and more focused on Jesus. The Spirit shines His light on the Son, and the Son shines His light to the world through you."
+    },
+    {
+      "type": "text",
+      "text": "Here is a simple summary of what the Spirit does in your life:"
+    },
+    {
+      "type": "list",
+      "items": [
+        "<strong>He glorifies Christ</strong> - turning your gaze toward Jesus (John 16:14)",
+        "<strong>He guides you into truth</strong> - illuminating Scripture and directing your conscience (John 16:13)",
+        "<strong>He dwells in you</strong> - sealing your adoption and securing your salvation (Romans 8:9; Ephesians 1:13-14)",
+        "<strong>He convicts of sin</strong> - making you aware of where you are wandering (John 16:8)",
+        "<strong>He produces fruit</strong> - growing the character of Christ inside you as you stay connected to the Vine (Galatians 5:22-23)",
+        "<strong>He witnesses to your sonship</strong> - assuring you that you belong to God (Romans 8:14-16)"
+      ]
+    },
+    {
+      "type": "question",
+      "id": "201-03-2",
+      "text": "3.2 - Look at the list of what the Spirit does. Which one of these do you most need right now in your current season of life? Why?",
+      "height": "tall"
+    },
+    {
+      "type": "heading",
+      "text": "Indwelt vs. Filled - There Is a Difference"
+    },
+    {
+      "type": "text",
+      "text": "Here is something important that many Christians never learn: every believer is <em>indwelt</em> by the Spirit the moment they trust Christ (Romans 8:9). But not every believer is <em>filled</em> with the Spirit - directed and empowered by Him moment to moment. Think of it like a computer. A new computer has all the capability built in. But if you never plug it in, that potential stays locked. You were designed to run on the Holy Spirit. Trying to live the Christian life on your own effort is like running on the wrong power source."
+    },
+    {
+      "type": "text",
+      "text": "The apostle Paul makes this distinction clear when he writes about three kinds of people:"
+    },
+    {
+      "type": "list",
+      "items": [
+        "<strong>The Natural person</strong> (1 Corinthians 2:14) - has not trusted Christ. The Spirit does not indwell them.",
+        "<strong>The Carnal Christian</strong> (1 Corinthians 3:1-2) - has trusted Christ but is living in their own strength. The Spirit lives in them but is not directing their life. Self is still on the throne.",
+        "<strong>The Spirit-Filled Christian</strong> (1 Corinthians 2:15) - has trusted Christ and is trusting the Spirit's power moment to moment. Christ is in control, and self is yielding."
+      ]
+    },
+    {
+      "type": "text",
+      "text": "The carnal Christian category is where many people get stuck. They know they are saved, but they are exhausted from trying to live the Christian life by willpower. They feel the gap between who they want to be and who they actually are. The answer is not to try harder. The answer is a third option most of them have never fully stepped into: surrendering control to the Spirit and letting Him do what only He can do."
+    },
+    {
+      "type": "verse",
+      "reference": "Galatians 5:25",
+      "text": "If we live by the Spirit, let us also keep in step with the Spirit."
+    },
+    {
+      "type": "question",
+      "id": "201-03-3",
+      "text": "3.3 - Of the three categories - Natural, Carnal Christian, or Spirit-Filled Christian - which one best describes where you feel you have been living recently? Be honest.",
+      "height": "tall"
+    },
+    {
+      "type": "heading",
+      "text": "Preparing Your Heart to Be Filled"
+    },
+    {
+      "type": "text",
+      "text": "Being filled with the Spirit is not a one-time crisis experience. It is a daily, even moment-by-moment surrender. There are three postures that prepare you for it:"
+    },
+    {
+      "type": "list",
+      "items": [
+        "<strong>Desire</strong> it sincerely. You have to genuinely want this. Jesus said, \"Blessed are those who hunger and thirst for righteousness, for they shall be satisfied\" (Matthew 5:6). The filling begins with a real want, not a ritual.",
+        "<strong>Confess</strong> all known sin. Unconfessed sin quenches the Spirit's direction like putting your hand over a lamp. You do not have to be perfectly sinless to be filled - but you cannot be willfully hiding anything (1 John 1:9; Psalm 66:18).",
+        "<strong>Yield</strong> your whole life to Christ. Yielding means a willingness to obey in anything God has shown you, with your hands open (Romans 12:1-2). Not gripping your agenda, your comfort, your plans."
+      ]
+    },
+    {
+      "type": "text",
+      "text": "Then respond in faith. Trust that the Spirit is filling and directing you. You do not have to feel it to claim it. Ephesians 5:18 is a command, not a feeling: <em>\"Be filled with the Spirit.\"</em> God commands what He supplies. When you ask in faith according to His will, you can trust He answers (1 John 5:14-15)."
+    },
+    {
+      "type": "question",
+      "id": "201-03-4",
+      "text": "3.4 - Of the three postures - Desire, Confess, Yield - which one feels hardest for you right now? What is it that you find yourself holding back from surrendering to God?",
+      "height": "tall"
+    },
+    {
+      "type": "heading",
+      "text": "Spiritual Breathing - The Ongoing Practice"
+    },
+    {
+      "type": "text",
+      "text": "The Spirit-filled life is not a summit you reach. It is a direction you keep walking. One of the most practical tools for sustaining it day to day is called <strong>Spiritual Breathing.</strong> Think of it like physical breathing - not something you do once and forget, but a constant rhythm of your spiritual life."
+    },
+    {
+      "type": "text",
+      "text": "<strong>Exhale - Confess your sin.</strong> As soon as you become aware of a sinful attitude, action, or word, agree with God that it is sin. Do not wait for the end of the day. Deal with it in the moment (1 John 1:9). This is exhaling - breathing out what does not belong."
+    },
+    {
+      "type": "text",
+      "text": "<strong>Inhale - Yield control to Christ.</strong> Right after confession, claim by faith the fullness and direction of the Holy Spirit. Trust that He now fills and empowers what you just surrendered (Romans 12:1-2; Ephesians 5:18). This is inhaling - drawing in what gives life."
+    },
+    {
+      "type": "text",
+      "text": "The more natural this rhythm becomes, the more the character of Christ gets produced in you over time. You stop waiting for a spiritual breakthrough down the road and start experiencing one breath at a time."
+    },
+    {
+      "type": "verse",
+      "reference": "Romans 8:14",
+      "text": "For all who are led by the Spirit of God are sons of God."
+    },
+    {
+      "type": "question",
+      "id": "201-03-5",
+      "text": "3.5 - What is one specific moment today where you will practice 'Help me, Holy Spirit' before you react? Picture the situation and write what that would look like.",
+      "height": "tall"
+    },
+    {
+      "type": "heading",
+      "text": "The Fruit That Follows"
+    },
+    {
+      "type": "text",
+      "text": "When you stay connected to the Vine and walk in the Spirit's direction, something begins to grow in you that you could not manufacture in your own strength. Paul calls it the fruit of the Spirit:"
     },
     {
       "type": "verse",
@@ -17,10 +175,30 @@
       "text": "But the fruit of the Spirit is love, joy, peace, patience, kindness, goodness, faithfulness, gentleness, self-control; against such things there is no law."
     },
     {
+      "type": "text",
+      "text": "Notice that Paul does not call it the <em>fruits</em> (plural). He calls it the <em>fruit</em> (singular). This is not a menu of nine separate virtues to choose from. It is one unified character - the character of Jesus - growing inside you as you yield to the Spirit. You do not grow patience by gritting your teeth. You grow patience by staying close to the Patient One. The Spirit produces what willpower cannot."
+    },
+    {
+      "type": "text",
+      "text": "One important grace note: maturity takes time. A person just beginning to walk in the Spirit should not be discouraged if they are not yet as fruitful as someone who has known and practiced this truth for years. The graph goes up over time - not in a straight line, not overnight - but it goes up. The Spirit is at work in you whether you feel it today or not."
+    },
+    {
       "type": "question",
-      "id": "202-1-1",
-      "text": "1.1 - Which Fruit of the Spirit do you see growing in your life recently, and which one are you struggling with?",
-      "data_question": "1.1 - Fruit of the Spirit"
+      "id": "201-03-6",
+      "text": "3.6 - Which fruit of the Spirit do you see growing in your life recently? Which one are you struggling with most? How does knowing it is grown by the Spirit - not manufactured by effort - change how you approach that struggle?",
+      "height": "tall"
+    },
+    {
+      "type": "heading",
+      "text": "This Week's Practice"
+    },
+    {
+      "type": "text",
+      "text": "This week, practice Spiritual Breathing. Every time you become aware of a sinful thought, word, or attitude - pause, exhale (confess it to God simply and honestly), and inhale (yield that moment to the Spirit's control). You do not need to feel any different. Just breathe."
+    },
+    {
+      "type": "text",
+      "text": "Also this week, read Romans 8 slowly. It is one of the richest chapters in the Bible on the Spirit's work in your daily life. As you read, underline or note every place Paul mentions the Spirit and what He does. Let this chapter become the soundtrack for your walk this week."
     },
     {
       "type": "heading",
@@ -28,19 +206,19 @@
     },
     {
       "type": "question",
-      "id": "202-01-key",
+      "id": "201-03-key",
       "text": "What is one key thing you learned from this lesson?",
       "height": "short"
     },
     {
       "type": "question",
-      "id": "202-01-step",
+      "id": "201-03-step",
       "text": "What is one step you are going to take this week?",
       "height": "short"
     },
     {
       "type": "question",
-      "id": "202-01-prayer",
+      "id": "201-03-prayer",
       "text": "What is a prayer request for this week?",
       "height": "short"
     }

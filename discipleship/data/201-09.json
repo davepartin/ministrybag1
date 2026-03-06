@@ -1,26 +1,155 @@
 {
   "id": "9",
+  "version": "v01",
   "title": "Lesson 9: Suffering and Trials",
-  "description": "Communicating with the Father using the ACTS model or Lord's Prayer model.",
+  "description": "A biblical framework for when life gets hard - understanding that trials produce endurance, that God is with us in the valley as well as on the mountaintop, and that our suffering is never wasted in the hands of our sovereign Father.",
   "blocks": [
     {
+      "type": "text",
+      "text": "Everything in this course so far has been building toward a life of abiding - loving God, knowing your identity, walking in the Spirit, worshipping, engaging spiritual disciplines. But here is the hard truth: the Christian life does not protect you from hard seasons. It equips you for them. And the question this lesson asks is not if suffering will come but <em>what you will do when it does.</em>"
+    },
+    {
       "type": "heading",
-      "text": "Growing Through Prayer"
+      "text": "The Question Nobody Wants to Ask"
     },
     {
       "type": "text",
-      "text": "Prayer is our vital connection to God. Using models like ACTS (Adoration, Confession, Thanksgiving, Supplication) helps structure our conversation and deepens our reliance on Him."
+      "text": "If God is good, and if God is powerful, and if He loves His children - then why does life hurt so much sometimes? That question has been asked in every culture, in every century, by every kind of person. It is not a sign of weak faith. It is a sign of paying attention."
+    },
+    {
+      "type": "text",
+      "text": "The Bible does not avoid the question. In fact, the Psalms spend nearly half their pages on it. Lament - the honest, raw cry of pain addressed directly to God - is one of the most prominent forms of prayer in all of Scripture. God is not surprised by your honest grief. He is not offended by your honest questions. He is the God who said, <em>\"My grace is sufficient for you, for my power is made perfect in weakness\"</em> (2 Corinthians 12:9). Your weakness is not the obstacle to His work. It is often the very means of it."
     },
     {
       "type": "verse",
-      "reference": "Philippians 4:6",
-      "text": "Do not be anxious about anything, but in everything by prayer and supplication with thanksgiving let your requests be made known to God."
+      "reference": "Psalm 42:9-11",
+      "text": "I say to God, my rock: 'Why have you forgotten me? Why do I go mourning because of the oppression of the enemy?' As with a deadly wound in my bones, my adversaries taunt me, while they say to me all the day long, 'Where is your God?' Why are you cast down, O my soul, and why are you in turmoil within me? Hope in God; for I shall again praise him, my salvation and my God."
     },
     {
       "type": "question",
-      "id": "201-7-1",
-      "text": "7.1 - What is one specific area you have been anxious about that you need to hand over in prayer?",
-      "data_question": "7.1 - Handing over anxiety"
+      "id": "201-09-1",
+      "text": "9.1 - What is the hardest thing you are facing right now - or the hardest thing you have faced in the last few years? As you think about that season, what did you want most from God? What did you actually experience?",
+      "height": "tall"
+    },
+    {
+      "type": "heading",
+      "text": "What the Bible Says About Why We Suffer"
+    },
+    {
+      "type": "text",
+      "text": "Scripture offers multiple windows into the meaning of suffering so we should resist the urge to pick just one and apply it to every situation. Here are four things God's Word says about pain:"
+    },
+    {
+      "type": "list",
+      "items": [
+        "<strong>Suffering is the result of living in a broken world.</strong> Sin entered creation and changed everything - illness, conflict, death, and natural catastrophe are not punishments from God in every instance. They are the groaning of a creation that has not yet been fully restored (Romans 8:18-22).",
+        "<strong>Suffering can be used for growth.</strong> James says that trials produce endurance, and endurance produces tested character (James 1:3-4). Not that God caused the suffering to be evil - but that He is faithful enough to use it for something good.",
+        "<strong>Suffering can be the context for God's greatest displays of power.</strong> The cross was the ultimate suffering, and it was also the ultimate rescue. Paul's thorn in the flesh led to a depth of reliance on God he could not have reached any other way (2 Corinthians 12:7-10).",
+        "<strong>Suffering is never the end of the story.</strong> Romans 8:18 says the sufferings of this present time are not worth comparing to the glory that will be revealed in us. The perspective of eternity changes the weight of everything we carry now."
+      ]
+    },
+    {
+      "type": "verse",
+      "reference": "James 1:2-4",
+      "text": "Count it all joy, my brothers, when you meet trials of various kinds, for you know that the testing of your faith produces steadfastness. And let steadfastness have its full effect, that you may be perfect and complete, lacking in nothing."
+    },
+    {
+      "type": "text",
+      "text": "James does not say to be happy about suffering. He says to <em>count it</em> joy - a deliberate, reasoned decision made in the middle of something painful. The decision is based on what you know, not what you feel. You know the testing is producing something. You know God does not waste pain. And so you count it, even when it does not feel like it."
+    },
+    {
+      "type": "question",
+      "id": "201-09-2",
+      "text": "9.2 - Looking back on the hardest seasons of your life, can you see anything that was produced in you that could not have grown any other way? What did God use the pain to build?",
+      "height": "tall"
+    },
+    {
+      "type": "heading",
+      "text": "What Your Suffering Meant for Good"
+    },
+    {
+      "type": "text",
+      "text": "Of all the stories in the Bible about suffering, few are as long, detailed, and ultimately clear as the story of Joseph. Sold into slavery by his own brothers at seventeen. Falsely accused and thrown into prison. Forgotten by people he helped. He spent years in the dark - years when it would have been easy to conclude that God had abandoned him or that there was no plan at all."
+    },
+    {
+      "type": "text",
+      "text": "But the last chapter of his story is the key to understanding all the others. When Joseph finally stood face to face with the brothers who had sold him, he said something that could only have been spoken by someone who had truly wrestled with God in the suffering and come through to the other side: <em>\"As for you, you meant evil against me, but God meant it for good\"</em> (Genesis 50:20)."
+    },
+    {
+      "type": "text",
+      "text": "He did not say God caused it. He said God directed it. There is a difference. The brothers' cruelty was real. The injustice was real. The years in prison were real. And God - working through every bit of that, not around it - accomplished something that Joseph could not have accomplished any other way. The same sovereign God who is with you in your dark season is directing all of it toward a purpose you may not see until the final chapter."
+    },
+    {
+      "type": "verse",
+      "reference": "Romans 8:28",
+      "text": "And we know that for those who love God all things work together for good, for those who are called according to his purpose."
+    },
+    {
+      "type": "text",
+      "text": "Notice the scope: <em>all things.</em> Not the easy things, not the spiritual things. All things. The diagnosis. The broken marriage. The betrayal. The years of silence. The loss. God does not waste a tear. He uses what our deepest pain produces to accomplish what could not be accomplished any other way."
+    },
+    {
+      "type": "question",
+      "id": "201-09-3",
+      "text": "9.3 - When you read 'God meant it for good' from Joseph's story, what is the first response in your gut? Is it hope or resistance? What would it take for you to say something like that about the hardest thing you have faced?",
+      "height": "tall"
+    },
+    {
+      "type": "heading",
+      "text": "God Is With You in the Valley"
+    },
+    {
+      "type": "text",
+      "text": "One of the most important things the Bible says about suffering is not <em>why</em> it happens but <em>who is there</em> when it does. When the Israelites walked through the Red Sea, God was in the pillar of cloud and fire, going before them. When Shadrach, Meshach, and Abednego were thrown into the furnace, the king who looked into the fire saw a fourth figure walking with them. Psalm 23 does not say the path avoids the valley of the shadow of death. It says, <em>\"Even though I walk through the valley... you are with me.\"</em>"
+    },
+    {
+      "type": "text",
+      "text": "Jesus Himself went through the full experience of human suffering - poverty, rejection, loss, grief, abandonment, and death. He is not a distant deity watching your pain from a distance. He is the God who became flesh and suffered with you so that He could say: I know. I was there. I understand. And I am with you now."
+    },
+    {
+      "type": "verse",
+      "reference": "2 Corinthians 1:3-4",
+      "text": "Blessed be the God and Father of our Lord Jesus Christ, the Father of mercies and God of all comfort, who comforts us in all our affliction, so that we may be able to comfort those who are in any affliction, with the comfort with which we ourselves are comforted by God."
+    },
+    {
+      "type": "text",
+      "text": "Notice what Paul says about the purpose of being comforted: so that we can comfort others with the very same comfort we received. Your suffering is not only about what God is doing in you. It is preparing you to be the person who can walk into a friend's hospital room, or into a grief support group, and say with genuine authority: God was faithful in my darkness. He will be faithful in yours."
+    },
+    {
+      "type": "question",
+      "id": "201-09-4",
+      "text": "9.4 - Who in your life right now is walking through a hard season? How has your own experience with suffering prepared you to walk alongside them in a way that you could not have done before?",
+      "height": "tall"
+    },
+    {
+      "type": "heading",
+      "text": "Will Your Trial Make You Bitter or Better?"
+    },
+    {
+      "type": "text",
+      "text": "Every season of suffering takes you in one direction or the other. It either makes you harder, more defensive, more cynical about God and people - or it makes you more tender, more trusting, more aware of your own need and other people's. Both outcomes start with a choice you make, often a thousand small choices, in the middle of the pain."
+    },
+    {
+      "type": "text",
+      "text": "The key choice is where you take your honest pain. If you take it to God - if you bring your raw, messy, unanswered questions to Him the way David did in the Psalms - the pain gets processed in His presence and the result is often deeper faith. If you take it away from God, nursing it privately, letting it become a case against Him, the result is bitterness. The Psalms of lament are not prayers of a person who has given up on God. They are prayers of a person who refuses to process the pain anywhere else."
+    },
+    {
+      "type": "question",
+      "id": "201-09-5",
+      "text": "9.5 - Will you let your current trial make you bitter or better? What is one honest thing you need to bring to God right now - something you have been carrying quietly that you have not yet laid at His feet?",
+      "height": "tall"
+    },
+    {
+      "type": "heading",
+      "text": "This Week's Practice"
+    },
+    {
+      "type": "text",
+      "text": "This week, pray one of the lament Psalms out loud - Psalm 22, 42, or 88. Read it slowly, and notice how the writer moves from raw pain to remembered truth to renewed hope. This is the pattern of biblical lament: bring it honest, anchor it in what you know, wait for hope to rise. You do not have to fix the feeling. You just have to bring it to the right Person."
+    },
+    {
+      "type": "text",
+      "text": "Also this week, write down one hard thing you are carrying right now - something that hurts, something unresolved, something you do not understand. Beneath it, write: <em>\"And God meant it for good.\"</em> Not because you are certain of that yet, and not to dismiss the pain. But as a declaration of what you are choosing to believe about the God who walked with Joseph all the way to the last chapter."
     },
     {
       "type": "heading",
@@ -28,19 +157,19 @@
     },
     {
       "type": "question",
-      "id": "201-07-key",
+      "id": "201-09-key",
       "text": "What is one key thing you learned from this lesson?",
       "height": "short"
     },
     {
       "type": "question",
-      "id": "201-07-step",
+      "id": "201-09-step",
       "text": "What is one step you are going to take this week?",
       "height": "short"
     },
     {
       "type": "question",
-      "id": "201-07-prayer",
+      "id": "201-09-prayer",
       "text": "What is a prayer request for this week?",
       "height": "short"
     }

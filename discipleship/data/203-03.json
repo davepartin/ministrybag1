@@ -1,42 +1,51 @@
 {
   "id": "3",
+  "version": "v02",
   "title": "Lesson 3: Hospitality as Mission",
-  "description": "Life Skill: Using your home and your table to welcome strangers into the family of God.",
+  "description": "Using your home, your table, and your welcome as frontline tools for the gospel. Hospitality is not entertaining - it is mission.",
   "blocks": [
     {
       "type": "text",
-      "text": "The last several lessons have been building a vision of the church as a genuine spiritual family - belonging, bearing burdens, forgiving, encouraging one another. This final lesson in the 202 course turns that inward vision outward. The question is not only how you belong to the people already inside the community, but how you open the door to people who are still outside it. The most powerful tool you have for that is not a program or an event. It is your home."
+      "text": "In Lesson 2 you learned the BLESS rhythms - five habits for living on mission. Two of those rhythms, Eat and Serve, pointed directly toward what this lesson unpacks in full: the practice of hospitality. If BLESS is the engine of your personal ministry, hospitality is where some of the best fuel comes from. It is where faces become friends and friends become family. This lesson is not about dinner parties and table settings. It is about using the most ordinary tool you have - your home, your table, your welcome - as a frontline strategy for the gospel."
     },
     {
       "type": "heading",
-      "text": "The Ministry of the Table"
+      "text": "Why Hospitality?"
     },
     {
       "type": "text",
-      "text": "In a lonely world, an open door is a powerful witness. We live in a culture that is starving for genuine connection - people who eat alone, neighbors who have never met, coworkers who go home to silence. Into that context, the church has been given an extraordinary tool: the table. Not a formal dinner party. Not a carefully curated guest list. Just an open home, a shared meal, and the presence of someone who actually sees you."
+      "text": "We live in a culture that is starving for genuine connection. People eat alone. Neighbors have never met. Coworkers go home to silence. One of the leading church planting strategists in America was once asked, \"What is the key to evangelism in the 21st century?\" He paused, smiled, and said one word: <strong>Hospitality.</strong> In a progressively post-Christian society, the most strategic ground on which to engage the unbelieving with the good news of Jesus may be the ground of our own homes. When people do not gather in droves for stadium crusades or linger long enough on a sidewalk to hear a gospel presentation - what will you do? Where will you interact with people about the things that matter most? <strong>Invite them to dinner.</strong>"
     },
     {
       "type": "verse",
-      "reference": "Hebrews 13:2",
-      "text": "Do not neglect to show hospitality to strangers, for thereby some have entertained angels unawares."
+      "reference": "Hebrews 13:1-2",
+      "text": "Let brotherly love continue. Do not neglect to show hospitality to strangers, for thereby some have entertained angels unawares."
     },
     {
       "type": "text",
-      "text": "The word translated \"hospitality\" in the New Testament is philoxenia - love of strangers. Not love of friends or love of people who are easy or love of people who will reciprocate. Strangers. People you do not yet know. People who cannot give you anything in return. That is the posture Scripture calls you to."
+      "text": "The word translated \"hospitality\" in the New Testament is philoxenia - literally, <strong>love of strangers.</strong> Not love of friends or love of people who are easy or love of people who will reciprocate. Strangers. People you do not yet know. People who cannot give you anything in return. The Bible takes this so seriously that Paul lists hospitality as a qualification for church leadership: an elder \"must be hospitable\" (1 Timothy 3:2). If the leaders who are to be examples to the flock do not show up on the front lines to engage with their neighbors, it is unlikely the flock will embrace the mission the shepherds are avoiding."
     },
     {
       "type": "question",
-      "id": "202-10-1",
-      "text": "10.1 - Who is someone outside of your normal friend group that you could invite to a meal or coffee in the coming weeks? Write the name or describe the person, and write one reason why you have not yet taken that step.",
+      "id": "203-03-1",
+      "text": "3.1 - Who is someone outside your normal circle - a neighbor, coworker, acquaintance - that you could invite to a meal or coffee in the coming weeks? Write the name. What is one reason you have not yet taken that step?",
       "height": "tall"
     },
     {
       "type": "heading",
-      "text": "What Hospitality Actually Is"
+      "text": "Hospitality Is Not Entertaining"
     },
     {
       "type": "text",
-      "text": "Hospitality is not entertaining. This is one of the most important distinctions in the whole conversation. Entertaining is about impressing people - the perfect home, the perfect meal, the perfect performance. Hospitality is about welcoming people - making them feel seen, safe, and wanted. You can practice radical hospitality in a small apartment with takeout pizza. The size of your home has nothing to do with the size of your welcome."
+      "text": "This is one of the most important distinctions in the whole conversation. <strong>Entertaining</strong> is about impressing people - the perfect home, the perfect meal, the perfect performance. <strong>Hospitality</strong> is about welcoming people - making them feel seen, safe, and wanted. You can practice radical hospitality in a small apartment with takeout pizza. The size of your home has nothing to do with the size of your welcome."
+    },
+    {
+      "type": "text",
+      "text": "A woman named Diane was known for hosting people at the drop of a hat, for having a humble and gracious spirit that immediately put others at ease. When she hosted a special gathering one day, her guests arrived to find a stack of mismatched paper plates and leftovers from a church event spread on the kitchen counter. They had a delightful time. It did not matter. Biblical hospitality is not about the impressive menu or the Pinterest-perfect table settings. <strong>It is about making people feel welcome.</strong> It is being more interested in the person across from you than in having the roast cooked to perfection."
+    },
+    {
+      "type": "text",
+      "text": "This kind of unfussy hospitality has a multiplying effect. When people see that you do not need a magazine-worthy kitchen to open your home, they think: <em>I could do that too.</em> And suddenly hospitality is no longer reserved for the gifted hosts. It is a way of life accessible to apartment-dwellers and homeowners, to single people and large families, to those with limited resources and those who can afford to be generous."
     },
     {
       "type": "verse",
@@ -45,12 +54,44 @@
     },
     {
       "type": "text",
-      "text": "Notice the posture in Romans 12: seek to show hospitality. Not wait until you feel ready. Not offer it when the house is clean. Seek it. Pursue it. Go looking for opportunities to extend welcome. That kind of proactive hospitality does not happen by accident. It has to be a decision, a value you build into your rhythm of life."
+      "text": "Notice the posture in Romans 12: <strong>seek</strong> to show hospitality. Not wait until you feel ready. Not offer it when the house is clean. Seek it. Pursue it. Go looking for opportunities to extend welcome."
     },
     {
       "type": "question",
-      "id": "202-10-2",
-      "text": "10.2 - What is the difference between entertaining and true hospitality? Where do you think the pressure to entertain has gotten in the way of you opening your home more freely?",
+      "id": "203-03-2",
+      "text": "3.2 - What is the difference between entertaining and true hospitality? Where do you think the pressure to entertain has gotten in the way of you opening your home more freely?",
+      "height": "tall"
+    },
+    {
+      "type": "heading",
+      "text": "Hospitality Takes Courage"
+    },
+    {
+      "type": "text",
+      "text": "In a post-Christian world, hospitality is an act of courage. When we open up our homes and build friendships with those who do not look like us, believe like us, or act like us, we make ourselves vulnerable. We risk awkward conversations, rejected invitations, and misunderstandings. But we can do it because of the hope, strength, and courage we get from the Lord."
+    },
+    {
+      "type": "text",
+      "text": "The word <strong>Go</strong> in the Great Commission can mean something as simple as: Go and take the initiative to invite someone over for dinner. Not to a church service - into your life. When they see you, they may see your good deeds and glorify your Father who is in heaven."
+    },
+    {
+      "type": "verse",
+      "reference": "Matthew 5:16",
+      "text": "In the same way, let your light shine before others, so that they may see your good deeds and glorify your Father in heaven."
+    },
+    {
+      "type": "verse",
+      "reference": "1 Peter 2:12",
+      "text": "Keep your conduct among the Gentiles honorable, so that when they speak against you as evildoers, they may see your good deeds and glorify God on the day of visitation."
+    },
+    {
+      "type": "text",
+      "text": "Both Jesus and Peter connect the same idea: your visible, ordinary life becomes a witness. When someone enters your home and encounters genuine love, honest conversation, and a family that treats each other with grace - they are seeing the gospel before they hear it."
+    },
+    {
+      "type": "question",
+      "id": "203-03-3",
+      "text": "3.3 - What fears or obstacles most consistently keep you from practicing hospitality? (Too busy, home not nice enough, do not know what to say, fear of rejection...) Name them honestly. How does the promise that Jesus is with you speak into those fears?",
       "height": "tall"
     },
     {
@@ -59,7 +100,7 @@
     },
     {
       "type": "text",
-      "text": "Jesus was constantly at a table with someone. He ate with tax collectors and sinners. He ate with Pharisees who were hostile to him. He fed thousands on a hillside. He broke bread with his disciples on the night before his death. He cooked breakfast for his disciples on a beach after the resurrection. For Jesus, the table was not a social nicety. It was a ministry tool."
+      "text": "Remember from Lesson 2 - Jesus was constantly at a table with someone. He ate with tax collectors and sinners. He ate with Pharisees who were hostile to Him. He cooked breakfast for His disciples on a beach after the resurrection. For Jesus, the table was not a social nicety. It was a ministry tool."
     },
     {
       "type": "verse",
@@ -68,17 +109,47 @@
     },
     {
       "type": "text",
-      "text": "This teaching turns the ordinary logic of hospitality on its head. Most of us invite the people who will invite us back. We fill our tables with our own circle. Jesus says the blessing is in inviting the ones who cannot give you anything in return - and trusting God with what you do not receive from them. That posture is countercultural in every era, and it is deeply attractive to a watching world."
+      "text": "This teaching turns the ordinary logic of hospitality on its head. Most of us invite the people who will invite us back. Jesus says the blessing is in inviting the ones who <strong>cannot</strong> give you anything in return."
     },
     {
       "type": "question",
-      "id": "202-10-3",
-      "text": "10.3 - How does Jesus' model of the table challenge your current practice of hospitality? Who are the \"poor, crippled, lame, and blind\" equivalents in your neighborhood, workplace, or church context?",
+      "id": "203-03-4",
+      "text": "3.4 - How does Jesus' model of the table challenge your current practice? Who are the overlooked people in your neighborhood, workplace, or church - the ones most people walk past?",
       "height": "tall"
     },
     {
       "type": "heading",
-      "text": "Hospitality as the Front Door of the Gospel"
+      "text": "Four Ways to Practice Hospitality This Month"
+    },
+    {
+      "type": "text",
+      "text": "Hospitality is not complicated - though it is not always easy. Here are four ways to start, whether you are an extrovert or an introvert."
+    },
+    {
+      "type": "list",
+      "items": [
+        "<strong>Welcome everyone you meet.</strong> Greet people. Say hello. Learn names. Everyone you meet is eternal - you have never met a mere mortal. If you are an introvert, pray for grace and take one step beyond your comfort zone.",
+        "<strong>Engage people with genuine curiosity.</strong> Ask open-ended questions and listen. Take an interest in people rather than thinking about what impressive thing you can say next. The BLESS rhythm of Listen is hospitality in action.",
+        "<strong>Make a meal a priority.</strong> Long dinners, good food, good conversation. But remember - hospitality is for those <em>outside</em> your normal circle. Who is the neighbor you have never had over? The coworker who eats lunch alone?",
+        "<strong>Love the outsider.</strong> In every workplace and neighborhood there are people who are outliers - people who, for whatever reason, are on the edge. Jesus would have moved toward them. We love the outsider because we were the outsider."
+      ]
+    },
+    {
+      "type": "text",
+      "text": "[PLACEHOLDER: Infographic - Four Ways to Practice Hospitality: Welcome / Engage / Eat / Love the Outsider with simple icons]"
+    },
+    {
+      "type": "heading",
+      "text": "Why We Love Strangers"
+    },
+    {
+      "type": "verse",
+      "reference": "Ephesians 2:12-13",
+      "text": "Remember that you were at that time separated from Christ, alienated from the commonwealth of Israel and strangers to the covenants of promise, having no hope and without God in the world. But now in Christ Jesus you who once were far off have been brought near by the blood of Christ."
+    },
+    {
+      "type": "text",
+      "text": "Here is why hospitality matters so much: <strong>God has been hospitable to us.</strong> Even when we were living as His enemies, God came and saved us. He opened the door and invited us into His presence. We demonstrate that we truly appreciate the divine hospitality we have received as we extend our own hospitality to those around us. Welcomed strangers should be quick to learn to welcome other strangers."
     },
     {
       "type": "verse",
@@ -87,12 +158,12 @@
     },
     {
       "type": "text",
-      "text": "Here is the truth about why hospitality matters so much: most people do not come to faith in a church building. They come to faith through a relationship. Someone opened their home, made space for honest conversation, asked good questions, and modeled what it looks like to follow Jesus in ordinary life. The table is where those relationships get built. Every meal you share with someone who does not yet know Jesus is planting seeds that the Spirit can water. Hospitality is not a support ministry to the real mission. It is the mission."
+      "text": "Most people do not come to faith in a church building. They come to faith through a relationship. Someone opened their home, made space for honest conversation, and modeled what it looks like to follow Jesus in ordinary life. The table is where those relationships get built. Hospitality is not a support ministry to the real mission. <strong>It is the mission.</strong>"
     },
     {
       "type": "question",
-      "id": "202-10-4",
-      "text": "10.4 - Think of your own story. Was there a person or a home that created the relational space for you to encounter the gospel? What did that person do that opened the door?",
+      "id": "203-03-5",
+      "text": "3.5 - Think of your own story. Was there a person or a home that created the relational space for you to encounter the gospel? What did that person do that opened the door for you?",
       "height": "tall"
     },
     {
@@ -101,18 +172,12 @@
     },
     {
       "type": "text",
-      "text": "The goal is not a dramatic overhaul of your social life. The goal is building hospitality into the rhythms you already have. This might look like a standing monthly dinner with a neighbor. It might be a backyard cookout that includes the person next door you have never met. It might be the coworker you have been meaning to have coffee with for six months. Small, consistent, ordinary acts of welcome accumulate into something significant over time. You do not need a big house or a special gift. You need a willing heart and a chair at your table."
+      "text": "The goal is not a dramatic overhaul of your social life. The goal is building hospitality into the rhythms you already have. This might look like a standing monthly dinner with a neighbor. A backyard cookout that includes the person next door you have never met. The coworker you have been meaning to have coffee with for six months. Small, consistent, ordinary acts of welcome accumulate into something significant over time. You do not need a big house or a special gift. You need a willing heart and a chair at your table."
     },
     {
       "type": "question",
-      "id": "202-10-5",
-      "text": "10.5 - What fears or obstacles most consistently keep you from practicing hospitality? (Too busy, home not nice enough, don't know what to say, fear of rejection...) Name them honestly.",
-      "height": "tall"
-    },
-    {
-      "type": "question",
-      "id": "202-10-6",
-      "text": "10.6 - Write one concrete, specific step you will take in the next 30 days to use your home or your table as a place of welcome. Name the person, the occasion, and the date you will aim for.",
+      "id": "203-03-6",
+      "text": "3.6 - Write one concrete, specific plan you will act on in the next 30 days to use your home or your table as a place of welcome. Name the person, the occasion, and the date you will aim for.",
       "height": "tall"
     },
     {
@@ -121,19 +186,19 @@
     },
     {
       "type": "question",
-      "id": "202-10-key",
+      "id": "203-03-key",
       "text": "What is one key thing you learned from this lesson?",
       "height": "short"
     },
     {
       "type": "question",
-      "id": "202-10-step",
+      "id": "203-03-step",
       "text": "What is one step you are going to take this week?",
       "height": "short"
     },
     {
       "type": "question",
-      "id": "202-10-prayer",
+      "id": "203-03-prayer",
       "text": "What is a prayer request for this week?",
       "height": "short"
     }

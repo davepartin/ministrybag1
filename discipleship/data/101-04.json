@@ -1,5 +1,6 @@
 {
   "id": "4",
+  "version": "v01",
   "title": "Lesson 4: Bible",
   "blocks": [
     {
@@ -53,26 +54,26 @@
     },
     {
       "type": "text",
-      "text": "<strong>Let's study John 8:2-11:</strong>",
+      "text": "<strong>Let's study John 3:1-4, 16-17:</strong>",
       "class": "my-6"
     },
     {
       "type": "verse",
-      "reference": "John 8:2-11",
-      "text": "<sup>2</sup>Early in the morning he came again to the temple. All the people came to him, and he sat down and taught them. <sup>3</sup>The scribes and the Pharisees brought a woman who had been caught in adultery, and placing her in the midst <sup>4</sup>they said to him, \"Teacher, this woman has been caught in the act of adultery. <sup>5</sup>Now in the Law, Moses commanded us to stone such women. So what do you say?\" <sup>6</sup>This they said to test him, that they might have some charge to bring against him. Jesus bent down and wrote with his finger on the ground. <sup>7</sup>And as they continued to ask him, he stood up and said to them, \"Let him who is without sin among you be the first to throw a stone at her.\" <sup>8</sup>And once more he bent down and wrote on the ground. <sup>9</sup>But when they heard it, they went away one by one, beginning with the older ones, and Jesus was left alone with the woman standing before him. <sup>10</sup>Jesus stood up and said to her, \"Woman, where are they? Has no one condemned you?\" <sup>11</sup>She said, \"No one, Lord.\" And Jesus said, \"Neither do I condemn you; go, and from now on sin no more.\"",
+      "reference": "John 3:1-4, 16-17",
+      "text": "<sup>1</sup>Now there was a man of the Pharisees named Nicodemus, a ruler of the Jews. <sup>2</sup>This man came to Jesus by night and said to him, \"Rabbi, we know that you are a teacher come from God, for no one can do these signs that you do unless God is with him.\" <sup>3</sup>Jesus answered him, \"Truly, truly, I say to you, unless one is born again he cannot see the kingdom of God.\" <sup>4</sup>Nicodemus said to him, \"How can a man be born when he is old? Can he enter a second time into his mother's womb and be born?\" ... <sup>16</sup>For God so loved the world, that he gave his only Son, that whoever believes in him should not perish but have eternal life. <sup>17</sup>For God did not send his Son into the world to condemn the world, but in order that the world might be saved through him.",
       "custom_class": "my-6"
     },
     {
       "type": "question",
       "id": "4-3",
       "text": "4.3 - In the above passage, answer \"What does this passage tell me about God?\"",
-      "data_question": "4.3 - John 8:2-11 about God"
+      "data_question": "4.3 - John 3:1-4,16-17 about God"
     },
     {
       "type": "question",
       "id": "4-4",
       "text": "4.4 - What does this passage tell me about mankind?",
-      "data_question": "4.4 - John 8:2-11 about mankind"
+      "data_question": "4.4 - John 3:1-4,16-17 about mankind"
     },
     {
       "type": "heading",
@@ -80,22 +81,22 @@
     },
     {
       "type": "text",
-      "text": "True faith involves putting belief into action. Reading and studying the Bible only becomes transformative when we let it change how we live."
+      "text": "True faith involves putting belief into action. Reading and studying the Bible only becomes transformative when we let it change how we live. Jesus closed the Sermon on the Mount, his longest recorded teaching, not with a theological summary but with a warning: hearing is not enough."
     },
     {
       "type": "verse",
       "reference": "Matthew 7:24",
-      "text": "Everyone then who hears these words of mine and does them will be like a wise man who built his house on the rock."
+      "text": "Everyone then who hears these words of mine <strong>and does them</strong> will be like a wise man who built his house on the rock."
     },
     {
       "type": "text",
-      "text": "The third question to ask when studying any passage is: <strong>What is this passage telling me to do or believe?</strong> Answer it by completing this sentence: \"Because of this truth, I will...\""
+      "text": "The third question to ask when studying any passage is: <strong>What is this passage telling me to do or believe?</strong> Jesus made clear that the difference between a life built on rock and a life built on sand is not what you know, but what you do with what you know."
     },
     {
       "type": "question",
       "id": "4-5",
-      "text": "4.5 - Looking back at John 8:2-11, complete this sentence: Because of this truth, I will...",
-      "data_question": "4.5 - John 8:2-11 application"
+      "text": "4.5 - Looking back at John 3:1-4, 16-17, what is this passage telling you to do or believe?",
+      "data_question": "4.5 - John 3:1-4,16-17 do or believe"
     },
     {
       "type": "heading",

@@ -1,11 +1,17 @@
 {
   "id": "1",
-  "title": "Lesson 1: The Great Commission - You Are Sent",
-  "description": "The last words of Jesus before the ascension and what they mean for every believer: you are not a supporter of someone else's mission. You are sent.",
+  "version": "v02",
+  "title": "Lesson 1: The Great Commission - Your Personal Ministry",
+  "description": "The last words of Jesus and what they mean for every believer: you are not a supporter of someone else's mission. You are sent. This lesson gives you the vision, the spheres, and the first tool for building your personal ministry.",
   "blocks": [
     {
+      "type": "image",
+      "src": "images/203-3circle-logo.png",
+      "alt": "Planting Orchards Discipleship Series: Starting in Discipleship, Growing Out with the Gospel, and Leading in Discipleship"
+    },
+    {
       "type": "text",
-      "text": "In 201 you went deep - the gospel, identity, spiritual disciplines, the foundation of the Christian life. In 202 you grew up - the Holy Spirit, Scripture, the church, community, home, hospitality. Now in 203 the direction changes. Everything you have been building turns outward. This course is about living on mission in the world God has placed you in. It starts with the most important words Jesus ever said before he left."
+      "text": "In 101 you were planted - a new believer learning the basics of following Jesus. In 201 and 202 you went deep and grew up - the gospel took root, your identity in Christ was established, and the character of the Spirit began to form in you. Now in 203 the tree turns outward, and everything that has been growing in you becomes the seed for planting orchards in the lives of others."
     },
     {
       "type": "heading",
@@ -13,7 +19,7 @@
     },
     {
       "type": "text",
-      "text": "When someone is about to leave permanently, their last words carry unusual weight. Jesus knew this. In the final moments before his ascension, he did not give a farewell speech or a closing prayer. He gave a commission - a mandate, an assignment, a direction to move. These words have been shaping the church for two thousand years, and they are addressed to you."
+      "text": "When someone is about to leave permanently, their last words carry unusual weight. Jesus knew this. In the final moments before His ascension, He did not give a farewell speech or a closing prayer. He gave a commission - a mandate, an assignment, a direction to move. These words have been shaping the church for two thousand years, and they are addressed to you."
     },
     {
       "type": "verse",
@@ -22,7 +28,11 @@
     },
     {
       "type": "text",
-      "text": "Three things anchor this commission. All authority has been given to him - he does not send you out unequipped. All nations - no person, culture, or neighborhood is outside the reach of this mission. I am with you always - the same presence that animated his ministry on earth goes with you. The commission is impossible without those three anchors. With them, it is simply a matter of going."
+      "text": "Three things anchor this commission. <strong>All authority</strong> has been given to Him - He does not send you out unequipped. <strong>All nations</strong> - no person, culture, or neighborhood is outside the reach of this mission. <strong>I am with you always</strong> - the same presence that animated His ministry on earth goes with you. The commission is impossible without those three anchors. With them, it is simply a matter of going."
+    },
+    {
+      "type": "text",
+      "text": "And notice the two halves of the Great Commission: <strong>Go and make disciples</strong> - that is reaching new people. <strong>Teaching them to observe all that I have commanded you</strong> - that is developing them in their faith and building their own personal ministry. This course starts with the first half: reaching new people. The later lessons of 203 will move you toward the second half."
     },
     {
       "type": "question",
@@ -41,7 +51,11 @@
     },
     {
       "type": "text",
-      "text": "The logic of this verse is exact: how the Father sent the Son is the pattern for how the Son sends you. And how was the Son sent? Into ordinary human life. A neighborhood in Nazareth. A carpenter's shop. Meals with tax collectors. Conversations at wells and in fishing boats. Jesus did not carry out his mission primarily through events or platforms. He carried it out through presence - showing up, noticing people, building trust, and letting the gospel work through everyday relationships. That is the model. You are not supporting someone else's mission from a safe distance. You are sent."
+      "text": "The logic of this verse is exact: how the Father sent the Son is the pattern for how the Son sends you. And how was the Son sent? Into ordinary human life. A neighborhood in Nazareth. A carpenter's shop. Meals with tax collectors. Conversations at wells and in fishing boats. Jesus did not carry out His mission primarily through events or platforms. He carried it out through presence - showing up, noticing people, building trust, and letting the gospel work through everyday relationships. That is the model. You are not supporting someone else's mission from a safe distance. You are sent."
+    },
+    {
+      "type": "text",
+      "text": "Here is a shift that changes everything: <strong>Christians should be the missionaries.</strong> We should be crossing boundaries and going to people - not expecting the unchurched to be missionaries and come to us. Think about how many buildings you drive past every day - Masonic lodges, other churches, community centers - that you never think about entering. That is how most of the world drives past churches. The door feels unfamiliar, the customs feel foreign, and there are dozens of invisible boundaries between someone who has never been to church and actually walking through the front door. The Great Commission does not say <em>\"Wait and hope they come.\"</em> It says <strong>Go.</strong>"
     },
     {
       "type": "question",
@@ -60,7 +74,7 @@
     },
     {
       "type": "text",
-      "text": "Jesus does not send his disciples to the ends of the earth first. He sends them to Jerusalem - the city where they already are. Then outward in expanding circles. The global scope is real and it matters. But it always starts where you are right now. The most common reason people are ineffective in mission outwardly is that they have never become missionaries inwardly - in their own homes, with their own family, among the people who know them best and see them most."
+      "text": "Jesus does not send His disciples to the ends of the earth first. He sends them to Jerusalem - the city where they already are. Then outward in expanding circles. The global scope is real and it matters. But it always starts where you are right now. The most common reason people are ineffective in mission outwardly is that they have never become missionaries inwardly - in their own homes, with their own family, among the people who know them best and see them most."
     },
     {
       "type": "verse",
@@ -79,6 +93,37 @@
     },
     {
       "type": "heading",
+      "text": "Your Personal Ministry Map"
+    },
+    {
+      "type": "text",
+      "text": "Here is a practical tool to start with. Write your name in the center of a piece of paper. Around your name, draw four circles - one for each sphere of your life. Then begin filling in names."
+    },
+    {
+      "type": "text",
+      "text": "[PLACEHOLDER: Personal Ministry Map infographic - name in center, 4 spheres radiating out: Family, Friends, Acquaintances, New People]"
+    },
+    {
+      "type": "list",
+      "items": [
+        "<strong>Family</strong> - the people in your home and your extended family. Does everyone in your family know the gospel? Does anyone in your family have a personal ministry of their own?",
+        "<strong>Friends</strong> - the people you spend regular time with. Do they know about your faith? Have you ever had a spiritual conversation with them?",
+        "<strong>Acquaintances</strong> - coworkers, neighbors, people in your regular orbit. You see them weekly or even daily, but the relationship has not gone deeper yet. Who could you move from faces to friends?",
+        "<strong>New People</strong> - people you encounter in everyday life. The barista, the parent at the kids' game, the person at the gym. Each one is an image-bearer with a story."
+      ]
+    },
+    {
+      "type": "text",
+      "text": "The question that should sit underneath this map is simple: <strong>Does everyone who knows me, know about the gospel?</strong> Not \"have I preached at everyone.\" But have the people in my regular life seen enough of my faith and heard enough of my story to know what I believe and why? If not, the map shows you where to start."
+    },
+    {
+      "type": "question",
+      "id": "203-01-4",
+      "text": "1.4 - Start your Personal Ministry Map right here. Write 2-3 names in each sphere: Family, Friends, Acquaintances, New People. As you look at those names - who among them knows the gospel? Who does not? Who is God placing on your heart?",
+      "height": "tall"
+    },
+    {
+      "type": "heading",
       "text": "Make Disciples, Not Just Converts"
     },
     {
@@ -91,15 +136,31 @@
       "text": "And what you have heard from me in the presence of many witnesses entrust to faithful men, who will be able to teach others also."
     },
     {
-      "type": "question",
-      "id": "203-01-4",
-      "text": "1.4 - What is the difference between telling someone about Jesus and making a disciple? What would that difference look like in one specific relationship you already have?",
-      "height": "tall"
+      "type": "text",
+      "text": "Remember the tree from the beginning of the 201 series? You built roots, you grew a trunk, you developed branches. Now the tree bears fruit. And the fruit of a healthy tree is not just character - it is also seeds. Seeds that fall to the ground and become new trees. When you share your faith with others and help them grow, you are planting orchards. We seed and water, but God gives the growth (1 Corinthians 3:6). We are not responsible for the harvest. We are responsible for the planting."
     },
     {
       "type": "question",
       "id": "203-01-5",
-      "text": "1.5 - Name one specific person in your home, neighborhood, or workplace that God seems to be putting on your heart. Write their name. What is one step you could take this week to move toward them intentionally?",
+      "text": "1.5 - What is the difference between telling someone about Jesus and making a disciple? What would that difference look like in one specific relationship you already have?",
+      "height": "tall"
+    },
+    {
+      "type": "heading",
+      "text": "You Are Not Alone"
+    },
+    {
+      "type": "text",
+      "text": "Jesus ends the Great Commission with the most comforting words He ever spoke: <em>\"And behold, I am with you always, to the end of the age.\"</em> He does not send you out alone. The Holy Spirit - the one you met in 201 Lesson 3 - is living inside you, guiding you, giving you words when you do not have them, opening doors you could not open yourself. This is a dependent adventure. The question is not whether you have enough skill. The question is whether you will enter the conversation and see where the Spirit takes you."
+    },
+    {
+      "type": "text",
+      "text": "Over the next three lessons, you are going to learn practical tools for living this out: the BLESS rhythms for everyday mission, hospitality as a frontline strategy, and how to share your story and the gospel clearly. But for now, the assignment is simple: look at your map, pick one name, and ask God what He wants you to do this week."
+    },
+    {
+      "type": "question",
+      "id": "203-01-6",
+      "text": "1.6 - Name one specific person from your Personal Ministry Map that God seems to be placing on your heart. Write their name. What is one step you could take this week to move toward them intentionally?",
       "height": "tall"
     },
     {
