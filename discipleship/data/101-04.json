@@ -1,15 +1,20 @@
 {
   "id": "4",
-  "version": "v01",
-  "title": "Lesson 4: Bible",
+  "version": "v02",
+  "title": "Lesson 4: The Bible",
+  "description": "The Bible is not just a book to read. It is a living conversation with the God who made you. This lesson introduces a widely-used approach called the Discovery Bible Study Method, or DBS for short, that will help you hear from God every time you open His Word. DBS is a simple, reproducible method used by disciples around the world to read Scripture, ask honest questions, and respond in obedience.",
   "blocks": [
     {
+      "type": "text",
+      "text": "In the last lesson you learned to pray using the pattern Jesus gave us in the Lord's Prayer. Prayer is how you talk to God. Now it is time to learn how God will often talk to you. The Bible is the primary way God speaks, and learning to read it well will change your life more than almost anything else you can do."
+    },
+    {
       "type": "heading",
-      "text": "What is the Bible?"
+      "text": "What Is the Bible?"
     },
     {
       "type": "text",
-      "text": "The Bible is the Word of God to humanity, to be our guide, to instruct, and to bring us into relationship with Him. It serves as a road map for our spiritual journey, helping us understand God's character, the purpose of our lives, and the principles we should live by."
+      "text": "The Bible is not just a religious book full of rules. It is the living Word of God, breathed out by Him and given to you so that you can know Him, trust Him, and follow Him. It tells one big story from beginning to end: God created mankind and it was very good, man fell from God through sin, so God came to rescue humanity through His Son, Jesus. You will find the stories of the Bible point to that story."
     },
     {
       "type": "verse",
@@ -17,86 +22,150 @@
       "text": "All Scripture is breathed out by God and profitable for teaching, for reproof, for correction, and for training in righteousness, that the man of God may be complete, equipped for every good work."
     },
     {
+      "type": "text",
+      "text": "Notice what that verse says. Scripture is not just helpful. It is breathed out by God. That means when you read the Bible, you are not reading someone's best ideas about life. You are hearing from the Creator of the universe. He wrote this book so that you could be complete and equipped for the life He has called you to."
+    },
+    {
       "type": "question",
       "id": "4-1",
-      "text": "4.1 - This course has encouraged you to read the Bible daily. How has consistently reading the book of John affected you personally?",
+      "text": "4.1 - This course has encouraged you to read the Gospel of John. How has reading it so far affected you personally?",
       "data_question": "4.1 - Reading John's impact"
     },
     {
       "type": "heading",
-      "text": "The Bible should be: 1) Read Daily, 2) Studied, 3) Obeyed"
-    },
-    {
-      "type": "heading",
-      "text": "1) The Bible should be \"Read Daily\""
+      "text": "Three Ways to Let the Bible Change Your Life"
     },
     {
       "type": "text",
-      "text": "The way we get to know someone is through conversation. When we read about God's journey, desires, and character, we begin to understand Him, which leads to an authentic relationship. God desires for us to know Him through His story from creation to the New Testament."
+      "text": "Reading the Bible is a little like eating a meal. You can look at the food on the plate and appreciate it. That is a start. But the food does not nourish you until you actually pick it up, chew it, and let it become part of you. The same is true with Scripture. There are three things God invites you to do with His Word: read it, discover what it means, and live it out."
+    },
+    {
+      "type": "heading",
+      "text": "1. Read It"
+    },
+    {
+      "type": "text",
+      "text": "The simplest and most important habit you can build right now is reading the Bible every day. You do not have to read a lot. Even a few verses, read slowly and with attention, can change the course of your day. The goal is not to get through the Bible as fast as possible. The goal is to hear from God."
+    },
+    {
+      "type": "text",
+      "text": "Think about how you get to know a friend. You spend time with them. You listen to what they say. You learn what matters to them. Reading the Bible is like that. It is time spent with God, learning His heart, His character, and His promises. The more time you spend in His Word, the more you will recognize His voice in your life."
     },
     {
       "type": "question",
       "id": "4-2",
-      "text": "4.2 - When is the best time each day for you to spend in God's Word? Which format do you prefer for engaging with the Bible such as a physical book, an app, or an audio version?",
+      "text": "4.2 - When is the best time each day for you to spend in God's Word? Do you prefer reading a physical Bible, an app, or listening to an audio version?",
       "data_question": "4.2 - Best time and format for Bible reading"
     },
     {
       "type": "heading",
-      "text": "2) The Bible should be \"Studied\""
+      "text": "2. Discover What It Means"
     },
     {
       "type": "text",
-      "text": "Reading is essential, but we must also dig deep and study it. Through study, we uncover cultural context, historical background, and the original intent. A great way to move from reading to deeper study is by asking these 2 key questions:"
+      "text": "Reading is the first step, but God does not want you to just pass your eyes over the words. He wants you to discover what He is saying to you. The good news is that you do not need a seminary degree or a stack of commentaries to do this. You just need three simple questions."
     },
     {
       "type": "text",
-      "text": "<strong>1) What does this passage tell me about God?</strong> - Learn about God<br>\n<strong>2) What does this passage tell me about mankind?</strong> - Learn about people"
+      "text": "These are called the <strong>Three Discovery Questions</strong>, and they will work with any passage of Scripture you ever read. They are the most important tool in this lesson, and you will use them for the rest of your life."
     },
     {
       "type": "text",
-      "text": "<strong>Let's study John 3:1-4, 16-17:</strong>",
-      "class": "my-6"
+      "text": "<strong>Discovery Question 1: What does this passage tell me about God?</strong>"
+    },
+    {
+      "type": "text",
+      "text": "Every passage of the Bible reveals something about who God is. His character, His heart, His promises, His power. When you read, start by looking for God. What is He doing? What does He care about? What does this show you about the kind of Father He is?"
+    },
+    {
+      "type": "text",
+      "text": "<strong>Discovery Question 2: What does this passage tell me about people?</strong>"
+    },
+    {
+      "type": "text",
+      "text": "The Bible is also honest about humanity. It shows our need, our brokenness, our beauty as image-bearers, and the way God meets us in all of it. When you read, look for what the passage reveals about the human condition. What is true about us? What do the people in this story struggle with? Where do you see yourself in it?"
+    },
+    {
+      "type": "text",
+      "text": "<strong>Discovery Question 3: What is this passage calling me to do or believe?</strong>"
+    },
+    {
+      "type": "text",
+      "text": "This is where the Bible becomes personal. God does not speak just to inform you. He speaks to transform you. Every passage has something in it that calls for a response, whether it is a truth to trust, a command to follow, a sin to turn from, or a promise to hold on to. When you find it, write it down. That is the beginning of obedience."
+    },
+    {
+      "type": "text",
+      "text": "Here is what makes these three questions so powerful: they work every single time. No matter what book of the Bible you are reading, no matter how familiar or unfamiliar the passage is, these three questions will open it up. You will use them in this lesson, and you will use them in future courses as you go deeper into studying Scripture."
+    },
+    {
+      "type": "heading",
+      "text": "3. Live It Out"
+    },
+    {
+      "type": "text",
+      "text": "Jesus closed the Sermon on the Mount, His longest recorded teaching, not with a theological summary but with a warning. He told a story about two builders. One built his house on rock. The other built his house on sand. When the storm came (and they always come), only one house was left standing. The difference between the two builders was not <strong>what they heard</strong>, but <strong>what they did</strong> with what they heard."
+    },
+    {
+      "type": "verse",
+      "reference": "Matthew 7:24-25",
+      "text": "Everyone then who hears these words of mine and does them will be like a wise man who built his house on the rock. And the rain fell, and the floods came, and the winds blew and beat on that house, but it did not fall, because it had been founded on the rock."
+    },
+    {
+      "type": "text",
+      "text": "The difference between a life built on rock and a life built on sand is not what you know, but what you do with what you know. That is why the third Discovery Question matters so much. It moves you from reading about God to actually walking with Him. And every step of obedience, no matter how small, makes your foundation stronger."
+    },
+    {
+      "type": "heading",
+      "text": "Let's Practice: The Three Discovery Questions"
+    },
+    {
+      "type": "text",
+      "text": "Now it is time to try these questions for yourself. Below is a passage from the Gospel of John. It is the story of a man named Nicodemus, a well-respected religious leader who came to Jesus at night with questions. Nicodemus had studied the Scriptures his whole life, but Jesus told him something he had never heard before: that knowing about God is not enough. You must be born again."
+    },
+    {
+      "type": "text",
+      "text": "Read the passage slowly. Then answer each of the Three Discovery Questions that follow."
     },
     {
       "type": "verse",
       "reference": "John 3:1-4, 16-17",
-      "text": "<sup>1</sup>Now there was a man of the Pharisees named Nicodemus, a ruler of the Jews. <sup>2</sup>This man came to Jesus by night and said to him, \"Rabbi, we know that you are a teacher come from God, for no one can do these signs that you do unless God is with him.\" <sup>3</sup>Jesus answered him, \"Truly, truly, I say to you, unless one is born again he cannot see the kingdom of God.\" <sup>4</sup>Nicodemus said to him, \"How can a man be born when he is old? Can he enter a second time into his mother's womb and be born?\" ... <sup>16</sup>For God so loved the world, that he gave his only Son, that whoever believes in him should not perish but have eternal life. <sup>17</sup>For God did not send his Son into the world to condemn the world, but in order that the world might be saved through him.",
-      "custom_class": "my-6"
+      "text": "<sup>1</sup>Now there was a man of the Pharisees named Nicodemus, a ruler of the Jews. <sup>2</sup>This man came to Jesus by night and said to him, \"Rabbi, we know that you are a teacher come from God, for no one can do these signs that you do unless God is with him.\" <sup>3</sup>Jesus answered him, \"Truly, truly, I say to you, unless one is born again he cannot see the kingdom of God.\" <sup>4</sup>Nicodemus said to him, \"How can a man be born when he is old? Can he enter a second time into his mother's womb and be born?\" ... <sup>16</sup>For God so loved the world, that he gave his only Son, that whoever believes in him should not perish but have eternal life. <sup>17</sup>For God did not send his Son into the world to condemn the world, but in order that the world might be saved through him."
     },
     {
       "type": "question",
       "id": "4-3",
-      "text": "4.3 - In the above passage, answer \"What does this passage tell me about God?\"",
-      "data_question": "4.3 - John 3:1-4,16-17 about God"
+      "text": "4.3 - Discovery Question 1: What does this passage tell you about God?",
+      "data_question": "4.3 - John 3 about God"
     },
     {
       "type": "question",
       "id": "4-4",
-      "text": "4.4 - What does this passage tell me about mankind?",
-      "data_question": "4.4 - John 3:1-4,16-17 about mankind"
-    },
-    {
-      "type": "heading",
-      "text": "3) The Bible should be \"Obeyed\""
-    },
-    {
-      "type": "text",
-      "text": "True faith involves putting belief into action. Reading and studying the Bible only becomes transformative when we let it change how we live. Jesus closed the Sermon on the Mount, his longest recorded teaching, not with a theological summary but with a warning: hearing is not enough."
-    },
-    {
-      "type": "verse",
-      "reference": "Matthew 7:24",
-      "text": "Everyone then who hears these words of mine <strong>and does them</strong> will be like a wise man who built his house on the rock."
-    },
-    {
-      "type": "text",
-      "text": "The third question to ask when studying any passage is: <strong>What is this passage telling me to do or believe?</strong> Jesus made clear that the difference between a life built on rock and a life built on sand is not what you know, but what you do with what you know."
+      "text": "4.4 - Discovery Question 2: What does this passage tell you about people?",
+      "data_question": "4.4 - John 3 about people"
     },
     {
       "type": "question",
       "id": "4-5",
-      "text": "4.5 - Looking back at John 3:1-4, 16-17, what is this passage telling you to do or believe?",
-      "data_question": "4.5 - John 3:1-4,16-17 do or believe"
+      "text": "4.5 - Discovery Question 3: What is this passage calling you to do or believe?",
+      "data_question": "4.5 - John 3 do or believe"
+    },
+    {
+      "type": "text",
+      "text": "You just did something that many lifelong Christians have never been taught to do. You opened the Bible, read it carefully, and discovered for yourself what God was saying. That is not just Bible reading. That is Bible discovery. And the beautiful thing is that you can do this with any passage, any day, for the rest of your life."
+    },
+    {
+      "type": "heading",
+      "text": "A Tool You Can Share"
+    },
+    {
+      "type": "text",
+      "text": "One more thing before you move on. These Three Discovery Questions are not just for you. They are simple enough that you could sit down with a friend, open the Bible to any passage, and walk through the same three questions. You do not need to be a Bible expert. You just need to be willing to read, ask the questions, and listen for what God is saying. Someday, when you are helping someone else follow Jesus, this tool will be one of the first things you pass along."
+    },
+    {
+      "type": "question",
+      "id": "4-6",
+      "text": "4.6 - Imagine sitting down with a friend who has never read the Bible. How would you explain the Three Discovery Questions to them in your own words?",
+      "data_question": "4.6 - Explaining Discovery Questions to a friend"
     },
     {
       "type": "heading",
@@ -104,12 +173,12 @@
     },
     {
       "type": "text",
-      "text": "You have learned three ways to engage the Bible, reading it daily, studying it deeply, and obeying what it says. These three habits practiced together over time will shape your life more than almost anything else you can do."
+      "text": "You have learned three ways to let the Bible change your life: read it daily, discover what it means using the Three Discovery Questions, and live out what you find. These three habits, practiced together over time, will shape your life more than almost anything else you can do. The Word of God is alive, and it is speaking to you."
     },
     {
       "type": "bible_reading",
       "heading": "Introduction to John 10, 11, and 12",
-      "intro": "In John 10-12, Jesus calls Himself the Good Shepherd who lays down His life for His sheep, raises Lazarus from the dead after four days in the tomb, and enters Jerusalem as King. As you read, try using the three study questions you learned today: what does this tell me about God, what does it tell me about people, and what is it asking me to do?",
+      "intro": "In John 10-12, Jesus calls Himself the Good Shepherd who lays down His life for His sheep, raises Lazarus from the dead after four days in the tomb, and enters Jerusalem as King. As you read, try using the Three Discovery Questions you learned today: What does this tell me about God? What does it tell me about people? What is it calling me to do or believe?",
       "chapters": [
         {
           "ref": "John 10"

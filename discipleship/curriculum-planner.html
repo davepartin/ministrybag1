@@ -80,8 +80,9 @@
         th:nth-child(5),
         th:nth-child(6),
         th:nth-child(7),
-        th:nth-child(8) {
-            width: 13.6%;
+        th:nth-child(8),
+        th:nth-child(9) {
+            width: 11.7%;
         }
 
         .seek {
@@ -213,6 +214,7 @@
                 const cLine = getInd('Key Line');
                 const cQuestion = getInd('Key Question');
                 const cBible = getInd('Key Bible Chapters');
+                const cPhoto = getInd('Key Photo');
 
                 let html = '';
                 let currentCourse = '';
@@ -317,6 +319,7 @@
                                         <th>Key Line</th>
                                         <th>Key Question</th>
                                         <th>Bible Chapters</th>
+                                        <th>Key Photo</th>
                                     </tr>
                                 </thead>
                                 <tbody>`;
@@ -325,11 +328,11 @@
 
                     if (!r[cLesson]) continue;
 
-                    totalFields += 6; // Tracking Verse, Framework, Story, Line, Question, Bible
+                    totalFields += 7; // Tracking Verse, Framework, Story, Line, Question, Bible, Photo
 
                     let rowSeekCount = 0;
                     let rowIdeaCount = 0;
-                    const cIndexes = [cVerse, cFrame, cStory, cLine, cQuestion, cBible];
+                    const cIndexes = [cVerse, cFrame, cStory, cLine, cQuestion, cBible, cPhoto];
 
                     for (let cIdx of cIndexes) {
                         const val = r[cIdx] ? r[cIdx].trim() : '';
@@ -337,8 +340,8 @@
                         else if (val.includes('[IDEA]')) rowIdeaCount++;
                     }
 
-                    const rowDone = 6 - rowSeekCount - rowIdeaCount;
-                    const rowPercent = Math.round((rowDone / 6) * 100);
+                    const rowDone = 7 - rowSeekCount - rowIdeaCount;
+                    const rowPercent = Math.round((rowDone / 7) * 100);
 
                     let pctColor = '#4caf50'; // Green if 100%
                     if (rowPercent < 100 && rowPercent > 0) pctColor = '#ff9800'; // Orange if partial
@@ -358,6 +361,7 @@
                     html += `<td class="${getStatusClass(r[cLine])}"><div class="cell-content">${formatCell(r[cLine])}</div></td>`;
                     html += `<td class="${getStatusClass(r[cQuestion])}"><div class="cell-content">${formatCell(r[cQuestion])}</div></td>`;
                     html += `<td class="${getStatusClass(r[cBible])}"><div class="cell-content">${formatCell(r[cBible])}</div></td>`;
+                    html += `<td class="${getStatusClass(r[cPhoto])}"><div class="cell-content">${formatCell(r[cPhoto])}</div></td>`;
 
                     html += `</tr>`;
                 }

@@ -1,6 +1,281 @@
 {
   "id": "4",
-  "title": "Lesson 4: Knowing Your Bible - A Bible Overview",
-  "description": "A guided tour of the book in your hands - how the Bible is organized, what each section contains, who wrote it, and how to navigate the translations we have in English today.",
-  "blocks": []
+  "version": "v01",
+  "title": "Lesson 4: Knowing Your Bible - An Overview",
+  "description": "A guided tour of the book in your hands. The Bible is not a single book. It is a library of 66 books written across thousands of years, and learning how it is organized will change the way you read it.",
+  "blocks": [
+    {
+      "type": "text",
+      "text": "In the last lesson you explored what it means to truly belong to a church family. You learned that the Christian life is not meant to be lived alone. But here is what holds that family together: the Word of God. In this lesson and the two that follow, you are going to get to know that Word in a way you never have before. Think of it as three lessons that build on each other. This lesson gives you the map. The next one takes you on the road trip. And the one after that gives you the skill to dig deeper into any passage on your own."
+    },
+    {
+      "type": "heading",
+      "text": "A Library, Not a Single Book"
+    },
+    {
+      "type": "image",
+      "src": "images/202.04-library-bookshelf.jpg",
+      "alt": "Library filled with books on curved wooden shelves"
+    },
+    {
+      "type": "text",
+      "text": "Many people think of the Bible as one big book. But the Bible is actually a library. It contains 66 individual books written by roughly 40 different authors over a span of about 1,500 years. There are kings, shepherds, fishermen, doctors, tax collectors, and prophets among the writers. They wrote in different countries, in different centuries, in different circumstances. And yet the whole library tells one unified story from beginning to end."
+    },
+    {
+      "type": "text",
+      "text": "That is remarkable. No human editor planned this across fifteen centuries. The unity of Scripture is one of the strongest evidences that God Himself was behind every page. As Paul wrote to Timothy:"
+    },
+    {
+      "type": "verse",
+      "reference": "2 Timothy 3:16-17",
+      "text": "All Scripture is breathed out by God and profitable for teaching, for reproof, for correction, and for training in righteousness, that the man of God may be complete, equipped for every good work."
+    },
+    {
+      "type": "text",
+      "text": "Breathed out by God. That means when you open the Bible, you are not reading someone's personal journal or philosophical opinion. You are reading words that the living God intended for you to have. And because He organized this library with purpose, understanding how it is structured will help you read it with much greater confidence."
+    },
+    {
+      "type": "question",
+      "id": "202-04-1",
+      "text": "4.1 - Before this lesson, how would you describe your familiarity with the Bible? Do you feel confident finding your way around it, or does it sometimes feel overwhelming?",
+      "data_question": "4.1 - Bible familiarity"
+    },
+    {
+      "type": "heading",
+      "text": "The Two Testaments"
+    },
+    {
+      "type": "text",
+      "text": "The Bible is divided into two major parts: the Old Testament and the New Testament. The word \"testament\" means covenant, a binding promise between God and His people. The Old Testament tells the story of God creating the world, choosing a people (Israel), giving them His law, and promising that a Savior would come. The New Testament tells the story of that Savior arriving in Jesus, the birth of the church, and the future hope of all things being made new."
+    },
+    {
+      "type": "text",
+      "text": "The Old Testament has 39 books. The New Testament has 27. Together they form the complete Word of God. Some people struggle with the Old Testament because it feels distant or confusing. But here is the key: the Old Testament is not a different story with a different God. It is the first part of the same story, and every page of it points forward to Jesus. You cannot fully understand the New Testament without the Old, and you cannot fully understand the Old without the New."
+    },
+    {
+      "type": "heading",
+      "text": "The Old Testament Bookshelf"
+    },
+    {
+      "type": "text",
+      "text": "Imagine walking into a library and seeing the books organized into sections on a shelf. That is exactly how the Old Testament works. Its 39 books are arranged in five sections, and each section has a different feel and purpose. Walk through them below, one at a time."
+    },
+    {
+      "type": "stepper",
+      "steps": [
+        {
+          "label": "1",
+          "title": "The Law (5 books)",
+          "subtitle": "Genesis, Exodus, Leviticus, Numbers, Deuteronomy",
+          "verses": [
+            {
+              "ref": "Also called the Pentateuch or the Torah",
+              "text": "These five books were written by Moses. They tell the story of creation, the fall of humanity, God's covenant with Abraham, the exodus from Egypt, and the giving of God's law at Mount Sinai. If you want to understand where everything started, start here. Genesis means \"beginning,\" and that is exactly what it gives you."
+            }
+          ]
+        },
+        {
+          "label": "2",
+          "title": "History (12 books)",
+          "subtitle": "Joshua through Esther",
+          "verses": [
+            {
+              "ref": "The story of Israel as a nation",
+              "text": "These twelve books tell what happened after Moses died. Israel enters the Promised Land, rises as a kingdom under David and Solomon, splits into two nations, falls into exile, and eventually returns to rebuild. It is a story of God's faithfulness even when His people are unfaithful. You will meet judges, kings, prophets, and ordinary people who trusted God in impossible situations."
+            }
+          ]
+        },
+        {
+          "label": "3",
+          "title": "Poetry and Wisdom (5 books)",
+          "subtitle": "Job, Psalms, Proverbs, Ecclesiastes, Song of Solomon",
+          "verses": [
+            {
+              "ref": "The heart of Israel's worship and wisdom",
+              "text": "These books are different from the rest. They are not narratives. They are songs, prayers, poems, proverbs, and reflections on life. The Psalms are the prayer book of the Bible. Proverbs is practical wisdom for everyday decisions. Job wrestles with suffering. Ecclesiastes asks, \"What is the meaning of life?\" These books give words to what your heart already feels."
+            }
+          ]
+        },
+        {
+          "label": "4",
+          "title": "Major Prophets (5 books)",
+          "subtitle": "Isaiah, Jeremiah, Lamentations, Ezekiel, Daniel",
+          "verses": [
+            {
+              "ref": "God's spokesmen to a wayward nation",
+              "text": "The prophets are God's messengers. They called Israel to repent, warned of coming judgment, and pointed forward to a coming Messiah who would save the world. Isaiah contains some of the most beautiful descriptions of Jesus written 700 years before He was born. Daniel shows what it looks like to live faithfully in a culture that opposes God. These books can feel intense, but they are full of hope."
+            }
+          ]
+        },
+        {
+          "label": "5",
+          "title": "Minor Prophets (12 books)",
+          "subtitle": "Hosea through Malachi",
+          "verses": [
+            {
+              "ref": "Shorter but no less powerful",
+              "text": "\"Minor\" does not mean less important. It means shorter. These twelve books carry the same message as the Major Prophets: return to God, trust His promises, and look for the Savior who is coming. Jonah tells the story of a reluctant missionary. Micah asks what God requires of you. Malachi is the last voice before 400 years of silence, and then Jesus arrives."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "question",
+      "id": "202-04-2",
+      "text": "4.2 - Which section of the Old Testament are you most drawn to or curious about? Which one feels the most unfamiliar?",
+      "data_question": "4.2 - OT section interest"
+    },
+    {
+      "type": "heading",
+      "text": "The New Testament Bookshelf"
+    },
+    {
+      "type": "text",
+      "text": "The New Testament has 27 books arranged in four sections. If the Old Testament is the promise, the New Testament is the fulfillment. Everything the prophets pointed to arrives in these pages."
+    },
+    {
+      "type": "stepper",
+      "steps": [
+        {
+          "label": "1",
+          "title": "The Gospels (4 books)",
+          "subtitle": "Matthew, Mark, Luke, John",
+          "verses": [
+            {
+              "ref": "The life, death, and resurrection of Jesus",
+              "text": "Four accounts of the same story from four different perspectives. Matthew writes to Jewish readers showing Jesus as the promised King. Mark writes a fast-paced action account of Jesus the Servant. Luke, a doctor, writes the most detailed historical account. John writes to reveal Jesus as the Son of God. If you are reading the Gospel of John right now in this course, you are already in this section."
+            }
+          ]
+        },
+        {
+          "label": "2",
+          "title": "History (1 book)",
+          "subtitle": "Acts",
+          "verses": [
+            {
+              "ref": "The birth and spread of the early church",
+              "text": "Acts picks up right where the Gospels leave off. Jesus ascends to heaven, the Holy Spirit comes at Pentecost, and the church explodes outward from Jerusalem to the entire known world. This is the story of ordinary people empowered by the Spirit to do extraordinary things. If you want to see what the Christian life looks like in motion, read Acts."
+            }
+          ]
+        },
+        {
+          "label": "3",
+          "title": "The Letters (21 books)",
+          "subtitle": "Romans through Jude",
+          "verses": [
+            {
+              "ref": "Also called the Epistles",
+              "text": "These are letters written by Paul, Peter, James, John, and others to real churches and real people dealing with real problems. Romans lays out the gospel in full. Ephesians teaches who you are in Christ. Philippians overflows with joy from a prison cell. James is practical faith in action. These letters are where the theology of the gospel meets the reality of daily life. Most of the doctrine you have learned in this course comes from the Letters."
+            }
+          ]
+        },
+        {
+          "label": "4",
+          "title": "Prophecy (1 book)",
+          "subtitle": "Revelation",
+          "verses": [
+            {
+              "ref": "The end of the story and the beginning of eternity",
+              "text": "Revelation is the final book of the Bible. It was written by the apostle John from exile on the island of Patmos. It is full of vivid imagery and can feel difficult to understand, but its central message is simple and triumphant: Jesus wins. Evil is defeated. God makes all things new. The story that began in Genesis with a garden ends in Revelation with a city, and God dwells with His people forever."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "question",
+      "id": "202-04-3",
+      "text": "4.3 - Which section of the New Testament has been most meaningful to you so far in your faith journey? Is there a section you have never explored?",
+      "data_question": "4.3 - NT section interest"
+    },
+    {
+      "type": "heading",
+      "text": "When Josiah Found the Book"
+    },
+    {
+      "type": "text",
+      "text": "There is a story in the Old Testament that shows just how powerful it is to encounter the Word of God, even when you have never heard it before."
+    },
+    {
+      "type": "text",
+      "text": "King Josiah came to the throne when he was only eight years old. He grew up in a nation that had completely abandoned God. The temple was in ruins. Idols filled the land. The people had no idea what God's Word even said, because the scrolls of the Law had been lost for generations. Then one day, while the temple was being repaired, the high priest found the Book of the Law buried in the rubble."
+    },
+    {
+      "type": "verse",
+      "reference": "2 Kings 22:11",
+      "text": "When the king heard the words of the Book of the Law, he tore his clothes."
+    },
+    {
+      "type": "text",
+      "text": "Josiah was undone. He had never heard these words before, and when he did, everything changed. He wept. He repented. He led the entire nation back to God. One encounter with the Word of God was enough to redirect the course of a kingdom."
+    },
+    {
+      "type": "text",
+      "text": "That is what the Bible does. It is not just information about God. It is an encounter with God. And now that you know how this library is organized, you are better prepared to find your way through it, one section at a time, one book at a time, one passage at a time."
+    },
+    {
+      "type": "image",
+      "src": "images/202.04-open-bible.jpg",
+      "alt": "Hands holding an open Bible"
+    },
+    {
+      "type": "question",
+      "id": "202-04-4",
+      "text": "4.4 - Has there been a time when a passage of Scripture hit you the way it hit Josiah, where the words stopped you in your tracks and changed something inside you? What happened?",
+      "data_question": "4.4 - Scripture encounter"
+    },
+    {
+      "type": "heading",
+      "text": "A Word on Translations"
+    },
+    {
+      "type": "text",
+      "text": "The Bible was originally written in Hebrew (most of the Old Testament), Aramaic (small portions), and Greek (the New Testament). Because most of us do not read those languages, we rely on English translations. There are many good ones, and choosing a translation can feel confusing. Here is a simple way to think about it."
+    },
+    {
+      "type": "text",
+      "text": "Some translations prioritize word-for-word accuracy, staying as close to the original language as possible. The ESV (English Standard Version) and NASB are examples of this. Others prioritize thought-for-thought clarity, translating the meaning of each sentence in a way that feels more natural to a modern reader. The NIV and NLT are examples of this. Both approaches are faithful to Scripture. A word-for-word translation is excellent for study. A thought-for-thought translation is excellent for reading and understanding quickly."
+    },
+    {
+      "type": "text",
+      "text": "This course uses the ESV, which gives you a reliable, readable translation that stays very close to the original words. Whatever translation you use, the most important thing is that you are reading the Bible consistently. The best translation is the one you will actually open."
+    },
+    {
+      "type": "question",
+      "id": "202-04-5",
+      "text": "4.5 - What Bible translation do you currently read? Have you ever compared the same passage in two different translations? If so, what did you notice?",
+      "data_question": "4.5 - Bible translation"
+    },
+    {
+      "type": "heading",
+      "text": "Lesson 4 Review"
+    },
+    {
+      "type": "text",
+      "text": "You now have the map. The Bible is a library of 66 books arranged in clear sections: Law, History, Poetry, Prophets, Gospels, Acts, Letters, and Revelation. The Old Testament tells the story of God creating, choosing, and promising. The New Testament tells the story of God fulfilling every promise in Jesus. In the next lesson you will take the road trip through the one big story that ties all of these books together."
+    },
+    {
+      "type": "heading",
+      "text": "Closing Reflections"
+    },
+    {
+      "type": "question",
+      "id": "202-04-key",
+      "text": "What is one key thing you learned from this lesson?",
+      "height": "short"
+    },
+    {
+      "type": "question",
+      "id": "202-04-step",
+      "text": "What is one step you are going to take this week?",
+      "height": "short"
+    },
+    {
+      "type": "question",
+      "id": "202-04-prayer",
+      "text": "What is a prayer request for this week?",
+      "height": "short"
+    }
+  ]
 }

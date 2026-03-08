@@ -1,48 +1,24 @@
 {
   "id": "5",
-  "title": "Lesson 5: Church",
+  "version": "v02",
+  "title": "Lesson 5: The Church",
+  "description": "God did not save you to walk alone. He saved you into a family. This lesson explores what the church really is, why you belong, and what it looks like to move from spectator to family member.",
   "blocks": [
     {
+      "type": "text",
+      "text": "In the last lesson you learned how to read the Bible using the Three Discovery Questions. You now have a way to hear from God every time you open His Word. But here is something important: God never intended for you to do any of this alone. He did not just save you. He saved you into a family. That family is the church, and it is one of the greatest gifts God gives to every believer."
+    },
+    {
       "type": "heading",
-      "text": "What is the Church?"
+      "text": "The Church Is a Plural Word"
     },
     {
       "type": "text",
-      "text": "When the Bible talks about the church, it is not talking about a building. A church is a local family of baptized believers who have come together around the gospel of Jesus Christ. They gather to worship, to grow in God's Word, to observe baptism and the Lord's Supper, and to encourage one another to live under the lordship of Christ. Every member has been given gifts by the Holy Spirit, and every member is responsible and accountable to Jesus as Lord. The local church exists to make disciples and to carry the gospel to the ends of the earth."
+      "text": "When the Bible talks about the church, it is not talking about a building with a steeple. It is not talking about a Sunday morning event you attend. The word \"church\" means a gathered people, called out by God, drawn into a family by the gospel. It is a plural word, so you cannot be the church by yourself."
     },
     {
       "type": "text",
-      "text": "But the church is also something bigger than any one congregation. The Bible calls it the Body of Christ, and that body includes every person who has ever been saved by grace through faith, from every tribe, tongue, and nation across all of history. When you became a follower of Jesus, you were not just starting a personal journey. You were joined to a family that stretches across the whole world and all the way back to the very first believers. God sent the Holy Spirit to empower and unify this family around the gospel, and being planted in a local church is how you experience that Christ-centered community firsthand."
-    },
-    {
-      "type": "verse",
-      "reference": "Ephesians 1:22-23",
-      "text": "And he (God the Father) put all things under his (Jesus') feet and gave him as head over all things to the church, which is his body, the fullness of him who fills all in all."
-    },
-    {
-      "type": "question",
-      "id": "5-1",
-      "text": "5.1 - Consider how Jesus lived His life. What are a few attitudes or actions that the church should follow and imitate? (ex. Jesus sacrificed, Jesus taught the truth, Jesus showed unconditional love...)",
-      "data_question": "5.1 - Church imitating Jesus"
-    },
-    {
-      "type": "heading",
-      "text": "A Healthy Church 1) Loves, 2) Equips, 3) Serves"
-    },
-    {
-      "type": "heading",
-      "text": "1) The Church Loves"
-    },
-    {
-      "type": "verse",
-      "reference": "John 13:34-35",
-      "text": "So now I am giving you a new commandment: Love each other. Just as I have loved you, you should love each other. Your love for one another will prove to the world that you are my disciples. ~Jesus"
-    },
-    {
-      "type": "question",
-      "id": "5-2",
-      "text": "5.2 - Imagine a community who loves each other unconditionally, not based on what they do but based on who God says they are. Describe what these relationships would be like.",
-      "data_question": "5.2 - Unconditional love community"
+      "text": "When you became a follower of Jesus, you were not just starting a personal journey. You were joined to a family that stretches across the whole world and all the way back to the very first believers. God sent the Holy Spirit to empower and unify this family around the gospel. Being planted in a local church is how you experience that Christ-centered community firsthand."
     },
     {
       "type": "verse",
@@ -50,38 +26,127 @@
       "text": "And they devoted themselves to the apostles' teaching and the fellowship, to the breaking of bread and the prayers. And awe came upon every soul, and many wonders and signs were being done through the apostles. And all who believed were together and had all things in common. And they were selling their possessions and belongings and distributing the proceeds to all, as any had need. And day by day, attending the temple together and breaking bread in their homes, they received their food with glad and generous hearts, praising God and having favor with all the people. And the Lord added to their number day by day those who were being saved."
     },
     {
+      "type": "text",
+      "text": "Look at what the early church did. They devoted themselves to teaching, fellowship, breaking bread, and prayer. They shared what they had. They ate in each other's homes with glad and generous hearts. And the Lord added to their number day by day. That was not a program. That was a family living out the gospel in real life."
+    },
+    {
       "type": "question",
-      "id": "5-3",
-      "text": "5.3 - Acts 2:42-47 describes a group of believers that seems to meet often. How important is it for a Christian to gather with the church? If you attend church, how often and why do you go?",
-      "data_question": "5.3 - Importance of gathering"
+      "id": "5-1",
+      "text": "5.1 - When you read about the early church in Acts 2, what stands out to you most? What part of their life sounds most appealing to you right now?",
+      "data_question": "5.1 - Early church response"
     },
     {
       "type": "heading",
-      "text": "2) The Church Equips"
+      "text": "You Already Belong"
     },
     {
       "type": "text",
-      "text": "The early church devoted themselves to the apostles' teaching. Just as Jesus equipped His disciples through both word and deed, the Church provides Biblical teaching alongside practical examples of living out the faith."
+      "text": "Here is the most important thing to understand about the church: you do not earn your seat at the table, you were given one. When God saved you, He adopted you as His child, and because every believer shares the same Father, that makes everyone in the church your brother or sister. You are not a guest. You are family."
+    },
+    {
+      "type": "text",
+      "text": "This matters because many people walk into a church and wonder whether they really belong. They feel too new, too broken, too far behind. But belonging in the church does not come from having your life figured out, it comes from being adopted by God. If you are in Christ, you belong. Period. The same grace that saved you is the grace that makes you part of the family."
+    },
+    {
+      "type": "verse",
+      "reference": "1 John 3:1",
+      "text": "See what kind of love the Father has given to us, that we should be called children of God; and so we are."
+    },
+    {
+      "type": "question",
+      "id": "5-2",
+      "text": "5.2 - Imagine being fully welcomed and finding belonging in a spiritual family at church. What would that look like for you?",
+      "data_question": "5.2 - Belonging and adoption"
+    },
+    {
+      "type": "heading",
+      "text": "The Aspen Grove"
+    },
+    {
+      "type": "image",
+      "src": "images/aspen-grove.jpg",
+      "alt": "An aspen grove with golden leaves and white bark"
+    },
+    {
+      "type": "text",
+      "text": "Most people think of trees as independent, one tree standing alone on a hillside, surviving on its own roots. But an Aspen grove works completely differently. It looks like a forest of separate trees, but underground the entire grove shares a single root system. They share water, nutrients, and strength. When one part is weak, the rest feeds it. When a storm hits, they hold each other up. And the whole grove grew from one original seedling."
+    },
+    {
+      "type": "text",
+      "text": "That is a picture of the church. Jesus is the original seed, and because every believer is rooted in Him, we all share the same spiritual root system. You are not a lonely tree stranded on an island hoping to survive the next storm. You are part of a grove, connected underneath it all, even when you cannot see it. The health of the whole grove depends on every tree staying planted and staying connected."
+    },
+    {
+      "type": "question",
+      "id": "5-3",
+      "text": "5.3 - What encourages you about the Aspen Grove picture and being connected to other believers as a church?",
+      "data_question": "5.3 - Aspen Grove reflection"
+    },
+    {
+      "type": "heading",
+      "text": "The Potluck, Not the Restaurant"
+    },
+    {
+      "type": "text",
+      "text": "Many people walk into church with a mindset they do not even realize they have: the restaurant mindset. You show up, professionals serve you, and if the experience was good, maybe you come back next week. But the church was never meant to be a restaurant. It is a potluck. At a potluck, everyone brings something to share. Everyone contributes, and nobody sits in the corner waiting to be served."
+    },
+    {
+      "type": "text",
+      "text": "When everyone brings what they have, the whole family is fed. When only a few contribute and everyone else consumes, the table gets thin and the few get exhausted. God designed the church so that every member has something to offer. Your gifts, your time, your prayers, your encouragement, your honesty, all of it is needed at the table."
+    },
+    {
+      "type": "verse",
+      "reference": "1 Corinthians 12:27",
+      "text": "Now you are the body of Christ and individually members of it."
+    },
+    {
+      "type": "checklist",
+      "id": "service-interests",
+      "prompt": "If the church is a potluck, what dish are you bringing? Tap the areas where you could see yourself serving, helping, or leading.",
+      "items": [
+        "Greeting / Welcome",
+        "Kids Ministry",
+        "Worship Team",
+        "Sound / Tech",
+        "Small Group Leader",
+        "Setup / Teardown",
+        "Prayer Team",
+        "Meals for Families",
+        "Youth Ministry",
+        "Missions",
+        "Social Media",
+        "Men's / Women's Ministry",
+        "Visiting the Sick",
+        "Administration",
+        "Teaching / Bible Study",
+        "Outreach Events",
+        "Creative Arts",
+        "Mentoring / Discipleship",
+        "First Impressions",
+        "Financial Giving"
+      ]
+    },
+    {
+      "type": "heading",
+      "text": "Where Are You Planted?"
+    },
+    {
+      "type": "text",
+      "text": "The church is not just an idea to appreciate. It is a family to join. And joining means being known. It means showing up. It means letting people into the real, unpolished version of your life. It means being willing to serve before you feel ready, and being willing to receive help before you feel comfortable."
+    },
+    {
+      "type": "verse",
+      "reference": "Hebrews 10:24-25",
+      "text": "And let us consider how to stir one another up to love and good works, not neglecting to meet together, as is the habit of some, but encouraging one another, and all the more as you see the Day drawing near."
+    },
+    {
+      "type": "text",
+      "text": "God did not design you to follow Jesus alone. Life is hard, and it is so much harder alone. The church is the place where you are loved when you are unlovable, carried when you cannot walk, and challenged when you are drifting. And as you grow, you will be the one doing the loving, carrying, and challenging for someone else. That is the potluck. That is the grove. That is the family of God."
     },
     {
       "type": "question",
       "id": "5-4",
-      "text": "5.4 - In what ways have you been equipped by the church to live out your faith? What are some areas you would like more equipping?",
-      "data_question": "5.4 - Church equipping"
-    },
-    {
-      "type": "heading",
-      "text": "3) The Church Serves"
-    },
-    {
-      "type": "text",
-      "text": "The early church was active in the community, selling possessions to help those in need. After Jesus washed the disciples' feet, He said in John 13:14-15 \"If I then, your Lord and Teacher, have washed your feet, you also ought to wash one another's feet. For I have given you an example, that you also should do just as I have done to you.\""
-    },
-    {
-      "type": "question",
-      "id": "5-5",
-      "text": "5.5 - What ways are you currently serving or ways you would like to serve in the community and in the church? (Community: Volunteer in a school, coach a team, scouts, work with the elderly... Church: Help with kids or youth, building and grounds teams, worship and tech team...)",
-      "data_question": "5.5 - Serving opportunities"
+      "text": "5.4 - What is your church family like right now? If you are not involved in a church, what is one step you can take this week? (Ask a Christian where to go, visit some websites for research...)",
+      "data_question": "5.4 - Where are you planted"
     },
     {
       "type": "heading",
@@ -89,12 +154,12 @@
     },
     {
       "type": "text",
-      "text": "You have explored what the church is meant to be and why God designed us to grow together rather than alone. Being planted in a church family is one of the main ways God shapes, sustains, and sends you."
+      "text": "You have learned that the church is not a building or an event. It is a family rooted in the gospel, connected like an Aspen grove sharing the same root system, and sustained by every member bringing something to the table. You belong because God adopted you, not because you earned your way in."
     },
     {
       "type": "bible_reading",
       "heading": "Introduction to John 13, 14, and 15",
-      "intro": "In John 13-15, Jesus is with His closest friends on the night before the cross. He washes their feet, gives them a new commandment to love one another the way He has loved them, and promises that the Holy Spirit will come to help them. This is a picture of the kind of community He is calling the church to be.",
+      "intro": "In John 13-15, Jesus is with His closest friends on the night before the cross. He washes their feet, gives them a new commandment to love one another the way He has loved them, and promises that the Holy Spirit will come to help them. As you read, notice how Jesus talks about life with God and life with each other as deeply connected. This is a picture of the kind of community He is calling the church to be.",
       "chapters": [
         {
           "ref": "John 13"

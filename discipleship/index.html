@@ -924,7 +924,7 @@
             font-size: 0.58rem;
             font-weight: 600;
             color: var(--text-secondary);
-            background: rgba(0,0,0,0.06);
+            background: rgba(0, 0, 0, 0.06);
             padding: 2px 7px;
             border-radius: 4px;
             white-space: nowrap;
@@ -950,8 +950,8 @@
 
         .session-description {
             font-size: 1rem;
-            color: var(--text-secondary);
-            line-height: 1.7;
+            color: var(--text-primary);
+            line-height: 1.75;
             margin-bottom: 32px;
         }
 
@@ -992,6 +992,15 @@
 
         .block-text strong {
             font-weight: 600;
+        }
+
+        .heading-float-icon {
+            float: right;
+            width: 105px;
+            /* medium size */
+            height: auto;
+            margin-left: 16px;
+            margin-bottom: 8px;
         }
 
         /* Image blocks */
@@ -1281,6 +1290,63 @@
             color: var(--text-primary);
         }
 
+        /* Checklist grid (service interest tiles) */
+        .block-checklist {
+            margin: 32px 0;
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 24px;
+            background: var(--surface);
+        }
+
+        .checklist-prompt {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+            line-height: 1.6;
+        }
+
+        .checklist-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .checklist-tile {
+            padding: 12px 18px;
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius-sm);
+            background: var(--surface);
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all var(--transition);
+            -webkit-tap-highlight-color: transparent;
+            user-select: none;
+        }
+
+        .checklist-tile:hover {
+            border-color: var(--accent);
+        }
+
+        .checklist-tile.selected {
+            border-color: var(--accent);
+            background: rgba(45, 106, 79, 0.08);
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        @media (max-width: 600px) {
+            .checklist-tile {
+                flex: 1 1 calc(50% - 10px);
+                text-align: center;
+                font-size: 0.85rem;
+                padding: 10px 12px;
+            }
+        }
+
         /* Romans Road special block */
         .block-romans-road {
             margin: 24px 0;
@@ -1450,6 +1516,7 @@
            PRINT / SAVE AS PDF
            ============================================ */
         @media print {
+
             body.printing .lesson-topbar,
             body.printing .toc-panel,
             body.printing .bottom-nav,
@@ -1884,8 +1951,8 @@
             <div class="home-header">
                 <h1 class="home-title">Planting Orchards</h1>
                 <p class="home-title-series">Discipleship Series</p>
-                <img src="images/3-circles-logo-series.png" alt="Planting Orchards Discipleship Series" class="home-logo"
-                    onerror="this.style.display='none'">
+                <img src="images/3-circles-logo-series.png" alt="Planting Orchards Discipleship Series"
+                    class="home-logo" onerror="this.style.display='none'">
                 <div class="home-tagline">
                     <p class="home-tagline-verse">"Those that were sown on the good soil are the ones who <strong>hear
                             the word</strong> and <strong>accept it</strong> and <strong>bear fruit</strong>, thirtyfold
@@ -1989,7 +2056,8 @@
                         </div>
                         <div class="topbar-lesson-subtitle" id="topbar-lesson-subtitle"></div>
                     </div>
-                    <button class="toc-menu-btn" id="toc-toggle-btn" onclick="toggleTOC()" aria-label="All lessons">&#9776;</button>
+                    <button class="toc-menu-btn" id="toc-toggle-btn" onclick="toggleTOC()"
+                        aria-label="All lessons">&#9776;</button>
                 </div>
                 <!-- Row 2: Lesson title · X of Y -->
                 <div class="topbar-row-2">
@@ -2448,6 +2516,8 @@
                         return Array.isArray(block.steps);
                     case 'tool':
                         return requireString(block.title) && requireString(block.url);
+                    case 'checklist':
+                        return requireString(block.id) && requireString(block.prompt) && Array.isArray(block.items);
                     case 'bible_reading':
                         return Array.isArray(block.chapters) &&
                             block.chapters.every(ch => ch && typeof ch === 'object' && requireString(ch.ref));
@@ -2519,10 +2589,14 @@
                     data.blocks.forEach(b => {
                         switch (b.type) {
                             case 'heading':
+                                let iconHTML = '';
+                                if (b.icon) {
+                                    iconHTML = `<img src="${b.icon}?v=${BUILD_VERSION}" class="heading-float-icon" alt="">`;
+                                }
                                 if (b.subheading) {
-                                    html += `<h4 class="block-subheading">${b.text}</h4>`;
+                                    html += `${iconHTML}<h4 class="block-subheading">${b.text}</h4>`;
                                 } else {
-                                    html += `<h3 class="block-heading">${b.text}</h3>`;
+                                    html += `${iconHTML}<h3 class="block-heading">${b.text}</h3>`;
                                 }
                                 break;
 
@@ -2539,7 +2613,8 @@
                                 break;
 
                             case 'image':
-                                html += `<div class="block-image"><img src="${b.src}?v=${BUILD_VERSION}" alt="${b.alt || ''}" onerror="this.style.display='none'"></div>`;
+                                const imgStyle = b.width ? `style="width: ${b.width}; max-width: 100%; height: auto;"` : '';
+                                html += `<div class="block-image"><img src="${b.src}?v=${BUILD_VERSION}" alt="${b.alt || ''}" ${imgStyle} onerror="this.style.display='none'"></div>`;
                                 break;
 
                             case 'verse':
@@ -2598,6 +2673,18 @@
                                     </div>
                                 </div>`;
                                 break;
+
+                            case 'checklist': {
+                                const clId = `checklist-${currentSeries}-${b.id}`;
+                                html += `<div class="block-checklist" id="${clId}">
+                                    <div class="checklist-prompt">${b.prompt}</div>
+                                    <div class="checklist-grid">`;
+                                b.items.forEach((item, i) => {
+                                    html += `<div class="checklist-tile" data-checklist="${clId}" data-index="${i}" onclick="toggleChecklistTile(this)">${item}</div>`;
+                                });
+                                html += `</div></div>`;
+                                break;
+                            }
 
                             case 'agenda':
                                 html += `<div class="block-agenda">
@@ -2917,7 +3004,18 @@
         function saveCommitment(el) {
             responses[`commitment-${currentSeries}`] = el.value;
             localStorage.setItem('christianFoundationsResponses', JSON.stringify(responses));
+        }
 
+        function toggleChecklistTile(el) {
+            el.classList.toggle('selected');
+            const clId = el.getAttribute('data-checklist');
+            const container = document.getElementById(clId);
+            if (!container) return;
+            const tiles = container.querySelectorAll('.checklist-tile');
+            const selected = [];
+            tiles.forEach((t, i) => { if (t.classList.contains('selected')) selected.push(i); });
+            responses[clId] = selected;
+            localStorage.setItem('christianFoundationsResponses', JSON.stringify(responses));
         }
 
         function loadAllResponses() {
@@ -2929,6 +3027,15 @@
                 const key = `commitment-${currentSeries}`;
                 if (responses[key] && responses[key] === r.value) {
                     r.checked = true;
+                }
+            });
+
+            document.querySelectorAll('.block-checklist').forEach(container => {
+                const clId = container.id;
+                const saved = responses[clId];
+                if (Array.isArray(saved)) {
+                    const tiles = container.querySelectorAll('.checklist-tile');
+                    saved.forEach(i => { if (tiles[i]) tiles[i].classList.add('selected'); });
                 }
             });
         }
@@ -2993,6 +3100,11 @@
                 body.classList.add('open');
                 toggle.classList.add('open');
                 if (card) card.classList.add('open');
+
+                // Scroll the card header to the top of the screen so the Bible text is visible
+                setTimeout(() => {
+                    card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 150);
 
                 // Fetch ESV text if not loaded yet
                 const esvEl = document.getElementById('esv-' + chId);

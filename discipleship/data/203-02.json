@@ -1,50 +1,36 @@
 {
   "id": "2",
-  "version": "v02",
+  "version": "v03",
   "title": "Lesson 2: BLESS Rhythms - Living on Mission Every Day",
   "description": "Five practical rhythms for living on mission where you live, work, and play: Begin with Prayer, Listen, Eat, Serve, Story. Not a program - a way of life.",
   "blocks": [
     {
+      "type": "text",
+      "text": "In Lesson 1 you drew your Personal Ministry Map and identified the people God has placed in your spheres of life. You know the vision: you are sent. This lesson gives you the practice. The challenge with mission is usually not motivation. Most people who have encountered Jesus want others to know Him too. The challenge is not knowing what to do on a Tuesday. BLESS is a set of five rhythms that give shape to missional living in ordinary life. They are not a program or a checklist. They are habits, the kind of habits that, practiced consistently, naturally create relationships where the gospel can take root."
+    },
+    {
       "type": "image",
       "src": "images/203-02-bless-logo.png",
-      "alt": "BLESS - Begin with Prayer, Listen, Eat, Serve, Story"
+      "alt": "BLESS - Begin with Prayer, Listen, Eat, Serve, Story",
+      "width": "70%"
     },
     {
       "type": "text",
-      "text": "In Lesson 1 you drew your Personal Ministry Map and identified the people God has placed in your spheres of life. You know the vision: you are sent. This lesson gives you the practice. The challenge with mission is usually not motivation - most people who have encountered Jesus want others to know Him too. The challenge is not knowing what to do on a Tuesday. BLESS is a set of five rhythms that give shape to missional living in ordinary life. They are not a program or a checklist. They are habits - the kind of habits that, practiced consistently, naturally create relationships where the gospel can take root."
-    },
-    {
-      "type": "text",
-      "text": "BLESS stands for: <strong>B</strong>egin with Prayer, <strong>L</strong>isten, <strong>E</strong>at, <strong>S</strong>erve, and <strong>S</strong>tory. Each rhythm has a simple practice attached to it. None of them require a special gift or a particular personality. They just require intention - and a little courage."
-    },
-    {
-      "type": "text",
-      "text": "Think of how you breathe. You do not choose each breath; it has become unconscious, natural. But it has a rhythm - inhale and exhale. Each of the five BLESS rhythms works the same way. There is a receiving side and a giving side - a breathing in and a breathing out. The goal is that these rhythms become as natural to your life as breathing. Not forced. Not mechanical. Just the way you live."
+      "text": "BLESS stands for: <strong>B</strong>egin with Prayer, <strong>L</strong>isten, <strong>E</strong>at, <strong>S</strong>erve, and <strong>S</strong>tory. Each rhythm has a simple practice attached to it. None of them require a special gift or a particular personality. They just require intention, and a little courage."
     },
     {
       "type": "heading",
-      "text": "B - Begin with Prayer"
+      "text": "B - Begin with Prayer",
+      "icon": "images/bless-1prayer.png"
     },
     {
       "type": "text",
-      "text": "Every rhythm in BLESS starts here, because mission starts here. Before you can love people well, you need to see them the way God sees them. Prayer is what adjusts your vision. It is how you learn to notice people you have been walking past. It is how you find out where God is already at work in someone's life before you show up."
-    },
-    {
-      "type": "text",
-      "text": "<strong>Breathe In:</strong> Listening prayer - discovering your mission by following Jesus' voice. Jesus often withdrew to solitary places and prayed (Luke 5:16). He listened before He spoke. Ask God two questions regularly: <em>Where are you already at work in my living, working, and recreational spaces? How can I join you?</em>"
-    },
-    {
-      "type": "text",
-      "text": "<strong>Breathe Out:</strong> Carrying out the mission by praying for people by name. Build a short prayer list: three to five people from your Personal Ministry Map who do not follow Jesus. Pray for them daily - not for a spiritual conversation or a breakthrough, just for them. Pray for their health, their family, their job, the thing you know they are worried about. <strong>You talk to God about people before you talk to people about God.</strong>"
+      "text": "Every rhythm in BLESS starts here, because mission starts here. Before you can love people well, you need to see them the way God sees them, and prayer is what adjusts your vision. It is how you learn to notice people you have been walking past and discover where God is already at work before you show up. Build a short prayer list of three to five people from your Personal Ministry Map who do not follow Jesus and pray for them daily, not for a spiritual breakthrough, but for them: their health, their family, the thing you know they are carrying. <strong>Talk to God about people before you talk to people about God.</strong>"
     },
     {
       "type": "verse",
       "reference": "Colossians 4:2-3",
       "text": "Continue steadfastly in prayer, being watchful in it with thanksgiving. At the same time, pray also for us, that God may open a door for the word, that we may declare the mystery of Christ."
-    },
-    {
-      "type": "text",
-      "text": "Paul's posture in Colossians 4 is striking: he asks others to pray for open doors rather than forcing them open himself. Mission is God's work, and prayer is how we align ourselves with what He is already doing. God receives the glory because He gives the growth, and we experience the joy of partnering with Him."
     },
     {
       "type": "question",
@@ -54,19 +40,12 @@
     },
     {
       "type": "heading",
-      "text": "L - Listen"
+      "text": "L - Listen",
+      "icon": "images/bless-2listen.png"
     },
     {
       "type": "text",
-      "text": "Most people do not feel heard. They go through entire days - sometimes entire seasons of life - without anyone asking them a genuine question and waiting for a real answer. When you slow down and actually listen to someone's story, their hopes, their fears, and what they are carrying, something happens in them. They feel seen. And people who feel seen are open in ways they normally are not."
-    },
-    {
-      "type": "text",
-      "text": "<strong>Breathe In:</strong> Genuinely understanding someone and their journey. As you adopt a listening posture, you can hear both the person and the guidance of Jesus. He was an attentive listener and an excellent teacher - and He constantly asked questions, even though He already had all the answers."
-    },
-    {
-      "type": "text",
-      "text": "<strong>Breathe Out:</strong> Asking questions that demonstrate genuine interest and a desire to deepen the relationship. <strong>People do not care how much you know until they know how much you care.</strong> People are more likely to listen to those who listen to them."
+      "text": "Most people do not feel heard. They go through entire days, sometimes entire seasons of life, without anyone asking them a genuine question and waiting for a real answer. When you slow down and actually listen to someone's story, their hopes, their fears, and what they are carrying, something happens. They feel seen. And people who feel seen are open in ways they normally are not. <strong>People do not care how much you know until they know how much you care.</strong>"
     },
     {
       "type": "verse",
@@ -74,30 +53,19 @@
       "text": "The purpose in a man's heart is like deep water, but a man of understanding will draw it out."
     },
     {
-      "type": "text",
-      "text": "Proverbs says there is deep water in every person - meaning and purpose and story that rarely surfaces in casual conversation. A person of understanding draws it out. You do that with questions, with patience, and with the willingness to sit with someone in what they share rather than rushing to fix it."
-    },
-    {
       "type": "question",
       "id": "203-02-2",
-      "text": "2.2 - Think of someone on your prayer list. What do you actually know about their life right now - what they are carrying, hoping for, struggling with? What is one genuine question you could ask them this week to go deeper?",
+      "text": "2.2 - Think of someone on your prayer list. What do you actually know about their life right now, what they are carrying, hoping for, struggling with? What is one genuine question you could ask them this week to go deeper?",
       "height": "tall"
     },
     {
       "type": "heading",
-      "text": "E - Eat"
+      "text": "E - Eat",
+      "icon": "images/bless-3eat.png"
     },
     {
       "type": "text",
-      "text": "Jesus ate His way through the gospels. He ate with Pharisees and sinners, with outcasts and fishermen, with friends and with people who would betray Him. He fed thousands on a hillside. He cooked breakfast on a beach. He broke bread with His disciples the night before He died. In the book of Luke alone, there are ten different meals recorded. Even the second coming of Jesus is envisioned as a meal - the wedding supper of the Lamb. For Jesus, the shared meal was not a social nicety - it was a ministry strategy."
-    },
-    {
-      "type": "text",
-      "text": "<strong>Breathe In:</strong> Dining with your immediate and spiritual families - drawing physical, spiritual, and relational nourishment that creates an inviting environment for your neighbors to enter."
-    },
-    {
-      "type": "text",
-      "text": "<strong>Breathe Out:</strong> Following Jesus in sharing meals with those outside your normal circle. Eating together moves a relationship from faces to friends. In a culture where most people eat alone most of the time, an invitation to your table is genuinely countercultural - and genuinely powerful."
+      "text": "Jesus ate His way through the gospels. He ate with Pharisees and sinners, with outcasts and fishermen, with friends and with people who would betray Him. He cooked breakfast on a beach, broke bread the night before He died, and even the second coming is pictured as a feast. The Pharisees accused Him of receiving sinners and eating with them, and Jesus wore it as a description. <strong>Welcoming someone to a seat at your table shows and tells the Gospel.</strong>"
     },
     {
       "type": "verse",
@@ -105,30 +73,19 @@
       "text": "Now the tax collectors and sinners were all drawing near to hear him. And the Pharisees and the scribes grumbled, saying, \"This man receives sinners and eats with them.\""
     },
     {
-      "type": "text",
-      "text": "The Pharisees meant this as an accusation. Jesus wore it as a description. He was known for eating with the wrong people. The <strong>Eat</strong> rhythm asks you to do the same - not just sharing meals with people already in your circle, but inviting someone outside it to your table. Over these meals, you often uncover ways to serve and care for them."
-    },
-    {
       "type": "question",
       "id": "203-02-3",
-      "text": "2.3 - Who is someone on your prayer list - or someone in your neighborhood, office, or community - that you could invite to a meal or coffee in the next two weeks? Write their name and a specific plan: where, when, and what you will say when you invite them.",
+      "text": "2.3 - Who is someone on your prayer list, or someone in your neighborhood, office, or community, that you could invite to a meal or coffee in the next two weeks? Write their name and a specific plan: where, when, and what you will say when you invite them.",
       "height": "tall"
     },
     {
       "type": "heading",
-      "text": "S - Serve"
+      "text": "S - Serve",
+      "icon": "images/bless-4server.png"
     },
     {
       "type": "text",
-      "text": "One of the most disarming things a person can experience is someone doing something for them with no strings attached - no agenda, no follow-up pitch, just help."
-    },
-    {
-      "type": "text",
-      "text": "<strong>Breathe In:</strong> Surprisingly, we receive service by allowing others to serve us. In Luke 10 Jesus advises us to let the \"person of peace\" serve us. When neighbors offer their help, accept it with gratitude. This fosters equality, reciprocity, and trust."
-    },
-    {
-      "type": "text",
-      "text": "<strong>Breathe Out:</strong> Serving others with your time, skills, or resources. Helping someone move. Watching their kids for an afternoon. Dropping off a meal when someone is sick. Fixing the thing that keeps breaking. The smaller and more specific the act of service, the more it communicates that you were actually paying attention to their life."
+      "text": "One of the most disarming things a person can experience is someone doing something for them with no strings attached, no agenda, no follow-up pitch, just help. It could be helping someone move, watching their kids for an afternoon, dropping off a meal when they are sick, or fixing the thing that keeps breaking. The smaller and more specific the act, the more it communicates that you were actually paying attention to their life. Even Jesus defined His own mission in terms of service: the Son of Man came not to be served but to serve. <strong>When you serve someone practically, you are showing them what Jesus is like before you ever say His name.</strong>"
     },
     {
       "type": "verse",
@@ -136,34 +93,19 @@
       "text": "Even as the Son of Man came not to be served but to serve, and to give his life as a ransom for many."
     },
     {
-      "type": "text",
-      "text": "Jesus defines His own mission in terms of service. When you serve someone practically, you are showing them what Jesus is like before you ever say His name."
-    },
-    {
       "type": "question",
       "id": "203-02-4",
-      "text": "2.4 - What tangible need do you see in someone around you right now - on your street, in your building, at your workplace? What is one specific way you could show up and serve them this week, with no agenda attached?",
+      "text": "2.4 - What tangible need do you see in someone around you right now, on your street, in your building, at your workplace? What is one specific way you could show up and serve them this week, with no agenda attached?",
       "height": "tall"
     },
     {
       "type": "heading",
-      "text": "S - Story"
+      "text": "S - Story",
+      "icon": "images/bless-5share.png"
     },
     {
       "type": "text",
-      "text": "Every other rhythm in BLESS builds relational trust. This final rhythm is what that trust eventually makes possible: sharing how Jesus has changed your story. Your testimony is not a doctrinal argument or a sales pitch. It is simply your experience - what your life was like before, how you encountered Jesus, and what is different now. No one can argue with that. It is yours."
-    },
-    {
-      "type": "text",
-      "text": "<strong>Breathe In:</strong> Listening to others' spiritual experiences and understanding the journey that has shaped their current worldview."
-    },
-    {
-      "type": "text",
-      "text": "<strong>Breathe Out:</strong> Sharing Jesus' story and the transformation it has brought to your life. By consistently praying for someone, listening to them, sharing meals, and serving them, you earn the right to share your story. It naturally occurs within relationships fortified by trust."
-    },
-    {
-      "type": "text",
-      "text": "<strong>We should often ask: Does everyone who knows me, know the gospel?</strong> In the next two lessons, you will learn the specific skills of hospitality and sharing your story and the gospel. But the Story rhythm begins right here - with a willingness to be honest about what Jesus has done in your life."
+      "text": "Every other rhythm in BLESS builds relational trust. This final rhythm is what that trust makes possible: sharing how Jesus has changed your story. Your testimony is not a doctrinal argument or a sales pitch. It is simply your experience: what your life was like before, how you encountered Jesus, and what is different now. No one can argue with that, because it is yours. <strong>Ask yourself often: does everyone who knows me know the gospel?</strong>"
     },
     {
       "type": "verse",
@@ -173,7 +115,7 @@
     {
       "type": "question",
       "id": "203-02-5",
-      "text": "2.5 - Write your testimony in 3-4 sentences using this simple frame: (1) What my life looked like before Jesus, (2) how I encountered Him, (3) what is different now. Write it simply - the way you would say it to a friend, not a church crowd.",
+      "text": "2.5 - Write your testimony in 3-4 sentences using this simple frame: (1) What my life looked like before Jesus, (2) how I encountered Him, (3) what is different now. Write it simply, the way you would say it to a friend, not a church crowd.",
       "height": "tall"
     },
     {
@@ -182,7 +124,7 @@
     },
     {
       "type": "text",
-      "text": "BLESS is not a checklist you complete once a week. It is a set of lenses that, over time, shape how you move through the world. Some weeks you will be heavy in Prayer and light in Serve. Some seasons a single relationship will move through all five rhythms over the course of a year. The goal is not to do all five every day. The goal is to have them become instinctive - like breathing - so that when you walk out your front door, you are already asking: who am I praying for, who do I need to listen to, who can I eat with, who can I serve, whose story is intersecting with mine?"
+      "text": "BLESS is not a checklist you complete once a week. It is a set of rhythms that, over time, shape how you move through the world. Some weeks you will be heavy in Prayer and light in Serve. Some seasons a single relationship will move through all five over the course of a year. The goal is not to do all five every day. The goal is to have them become so natural that when you walk out your front door, you are already asking: who am I praying for, who do I need to listen to, who can I eat with, who can I serve, whose story is intersecting with mine?"
     },
     {
       "type": "question",
