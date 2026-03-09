@@ -2787,7 +2787,7 @@
                                 const widgetHeight = b.height || '500px';
                                 html += `<div class="block-widget" style="margin: 24px 0;">
                                     <iframe id="${widgetId}" src="${b.src}?v=${BUILD_VERSION}"
-                                        style="width: 100%; border: none; border-radius: var(--radius-sm); overflow: hidden; min-height: ${widgetHeight};"
+                                        style="width: 100%; border: none; border-radius: var(--radius-sm); overflow: hidden; height: ${widgetHeight};"
                                         scrolling="no"
                                         onload="(function(f){
                                             function resize(){

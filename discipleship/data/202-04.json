@@ -2,11 +2,11 @@
   "id": "4",
   "version": "v01",
   "title": "Lesson 4: Overview of the Bible",
-  "description": "A guided tour of the book in your hands. The Bible is not a single book. It is a library of 66 books written across thousands of years, and learning how it is organized will change the way you read it.",
+  "description": "Welcome to a guided tour of the most important book you will ever read. The Bible isn't a single book. It is a library of 66 unique volumes written by 40 authors across 1,500 years. Learning how this life-changing book is organized will help you understand it and remember how the story of God fits together.",
   "blocks": [
     {
       "type": "text",
-      "text": "In the last lesson you explored what it means to truly belong to a church family. You learned that the Christian life is not meant to be lived alone. But here is what holds that family together: the Word of God. In this lesson and the two that follow, you are going to get to know that Word in a way you never have before. Think of it as three lessons that build on each other. This lesson gives you the map. The next one takes you on the road trip. And the one after that gives you the skill to dig deeper into any passage on your own."
+      "text": "In the last lesson, you explored what it means to truly belong to a church family, discovering that the Christian life is not meant to be lived alone. But what holds that family together? It is the <strong>Word of God</strong>. In the next three lessons you are going to get to know that Word in a way you never have before. Think of this series as the essential gear for your journey: this lesson gives you the map, the next lesson takes you on the road trip, and the final lesson hands you the tools to dig into any passage on your own."
     },
     {
       "type": "heading",
@@ -14,16 +14,16 @@
     },
     {
       "type": "image",
-      "src": "images/202.04-library-bookshelf.jpg",
-      "alt": "Library filled with books on curved wooden shelves"
+      "src": "images/202.04-bookshelf-all-books.png",
+      "alt": "Open Bible on a wooden table"
     },
     {
       "type": "text",
-      "text": "Many people think of the Bible as one big book. But the Bible is actually a library. It contains 66 individual books written by roughly 40 different authors over a span of about 1,500 years. There are kings, shepherds, fishermen, doctors, tax collectors, and prophets among the writers. They wrote in different countries, in different centuries, in different circumstances. And yet the whole library tells one unified story from beginning to end."
+      "text": "Because the Bible is a library and not a single book, its contents are incredibly diverse. There are kings, shepherds, fishermen, doctors, tax collectors, and prophets among the writers. They wrote in different countries, in different centuries, in different circumstances. And yet the whole library tells one unified story from beginning to end, as we will learn in the next lesson."
     },
     {
       "type": "text",
-      "text": "That is remarkable. No human editor planned this across fifteen centuries. The unity of Scripture is one of the strongest evidences that God Himself was behind every page. As Paul wrote to Timothy:"
+      "text": "That is remarkable. No human editor could have planned this across fifteen centuries. This unity is one of the strongest evidences that God Himself was behind every page. As Paul wrote to Timothy:"
     },
     {
       "type": "verse",
@@ -32,17 +32,25 @@
     },
     {
       "type": "text",
-      "text": "Breathed out by God. That means when you open the Bible, you are not reading someone's personal journal or philosophical opinion. You are reading words that the living God intended for you to have. And because He organized this library with purpose, understanding how it is structured will help you read it with much greater confidence."
+      "text": "\"Breathed out by God.\" That means when you open the Bible, you are not reading someone's personal journal or philosophical opinion. You are reading words that the living God intended for you to have. And because He organized this library with purpose, understanding how it is structured will help you read it with much greater confidence."
+    },
+    {
+      "type": "text",
+      "text": "Some people wonder whether the Bible can really be trusted after being passed down for so long. Did it get distorted like a game of telephone over thousands of years? The answer is no, and here is why. In the ancient world, Scripture was read aloud to entire communities, not whispered from one person to the next. There were many witnesses in the room, not one. Scribes copied manuscripts with extraordinary care."
+    },
+    {
+      "type": "text",
+      "text": "Here is the proof: the Dead Sea Scrolls were written over 200 years before Jesus was born and hidden in caves near the Dead Sea. When a shepherd boy discovered them in 1947, scholars compared them to the oldest copies we had been using, which dated to around 1000 AD. That is a gap of over a thousand years, and the texts matched almost word for word. The Bible stands alone as one of the most historically reliable documents of the ancient world. You can trust it with confidence."
     },
     {
       "type": "question",
       "id": "202-04-1",
-      "text": "4.1 - Before this lesson, how would you describe your familiarity with the Bible? Do you feel confident finding your way around it, or does it sometimes feel overwhelming?",
+      "text": "4.1 - On a scale of 1 to 10, how well would you say you know the Bible right now? What is one thing you are hoping these next three lessons help you understand better?",
       "data_question": "4.1 - Bible familiarity"
     },
     {
       "type": "heading",
-      "text": "The Two Testaments"
+      "text": "Old Testament & New Testament"
     },
     {
       "type": "text",
@@ -51,6 +59,10 @@
     {
       "type": "text",
       "text": "The Old Testament has 39 books. The New Testament has 27. Together they form the complete Word of God. Some people struggle with the Old Testament because it feels distant or confusing. But here is the key: the Old Testament is not a different story with a different God. It is the first part of the same story, and every page of it points forward to Jesus. You cannot fully understand the New Testament without the Old, and you cannot fully understand the Old without the New."
+    },
+    {
+      "type": "text",
+      "text": "Here is one more reason to trust the Old Testament: Jesus did. He quoted it constantly, argued from it, and treated every word of it as completely authoritative. If the eternal Son of God read those pages and accepted them without reservation, that is all the endorsement they need."
     },
     {
       "type": "text",
@@ -64,50 +76,49 @@
     {
       "type": "question",
       "id": "202-04-2",
-      "text": "4.2 - Which section of the Old Testament are you most drawn to or curious about? Which one feels the most unfamiliar?",
-      "data_question": "4.2 - OT section interest"
+      "text": "4.2 - After exploring the Bible bookshelf above, which section stands out to you most and why? Is there a shelf that most interests you?",
+      "data_question": "4.2 - Bible section reflection"
+    },
+    {
+      "type": "heading",
+      "text": "More Than a Map"
+    },
+    {
+      "type": "text",
+      "text": "You have the map now. But the Bible was never meant to stay on a shelf. One of the most famous passages in all of Scripture comes from the very first section you explored, the Law. Moses spoke these words to Israel just before they crossed into the Promised Land:"
+    },
+    {
+      "type": "verse",
+      "reference": "Deuteronomy 6:4-7",
+      "text": "Hear, O Israel: The LORD our God, the LORD is one. You shall love the LORD your God with all your heart and with all your soul and with all your might. And these words that I command you today shall be on your heart. You shall teach them diligently to your children, and shall talk of them when you sit in your house, and when you walk by the way, and when you lie down, and when you rise."
+    },
+    {
+      "type": "text",
+      "text": "This is the Shema, and Jesus called it the greatest commandment. If you walked through the Growing course, you already know these words from Lesson 1, where you learned that loving God is not a burden but a response to a Father who loved you first. Now you know exactly where that passage lives - Deuteronomy, the Law section, the first shelf on your bookshelf. That is what knowing the map does. It connects what you have already learned to where it lives in Scripture."
+    },
+    {
+      "type": "text",
+      "text": "Notice what Moses says to do with God's Word: put it on your heart, teach it to your children, talk about it when you sit down and when you get up, when you are home and when you are on the road. This is not a book to study once and set aside. It is meant to become part of how you think, how you talk, and how you live - and when you do, God promises that it will go well with you."
+    },
+    {
+      "type": "verse",
+      "reference": "Deuteronomy 32:47",
+      "text": "It is no empty word for you, but your very life, and by this word you shall live long in the land that you are going over the Jordan to possess."
+    },
+    {
+      "type": "text",
+      "text": "No empty word. Your very life. Jesus echoed this same truth when Satan tempted Him in the wilderness. You can find it in Matthew 4, right on the Gospels shelf: man shall not live by bread alone, but by every word that comes from the mouth of God. The life that food gives you keeps you going for a few more hours. The life that God's Word gives you is firm, abundant, and never runs out. That Word is open in front of you right now."
+    },
+    {
+      "type": "image",
+      "src": "images/202.04-bible-journal.jpg",
+      "alt": "Open Bible, notebook, and coffee on a table"
     },
     {
       "type": "question",
       "id": "202-04-3",
-      "text": "4.3 - Which section of the New Testament has been most meaningful to you so far in your faith journey? Is there a section you have never explored?",
-      "data_question": "4.3 - NT section interest"
-    },
-    {
-      "type": "heading",
-      "text": "When Josiah Found the Book"
-    },
-    {
-      "type": "text",
-      "text": "There is a story in the Old Testament that shows just how powerful it is to encounter the Word of God, even when you have never heard it before."
-    },
-    {
-      "type": "text",
-      "text": "King Josiah came to the throne when he was only eight years old. He grew up in a nation that had completely abandoned God. The temple was in ruins. Idols filled the land. The people had no idea what God's Word even said, because the scrolls of the Law had been lost for generations. Then one day, while the temple was being repaired, the high priest found the Book of the Law buried in the rubble."
-    },
-    {
-      "type": "verse",
-      "reference": "2 Kings 22:11",
-      "text": "When the king heard the words of the Book of the Law, he tore his clothes."
-    },
-    {
-      "type": "text",
-      "text": "Josiah was undone. He had never heard these words before, and when he did, everything changed. He wept. He repented. He led the entire nation back to God. One encounter with the Word of God was enough to redirect the course of a kingdom."
-    },
-    {
-      "type": "text",
-      "text": "That is what the Bible does. It is not just information about God. It is an encounter with God. And now that you know how this library is organized, you are better prepared to find your way through it, one section at a time, one book at a time, one passage at a time."
-    },
-    {
-      "type": "image",
-      "src": "images/202.04-open-bible.jpg",
-      "alt": "Hands holding an open Bible"
-    },
-    {
-      "type": "question",
-      "id": "202-04-4",
-      "text": "4.4 - Has there been a time when a passage of Scripture hit you the way it hit Josiah, where the words stopped you in your tracks and changed something inside you? What happened?",
-      "data_question": "4.4 - Scripture encounter"
+      "text": "4.3 - What would it look like for God's Word to become part of your everyday life - not just something you read, but something written on your heart?",
+      "data_question": "4.3 - Word in daily life"
     },
     {
       "type": "heading",
@@ -124,12 +135,6 @@
     {
       "type": "text",
       "text": "This course uses the ESV, which gives you a reliable, readable translation that stays very close to the original words. Whatever translation you use, the most important thing is that you are reading the Bible consistently. The best translation is the one you will actually open."
-    },
-    {
-      "type": "question",
-      "id": "202-04-5",
-      "text": "4.5 - What Bible translation do you currently read? Have you ever compared the same passage in two different translations? If so, what did you notice?",
-      "data_question": "4.5 - Bible translation"
     },
     {
       "type": "heading",
