@@ -87,7 +87,7 @@ Add quotes, notes, book excerpts, and BFM references directly to those files.
 | 202.01 | Greatest Commandment Pt 2 — Loving Your Neighbors | XV. Social Order | Matthew 22:39 |
 | 202.02 | Loving Your Family at Home | XVIII. The Family | Ephesians 5:25 |
 | 202.03 | Getting Involved in the Church Family | VI. The Church | 1 Peter 2:9-10 |
-| 202.04 | Knowing Your Bible — An Overview | I. The Scriptures | 2 Timothy 3:16-17 |
+| 202.04 | Overview of the Bible | I. The Scriptures | 2 Timothy 3:16-17 |
 | 202.05 | The Biblical Storyline | I. The Scriptures, IX. Kingdom | Revelation 21:5 |
 | 202.06 | How to Study the Bible | I. The Scriptures | 2 Timothy 2:15 |
 | 202.07 | Baptism and the Lord's Supper | VII. Baptism & Lord's Supper | 1 Corinthians 11:26 |
