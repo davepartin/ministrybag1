@@ -169,7 +169,7 @@
             display: flex;
             align-items: flex-end;
             gap: 4px;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
         }
 
         .spine {
@@ -302,6 +302,7 @@
                         id: "history",
                         title: "History",
                         subtitle: "12 books",
+                        shelfSize: 6,
                         books: ["Joshua", "Judges", "Ruth", "1 Samuel", "2 Samuel", "1 Kings", "2 Kings", "1 Chronicles", "2 Chronicles", "Ezra", "Nehemiah", "Esther"],
                         text: "These twelve books tell the story of Israel as a nation. After Moses died, Israel entered the Promised Land, rose as a kingdom under David and Solomon, split into two nations, fell into exile, and eventually returned to rebuild. It is a story of God's faithfulness even when His people are unfaithful. You will meet judges, kings, prophets, and ordinary people who trusted God in impossible situations."
                     },
@@ -323,6 +324,7 @@
                         id: "minor-prophets",
                         title: "Minor Prophets",
                         subtitle: "12 books",
+                        shelfSize: 6,
                         books: ["Hosea", "Joel", "Amos", "Obadiah", "Jonah", "Micah", "Nahum", "Habakkuk", "Zephaniah", "Haggai", "Zechariah", "Malachi"],
                         text: "\"Minor\" does not mean less important. It means shorter. These twelve books carry the same urgent message as the Major Prophets: return to God, trust His promises, and look for the Savior who is coming. Jonah tells the story of a reluctant missionary. Micah asks what God truly requires of you. Malachi is the last voice before 400 years of silence, and then Jesus arrives."
                     }
@@ -434,7 +436,12 @@
                     const shelvesContainer = document.createElement("div");
                     shelvesContainer.className = "book-shelves";
 
-                    const booksPerShelf = section.shelfSize ?? 8;
+                    // Auto-split into at most 2 shelves. Sections with 6 or fewer books stay on 1 shelf.
+                    const booksPerShelf = section.shelfSize ?? (
+                        section.books.length <= 6
+                            ? section.books.length
+                            : Math.ceil(section.books.length / 2)
+                    );
                     const bookChunks = [];
                     for (let i = 0; i < section.books.length; i += booksPerShelf) {
                         bookChunks.push(section.books.slice(i, i + booksPerShelf));
