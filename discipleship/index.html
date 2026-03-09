@@ -2533,6 +2533,8 @@
                         return requireString(block.title) && requireString(block.url);
                     case 'checklist':
                         return requireString(block.id) && requireString(block.prompt) && Array.isArray(block.items);
+                    case 'widget':
+                        return requireString(block.src);
                     case 'bible_reading':
                         return Array.isArray(block.chapters) &&
                             block.chapters.every(ch => ch && typeof ch === 'object' && requireString(ch.ref));
@@ -2601,7 +2603,7 @@
                 }
 
                 if (data.blocks) {
-                    data.blocks.forEach(b => {
+                    data.blocks.forEach((b, blockIdx) => {
                         switch (b.type) {
                             case 'heading':
                                 let iconHTML = '';
@@ -2779,6 +2781,29 @@
                                     <a class="block-tool-btn" href="${b.url}" target="_blank" rel="noopener noreferrer">${b.buttonText || 'Open Tool'}</a>
                                 </div>`;
                                 break;
+
+                            case 'widget': {
+                                const widgetId = `widget-${currentSeries}-${sessionNum}-${blockIdx}`;
+                                const widgetHeight = b.height || '500px';
+                                html += `<div class="block-widget" style="margin: 24px 0;">
+                                    <iframe id="${widgetId}" src="${b.src}?v=${BUILD_VERSION}"
+                                        style="width: 100%; border: none; border-radius: var(--radius-sm); overflow: hidden; min-height: ${widgetHeight};"
+                                        scrolling="no"
+                                        onload="(function(f){
+                                            function resize(){
+                                                try {
+                                                    var h = f.contentDocument.documentElement.scrollHeight;
+                                                    if(h > 50) f.style.height = h + 'px';
+                                                } catch(e){}
+                                            }
+                                            resize();
+                                            new MutationObserver(resize).observe(f.contentDocument.body, {childList:true, subtree:true, attributes:true});
+                                            window.addEventListener('resize', resize);
+                                        })(this)"
+                                    ></iframe>
+                                </div>`;
+                                break;
+                            }
 
                             case 'bible_reading':
                                 html += `<div class="bible-reading-section">`;

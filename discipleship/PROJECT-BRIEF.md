@@ -104,6 +104,8 @@ discipleship/
     202-01.json through 202-10.json      - Growing Up (10 lessons)
     203-01.json through 203-10.json      - Growing Out (10 lessons)
     301-01.json through 301-10.json      - Leading (10 lessons)
+  widgets/                               - self-contained interactive HTML tools
+    bible-bookshelf.html                 - interactive Bible overview (used in 202-04)
   images/                                - logo and visual assets
   curriculum-toc.csv                     - master curriculum outline
   Lesson_research/                       - research files (one per lesson)
@@ -144,8 +146,33 @@ Each lesson JSON has a `title`, optional `description`, and a `blocks` array. Av
 - `bible_reading` - expandable chapter cards with ESV API text, audio, completion checkbox, notes
 - `stepper` - step-by-step interactive element
 - `tool` - special tool/framework display
+- `checklist` - tappable tile grid with `id`, `prompt`, and `items` array (selections auto-save)
+- `widget` - embedded interactive HTML tool loaded via iframe with `src` pointing to a file in `widgets/` folder (auto-resizes to content height, optional `height` property for initial min-height)
 
 Note: `agenda` and `homework` block types still render for backward compatibility but are no longer used.
+
+## Widget System
+
+The `widget` block type allows self-contained interactive tools to be embedded directly in lesson flow. Each widget is a standalone HTML file in the `widgets/` folder with its own CSS and JS inline. The app renders it in an auto-sizing iframe that blends seamlessly into the lesson.
+
+### How to add a widget to a lesson
+
+1. Create a self-contained HTML file in `widgets/` (e.g., `widgets/my-tool.html`)
+2. Add a widget block to the lesson JSON: `{ "type": "widget", "src": "widgets/my-tool.html", "height": "400px" }`
+3. The `height` property is optional (defaults to 500px) and sets the initial minimum height before the iframe auto-sizes
+
+### Design guidelines for widgets
+
+- Phone-first design (max 640px content width)
+- Use the same font stack as the app: `-apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif`
+- Use warm, earthy color palettes that match the course color system
+- Make all interactive elements accessible (keyboard + aria labels)
+- Keep the widget self-contained with no external dependencies
+- Set `background: transparent` on body so it blends with lesson background
+
+### Current widgets
+
+- `widgets/bible-bookshelf.html` - Interactive Bible overview with 66 color-coded book spines organized by section. Tap any book to see a summary card for its section. Used in 202-04.
 
 ## Adding a New Lesson
 

@@ -25,9 +25,12 @@ The home page logo (`<img>` in static HTML) is still not covered, but it rarely 
 Image rename convention (v2, v3) is no longer necessary for lesson images, but can still be used if you want to keep old versions around for reference.
 
 ### JSON Lesson Format
-Blocks array with types: `heading`, `text`, `verse`, `question`, `image`, `bible_reading`
+Blocks array with types: `heading`, `text`, `verse`, `question`, `image`, `bible_reading`, `stepper`, `tool`, `checklist`, `widget`
 
 Image block format: `{"type": "image", "src": "images/filename.png", "alt": "description"}`
+
+Widget block format: `{"type": "widget", "src": "widgets/filename.html", "height": "420px"}`
+Widget files live in the `widgets/` folder as self-contained HTML with inline CSS and JS. The app renders them in auto-sizing iframes.
 
 Version field (only on actively-edited lessons): `"version": "v04"` — renders as a small badge in the app header (e.g. `201.01 · v04`). Bump this whenever a lesson is substantively revised.
 

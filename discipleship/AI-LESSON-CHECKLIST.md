@@ -83,8 +83,9 @@ Look for a chance to add:
 - a diagram
 - a mini webapp
 - a discipleship conversation aid
+- an interactive widget (self-contained HTML in `widgets/` folder, embedded via `{"type": "widget", "src": "widgets/filename.html"}`)
 
-Do not force a tool into every lesson, but default to transferability.
+Do not force a tool into every lesson, but default to transferability. When a concept benefits from exploration rather than linear reading, consider building an interactive widget. See PROJECT-BRIEF.md for widget design guidelines.
 
 ## Final lesson test
 

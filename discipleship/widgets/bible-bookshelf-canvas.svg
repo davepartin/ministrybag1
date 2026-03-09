@@ -1,0 +1,152 @@
+<svg width="1440" height="1080" viewBox="0 0 1440 1080" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="720" y1="0" x2="720" y2="1080" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F8F4ED"/>
+      <stop offset="1" stop-color="#EFDCC2"/>
+    </linearGradient>
+    <linearGradient id="card" x1="720" y1="80" x2="720" y2="1000" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFDF9" stop-opacity="0.94"/>
+      <stop offset="1" stop-color="#F9F2E8" stop-opacity="0.96"/>
+    </linearGradient>
+    <linearGradient id="wood" x1="0" y1="0" x2="0" y2="1">
+      <stop stop-color="#C99658"/>
+      <stop offset="1" stop-color="#9E6D36"/>
+    </linearGradient>
+    <filter id="shadow" x="110" y="55" width="1220" height="950" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+      <feOffset dy="18"/>
+      <feGaussianBlur stdDeviation="24"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0.23 0 0 0 0 0.16 0 0 0 0 0.08 0 0 0 0.16 0"/>
+      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_1_2"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_1_2" result="shape"/>
+    </filter>
+  </defs>
+
+  <rect width="1440" height="1080" fill="url(#bg)"/>
+  <circle cx="1290" cy="120" r="180" fill="#F4D7A6" fill-opacity="0.55"/>
+  <circle cx="180" cy="110" r="120" fill="#FFFFFF" fill-opacity="0.4"/>
+
+  <g filter="url(#shadow)">
+    <rect x="158" y="85" width="1124" height="878" rx="32" fill="url(#card)"/>
+    <rect x="158.5" y="85.5" width="1123" height="877" rx="31.5" stroke="white" stroke-opacity="0.55"/>
+
+    <text x="220" y="152" fill="#8B673E" font-family="Avenir Next, Segoe UI, sans-serif" font-size="18" font-weight="700" letter-spacing="3">BIBLE OVERVIEW WIDGET</text>
+    <text x="220" y="216" fill="#2C241D" font-family="Georgia, serif" font-size="46" font-weight="700">Browse Scripture like a bookshelf.</text>
+    <text x="220" y="258" fill="#756658" font-family="Avenir Next, Segoe UI, sans-serif" font-size="22">
+      <tspan x="220" dy="0">Students tap a shelf category, see the books inside it, and read a simple</tspan>
+      <tspan x="220" dy="32">3-5 sentence overview that explains how that section fits in the Bible story.</tspan>
+    </text>
+
+    <rect x="206" y="304" width="672" height="608" rx="28" fill="#FFFDF9" fill-opacity="0.82" stroke="#D4C5B0"/>
+    <rect x="902" y="304" width="332" height="608" rx="28" fill="#FFFDF9" stroke="#D4C5B0"/>
+
+    <text x="238" y="350" fill="#2D251D" font-family="Georgia, serif" font-size="28" font-weight="700">Old Testament</text>
+    <text x="762" y="350" fill="#756658" font-family="Avenir Next, Segoe UI, sans-serif" font-size="15" font-weight="700" letter-spacing="2">39 BOOKS</text>
+
+    <g>
+      <rect x="236" y="378" width="612" height="92" rx="20" fill="#FAF4EB" stroke="#DEC9AF"/>
+      <circle cx="266" cy="414" r="7" fill="#5D7F57"/>
+      <text x="286" y="420" fill="#2D251D" font-family="Avenir Next, Segoe UI, sans-serif" font-size="22" font-weight="700">Law</text>
+      <text x="775" y="420" fill="#7A6E62" font-family="Avenir Next, Segoe UI, sans-serif" font-size="13" font-weight="700" letter-spacing="1.5">5 BOOKS</text>
+      <g>
+        <rect x="256" y="430" width="34" height="28" rx="6" fill="#5D7F57"/>
+        <rect x="294" y="425" width="34" height="33" rx="6" fill="#5D7F57"/>
+        <rect x="332" y="432" width="34" height="26" rx="6" fill="#5D7F57"/>
+        <rect x="370" y="426" width="34" height="32" rx="6" fill="#5D7F57"/>
+        <rect x="408" y="423" width="38" height="35" rx="6" fill="#5D7F57"/>
+      </g>
+      <rect x="252" y="458" width="580" height="8" rx="4" fill="url(#wood)"/>
+    </g>
+
+    <g>
+      <rect x="236" y="486" width="612" height="92" rx="20" fill="#FAF4EB" stroke="#DEC9AF"/>
+      <circle cx="266" cy="522" r="7" fill="#876648"/>
+      <text x="286" y="528" fill="#2D251D" font-family="Avenir Next, Segoe UI, sans-serif" font-size="22" font-weight="700">History</text>
+      <text x="760" y="528" fill="#7A6E62" font-family="Avenir Next, Segoe UI, sans-serif" font-size="13" font-weight="700" letter-spacing="1.5">12 BOOKS</text>
+      <g fill="#876648">
+        <rect x="256" y="538" width="26" height="28" rx="6"/>
+        <rect x="286" y="530" width="26" height="36" rx="6"/>
+        <rect x="316" y="536" width="26" height="30" rx="6"/>
+        <rect x="346" y="528" width="26" height="38" rx="6"/>
+        <rect x="376" y="534" width="26" height="32" rx="6"/>
+        <rect x="406" y="531" width="26" height="35" rx="6"/>
+        <rect x="436" y="526" width="26" height="40" rx="6"/>
+        <rect x="466" y="533" width="26" height="33" rx="6"/>
+      </g>
+      <rect x="252" y="566" width="580" height="8" rx="4" fill="url(#wood)"/>
+    </g>
+
+    <g>
+      <rect x="236" y="594" width="612" height="92" rx="20" fill="#FAF4EB" stroke="#DEC9AF"/>
+      <circle cx="266" cy="630" r="7" fill="#C39D37"/>
+      <text x="286" y="636" fill="#2D251D" font-family="Avenir Next, Segoe UI, sans-serif" font-size="22" font-weight="700">Poetry and Wisdom</text>
+      <text x="758" y="636" fill="#7A6E62" font-family="Avenir Next, Segoe UI, sans-serif" font-size="13" font-weight="700" letter-spacing="1.5">5 BOOKS</text>
+      <g fill="#C39D37">
+        <rect x="256" y="646" width="30" height="28" rx="6"/>
+        <rect x="290" y="640" width="34" height="34" rx="6"/>
+        <rect x="328" y="645" width="30" height="29" rx="6"/>
+        <rect x="362" y="638" width="32" height="36" rx="6"/>
+        <rect x="398" y="643" width="36" height="31" rx="6"/>
+      </g>
+      <rect x="252" y="674" width="580" height="8" rx="4" fill="url(#wood)"/>
+    </g>
+
+    <g>
+      <rect x="236" y="702" width="612" height="92" rx="20" fill="#F8F0F6" stroke="#C8B7D5" stroke-width="2"/>
+      <rect x="236" y="702" width="612" height="92" rx="20" fill="#FFFFFF" fill-opacity="0.12"/>
+      <circle cx="266" cy="738" r="7" fill="#2F7957"/>
+      <text x="286" y="744" fill="#2D251D" font-family="Avenir Next, Segoe UI, sans-serif" font-size="22" font-weight="700">Gospels</text>
+      <text x="775" y="744" fill="#5F7769" font-family="Avenir Next, Segoe UI, sans-serif" font-size="13" font-weight="700" letter-spacing="1.5">4 BOOKS</text>
+      <g fill="#2F7957">
+        <rect x="256" y="754" width="34" height="28" rx="6"/>
+        <rect x="294" y="749" width="34" height="33" rx="6"/>
+        <rect x="332" y="745" width="34" height="37" rx="6"/>
+        <rect x="370" y="751" width="34" height="31" rx="6"/>
+      </g>
+      <rect x="252" y="782" width="580" height="8" rx="4" fill="url(#wood)"/>
+    </g>
+
+    <text x="238" y="850" fill="#2D251D" font-family="Georgia, serif" font-size="28" font-weight="700">New Testament</text>
+    <text x="760" y="850" fill="#756658" font-family="Avenir Next, Segoe UI, sans-serif" font-size="15" font-weight="700" letter-spacing="2">27 BOOKS</text>
+    <g fill="#2D689B">
+      <rect x="256" y="872" width="22" height="30" rx="6"/>
+      <rect x="282" y="865" width="22" height="37" rx="6"/>
+      <rect x="308" y="870" width="22" height="32" rx="6"/>
+      <rect x="334" y="862" width="22" height="40" rx="6"/>
+      <rect x="360" y="868" width="22" height="34" rx="6"/>
+      <rect x="386" y="864" width="22" height="38" rx="6"/>
+      <rect x="412" y="870" width="22" height="32" rx="6"/>
+      <rect x="438" y="866" width="22" height="36" rx="6"/>
+      <rect x="464" y="871" width="22" height="31" rx="6"/>
+    </g>
+    <rect x="252" y="900" width="580" height="8" rx="4" fill="url(#wood)"/>
+
+    <text x="930" y="346" fill="#7A6E62" font-family="Avenir Next, Segoe UI, sans-serif" font-size="15" font-weight="800" letter-spacing="2.2">SELECTED SHELF</text>
+    <rect x="930" y="372" width="132" height="32" rx="16" fill="#E5F1EA"/>
+    <circle cx="953" cy="388" r="6" fill="#2F7957"/>
+    <text x="968" y="394" fill="#2F5E49" font-family="Avenir Next, Segoe UI, sans-serif" font-size="15" font-weight="700">Gospels • 4 books</text>
+
+    <text x="930" y="450" fill="#2D251D" font-family="Georgia, serif" font-size="42" font-weight="700">Gospels</text>
+    <text x="930" y="490" fill="#756658" font-family="Avenir Next, Segoe UI, sans-serif" font-size="19">
+      Matthew, Mark, Luke, John
+    </text>
+
+    <text x="930" y="548" fill="#44382C" font-family="Avenir Next, Segoe UI, sans-serif" font-size="22">
+      <tspan x="930" dy="0">These four books tell the life, teachings,</tspan>
+      <tspan x="930" dy="34">death, and resurrection of Jesus Christ.</tspan>
+      <tspan x="930" dy="46">Each Gospel has a distinct voice, but together</tspan>
+      <tspan x="930" dy="34">they present one Savior.</tspan>
+      <tspan x="930" dy="46">Students need to understand that this shelf is</tspan>
+      <tspan x="930" dy="34">the center of the Christian story because it</tspan>
+      <tspan x="930" dy="34">reveals who Jesus is and what He came to do.</tspan>
+    </text>
+
+    <line x1="930" y1="790" x2="1206" y2="790" stroke="#D9CCBA"/>
+    <text x="930" y="836" fill="#756658" font-family="Avenir Next, Segoe UI, sans-serif" font-size="17" font-weight="700">WHY THIS MATTERS</text>
+    <text x="930" y="874" fill="#5C4C3D" font-family="Avenir Next, Segoe UI, sans-serif" font-size="20">
+      <tspan x="930" dy="0">This teaching card keeps the explanation</tspan>
+      <tspan x="930" dy="30">focused, readable, and easy to remember.</tspan>
+    </text>
+  </g>
+</svg>
