@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bible Bookshelf Widget</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Forum&display=swap" rel="stylesheet">
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg: #f4efe6;
+            --surface: rgba(255, 252, 247, 0.92);
+            --text: #2b241d;
+            --muted: #74665a;
+            --border: rgba(101, 74, 46, 0.14);
+            --shelf-wood: linear-gradient(180deg, #c59557 0%, #a16f37 100%);
+            --radius: 20px;
+            --law: #5d7f57;
+            --history: #876648;
+            --poetry: #c39d37;
+            --major-prophets: #725389;
+            --minor-prophets: #8c5872;
+            --gospels: #2f7957;
+            --acts: #bf5e23;
+            --pauls-letters: #2d689b;
+            --other-letters: #267a6e;
+            --prophecy: #8a4459;
+        }
+
+        body {
+            font-family: "Avenir Next", -apple-system, "Segoe UI", system-ui, sans-serif;
+            background: transparent;
+            color: var(--text);
+            line-height: 1.55;
+            padding: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ---- Testament wrapper ---- */
+        .testament {
+            margin-bottom: 20px;
+        }
+
+        .testament-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+            padding: 0 2px;
+        }
+
+        .testament-title {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #2B5A83;
+            letter-spacing: 0;
+        }
+
+        .testament-count {
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: #2B5A83;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            background: rgba(43, 90, 131, 0.1);
+            border: 1px solid rgba(43, 90, 131, 0.2);
+            border-radius: 999px;
+            padding: 3px 10px;
+            white-space: nowrap;
+        }
+
+        /* ---- Shelf groups (each section: Law, History, etc.) ---- */
+        .shelf-stack {
+            display: grid;
+            gap: 10px;
+        }
+
+        .shelf-group {
+            background: linear-gradient(180deg, rgba(255, 251, 244, 0.96), rgba(246, 239, 228, 0.86));
+            border: 1px solid rgba(101, 74, 46, 0.12);
+            border-radius: var(--radius);
+            padding: 14px;
+            cursor: pointer;
+            transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+            -webkit-tap-highlight-color: transparent;
+            outline: none;
+            font: inherit;
+            color: inherit;
+            text-align: left;
+            width: 100%;
+        }
+
+        .shelf-group:hover,
+        .shelf-group:focus-visible {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 20px rgba(74, 52, 28, 0.1);
+        }
+
+        .shelf-group.active {
+            border-color: color-mix(in srgb, var(--section-color) 50%, white);
+            box-shadow: 0 10px 24px rgba(74, 52, 28, 0.12);
+        }
+
+        /* ---- Section header inside each group ---- */
+        .shelf-group-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .shelf-title-wrap {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            min-width: 0;
+        }
+
+        .shelf-dot {
+            width: 11px;
+            height: 11px;
+            border-radius: 999px;
+            background: var(--section-color);
+            box-shadow: 0 0 0 4px color-mix(in srgb, var(--section-color) 18%, white);
+            flex-shrink: 0;
+        }
+
+        .shelf-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+        }
+
+        .shelf-meta {
+            font-size: 0.75rem;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            flex-shrink: 0;
+        }
+
+        /* ---- Book shelves container ---- */
+        .book-shelves {
+            background: rgba(112, 78, 40, 0.08);
+            border-radius: 14px;
+            padding: 10px 10px 4px;
+            display: grid;
+            gap: 0;
+        }
+
+        /* ---- A single shelf row (spines + plank) ---- */
+        .shelf-row {
+            margin-bottom: 6px;
+        }
+
+        .book-spines {
+            display: flex;
+            align-items: flex-end;
+            gap: 4px;
+            flex-wrap: wrap;
+        }
+
+        .spine {
+            min-width: 34px;
+            max-width: 48px;
+            flex: 1 1 34px;
+            height: 80px;
+            border-radius: 6px 6px 2px 2px;
+            background:
+                linear-gradient(90deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.02) 20%, rgba(0, 0, 0, 0.1) 100%),
+                var(--section-color);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4px 2px;
+            font-size: 13px;
+            font-weight: 700;
+            line-height: 1.15;
+            text-align: center;
+            writing-mode: vertical-rl;
+            transform: rotate(180deg);
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.28);
+            box-shadow: inset 1px 0 0 rgba(255, 255, 255, 0.16), inset -2px 0 0 rgba(0, 0, 0, 0.14);
+        }
+
+        /* ---- Wooden shelf plank ---- */
+        .shelf-plank {
+            height: 9px;
+            border-radius: 999px;
+            background: var(--shelf-wood);
+            margin-top: 7px;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.34), 0 3px 8px rgba(77, 46, 16, 0.18);
+        }
+
+        /* ---- Inline info card (accordion under each section) ---- */
+        .info-card {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, opacity 0.3s ease, margin-top 0.4s ease;
+            opacity: 0;
+            margin-top: 0;
+        }
+
+        .info-card.open {
+            max-height: 600px;
+            opacity: 1;
+            margin-top: 12px;
+        }
+
+        .info-card-inner {
+            background: #fff;
+            border-radius: 14px;
+            padding: 16px 18px;
+            border-left: 4px solid var(--section-color);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .info-card-label {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--section-color);
+            margin-bottom: 6px;
+        }
+
+        .info-card-books {
+            font-size: 12.5px;
+            color: var(--muted);
+            font-style: italic;
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+
+        .info-card-text {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #3A3A3A;
+        }
+
+        /* ---- Chevron indicator ---- */
+        .chevron {
+            width: 18px;
+            height: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: transform 0.25s ease;
+            color: var(--muted);
+        }
+
+        .shelf-group.active .chevron {
+            transform: rotate(180deg);
+        }
+
+        @media (max-width: 560px) {
+            .shelf-group {
+                padding: 12px;
+            }
+
+            .spine {
+                min-width: 30px;
+                max-width: 42px;
+                height: 72px;
+                font-size: 11.5px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="library"></div>
+
+    <script>
+        const data = [
+            {
+                testament: "Old Testament",
+                count: "39 books",
+                sections: [
+                    {
+                        id: "law",
+                        title: "The Law",
+                        subtitle: "5 books",
+                        books: ["Genesis", "Exodus", "Leviticus", "Numbers", "Deuteronomy"],
+                        text: "These five books were written by Moses and are the foundation of everything that follows. They tell the story of creation, the fall of humanity, God's covenant with Abraham, the exodus from Egypt, and the giving of God's law at Mount Sinai. If you want to understand where the whole story of the Bible begins, start here. Genesis means \"beginning,\" and that is exactly what it gives you."
+                    },
+                    {
+                        id: "history",
+                        title: "History",
+                        subtitle: "12 books",
+                        books: ["Joshua", "Judges", "Ruth", "1 Samuel", "2 Samuel", "1 Kings", "2 Kings", "1 Chronicles", "2 Chronicles", "Ezra", "Nehemiah", "Esther"],
+                        text: "These twelve books tell the story of Israel as a nation. After Moses died, Israel entered the Promised Land, rose as a kingdom under David and Solomon, split into two nations, fell into exile, and eventually returned to rebuild. It is a story of God's faithfulness even when His people are unfaithful. You will meet judges, kings, prophets, and ordinary people who trusted God in impossible situations."
+                    },
+                    {
+                        id: "poetry",
+                        title: "Poetry and Wisdom",
+                        subtitle: "5 books",
+                        books: ["Job", "Psalms", "Proverbs", "Ecclesiastes", "Song of Solomon"],
+                        text: "These books are different from the rest because they are not narratives. They are songs, prayers, poems, proverbs, and reflections on life. The Psalms are the prayer book of the Bible. Proverbs is practical wisdom for everyday decisions. Job wrestles with suffering. Ecclesiastes asks, \"What is the meaning of life?\" These books give words to what your heart already feels."
+                    },
+                    {
+                        id: "major-prophets",
+                        title: "Major Prophets",
+                        subtitle: "5 books",
+                        books: ["Isaiah", "Jeremiah", "Lamentations", "Ezekiel", "Daniel"],
+                        text: "The prophets are God's messengers. They called Israel to repent, warned of coming judgment, and pointed forward to a coming Messiah who would save the world. Isaiah contains some of the most beautiful descriptions of Jesus written 700 years before He was born. Daniel shows what it looks like to live faithfully in a culture that opposes God. These books can feel intense, but they are full of hope."
+                    },
+                    {
+                        id: "minor-prophets",
+                        title: "Minor Prophets",
+                        subtitle: "12 books",
+                        books: ["Hosea", "Joel", "Amos", "Obadiah", "Jonah", "Micah", "Nahum", "Habakkuk", "Zephaniah", "Haggai", "Zechariah", "Malachi"],
+                        text: "\"Minor\" does not mean less important. It means shorter. These twelve books carry the same urgent message as the Major Prophets: return to God, trust His promises, and look for the Savior who is coming. Jonah tells the story of a reluctant missionary. Micah asks what God truly requires of you. Malachi is the last voice before 400 years of silence, and then Jesus arrives."
+                    }
+                ]
+            },
+            {
+                testament: "New Testament",
+                count: "27 books",
+                sections: [
+                    {
+                        id: "gospels",
+                        title: "The Gospels",
+                        subtitle: "4 books",
+                        books: ["Matthew", "Mark", "Luke", "John"],
+                        text: "Four accounts of the life, death, and resurrection of Jesus from four different perspectives. Matthew writes to Jewish readers showing Jesus as the promised King. Mark writes a fast-paced account of Jesus the Servant. Luke, a doctor, gives the most detailed history. John writes to reveal Jesus as the Son of God. If you are reading the Gospel of John in this course, you are already in this section."
+                    },
+                    {
+                        id: "acts",
+                        title: "Acts",
+                        subtitle: "1 book",
+                        books: ["Acts"],
+                        text: "Acts picks up right where the Gospels leave off. Jesus ascends to heaven, the Holy Spirit comes at Pentecost, and the church explodes outward from Jerusalem to the entire known world. This is the story of ordinary people empowered by the Spirit to do extraordinary things. If you want to see what the Christian life looks like in motion, read Acts."
+                    },
+                    {
+                        id: "pauls-letters",
+                        title: "Paul's Letters",
+                        subtitle: "13 books",
+                        shelfSize: 7,
+                        books: ["Romans", "1 Corinthians", "2 Corinthians", "Galatians", "Ephesians", "Philippians", "Colossians", "1 Thessalonians", "2 Thessalonians", "1 Timothy", "2 Timothy", "Titus", "Philemon"],
+                        text: "Paul wrote thirteen letters to churches and individuals across the Roman world. Romans lays out the gospel in full. Ephesians teaches who you are in Christ. Philippians overflows with joy from a prison cell. The pastoral letters (1 and 2 Timothy, Titus, Philemon) give guidance for leaders and communities. These letters are among the most studied writings in the New Testament."
+                    },
+                    {
+                        id: "other-letters",
+                        title: "Other Letters",
+                        subtitle: "8 books",
+                        shelfSize: 8,
+                        books: ["Hebrews", "James", "1 Peter", "2 Peter", "1 John", "2 John", "3 John", "Jude"],
+                        text: "These eight letters were written by other apostles and leaders. Hebrews makes the case that Jesus fulfills everything the Old Testament pointed to. James is intensely practical faith in action. Peter writes to encourage believers under pressure and suffering. John's letters call the church back to love and truth. Jude warns against false teaching that had crept into the community."
+                    },
+                    {
+                        id: "prophecy",
+                        title: "Revelation",
+                        subtitle: "1 book",
+                        books: ["Revelation"],
+                        text: "Revelation is the final book of the Bible, written by the apostle John from exile on the island of Patmos. It is full of vivid imagery and can feel difficult to understand, but its central message is simple and triumphant: Jesus wins. Evil is defeated. God makes all things new. The story that began in Genesis with a garden ends in Revelation with a city, and God dwells with His people forever."
+                    }
+                ]
+            }
+        ];
+
+        function createSpineLabel(name) {
+            return name
+                .replace("Thessalonians", "Thess")
+                .replace("Corinthians", "Cor")
+                .replace("Deuteronomy", "Deut")
+                .replace("Leviticus", "Lev")
+                .replace("Lamentations", "Lam")
+                .replace("Chronicles", "Chron")
+                .replace("Philippians", "Phil")
+                .replace("Ecclesiastes", "Eccl");
+        }
+
+        const library = document.getElementById("library");
+        let activeSection = null;
+
+        function renderLibrary() {
+            data.forEach(testament => {
+                const wrapper = document.createElement("div");
+                wrapper.className = "testament";
+
+                // Testament header
+                wrapper.innerHTML = `
+                    <div class="testament-header">
+                        <div class="testament-title">${testament.testament}</div>
+                        <div class="testament-count">${testament.count}</div>
+                    </div>
+                `;
+
+                const stack = document.createElement("div");
+                stack.className = "shelf-stack";
+
+                testament.sections.forEach(section => {
+                    // Group button
+                    const group = document.createElement("button");
+                    group.className = "shelf-group";
+                    group.type = "button";
+                    group.dataset.sectionId = section.id;
+                    group.style.setProperty("--section-color", `var(--${section.id})`);
+
+                    // Header row
+                    const header = document.createElement("div");
+                    header.className = "shelf-group-header";
+                    header.innerHTML = `
+                        <div class="shelf-title-wrap">
+                            <span class="shelf-dot"></span>
+                            <div class="shelf-title">${section.title}</div>
+                        </div>
+                        <div style="display:flex;align-items:center;gap:8px;">
+                            <div class="shelf-meta">${section.subtitle}</div>
+                            <div class="chevron">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="6 9 12 15 18 9"></polyline>
+                                </svg>
+                            </div>
+                        </div>
+                    `;
+
+                    // Book shelves - chunk books into rows, using per-section shelfSize or default of 8
+                    const shelvesContainer = document.createElement("div");
+                    shelvesContainer.className = "book-shelves";
+
+                    const booksPerShelf = section.shelfSize ?? 8;
+                    const bookChunks = [];
+                    for (let i = 0; i < section.books.length; i += booksPerShelf) {
+                        bookChunks.push(section.books.slice(i, i + booksPerShelf));
+                    }
+
+                    bookChunks.forEach(chunk => {
+                        const shelfRow = document.createElement("div");
+                        shelfRow.className = "shelf-row";
+
+                        const spines = document.createElement("div");
+                        spines.className = "book-spines";
+                        chunk.forEach(bookName => {
+                            const spine = document.createElement("div");
+                            spine.className = "spine";
+                            spine.textContent = createSpineLabel(bookName);
+                            spines.appendChild(spine);
+                        });
+
+                        const plank = document.createElement("div");
+                        plank.className = "shelf-plank";
+
+                        shelfRow.appendChild(spines);
+                        shelfRow.appendChild(plank);
+                        shelvesContainer.appendChild(shelfRow);
+                    });
+
+                    // Inline info card (accordion)
+                    const infoCard = document.createElement("div");
+                    infoCard.className = "info-card";
+                    infoCard.id = "card-" + section.id;
+                    infoCard.innerHTML = `
+                        <div class="info-card-inner" style="--section-color: var(--${section.id})">
+                            <div class="info-card-label">${section.title} &bull; ${section.subtitle}</div>
+                            <div class="info-card-books">${section.books.join(", ")}</div>
+                            <div class="info-card-text">${section.text}</div>
+                        </div>
+                    `;
+
+                    group.appendChild(header);
+                    group.appendChild(shelvesContainer);
+                    group.appendChild(infoCard);
+
+                    group.addEventListener("click", () => toggleSection(section.id));
+
+                    stack.appendChild(group);
+                });
+
+                wrapper.appendChild(stack);
+                library.appendChild(wrapper);
+            });
+        }
+
+        function toggleSection(sectionId) {
+            // If tapping the same section, close it
+            if (activeSection === sectionId) {
+                const card = document.getElementById("card-" + sectionId);
+                const group = document.querySelector(`[data-section-id="${sectionId}"]`);
+                if (card) card.classList.remove("open");
+                if (group) group.classList.remove("active");
+                activeSection = null;
+                return;
+            }
+
+            // Close any currently open section
+            document.querySelectorAll(".info-card.open").forEach(c => c.classList.remove("open"));
+            document.querySelectorAll(".shelf-group.active").forEach(g => g.classList.remove("active"));
+
+            // Open the new section
+            const card = document.getElementById("card-" + sectionId);
+            const group = document.querySelector(`[data-section-id="${sectionId}"]`);
+            if (card) card.classList.add("open");
+            if (group) group.classList.add("active");
+            activeSection = sectionId;
+
+            // Scroll the group into view
+            setTimeout(() => {
+                group.scrollIntoView({ behavior: "smooth", block: "nearest" });
+            }, 150);
+        }
+
+        renderLibrary();
+    </script>
+</body>
+
+</html>

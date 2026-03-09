@@ -53,12 +53,21 @@
       "text": "The Old Testament has 39 books. The New Testament has 27. Together they form the complete Word of God. Some people struggle with the Old Testament because it feels distant or confusing. But here is the key: the Old Testament is not a different story with a different God. It is the first part of the same story, and every page of it points forward to Jesus. You cannot fully understand the New Testament without the Old, and you cannot fully understand the Old without the New."
     },
     {
+      "type": "text",
+      "text": "Below is every book of the Bible arranged on a shelf by section. Tap any book to learn what its section is about."
+    },
+    {
+      "type": "widget",
+      "src": "widgets/bible-bookshelf.html",
+      "height": "800px"
+    },
+    {
       "type": "heading",
       "text": "The Old Testament Bookshelf"
     },
     {
       "type": "text",
-      "text": "Imagine walking into a library and seeing the books organized into sections on a shelf. That is exactly how the Old Testament works. Its 39 books are arranged in five sections, and each section has a different feel and purpose. Walk through them below, one at a time."
+      "text": "Now walk through each section one at a time. Each section has a different feel and purpose."
     },
     {
       "type": "stepper",
