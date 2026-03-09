@@ -2119,6 +2119,16 @@
         let currentSeriesTopics = {};
         let loadedSessionNums = [];
 
+        // Hash routing state
+        let _suppressHashNav = false;
+        let _seriesLoading = false;
+
+        function pushHash(hash) {
+            _suppressHashNav = true;
+            location.hash = hash || '';
+            requestAnimationFrame(() => { _suppressHashNav = false; });
+        }
+
         try {
             responses = JSON.parse(localStorage.getItem('christianFoundationsResponses') || '{}');
         } catch (e) {
@@ -2203,7 +2213,7 @@
                 document.documentElement.style.setProperty('--accent-light', meta.bg);
                 document.documentElement.style.setProperty('--accent-hover', meta.hover);
             }
-            loadSeries(seriesId);
+            return loadSeries(seriesId);
         }
 
         function goHome() {
@@ -2211,6 +2221,7 @@
             document.getElementById('home-view').classList.remove('hidden');
             document.getElementById('toc-panel').classList.remove('open');
             window.scrollTo({ top: 0 });
+            pushHash('');
         }
 
         // ============================================
@@ -2316,6 +2327,7 @@
             document.getElementById('tree-content').innerHTML =
                 '<p style="padding:20px;color:var(--text-muted);">Loading...</p>';
             window.scrollTo({ top: 0 });
+            if (!_suppressHashNav) pushHash('tree');
             try {
                 const courses = await loadCurriculumFromCSV();
                 buildTreeContent(courses);
@@ -2329,6 +2341,7 @@
             document.getElementById('tree-view').classList.remove('active');
             document.getElementById('home-view').classList.remove('hidden');
             window.scrollTo({ top: 0 });
+            pushHash('');
         }
 
         function buildTreeContent(courses) {
@@ -2465,7 +2478,9 @@
             buildUI();
             buildTOC();
             currentSession = loadedSessionNums[0];
+            _seriesLoading = true;
             showSession(currentSession);
+            _seriesLoading = false;
         }
 
         function validateLessonData(seriesId, lessonNum, data) {
@@ -2924,6 +2939,11 @@
             updateNav();
             updateTOCHighlight();
 
+            // Update URL hash for browser back/forward and shareable links
+            if (!_seriesLoading && !_suppressHashNav) {
+                pushHash(currentSeries + '-' + targetNum);
+            }
+
             // Scroll lesson content to top
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
@@ -3244,6 +3264,88 @@
             const subject = `My ${seriesTitles[currentSeries] || 'The Walk Discipleship'} Journey`;
             window.location.href = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
         }
+
+        // ============================================
+        // HASH ROUTING - Browser back/forward support
+        // Handles: #101-4 (course-lesson), #tree, # (home)
+        // ============================================
+        window.addEventListener('hashchange', async () => {
+            if (_suppressHashNav) return;
+
+            const hash = location.hash.slice(1);
+
+            // Home
+            if (!hash) {
+                document.getElementById('tree-view').classList.remove('active');
+                document.getElementById('lesson-view').classList.remove('active');
+                document.getElementById('home-view').classList.remove('hidden');
+                document.getElementById('toc-panel').classList.remove('open');
+                window.scrollTo({ top: 0 });
+                return;
+            }
+
+            // Tree view
+            if (hash === 'tree') {
+                document.getElementById('lesson-view').classList.remove('active');
+                _suppressHashNav = true;
+                await openTree();
+                _suppressHashNav = false;
+                return;
+            }
+
+            // Lesson: "202-4" format
+            const m = hash.match(/^(\d{3})-(\d+)$/);
+            if (m) {
+                const sid = m[1];
+                const lnum = parseInt(m[2], 10);
+
+                // Close tree if open
+                document.getElementById('tree-view').classList.remove('active');
+
+                if (!COURSE_META[sid]) return;
+
+                _suppressHashNav = true;
+
+                if (currentSeries !== sid) {
+                    // Load a different course first
+                    await openSeries(sid);
+                }
+
+                if (sessionData[lnum]) {
+                    showSession(lnum);
+                }
+
+                _suppressHashNav = false;
+            }
+        });
+
+        // Handle direct link or page refresh with hash in URL
+        (async function handleInitialHash() {
+            const hash = location.hash.slice(1);
+            if (!hash) return;
+
+            if (hash === 'tree') {
+                _suppressHashNav = true;
+                await openTree();
+                _suppressHashNav = false;
+                return;
+            }
+
+            const m = hash.match(/^(\d{3})-(\d+)$/);
+            if (m) {
+                const sid = m[1];
+                const lnum = parseInt(m[2], 10);
+
+                if (!COURSE_META[sid]) return;
+
+                _suppressHashNav = true;
+                await openSeries(sid);
+                if (sessionData[lnum]) {
+                    showSession(lnum);
+                }
+                _suppressHashNav = false;
+            }
+        })();
 
         // ============================================
         // KEYBOARD NAV
