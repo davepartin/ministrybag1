@@ -115,7 +115,9 @@ All lessons now have `201-growing-logo.png` in the top-right corner (via COURSE_
 | 201-01 | The Shema & Greatest Commandment | **v04** | Full rewrite. Echo of Love framework. Tree analogy intro. `growing-3circles-logo.png` at top. John 10:10 replaces Augustine. No em dashes. Series intro paragraph added. |
 | 201-02 | Your Identity in Jesus the Son | Untouched | Research file exists |
 | 201-03 | The Spirit-Filled Walk | Untouched | Research file has CRU Follow-Up 3 material |
-| 201-04 to 201-10 | Various | Untouched | |
+| 201-04 to 201-07 | Various | Untouched | |
+| 201-08 | The Grace Cycle to Forgiveness | **v04** | Full rewrite. Single interactive grace-diagram widget embed. Grace/Mercy/Justified/Righteous cycle. Cycle-comes-back-around teaching. Question IDs updated to 201-08-*. |
+| 201-09 to 201-10 | Various | Untouched | |
 
 ### 202 — Growing Up (10 lessons)
 All lessons now have `202-growing-logo.png` in the top-right corner (via COURSE_META). 202-01 has the `202-3circles-logo.png` orientation logo + 3-sentence series intro in the lesson content.

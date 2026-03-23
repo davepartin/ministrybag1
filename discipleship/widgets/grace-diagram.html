@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Cycle of Grace</title>
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Georgia', 'Cambria', serif;
+            background: transparent;
+            color: #2C2416;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        button {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .title-bar {
+            background: #2C2416;
+            padding: 14px 20px 12px;
+            text-align: center;
+        }
+
+        .title-bar h1 {
+            font-size: 20px;
+            font-weight: 400;
+            color: #FAF8F3;
+            margin: 0;
+            line-height: 1.2;
+            font-family: 'Georgia', 'Cambria', serif;
+        }
+
+        .title-bar p {
+            font-size: 12px;
+            color: #FFFFFF;
+            margin: 5px 0 0 0;
+            font-family: 'Georgia', 'Cambria', serif;
+        }
+
+        .diagram-wrapper {
+            padding: 18px 0 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .diagram-container {
+            position: relative;
+            overflow: visible;
+        }
+
+        /* Boxes */
+        .grace-box {
+            position: absolute;
+            border-radius: 8px;
+            cursor: default;
+            transition: all 0.4s ease;
+            font-family: 'Trebuchet MS', sans-serif;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            -webkit-tap-highlight-color: transparent;
+            z-index: 2;
+        }
+
+        .grace-box.active {
+            cursor: pointer;
+        }
+
+        .grace-box .box-label {
+            font-size: 19px;
+            font-weight: 700;
+            margin-bottom: 4px;
+            transition: color 0.4s ease;
+        }
+
+        .grace-box .box-desc {
+            font-size: 13px;
+            line-height: 1.4;
+            transition: color 0.4s ease;
+        }
+
+        .grace-box .box-desc .big {
+            font-weight: 800;
+            transition: color 0.4s ease;
+        }
+
+        /* Cross beams */
+        .cross-beam {
+            position: absolute;
+            background-color: #D9CEBF;
+            border-radius: 4px;
+            z-index: 1;
+            pointer-events: none;
+            transition: opacity 0.8s ease;
+            opacity: 0;
+        }
+
+        .cross-beam.visible {
+            opacity: 1;
+        }
+
+        /* Arrow SVG */
+        .arrow-group {
+            transition: opacity 0.5s ease;
+            opacity: 0;
+        }
+
+        .arrow-group.visible {
+            opacity: 1;
+        }
+
+        /* Intro overlay */
+        .intro-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 20;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 20px;
+            pointer-events: none;
+        }
+
+        .intro-overlay .intro-verse {
+            font-size: 22px;
+            line-height: 1.5;
+            color: #2C2416;
+            font-family: 'Georgia', 'Cambria', serif;
+            font-style: italic;
+            margin: 0 0 8px 0;
+            font-weight: 400;
+            text-shadow: 0 1px 4px rgba(250,248,243,0.9);
+        }
+
+        .intro-overlay .intro-ref {
+            font-size: 13px;
+            color: #9B917F;
+            font-family: 'Trebuchet MS', sans-serif;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        /* Verse card */
+        .verse-card-wrapper {
+            max-width: 640px;
+            margin: 14px auto 0;
+            padding: 0 16px 28px;
+        }
+
+        .verse-card {
+            background: #FFFFFF;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 14px rgba(44,36,22,0.06);
+            animation: fadeSlide 0.35s ease;
+        }
+
+        .verse-card-bar {
+            height: 4px;
+        }
+
+        .verse-card-content {
+            padding: 16px 20px 18px;
+        }
+
+        .verse-card-title {
+            font-size: 17px;
+            font-weight: 400;
+            color: #5A4E3C;
+            margin: 0 0 10px 0;
+            line-height: 1.2;
+            font-family: 'Georgia', 'Cambria', serif;
+        }
+
+        .verse-card-text {
+            font-size: 14px;
+            line-height: 1.65;
+            color: #3D3426;
+            margin: 0 0 8px 0;
+        }
+
+        .verse-card-ref {
+            font-size: 11px;
+            color: #9B917F;
+            margin: 0;
+            font-weight: 600;
+            font-family: 'Trebuchet MS', sans-serif;
+        }
+
+        /* Navigation */
+        .nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 12px;
+            padding: 0 2px;
+        }
+
+        .nav-btn {
+            background: transparent;
+            border: 1.5px solid #D4CFC4;
+            border-radius: 10px;
+            padding: 8px 14px;
+            font-size: 12px;
+            font-family: 'Trebuchet MS', sans-serif;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .nav-btn.primary {
+            color: #fff;
+            border: none;
+        }
+
+        .nav-btn:disabled {
+            color: #CCC5B8;
+            cursor: default;
+        }
+
+        .dot-nav {
+            display: flex;
+            gap: 5px;
+            align-items: center;
+        }
+
+        .dot {
+            height: 8px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+
+        .dot.active-dot {
+            cursor: pointer;
+        }
+
+        /* Begin button */
+        .begin-wrapper {
+            display: flex;
+            justify-content: center;
+            padding: 20px 16px 28px;
+        }
+
+        .begin-btn {
+            background: #2C2416;
+            border: 1.5px solid #2C2416;
+            border-radius: 10px;
+            padding: 10px 28px;
+            font-size: 14px;
+            font-family: 'Trebuchet MS', sans-serif;
+            color: #fff;
+            cursor: pointer;
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(44,36,22,0.2);
+        }
+
+        @keyframes fadeSlide {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="title-bar">
+    <h1>The Cycle of Grace</h1>
+    <p>"For it is by grace you have been saved, through faith."</p>
+</div>
+
+<div class="diagram-wrapper">
+    <div class="diagram-container" id="diagram"></div>
+</div>
+
+<div id="card-area"></div>
+
+<script>
+    // ---- Data ----
+    const stops = [
+        {
+            id: "mercy", label: "Mercy",
+            cardTitle: 'God\'s Great Love and <span style="font-weight:700;color:#5B8A72">Mercy</span>',
+            color: "#5B8A72", borderColor: "#5B8A72", bgColor: "#EFF6F2",
+            ref: "Ephesians 2:4-5",
+            verse: 'But because of his <b>great love</b> for us, God, who is rich in <b>mercy</b>, made us <b>alive</b> with Christ even when we were dead in transgressions. It is by <b>grace</b> you have been <b>saved</b>.'
+        },
+        {
+            id: "justified", label: "Justified",
+            cardTitle: '<span style="font-weight:700;color:#8B4A5E">Justified</span>: "Just-if-I\u2019d" never sinned',
+            color: "#8B4A5E", borderColor: "#8B4A5E", bgColor: "#F6EFF2",
+            ref: "Romans 5:9 (ESV)",
+            verse: 'Since we have now been <b>justified</b> by his <b>blood (on the cross)</b>, how much more shall we be saved from God\'s <b>wrath (punishment)</b> through him.'
+        },
+        {
+            id: "righteous", label: "Righteous",
+            cardTitle: 'Clothed in <span style="font-weight:700;color:#4A6B8B">Righteousness</span>',
+            color: "#4A6B8B", borderColor: "#4A6B8B", bgColor: "#EFF3F6",
+            ref: "2 Corinthians 5:21 (NIV)",
+            verse: 'God made him who had <b>no sin</b> to be sin for us, so that in him we might become the <b>righteousness</b> of God.'
+        },
+        {
+            id: "overflow", label: "Grace",
+            cardTitle: 'We Get and Give <span style="font-weight:700;color:#9B7B2F">Grace</span>',
+            color: "#9B7B2F", borderColor: "#9B7B2F", bgColor: "#FBF5E6",
+            ref: "Ephesians 2:8-10",
+            verse: 'For it is by <b>grace</b> you have been <b>saved</b>, through faith and this is not from yourselves, it is the <b>gift</b> of God, not by works, so that no one can boast. For we are God\'s <b>handiwork</b>, created in Christ Jesus to do <b>good works</b>.'
+        },
+        {
+            id: "cross", label: "The Cross",
+            cardTitle: 'Give <span style="font-weight:700;color:#9B7B2F">Grace</span>, Show <span style="font-weight:700;color:#5B8A72">Mercy</span>, &amp; <span style="font-weight:700;color:#8B4A5E">Forgive</span>',
+            color: "#6B5232", borderColor: "#6B5232", bgColor: "#F5EDE3",
+            ref: "Ephesians 4:32 (ESV)",
+            verse: 'Be kind to one another, tenderhearted, forgiving one another, <b>as God in Christ forgave you</b>.'
+        }
+    ];
+
+    // ---- Layout constants ----
+    const BOX = 138, BOX_H_TOP = 116, BOX_H_BOT = 130, GAP = 50, GAP_V = 50;
+    const W = BOX * 2 + GAP, H = BOX_H_TOP + GAP_V + BOX_H_BOT;
+    const rightL = BOX + GAP, botTop = BOX_H_TOP + GAP_V;
+    const leftCx = BOX / 2, rightCx = BOX + GAP + BOX / 2;
+    const topArrowY = BOX_H_TOP * 0.5;
+    const botArrowY = botTop + BOX_H_BOT * 0.78 - 3;
+    const midX = BOX + GAP / 2, midY = BOX_H_TOP + GAP_V / 2;
+    const BEAM = 45;
+    const ARR = "#6B6358", SW = 2, HEAD = 8;
+    const greyBorder = "#D4CFC4", greyBg = "#F5F3EF", greyText = "#B8B1A4";
+
+    let step = -1;
+
+    // ---- Box positions: [idx, top, left, height] ----
+    // Top-left=Grace(3), Top-right=Mercy(0), Bot-right=Justified(1), Bot-left=Righteous(2)
+    const boxPositions = [
+        { idx: 0, top: 0, left: BOX + GAP, height: BOX_H_TOP },      // Mercy
+        { idx: 1, top: botTop, left: BOX + GAP, height: BOX_H_BOT },  // Justified
+        { idx: 2, top: botTop, left: 0, height: BOX_H_BOT },          // Righteous
+        { idx: 3, top: 0, left: 0, height: BOX_H_TOP }                // Grace
+    ];
+
+    const boxDescriptions = [
+        { label: "Mercy", lines: ['not getting the', '<span class="big">PUNISHMENT</span>', 'you do deserve'], bigSize: '15px' },
+        { label: "Justified", lines: ['your punishment', 'has been', '<span class="big">PAID</span>'], bigSize: '16px' },
+        { label: "Righteous", lines: ['you are', 'seen as', '<span class="big">PERFECT</span>'], bigSize: '16px' },
+        { label: "Grace", lines: ['getting a', '<span class="big">GIFT</span>', "you don't deserve"], bigSize: '16px' }
+    ];
+
+    function isActive(idx) { return idx <= step || step === 4; }
+
+    function render() {
+        const showIntro = step === -1;
+        const allDim = step === -1;
+        const showCross = step === 4;
+        const current = step >= 0 ? stops[step] : stops[0];
+
+        const diagram = document.getElementById('diagram');
+        diagram.style.width = W + 'px';
+        diagram.style.height = H + 'px';
+        diagram.innerHTML = '';
+
+        // -- Cross beams --
+        const vTop = midY - BEAM / 2 - GAP_V / 2 - 40;
+        const vHeight = botArrowY - vTop;
+        const vTrimmed = vHeight * 0.95;
+        const vOffset = (vHeight - vTrimmed) / 2;
+        const vBeam = document.createElement('div');
+        vBeam.className = 'cross-beam' + (showCross ? ' visible' : '');
+        vBeam.style.cssText = `left:${midX - BEAM/2}px;top:${vTop + vOffset + 6 + 5 + 2.5 + 3 - 2 - 10 - 6}px;width:${BEAM}px;height:${vTrimmed - 10 - 5 + 3 + 20}px;`;
+        diagram.appendChild(vBeam);
+
+        const hLeft = midX - BEAM / 2 - GAP / 2 - 40;
+        const hWidth = BEAM + GAP + 80;
+        const hTrimmed = hWidth * 0.95;
+        const hOffset = (hWidth - hTrimmed) / 2;
+        const hBeam = document.createElement('div');
+        hBeam.className = 'cross-beam' + (showCross ? ' visible' : '');
+        hBeam.style.cssText = `left:${hLeft + hOffset + 5 + 2.5 - 10 - 5}px;top:${midY - BEAM/2}px;width:${hTrimmed - 10 - 5 + 20 + 10}px;height:${BEAM}px;`;
+        diagram.appendChild(hBeam);
+
+        // -- SVG Arrows --
+        const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        svg.style.cssText = 'position:absolute;top:0;left:0;z-index:1;';
+        svg.setAttribute('width', W);
+        svg.setAttribute('height', H);
+        svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+
+        function addArrow(minStep, x1, y1, x2, y2, tipX, tipY, tipPoints) {
+            const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+            g.classList.add('arrow-group');
+            if (step >= minStep) g.classList.add('visible');
+            const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+            line.setAttribute('x1', x1); line.setAttribute('y1', y1);
+            line.setAttribute('x2', x2); line.setAttribute('y2', y2);
+            line.setAttribute('stroke', ARR); line.setAttribute('stroke-width', SW);
+            g.appendChild(line);
+            const poly = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+            poly.setAttribute('points', tipPoints);
+            poly.setAttribute('fill', ARR);
+            g.appendChild(poly);
+            svg.appendChild(g);
+        }
+
+        // Arrow 1: Mercy → Justified DOWN
+        addArrow(1, rightCx, BOX_H_TOP, rightCx, botTop - HEAD - 1, 0, 0,
+            `${rightCx},${botTop} ${rightCx - HEAD*0.55},${botTop - HEAD} ${rightCx + HEAD*0.55},${botTop - HEAD}`);
+        // Arrow 2: Justified → Righteous LEFT
+        addArrow(2, rightL, botArrowY, BOX + HEAD + 1, botArrowY, 0, 0,
+            `${BOX},${botArrowY} ${BOX + HEAD},${botArrowY - HEAD*0.55} ${BOX + HEAD},${botArrowY + HEAD*0.55}`);
+        // Arrow 3: Righteous → Grace UP
+        addArrow(3, leftCx, botTop, leftCx, BOX_H_TOP + HEAD + 1, 0, 0,
+            `${leftCx},${BOX_H_TOP} ${leftCx - HEAD*0.55},${BOX_H_TOP + HEAD} ${leftCx + HEAD*0.55},${BOX_H_TOP + HEAD}`);
+        // Arrow 4: Grace → Mercy RIGHT
+        addArrow(3, BOX, topArrowY, rightL - HEAD - 1, topArrowY, 0, 0,
+            `${rightL},${topArrowY} ${rightL - HEAD},${topArrowY - HEAD*0.55} ${rightL - HEAD},${topArrowY + HEAD*0.55}`);
+
+        diagram.appendChild(svg);
+
+        // -- Boxes --
+        boxPositions.forEach(bp => {
+            const idx = bp.idx;
+            if (idx > 3) return;
+            const s = stops[idx];
+            const active = allDim ? false : isActive(idx);
+            const viewing = step === idx;
+            const desc = boxDescriptions[idx];
+
+            const box = document.createElement('div');
+            box.className = 'grace-box' + (active ? ' active' : '');
+            box.style.cssText = `top:${bp.top}px;left:${bp.left}px;width:${BOX}px;height:${bp.height}px;
+                background:${active ? (viewing ? s.bgColor : '#FFFFFF') : greyBg};
+                border:2.5px solid ${active ? s.borderColor : greyBorder};
+                box-shadow:${viewing ? `0 4px 16px ${s.color}40` : active ? '0 1px 6px rgba(44,36,22,0.05)' : 'none'};
+                transform:${viewing ? 'scale(1.03)' : 'scale(1)'};
+                opacity:${active ? 1 : 0.45};`;
+
+            if (active) {
+                box.addEventListener('click', () => { step = idx; render(); });
+            }
+
+            const lbl = document.createElement('div');
+            lbl.className = 'box-label';
+            lbl.style.color = active ? s.color : greyText;
+            lbl.textContent = desc.label;
+            box.appendChild(lbl);
+
+            const d = document.createElement('div');
+            d.className = 'box-desc';
+            d.style.color = active ? '#3D3426' : greyText;
+            d.style.padding = '0 6px';
+            d.innerHTML = desc.lines.map(line => {
+                return line.replace('<span class="big">', `<span class="big" style="font-size:${desc.bigSize};font-weight:800;color:${active ? '#2C2416' : greyText}">`);
+            }).join('<br>');
+            box.appendChild(d);
+
+            diagram.appendChild(box);
+        });
+
+        // -- Intro overlay --
+        if (showIntro) {
+            const overlay = document.createElement('div');
+            overlay.className = 'intro-overlay';
+            overlay.style.width = W + 'px';
+            overlay.style.height = H + 'px';
+            overlay.innerHTML = `
+                <div>
+                    <p class="intro-verse">"For it is by grace you have been saved, through faith."</p>
+                    <p class="intro-ref">Ephesians 2:8</p>
+                </div>`;
+            diagram.appendChild(overlay);
+        }
+
+        // -- Card area --
+        const cardArea = document.getElementById('card-area');
+        cardArea.innerHTML = '';
+
+        if (showIntro) {
+            const wrap = document.createElement('div');
+            wrap.className = 'begin-wrapper';
+            const btn = document.createElement('button');
+            btn.className = 'begin-btn';
+            btn.textContent = 'Begin \u2192';
+            btn.addEventListener('click', () => { step = 0; render(); });
+            wrap.appendChild(btn);
+            cardArea.appendChild(wrap);
+        } else {
+            const wrapper = document.createElement('div');
+            wrapper.className = 'verse-card-wrapper';
+
+            // Card
+            const card = document.createElement('div');
+            card.className = 'verse-card';
+            card.style.borderColor = current.borderColor + '33';
+
+            const bar = document.createElement('div');
+            bar.className = 'verse-card-bar';
+            bar.style.background = current.color;
+            card.appendChild(bar);
+
+            const content = document.createElement('div');
+            content.className = 'verse-card-content';
+
+            const title = document.createElement('h2');
+            title.className = 'verse-card-title';
+            title.innerHTML = current.cardTitle;
+
+            const text = document.createElement('p');
+            text.className = 'verse-card-text';
+            text.innerHTML = current.verse;
+
+            const ref = document.createElement('p');
+            ref.className = 'verse-card-ref';
+            ref.textContent = current.ref;
+
+            content.appendChild(title);
+            content.appendChild(text);
+            content.appendChild(ref);
+            card.appendChild(content);
+            wrapper.appendChild(card);
+
+            // Navigation
+            const nav = document.createElement('div');
+            nav.className = 'nav-bar';
+
+            const backBtn = document.createElement('button');
+            backBtn.className = 'nav-btn';
+            backBtn.textContent = '\u2190 Back';
+            backBtn.style.color = step === -1 ? '#CCC5B8' : '#5A4E3C';
+            backBtn.disabled = step === -1;
+            backBtn.addEventListener('click', () => { step = Math.max(-1, step - 1); render(); });
+
+            const dots = document.createElement('div');
+            dots.className = 'dot-nav';
+            stops.forEach((s, i) => {
+                const dot = document.createElement('div');
+                dot.className = 'dot' + (isActive(i) ? ' active-dot' : '');
+                dot.style.width = (step === i ? '20px' : '8px');
+                dot.style.background = step === i ? stops[i].color : (isActive(i) ? stops[i].color + '66' : '#D4CFC4');
+                dot.style.cursor = isActive(i) ? 'pointer' : 'default';
+                if (isActive(i)) {
+                    dot.addEventListener('click', () => { step = i; render(); });
+                }
+                dots.appendChild(dot);
+            });
+
+            const nextBtn = document.createElement('button');
+            nextBtn.className = 'nav-btn primary';
+            const isLast = step === stops.length - 1;
+            nextBtn.textContent = isLast ? '\u21BB Restart' : 'Next \u2192';
+            nextBtn.style.background = current.color;
+            nextBtn.style.boxShadow = `0 2px 8px ${current.color}33`;
+            nextBtn.addEventListener('click', () => {
+                step = isLast ? 0 : Math.min(stops.length - 1, step + 1);
+                render();
+            });
+
+            nav.appendChild(backBtn);
+            nav.appendChild(dots);
+            nav.appendChild(nextBtn);
+            wrapper.appendChild(nav);
+
+            cardArea.appendChild(wrapper);
+        }
+    }
+
+    render();
+</script>
+</body>
+</html>

@@ -1,20 +1,28 @@
 {
   "id": "8",
-  "version": "v03",
-  "title": "Lesson 8: How God Makes Us Right - Justification by Grace",
-  "description": "This lesson teaches four words that explain what God did for you at the cross: Mercy, Justification, Righteousness, and Grace. Through a simple story and a diagram you will build piece by piece, you will see how these four realities work together and why the cross is at the center of all of them.",
+  "version": "v04",
+  "title": "Lesson 8: The Grace Cycle to Forgiveness",
+  "description": "Four words explain what God did for you at the cross: Mercy, Justification, Righteousness, and Grace. Through an interactive diagram you will build piece by piece, you will see how these four realities work together in a cycle that starts with God's love and flows through you to others.",
   "blocks": [
     {
       "type": "text",
-      "text": "In the last lesson, you took an honest look at sin - how it entered the world, how deep it goes, and how it touches every part of our lives. If that lesson felt heavy, this one is the answer. Because the same God who watched Adam and Eve hide in the garden did not turn away in anger. He came looking for them. And what He did next changes everything."
+      "text": "In the last lesson, you walked through the one storyline that holds the entire Bible together, from creation to new creation. You saw that every page points to Jesus. Now we are going to zoom in on what Jesus actually accomplished for you at the cross. This lesson is built around four words that every Christian should know: <strong>Mercy, Justification, Righteousness, and Grace.</strong> These are big church words, but they describe something so simple and so good that it will change the way you see God, yourself, and the people around you."
+    },
+    {
+      "type": "heading",
+      "text": "Why This Lesson Matters"
     },
     {
       "type": "text",
-      "text": "This lesson is built around four words that every Christian should know: <strong>Mercy, Justification, Righteousness, and Grace.</strong> These are big church words, but they describe something so simple and so good that a child can understand it. By the end of this lesson, you will not just know what these words mean. You will see how they fit together, why the cross holds them all in place, and why they should change the way you live."
+      "text": "Most people know that Jesus died for their sins. But if you ask them what that actually means, the answer gets fuzzy fast. This lesson takes away the fog. When you understand mercy, justification, righteousness, and grace, you do not just know more theology. You know what God thinks about you right now. You know why your standing before Him is secure. And you know why the Christian life is not about performing to earn approval but about receiving a gift and giving it away."
     },
     {
       "type": "text",
-      "text": "Before we define anything, let's read one passage that contains all four ideas in just a few verses. This will be our guide for the rest of the lesson."
+      "text": "Here is the big idea: <strong>God started the Grace Cycle toward you. You receive it. And now you give it away</strong> through forgiveness, mercy, and good works. That is the rhythm of the Christian life. Let's see how it works."
+    },
+    {
+      "type": "text",
+      "text": "Before we open the diagram, read one passage that contains all four ideas in just a few verses. This will be our guide for the rest of the lesson."
     },
     {
       "type": "verse",
@@ -23,48 +31,38 @@
     },
     {
       "type": "text",
-      "text": "Did you catch it? Mercy. Justified. Grace. Righteousness. All in one sentence. Paul is describing the biggest thing that has ever happened to you, and he packs it into a few lines. Let's unpack it slowly, one piece at a time, using a story and a diagram that will grow as we go."
+      "text": "Did you catch it? Mercy. Justified. Grace. Righteousness. All in one sentence. Paul is describing the biggest thing that has ever happened to you, and he packs it into a few lines. The diagram below will unpack it slowly, one piece at a time."
     },
     {
       "type": "heading",
-      "text": "The Apple Tree"
+      "text": "The Cycle of Grace"
     },
     {
       "type": "text",
-      "text": "A father tells his son not to climb the neighbor's new apple tree. The boy climbs it anyway. And while climbing down, half the branches break. The tree is ruined. The neighbor calls the father and says, \"Someone has to pay for this.\""
-    },
-    {
-      "type": "text",
-      "text": "That is where we all stand before God. We were told not to do the one thing we did. And the damage is real. It cannot be undone by a promise to be better next time. Someone has to pay. If this story sounds familiar, it should. The very first sin in all of Scripture was two people reaching for fruit on a tree they were told not to touch, and breaking something that could never be repaired on their own."
-    },
-    {
-      "type": "text",
-      "text": "Now let's watch what happens next in this story. Each part will light up one section of the diagram below."
+      "text": "This interactive tool walks you through each of the four concepts one step at a time. Tap <strong>Begin</strong> to start, then use <strong>Next</strong> to move through each stop. Watch how the arrows connect, and notice what appears in the center when you reach the final step. Take your time. Read each verse card carefully before moving on."
     },
     {
       "type": "widget",
-      "src": "widgets/grace-diagram.html?step=0",
-      "height": "420px"
+      "src": "widgets/grace-diagram.html",
+      "height": "520px"
     },
     {
-      "type": "text",
-      "text": "Right now you see just the cross. That is where we start. Everything that follows flows from what happened there."
+      "type": "question",
+      "id": "201-08-1",
+      "text": "8.1 - After walking through the diagram, which of the four concepts (Mercy, Justified, Righteous, Grace) surprised you or hit you the hardest? Why?",
+      "height": "tall"
     },
     {
       "type": "heading",
-      "text": "Mercy: Not Getting the Punishment You Deserve"
+      "text": "Grace and Mercy: Two Sides of God's Love"
     },
     {
       "type": "text",
-      "text": "The boy broke the tree. He deserves to face the neighbor's anger and pay the full cost of the damage. But instead of receiving punishment, something unexpected happens. The father does not send the boy to face the neighbor alone. The punishment the boy earned does not land on him."
+      "text": "Look at the top two boxes of the diagram. Grace sits on the left. Mercy sits on the right. They are paired because they describe two sides of the same love. <strong>Mercy is not getting the punishment you do deserve.</strong> You broke the law, you earned the sentence, but the Judge does not bring the hammer down. <strong>Grace is getting a gift you do not deserve.</strong> Not only does the Judge let you go, He takes you home and gives you everything His own Son has."
     },
     {
       "type": "text",
-      "text": "That is mercy. Mercy is <strong>not getting the punishment you do deserve.</strong> It is not that the damage does not matter. It is not that the neighbor's anger is wrong. The tree is still broken and someone still has to answer for it. But the boy himself is spared."
-    },
-    {
-      "type": "text",
-      "text": "Some people picture God as reluctant to forgive, as though you have to beg and plead before He finally agrees to show mercy. But that is not the God of the Bible. Scripture says He is slow to anger and overflowing with steadfast love. His anger has a safety lock, but His mercy has a hair trigger. He loves to show mercy. It is what He delights to do."
+      "text": "Some people picture God as reluctant to forgive, as though you have to beg and plead before He finally agrees to show mercy. That is not the God of the Bible. Scripture says He is slow to anger and overflowing with steadfast love. His anger has a safety lock, but His mercy has a hair trigger. He loves to show mercy. It is what He delights to do."
     },
     {
       "type": "verse",
@@ -72,63 +70,20 @@
       "text": "The Lord, the Lord, a God merciful and gracious, slow to anger, and abounding in steadfast love and faithfulness, keeping steadfast love for thousands, forgiving iniquity and transgression and sin."
     },
     {
-      "type": "widget",
-      "src": "widgets/grace-diagram.html?step=1",
-      "height": "420px"
-    },
-    {
-      "type": "question",
-      "id": "201-07-1",
-      "text": "7.1 - Have you ever received mercy from someone when you knew you deserved consequences? How did that change the way you felt about that person?",
-      "height": "tall"
+      "type": "text",
+      "text": "Here is the simplest way to remember the difference. Think of a courtroom. You committed the crime. The evidence is clear. The Just Judge decides you do not have to pay the fine or do the time. That is mercy. Then the same Judge buys you a house and a car because He loves you so much. That is grace. Mercy takes away what you earned. Grace gives you what you never could."
     },
     {
       "type": "heading",
-      "text": "Justification: Being Declared Right by the Punishment of Another"
+      "text": "Justified and Righteous: Your New Standing"
     },
     {
       "type": "text",
-      "text": "But mercy does not mean the debt disappears. The neighbor's tree is still broken. Someone still has to pay. This is where the older brother steps in. He takes every dollar he has ever saved, goes to the neighbor, and purchases a brand new tree. He pays for it to be planted and installed. Every penny of the cost lands on him. The debt is fully paid, and the boy is declared right - not because he earned it, but because his brother paid for it."
+      "text": "Now look at the bottom two boxes. Justified sits on the right. Righteous sits on the left. These two describe what happens to your record before God. <strong>Justified means your punishment has been paid.</strong> Think of it as \"just-if-I'd\" never sinned. Jesus stepped into the courtroom, took your sentence, and satisfied the court on your behalf. The debt is gone. <strong>Righteous means you are now seen as perfect before God.</strong> Not because you became perfect overnight, but because God took the perfect, spotless life that Jesus lived and placed it on your account."
     },
     {
       "type": "text",
-      "text": "That is justification. Justification is a legal word. It means <strong>being declared right because someone else took the punishment.</strong> Think of a courtroom. You are standing before the judge. The evidence is clear. You are guilty. But someone steps in and pays the fine, serves the sentence, and satisfies the court on your behalf. The judge looks at you and says: not guilty. Not because you are innocent, but because the price has been fully paid by another."
-    },
-    {
-      "type": "verse",
-      "reference": "Romans 3:25-26",
-      "text": "God put forward [Christ] as a propitiation by his blood, to be received by faith. This was to show God's righteousness... so that he might be just and the justifier of the one who has faith in Jesus."
-    },
-    {
-      "type": "text",
-      "text": "That last phrase is important. God is <em>just</em> - meaning the debt had to be paid. And He is the <em>justifier</em> - meaning He found a way to pay it Himself. God did not choose between being fair and being loving. He was both, at infinite cost to Himself. That cost was Jesus on the cross."
-    },
-    {
-      "type": "widget",
-      "src": "widgets/grace-diagram.html?step=2",
-      "height": "420px"
-    },
-    {
-      "type": "text",
-      "text": "Look at the diagram. The arrow flows down from Mercy to Justification. Mercy is the decision not to punish the boy. Justification is <em>how</em> that mercy becomes possible - someone else steps in and pays."
-    },
-    {
-      "type": "question",
-      "id": "201-07-2",
-      "text": "7.2 - Romans 3:26 says God is both 'just and the justifier.' In your own words, what does it mean that God found a way to be completely fair and completely loving at the same time?",
-      "height": "tall"
-    },
-    {
-      "type": "heading",
-      "text": "Righteousness: Being Perfect and Right Before God"
-    },
-    {
-      "type": "text",
-      "text": "Now here is the part of the story that takes your breath away. The older brother did not patch the broken branches. He bought and planted a <strong>brand new tree.</strong> When the neighbor looks at his yard now, he does not see damage. He sees something whole and beautiful. The boy's record is not just cleared. It is covered by his brother's sacrifice."
-    },
-    {
-      "type": "text",
-      "text": "That is righteousness. Righteousness means <strong>being perfect and right before God.</strong> And the staggering truth of the gospel is that this righteousness is not something you build for yourself. It is given to you. Theologians call it <strong>The Great Exchange.</strong> On the cross, God took your sin and placed it on Jesus. And He took the perfect, spotless life that Jesus lived and placed it on you."
+      "text": "Theologians call this <strong>The Great Exchange.</strong> On the cross, God took your sin and placed it on Jesus. And He took the perfect record that Jesus earned and placed it on you."
     },
     {
       "type": "verse",
@@ -137,66 +92,33 @@
     },
     {
       "type": "text",
-      "text": "Read that again slowly. He became sin for you so that you could become the righteousness of God. Not just forgiven. Not just pardoned with a blank record. Clothed in the full righteousness of Christ. Like the new tree in the neighbor's yard, your standing before God is not a patched-up version of the old one. It is brand new."
-    },
-    {
-      "type": "widget",
-      "src": "widgets/grace-diagram.html?step=3",
-      "height": "420px"
-    },
-    {
-      "type": "text",
-      "text": "Look at the diagram. The arrow flows across the bottom from Justification to Righteousness. Justification is the declaration that the debt is paid. Righteousness is the result - your new standing before God. The brother's right actions are credited in place of the boy's wrong ones. That is exactly what Jesus did for you."
+      "text": "Read that again slowly. He became sin for you so that you could become the righteousness of God. Not just forgiven. Not just pardoned with a blank record. Clothed in the full righteousness of Christ. Your standing before God is not a patched-up version of the old one. It is brand new."
     },
     {
       "type": "question",
-      "id": "201-07-3",
-      "text": "7.3 - What does it mean to you that Jesus did not just clear your record, but placed His own perfect record on your account?",
+      "id": "201-08-2",
+      "text": "8.2 - What does it mean to you that Jesus did not just clear your record, but placed His own perfect record on your account? How does that change the way you see yourself?",
       "height": "tall"
     },
     {
       "type": "heading",
-      "text": "Grace: Getting a Gift You Don't Deserve"
+      "text": "How the Pairs Connect"
     },
     {
       "type": "text",
-      "text": "Now the father does something that makes no earthly sense. He takes both boys on vacation. The boy who broke the tree - the one who disobeyed, who caused the damage, who deserved consequences - gets to go on vacation. That is crazy. It is supposed to sound crazy. Because grace is the most unreasonable, extravagant, over-the-top thing God does."
+      "text": "The diagram is not just four separate ideas. It is a cycle, and the pairs are connected. Look at the right side of the diagram: Mercy flows down to Justification. Mercy is the decision not to punish you. Justification is <em>how</em> that mercy becomes possible, because Jesus stepped in and paid the price. Look at the left side: Righteousness flows up to Grace. Justification produced a new standing (righteousness), and that standing is wrapped in the extravagant, unearned generosity of God (grace)."
     },
     {
       "type": "text",
-      "text": "Grace is <strong>getting a gift you don't deserve.</strong> Mercy said, \"You will not be punished.\" Justification said, \"Someone else paid for it.\" Righteousness said, \"You are now seen as right.\" Grace says, \"And I am going to lavish you with good things on top of all of that.\" Grace does not just bring you back to zero. It takes you somewhere you have never been."
-    },
-    {
-      "type": "verse",
-      "reference": "Ephesians 2:8-9",
-      "text": "For by grace you have been saved through faith. And this is not your own doing; it is the gift of God, not a result of works, so that no one may boast."
-    },
-    {
-      "type": "text",
-      "text": "And here is the deepest truth of all. Grace is not just the last step. Grace is what started the whole thing. God was not forced to show mercy. He was not pressured into sending Jesus. He was not reluctant to forgive. God acted because of His own grace. Grace is the <em>reason</em> mercy was shown, the <em>reason</em> Jesus stepped in, the <em>reason</em> righteousness was gifted. Grace started it and grace finishes it."
-    },
-    {
-      "type": "widget",
-      "src": "widgets/grace-diagram.html?step=4",
-      "height": "420px"
-    },
-    {
-      "type": "text",
-      "text": "Look at the diagram. 2 Corinthians 5:21 sits at the center of the cross because the cross is where all four of these realities meet. The arrow flows up the right side from Righteousness to Grace. The declaration (justification) produced a new standing (righteousness), and that standing is wrapped in the extravagant, unearned generosity of God (grace)."
-    },
-    {
-      "type": "question",
-      "id": "201-07-4",
-      "text": "7.4 - The boy who broke the tree goes on vacation. That feels unfair. What does it stir up in you to realize that God's grace toward you is that unfair - that extravagant - on purpose?",
-      "height": "tall"
+      "text": "And right in the center of all four boxes, the cross holds everything in place. The cross is where mercy and justice met. The cross is where your old record was exchanged for a new one. The cross is where grace became possible. Every arrow in the diagram passes through the shadow of the cross."
     },
     {
       "type": "heading",
-      "text": "The Circle Comes Back Around"
+      "text": "The Cycle Comes Back Around"
     },
     {
       "type": "text",
-      "text": "There is one more piece of the diagram. Look at what happens when the arrow reaches Grace. It does not stop. It curves back across the top toward Mercy. Why? Because those who have received mercy become people who show mercy. Those who have received grace become people who live grace. The gift was never meant to stop with you."
+      "text": "There is one more piece of the diagram that changes everything. Look at what happens when the arrow reaches Grace in the top left. It does not stop. It curves back across the top toward Mercy. Why? Because those who have received mercy become people who show mercy. Those who have received grace become people who live grace. The gift was never meant to stop with you."
     },
     {
       "type": "verse",
@@ -205,43 +127,34 @@
     },
     {
       "type": "text",
-      "text": "The whole Christian life is right there in that diagram. God's grace flows down through the cross, through mercy, through justification, through righteousness, and into your life. And then it flows back out of you toward others. Freely you have received. Freely give."
+      "text": "The whole Christian life is right there in that cycle. God's grace flows down through the cross, through mercy, through justification, through righteousness, and into your life. And then it flows back out of you toward others. Freely you have received. Freely give."
     },
     {
-      "type": "widget",
-      "src": "widgets/grace-diagram.html?step=5",
-      "height": "440px"
+      "type": "verse",
+      "reference": "Ephesians 2:8-10",
+      "text": "For by grace you have been saved through faith. And this is not your own doing; it is the gift of God, not a result of works, so that no one may boast. For we are God's handiwork, created in Christ Jesus to do good works, which God prepared in advance for us to do."
+    },
+    {
+      "type": "text",
+      "text": "Notice that Paul does not stop at \"saved by grace.\" He keeps going. You are God's handiwork, created in Christ Jesus <strong>to do good works</strong>. Grace does not make you passive. Grace positions you. God saved you by grace so that you would become a channel of grace to the people around you. The cycle keeps turning: received, lived, given away."
     },
     {
       "type": "question",
-      "id": "201-07-5",
-      "text": "7.5 - Who in your life needs you to show them the mercy or grace you have received from God? What would that look like this week?",
+      "id": "201-08-3",
+      "text": "8.3 - Who in your life needs you to show them the mercy or grace you have received from God? What would that look like this week?",
       "height": "tall"
     },
     {
       "type": "heading",
-      "text": "Grace Does Not Make You Lazy"
+      "text": "Grace Changes the Reason You Fight"
     },
     {
       "type": "text",
-      "text": "When people first hear about grace, they almost always ask the same question: if God has already forgiven everything, then why would anyone try to live a good life? Paul knew people would ask that. Here is his answer:"
-    },
-    {
-      "type": "verse",
-      "reference": "Romans 6:1-2",
-      "text": "What shall we say then? Are we to continue in sin that grace may abound? By no means! How can we who died to sin still live in it?"
-    },
-    {
-      "type": "text",
-      "text": "Most belief systems say, \"Do this and you will be accepted.\" The gospel flips that entirely. You are accepted now, so you can do. When you know your standing before God is secure - when mercy, justification, righteousness, and grace have done their work - you do not become lazy. You become free. Free to obey out of love instead of fear. Free to fight sin from a place of security instead of fighting to earn a security you already have."
+      "text": "When people first hear about grace, they almost always ask the same question: if God has already forgiven everything, then why would anyone try to live a good life? Here is the answer: most belief systems say, \"Do this and you will be accepted.\" The gospel flips that entirely. You are accepted now, so you can do. When you know your standing before God is secure, you do not become lazy. You become free. Free to obey out of love instead of fear. Free to fight sin from a place of security instead of fighting to earn a security you already have."
     },
     {
       "type": "text",
       "text": "Remember what we said in Lesson 1: <em>we are not fighting sin to have a relationship with God. We are fighting sin because we have a relationship with God.</em> Grace does not end the fight against sin. It changes the reason you fight."
-    },
-    {
-      "type": "heading",
-      "text": "No Condemnation"
     },
     {
       "type": "verse",
@@ -250,12 +163,12 @@
     },
     {
       "type": "text",
-      "text": "No condemnation. Not a little. Not some held in reserve. None. Every other system of belief operates on a kind of survival of the fittest, where you perform to a certain standard or you are out. Christianity says the opposite. The fittest One stepped down and sacrificed Himself for the weakest. Because Jesus took your punishment (mercy and justification) and gave you His perfection (righteousness and grace), you stand before God as a fully accepted, fully loved child. That is the kind of God you belong to."
+      "text": "No condemnation. Not a little. Not some held in reserve. None. Because Jesus took your punishment (mercy and justification) and gave you His perfection (righteousness and grace), you stand before God as a fully accepted, fully loved child."
     },
     {
       "type": "question",
-      "id": "201-07-6",
-      "text": "7.6 - Romans 8:1 says there is 'no condemnation' for those in Christ Jesus. In what part of your daily life do you most struggle to believe that? What would be different if you really let that truth stand?",
+      "id": "201-08-4",
+      "text": "8.4 - Romans 8:1 says there is 'no condemnation' for those in Christ Jesus. In what part of your daily life do you most struggle to believe that? What would be different if you really let that truth stand?",
       "height": "tall"
     },
     {
@@ -264,7 +177,7 @@
     },
     {
       "type": "text",
-      "text": "This week, spend time each day with one part of the diagram. On day one, sit with Mercy. Day two, Justification. Day three, Righteousness. Day four, Grace. On the remaining days, look at the whole diagram and let the cross at the center remind you that Jesus holds all four of these truths in place. Every time you feel the pull to perform for God's approval, pause and say out loud: <em>\"I am justified. The sentence has been served. Jesus paid it all.\"</em>"
+      "text": "This week, spend time each day with one part of the diagram. Day one, sit with Mercy. Day two, Justification. Day three, Righteousness. Day four, Grace. Day five, the Cross at the center. On the remaining days, look at the whole cycle and let it remind you that the grace you received is meant to flow through you. Every time you feel the pull to perform for God's approval, pause and say out loud: \"I am justified. The sentence has been served. Jesus paid it all.\""
     },
     {
       "type": "text",
@@ -276,19 +189,19 @@
     },
     {
       "type": "question",
-      "id": "201-07-key",
+      "id": "201-08-key",
       "text": "What is one key thing you learned from this lesson, and what next step can you take this week?",
       "height": "short"
     },
     {
       "type": "question",
-      "id": "201-07-devos",
+      "id": "201-08-devos",
       "text": "What have you learned about God and yourself recently in your Daily Devotions?",
       "height": "short"
     },
     {
       "type": "question",
-      "id": "201-07-prayer",
+      "id": "201-08-prayer",
       "text": "What is a prayer request for this week?",
       "height": "short"
     }
