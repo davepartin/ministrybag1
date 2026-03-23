@@ -1,140 +1,261 @@
 {
   "id": "8",
-  "version": "v01",
-  "title": "Lesson 8: Trusting and Turning - Faith and Repentance",
-  "description": "Our active response to the gospel: turning from sin and trusting in Christ. This lesson explores why faith and repentance are not two different things but two sides of the same coin - the indivisible response to a God who freely saves.",
+  "version": "v03",
+  "title": "Lesson 8: How God Makes Us Right - Justification by Grace",
+  "description": "This lesson teaches four words that explain what God did for you at the cross: Mercy, Justification, Righteousness, and Grace. Through a simple story and a diagram you will build piece by piece, you will see how these four realities work together and why the cross is at the center of all of them.",
   "blocks": [
     {
       "type": "text",
-      "text": "In the last lesson, you discovered what God did in Christ - how the penalty of sin was absorbed at the cross and how His righteousness was credited to you. That is the gospel. But a gift that is never received stays on the table. This lesson is about what it looks like to actually reach out and take it. To respond. That moment of response has two sides, and they always go together: <strong>faith</strong> and <strong>repentance.</strong>"
-    },
-    {
-      "type": "heading",
-      "text": "Two Sides of One Coin"
+      "text": "In the last lesson, you took an honest look at sin - how it entered the world, how deep it goes, and how it touches every part of our lives. If that lesson felt heavy, this one is the answer. Because the same God who watched Adam and Eve hide in the garden did not turn away in anger. He came looking for them. And what He did next changes everything."
     },
     {
       "type": "text",
-      "text": "When Jesus began His public ministry, he announced it in twelve words: <em>\"The time is fulfilled, and the kingdom of God is at hand; repent and believe in the gospel\"</em> (Mark 1:15). Two actions. One movement. You cannot have one without the other."
+      "text": "This lesson is built around four words that every Christian should know: <strong>Mercy, Justification, Righteousness, and Grace.</strong> These are big church words, but they describe something so simple and so good that a child can understand it. By the end of this lesson, you will not just know what these words mean. You will see how they fit together, why the cross holds them all in place, and why they should change the way you live."
     },
     {
       "type": "text",
-      "text": "Think of faith and repentance as two sides of the same coin. You cannot flip the heads side without the tails side coming with it. Faith is turning <em>toward</em> God - trusting the person and work of Jesus Christ with your whole self, betting your life on the reliability of what He said and did. Repentance is turning <em>from</em> sin - changing your mind about who you are, who God is, and what you want, and walking in a new direction."
-    },
-    {
-      "type": "text",
-      "text": "Neither one is just a feeling. Faith is not a warm fuzzy sense that maybe things will work out. Repentance is not just feeling bad about something you did. Both of them show up in your direction - in where you are pointed and where you are walking."
+      "text": "Before we define anything, let's read one passage that contains all four ideas in just a few verses. This will be our guide for the rest of the lesson."
     },
     {
       "type": "verse",
-      "reference": "Hebrews 11:1",
-      "text": "Now faith is the assurance of things hoped for, the conviction of things not seen."
+      "reference": "Titus 3:4-7",
+      "text": "But when the goodness and loving kindness of God our Savior appeared, he saved us, not because of works done by us in righteousness, but according to his own mercy, by the washing of regeneration and renewal of the Holy Spirit, whom he poured out on us richly through Jesus Christ our Savior, so that being justified by his grace we might become heirs according to the hope of eternal life."
     },
     {
-      "type": "question",
-      "id": "201-08-1",
-      "text": "8.1 - When you think about someone you truly trust - a person you would bet your safety on - what makes them trustworthy? What would it mean to extend that same kind of trust to God?",
-      "height": "tall"
+      "type": "text",
+      "text": "Did you catch it? Mercy. Justified. Grace. Righteousness. All in one sentence. Paul is describing the biggest thing that has ever happened to you, and he packs it into a few lines. Let's unpack it slowly, one piece at a time, using a story and a diagram that will grow as we go."
     },
     {
       "type": "heading",
-      "text": "What Faith Actually Is"
+      "text": "The Apple Tree"
     },
     {
       "type": "text",
-      "text": "The classic definition of biblical faith has three movements: <strong>Knowledge, Assent, and Trust.</strong>"
-    },
-    {
-      "type": "list",
-      "items": [
-        "<strong>Knowledge</strong> - understanding the content of the gospel. Who Jesus is, what He did, what is being offered. You cannot trust someone you know nothing about. Faith is not a leap into the dark - it is a step toward a Person you have reason to believe.",
-        "<strong>Assent</strong> - agreeing that the content is true. The facts are not just information for your head - you believe them. You accept that Jesus died for your sin and rose from the dead.",
-        "<strong>Trust</strong> - personally committing to Jesus, not just the ideas about Him. This is where faith goes beyond the mind and into the will. You are not just believing <em>about</em> Jesus the way you believe about a historical figure. You are entrusting your whole self to Him."
-      ]
+      "text": "A father tells his son not to climb the neighbor's new apple tree. The boy climbs it anyway. And while climbing down, half the branches break. The tree is ruined. The neighbor calls the father and says, \"Someone has to pay for this.\""
     },
     {
       "type": "text",
-      "text": "Here is an old illustration that persists because it is still the clearest: imagine standing at the edge of a gorge with a tightrope walker who has crossed the gorge a hundred times without falling. He asks if you believe he can carry you across. You say yes. Then he says, <em>\"Get on my back.\"</em> That is the moment where knowledge and assent become trust. Many people believe facts about Jesus. Far fewer have climbed on His back."
+      "text": "That is where we all stand before God. We were told not to do the one thing we did. And the damage is real. It cannot be undone by a promise to be better next time. Someone has to pay. If this story sounds familiar, it should. The very first sin in all of Scripture was two people reaching for fruit on a tree they were told not to touch, and breaking something that could never be repaired on their own."
     },
     {
-      "type": "question",
-      "id": "201-08-2",
-      "text": "8.2 - Which of the three movements of faith - Knowledge, Assent, or Trust - is the hardest step for you? Where do you get stuck?",
-      "height": "tall"
+      "type": "text",
+      "text": "Now let's watch what happens next in this story. Each part will light up one section of the diagram below."
+    },
+    {
+      "type": "widget",
+      "src": "widgets/grace-diagram.html?step=0",
+      "height": "420px"
+    },
+    {
+      "type": "text",
+      "text": "Right now you see just the cross. That is where we start. Everything that follows flows from what happened there."
     },
     {
       "type": "heading",
-      "text": "What Repentance Actually Is"
+      "text": "Mercy: Not Getting the Punishment You Deserve"
     },
     {
       "type": "text",
-      "text": "Repentance gets misunderstood more than almost any other word in the Christian life. People use it to mean feeling guilty, crying in church, or promising to do better. But the Greek word for repentance - <em>metanoia</em> - literally means a change of mind. A complete U-turn in how you see things."
+      "text": "The boy broke the tree. He deserves to face the neighbor's anger and pay the full cost of the damage. But instead of receiving punishment, something unexpected happens. The father does not send the boy to face the neighbor alone. The punishment the boy earned does not land on him."
     },
     {
       "type": "text",
-      "text": "Repentance is not just feeling bad about sin. It is changing your mind about sin - seeing it the way God sees it, as a broken cistern that cannot hold water, a counterfeit that robs you of something real. It is changing your mind about yourself - admitting that your way has not been working. It is changing your mind about God - coming to believe that His way is better, that His commands are not prison walls but guardrails on a road that leads somewhere good."
+      "text": "That is mercy. Mercy is <strong>not getting the punishment you do deserve.</strong> It is not that the damage does not matter. It is not that the neighbor's anger is wrong. The tree is still broken and someone still has to answer for it. But the boy himself is spared."
     },
     {
       "type": "text",
-      "text": "And then repentance <em>walks</em>. It does not just feel differently. It moves differently. Zacchaeus is the picture. He was a tax collector, universally hated for cheating people. The moment he encountered Jesus, something shifted. He did not just feel convicted. He stood up and said: <em>\"Behold, Lord, the half of my goods I give to the poor. And if I have defrauded anyone of anything, I restore it fourfold\"</em> (Luke 19:8). That is repentance. Not remorse. Redirection."
+      "text": "Some people picture God as reluctant to forgive, as though you have to beg and plead before He finally agrees to show mercy. But that is not the God of the Bible. Scripture says He is slow to anger and overflowing with steadfast love. His anger has a safety lock, but His mercy has a hair trigger. He loves to show mercy. It is what He delights to do."
     },
     {
       "type": "verse",
-      "reference": "2 Corinthians 7:10",
-      "text": "For godly grief produces a repentance that leads to salvation without regret, whereas worldly grief produces death."
+      "reference": "Exodus 34:6-7a",
+      "text": "The Lord, the Lord, a God merciful and gracious, slow to anger, and abounding in steadfast love and faithfulness, keeping steadfast love for thousands, forgiving iniquity and transgression and sin."
     },
     {
-      "type": "text",
-      "text": "There is a difference between <em>worldly grief</em> (feeling bad because you got caught or because your sin is costing you) and <em>godly grief</em> (feeling the weight of how your sin has offended God and stolen from your own life). Worldly grief makes you feel terrible without changing direction. Godly grief leads to genuine repentance - and Paul says that repentance produces no regret. It is the beginning of something good, not just the end of something bad."
+      "type": "widget",
+      "src": "widgets/grace-diagram.html?step=1",
+      "height": "420px"
     },
     {
       "type": "question",
-      "id": "201-08-3",
-      "text": "8.3 - Is there an area of your life right now where you have been feeling guilty (worldly grief) but not actually changing direction (godly repentance)? What is keeping you stuck?",
+      "id": "201-07-1",
+      "text": "7.1 - Have you ever received mercy from someone when you knew you deserved consequences? How did that change the way you felt about that person?",
       "height": "tall"
     },
     {
       "type": "heading",
-      "text": "Ongoing Faith and Repentance"
+      "text": "Justification: Being Declared Right by the Punishment of Another"
     },
     {
       "type": "text",
-      "text": "Faith and repentance are not one-time events. They are the air you breathe as a follower of Jesus. Martin Luther began his 95 Theses with this sentence: <em>\"When our Lord and Master Jesus Christ said 'repent,' he willed the entire life of believers to be one of repentance.\"</em> He was not saying you get saved over and over again. He was saying that repentance - this ongoing turning away from trusting yourself and turning toward trusting God - is the posture of the whole Christian life."
+      "text": "But mercy does not mean the debt disappears. The neighbor's tree is still broken. Someone still has to pay. This is where the older brother steps in. He takes every dollar he has ever saved, goes to the neighbor, and purchases a brand new tree. He pays for it to be planted and installed. Every penny of the cost lands on him. The debt is fully paid, and the boy is declared right - not because he earned it, but because his brother paid for it."
     },
     {
       "type": "text",
-      "text": "Every morning is a micro-version of conversion. You wake up in a world that is filled with alternatives to trusting God - your own plans, other people's approval, comfort and security. And every morning you have the choice to turn toward Jesus or to turn toward something else. Every time you catch yourself living as an orphan instead of an adopted child, faith and repentance are the way back home."
+      "text": "That is justification. Justification is a legal word. It means <strong>being declared right because someone else took the punishment.</strong> Think of a courtroom. You are standing before the judge. The evidence is clear. You are guilty. But someone steps in and pays the fine, serves the sentence, and satisfies the court on your behalf. The judge looks at you and says: not guilty. Not because you are innocent, but because the price has been fully paid by another."
     },
     {
       "type": "verse",
-      "reference": "Psalm 32:3-5",
-      "text": "For when I kept silent, my bones wasted away through my groaning all day long. For day and night your hand was heavy upon me; my strength was dried up as by the heat of summer. I acknowledged my sin to you, and I did not cover my iniquity; I said, 'I will confess my transgressions to the Lord,' and you forgave the iniquity of my sin."
+      "reference": "Romans 3:25-26",
+      "text": "God put forward [Christ] as a propitiation by his blood, to be received by faith. This was to show God's righteousness... so that he might be just and the justifier of the one who has faith in Jesus."
     },
     {
       "type": "text",
-      "text": "David's account in Psalm 32 is one of the most honest descriptions of the cost of unrepentance in the Bible - the wasting away, the heaviness, the dryness. And then the immediate relief when he simply confessed. The cover-up is always harder than the truth. And the truth always leads somewhere better."
+      "text": "That last phrase is important. God is <em>just</em> - meaning the debt had to be paid. And He is the <em>justifier</em> - meaning He found a way to pay it Himself. God did not choose between being fair and being loving. He was both, at infinite cost to Himself. That cost was Jesus on the cross."
+    },
+    {
+      "type": "widget",
+      "src": "widgets/grace-diagram.html?step=2",
+      "height": "420px"
+    },
+    {
+      "type": "text",
+      "text": "Look at the diagram. The arrow flows down from Mercy to Justification. Mercy is the decision not to punish the boy. Justification is <em>how</em> that mercy becomes possible - someone else steps in and pays."
     },
     {
       "type": "question",
-      "id": "201-08-4",
-      "text": "8.4 - What is one specific, concrete area in your life where God is asking you to change direction today - not just to feel differently, but to actually walk differently? What would the first practical step look like?",
+      "id": "201-07-2",
+      "text": "7.2 - Romans 3:26 says God is both 'just and the justifier.' In your own words, what does it mean that God found a way to be completely fair and completely loving at the same time?",
       "height": "tall"
     },
     {
       "type": "heading",
-      "text": "The Freedom on the Other Side"
+      "text": "Righteousness: Being Perfect and Right Before God"
     },
     {
       "type": "text",
-      "text": "Here is the thing about genuine faith and repentance: they do not feel like sacrifice once you have walked through the door. C.S. Lewis compared it to a boy giving up a muddy puddle because he has been offered a holiday at the sea. The loss feels significant from the outside. From the inside, once you have tasted the sea, the puddle loses its appeal entirely."
+      "text": "Now here is the part of the story that takes your breath away. The older brother did not patch the broken branches. He bought and planted a <strong>brand new tree.</strong> When the neighbor looks at his yard now, he does not see damage. He sees something whole and beautiful. The boy's record is not just cleared. It is covered by his brother's sacrifice."
     },
     {
       "type": "text",
-      "text": "The life of faith on the other side of repentance is not a smaller, more restricted life. It is the life Jesus called <em>abundant</em> in John 10:10. The boundaries of God's commands are not prison walls - they are the banks of a river. They give the water direction and speed. Without them, the water just spreads out and stagnates. With them, it flows somewhere."
+      "text": "That is righteousness. Righteousness means <strong>being perfect and right before God.</strong> And the staggering truth of the gospel is that this righteousness is not something you build for yourself. It is given to you. Theologians call it <strong>The Great Exchange.</strong> On the cross, God took your sin and placed it on Jesus. And He took the perfect, spotless life that Jesus lived and placed it on you."
+    },
+    {
+      "type": "verse",
+      "reference": "2 Corinthians 5:21",
+      "text": "For our sake he made him to be sin who knew no sin, so that in him we might become the righteousness of God."
+    },
+    {
+      "type": "text",
+      "text": "Read that again slowly. He became sin for you so that you could become the righteousness of God. Not just forgiven. Not just pardoned with a blank record. Clothed in the full righteousness of Christ. Like the new tree in the neighbor's yard, your standing before God is not a patched-up version of the old one. It is brand new."
+    },
+    {
+      "type": "widget",
+      "src": "widgets/grace-diagram.html?step=3",
+      "height": "420px"
+    },
+    {
+      "type": "text",
+      "text": "Look at the diagram. The arrow flows across the bottom from Justification to Righteousness. Justification is the declaration that the debt is paid. Righteousness is the result - your new standing before God. The brother's right actions are credited in place of the boy's wrong ones. That is exactly what Jesus did for you."
     },
     {
       "type": "question",
-      "id": "201-08-5",
-      "text": "8.5 - Has there ever been a time in your life when you turned away from something you thought you needed - and found out the other side was actually better? How does that story help you trust God with a current area of needed repentance?",
+      "id": "201-07-3",
+      "text": "7.3 - What does it mean to you that Jesus did not just clear your record, but placed His own perfect record on your account?",
+      "height": "tall"
+    },
+    {
+      "type": "heading",
+      "text": "Grace: Getting a Gift You Don't Deserve"
+    },
+    {
+      "type": "text",
+      "text": "Now the father does something that makes no earthly sense. He takes both boys on vacation. The boy who broke the tree - the one who disobeyed, who caused the damage, who deserved consequences - gets to go on vacation. That is crazy. It is supposed to sound crazy. Because grace is the most unreasonable, extravagant, over-the-top thing God does."
+    },
+    {
+      "type": "text",
+      "text": "Grace is <strong>getting a gift you don't deserve.</strong> Mercy said, \"You will not be punished.\" Justification said, \"Someone else paid for it.\" Righteousness said, \"You are now seen as right.\" Grace says, \"And I am going to lavish you with good things on top of all of that.\" Grace does not just bring you back to zero. It takes you somewhere you have never been."
+    },
+    {
+      "type": "verse",
+      "reference": "Ephesians 2:8-9",
+      "text": "For by grace you have been saved through faith. And this is not your own doing; it is the gift of God, not a result of works, so that no one may boast."
+    },
+    {
+      "type": "text",
+      "text": "And here is the deepest truth of all. Grace is not just the last step. Grace is what started the whole thing. God was not forced to show mercy. He was not pressured into sending Jesus. He was not reluctant to forgive. God acted because of His own grace. Grace is the <em>reason</em> mercy was shown, the <em>reason</em> Jesus stepped in, the <em>reason</em> righteousness was gifted. Grace started it and grace finishes it."
+    },
+    {
+      "type": "widget",
+      "src": "widgets/grace-diagram.html?step=4",
+      "height": "420px"
+    },
+    {
+      "type": "text",
+      "text": "Look at the diagram. 2 Corinthians 5:21 sits at the center of the cross because the cross is where all four of these realities meet. The arrow flows up the right side from Righteousness to Grace. The declaration (justification) produced a new standing (righteousness), and that standing is wrapped in the extravagant, unearned generosity of God (grace)."
+    },
+    {
+      "type": "question",
+      "id": "201-07-4",
+      "text": "7.4 - The boy who broke the tree goes on vacation. That feels unfair. What does it stir up in you to realize that God's grace toward you is that unfair - that extravagant - on purpose?",
+      "height": "tall"
+    },
+    {
+      "type": "heading",
+      "text": "The Circle Comes Back Around"
+    },
+    {
+      "type": "text",
+      "text": "There is one more piece of the diagram. Look at what happens when the arrow reaches Grace. It does not stop. It curves back across the top toward Mercy. Why? Because those who have received mercy become people who show mercy. Those who have received grace become people who live grace. The gift was never meant to stop with you."
+    },
+    {
+      "type": "verse",
+      "reference": "Ephesians 4:32",
+      "text": "Be kind to one another, tenderhearted, forgiving one another, as God in Christ forgave you."
+    },
+    {
+      "type": "text",
+      "text": "The whole Christian life is right there in that diagram. God's grace flows down through the cross, through mercy, through justification, through righteousness, and into your life. And then it flows back out of you toward others. Freely you have received. Freely give."
+    },
+    {
+      "type": "widget",
+      "src": "widgets/grace-diagram.html?step=5",
+      "height": "440px"
+    },
+    {
+      "type": "question",
+      "id": "201-07-5",
+      "text": "7.5 - Who in your life needs you to show them the mercy or grace you have received from God? What would that look like this week?",
+      "height": "tall"
+    },
+    {
+      "type": "heading",
+      "text": "Grace Does Not Make You Lazy"
+    },
+    {
+      "type": "text",
+      "text": "When people first hear about grace, they almost always ask the same question: if God has already forgiven everything, then why would anyone try to live a good life? Paul knew people would ask that. Here is his answer:"
+    },
+    {
+      "type": "verse",
+      "reference": "Romans 6:1-2",
+      "text": "What shall we say then? Are we to continue in sin that grace may abound? By no means! How can we who died to sin still live in it?"
+    },
+    {
+      "type": "text",
+      "text": "Most belief systems say, \"Do this and you will be accepted.\" The gospel flips that entirely. You are accepted now, so you can do. When you know your standing before God is secure - when mercy, justification, righteousness, and grace have done their work - you do not become lazy. You become free. Free to obey out of love instead of fear. Free to fight sin from a place of security instead of fighting to earn a security you already have."
+    },
+    {
+      "type": "text",
+      "text": "Remember what we said in Lesson 1: <em>we are not fighting sin to have a relationship with God. We are fighting sin because we have a relationship with God.</em> Grace does not end the fight against sin. It changes the reason you fight."
+    },
+    {
+      "type": "heading",
+      "text": "No Condemnation"
+    },
+    {
+      "type": "verse",
+      "reference": "Romans 8:1",
+      "text": "There is therefore now no condemnation for those who are in Christ Jesus."
+    },
+    {
+      "type": "text",
+      "text": "No condemnation. Not a little. Not some held in reserve. None. Every other system of belief operates on a kind of survival of the fittest, where you perform to a certain standard or you are out. Christianity says the opposite. The fittest One stepped down and sacrificed Himself for the weakest. Because Jesus took your punishment (mercy and justification) and gave you His perfection (righteousness and grace), you stand before God as a fully accepted, fully loved child. That is the kind of God you belong to."
+    },
+    {
+      "type": "question",
+      "id": "201-07-6",
+      "text": "7.6 - Romans 8:1 says there is 'no condemnation' for those in Christ Jesus. In what part of your daily life do you most struggle to believe that? What would be different if you really let that truth stand?",
       "height": "tall"
     },
     {
@@ -143,11 +264,11 @@
     },
     {
       "type": "text",
-      "text": "Each night this week, take 3 minutes for what the Puritans called examination of conscience. Ask two simple questions before you sleep: <em>Where did I trust myself instead of God today?</em> And <em>Where did I walk away from what I know is right?</em> Do not wallow in guilt. Just name it honestly, hand it to God, and receive His forgiveness (1 John 1:9). This practice builds the habit of daily repentance that keeps the heart tender and free."
+      "text": "This week, spend time each day with one part of the diagram. On day one, sit with Mercy. Day two, Justification. Day three, Righteousness. Day four, Grace. On the remaining days, look at the whole diagram and let the cross at the center remind you that Jesus holds all four of these truths in place. Every time you feel the pull to perform for God's approval, pause and say out loud: <em>\"I am justified. The sentence has been served. Jesus paid it all.\"</em>"
     },
     {
       "type": "text",
-      "text": "Also this week, read the story of Zacchaeus in Luke 19:1-10. Watch how quickly repentance moved from a changed heart to a changed action. Notice what Jesus said when it happened: <em>\"Today salvation has come to this house.\"</em> Salvation showed up in Zacchaeus's living room, and it showed up walking."
+      "text": "Also this week, read Romans 5:1-11. Notice how many good things Paul says flow from justification: peace with God, access to grace, hope, love. These are not things you earn after justification. They are things that come <em>with</em> it."
     },
     {
       "type": "heading",
@@ -155,19 +276,19 @@
     },
     {
       "type": "question",
-      "id": "201-08-key",
+      "id": "201-07-key",
       "text": "What is one key thing you learned from this lesson, and what next step can you take this week?",
       "height": "short"
     },
     {
       "type": "question",
-      "id": "201-08-devos",
+      "id": "201-07-devos",
       "text": "What have you learned about God and yourself recently in your Daily Devotions?",
       "height": "short"
     },
     {
       "type": "question",
-      "id": "201-08-prayer",
+      "id": "201-07-prayer",
       "text": "What is a prayer request for this week?",
       "height": "short"
     }

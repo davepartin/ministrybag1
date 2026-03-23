@@ -1,6 +1,6 @@
-# Planting Orchards - Project Brief
+# Growing Together - Project Brief
 
-**App name:** Planting Orchards Discipleship Series
+**App name:** Growing Together Discipleship Series
 **Subtitle:** Discipleship Series
 **Anchor verse:** "As you received Christ Jesus the Lord, so walk in him, rooted and built up in him and established in the faith." - Colossians 2:6-7 ESV
 **Tagline (pillars):** Rooted - Built-Up - Established
@@ -11,7 +11,7 @@
 
 ## What This App Is
 
-Planting Orchards is a self-paced, phone-friendly app that walks someone through the entire journey of following Jesus, from the first foundations of faith all the way to multiplying disciples. It is 47 lessons across five courses, each built around the image of a growing tree. Every lesson is written in a warm, conversational tone with Scripture, reflection questions, and real-life application. The goal: make personal spiritual growth feel excellent, simple, and joyful on a phone.
+Growing Together is a self-paced, phone-friendly app that walks someone through the entire journey of following Jesus, from the first foundations of faith all the way to multiplying disciples. It is 47 lessons across five courses, each built around the image of a growing tree. Every lesson is written in a warm, conversational tone with Scripture, reflection questions, and real-life application. The goal: make personal spiritual growth feel excellent, simple, and joyful on a phone.
 
 ## The Five Courses
 
@@ -21,7 +21,7 @@ Planting Orchards is a self-paced, phone-friendly app that walks someone through
 | 201 | Growing Deep in Discipleship | 10 | Deep in Christ - the heart of the gospel | The trunk (gospel theology core) |
 | 202 | Growing Up in Discipleship | 10 | Strong in character - becoming like Jesus | Branches growing strong |
 | 203 | Growing Out in Discipleship | 10 | Out to the world - living on mission | Fruit on the branches |
-| 301 | Leading in Discipleship | 10 | The full orchard - leading and multiplying | One tree becomes an orchard |
+| 301 | Leading in Discipleship | 10 | The full community - leading and multiplying | One tree becomes a forest |
 
 ## Course Colors (exact hex values)
 
@@ -59,10 +59,10 @@ The first lesson of each course (101.01, 201.01, 202.01, 203.01, 301.01) include
 - **201 Trunk:** 10 layered sections growing upward (Greatest Commandment, Loving Others, Sin and Fall, Justification, Faith and Repentance, Identity, Suffering, Spiritual Practices, Personal Purity, New Creation)
 - **202 Branches:** 10 branches extending outward (Spirit-Filled Walk, Sanctification, Biblical Storyline, Christ in OT, God-Honoring Home, Parenting, Church Membership, One Anothering, Ordinances, Hospitality)
 - **203 Fruit:** 10 pieces of fruit (Mission of God, Missionaries, Relational Evangelism, Your Story, Gospel Diagram, Apologetics, Spiritual Warfare, Work as Worship, Compassion and Justice, Multiplication)
-- **301 Orchard:** 10 trees (Introduction, Image Bearers, Spiritual Disciplines, Transforming Word, First Neighbors, Leading at Home, Blessing Neighborhood, Belonging, Multiplying, APEST and Calling)
+- **301 Growing Together:** 10 trees (Introduction, Image Bearers, Spiritual Disciplines, Transforming Word, First Neighbors, Leading at Home, Blessing Neighborhood, Belonging, Multiplying, APEST and Calling)
 
 ### Brand Logo
-Three-circle logo: left circle (blue) is a seedling/pot for Starting (101), middle circle (three green bands) is a full tree for Growing (201/202/203), right circle (pink/rose) is an orchard for Leading (301).
+Three-circle logo: left circle (blue) is a seedling/pot for Starting (101), middle circle (three green bands) is a full tree for Growing (201/202/203), right circle (pink/rose) is a community of trees for Leading (301).
 
 ### Design Guidelines for Tree Images
 - Warm, hand-drawn feel with earth tones and soft greens and browns
@@ -73,7 +73,7 @@ Three-circle logo: left circle (blue) is a seedling/pot for Starting (101), midd
 ## Homepage Design
 
 ### Layout (top to bottom)
-1. "Planting Orchards" - Forum bold serif, 1.65rem
+1. "Growing Together" - Forum bold serif, 1.65rem
 2. "Discipleship Series" - Raleway 300 weight, 0.68rem, wide letter-spacing
 3. Logo image (three circles) - 580px, centered
 4. Verse line - "Col. 2:6,7 As you received Christ Jesus the Lord, so walk in him"

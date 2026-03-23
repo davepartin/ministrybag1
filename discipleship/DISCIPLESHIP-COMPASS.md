@@ -1,13 +1,13 @@
 ---
 title: Discipleship Compass
-purpose: Master editorial and curriculum direction for Planting Orchards Discipleship Series
+purpose: Master editorial and curriculum direction for Growing Together Discipleship Series
 status: active
 last-updated: 2026-03-07
 ---
 
 # Discipleship Compass
 
-This is the master direction file for the Planting Orchards Discipleship Series. It is the single source of truth for who we are writing for, how we write, and what makes a lesson good.
+This is the master direction file for the Growing Together Discipleship Series. It is the single source of truth for who we are writing for, how we write, and what makes a lesson good.
 
 All other project files defer to this one on matters of philosophy, tone, audience, and lesson standards.
 

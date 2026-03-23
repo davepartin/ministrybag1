@@ -1,4 +1,4 @@
-# Planting Orchards Discipleship Series — Research Index
+# Growing Together Discipleship Series — Research Index
 
 This file maps every lesson in the 200 and 301 series to its primary research sources.
 Each lesson has its own `[lesson-id]_research.md` file in this folder.
@@ -10,24 +10,24 @@ Add quotes, notes, book excerpts, and BFM references directly to those files.
 
 | BFM Article | Lessons |
 |---|---|
-| I. The Scriptures | 202.04, 202.05, 202.06 |
+| I. The Scriptures | 201.05, 201.07, 201.06 |
 | II. God (Father, Son, Spirit) | 201.01, 201.02, 201.03 |
-| III. Man (Imago Dei, the Fall) | 201.02, 201.06 |
-| IV. Salvation (justification, sanctification, glorification) | 201.07, 201.08, 202.08, 202.09 |
-| V. God's Purpose of Grace (election, perseverance) | 201.09 — **gap: no dedicated lesson** |
-| VI. The Church | 202.03, 202.10 |
-| VII. Baptism and the Lord's Supper | 202.07 |
-| VIII. The Lord's Day | 201.05 (partial) |
-| IX. The Kingdom | 202.05, 203.07 |
+| III. Man (Imago Dei, the Fall) | 201.02 |
+| IV. Salvation (justification, sanctification, glorification) | 201.08, 201.10, 201.09, 202.09 |
+| V. God's Purpose of Grace (election, perseverance) | 202.05 — **gap: no dedicated lesson** |
+| VI. The Church | 202.03, 202.04 |
+| VII. Baptism and the Lord's Supper | 202.10 |
+| VIII. The Lord's Day | 202.06 (partial) |
+| IX. The Kingdom | 201.07, 203.07 |
 | X. Last Things (eschatology) | **gap: no lesson currently covers this** |
 | XI. Evangelism and Missions | 203.01, 203.02, 203.03, 203.04, 203.08, 203.09, 203.10 |
 | XII. Education | 203.08 (partial) |
-| XIII. Stewardship | 201.10, 203.05 |
+| XIII. Stewardship | 202.07, 203.05 |
 | XIV. Cooperation | 203.09 |
 | XV. The Christian and the Social Order | 202.01, 203.03, 203.05 |
 | XVI. Peace and War | no current lesson match |
 | XVII. Religious Liberty | 203.06 (partial) |
-| XVIII. The Family | 202.02 |
+| XVIII. The Family | 202.02, 202.08 |
 
 > **Two notable gaps to consider:**
 > - **BFM X. Last Things** — resurrection, judgment, heaven, hell — has no home in the 200 series.
@@ -45,10 +45,10 @@ Add quotes, notes, book excerpts, and BFM references directly to those files.
 
 ### 202 — Growing Up
 - Baptist Faith and Message 2000 — Articles I, VI, VII, VIII, XV, XVIII
-- Tim Keller, *The Meaning of Marriage* — for 202.02
+- Tim Keller, *The Meaning of Marriage* — for 202.02, 202.08, 202.08
 - John Stott, *The Message of the Sermon on the Mount* — for 202.01
-- Gordon Fee & Douglas Stuart, *How to Read the Bible for All Its Worth* — for 202.04, 202.06
-- BibleProject resources — for 202.05 (Biblical Storyline)
+- Gordon Fee & Douglas Stuart, *How to Read the Bible for All Its Worth* — for 201.05, 201.06
+- BibleProject resources — for 201.07 (Biblical Storyline)
 
 ### 203 — Growing Out
 - Baptist Faith and Message 2000 — Articles XI, XIV, XV
@@ -70,27 +70,27 @@ Add quotes, notes, book excerpts, and BFM references directly to those files.
 ### 201 — Growing Deep in Discipleship
 | Lesson | Title | BFM | Key Verse |
 |---|---|---|---|
-| 201.01 | Greatest Commandment Pt 1 — Loving God — Your Father | II. God | Matthew 22:37 |
+| 201.01 | Loving God — Greatest Commandment Part 1 | II. God | Matthew 22:37 |
 | 201.02 | Your Identity in Jesus the Son | II. God, III. Man | 1 John 3:1 |
-| 201.03 | The Spirit-Filled Walk — God the Holy Spirit | II. God | Galatians 5:25 |
+| 201.03 | Walking in the Spirit | II. God | Galatians 5:25 |
 | 201.04 | Spiritual Disciplines — Abiding in Christ | IV. Salvation | John 15:4-5 |
-| 201.05 | Living a Life of Worship | VIII. The Lord's Day | John 4:23-24 |
-| 201.06 | Why We Need Rescue — Sin and the Fall | III. Man | Romans 3:23 |
-| 201.07 | How God Makes Us Right — Justification by Grace | IV. Salvation | Ephesians 2:8-9 |
-| 201.08 | Trusting and Turning — Faith and Repentance | IV. Salvation | Hebrews 11:1 |
-| 201.09 | Suffering and Trials | V. God's Purpose of Grace | James 1:2-4 |
-| 201.10 | Giving and Generosity | XIII. Stewardship | 2 Corinthians 9:7 |
+| 201.05 | Overview of the Bible | I. The Scriptures | 2 Timothy 3:16-17 |
+| 201.06 | How to Study the Bible — Discovery Bible Study | I. The Scriptures | 2 Timothy 2:15 |
+| 201.07 | Biblical Storyline | I. The Scriptures, IX. Kingdom | Revelation 21:5 |
+| 201.08 | The Grace Cycle to Forgiveness | IV. Salvation | Ephesians 2:8-9 |
+| 201.09 | Living the Fruit of the Spirit | IV. Salvation | Galatians 5:22-23 |
+| 201.10 | Confession and Repentance | IV. Salvation | Hebrews 11:1 |
 
 ### 202 — Growing Up in Discipleship
 | Lesson | Title | BFM | Key Verse |
 |---|---|---|---|
 | 202.01 | Greatest Commandment Pt 2 — Loving Your Neighbors | XV. Social Order | Matthew 22:39 |
-| 202.02 | Loving Your Family at Home | XVIII. The Family | Ephesians 5:25 |
+| 202.02, 202.08 | Loving Your Family at Home | XVIII. The Family | Ephesians 5:25 |
 | 202.03 | Getting Involved in the Church Family | VI. The Church | 1 Peter 2:9-10 |
 | 202.04 | Overview of the Bible | I. The Scriptures | 2 Timothy 3:16-17 |
 | 202.05 | The Biblical Storyline | I. The Scriptures, IX. Kingdom | Revelation 21:5 |
 | 202.06 | How to Study the Bible | I. The Scriptures | 2 Timothy 2:15 |
-| 202.07 | Baptism and the Lord's Supper | VII. Baptism & Lord's Supper | 1 Corinthians 11:26 |
+| 202.10 | Baptism and the Lord's Supper | VII. Baptism & Lord's Supper | 1 Corinthians 11:26 |
 | 202.08 | Becoming Who You Already Are — Fruit of the Spirit | IV. Salvation | Galatians 5:22-23 |
 | 202.09 | Fighting for Purity | IV. Salvation | 1 Thessalonians 4:3 |
 | 202.10 | Discovering Your Gifts — APEST | VI. The Church | Romans 12:6-8 |

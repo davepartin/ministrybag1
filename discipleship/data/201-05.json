@@ -1,159 +1,148 @@
 {
   "id": "5",
   "version": "v01",
-  "title": "Lesson 5: Living a Life of Worship",
-  "description": "Worship is gladly reflecting back to God the radiance of His worth. This lesson explores what it means to worship God in spirit and truth - not just in a Sunday service but as the posture of your whole life.",
+  "title": "Lesson 5: Overview of the Bible",
+  "description": "Welcome to a guided tour of the most important book you will ever read. The Bible isn't a single book. It is a library of 66 unique volumes written by 40 authors across 1,500 years. Learning how this life-changing book is organized will help you understand it and remember how the story of God fits together.",
   "blocks": [
     {
       "type": "text",
-      "text": "You have walked through the heart of the Trinity - loving the Father, finding your identity in the Son, and learning to walk in the power of the Spirit. Now a question emerges from all of that: what is the natural response? When you genuinely encounter who God is, what happens? The answer is the topic of this lesson. The deepest, most natural response to knowing God is worship. And worship, as you are about to discover, is far bigger and more alive than anything that happens on a Sunday morning."
+      "text": "In the last lesson, you explored what it means to truly belong to a church family, discovering that the Christian life is not meant to be lived alone. But what holds that family together? It is the <strong>Word of God</strong>. In the next three lessons you are going to get to know that Word in a way you never have before. Think of this series as the essential gear for your journey: this lesson gives you the map, the next lesson takes you on the road trip, and the final lesson hands you the tools to dig into any passage on your own."
     },
     {
       "type": "heading",
-      "text": "What Worship Actually Is"
+      "text": "A Library, Not a Single Book"
+    },
+    {
+      "type": "image",
+      "src": "images/202.04-bookshelf-all-books.png",
+      "alt": "Open Bible on a wooden table"
     },
     {
       "type": "text",
-      "text": "Most people think of worship as a style of music, or a portion of a church service where someone plays guitar. But that is like saying eating is what happens in a restaurant. It might happen there - but eating is so much larger than that."
+      "text": "Because the Bible is a library and not a single book, its contents are incredibly diverse. There are kings, shepherds, fishermen, doctors, tax collectors, and prophets among the writers. They wrote in different countries, in different centuries, in different circumstances. And yet the whole library tells one unified story from beginning to end, as we will learn in the next lesson."
     },
     {
       "type": "text",
-      "text": "John Piper defines worship this way: <em>Worship is the act of gladly reflecting back to God the radiance of His worth.</em> Unpack that slowly. <strong>Gladly</strong> - it is not reluctant obligation. <strong>Reflecting back</strong> - you are displaying something that originates in Him, not in you. <strong>The radiance of His worth</strong> - not your performance, not your feelings, but His infinite value. Worship, at its core, is seeing God as He is and letting that sight shape everything you do."
-    },
-    {
-      "type": "text",
-      "text": "Jesus gave the clearest definition of what God is looking for from His worshippers:"
+      "text": "That is remarkable. No human editor could have planned this across fifteen centuries. This unity is one of the strongest evidences that God Himself was behind every page. As Paul wrote to Timothy:"
     },
     {
       "type": "verse",
-      "reference": "John 4:23-24",
-      "text": "But the hour is coming, and is now here, when the true worshipers will worship the Father in spirit and truth, for the Father is seeking such people to worship him. God is spirit, and those who worship him must worship in spirit and truth."
+      "reference": "2 Timothy 3:16-17",
+      "text": "All Scripture is breathed out by God and profitable for teaching, for reproof, for correction, and for training in righteousness, that the man of God may be complete, equipped for every good work."
     },
     {
       "type": "text",
-      "text": "Two words anchor this: <strong>spirit</strong> and <strong>truth.</strong> Spirit means it is genuine - coming from the inside, not a performance. Truth means it is anchored in who God actually is - not a God we invented to make us feel good, but the God of Scripture, in all His holiness and love. Worship that is only emotional without truth becomes manipulation. Worship that is only doctrinal without heart becomes a lecture. God wants both."
+      "text": "\"Breathed out by God.\" That means when you open the Bible, you are not reading someone's personal journal or philosophical opinion. You are reading words that the living God intended for you to have. And because He organized this library with purpose, understanding how it is structured will help you read it with much greater confidence."
+    },
+    {
+      "type": "text",
+      "text": "Some people wonder whether the Bible can really be trusted after being passed down for so long. Did it get distorted like a game of telephone over thousands of years? The answer is no, and here is why. In the ancient world, Scripture was read aloud to entire communities, not whispered from one person to the next. There were many witnesses in the room, not one. Scribes copied manuscripts with extraordinary care."
+    },
+    {
+      "type": "text",
+      "text": "Here is the proof: the Dead Sea Scrolls were written over 200 years before Jesus was born and hidden in caves near the Dead Sea. When a shepherd boy discovered them in 1947, scholars compared them to the oldest copies we had been using, which dated to around 1000 AD. That is a gap of over a thousand years, and the texts matched almost word for word. The Bible stands alone as one of the most historically reliable documents of the ancient world. You can trust it with confidence."
     },
     {
       "type": "question",
-      "id": "201-05-1",
-      "text": "5.1 - Before this lesson, what would you have said worship means? How does Piper's phrase - 'gladly reflecting back to God the radiance of His worth' - expand or challenge that?",
-      "height": "tall"
+      "id": "202-04-1",
+      "text": "4.1 - On a scale of 1 to 10, how well would you say you know the Bible right now? What is one thing you are hoping these next three lessons help you understand better?",
+      "data_question": "4.1 - Bible familiarity"
     },
     {
       "type": "heading",
-      "text": "The God Who Seeks Worshippers"
+      "text": "Old Testament & New Testament"
     },
     {
       "type": "text",
-      "text": "Notice something striking in John 4:23: <em>\"The Father is seeking such people to worship him.\"</em> God is not passive. He is not waiting to see if we will bother to worship. He is actively seeking true worshippers. Let that land. The God of the universe is on a search - and what He is looking for is people who will see Him clearly and respond to Him honestly."
+      "text": "The Bible is divided into two major parts: the Old Testament and the New Testament. The word \"testament\" means covenant, a binding promise between God and His people. The Old Testament tells the story of God creating the world, choosing a people (Israel), giving them His law, and promising that a Savior would come. The New Testament tells the story of that Savior arriving in Jesus, the birth of the church, and the future hope of all things being made new."
     },
     {
       "type": "text",
-      "text": "Isaiah caught a glimpse of this once. In a vision, he saw the Lord in the temple - high and lifted up, with the train of His robe filling the temple. Seraphim were calling out, <em>\"Holy, holy, holy is the Lord of hosts; the whole earth is full of his glory!\"</em> The doorposts shook. Isaiah fell apart: <em>\"Woe is me! For I am lost; for I am a man of unclean lips.\"</em> Then a coal from the altar touched his lips and he was forgiven. Then he heard the voice of God: <em>\"Whom shall I send, and who will go for us?\"</em> And Isaiah responded: <em>\"Here I am! Send me.\"</em>"
+      "text": "The Old Testament has 39 books. The New Testament has 27. Together they form the complete Word of God. Some people struggle with the Old Testament because it feels distant or confusing. But here is the key: the Old Testament is not a different story with a different God. It is the first part of the same story, and every page of it points forward to Jesus. You cannot fully understand the New Testament without the Old, and you cannot fully understand the Old without the New."
     },
     {
       "type": "text",
-      "text": "That is the arc of true worship. See God clearly, feel your own smallness, receive grace, respond in surrender. It moves from vision to humility to cleansing to commission. Worship is not a feeling you generate. It is an encounter that changes what you do next."
+      "text": "Here is one more reason to trust the Old Testament: Jesus did. He quoted it constantly, argued from it, and treated every word of it as completely authoritative. If the eternal Son of God read those pages and accepted them without reservation, that is all the endorsement they need."
+    },
+    {
+      "type": "text",
+      "text": "Below is every book of the Bible arranged on a shelf by section. Tap any book to learn what its section is about."
+    },
+    {
+      "type": "widget",
+      "src": "widgets/bible-bookshelf.html",
+      "height": "800px"
     },
     {
       "type": "question",
-      "id": "201-05-2",
-      "text": "5.2 - When in your life have you had a genuine moment of encounter with who God is - a moment that produced not just feeling but a real response in how you lived? What happened?",
-      "height": "tall"
+      "id": "202-04-2",
+      "text": "4.2 - After exploring the Bible bookshelf above, which section stands out to you most and why? Is there a shelf that most interests you?",
+      "data_question": "4.2 - Bible section reflection"
     },
     {
       "type": "heading",
-      "text": "Worship Is a Posture, Not an Event"
+      "text": "The Bible Is \"Your Very Life\""
     },
     {
       "type": "text",
-      "text": "Romans 12 is where Paul makes his most sweeping statement about what a worshipping life actually looks like:"
+      "text": "The Bible is organized like those books on that bookshelf, but was never meant to stay on a shelf. One of the most famous passages in all of Scripture comes from the very first section you explored, the Law. Moses spoke these words to Israel just before they crossed into the Promised Land:"
     },
     {
       "type": "verse",
-      "reference": "Romans 12:1",
-      "text": "I appeal to you therefore, brothers, by the mercies of God, to present your bodies as a living sacrifice, holy and acceptable to God, which is your spiritual worship."
+      "reference": "Deuteronomy 6:4-7",
+      "text": "Hear, O Israel: The LORD our God, the LORD is one. You shall love the LORD your God with all your heart and with all your soul and with all your might. And these words that I command you today shall be on your heart. You shall teach them diligently to your children, and shall talk of them when you sit in your house, and when you walk by the way, and when you lie down, and when you rise."
     },
     {
       "type": "text",
-      "text": "Paul does not say worship is something you do on Sunday. He says worship is what happens when you present your <em>body</em> as a living sacrifice. Your commute. Your workday. Your kitchen table. Your conversations with coworkers. Your parenting. The way you handle money, anger, time, and relationships. All of it - it is all your worship. The old sacrifices in Israel were whole animals placed on an altar and consumed by fire. Paul is saying: that is what your whole life is supposed to be. Not a donation to God's hour on Sunday. A complete surrender for every hour of every day."
+      "text": "This is the Shema, and Jesus called it the greatest commandment. If you walked through the Growing course, you already know these words from Lesson 1, where you learned that loving God is not a burden but a response to a Father who loved you first. Now you know exactly where that passage lives - Deuteronomy, the Law section, the first shelf on your bookshelf. That is what knowing the map does. It connects what you have already learned to where it lives in Scripture."
     },
     {
       "type": "text",
-      "text": "Worship is not a genre of music. It is a posture of the heart. It is what happens when you make God's worth the measuring stick for every decision you make. When you ask <em>\"Is what I'm about to do reflecting God's worth back to the world, or am I reaching for a counterfeit?\"</em> - that is worship thinking. It is radically practical."
-    },
-    {
-      "type": "question",
-      "id": "201-05-3",
-      "text": "5.3 - What are you practically magnifying with your time, treasure, and attention right now? Looking at your average week, what does your life say you value most?",
-      "height": "tall"
-    },
-    {
-      "type": "heading",
-      "text": "Worship When It Hurts"
-    },
-    {
-      "type": "text",
-      "text": "There is a moment in the book of Acts that most people hurry past, but it stops you cold when you slow down. Paul and Silas have been beaten, bloody, and thrown into prison for preaching the gospel. Their feet are in stocks. It is the middle of the night. And Acts 16:25 says:"
+      "text": "Notice what Moses says to do with God's Word: put it on your heart, teach it to your children, talk about it when you sit down and when you get up, when you are home and when you are on the road. This is not a book to study once and set aside. It is meant to become part of how you think, how you talk, and how you live - and when you do, God promises that it will go well with you."
     },
     {
       "type": "verse",
-      "reference": "Acts 16:25",
-      "text": "About midnight Paul and Silas were praying and singing hymns to God, and the prisoners were listening to them."
+      "reference": "Deuteronomy 32:47",
+      "text": "It is no empty word for you, but <strong>your very life</strong>, and by this word you shall live long in the land that you are going over the Jordan to possess."
     },
     {
       "type": "text",
-      "text": "The prisoners were listening. Of course they were. They had never seen anything like it. Beaten men singing. People in chains praising. In the worst moment of the night, these two men were worshipping. Not because their circumstances were good. Because their God was good. Worship that only happens when things go well is not really declaring God's worth - it is declaring our comfort. But worship that rises from a dungeon at midnight? That is saying something that the whole world is listening for."
+      "text": "No empty word. Your very life. Jesus echoed this same truth when Satan tempted Him in the wilderness. You can find it in Matthew 4, right on the Gospels shelf: man shall not live by bread alone, but by every word that comes from the mouth of God. The life that food gives you keeps you going for a few more hours. The life that God's Word gives you is firm, abundant, and never runs out."
     },
     {
-      "type": "text",
-      "text": "The Psalms give us a vocabulary for this. Nearly half of the Psalms are laments - honest, raw cries of pain and confusion to God. Worship does not require you to pretend you are fine. But it does require you to being honest with God about where you are, and then turning your gaze to who He is even in the middle of it."
-    },
-    {
-      "type": "verse",
-      "reference": "Psalm 42:11",
-      "text": "Why are you cast down, O my soul, and why are you in turmoil within me? Hope in God; for I shall again praise him, my salvation and my God."
+      "type": "image",
+      "src": "images/202.04-bible-journal.jpg",
+      "alt": "Open Bible, notebook, and coffee on a table"
     },
     {
       "type": "question",
-      "id": "201-05-4",
-      "text": "5.4 - Is there a hard season in your life right now - or one you have walked through recently - where worship was or would have been difficult? What would it take for you to worship God genuinely in that moment, not because things are good, but because He is?",
-      "height": "tall"
+      "id": "202-04-3",
+      "text": "4.3 - What would it look like for God's Word to become part of your everyday life, not just something you read, but something written on your heart?",
+      "data_question": "4.3 - Word in daily life"
     },
     {
       "type": "heading",
-      "text": "Corporate Worship - Why You Need the Body"
+      "text": "A Word on Translations"
     },
     {
       "type": "text",
-      "text": "Personal worship is real. But God designed worship to be practiced with His people gathered together, not only alone. Psalm 150 tells a vision of corporate praise - all the instruments, all the voices, everything that has breath praising the Lord. And Hebrews 10 gives us the practical reason to keep gathering:"
-    },
-    {
-      "type": "verse",
-      "reference": "Hebrews 10:24-25",
-      "text": "And let us consider how to stir up one another to love and good works, not neglecting to meet together, as is the habit of some, but encouraging one another, and all the more as you see the Day drawing near."
+      "text": "The Bible was originally written in Hebrew (most of the Old Testament), Aramaic (small portions), and Greek (the New Testament). Because most of us do not read those languages, we rely on English translations. There are many good ones, and choosing a translation can feel confusing. Here is a simple way to think about it."
     },
     {
       "type": "text",
-      "text": "You cannot worship in full isolation. Part of the genius of gathered worship is that when your faith runs low, other people's faith sustains you. Their voices carry the song when you cannot find the words. When you see a room full of people who have tasted and seen that the Lord is good, declaring His praise, it reinforces what you know in your own heart but may be struggling to feel. You need the body. The body needs you."
+      "text": "Some translations prioritize word-for-word accuracy, staying as close to the original language as possible. The ESV (English Standard Version) and NASB are examples of this. Others prioritize thought-for-thought clarity, translating the meaning of each sentence in a way that feels more natural to a modern reader. The NIV and NLT are examples of this. Both approaches are faithful to Scripture. A word-for-word translation is excellent for study. A thought-for-thought translation is excellent for reading and understanding quickly."
     },
     {
-      "type": "question",
-      "id": "201-05-5",
-      "text": "5.5 - How has being part of a worshipping community - a church - strengthened or changed your personal walk with God? What has the gathered church given you that you could not have gotten on your own?",
-      "height": "tall"
+      "type": "text",
+      "text": "This course uses the ESV, which gives you a reliable, readable translation that stays very close to the original words. Whatever translation you use, the most important thing is that you are reading the Bible consistently. The best translation is the one you will actually open."
     },
     {
       "type": "heading",
-      "text": "This Week's Practice"
+      "text": "Lesson 4 Review"
     },
     {
       "type": "text",
-      "text": "Try a simple experiment this week. Pick one mundane task you do every day - making coffee, commuting, cooking dinner - and during that activity, practice directing your attention toward God. You can speak to Him, listen to a Psalm being read aloud, or simply express one honest thing about who He is. Not a performance. Not an obligation. Just a turning-toward."
-    },
-    {
-      "type": "text",
-      "text": "Also this week, read Psalm 95 and Psalm 96 back to back. Read them out loud if you can. Notice what kind of language they use - the specific words for praising God's character. Then read Psalm 42 and let the honesty of it land. You are learning the full vocabulary of worship: triumphant and lamenting, corporate and personal, feeling it and choosing it."
+      "text": "You now have the map. The Bible is a library of 66 books arranged in clear sections: Law, History, Poetry, Prophets, Gospels, Acts, Letters, and Revelation. The Old Testament tells the story of God creating, choosing, and promising. The New Testament tells the story of God fulfilling every promise in Jesus. In the next lesson you will take the road trip through the one big story that ties all of these books together."
     },
     {
       "type": "heading",
@@ -161,19 +150,19 @@
     },
     {
       "type": "question",
-      "id": "201-05-key",
+      "id": "202-04-key",
       "text": "What is one key thing you learned from this lesson, and what next step can you take this week?",
       "height": "short"
     },
     {
       "type": "question",
-      "id": "201-05-devos",
+      "id": "202-04-devos",
       "text": "What have you learned about God and yourself recently in your Daily Devotions?",
       "height": "short"
     },
     {
       "type": "question",
-      "id": "201-05-prayer",
+      "id": "202-04-prayer",
       "text": "What is a prayer request for this week?",
       "height": "short"
     }

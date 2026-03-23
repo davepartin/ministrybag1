@@ -1,4 +1,4 @@
-# Planting Orchards — Project State
+# Growing Together — Project State
 *Last updated: March 6, 2026. Paste this at the start of any new session to get Claude up to speed.*
 
 ---
@@ -64,7 +64,7 @@ Version field (only on actively-edited lessons): `"version": "v04"` — renders 
 
 The logo system follows a consistent pattern across all Growing series:
 
-- **Series lesson 01** — Shows a 3-circle orientation logo (in the lesson content blocks) so the learner sees where this course fits in the full Planting Orchards arc
+- **Series lesson 01** — Shows a 3-circle orientation logo (in the lesson content blocks) so the learner sees where this course fits in the full Growing Together arc
 - **Series lessons 02–10** — Shows the series-specific single-circle logo in the **top-right corner** via COURSE_META (same mechanism as 101). No image block needed in the JSON.
 
 | File | Used In | Notes |
@@ -83,7 +83,7 @@ The logo system follows a consistent pattern across all Growing series:
 | `203-02-bless-logo.png` | 203-02.json | BLESS framework logo (in-lesson content block) |
 | `201.01-peaks-and-valleys.png` | 201-01.json? | Peaks and Valleys exercise example image |
 | `rooted-logo.png` | Retired | Replaced by 3-circles logos |
-| `planting-orchards-roots-zoom.png` | Placeholder | NOT YET CREATED — Dave is making this |
+| `201-growing-logo.png` | COURSE_META for 201 + 201-01 roots image | Growing Deep green, Up and Out grey |
 
 ### COURSE_META logos (index.html)
 All four active series now have a `logo` property in COURSE_META:
@@ -144,7 +144,7 @@ All lessons untouched.
 - **curriculum-toc.csv** — filled in Key Verse, Key Line, Key Framework, Key Story, Key Question for all 7 lessons in the 101 series. Key Questions refined through conversation (especially 101-03 Prayer: "How are you growing your relationship with God by talking and listening to Him?").
 - **Logo system built out** — complete logo framework across all Growing series (201, 202, 203). Series lesson-01 files use 3-circle orientation logos in lesson content. Lessons 02+ use series-specific single-circle logos in top-right corner via COURSE_META. COURSE_META updated in index.html for 201, 202, 203.
 - **202-01** — added `202-3circles-logo.png` + 3-sentence series intro ("In 101 you were planted... In 201 you went deep... Now in 202 the tree is growing up...").
-- **203-01** — replaced single tree logo with `203-3circle-logo.png` + rewrote 3-sentence intro ("Now in 203 the tree turns outward, and everything that has been growing in you becomes the seed for planting orchards in the lives of others.").
+- **203-01** — replaced single tree logo with `203-3circle-logo.png` + rewrote 3-sentence intro ("Now in 203 the tree turns outward, and everything that has been growing in you becomes the seed for growing together with others.").
 - **201-01** — swapped logo to `growing-3circles-logo.png` (all-green Growing circle, all three sections lit up).
 
 ---
@@ -181,7 +181,7 @@ All 101-series lessons and 201-01 are fully filled in (Key Verse, Key Line, Key 
 
 ## Known Issues / Pending
 
-1. **`planting-orchards-roots-zoom.png`** — referenced in 201-01.json but not yet created. Dave is making this image. When ready, drop in `images/` folder with that exact filename.
+1. ~~**`growing-together-roots-zoom.png`**~~ — RESOLVED. Now uses `201-growing-logo.png` in 201-01.json.
 2. **`font-sampler.html`** — dev artifact sitting in the discipleship folder. Safe to delete when ready.
 3. **Version badges** — only on 101-02, 101-04, and 201-01. Add to any lesson that gets substantively revised.
 4. ~~**curriculum-toc.csv stale**~~ — RESOLVED. 101 series fully filled in March 6.

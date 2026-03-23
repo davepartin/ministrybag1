@@ -1,9 +1,9 @@
 ---
-name: planting-orchards
-description: Use this skill when drafting, revising, evaluating, or planning the Planting Orchards Discipleship Series curriculum, especially lessons for new believers, 100 and 200 level courses, disciple-making tools, readability, tone, and reproducible formation.
+name: growing-together
+description: Use this skill when drafting, revising, evaluating, or planning the Growing Together Discipleship Series curriculum, especially lessons for new believers, 100 and 200 level courses, disciple-making tools, readability, tone, and reproducible formation.
 ---
 
-# Planting Orchards - AI Skill File
+# Growing Together - AI Skill File
 
 This file provides AI-specific guidance for working on this project. For all editorial direction, audience definition, tone, lesson standards, and curriculum philosophy, read DISCIPLESHIP-COMPASS.md first. It is the single source of truth.
 
