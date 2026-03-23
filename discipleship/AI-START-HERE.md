@@ -23,7 +23,20 @@ When working on lesson content, also read the relevant lesson JSON and any resea
 | PROJECT-BRIEF.md | App architecture, JSON format, course colors, numbering, typography, file structure, how the app works | Tone, editorial philosophy, audience definition |
 | PROJECT-STATE.md | Current progress, session history, known issues, logo inventory, lesson status | Stable direction (that belongs in the Compass) |
 | AI-LESSON-CHECKLIST.md | Hands-on checklist for lesson work: before writing, during writing, readability test, reproducibility test | Project-level direction or technical specs |
-| SKILL.md | AI-specific behavior rules, reading order reminder | Everything else (points to Compass) |
+| curriculum-toc.csv | Master lesson outline, Key Verse, Key Line, Key Framework, Key Story, Key Question for every lesson | Editorial direction, technical specs |
+
+## AI behavior rules
+
+- Always read DISCIPLESHIP-COMPASS.md before writing or editing any lesson content.
+- Always read PROJECT-BRIEF.md before making any technical changes to index.html, JSON structure, or CSS.
+- Always read PROJECT-STATE.md before starting work to know what has changed recently.
+- Reference lessons by number (e.g. "101-04") and read the JSON file before editing.
+- No em dashes anywhere. Ever. In any file. Use commas, colons, periods, or " - " instead.
+- No bullet points in lesson prose. Write in paragraphs.
+- Do not re-add Augustine quotes to 201-01.
+- BUILD_VERSION is automatic (Date.now()). Never bump it manually.
+- Dave does final theological review on every lesson. AI writes drafts; Dave approves.
+- When priority conflicts, DISCIPLESHIP-COMPASS.md wins over all other files.
 
 ## What this project is building
 

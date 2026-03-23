@@ -34,11 +34,8 @@ Widget files live in the `widgets/` folder as self-contained HTML with inline CS
 
 Version field (only on actively-edited lessons): `"version": "v04"` — renders as a small badge in the app header (e.g. `201.01 · v04`). Bump this whenever a lesson is substantively revised.
 
-### Editorial Rules (Non-Negotiable)
-- **No em dashes anywhere** in lesson content. Use commas, colons, or periods instead.
-- **No bullet points** in lesson prose. Write in paragraphs.
-- **No Augustine quotes** (removed from 201-01, do not re-add).
-- Tone: warm, pastoral, gospel-centered, grace-based. Not academic.
+### Editorial Rules
+See DISCIPLESHIP-COMPASS.md (the authoritative source) and AI-START-HERE.md for the full list.
 
 ---
 
@@ -151,16 +148,8 @@ All lessons untouched.
 
 ---
 
-## Key Editorial Decisions (Session History)
-
-- **Echo of Love framework** (201-01): Receive → Respond → Remain. God's love is the starting point, our love is the echo.
-- **New Tongue analogy** (201-01): Loving God is like getting a new tongue — God gives a new heart, what we once ran from we now run toward.
-- **Greenhouse metaphor** (101): The discipleship course creates conditions for growth; God gives the growth (1 Cor. 3:6).
-- **Prodigal Son** used as the primary illustration of the Father's love in 201-01.
-- **Boss vs. Father** illustration in 201-01.
-- **Zephaniah 3:17** as the climax verse of 201-01 ("he will exult over you with loud singing").
-- **Trinity preview** at end of 201-01: Father loves you, Son saves you, Spirit fills you.
-- **John 3:1-4, 16-17** chosen for 101-04 Bible study method lesson (replacing John 8:2-11 — too heavy for new believers).
+## Key Editorial Decisions
+Authoritative list lives in DISCIPLESHIP-COMPASS.md under "Key editorial decisions (established)." This section is kept here only as a session-history breadcrumb. If the two ever conflict, the Compass wins.
 
 ---
 

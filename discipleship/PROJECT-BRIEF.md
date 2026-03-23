@@ -111,11 +111,10 @@ discipleship/
   Lesson_research/                       - research files (one per lesson)
   leadership-archive/                    - source material archive
   DISCIPLESHIP-COMPASS.md               - master editorial/curriculum direction
-  AI-START-HERE.md                       - AI entry point and reading order
+  AI-START-HERE.md                       - AI entry point, reading order, and behavior rules
   AI-LESSON-CHECKLIST.md                 - practical lesson drafting checklist
   PROJECT-BRIEF.md                       - this file (product and technical structure)
   PROJECT-STATE.md                       - current progress and session history
-  SKILL.md                               - AI behavior guidance (points to Compass)
 ```
 
 ## How the App Works

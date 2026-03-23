@@ -10,14 +10,14 @@ Add quotes, notes, book excerpts, and BFM references directly to those files.
 
 | BFM Article | Lessons |
 |---|---|
-| I. The Scriptures | 201.05, 201.07, 201.06 |
+| I. The Scriptures | 201.05, 201.06, 201.07 |
 | II. God (Father, Son, Spirit) | 201.01, 201.02, 201.03 |
 | III. Man (Imago Dei, the Fall) | 201.02 |
-| IV. Salvation (justification, sanctification, glorification) | 201.08, 201.10, 201.09, 202.09 |
-| V. God's Purpose of Grace (election, perseverance) | 202.05 — **gap: no dedicated lesson** |
+| IV. Salvation (justification, sanctification, glorification) | 201.08, 201.09, 201.10, 202.09 |
+| V. God's Purpose of Grace (election, perseverance) | 202.05 (suffering and trials) |
 | VI. The Church | 202.03, 202.04 |
 | VII. Baptism and the Lord's Supper | 202.10 |
-| VIII. The Lord's Day | 202.06 (partial) |
+| VIII. The Lord's Day | 202.06 (worship) |
 | IX. The Kingdom | 201.07, 203.07 |
 | X. Last Things (eschatology) | **gap: no lesson currently covers this** |
 | XI. Evangelism and Missions | 203.01, 203.02, 203.03, 203.04, 203.08, 203.09, 203.10 |
@@ -45,10 +45,10 @@ Add quotes, notes, book excerpts, and BFM references directly to those files.
 
 ### 202 — Growing Up
 - Baptist Faith and Message 2000 — Articles I, VI, VII, VIII, XV, XVIII
-- Tim Keller, *The Meaning of Marriage* — for 202.02, 202.08, 202.08
-- John Stott, *The Message of the Sermon on the Mount* — for 202.01
-- Gordon Fee & Douglas Stuart, *How to Read the Bible for All Its Worth* — for 201.05, 201.06
-- BibleProject resources — for 201.07 (Biblical Storyline)
+- Tim Keller, *The Meaning of Marriage* - for 202.02, 202.08
+- John Stott, *The Message of the Sermon on the Mount* - for 202.01
+- Gordon Fee & Douglas Stuart, *How to Read the Bible for All Its Worth* - for 201.05, 201.06
+- BibleProject resources - for 201.07 (Biblical Storyline)
 
 ### 203 — Growing Out
 - Baptist Faith and Message 2000 — Articles XI, XIV, XV
@@ -84,16 +84,16 @@ Add quotes, notes, book excerpts, and BFM references directly to those files.
 ### 202 — Growing Up in Discipleship
 | Lesson | Title | BFM | Key Verse |
 |---|---|---|---|
-| 202.01 | Greatest Commandment Pt 2 — Loving Your Neighbors | XV. Social Order | Matthew 22:39 |
-| 202.02, 202.08 | Loving Your Family at Home | XVIII. The Family | Ephesians 5:25 |
-| 202.03 | Getting Involved in the Church Family | VI. The Church | 1 Peter 2:9-10 |
-| 202.04 | Overview of the Bible | I. The Scriptures | 2 Timothy 3:16-17 |
-| 202.05 | The Biblical Storyline | I. The Scriptures, IX. Kingdom | Revelation 21:5 |
-| 202.06 | How to Study the Bible | I. The Scriptures | 2 Timothy 2:15 |
-| 202.10 | Baptism and the Lord's Supper | VII. Baptism & Lord's Supper | 1 Corinthians 11:26 |
-| 202.08 | Becoming Who You Already Are — Fruit of the Spirit | IV. Salvation | Galatians 5:22-23 |
+| 202.01 | Loving Your Neighbors - Greatest Commandment Part 2 | XV. Social Order | Matthew 22:39 |
+| 202.02 | Loving Your Family at Home - Your First Neighbors | XVIII. The Family | Ephesians 5:25 |
+| 202.03 | Loving Your Church Family | VI. The Church | 1 Peter 2:9-10 |
+| 202.04 | Discovering Your Gifts - APEST | VI. The Church | Romans 12:6-8 |
+| 202.05 | Suffering | V. God's Purpose of Grace | James 1:2-4 |
+| 202.06 | Living a Life of Worship | VIII. The Lord's Day | John 4:23-24 |
+| 202.07 | Giving & Generosity | XIII. Stewardship | 2 Corinthians 9:7 |
+| 202.08 | Marriage and Relationships | XVIII. The Family | TBD |
 | 202.09 | Fighting for Purity | IV. Salvation | 1 Thessalonians 4:3 |
-| 202.10 | Discovering Your Gifts — APEST | VI. The Church | Romans 12:6-8 |
+| 202.10 | Baptism & the Lord's Supper | VII. Baptism & Lord's Supper | 1 Corinthians 11:26 |
 
 ### 203 — Growing Out in Discipleship
 | Lesson | Title | BFM | Key Verse |
