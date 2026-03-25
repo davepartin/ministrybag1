@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Great Command</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@400;600;700&display=swap');
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Georgia', 'Cambria', serif;
+            background: #F8F6F1; /* Subtle lighter background to frame the tool */
+            color: #2C2416;
+            -webkit-font-smoothing: antialiased;
+            padding: 8px 12px;
+        }
+
+        .widget-outer {
+            background: #FFFFFF;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(44, 36, 22, 0.08); /* distinct nice drop shadow */
+            border: 1px solid #EBE5D9;
+            max-width: 370px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        button {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .title-bar {
+            background: #2C2416;
+            padding: 10px 20px 8px;
+            text-align: center;
+        }
+
+        .title-bar h1 {
+            font-size: 22px;
+            font-weight: 600;
+            color: #FAF8F3;
+            margin: 0;
+            line-height: 1.2;
+            font-family: 'Playfair Display', Georgia, serif;
+            letter-spacing: 0.5px;
+        }
+
+        .title-bar p {
+            font-size: 13px;
+            color: #D4CFC4;
+            margin: 4px 0 0 0;
+            font-family: 'Inter', -apple-system, sans-serif;
+            font-style: normal;
+            font-weight: 400;
+            letter-spacing: 0.2px;
+        }
+
+        .diagram-wrapper {
+            padding: 4px 0 0;
+            display: flex;
+            justify-content: center;
+            transform: scale(0.8); /* further reduced to fit beautifully on small phones */
+            transform-origin: top center;
+            height: 250px; 
+        }
+
+        .diagram-container {
+            position: relative;
+            overflow: visible;
+        }
+
+        .cross-label {
+            position: absolute;
+            font-family: 'Trebuchet MS', sans-serif;
+            font-weight: 700;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+            text-align: center;
+            transition: all 0.5s ease;
+            pointer-events: none;
+            white-space: nowrap;
+        }
+
+        .intro-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 20;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 30px 25px;
+            pointer-events: none;
+        }
+
+        .intro-overlay .intro-verse {
+            font-size: 19px;
+            line-height: 1.5;
+            color: #2C2416;
+            font-family: 'Georgia', 'Cambria', serif;
+            font-style: italic;
+            margin: 0 0 8px 0;
+            font-weight: 400;
+            text-shadow: 0 1px 6px rgba(250,248,243,0.95);
+        }
+
+        .intro-overlay .intro-ref {
+            font-size: 13px;
+            color: #9B917F;
+            font-family: 'Trebuchet MS', sans-serif;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .verse-card-wrapper {
+            margin: 0 auto;
+            padding: 0 16px 12px;
+        }
+
+        .verse-card {
+            background: #FFFFFF;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 14px rgba(44,36,22,0.06);
+            animation: fadeSlide 0.35s ease;
+        }
+
+        .verse-card-bar {
+            height: 4px;
+        }
+
+        .verse-card-content {
+            padding: 12px 16px;
+            height: 115px; /* Locked height so buttons NEVER move on phone */
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        .verse-card-title {
+            font-size: 15px;
+            font-weight: 400;
+            color: #5A4E3C;
+            margin: 0 0 4px 0;
+            line-height: 1.25;
+            font-family: 'Playfair Display', Georgia, serif;
+        }
+
+        .verse-card-desc {
+            display: none;
+        }
+
+        .verse-card-text {
+            font-size: 13px;
+            line-height: 1.45;
+            color: #3D3426;
+            margin: 0 0 4px 0;
+            flex-grow: 1; /* Pushes the reference to the bottom */
+        }
+
+        .verse-card-ref {
+            font-size: 11px;
+            color: #9B917F;
+            margin: 0;
+            font-weight: 600;
+            font-family: 'Trebuchet MS', sans-serif;
+        }
+
+        .nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+            padding: 0 2px;
+        }
+
+        .nav-btn {
+            background: transparent;
+            border: 1.5px solid #D4CFC4;
+            border-radius: 10px;
+            padding: 8px 14px;
+            font-size: 12px;
+            font-family: 'Trebuchet MS', sans-serif;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .nav-btn.primary {
+            color: #fff;
+            border: none;
+        }
+
+        .nav-btn:disabled {
+            color: #CCC5B8;
+            cursor: default;
+        }
+
+        .dot-nav {
+            display: flex;
+            gap: 5px;
+            align-items: center;
+        }
+
+        .dot {
+            height: 8px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .dot.active-dot {
+            cursor: pointer;
+        }
+
+        .begin-wrapper {
+            display: flex;
+            justify-content: center;
+            padding: 20px 16px 28px;
+        }
+
+        .begin-btn {
+            background: #2C2416;
+            border: none;
+            border-radius: 10px;
+            padding: 10px 28px;
+            font-size: 14px;
+            font-family: 'Trebuchet MS', sans-serif;
+            color: #fff;
+            cursor: pointer;
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(44,36,22,0.2);
+        }
+
+        @keyframes fadeSlide {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInSlideUp {
+            from { opacity: 0; transform: translate(-50%, 15px); }
+            to { opacity: 1; transform: translate(-50%, 0); }
+        }
+
+        .anim-fade-in { animation: fadeInSlideUp 1.5s ease-out forwards; }
+
+        @keyframes drawVertForward {
+            from { stroke-dashoffset: 244; }
+            to { stroke-dashoffset: 0; }
+        }
+
+        @keyframes moveArrowVertDown {
+            from { transform: translateY(0px); }
+            to { transform: translateY(220px); }
+        }
+
+        @keyframes moveArrowVertUp {
+            from { transform: translateY(0px); }
+            to { transform: translateY(-220px); }
+        }
+
+        @keyframes drawHorizForward {
+            from { stroke-dashoffset: 115; }
+            to { stroke-dashoffset: 0; }
+        }
+
+        @keyframes moveArrowLeftOutward {
+            from { transform: translateX(0px); }
+            to { transform: translateX(-78px); }
+        }
+
+        @keyframes moveArrowRightOutward {
+            from { transform: translateX(0px); }
+            to { transform: translateX(78px); }
+        }
+
+        .anim-draw-down { animation: drawVertForward 1.5s linear forwards; }
+        .anim-draw-up { animation: drawVertForward 1.5s linear forwards; }
+        .anim-draw-outward { animation: drawHorizForward 1.5s linear forwards; }
+
+        .anim-arrow-down { animation: moveArrowVertDown 1.5s linear forwards; }
+        .anim-arrow-up { animation: moveArrowVertUp 1.5s linear forwards; }
+        .anim-slide-left { animation: moveArrowLeftOutward 1.5s linear forwards; }
+        .anim-slide-right { animation: moveArrowRightOutward 1.5s linear forwards; }
+
+        @keyframes fadeInBorder {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .anim-border-fade { animation: fadeInBorder 2s ease-in forwards; }
+    </style>
+</head>
+<body>
+
+<div class="widget-outer">
+    <div class="title-bar">
+    <h1>Greatest Commandment</h1>
+    <p>Loving God and your neighbor</p>
+</div>
+
+<div class="diagram-wrapper">
+    <div class="diagram-container" id="diagram"></div>
+</div>
+
+<div id="card-area"></div>
+
+<script>
+// ---- Data ----
+var stops = [
+    {
+        id: "gods-love",
+        cardTitle: '<span style="color:#B8860B;font-weight:700">God\u2019s Love</span> Comes Down',
+        color: "#B8860B", bgColor: "#FFF8E7",
+        ref: "1 John 4:19",
+        verse: '<b>We love</b> because <b>He first loved us</b>.',
+        desc: 'Everything starts here. The Greatest Commandment is not the starting line. It is the echo of a Father who loved you first.'
+    },
+    {
+        id: "love-god",
+        cardTitle: 'Love God With <span style="color:#2E7D5B;font-weight:700">All You Are</span>',
+        color: "#2E7D5B", bgColor: "#EEF7F2",
+        ref: "Mark 12:30",
+        verse: '\u201CYou shall <b>love the Lord your God</b> with all your <b>heart</b> and with all your <b>soul</b> and with all your <b>mind</b> and with all your <b>strength</b>.\u201D',
+        desc: 'Not four separate compartments, but four ways of saying your whole self. Every room in the house. Nothing held back.'
+    },
+    {
+        id: "love-others",
+        cardTitle: 'Love Your <span style="color:#4A708B;font-weight:700">Neighbor</span> As Yourself',
+        color: "#4A708B", bgColor: "#EEF3F7",
+        ref: "Mark 12:31",
+        verse: '\u201CThe second is this: \u2018You shall <b>love your neighbor</b> as yourself.\u2019 There is no other commandment greater than these.\u201D',
+        desc: 'The second command is not a separate assignment. It is the overflow. Vertical love for God becomes horizontal love for people.'
+    },
+    {
+        id: "the-cross",
+        cardTitle: 'The <span style="color:#8B1A2B;font-weight:700">Cross</span> is our Example',
+        color: "#8B5A2B", bgColor: "#F7F0E8",
+        ref: "Ephesians 5:2",
+        verse: '\u201C<b>Walk in love</b>, as <b>Christ loved us</b> and gave himself up for us.\u201D',
+        desc: 'At the cross, vertical and horizontal meet. God\u2019s love came down. Our love goes up and out. All of it flows from what Christ did.'
+    }
+];
+
+// ---- Layout ----
+var W = 310, H = 310;
+var CX = 155, CY = 115;
+var BW = 40, halfBW = 20;
+var V_TOP = 28, V_BOT = 272;
+var H_LEFT = 40, H_RIGHT = 270;
+var GREY = "#DDD8CE";
+var GREY_TEXT = "#B8B1A4";
+var NS = 'http://www.w3.org/2000/svg';
+
+var step = -1;
+
+// ---- Helpers ----
+function svgRect(x, y, w, h, fill, op) {
+    var r = document.createElementNS(NS, 'rect');
+    r.setAttribute('x', x); r.setAttribute('y', y);
+    r.setAttribute('width', w); r.setAttribute('height', h);
+    r.setAttribute('rx', 4); r.setAttribute('fill', fill);
+    r.setAttribute('opacity', op);
+    return r;
+}
+
+function svgTri(pts, fill, op, cls) {
+    var p = document.createElementNS(NS, 'polygon');
+    p.setAttribute('points', pts);
+    p.setAttribute('fill', fill);
+    p.setAttribute('opacity', op);
+    if (cls) p.setAttribute('class', cls);
+    return p;
+}
+
+function svgText(x, y, text, fill, op, size) {
+    var t = document.createElementNS(NS, 'text');
+    t.setAttribute('x', x); t.setAttribute('y', y);
+    t.setAttribute('text-anchor', 'middle');
+    t.setAttribute('dominant-baseline', 'central');
+    t.setAttribute('fill', fill);
+    t.setAttribute('opacity', op);
+    t.setAttribute('font-size', size || 10);
+    t.setAttribute('font-family', "'Trebuchet MS', sans-serif");
+    t.setAttribute('font-weight', '700');
+    t.setAttribute('letter-spacing', '1');
+    t.textContent = text;
+    return t;
+}
+
+function svgLine(x1, y1, x2, y2, stroke, sw, cap) {
+    var l = document.createElementNS(NS, 'line');
+    l.setAttribute('x1', x1); l.setAttribute('y1', y1);
+    l.setAttribute('x2', x2); l.setAttribute('y2', y2);
+    l.setAttribute('stroke', stroke); l.setAttribute('stroke-width', sw);
+    l.setAttribute('stroke-linecap', cap || 'round');
+    return l;
+}
+
+function addLabel(parent, text, x, y, color, opacity, size, align, extraClass) {
+    var el = document.createElement('div');
+    el.className = 'cross-label' + (extraClass ? ' ' + extraClass : '');
+    el.style.fontSize = (size || 10) + 'px';
+    el.style.color = color;
+    el.style.opacity = opacity;
+    el.style.left = x + 'px';
+    el.style.top = y + 'px';
+    if (align === 'center') {
+        el.style.transform = 'translateX(-50%)';
+    }
+    el.textContent = text;
+    parent.appendChild(el);
+}
+
+// ---- Render ----
+function render() {
+    var diagram = document.getElementById('diagram');
+    diagram.style.width = W + 'px';
+    diagram.style.height = H + 'px';
+    diagram.innerHTML = '';
+
+    var isIntro = step === -1;
+    var isFinal = step === 3;
+
+    // Active states
+    var topOn = step >= 0;
+    var botOn = step >= 1;
+    var hOn = step >= 2;
+
+    // Segment geometry (2px overlap into center for seamless join)
+    var topH = CY - halfBW - V_TOP + 2;
+    var botH = V_BOT - CY - halfBW + 2;
+    var leftW = CX - halfBW - H_LEFT + 2;
+    var rightW = H_RIGHT - CX - halfBW + 2;
+
+    // Colors
+    var topFill = topOn ? stops[0].color : GREY;
+    var botFill = botOn ? stops[1].color : GREY;
+    var hFill = hOn ? stops[2].color : GREY;
+    var dimOp = 0.3;
+
+    // ---- SVG ----
+    var svg = document.createElementNS(NS, 'svg');
+    svg.style.cssText = 'position:absolute;top:0;left:0;z-index:1;';
+    svg.setAttribute('width', W);
+    svg.setAttribute('height', H);
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+
+    // Glow filter definition
+    var defs = document.createElementNS(NS, 'defs');
+    var filter = document.createElementNS(NS, 'filter');
+    filter.setAttribute('id', 'glow');
+    filter.setAttribute('x', '-50%'); filter.setAttribute('y', '-50%');
+    filter.setAttribute('width', '200%'); filter.setAttribute('height', '200%');
+    filter.innerHTML = '<feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>';
+    defs.appendChild(filter);
+    svg.appendChild(defs);
+
+    // --- Draw beam segments ---
+    var vertLength = V_BOT - V_TOP; // 244
+    var vertRect = svgRect(CX - halfBW, V_TOP, BW, vertLength, GREY, dimOp);
+    svg.appendChild(vertRect);
+
+    var horizLength = H_RIGHT - H_LEFT; // 230
+    var horizRect = svgRect(H_LEFT, CY - halfBW, horizLength, BW, GREY, dimOp);
+    svg.appendChild(horizRect);
+
+    // Center square (intersection - drawn on top to cover overlap edges)
+    var cFill = isFinal ? stops[3].color : (isIntro ? GREY : '#E0DAD0');
+    var cOp = isIntro ? dimOp : 1;
+    var centerRect = svgRect(CX - halfBW, CY - halfBW, BW, BW, cFill, cOp);
+    if (isFinal) {
+        centerRect.style.cursor = 'pointer';
+        centerRect.addEventListener('click', function() { step = 3; render(); });
+    }
+    svg.appendChild(centerRect);
+
+    // Animated horizontal beams
+    if (hOn) {
+        var horizBeamLength = 115; // CX - H_LEFT
+        var leftBeam = svgLine(CX, CY, H_LEFT, CY, stops[2].color, BW, 'butt');
+        if (step === 2) {
+             leftBeam.setAttribute('stroke-dasharray', horizBeamLength);
+             leftBeam.setAttribute('class', 'anim-draw-outward');
+        }
+        leftBeam.style.cursor = 'pointer';
+        leftBeam.addEventListener('click', function() { step = 2; render(); });
+        svg.appendChild(leftBeam);
+
+        var rightBeam = svgLine(CX, CY, H_RIGHT, CY, stops[2].color, BW, 'butt');
+        if (step === 2) {
+             rightBeam.setAttribute('stroke-dasharray', horizBeamLength);
+             rightBeam.setAttribute('class', 'anim-draw-outward');
+        }
+        rightBeam.style.cursor = 'pointer';
+        rightBeam.addEventListener('click', function() { step = 2; render(); });
+        svg.appendChild(rightBeam);
+    }
+
+    // Animated vertical beams (overlaying the grey base and horizontal beams)
+    if (topOn) {
+        var topBeam = svgLine(CX, V_TOP, CX, V_BOT, stops[0].color, BW, 'butt');
+        if (step === 0) {
+             topBeam.setAttribute('stroke-dasharray', vertLength);
+             topBeam.setAttribute('class', 'anim-draw-down');
+        }
+        topBeam.style.cursor = 'pointer';
+        topBeam.addEventListener('click', function() { step = 0; render(); });
+        svg.appendChild(topBeam);
+    }
+
+    if (botOn) {
+        var botBeamWidth = BW * 0.65;
+        var botBeam = svgLine(CX, V_BOT, CX, V_TOP, stops[1].color, botBeamWidth, 'butt');
+        if (step === 1) {
+             botBeam.setAttribute('stroke-dasharray', vertLength);
+             botBeam.setAttribute('class', 'anim-draw-up');
+        }
+        botBeam.style.cursor = 'pointer';
+        botBeam.addEventListener('click', function() { step = 1; render(); });
+        svg.appendChild(botBeam);
+    }
+
+    // --- Directional arrows (white triangles on segments) ---
+    var AS = 7;
+    var arrowClr = 'rgba(255,255,255,0.85)';
+
+    // Down arrow on top segment (animates top to bottom)
+    if (topOn) {
+        var topArrowCls = step === 0 ? 'anim-arrow-down' : '';
+        var startYDown = step === 0 ? V_TOP + 12 : V_BOT - 12;
+        var tGroupDown = document.createElementNS(NS, 'g');
+        if (step === 0) tGroupDown.setAttribute('class', topArrowCls);
+        tGroupDown.appendChild(svgTri(
+            CX + ',' + (startYDown + AS) + ' ' + (CX - AS) + ',' + (startYDown - AS * 0.4) + ' ' + (CX + AS) + ',' + (startYDown - AS * 0.4),
+            arrowClr, step === 0 ? 1 : 0.45
+        ));
+        svg.appendChild(tGroupDown);
+    }
+
+    // Up arrow on bottom segment (animates bottom to top)
+    if (botOn) {
+        var botArrowCls = step === 1 ? 'anim-arrow-up' : '';
+        var startYUp = step === 1 ? V_BOT - 12 : V_TOP + 12;
+        var tGroupUp = document.createElementNS(NS, 'g');
+        if (step === 1) tGroupUp.setAttribute('class', botArrowCls);
+        tGroupUp.appendChild(svgTri(
+            CX + ',' + (startYUp - AS) + ' ' + (CX - AS) + ',' + (startYUp + AS * 0.4) + ' ' + (CX + AS) + ',' + (startYUp + AS * 0.4),
+            arrowClr, step === 1 ? 1 : 0.45
+        ));
+        svg.appendChild(tGroupUp);
+    }
+
+    // Outward arrows on horizontal segments
+    if (hOn) {
+        var leftArrowCls = step === 2 ? 'anim-slide-left' : '';
+        var startXLeft = step === 2 ? CX - 25 : H_LEFT + 12;
+        var tGroupLeft = document.createElementNS(NS, 'g');
+        if (step === 2) tGroupLeft.setAttribute('class', leftArrowCls);
+        tGroupLeft.appendChild(svgTri(
+            (startXLeft - AS) + ',' + CY + ' ' + (startXLeft + AS * 0.4) + ',' + (CY - AS) + ' ' + (startXLeft + AS * 0.4) + ',' + (CY + AS),
+            arrowClr, step === 2 ? 1 : 0.45
+        ));
+        svg.appendChild(tGroupLeft);
+
+        var rightArrowCls = step === 2 ? 'anim-slide-right' : '';
+        var startXRight = step === 2 ? CX + 25 : H_RIGHT - 12;
+        var tGroupRight = document.createElementNS(NS, 'g');
+        if (step === 2) tGroupRight.setAttribute('class', rightArrowCls);
+        tGroupRight.appendChild(svgTri(
+            (startXRight + AS) + ',' + CY + ' ' + (startXRight - AS * 0.4) + ',' + (CY - AS) + ' ' + (startXRight - AS * 0.4) + ',' + (CY + AS),
+            arrowClr, step === 2 ? 1 : 0.45
+        ));
+        svg.appendChild(tGroupRight);
+    }
+
+
+    // Cross border outline on final step
+    if (isFinal) {
+        var maroon = '#8B1A2B';
+        var crossOutline = document.createElementNS(NS, 'polygon');
+        var crossPts = [
+            (CX-halfBW) + ',' + V_TOP,
+            (CX+halfBW) + ',' + V_TOP,
+            (CX+halfBW) + ',' + (CY-halfBW),
+            H_RIGHT + ',' + (CY-halfBW),
+            H_RIGHT + ',' + (CY+halfBW),
+            (CX+halfBW) + ',' + (CY+halfBW),
+            (CX+halfBW) + ',' + V_BOT,
+            (CX-halfBW) + ',' + V_BOT,
+            (CX-halfBW) + ',' + (CY+halfBW),
+            H_LEFT + ',' + (CY+halfBW),
+            H_LEFT + ',' + (CY-halfBW),
+            (CX-halfBW) + ',' + (CY-halfBW)
+        ].join(' ');
+        crossOutline.setAttribute('points', crossPts);
+        crossOutline.setAttribute('fill', 'none');
+        crossOutline.setAttribute('stroke', maroon);
+        crossOutline.setAttribute('stroke-width', '4');
+        crossOutline.setAttribute('stroke-linejoin', 'round');
+        crossOutline.setAttribute('class', 'anim-border-fade');
+        svg.appendChild(crossOutline);
+    }
+
+    diagram.appendChild(svg);
+
+    // ---- HTML Labels (dissolve in with steps) ----
+    if (topOn) {
+        var topFade = step === 0 ? 'anim-fade-in' : '';
+        addLabel(diagram, 'God loves you', CX, V_TOP - 21, stops[0].color, 1, 13.5, 'center', topFade);
+    }
+
+    if (botOn) {
+        var botFade = step === 1 ? 'anim-fade-in' : '';
+        addLabel(diagram, 'Love God With Your All', CX, V_BOT + 16, stops[1].color, 1, 12, 'center', botFade);
+    }
+
+    if (hOn) {
+        var sideFade = step === 2 ? 'anim-fade-in' : '';
+        var leftMidX = H_LEFT + 55; // moved 3px left
+        var rightMidX = H_RIGHT - 58; // moved 5px right
+        var textY = CY + halfBW + 9;
+        
+        addLabel(diagram, 'Love Your', leftMidX, textY, stops[2].color, 1, 12, 'center', sideFade);
+        addLabel(diagram, 'Neighbor', rightMidX, textY, stops[2].color, 1, 12, 'center', sideFade);
+    }
+
+    // ---- Card Area ----
+    var cardArea = document.getElementById('card-area');
+    cardArea.innerHTML = '';
+
+    var cur = isIntro ? {
+        color: '#8C8375',
+        cardTitle: 'Tracing the Greatest Command',
+        verse: 'Jesus was asked, \u201CWhich is the great commandment?\u201D',
+        ref: 'Matthew 22:36'
+    } : stops[step];
+
+    var wrapper = document.createElement('div');
+    wrapper.className = 'verse-card-wrapper';
+
+    // Verse card
+    var card = document.createElement('div');
+    card.className = 'verse-card';
+
+    var bar = document.createElement('div');
+    bar.className = 'verse-card-bar';
+    bar.style.background = cur.color;
+    card.appendChild(bar);
+
+    var content = document.createElement('div');
+    content.className = 'verse-card-content';
+
+    var title = document.createElement('h2');
+    title.className = 'verse-card-title';
+    title.innerHTML = cur.cardTitle;
+    content.appendChild(title);
+
+    var verse = document.createElement('p');
+    verse.className = 'verse-card-text';
+    verse.innerHTML = cur.verse;
+    content.appendChild(verse);
+
+    if (cur.ref) {
+        var ref = document.createElement('p');
+        ref.className = 'verse-card-ref';
+        ref.textContent = cur.ref;
+        content.appendChild(ref);
+    }
+
+    card.appendChild(content);
+    wrapper.appendChild(card);
+
+    // Navigation bar
+    var nav = document.createElement('div');
+    nav.className = 'nav-bar';
+
+    var backBtn = document.createElement('button');
+    backBtn.className = 'nav-btn';
+    backBtn.textContent = '\u2190 Back';
+    if (isIntro) {
+        backBtn.style.visibility = 'hidden';
+    } else {
+        backBtn.style.color = step === 0 ? '#CCC5B8' : '#5A4E3C';
+        backBtn.disabled = step === 0;
+        backBtn.addEventListener('click', function() {
+            if (step > 0) { step--; render(); }
+        });
+    }
+
+    var dots = document.createElement('div');
+    dots.className = 'dot-nav';
+    if (!isIntro) {
+        for (var i = 0; i < stops.length; i++) {
+            (function(idx) {
+                var d = document.createElement('div');
+                d.className = 'dot' + (idx <= step ? ' active-dot' : '');
+                d.style.width = (step === idx ? '20px' : '8px');
+                d.style.background = step === idx ? stops[idx].color : (idx <= step ? stops[idx].color + '66' : '#D4CFC4');
+                d.style.cursor = idx <= step ? 'pointer' : 'default';
+                if (idx <= step) {
+                    d.addEventListener('click', function() { step = idx; render(); });
+                }
+                dots.appendChild(d);
+            })(i);
+        }
+    }
+
+    var nextBtn = document.createElement('button');
+    nextBtn.className = 'nav-btn primary';
+    var isLast = step === stops.length - 1;
+    if (isIntro) {
+        nextBtn.textContent = 'Begin \u2192';
+        nextBtn.style.background = '#2E7D5B';
+        nextBtn.style.boxShadow = '0 2px 8px rgba(46, 125, 91, 0.3)';
+    } else {
+        nextBtn.textContent = isLast ? '\u21BB Restart' : 'Next \u2192';
+        nextBtn.style.background = cur.color;
+        nextBtn.style.boxShadow = '0 2px 8px ' + cur.color + '33';
+    }
+    
+    nextBtn.addEventListener('click', function() {
+        if (isIntro) {
+            step = 0;
+        } else {
+            step = isLast ? 0 : step + 1;
+        }
+        render();
+    });
+
+    nav.appendChild(backBtn);
+    nav.appendChild(dots);
+    nav.appendChild(nextBtn);
+    wrapper.appendChild(nav);
+
+    cardArea.appendChild(wrapper);
+}
+
+render();
+</script>
+</div>
+
+</body>
+</html>

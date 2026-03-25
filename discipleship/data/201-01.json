@@ -1,93 +1,57 @@
 {
   "id": "1",
-  "version": "v04",
-  "title": "Lesson 1: The Shema (sheh-MAH) and the Greatest Commandment - Loving God the Father",
-  "description": "Everything in the Christian life flows from one command: love God with all your heart, soul, mind, and strength. But the command is not where it starts. It starts with a Father who loved you first. This lesson explores the Greatest Commandment, encounters the character of God as Father, and introduces the Trinity as the foundation for the three lessons that follow.",
+  "version": "v05",
+  "title": "Lesson 1: The Greatest Commandment - Loving God the Father",
+  "description": "Everything in the Christian life flows from one command: love God with all your heart, soul, mind, and strength. But the command is not where it starts. It starts with a Father who loved you first. In this lesson you will explore the Greatest Commandment through an interactive diagram, encounter the pursuing love of God the Father, and see why your love for God is always a response to His love for you.",
   "blocks": [
     {
-      "type": "heading",
-      "text": "Growing Together: The Big Picture"
-    },
-    {
       "type": "image",
-      "src": "images/growing-3circles-logo.png",
-      "alt": "Growing Together Discipleship Series: all three Growing stages highlighted - Growing Deep, Growing Up, and Growing Out."
-    },
-    {
-      "type": "text",
-      "text": "The Christian life is like a tree. It starts underground, in the roots, where nobody can see. That is where you learn to love God, understand who you are in Christ, and walk in the power of the Holy Spirit. From those roots grows a trunk: the Christ-like character, Christ-like habits, and Christ-like relationships that hold your life together. And from that trunk grow branches and fruit: the mission and multiplication that bless the people around you."
-    },
-    {
-      "type": "text",
-      "text": "This is the vision of <strong>Growing Together</strong>. Not just one tree, but a Christ-like community that grows other Christ-like communities. We grow deep so we can grow up so we can grow out. And it all begins with what is underneath: the roots."
+      "src": "images/3-circle-logo-growing-focus.png",
+      "alt": "Growing Deep Discipleship Series",
+      "width": "60%",
+      "align": "center"
     },
     {
       "type": "heading",
-      "text": "Growing Deep: The Roots"
-    },
-    {
-      "type": "image",
-      "src": "images/201-growing-logo.png",
-      "alt": "A zoomed view of the roots section of the Growing Together tree, showing the Growing Deep content: loving God, identity in Christ, and the Spirit-filled walk."
+      "text": "Welcome to Growing Deep"
     },
     {
       "type": "text",
-      "text": "This course is about roots. Over the next several lessons, you will encounter the three persons of God and what each one means for your life. God the Father loves you. God the Son saves you. God the Spirit fills you. These three truths form the root system that everything else in this series grows from. If the roots go deep, the tree stands tall. So let's start digging."
+      "text": "If you are opening this lesson, you have already laid the central foundations in the Starting course. Now it is time to grow deeper. Over the next three lessons, you will encounter the three persons of God and what each one means for your life. God the Father loves you. God the Son saves you. God the Spirit fills you. We begin here, with God the Father, and the most important question anyone could ask: of all God's commands, which one matters most? The interactive diagram below walks you through Jesus' answer step by step. Tap \"Begin\" and move through each stage slowly. Notice where the love starts and where it leads."
+    },
+    {
+      "type": "widget",
+      "src": "widgets/great-command.html",
+      "height": "520px"
+    },
+    {
+      "type": "text",
+      "text": "The diagram you just explored shows two truths that shape everything in the Christian life. First, God's love comes down. He moves first. He pursues. He initiates. Second, our love goes up. We respond with everything we are: heart, soul, mind, and strength. The vertical beam is the relationship between you and God. And when that love overflows, it moves outward to the people around you. That is the Greatest Commandment, and it is shaped like a cross for a reason."
     },
     {
       "type": "heading",
-      "text": "Welcome to the Growing Course"
+      "text": "The Shema (sheh-MAH): Love With Everything"
     },
     {
       "type": "text",
-      "text": "If you are opening this lesson, it means you have already walked through Starting in Discipleship, the seven foundations of the Christian life. Those roots are real, and they are in the ground. Now it is time to grow deeper. This course will take you into the heart of the gospel: loving God, loving others, your identity in Christ, the power of the Holy Spirit, and more. Take each lesson at your own pace. Read slowly, sit with the Scripture, and answer the reflection questions honestly. The goal is not to finish. The goal is to be changed by what you encounter along the way."
-    },
-    {
-      "type": "heading",
-      "text": "What Are You Searching For?"
-    },
-    {
-      "type": "text",
-      "text": "Before we open a single verse, let's start with an honest question. Think about your life, from as early as you can remember until right now. What have you been searching for? Most people would say happiness, meaning, significance, love, or purpose. We chase it through relationships, achievements, possessions, and experiences, moving from one thing to the next, hoping this one will finally satisfy. But the satisfaction never lasts."
-    },
-    {
-      "type": "text",
-      "text": "Here is what Jesus said about that search:"
+      "text": "When Jesus answered the question about the greatest commandment, He quoted one of the oldest and most sacred prayers in Israel, the <strong>Shema</strong> (pronounced \"sheh-MAH\"), from Deuteronomy 6:"
     },
     {
       "type": "verse",
-      "reference": "John 10:10",
-      "text": "The thief comes only to steal and kill and destroy. I came that they may have life and have it abundantly."
+      "reference": "Mark 12:29-30",
+      "text": "Jesus answered, \"The most important is, 'Hear, O Israel: The Lord our God, the Lord is one. And you shall love the Lord your God with all your heart and with all your soul and with all your mind and with all your strength.'\""
     },
     {
       "type": "text",
-      "text": "Jesus did not come to give you a list of rules or a slightly better version of the life you already had. He came to give you the most full, most satisfied, most alive life possible. The Father loved you so much that He sent His Son so you could stop searching and start living. Every counterfeit you have chased was a shadow of what God has always wanted to give you. And the life Jesus is talking about does not start someday in heaven. It starts now, with knowing the God who made you and loves you."
-    },
-    {
-      "type": "question",
-      "id": "201-01-1",
-      "text": "1.1 - Be honest: what have you spent most of your life searching for? Where have you looked for it?"
-    },
-    {
-      "type": "heading",
-      "text": "The Shema (sheh-MAH): The Command That Changes Everything"
+      "text": "The word <em>Shema</em> means \"hear.\" It was the heartbeat of Israel's identity. Faithful families recited these words morning and evening. Parents taught them to their children. They wrote them on their doorposts. When Jesus pointed back to this ancient prayer, He was saying something that still shakes us today: the single most important thing you can do with your life is love God with everything you have. Not a ritual. Not a rule. Love. Total, holding-nothing-back, every-room-in-the-house love."
     },
     {
       "type": "text",
-      "text": "A religious teacher once asked Jesus the most important question anyone could ask: <strong>of all God's commands, which one matters most?</strong> Jesus answered by quoting one of the oldest and most sacred prayers in Israel, the <strong>Shema</strong> (pronounced \"sheh-MAH\"), from Deuteronomy 6:"
-    },
-    {
-      "type": "verse",
-      "reference": "Mark 12:28-30",
-      "text": "And one of the scribes came up and heard them disputing with one another, and seeing that he answered them well, asked him, \"Which commandment is the most important of all?\" Jesus answered, \"The most important is, 'Hear, O Israel: The Lord our God, the Lord is one. And you shall love the Lord your God with all your heart and with all your soul and with all your mind and with all your strength.'\""
+      "text": "Heart, soul, mind, and strength are not four separate compartments. They are four ways of saying <strong>your whole self</strong>. Your heart is your deepest desires and loyalties. Your soul is the core of who you are. Your mind is your thoughts and reasoning. Your strength is your energy, your body, your daily effort. Jesus is saying: all of it. Nothing held back."
     },
     {
       "type": "text",
-      "text": "The word <em>Shema</em> means \"hear,\" and it was the heartbeat of Israel's identity. Every faithful Jewish family recited these words morning and evening. Parents taught them to their children. They wrote them on their doorposts. When Jesus was asked for the single most important command in all of Scripture, He pointed right back to this ancient prayer: <strong>Love God with everything you have.</strong> Not a ritual. Not a rule. Love. Total, holding-nothing-back, every-room-in-the-house love."
-    },
-    {
-      "type": "text",
-      "text": "But here's the question most people never ask: <em>How?</em> How is that even possible? If we're honest, most of us can barely love God with part of our heart on a good day. So where does this kind of love come from?"
+      "text": "But here is the question most people never ask: <em>How?</em> How is that even possible? If we are honest, most of us can barely love God with part of our heart on a good day. So where does this kind of love come from?"
     },
     {
       "type": "heading",
@@ -95,7 +59,7 @@
     },
     {
       "type": "text",
-      "text": "This is the part that changes everything, the part many people have never been taught. The Greatest Commandment is not the starting line. It is the <em>echo</em>."
+      "text": "This is the part that changes everything. The Greatest Commandment is not the starting line. It is the <em>echo</em>."
     },
     {
       "type": "verse",
@@ -104,16 +68,17 @@
     },
     {
       "type": "text",
-      "text": "Read that again slowly. We love <em>because</em> He first loved us. The command to love God is not asking you to generate something from nothing. It is inviting you to respond to something already given. God's love comes first, and your love is the echo. You cannot echo what you have not received. So the most important question is not <em>\"How do I love God more?\"</em> It is <em>\"Do I know how much the Father already loves me?\"</em>"
+      "text": "Read that again slowly. We love <em>because</em> He first loved us. The command to love God is not asking you to generate something from nothing. It is inviting you to respond to something already given. God's love comes first, and your love is the echo. You cannot echo what you have not received. So the most important question is not \"How do I love God more?\" It is \"Do I know how much the Father already loves me?\""
     },
     {
       "type": "text",
-      "text": "Think of it this way: loving God is like getting a new tongue. When we taste something we don't like, we spit it out. We can't help it. But if you got a tongue transplant, you might find yourself liking things you never could before. God doesn't just change our behavior. He gives us a <strong>new heart</strong>. What we once ran from, we now want to run toward and be embraced by. New heart, new loves. What you want changes when who you are changes."
+      "text": "Think of it this way: loving God is like getting a new tongue. When we taste something we do not like, we spit it out. We cannot help it. But if you got a tongue transplant, you might find yourself liking things you never could before. God does not just change our behavior. He gives us a <strong>new heart</strong>. What we once ran from, the love of the Father, His presence, His ways, we now want to run toward and be embraced by. New heart, new loves. What you want changes when who you are changes."
     },
     {
       "type": "question",
-      "id": "201-01-2",
-      "text": "1.2 - Has anyone ever loved you in a way that changed how you treated them? How does that help you understand 1 John 4:19?"
+      "id": "201-01-1",
+      "text": "1.1 - Has anyone ever loved you in a way that changed how you treated them? How does that help you understand 1 John 4:19?",
+      "height": "tall"
     },
     {
       "type": "heading",
@@ -121,20 +86,34 @@
     },
     {
       "type": "text",
-      "text": "So what does the Father's love actually look like? Jesus told a story that answers that question. Most people call it the story of the Prodigal Son. But it is really a story about the <strong>Father</strong>. A young man asks his father for his inheritance early, which in that culture was essentially saying <em>\"I wish you were dead.\"</em> The father gives it to him. The son leaves, wastes everything, and ends up starving in a pig pen. He decides to go home and beg to be a servant."
+      "text": "So what does the Father's love actually look like? Jesus told a story that answers that question better than any theology book could. Most people call it the story of the Prodigal Son. But it is really a story about the <strong>Father</strong>."
     },
     {
       "type": "text",
-      "text": "But here is the moment that matters most: <em>\"While he was still a long way off, his father saw him and felt compassion, and ran and embraced him and kissed him\"</em> (Luke 15:20). The father was watching. The father <em>ran</em>. In that culture, a dignified man never ran, but this father did. He didn't wait for an apology. He didn't wait for the son to clean up. He ran, embraced him, and threw a party. The robe, the ring, the fattened calf: extravagant restoration, given before the son finished his rehearsed speech. That is the heart of God the Father toward you."
+      "text": "A young man asks his father for his inheritance early, which in that culture was the same as saying, \"I wish you were dead.\" The father gives it to him. The son leaves, wastes everything, and ends up starving in a pig pen. He decides to go home and beg to be hired as a servant."
     },
     {
       "type": "text",
-      "text": "There is a second son in the story, the older brother. He stayed home, kept all the rules, did everything right. And when the party started, he was furious. He had never left, but he had never received the father's love either. He had been managing his performance record instead of being a son. The father went out to him, too. The question the older brother couldn't answer is the same question this lesson is asking: <em>Have you ever received the Father's love, or have you only been keeping score?</em>"
+      "text": "But here is the moment that matters most:"
+    },
+    {
+      "type": "verse",
+      "reference": "Luke 15:20",
+      "text": "But while he was still a long way off, his father saw him and felt compassion, and ran and embraced him and kissed him."
+    },
+    {
+      "type": "text",
+      "text": "The father was watching. The father <em>ran</em>. In that culture, a dignified man never ran, but this father did. He did not wait for an apology. He did not wait for the son to clean up. He ran, embraced him, and threw a party. The robe, the ring, the fattened calf: extravagant restoration, given before the son finished his rehearsed speech. That is the heart of God the Father toward you. He is not waiting for you to get your life together. He is running toward you right now."
+    },
+    {
+      "type": "text",
+      "text": "There is a second son in the story, the older brother. He stayed home, kept all the rules, did everything right. And when the party started, he was furious. He had never left, but he had never received the father's love either. He had been managing his performance record instead of being a son. The father went out to him, too. The question the older brother could not answer is the same question this lesson is asking: <em>Have you ever received the Father's love, or have you only been keeping score?</em>"
     },
     {
       "type": "question",
-      "id": "201-01-3",
-      "text": "1.3 - Which son do you relate to more: the one who ran away, or the one who stayed home but never really received the Father's love? Why?"
+      "id": "201-01-2",
+      "text": "1.2 - Which son do you relate to more: the one who ran away, or the one who stayed home but never really received the Father's love? Why?",
+      "height": "tall"
     },
     {
       "type": "heading",
@@ -142,7 +121,7 @@
     },
     {
       "type": "text",
-      "text": "Too many of us see God the way an employee sees a boss. He hired us off the street. He's kind enough. But now that we're in the company, we'd better stay in line. If we mess up, we're in trouble. But what about a Father who owns a small shop and brings you in, not because you're skilled, but because you're His? He knows you'll struggle. He knows you'll fail. But He says, <em>\"I want you here. And I will be right here with you the whole time.\"</em> The security is not based on how well you perform. It is based on the love of the Father and your identity as His child."
+      "text": "Too many of us see God the way an employee sees a boss. He hired us off the street. He is kind enough. But now that we are in the company, we had better stay in line. If we mess up, we are in trouble. But what about a Father who owns a small shop and brings you in, not because you are skilled, but because you are His? He knows you will struggle. He knows you will fail. But He says, \"I want you here. And I will be right here with you the whole time.\" The security is not based on how well you perform. It is based on the love of the Father and your identity as His child."
     },
     {
       "type": "text",
@@ -150,37 +129,11 @@
     },
     {
       "type": "heading",
-      "text": "Loving God With Everything"
-    },
-    {
-      "type": "text",
-      "text": "Now go back to the Greatest Commandment, Matthew 22:37. Love God with all your <strong>heart, soul, mind, and strength</strong>. These are not four separate compartments. They are four ways of saying <em>your whole self</em>. Your heart is your deepest desires and loyalties. Your soul is the core of who you are. Your mind is your thoughts and reasoning. Your strength is your energy, your body, your daily effort. Jesus is saying: all of it. Every room in the house. Nothing held back."
-    },
-    {
-      "type": "text",
-      "text": "But notice the order we've followed in this lesson. We didn't start with the command. We started with the Father's love. That's because the command is not the starting line. It is the <em>response</em>. When you encounter a Father who runs toward you, who delights in you, who gives you a new heart, loving Him with everything stops being an impossible burden and starts being the most natural thing you can do. The Father's love doesn't lower the standard. <strong>It changes the heart that meets it.</strong>"
-    },
-    {
-      "type": "verse",
-      "reference": "1 John 5:3",
-      "text": "For this is the love of God, that we keep his commandments. And his commandments are not burdensome."
-    },
-    {
-      "type": "text",
-      "text": "When you love someone, doing what they ask doesn't feel like a weight. It feels like an honor. By keeping His commandments, we are displaying that something internal has happened. The things of God are no longer burdensome but joy. We are not fighting sin to have a relationship with God. <strong>We are fighting sin because we have a relationship with God.</strong>"
-    },
-    {
-      "type": "question",
-      "id": "201-01-4",
-      "text": "1.4 - How does it change your view of the Greatest Commandment to know that it starts with God's love for you, not your love for Him?"
-    },
-    {
-      "type": "heading",
       "text": "What Changes Tomorrow?"
     },
     {
       "type": "text",
-      "text": "There's a verse most believers don't know, and that is exactly why it lands so hard."
+      "text": "There is a verse most believers do not know, and that is exactly why it lands so hard."
     },
     {
       "type": "verse",
@@ -192,21 +145,31 @@
       "text": "God does not merely tolerate you. He <em>rejoices</em> over you with gladness. He <em>sings</em> over you. This is the face of the Father: not disappointment but <strong>delight</strong>. Not distance but presence. Not a performance review but a love song. So here is the question worth sitting with all week: <strong>What changes tomorrow if God's face toward you is delight, not disappointment?</strong> What changes about how you handle failure? How you talk to yourself? How you pray?"
     },
     {
+      "type": "text",
+      "text": "When you encounter a Father like this, loving Him with everything stops being an impossible burden and starts being the most natural thing you can do. The Father's love does not lower the standard. <strong>It changes the heart that meets it.</strong> We are not fighting sin to have a relationship with God. We are fighting sin because we have a relationship with God."
+    },
+    {
+      "type": "verse",
+      "reference": "1 John 5:3",
+      "text": "For this is the love of God, that we keep his commandments. And his commandments are not burdensome."
+    },
+    {
       "type": "question",
-      "id": "201-01-5",
-      "text": "1.5 - Sit with this: What changes tomorrow if God's face toward you is delight, not disappointment? Write whatever comes to mind."
+      "id": "201-01-3",
+      "text": "1.3 - Sit with this: What changes tomorrow if God's face toward you is delight, not disappointment? Write whatever comes to mind.",
+      "height": "tall"
     },
     {
       "type": "heading",
-      "text": "God as Father, Son, and Spirit"
+      "text": "The Father, the Son, and the Spirit"
     },
     {
       "type": "text",
-      "text": "One more thing before we close. Throughout Scripture, God reveals Himself as three persons: <strong>Father, Son, and Holy Spirit</strong>. This is what Christians call the Trinity. In this lesson, we encountered God the Father, the one who made you, who pursues you, who runs toward you with delight. In the next lesson, we will encounter God the Son, Jesus Christ, the one who redeems you and gives you a new identity. And in the lesson after that, we will encounter God the Holy Spirit, the one who lives inside you and empowers your daily walk."
+      "text": "One more thing before we close. Throughout Scripture, God reveals Himself as three persons: <strong>Father, Son, and Holy Spirit</strong>. This is what Christians call the Trinity. It is not three Gods. It is one God who exists eternally as three distinct persons, each fully God, each playing a unique role in your life."
     },
     {
       "type": "text",
-      "text": "The Father loves you. The Son saves you. The Spirit fills you. These three lessons belong together, and that foundation is what everything else in this course is built on."
+      "text": "In this lesson, you encountered God the Father: the one who made you, who pursues you, who runs toward you with delight. In the next lesson, you will encounter God the Son, Jesus Christ: the one who redeems you and gives you a new identity. And in the lesson after that, you will encounter God the Holy Spirit: the one who lives inside you and empowers your daily walk. The Father loves you. The Son saves you. The Spirit fills you. These three lessons belong together, and this foundation is what everything else in the course is built on."
     },
     {
       "type": "heading",
@@ -214,7 +177,7 @@
     },
     {
       "type": "text",
-      "text": "Each morning this week, before you check your phone, read Zephaniah 3:17 slowly. Then sit quietly for sixty seconds with one question: <em>If the Father's face toward me right now is delight, how does that change how I walk into this day?</em> You don't need to write a paragraph or feel something profound. Just let the Father's love be the first thing that shapes your morning, before the noise rushes in. Do this for seven days and see what shifts."
+      "text": "Each morning this week, before you check your phone, read Zephaniah 3:17 slowly. Then sit quietly for sixty seconds with one question: <em>If the Father's face toward me right now is delight, how does that change how I walk into this day?</em> You do not need to write a paragraph or feel something profound. Just let the Father's love be the first thing that shapes your morning, before the noise rushes in."
     },
     {
       "type": "text",

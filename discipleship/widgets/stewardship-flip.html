@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Stewardship Flip</title>
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Georgia', 'Cambria', serif;
+            background: transparent;
+            color: #2C2416;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        button {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .title-bar {
+            background: #2C2416;
+            padding: 14px 20px 12px;
+            text-align: center;
+        }
+
+        .title-bar h1 {
+            font-size: 20px;
+            font-weight: 400;
+            color: #FAF8F3;
+            margin: 0;
+            line-height: 1.2;
+            font-family: 'Georgia', 'Cambria', serif;
+        }
+
+        .title-bar p {
+            font-size: 12px;
+            color: #FFFFFF;
+            margin: 5px 0 0 0;
+            font-family: 'Georgia', 'Cambria', serif;
+        }
+
+        /* Main content area */
+        .content {
+            max-width: 640px;
+            margin: 0 auto;
+            padding: 20px 16px 28px;
+        }
+
+        /* The question display */
+        .question-area {
+            text-align: center;
+            margin-bottom: 20px;
+            min-height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .question-text {
+            font-size: 15px;
+            line-height: 1.5;
+            color: #5A4E3C;
+            font-style: italic;
+            transition: opacity 0.3s ease;
+        }
+
+        .question-text .emphasis {
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        /* Paycheck visual */
+        .paycheck {
+            background: #FFFFFF;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 2px 16px rgba(44,36,22,0.07);
+            margin-bottom: 18px;
+            transition: box-shadow 0.4s ease;
+        }
+
+        .paycheck.flipped {
+            box-shadow: 0 2px 16px rgba(29,107,63,0.12);
+        }
+
+        .paycheck-header {
+            padding: 14px 18px 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.5s ease;
+        }
+
+        .paycheck-header.owner {
+            background: #F5F0E8;
+        }
+
+        .paycheck-header.steward {
+            background: #E8F2EC;
+        }
+
+        .paycheck-label {
+            font-family: 'Trebuchet MS', sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            transition: color 0.4s ease;
+        }
+
+        .paycheck-label.owner { color: #8B7355; }
+        .paycheck-label.steward { color: #1D6B3F; }
+
+        .paycheck-icon {
+            font-size: 16px;
+            transition: transform 0.5s ease;
+        }
+
+        .paycheck.flipped .paycheck-icon {
+            transform: rotate(180deg);
+        }
+
+        /* Line items */
+        .line-items {
+            padding: 6px 0;
+        }
+
+        .line-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 18px;
+            border-bottom: 1px solid #F0EDE7;
+            animation: fadeSlide 0.35s ease both;
+        }
+
+        .line-item:last-child {
+            border-bottom: none;
+        }
+
+        .line-item-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .line-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            transition: background 0.4s ease;
+        }
+
+        .line-label {
+            font-family: 'Trebuchet MS', sans-serif;
+            font-size: 14px;
+            color: #3D3426;
+            line-height: 1.3;
+        }
+
+        .line-sublabel {
+            font-family: 'Georgia', 'Cambria', serif;
+            font-size: 12px;
+            color: #9B917F;
+            font-style: italic;
+            margin-top: 2px;
+        }
+
+        .line-amount {
+            font-family: 'Trebuchet MS', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            color: #3D3426;
+            white-space: nowrap;
+        }
+
+        /* The flip button */
+        .flip-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 18px;
+        }
+
+        .flip-btn {
+            background: #2C2416;
+            border: none;
+            border-radius: 10px;
+            padding: 11px 26px;
+            font-size: 14px;
+            font-family: 'Trebuchet MS', sans-serif;
+            color: #fff;
+            cursor: pointer;
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(44,36,22,0.2);
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .flip-btn.flipped {
+            background: #1D6B3F;
+            box-shadow: 0 2px 8px rgba(29,107,63,0.25);
+        }
+
+        /* Verse card */
+        .verse-card {
+            background: #FFFFFF;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 14px rgba(44,36,22,0.06);
+            animation: fadeSlide 0.35s ease;
+        }
+
+        .verse-card-bar {
+            height: 4px;
+            transition: background 0.4s ease;
+        }
+
+        .verse-card-bar.owner { background: #8B7355; }
+        .verse-card-bar.steward { background: #1D6B3F; }
+
+        .verse-card-content {
+            padding: 16px 20px 18px;
+        }
+
+        .verse-card-text {
+            font-size: 14px;
+            line-height: 1.65;
+            color: #3D3426;
+            margin: 0 0 8px 0;
+        }
+
+        .verse-card-text b {
+            font-weight: 700;
+            color: #2C2416;
+        }
+
+        .verse-card-ref {
+            font-size: 11px;
+            color: #9B917F;
+            margin: 0;
+            font-weight: 600;
+            font-family: 'Trebuchet MS', sans-serif;
+        }
+
+        /* Big question reveal */
+        .big-question {
+            text-align: center;
+            padding: 20px 10px;
+            opacity: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: opacity 0.6s ease 0.2s, max-height 0.5s ease;
+        }
+
+        .big-question.visible {
+            opacity: 1;
+            max-height: 200px;
+        }
+
+        .big-question .old-q {
+            font-size: 14px;
+            color: #B8B1A4;
+            text-decoration: line-through;
+            margin-bottom: 8px;
+            font-style: italic;
+        }
+
+        .big-question .new-q {
+            font-size: 17px;
+            color: #1D6B3F;
+            font-weight: 700;
+            line-height: 1.4;
+        }
+
+        @keyframes fadeSlide {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="title-bar">
+    <h1>The Stewardship Flip</h1>
+    <p>"The earth is the Lord's, and everything in it."</p>
+</div>
+
+<div class="content">
+    <div class="question-area">
+        <div class="question-text" id="questionText">
+            Imagine your paycheck just arrived. How do you see it?
+        </div>
+    </div>
+
+    <div class="paycheck" id="paycheck">
+        <div class="paycheck-header owner" id="paycheckHeader">
+            <span class="paycheck-label owner" id="paycheckLabel">My Money</span>
+            <span class="paycheck-icon">&#8693;</span>
+        </div>
+        <div class="line-items" id="lineItems"></div>
+    </div>
+
+    <div class="flip-wrapper">
+        <button class="flip-btn" id="flipBtn">Flip Your Perspective &#8594;</button>
+    </div>
+
+    <div class="verse-card" id="verseCard">
+        <div class="verse-card-bar owner" id="verseBar"></div>
+        <div class="verse-card-content">
+            <p class="verse-card-text" id="verseText"></p>
+            <p class="verse-card-ref" id="verseRef"></p>
+        </div>
+    </div>
+
+    <div class="big-question" id="bigQuestion">
+        <p class="old-q">"How much of my money should I give to God?"</p>
+        <p class="new-q">"How much of God's money should I keep?"</p>
+    </div>
+</div>
+
+<script>
+    const ownerLines = [
+        { label: 'My Income', sub: 'I earned this', amount: '$4,200', color: '#8B7355' },
+        { label: 'My Bills', sub: 'I have to pay these', amount: '$1,800', color: '#8B7355' },
+        { label: 'My Savings', sub: 'I need to protect this', amount: '$600', color: '#8B7355' },
+        { label: 'My Spending', sub: 'I deserve this', amount: '$1,400', color: '#8B7355' },
+        { label: 'My Giving', sub: 'Whatever is left over', amount: '$400', color: '#C4A97D' }
+    ];
+
+    const stewardLines = [
+        { label: "God's Provision", sub: 'He entrusted this to me', amount: '$4,200', color: '#1D6B3F' },
+        { label: 'Return to God First', sub: 'The firstfruits are His', amount: '$420', color: '#2E8B57' },
+        { label: 'Needs He Asks Me to Meet', sub: 'Managing His resources wisely', amount: '$1,800', color: '#1D6B3F' },
+        { label: 'Save for His Purposes', sub: 'Faithful with what He gave', amount: '$600', color: '#1D6B3F' },
+        { label: 'Enjoy with Gratitude', sub: 'Every good gift is from Him', amount: '$1,380', color: '#3DA06A' }
+    ];
+
+    const ownerVerse = {
+        text: '"Do not lay up for yourselves treasures on earth, where moth and rust destroy and where thieves break in and steal."',
+        ref: 'Matthew 6:19'
+    };
+
+    const stewardVerse = {
+        text: '"But lay up for yourselves <b>treasures in heaven</b>, where neither moth nor rust destroys and where thieves do not break in and steal. For where your <b>treasure</b> is, there your <b>heart</b> will be also."',
+        ref: 'Matthew 6:20-21'
+    };
+
+    let isFlipped = false;
+
+    function renderLines(lines) {
+        const container = document.getElementById('lineItems');
+        container.innerHTML = '';
+        lines.forEach((item, i) => {
+            const row = document.createElement('div');
+            row.className = 'line-item';
+            row.style.animationDelay = (i * 0.07) + 's';
+            row.innerHTML = `
+                <div class="line-item-left">
+                    <div class="line-dot" style="background:${item.color}"></div>
+                    <div>
+                        <div class="line-label">${item.label}</div>
+                        <div class="line-sublabel">${item.sub}</div>
+                    </div>
+                </div>
+                <div class="line-amount">${item.amount}</div>
+            `;
+            container.appendChild(row);
+        });
+    }
+
+    function render() {
+        const paycheck = document.getElementById('paycheck');
+        const header = document.getElementById('paycheckHeader');
+        const label = document.getElementById('paycheckLabel');
+        const btn = document.getElementById('flipBtn');
+        const questionText = document.getElementById('questionText');
+        const verseBar = document.getElementById('verseBar');
+        const verseText = document.getElementById('verseText');
+        const verseRef = document.getElementById('verseRef');
+        const bigQuestion = document.getElementById('bigQuestion');
+
+        if (isFlipped) {
+            paycheck.classList.add('flipped');
+            header.className = 'paycheck-header steward';
+            label.className = 'paycheck-label steward';
+            label.textContent = "God's Money, My Stewardship";
+            btn.className = 'flip-btn flipped';
+            btn.innerHTML = '&#8592; Flip Back';
+            questionText.innerHTML = 'Same paycheck. <span class="emphasis">Completely different heart.</span>';
+            verseBar.className = 'verse-card-bar steward';
+            verseText.innerHTML = stewardVerse.text;
+            verseRef.textContent = stewardVerse.ref;
+            bigQuestion.classList.add('visible');
+            renderLines(stewardLines);
+        } else {
+            paycheck.classList.remove('flipped');
+            header.className = 'paycheck-header owner';
+            label.className = 'paycheck-label owner';
+            label.textContent = 'My Money';
+            btn.className = 'flip-btn';
+            btn.innerHTML = 'Flip Your Perspective &#8594;';
+            questionText.innerHTML = 'Imagine your paycheck just arrived. How do you see it?';
+            verseBar.className = 'verse-card-bar owner';
+            verseText.innerHTML = ownerVerse.text;
+            verseRef.textContent = ownerVerse.ref;
+            bigQuestion.classList.remove('visible');
+            renderLines(ownerLines);
+        }
+    }
+
+    document.getElementById('flipBtn').addEventListener('click', () => {
+        isFlipped = !isFlipped;
+        render();
+    });
+
+    render();
+</script>
+</body>
+</html>
