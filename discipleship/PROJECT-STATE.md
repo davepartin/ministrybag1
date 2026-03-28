@@ -47,7 +47,7 @@ See DISCIPLESHIP-COMPASS.md (the authoritative source) and AI-START-HERE.md for 
 | 201 | Growing Deep | with God | Green `#1A6B55` |
 | 202 | Growing Up | with Family | Green `#1D6B3F` |
 | 203 | Growing Out | with the Gospel | Green |
-| 301 | Leading in Discipleship | Multiplying the Harvest | Pink `#9A3A5E` |
+| 301 | Leading in Discipleship | Multiplying the Harvest | Coral `#C85A56` |
 
 **Home page tagline verse:** Mark 4:20 ("Those that were sown on the good soil...")
 

@@ -31,9 +31,9 @@ Growing Together is a self-paced, phone-friendly app that walks someone through 
 | 201 | `#1A6B55` | `#D4F2E8` | `#1A6B55` |
 | 202 | `#1D6B3F` | `#D1EDD9` | `#1D6B3F` |
 | 203 | `#1A5C38` | `#CCE6D4` | `#1A5C38` |
-| 301 | `#9A3A5E` | `#FCE4ED` | `#9A3A5E` |
+| 301 | `#C85A56` | `#FCEAE8` | `#C85A56` |
 
-The three Growing courses use a progression of greens to show they are related but distinct. 301 Leading uses a warm rose/pink.
+The three Growing courses use a progression of greens to show they are related but distinct. 301 Leading uses a warm terracotta/coral.
 
 ## Naming Convention
 

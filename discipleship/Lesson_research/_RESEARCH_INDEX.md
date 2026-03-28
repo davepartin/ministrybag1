@@ -70,8 +70,8 @@ Add quotes, notes, book excerpts, and BFM references directly to those files.
 ### 201 — Growing Deep in Discipleship
 | Lesson | Title | BFM | Key Verse |
 |---|---|---|---|
-| 201.01 | Loving God — Greatest Commandment Part 1 | II. God | Matthew 22:37 |
-| 201.02 | Your Identity in Jesus the Son | II. God, III. Man | 1 John 3:1 |
+| 201.01 | Loving God | II. God | Matthew 22:37 |
+| 201.02 | New Identity in Jesus | II. God, III. Man | 1 John 3:1 |
 | 201.03 | Walking in the Spirit | II. God | Galatians 5:25 |
 | 201.04 | Spiritual Disciplines — Abiding in Christ | IV. Salvation | John 15:4-5 |
 | 201.05 | Overview of the Bible | I. The Scriptures | 2 Timothy 3:16-17 |
@@ -89,7 +89,7 @@ Add quotes, notes, book excerpts, and BFM references directly to those files.
 | 202.03 | Loving Your Church Family | VI. The Church | 1 Peter 2:9-10 |
 | 202.04 | Discovering Your Gifts - APEST | VI. The Church | Romans 12:6-8 |
 | 202.05 | Suffering | V. God's Purpose of Grace | James 1:2-4 |
-| 202.06 | Living a Life of Worship | VIII. The Lord's Day | John 4:23-24 |
+| 202.06 | Worship and the Glory of God | VIII. The Lord's Day | John 4:23-24 |
 | 202.07 | Giving & Generosity | XIII. Stewardship | 2 Corinthians 9:7 |
 | 202.08 | Marriage and Relationships | XVIII. The Family | TBD |
 | 202.09 | Fighting for Purity | IV. Salvation | 1 Thessalonians 4:3 |

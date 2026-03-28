@@ -75,6 +75,12 @@
             overflow: visible;
         }
 
+        #card-area {
+            background-color: #F6F4EE;
+            border-top: 1px solid #EBE5D9;
+            padding-top: 16px;
+        }
+
         .cross-label {
             position: absolute;
             font-family: 'Trebuchet MS', sans-serif;
@@ -339,7 +345,7 @@ var stops = [
     {
         id: "the-cross",
         cardTitle: 'The <span style="color:#8B1A2B;font-weight:700">Cross</span> is our Example',
-        color: "#8B5A2B", bgColor: "#F7F0E8",
+        color: "#8B1A2B", bgColor: "#F7F0E8",
         ref: "Ephesians 5:2",
         verse: '\u201C<b>Walk in love</b>, as <b>Christ loved us</b> and gave himself up for us.\u201D',
         desc: 'At the cross, vertical and horizontal meet. God\u2019s love came down. Our love goes up and out. All of it flows from what Christ did.'
@@ -636,8 +642,8 @@ function render() {
     var cur = isIntro ? {
         color: '#8C8375',
         cardTitle: 'Tracing the Greatest Command',
-        verse: 'Jesus was asked, \u201CWhich is the great commandment?\u201D',
-        ref: 'Matthew 22:36'
+        verse: 'Jesus was asked, \u201CWhich commandment is the most important of all?\u201D',
+        ref: 'Mark 12:28'
     } : stops[step];
 
     var wrapper = document.createElement('div');
@@ -727,7 +733,7 @@ function render() {
         if (isIntro) {
             step = 0;
         } else {
-            step = isLast ? 0 : step + 1;
+            step = isLast ? -1 : step + 1;
         }
         render();
     });

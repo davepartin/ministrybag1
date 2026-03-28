@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Learning Circle</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@400;600;700&display=swap');
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Georgia', 'Cambria', serif;
+            background: #F8F6F1;
+            color: #2C2416;
+            -webkit-font-smoothing: antialiased;
+            padding: 8px 12px;
+        }
+
+        button {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .widget-outer {
+            background: #FFFFFF;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(44, 36, 22, 0.08);
+            border: 1px solid #EBE5D9;
+            max-width: 370px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .title-bar {
+            background: #2C2416;
+            padding: 10px 20px 8px;
+            text-align: center;
+        }
+
+        .title-bar h1 {
+            font-size: 22px;
+            font-weight: 600;
+            color: #FAF8F3;
+            margin: 0;
+            line-height: 1.2;
+            font-family: 'Playfair Display', Georgia, serif;
+            letter-spacing: 0.5px;
+        }
+
+        .title-bar p {
+            font-size: 13px;
+            color: #D4CFC4;
+            margin: 4px 0 0 0;
+            font-family: 'Inter', -apple-system, sans-serif;
+            font-style: normal;
+            font-weight: 400;
+            letter-spacing: 0.2px;
+        }
+
+        .diagram-wrapper {
+            padding: 4px 0 0;
+            display: flex;
+            justify-content: center;
+            height: 370px;
+        }
+
+        .diagram-container {
+            position: relative;
+            overflow: visible;
+        }
+
+        .diagram-label {
+            position: absolute;
+            font-family: 'Trebuchet MS', sans-serif;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-align: center;
+            pointer-events: none;
+            white-space: nowrap;
+            opacity: 0;
+            transform: translateY(6px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .diagram-label.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .circle-word {
+            position: absolute;
+            font-family: 'Inter', -apple-system, sans-serif;
+            text-align: center;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+
+        .circle-word.visible {
+            opacity: 1;
+        }
+
+        .circle-word .word {
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: 0;
+            line-height: 1.02;
+        }
+
+        .corner-step {
+            position: absolute;
+            width: 96px;
+            text-align: center;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .corner-step.visible {
+            opacity: 1;
+        }
+
+        .corner-step .step-word {
+            display: block;
+            font-family: 'Trebuchet MS', sans-serif;
+            font-size: 14px;
+            font-weight: 800;
+            letter-spacing: 0.2px;
+            line-height: 1.2;
+            text-transform: none;
+        }
+
+        .corner-step .step-sub {
+            display: block;
+            margin-top: 3px;
+            font-family: 'Inter', -apple-system, sans-serif;
+            font-size: 11px;
+            font-style: italic;
+            font-weight: 500;
+            color: #8C8375;
+            line-height: 1.15;
+        }
+
+        #card-area {
+            background-color: #F6F4EE;
+            border-top: 1px solid #EBE5D9;
+            padding-top: 16px;
+        }
+
+        .verse-card-wrapper {
+            margin: 0 auto;
+            padding: 0 16px 12px;
+        }
+
+        .verse-card {
+            background: #FFFFFF;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 14px rgba(44,36,22,0.06);
+            animation: fadeSlide 0.35s ease;
+        }
+
+        .verse-card-bar {
+            height: 4px;
+        }
+
+        .verse-card-content {
+            padding: 12px 16px;
+            height: 125px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        .verse-card-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: #5A4E3C;
+            margin: 0 0 4px 0;
+            line-height: 1.25;
+            font-family: 'Playfair Display', Georgia, serif;
+        }
+
+        .verse-card-text {
+            font-size: 13px;
+            line-height: 1.45;
+            color: #3D3426;
+            margin: 0 0 4px 0;
+            flex-grow: 1;
+        }
+
+        .verse-card-text b {
+            color: var(--accent-color, #2C2416);
+        }
+
+        .verse-card-ref {
+            font-size: 11px;
+            color: var(--accent-color, #9B917F);
+            margin: 0;
+            font-weight: 600;
+            font-family: 'Trebuchet MS', sans-serif;
+        }
+
+        .nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+            padding: 0 2px;
+        }
+
+        .nav-btn {
+            background: transparent;
+            border: 1.5px solid #D4CFC4;
+            border-radius: 10px;
+            padding: 8px 14px;
+            font-size: 12px;
+            font-family: 'Trebuchet MS', sans-serif;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .nav-btn.primary {
+            color: #fff;
+            border: none;
+        }
+
+        .nav-btn:disabled {
+            color: #CCC5B8;
+            cursor: default;
+        }
+
+        .dot-nav {
+            display: flex;
+            gap: 5px;
+            align-items: center;
+        }
+
+        .dot {
+            height: 8px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .dot.active-dot {
+            cursor: pointer;
+        }
+
+        .intro-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 20;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 30px 25px;
+            pointer-events: none;
+        }
+
+        .intro-overlay .intro-verse {
+            font-size: 19px;
+            line-height: 1.5;
+            color: #2C2416;
+            font-family: 'Georgia', 'Cambria', serif;
+            font-style: italic;
+            margin: 0 0 8px 0;
+            font-weight: 400;
+            text-shadow: 0 1px 6px rgba(250,248,243,0.95);
+        }
+
+        .intro-overlay .intro-ref {
+            font-size: 13px;
+            color: #9B917F;
+            font-family: 'Trebuchet MS', sans-serif;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        @keyframes fadeSlide {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInBorder {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .anim-border-fade { animation: fadeInBorder 2s ease-in forwards; }
+    </style>
+</head>
+<body>
+
+<div class="widget-outer">
+    <div class="title-bar">
+        <h1>The Learning Circle</h1>
+        <p>Turning from sin and back to Christ</p>
+    </div>
+
+    <div class="diagram-wrapper">
+        <div class="diagram-container" id="diagram"></div>
+    </div>
+
+    <div id="card-area"></div>
+</div>
+
+<script>
+var stops = [
+    {
+        id: "path",
+        cardTitle: '<span style="color:#5A6B4F;font-weight:700">The Path</span> of Jesus',
+        color: "#5A6B4F",
+        bgColor: "#F2F0EB",
+        ref: "Mark 1:15",
+        verse: '"The time is fulfilled, and the kingdom of God is at hand; <b>repent and believe</b> in the gospel."'
+    },
+    {
+        id: "stray",
+        cardTitle: 'Following <span style="color:#A0522D;font-weight:700">Our Own</span> Ways',
+        color: "#A0522D",
+        bgColor: "#F8F0EA",
+        ref: "Isaiah 53:6",
+        verse: 'Sin is any thought, word, or action that goes against God. We drift when we leave His way and choose <b>our own path</b> instead.'
+    },
+    {
+        id: "turning",
+        cardTitle: '<span style="color:#5A4E3C;font-weight:700">Turning Point</span>: Stop and Enter the Circle',
+        color: "#5A4E3C",
+        bgColor: "#F5F1EA",
+        ref: "Psalm 119:59",
+        verse: 'I <b>considered my ways</b>, and turned my feet to your testimonies.'
+    },
+    {
+        id: "repent",
+        cardTitle: 'Repent',
+        color: "#4A6B8B",
+        bgColor: "#EEF3F7",
+        ref: "",
+        verse: '<b>1. Reflect</b> - I considered my ways, and turned my feet to your testimonies. Ps 119:59<br><b>2. Remorse</b> - Godly sorrow brings repentance that leads to salvation and leaves no regret. 2 Cor 7:10'
+    },
+    {
+        id: "believe",
+        cardTitle: 'Believe',
+        color: "#B8860B",
+        bgColor: "#FDF8EC",
+        ref: "",
+        verse: '<b>3. Plan</b> - Pray, create a step or two, and invite someone in for accountability for your plan.<br><b>4. Obey</b> - Be doers of the word, and not hearers only, deceiving yourselves. James 1:22'
+    },
+    {
+        id: "restored",
+        cardTitle: 'Back on the Path',
+        color: "#3A3834",
+        bgColor: "#F2F0EB",
+        ref: "",
+        verse: 'The same Gospel that saves us keeps drawing us back into alignment with Jesus. As we repent and believe, the truth brings freedom, and each time we turn back, we are reminded of the Good News.'
+    }
+];
+
+var W = 350, H = 370;
+var NS = 'http://www.w3.org/2000/svg';
+var GREY = "#DDD8CE";
+var CHARCOAL = "#3A3834";
+var HUNTER = "#5A6B4F";
+var HUMAN = "#111111";
+
+var PATH_Y = 50;
+var PATH_X1 = 16;
+var PATH_X2 = 318;
+var PATH_THICK = 10;
+
+var HUMAN_Y = 94;
+var HUMAN_START_X = 16;
+var HUMAN_TURN_X = 82;
+var HUMAN_REJOIN_X = 268;
+var HUMAN_END_X = 318;
+var HUMAN_THICK = 6;
+
+var CX = 175;
+var CR = 96;
+var CIRCLE_TOP_Y = 150;
+var CY = CIRCLE_TOP_Y + CR;
+var CIRCLE_BOTTOM_Y = CY + CR;
+
+var step = -1;
+
+function svgEl(tag, attrs) {
+    var el = document.createElementNS(NS, tag);
+    for (var k in attrs) el.setAttribute(k, attrs[k]);
+    return el;
+}
+
+function pathLen(x1, y1, x2, y2) {
+    return Math.sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
+}
+
+function animateStroke(el, len, delay) {
+    el.setAttribute('stroke-dasharray', len);
+    el.setAttribute('stroke-dashoffset', len);
+    el.style.transition = 'stroke-dashoffset 0.95s ease';
+    setTimeout(function() {
+        el.setAttribute('stroke-dashoffset', '0');
+    }, delay || 30);
+}
+
+function animateFadeIn(el, delay) {
+    el.style.opacity = '0';
+    el.style.transition = 'opacity 0.7s ease';
+    setTimeout(function() {
+        el.style.opacity = '1';
+    }, delay || 30);
+}
+
+function fadeInElement(el, delay) {
+    el.style.opacity = '0';
+    el.style.transition = 'opacity 0.45s ease';
+    setTimeout(function() {
+        el.style.opacity = '1';
+    }, delay || 30);
+}
+
+function arrowPoints(x, y, angle, length, width) {
+    var tipX = x + Math.cos(angle) * length;
+    var tipY = y + Math.sin(angle) * length;
+    var leftX = x + Math.cos(angle + Math.PI * 0.72) * width;
+    var leftY = y + Math.sin(angle + Math.PI * 0.72) * width;
+    var rightX = x + Math.cos(angle - Math.PI * 0.72) * width;
+    var rightY = y + Math.sin(angle - Math.PI * 0.72) * width;
+    return tipX + ',' + tipY + ' ' + leftX + ',' + leftY + ' ' + rightX + ',' + rightY;
+}
+
+function appendAnimatedLineWithArrow(svg, options) {
+    var line = svgEl('line', {
+        x1: options.x1,
+        y1: options.y1,
+        x2: options.animate ? options.x1 : options.x2,
+        y2: options.animate ? options.y1 : options.y2,
+        stroke: options.stroke,
+        'stroke-width': options.strokeWidth,
+        'stroke-linecap': 'round'
+    });
+    svg.appendChild(line);
+
+    var angle = Math.atan2(options.y2 - options.y1, options.x2 - options.x1);
+    var arrow = svgEl('polygon', {
+        points: arrowPoints(options.animate ? options.x1 : options.x2, options.animate ? options.y1 : options.y2, angle, options.arrowLength, options.arrowWidth),
+        fill: options.stroke
+    });
+    svg.appendChild(arrow);
+
+    if (!options.animate) {
+        return;
+    }
+
+    var start = null;
+    var duration = options.duration || 850;
+
+    function tick(timestamp) {
+        if (!start) start = timestamp;
+        var progress = Math.min((timestamp - start) / duration, 1);
+        var eased = 1 - Math.pow(1 - progress, 3);
+        var currentX = options.x1 + (options.x2 - options.x1) * eased;
+        var currentY = options.y1 + (options.y2 - options.y1) * eased;
+        line.setAttribute('x2', currentX);
+        line.setAttribute('y2', currentY);
+        arrow.setAttribute('points', arrowPoints(currentX, currentY, angle, options.arrowLength, options.arrowWidth));
+        if (progress < 1) {
+            requestAnimationFrame(tick);
+        }
+    }
+
+    requestAnimationFrame(tick);
+}
+
+function appendLineWithArrow(svg, options) {
+    var line = svgEl('line', {
+        x1: options.x1,
+        y1: options.y1,
+        x2: options.x2,
+        y2: options.y2,
+        stroke: options.stroke,
+        'stroke-width': options.strokeWidth,
+        'stroke-linecap': 'round'
+    });
+    svg.appendChild(line);
+
+    var angle = Math.atan2(options.y2 - options.y1, options.x2 - options.x1);
+    var arrow = svgEl('polygon', {
+        points: arrowPoints(options.x2, options.y2, angle, options.arrowLength, options.arrowWidth),
+        fill: options.stroke
+    });
+    svg.appendChild(arrow);
+
+    return { line: line, arrow: arrow };
+}
+
+function addLabel(parent, text, x, y, color, size) {
+    var el = document.createElement('div');
+    el.className = 'diagram-label visible';
+    el.style.fontSize = (size || 11) + 'px';
+    el.style.color = color;
+    el.style.left = x + 'px';
+    el.style.top = y + 'px';
+    el.style.transform = 'translateX(-50%)';
+    el.textContent = text;
+    parent.appendChild(el);
+}
+
+function addCornerStep(parent, text, subtext, x, y, color) {
+    var el = document.createElement('div');
+    el.className = 'corner-step visible';
+    el.style.left = x + 'px';
+    el.style.top = y + 'px';
+    el.style.transform = 'translateX(-50%)';
+    el.innerHTML =
+        '<span class="step-word" style="color:' + color + ';">' + text + '</span>' +
+        '<span class="step-sub">' + subtext + '</span>';
+    parent.appendChild(el);
+}
+
+function render() {
+    var diagram = document.getElementById('diagram');
+    diagram.style.width = W + 'px';
+    diagram.style.height = H + 'px';
+    diagram.innerHTML = '';
+
+    var isIntro = step === -1;
+    var pathOn = step >= 0;
+    var strayOn = step >= 1;
+    var turningOn = step >= 2;
+    var repentOn = step >= 3;
+    var believeOn = step >= 4;
+    var restoredOn = step >= 5;
+    var dimOp = 0.24;
+
+    var svg = svgEl('svg', {
+        width: W,
+        height: H,
+        viewBox: '0 0 ' + W + ' ' + H,
+        style: 'position:absolute;top:0;left:0;z-index:1;'
+    });
+
+    var defs = svgEl('defs', {});
+
+    var markerMain = svgEl('marker', {
+        id: 'arrowMain',
+        markerWidth: '12',
+        markerHeight: '9',
+        refX: '9',
+        refY: '4',
+        orient: 'auto',
+        markerUnits: 'userSpaceOnUse'
+    });
+    markerMain.appendChild(svgEl('path', { d: 'M0,0 L10,4 L0,8 Z', fill: CHARCOAL }));
+    defs.appendChild(markerMain);
+
+    var markerGrey = svgEl('marker', {
+        id: 'arrowGrey',
+        markerWidth: '10',
+        markerHeight: '8',
+        refX: '9',
+        refY: '4',
+        orient: 'auto',
+        markerUnits: 'userSpaceOnUse'
+    });
+    markerGrey.appendChild(svgEl('path', { d: 'M0,0 L10,4 L0,8 Z', fill: GREY }));
+    defs.appendChild(markerGrey);
+
+    var markerHuman = svgEl('marker', {
+        id: 'arrowHuman',
+        markerWidth: '10',
+        markerHeight: '8',
+        refX: '9',
+        refY: '4',
+        orient: 'auto',
+        markerUnits: 'userSpaceOnUse'
+    });
+    markerHuman.appendChild(svgEl('path', { d: 'M0,0 L10,4 L0,8 Z', fill: HUMAN }));
+    defs.appendChild(markerHuman);
+
+    svg.appendChild(defs);
+
+    if (pathOn) {
+        svg.appendChild(svgEl('line', {
+            x1: PATH_X1, y1: PATH_Y, x2: PATH_X2, y2: PATH_Y,
+            stroke: GREY, 'stroke-width': PATH_THICK, 'stroke-linecap': 'round', opacity: dimOp,
+            'marker-end': 'url(#arrowGrey)'
+        }));
+    }
+    svg.appendChild(svgEl('line', {
+        x1: HUMAN_START_X, y1: HUMAN_Y, x2: HUMAN_TURN_X, y2: HUMAN_Y,
+        stroke: GREY, 'stroke-width': HUMAN_THICK, 'stroke-linecap': 'round', opacity: dimOp
+    }));
+    svg.appendChild(svgEl('line', {
+        x1: HUMAN_TURN_X, y1: HUMAN_Y, x2: CX, y2: CIRCLE_TOP_Y,
+        stroke: GREY, 'stroke-width': HUMAN_THICK, 'stroke-linecap': 'round', opacity: dimOp
+    }));
+    svg.appendChild(svgEl('circle', {
+        cx: CX, cy: CY, r: CR,
+        fill: 'none', stroke: GREY, 'stroke-width': 4, opacity: dimOp
+    }));
+    svg.appendChild(svgEl('line', {
+        x1: CX, y1: CIRCLE_TOP_Y, x2: HUMAN_REJOIN_X, y2: HUMAN_Y,
+        stroke: GREY, 'stroke-width': HUMAN_THICK, 'stroke-linecap': 'round', opacity: dimOp
+    }));
+    svg.appendChild(svgEl('line', {
+        x1: HUMAN_REJOIN_X, y1: HUMAN_Y, x2: HUMAN_END_X, y2: HUMAN_Y,
+        stroke: GREY, 'stroke-width': HUMAN_THICK, 'stroke-linecap': 'round', opacity: dimOp
+    }));
+
+    if (pathOn) {
+        appendAnimatedLineWithArrow(svg, {
+            x1: PATH_X1,
+            y1: PATH_Y,
+            x2: PATH_X2,
+            y2: PATH_Y,
+            stroke: HUNTER,
+            strokeWidth: PATH_THICK,
+            arrowLength: 20,
+            arrowWidth: 13,
+            animate: step === 0,
+            duration: 950
+        });
+    }
+
+    if (strayOn) {
+        svg.appendChild(svgEl('line', {
+            x1: HUMAN_START_X, y1: HUMAN_Y, x2: HUMAN_TURN_X, y2: HUMAN_Y,
+            stroke: HUMAN, 'stroke-width': HUMAN_THICK, 'stroke-linecap': 'round'
+        }));
+
+        appendAnimatedLineWithArrow(svg, {
+            x1: HUMAN_TURN_X,
+            y1: HUMAN_Y,
+            x2: CX,
+            y2: CIRCLE_TOP_Y,
+            stroke: HUMAN,
+            strokeWidth: HUMAN_THICK,
+            arrowLength: 17,
+            arrowWidth: 11,
+            animate: step === 1,
+            duration: 900
+        });
+    }
+
+    if (turningOn) {
+        var turningLine = svgEl('line', {
+            x1: CX, y1: CIRCLE_TOP_Y - 28, x2: CX, y2: CIRCLE_TOP_Y - 10,
+            stroke: '#8E8476', 'stroke-width': 2.5, 'stroke-linecap': 'round', opacity: '0.55'
+        });
+        svg.appendChild(turningLine);
+    }
+
+    if (repentOn) {
+        var repentPath = svgEl('path', {
+            d: 'M ' + CX + ' ' + CIRCLE_TOP_Y + ' A ' + CR + ' ' + CR + ' 0 0 1 ' + CX + ' ' + CIRCLE_BOTTOM_Y,
+            fill: 'none',
+            stroke: HUMAN,
+            'stroke-width': HUMAN_THICK,
+            'stroke-linecap': 'round'
+        });
+        if (step === 3) {
+            animateStroke(repentPath, Math.PI * CR);
+        }
+        svg.appendChild(repentPath);
+
+        var dividerLine = svgEl('line', {
+            x1: CX, y1: CIRCLE_TOP_Y + 10, x2: CX, y2: CIRCLE_BOTTOM_Y - 10,
+            stroke: '#D5CDC0', 'stroke-width': 1.5, opacity: '0.9'
+        });
+        if (step === 3) {
+            fadeInElement(dividerLine, 520);
+        }
+        svg.appendChild(dividerLine);
+
+        var rightArrowX = CX + CR;
+        var rightArrowY = CY;
+        var rightArrow = svgEl('polygon', {
+            points: arrowPoints(rightArrowX - 2, rightArrowY - 1, Math.PI / 2, 18, 11),
+            fill: HUMAN
+        });
+        if (step === 3) {
+            fadeInElement(rightArrow, 820);
+        }
+        svg.appendChild(rightArrow);
+
+        var bottomArrow = svgEl('polygon', {
+            points: arrowPoints(CX + 8, CIRCLE_BOTTOM_Y - 2, Math.PI, 18, 11),
+            fill: HUMAN
+        });
+        if (step === 3) {
+            fadeInElement(bottomArrow, 900);
+        }
+        svg.appendChild(bottomArrow);
+    }
+
+    if (believeOn) {
+        var believePath = svgEl('path', {
+            d: 'M ' + CX + ' ' + CIRCLE_BOTTOM_Y + ' A ' + CR + ' ' + CR + ' 0 0 1 ' + CX + ' ' + CIRCLE_TOP_Y,
+            fill: 'none',
+            stroke: HUMAN,
+            'stroke-width': HUMAN_THICK,
+            'stroke-linecap': 'round'
+        });
+        if (step === 4) {
+            animateStroke(believePath, Math.PI * CR);
+        }
+        svg.appendChild(believePath);
+
+        var leftArrowX = CX - CR;
+        var leftArrowY = CY;
+        var leftArrow = svgEl('polygon', {
+            points: arrowPoints(leftArrowX + 2, leftArrowY + 1, -Math.PI / 2, 18, 11),
+            fill: HUMAN
+        });
+        if (step === 4) {
+            fadeInElement(leftArrow, 820);
+        }
+        svg.appendChild(leftArrow);
+    }
+
+    if (restoredOn) {
+        var returnSlope = svgEl('line', {
+            x1: CX, y1: CIRCLE_TOP_Y, x2: HUMAN_REJOIN_X, y2: HUMAN_Y,
+            stroke: HUMAN, 'stroke-width': HUMAN_THICK, 'stroke-linecap': 'round'
+        });
+        if (step === 5) {
+            animateStroke(returnSlope, pathLen(CX, CIRCLE_TOP_Y, HUMAN_REJOIN_X, HUMAN_Y));
+        }
+        svg.appendChild(returnSlope);
+
+        if (step === 5) {
+            setTimeout(function() {
+                var svgNode = document.querySelector('#diagram svg');
+                if (!svgNode) return;
+                appendAnimatedLineWithArrow(svgNode, {
+                    x1: HUMAN_REJOIN_X,
+                    y1: HUMAN_Y,
+                    x2: HUMAN_END_X,
+                    y2: HUMAN_Y,
+                    stroke: HUMAN,
+                    strokeWidth: HUMAN_THICK,
+                    arrowLength: 17,
+                    arrowWidth: 11,
+                    animate: true,
+                    duration: 700
+                });
+            }, 760);
+        } else {
+            appendLineWithArrow(svg, {
+                x1: HUMAN_REJOIN_X,
+                y1: HUMAN_Y,
+                x2: HUMAN_END_X,
+                y2: HUMAN_Y,
+                stroke: HUMAN,
+                strokeWidth: HUMAN_THICK,
+                arrowLength: 17,
+                arrowWidth: 11
+            });
+        }
+    }
+
+    diagram.appendChild(svg);
+
+    if (pathOn) {
+        var topLabel = document.createElement('div');
+        topLabel.className = 'diagram-label visible';
+        topLabel.style.fontSize = '16px';
+        topLabel.style.color = HUNTER;
+        topLabel.style.left = (W / 2) + 'px';
+        topLabel.style.top = '20px';
+        topLabel.style.transform = 'translateX(-50%)';
+        topLabel.textContent = 'The Path of Jesus';
+        if (step === 0) {
+            animateFadeIn(topLabel, 250);
+        }
+        diagram.appendChild(topLabel);
+    }
+
+    if (strayOn) {
+        var turningAway = document.createElement('div');
+        turningAway.className = 'diagram-label visible';
+        turningAway.style.fontSize = '12px';
+        turningAway.style.color = '#2C2416';
+        turningAway.style.left = HUMAN_START_X + 'px';
+        turningAway.style.top = '72px';
+        turningAway.style.transform = 'none';
+        turningAway.style.textAlign = 'left';
+        turningAway.textContent = 'We Turn Away';
+        diagram.appendChild(turningAway);
+    }
+
+    if (turningOn) {
+        addLabel(diagram, 'Turning Point', CX, CIRCLE_TOP_Y - 54, '#2C2416', 15);
+    }
+
+    if (repentOn) {
+        var rightLabel = document.createElement('div');
+        rightLabel.className = 'circle-word visible';
+        rightLabel.style.left = (CX + 6) + 'px';
+        rightLabel.style.top = (CY - 12) + 'px';
+        rightLabel.style.width = '82px';
+        rightLabel.innerHTML = '<span class="word" style="color:' + stops[3].color + ';">Repent</span>';
+        diagram.appendChild(rightLabel);
+
+        addCornerStep(diagram, '1.Reflect', 'mind', CX + CR + 38, CIRCLE_TOP_Y + 28, stops[3].color);
+        addCornerStep(diagram, '2.Remorse', 'heart', CX + CR + 38, CIRCLE_BOTTOM_Y - 62, stops[3].color);
+    }
+
+    if (believeOn) {
+        var leftLabel = document.createElement('div');
+        leftLabel.className = 'circle-word visible';
+        leftLabel.style.left = (CX - CR + 10) + 'px';
+        leftLabel.style.top = (CY - 12) + 'px';
+        leftLabel.style.width = '82px';
+        leftLabel.innerHTML = '<span class="word" style="color:' + stops[4].color + ';">Believe</span>';
+        diagram.appendChild(leftLabel);
+
+        addCornerStep(diagram, '4.Obey', 'act', CX - CR - 38, CIRCLE_TOP_Y + 28, stops[4].color);
+        addCornerStep(diagram, '3.Plan', 'steps', CX - CR - 38, CIRCLE_BOTTOM_Y - 62, stops[4].color);
+    }
+
+    if (restoredOn) {
+        var pathBack = document.createElement('div');
+        pathBack.className = 'diagram-label visible';
+        pathBack.style.fontSize = '12px';
+        pathBack.style.color = '#2C2416';
+        pathBack.style.left = (HUMAN_END_X - 108) + 'px';
+        pathBack.style.top = '72px';
+        pathBack.style.width = '108px';
+        pathBack.style.transform = 'none';
+        pathBack.style.textAlign = 'right';
+        pathBack.textContent = 'Back on the Path';
+        diagram.appendChild(pathBack);
+    }
+
+    if (isIntro) {
+        var overlay = document.createElement('div');
+        overlay.className = 'intro-overlay';
+        overlay.style.width = W + 'px';
+        overlay.style.height = H + 'px';
+        overlay.innerHTML = '<div>' +
+            '<p class="intro-verse">"Repent and Believe<br>in the gospel."</p>' +
+            '<p class="intro-ref">Mark 1:15</p>' +
+            '</div>';
+        diagram.appendChild(overlay);
+    }
+
+    if (turningOn) {
+        svg.appendChild(svgEl('circle', {
+            cx: CX, cy: CIRCLE_TOP_Y, r: 6,
+            fill: '#FFFFFF', stroke: '#8E8476', 'stroke-width': 1.5
+        }));
+    }
+
+    renderCard(isIntro);
+}
+
+function renderCard(isIntro) {
+    var cardArea = document.getElementById('card-area');
+    cardArea.innerHTML = '';
+
+    if (isIntro) {
+        var introColor = CHARCOAL;
+        var wrapper = document.createElement('div');
+        wrapper.className = 'verse-card-wrapper';
+
+        var card = document.createElement('div');
+        card.className = 'verse-card';
+
+        var bar = document.createElement('div');
+        bar.className = 'verse-card-bar';
+        bar.style.background = introColor;
+        card.appendChild(bar);
+
+        var content = document.createElement('div');
+        content.className = 'verse-card-content';
+        content.style.setProperty('--accent-color', introColor);
+
+        var title = document.createElement('h2');
+        title.className = 'verse-card-title';
+        title.style.color = introColor;
+        title.textContent = 'Getting back on the right path';
+        content.appendChild(title);
+
+        var verse = document.createElement('p');
+        verse.className = 'verse-card-text';
+        verse.style.color = '#2C2416';
+        verse.innerHTML = 'We all wander at times. This diagram will help you see how the Gospel leads us to stop, repent, believe, and follow after Jesus.';
+        content.appendChild(verse);
+
+        card.appendChild(content);
+        wrapper.appendChild(card);
+        wrapper.appendChild(buildNav(true, introColor));
+        cardArea.appendChild(wrapper);
+        return;
+    }
+
+    var cur = stops[step];
+    var wrapper = document.createElement('div');
+    wrapper.className = 'verse-card-wrapper';
+
+    var card = document.createElement('div');
+    card.className = 'verse-card';
+
+    var bar = document.createElement('div');
+    bar.className = 'verse-card-bar';
+    bar.style.background = cur.color;
+    card.appendChild(bar);
+
+    var content = document.createElement('div');
+    content.className = 'verse-card-content';
+    content.style.setProperty('--accent-color', cur.color);
+
+    var title = document.createElement('h2');
+    title.className = 'verse-card-title';
+    title.innerHTML = cur.cardTitle;
+    content.appendChild(title);
+
+    var verse = document.createElement('p');
+    verse.className = 'verse-card-text';
+    verse.innerHTML = cur.verse;
+    content.appendChild(verse);
+
+    var ref = document.createElement('p');
+    ref.className = 'verse-card-ref';
+    ref.textContent = cur.ref;
+    content.appendChild(ref);
+
+    card.appendChild(content);
+    wrapper.appendChild(card);
+    wrapper.appendChild(buildNav(false, cur.color));
+    cardArea.appendChild(wrapper);
+}
+
+function buildNav(isIntro, color) {
+    var nav = document.createElement('div');
+    nav.className = 'nav-bar';
+
+    var backBtn = document.createElement('button');
+    backBtn.className = 'nav-btn';
+    backBtn.textContent = '\u2190 Back';
+
+    if (isIntro) {
+        backBtn.style.visibility = 'hidden';
+    } else {
+        backBtn.addEventListener('click', function() {
+            step -= 1;
+            render();
+        });
+    }
+    nav.appendChild(backBtn);
+
+    var dots = document.createElement('div');
+    dots.className = 'dot-nav';
+    for (var i = 0; i < stops.length; i++) {
+        (function(idx) {
+            var d = document.createElement('div');
+            d.className = 'dot' + (!isIntro && idx <= step ? ' active-dot' : '');
+            d.style.width = !isIntro && step === idx ? '20px' : '8px';
+            d.style.background = !isIntro && step === idx ? stops[idx].color : (!isIntro && idx <= step ? stops[idx].color + '66' : '#D4CFC4');
+            d.style.cursor = !isIntro && idx <= step ? 'pointer' : 'default';
+            if (!isIntro && idx <= step) {
+                d.addEventListener('click', function() {
+                    step = idx;
+                    render();
+                });
+            }
+            dots.appendChild(d);
+        })(i);
+    }
+    nav.appendChild(dots);
+
+    var nextBtn = document.createElement('button');
+    nextBtn.className = 'nav-btn primary';
+    if (isIntro) {
+        nextBtn.textContent = 'Begin \u2192';
+    } else {
+        nextBtn.textContent = step === stops.length - 1 ? '\u21BB Restart' : 'Next \u2192';
+    }
+    nextBtn.style.background = color;
+    nextBtn.style.boxShadow = '0 2px 8px ' + color + '33';
+    nextBtn.addEventListener('click', function() {
+        if (isIntro) {
+            step = 0;
+        } else {
+            step = step === stops.length - 1 ? -1 : step + 1;
+        }
+        render();
+    });
+    nav.appendChild(nextBtn);
+
+    return nav;
+}
+
+render();
+</script>
+
+</body>
+</html>

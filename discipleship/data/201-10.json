@@ -1,81 +1,86 @@
 {
   "id": "10",
-  "version": "v01",
-  "title": "Lesson 10: Trusting and Turning - Faith and Repentance",
-  "description": "Our active response to the gospel: turning from sin and trusting in Christ. This lesson explores why faith and repentance are not two different things but two sides of the same coin - the indivisible response to a God who freely saves.",
+  "version": "v02",
+  "title": "Lesson 10: Walking the Path Home",
+  "description": "Everyone drifts. Whether through obvious rebellion or quiet self-righteousness, we all wander off the narrow road Jesus talked about. This lesson uses the story of the prodigal son and an interactive tool called The Learning Circle to walk you through the biblical rhythm of repentance and belief, showing that the Father is not waiting to punish but waiting to welcome you home.",
   "blocks": [
     {
       "type": "text",
-      "text": "In the last lesson, you discovered what God did in Christ - how the penalty of sin was absorbed at the cross and how His righteousness was credited to you. That is the gospel. But a gift that is never received stays on the table. This lesson is about what it looks like to actually reach out and take it. To respond. That moment of response has two sides, and they always go together: <strong>faith</strong> and <strong>repentance.</strong>"
-    },
-    {
-      "type": "heading",
-      "text": "Two Sides of One Coin"
+      "text": "You have walked nine lessons now, learning to hear Jesus, obey Him, rest in Him, and grow roots. But real growth is not straight lines. We stumble. We wander off His narrow path. Like the prodigal son who bolted for freedom and landed in the mud, or his older brother who stayed home but hardened in pride. Both sons ditched the Father. Both forgot His heart. And both needed to turn back."
     },
     {
       "type": "text",
-      "text": "When Jesus began His public ministry, he announced it in twelve words: <em>\"The time is fulfilled, and the kingdom of God is at hand; repent and believe in the gospel\"</em> (Mark 1:15). Two actions. One movement. You cannot have one without the other."
-    },
-    {
-      "type": "text",
-      "text": "Think of faith and repentance as two sides of the same coin. You cannot flip the heads side without the tails side coming with it. Faith is turning <em>toward</em> God - trusting the person and work of Jesus Christ with your whole self, betting your life on the reliability of what He said and did. Repentance is turning <em>from</em> sin - changing your mind about who you are, who God is, and what you want, and walking in a new direction."
-    },
-    {
-      "type": "text",
-      "text": "Neither one is just a feeling. Faith is not a warm fuzzy sense that maybe things will work out. Repentance is not just feeling bad about something you did. Both of them show up in your direction - in where you are pointed and where you are walking."
+      "text": "This lesson is not about shame. It is about grace. When sin pulls you away, whether into rebellion or self-reliance, God does not wait for you to crawl back. He is already running. And the rhythm of turning back to Him is something every follower of Jesus needs to learn, not just once, but over and over again."
     },
     {
       "type": "verse",
-      "reference": "Hebrews 11:1",
-      "text": "Now faith is the assurance of things hoped for, the conviction of things not seen."
+      "reference": "Mark 1:15",
+      "text": "The time is fulfilled, and the kingdom of God is at hand; repent and believe in the gospel."
+    },
+    {
+      "type": "text",
+      "text": "When Jesus began His public ministry, He announced it in two words: repent and believe. Two actions. One movement. You cannot have one without the other. This is the heartbeat of the Christian life, and it never stops beating. Martin Luther began his 95 Theses with this: <em>\"When our Lord and Master Jesus Christ said 'repent,' he willed the entire life of believers to be one of repentance.\"</em> He was not saying you get saved over and over again. He was saying that this ongoing turning, away from trusting yourself and toward trusting God, is the posture of the whole Christian life."
+    },
+    {
+      "type": "heading",
+      "text": "The Prodigal's Return"
+    },
+    {
+      "type": "text",
+      "text": "Picture the younger son. He asked for his inheritance early, which in that culture was the same as saying, \"I wish you were dead.\" He left home, blew everything, and woke up starving among pigs. He did not come back perfect. He came back broken. But the Father did not lecture. He did not wait for an apology or for the son to clean himself up. He ran."
+    },
+    {
+      "type": "verse",
+      "reference": "Luke 15:20",
+      "text": "But while he was still a long way off, his father saw him and felt compassion, and ran and embraced him and kissed him."
+    },
+    {
+      "type": "text",
+      "text": "In that culture a dignified man never ran, but this father did. The robe, the ring, the fattened calf: extravagant restoration, all given before the son finished his rehearsed speech. That is the heart of God the Father toward you. He is not waiting for you to get your life together. He is running toward you right now."
+    },
+    {
+      "type": "text",
+      "text": "Then there is the older brother. He never left the yard, but pride kept him outside the celebration. He stayed home, kept all the rules, did everything right, and yet when the party started he was furious. He thought he was fine until he realized he was just as lost, only in a different ditch. He had never received the father's love because he had been managing his performance record instead of being a son. Both sons forgot something simple: the Father's heart is wide open. He is not waiting to punish. He is waiting to welcome."
     },
     {
       "type": "question",
-      "id": "201-08-1",
-      "text": "8.1 - When you think about someone you truly trust - a person you would bet your safety on - what makes them trustworthy? What would it mean to extend that same kind of trust to God?",
+      "id": "201-10-1",
+      "text": "10.1 - Which son do you relate to more right now: the one who ran away into obvious sin, or the one who stayed home but hardened in pride and self-righteousness? What does that tell you about where you are with the Father?",
       "height": "tall"
     },
     {
       "type": "heading",
-      "text": "What Faith Actually Is"
+      "text": "The Learning Circle"
     },
     {
       "type": "text",
-      "text": "The classic definition of biblical faith has three movements: <strong>Knowledge, Assent, and Trust.</strong>"
-    },
-    {
-      "type": "list",
-      "items": [
-        "<strong>Knowledge</strong> - understanding the content of the gospel. Who Jesus is, what He did, what is being offered. You cannot trust someone you know nothing about. Faith is not a leap into the dark - it is a step toward a Person you have reason to believe.",
-        "<strong>Assent</strong> - agreeing that the content is true. The facts are not just information for your head - you believe them. You accept that Jesus died for your sin and rose from the dead.",
-        "<strong>Trust</strong> - personally committing to Jesus, not just the ideas about Him. This is where faith goes beyond the mind and into the will. You are not just believing <em>about</em> Jesus the way you believe about a historical figure. You are entrusting your whole self to Him."
-      ]
+      "text": "So what do you do when you realize you have drifted? Whether you bolted like the younger son or stiffened like the older one, the gospel calls you home. The tool below is called The Learning Circle, adapted from the work of 3DM Ministries. It is a simple, biblical rhythm that helps you turn around when you have wandered off the path. Everyone drifts. When it happens, you have a choice: keep going like nothing ever happened, or stop and turn back. The Learning Circle guides you through both steps of that turn."
     },
     {
       "type": "text",
-      "text": "Here is an old illustration that persists because it is still the clearest: imagine standing at the edge of a gorge with a tightrope walker who has crossed the gorge a hundred times without falling. He asks if you believe he can carry you across. You say yes. Then he says, <em>\"Get on my back.\"</em> That is the moment where knowledge and assent become trust. Many people believe facts about Jesus. Far fewer have climbed on His back."
+      "text": "Tap \"Begin\" and walk through each step slowly. Notice what it feels like to follow the path from drifting off to coming home."
     },
     {
-      "type": "question",
-      "id": "201-08-2",
-      "text": "8.2 - Which of the three movements of faith - Knowledge, Assent, or Trust - is the hardest step for you? Where do you get stuck?",
-      "height": "tall"
+      "type": "widget",
+      "src": "widgets/learning-circle2.html",
+      "height": "640px"
     },
     {
       "type": "heading",
-      "text": "What Repentance Actually Is"
+      "text": "Walking Through the Circle"
     },
     {
       "type": "text",
-      "text": "Repentance gets misunderstood more than almost any other word in the Christian life. People use it to mean feeling guilty, crying in church, or promising to do better. But the Greek word for repentance - <em>metanoia</em> - literally means a change of mind. A complete U-turn in how you see things."
+      "text": "<strong>First, you notice the drift.</strong> You are walking the path of Jesus, and then you veer off. Maybe it is anger that flares up, a lie you told, a habit you cannot shake, or a slow slide into self-reliance where you stop asking God for anything because you think you have it handled. Like the prodigal packing his bags, you are simply off the path. No drama, no guilt trip. Just honesty. Name it."
+    },
+    {
+      "type": "verse",
+      "reference": "Isaiah 53:6",
+      "text": "All we like sheep have gone astray; we have turned, every one, to his own way; and the Lord has laid on him the iniquity of us all."
     },
     {
       "type": "text",
-      "text": "Repentance is not just feeling bad about sin. It is changing your mind about sin - seeing it the way God sees it, as a broken cistern that cannot hold water, a counterfeit that robs you of something real. It is changing your mind about yourself - admitting that your way has not been working. It is changing your mind about God - coming to believe that His way is better, that His commands are not prison walls but guardrails on a road that leads somewhere good."
-    },
-    {
-      "type": "text",
-      "text": "And then repentance <em>walks</em>. It does not just feel differently. It moves differently. Zacchaeus is the picture. He was a tax collector, universally hated for cheating people. The moment he encountered Jesus, something shifted. He did not just feel convicted. He stood up and said: <em>\"Behold, Lord, the half of my goods I give to the poor. And if I have defrauded anyone of anything, I restore it fourfold\"</em> (Luke 19:8). That is repentance. Not remorse. Redirection."
+      "text": "<strong>Then you hit the turning point and enter the circle. The right side is Repent.</strong> This is where you pause, reflect, and let the heart feel the weight. Reflect means you look honestly at what happened. God shines a light on the why, maybe a weakness you ignored, a lie you bought into, a pattern you have been running from. The Psalmist says God desires truth in our inner parts. Ask yourself: where did I miss His voice? What pulled me away? Then comes remorse, not beating yourself up but letting the ache do its work, because you were made for more than this. Like the son in the pigpen realizing, \"This is not who I am.\" Conviction hurts, but it is love waking you up."
     },
     {
       "type": "verse",
@@ -84,70 +89,68 @@
     },
     {
       "type": "text",
-      "text": "There is a difference between <em>worldly grief</em> (feeling bad because you got caught or because your sin is costing you) and <em>godly grief</em> (feeling the weight of how your sin has offended God and stolen from your own life). Worldly grief makes you feel terrible without changing direction. Godly grief leads to genuine repentance - and Paul says that repentance produces no regret. It is the beginning of something good, not just the end of something bad."
-    },
-    {
-      "type": "question",
-      "id": "201-08-3",
-      "text": "8.3 - Is there an area of your life right now where you have been feeling guilty (worldly grief) but not actually changing direction (godly repentance)? What is keeping you stuck?",
-      "height": "tall"
-    },
-    {
-      "type": "heading",
-      "text": "Ongoing Faith and Repentance"
-    },
-    {
-      "type": "text",
-      "text": "Faith and repentance are not one-time events. They are the air you breathe as a follower of Jesus. Martin Luther began his 95 Theses with this sentence: <em>\"When our Lord and Master Jesus Christ said 'repent,' he willed the entire life of believers to be one of repentance.\"</em> He was not saying you get saved over and over again. He was saying that repentance - this ongoing turning away from trusting yourself and turning toward trusting God - is the posture of the whole Christian life."
-    },
-    {
-      "type": "text",
-      "text": "Every morning is a micro-version of conversion. You wake up in a world that is filled with alternatives to trusting God - your own plans, other people's approval, comfort and security. And every morning you have the choice to turn toward Jesus or to turn toward something else. Every time you catch yourself living as an orphan instead of an adopted child, faith and repentance are the way back home."
+      "text": "<strong>The left side of the circle is Believe.</strong> This is where repentance gets practical. First you plan. Jesus said, \"Go and sin no more,\" but He never meant alone. Think small and real: who can keep you accountable? What one change can you make? What is your first move tomorrow? Then you obey. You walk it out. Humility shows up when you confess, when you change, when you trust that He is stronger than your mess. You do not earn grace. You just receive it and let it move your feet."
     },
     {
       "type": "verse",
-      "reference": "Psalm 32:3-5",
-      "text": "For when I kept silent, my bones wasted away through my groaning all day long. For day and night your hand was heavy upon me; my strength was dried up as by the heat of summer. I acknowledged my sin to you, and I did not cover my iniquity; I said, 'I will confess my transgressions to the Lord,' and you forgave the iniquity of my sin."
+      "reference": "1 John 1:9",
+      "text": "If we confess our sins, he is faithful and just to forgive us our sins and to cleanse us from all unrighteousness."
     },
     {
       "type": "text",
-      "text": "David's account in Psalm 32 is one of the most honest descriptions of the cost of unrepentance in the Bible - the wasting away, the heaviness, the dryness. And then the immediate relief when he simply confessed. The cover-up is always harder than the truth. And the truth always leads somewhere better."
+      "text": "<strong>Finally, you return to the path.</strong> Not at the same spot, but further along. The prodigal did not just get home; he learned the Father was not stingy but lavish. You grow too. You see where pride was hiding. You see where truth sets you free. Each turn through the circle brings you closer to the Father's heart, not because you performed well, but because humility cracked you open and let His grace pour in."
+    },
+    {
+      "type": "verse",
+      "reference": "Micah 7:8",
+      "text": "Rejoice not over me, O my enemy; when I fall, I shall rise; when I sit in darkness, the Lord will be a light to me."
     },
     {
       "type": "question",
-      "id": "201-08-4",
-      "text": "8.4 - What is one specific, concrete area in your life where God is asking you to change direction today - not just to feel differently, but to actually walk differently? What would the first practical step look like?",
+      "id": "201-10-2",
+      "text": "10.2 - As you walked through the Learning Circle, which step felt most personal to you right now? Is there something specific God is asking you to reflect on, feel the weight of, plan around, or obey?",
+      "height": "tall"
+    },
+    {
+      "type": "question",
+      "id": "201-10-3",
+      "text": "10.3 - Think about the difference between worldly grief (feeling bad because of consequences) and godly grief (feeling the weight because you were made for more). Where do you see each one showing up in your own life right now?",
+      "height": "tall"
+    },
+    {
+      "type": "question",
+      "id": "201-10-4",
+      "text": "10.4 - The \"Believe\" side of the circle asks you to plan and obey. What is one specific, practical step you can take this week to walk differently? Who could you ask to hold you accountable?",
       "height": "tall"
     },
     {
       "type": "heading",
-      "text": "The Freedom on the Other Side"
+      "text": "The Father at the Gate"
     },
     {
       "type": "text",
-      "text": "Here is the thing about genuine faith and repentance: they do not feel like sacrifice once you have walked through the door. C.S. Lewis compared it to a boy giving up a muddy puddle because he has been offered a holiday at the sea. The loss feels significant from the outside. From the inside, once you have tasted the sea, the puddle loses its appeal entirely."
+      "text": "As you finish this tenth lesson, our first full circle around repentance, remember: the prodigal did not come home perfect. He came home broken, hungry, unsure. But that is exactly why the Father ran. Not to scold, but to cover him, feed him, restore him. Every time you drift off the path, into sin's ditch or pride's, God is not shocked. He is ready. The Learning Circle is not about fixing yourself. It is about turning back so He can show you who He really is: kind, patient, lavishing grace on the weak."
+    },
+    {
+      "type": "verse",
+      "reference": "Romans 2:4",
+      "text": "Or do you presume on the riches of his kindness and forbearance and patience, not knowing that God's kindness is meant to lead you to repentance?"
     },
     {
       "type": "text",
-      "text": "The life of faith on the other side of repentance is not a smaller, more restricted life. It is the life Jesus called <em>abundant</em> in John 10:10. The boundaries of God's commands are not prison walls - they are the banks of a river. They give the water direction and speed. Without them, the water just spreads out and stagnates. With them, it flows somewhere."
-    },
-    {
-      "type": "question",
-      "id": "201-08-5",
-      "text": "8.5 - Has there ever been a time in your life when you turned away from something you thought you needed - and found out the other side was actually better? How does that story help you trust God with a current area of needed repentance?",
-      "height": "tall"
+      "text": "You learn His love deeper here, not because you earned it, but because humility cracked you open. His kindness is what draws you back. Your failures do not disqualify you. They just prove you need Him more. So do not fear the drift. Fear staying there. Because each return makes you stronger, not in willpower, but in knowing you are loved anyway."
     },
     {
       "type": "heading",
-      "text": "This Week's Practice"
+      "text": "Growing Up from Here"
     },
     {
       "type": "text",
-      "text": "Each night this week, take 3 minutes for what the Puritans called examination of conscience. Ask two simple questions before you sleep: <em>Where did I trust myself instead of God today?</em> And <em>Where did I walk away from what I know is right?</em> Do not wallow in guilt. Just name it honestly, hand it to God, and receive His forgiveness (1 John 1:9). This practice builds the habit of daily repentance that keeps the heart tender and free."
+      "text": "And now, as this first course wraps up, you are not starting over. You are stepping forward. These ten lessons in Growing Deep have been about the vertical relationship between you and God: hearing His voice, learning to love Him, understanding what He did for you at the cross, and now learning to turn back when you wander. You have tasted repentance as gift, not grind. You have seen that the Father's arms are open, always."
     },
     {
       "type": "text",
-      "text": "Also this week, read the story of Zacchaeus in Luke 19:1-10. Watch how quickly repentance moved from a changed heart to a changed action. Notice what Jesus said when it happened: <em>\"Today salvation has come to this house.\"</em> Salvation showed up in Zacchaeus's living room, and it showed up walking."
+      "text": "The next ten lessons in Course 202, Growing Up, build on everything you have planted here. You will learn what it looks like to live this out in community, in mission, and in the rhythms of everyday life. The roots go deeper as the branches grow wider. Keep turning. Keep believing. You have got this, because He has got you."
     },
     {
       "type": "heading",
@@ -155,19 +158,19 @@
     },
     {
       "type": "question",
-      "id": "201-08-key",
+      "id": "201-10-key",
       "text": "What is one key thing you learned from this lesson, and what next step can you take this week?",
       "height": "short"
     },
     {
       "type": "question",
-      "id": "201-08-devos",
+      "id": "201-10-devos",
       "text": "What have you learned about God and yourself recently in your Daily Devotions?",
       "height": "short"
     },
     {
       "type": "question",
-      "id": "201-08-prayer",
+      "id": "201-10-prayer",
       "text": "What is a prayer request for this week?",
       "height": "short"
     }

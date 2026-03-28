@@ -241,8 +241,8 @@
         }
 
         .level-card[data-series="301"] .level-marker {
-            color: #9A3A5E;
-            background: #FCE4ED;
+            color: #C85A56;
+            background: #FCEAE8;
         }
 
         /* Home page accordion dropdown */
@@ -344,7 +344,8 @@
            ============================================ */
         .home-tree-btn-wrap {
             padding: 8px 0 4px;
-            text-align: center;
+            display: grid;
+            gap: 10px;
         }
 
         .home-tree-btn {
@@ -707,7 +708,7 @@
         }
 
         .course-keyword.c301 {
-            color: #9A3A5E;
+            color: #C85A56;
         }
 
         /* Topbar series badge — small inline pill */
@@ -745,8 +746,8 @@
         }
 
         .topbar-series-badge.c301 {
-            color: #9A3A5E;
-            background: #FCE4ED;
+            color: #C85A56;
+            background: #FCEAE8;
         }
 
         /* Progress bar */
@@ -1951,7 +1952,7 @@
             <div class="home-header">
                 <h1 class="home-title">Growing Together</h1>
                 <p class="home-title-series">Discipleship Series</p>
-                <img src="images/3-circles-logo-series.png" alt="Growing Together Discipleship Series" class="home-logo"
+                <img src="images/3-circles-coral.png" alt="Growing Together Discipleship Series" class="home-logo"
                     onerror="this.style.display='none'">
                 <div class="home-tagline">
                     <p class="home-tagline-verse"><strong>&ldquo;Hear the Word, Accept it, Bear Fruit, and Multiply&rdquo;</strong> - <span class="home-tagline-ref">Mark 4:20</span></p>
@@ -2022,6 +2023,7 @@
 
             <div class="home-tree-btn-wrap">
                 <button class="home-tree-btn" onclick="openTree()">Browse All Courses and Lessons</button>
+                <button class="home-tree-btn" onclick="window.location.href='series-summary.html'">Series Summary</button>
             </div>
         </div>
 
@@ -2231,7 +2233,7 @@
             '201': { name: 'Growing Deep', color: '#1A6B55', bg: '#D4F2E8', hover: '#135040', logo: 'images/201-growing-logo.png' },
             '202': { name: 'Growing Up', color: '#1D6B3F', bg: '#D1EDD9', hover: '#155030', logo: 'images/202-growing-logo.png' },
             '203': { name: 'Growing Out', color: '#1A5C38', bg: '#CCE6D4', hover: '#134528', logo: 'images/203-growing-logo.png' },
-            '301': { name: 'Leading in Discipleship', color: '#9A3A5E', bg: '#FCE4ED', hover: '#7A2E4B' }
+            '301': { name: 'Leading in Discipleship', color: '#C85A56', bg: '#FCEAE8', hover: '#B04C48' }
         };
 
         function parseCSV(text) {
