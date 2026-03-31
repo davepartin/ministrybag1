@@ -31,6 +31,7 @@ Check for:
 - grace before command
 - concrete application
 - a memorable tool or framework when useful
+- varied sentence rhythm: short sentences should create emphasis, not set the default pace. If three or more short sentences appear in a row, look for ways to blend them into smoother prose. To flag this in review, say "watch the rhythm" or "blend the clusters."
 
 ## Readability test
 

@@ -1057,7 +1057,12 @@
             font-size: 1rem;
             color: var(--text-primary);
             line-height: 1.75;
-            font-style: italic;
+            font-style: normal;
+        }
+
+        .lesson-no-italics .verse-text {
+            font-style: normal !important;
+            font-weight: 400 !important;
         }
 
         .verse-text sup {
@@ -2598,7 +2603,7 @@
                 const data = sessionData[sessionNum];
 
                 const div = document.createElement('div');
-                div.className = 'session';
+                div.className = 'session' + (data.class ? ' ' + data.class : '');
                 div.id = `session-${sessionNum}`;
 
                 let html = '';
@@ -2743,7 +2748,7 @@
                                 html += `<div style="position: absolute; left: 15px; top: 10px; bottom: 20px; width: 2px; background: var(--border); z-index: 1;"></div>`;
 
                                 b.steps.forEach((step, idx) => {
-                                    const stepId = `step-${currentSeries}-${b.id || idx}`;
+                                    const stepId = `step-${currentSeries}-${sessionNum}-${b.id || idx}`;
                                     const isFirst = idx === 0;
 
                                     html += `
@@ -2769,9 +2774,9 @@
                                                     ${idx < b.steps.length - 1 ? `
                                                     <button class="block-tool-btn" id="btn-${stepId}" style="margin-top: 12px; width: 100%; border-radius: 20px; padding: 10px;" onclick="
                                                         this.style.display = 'none';
-                                                        const nextNode = document.getElementById('node-step-${currentSeries}-${b.id || (idx + 1)}');
-                                                        const nextItem = document.getElementById('item-step-${currentSeries}-${b.id || (idx + 1)}');
-                                                        const nextVerses = document.getElementById('verses-step-${currentSeries}-${b.id || (idx + 1)}');
+                                                        const nextNode = document.getElementById('node-step-${currentSeries}-${sessionNum}-${b.id || (idx + 1)}');
+                                                        const nextItem = document.getElementById('item-step-${currentSeries}-${sessionNum}-${b.id || (idx + 1)}');
+                                                        const nextVerses = document.getElementById('verses-step-${currentSeries}-${sessionNum}-${b.id || (idx + 1)}');
                                                         if (nextNode) {
                                                             nextNode.style.background = 'var(--accent)';
                                                             nextNode.style.borderColor = 'var(--accent)';

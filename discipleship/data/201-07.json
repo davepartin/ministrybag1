@@ -1,257 +1,238 @@
 {
   "id": "7",
-  "version": "v01",
-  "title": "Lesson 7: The Biblical Storyline",
-  "description": "The Bible is not a collection of disconnected stories. It is one unified story told in four acts: Creation, Fall, Redemption, Restoration. And Jesus is the hero of every act.",
+  "version": "v02",
+  "title": "How to Study the Bible",
+  "class": "lesson-no-italics",
+  "description": "Every time you have opened the Bible in this series, you have been learning about God and His story. This lesson teaches you how to go deeper: how to slow down, observe what is actually on the page, interpret what it meant, and apply what it means for your life. By the end you will have a method you can use to study and pass along to anyone you disciple.",
   "blocks": [
     {
       "type": "text",
-      "text": "In the last lesson you explored the Bible as a library, 66 books organized in clear sections across two testaments. You now have the map. This lesson takes you on the road trip. Because underneath all of those books, all of those authors, all of those centuries, there is one story being told. And once you see it, you will never read the Bible the same way again."
+      "text": "In the last two lessons you explored how the Bible is organized as a library of 66 books and traced the one story it tells, from creation to new creation. You now have the map and you know where the road leads. This lesson hands you the tools to dig into any passage on your own."
     },
     {
       "type": "heading",
-      "text": "One Story in Four Acts"
+      "text": "Building on What You Already Know"
     },
     {
       "type": "text",
-      "text": "Every great story has a beginning, a conflict, a turning point, and an ending. The Bible is no different. From the first verse of Genesis to the last verse of Revelation, the Bible tells one continuous story in four acts: Creation, Fall, Redemption, and Restoration. Every book, every chapter, and every verse fits somewhere inside this framework. When you understand the four acts, you can pick up any passage in the Bible and locate yourself in the bigger picture."
+      "text": "Back in the Starting course you learned three questions to ask every time you open the Bible: What does this tell me about God? What does this tell me about people? What is this calling me to do or believe? Those Three Discovery Questions have been your companions ever since, and they will never stop being useful. They work every time, with any passage, at any stage of faith."
     },
     {
       "type": "text",
-      "text": "Walk through each act below. Take your time. This is the most important story ever told."
+      "text": "But as you have grown, you may have started to notice something. Sometimes you read a passage and wonder what it meant to the people who first heard it. Sometimes you are not sure whether to read a psalm the same way you would read one of Paul's letters, or a prophecy the same way you would read a story. Sometimes you just want to go deeper. This is a sign of growth, and it means you are ready for a deeper method."
+    },
+    {
+      "type": "heading",
+      "text": "\"Do You Understand What You Are Reading?\""
+    },
+    {
+      "type": "text",
+      "text": "There is a story in Acts 8 that captures exactly why this lesson matters. An Ethiopian official, a man of great authority in his country, was riding home in his chariot after traveling all the way to Jerusalem to worship God. He was clearly hungry for truth. He had the scroll of Isaiah open in front of him, reading it aloud as his chariot rolled down the road. But something was missing. He could see the words, but he could not see what they meant."
+    },
+    {
+      "type": "verse",
+      "reference": "Acts 8:30-31",
+      "text": "So Philip ran to him and heard him reading Isaiah the prophet and asked, \"Do you understand what you are reading?\" And he said, \"How can I, unless someone guides me?\" And he invited Philip to come up and sit with him."
+    },
+    {
+      "type": "text",
+      "text": "Philip did not shame him for not understanding. He climbed into the chariot, sat down beside him, and helped him see what was already on the page. He started with what was right in front of them in the text of Isaiah, showed him how it pointed to Jesus, and the man's life was changed that very day. He went from reading words on a scroll to meeting the God behind them."
+    },
+    {
+      "type": "text",
+      "text": "That is the heart of Bible study: not just reading faster or reading more, but learning to see what is actually there. This lesson is your Philip moment. You already have the desire and you already have the basic tools. Now you are going to add the skill that lets you sit down with any passage of Scripture and draw out what God put in it."
+    },
+    {
+      "type": "question",
+      "id": "201-07-1",
+      "text": "7.1 - Have you ever been in the Ethiopian's position, reading the Bible and wanting to understand but not quite knowing how to get there? What was that experience like?",
+      "data_question": "7.1 - Ethiopian moment"
+    },
+    {
+      "type": "heading",
+      "text": "Three Steps: Observe, Interpret, Apply"
+    },
+    {
+      "type": "text",
+      "text": "The method you are about to learn has been used by faithful Bible students for generations. It is called OIA, short for Observe, Interpret, and Apply, and it gives you a way to move through any passage with purpose and care. Think of it like standing in front of a painting in a gallery. The first time you glance at it, you notice colors and shapes. But if you stop and look carefully, you begin to see details the artist placed with intention. Then you start asking what the artist was trying to say. And finally you consider what the painting stirs in you and what it calls you to see differently. That is the rhythm of OIA: see what is there, understand what it means, and let it change how you live."
     },
     {
       "type": "stepper",
       "steps": [
         {
-          "label": "1",
-          "title": "Act 1: Creation",
-          "subtitle": "God makes everything good",
+          "label": "O",
+          "title": "Step 1: Observation",
+          "subtitle": "What does the text actually say?",
           "verses": [
             {
-              "ref": "Genesis 1:1",
-              "text": "In the beginning, God created the heavens and the earth."
+              "ref": "",
+              "text": "Before you can understand what a passage means, you need to see what it actually says. Most people skip this step entirely, reading a verse and immediately jumping to \"what does this mean for me?\" Observation slows you down and asks a simpler and more powerful question: what is actually here on the page?"
             },
             {
-              "ref": "Genesis 1:31",
-              "text": "And God saw everything that he had made, and behold, it was very good."
+              "ref": "Questions to ask:",
+              "text": "Who is speaking? Who is listening? What is happening in this passage? Where and when does it take place? Are there any repeated words or phrases? What surprises you? What words or ideas stand out?"
             },
             {
               "ref": "",
-              "text": "The story begins with God. Before anything existed, He was there. He spoke the universe into being, from the stars to the seas to the smallest living creature. And at the center of it all, He made human beings in His own image, male and female. He gave them dignity, purpose, and relationship. He walked with them in a garden. There was no shame, no fear, no death. Everything was exactly as it was meant to be. This is what God intended for the world, and it is what He is working to restore."
-            },
-            {
-              "ref": "",
-              "text": "Notice what God did not base their worth on. Not what they could produce. Not what they could achieve. Not how well they performed. Their dignity was built into them from the moment they were made, simply because they bore the image of God. That is still true of every human being alive today - and it is still true of you. In a culture that constantly measures your value by your output and your success, the Bible says your worth was settled before you ever did a single thing."
+              "text": "Read the passage more than once. Write down what you notice. Do not interpret yet, just observe. Many of the richest discoveries in Scripture come from simply paying attention to details that everyone else skips right past."
             }
           ]
         },
         {
-          "label": "2",
-          "title": "Act 2: The Fall",
-          "subtitle": "Sin breaks everything",
+          "label": "I",
+          "title": "Step 2: Interpretation",
+          "subtitle": "What does the text mean?",
           "verses": [
             {
-              "ref": "Genesis 3:6-7",
-              "text": "So when the woman saw that the tree was good for food, and that it was a delight to the eyes, and that the tree was to be desired to make one wise, she took of its fruit and ate, and she also gave some to her husband who was with her, and he ate. Then the eyes of both were opened, and they knew that they were naked."
+              "ref": "",
+              "text": "Once you have observed what the text says, the next step is to ask what it means. And here is the most important rule of interpretation: a passage cannot mean today what it never meant to the original audience. Before you ask \"what does this mean for me,\" ask \"what did this mean to them?\""
+            },
+            {
+              "ref": "Questions to ask:",
+              "text": "What kind of literature is this (story, poem, letter, prophecy)? What was happening historically when this was written? What was the author trying to communicate? How does this passage fit in the larger context of the chapter and the book? How does it connect to the four-part story of Scripture (Creation, Fall, Redemption, Restoration)?"
             },
             {
               "ref": "",
-              "text": "The serpent lied. Adam and Eve believed the lie. And in one act of disobedience, everything shattered. Their relationship with God was broken. Their relationship with each other was damaged. The ground itself was cursed. Shame entered the world, and for the first time, they hid from the God who made them. From that moment forward, every human being has been born into a world marked by sin, suffering, and death. We did not just break a rule. We broke the relationship we were made for."
-            },
-            {
-              "ref": "Romans 3:23",
-              "text": "For all have sinned and fall short of the glory of God."
+              "text": "This is where the map and the storyline from the last two lessons come alive. Knowing that you are reading poetry helps you interpret differently than reading a letter. Knowing where a passage fits in the big story of Scripture helps you understand what God was doing in that moment. Context is everything in interpretation."
             }
           ]
         },
         {
-          "label": "3",
-          "title": "Act 3: Redemption",
-          "subtitle": "God comes to rescue",
+          "label": "A",
+          "title": "Step 3: Application",
+          "subtitle": "What does this mean for my life?",
           "verses": [
             {
-              "ref": "Genesis 3:15",
-              "text": "I will put enmity between you and the woman, and between your offspring and her offspring; he shall bruise your head, and you shall bruise his heel."
+              "ref": "",
+              "text": "This is the step most people want to jump to first, but it carries the most weight when it comes last. After you have carefully observed what the text says and interpreted what it means, you are ready to ask the question that changes everything: how does this truth reshape the way I live?"
+            },
+            {
+              "ref": "Questions to ask:",
+              "text": "Is there a truth to believe? A command to obey? A sin to confess? A promise to trust? An example to follow? A prayer to pray? How does this passage point me to Jesus?"
+            },
+            {
+              "ref": "2 Timothy 2:15",
+              "text": "Do your best to present yourself to God as one approved, a worker who has no need to be ashamed, rightly handling the word of truth."
             },
             {
               "ref": "",
-              "text": "Even in the moment of judgment, God made a promise: a Rescuer was coming. The rest of the Old Testament is the story of God keeping that promise. He chose Abraham and built a nation through him. He delivered Israel from slavery in Egypt. He gave them His law, His prophets, and His presence. He kept pointing forward, century after century, to the One who would come and crush the head of the serpent."
-            },
-            {
-              "ref": "",
-              "text": "And then, in the fullness of time, Jesus arrived. God Himself became human, lived the perfect life we could not live, and died the death we deserved. On the cross, He took the full weight of sin and paid the price to bring us back to God. Three days later, He rose from the grave. Death was defeated. The rescue was complete."
-            },
-            {
-              "ref": "",
-              "text": "It is worth noting that the disciples went on to die for their testimony that Jesus rose from the dead. People will sometimes die for something they sincerely believe, but no one dies for a lie they know they invented - and not one eyewitness ever recanted."
-            },
-            {
-              "ref": "John 3:16-17",
-              "text": "For God so loved the world, that he gave his only Son, that whoever believes in him should not perish but have eternal life. For God did not send his Son into the world to condemn the world, but in order that the world might be saved through him."
-            },
-            {
-              "ref": "",
-              "text": "Three words are worth pausing on here, because they unlock how the cross actually works. Justice means getting exactly what you deserve. Mercy means not getting the punishment you deserve. Grace means receiving a gift you did not earn and could never deserve. At the cross, all three meet at once. God's justice was fully satisfied - sin received its full penalty. His mercy was fully extended - you did not receive the death you deserved. And His grace was poured out without limit - you received life, forgiveness, and belonging with God as a free gift. That is the gospel in three words: justice, mercy, grace."
-            }
-          ]
-        },
-        {
-          "label": "4",
-          "title": "Act 4: Restoration",
-          "subtitle": "God makes all things new",
-          "verses": [
-            {
-              "ref": "Revelation 21:3-5",
-              "text": "And I heard a loud voice from the throne saying, \"Behold, the dwelling place of God is with man. He will dwell with them, and they will be his people, and God himself will be with them as their God. He will wipe away every tear from their eyes, and death shall be no more, neither shall there be mourning, nor crying, nor pain anymore, for the former things have passed away.\" And he who was seated on the throne said, \"Behold, I am making all things new.\""
-            },
-            {
-              "ref": "",
-              "text": "The story does not end at the cross. Jesus is coming back. And when He does, everything that was broken in the Fall will be fully and finally restored. No more sin. No more suffering. No more death. No more tears. The garden becomes a city, and God dwells with His people forever. This is where the whole story is heading. Every page of the Bible leans toward this ending. And if you are in Christ, this is your future."
+              "text": "Notice the word \"worker.\" Good Bible study takes effort, but the effort is worth it. When you rightly handle the Word of truth, the Bible stops being a confusing book you feel guilty about not reading and becomes a living conversation with the God who loves you."
             }
           ]
         }
       ]
     },
     {
-      "type": "image",
-      "src": "images/202.05-golden-sunrise.jpg",
-      "alt": "Golden sunrise over mountain peaks above the clouds"
-    },
-    {
       "type": "question",
-      "id": "202-05-1",
-      "text": "5.1 - Which of the four acts (Creation, Fall, Redemption, Restoration) speaks to you most right now in your life? Why?",
-      "data_question": "5.1 - Which act speaks to you"
+      "id": "201-07-2",
+      "text": "7.2 - Which of the three steps (Observe, Interpret, Apply) do you tend to skip when you read the Bible? Which one feels most new to you?",
+      "data_question": "7.2 - OIA self-assessment"
     },
     {
       "type": "heading",
-      "text": "Where Are You in the Story?"
+      "text": "Putting It into Practice"
     },
     {
       "type": "text",
-      "text": "Right now, you are living between Act 3 and Act 4. Redemption has been accomplished at the cross, but Restoration has not yet been completed. Jesus has won the victory, but we are still waiting for Him to return and make all things new. That means we live in a world where both the beauty of creation and the brokenness of the fall are real, every single day."
-    },
-    {
-      "type": "text",
-      "text": "This is why life can feel confusing. There are moments of breathtaking goodness that remind you of the way things were meant to be. And there are moments of deep pain that remind you the world is not yet what it will be. Both are real. And the gospel says that neither one gets the last word. The last word belongs to the One who said, \"Behold, I am making all things new.\""
-    },
-    {
-      "type": "question",
-      "id": "202-05-2",
-      "text": "5.2 - Where do you feel the tension between \"already redeemed\" and \"not yet restored\" most in your own life right now?",
-      "data_question": "5.2 - Already and not yet"
-    },
-    {
-      "type": "text",
-      "text": "Living in this tension also means there will be moments of genuine doubt and hard questions. That is not a sign of weak faith. The writers of the Psalms brought their anguish, their confusion, and their unanswered questions directly to God. John the Baptist, from a prison cell, sent messengers to ask Jesus, \"Are you the one who is to come, or shall we look for another?\" Jesus did not rebuke him for doubting. He answered him. The Bible is not a book that demands you pretend everything is fine. It is a book that invites you to bring the real thing."
-    },
-    {
-      "type": "question",
-      "id": "202-05-doubt",
-      "text": "Have you ever brought an honest, hard question to God - a doubt you were almost afraid to admit? What happened, or what would it mean to bring it to Him now?",
-      "data_question": "5.doubt - Hard questions to God"
-    },
-    {
-      "type": "heading",
-      "text": "Jesus Is the Center of Every Act"
-    },
-    {
-      "type": "text",
-      "text": "Here is the key that unlocks the whole Bible: Jesus is not just in the New Testament. He is the hero of every act. In Creation, He is the Word through whom all things were made (John 1:3). In the Fall, He is the promised offspring who will crush the serpent's head (Genesis 3:15). In the Old Testament story of Israel, He is the one every prophet, priest, and king was pointing toward. In the Gospels, He is the Rescuer who arrives. In the Letters, He is the risen Lord building His church. In Revelation, He is the King who returns."
-    },
-    {
-      "type": "text",
-      "text": "Every promise in the Old Testament is a shadow. Jesus is the sun that casts it."
-    },
-    {
-      "type": "text",
-      "text": "C.S. Lewis pointed out that Jesus only leaves us three options: He was a liar, He was a lunatic, or He is Lord. A man who made the claims Jesus made doesn't give you the comfortable option of calling Him a nice moral teacher - He demands a verdict."
-    },
-    {
-      "type": "heading",
-      "text": "The Road to Emmaus"
-    },
-    {
-      "type": "image",
-      "src": "images/202.05-country-road.jpg",
-      "alt": "A winding path through green countryside"
-    },
-    {
-      "type": "text",
-      "text": "There is a moment in Scripture that captures exactly what this lesson is trying to do. On the day Jesus rose from the dead, two of His followers were walking away from Jerusalem, heartbroken. They had watched Jesus die. They thought the story was over. A stranger joined them on the road and asked why they were so sad."
+      "text": "The best way to learn this method is to use it. Below is one of the most beloved passages in all of Scripture. Most people can quote the opening line from memory. But watch what happens when you slow down and walk through it step by step, because OIA has a way of opening up even a passage you think you already know."
     },
     {
       "type": "verse",
-      "reference": "Luke 24:25-27",
-      "text": "And he said to them, \"O foolish ones, and slow of heart to believe all that the prophets have spoken! Was it not necessary that the Christ should suffer these things and enter into his glory?\" And beginning with Moses and all the Prophets, he interpreted to them in all the Scriptures the things concerning himself."
+      "reference": "Psalm 23:1-4",
+      "text": "The Lord is my shepherd; I shall not want. He makes me lie down in green pastures. He leads me beside still waters. He restores my soul. He leads me in paths of righteousness for his name's sake. Even though I walk through the valley of the shadow of death, I will fear no evil, for you are with me; your rod and your staff, they comfort me."
     },
     {
-      "type": "text",
-      "text": "The stranger was Jesus. And He walked them through the entire Old Testament, from Moses through all the Prophets, showing them how every single part of it pointed to Him. When they finally recognized who He was, they said to each other:"
-    },
-    {
-      "type": "verse",
-      "reference": "Luke 24:32",
-      "text": "\"Did not our hearts burn within us while he talked to us on the road, while he opened to us the Scriptures?\""
-    },
-    {
-      "type": "text",
-      "text": "That is what understanding the biblical storyline does. It sets your heart on fire. It takes a book that might have felt confusing or disconnected and turns it into a living, burning, unified story with Jesus at the center. The same Jesus who walked with those two disciples on the road to Emmaus is walking with you through these pages right now."
+      "type": "subheading",
+      "text": "Step 1: Observe"
     },
     {
       "type": "question",
-      "id": "202-05-3",
-      "text": "5.3 - Have you ever had a moment where a passage of Scripture suddenly \"came alive\" and your heart burned the way those disciples described? What happened?",
-      "data_question": "5.3 - Heart burning moment"
+      "id": "201-07-3",
+      "text": "7.3 - Read Psalm 23:1-4 again slowly. What do you notice? Who is the shepherd? What actions does the shepherd take? What words or images stand out to you? List everything you observe.",
+      "data_question": "7.3 - Psalm 23 Observation",
+      "height": "tall"
+    },
+    {
+      "type": "subheading",
+      "text": "Step 2: Interpret"
+    },
+    {
+      "type": "text",
+      "text": "Here is some context that will help. David wrote this psalm, and before he was king of Israel he was a literal shepherd who spent years in the fields with real sheep. He knew firsthand what a shepherd actually did: leading the flock to food and water, protecting them from predators, using his rod to fight off wolves and his staff to pull wandering sheep back to the path. When David calls God his shepherd, he is not reaching for a clever metaphor. He is describing his own experience of God's care in language drawn from the hardest and most intimate work he had ever done."
+    },
+    {
+      "type": "question",
+      "id": "201-07-4",
+      "text": "7.4 - Knowing that David was a real shepherd who tended real sheep, what does it mean that he calls God his shepherd? What is he saying about God's character and care? How does the \"valley of the shadow of death\" connect to what you have already seen in the story of Scripture?",
+      "data_question": "7.4 - Psalm 23 Interpretation",
+      "height": "tall"
+    },
+    {
+      "type": "subheading",
+      "text": "Step 3: Apply"
+    },
+    {
+      "type": "question",
+      "id": "201-07-5",
+      "text": "7.5 - What does this passage call you to believe about God right now, in your current season of life? Is there a fear you need to lay down because the Shepherd is with you? What is one way you can rest in His care this week?",
+      "data_question": "7.5 - Psalm 23 Application",
+      "height": "tall"
+    },
+    {
+      "type": "text",
+      "text": "You just did something that many lifelong Christians have never been taught to do. You sat down with a familiar passage, looked carefully at what was actually there, considered what it meant in its original context, and asked how it speaks into your life right now. That is not just Bible reading. That is Bible study. And the beautiful thing is you can do this with any passage, any day, for the rest of your life."
     },
     {
       "type": "heading",
-      "text": "Seeing the Old Testament with New Eyes"
+      "text": "How OIA and the Discovery Questions Work Together"
     },
     {
       "type": "text",
-      "text": "One of the most common mistakes new believers make is to think the Old Testament is a separate, outdated book that does not apply anymore. But Jesus Himself said the opposite. He said the Old Testament was about Him. Moses wrote about Him. The prophets spoke about Him. The sacrificial system pointed to Him. The entire Old Testament is a 39-book arrow pointing forward to the cross."
-    },
-    {
-      "type": "text",
-      "text": "When Abraham raised the knife over Isaac and God provided a ram instead, that was a picture of Jesus, the Lamb God would provide. When Moses lifted a bronze serpent in the wilderness and anyone who looked at it was healed, that was a picture of Jesus lifted up on the cross. When David wrote about his bones being pierced and his garments divided, he was describing the crucifixion a thousand years before it happened. The Old Testament is not old news. It is the foundation of everything."
-    },
-    {
-      "type": "question",
-      "id": "202-05-4",
-      "text": "5.4 - How does it change the way you think about the Old Testament to know that Jesus said it was about Him? Is there a story or passage from the Old Testament that you now see differently?",
-      "data_question": "5.4 - Old Testament and Jesus"
+      "text": "You might be wondering whether you should stop using the Three Discovery Questions now that you have the OIA method. Not at all. Think of the Discovery Questions as the tool you reach for every day. They are quick, accessible, and powerful, and they will always work. The OIA method is the tool you reach for when you want to go deeper - when you are preparing to teach, working through a difficult text, or studying a passage you want to truly live in for a while. The Discovery Questions are your daily bread. OIA is your weekly feast. Use both, and you will never go hungry."
     },
     {
       "type": "heading",
-      "text": "A Resource to Go Deeper"
+      "text": "Habits That Make Bible Study Richer"
+    },
+    {
+      "type": "image",
+      "src": "images/201.07-bible-journal.jpg",
+      "alt": "Journal and pen on a wooden table"
     },
     {
       "type": "text",
-      "text": "If this lesson sparked something in you and you want to see the biblical storyline explained visually, there is an excellent free resource called BibleProject. Their videos walk through every book of the Bible and show how it all connects. You can find them at bibleproject.com or on YouTube. Start with their overview video called \"The Story of the Bible\" and go from there."
+      "text": "A few simple habits will deepen your Bible study over time. Read the passage more than once before you do anything else, because the first reading gives you the surface, the second reveals details, and the third gives you depth. Pay attention to genre, because a psalm is not a legal code and a parable is not a historical report, and knowing what kind of writing you are reading helps you interpret it faithfully. When a passage is unclear, let Scripture interpret Scripture by looking for other passages that address the same topic. The Bible is its own best commentary, and a verse that seems confusing in isolation often becomes clear when you read it alongside the rest of the story."
     },
     {
-      "type": "tool",
-      "title": "BibleProject - The Story of the Bible",
-      "description": "Watch a beautiful visual overview of how the entire Bible fits together as one unified story.",
-      "url": "https://bibleproject.com/explore/video/the-story-of-the-bible/",
-      "buttonText": "Watch on BibleProject"
+      "type": "text",
+      "text": "Write things down. Bible study comes alive when you put a pen in your hand, because writing forces you to think clearly and gives you something to come back to. Write your observations, your questions, and what you think God is saying. And before you open the Bible, ask the Holy Spirit for help. Bible study is not just an intellectual exercise. The same Spirit who inspired the writers of Scripture lives in you and will guide you into truth if you ask Him."
+    },
+    {
+      "type": "heading",
+      "text": "A Skill Worth Sharing"
+    },
+    {
+      "type": "text",
+      "text": "Everything you have learned in these three lessons - the map of the Bible, the four-part story, and the OIA method - is transferable. You could sit down with a friend this week, open the Bible to any passage, and walk them through the same steps you just practiced with Psalm 23. You do not need to have all the answers. You just need to know how to ask the right questions and trust that the Spirit will teach you both."
+    },
+    {
+      "type": "text",
+      "text": "Remember the Ethiopian? He needed a Philip, someone willing to climb into the chariot, sit beside him, and say, \"Let me show you what I have learned about reading this book.\" Someday soon, someone in your life will need that from you. And when that day comes, you will be ready."
     },
     {
       "type": "question",
-      "id": "202-05-5",
-      "text": "5.5 - Now that you have seen the four-act story of the Bible, how would you explain it to a friend in your own words? Try it here: what is the Bible about?",
-      "data_question": "5.5 - Explain the story",
+      "id": "201-07-6",
+      "text": "7.6 - Imagine a friend asks you, \"How do you actually study the Bible?\" Using what you learned in this lesson, how would you walk them through it simply and practically?",
+      "data_question": "7.6 - Explain Bible study method",
       "height": "tall"
     },
     {
       "type": "heading",
-      "text": "Lesson 5 Review"
+      "text": "Lesson 7 Review"
     },
     {
       "type": "text",
-      "text": "You have walked through the one story that holds the entire Bible together: Creation (God made everything good), Fall (sin broke everything), Redemption (Jesus came to rescue), and Restoration (God will make all things new). Jesus is the hero of every act. And the same story that runs through Scripture is running through your life right now. In the next lesson, you will learn a deeper method for studying any passage of the Bible on your own, building on the foundation you have been laying since lesson 4 of the Starting course."
+      "text": "You now have two powerful tools for opening the Bible. The Three Discovery Questions are your daily method, simple enough to use every time you read. The OIA method is your deeper study tool, designed for when you want to dig into a passage with care and precision. Together they will serve you and the people you disciple for the rest of your life. The Word of God is alive, and you are equipped to meet Him in its pages with confidence."
     },
     {
       "type": "heading",
@@ -259,19 +240,19 @@
     },
     {
       "type": "question",
-      "id": "202-05-key",
+      "id": "201-07-key",
       "text": "What is one key thing you learned from this lesson, and what next step can you take this week?",
       "height": "short"
     },
     {
       "type": "question",
-      "id": "202-05-devos",
+      "id": "201-07-devos",
       "text": "What have you learned about God and yourself recently in your Daily Devotions?",
       "height": "short"
     },
     {
       "type": "question",
-      "id": "202-05-prayer",
+      "id": "201-07-prayer",
       "text": "What is a prayer request for this week?",
       "height": "short"
     }
