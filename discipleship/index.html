@@ -883,6 +883,22 @@
             padding-bottom: 8px;
         }
 
+        /* Widget blocks: full-bleed on mobile, card look on desktop */
+        .block-widget {
+            margin: 24px -20px;
+        }
+        .block-widget iframe {
+            border-radius: 0;
+        }
+        @media (min-width: 560px) {
+            .block-widget {
+                margin: 24px 0;
+            }
+            .block-widget iframe {
+                border-radius: 12px;
+            }
+        }
+
         /* Session blocks */
         .session {
             display: none;
@@ -2785,9 +2801,9 @@
                             case 'widget': {
                                 const widgetId = `widget-${currentSeries}-${sessionNum}-${blockIdx}`;
                                 const widgetHeight = b.height || '500px';
-                                html += `<div class="block-widget" style="margin: 24px 0;">
+                                html += `<div class="block-widget">
                                     <iframe id="${widgetId}" src="${b.src}?v=${BUILD_VERSION}"
-                                        style="width: 100%; border: none; border-radius: var(--radius-sm); overflow: hidden; height: ${widgetHeight};"
+                                        style="width: 100%; border: none; overflow: hidden; height: ${widgetHeight};"
                                         scrolling="no"
                                         onload="(function(f){
                                             function resize(){

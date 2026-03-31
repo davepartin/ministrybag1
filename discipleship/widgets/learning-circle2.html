@@ -17,7 +17,8 @@
             background: #F8F6F1;
             color: #2C2416;
             -webkit-font-smoothing: antialiased;
-            padding: 8px 12px;
+            padding: 0;
+            margin: 0;
         }
 
         button {
@@ -26,13 +27,28 @@
 
         .widget-outer {
             background: #FFFFFF;
-            border-radius: 12px;
+            border-radius: 0;
             overflow: hidden;
-            box-shadow: 0 6px 20px rgba(44, 36, 22, 0.08);
-            border: 1px solid #EBE5D9;
-            max-width: 370px;
-            margin: 0 auto;
+            box-shadow: none;
+            border: none;
+            max-width: 100%;
+            width: 100%;
+            margin: 0;
             position: relative;
+        }
+
+        @media (min-width: 560px) {
+            body {
+                padding: 16px;
+                background: #F8F6F1;
+            }
+            .widget-outer {
+                border-radius: 12px;
+                box-shadow: 0 6px 20px rgba(44, 36, 22, 0.08);
+                border: 1px solid #EBE5D9;
+                max-width: 460px;
+                margin: 0 auto;
+            }
         }
 
         .title-bar {
@@ -330,11 +346,11 @@ var stops = [
     },
     {
         id: "turning",
-        cardTitle: '<span style="color:#5A4E3C;font-weight:700">Turning Point</span>: Stop and Enter the Circle',
-        color: "#5A4E3C",
+        cardTitle: 'Conviction: Exposing the Truth',
+        color: "#8C4B3B",
         bgColor: "#F5F1EA",
-        ref: "Psalm 119:59",
-        verse: 'I <b>considered my ways</b>, and turned my feet to your testimonies.'
+        ref: "",
+        verse: 'Conviction is the Spirit bringing your sin into the light to guide you to freedom.<br>I <b>considered my ways</b>, and turned my feet to your testimonies. <span style="white-space:nowrap;">Ps&nbsp;119:59</span>'
     },
     {
         id: "repent",
@@ -373,6 +389,8 @@ var PATH_Y = 50;
 var PATH_X1 = 16;
 var PATH_X2 = 318;
 var PATH_THICK = 10;
+var PATH_BAND_Y = 72;
+var PATH_BAND_THICK = 34;
 
 var HUMAN_Y = 94;
 var HUMAN_START_X = 16;
@@ -475,6 +493,43 @@ function appendAnimatedLineWithArrow(svg, options) {
     }
 
     requestAnimationFrame(tick);
+}
+
+function appendAnimatedLine(svg, options) {
+    var line = svgEl('line', {
+        x1: options.x1,
+        y1: options.y1,
+        x2: options.animate ? options.x1 : options.x2,
+        y2: options.animate ? options.y1 : options.y2,
+        stroke: options.stroke,
+        'stroke-width': options.strokeWidth,
+        'stroke-linecap': 'round',
+        opacity: options.opacity == null ? '1' : options.opacity
+    });
+    svg.appendChild(line);
+
+    if (!options.animate) {
+        return line;
+    }
+
+    var start = null;
+    var duration = options.duration || 850;
+
+    function tick(timestamp) {
+        if (!start) start = timestamp;
+        var progress = Math.min((timestamp - start) / duration, 1);
+        var eased = 1 - Math.pow(1 - progress, 3);
+        var currentX = options.x1 + (options.x2 - options.x1) * eased;
+        var currentY = options.y1 + (options.y2 - options.y1) * eased;
+        line.setAttribute('x2', currentX);
+        line.setAttribute('y2', currentY);
+        if (progress < 1) {
+            requestAnimationFrame(tick);
+        }
+    }
+
+    requestAnimationFrame(tick);
+    return line;
 }
 
 function appendLineWithArrow(svg, options) {
@@ -584,6 +639,20 @@ function render() {
     defs.appendChild(markerHuman);
 
     svg.appendChild(defs);
+
+    if (pathOn) {
+        appendAnimatedLine(svg, {
+            x1: PATH_X1,
+            y1: PATH_BAND_Y,
+            x2: PATH_X2,
+            y2: PATH_BAND_Y,
+            stroke: HUNTER,
+            strokeWidth: PATH_BAND_THICK,
+            opacity: '0.15',
+            animate: step === 0,
+            duration: 950
+        });
+    }
 
     if (pathOn) {
         svg.appendChild(svgEl('line', {
@@ -796,7 +865,7 @@ function render() {
     }
 
     if (turningOn) {
-        addLabel(diagram, 'Turning Point', CX, CIRCLE_TOP_Y - 54, '#2C2416', 15);
+        addLabel(diagram, 'Conviction', CX, CIRCLE_TOP_Y - 49, '#2C2416', 15);
     }
 
     if (repentOn) {

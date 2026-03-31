@@ -1,7 +1,8 @@
 {
   "id": "6",
+  "version": "v02",
   "title": "Lesson 6: Sharing Jesus with Others",
-  "description": "Something amazing just happened in your life - and the most natural thing in the world is to tell someone about it. This lesson introduces the heart of evangelism and gives you a simple rhythm called BLESS to begin living on mission right where you are. We will take a deeper dive into BLESS in a future course.",
+  "description": "Something amazing just happened in your life, and the most natural thing in the world is to tell someone about it. This lesson introduces the heart of evangelism and gives you a simple rhythm called BLESS to begin living on mission right where you are. We will take a deeper dive into BLESS in a future course.",
   "blocks": [
     {
       "type": "heading",
@@ -9,17 +10,30 @@
     },
     {
       "type": "text",
-      "text": "Something incredible has happened to you. You have been rescued, forgiven, and adopted into God's family. The most natural response is to tell someone. Evangelism is not a sales pitch or a program - it is one beggar telling another beggar where to find bread. You do not need a theology degree. You just need to share what God has done in your life."
+      "text": "Something incredible has happened to you. You have been rescued, forgiven, and adopted into God's family. The most natural response is to tell someone. Evangelism is not a sales pitch or a program, it is one beggar telling another beggar where to find bread. You do not need a theology degree. You just need to share what God has done in your life."
     },
     {
       "type": "text",
-      "text": "Your \"Personal Ministry\" is sharing the Gospel with people you know and people you meet so they too can have a saving relationship with Jesus. Successful evangelism is simply sharing the Good News - it is not dependent on the person's response."
+      "text": "Jesus once stopped at a well and struck up a conversation with a Samaritan woman who had every reason to avoid people. She had a complicated past, she was from the wrong tribe, and she had come to draw water alone at noon when no one else would be there. But Jesus talked to her anyway, and what happened next is one of the most spontaneous moments of evangelism in the entire Bible."
+    },
+    {
+      "type": "verse",
+      "reference": "John 4:28-29",
+      "text": "So the woman left her water jar and went away into town and said to the people, \"Come, see a man who told me all that I ever did. Can this be the Christ?\""
+    },
+    {
+      "type": "text",
+      "text": "She left her water jar. She ran back into the very town she had been hiding from and told everyone. No training. No program. She did not have theology figured out. She just said, \"Come and see.\" That is all sharing your faith is at its simplest: pointing people toward Jesus and telling them what He did for you."
     },
     {
       "type": "question",
       "id": "6-1",
-      "text": "6.1 - Think about the person or people God used to bring you to faith. Who were they, and what did they do that made a difference in your life?",
-      "data_question": "6.1 - Who God used to bring you to faith"
+      "text": "6.1, Think about the person or people God used to bring you to faith. Who were they, and what did they do that made a difference in your life?",
+      "data_question": "6.1, Who God used to bring you to faith"
+    },
+    {
+      "type": "text",
+      "text": "Your \"Personal Ministry\" is sharing the Gospel with people you know and people you meet so they too can have a saving relationship with Jesus. Successful evangelism is simply sharing the Good News, and it is not dependent on the person's response."
     },
     {
       "type": "verse",
@@ -42,8 +56,8 @@
     {
       "type": "question",
       "id": "6-2",
-      "text": "6.2 - List three people who can be a part of your personal ministry.",
-      "data_question": "6.2 - Three people for personal ministry"
+      "text": "6.2, List three people who can be a part of your personal ministry.",
+      "data_question": "6.2, Three people for personal ministry"
     },
     {
       "type": "heading",
@@ -51,13 +65,13 @@
     },
     {
       "type": "text",
-      "text": "Before you share, learn to listen and serve. When we genuinely care for people, we create a foundation of trust and openness. People don't care how much you know until they know how much you care. To truly love our neighbors as ourselves, we should care about their well-being now and into eternity."
+      "text": "Notice what Jesus did at the well. Before the woman ever ran to tell anyone, He listened to her. He asked her a question. He met her right where she was. Before you share, learn to listen and serve. When we genuinely care for people, we create a foundation of trust and openness. People do not care how much you know until they know how much you care."
     },
     {
       "type": "question",
       "id": "6-3",
-      "text": "6.3 - What are some ways you could care for those in your life who are not yet followers of Jesus?",
-      "data_question": "6.3 - Ways to care for non-believers"
+      "text": "6.3, What are some ways you could care for those in your life who are not yet followers of Jesus?",
+      "data_question": "6.3, Ways to care for those who do not follow Jesus"
     },
     {
       "type": "heading",
@@ -70,16 +84,16 @@
     {
       "type": "question",
       "id": "6-4",
-      "text": "6.4 - How can you add praying for the lost to your daily devotional time?",
-      "data_question": "6.4 - Praying for the lost"
+      "text": "6.4, How can you add praying for the lost to your daily devotional time?",
+      "data_question": "6.4, Praying for the lost"
     },
     {
       "type": "heading",
-      "text": "Story - Share What Happened to You"
+      "text": "Story, Share What Happened to You"
     },
     {
       "type": "text",
-      "text": "Sharing the Gospel is the central act of evangelism, where we verbally communicate the good news of Jesus Christ. And here is the beautiful thing - you already have a story. Something just happened in your life. You met Jesus. Start there. You do not need a polished presentation. Just tell someone what God did."
+      "text": "The woman at the well did not give a sermon. She told her story. And here is the beautiful thing: you already have one. Something just happened in your life. You met Jesus. Start there. You do not need a polished presentation. Just tell someone what God did. Sharing the Gospel is the central act of evangelism, where we verbally communicate the good news of Jesus Christ."
     },
     {
       "type": "verse",
@@ -88,11 +102,11 @@
     },
     {
       "type": "text",
-      "text": "<strong>Roman Road - ABC's of the Gospel:</strong>"
+      "text": "<strong>Roman Road, ABC's of the Gospel:</strong>"
     },
     {
       "type": "text",
-      "text": "<strong>A - Admit</strong> you are a sinner and need a Savior. (Romans 3:23)<br>\n<strong>B - Believe</strong> in Jesus as your Savior, His death and resurrection. (Romans 10:9)<br>\n<strong>C - Confess</strong> Jesus as your Lord. (Romans 10:9)"
+      "text": "<strong>A, Admit</strong> you are a sinner and need a Savior. (Romans 3:23)<br>\n<strong>B, Believe</strong> in Jesus as your Savior, His death and resurrection. (Romans 10:9)<br>\n<strong>C, Confess</strong> Jesus as your Lord. (Romans 10:9)"
     },
     {
       "type": "text",
@@ -101,8 +115,8 @@
     {
       "type": "question",
       "id": "6-5",
-      "text": "6.5 - If someone asked you, \"How can I be a Christian?\" what would you say?",
-      "data_question": "6.5 - How to become a Christian explanation"
+      "text": "6.5, The woman at the well ran back to the town she had been avoiding. What is one fear or hesitation you have about sharing your faith? What would it look like to go anyway?",
+      "data_question": "6.5, Fear of sharing faith"
     },
     {
       "type": "heading",
@@ -124,8 +138,8 @@
     {
       "type": "question",
       "id": "6-6",
-      "text": "6.6 - What is your next step in your personal ministry this week?",
-      "data_question": "6.6 - Next step in personal ministry"
+      "text": "6.6, What is your next step in your personal ministry this week?",
+      "data_question": "6.6, Next step in personal ministry"
     },
     {
       "type": "heading",
@@ -133,12 +147,12 @@
     },
     {
       "type": "text",
-      "text": "You have been introduced to evangelism not as a program but as a natural overflow of a life changed by Jesus. The BLESS rhythms give you a simple, relational way to love and reach the people already around you every day."
+      "text": "You have been introduced to evangelism not as a program but as a natural overflow of a life changed by Jesus. The woman at the well did not wait until she had all the answers. She just went. The BLESS rhythms give you a simple, relational way to love and reach the people already around you every day."
     },
     {
       "type": "bible_reading",
       "heading": "Introduction to John 16, 17, and 18",
-      "intro": "In John 16-18, Jesus prepares His disciples for what is coming, prays for everyone who will ever believe in Him, including you, and is then arrested and put on trial. As you read, notice what it looks like to stand for Jesus when the pressure is on.",
+      "intro": "In John 16, 17, 18, Jesus prepares His disciples for what is coming, prays for everyone who will ever believe in Him, including you, and is then arrested and put on trial. As you read, notice what it looks like to stand for Jesus when the pressure is on.",
       "chapters": [
         {
           "ref": "John 16"

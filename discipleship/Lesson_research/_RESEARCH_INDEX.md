@@ -77,9 +77,9 @@ Add quotes, notes, book excerpts, and BFM references directly to those files.
 | 201.05 | Overview of the Bible | I. The Scriptures | 2 Timothy 3:16-17 |
 | 201.06 | How to Study the Bible — Discovery Bible Study | I. The Scriptures | 2 Timothy 2:15 |
 | 201.07 | Biblical Storyline | I. The Scriptures, IX. Kingdom | Revelation 21:5 |
-| 201.08 | The Grace Cycle to Forgiveness | IV. Salvation | Ephesians 2:8-9 |
+| 201.08 | The Grace and Mercy Cycle | IV. Salvation | Ephesians 2:8-9 |
 | 201.09 | Living the Fruit of the Spirit | IV. Salvation | Galatians 5:22-23 |
-| 201.10 | Confession and Repentance | IV. Salvation | Hebrews 11:1 |
+| 201.10 | Repentance and the Learning Circle | IV. Salvation | Luke 15:11-32 |
 
 ### 202 — Growing Up in Discipleship
 | Lesson | Title | BFM | Key Verse |
