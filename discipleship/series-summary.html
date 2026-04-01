@@ -423,6 +423,39 @@
             font-weight: 700;
         }
 
+        .todo-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .todo-label {
+            font-size: 0.68rem;
+            font-weight: 800;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #8e7242;
+            flex-shrink: 0;
+        }
+
+        .todo-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 11px;
+            border-radius: 999px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            border: 1px solid;
+        }
+
+        .todo-complete   { background: #d4eddd; color: #1d5c3a; border-color: #b3dcbf; }
+        .todo-review     { background: #dce8f5; color: #1a4d7a; border-color: #b8d4ed; }
+        .todo-confirm    { background: #f5e9d4; color: #6b4e14; border-color: #e8d4ab; }
+        .todo-draft      { background: #fbe8db; color: #7a3318; border-color: #f2c9b0; }
+        .todo-notstarted { background: #ede9e4; color: #4a4540; border-color: #d8d2c9; }
+
         .loading,
         .error-state {
             padding: 28px;
@@ -655,6 +688,8 @@
                 const keyBible = getField(row, indexMap, ["Key Bible Chapters"]);
                 const passageNote = getField(row, indexMap, ["Passage Notes", "Key Story", "Key Framework", "Key Line"]);
 
+                const todo = getField(row, indexMap, ["To Do"]);
+
                 currentCourse.lessons.push({
                     id: lessonCell,
                     lessonNum,
@@ -664,7 +699,8 @@
                     summary,
                     keyVerse,
                     keyBible,
-                    passageNote
+                    passageNote,
+                    todo
                 });
             }
 
@@ -717,6 +753,17 @@
             `;
         }
 
+        function getTodoStyle(todo) {
+            const t = (todo || "").toLowerCase();
+            if (t === "complete")                                          return { cls: "todo-complete",   icon: "✓" };
+            if (t.includes("final review"))                                return { cls: "todo-review",     icon: "◎" };
+            if (t.includes("confirm") || t.includes("sync") ||
+                t.includes("complete draft") || t.includes("finalize"))   return { cls: "todo-confirm",    icon: "◐" };
+            if (t.includes("full draft"))                                  return { cls: "todo-draft",      icon: "○" };
+            if (t === "not started")                                       return { cls: "todo-notstarted", icon: "—" };
+            return { cls: "todo-confirm", icon: "◐" };
+        }
+
         function renderLessons(course) {
             return course.lessons.map(lesson => {
                 const summaryText = lesson.progress === 0
@@ -725,6 +772,8 @@
                 const toolText = lesson.progress === 0 && !lesson.tool
                     ? "TBD"
                     : cleanValue(lesson.tool, "TBD");
+                const todoText = cleanValue(lesson.todo, "TBD");
+                const { cls: todoClass, icon: todoIcon } = getTodoStyle(todoText);
 
                 return `
                     <article class="lesson-card">
@@ -756,6 +805,10 @@
                                     <div class="meta-label">Key Passage(s)</div>
                                     ${buildPassagesHtml(lesson)}
                                 </div>
+                            </div>
+                            <div class="todo-row">
+                                <span class="todo-label">To Do</span>
+                                <span class="todo-chip ${todoClass}">${todoIcon} ${escapeHtml(todoText)}</span>
                             </div>
                             <p class="lesson-summary ${summaryText === "Under construction." ? "under-construction" : ""}">${escapeHtml(summaryText)}</p>
                         </div>
