@@ -25,7 +25,9 @@ The home page logo (`<img>` in static HTML) is still not covered, but it rarely 
 Image rename convention (v2, v3) is no longer necessary for lesson images, but can still be used if you want to keep old versions around for reference.
 
 ### JSON Lesson Format
-Blocks array with types: `heading`, `text`, `verse`, `question`, `image`, `bible_reading`, `stepper`, `tool`, `checklist`, `widget`
+Blocks array with types: `heading`, `text`, `verse`, `question`, `image`, `bible_reading`, `stepper`, `tool`, `checklist`, `widget`, `parable`
+
+**Parable block** — for illustrated teaching stories. Renders as a framed card with the image at the top and the story beneath. Required: `title`, `text`. Optional: `image`, `alt`. Do not split into separate heading/image/text blocks. See `data/201-08.json` for the live example.
 
 Image block format: `{"type": "image", "src": "images/filename.png", "alt": "description"}`
 

@@ -147,6 +147,7 @@ Each lesson JSON has a `title`, optional `description`, and a `blocks` array. Av
 - `tool` - special tool/framework display
 - `checklist` - tappable tile grid with `id`, `prompt`, and `items` array (selections auto-save)
 - `widget` - embedded interactive HTML tool loaded via iframe with `src` pointing to a file in `widgets/` folder (auto-resizes to content height, optional `height` property for initial min-height)
+- `parable` - illustrated teaching story rendered as a framed card: image at the top edge-to-edge, bold title below, story text beneath. Use whenever a lesson includes a short narrative illustration with an accompanying image. Required fields: `title`, `text`. Optional: `image` (relative path, e.g. `images/filename.png`), `alt`. Do not use separate `heading` + `image` + `text` blocks for a parable - combine into one `parable` block. Live example: `data/201-08.json`.
 
 Note: `agenda` and `homework` block types still render for backward compatibility but are no longer used.
 
