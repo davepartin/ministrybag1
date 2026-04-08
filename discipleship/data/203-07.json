@@ -1,36 +1,117 @@
 {
   "id": "7",
-  "title": "Lesson 7: Spiritual Warfare",
-  "description": "Viewing our jobs and vocations as mission fields for the Kingdom.",
+  "version": "v02",
+  "title": "Lesson 7: Spiritual Warfare and Putting on the Armor of God",
+  "description": "The Christian life is not a stroll through a quiet park. It is a battle, and you are already in it. This lesson will help you understand the real enemy you face, the armor God has given you, and how to stand firm every single day.",
   "blocks": [
     {
-      "type": "heading",
-      "text": "No Secular Divide"
+      "type": "text",
+      "text": "In the last lesson, you explored what it looks like to live for Jesus at work and school, bringing faith into the places where you spend most of your week. But here is something every believer needs to hear clearly: living on mission will meet resistance. Not just from a busy schedule or an awkward conversation, but from a real spiritual enemy who hates what God is doing in you and through you."
     },
     {
       "type": "text",
-      "text": "There is no divide between the 'sacred' tasks at church and the 'secular' tasks at your job. Whether you are a teacher, an engineer, a stay-at-home parent, or an artist, God calls you to worship Him through your daily work."
-    },
-    {
-      "type": "verse",
-      "reference": "Colossians 3:23-24",
-      "text": "Whatever you do, work heartily, as for the Lord and not for men, knowing that from the Lord you will receive the inheritance as your reward. You are serving the Lord Christ."
-    },
-    {
-      "type": "question",
-      "id": "203-8-1",
-      "text": "8.1 - How would viewing your current job or daily tasks as 'working for the Lord' change your attitude on Monday mornings?",
-      "data_question": "8.1 - Attitude toward Monday"
+      "text": "This lesson is about the battle you are already in, whether you feel it or not. And more importantly, it is about the armor God has already provided for you to stand firm."
     },
     {
       "type": "heading",
-      "text": "BLESS Check-in"
+      "text": "Sent into the Battle"
+    },
+    {
+      "type": "parable",
+      "title": "Jesus Sends the 72",
+      "image": "images/jesus-sends-72.jpg",
+      "alt": "Jesus Sends the 72",
+      "text": "Before Paul ever described the armor of God, Jesus gave His followers a taste of what wearing it looked like. In Luke 10, Jesus sent seventy-two of His followers out on mission, two by two. He told them to carry nothing extra, to speak peace over every house they entered, and to proclaim that the kingdom of God had come near. They went in His name, with His authority, and with nothing but trust in what He had told them. When they came back, they were amazed at what had happened."
+    },
+    {
+      "type": "verse",
+      "reference": "Luke 10:17-20",
+      "text": "The seventy-two returned with joy, saying, \"Lord, even the demons are subject to us in your name!\" And he said to them, \"I saw Satan fall like lightning from heaven. Behold, I have given you authority to trample on serpents and scorpions, and over all the power of the enemy, and nothing shall injure you. Nevertheless, do not rejoice in this, that the spirits are subject to you, but rejoice that your names are written in heaven.\""
+    },
+    {
+      "type": "text",
+      "text": "Look at what Jesus does here. His followers just experienced real spiritual victory. Demons submitted to them. And Jesus does not say \"good job.\" He says, \"Do not rejoice in this.\" Instead, rejoice that your names are written in heaven. He is pointing them away from the power they felt and toward the identity they already had. That is the heart of spiritual warfare. You are not fighting to earn a place with God. You are fighting from the place He has already given you. The seventy-two went out with truth, peace, faith, the security of salvation, and the Word of the kingdom on their lips. They were wearing the armor before it had a name."
     },
     {
       "type": "question",
-      "id": "203-08-bless",
-      "text": "Who are you currently BLESSing? Who are you praying for and actively moving toward? What is one specific step you are taking this week?",
+      "id": "203-07-1",
+      "text": "7.1 - Have you ever experienced a season where you felt real spiritual resistance while trying to follow Jesus or serve others? What did it feel like, and how did you respond?",
       "height": "tall"
+    },
+    {
+      "type": "heading",
+      "text": "Dress for the Battle You Are Already In"
+    },
+    {
+      "type": "text",
+      "text": "Years later, the apostle Paul gave the church a fuller picture of what Jesus' followers were already living. Writing from a Roman prison, likely looking at a soldier's armor, Paul described the spiritual equipment God provides for every believer."
+    },
+    {
+      "type": "verse",
+      "reference": "Ephesians 6:10-18",
+      "text": "Finally, be strong in the Lord and in the strength of his might. Put on the whole armor of God, that you may be able to stand against the schemes of the devil. For we do not wrestle against flesh and blood, but against the rulers, against the authorities, against the cosmic powers over this present darkness, against the spiritual forces of evil in the heavenly places. Therefore take up the whole armor of God, that you may be able to withstand in the evil day, and having done all, to stand firm. Stand therefore, having fastened on the belt of truth, and having put on the breastplate of righteousness, and, as shoes for your feet, having put on the readiness given by the gospel of peace. In all circumstances, take up the shield of faith, with which you can extinguish all the flaming darts of the evil one; and take the helmet of salvation, and the sword of the Spirit, which is the word of God, praying at all times in the Spirit, with all prayer and supplication."
+    },
+    {
+      "type": "text",
+      "text": "Notice what Paul does not say. He does not say \"go find some armor.\" He says \"put on the whole armor <strong>of God</strong>.\" This is not a \"try harder\" speech. It is a \"be dependent\" command. The armor is not something you manufacture. It is something God supplies. Your job is to put it on. Walk through the diagram below and watch each piece appear. Pay attention to the key line for each one. These are the words you will want to remember."
+    },
+    {
+      "type": "widget",
+      "src": "widgets/armor-of-god.html",
+      "height": "640px"
+    },
+    {
+      "type": "heading",
+      "text": "The Six Pieces of Armor"
+    },
+    {
+      "type": "text",
+      "text": "<strong>The Belt of Truth.</strong> Ancient soldiers tucked their robes into their belts so they could move without tripping. If you are not grounded in the truth of the gospel, you will trip over the lies of the world. The enemy's oldest strategy is deception, and he still twists God's words today. The belt of truth means you know what is true about God and about yourself, and you build your life on that foundation instead of on feelings, fears, or the noise around you."
+    },
+    {
+      "type": "text",
+      "text": "<strong>The Breastplate of Righteousness.</strong> The breastplate covers your heart, but it is not the breastplate of your good behavior. It is Christ's righteousness. You learned this in Lesson 201-08 when you studied the Grace and Mercy Cycle: Jesus took your sin and gave you His perfect record. When the enemy whispers that you are a fraud or a failure, you point to the breastplate. It is not yours. It is His. And it holds."
+    },
+    {
+      "type": "text",
+      "text": "<strong>The Shoes of the Gospel of Peace.</strong> Roman military sandals had metal spikes on the bottom for traction. A soldier who slipped in battle was a dead soldier. Because you have peace with God through Jesus, you can stand steady when the ground shifts underneath you. Peace is not just comfort for your soul. It is what keeps your feet planted and it is what moves you out on mission."
+    },
+    {
+      "type": "question",
+      "id": "203-07-2",
+      "text": "7.2 - Of the first three pieces (belt, breastplate, shoes), which one do you most often forget to put on? What does that gap tell you about where the enemy tends to get a foothold in your life?",
+      "height": "tall"
+    },
+    {
+      "type": "text",
+      "text": "<strong>The Shield of Faith.</strong> Roman soldiers carried large shields they would soak in water before battle. When flaming arrows hit wet leather, the fire went out. The enemy fires darts at you: doubt, fear, shame, temptation, discouragement. These are mostly thoughts: \"It is not worth it. God has forgotten you. You will never change.\" Faith does not mean you never feel those arrows. It means you hold up the shield and let the truth of God's promises put the fire out."
+    },
+    {
+      "type": "text",
+      "text": "<strong>The Helmet of Salvation.</strong> The helmet protects your mind, and the battle for your day is won or lost in what you believe about your security in Christ. When you put on the helmet, you are reminding yourself that you belong to God, that nothing can separate you from His love, and that your future is sealed. Remember what Jesus told the seventy-two: rejoice that your names are written in heaven. That is the helmet."
+    },
+    {
+      "type": "text",
+      "text": "<strong>The Sword of the Spirit.</strong> This is the only offensive weapon in the list. Every other piece is for defense. The sword is the Word of God. When Jesus was tempted in the wilderness, He did not debate the devil or rely on willpower. He said, \"It is written.\" Three times the devil attacked. Three times Jesus answered with Scripture. You do not fight lies with feelings. You fight lies with truth. But you cannot draw the sword if you do not carry it. This is why knowing your Bible matters so deeply."
+    },
+    {
+      "type": "question",
+      "id": "203-07-3",
+      "text": "7.3 - Which piece of armor do you feel strongest in right now? Which one do you need most? What would it look like to \"put it on\" tomorrow morning?",
+      "height": "tall"
+    },
+    {
+      "type": "heading",
+      "text": "Stand Firm"
+    },
+    {
+      "type": "text",
+      "text": "Paul uses the word <strong>stand</strong> four times in this passage. Stand against the schemes. Withstand in the evil day. Having done all, stand firm. Stand therefore. The armor of God is not about becoming a spiritual superhero. It is about daily dependence on a God who has already won the war. The belt holds you steady in truth. The breastplate covers your heart with a righteousness that is not your own. The shoes plant you firmly on the gospel. The shield blocks every fiery lie. The helmet guards your mind with the certainty of salvation. The sword lets you fight back with the very words of God. And prayer keeps you connected to the one who supplies it all. You are not fighting alone, and you are not fighting for an uncertain outcome. Jesus has already triumphed. Just as the seventy-two went out with nothing but His name and came back with joy, you can face whatever comes because the same authority that sent them sends you. Your call is simply to stand."
+    },
+    {
+      "type": "verse",
+      "reference": "Ephesians 6:13",
+      "text": "Therefore take up the whole armor of God, that you may be able to withstand in the evil day, and having done all, to stand firm."
     },
     {
       "type": "heading",
@@ -38,19 +119,19 @@
     },
     {
       "type": "question",
-      "id": "203-08-key",
+      "id": "203-07-key",
       "text": "What is one key thing you learned from this lesson, and what next step can you take this week?",
       "height": "short"
     },
     {
       "type": "question",
-      "id": "203-08-devos",
+      "id": "203-07-devos",
       "text": "What have you learned about God and yourself recently in your Daily Devotions?",
       "height": "short"
     },
     {
       "type": "question",
-      "id": "203-08-prayer",
+      "id": "203-07-prayer",
       "text": "What is a prayer request for this week?",
       "height": "short"
     }

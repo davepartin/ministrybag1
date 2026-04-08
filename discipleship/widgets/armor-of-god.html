@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Put on the Armor of God</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@400;600;700&display=swap');
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            padding: 8px 12px;
+            margin: 0;
+            font-family: Georgia, Cambria, serif;
+            background: #F8F6F1;
+            color: #2C2416;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        button {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .widget-outer {
+            background: #FFFFFF;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(44, 36, 22, 0.08);
+            border: 1px solid #EBE5D9;
+            max-width: 370px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .title-bar {
+            background: #2C2416;
+            padding: 10px 20px 8px;
+            text-align: center;
+        }
+
+        .title-bar h1 {
+            font-size: 22px;
+            font-weight: 600;
+            color: #FAF8F3;
+            line-height: 1.2;
+            font-family: 'Playfair Display', Georgia, serif;
+            letter-spacing: 0.5px;
+            margin: 0;
+        }
+
+        .title-bar p {
+            font-size: 13px;
+            color: #D4CFC4;
+            margin: 4px 0 0;
+            font-family: Inter, -apple-system, sans-serif;
+            letter-spacing: 0.2px;
+        }
+
+        .diagram-wrapper {
+            padding: 4px 0 0;
+            display: flex;
+            justify-content: center;
+            height: 370px;
+        }
+
+        .diagram-container {
+            position: relative;
+            width: 350px;
+            height: 370px;
+            overflow: visible;
+        }
+
+        .diagram-label {
+            position: absolute;
+            font-family: 'Trebuchet MS', sans-serif;
+            font-weight: 500;
+            letter-spacing: 0.15px;
+            pointer-events: none;
+            white-space: normal;
+            opacity: 0;
+            transform: translateY(6px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+            font-size: 14px;
+            line-height: 1.12;
+            width: 114px;
+            padding: 7px 10px 8px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.84);
+            border: 1px solid rgba(235, 229, 217, 0.95);
+            box-shadow: 0 6px 16px rgba(44, 36, 22, 0.08);
+        }
+
+        .diagram-label .label-strong {
+            font-weight: 900;
+            letter-spacing: 0;
+        }
+
+        .diagram-label.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .diagram-label.past {
+            opacity: 0.72;
+        }
+
+        .intro-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 20;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 30px 28px;
+            pointer-events: none;
+        }
+
+        .intro-verse {
+            font-size: 19px;
+            line-height: 1.45;
+            color: #2C2416;
+            font-style: italic;
+            margin-bottom: 8px;
+            text-shadow: 0 1px 6px rgba(250,248,243,0.95);
+        }
+
+        .intro-ref {
+            font-size: 13px;
+            color: #8C8375;
+            font-family: 'Trebuchet MS', sans-serif;
+            font-weight: 600;
+        }
+
+        #card-area {
+            background-color: #F6F4EE;
+            border-top: 1px solid #EBE5D9;
+            padding-top: 16px;
+        }
+
+        .verse-card-wrapper {
+            margin: 0 auto;
+            padding: 0 16px 12px;
+        }
+
+        .verse-card {
+            background: #FFFFFF;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 14px rgba(44, 36, 22, 0.06);
+            animation: fadeSlide 0.35s ease;
+        }
+
+        .verse-card-bar {
+            height: 4px;
+        }
+
+        .verse-card-content {
+            padding: 12px 16px;
+            height: 125px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        .verse-card-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: #5A4E3C;
+            margin-bottom: 4px;
+            line-height: 1.25;
+            font-family: 'Playfair Display', Georgia, serif;
+        }
+
+        .verse-card-text {
+            font-size: 13px;
+            line-height: 1.45;
+            color: #3D3426;
+            margin-bottom: 6px;
+            flex-grow: 1;
+        }
+
+        .verse-card-text b {
+            color: var(--accent-color, #2C2416);
+        }
+
+        .verse-card-ref {
+            font-size: 11px;
+            color: var(--accent-color, #9B917F);
+            font-weight: 600;
+            font-family: 'Trebuchet MS', sans-serif;
+        }
+
+        .nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+            padding: 0 2px;
+        }
+
+        .nav-btn {
+            background: transparent;
+            border: 1.5px solid #D4CFC4;
+            border-radius: 10px;
+            padding: 8px 14px;
+            font-size: 12px;
+            font-family: 'Trebuchet MS', sans-serif;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .nav-btn.primary {
+            color: #fff;
+            border: none;
+        }
+
+        .dot-nav {
+            display: flex;
+            gap: 5px;
+            align-items: center;
+        }
+
+        .dot {
+            height: 8px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        @keyframes fadeSlide {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="widget-outer">
+    <div class="title-bar">
+        <h1>Put on the Armor of God</h1>
+        <p>Dress for the battle you are already in</p>
+    </div>
+
+    <div class="diagram-wrapper">
+        <div class="diagram-container" id="diagram"></div>
+    </div>
+
+    <div id="card-area"></div>
+</div>
+
+<script>
+var steps = [
+    {
+        id: "belt",
+        piece: "belt",
+        title: "The Belt of Truth",
+        color: "#7A5A3A",
+        ref: "Ephesians 6:14",
+        text: "The Bible and the gospel ground your life in what is true. <b>Truth holds everything in place.</b>"
+    },
+    {
+        id: "breastplate",
+        piece: "breastplate",
+        title: "The Breastplate of Righteousness",
+        color: "#8A4E42",
+        ref: "Ephesians 6:14",
+        text: "This is not your goodness. It is Christ's righteousness guarding your heart. <b>When the enemy calls you a failure, be reminded of Jesus' victory.</b>"
+    },
+    {
+        id: "shoes",
+        piece: "shoes",
+        title: "The Shoes of the Gospel of Peace",
+        color: "#A47A3C",
+        ref: "Ephesians 6:15",
+        text: "Because you have peace with God, you can stand steady when the ground shifts. <b>Peace is not just comfort. It moves you on mission.</b>"
+    },
+    {
+        id: "shield",
+        piece: "shield",
+        title: "The Shield of Faith",
+        color: "#55697B",
+        ref: "Ephesians 6:16",
+        text: "The enemy fires doubt, fear, shame, and temptation. <b>Lift the shield and let faith in God's promises put the fire out.</b>"
+    },
+    {
+        id: "helmet",
+        piece: "helmet",
+        title: "The Helmet of Salvation",
+        color: "#596B56",
+        ref: "Ephesians 6:17",
+        text: "The battle for your day is shaped by what you believe about Christ. <b>Nothing can separate you from His love. Your mind is protected.</b>"
+    },
+    {
+        id: "sword",
+        piece: "sword",
+        title: "The Sword of the Spirit",
+        color: "#47505A",
+        ref: "Ephesians 6:17",
+        text: "This is the offensive weapon. Jesus answered temptation with, \"It is written.\" <b>When you fight lies with truth, those lies become powerless.</b>"
+    }
+];
+
+var NS = 'http://www.w3.org/2000/svg';
+var W = 350;
+var H = 370;
+var CHARCOAL = "#2C2416";
+var FAINT = "#E3DED4";
+var GUIDE = "#CFC8BA";
+var step = -1;
+
+var PIECES = {
+    belt:        { targetX: 175, targetY: 199, sideX: 304, sideY: 199, labelX: 18,  labelY: 259, labelHtml: '<span class="label-strong">Belt</span> of Truth' },
+    breastplate: { targetX: 175, targetY: 156, sideX: 304, sideY: 148, labelX: 233, labelY: 126, labelHtml: '<span class="label-strong">Breastplate</span><br>of Righteousness' },
+    shoes:       { targetX: 175, targetY: 298, sideX: 304, sideY: 298, labelX: 224, labelY: 298, labelHtml: '<span class="label-strong">Shoes</span> of<br>the Gospel' },
+    shield:      { targetX: 113, targetY: 184, sideX: 304, sideY: 184, labelX: 10,  labelY: 207, labelHtml: '<span class="label-strong">Shield</span> of Faith' },
+    helmet:      { targetX: 175, targetY: 97,  sideX: 304, sideY: 97,  labelX: 18,  labelY: 75, labelHtml: '<span class="label-strong">Helmet</span> of<br>Salvation' },
+    sword:       { targetX: 229, targetY: 186, sideX: 304, sideY: 186, labelX: 236, labelY: 222, labelHtml: '<span class="label-strong">Sword</span> of<br>the Spirit' }
+};
+
+function svgEl(tag, attrs) {
+    var el = document.createElementNS(NS, tag);
+    for (var k in attrs) el.setAttribute(k, attrs[k]);
+    return el;
+}
+
+function animateMove(group, startX, startY, endX, endY, duration) {
+    var start = null;
+    duration = duration || 800;
+    function tick(timestamp) {
+        if (!start) start = timestamp;
+        var progress = Math.min((timestamp - start) / duration, 1);
+        var eased = 1 - Math.pow(1 - progress, 3);
+        var x = startX + (endX - startX) * eased;
+        var y = startY + (endY - startY) * eased;
+        group.setAttribute('transform', 'translate(' + x + ' ' + y + ')');
+        if (progress < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+}
+
+function sketchLine(parent, x1, y1, x2, y2, color, width, opacity) {
+    parent.appendChild(svgEl('line', {
+        x1: x1, y1: y1, x2: x2, y2: y2,
+        stroke: color, 'stroke-width': width, 'stroke-linecap': 'round',
+        opacity: opacity == null ? 1 : opacity
+    }));
+    parent.appendChild(svgEl('line', {
+        x1: x1 + 0.6, y1: y1 - 0.6, x2: x2 - 0.6, y2: y2 + 0.6,
+        stroke: color, 'stroke-width': Math.max(1, width - 1), 'stroke-linecap': 'round',
+        opacity: opacity == null ? 0.5 : opacity * 0.55
+    }));
+}
+
+function sketchPath(parent, d, color, width, opacity, fill) {
+    parent.appendChild(svgEl('path', {
+        d: d, fill: fill || 'none', stroke: color,
+        'stroke-width': width, 'stroke-linecap': 'round', 'stroke-linejoin': 'round',
+        opacity: opacity == null ? 1 : opacity
+    }));
+    parent.appendChild(svgEl('path', {
+        d: d, fill: 'none', stroke: color,
+        'stroke-width': Math.max(1, width - 1), 'stroke-linecap': 'round', 'stroke-linejoin': 'round',
+        opacity: opacity == null ? 0.45 : opacity * 0.5
+    }));
+}
+
+function drawFigure(svg) {
+    var g = svgEl('g', {});
+    sketchPath(g, 'M175 72 C162 72 154 81 154 93 C154 106 163 115 175 115 C187 115 196 106 196 93 C196 81 188 72 175 72 Z', GUIDE, 3, 0.78);
+    sketchLine(g, 169, 114, 169, 123, GUIDE, 2.5, 0.6);
+    sketchLine(g, 181, 114, 181, 123, GUIDE, 2.5, 0.6);
+    sketchPath(g, 'M154 132 C160 123 168 119 175 119 C182 119 190 123 196 132 L201 198 C194 208 156 208 149 198 Z', GUIDE, 3, 0.72, 'rgba(207,200,186,0.10)');
+    sketchLine(g, 149, 140, 129, 184, GUIDE, 3, 0.65);
+    sketchLine(g, 129, 184, 122, 230, GUIDE, 3, 0.6);
+    sketchLine(g, 201, 140, 220, 184, GUIDE, 3, 0.65);
+    sketchLine(g, 220, 184, 228, 232, GUIDE, 3, 0.6);
+    sketchLine(g, 166, 209, 152, 264, GUIDE, 3, 0.68);
+    sketchLine(g, 152, 264, 145, 308, GUIDE, 3, 0.62);
+    sketchLine(g, 184, 209, 198, 264, GUIDE, 3, 0.68);
+    sketchLine(g, 198, 264, 205, 308, GUIDE, 3, 0.62);
+    sketchLine(g, 138, 311, 158, 311, GUIDE, 3, 0.58);
+    sketchLine(g, 192, 311, 212, 311, GUIDE, 3, 0.58);
+    return g;
+}
+
+function makePiece(kind, color) {
+    var g = svgEl('g', {});
+    if (kind === 'helmet') {
+        sketchPath(g, 'M-23 10 C-23 -12 -11 -29 0 -29 C11 -29 23 -12 23 10 L15 10 C15 -8 8 -19 0 -19 C-8 -19 -15 -8 -15 10 Z', color, 4, 1, 'rgba(89,107,86,0.12)');
+        sketchLine(g, -14, 10, 14, 10, color, 2.5, 0.7);
+        sketchLine(g, -11, 10, -11, 18, color, 2.2, 0.6);
+        sketchLine(g, 11, 10, 11, 18, color, 2.2, 0.6);
+        sketchPath(g, 'M-14 -3 C-9 -9 -4 -12 0 -12 C4 -12 9 -9 14 -3', color, 2.2, 0.55);
+    } else if (kind === 'breastplate') {
+        sketchPath(g, 'M-20 -30 L20 -30 L31 -8 L25 30 L0 40 L-25 30 L-31 -8 Z', color, 4, 1, 'rgba(138,78,66,0.10)');
+        sketchLine(g, 0, -30, 0, 34, color, 2.5, 0.8);
+        sketchLine(g, -12, -20, -5, 22, color, 2, 0.55);
+        sketchLine(g, 12, -20, 5, 22, color, 2, 0.55);
+    } else if (kind === 'belt') {
+        sketchPath(g, 'M-38 -8 L38 -8 L38 8 L-38 8 Z', color, 4, 1, 'rgba(122,90,58,0.12)');
+        sketchPath(g, 'M6 -8 L21 -8 L21 8 L6 8 Z', color, 3, 1, 'rgba(248,246,241,0.9)');
+        sketchLine(g, -28, 0, -10, 0, color, 2, 0.45);
+    } else if (kind === 'shoes') {
+        sketchPath(g, 'M-34 -14 L-14 -14 L-6 -2 L-4 17 L-23 17 L-35 10 Z', color, 4, 1, 'rgba(164,122,60,0.10)');
+        sketchPath(g, 'M6 -14 L26 -14 L34 -2 L36 17 L17 17 L5 10 Z', color, 4, 1, 'rgba(164,122,60,0.10)');
+        sketchLine(g, -28, -14, -28, 9, color, 2.2, 0.72);
+        sketchLine(g, -20, -14, -20, 13, color, 2.2, 0.72);
+        sketchLine(g, 12, -14, 12, 9, color, 2.2, 0.72);
+        sketchLine(g, 20, -14, 20, 13, color, 2.2, 0.72);
+        sketchLine(g, -33, 8, -10, 8, color, 1.8, 0.45);
+        sketchLine(g, 7, 8, 30, 8, color, 1.8, 0.45);
+    } else if (kind === 'shield') {
+        sketchPath(g, 'M0 -44 C24 -38 32 -18 32 8 C32 36 13 54 0 62 C-13 54 -32 36 -32 8 C-32 -18 -24 -38 0 -44 Z', color, 4, 1, 'rgba(85,105,123,0.10)');
+        sketchLine(g, 0, -30, 0, 44, color, 2.5, 0.7);
+    } else if (kind === 'sword') {
+        sketchPath(g, 'M0 -60 L8 -8 L0 34 L-8 -8 Z', color, 3.5, 1, 'rgba(71,80,90,0.10)');
+        sketchLine(g, -18, 32, 18, 32, color, 3.5, 1);
+        sketchLine(g, 0, 32, 0, 56, color, 3.5, 1);
+    }
+    return g;
+}
+
+function addPiece(svg, kind, color, animateIn) {
+    var spec = PIECES[kind];
+    var piece = makePiece(kind, color);
+    svg.appendChild(piece);
+    if (animateIn) {
+        piece.setAttribute('transform', 'translate(' + spec.sideX + ' ' + spec.sideY + ')');
+        animateMove(piece, spec.sideX, spec.sideY, spec.targetX, spec.targetY, 820);
+    } else {
+        piece.setAttribute('transform', 'translate(' + spec.targetX + ' ' + spec.targetY + ')');
+    }
+}
+
+function addLabel(parent, html, x, y, color, isPast) {
+    var el = document.createElement('div');
+    el.className = 'diagram-label visible' + (isPast ? ' past' : '');
+    el.style.top = y + 'px';
+    el.style.color = color;
+    el.style.left = x + 'px';
+    el.style.textAlign = 'left';
+    el.style.boxShadow = 'inset 3px 0 0 ' + color + ', 0 6px 16px rgba(44, 36, 22, 0.08)';
+    el.innerHTML = html;
+    parent.appendChild(el);
+}
+
+function renderDiagram() {
+    var diagram = document.getElementById('diagram');
+    diagram.innerHTML = '';
+
+    var svg = svgEl('svg', {
+        width: W,
+        height: H,
+        viewBox: '0 0 ' + W + ' ' + H,
+        style: 'display:block;'
+    });
+
+    // Ground line
+    sketchLine(svg, 42, 332, 308, 332, FAINT, 3, 0.65);
+    // Figure
+    svg.appendChild(drawFigure(svg));
+
+    // Draw all previously equipped pieces and the current one
+    for (var i = 0; i < steps.length; i++) {
+        if (i < step) {
+            addPiece(svg, steps[i].piece, steps[i].color, false);
+        } else if (i === step) {
+            addPiece(svg, steps[i].piece, steps[i].color, true);
+            break;
+        }
+    }
+
+    // Fully armored state: draw all pieces
+    if (step >= steps.length) {
+        for (var j = 0; j < steps.length; j++) {
+            addPiece(svg, steps[j].piece, steps[j].color, false);
+        }
+    }
+
+    diagram.appendChild(svg);
+
+    // Add persistent labels for all equipped pieces
+    var labelLimit = step >= steps.length ? steps.length : step + 1;
+    for (var k = 0; k < labelLimit; k++) {
+        if (k < 0) continue;
+        var s = steps[k];
+        var spec = PIECES[s.piece];
+        var isPast = k < step && step < steps.length;
+        addLabel(diagram, spec.labelHtml, spec.labelX, spec.labelY, s.color, isPast);
+    }
+
+    // Intro overlay
+    if (step === -1) {
+        var overlay = document.createElement('div');
+        overlay.className = 'intro-overlay';
+        overlay.innerHTML = '<div>' +
+            '<p class="intro-verse">"Put on the whole armor of God,<br>that you may be able to stand."</p>' +
+            '<p class="intro-ref">Ephesians 6:11</p>' +
+            '</div>';
+        diagram.appendChild(overlay);
+    }
+}
+
+function renderCard() {
+    var cardArea = document.getElementById('card-area');
+    cardArea.innerHTML = '';
+
+    var wrapper = document.createElement('div');
+    wrapper.className = 'verse-card-wrapper';
+
+    var card = document.createElement('div');
+    card.className = 'verse-card';
+
+    var bar = document.createElement('div');
+    bar.className = 'verse-card-bar';
+
+    var content = document.createElement('div');
+    content.className = 'verse-card-content';
+
+    if (step === -1) {
+        bar.style.background = CHARCOAL;
+        content.style.setProperty('--accent-color', CHARCOAL);
+
+        var introTitle = document.createElement('h2');
+        introTitle.className = 'verse-card-title';
+        introTitle.style.color = CHARCOAL;
+        introTitle.textContent = 'Put on the Armor of God';
+        content.appendChild(introTitle);
+
+        var introText = document.createElement('p');
+        introText.className = 'verse-card-text';
+        introText.innerHTML = 'God does not send you into battle empty-handed. This armor is not something you manufacture. It is something God supplies. Your job is to put it on.';
+        content.appendChild(introText);
+
+    } else if (step >= steps.length) {
+        var doneColor = '#1A5C38';
+        bar.style.background = doneColor;
+        content.style.setProperty('--accent-color', doneColor);
+
+        var doneTitle = document.createElement('h2');
+        doneTitle.className = 'verse-card-title';
+        doneTitle.style.color = doneColor;
+        doneTitle.textContent = 'Stand Firm';
+        content.appendChild(doneTitle);
+
+        var doneText = document.createElement('p');
+        doneText.className = 'verse-card-text';
+        doneText.innerHTML = 'You are not fighting alone, and you are not fighting for an uncertain outcome. Jesus has already triumphed. <b>Your call is simply to stand.</b>';
+        content.appendChild(doneText);
+
+        var doneRef = document.createElement('p');
+        doneRef.className = 'verse-card-ref';
+        doneRef.textContent = 'Ephesians 6:13';
+        content.appendChild(doneRef);
+
+    } else {
+        var cur = steps[step];
+        bar.style.background = cur.color;
+        content.style.setProperty('--accent-color', cur.color);
+
+        var title = document.createElement('h2');
+        title.className = 'verse-card-title';
+        title.innerHTML = cur.title;
+        content.appendChild(title);
+
+        var text = document.createElement('p');
+        text.className = 'verse-card-text';
+        text.innerHTML = cur.text;
+        content.appendChild(text);
+
+        var ref = document.createElement('p');
+        ref.className = 'verse-card-ref';
+        ref.textContent = cur.ref;
+        content.appendChild(ref);
+    }
+
+    card.appendChild(bar);
+    card.appendChild(content);
+    wrapper.appendChild(card);
+
+    var navColor = step === -1 ? CHARCOAL : (step >= steps.length ? '#1A5C38' : steps[step].color);
+    wrapper.appendChild(buildNav(navColor));
+    cardArea.appendChild(wrapper);
+}
+
+function buildNav(color) {
+    var nav = document.createElement('div');
+    nav.className = 'nav-bar';
+
+    var backBtn = document.createElement('button');
+    backBtn.className = 'nav-btn';
+    backBtn.textContent = '\u2190 Back';
+    if (step === -1) {
+        backBtn.style.visibility = 'hidden';
+    } else {
+        backBtn.addEventListener('click', function() {
+            step -= 1;
+            render();
+        });
+    }
+    nav.appendChild(backBtn);
+
+    var dots = document.createElement('div');
+    dots.className = 'dot-nav';
+    for (var i = 0; i < steps.length; i++) {
+        (function(idx) {
+            var dot = document.createElement('div');
+            dot.className = 'dot';
+            dot.style.width = step === idx ? '20px' : '8px';
+            dot.style.background = idx <= step ? steps[idx].color : '#D4CFC4';
+            if (idx <= step && step < steps.length) {
+                dot.style.cursor = 'pointer';
+                dot.addEventListener('click', function() {
+                    step = idx;
+                    render();
+                });
+            }
+            dots.appendChild(dot);
+        })(i);
+    }
+    nav.appendChild(dots);
+
+    var nextBtn = document.createElement('button');
+    nextBtn.className = 'nav-btn primary';
+    nextBtn.style.background = color;
+    nextBtn.style.boxShadow = '0 2px 8px ' + color + '33';
+
+    if (step >= steps.length) {
+        nextBtn.textContent = '\u21BB Start Over';
+        nextBtn.addEventListener('click', function() {
+            step = -1;
+            render();
+        });
+    } else {
+        nextBtn.textContent = step === -1 ? 'Begin \u2192' : 'Next \u2192';
+        nextBtn.addEventListener('click', function() {
+            step += 1;
+            render();
+        });
+    }
+    nav.appendChild(nextBtn);
+
+    return nav;
+}
+
+function render() {
+    renderDiagram();
+    renderCard();
+}
+
+render();
+</script>
+
+</body>
+</html>
