@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Biblical Timeline</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap');
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --page-bg: #F8F6F1;
+            --card-bg: #FFFFFF;
+            --title-bg: #2C2416;
+            --title-text: #FAF8F3;
+            --subtitle-text: #D4CFC4;
+            --border-color: #EBE5D9;
+            --body-text: #2C2416;
+            --body-soft: #3D3426;
+            --shadow: 0 6px 20px rgba(44, 36, 22, 0.08);
+            --timeline-line: #5A4E3C;
+            --card-accent: #6F634B;
+        }
+
+        body {
+            font-family: Georgia, Cambria, serif;
+            background: var(--page-bg);
+            color: var(--body-text);
+            -webkit-font-smoothing: antialiased;
+            margin: 0;
+            padding: 0;
+        }
+
+        button {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .widget-outer {
+            width: 100%;
+            max-width: 100%;
+            background: var(--card-bg);
+            border: none;
+            border-radius: 0;
+            box-shadow: none;
+            overflow: hidden;
+            position: relative;
+        }
+
+        @media (min-width: 560px) {
+            body {
+                padding: 16px;
+            }
+
+            .widget-outer {
+                max-width: 460px;
+                margin: 0 auto;
+                border-radius: 12px;
+                border: 1px solid var(--border-color);
+                box-shadow: var(--shadow);
+            }
+        }
+
+        .title-bar {
+            background: var(--title-bg);
+            padding: 10px 20px 8px;
+            text-align: center;
+        }
+
+        .title-bar h1 {
+            color: var(--title-text);
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 22px;
+            font-weight: 600;
+            line-height: 1.2;
+            letter-spacing: 0.5px;
+        }
+
+        .title-bar p {
+            color: var(--subtitle-text);
+            font-family: 'Inter', -apple-system, sans-serif;
+            font-size: 13px;
+            font-weight: 400;
+            line-height: 1.35;
+            margin-top: 4px;
+            letter-spacing: 0.2px;
+        }
+
+        .diagram-wrapper {
+            height: 370px;
+            padding-top: 4px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .diagram-container {
+            position: relative;
+            width: 100%;
+            max-width: 460px;
+            overflow: hidden;
+        }
+
+        .diagram-title {
+            position: absolute;
+            top: 16px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-family: 'Inter', -apple-system, sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            line-height: 1.15;
+            letter-spacing: 0.15px;
+            color: #5A4E3C;
+            z-index: 4;
+            pointer-events: none;
+        }
+
+        .timeline-svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+            transform: translateY(32px);
+        }
+
+        @keyframes crossPulse {
+            0%, 100% {
+                opacity: 0.55;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.08);
+            }
+        }
+
+        #card-area {
+            background: #F6F4EE;
+            border-top: 1px solid var(--border-color);
+            padding-top: 16px;
+        }
+
+        .verse-card-wrapper {
+            margin: 0 auto;
+            padding: 0 16px 12px;
+        }
+
+        .verse-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 14px rgba(44, 36, 22, 0.06);
+            animation: fadeUp 0.35s ease;
+        }
+
+        .verse-card-bar {
+            height: 4px;
+            background: var(--card-accent);
+        }
+
+        .verse-card-content {
+            height: 136px;
+            padding: 12px 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .verse-card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 12px;
+        }
+
+        .verse-card-title {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 15px;
+            line-height: 1.2;
+            color: #5A4E3C;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .verse-card-step {
+            font-family: 'Inter', -apple-system, sans-serif;
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--card-accent);
+            background: rgba(0, 0, 0, 0.03);
+            border-radius: 999px;
+            padding: 3px 8px;
+            white-space: nowrap;
+        }
+
+        .verse-card-text {
+            color: var(--body-soft);
+            font-size: 12.5px;
+            line-height: 1.42;
+            margin: 0;
+        }
+
+        .verse-card-ref {
+            font-size: 11px;
+            color: var(--card-accent);
+            margin: auto 0 0 0;
+            font-weight: 700;
+            font-family: 'Inter', -apple-system, sans-serif;
+            letter-spacing: 0.1px;
+        }
+
+        .nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+            padding: 0 2px;
+        }
+
+        .nav-btn {
+            border-radius: 10px;
+            padding: 8px 14px;
+            border: 1.5px solid #D4CFC4;
+            background: transparent;
+            color: #2C2416;
+            font-family: 'Inter', -apple-system, sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .nav-btn.primary {
+            background: var(--card-accent);
+            border-color: var(--card-accent);
+            color: #FFFFFF;
+            min-width: 118px;
+        }
+
+        .nav-btn:disabled {
+            color: #C8C0B2;
+            border-color: #DED7CC;
+            cursor: default;
+        }
+
+        .dot-nav {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 999px;
+            background: #D8D1C5;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            transition: width 0.25s ease, background 0.25s ease;
+        }
+
+        .dot.visited {
+            background: color-mix(in srgb, var(--card-accent) 68%, #E4DDD0 32%);
+        }
+
+        .dot.active {
+            width: 20px;
+            background: var(--card-accent);
+        }
+
+        .dot:disabled {
+            cursor: default;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(6px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="widget-outer">
+        <div class="title-bar">
+            <h1>The Biblical Timeline</h1>
+            <p>A simple 4000-year overview from Abraham to today</p>
+        </div>
+
+        <div class="diagram-wrapper">
+            <div class="diagram-container">
+                <div id="diagram-title" class="diagram-title"></div>
+                <svg id="timeline-svg" class="timeline-svg" viewBox="0 0 350 370" aria-hidden="true"></svg>
+            </div>
+        </div>
+
+        <div id="card-area">
+            <div class="verse-card-wrapper">
+                <div class="verse-card">
+                    <div id="card-bar" class="verse-card-bar"></div>
+                    <div class="verse-card-content">
+                        <div class="verse-card-meta">
+                            <h2 id="card-title" class="verse-card-title"></h2>
+                            <div id="card-step" class="verse-card-step"></div>
+                        </div>
+                        <p id="card-text" class="verse-card-text"></p>
+                        <p id="card-ref" class="verse-card-ref"></p>
+                    </div>
+                </div>
+                <div class="nav-bar">
+                    <button id="back-btn" class="nav-btn">← Back</button>
+                    <div id="dot-nav" class="dot-nav"></div>
+                    <button id="next-btn" class="nav-btn primary">Next →</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const svgNs = "http://www.w3.org/2000/svg";
+        const axisY = 102;
+
+        const milestones = [
+            {
+                year: "2000",
+                era: "BC",
+                displayYear: "-2000",
+                title: "Abraham, Isaac, and Jacob",
+                visual: "Abraham · Israel",
+                x: 30,
+                height: 138,
+                accent: "#4A7C59",
+                books: "Genesis",
+                body: "Around the early 2nd millennium BC, God calls Abraham and begins the covenant family that becomes Israel through Isaac and Jacob."
+            },
+            {
+                year: "1500",
+                era: "BC",
+                displayYear: "-1500",
+                title: "Moses and the Exodus",
+                visual: "Moses",
+                x: 67,
+                height: 88,
+                accent: "#8A5A38",
+                books: "Exodus–Deuteronomy",
+                body: "In the broad Exodus era, God delivers Israel from Egypt through Moses, gives His law, and forms His people for covenant life."
+            },
+            {
+                year: "1000",
+                era: "BC",
+                displayYear: "-1000",
+                title: "Saul, David, and the Kings",
+                visual: "Saul · David · Kings",
+                x: 104,
+                height: 150,
+                accent: "#55697B",
+                books: "1–2 Samuel; 1–2 Kings; 1–2 Chronicles",
+                body: "Around 1000 BC, Israel becomes a kingdom under Saul and David, then passes through Solomon and the later kings of Israel and Judah."
+            },
+            {
+                year: "500",
+                era: "BC",
+                displayYear: "-500",
+                title: "Exile and Return",
+                visual: "Exile · Return",
+                x: 140,
+                height: 120,
+                accent: "#B8860B",
+                books: "2 Kings; Ezra; Nehemiah; Daniel; Haggai–Malachi",
+                body: "After Jerusalem falls in 586 BC, God's people go into exile, then return under Persian rule to rebuild the city and the temple."
+            },
+            {
+                year: "0",
+                era: "",
+                displayYear: "",
+                title: "Jesus and the Church",
+                visual: "Jesus · Church",
+                x: 176,
+                height: 132,
+                accent: "#6A4B3C",
+                books: "The Gospels; Acts",
+                body: "At the center of the timeline stands Jesus. His life, death, resurrection, and the birth of the church reshape everything before and after."
+            },
+            {
+                year: "500",
+                era: "AD",
+                displayYear: "500",
+                title: "A.D. 500: The Church Spreads",
+                visual: "Church Spreads",
+                x: 212,
+                height: 122,
+                accent: "#5D7A66",
+                books: "Church history after Acts",
+                body: "After the fall of Rome, Christian worship, Scripture, and mission continue spreading through Europe and beyond."
+            },
+            {
+                year: "1000",
+                era: "AD",
+                displayYear: "1000",
+                title: "A.D. 1000: The Great Schism",
+                visual: "Great Schism",
+                x: 249,
+                height: 110,
+                accent: "#7A5E8C",
+                books: "Church history",
+                body: "In 1054, the East-West Schism marks the enduring separation between the Western and Eastern branches of the church."
+            },
+            {
+                year: "1500",
+                era: "AD",
+                displayYear: "1500",
+                title: "A.D. 1500: The Reformation",
+                visual: "Reformation",
+                x: 286,
+                height: 136,
+                accent: "#B05A3C",
+                books: "Church history",
+                body: "In 1517, the Reformation presses the church back toward Scripture, the gospel, and renewed preaching and translation."
+            },
+            {
+                year: "2000",
+                era: "AD",
+                displayYear: "Today",
+                title: "The Global Church Today",
+                visual: "Global Church Today",
+                x: 322,
+                height: 140,
+                accent: "#D27A15",
+                books: "Church history and your place in the story",
+                body: "Today the church is global, the Bible is reaching more languages, and the same God who worked through all of Scripture is still building His people."
+            }
+        ];
+
+        const states = [
+            {
+                title: "A Simple 4000-Year Overview",
+                diagramTitle: "From Abraham to Today",
+                cardTitle: "A 4000-Year Overview",
+                body: "This timeline gives you a basic map from Abraham to today. The early Old Testament dates are approximate, but the flow helps you place the Bible's story in time.",
+                ref: "Anchor books: Genesis to Acts, then church history",
+                accent: "#6F634B"
+            },
+            ...milestones.map((m) => ({
+                title: m.title,
+                diagramTitle: m.year === "0"
+                    ? "At the Center: Jesus and the Church"
+                    : m.title === "The Global Church Today"
+                        ? "The Global Church Today"
+                        : `Around ${m.year} ${m.era}`,
+                cardTitle: m.title,
+                body: m.body,
+                ref: `Books: ${m.books}`,
+                accent: m.accent
+            }))
+        ];
+
+        let currentStep = 0;
+
+        const diagramTitle = document.getElementById("diagram-title");
+        const timelineSvg = document.getElementById("timeline-svg");
+        const cardBar = document.getElementById("card-bar");
+        const cardTitle = document.getElementById("card-title");
+        const cardText = document.getElementById("card-text");
+        const cardRef = document.getElementById("card-ref");
+        const cardStep = document.getElementById("card-step");
+        const backBtn = document.getElementById("back-btn");
+        const nextBtn = document.getElementById("next-btn");
+        const dotNav = document.getElementById("dot-nav");
+
+        function el(name, attrs = {}, text = "") {
+            const node = document.createElementNS(svgNs, name);
+            Object.entries(attrs).forEach(([key, value]) => node.setAttribute(key, value));
+            if (text) {
+                node.textContent = text;
+            }
+            return node;
+        }
+
+        function drawAxis() {
+            const axis = el("line", {
+                x1: 22,
+                y1: axisY,
+                x2: 338,
+                y2: axisY,
+                stroke: "#5A4E3C",
+                "stroke-width": 3.5,
+                "stroke-linecap": "round"
+            });
+            timelineSvg.appendChild(axis);
+
+            const arrow1 = el("line", {
+                x1: 338,
+                y1: axisY,
+                x2: 332,
+                y2: axisY - 5,
+                stroke: "#5A4E3C",
+                "stroke-width": 3.5,
+                "stroke-linecap": "round"
+            });
+            const arrow2 = el("line", {
+                x1: 338,
+                y1: axisY,
+                x2: 332,
+                y2: axisY + 5,
+                stroke: "#5A4E3C",
+                "stroke-width": 3.5,
+                "stroke-linecap": "round"
+            });
+            timelineSvg.appendChild(arrow1);
+            timelineSvg.appendChild(arrow2);
+
+            const bcLabel = el("text", {
+                x: 92,
+                y: 60,
+                "font-family": "Inter, sans-serif",
+                "font-size": 17,
+                "font-weight": 700,
+                fill: "#7A6C59",
+                "text-anchor": "middle"
+            }, "BC");
+            timelineSvg.appendChild(bcLabel);
+
+            const adLabel = el("text", {
+                x: 258,
+                y: 60,
+                "font-family": "Inter, sans-serif",
+                "font-size": 17,
+                "font-weight": 700,
+                fill: "#7A6C59",
+                "text-anchor": "middle"
+            }, "AD");
+            timelineSvg.appendChild(adLabel);
+
+            milestones.forEach((milestone) => {
+                const isZero = milestone.year === "0";
+                const isToday = milestone.title === "The Global Church Today";
+                const tickHeight = isZero ? 28 : 18;
+                const tick = el("line", {
+                    x1: milestone.x,
+                    y1: axisY - tickHeight / 2,
+                    x2: milestone.x,
+                    y2: axisY + tickHeight / 2,
+                    stroke: "#5A4E3C",
+                    "stroke-width": isZero ? 4 : 2.5,
+                    "stroke-linecap": "round"
+                });
+                timelineSvg.appendChild(tick);
+
+                if (isZero) {
+                    const cross = el("line", {
+                        x1: milestone.x - 9,
+                        y1: axisY,
+                        x2: milestone.x + 9,
+                        y2: axisY,
+                        stroke: "#5A4E3C",
+                        "stroke-width": 4,
+                        "stroke-linecap": "round"
+                    });
+                    timelineSvg.appendChild(cross);
+
+                    const christMark = el("line", {
+                        x1: milestone.x,
+                        y1: axisY - 46,
+                        x2: milestone.x,
+                        y2: axisY - 24,
+                        stroke: "#5A4E3C",
+                        "stroke-width": 2.5,
+                        "stroke-linecap": "round"
+                    });
+                    const christCross = el("line", {
+                        x1: milestone.x - 6,
+                        y1: axisY - 40,
+                        x2: milestone.x + 6,
+                        y2: axisY - 40,
+                        stroke: "#5A4E3C",
+                        "stroke-width": 2.5,
+                        "stroke-linecap": "round"
+                    });
+                    timelineSvg.appendChild(christMark);
+                    timelineSvg.appendChild(christCross);
+
+                    if (currentStep >= 5) {
+                        const halo = el("circle", {
+                            cx: milestone.x,
+                            cy: axisY - 36,
+                            r: currentStep === 5 ? 14 : 12,
+                            fill: "rgba(212, 156, 55, 0.10)",
+                            stroke: "rgba(212, 156, 55, 0.32)",
+                            "stroke-width": 1.5
+                        });
+                        halo.style.transformOrigin = `${milestone.x}px ${axisY - 36}px`;
+                        if (currentStep === 5) {
+                            halo.style.animation = "crossPulse 1.8s ease-in-out infinite";
+                        }
+                        timelineSvg.appendChild(halo);
+
+                        const flare1 = el("line", {
+                            x1: milestone.x - 16,
+                            y1: axisY - 36,
+                            x2: milestone.x - 11,
+                            y2: axisY - 36,
+                            stroke: "#D49C37",
+                            "stroke-width": currentStep === 5 ? 2 : 1.5,
+                            "stroke-linecap": "round",
+                            opacity: currentStep === 5 ? 0.8 : 0.42
+                        });
+                        const flare2 = el("line", {
+                            x1: milestone.x + 11,
+                            y1: axisY - 36,
+                            x2: milestone.x + 16,
+                            y2: axisY - 36,
+                            stroke: "#D49C37",
+                            "stroke-width": currentStep === 5 ? 2 : 1.5,
+                            "stroke-linecap": "round",
+                            opacity: currentStep === 5 ? 0.8 : 0.42
+                        });
+                        const flare3 = el("line", {
+                            x1: milestone.x,
+                            y1: axisY - 49,
+                            x2: milestone.x,
+                            y2: axisY - 55,
+                            stroke: "#D49C37",
+                            "stroke-width": currentStep === 5 ? 2 : 1.5,
+                            "stroke-linecap": "round",
+                            opacity: currentStep === 5 ? 0.8 : 0.42
+                        });
+                        timelineSvg.appendChild(flare1);
+                        timelineSvg.appendChild(flare2);
+                        timelineSvg.appendChild(flare3);
+                    }
+                }
+
+                const yearText = el("text", {
+                    x: milestone.x,
+                    y: 78,
+                    "font-family": "Inter, sans-serif",
+                    "font-size": isToday ? 10 : 11,
+                    "font-weight": 700,
+                    fill: "#5A4E3C",
+                    "text-anchor": "middle",
+                    "letter-spacing": isToday ? 0.3 : 0.2
+                }, milestone.displayYear || milestone.year);
+                if (milestone.displayYear || milestone.year !== "0") {
+                    timelineSvg.appendChild(yearText);
+                }
+            });
+        }
+
+        function drawMilestone(milestone, index) {
+            const activeIndex = currentStep - 1;
+            const isActive = activeIndex === index;
+            const isPast = index < activeIndex;
+            const isFuture = index > activeIndex;
+            const showAllFaint = currentStep === 0;
+            const opacity = isActive ? 1 : showAllFaint ? 0.25 : isPast ? 0.48 : 0.18;
+            const stemOpacity = isActive ? 1 : showAllFaint ? 0.24 : isPast ? 0.32 : 0.12;
+            const cardWidth = 28;
+            const cardTop = axisY + 20;
+            const textSize = isActive ? 12.5 : 10.5;
+            const strokeWidth = isActive ? 2.5 : 1.6;
+            const corner = isActive ? 8 : 7;
+
+            const group = el("g", { opacity });
+            const stem = el("line", {
+                x1: milestone.x,
+                y1: axisY + 10,
+                x2: milestone.x,
+                y2: cardTop,
+                stroke: milestone.accent,
+                "stroke-width": isActive ? 2.2 : 1.6,
+                "stroke-linecap": "round",
+                opacity: stemOpacity
+            });
+            group.appendChild(stem);
+
+            const rect = el("rect", {
+                x: milestone.x - cardWidth / 2,
+                y: cardTop,
+                width: cardWidth,
+                height: milestone.height,
+                rx: corner,
+                fill: isActive ? colorWithAlpha(milestone.accent, 0.12) : "#FBFAF7",
+                stroke: milestone.accent,
+                "stroke-width": strokeWidth
+            });
+            group.appendChild(rect);
+
+            const text = el("text", {
+                x: milestone.x,
+                y: cardTop + milestone.height / 2 + 1,
+                fill: "#3D3426",
+                "font-family": "Inter, sans-serif",
+                "font-size": textSize,
+                "font-weight": isActive ? 700 : 600,
+                "text-anchor": "middle",
+                "dominant-baseline": "middle",
+                transform: `rotate(-90 ${milestone.x} ${cardTop + milestone.height / 2})`
+            }, milestone.visual);
+            group.appendChild(text);
+
+            const dot = el("circle", {
+                cx: milestone.x,
+                cy: axisY,
+                r: isActive ? 7 : 4.5,
+                fill: milestone.accent,
+                stroke: "#FFFFFF",
+                "stroke-width": isActive ? 2 : 1.5
+            });
+            group.appendChild(dot);
+
+            timelineSvg.appendChild(group);
+        }
+
+        function colorWithAlpha(hex, alpha) {
+            const clean = hex.replace("#", "");
+            const r = parseInt(clean.substring(0, 2), 16);
+            const g = parseInt(clean.substring(2, 4), 16);
+            const b = parseInt(clean.substring(4, 6), 16);
+            return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+        }
+
+        function renderTimeline() {
+            timelineSvg.innerHTML = "";
+            drawAxis();
+            milestones.forEach(drawMilestone);
+        }
+
+        function renderDots() {
+            dotNav.innerHTML = "";
+            states.forEach((_, index) => {
+                const dot = document.createElement("button");
+                dot.className = "dot";
+                if (index < currentStep) dot.classList.add("visited");
+                if (index === currentStep) dot.classList.add("active");
+                dot.addEventListener("click", () => {
+                    currentStep = index;
+                    render();
+                });
+                dotNav.appendChild(dot);
+            });
+        }
+
+        function render() {
+            const step = states[currentStep];
+            document.documentElement.style.setProperty("--card-accent", step.accent);
+            diagramTitle.textContent = step.diagramTitle || step.title;
+            cardBar.style.background = step.accent;
+            cardTitle.textContent = step.cardTitle;
+            cardText.textContent = step.body;
+            cardRef.textContent = step.ref;
+            cardStep.textContent = `${currentStep + 1} of ${states.length}`;
+            backBtn.disabled = currentStep === 0;
+            nextBtn.textContent = currentStep === states.length - 1 ? "Start Over" : "Next →";
+            renderTimeline();
+            renderDots();
+        }
+
+        backBtn.addEventListener("click", () => {
+            if (currentStep > 0) {
+                currentStep -= 1;
+                render();
+            }
+        });
+
+        nextBtn.addEventListener("click", () => {
+            if (currentStep === states.length - 1) {
+                currentStep = 0;
+            } else {
+                currentStep += 1;
+            }
+            render();
+        });
+
+        render();
+    </script>
+</body>
+</html>

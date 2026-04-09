@@ -1,28 +1,43 @@
 {
   "id": "1",
-  "title": "Lesson 1: Greatest Commandment Part 2 - Loving Your Neighbors",
-  "description": "The second greatest commandment is not a separate assignment from the first. It is the overflow of it. When your heart is full of love for God, that love spills outward toward the people around you.",
+  "title": "Loving Your Neighbors",
+  "description": "The second greatest commandment is not a separate assignment from the first. It is the overflow of it. When you are loved by the Father, that love moves outward toward the people around you. In this lesson you will explore what Jesus meant when He said love your neighbor as yourself, discover who your neighbor really is through the story of the Good Samaritan, and learn that the love you give away was never yours to begin with.",
   "blocks": [
     {
       "type": "image",
       "src": "images/202-3circles-logo.png",
-      "alt": "Growing Together Discipleship Series: Starting in Discipleship, Growing Up in Discipleship highlighted, and Leading in Discipleship."
-    },
-    {
-      "type": "text",
-      "text": "In 101 you were planted — a new believer setting down the first roots of faith. In 201 you went deep — the gospel took root, your identity in Christ was established, and the foundations of life with God were put in place. Now in 202 the tree is growing up, and these lessons are about the trunk that holds everything together: loving your neighbors, knowing the whole story of Scripture, growing in Christlike character, and becoming the kind of person who naturally bears fruit for others."
-    },
-    {
-      "type": "text",
-      "text": "In the last lesson, you explored what it means to love God with all your heart, soul, mind, and strength. That is the vertical beam of the cross - God reaching down to restore us to Himself. But the cross also has a horizontal beam, and that beam stretches outward toward the people around you. The second greatest commandment is not a separate topic. It is the natural overflow of the first. If you love God deeply, you will love people sacrificially. This lesson is about what that looks like in real life."
+      "alt": "Growing Together Discipleship Series: Growing Up in Discipleship highlighted.",
+      "width": "100%",
+      "align": "center"
     },
     {
       "type": "heading",
-      "text": "The Foundation: Why We Can Love at All"
+      "text": "Welcome to Growing Up"
     },
     {
       "type": "text",
-      "text": "Before we talk about how to love your neighbor, we need to understand why you can love your neighbor. The answer is not willpower. It is not guilt. It is not because a pastor told you to. You can love others because God loved you first. He took the first step. While you were still His enemy, He came to you in love, sacrifice, and restoration. Because He moved toward you, you now have the ability to move toward others."
+      "text": "If you are opening this lesson, you have already laid deep roots. In the Starting course you were planted. In Growing Deep the gospel took root, your identity in Christ was established, and the foundations of life with God were put in place. Now in Growing Up, the branches start to extend outward. These lessons are about what happens when the love of God that went deep in you begins to reach the people around you: your neighbors, your family, your church, your community. The tree is growing, and these lessons follow the branches."
+    },
+    {
+      "type": "text",
+      "text": "In the first lesson of the last course you explored what it means to love God with all your heart, soul, mind, and strength. That is the vertical beam of the cross, God reaching down to you and your love going back up to Him. But the cross also has a horizontal beam, and that beam stretches outward. This lesson is about where that horizontal love comes from, who it is for, and what it looks like when it costs you something."
+    },
+    {
+      "type": "widget",
+      "src": "widgets/great-command.html",
+      "height": "520px"
+    },
+    {
+      "type": "text",
+      "text": "Walk through the diagram above one more time. Notice where the love starts. It begins with God, coming down. It moves through the cross. And then it extends outward to the people around you. That outward movement is not a separate topic from loving God. It is where loving God leads. The vertical produces the horizontal. If the first course was about the roots going down, this course is about the branches reaching out."
+    },
+    {
+      "type": "heading",
+      "text": "Where Does the Love Come From?"
+    },
+    {
+      "type": "text",
+      "text": "Before asking who your neighbor is, there is a more important question: where does the love come from? Because if the answer is willpower, you will run dry. If the answer is guilt, you will burn out. If the answer is religious duty, you will quietly start keeping score of who deserves your kindness and who does not."
     },
     {
       "type": "verse",
@@ -31,17 +46,20 @@
     },
     {
       "type": "text",
-      "text": "This changes everything about how you approach neighbor-love. You are not grinding through acts of kindness to earn points with God. You are not forcing yourself to care about people out of religious duty. John Piper defines love as \"the overflow of joy in God that gladly meets the needs of others.\" That is the kind of love Jesus is after - love that flows freely from a heart that is already satisfied in Him. You can bless because you have been blessed. You can love because you have been loved."
+      "text": "The love comes from God. He moved first. While you were still His enemy, He came toward you in love, sacrifice, and restoration. He did not wait for you to clean up, earn it, or deserve it. He just came. And because He moved toward you, you now have the ability to move toward others. You are not generating love from an empty tank. You are giving away what has already been poured into you."
     },
     {
-      "type": "question",
-      "id": "201-02-1",
-      "text": "2.1 - Have you ever tried to love or serve someone out of guilt or obligation? What did that feel like compared to times when you served out of genuine joy?",
-      "data_question": "2.1 - Guilt vs. joy in serving"
+      "type": "verse",
+      "reference": "1 John 4:19",
+      "text": "We love because he first loved us."
+    },
+    {
+      "type": "text",
+      "text": "John Piper once defined love as \"the overflow of joy in God that gladly meets the needs of others.\" That is the kind of love Jesus is after. Not love that grinds through acts of service to earn approval. Not love that forces itself to care about people out of obligation. Love that flows freely from a heart already satisfied in God. You can give because you have already received. You can love because you have already been loved. The source never changes. Only the direction shifts, from vertical to horizontal."
     },
     {
       "type": "heading",
-      "text": "The Second Commandment and the Cross"
+      "text": "The Second Commandment"
     },
     {
       "type": "verse",
@@ -50,56 +68,58 @@
     },
     {
       "type": "text",
-      "text": "Notice that Jesus says the second commandment is \"like\" the first. Not lesser than it - like it. Loving people is the visible, horizontal expression of the invisible, vertical love between you and God. The world only knows the horizontal. People care for each other, sacrifice for each other, and build community all the time without God. But as a follower of Jesus, you bring the vertical dimension into those horizontal spaces. When you love your neighbor, you are not just being a nice person. You are putting the character of God on display."
+      "text": "Notice that Jesus says the second commandment is \"like\" the first. Not lesser than it. Like it. Loving people is the visible, horizontal expression of the invisible, vertical love between you and God. The world around you only sees the horizontal. People care for each other, sacrifice for each other, and build community all the time without God. But as a follower of Jesus, you bring the vertical into those horizontal spaces. When you love your neighbor, you are not just being a good person. You are putting the character of God on display."
     },
     {
       "type": "text",
-      "text": "Think about the \"as yourself\" part of this command. You already seek your own good. You think about your food, your clothes, your comfort, your happiness, your safety. That is natural. Jesus does not shame you for that. He redirects it. As often as you think about your own needs, think about the needs of the people around you. As you work for a comfortable place to live, desire that for your neighbor. As you seek to feel safe and secure, seek that for the people on your street. Your natural self-concern becomes a measuring stick for how much attention you give to others."
+      "text": "Now look at the phrase \"as yourself.\" Jesus is not shaming you for caring about your own needs. You already think about your food, your safety, your comfort, your future. That is natural. Jesus takes that natural self-concern and redirects it. As often as you think about your own well-being, think about the well-being of the person next to you. As you work to have a healthy family and home, desire that for your neighbor. As you want to feel safe and secure, seek that for the people around you. Your own self-concern becomes the measuring stick for how much attention you give to others."
     },
     {
       "type": "question",
-      "id": "201-02-2",
-      "text": "2.2 - When you hear \"love your neighbor as yourself,\" what is your first reaction? Does it feel like a heavy burden or an invitation? Why?",
-      "data_question": "2.2 - Reaction to the command"
+      "id": "202-01-1",
+      "text": "1.1 - When you hear \"love your neighbor as yourself,\" what is your first honest reaction? Does it feel like a heavy burden or an invitation? What does your reaction tell you about where your love is coming from?",
+      "height": "tall"
     },
     {
       "type": "heading",
-      "text": "Who is My Neighbor?"
+      "text": "Who Is My Neighbor?"
     },
     {
       "type": "text",
-      "text": "This is the question a religious lawyer asked Jesus in Luke 10 - and it is the same question most of us are still asking. \"Who is my neighbor?\" sounds like a reasonable question, but Jesus saw right through it. The lawyer was not asking because he wanted to love more people. He was asking to justify his limits on love. He wanted Jesus to draw a circle around the people he was responsible for so he could ignore everyone else."
+      "text": "This is the question a man who studied religious laws asked Jesus in Luke 10, and it is the same question most of us are still asking. \"Who is my neighbor?\" sounds reasonable. But Jesus saw right through it. The religious man was not asking because he wanted to love more people. He was asking to find out what was the least he had to do. He wanted Jesus to draw a circle around the people he was responsible for so he could safely ignore everyone else."
     },
     {
       "type": "text",
       "text": "Jesus answered with a story that blew the question apart."
     },
     {
-      "type": "verse",
-      "reference": "Luke 10:30-33",
-      "text": "Jesus replied, \"A man was going down from Jerusalem to Jericho, and he fell among robbers, who stripped him and beat him and departed, leaving him half dead. Now by chance a priest came down that road, and when he saw him he passed by on the other side. So likewise a Levite, when he came to the place and saw him, passed by on the other side. But a Samaritan, as he journeyed, came to where he was, and when he saw him, he had compassion.\""
+      "type": "parable",
+      "title": "The Good Samaritan",
+      "image": "images/good-samaritan-story.jpg",
+      "alt": "A Samaritan kneeling beside a wounded man on a desolate road",
+      "text": "The road from Jerusalem to Jericho was seventeen miles of wilderness, steep and winding, known for bandits. A man traveling alone was attacked, stripped, beaten, and left for dead on the side of the road.<br><br>A priest came by first. He saw the man and crossed to the other side. Then a Levite, a temple worker, passed the same way. He looked, and he crossed to the other side too. These were not evil men. They had lofty religious aims. But they were not moved by suffering close at hand where they would have had to get their own hands dirty.<br><br>Then a Samaritan came. To understand what this meant, you need to know that Jews and Samaritans had despised each other for centuries. Deep ethnic, religious, and political hostility separated them. A Jewish audience hearing this story would have expected the Samaritan to be the villain, not the hero. But Jesus made him the hero.<br><br>The Samaritan stopped. He knelt in the dirt beside a stranger who, by every social and cultural standard, was his enemy. He poured oil and wine on the man's wounds, lifted him onto his own donkey, carried him to an inn, and paid for his care out of his own pocket. He did not ask the man's name, his nationality, or his theology. He saw a human being broken on the ground, and he moved toward the mess."
     },
     {
       "type": "text",
-      "text": "The priest and the Levite were the religious insiders. They had lofty spiritual aims, but they were not moved by suffering close at hand where they would have had to get their own hands dirty. The hero of the story is a Samaritan - a cultural enemy of the Jews. He crossed every social, ethnic, and political boundary to care for a stranger. His love was costly. He used his own oil, wine, donkey, and money. He did not ask for the beaten man's credentials or check his theology first. He saw a human being in need and he moved toward the mess."
+      "text": "At the end of the story Jesus did not answer the lawyer's original question. He flipped it entirely. The lawyer had asked, \"Who is my neighbor?\" meaning, \"Which people qualify for my love?\" But Jesus responded, \"Which of these three proved to be a neighbor to the man?\" He changed the question from <em>What kind of person is my neighbor?</em> to <em>What kind of person am I?</em> He was no longer interested in who deserves your love. He was asking what kind of neighbor you are becoming."
     },
     {
       "type": "text",
-      "text": "Here is the part that changes the conversation. At the end of the parable, Jesus does not answer the lawyer's original question. He flips it entirely. The lawyer asked, \"Who is my neighbor?\" - meaning, \"Which people deserve my love?\" But Jesus responds, \"Which of these three proved to be a neighbor?\" He shifts the focus from identifying the right people to love, to becoming the kind of person whose love knows no boundaries. Jesus is less interested in who qualifies as your neighbor and far more interested in what kind of neighbor you are becoming."
+      "text": "This is the part that still confronts us. It is easy to have a heart for distant causes while ignoring the mess right in front of you. The priest and the Levite probably had ministry plans that afternoon. They had places to be, important religious work to do. But love is not an emotion you feel from a distance. It is a decision you make when it costs you something. The Samaritan used his own oil, his own wine, his own donkey, his own money. Love that does not cost anything is not the love Jesus is talking about."
     },
     {
       "type": "question",
-      "id": "201-02-3",
-      "text": "2.3 - Is there anyone in your life you have been keeping outside your circle of concern - someone different from you, difficult to love, or easy to overlook? What would it look like to move toward them?",
-      "data_question": "2.3 - Expanding the circle"
+      "id": "202-01-2",
+      "text": "1.2 - Is there anyone in your life you have been keeping outside your circle of concern, someone different from you, difficult to love, or easy to overlook? What would it look like to move toward them instead of crossing to the other side?",
+      "height": "tall"
     },
     {
       "type": "heading",
-      "text": "Love as the Evidence of Faith"
+      "text": "Love That Shows Up"
     },
     {
       "type": "text",
-      "text": "If loving others flows from loving God, then the reverse is also true: the absence of love should give us pause. The Bible is direct about this. We are saved by faith alone, but the faith that saves is never alone. Genuine faith produces love for others the way an apple tree produces apples. It is the natural fruit of a heart that has been changed by the gospel. If there is no movement toward the needs of other people, it is worth asking whether the heart has truly been transformed."
+      "text": "If loving others flows from loving God, then the reverse should give you pause. The absence of love for others is worth examining honestly. The Bible is direct about this. You are saved by faith alone, but the faith that saves is never alone. Genuine faith produces love for others the way a healthy tree produces fruit. It is the natural evidence of a heart that has been changed by the gospel."
     },
     {
       "type": "verse",
@@ -108,65 +128,47 @@
     },
     {
       "type": "text",
-      "text": "This is a sobering passage, but it is not meant to crush you with guilt. It is meant to give you clarity. Love is not a feeling you wait to have. It is a decision you make with your hands and your time and your resources. \"In deed and in truth\" means love has to show up somewhere. It has to land on someone. It is wonderful to say you love people, but if you see someone in need and close your heart to them, something is disconnected."
+      "text": "This is a sobering passage, but it is not meant to crush you with guilt. It is meant to give you clarity. Love is not a feeling you wait to have. It is a decision you make with your hands, your time, and your resources. \"In deed and in truth\" means love has to show up somewhere. It has to land on someone. It is one thing to say you love people. It is another thing to see someone in need and actually open your heart instead of closing it."
     },
     {
       "type": "text",
-      "text": "Here is the encouragement: you do not love others to become a child of God. You love others because you already are one. A child does not earn their place in the family by being good. They are born into it. Your love for others is not what earns your salvation - it is what proves it is real. You love because you have already been freely forgiven and ransomed by the blood of Jesus."
+      "text": "Here is the encouragement: you do not love others to become a child of God. You love others because you already are one. A child does not earn a place in the family by being good. That child is born into it. Your love for others is not what earns your salvation. It is what proves it is real. You love because you have already been freely forgiven and ransomed by the blood of Jesus."
     },
     {
       "type": "question",
-      "id": "201-02-4",
-      "text": "2.4 - Read 1 John 3:17 again slowly. Is there a specific person or situation where God might be asking you to open your heart instead of closing it?",
-      "data_question": "2.4 - Opening your heart"
-    },
-    {
-      "type": "heading",
-      "text": "What Love Looks Like: The BLESS Rhythms"
-    },
-    {
-      "type": "text",
-      "text": "So how does this actually play out in daily life? A simple framework called the BLESS rhythms helps move love from theology to practice. Each letter gives you a practical rhythm you can build into your week."
-    },
-    {
-      "type": "list",
-      "items": [
-        "<strong>B - Begin in Prayer.</strong> Talk to God about people before you talk to people about God. Pray for the people on your street, in your workplace, and in your daily life by name.",
-        "<strong>L - Listen.</strong> People do not care how much you know until they know how much you care. Give your full presence to someone - put down the phone, look them in the eye, and hear what they are really saying.",
-        "<strong>E - Eat.</strong> Share meals. Eating together moves relationships from acquaintanceship to friendship. Invite a neighbor over for dinner. Grab coffee with a coworker. Break bread together and see what God does.",
-        "<strong>S - Serve.</strong> Use your time, talents, and treasure to help others. Mow a neighbor's lawn. Watch someone's kids so they can rest. Make margin in your life so you have something left to give.",
-        "<strong>S - Story.</strong> Share your life - and how Jesus has changed your story. This is not a script or a sales pitch. It is the honest overflow of what God has done in you."
-      ]
-    },
-    {
-      "type": "text",
-      "text": "These are not items on a religious checklist. They are rhythms of a life that is paying attention. When you begin in prayer, God opens your eyes. When you listen, you learn what people actually need. When you eat together, walls come down. When you serve, you put the love of Christ into action. And when you share your story, the gospel shows up in the most natural way possible."
-    },
-    {
-      "type": "question",
-      "id": "201-02-5",
-      "text": "2.5 - Which of the BLESS rhythms comes most naturally to you? Which one feels the hardest? Pick one to focus on this week and write down who you plan to practice it with.",
-      "data_question": "2.5 - BLESS rhythms application",
+      "id": "202-01-3",
+      "text": "1.3 - Read 1 John 3:17 again slowly. Is there a specific person or situation where God might be asking you to open your heart instead of closing it?",
       "height": "tall"
     },
     {
       "type": "heading",
-      "text": "Ultimate Motives, Not Ulterior Motives"
+      "text": "Who Is in Your Path?"
     },
     {
       "type": "text",
-      "text": "One more thing needs to be said about all of this. When you love your neighbor, you should have an ultimate motive - the hope that someday they will meet Jesus. But you should never have an ulterior motive - loving them only so they come to church or join your small group. The difference matters. An ulterior motive means you stop caring about someone once they say no. An ultimate motive means you love them because they are made in the image of God, period. You keep loving whether they ever darken the door of a church or not."
+      "text": "The Samaritan did not go looking for a project. He was on a journey and found someone in his path. That is usually how it works. God does not ask you to love the whole world at once. He asks you to love the person He has placed in front of you today. The neighbor on your street whose name you still do not know. The coworker who talks too much and never asks how you are doing. The family member who is hard to be around. The person in the checkout line who looks like they are barely holding it together. These are not interruptions to your day. They are the assignment."
     },
     {
       "type": "text",
-      "text": "Practical love in your neighborhood starts with simple things. Learn the names of the people on your street - not just the house on your left and right, but the three houses on either side. Put your phone away when a friend is talking. Shovel a neighbor's driveway in the winter. Bring a meal to a family who just had a baby. Pay for the coffee of the person behind you. These are small, ordinary acts - but they are the kind of love that makes people ask why you are different. And that question opens the door for the gospel."
+      "text": "Practical love starts with small, ordinary things. Learn someone's name. Put your phone away when a friend is talking. Bring a meal to a family going through a hard season. Pay attention to the person everyone else overlooks. These are not impressive acts. But they are the kind of love that makes people ask why you are different. And that question opens a door that no argument ever could."
     },
     {
       "type": "question",
-      "id": "201-02-6",
-      "text": "2.6 - Think about your actual neighborhood, workplace, or daily routine. Write down the names of three people God has placed in your life who need to experience the love of Christ through you this week.",
-      "data_question": "2.6 - Three people to love",
+      "id": "202-01-4",
+      "text": "1.4 - Think about your actual daily routine, your street, your workplace, your regular stops. Who has God placed in your path that you might be treating more like an interruption than an assignment? Write down one or two names.",
       "height": "tall"
+    },
+    {
+      "type": "heading",
+      "text": "This Week's Practice"
+    },
+    {
+      "type": "text",
+      "text": "This week, pick one person God has placed in your regular path and do one costly thing for them. Not costly in money, necessarily, but costly in attention, time, or comfort. Learn their name if you do not know it. Ask them a real question and actually listen to the answer. Bring them something they did not ask for. The goal is not to check a box. The goal is to let the love that God has poured into you overflow toward one specific person this week. Pay attention to what God does in you when you move toward someone instead of past them."
+    },
+    {
+      "type": "text",
+      "text": "Also this week, read Luke 10:25-37 slowly, the full Good Samaritan passage. As you read, sit with the question Jesus asked at the end: \"Which of these three proved to be a neighbor?\" Let that question settle, and ask yourself honestly which character in the story you most resemble right now."
     },
     {
       "type": "heading",
@@ -174,19 +176,19 @@
     },
     {
       "type": "question",
-      "id": "201-02-key",
+      "id": "202-01-key",
       "text": "What is one key thing you learned from this lesson, and what next step can you take this week?",
       "height": "short"
     },
     {
       "type": "question",
-      "id": "201-02-devos",
+      "id": "202-01-devos",
       "text": "What have you learned about God and yourself recently in your Daily Devotions?",
       "height": "short"
     },
     {
       "type": "question",
-      "id": "201-02-prayer",
+      "id": "202-01-prayer",
       "text": "What is a prayer request for this week?",
       "height": "short"
     }

@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Biblical Storyline</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@400;600;700&display=swap');
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --page-bg: #F8F6F1;
+            --card-bg: #FFFFFF;
+            --title-bg: #2C2416;
+            --title-text: #FAF8F3;
+            --subtitle-text: #D4CFC4;
+            --border-color: #EBE5D9;
+            --body-text: #2C2416;
+            --body-soft: #3D3426;
+            --shadow: 0 6px 20px rgba(44, 36, 22, 0.08);
+            --line-color: #5A4E3C;
+            --creation: #4A7C59;
+            --fall: #8A4E42;
+            --redemption: #55697B;
+            --restoration: #B8860B;
+            --card-accent: #5A4E3C;
+        }
+
+        body {
+            font-family: Georgia, Cambria, serif;
+            background: var(--page-bg);
+            color: var(--body-text);
+            -webkit-font-smoothing: antialiased;
+            margin: 0;
+            padding: 0;
+        }
+
+        button {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .widget-outer {
+            width: 100%;
+            max-width: 100%;
+            background: var(--card-bg);
+            border: none;
+            border-radius: 0;
+            box-shadow: none;
+            overflow: hidden;
+            position: relative;
+        }
+
+        @media (min-width: 560px) {
+            body {
+                padding: 16px;
+            }
+
+            .widget-outer {
+                max-width: 460px;
+                margin: 0 auto;
+                border-radius: 12px;
+                border: 1px solid var(--border-color);
+                box-shadow: var(--shadow);
+            }
+        }
+
+        .title-bar {
+            background: var(--title-bg);
+            padding: 10px 20px 8px;
+            text-align: center;
+        }
+
+        .title-bar h1 {
+            color: var(--title-text);
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 22px;
+            font-weight: 600;
+            line-height: 1.2;
+            letter-spacing: 0.5px;
+        }
+
+        .title-bar p {
+            color: var(--subtitle-text);
+            font-family: 'Inter', -apple-system, sans-serif;
+            font-size: 13px;
+            font-weight: 400;
+            line-height: 1.35;
+            margin-top: 4px;
+            letter-spacing: 0.2px;
+        }
+
+        .diagram-wrapper {
+            height: 370px;
+            padding-top: 4px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .diagram-container {
+            position: relative;
+            width: 100%;
+            max-width: 460px;
+            overflow: hidden;
+        }
+
+        .diagram-title {
+            position: absolute;
+            top: 16px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-family: 'Inter', -apple-system, sans-serif;
+            font-size: 21px;
+            font-weight: 600;
+            line-height: 1.15;
+            color: #5A4E3C;
+            letter-spacing: 0.1px;
+            z-index: 4;
+            pointer-events: none;
+        }
+
+        .story-svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+            transform: translateY(42px);
+        }
+
+        .story-path {
+            fill: none;
+            stroke: var(--line-color);
+            stroke-width: 4;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .story-path.your-story {
+            stroke-dasharray: 9 7;
+            opacity: 0.76;
+        }
+
+        .story-path.draw-line {
+            animation: none;
+        }
+
+        .story-point {
+            stroke: #FFFFFF;
+            stroke-width: 3;
+        }
+
+        .story-point.creation {
+            fill: var(--creation);
+        }
+
+        .story-point.fall {
+            fill: var(--fall);
+        }
+
+        .story-point.redemption {
+            fill: var(--redemption);
+        }
+
+        .story-point.restoration {
+            fill: var(--restoration);
+        }
+
+        .label-layer {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            transform: translateY(42px);
+        }
+
+        .story-tag {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.96);
+            border: 1px solid rgba(235, 229, 217, 0.92);
+            border-radius: 12px;
+            box-shadow: 0 6px 18px rgba(44, 36, 22, 0.06);
+            padding: 8px 10px 8px 12px;
+            min-height: 42px;
+            display: flex;
+            align-items: center;
+            animation: fadeTag 0.35s ease;
+        }
+
+        .story-tag::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 7px;
+            bottom: 7px;
+            width: 4px;
+            border-radius: 4px;
+            background: var(--tag-accent, var(--card-accent));
+        }
+
+        .story-tag span {
+            display: block;
+            font-family: 'Inter', -apple-system, sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--body-soft);
+            line-height: 1.22;
+        }
+
+        .story-tag.creation {
+            --tag-accent: var(--creation);
+        }
+
+        .story-tag.fall {
+            --tag-accent: var(--fall);
+        }
+
+        .story-tag.redemption {
+            --tag-accent: var(--redemption);
+        }
+
+        .story-tag.restoration {
+            --tag-accent: var(--restoration);
+        }
+
+        #card-area {
+            background: #F6F4EE;
+            border-top: 1px solid var(--border-color);
+            padding-top: 16px;
+        }
+
+        .verse-card-wrapper {
+            margin: 0 auto;
+            padding: 0 16px 12px;
+        }
+
+        .verse-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 14px rgba(44, 36, 22, 0.06);
+            animation: fadeUp 0.35s ease;
+        }
+
+        .verse-card-bar {
+            height: 4px;
+            background: var(--card-accent);
+        }
+
+        .verse-card-content {
+            height: 125px;
+            padding: 12px 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            gap: 4px;
+        }
+
+        .verse-card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 12px;
+        }
+
+        .verse-card-title {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 15px;
+            line-height: 1.25;
+            color: #5A4E3C;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .verse-card-step {
+            font-family: 'Inter', -apple-system, sans-serif;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            color: var(--card-accent);
+            background: rgba(0, 0, 0, 0.03);
+            border-radius: 999px;
+            padding: 3px 8px;
+            white-space: nowrap;
+        }
+
+        .verse-card-text {
+            color: var(--body-soft);
+            font-size: 12.5px;
+            line-height: 1.42;
+            margin: 0;
+        }
+
+        .nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+            padding: 0 2px;
+        }
+
+        .nav-btn {
+            border-radius: 10px;
+            padding: 8px 14px;
+            border: 1.5px solid #D4CFC4;
+            background: transparent;
+            color: #2C2416;
+            font-family: 'Inter', -apple-system, sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .nav-btn.primary {
+            background: var(--card-accent);
+            border-color: var(--card-accent);
+            color: #FFFFFF;
+            min-width: 118px;
+        }
+
+        .nav-btn:disabled {
+            color: #C8C0B2;
+            border-color: #DED7CC;
+            cursor: default;
+        }
+
+        .dot-nav {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 999px;
+            background: #D8D1C5;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            transition: width 0.25s ease, background 0.25s ease;
+        }
+
+        .dot.visited {
+            background: color-mix(in srgb, var(--card-accent) 70%, #E4DDD0 30%);
+        }
+
+        .dot.active {
+            width: 20px;
+            background: var(--card-accent);
+        }
+
+        .dot:disabled {
+            cursor: default;
+        }
+
+        @keyframes fadeTag {
+            from {
+                opacity: 0;
+                transform: translateY(5px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(6px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes drawLine {
+            from {
+                stroke-dashoffset: var(--path-length);
+            }
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="widget-outer">
+        <div class="title-bar">
+            <h1>The Biblical Storyline</h1>
+            <p>One story in four movements, told across all of Scripture</p>
+        </div>
+
+        <div class="diagram-wrapper">
+            <div class="diagram-container">
+                <div id="diagram-title" class="diagram-title"></div>
+                <svg class="story-svg" viewBox="0 0 350 370" aria-hidden="true">
+                    <path id="story-path" class="story-path" d="M 26 98 C 86 98, 108 101, 126 126 C 149 157, 154 206, 176 240 C 188 257, 205 235, 224 210 C 248 180, 278 132, 304 98 C 314 86, 322 82, 332 78"></path>
+                    <circle class="story-point creation" cx="48" cy="98" r="10"></circle>
+                    <circle class="story-point fall" cx="140" cy="149" r="10"></circle>
+                    <circle class="story-point redemption" cx="224" cy="214" r="10"></circle>
+                    <circle class="story-point restoration" cx="304" cy="98" r="10"></circle>
+                </svg>
+                <div id="label-layer" class="label-layer"></div>
+            </div>
+        </div>
+
+        <div id="card-area">
+            <div class="verse-card-wrapper">
+                <div class="verse-card">
+                    <div id="card-bar" class="verse-card-bar"></div>
+                    <div class="verse-card-content">
+                        <div class="verse-card-meta">
+                            <h2 id="card-title" class="verse-card-title"></h2>
+                            <div id="card-step" class="verse-card-step"></div>
+                        </div>
+                        <p id="card-text" class="verse-card-text"></p>
+                    </div>
+                </div>
+                <div class="nav-bar">
+                    <button id="back-btn" class="nav-btn">← Back</button>
+                    <div id="dot-nav" class="dot-nav"></div>
+                    <button id="next-btn" class="nav-btn primary">Next →</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const scenarios = [
+            {
+                title: "The Four Movements",
+                body: "Every story in the Bible follows the same pattern: something good, something broken, God stepping in, and a new beginning. This is the biblical storyline.",
+                stepLabel: "1 of 7",
+                accent: "#5A4E3C",
+                dashed: false,
+                labels: {
+                    creation: "Creation",
+                    fall: "Fall",
+                    redemption: "Redemption",
+                    restoration: "Restoration"
+                }
+            },
+            {
+                title: "The Bible's Big Story",
+                body: "From Genesis to Revelation, the Bible tells one continuous story. God creates a good world, sin breaks it, Jesus comes to rescue, and one day God will make all things new.",
+                stepLabel: "2 of 7",
+                accent: "#4A7C59",
+                dashed: false,
+                labels: {
+                    creation: "God creates the world",
+                    fall: "Humanity falls into sin",
+                    redemption: "Jesus comes to redeem",
+                    restoration: "Restored relationship with God"
+                }
+            },
+            {
+                title: "Noah and the Flood",
+                body: "Humanity fell so far that God grieved He had made them. But He provided an ark, a way of rescue through judgment, and set a rainbow in the sky as a promise to start again.",
+                stepLabel: "3 of 7",
+                accent: "#8A4E42",
+                dashed: false,
+                labels: {
+                    creation: "A good world and a righteous man",
+                    fall: "Humanity corrupts everything",
+                    redemption: "God provides the ark",
+                    restoration: "Covenant and a rainbow"
+                }
+            },
+            {
+                title: "Joseph to Egypt",
+                body: "Betrayed by his brothers and imprisoned for years, Joseph was raised from the pit to the palace. What others meant for evil, God meant for good.",
+                stepLabel: "4 of 7",
+                accent: "#55697B",
+                dashed: false,
+                labels: {
+                    creation: "Dreams and a father's favor",
+                    fall: "Betrayed, sold, imprisoned",
+                    redemption: "God raises him from pit to palace",
+                    restoration: "God meant it for good"
+                }
+            },
+            {
+                title: "Moses and the Exodus",
+                body: "God's people cried out from slavery for four hundred years. God heard them, sent a deliverer, and led them out through blood and water into the land He had promised.",
+                stepLabel: "5 of 7",
+                accent: "#B8860B",
+                dashed: false,
+                labels: {
+                    creation: "God's chosen people, Israel",
+                    fall: "Enslaved in Egypt for 400 years",
+                    redemption: "God parts the sea and leads them out",
+                    restoration: "Promised Land and God's presence"
+                }
+            },
+            {
+                title: "Paul the Apostle",
+                body: "A man who hunted the church was met by Jesus on the road and turned inside out. The greatest destroyer became the greatest builder.",
+                stepLabel: "6 of 7",
+                accent: "#55697B",
+                dashed: false,
+                labels: {
+                    creation: "Brilliant, trained, zealous",
+                    fall: "Persecutes the church",
+                    redemption: "Jesus meets him on the road",
+                    restoration: "From persecuting to preaching"
+                }
+            },
+            {
+                title: "Your Story",
+                body: "You were made with purpose. Something broke. Jesus found you. And now the same God who has been writing rescue into every story is writing it into yours.",
+                stepLabel: "7 of 7",
+                accent: "#B8860B",
+                dashed: true,
+                labels: {
+                    creation: "Made in God's image with purpose",
+                    fall: "Something broke",
+                    redemption: "Jesus found you",
+                    restoration: "Being made new, day by day"
+                }
+            }
+        ];
+
+        const positions = {
+            creation: { top: 28, left: 38, width: 158 },
+            fall: { top: 157, left: 86, width: 148 },
+            redemption: { top: 240, left: 220, width: 144 },
+            restoration: { top: 30, left: 242, width: 140 }
+        };
+
+        const labelOrder = ["creation", "fall", "redemption", "restoration"];
+
+        let currentStep = 0;
+
+        const pathEl = document.getElementById("story-path");
+        const labelLayer = document.getElementById("label-layer");
+        const diagramTitle = document.getElementById("diagram-title");
+        const cardBar = document.getElementById("card-bar");
+        const cardTitle = document.getElementById("card-title");
+        const cardText = document.getElementById("card-text");
+        const cardStep = document.getElementById("card-step");
+        const backBtn = document.getElementById("back-btn");
+        const nextBtn = document.getElementById("next-btn");
+        const dotNav = document.getElementById("dot-nav");
+
+        function renderDots() {
+            dotNav.innerHTML = "";
+            scenarios.forEach((_, index) => {
+                const dot = document.createElement("button");
+                dot.className = "dot";
+                if (index < currentStep) {
+                    dot.classList.add("visited");
+                }
+                if (index === currentStep) {
+                    dot.classList.add("active");
+                }
+                dot.addEventListener("click", () => {
+                    currentStep = index;
+                    render();
+                });
+                dotNav.appendChild(dot);
+            });
+        }
+
+        function renderLabels(step) {
+            labelLayer.innerHTML = "";
+            labelOrder.forEach((key) => {
+                const tag = document.createElement("div");
+                const layout = positions[key];
+                tag.className = `story-tag ${key}`;
+                tag.style.top = `${layout.top}px`;
+                tag.style.left = `${layout.left}px`;
+                tag.style.width = `${layout.width}px`;
+                tag.innerHTML = `<span>${step.labels[key]}</span>`;
+                labelLayer.appendChild(tag);
+            });
+        }
+
+        function animateIntroLine() {
+            const totalLength = pathEl.getTotalLength();
+            pathEl.style.setProperty("--path-length", `${totalLength}`);
+            pathEl.style.strokeDasharray = `${totalLength}`;
+            pathEl.style.strokeDashoffset = `${totalLength}`;
+            pathEl.style.animation = "none";
+            pathEl.getBoundingClientRect();
+            pathEl.style.animation = "drawLine 0.8s ease forwards";
+        }
+
+        function render() {
+            const step = scenarios[currentStep];
+            document.documentElement.style.setProperty("--card-accent", step.accent);
+
+            diagramTitle.textContent = step.title;
+            cardBar.style.background = step.accent;
+            cardTitle.textContent = step.title;
+            cardText.textContent = step.body;
+            cardStep.textContent = step.stepLabel;
+
+            backBtn.disabled = currentStep === 0;
+            nextBtn.textContent = currentStep === scenarios.length - 1 ? "Start Over" : "Next →";
+
+            pathEl.classList.toggle("your-story", step.dashed);
+            pathEl.style.strokeDasharray = "none";
+            pathEl.style.strokeDashoffset = "0";
+            pathEl.style.animation = "none";
+
+            if (currentStep === 0) {
+                animateIntroLine();
+            }
+
+            renderLabels(step);
+            renderDots();
+        }
+
+        backBtn.addEventListener("click", () => {
+            if (currentStep > 0) {
+                currentStep -= 1;
+                render();
+            }
+        });
+
+        nextBtn.addEventListener("click", () => {
+            if (currentStep === scenarios.length - 1) {
+                currentStep = 0;
+            } else {
+                currentStep += 1;
+            }
+            render();
+        });
+
+        render();
+    </script>
+</body>
+</html>

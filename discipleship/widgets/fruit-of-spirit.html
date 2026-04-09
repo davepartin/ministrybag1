@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Fruit of the Spirit</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@400;600;700&display=swap');
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Georgia, Cambria, serif;
+            background: #F8F6F1;
+            color: #2C2416;
+            -webkit-font-smoothing: antialiased;
+            padding: 0;
+            margin: 0;
+        }
+
+        button {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .widget-outer {
+            background: #FFFFFF;
+            border-radius: 0;
+            overflow: hidden;
+            box-shadow: none;
+            border: none;
+            max-width: 100%;
+            width: 100%;
+            margin: 0;
+            position: relative;
+        }
+
+        @media (min-width: 560px) {
+            body {
+                padding: 16px;
+                background: #F8F6F1;
+            }
+
+            .widget-outer {
+                border-radius: 12px;
+                box-shadow: 0 6px 20px rgba(44, 36, 22, 0.08);
+                border: 1px solid #EBE5D9;
+                max-width: 460px;
+                margin: 0 auto;
+            }
+        }
+
+        .title-bar {
+            background: #2C2416;
+            padding: 10px 20px 8px;
+            text-align: center;
+        }
+
+        .title-bar h1 {
+            font-size: 22px;
+            font-weight: 600;
+            color: #FAF8F3;
+            margin: 0;
+            line-height: 1.2;
+            font-family: 'Playfair Display', Georgia, serif;
+            letter-spacing: 0.5px;
+        }
+
+        .title-bar p {
+            font-size: 13px;
+            color: #D4CFC4;
+            margin: 4px 0 0 0;
+            font-family: 'Inter', -apple-system, sans-serif;
+            font-weight: 400;
+            letter-spacing: 0.2px;
+        }
+
+        .diagram-wrapper {
+            padding: 4px 0 0;
+            display: flex;
+            justify-content: center;
+            height: 370px;
+        }
+
+        .diagram-container {
+            position: relative;
+            overflow: visible;
+            width: 100%;
+            max-width: 460px;
+        }
+
+        .diagram-label {
+            position: absolute;
+            font-family: 'Trebuchet MS', sans-serif;
+            font-weight: 700;
+            letter-spacing: 0.28px;
+            text-align: center;
+            pointer-events: none;
+            white-space: nowrap;
+            opacity: 0;
+            transform: translateY(6px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .diagram-label.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .intro-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 20;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 28px 30px;
+            pointer-events: none;
+        }
+
+        .intro-verse {
+            font-size: 19px;
+            line-height: 1.45;
+            color: #2C2416;
+            font-style: italic;
+            margin: 0 0 8px 0;
+            text-shadow: 0 1px 6px rgba(250, 248, 243, 0.95);
+        }
+
+        .intro-ref {
+            font-size: 13px;
+            color: #9B917F;
+            font-family: 'Trebuchet MS', sans-serif;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        #card-area {
+            background-color: #F6F4EE;
+            border-top: 1px solid #EBE5D9;
+            padding-top: 16px;
+        }
+
+        .verse-card-wrapper {
+            margin: 0 auto;
+            padding: 0 16px 12px;
+        }
+
+        .verse-card {
+            background: #FFFFFF;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 14px rgba(44, 36, 22, 0.06);
+            animation: fadeSlide 0.35s ease;
+        }
+
+        .verse-card-bar {
+            height: 4px;
+        }
+
+        .verse-card-content {
+            padding: 12px 16px;
+            height: 125px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        .verse-card-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: #5A4E3C;
+            margin: 0 0 4px 0;
+            line-height: 1.25;
+            font-family: 'Playfair Display', Georgia, serif;
+        }
+
+        .verse-card-text {
+            font-size: 13px;
+            line-height: 1.45;
+            color: #3D3426;
+            margin: 0 0 4px 0;
+            flex-grow: 1;
+        }
+
+        .verse-card-text b {
+            color: var(--accent-color, #2C2416);
+        }
+
+        .verse-card-ref {
+            font-size: 11px;
+            color: var(--accent-color, #9B917F);
+            margin: 0;
+            font-weight: 600;
+            font-family: 'Trebuchet MS', sans-serif;
+        }
+
+        .nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+            padding: 0 2px;
+        }
+
+        .nav-btn {
+            background: transparent;
+            border: 1.5px solid #D4CFC4;
+            border-radius: 10px;
+            padding: 8px 14px;
+            font-size: 12px;
+            font-family: 'Trebuchet MS', sans-serif;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .nav-btn.primary {
+            color: #fff;
+            border: none;
+        }
+
+        .dot-nav {
+            display: flex;
+            gap: 5px;
+            align-items: center;
+        }
+
+        .dot {
+            height: 8px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .orange-svg {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        @keyframes fadeSlide {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes sliceIn {
+            from {
+                opacity: 0;
+                transform: scale(0.965);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="widget-outer">
+    <div class="title-bar">
+        <h1>The Fruit of the Spirit</h1>
+        <p>One fruit, many expressions of a life formed by the Spirit</p>
+    </div>
+
+    <div class="diagram-wrapper">
+        <div class="diagram-container" id="diagram"></div>
+    </div>
+
+    <div id="card-area"></div>
+</div>
+
+<script>
+var fruits = [
+    {
+        id: 'love',
+        title: 'Love',
+        wedgeLabel: ['Love'],
+        color: '#D96A3A',
+        definition: 'Selfless, sacrificial commitment to another\'s good, even at cost to yourself.',
+        line: 'It crosses boundaries, absorbs cost, and moves toward the person everyone else walks past.'
+    },
+    {
+        id: 'joy',
+        title: 'Joy',
+        wedgeLabel: ['Joy'],
+        color: '#F08A2A',
+        definition: 'Deep delight rooted in God, unshaken by circumstances.',
+        line: 'It holds steady when the circumstance says otherwise, because it is anchored in Someone who does not change.'
+    },
+    {
+        id: 'peace',
+        title: 'Peace',
+        wedgeLabel: ['Peace'],
+        color: '#F5A53A',
+        definition: 'Inner calm that guards heart and mind, even in storms.',
+        line: 'It is not the absence of the storm but the presence of the One who can speak it quiet.'
+    },
+    {
+        id: 'patience',
+        title: 'Patience',
+        wedgeLabel: ['Patience'],
+        color: '#E5B247',
+        definition: 'Steady endurance with others, slow to anger and quick to forgive.',
+        line: 'It trusts God in the detour and refuses to believe the delay means He has forgotten.'
+    },
+    {
+        id: 'kindness',
+        title: 'Kindness',
+        wedgeLabel: ['Kindness'],
+        color: '#D58F35',
+        definition: 'Active goodness poured out, especially on the undeserving.',
+        line: 'It looks for the person who least deserves tenderness and offers it anyway.'
+    },
+    {
+        id: 'goodness',
+        title: 'Goodness',
+        wedgeLabel: ['Goodness'],
+        color: '#C66F24',
+        definition: 'Moral integrity that chooses what is right and compels us toward good works.',
+        line: 'It steps into the mess of someone\'s life and does something beautiful there.'
+    },
+    {
+        id: 'faithfulness',
+        title: 'Faithfulness',
+        wedgeLabel: ['Faithfulness'],
+        color: '#B95B1D',
+        definition: 'Loyal trust that keeps its word, come what may.',
+        line: 'It keeps showing up long after the feeling fades, because the promise still holds.'
+    },
+    {
+        id: 'gentleness',
+        title: 'Gentleness',
+        wedgeLabel: ['Gentleness'],
+        color: '#D97A28',
+        definition: 'Humble strength that handles others with tender care.',
+        line: 'It has the power to crush and chooses instead to kneel and serve.'
+    },
+    {
+        id: 'self-control',
+        title: 'Self-Control',
+        wedgeLabel: ['Self-', 'Control'],
+        color: '#E8640A',
+        definition: 'Disciplined mastery over desires, freeing us to love God and others well.',
+        line: 'It protects what God is growing by refusing to let lesser appetites run the show.'
+    }
+];
+
+var step = -1;
+var W = 350;
+var H = 370;
+var CX = 175;
+var CY = 166;
+var OUTER_R = 118;
+var INNER_R = 30;
+var CORE_R = 17;
+var START_ANGLE = -110;
+var SLICE_ANGLE = 40;
+var UNREVEALED = 'rgba(232, 224, 208, 0.55)';
+var RIND = '#C96010';
+var CHARCOAL = '#2C2416';
+var SVG_NS = 'http://www.w3.org/2000/svg';
+
+function svgEl(tag, attrs) {
+    var el = document.createElementNS(SVG_NS, tag);
+    for (var k in attrs) el.setAttribute(k, attrs[k]);
+    return el;
+}
+
+function polar(cx, cy, r, angle) {
+    var rad = (angle - 90) * Math.PI / 180;
+    return {
+        x: cx + r * Math.cos(rad),
+        y: cy + r * Math.sin(rad)
+    };
+}
+
+function slicePath(cx, cy, innerR, outerR, startAngle, endAngle) {
+    var outerStart = polar(cx, cy, outerR, startAngle);
+    var outerEnd = polar(cx, cy, outerR, endAngle);
+    var innerEnd = polar(cx, cy, innerR, endAngle);
+    var innerStart = polar(cx, cy, innerR, startAngle);
+    var largeArc = endAngle - startAngle <= 180 ? '0' : '1';
+
+    return [
+        'M', outerStart.x, outerStart.y,
+        'A', outerR, outerR, 0, largeArc, 1, outerEnd.x, outerEnd.y,
+        'L', innerEnd.x, innerEnd.y,
+        'A', innerR, innerR, 0, largeArc, 0, innerStart.x, innerStart.y,
+        'Z'
+    ].join(' ');
+}
+
+function rindArcPath(cx, cy, radius, startAngle, endAngle) {
+    var a = polar(cx, cy, radius, startAngle);
+    var b = polar(cx, cy, radius, endAngle);
+    var largeArc = endAngle - startAngle <= 180 ? '0' : '1';
+    return ['M', a.x, a.y, 'A', radius, radius, 0, largeArc, 1, b.x, b.y].join(' ');
+}
+
+function wedgeLabelPosition(index) {
+    var mid = START_ANGLE + (index * SLICE_ANGLE) + (SLICE_ANGLE / 2);
+    var pos = polar(CX, CY, 76, mid);
+    if (index === 6) {
+        pos.y += 5;
+        pos.x += 7;
+    } else if (index === 7) {
+        pos.y += 5;
+        pos.x -= 3;
+    }
+    return pos;
+}
+
+function addWedgeLabel(parent, fruit, index, animateIn) {
+    var pos = wedgeLabelPosition(index);
+    var text = svgEl('text', {
+        x: pos.x,
+        y: pos.y,
+        fill: '#FFF9F0',
+        'font-family': 'Trebuchet MS, sans-serif',
+        'font-size': fruit.wedgeLabel.length > 1 ? '8.6' : '9.6',
+        'font-weight': '700',
+        'text-anchor': 'middle',
+        'dominant-baseline': 'middle',
+        'paint-order': 'stroke',
+        stroke: 'rgba(145, 70, 18, 0.35)',
+        'stroke-width': '0.55',
+        'stroke-linejoin': 'round',
+        opacity: '0.95'
+    });
+
+    for (var i = 0; i < fruit.wedgeLabel.length; i++) {
+        var span = svgEl('tspan', {
+            x: pos.x,
+            dy: i === 0 ? (fruit.wedgeLabel.length > 1 ? '-0.35em' : '0') : '1.05em'
+        });
+        span.textContent = fruit.wedgeLabel[i];
+        text.appendChild(span);
+    }
+
+    if (animateIn) {
+        text.style.opacity = '0';
+        text.style.transition = 'opacity 0.35s ease 0.18s';
+        setTimeout(function() {
+            text.style.opacity = '0.95';
+        }, 40);
+    }
+
+    parent.appendChild(text);
+}
+
+function animateSlice(group) {
+    group.style.opacity = '0';
+    group.style.transformOrigin = CX + 'px ' + CY + 'px';
+    group.style.transformBox = 'fill-box';
+    group.style.transform = 'scale(0.965)';
+    group.style.animation = 'sliceIn 0.42s ease forwards';
+}
+
+function createOrangeSvg() {
+    var svg = svgEl('svg', {
+        viewBox: '0 0 ' + W + ' ' + H,
+        width: '100%',
+        height: '100%',
+        class: 'orange-svg',
+        'aria-hidden': 'true'
+    });
+
+    var defs = svgEl('defs', {});
+    var gradient = svgEl('radialGradient', {
+        id: 'orangeFill',
+        cx: '50%',
+        cy: '48%',
+        r: '65%'
+    });
+    gradient.appendChild(svgEl('stop', { offset: '0%', 'stop-color': '#E8640A' }));
+    gradient.appendChild(svgEl('stop', { offset: '65%', 'stop-color': '#F07B20' }));
+    gradient.appendChild(svgEl('stop', { offset: '100%', 'stop-color': '#F4891A' }));
+    defs.appendChild(gradient);
+
+    var glow = svgEl('filter', { id: 'orangeGlow', x: '-30%', y: '-30%', width: '160%', height: '160%' });
+    glow.appendChild(svgEl('feDropShadow', {
+        dx: '0',
+        dy: '0',
+        stdDeviation: '5',
+        'flood-color': '#F4891A',
+        'flood-opacity': '0.4'
+    }));
+    defs.appendChild(glow);
+
+    svg.appendChild(defs);
+
+    var wholeOrange = svgEl('g', {});
+    if (step >= fruits.length) {
+        wholeOrange.setAttribute('filter', 'url(#orangeGlow)');
+    }
+
+    wholeOrange.appendChild(svgEl('circle', {
+        cx: CX,
+        cy: CY,
+        r: OUTER_R + 7,
+        fill: 'none',
+        stroke: 'rgba(201, 96, 16, 0.14)',
+        'stroke-width': 10
+    }));
+
+    for (var i = 0; i < fruits.length; i++) {
+        var start = START_ANGLE + (i * SLICE_ANGLE);
+        var end = start + SLICE_ANGLE;
+
+        var unrevealedPath = svgEl('path', {
+            d: slicePath(CX, CY, INNER_R, OUTER_R, start, end),
+            fill: UNREVEALED,
+            stroke: '#FFF8EC',
+            'stroke-width': 1.4,
+            'stroke-linejoin': 'round'
+        });
+        wholeOrange.appendChild(unrevealedPath);
+
+        if (i <= step || step >= fruits.length) {
+            var revealedGroup = svgEl('g', {});
+            var revealedSlice = svgEl('path', {
+                d: slicePath(CX, CY, INNER_R, OUTER_R, start, end),
+                fill: 'url(#orangeFill)',
+                stroke: '#FFF7EE',
+                'stroke-width': 1.4,
+                'stroke-linejoin': 'round'
+            });
+            revealedGroup.appendChild(revealedSlice);
+            revealedGroup.appendChild(svgEl('path', {
+                d: rindArcPath(CX, CY, OUTER_R, start + 0.8, end - 0.8),
+                fill: 'none',
+                stroke: RIND,
+                'stroke-width': 8,
+                'stroke-linecap': 'round',
+                opacity: '0.95'
+            }));
+
+            if (i === step && step >= 0 && step < fruits.length) {
+                animateSlice(revealedGroup);
+            }
+            wholeOrange.appendChild(revealedGroup);
+            addWedgeLabel(wholeOrange, fruits[i], i, i === step && step >= 0 && step < fruits.length);
+        }
+    }
+
+    wholeOrange.appendChild(svgEl('circle', {
+        cx: CX,
+        cy: CY,
+        r: CORE_R + 7,
+        fill: '#FFF8EE',
+        stroke: 'rgba(255,255,255,0.9)',
+        'stroke-width': 2
+    }));
+    wholeOrange.appendChild(svgEl('circle', {
+        cx: CX,
+        cy: CY,
+        r: CORE_R,
+        fill: step >= 0 ? '#F6D4B4' : 'rgba(232, 224, 208, 0.7)',
+        stroke: step >= 0 ? '#D38B4B' : 'rgba(201, 171, 132, 0.55)',
+        'stroke-width': 1.5
+    }));
+
+    svg.appendChild(wholeOrange);
+
+    svg.appendChild(svgEl('path', {
+        d: 'M 189 51 C 191 37 199 31 208 35 C 215 38 216 47 213 57',
+        fill: 'none',
+        stroke: '#7D8C54',
+        'stroke-width': 3.8,
+        'stroke-linecap': 'round',
+        opacity: step >= 0 ? '0.9' : '0.35'
+    }));
+    svg.appendChild(svgEl('path', {
+        d: 'M 219 48 C 234 47 247 55 253 67 C 239 73 225 71 213 60 C 212 55 214 51 219 48 Z',
+        fill: step >= 0 ? 'rgba(125, 140, 84, 0.16)' : 'rgba(125, 140, 84, 0.04)',
+        stroke: '#7D8C54',
+        'stroke-width': 2.4,
+        'stroke-linejoin': 'round',
+        opacity: step >= 0 ? '0.9' : '0.35'
+    }));
+
+    return svg;
+}
+
+function renderDiagram() {
+    var diagram = document.getElementById('diagram');
+    diagram.innerHTML = '';
+
+    var svg = createOrangeSvg();
+    diagram.appendChild(svg);
+
+    if (step === -1 || step >= fruits.length) {
+        var label = document.createElement('div');
+        label.className = 'diagram-label visible';
+        label.style.left = '50%';
+        label.style.top = '300px';
+        label.style.transform = 'translateX(-50%)';
+        label.style.fontSize = '12px';
+        label.style.color = step >= fruits.length ? '#D97522' : '#9B917F';
+        label.textContent = step >= fruits.length ? 'One fruit, formed by the Spirit' : 'One fruit, many expressions';
+        diagram.appendChild(label);
+    }
+
+    if (step >= 0 && step < fruits.length) {
+        var current = document.createElement('div');
+        current.className = 'diagram-label visible';
+        current.style.left = '50%';
+        current.style.top = '296px';
+        current.style.transform = 'translateX(-50%)';
+        current.style.fontSize = '22px';
+        current.style.fontWeight = '700';
+        current.style.letterSpacing = '0.2px';
+        current.style.color = fruits[step].color;
+        current.textContent = fruits[step].title;
+        diagram.appendChild(current);
+    }
+
+    if (step === -1) {
+        var overlay = document.createElement('div');
+        overlay.className = 'intro-overlay';
+        overlay.innerHTML = '<div>' +
+            '<p class="intro-verse">"The fruit of the Spirit is love,<br>joy, peace..."</p>' +
+            '<p class="intro-ref">Galatians 5:22-23</p>' +
+            '</div>';
+        diagram.appendChild(overlay);
+    }
+}
+
+function currentColor() {
+    if (step === -1) return CHARCOAL;
+    if (step >= fruits.length) return '#D97522';
+    return fruits[step].color;
+}
+
+function renderCard() {
+    var cardArea = document.getElementById('card-area');
+    cardArea.innerHTML = '';
+
+    var wrapper = document.createElement('div');
+    wrapper.className = 'verse-card-wrapper';
+
+    var card = document.createElement('div');
+    card.className = 'verse-card';
+
+    var bar = document.createElement('div');
+    bar.className = 'verse-card-bar';
+    bar.style.background = currentColor();
+    card.appendChild(bar);
+
+    var content = document.createElement('div');
+    content.className = 'verse-card-content';
+    content.style.setProperty('--accent-color', currentColor());
+
+    var title = document.createElement('h2');
+    title.className = 'verse-card-title';
+
+    var text = document.createElement('p');
+    text.className = 'verse-card-text';
+
+    var ref = document.createElement('p');
+    ref.className = 'verse-card-ref';
+
+    if (step === -1) {
+        title.textContent = 'The Fruit of the Spirit';
+        title.style.color = CHARCOAL;
+        text.innerHTML = 'The Spirit does not grow nine separate fruits in us, but one whole fruit with many expressions. As Christ is formed in us, these qualities begin to grow together.';
+        ref.textContent = 'Galatians 5:22-23';
+    } else if (step >= fruits.length) {
+        title.textContent = 'A Life Formed by the Spirit';
+        title.style.color = '#D97522';
+        text.innerHTML = 'The fruit of the Spirit grows as we abide in Christ and walk with Him. What the Spirit begins to form in us, He also matures into a life that looks more like Jesus.';
+        ref.textContent = 'Galatians 5:22-23';
+    } else {
+        var fruit = fruits[step];
+        title.textContent = fruit.title;
+        text.innerHTML = fruit.definition + ' <b>' + fruit.line + '</b>';
+        ref.textContent = 'Galatians 5:22-23';
+    }
+
+    content.appendChild(title);
+    content.appendChild(text);
+    content.appendChild(ref);
+    card.appendChild(content);
+    wrapper.appendChild(card);
+    wrapper.appendChild(buildNav(currentColor()));
+    cardArea.appendChild(wrapper);
+}
+
+function buildNav(color) {
+    var nav = document.createElement('div');
+    nav.className = 'nav-bar';
+
+    var backBtn = document.createElement('button');
+    backBtn.className = 'nav-btn';
+    backBtn.textContent = '\u2190 Back';
+    if (step === -1) {
+        backBtn.style.visibility = 'hidden';
+    } else {
+        backBtn.addEventListener('click', function() {
+            step -= 1;
+            render();
+        });
+    }
+    nav.appendChild(backBtn);
+
+    var dots = document.createElement('div');
+    dots.className = 'dot-nav';
+    for (var i = 0; i < fruits.length; i++) {
+        (function(idx) {
+            var d = document.createElement('div');
+            d.className = 'dot';
+            var active = step === idx;
+            d.style.width = active ? '20px' : '8px';
+            d.style.background = idx <= step ? fruits[idx].color : '#D4CFC4';
+            d.style.cursor = idx <= step ? 'pointer' : 'default';
+            if (idx <= step) {
+                d.addEventListener('click', function() {
+                    step = idx;
+                    render();
+                });
+            }
+            dots.appendChild(d);
+        })(i);
+    }
+    nav.appendChild(dots);
+
+    var nextBtn = document.createElement('button');
+    nextBtn.className = 'nav-btn primary';
+    nextBtn.style.background = color;
+    nextBtn.style.boxShadow = '0 2px 8px ' + color + '33';
+    nextBtn.textContent = step >= fruits.length ? '\u21BB Restart' : (step === -1 ? 'Begin \u2192' : 'Next \u2192');
+    nextBtn.addEventListener('click', function() {
+        if (step >= fruits.length) {
+            step = -1;
+        } else {
+            step += 1;
+        }
+        render();
+    });
+    nav.appendChild(nextBtn);
+
+    return nav;
+}
+
+function render() {
+    renderDiagram();
+    renderCard();
+}
+
+render();
+</script>
+
+</body>
+</html>
