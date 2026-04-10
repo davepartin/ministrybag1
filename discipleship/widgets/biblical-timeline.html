@@ -67,32 +67,22 @@
 
         .title-bar {
             background: var(--title-bg);
-            padding: 10px 20px 8px;
+            padding: 6px 14px;
             text-align: center;
         }
 
         .title-bar h1 {
             color: var(--title-text);
-            font-family: 'Playfair Display', Georgia, serif;
-            font-size: 22px;
-            font-weight: 600;
-            line-height: 1.2;
-            letter-spacing: 0.5px;
-        }
-
-        .title-bar p {
-            color: var(--subtitle-text);
-            font-family: 'Inter', -apple-system, sans-serif;
-            font-size: 13px;
-            font-weight: 400;
-            line-height: 1.35;
-            margin-top: 4px;
-            letter-spacing: 0.2px;
+            font-family: 'Trebuchet MS', 'Inter', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            line-height: 1.15;
+            letter-spacing: 0.1px;
         }
 
         .diagram-wrapper {
-            height: 370px;
-            padding-top: 4px;
+            height: 292px;
+            padding-top: 0;
             display: flex;
             justify-content: center;
         }
@@ -106,12 +96,12 @@
 
         .diagram-title {
             position: absolute;
-            top: 16px;
+            top: 10px;
             left: 0;
             right: 0;
             text-align: center;
             font-family: 'Inter', -apple-system, sans-serif;
-            font-size: 18px;
+            font-size: 16px;
             font-weight: 700;
             line-height: 1.15;
             letter-spacing: 0.15px;
@@ -124,7 +114,8 @@
             width: 100%;
             height: 100%;
             display: block;
-            transform: translateY(32px);
+            transform: translateY(12px) scale(1.14);
+            transform-origin: top center;
         }
 
         @keyframes crossPulse {
@@ -141,12 +132,12 @@
         #card-area {
             background: #F6F4EE;
             border-top: 1px solid var(--border-color);
-            padding-top: 10px;
+            padding-top: 8px;
         }
 
         .verse-card-wrapper {
             margin: 0 auto;
-            padding: 0 16px 8px;
+            padding: 0 12px 8px;
         }
 
         .verse-card {
@@ -163,7 +154,7 @@
         }
 
         .verse-card-content {
-            height: 110px;
+            height: 112px;
             padding: 10px 16px;
             display: flex;
             flex-direction: column;
@@ -199,8 +190,8 @@
 
         .verse-card-text {
             color: var(--body-soft);
-            font-size: 12.5px;
-            line-height: 1.42;
+            font-size: 12px;
+            line-height: 1.36;
             margin: 0;
         }
 
@@ -292,7 +283,6 @@
     <div class="widget-outer">
         <div class="title-bar">
             <h1>The Biblical Timeline</h1>
-            <p>A simple 4000-year overview from Abraham to today</p>
         </div>
 
         <div class="diagram-wrapper">

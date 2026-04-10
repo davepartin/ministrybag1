@@ -54,34 +54,25 @@
 
         .title-bar {
             background: #2C2416;
-            padding: 10px 20px 8px;
+            padding: 6px 14px;
             text-align: center;
         }
 
         .title-bar h1 {
-            font-size: 22px;
-            font-weight: 600;
+            font-size: 18px;
+            font-weight: 700;
             color: #FAF8F3;
             margin: 0;
-            line-height: 1.2;
-            font-family: 'Playfair Display', Georgia, serif;
-            letter-spacing: 0.5px;
-        }
-
-        .title-bar p {
-            font-size: 13px;
-            color: #D4CFC4;
-            margin: 4px 0 0 0;
-            font-family: 'Inter', -apple-system, sans-serif;
-            font-weight: 400;
-            letter-spacing: 0.2px;
+            line-height: 1.15;
+            font-family: 'Trebuchet MS', 'Inter', sans-serif;
+            letter-spacing: 0.1px;
         }
 
         .diagram-wrapper {
-            padding: 4px 0 0;
+            padding: 0;
             display: flex;
             justify-content: center;
-            height: 370px;
+            height: 292px;
         }
 
         .diagram-container {
@@ -117,13 +108,13 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 28px 30px;
+            padding: 18px 22px;
             pointer-events: none;
         }
 
         .intro-verse {
-            font-size: 19px;
-            line-height: 1.45;
+            font-size: 16px;
+            line-height: 1.35;
             color: #2C2416;
             font-style: italic;
             margin: 0 0 8px 0;
@@ -131,7 +122,7 @@
         }
 
         .intro-ref {
-            font-size: 13px;
+            font-size: 12px;
             color: #9B917F;
             font-family: 'Trebuchet MS', sans-serif;
             font-weight: 600;
@@ -141,12 +132,12 @@
         #card-area {
             background-color: #F6F4EE;
             border-top: 1px solid #EBE5D9;
-            padding-top: 10px;
+            padding-top: 8px;
         }
 
         .verse-card-wrapper {
             margin: 0 auto;
-            padding: 0 16px 8px;
+            padding: 0 12px 8px;
         }
 
         .verse-card {
@@ -163,7 +154,7 @@
 
         .verse-card-content {
             padding: 10px 16px;
-            height: 100px;
+            height: 112px;
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
@@ -262,7 +253,6 @@
 <div class="widget-outer">
     <div class="title-bar">
         <h1>The Fruit of the Spirit</h1>
-        <p>One fruit, many expressions of a life formed by the Spirit</p>
     </div>
 
     <div class="diagram-wrapper">
@@ -350,10 +340,10 @@ var fruits = [
 
 var step = -1;
 var W = 350;
-var H = 370;
+var H = 320;
 var CX = 175;
-var CY = 166;
-var OUTER_R = 118;
+var CY = 144;
+var OUTER_R = 102;
 var INNER_R = 30;
 var CORE_R = 17;
 var START_ANGLE = -110;
@@ -596,7 +586,7 @@ function renderDiagram() {
         var label = document.createElement('div');
         label.className = 'diagram-label visible';
         label.style.left = '50%';
-        label.style.top = '300px';
+        label.style.top = '244px';
         label.style.transform = 'translateX(-50%)';
         label.style.fontSize = '12px';
         label.style.color = step >= fruits.length ? '#D97522' : '#9B917F';
@@ -608,7 +598,7 @@ function renderDiagram() {
         var current = document.createElement('div');
         current.className = 'diagram-label visible';
         current.style.left = '50%';
-        current.style.top = '296px';
+        current.style.top = '240px';
         current.style.transform = 'translateX(-50%)';
         current.style.fontSize = '22px';
         current.style.fontWeight = '700';
@@ -660,29 +650,22 @@ function renderCard() {
     var text = document.createElement('p');
     text.className = 'verse-card-text';
 
-    var ref = document.createElement('p');
-    ref.className = 'verse-card-ref';
-
     if (step === -1) {
         title.textContent = 'The Fruit of the Spirit';
         title.style.color = CHARCOAL;
         text.innerHTML = 'The Spirit does not grow nine separate fruits in us, but one whole fruit with many expressions. As Christ is formed in us, these qualities begin to grow together.';
-        ref.textContent = 'Galatians 5:22-23';
     } else if (step >= fruits.length) {
         title.textContent = 'A Life Formed by the Spirit';
         title.style.color = '#D97522';
         text.innerHTML = 'The fruit of the Spirit grows as we abide in Christ and walk with Him. What the Spirit begins to form in us, He also matures into a life that looks more like Jesus.';
-        ref.textContent = 'Galatians 5:22-23';
     } else {
         var fruit = fruits[step];
         title.textContent = fruit.title;
         text.innerHTML = fruit.definition + ' <b>' + fruit.line + '</b>';
-        ref.textContent = 'Galatians 5:22-23';
     }
 
     content.appendChild(title);
     content.appendChild(text);
-    content.appendChild(ref);
     card.appendChild(content);
     wrapper.appendChild(card);
     wrapper.appendChild(buildNav(currentColor()));
