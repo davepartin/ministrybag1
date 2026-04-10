@@ -134,12 +134,12 @@ The bottom card/verse area uses:
 #card-area {
     background-color: #F6F4EE;
     border-top: 1px solid #EBE5D9;
-    padding-top: 16px;
+    padding-top: 10px;
 }
 
 .verse-card-wrapper {
     margin: 0 auto;
-    padding: 0 16px 12px;
+    padding: 0 16px 8px;
 }
 
 .verse-card {
@@ -150,8 +150,8 @@ The bottom card/verse area uses:
 }
 
 .verse-card-content {
-    padding: 12px 16px;
-    height: 125px;
+    padding: 10px 16px;
+    height: 100px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -203,19 +203,74 @@ Use these accent colors consistently by course:
 
 ---
 
-## Height in Lesson JSON
+## Height in Lesson JSON — The Most Important Rule
 
-Set widget height generously. The iframe auto-resizes on load, but having a close starting value prevents layout jump. Typical values:
+Widget height is the single most common source of bugs. If the iframe height in the lesson JSON is too short, the Next/Begin buttons get clipped off the bottom and the user cannot navigate the widget. This has happened before and must not happen again.
 
-- Simple diagram with card: `"height": "520px"`
-- Larger diagram with card and more steps: `"height": "640px"`
+### iPhone viewport reference
+
+| Device | Viewport height | Visible for widget (after Safari bars + lesson header) |
+|--------|----------------|-------------------------------------------------------|
+| iPhone SE | 667px | ~480–520px |
+| iPhone 15/16 (standard) | 844px | ~620–660px |
+| iPhone Pro Max | 932px | ~720–760px |
+
+The standard iPhone (844px) is the design target. A widget must fit comfortably in ~620px of visible space so the user can see at least the title bar and the Next button without scrolling within the widget.
+
+### Height budget for the standard widget layout
+
+The standard widget layout (title bar + diagram + card + nav) stacks like this:
+
+| Element | Height | Notes |
+|---------|--------|-------|
+| Title bar | ~55px | padding 18px + title + subtitle |
+| Diagram wrapper | 370px max | This is the largest element. Keep ≤ 370px. For new widgets, target 300px. |
+| Card area chrome | ~15px | border-top 1px + padding-top 10px + wrapper padding-bottom 8px = ~19px minus overlap |
+| Verse card bar | 4px | Accent color strip |
+| Verse card content | 100px | Fixed height to prevent button shift between steps |
+| Nav bar | ~46px | margin-top 10px + button height ~36px |
+| **Total** | **~590px** | Must fit inside the iframe height with a few px of buffer |
+
+### Standard iframe heights
+
+Use these values in the lesson JSON `"height"` field:
+
+| Widget type | Diagram area | iframe height |
+|-------------|-------------|---------------|
+| Small diagram (≤ 250px) + card + nav | ≤ 250px | `"520px"` |
+| Medium diagram (~300px) + card + nav | ~300px | `"560px"` |
+| Large diagram (370px) + card + nav | 370px | `"600px"` |
+| No card/nav (e.g. bookshelf, standalone) | varies | Set to content height + 20px buffer |
+
+**For new widgets with the standard card/nav layout, target a 300px diagram area and a 560px iframe height.** Only use 370px / 600px when the diagram genuinely needs the extra space. Never go above 600px — if the content does not fit in 600px, redesign the internal layout rather than growing the iframe.
+
+### Card area CSS values (must use these exact values)
+
+```css
+#card-area {
+    padding-top: 10px;
+}
+
+.verse-card-wrapper {
+    padding: 0 16px 8px;
+}
+
+.verse-card-content {
+    padding: 10px 16px;
+    height: 100px;
+}
+```
+
+Do not increase these values. The card text must be written concisely enough to fit in 100px of content height. If text is too long, shorten the text — do not grow the card.
 
 ---
 
 ## Common Mistakes to Avoid
 
-1. **Body padding** - any `padding` on `body` eats into the available width and causes clipping on phones. Always `padding: 0`.
-2. **Fixed max-width on widget-outer** - `max-width: 370px` on the outer container means the widget stops at 370px even when more space is available, and clips on smaller screens. Always `max-width: 100%`.
-3. **Border-radius on widget-outer** - since the widget bleeds edge-to-edge, rounded corners on the outer shell look wrong. Save border-radius for inner cards only.
-4. **Fixed SVG width** - a fixed `width="350"` on an SVG means labels on the right side clip when the iframe is narrower than 350px. Use `width="100%"` and a `viewBox` instead, or design the internal layout to fit 350px minimum.
-5. **Wrong height in JSON** - if the height is too small, the card area gets cut off. Test on a 390px wide phone screen and add 20-30px of buffer.
+1. **Body padding** — any `padding` on `body` eats into the available width and causes clipping on phones. Always `padding: 0`.
+2. **Fixed max-width on widget-outer** — `max-width: 370px` on the outer container means the widget stops at 370px even when more space is available, and clips on smaller screens. Always `max-width: 100%`.
+3. **Border-radius on widget-outer** — since the widget bleeds edge-to-edge, rounded corners on the outer shell look wrong. Save border-radius for inner cards only.
+4. **Fixed SVG width** — a fixed `width="350"` on an SVG means labels on the right side clip when the iframe is narrower than 350px. Use `width="100%"` and a `viewBox` instead, or design the internal layout to fit 350px minimum.
+5. **Wrong height in JSON** — if the height is too small, the card area and navigation buttons get clipped off the bottom and the user cannot interact with the widget. Always calculate the total height using the budget table above, and test on a 390px-wide phone screen.
+6. **Card content too tall** — the verse-card-content height is locked at 100px. If card text overflows, shorten the text. Do not increase the card height, or the nav buttons will be pushed below the iframe edge.
+7. **Growing the iframe instead of redesigning** — if a widget does not fit in 600px, the answer is never to make the iframe taller. Reduce the diagram area, tighten padding, or simplify the layout. Tall iframes break the reading experience on standard iPhones.
