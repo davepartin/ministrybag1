@@ -518,8 +518,8 @@
 
         const positions = {
             creation: { top: 28, left: 38, width: 158 },
-            fall: { top: 157, left: 86, width: 148 },
-            redemption: { top: 240, left: 220, width: 144 },
+            fall: { top: 137, left: 66, width: 148 },
+            redemption: { top: 210, left: 220, width: 144 },
             restoration: { top: 30, left: 242, width: 140 }
         };
 
@@ -571,14 +571,24 @@
             });
         }
 
-        function animateIntroLine() {
+        function animateLine(isDashed) {
             const totalLength = pathEl.getTotalLength();
+            pathEl.classList.remove("your-story");
             pathEl.style.setProperty("--path-length", `${totalLength}`);
             pathEl.style.strokeDasharray = `${totalLength}`;
             pathEl.style.strokeDashoffset = `${totalLength}`;
             pathEl.style.animation = "none";
             pathEl.getBoundingClientRect();
             pathEl.style.animation = "drawLine 0.8s ease forwards";
+
+            if (isDashed) {
+                window.setTimeout(() => {
+                    pathEl.style.animation = "none";
+                    pathEl.style.strokeDasharray = "none";
+                    pathEl.style.strokeDashoffset = "0";
+                    pathEl.classList.add("your-story");
+                }, 820);
+            }
         }
 
         function render() {
@@ -594,14 +604,11 @@
             backBtn.disabled = currentStep === 0;
             nextBtn.textContent = currentStep === scenarios.length - 1 ? "Start Over" : "Next →";
 
-            pathEl.classList.toggle("your-story", step.dashed);
+            pathEl.classList.remove("your-story");
             pathEl.style.strokeDasharray = "none";
             pathEl.style.strokeDashoffset = "0";
             pathEl.style.animation = "none";
-
-            if (currentStep === 0) {
-                animateIntroLine();
-            }
+            animateLine(step.dashed);
 
             renderLabels(step);
             renderDots();
