@@ -7,7 +7,7 @@
 **Folder name:** `discipleship`
 **Main HTML file:** `index.html`
 
-> For editorial direction, tone, audience, and lesson standards, see **DISCIPLESHIP-COMPASS.md**. This file covers product structure, technical architecture, and content format only.
+> For editorial direction, tone, audience, and lesson standards, see **DISCIPLESHIP-COMPASS.md**. For the lesson spine, slot order, and eight-goal structural check, see **LESSON-TEMPLATE.md**. This file covers product structure, technical architecture, and content format only.
 
 ## What This App Is
 
@@ -52,14 +52,23 @@ This numbering shows up in question labels users see (e.g., "3.2 -") and in conv
 ### Course Introductions
 The first lesson of each course (101.01, 201.01, 202.01, 203.01, 301.01) includes a brief welcome at the top: a heading and 1-2 paragraphs that celebrate what the learner has completed, cast vision for the course ahead, and remind them to take it at their own pace.
 
-## Visual System: The Tree Infographic
+## Curriculum Source Of Truth
 
-### Tree-to-Curriculum Mapping
-- **101 Roots:** 7 roots going downward (Welcome, Salvation, Prayer, Bible, Church, Evangelism, Repentance)
-- **201 Trunk:** 10 layered sections growing upward (Greatest Commandment, Loving Others, Sin and Fall, Justification, Faith and Repentance, Identity, Suffering, Spiritual Practices, Personal Purity, New Creation)
-- **202 Branches:** 10 branches extending outward (Spirit-Filled Walk, Sanctification, Biblical Storyline, Christ in OT, God-Honoring Home, Parenting, Church Membership, One Anothering, Ordinances, Hospitality)
-- **203 Fruit:** 10 pieces of fruit (Mission of God, Missionaries, Relational Evangelism, Your Story, Gospel Diagram, Apologetics, Spiritual Warfare, Work as Worship, Compassion and Justice, Multiplication)
-- **301 Growing Together:** 10 trees (Introduction, Image Bearers, Spiritual Disciplines, Transforming Word, First Neighbors, Leading at Home, Blessing Neighborhood, Belonging, Multiplying, APEST and Calling)
+`curriculum-toc.csv` is the single source of truth for curriculum order and learner-facing browse metadata.
+
+It owns:
+
+- lesson order inside each course
+- lesson title shown in browse views
+- lesson subtitle shown in browse views
+- tool / widget label
+- story / parable label
+- key verse
+- short lesson summary
+
+If a lesson title, order, or browse subtitle changes, update `curriculum-toc.csv` first. Avoid restating lesson-by-lesson curriculum details in markdown files unless there is a strong reason.
+
+## Visual System: The Tree Infographic
 
 ### Brand Logo
 Three-circle logo: left circle (blue) is a seedling/pot for Starting (101), middle circle (three green bands) is a full tree for Growing (201/202/203), right circle (pink/rose) is a community of trees for Leading (301).
@@ -107,12 +116,13 @@ discipleship/
   widgets/                               - self-contained interactive HTML tools
     bible-bookshelf.html                 - interactive Bible overview (used in 202-04)
   images/                                - logo and visual assets
-  curriculum-toc.csv                     - master curriculum outline
+  curriculum-toc.csv                     - single source of truth for lesson order and browse metadata
   Lesson_research/                       - research files (one per lesson)
   leadership-archive/                    - source material archive
-  DISCIPLESHIP-COMPASS.md               - master editorial/curriculum direction
+  DISCIPLESHIP-COMPASS.md                - master editorial/curriculum direction
+  LESSON-TEMPLATE.md                     - structural law for every lesson (spine, eight-goal check, closing trio)
   AI-START-HERE.md                       - AI entry point, reading order, and behavior rules
-  AI-LESSON-CHECKLIST.md                 - practical lesson drafting checklist
+  AI-LESSON-CHECKLIST.md                 - practical lesson drafting checklist (uses LESSON-TEMPLATE.md as spine)
   PROJECT-BRIEF.md                       - this file (product and technical structure)
   PROJECT-STATE.md                       - current progress and session history
 ```
@@ -121,6 +131,7 @@ discipleship/
 
 - Home screen shows five equal course cards, each color-coded
 - Tapping a course loads its JSON files and takes over the full screen
+- Home page dropdowns, the Tree view, and the lesson TOC read titles and subtitles from `curriculum-toc.csv`
 - Sticky top bar with back navigation, course name (first word highlighted in course accent color), lesson counter, and progress bar
 - "All Lessons" button opens a table of contents with a course header and completion checkmarks
 - Sticky bottom bar with Previous/Next navigation and lesson number
@@ -176,13 +187,34 @@ The `widget` block type allows self-contained interactive tools to be embedded d
 
 ## Adding a New Lesson
 
+Start by reading **LESSON-TEMPLATE.md** and the two exemplar lessons at `data/201-08.json` and `data/201-10.json`. The template spine is the starting skeleton for every new lesson and encodes the eight structural goals.
+
 1. Create a JSON file following the naming pattern (e.g., `data/201-08.json`)
-2. Use the block types described above
+2. Use the block types described above, ordered according to the template spine
 3. Title format: `"Lesson X: Title Here"`
 4. Include a journey recap paragraph as the first text block (except for course openers)
-5. End with the standard Closing Reflections (heading + three questions)
-6. The app auto-detects it on next load
-7. Update `curriculum-toc.csv` to keep the master list accurate
+5. Use a `parable` block near the top for the story hook and key image (B&W Grok sketch with scroll-reveal color variant)
+6. Include a diagram, widget, or stepper between teaching sections as the main visual
+7. Hit three to five mid-lesson `question` blocks, not counting closing reflections
+8. Add a Lesson Review paragraph before the Closing Reflections
+9. End with Closing Reflections (heading + three questions). 200-level uses the three standard Compass questions; 101 uses its own ending rhythm
+10. The app auto-detects the JSON on next load
+11. Update `curriculum-toc.csv` to keep the lesson title, subtitle, tool, story, key verse, and summary accurate
+
+## curriculum-toc.csv Schema
+
+Current columns:
+
+- `Course`
+- `Lesson`
+- `Title`
+- `Subtitle`
+- `Tool`
+- `Story`
+- `Key Verse`
+- `Summary`
+
+Course header rows use only the `Course` column. Lesson rows supply the rest of the metadata.
 
 ## Key Technical Details
 

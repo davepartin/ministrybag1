@@ -314,10 +314,23 @@
             flex-shrink: 0;
         }
 
-        .level-dropdown-title {
+        .level-dropdown-text {
             flex: 1;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .level-dropdown-title {
             font-size: 0.85rem;
             color: var(--text-primary);
+            line-height: 1.3;
+        }
+
+        .level-dropdown-subtitle {
+            font-size: 0.74rem;
+            color: var(--text-secondary);
             line-height: 1.3;
         }
 
@@ -502,10 +515,23 @@
             flex-shrink: 0;
         }
 
-        .tree-lesson-topic {
+        .tree-lesson-text {
             flex: 1;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .tree-lesson-topic {
             font-size: 0.78rem;
             color: var(--text-primary);
+            line-height: 1.3;
+        }
+
+        .tree-lesson-subtitle {
+            font-size: 0.68rem;
+            color: var(--text-secondary);
             line-height: 1.3;
         }
 
@@ -540,6 +566,10 @@
 
             .tree-lesson-topic {
                 font-size: 0.9rem;
+            }
+
+            .tree-lesson-subtitle {
+                font-size: 0.78rem;
             }
 
             .tree-lesson-num {
@@ -711,7 +741,7 @@
             color: #C85A56;
         }
 
-        /* Topbar series badge — small inline pill */
+        /* Topbar series badge - small inline pill */
         .topbar-series-badge {
             display: inline-flex;
             align-items: center;
@@ -870,7 +900,23 @@
             color: white;
         }
 
+        .toc-item-text {
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
         .toc-item-title {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .toc-item-subtitle {
+            font-size: 0.78rem;
+            color: var(--text-secondary);
+            line-height: 1.3;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -1026,12 +1072,66 @@
             margin: 4px 0 24px;
         }
 
+        .block-image.block-image-touch-next {
+            margin-bottom: 0;
+        }
+
         .block-image img {
             max-width: 100%;
             height: auto;
             display: block;
             margin: 0 auto;
             border-radius: 12px;
+        }
+
+        .block-image-dissolve {
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px;
+            box-shadow: var(--shadow-md);
+            background: #111;
+        }
+
+        .block-image-dissolve.block-image-dissolve-framed {
+            border: 1px solid var(--verse-border);
+        }
+
+        .block-image.block-image-touch-next .block-image-dissolve {
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        .block-image-dissolve .parable-img-color {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            margin: 0;
+            border-radius: inherit;
+        }
+
+        .block-image-dissolve .parable-img-bw {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            width: 100%;
+            margin: 0;
+            border-radius: inherit;
+            opacity: 1;
+            pointer-events: none;
+        }
+
+        .block-image-dissolve.parable-dissolve-static .parable-img-bw {
+            opacity: 0 !important;
+        }
+
+        .block-image.block-image-touch-next + .block-parable {
+            margin-top: 0;
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+        }
+
+        .block-image.block-image-touch-next + .block-parable .block-parable-body {
+            padding-top: 20px;
         }
 
         /* Scripture verses */
@@ -2158,7 +2258,7 @@
     <script>
         // ============================================
         // VERSION - bump this when JSON content changes
-        // to bust browser cache on data files — auto-generated, never needs manual bumping
+        // to bust browser cache on data files - auto-generated, never needs manual bumping
         // ============================================
         const BUILD_VERSION = Date.now();
 
@@ -2170,7 +2270,7 @@
         let totalSessions = 0;
         let responses = {};
         let sessionData = {};
-        let currentSeriesTopics = {};
+        let currentSeriesLessonMeta = {};
         let loadedSessionNums = [];
 
         // Hash routing state
@@ -2219,6 +2319,17 @@
             return cachedCurriculum;
         }
 
+        function getCSVField(cols, indexMap, names) {
+            for (const name of names) {
+                const idx = indexMap[name];
+                if (idx !== undefined && cols[idx] !== undefined) {
+                    const value = String(cols[idx]).trim();
+                    if (value) return value;
+                }
+            }
+            return '';
+        }
+
         async function toggleCourseDropdown(seriesId) {
             const card = document.querySelector(`#level-item-${seriesId} .level-card`);
             const dropdown = document.getElementById(`level-dropdown-${seriesId}`);
@@ -2237,9 +2348,15 @@
                 if (course && meta) {
                     course.lessons.forEach(lesson => {
                         const isDone = !!completionData[`complete-${seriesId}-${lesson.num}`];
-                        html += `<button type="button" class="level-dropdown-lesson" onclick="openFromDropdown('${seriesId}', ${lesson.num})" aria-label="Open lesson ${lesson.num}: ${lesson.topic}">
+                        const subtitleHTML = lesson.subtitle
+                            ? `<span class="level-dropdown-subtitle">${lesson.subtitle}</span>`
+                            : '';
+                        html += `<button type="button" class="level-dropdown-lesson" onclick="openFromDropdown('${seriesId}', ${lesson.num})" aria-label="Open lesson ${lesson.num}: ${lesson.title}">
                             <div class="level-dropdown-num" style="background:${meta.bg}; color:${meta.color};">${lesson.num}</div>
-                            <span class="level-dropdown-title">${lesson.topic}</span>
+                            <span class="level-dropdown-text">
+                                <span class="level-dropdown-title">${lesson.title}</span>
+                                ${subtitleHTML}
+                            </span>
                             <div class="level-dropdown-check ${isDone ? 'done' : ''}" style="${isDone ? 'background:' + meta.color + '; border-color:' + meta.color + ';' : ''}">&#10003;</div>
                         </button>`;
                     });
@@ -2342,20 +2459,26 @@
             const response = await fetch(`curriculum-toc.csv?v=${BUILD_VERSION}`);
             const text = (await response.text()).replace(/^\uFEFF/, '');
             const rows = parseCSV(text);
+            const header = (rows[0] || []).map(value => String(value).trim());
+            const indexMap = Object.fromEntries(header.map((name, index) => [name, index]));
             const lessonRows = rows.slice(1); // skip header row
 
             const courses = [];
             let currentCourse = null;
 
             for (const cols of lessonRows) {
-                if (!cols[0]) continue;
-                const col0 = cols[0].trim();
-                const col1 = (cols[1] || '').trim();
-                const col2 = (cols[2] || '').trim();
+                const courseCell = getCSVField(cols, indexMap, ['Course']);
+                const lessonCell = getCSVField(cols, indexMap, ['Lesson']);
+                const title = getCSVField(cols, indexMap, ['Title', 'Topic']);
+                const subtitle = getCSVField(cols, indexMap, ['Subtitle']);
+                const tool = getCSVField(cols, indexMap, ['Tool', 'Tool Used', 'Tools']);
+                const story = getCSVField(cols, indexMap, ['Story', 'Key Story']);
+                const keyVerse = getCSVField(cols, indexMap, ['Key Verse']);
+                const summary = getCSVField(cols, indexMap, ['Summary', 'Description']);
 
-                // Course header row: col 1 is empty (e.g. "101 - Starting in Discipleship,,,,")
-                if (!col1) {
-                    const match = col0.match(/^(\d{3})/);
+                // Course header row: Lesson is empty (e.g. "101 - Starting in Discipleship,,,,")
+                if (courseCell && !lessonCell) {
+                    const match = courseCell.match(/^(\d{3})/);
                     if (match && COURSE_META[match[1]]) {
                         currentCourse = { id: match[1], ...COURSE_META[match[1]], lessons: [] };
                         courses.push(currentCourse);
@@ -2363,12 +2486,12 @@
                     continue;
                 }
 
-                // Lesson row: col 1 is lesson ID like "101.01"
-                if (currentCourse && col1 && col2) {
-                    const parts = col1.split('.');
+                // Lesson row: Lesson is like "101.01"
+                if (currentCourse && lessonCell && title) {
+                    const parts = lessonCell.split('.');
                     const num = parts[1] ? parseInt(parts[1], 10) : null;
                     if (num) {
-                        currentCourse.lessons.push({ num, topic: col2 });
+                        currentCourse.lessons.push({ num, title, subtitle, tool, story, keyVerse, summary });
                     }
                 }
             }
@@ -2419,10 +2542,16 @@
 
                 course.lessons.forEach(lesson => {
                     const isComplete = !!completionData[`complete-${course.id}-${lesson.num}`];
-                    html += `
+                        const subtitleHTML = lesson.subtitle
+                            ? `<span class="tree-lesson-subtitle">${lesson.subtitle}</span>`
+                            : '';
+                        html += `
                         <div class="tree-lesson-row" onclick="openTreeLesson('${course.id}', ${lesson.num})">
                             <div class="tree-lesson-num" style="background:${course.bg}; color:${course.color};">${lesson.num}</div>
-                            <span class="tree-lesson-topic">${lesson.topic}</span>
+                            <span class="tree-lesson-text">
+                                <span class="tree-lesson-topic">${lesson.title}</span>
+                                ${subtitleHTML}
+                            </span>
                             <div class="tree-lesson-check ${isComplete ? 'done' : ''}" style="${isComplete ? 'background:' + course.color + '; border-color:' + course.color + ';' : ''}">&#10003;</div>
                         </div>`;
                 });
@@ -2456,7 +2585,7 @@
         async function loadSeries(seriesId) {
             currentSeries = seriesId;
             sessionData = {};
-            currentSeriesTopics = {};
+            currentSeriesLessonMeta = {};
             loadedSessionNums = [];
 
             const loadingEl = document.getElementById('loading-indicator');
@@ -2481,15 +2610,15 @@
             badge.textContent = seriesId;
             badge.className = `topbar-series-badge c${seriesId}`;
 
-            // Build topic map from curriculum-toc.csv so lesson naming is consistent everywhere.
+            // Build lesson metadata map from curriculum-toc.csv so naming stays consistent everywhere.
             const courses = await getCurriculumData();
             const course = courses.find(c => c.id === seriesId);
             if (course && course.lessons) {
                 course.lessons.forEach(lesson => {
-                    currentSeriesTopics[lesson.num] = lesson.topic;
+                    currentSeriesLessonMeta[lesson.num] = lesson;
                 });
             }
-            const expectedLessonNums = Object.keys(currentSeriesTopics).map(Number);
+            const expectedLessonNums = Object.keys(currentSeriesLessonMeta).map(Number);
             const expectedMaxLessonNum = expectedLessonNums.length > 0 ? Math.max(...expectedLessonNums) : 0;
 
             // Fetch all possible sessions
@@ -2566,7 +2695,7 @@
                     case 'text':
                         return requireString(block.text);
                     case 'image':
-                        return requireString(block.src);
+                        return requireString(block.src) || (requireString(block.imageBw) && requireString(block.imageColor));
                     case 'verse':
                         return requireString(block.reference) && requireString(block.text);
                     case 'list':
@@ -2647,7 +2776,8 @@
                 if (showLogo) {
                     html += `<img class="session-course-logo" src="${meta.logo}?v=${BUILD_VERSION}" alt="${meta.name}">`;
                 }
-                const topicTitle = currentSeriesTopics[sessionNum] || data.title.replace(/^Lesson\s+\d+:\s*/i, '');
+                const lessonMeta = currentSeriesLessonMeta[sessionNum] || {};
+                const topicTitle = lessonMeta.title || data.title.replace(/^Lesson\s+\d+:\s*/i, '');
                 const h1Title = data.displayTitle || topicTitle;
                 const lessonId = `${currentSeries}.${String(sessionNum).padStart(2, '0')}`;
                 const versionTag = data.version
@@ -2687,7 +2817,18 @@
 
                             case 'image':
                                 const imgStyle = b.width ? `style="width: ${b.width}; max-width: 100%; height: auto;"` : '';
-                                html += `<div class="block-image"><img src="${b.src}?v=${BUILD_VERSION}" alt="${b.alt || ''}" ${imgStyle} onerror="this.style.display='none'"></div>`;
+                                const imageClasses = `block-image${b.touchNext ? ' block-image-touch-next' : ''}`;
+                                if (b.imageBw && b.imageColor) {
+                                    const dissolveClasses = `block-image-dissolve${b.frame ? ' block-image-dissolve-framed' : ''}`;
+                                    html += `<div class="${imageClasses}">
+                                        <div class="${dissolveClasses}" data-parable-dissolve>
+                                            <img class="parable-img-color" src="${b.imageColor}?v=${BUILD_VERSION}" alt="${b.alt || ''}">
+                                            <img class="parable-img-bw" src="${b.imageBw}?v=${BUILD_VERSION}" alt="" aria-hidden="true" style="opacity:1;">
+                                        </div>
+                                    </div>`;
+                                } else {
+                                    html += `<div class="${imageClasses}"><img src="${b.src}?v=${BUILD_VERSION}" alt="${b.alt || ''}" ${imgStyle} onerror="this.style.display='none'"></div>`;
+                                }
                                 break;
 
                             case 'verse':
@@ -2839,8 +2980,11 @@
                                 break;
 
                             case 'parable':
-                                html += `<div class="block-parable">
-                                    ${b.image ? `<img src="${b.image}" alt="${b.alt || b.title}">` : ''}
+                                html += `<div class="block-parable">`;
+                                if (b.image) {
+                                    html += `<img src="${b.image}?v=${BUILD_VERSION}" alt="${b.alt || b.title}">`;
+                                }
+                                html += `
                                     <div class="block-parable-body">
                                         <div class="block-parable-title">${b.title}</div>
                                         <div class="block-parable-text">${b.text}</div>
@@ -2964,6 +3108,89 @@
             document.querySelectorAll('.question-textarea').forEach(ta => {
                 if (ta.value) autoGrow(ta);
             });
+
+            initParableDissolves();
+        }
+
+        let parableDissolveCleanup = null;
+        let parableDissolveRaf = null;
+
+        function initParableDissolves() {
+            if (parableDissolveCleanup) {
+                parableDissolveCleanup();
+                parableDissolveCleanup = null;
+            }
+            if (parableDissolveRaf) {
+                cancelAnimationFrame(parableDissolveRaf);
+                parableDissolveRaf = null;
+            }
+
+            const dissolveEls = Array.from(document.querySelectorAll('[data-parable-dissolve]'));
+            if (!dissolveEls.length) return;
+
+            const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            const canAnimateOnScroll = typeof window.requestAnimationFrame === 'function';
+
+            if (prefersReducedMotion || !canAnimateOnScroll) {
+                dissolveEls.forEach((el) => {
+                    el.classList.add('parable-dissolve-static');
+                    const bwImg = el.querySelector('.parable-img-bw');
+                    if (bwImg) bwImg.style.opacity = '0';
+                });
+                return;
+            }
+
+            const update = () => {
+                const viewportHeight = window.innerHeight || document.documentElement.clientHeight || 1;
+                const topbar = document.querySelector('.lesson-topbar');
+                const contentTop = topbar ? topbar.getBoundingClientRect().bottom : 0;
+                const visibleHeight = Math.max(viewportHeight - contentTop, 1);
+                const fadeStartY = contentTop + (visibleHeight * 0.40);
+                const fadeEndY = contentTop + (visibleHeight * -0.22);
+                const fadeRange = Math.max(fadeStartY - fadeEndY, 1);
+
+                dissolveEls.forEach((el) => {
+                    const bwImg = el.querySelector('.parable-img-bw');
+                    if (!bwImg) return;
+
+                    const rect = el.getBoundingClientRect();
+                    let progress = (fadeStartY - rect.top) / fadeRange;
+
+                    progress = Math.max(0, Math.min(1, progress));
+                    bwImg.style.opacity = (1 - progress).toFixed(3);
+                });
+            };
+
+            const imageLoadHandlers = [];
+            dissolveEls.forEach((el) => {
+                el.querySelectorAll('img').forEach((img) => {
+                    const handler = () => update();
+                    img.addEventListener('load', handler);
+                    imageLoadHandlers.push([img, handler]);
+                });
+            });
+
+            const onResize = () => update();
+            window.addEventListener('resize', onResize);
+
+            const tick = () => {
+                update();
+                parableDissolveRaf = requestAnimationFrame(tick);
+            };
+
+            update();
+            parableDissolveRaf = requestAnimationFrame(tick);
+
+            parableDissolveCleanup = () => {
+                window.removeEventListener('resize', onResize);
+                imageLoadHandlers.forEach(([img, handler]) => {
+                    img.removeEventListener('load', handler);
+                });
+                if (parableDissolveRaf) {
+                    cancelAnimationFrame(parableDissolveRaf);
+                    parableDissolveRaf = null;
+                }
+            };
         }
 
         // ============================================
@@ -2991,12 +3218,17 @@
                 btn.dataset.sessionNum = String(sessionNum);
                 btn.onclick = () => { showSession(sessionNum); toggleTOC(); };
 
-                const title = currentSeriesTopics[sessionNum] || sessionData[sessionNum].title.replace(/^Lesson\s+\d+:\s*/i, '');
+                const lessonMeta = currentSeriesLessonMeta[sessionNum] || {};
+                const title = lessonMeta.title || sessionData[sessionNum].title.replace(/^Lesson\s+\d+:\s*/i, '');
+                const subtitle = lessonMeta.subtitle || '';
                 const isComplete = isSessionComplete(currentSeries, sessionNum);
 
                 btn.innerHTML = `
                     <div class="toc-check ${isComplete ? 'done' : ''}" id="toc-check-${sessionNum}">&#10003;</div>
-                    <span class="toc-item-title"><span class="toc-item-num">${sessionNum}.</span> ${title}</span>
+                    <span class="toc-item-text">
+                        <span class="toc-item-title"><span class="toc-item-num">${sessionNum}.</span> ${title}</span>
+                        ${subtitle ? `<span class="toc-item-subtitle">${subtitle}</span>` : ''}
+                    </span>
                 `;
 
                 list.appendChild(btn);
@@ -3084,7 +3316,7 @@
             // Update lesson subtitle under course name (centered, with number)
             const lessonSubtitleEl = document.getElementById('topbar-lesson-subtitle');
             if (lessonSubtitleEl) {
-                const topicTitle = currentSeriesTopics[currentSession] ||
+                const topicTitle = (currentSeriesLessonMeta[currentSession] && currentSeriesLessonMeta[currentSession].title) ||
                     (sessionData[currentSession] ? sessionData[currentSession].title.replace(/^Lesson\s+\d+:\s*/i, '') : '');
                 lessonSubtitleEl.textContent = topicTitle ? `${ordinal}. ${topicTitle}` : '';
             }

@@ -33,11 +33,17 @@
       "text": "Put those four together and you have the whole story of what happened to you at the cross. But before we open the diagram, picture it like this."
     },
     {
+      "type": "image",
+      "imageBw": "images/boy-and-tree-bw.png",
+      "imageColor": "images/boy-and-tree-color.png",
+      "alt": "A sad boy standing beside a damaged fruit tree in a backyard",
+      "frame": true,
+      "touchNext": true
+    },
+    {
       "type": "parable",
       "title": "The Boy and the Fruit Tree",
-      "image": "images/boy-and-tree.png",
-      "alt": "Boy and Fruit Tree",
-      "text": "A father had a favorite fruit tree in his backyard and told his sons not to play in it. The younger son did not listen. He snuck out, climbed the tree, and when he climbed down, he broke half the branches. When the father saw the damage he said, \"Somebody is going to pay for this.\" The boy's older brother heard what happened. Without being asked, he spent his savings and bought his father a brand-new tree to replace the ruined one. Then the father took the boys to the amusement park."
+      "text": "A father promised to take his two sons to the amusement park that weekend. But he had one rule: stay out of his favorite fruit tree in the backyard. The younger son did not listen. He snuck out, climbed the tree, and when he climbed down, he broke half the branches. When the father saw the damage he said, \"Somebody is going to pay for this.\" The boy's older brother heard what happened. Without being asked, he spent his savings and bought his father a brand-new tree to replace the ruined one. The father looked at the new tree, looked at his boys, then loaded them both into the car and went to the amusement park."
     },
     {
       "type": "text",

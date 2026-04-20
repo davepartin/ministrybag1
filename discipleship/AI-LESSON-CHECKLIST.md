@@ -6,7 +6,31 @@ status: active
 
 # AI Lesson Checklist
 
-Use this checklist when drafting, revising, reviewing, or evaluating lessons in this project. For full editorial direction, see DISCIPLESHIP-COMPASS.md.
+Use this checklist when drafting, revising, reviewing, or evaluating lessons in this project.
+
+- For the lesson spine, slot order, and eight-goal structural check, see **LESSON-TEMPLATE.md**. That file is the structural law; this checklist is the practical companion.
+- For editorial direction, tone, audience, and non-negotiables, see **DISCIPLESHIP-COMPASS.md**.
+- The two reference lessons to study alongside the template are `data/201-08.json` (parable plus diagram image) and `data/201-10.json` (parable plus interactive widget).
+
+## Slot-by-slot template check
+
+Walk every lesson through the spine laid out in LESSON-TEMPLATE.md. The same walk works for a new draft, a revision, and a review.
+
+1. Journey recap paragraph present at the top (course openers get a course welcome instead).
+2. Parable block within the first three content blocks, with a B&W Grok image plus the color-reveal variant.
+3. Opening paragraph that bridges the story into the teaching.
+4. Teaching section A with Scripture.
+5. Mid-lesson question 1.
+6. Diagram, widget, or stepper as the main visual.
+7. Teaching section B with Scripture.
+8. Mid-lesson question 2.
+9. Teaching section C (and/or `box` exercise) when the lesson needs another layer.
+10. Mid-lesson question 3, with optional 4 and 5. Total mid-lesson question count lands between three and five.
+11. Lesson Review paragraph that names the one big truth.
+12. Bible reading block when the course has a parallel reading plan.
+13. Closing Reflections with the three standard 200-level questions (101 keeps its own ending rhythm; see LESSON-TEMPLATE.md for the exception).
+
+If a slot is missing, decide whether the lesson truly does not need it, or whether the slot should be filled. Lessons drift toward thinner when slots are left empty without a reason.
 
 ## Before writing
 

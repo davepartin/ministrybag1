@@ -657,7 +657,8 @@
             for (const row of rows.slice(1)) {
                 const courseCell = (row[0] || "").trim();
                 const lessonCell = (row[1] || "").trim();
-                const topic = getField(row, indexMap, ["Topic"]);
+                const topic = getField(row, indexMap, ["Title", "Topic"]);
+                const subtitle = getField(row, indexMap, ["Subtitle"]);
 
                 if (!courseCell) {
                     continue;
@@ -683,10 +684,10 @@
                 const lessonNum = Number.parseInt((lessonCell.split(".")[1] || "0"), 10);
                 const progress = Number.parseInt(getField(row, indexMap, ["Progress"]) || "0", 10) || 0;
                 const summary = getField(row, indexMap, ["Summary", "Description"]);
-                const tool = getField(row, indexMap, ["Tool Used", "Tools"]);
+                const tool = getField(row, indexMap, ["Tool", "Tool Used", "Tools"]);
                 const keyVerse = getField(row, indexMap, ["Key Verse"]);
                 const keyBible = getField(row, indexMap, ["Key Bible Chapters"]);
-                const passageNote = getField(row, indexMap, ["Passage Notes", "Key Story", "Key Framework", "Key Line"]);
+                const passageNote = getField(row, indexMap, ["Story", "Passage Notes", "Key Story", "Key Framework", "Key Line"]);
 
                 const todo = getField(row, indexMap, ["To Do"]);
 
@@ -694,6 +695,7 @@
                     id: lessonCell,
                     lessonNum,
                     topic,
+                    subtitle,
                     progress: Math.max(0, Math.min(progress, 100)),
                     tool,
                     summary,
@@ -760,7 +762,7 @@
             if (t.includes("confirm") || t.includes("sync") ||
                 t.includes("complete draft") || t.includes("finalize"))   return { cls: "todo-confirm",    icon: "◐" };
             if (t.includes("full draft"))                                  return { cls: "todo-draft",      icon: "○" };
-            if (t === "not started")                                       return { cls: "todo-notstarted", icon: "—" };
+            if (t === "not started")                                       return { cls: "todo-notstarted", icon: "-" };
             return { cls: "todo-confirm", icon: "◐" };
         }
 
@@ -788,6 +790,7 @@
                                 <div class="lesson-title-wrap">
                                     <div class="lesson-kicker">${escapeHtml(course.name)}</div>
                                     <div class="lesson-title">${escapeHtml(lesson.topic)}</div>
+                                    ${lesson.subtitle ? `<div class="lesson-summary">${escapeHtml(lesson.subtitle)}</div>` : ""}
                                 </div>
                                 <div class="progress-wrap">
                                     <div class="progress-value">${lesson.progress}% done</div>

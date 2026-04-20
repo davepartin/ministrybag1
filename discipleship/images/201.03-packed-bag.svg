@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">The Packed Bag</title>
+  <desc id="desc">A grayscale sketch of a boy on a bed with a packed bag while a father kneels beside him and shows adoption papers with a green seal.</desc>
+  <rect width="1200" height="900" fill="#f7f4ee"/>
+  <rect x="70" y="90" width="1060" height="730" rx="28" fill="#fcfbf8" stroke="#2f2a22" stroke-width="6"/>
+  <rect x="120" y="150" width="400" height="420" rx="18" fill="#efebe4" stroke="#2f2a22" stroke-width="5"/>
+  <rect x="155" y="185" width="330" height="26" rx="13" fill="#d9d2c7"/>
+  <rect x="150" y="600" width="520" height="120" rx="20" fill="#e5dfd3" stroke="#2f2a22" stroke-width="5"/>
+  <rect x="170" y="580" width="480" height="32" rx="16" fill="#d1cabd" stroke="#2f2a22" stroke-width="4"/>
+  <path d="M295 470c22 0 40 18 40 40v62h-80v-62c0-22 18-40 40-40z" fill="#d6d0c5" stroke="#2f2a22" stroke-width="5"/>
+  <circle cx="295" cy="420" r="42" fill="#efeae0" stroke="#2f2a22" stroke-width="5"/>
+  <path d="M345 545l78 28c18 6 30 23 30 42v20h-180v-16c0-31 31-56 72-56z" fill="#ddd5c9" stroke="#2f2a22" stroke-width="5"/>
+  <path d="M438 635h112c18 0 32 14 32 32v30H406v-30c0-18 14-32 32-32z" fill="#c9c1b2" stroke="#2f2a22" stroke-width="5"/>
+  <rect x="396" y="660" width="196" height="76" rx="18" fill="#bbb19d" stroke="#2f2a22" stroke-width="5"/>
+  <path d="M820 360c24 0 44 20 44 44v72h-88v-72c0-24 20-44 44-44z" fill="#d8d0c3" stroke="#2f2a22" stroke-width="5"/>
+  <circle cx="820" cy="304" r="44" fill="#f1ede5" stroke="#2f2a22" stroke-width="5"/>
+  <path d="M760 470c44 8 86 34 114 71l20 25" fill="none" stroke="#2f2a22" stroke-width="7" stroke-linecap="round"/>
+  <path d="M870 470c34 10 68 32 92 60l22 26" fill="none" stroke="#2f2a22" stroke-width="7" stroke-linecap="round"/>
+  <path d="M798 410l-38 108" fill="none" stroke="#2f2a22" stroke-width="7" stroke-linecap="round"/>
+  <path d="M844 410l68 106" fill="none" stroke="#2f2a22" stroke-width="7" stroke-linecap="round"/>
+  <path d="M930 520l92 58" fill="none" stroke="#2f2a22" stroke-width="7" stroke-linecap="round"/>
+  <path d="M1002 567l28 95" fill="none" stroke="#2f2a22" stroke-width="7" stroke-linecap="round"/>
+  <rect x="858" y="430" width="168" height="214" rx="12" fill="#fbfaf7" stroke="#2f2a22" stroke-width="5" transform="rotate(7 942 537)"/>
+  <line x1="886" y1="477" x2="990" y2="490" stroke="#857b6c" stroke-width="4"/>
+  <line x1="880" y1="512" x2="984" y2="525" stroke="#857b6c" stroke-width="4"/>
+  <line x1="874" y1="547" x2="978" y2="560" stroke="#857b6c" stroke-width="4"/>
+  <circle cx="978" cy="592" r="34" fill="#1a6b55" stroke="#2f2a22" stroke-width="5"/>
+  <path d="M978 568l7 16 18 2-14 12 4 18-15-9-15 9 4-18-14-12 18-2z" fill="#f7f4ee"/>
+  <path d="M635 228c52-70 126-118 219-136" fill="none" stroke="#b4aa9a" stroke-width="8" stroke-linecap="round"/>
+  <path d="M664 265c36-40 89-68 155-79" fill="none" stroke="#b4aa9a" stroke-width="6" stroke-linecap="round"/>
+  <g fill="#2f2a22" font-family="Georgia, serif">
+    <text x="600" y="120" font-size="52" text-anchor="middle">The Packed Bag</text>
+    <text x="600" y="170" font-size="24" text-anchor="middle" fill="#6f6557">Fear says, "One failure and I will be sent away."</text>
+    <text x="600" y="205" font-size="24" text-anchor="middle" fill="#6f6557">The Father's seal says, "You belong."</text>
+  </g>
+</svg>

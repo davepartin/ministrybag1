@@ -1,142 +1,75 @@
 {
   "id": "3",
-  "title": "Lesson 3: Walking in the Spirit",
-  "description": "The Father loves you. The Son redeems you. The Spirit lives in you. In this lesson you will discover that the Christian life was never meant to be lived by willpower alone, learn the difference between a self-directed life and a Spirit-directed life, and practice a simple rhythm called Spiritual Breathing that will change how you walk through every day.",
+  "title": "Lesson 3: The Guiding of the Holy Spirit",
+  "description": "The Holy Spirit can feel mysterious, but Jesus promised Him as a Helper who is with you forever. From the pillar of cloud and fire that led Israel through the wilderness to the Spirit who lives inside every believer today, God has always been a guide to His people. This lesson walks through what the Spirit actually does in your life and why you can trust Him to lead you every step of the way.",
   "blocks": [
     {
       "type": "text",
-      "text": "In the first lesson, you encountered God the Father: the one who runs toward you, who delights over you, whose love comes down before yours ever goes up. In the second lesson, you discovered who you are in Jesus the Son: crucified with Christ, adopted into the family, clothed in His perfection. That identity is settled and it is yours. But here is the honest question that follows: if the Father loves me and the Son saved me, why do I still struggle so much to live this out? Why does the Christian life feel so hard some days? This lesson answers that question, and the answer is a Person."
+      "text": "This is the third lesson in the Trinity arc of Growing Deep. Lesson 1 showed you the Father's love for you, a love that came before you ever knew His name. Lesson 2 showed you the identity Jesus gives, secured by His finished work on the cross. Now this lesson turns to God the Holy Spirit. He is not a vague force or a warm feeling. He is God Himself, the third Person of the Trinity, and He has been given to you for one beautiful purpose: to guide you. From the moment you believed, the Spirit has been walking with you, and He has no intention of stopping."
     },
     {
-      "type": "heading",
-      "text": "The Impossible Life"
+      "type": "image",
+      "imageBw": "images/pillar-fire-bw.png",
+      "imageColor": "images/pillar-fire-color.png",
+      "alt": "Israel gathered in the wilderness at night as the pillar of fire rises before them",
+      "touchNext": true
+    },
+    {
+      "type": "parable",
+      "title": "The Pillar in the Wilderness",
+      "text": "Israel had just come out of Egypt. Behind them was slavery. Ahead of them was wilderness. They did not have a map, a road sign, or any idea how they were going to make it through the desert. Then God did something beautiful. He did not just give Moses directions and send the people on their own. He went before them. By day there was a pillar of cloud. By night the cloud burned like fire. When the pillar moved, they moved. When it stayed, they stayed.<br><br><em>\"And the LORD went before them by day in a pillar of cloud to lead them along the way, and by night in a pillar of fire to give them light.\" (Exodus 13:21)</em><br><br>Picture that scene for a moment. Families, children, animals, tents, fear, and questions, all gathered at the edge of a wilderness they did not understand. They did not need to know the whole route. They only needed to follow the Presence in front of them. Later Scripture says, <em>\"At the command of the LORD the people of Israel set out, and at the command of the LORD they camped.\" (Numbers 9:18)</em> That is the picture at the heart of this lesson. God's people were guided not by certainty, but by His presence."
     },
     {
       "type": "text",
-      "text": "The Christian life is not difficult. It is impossible. That is not an exaggeration for effect; it is the point. You were never meant to live it by your own effort. Think about everything the Bible asks of you: love your enemies, forgive the people who hurt you, put others first, fight temptation, remain faithful when life falls apart. No amount of willpower can sustain that kind of life over time, and if you have tried, you already know what happens. You burn out, you fall short, and then you feel guilty for not being stronger. That cycle is exhausting, and it was never God's plan for you."
-    },
-    {
-      "type": "text",
-      "text": "God's plan is the Holy Spirit. He is not an idea or a force or a feeling. He is a Person, the third Person of the Trinity, and He has been living inside you since the moment you placed your faith in Jesus. Every believer is <em>indwelt</em> by the Spirit. But not every believer is <em>walking</em> in the Spirit, and that distinction makes all the difference."
+      "text": "The pillar that hovered over Israel now lives inside you through the Holy Spirit. He is not a force or a feeling. He is God Himself, and when Jesus returned to the Father, He sent the Spirit so you would never walk alone."
     },
     {
       "type": "verse",
-      "reference": "Galatians 5:25",
-      "text": "If we live by the Spirit, let us also keep in step with the Spirit."
-    },
-    {
-      "type": "text",
-      "text": "Paul says two things here. First, you already <em>live</em> by the Spirit; that happened at salvation. Second, you are called to <em>keep in step</em> with the Spirit, and that is a daily, moment-by-moment choice. The Spirit's presence in your life is settled. The Spirit's direction of your life is something you surrender to, one decision at a time."
+      "reference": "John 14:16-17",
+      "text": "And I will ask the Father, and he will give you another Helper, to be with you forever, even the Spirit of truth."
     },
     {
       "type": "heading",
-      "text": "Three Ways to Live"
+      "text": "The Five Actions of the Holy Spirit"
     },
     {
       "type": "text",
-      "text": "It helps to see where you actually are before you can move forward. The first way to live is the <strong>natural life</strong>: a person who has not trusted Christ. The Spirit does not indwell them, and they are living entirely under their own power. The second is the <strong>carnal life</strong>: a person who has trusted Christ, and the Spirit lives inside them, but self is still running the show. They are saved but exhausted, because they are trying to live a supernatural life with natural strength. The third is the <strong>Spirit-filled life</strong>: a person who has trusted Christ and has yielded control to the Holy Spirit. Christ is directing, the Spirit is empowering, and the life begins to look like something only God could produce."
+      "text": "Anyone who has hiked an unfamiliar trail knows the feeling. The path narrows, the fog rolls in, and the next marker is nowhere in sight. In those moments you do not need more information. You need a guide, someone who knows the trail, who walks ahead of you, and who will not leave you behind. The Christian life works the same way. You were never meant to walk it alone. The Holy Spirit is your Guide, and the word <strong>GUIDE</strong> is a simple way to remember the five things He actually does in your life. Walk the trail below, one stop at a time, and let the word build as you go."
+    },
+    {
+      "type": "widget",
+      "src": "widgets/guide-spirit.html",
+      "height": "620px"
     },
     {
       "type": "text",
-      "text": "Most believers who feel stuck are not living the natural life; they are living the carnal life. They know Jesus, they love Jesus, but they are grinding through every day on willpower and wondering why it is not working. The problem is not a lack of commitment. The problem is the wrong power source. You were designed to run on the Holy Spirit, and trying to live the Christian life on self-effort is like trying to run a machine that is not plugged in. All the potential, none of the power."
+      "text": "<strong>G - Glorifies the Savior.</strong> The first thing to know about the Holy Spirit is that He always points to Jesus. Jesus Himself said, \"He will glorify me, for he will take what is mine and declare it to you\" (John 16:14). Any voice that claims to be the Spirit but does not exalt Christ is not Him. When your heart is drawn to love Jesus more, trust Him more, and worship Him more deeply, that is the Holy Spirit at work in you."
+    },
+    {
+      "type": "text",
+      "text": "<strong>U - Unites Sinners to God.</strong> You were once far from God, separated by sin and unable to close the gap yourself. The Spirit closed it. Paul writes that you have received \"the Spirit of adoption as sons, by whom we cry, 'Abba! Father!'\" (Romans 8:15-16). The Spirit does not just bring you near God. He makes you family. That cry of a child to a father did not come from your flesh. It came from the Spirit of God placed into your heart."
+    },
+    {
+      "type": "text",
+      "text": "<strong>I - Inspires and Illuminates Scripture.</strong> The same Spirit who carried along the writers of the Bible now walks with you when you read it. \"Men spoke from God as they were carried along by the Holy Spirit\" (2 Peter 1:21). When a verse lands on your heart with weight, when an old passage suddenly makes sense, when you see Jesus more clearly on the page than you did the last time you read it, that is the Spirit illuminating Scripture for you."
+    },
+    {
+      "type": "text",
+      "text": "<strong>D - Directs Steps.</strong> Paul says, \"All who are led by the Spirit of God are sons of God\" (Romans 8:14). The Spirit does not drag you around or overpower your will. He walks with you, nudges your conscience, gives peace when you are going the right way, and presses a godly discomfort when you are wandering. Remember the pillar that went ahead of Israel in the wilderness? The Spirit does the same thing inside you now. The pillar moved and the people followed. Today, the Spirit moves in your heart the same way, leading you step by step."
+    },
+    {
+      "type": "text",
+      "text": "<strong>E - Eternal Security.</strong> The moment you believed in Jesus, something permanent happened. Paul says you were \"sealed with the promised Holy Spirit, who is the guarantee of our inheritance\" (Ephesians 1:13-14). A seal marks ownership. A guarantee is a down payment that promises the rest is coming. The Spirit in you is God's own pledge that He will finish what He started in you."
     },
     {
       "type": "question",
       "id": "201-03-1",
-      "text": "3.1 - Be honest: does your daily walk with God feel more like the carnal life (saved but self-directed and exhausted) or the Spirit-filled life (yielded and empowered)? What does that look like in your real life?",
+      "text": "3.1 - Which of these five actions of the Spirit do you most need to see right now? Which one has felt most real to you recently, and which one do you want to grow in?",
       "height": "tall"
     },
     {
       "type": "heading",
-      "text": "The Gospel Principle"
-    },
-    {
-      "type": "text",
-      "text": "One of the biggest traps believers fall into is moralism. Moralism says, \"I obey, therefore I am accepted.\" It sounds spiritual, but it is actually a return to the performance treadmill that Jesus rescued you from. It produces fear when you fail and pride when you succeed, and it leaves you spiritually dead either way. The Spirit works through an entirely different principle."
-    },
-    {
-      "type": "text",
-      "text": "The gospel principle says, \"I am accepted through Christ, therefore I obey.\" That single reversal changes everything. When you believe deep in your bones that your acceptance is already settled in Jesus, the Spirit restructures your motivations from the inside out. You stop obeying out of fear and start obeying out of love. You stop performing for approval and start responding to grace. This is not a onetime realization; it is a truth the Spirit applies to your heart over and over again, in every season and every struggle, for the rest of your life."
-    },
-    {
-      "type": "verse",
-      "reference": "Romans 8:14-15",
-      "text": "For all who are led by the Spirit of God are sons of God. For you did not receive the spirit of slavery to fall back into fear, but you have received the Spirit of adoption as sons, by whom we cry, \"Abba! Father!\""
-    },
-    {
-      "type": "text",
-      "text": "The Spirit does not drive you with guilt. He leads you as a child of the Father. That is the difference between religion and relationship, between slavery and sonship, and the Holy Spirit is the one who makes it real in your daily experience."
-    },
-    {
-      "type": "heading",
-      "text": "The Battle Inside"
-    },
-    {
-      "type": "text",
-      "text": "Walking in the Spirit does not mean the struggle disappears. It means you fight it with the right power."
-    },
-    {
-      "type": "verse",
-      "reference": "Galatians 5:17",
-      "text": "For the desires of the flesh are against the Spirit, and the desires of the Spirit are against the flesh, for these are opposed to each other, to keep you from doing the things you want to do."
-    },
-    {
-      "type": "text",
-      "text": "There is an ongoing war inside every believer between the old patterns of the flesh and the new nature of the Spirit. If you have ever wanted to do the right thing and done the wrong thing instead, this is why. Paul says these two forces are <em>opposed to each other</em>, and this battle does not end on this side of eternity. That is not bad news; it is honest news, and it should free you from the shock and shame that come when you stumble. Stumbling does not mean the Spirit left you. It means you are in a fight, and the fight itself is evidence that the Spirit is alive in you. A dead person does not wrestle."
-    },
-    {
-      "type": "text",
-      "text": "But the answer to this fight is not to try harder. The answer is to yield more. Instead of gritting your teeth and relying on your own discipline, you call on the Holy Spirit in the moment of temptation. \"Help me, Holy Spirit\" is one of the most powerful prayers a believer can pray, not because the words are magic, but because they express exactly what the Spirit-filled life is: dependence, not performance."
-    },
-    {
-      "type": "question",
-      "id": "201-03-2",
-      "text": "3.2 - Where in your life are you currently trying to fight sin or temptation by willpower alone? What would it look like to yield that specific battle to the Holy Spirit?",
-      "height": "tall"
-    },
-    {
-      "type": "heading",
-      "text": "Spiritual Breathing"
-    },
-    {
-      "type": "text",
-      "text": "So how do you actually keep in step with the Spirit day by day? There is a simple practice called <strong>Spiritual Breathing</strong> that turns this truth into a rhythm you can carry everywhere. Physical breathing is something you do all day long without thinking: exhale the bad air, inhale the good. Spiritual Breathing works the same way."
-    },
-    {
-      "type": "text",
-      "text": "<strong>Exhale:</strong> As soon as you become aware of sin, an attitude, an action, a word, breathe it out. Agree with God that it is sin and confess it honestly. Do not wait until the end of the day or until you feel bad enough; deal with it in the moment. \"If we confess our sins, he is faithful and just to forgive us our sins and to cleanse us from all unrighteousness\" (1 John 1:9)."
-    },
-    {
-      "type": "text",
-      "text": "<strong>Inhale:</strong> Immediately yield control of your life back to Christ and trust the Holy Spirit to fill and direct you. You do not need to beg or earn this. God already commanded it in Ephesians 5:18: \"Be filled with the Spirit.\" He always provides what He commands. Claim it by faith, right there in the moment, and keep walking."
-    },
-    {
-      "type": "text",
-      "text": "This rhythm is not a onetime event. It is as constant as breathing itself. The more natural it becomes, the more you will find yourself keeping in step with the Spirit rather than falling back into the old patterns of the flesh. Spiritual Breathing is not a formula; it is the daily posture of a heart that is learning to depend on the Spirit for everything."
-    },
-    {
-      "type": "heading",
-      "text": "Peter: From Self-Reliance to Spirit-Boldness"
-    },
-    {
-      "type": "text",
-      "text": "If you want to see what the Spirit can do in a real human life, look at Peter. On the night Jesus was arrested, Peter swore he would never deny Him. Hours later, standing by a fire in a courtyard, he denied Jesus three times and then wept bitterly. Peter had all the love and all the commitment in the world, but he was running on his own courage, and his own courage was not enough."
-    },
-    {
-      "type": "text",
-      "text": "Fast forward to Acts 2. The same Peter, standing in the streets of Jerusalem, preaches a sermon so bold and so clear that three thousand people come to faith in a single day. What changed? Peter did not go to a leadership seminar or develop a better strategy. The Holy Spirit came, and the Spirit filled Peter with a power that was never his own. The man who crumbled by a fire became the man who shook a city, and the difference was not Peter. <strong>The difference was the Spirit.</strong>"
-    },
-    {
-      "type": "text",
-      "text": "That same Spirit lives in you right now. The same power that turned a coward into a world-changer is available to you today, not because you are strong enough to access it, but because He is faithful enough to give it. Your job is not to generate the power. Your job is to stay plugged in."
-    },
-    {
-      "type": "heading",
-      "text": "The Moment It All Came Together"
-    },
-    {
-      "type": "text",
-      "text": "These first three lessons have walked you through the Father, the Son, and the Spirit, one at a time. But there is a moment in Scripture where all three appear together, and it is too beautiful to miss."
+      "text": "The Spirit at the Jordan and in the Wilderness"
     },
     {
       "type": "verse",
@@ -145,29 +78,44 @@
     },
     {
       "type": "text",
-      "text": "The Son stands in the water, obedient. The Spirit descends like a dove, empowering. The Father speaks from heaven, delighting. Three Persons, one God, all present in the same moment, and at the center of it all is this word: <em>beloved</em>. Before Jesus performed a single miracle, healed a single person, or preached a single sermon, the Father called Him beloved. That is how the Trinity works: the Father's love comes first, identity is spoken, and then the Spirit empowers the mission."
+      "text": "This is the only scene in all of Scripture where the whole Trinity is visible in one single moment. The Son stands in the river, dripping wet from His baptism. The Father speaks from heaven, declaring His love. The Spirit descends like a dove and rests on Jesus. All three Persons, together in one moment. If you have ever wondered whether the Trinity is only a concept, stand at the Jordan in your imagination and watch."
+    },
+    {
+      "type": "question",
+      "id": "201-03-2",
+      "text": "3.2 - What stands out to you about this scene at the Jordan? Where is the Father, where is the Son, and where is the Spirit? What does it tell you about how God is working for you?",
+      "height": "tall"
+    },
+    {
+      "type": "verse",
+      "reference": "Matthew 4:1",
+      "text": "Then Jesus was led up by the Spirit into the wilderness to be tempted by the devil."
     },
     {
       "type": "text",
-      "text": "That is the same pattern at work in your life right now. The Father loves you (Lesson 1). The Son gives you an identity that cannot be shaken (Lesson 2). And the Spirit fills you with power to walk it out every single day (Lesson 3). These three truths are the foundation that everything else in this course is built on. You are loved, you are known, and you are never walking alone."
+      "text": "The very next sentence in Matthew's Gospel is just as important as what came before. The same Spirit who descended on Jesus at the Jordan immediately led Him into the wilderness. Jesus did not go out under His own steam. The Spirit guided Him. The Son of God walked through a season of hunger and temptation with the Spirit as His Guide. If Jesus Himself needed the Spirit to walk Him through the wilderness, how much more do you and I need the same Spirit in our own seasons of testing?"
+    },
+    {
+      "type": "text",
+      "text": "This is the quiet comfort under all of this teaching. The Spirit who rested on Jesus at the Jordan, the Spirit who led Him into the wilderness and sustained Him there, is the same Spirit now at work in you. When the path fogs over, you are not alone. You have been given a Guide."
     },
     {
       "type": "question",
       "id": "201-03-3",
-      "text": "3.3 - Read the baptism scene one more time. The Father delights, the Spirit empowers, and the Son is called beloved before He does anything. How does that reshape how you think about your own walk with God?",
+      "text": "3.3 - Where in your life right now does it feel like a wilderness season? What would it look like this week to ask the Holy Spirit to guide you through it the way He guided Jesus?",
       "height": "tall"
     },
     {
       "type": "heading",
-      "text": "This Week's Practice"
+      "text": "Lesson 3 Review"
     },
     {
       "type": "text",
-      "text": "This week, practice Spiritual Breathing. Each time you become aware of sin, a sharp word, an anxious thought, a selfish impulse, exhale it immediately by confessing it to God. Then inhale by yielding control back to the Spirit and trusting Him to direct your next step. Do not wait until the end of the day. Do it in the moment, as naturally as breathing. By the end of the week, notice whether this rhythm changes how you respond to temptation and stress."
+      "text": "God has always been a guide to His people. He led Israel through the wilderness with a pillar they could see. He sent the Spirit to rest on Jesus at the Jordan and to walk Him through the desert. And now that same Spirit lives inside you. He glorifies the Savior so your eyes stay on Jesus. He unites you to the Father so you belong. He inspires and illuminates Scripture so you hear God's voice on the page. He directs your steps so you never walk alone. And He seals your eternal future so nothing can pull you away."
     },
     {
       "type": "text",
-      "text": "Also this week, read Romans 8 in one sitting. It is the fullest picture in the Bible of what life in the Spirit looks like. Watch for how many times Paul mentions the Spirit, and notice the direction of the chapter: from no condemnation, to life in the Spirit, to nothing that can separate you from God's love. Let it wash over you slowly."
+      "text": "The whole Trinity arc rests on one warm truth. The Father loved you before you ever came. The Son died and rose to bring you in. And the Spirit walks with you now, every step of the way. The pillar that once hovered over a nation now burns inside you. You have been given a Guide, and He will not leave you."
     },
     {
       "type": "heading",
@@ -176,13 +124,13 @@
     {
       "type": "question",
       "id": "201-03-key",
-      "text": "What is one key thing you learned from this lesson, and what next step can you take this week?",
+      "text": "What is one key thing you learned from this lesson?",
       "height": "short"
     },
     {
       "type": "question",
-      "id": "201-03-devos",
-      "text": "What have you learned about God and yourself recently in your Daily Devotions?",
+      "id": "201-03-step",
+      "text": "What is one step you are going to take this week?",
       "height": "short"
     },
     {

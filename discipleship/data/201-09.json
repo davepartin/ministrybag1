@@ -22,10 +22,16 @@
     },
 
     {
+      "type": "image",
+      "imageBw": "images/fruit-tree-story.jpg",
+      "imageColor": "images/fruit-tree-story-color.jpg",
+      "alt": "A young woman and her grandfather standing in an overgrown backyard looking at the trees",
+      "frame": true,
+      "touchNext": true
+    },
+    {
       "type": "parable",
       "title": "The Tree in the Backyard",
-      "image": "images/fruit-tree-story.jpg",
-      "alt": "A young woman and her grandfather standing in an overgrown backyard looking at the trees",
       "text": "A young woman moved into her first house and walked the yard for the first time with her grandpa. She had some plans for one area but it had a tree right in the middle. Her grandpa looked at it and shared, <em>\"That one's healthy. Leave it be. Time will show you what it's worth.\"</em> She trusted him and waited. Winter came and went. Spring brought new leaves but nothing else. Then one morning in the fall she walked outside and the branches were heavy with bright oranges. Her favorite fruit. What she almost cut down had become a blessing.<br><br>Jesus said, <em>\"You will recognize them by their fruits.\"</em> What grows out of our lives over time reveals what is at the root of our hearts."
     },
     {

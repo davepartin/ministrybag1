@@ -158,13 +158,22 @@ Every lesson should help the learner answer:
 
 ## Lesson structure
 
-Every lesson follows the same rhythm:
+The full structural spine lives in **LESSON-TEMPLATE.md**. That file is the structural law for every lesson in the series and is the starting skeleton for new drafts. The two reference exemplars are `data/201-08.json` (parable plus diagram image) and `data/201-10.json` (parable plus interactive widget).
+
+In summary, every lesson follows this rhythm:
 
 1. Journey recap (1 paragraph, 2-3 sentences) that tells the learner where they have been in the course and how this lesson connects to what came before. This is the first text block in every lesson except the very first lesson of a course, which has a course welcome instead.
-2. Opening that draws the reader into the topic with warmth and accessibility.
-3. Teaching sections with short paragraphs and Scripture woven in.
-4. Reflection questions numbered using the Series.Lesson.Question format (e.g., 3.2).
-5. Closing Reflections, the same three questions every time: "What is one key thing you learned from this lesson?" / "What is one step you are going to take this week?" / "What is a prayer request for this week?"
+2. A parable block near the top with a black-and-white Grok sketch (paired with a color-splash variant that reveals on scroll) that anchors the lesson in a story.
+3. Opening that draws the reader into the topic with warmth and accessibility.
+4. Teaching sections with short paragraphs and Scripture woven in.
+5. A diagram or interactive widget between teaching sections that carries the main point visually.
+6. Three to five mid-lesson reflection questions, numbered using the Series.Lesson.Question format (e.g., 3.2).
+7. A Lesson Review paragraph that ties the lesson closed before the closing reflections.
+8. Closing Reflections at the end.
+
+The 200-level courses (201, 202, 203) close every lesson with the same three questions, always in this order: "What is one key thing you learned from this lesson?" / "What is one step you are going to take this week?" / "What is a prayer request for this week?"
+
+The 100-level course (101) uses its own closing rhythm intentionally: a combined key-thing-plus-next-step question, then a daily devotions question, then a prayer request. This is by design for the on-ramp course and does not need to match the Growing-level standard.
 
 There are no "homework" or "agenda" sections. The lesson is the homework. People finish a lesson at their own pace and move to the next one naturally. The closing questions create a simple rhythm for one-on-one discipleship conversations.
 
@@ -209,6 +218,11 @@ The 300 level direction can remain more open while the earlier courses are solid
 
 These decisions have been made and should not be revisited without Dave's direction:
 
+- LESSON-TEMPLATE.md is the structural law for every lesson. Exemplars are 201-08 and 201-10.
+- 200-level closing reflections use the same three questions every time (key thing learned / one step this week / prayer request). The 101 course uses its own ending rhythm by design.
+- Parable images use a black-and-white Grok sketch paired with a color-splash or slight-motion variant revealed on scroll, honoring `prefers-reduced-motion`.
+- BLESS rhythms own 203.02 (Begin with Prayer), 203.03 (Listen and Eat, bundled as Hospitality), 203.04 (Serve with Loving Sacrifice), and 203.05 (Share Your Story and the Gospel, with Three Stories as one worked example).
+- 1st, 2nd, 3rd Space framework anchors 203.06 (Faith at Work and School as the 2nd Space).
 - Echo of Love framework (201-01): Receive, Respond, Remain. God's love is the starting point, our love is the echo.
 - New Tongue analogy (201-01): Loving God is like getting a new tongue. God gives a new heart, what we once ran from we now run toward.
 - Greenhouse metaphor (101): The discipleship course creates conditions for growth; God gives the growth (1 Cor. 3:6).
