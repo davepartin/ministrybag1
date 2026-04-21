@@ -5,7 +5,7 @@
   "blocks": [
     {
       "type": "text",
-      "text": "This is the third lesson in the Trinity arc of Growing Deep. Lesson 1 showed you the Father's love for you, a love that came before you ever knew His name. Lesson 2 showed you the identity Jesus gives, secured by His finished work on the cross. Now this lesson turns to God the Holy Spirit. He is not a vague force or a warm feeling. He is God Himself, the third Person of the Trinity, and He has been given to you for one beautiful purpose: to guide you. From the moment you believed, the Spirit has been walking with you, and He has no intention of stopping."
+      "text": "God reveals Himself as the Trinity. Lesson 1 showed you the Father's love for you, a love that came before you ever knew His name. Lesson 2 showed you the identity Jesus gives, secured by His finished work on the cross. Now this lesson turns to <strong>God the Holy Spirit</strong>. He is not a vague force or a warm feeling. He is God Himself, the third Person of the Trinity, and He has been given to you for one beautiful purpose: to guide you. From the moment you believed, the Spirit has been walking with you, and He has no intention of stopping."
     },
     {
       "type": "image",
@@ -17,7 +17,7 @@
     {
       "type": "parable",
       "title": "The Pillar in the Wilderness",
-      "text": "Israel had just come out of Egypt. Behind them was slavery. Ahead of them was wilderness. They did not have a map, a road sign, or any idea how they were going to make it through the desert. Then God did something beautiful. He did not just give Moses directions and send the people on their own. He went before them. By day there was a pillar of cloud. By night the cloud burned like fire. When the pillar moved, they moved. When it stayed, they stayed.<br><br><em>\"And the LORD went before them by day in a pillar of cloud to lead them along the way, and by night in a pillar of fire to give them light.\" (Exodus 13:21)</em><br><br>Picture that scene for a moment. Families, children, animals, tents, fear, and questions, all gathered at the edge of a wilderness they did not understand. They did not need to know the whole route. They only needed to follow the Presence in front of them. Later Scripture says, <em>\"At the command of the LORD the people of Israel set out, and at the command of the LORD they camped.\" (Numbers 9:18)</em> That is the picture at the heart of this lesson. God's people were guided not by certainty, but by His presence."
+      "text": "In Exodus 13, God had used Moses to rescue His people from the hand of Pharaoh. Israel had just walked out of Egypt with slavery behind them and an unknown wilderness stretching out ahead. But God did not hand Moses a map and send the people on their own. He went before them, a pillar of cloud by day and a pillar of fire by night. When the pillar moved, they moved. When it stayed, they stayed.<br><br><em>\"By day the LORD went ahead of them in a pillar of cloud to <strong>GUIDE</strong> them on their way and by night in a pillar of fire to give them light, so that they could travel by day or night.\" (Exodus 13:21 NIV)</em><br><br>They did not need to know the whole route. They only needed to follow the Presence in front of them. God's people were guided not by certainty, but by His presence."
     },
     {
       "type": "text",
@@ -38,7 +38,7 @@
     },
     {
       "type": "widget",
-      "src": "widgets/guide-spirit.html",
+      "src": "widgets/guide-spirit2.html",
       "height": "620px"
     },
     {
@@ -72,6 +72,10 @@
       "text": "The Spirit at the Jordan and in the Wilderness"
     },
     {
+      "type": "text",
+      "text": "At the very start of Jesus' public ministry, something remarkable happened at the Jordan River. Watch for all three Persons of the Trinity showing up in the same moment."
+    },
+    {
       "type": "verse",
       "reference": "Matthew 3:16-17",
       "text": "And when Jesus was baptized, immediately he went up from the water, and behold, the heavens were opened to him, and he saw the Spirit of God descending like a dove and coming to rest on him; and behold, a voice from heaven said, \"This is my beloved Son, with whom I am well pleased.\""
@@ -85,6 +89,10 @@
       "id": "201-03-2",
       "text": "3.2 - What stands out to you about this scene at the Jordan? Where is the Father, where is the Son, and where is the Spirit? What does it tell you about how God is working for you?",
       "height": "tall"
+    },
+    {
+      "type": "text",
+      "text": "Now look at what happened next. The celebration at the Jordan had barely ended before the Spirit moved Jesus into something far harder."
     },
     {
       "type": "verse",

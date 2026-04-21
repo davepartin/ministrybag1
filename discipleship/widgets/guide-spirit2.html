@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The GUIDE of the Holy Spirit</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@600;700&display=swap');
+
+        :root {
+            --green: #1A6B55;
+            --soft-green: #D4F2E8;
+            --charcoal: #2C2416;
+            --ink: #2F2A21;
+            --paper: #FFFFFF;
+            --cream: #F5F1E6;
+            --scene: #EEF2DE;
+            --trail: #D9C99D;
+            --trail-dark: #B7A373;
+            --border: #E7DECE;
+            --muted: #766D60;
+            --shadow: 0 10px 26px rgba(44, 36, 22, 0.10);
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: transparent;
+            color: var(--ink);
+            font-family: 'Inter', 'Trebuchet MS', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        button {
+            font: inherit;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .widget {
+            width: 100%;
+            max-width: 460px;
+            margin: 0 auto;
+            overflow: hidden;
+            background: #FAF8F1;
+        }
+
+        @media (min-width: 560px) {
+            body {
+                padding: 16px;
+            }
+
+            .widget {
+                border: 1px solid #E8DFD0;
+                border-radius: 18px;
+                box-shadow: var(--shadow);
+            }
+        }
+
+        .title-bar {
+            background: #211D14;
+            padding: 7px 14px 8px;
+            text-align: center;
+        }
+
+        .title-bar h1 {
+            margin: 0;
+            color: #FBF8F1;
+            font-size: 17px;
+            font-weight: 900;
+            letter-spacing: 0.09em;
+            line-height: 1.15;
+        }
+
+        .scene-wrap {
+            position: relative;
+            overflow: hidden;
+            height: 330px;
+            background: var(--scene);
+            border-bottom: 1px solid #E5DCCB;
+        }
+
+        #scene {
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            width: 119.05%;
+            height: 430px;
+            transform: translateX(-50%) scale(0.84);
+            transform-origin: top center;
+        }
+
+        .scene-svg {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        .stop-pills {
+            position: absolute;
+            left: 12px;
+            right: 12px;
+            bottom: 24px;
+            z-index: 8;
+            height: 210px;
+            pointer-events: none;
+        }
+
+        .stop-pill {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 0;
+            height: 30px;
+            padding: 0 8px;
+            border: 2px solid var(--pill-color);
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.94);
+            box-shadow: 0 5px 13px rgba(44, 36, 22, 0.10);
+            color: #3D352B;
+            font-size: 11.3px;
+            font-weight: 800;
+            white-space: nowrap;
+            opacity: 0;
+            transform: translateY(8px);
+            transition: opacity 0.38s ease, transform 0.38s ease;
+        }
+
+        .stop-pill.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stop-pill:nth-child(1) {
+            left: 0;
+            top: 0;
+            width: 132px;
+            z-index: 1;
+        }
+
+        .stop-pill:nth-child(2) {
+            left: 72px;
+            top: 44px;
+            width: 132px;
+            z-index: 2;
+        }
+
+        .stop-pill:nth-child(3) {
+            left: 144px;
+            top: 88px;
+            width: 142px;
+            z-index: 3;
+        }
+
+        .stop-pill:nth-child(4) {
+            left: 216px;
+            top: 132px;
+            width: 136px;
+            z-index: 4;
+        }
+
+        .stop-pill:nth-child(5) {
+            left: 288px;
+            top: 176px;
+            width: 132px;
+            z-index: 5;
+        }
+
+        .intro-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 12;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 22px;
+            background: linear-gradient(180deg, rgba(238, 242, 222, 0.20), rgba(238, 242, 222, 0.72));
+            pointer-events: none;
+            text-align: center;
+        }
+
+        .intro-card {
+            max-width: 320px;
+            padding: 18px 18px 16px;
+            border: 1px solid rgba(226, 217, 200, 0.9);
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.86);
+            box-shadow: 0 14px 32px rgba(44, 36, 22, 0.10);
+            backdrop-filter: blur(4px);
+        }
+
+        .intro-verse {
+            margin: 0 0 8px;
+            color: var(--charcoal);
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 17px;
+            font-weight: 600;
+            font-style: italic;
+            line-height: 1.35;
+        }
+
+        .intro-ref {
+            margin: 0;
+            color: var(--green);
+            font-size: 11px;
+            font-weight: 900;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .card-area {
+            background: #FAF8F1;
+            padding: 8px 12px 8px;
+        }
+
+        .verse-card {
+            overflow: hidden;
+            border: 1px solid #E8DFD0;
+            border-radius: 14px;
+            background: var(--paper);
+            box-shadow: 0 7px 18px rgba(44, 36, 22, 0.07);
+            animation: fadeSlide 0.3s ease both;
+        }
+
+        .verse-bar {
+            height: 4px;
+            background: var(--card-color, var(--green));
+        }
+
+        .verse-content {
+            height: 112px;
+            padding: 10px 16px;
+            overflow: hidden;
+        }
+
+        .verse-title {
+            margin: 0 0 4px;
+            color: var(--card-color, var(--green));
+            font-family: 'Inter', 'Trebuchet MS', sans-serif;
+            font-size: 15px;
+            font-weight: 800;
+            letter-spacing: 0.01em;
+            line-height: 1.24;
+        }
+
+        .verse-text {
+            margin: 0;
+            color: #3E3529;
+            font-family: Georgia, Cambria, serif;
+            font-size: 12.7px;
+            line-height: 1.36;
+        }
+
+        .verse-text b {
+            color: var(--card-color, var(--green));
+            font-weight: 700;
+        }
+
+        .card-note {
+            display: block;
+            margin-top: 5px;
+            color: #5A4F42;
+            font-style: italic;
+        }
+
+        .verse-ref {
+            margin: 5px 0 0;
+            color: var(--card-color, var(--green));
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 0.01em;
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin-top: 10px;
+            padding: 0 2px;
+        }
+
+        .nav-btn {
+            min-width: 76px;
+            padding: 8px 13px;
+            border: 1.5px solid rgba(44, 36, 22, 0.14);
+            border-radius: 11px;
+            background: #FFFFFF;
+            color: var(--charcoal);
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 800;
+            transition: transform 0.18s ease, background 0.18s ease;
+        }
+
+        .nav-btn:active {
+            transform: translateY(1px);
+        }
+
+        .nav-btn.primary {
+            min-width: 98px;
+            border-color: transparent;
+            background: var(--card-color, var(--green));
+            color: #FFFFFF;
+            box-shadow: 0 5px 13px rgba(44, 36, 22, 0.14);
+        }
+
+        .nav-btn.hidden {
+            visibility: hidden;
+        }
+
+        .dots {
+            display: flex;
+            flex: 1;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            padding: 0;
+            border: 0;
+            border-radius: 999px;
+            background: rgba(44, 36, 22, 0.20);
+            transition: width 0.25s ease, background 0.25s ease;
+        }
+
+        .dot.available {
+            cursor: pointer;
+        }
+
+        .dot.current {
+            width: 20px;
+        }
+
+        @keyframes fadeSlide {
+            from {
+                opacity: 0;
+                transform: translateY(6px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 380px) {
+            .scene-wrap {
+                height: 306px;
+            }
+
+            #scene {
+                top: -30px;
+                width: 127%;
+                transform: translateX(-50%) scale(0.79);
+            }
+
+            .stop-pills {
+                left: 8px;
+                right: 8px;
+                bottom: 22px;
+                height: 192px;
+            }
+
+            .stop-pill {
+                height: 28px;
+                padding: 0 6px;
+                font-size: 9.5px;
+                transform: translateY(8px);
+            }
+
+            .stop-pill.visible {
+                transform: translateY(0);
+            }
+
+            .stop-pill:nth-child(1) {
+                left: 0;
+                top: 0;
+                width: 116px;
+            }
+
+            .stop-pill:nth-child(2) {
+                left: 54px;
+                top: 42px;
+                width: 118px;
+            }
+
+            .stop-pill:nth-child(3) {
+                left: 108px;
+                top: 84px;
+                width: 128px;
+            }
+
+            .stop-pill:nth-child(4) {
+                left: 162px;
+                top: 126px;
+                width: 126px;
+            }
+
+            .stop-pill:nth-child(5) {
+                left: 216px;
+                top: 168px;
+                width: 121px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+<main class="widget" aria-label="The GUIDE of the Holy Spirit interactive widget">
+    <header class="title-bar">
+        <h1>The GUIDE of the Holy Spirit</h1>
+    </header>
+
+    <section class="scene-wrap" aria-label="A trail of five signposts that spell GUIDE">
+        <div id="scene"></div>
+    </section>
+
+    <section class="card-area" id="cardArea" aria-live="polite"></section>
+</main>
+
+<script>
+(function () {
+    var NS = 'http://www.w3.org/2000/svg';
+    var W = 460;
+    var H = 430;
+    var step = -1;
+    var baseColor = '#5A4E3C';
+    var trailYOffset = 34;
+    var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    var stops = [
+        {
+            letter: 'G',
+            color: '#2F7A63',
+            short: 'Glorifies the Savior',
+            title: 'Glorifies the Savior',
+            marker: { x: 48, y: 68, stem: 42, r: 21 },
+            path: 'M 17 108 C 28 107, 38 108, 48 110',
+            verse: '"He will <b>glorify me</b>, for he will take what is mine and <b>declare it to you</b>."',
+            note: 'The Spirit always points to Jesus.',
+            ref: 'John 16:14'
+        },
+        {
+            letter: 'U',
+            color: '#8B6A4B',
+            short: 'Unites Sinners to God',
+            title: 'Unites Sinners to God',
+            marker: { x: 154, y: 116, stem: 47, r: 21 },
+            path: 'M 48 110 C 88 108, 124 126, 154 163',
+            verse: '"You have received the <b>Spirit of adoption</b> as sons, by whom we cry, <b>Abba! Father!</b>"',
+            note: 'The Spirit brings you near as God\'s child.',
+            ref: 'Romans 8:15-16'
+        },
+        {
+            letter: 'I',
+            color: '#6B7787',
+            short: 'Inspires Scripture',
+            title: 'Inspires and Illuminates Scripture',
+            marker: { x: 250, y: 146, stem: 42, r: 21 },
+            path: 'M 154 163 C 183 185, 215 188, 250 188',
+            verse: '"Men spoke from God as they were <b>carried along by the Holy Spirit</b>."',
+            note: 'The Spirit who gave Scripture helps you understand it.',
+            ref: '2 Peter 1:21'
+        },
+        {
+            letter: 'D',
+            color: '#B39336',
+            short: 'Directs Steps',
+            title: 'Directs Your Steps',
+            marker: { x: 338, y: 252, stem: 58, r: 23 },
+            path: 'M 250 188 C 284 189, 300 227, 338 310',
+            verse: '"For all who are <b>led by the Spirit of God</b> are sons of God."',
+            note: 'The Spirit walks ahead and leads your next step.',
+            ref: 'Romans 8:14'
+        },
+        {
+            letter: 'E',
+            color: '#816199',
+            short: 'Eternal Security',
+            title: 'Eternal Security',
+            marker: { x: 423, y: 282, stem: 44, r: 23 },
+            path: 'M 338 310 C 370 316, 405 319, 423 326',
+            verse: '"You were <b>sealed with the promised Holy Spirit</b>, who is the <b>guarantee of our inheritance</b>."',
+            note: 'He is God\'s seal and sure promise.',
+            ref: 'Ephesians 1:13-14'
+        }
+    ];
+
+    var fullTrail = 'M 17 108 C 28 107, 38 108, 48 110 C 88 108, 124 126, 154 163 C 183 185, 215 188, 250 188 C 284 189, 300 227, 338 310 C 370 316, 405 319, 423 326';
+
+    function svgEl(tag, attrs) {
+        var el = document.createElementNS(NS, tag);
+        Object.keys(attrs || {}).forEach(function (key) {
+            el.setAttribute(key, attrs[key]);
+        });
+        return el;
+    }
+
+    function hexToRgba(hex, alpha) {
+        var clean = hex.replace('#', '');
+        var num = parseInt(clean, 16);
+        var r = (num >> 16) & 255;
+        var g = (num >> 8) & 255;
+        var b = num & 255;
+        return 'rgba(' + r + ', ' + g + ', ' + b + ', ' + alpha + ')';
+    }
+
+    function currentColor() {
+        return step === -1 ? baseColor : stops[step].color;
+    }
+
+    function animateStroke(path, delay) {
+        if (reducedMotion || !path.getTotalLength) return;
+        var len = path.getTotalLength();
+        path.setAttribute('stroke-dasharray', len);
+        path.setAttribute('stroke-dashoffset', len);
+        path.style.transition = 'stroke-dashoffset 900ms ease';
+        window.setTimeout(function () {
+            path.setAttribute('stroke-dashoffset', '0');
+        }, delay || 80);
+    }
+
+    function buildBackdrop(svg) {
+        var defs = svgEl('defs', {});
+        var sky = svgEl('linearGradient', { id: 'sky', x1: '0', y1: '0', x2: '0', y2: '1' });
+        sky.appendChild(svgEl('stop', { offset: '0%', 'stop-color': '#F1F4E4' }));
+        sky.appendChild(svgEl('stop', { offset: '100%', 'stop-color': '#EAE9D5' }));
+        defs.appendChild(sky);
+        svg.appendChild(defs);
+
+        svg.appendChild(svgEl('rect', { x: 0, y: 0, width: W, height: H, fill: 'url(#sky)' }));
+        svg.appendChild(svgEl('circle', { cx: 128, cy: 78, r: 42, fill: '#F5EECF', opacity: '0.38' }));
+
+        svg.appendChild(svgEl('path', {
+            d: 'M 0 137 L 52 94 L 86 126 L 128 72 L 161 111 L 193 96 L 251 151 L 0 151 Z',
+            fill: '#A7B29F',
+            opacity: '0.88'
+        }));
+        svg.appendChild(svgEl('path', {
+            d: 'M 118 72 L 131 91 L 142 78 L 128 72 Z M 80 119 L 89 129 L 101 107 L 86 126 Z',
+            fill: '#F6F4EA',
+            opacity: '0.92'
+        }));
+
+        svg.appendChild(svgEl('path', {
+            d: 'M 0 230 C 70 207, 149 204, 224 212 C 294 220, 363 207, 460 211 L 460 284 L 0 284 Z',
+            fill: '#C9CCAE',
+            opacity: '0.88'
+        }));
+        svg.appendChild(svgEl('path', {
+            d: 'M 82 252 C 150 236, 216 240, 284 252 C 348 263, 403 259, 460 251 L 460 303 L 82 303 Z',
+            fill: '#E7E4D0',
+            opacity: '0.92'
+        }));
+        svg.appendChild(svgEl('path', {
+            d: 'M 198 320 C 260 306, 323 311, 384 328 C 414 337, 438 337, 460 334 L 460 382 L 198 382 Z',
+            fill: '#DADDC0',
+            opacity: '0.74'
+        }));
+        svg.appendChild(svgEl('path', {
+            d: 'M 0 392 C 87 372, 165 379, 235 389 C 320 402, 390 395, 460 384 L 460 430 L 0 430 Z',
+            fill: '#CFD3B2',
+            opacity: '0.86'
+        }));
+
+        drawTinyTree(svg, 49, 163, 0.5);
+        drawTinyTree(svg, 77, 188, 0.47);
+        drawTinyTree(svg, 101, 354, 0.58);
+        drawTinyTree(svg, 144, 359, 0.62);
+        drawTinyTree(svg, 214, 323, 0.56);
+        drawTinyTree(svg, 291, 314, 0.55);
+        drawTinyTree(svg, 333, 329, 0.52);
+        drawTinyTree(svg, 379, 346, 0.48);
+    }
+
+    function drawTinyTree(svg, x, y, scale) {
+        var g = svgEl('g', { transform: 'translate(' + x + ',' + y + ') scale(' + scale + ')', opacity: '0.50' });
+        g.appendChild(svgEl('path', { d: 'M 0 20 L 0 0', stroke: '#5E7657', 'stroke-width': 2.5, 'stroke-linecap': 'round' }));
+        g.appendChild(svgEl('path', { d: 'M 0 0 L -7 13 L 7 13 Z', fill: '#5E7657' }));
+        g.appendChild(svgEl('path', { d: 'M 0 -6 L -6 6 L 6 6 Z', fill: '#6F8566' }));
+        g.appendChild(svgEl('path', { d: 'M 0 -12 L -5 -2 L 5 -2 Z', fill: '#7C9172' }));
+        svg.appendChild(g);
+    }
+
+    function buildTrail(svg) {
+        svg.appendChild(svgEl('path', {
+            d: fullTrail,
+            fill: 'none',
+            stroke: 'rgba(89, 73, 43, 0.16)',
+            'stroke-width': 13,
+            'stroke-linecap': 'round',
+            'stroke-linejoin': 'round'
+        }));
+        svg.appendChild(svgEl('path', {
+            d: fullTrail,
+            fill: 'none',
+            stroke: '#D9C99D',
+            'stroke-width': 10,
+            'stroke-linecap': 'round',
+            'stroke-linejoin': 'round'
+        }));
+        svg.appendChild(svgEl('path', {
+            d: fullTrail,
+            fill: 'none',
+            stroke: '#B7A373',
+            'stroke-width': 1.4,
+            'stroke-linecap': 'round',
+            'stroke-dasharray': '2 7',
+            opacity: '0.72'
+        }));
+
+        for (var i = 0; i <= step; i++) {
+            var halo = svgEl('path', {
+                d: stops[i].path,
+                fill: 'none',
+                stroke: hexToRgba(stops[i].color, 0.18),
+                'stroke-width': 15,
+                'stroke-linecap': 'round',
+                'stroke-linejoin': 'round'
+            });
+            svg.appendChild(halo);
+
+            var active = svgEl('path', {
+                d: stops[i].path,
+                fill: 'none',
+                stroke: stops[i].color,
+                'stroke-width': 6,
+                'stroke-linecap': 'round',
+                'stroke-linejoin': 'round'
+            });
+            svg.appendChild(active);
+            if (i === step) animateStroke(active, 90);
+        }
+    }
+
+    function buildSign(svg, stop, isCurrent) {
+        var m = stop.marker;
+        var baseY = m.y + m.stem;
+        var g = svgEl('g', { opacity: isCurrent ? '1' : '0.96' });
+
+        g.appendChild(svgEl('line', {
+            x1: m.x,
+            y1: m.y + m.r,
+            x2: m.x,
+            y2: baseY,
+            stroke: '#6E5B43',
+            'stroke-width': 3,
+            'stroke-linecap': 'round'
+        }));
+        g.appendChild(svgEl('circle', {
+            cx: m.x,
+            cy: baseY,
+            r: 4.5,
+            fill: '#EEF2DE',
+            stroke: stop.color,
+            'stroke-width': 2.5
+        }));
+        g.appendChild(svgEl('circle', {
+            cx: m.x,
+            cy: m.y,
+            r: m.r + 4,
+            fill: hexToRgba(stop.color, 0.14)
+        }));
+        g.appendChild(svgEl('circle', {
+            cx: m.x,
+            cy: m.y,
+            r: m.r,
+            fill: '#F9F7EE',
+            stroke: stop.color,
+            'stroke-width': 2.7
+        }));
+        g.appendChild(svgEl('circle', {
+            cx: m.x,
+            cy: m.y,
+            r: m.r - 5,
+            fill: 'none',
+            stroke: hexToRgba(stop.color, 0.38),
+            'stroke-width': 1.5
+        }));
+
+        var letter = svgEl('text', {
+            x: m.x,
+            y: m.y + 14,
+            'text-anchor': 'middle',
+            'font-family': 'Inter, Trebuchet MS, sans-serif',
+            'font-size': m.r + 16,
+            'font-weight': 900,
+            fill: stop.color
+        });
+        letter.textContent = stop.letter;
+        g.appendChild(letter);
+
+        svg.appendChild(g);
+    }
+
+    function buildSigns(svg) {
+        for (var i = 0; i <= step; i++) {
+            buildSign(svg, stops[i], i === step);
+        }
+    }
+
+    function buildPills(container) {
+        var pills = document.createElement('div');
+        pills.className = 'stop-pills';
+        stops.forEach(function (stop, idx) {
+            var pill = document.createElement('div');
+            pill.className = 'stop-pill';
+            pill.style.setProperty('--pill-color', stop.color);
+            if (idx <= step) pill.classList.add('visible');
+            pill.textContent = stop.short;
+            pills.appendChild(pill);
+        });
+        container.appendChild(pills);
+    }
+
+    function buildIntro(container) {
+        var overlay = document.createElement('div');
+        overlay.className = 'intro-overlay';
+        overlay.innerHTML =
+            '<div class="intro-card">' +
+                '<p class="intro-verse">"I will ask the Father, and he will give you another Helper, to be with you forever."</p>' +
+                '<p class="intro-ref">John 14:16-17 ESV</p>' +
+            '</div>';
+        container.appendChild(overlay);
+    }
+
+    function buildScene() {
+        var scene = document.getElementById('scene');
+        scene.innerHTML = '';
+
+        var svg = svgEl('svg', {
+            class: 'scene-svg',
+            viewBox: '0 0 ' + W + ' ' + H,
+            role: 'img',
+            'aria-label': 'A quiet trail with five signposts spelling GUIDE'
+        });
+
+        buildBackdrop(svg);
+        var trailLayer = svgEl('g', { transform: 'translate(0 ' + trailYOffset + ')' });
+        buildTrail(trailLayer);
+        buildSigns(trailLayer);
+        svg.appendChild(trailLayer);
+        scene.appendChild(svg);
+        buildPills(scene);
+        if (step === -1) buildIntro(scene);
+    }
+
+    function buildCard() {
+        var area = document.getElementById('cardArea');
+        var color = currentColor();
+        area.innerHTML = '';
+        area.style.setProperty('--card-color', color);
+
+        var card = document.createElement('div');
+        card.className = 'verse-card';
+        card.innerHTML = '<div class="verse-bar"></div>';
+
+        var content = document.createElement('div');
+        content.className = 'verse-content';
+
+        var title = document.createElement('h2');
+        title.className = 'verse-title';
+        var text = document.createElement('p');
+        text.className = 'verse-text';
+
+        if (step === -1) {
+            title.textContent = 'The Spirit Guides You';
+            text.innerHTML = 'Begin the walk and watch GUIDE form one signpost at a time. Each stop shows one steady work of the Holy Spirit in the life of a believer.';
+            content.appendChild(title);
+            content.appendChild(text);
+        } else {
+            var s = stops[step];
+            title.textContent = s.title;
+            text.innerHTML = s.verse + '<span class="card-note">' + s.note + '</span>';
+            content.appendChild(title);
+            content.appendChild(text);
+
+            var ref = document.createElement('p');
+            ref.className = 'verse-ref';
+            ref.textContent = s.ref;
+            content.appendChild(ref);
+        }
+
+        card.appendChild(content);
+        area.appendChild(card);
+        area.appendChild(buildNav());
+    }
+
+    function buildNav() {
+        var nav = document.createElement('div');
+        nav.className = 'nav';
+
+        var back = document.createElement('button');
+        back.type = 'button';
+        back.className = 'nav-btn' + (step === -1 ? ' hidden' : '');
+        back.innerHTML = '&larr; Back';
+        back.addEventListener('click', function () {
+            if (step > -1) {
+                step -= 1;
+                render();
+            }
+        });
+        nav.appendChild(back);
+
+        var dots = document.createElement('div');
+        dots.className = 'dots';
+        stops.forEach(function (stop, idx) {
+            var dot = document.createElement('button');
+            dot.type = 'button';
+            dot.className = 'dot';
+            dot.setAttribute('aria-label', 'Go to ' + stop.title);
+            if (idx <= step) {
+                dot.classList.add('available');
+                dot.style.background = idx === step ? stop.color : hexToRgba(stop.color, 0.42);
+                dot.addEventListener('click', function () {
+                    step = idx;
+                    render();
+                });
+            }
+            if (idx === step) dot.classList.add('current');
+            dots.appendChild(dot);
+        });
+        nav.appendChild(dots);
+
+        var next = document.createElement('button');
+        next.type = 'button';
+        next.className = 'nav-btn primary';
+        next.style.background = currentColor();
+        if (step === -1) {
+            next.innerHTML = 'Begin &rarr;';
+        } else if (step === stops.length - 1) {
+            next.innerHTML = '&#8635; Restart';
+        } else {
+            next.innerHTML = 'Next &rarr;';
+        }
+        next.addEventListener('click', function () {
+            if (step === -1) {
+                step = 0;
+            } else if (step === stops.length - 1) {
+                step = -1;
+            } else {
+                step += 1;
+            }
+            render();
+        });
+        nav.appendChild(next);
+
+        return nav;
+    }
+
+    function render() {
+        document.documentElement.style.setProperty('--card-color', currentColor());
+        buildScene();
+        buildCard();
+    }
+
+    render();
+}());
+</script>
+</body>
+</html>
