@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The GUIDE of the Holy Spirit</title>
+    <title>Deep Roots in the Good Soil</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@600;700&display=swap');
 
@@ -14,9 +14,10 @@
             --ink: #2F2A21;
             --paper: #FFFFFF;
             --cream: #F5F1E6;
-            --scene: #EEF2DE;
-            --trail: #D9C99D;
-            --trail-dark: #B7A373;
+            --sky: #EFF3E2;
+            --soil-top: #8C6A43;
+            --soil-mid: #5F4527;
+            --soil-deep: #3A2A18;
             --border: #E7DECE;
             --muted: #766D60;
             --shadow: 0 10px 26px rgba(44, 36, 22, 0.10);
@@ -82,17 +83,17 @@
             position: relative;
             overflow: hidden;
             height: 330px;
-            background: var(--scene);
+            background: var(--sky);
             border-bottom: 1px solid #E5DCCB;
         }
 
         #scene {
             position: absolute;
-            top: -30px;
+            top: 0;
             left: 50%;
-            width: 119.05%;
-            height: 430px;
-            transform: translateX(-50%) scale(0.84);
+            width: 100%;
+            height: 330px;
+            transform: translateX(-50%);
             transform-origin: top center;
         }
 
@@ -104,11 +105,11 @@
 
         .stop-pills {
             position: absolute;
-            left: 12px;
-            right: 12px;
-            bottom: 24px;
+            left: 10px;
+            right: 10px;
+            top: 78px;
             z-index: 8;
-            height: 230px;
+            height: 232px;
             pointer-events: none;
         }
 
@@ -117,15 +118,14 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            min-width: 0;
-            height: 36px;
+            height: 30px;
             padding: 0 11px;
             border: 2px solid var(--pill-color);
             border-radius: 999px;
             background: rgba(255, 255, 255, 0.94);
-            box-shadow: 0 5px 13px rgba(44, 36, 22, 0.10);
+            box-shadow: 0 4px 10px rgba(44, 36, 22, 0.12);
             color: #3D352B;
-            font-size: 15px;
+            font-size: 13px;
             font-weight: 800;
             white-space: nowrap;
             opacity: 0;
@@ -139,38 +139,33 @@
         }
 
         .stop-pill:nth-child(1) {
-            left: 0;
-            top: 0;
-            width: 148px;
-            z-index: 1;
+            left: 12px;
+            top: 4px;
+            width: 96px;
         }
 
         .stop-pill:nth-child(2) {
-            left: 42px;
-            top: 47px;
-            width: 184px;
-            z-index: 2;
+            left: 305px;
+            top: 4px;
+            width: 118px;
         }
 
         .stop-pill:nth-child(3) {
-            left: 84px;
-            top: 94px;
-            width: 168px;
-            z-index: 3;
+            left: 155px;
+            top: 192px;
+            width: 110px;
         }
 
         .stop-pill:nth-child(4) {
-            left: 162px;
-            top: 141px;
-            width: 136px;
-            z-index: 4;
+            left: 8px;
+            top: 120px;
+            width: 124px;
         }
 
         .stop-pill:nth-child(5) {
-            left: 236px;
-            top: 188px;
-            width: 148px;
-            z-index: 5;
+            left: 282px;
+            top: 120px;
+            width: 134px;
         }
 
         .intro-overlay {
@@ -181,7 +176,7 @@
             align-items: center;
             justify-content: center;
             padding: 22px;
-            background: linear-gradient(180deg, rgba(238, 242, 222, 0.20), rgba(238, 242, 222, 0.72));
+            background: linear-gradient(180deg, rgba(239, 243, 226, 0.35), rgba(70, 50, 30, 0.55));
             pointer-events: none;
             text-align: center;
         }
@@ -191,8 +186,8 @@
             padding: 18px 18px 16px;
             border: 1px solid rgba(226, 217, 200, 0.9);
             border-radius: 18px;
-            background: rgba(255, 255, 255, 0.86);
-            box-shadow: 0 14px 32px rgba(44, 36, 22, 0.10);
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 14px 32px rgba(44, 36, 22, 0.14);
             backdrop-filter: blur(4px);
         }
 
@@ -354,63 +349,17 @@
         }
 
         @media (max-width: 340px) {
-            .scene-wrap {
-                height: 306px;
-            }
-
-            #scene {
-                top: -30px;
-                width: 127%;
-                transform: translateX(-50%) scale(0.79);
-            }
-
-            .stop-pills {
-                left: 8px;
-                right: 8px;
-                bottom: 22px;
-                height: 208px;
-            }
-
             .stop-pill {
-                height: 32px;
+                height: 28px;
                 padding: 0 8px;
                 font-size: 11px;
-                transform: translateY(8px);
             }
 
-            .stop-pill.visible {
-                transform: translateY(0);
-            }
-
-            .stop-pill:nth-child(1) {
-                left: 0;
-                top: 0;
-                width: 126px;
-            }
-
-            .stop-pill:nth-child(2) {
-                left: 34px;
-                top: 44px;
-                width: 158px;
-            }
-
-            .stop-pill:nth-child(3) {
-                left: 68px;
-                top: 88px;
-                width: 148px;
-            }
-
-            .stop-pill:nth-child(4) {
-                left: 138px;
-                top: 132px;
-                width: 120px;
-            }
-
-            .stop-pill:nth-child(5) {
-                left: 206px;
-                top: 176px;
-                width: 132px;
-            }
+            .stop-pill:nth-child(1) { width: 86px; }
+            .stop-pill:nth-child(2) { left: 240px; width: 100px; }
+            .stop-pill:nth-child(3) { left: 130px; width: 96px; }
+            .stop-pill:nth-child(4) { width: 108px; }
+            .stop-pill:nth-child(5) { left: 232px; width: 116px; }
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -424,12 +373,12 @@
     </style>
 </head>
 <body>
-<main class="widget" aria-label="The GUIDE of the Holy Spirit interactive widget">
+<main class="widget" aria-label="Deep Roots in the Good Soil interactive widget">
     <header class="title-bar">
-        <h1>The GUIDE of the Holy Spirit</h1>
+        <h1>DEEP ROOTS IN JESUS, THE GOOD SOIL</h1>
     </header>
 
-    <section class="scene-wrap" aria-label="A trail of five signposts that spell GUIDE">
+    <section class="scene-wrap" aria-label="A small plant with five roots reaching down into rich soil labeled Jesus the Good Soil">
         <div id="scene"></div>
     </section>
 
@@ -440,71 +389,65 @@
 (function () {
     var NS = 'http://www.w3.org/2000/svg';
     var W = 460;
-    var H = 430;
+    var H = 330;
     var step = -1;
-    var baseColor = '#5A4E3C';
-    var trailYOffset = 34;
     var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Origin point where all roots begin (base of the sprout, at soil line)
+    var ORIGIN = { x: 230, y: 96 };
 
     var stops = [
         {
-            letter: 'G',
+            short: 'Prayer',
+            title: 'Prayer',
             color: '#2F7A63',
-            short: 'Glorifies Savior',
-            title: 'Glorifies the Savior',
-            marker: { x: 48, y: 68, stem: 42, r: 21 },
-            path: 'M 17 108 C 28 107, 38 108, 48 110',
-            verse: '"He will <b>glorify me</b>, for he will take what is mine and <b>declare it to you</b>."',
-            note: 'The Spirit always points to Jesus.',
-            ref: 'John 16:14'
+            path: 'M 230 96 C 205 118, 168 134, 118 150',
+            tip: { x: 118, y: 150 },
+            verse: '"<b>Pray</b> in the Spirit on all occasions with all kinds of prayers and requests."',
+            note: 'Prayer is the root that keeps you talking with the Father.',
+            ref: 'Ephesians 6:18'
         },
         {
-            letter: 'U',
+            short: 'The Word',
+            title: 'The Word',
             color: '#8B6A4B',
-            short: 'Unites Sinners to God',
-            title: 'Unites Sinners to God',
-            marker: { x: 154, y: 86, stem: 77, r: 21 },
-            path: 'M 48 110 C 88 108, 124 126, 154 163',
-            verse: '"You have received the <b>Spirit of adoption</b> as sons, by whom we cry, <b>Abba! Father!</b>"',
-            note: 'The Spirit brings you near as God\'s child.',
-            ref: 'Romans 8:15-16'
+            path: 'M 230 96 C 232 160, 235 228, 236 302',
+            tip: { x: 236, y: 302 },
+            verse: '"His delight is in the law of the Lord, and on his law he <b>meditates day and night</b>."',
+            note: 'The deepest root. Read, study, memorize, and meditate.',
+            ref: 'Psalm 1:2'
         },
         {
-            letter: 'I',
-            color: '#6B7787',
-            short: 'Inspires Scripture',
-            title: 'Inspires and Illuminates Scripture',
-            marker: { x: 250, y: 146, stem: 42, r: 21 },
-            path: 'M 154 163 C 183 185, 215 188, 250 188',
-            verse: '"Men spoke from God as they were <b>carried along by the Holy Spirit</b>."',
-            note: 'The Spirit who gave Scripture helps you understand it.',
-            ref: '2 Peter 1:21'
+            short: 'Fellowship',
+            title: 'Fellowship',
+            color: '#A85D4C',
+            path: 'M 230 96 C 258 118, 294 133, 344 148',
+            tip: { x: 344, y: 148 },
+            verse: '"Let us consider how to <b>stir up one another</b> to love and good works, not neglecting to meet together."',
+            note: 'A root alone dries out. Roots beside roots grow strong.',
+            ref: 'Hebrews 10:24-25'
         },
         {
-            letter: 'D',
+            short: 'Stewardship',
+            title: 'Stewardship',
             color: '#B39336',
-            short: 'Directs Steps',
-            title: 'Directs Your Steps',
-            marker: { x: 338, y: 252, stem: 58, r: 23 },
-            path: 'M 250 188 C 284 189, 300 227, 338 310',
-            verse: '"For all who are <b>led by the Spirit of God</b> are sons of God."',
-            note: 'The Spirit walks ahead and leads your next step.',
-            ref: 'Romans 8:14'
+            path: 'M 230 96 C 190 150, 130 198, 68 240',
+            tip: { x: 68, y: 240 },
+            verse: '"Each one must give as he has decided in his heart, for <b>God loves a cheerful giver</b>."',
+            note: 'Time, talents, and treasure all belong to Him.',
+            ref: '2 Corinthians 9:7'
         },
         {
-            letter: 'E',
-            color: '#816199',
-            short: 'Eternal Security',
-            title: 'Eternal Security',
-            marker: { x: 423, y: 282, stem: 44, r: 23 },
-            path: 'M 338 310 C 370 316, 405 319, 423 326',
-            verse: '"You were <b>sealed with the promised Holy Spirit</b>, who is the <b>guarantee of our inheritance</b>."',
-            note: 'He is God\'s seal and sure promise.',
-            ref: 'Ephesians 1:13-14'
+            short: 'Fighting Sin',
+            title: 'Fighting Sin',
+            color: '#5E4A78',
+            path: 'M 230 96 C 270 150, 330 198, 395 242',
+            tip: { x: 395, y: 242 },
+            verse: '"Abstain from the <b>passions of the flesh</b>, which wage war against your soul."',
+            note: 'Deep roots give you strength to flee what would choke you.',
+            ref: '1 Peter 2:11'
         }
     ];
-
-    var fullTrail = 'M 17 108 C 28 107, 38 108, 48 110 C 88 108, 124 126, 154 163 C 183 185, 215 188, 250 188 C 284 189, 300 227, 338 310 C 370 316, 405 319, 423 326';
 
     function svgEl(tag, attrs) {
         var el = document.createElementNS(NS, tag);
@@ -524,7 +467,7 @@
     }
 
     function currentColor() {
-        return step === -1 ? baseColor : stops[step].color;
+        return step === -1 ? '#5A4E3C' : stops[step].color;
     }
 
     function animateStroke(path, delay) {
@@ -540,180 +483,242 @@
 
     function buildBackdrop(svg) {
         var defs = svgEl('defs', {});
+
         var sky = svgEl('linearGradient', { id: 'sky', x1: '0', y1: '0', x2: '0', y2: '1' });
-        sky.appendChild(svgEl('stop', { offset: '0%', 'stop-color': '#F1F4E4' }));
-        sky.appendChild(svgEl('stop', { offset: '100%', 'stop-color': '#EAE9D5' }));
+        sky.appendChild(svgEl('stop', { offset: '0%', 'stop-color': '#F3F6E4' }));
+        sky.appendChild(svgEl('stop', { offset: '100%', 'stop-color': '#E4E6C8' }));
         defs.appendChild(sky);
+
+        var soil = svgEl('linearGradient', { id: 'soil', x1: '0', y1: '0', x2: '0', y2: '1' });
+        soil.appendChild(svgEl('stop', { offset: '0%', 'stop-color': '#8C6A43' }));
+        soil.appendChild(svgEl('stop', { offset: '40%', 'stop-color': '#6E4E2E' }));
+        soil.appendChild(svgEl('stop', { offset: '100%', 'stop-color': '#3A2A18' }));
+        defs.appendChild(soil);
+
         svg.appendChild(defs);
 
-        svg.appendChild(svgEl('rect', { x: 0, y: 0, width: W, height: H, fill: 'url(#sky)' }));
-        svg.appendChild(svgEl('circle', { cx: 128, cy: 78, r: 42, fill: '#F5EECF', opacity: '0.38' }));
+        // Sky
+        svg.appendChild(svgEl('rect', { x: 0, y: 0, width: W, height: 96, fill: 'url(#sky)' }));
 
+        // Sun
+        svg.appendChild(svgEl('circle', { cx: 72, cy: 42, r: 22, fill: '#F6EEC4', opacity: '0.70' }));
+        svg.appendChild(svgEl('circle', { cx: 72, cy: 42, r: 13, fill: '#F4E49A', opacity: '0.85' }));
+
+        // Distant gentle hill
         svg.appendChild(svgEl('path', {
-            d: 'M 0 137 L 52 94 L 86 126 L 128 72 L 161 111 L 193 96 L 251 151 L 0 151 Z',
-            fill: '#A7B29F',
-            opacity: '0.88'
-        }));
-        svg.appendChild(svgEl('path', {
-            d: 'M 118 72 L 131 91 L 142 78 L 128 72 Z M 80 119 L 89 129 L 101 107 L 86 126 Z',
-            fill: '#F6F4EA',
-            opacity: '0.92'
+            d: 'M 0 88 C 80 72, 180 74, 260 80 C 340 86, 410 82, 460 86 L 460 96 L 0 96 Z',
+            fill: '#B9C0A3',
+            opacity: '0.78'
         }));
 
-        svg.appendChild(svgEl('path', {
-            d: 'M 0 230 C 70 207, 149 204, 224 212 C 294 220, 363 207, 460 211 L 460 284 L 0 284 Z',
-            fill: '#C9CCAE',
-            opacity: '0.88'
-        }));
-        svg.appendChild(svgEl('path', {
-            d: 'M 82 252 C 150 236, 216 240, 284 252 C 348 263, 403 259, 460 251 L 460 303 L 82 303 Z',
-            fill: '#E7E4D0',
-            opacity: '0.92'
-        }));
-        svg.appendChild(svgEl('path', {
-            d: 'M 198 320 C 260 306, 323 311, 384 328 C 414 337, 438 337, 460 334 L 460 382 L 198 382 Z',
-            fill: '#DADDC0',
-            opacity: '0.74'
-        }));
-        svg.appendChild(svgEl('path', {
-            d: 'M 0 392 C 87 372, 165 379, 235 389 C 320 402, 390 395, 460 384 L 460 430 L 0 430 Z',
-            fill: '#CFD3B2',
-            opacity: '0.86'
-        }));
+        // Soil
+        svg.appendChild(svgEl('rect', { x: 0, y: 96, width: W, height: H - 96, fill: 'url(#soil)' }));
 
-        drawTinyTree(svg, 49, 163, 0.5);
-        drawTinyTree(svg, 77, 188, 0.47);
-        drawTinyTree(svg, 101, 354, 0.58);
-        drawTinyTree(svg, 144, 359, 0.62);
-        drawTinyTree(svg, 214, 323, 0.56);
-        drawTinyTree(svg, 291, 314, 0.55);
-        drawTinyTree(svg, 333, 329, 0.52);
-        drawTinyTree(svg, 379, 346, 0.48);
-    }
-
-    function drawTinyTree(svg, x, y, scale) {
-        var g = svgEl('g', { transform: 'translate(' + x + ',' + y + ') scale(' + scale + ')', opacity: '0.50' });
-        g.appendChild(svgEl('path', { d: 'M 0 20 L 0 0', stroke: '#5E7657', 'stroke-width': 2.5, 'stroke-linecap': 'round' }));
-        g.appendChild(svgEl('path', { d: 'M 0 0 L -7 13 L 7 13 Z', fill: '#5E7657' }));
-        g.appendChild(svgEl('path', { d: 'M 0 -6 L -6 6 L 6 6 Z', fill: '#6F8566' }));
-        g.appendChild(svgEl('path', { d: 'M 0 -12 L -5 -2 L 5 -2 Z', fill: '#7C9172' }));
-        svg.appendChild(g);
-    }
-
-    function buildTrail(svg) {
-        svg.appendChild(svgEl('path', {
-            d: fullTrail,
-            fill: 'none',
-            stroke: 'rgba(89, 73, 43, 0.16)',
-            'stroke-width': 13,
-            'stroke-linecap': 'round',
-            'stroke-linejoin': 'round'
-        }));
-        svg.appendChild(svgEl('path', {
-            d: fullTrail,
-            fill: 'none',
-            stroke: '#D9C99D',
-            'stroke-width': 10,
-            'stroke-linecap': 'round',
-            'stroke-linejoin': 'round'
-        }));
-        svg.appendChild(svgEl('path', {
-            d: fullTrail,
-            fill: 'none',
-            stroke: '#B7A373',
-            'stroke-width': 1.4,
-            'stroke-linecap': 'round',
-            'stroke-dasharray': '2 7',
-            opacity: '0.72'
-        }));
-
-        for (var i = 0; i <= step; i++) {
-            var halo = svgEl('path', {
-                d: stops[i].path,
-                fill: 'none',
-                stroke: hexToRgba(stops[i].color, 0.18),
-                'stroke-width': 15,
-                'stroke-linecap': 'round',
-                'stroke-linejoin': 'round'
-            });
-            svg.appendChild(halo);
-
-            var active = svgEl('path', {
-                d: stops[i].path,
-                fill: 'none',
-                stroke: stops[i].color,
-                'stroke-width': 6,
-                'stroke-linecap': 'round',
-                'stroke-linejoin': 'round'
-            });
-            svg.appendChild(active);
-            if (i === step) animateStroke(active, 90);
-        }
-    }
-
-    function buildSign(svg, stop, isCurrent) {
-        var m = stop.marker;
-        var baseY = m.y + m.stem;
-        var g = svgEl('g', { opacity: isCurrent ? '1' : '0.96' });
-
-        g.appendChild(svgEl('line', {
-            x1: m.x,
-            y1: m.y + m.r,
-            x2: m.x,
-            y2: baseY,
-            stroke: '#6E5B43',
-            'stroke-width': 3,
-            'stroke-linecap': 'round'
-        }));
-        g.appendChild(svgEl('circle', {
-            cx: m.x,
-            cy: baseY,
-            r: 4.5,
-            fill: '#EEF2DE',
-            stroke: stop.color,
-            'stroke-width': 2.5
-        }));
-        g.appendChild(svgEl('circle', {
-            cx: m.x,
-            cy: m.y,
-            r: m.r + 4,
-            fill: hexToRgba(stop.color, 0.14)
-        }));
-        g.appendChild(svgEl('circle', {
-            cx: m.x,
-            cy: m.y,
-            r: m.r,
-            fill: '#F9F7EE',
-            stroke: stop.color,
-            'stroke-width': 2.7
-        }));
-        g.appendChild(svgEl('circle', {
-            cx: m.x,
-            cy: m.y,
-            r: m.r - 5,
-            fill: 'none',
-            stroke: hexToRgba(stop.color, 0.38),
-            'stroke-width': 1.5
-        }));
-
-        var letter = svgEl('text', {
-            x: m.x,
-            y: m.y + 14,
-            'text-anchor': 'middle',
-            'font-family': 'Inter, Trebuchet MS, sans-serif',
-            'font-size': m.r + 16,
-            'font-weight': 900,
-            fill: stop.color
+        // Soil texture specks
+        var specks = [
+            [30, 130], [70, 170], [110, 210], [150, 260], [20, 240],
+            [200, 160], [260, 200], [300, 250], [350, 180], [410, 220],
+            [50, 300], [120, 300], [210, 300], [290, 290], [380, 300],
+            [90, 115], [160, 125], [250, 120], [330, 110], [400, 125]
+        ];
+        specks.forEach(function (p) {
+            svg.appendChild(svgEl('circle', {
+                cx: p[0], cy: p[1], r: 1.4, fill: '#2B1E10', opacity: '0.35'
+            }));
         });
-        letter.textContent = stop.letter;
-        g.appendChild(letter);
+
+        // Small pebbles
+        svg.appendChild(svgEl('ellipse', { cx: 80, cy: 112, rx: 6, ry: 2.3, fill: '#8F7658', opacity: '0.75' }));
+        svg.appendChild(svgEl('ellipse', { cx: 340, cy: 112, rx: 7, ry: 2.5, fill: '#8F7658', opacity: '0.75' }));
+        svg.appendChild(svgEl('ellipse', { cx: 180, cy: 114, rx: 4, ry: 1.8, fill: '#A88866', opacity: '0.70' }));
+
+        // Soil surface line
+        svg.appendChild(svgEl('path', {
+            d: 'M 0 96 C 40 94, 100 97, 180 95 C 260 93, 340 97, 460 95',
+            stroke: '#3F2C18',
+            'stroke-width': 1.2,
+            fill: 'none',
+            opacity: '0.55'
+        }));
+
+        // "JESUS THE GOOD SOIL" text, subtle in deep soil area
+        var label1 = svgEl('text', {
+            x: W / 2,
+            y: 258,
+            'text-anchor': 'middle',
+            'font-family': 'Playfair Display, Georgia, serif',
+            'font-size': 14,
+            'font-weight': 700,
+            'letter-spacing': '0.20em',
+            fill: '#E7D9B9',
+            opacity: '0.24'
+        });
+        label1.textContent = 'JESUS';
+        svg.appendChild(label1);
+
+        var label2 = svgEl('text', {
+            x: W / 2,
+            y: 282,
+            'text-anchor': 'middle',
+            'font-family': 'Playfair Display, Georgia, serif',
+            'font-size': 10,
+            'font-weight': 700,
+            'letter-spacing': '0.28em',
+            fill: '#E7D9B9',
+            opacity: '0.22'
+        });
+        label2.textContent = 'THE GOOD SOIL';
+        svg.appendChild(label2);
+    }
+
+    function buildSprout(svg, growthLevel) {
+        // growthLevel is 0 to 5. Higher = fuller plant.
+        var ox = ORIGIN.x;
+        var oy = ORIGIN.y;
+        var height = 34 + growthLevel * 4;
+        var stemTop = oy - height;
+
+        var g = svgEl('g', {});
+
+        // Base mound
+        g.appendChild(svgEl('ellipse', {
+            cx: ox, cy: oy + 2, rx: 12, ry: 3,
+            fill: '#4F3820', opacity: '0.55'
+        }));
+
+        // Stem
+        g.appendChild(svgEl('path', {
+            d: 'M ' + ox + ' ' + oy + ' C ' + (ox - 2) + ' ' + (oy - height * 0.5) + ', ' + (ox + 1) + ' ' + (oy - height * 0.8) + ', ' + ox + ' ' + stemTop,
+            stroke: '#3F7A48',
+            'stroke-width': 2.5,
+            'stroke-linecap': 'round',
+            fill: 'none'
+        }));
+
+        // Leaves - progressively fuller
+        var leafSets = [
+            { x: ox - 10, y: oy - 18, side: -1 },
+            { x: ox + 10, y: oy - 24, side: 1 },
+            { x: ox - 12, y: oy - 32, side: -1 },
+            { x: ox + 11, y: oy - 40, side: 1 },
+            { x: ox - 8, y: oy - 48, side: -1 }
+        ];
+        var maxLeaves = Math.max(2, growthLevel + 1);
+        leafSets.slice(0, maxLeaves).forEach(function (l) {
+            var cx = l.x;
+            var cy = l.y;
+            var s = l.side;
+            var d = 'M ' + ox + ' ' + (cy + 4) +
+                ' Q ' + (ox + s * 6) + ' ' + (cy - 1) + ', ' + (cx) + ' ' + (cy - 2) +
+                ' Q ' + (cx + s * 2) + ' ' + (cy + 4) + ', ' + ox + ' ' + (cy + 4) + ' Z';
+            g.appendChild(svgEl('path', {
+                d: d,
+                fill: '#5EA062',
+                opacity: '0.92'
+            }));
+            g.appendChild(svgEl('path', {
+                d: d,
+                fill: 'none',
+                stroke: '#2F6E3A',
+                'stroke-width': 0.7,
+                opacity: '0.55'
+            }));
+        });
+
+        // Tiny tip bud
+        if (growthLevel >= 3) {
+            g.appendChild(svgEl('circle', {
+                cx: ox, cy: stemTop - 2, r: 2.4,
+                fill: '#E2C36A', opacity: '0.92'
+            }));
+        }
 
         svg.appendChild(g);
     }
 
-    function buildSigns(svg) {
+    function buildRoots(svg) {
+        // Draw placeholder shadow lines for all roots (faint, to hint at future reveals)
+        stops.forEach(function (s, i) {
+            if (i > step) {
+                svg.appendChild(svgEl('path', {
+                    d: s.path,
+                    fill: 'none',
+                    stroke: 'rgba(255, 240, 210, 0.07)',
+                    'stroke-width': 2,
+                    'stroke-linecap': 'round',
+                    'stroke-dasharray': '2 5'
+                }));
+            }
+        });
+
         for (var i = 0; i <= step; i++) {
-            buildSign(svg, stops[i], i === step);
+            var s = stops[i];
+
+            // Root halo (soft color glow)
+            svg.appendChild(svgEl('path', {
+                d: s.path,
+                fill: 'none',
+                stroke: hexToRgba(s.color, 0.22),
+                'stroke-width': 11,
+                'stroke-linecap': 'round',
+                'stroke-linejoin': 'round'
+            }));
+
+            // Main root line (tapering look via two strokes)
+            var under = svgEl('path', {
+                d: s.path,
+                fill: 'none',
+                stroke: '#2D1B0A',
+                'stroke-width': 5.5,
+                'stroke-linecap': 'round',
+                'stroke-linejoin': 'round',
+                opacity: '0.85'
+            });
+            svg.appendChild(under);
+
+            var main = svgEl('path', {
+                d: s.path,
+                fill: 'none',
+                stroke: s.color,
+                'stroke-width': 3,
+                'stroke-linecap': 'round',
+                'stroke-linejoin': 'round'
+            });
+            svg.appendChild(main);
+
+            if (i === step) {
+                animateStroke(under, 80);
+                animateStroke(main, 120);
+            }
+
+            // Tiny root hairs near the tip
+            var tip = s.tip;
+            var hairAngles = [30, -15, 60, -45];
+            hairAngles.forEach(function (deg, idx) {
+                var rad = deg * Math.PI / 180;
+                var len = 8 + (idx % 2) * 3;
+                var x2 = tip.x + Math.cos(rad) * len;
+                var y2 = tip.y + Math.sin(rad) * len;
+                svg.appendChild(svgEl('line', {
+                    x1: tip.x, y1: tip.y, x2: x2, y2: y2,
+                    stroke: s.color,
+                    'stroke-width': 1.2,
+                    'stroke-linecap': 'round',
+                    opacity: '0.85'
+                }));
+            });
+
+            // Tip node
+            svg.appendChild(svgEl('circle', {
+                cx: tip.x, cy: tip.y, r: 6,
+                fill: hexToRgba(s.color, 0.25)
+            }));
+            svg.appendChild(svgEl('circle', {
+                cx: tip.x, cy: tip.y, r: 4,
+                fill: '#FAF5E6',
+                stroke: s.color,
+                'stroke-width': 2
+            }));
         }
     }
 
@@ -736,8 +741,8 @@
         overlay.className = 'intro-overlay';
         overlay.innerHTML =
             '<div class="intro-card">' +
-                '<p class="intro-verse">"I will ask the Father, and he will give you another Helper, to be with you forever."</p>' +
-                '<p class="intro-ref">John 14:16-17 ESV</p>' +
+                '<p class="intro-verse">"Rooted and built up in him and established in the faith, just as you were taught."</p>' +
+                '<p class="intro-ref">Colossians 2:6-7 ESV</p>' +
             '</div>';
         container.appendChild(overlay);
     }
@@ -750,14 +755,13 @@
             class: 'scene-svg',
             viewBox: '0 0 ' + W + ' ' + H,
             role: 'img',
-            'aria-label': 'A quiet trail with five signposts spelling GUIDE'
+            'aria-label': 'A small plant with five labeled roots reaching down into rich soil labeled Jesus the Good Soil'
         });
 
         buildBackdrop(svg);
-        var trailLayer = svgEl('g', { transform: 'translate(0 ' + trailYOffset + ')' });
-        buildTrail(trailLayer);
-        buildSigns(trailLayer);
-        svg.appendChild(trailLayer);
+        buildRoots(svg);
+        buildSprout(svg, step + 1);
+
         scene.appendChild(svg);
         buildPills(scene);
         if (step === -1) buildIntro(scene);
@@ -782,8 +786,8 @@
         text.className = 'verse-text';
 
         if (step === -1) {
-            title.textContent = 'The Spirit Guides You';
-            text.innerHTML = 'Begin the walk and watch GUIDE form one signpost at a time. Each stop shows one steady work of the Holy Spirit in the life of a believer.';
+            title.textContent = 'Jesus Is the Good Soil';
+            text.innerHTML = 'Tap Begin and watch five roots reach down into Jesus, one at a time. Each root is a spiritual discipline that draws life from Him.';
             content.appendChild(title);
             content.appendChild(text);
         } else {

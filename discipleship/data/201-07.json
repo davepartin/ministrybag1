@@ -2,24 +2,23 @@
   "id": "7",
   "version": "v02",
   "title": "Lesson 7: How to Study the Bible",
-  "description": "You have the map and you know the story. Now it is time to learn the skill. This lesson teaches you the OIA method, Observe, Interpret, Apply, and then puts you to work practicing it on two passages of Scripture. The biblical timeline widget helps you place any passage in its historical context, and the majority of this lesson is spent with your Bible open and your pen in hand.",
+  "description": "You have the map and you know the story. Now it is time to learn the skill. This lesson teaches you the OIA method, Observe, Interpret, Apply, and then puts you to work practicing it on Psalm 23. The biblical timeline widget helps you place any passage in its historical context, and the heart of this lesson is spent with your Bible open and your pen in hand.",
   "blocks": [
     {
       "type": "text",
       "text": "In Lesson 5 you explored the Bible as a library of 66 books organized by type. In Lesson 6 you traced the one story it tells, from creation to new creation. You now have the map and you know where the road leads. This lesson hands you the skill to dig into any passage on your own."
     },
     {
-      "type": "text",
-      "text": "In Acts 8, an Ethiopian official was riding home from Jerusalem with the scroll of Isaiah open in front of him. He was hungry for truth but could not make sense of what he was reading. Philip ran up to his chariot and asked the question that sits at the heart of this whole lesson:"
+      "type": "image",
+      "imageBw": "images/philip-eunich-bw2.png",
+      "imageColor": "images/philip-eunich-color2.png",
+      "alt": "Philip running alongside the Ethiopian's chariot to explain the Scriptures",
+      "touchNext": true
     },
     {
-      "type": "verse",
-      "reference": "Acts 8:30-31",
-      "text": "So Philip ran to him and heard him reading Isaiah the prophet and asked, \"Do you understand what you are reading?\" And he said, \"How can I, unless someone guides me?\""
-    },
-    {
-      "type": "text",
-      "text": "Philip climbed in, sat beside him, and helped him see what was already on the page. That is what Bible study does. It is not reading faster or reading more. It is learning to see what is there, understand what it means, and let it shape how you live. The method you are about to learn will do this for you with any passage of Scripture."
+      "type": "parable",
+      "title": "Philip and the Ethiopian",
+      "text": "In Acts 8, an Ethiopian official was riding home from Jerusalem. He was an important man, a court treasurer, and he had traveled a long way to worship God. Now on the dusty road home he had the scroll of Isaiah unrolled in front of him, reading aloud, hungry for truth but unable to make sense of what he saw. God sent Philip running to the side of the chariot with one simple question:<br><br><em>\"So Philip ran to him and heard him reading Isaiah the prophet and asked, 'Do you understand what you are reading?' And he said, 'How can I, unless someone guides me?'\" (Acts 8:30-31)</em><br><br>Philip climbed in, sat beside him, and helped him see what was already on the page. He did not add to Scripture. He showed the man how to read it. That is what Bible study is. It is not reading faster or reading more. It is learning to see what is there, understand what it means, and let it shape how you live."
     },
     {
       "type": "heading",
@@ -52,7 +51,7 @@
     },
     {
       "type": "text",
-      "text": "Once you have observed what the text says, ask what it means. Here is the most important rule of interpretation: a passage cannot mean today what it never meant to the original audience. Before you ask what it means for you, ask what it meant to them. What was the author trying to communicate? How does this passage fit in the larger chapter and book? How does it connect to the storyline of Scripture? This is where your map, your storyline, and your timeline all come together."
+      "text": "Once you have observed what the text says, ask what it means. Here is the most important rule of interpretation: a passage cannot mean today what it never meant to the original audience. Before you ask what it means for you, ask what it meant to them. What was the author trying to communicate? How does this passage fit in the larger chapter and book? How does it connect to the storyline of Scripture? This is where your map, your storyline, and your timeline all come together. Let the Bible interpret the Bible. Often the clearest explanation of a passage is found somewhere else in Scripture, and the more you read, the more those connections will light up."
     },
     {
       "type": "heading",
@@ -60,7 +59,7 @@
     },
     {
       "type": "text",
-      "text": "After you have observed what the text says and interpreted what it means, ask how this truth reshapes the way you live. Is there a truth to believe? A command to obey? A sin to confess? A promise to trust? An example to follow? How does this passage point you to Jesus?"
+      "text": "After you have observed what the text says and interpreted what it means, ask how this truth reshapes the way you live. Is there a truth to believe? A command to obey? A sin to confess? A promise to trust? An example to follow? How does this passage point you to Jesus? The goal is not just knowledge but transformation. The Bible was never meant to sit on a shelf. It was meant to get into your bones and change the way you walk through your day."
     },
     {
       "type": "verse",
@@ -125,50 +124,7 @@
     },
     {
       "type": "text",
-      "text": "You just studied the Bible. You observed what was on the page, placed it in its historical context, interpreted what it meant, and applied it to your life. That is a skill you can use with any passage, any day, for the rest of your life."
-    },
-    {
-      "type": "heading",
-      "text": "Try It on Your Own: Isaiah 40"
-    },
-    {
-      "type": "text",
-      "text": "Now try it with less scaffolding. The passage below was written by the prophet Isaiah. Use the timeline to place the era and think about what God's people were going through. Use the bookshelf from Lesson 5 to remember what kind of book this is. Then walk through all three steps on your own."
-    },
-    {
-      "type": "verse",
-      "reference": "Isaiah 40:28-31",
-      "text": "Have you not known? Have you not heard? The Lord is the everlasting God, the Creator of the ends of the earth. He does not faint or grow weary; his understanding is unsearchable. He gives power to the faint, and to him who has no might he increases strength. Even youths shall faint and be weary, and young men shall fall exhausted; but they who wait for the Lord shall renew their strength; they shall mount up with wings like eagles; they shall run and not be weary; they shall walk and not faint."
-    },
-    {
-      "type": "subheading",
-      "text": "Observe"
-    },
-    {
-      "type": "question",
-      "id": "201-07-5",
-      "text": "7.5 - Read the passage twice. Who is speaking? Who is being addressed? What repeated words or images do you notice? What does the passage say God does not do, and what does it say He gives?",
-      "height": "tall"
-    },
-    {
-      "type": "subheading",
-      "text": "Interpret"
-    },
-    {
-      "type": "question",
-      "id": "201-07-6",
-      "text": "7.6 - Isaiah wrote during a time when God's people were weary and had been waiting on God for a long time. What would these words have meant to people in that situation? What is Isaiah saying about the difference between human strength and God's strength?",
-      "height": "tall"
-    },
-    {
-      "type": "subheading",
-      "text": "Apply"
-    },
-    {
-      "type": "question",
-      "id": "201-07-7",
-      "text": "7.7 - Where in your life right now do you feel like you are running out of strength? What would it look like to \"wait on the Lord\" in that specific area this week?",
-      "height": "tall"
+      "text": "You just studied the Bible. You observed what was on the page, placed it in its historical context, interpreted what it meant, and applied it to your life. That is not something only pastors and scholars can do. It is a skill you now have, and you can use it with any passage, any day, for the rest of your life."
     },
     {
       "type": "heading",
@@ -177,6 +133,16 @@
     {
       "type": "text",
       "text": "Everything you have learned in these three lessons is transferable: the map of the Bible, the four-part storyline, the timeline, and the OIA method. You could sit down with a friend this week, open the Bible to any passage, and walk them through the same steps you just practiced. Remember the Ethiopian? He needed a Philip, someone willing to sit beside him and say, \"Let me show you what I have learned about reading this book.\" Someday soon, someone in your life will need that from you. And when that day comes, you will be ready."
+    },
+    {
+      "type": "text",
+      "text": "Before you move on, pick a passage of Scripture this week and walk through OIA on your own. It does not need to be long. A few verses are enough. Open your Bible, slow down, and see what God shows you."
+    },
+    {
+      "type": "question",
+      "id": "201-07-5",
+      "text": "7.5 - What passage did you choose, and what were your takeaways from walking through Observe, Interpret, and Apply on your own?",
+      "height": "tall"
     },
     {
       "type": "heading",

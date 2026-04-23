@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Romans Road</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@600;700&display=swap');
+
+        * , *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            padding: 0;
+            margin: 0;
+            font-family: 'Georgia', 'Cambria', serif;
+            background: #F8F6F1;
+            color: #2C2416;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        button {
+            font: inherit;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .widget-outer {
+            background: #FFFFFF;
+            border-radius: 0;
+            overflow: hidden;
+            box-shadow: none;
+            border: none;
+            max-width: 100%;
+            width: 100%;
+            margin: 0;
+            position: relative;
+        }
+
+        @media (min-width: 560px) {
+            body {
+                padding: 16px;
+                background: #F8F6F1;
+            }
+
+            .widget-outer {
+                border-radius: 12px;
+                box-shadow: 0 6px 20px rgba(44, 36, 22, 0.08);
+                border: 1px solid #EBE5D9;
+                max-width: 460px;
+                margin: 0 auto;
+            }
+        }
+
+        .title-bar {
+            background: #2C2416;
+            padding: 6px 14px;
+            text-align: center;
+        }
+
+        .title-bar h1 {
+            font-size: 18px;
+            font-weight: 700;
+            color: #FAF8F3;
+            font-family: 'Playfair Display', Georgia, serif;
+            letter-spacing: 0.3px;
+            margin: 0;
+            line-height: 1.15;
+        }
+
+        .diagram-wrapper {
+            position: relative;
+            height: 300px;
+            overflow: hidden;
+            background:
+                radial-gradient(circle at 79% 15%, rgba(255, 226, 140, 0.72) 0 13%, transparent 28%),
+                linear-gradient(180deg, #FCFAF4 0%, #F2EBDD 100%);
+        }
+
+        .scene-svg {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        .scene-caption {
+            position: absolute;
+            top: 11px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-family: 'Inter', 'Trebuchet MS', sans-serif;
+            font-size: 10px;
+            font-weight: 900;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: rgba(44, 36, 22, 0.42);
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .step-label {
+            position: absolute;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 120px;
+            height: 34px;
+            padding: 0 14px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.95);
+            border: 2px solid var(--pill-color, #1A6B55);
+            box-shadow: 0 5px 14px rgba(44, 36, 22, 0.10);
+            color: #3D352B;
+            font-family: 'Inter', 'Trebuchet MS', sans-serif;
+            font-size: 13px;
+            font-weight: 800;
+            white-space: nowrap;
+            opacity: 0;
+            transform: translateY(8px);
+            transition: opacity 0.38s ease, transform 0.38s ease;
+            z-index: 6;
+            pointer-events: none;
+        }
+
+        .step-label.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .step-label.a {
+            left: 16px;
+            bottom: 38px;
+            min-width: 124px;
+        }
+
+        .step-label.b {
+            left: 118px;
+            bottom: 128px;
+            min-width: 188px;
+        }
+
+        .step-label.c {
+            right: 18px;
+            bottom: 30px;
+            min-width: 164px;
+        }
+
+        .intro-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 18px 24px;
+            background: linear-gradient(180deg, rgba(252, 250, 244, 0.10), rgba(252, 250, 244, 0.72));
+        }
+
+        .intro-card {
+            max-width: 320px;
+            padding: 18px 18px 16px;
+            border: 1px solid rgba(227, 219, 203, 0.92);
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.88);
+            box-shadow: 0 14px 32px rgba(44, 36, 22, 0.10);
+            backdrop-filter: blur(4px);
+        }
+
+        .intro-title {
+            margin: 0 0 7px;
+            color: #1A6B55;
+            font-family: 'Inter', 'Trebuchet MS', sans-serif;
+            font-size: 16px;
+            font-weight: 900;
+            line-height: 1.2;
+        }
+
+        .intro-copy {
+            margin: 0;
+            color: #4C4236;
+            font-size: 14px;
+            line-height: 1.45;
+        }
+
+        #card-area {
+            background-color: #F6F4EE;
+            border-top: 1px solid #EBE5D9;
+            padding-top: 8px;
+        }
+
+        .verse-card-wrapper {
+            margin: 0 auto;
+            padding: 0 12px 8px;
+        }
+
+        .verse-card {
+            background: #FFFFFF;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 14px rgba(44, 36, 22, 0.06);
+            animation: fadeSlide 0.35s ease;
+        }
+
+        .verse-card-bar {
+            height: 4px;
+            background: var(--accent-color, #1A6B55);
+        }
+
+        .verse-card-content {
+            padding: 10px 16px;
+            height: 112px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            overflow: hidden;
+        }
+
+        .verse-card-title {
+            font-size: 15px;
+            font-weight: 800;
+            color: var(--accent-color, #1A6B55);
+            margin: 0 0 4px 0;
+            line-height: 1.25;
+            font-family: 'Inter', 'Trebuchet MS', sans-serif;
+        }
+
+        .verse-card-text {
+            font-size: 12.7px;
+            line-height: 1.38;
+            color: #3D3426;
+            margin: 0;
+            flex-grow: 1;
+        }
+
+        .verse-card-text b {
+            color: var(--accent-color, #1A6B55);
+        }
+
+        .verse-card-ref {
+            font-size: 11px;
+            color: var(--accent-color, #1A6B55);
+            margin: 5px 0 0;
+            font-weight: 800;
+            font-family: 'Inter', 'Trebuchet MS', sans-serif;
+        }
+
+        .nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+            padding: 0 2px;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            background: transparent;
+            border: 1.5px solid #D4CFC4;
+            border-radius: 10px;
+            padding: 8px 14px;
+            font-size: 12px;
+            font-family: 'Trebuchet MS', sans-serif;
+            cursor: pointer;
+            font-weight: 700;
+            color: #4D4337;
+        }
+
+        .nav-btn.primary {
+            color: #fff;
+            border: none;
+            min-width: 96px;
+        }
+
+        .nav-btn.hidden {
+            visibility: hidden;
+        }
+
+        .dot-nav {
+            display: flex;
+            gap: 5px;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 999px;
+            border: 0;
+            transition: width 0.25s ease, background 0.25s ease;
+        }
+
+        .dot.available {
+            cursor: pointer;
+        }
+
+        .dot.current {
+            width: 20px;
+        }
+
+        @keyframes fadeSlide {
+            from {
+                opacity: 0;
+                transform: translateY(6px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 372px) {
+            .step-label {
+                font-size: 12px;
+                height: 32px;
+                padding: 0 12px;
+            }
+
+            .step-label.a {
+                min-width: 116px;
+            }
+
+            .step-label.b {
+                left: 100px;
+                min-width: 170px;
+            }
+
+            .step-label.c {
+                min-width: 150px;
+            }
+
+            .verse-card-text {
+                font-size: 12px;
+                line-height: 1.34;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="widget-outer">
+    <div class="title-bar">
+        <h1>The Romans Road</h1>
+    </div>
+
+    <div class="diagram-wrapper" id="diagramWrapper">
+        <div class="scene-caption" id="sceneCaption"></div>
+        <svg class="scene-svg" id="scene" viewBox="0 0 390 300" preserveAspectRatio="xMidYMid meet" role="img" aria-label="The Romans Road salvation diagram"></svg>
+        <div class="intro-overlay" id="introOverlay">
+            <div class="intro-card">
+                <p class="intro-title">The ABCs of Salvation</p>
+                <p class="intro-copy">Follow the road through Romans: <strong>Admit</strong>, <strong>Believe</strong>, and <strong>Confess</strong>.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="card-area"></div>
+</div>
+
+<script>
+(function () {
+    var NS = 'http://www.w3.org/2000/svg';
+    var step = -1;
+    var W = 390;
+    var H = 300;
+    var trailPath = 'M 24 232 C 78 226, 118 197, 154 171 C 184 149, 210 132, 234 126 C 259 119, 280 127, 299 113 C 320 98, 339 66, 366 42';
+
+    var stops = [
+        {
+            letter: 'A',
+            key: 'a',
+            title: 'Admit Sin',
+            label: 'Admit Sin',
+            caption: 'A - Admit',
+            color: '#8A4A3F',
+            ref: 'Romans 3:23; 6:23',
+            verse: 'We all fall short. <b>The wages of sin is death</b>, and we are in need of rescue. The road starts by telling the truth about our condition.',
+            marker: { x: 64, y: 208, r: 20, stem: 22 },
+            segment: 'M 24 232 C 78 226, 118 197, 154 171'
+        },
+        {
+            letter: 'B',
+            key: 'b',
+            title: 'Believe Jesus as Savior',
+            label: 'Believe Jesus as Savior',
+            caption: 'B - Believe',
+            color: '#B58A2D',
+            ref: 'Romans 5:8',
+            verse: 'At the center of the road stands the cross. <b>While we were still sinners, Christ died for us.</b> Salvation rests on what Jesus has done.',
+            marker: { x: 205, y: 133, r: 22, stem: 24 },
+            segment: 'M 154 171 C 184 149, 210 132, 234 126 C 259 119, 280 127, 299 113'
+        },
+        {
+            letter: 'C',
+            key: 'c',
+            title: 'Confess Jesus as Lord',
+            label: 'Confess Jesus as Lord',
+            caption: 'C - Confess',
+            color: '#1A6B55',
+            ref: 'Romans 10:9',
+            verse: 'The road opens into new life when you respond to the risen Jesus. <b>If you confess Jesus as Lord and believe that God raised him from the dead, you will be saved.</b>',
+            marker: { x: 334, y: 74, r: 22, stem: 24 },
+            segment: 'M 299 113 C 320 98, 339 66, 366 42'
+        }
+    ];
+
+    function svgEl(tag, attrs) {
+        var el = document.createElementNS(NS, tag);
+        Object.keys(attrs || {}).forEach(function (key) {
+            el.setAttribute(key, attrs[key]);
+        });
+        return el;
+    }
+
+    function rgba(hex, alpha) {
+        var clean = hex.replace('#', '');
+        var num = parseInt(clean, 16);
+        var r = (num >> 16) & 255;
+        var g = (num >> 8) & 255;
+        var b = num & 255;
+        return 'rgba(' + r + ', ' + g + ', ' + b + ', ' + alpha + ')';
+    }
+
+    function currentColor() {
+        return step === -1 ? '#1A6B55' : stops[step].color;
+    }
+
+    function animateStroke(path, delay) {
+        if (!path.getTotalLength || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        var len = path.getTotalLength();
+        path.setAttribute('stroke-dasharray', len);
+        path.setAttribute('stroke-dashoffset', len);
+        path.style.transition = 'stroke-dashoffset 850ms ease';
+        window.setTimeout(function () {
+            path.setAttribute('stroke-dashoffset', '0');
+        }, delay || 70);
+    }
+
+    function revealLabel(node, delay) {
+        window.setTimeout(function () {
+            node.classList.add('visible');
+        }, delay || 50);
+    }
+
+    function buildBackground(svg) {
+        var defs = svgEl('defs');
+
+        var sky = svgEl('linearGradient', { id: 'roadSky', x1: '0', y1: '0', x2: '0', y2: '1' });
+        sky.appendChild(svgEl('stop', { offset: '0%', 'stop-color': '#FBF9F3' }));
+        sky.appendChild(svgEl('stop', { offset: '100%', 'stop-color': '#EFE6D7' }));
+        defs.appendChild(sky);
+
+        var dawn = svgEl('radialGradient', { id: 'roadDawn', cx: '78%', cy: '14%', r: '40%' });
+        dawn.appendChild(svgEl('stop', { offset: '0%', 'stop-color': '#FFE79A', 'stop-opacity': '0.95' }));
+        dawn.appendChild(svgEl('stop', { offset: '100%', 'stop-color': '#FFE79A', 'stop-opacity': '0' }));
+        defs.appendChild(dawn);
+
+        svg.appendChild(defs);
+        svg.appendChild(svgEl('rect', { x: 0, y: 0, width: W, height: H, fill: 'url(#roadSky)' }));
+        svg.appendChild(svgEl('rect', { x: 0, y: 0, width: W, height: H, fill: 'url(#roadDawn)' }));
+
+        svg.appendChild(svgEl('path', {
+            d: 'M 0 188 C 82 157, 158 162, 237 176 C 308 188, 354 183, 390 172 L 390 300 L 0 300 Z',
+            fill: '#D9D8BD',
+            opacity: '0.88'
+        }));
+        svg.appendChild(svgEl('path', {
+            d: 'M 0 224 C 67 210, 149 213, 220 228 C 283 242, 335 236, 390 224 L 390 300 L 0 300 Z',
+            fill: '#EFE9D4',
+            opacity: '0.95'
+        }));
+        svg.appendChild(svgEl('path', {
+            d: 'M 0 254 C 84 240, 151 247, 223 258 C 290 268, 348 264, 390 254 L 390 300 L 0 300 Z',
+            fill: '#D5D8B7',
+            opacity: '0.8'
+        }));
+
+        svg.appendChild(svgEl('path', {
+            d: 'M 18 142 L 74 94 L 102 120 L 134 88 L 181 141 L 18 141 Z',
+            fill: '#AEB3A0',
+            opacity: '0.92'
+        }));
+        svg.appendChild(svgEl('path', {
+            d: 'M 70 94 L 82 111 L 93 98 L 74 119 Z',
+            fill: '#F7F4EA',
+            opacity: '0.95'
+        }));
+
+        drawTree(svg, 94, 237, 0.6);
+        drawTree(svg, 118, 228, 0.52);
+        drawTree(svg, 270, 217, 0.54);
+        drawTree(svg, 304, 210, 0.5);
+        drawTree(svg, 336, 204, 0.48);
+    }
+
+    function drawTree(svg, x, y, scale) {
+        var g = svgEl('g', { transform: 'translate(' + x + ',' + y + ') scale(' + scale + ')', opacity: '0.42' });
+        g.appendChild(svgEl('path', { d: 'M 0 18 L 0 0', stroke: '#5E7657', 'stroke-width': 2.2, 'stroke-linecap': 'round' }));
+        g.appendChild(svgEl('path', { d: 'M 0 0 L -7 12 L 7 12 Z', fill: '#5E7657' }));
+        g.appendChild(svgEl('path', { d: 'M 0 -7 L -6 5 L 6 5 Z', fill: '#718869' }));
+        g.appendChild(svgEl('path', { d: 'M 0 -13 L -5 -3 L 5 -3 Z', fill: '#809576' }));
+        svg.appendChild(g);
+    }
+
+    function buildRoad(svg) {
+        svg.appendChild(svgEl('path', {
+            d: trailPath,
+            fill: 'none',
+            stroke: 'rgba(89, 73, 43, 0.14)',
+            'stroke-width': 18,
+            'stroke-linecap': 'round',
+            'stroke-linejoin': 'round'
+        }));
+        svg.appendChild(svgEl('path', {
+            d: trailPath,
+            fill: 'none',
+            stroke: '#D7C48F',
+            'stroke-width': 13,
+            'stroke-linecap': 'round',
+            'stroke-linejoin': 'round'
+        }));
+        svg.appendChild(svgEl('path', {
+            d: trailPath,
+            fill: 'none',
+            stroke: '#F6F2E7',
+            'stroke-width': 3,
+            'stroke-linecap': 'round',
+            'stroke-linejoin': 'round',
+            opacity: '0.92'
+        }));
+
+        for (var i = 0; i <= step; i++) {
+            svg.appendChild(svgEl('path', {
+                d: stops[i].segment,
+                fill: 'none',
+                stroke: rgba(stops[i].color, 0.18),
+                'stroke-width': 16,
+                'stroke-linecap': 'round',
+                'stroke-linejoin': 'round'
+            }));
+
+            var active = svgEl('path', {
+                d: stops[i].segment,
+                fill: 'none',
+                stroke: stops[i].color,
+                'stroke-width': 7,
+                'stroke-linecap': 'round',
+                'stroke-linejoin': 'round'
+            });
+            svg.appendChild(active);
+            if (i === step) animateStroke(active, 80);
+        }
+    }
+
+    function buildCross(svg) {
+        if (step < 1) return;
+        svg.appendChild(svgEl('rect', { x: 201, y: 114, width: 8, height: 64, rx: 1.5, fill: '#5F3E22', stroke: '#3A2414', 'stroke-width': 1 }));
+        svg.appendChild(svgEl('rect', { x: 183, y: 127, width: 44, height: 8, rx: 1.5, fill: '#5F3E22', stroke: '#3A2414', 'stroke-width': 1 }));
+        if (step === 1) {
+            svg.appendChild(svgEl('circle', { cx: 205, cy: 131, r: 54, fill: '#F0D37A', opacity: '0.14' }));
+        }
+    }
+
+    function buildGate(svg) {
+        if (step < 2) return;
+        svg.appendChild(svgEl('path', { d: 'M 334 92 Q 346 64 367 42', fill: 'none', stroke: '#E9D790', 'stroke-width': 2.3, opacity: '0.85' }));
+        svg.appendChild(svgEl('line', { x1: 349, y1: 61, x2: 349, y2: 38, stroke: '#C69A3B', 'stroke-width': 4, 'stroke-linecap': 'round' }));
+        svg.appendChild(svgEl('line', { x1: 365, y1: 47, x2: 365, y2: 24, stroke: '#C69A3B', 'stroke-width': 4, 'stroke-linecap': 'round' }));
+        svg.appendChild(svgEl('circle', { cx: 357, cy: 34, r: 44, fill: '#FFE79A', opacity: '0.25' }));
+    }
+
+    function buildMarker(svg, stop, current) {
+        var m = stop.marker;
+        var baseY = m.y + m.stem;
+        svg.appendChild(svgEl('line', {
+            x1: m.x,
+            y1: m.y + m.r,
+            x2: m.x,
+            y2: baseY,
+            stroke: '#6E5B43',
+            'stroke-width': 3,
+            'stroke-linecap': 'round'
+        }));
+        svg.appendChild(svgEl('circle', {
+            cx: m.x,
+            cy: baseY,
+            r: 4.5,
+            fill: '#FBF9F3',
+            stroke: stop.color,
+            'stroke-width': 2.4
+        }));
+        svg.appendChild(svgEl('circle', {
+            cx: m.x,
+            cy: m.y,
+            r: m.r + 4,
+            fill: rgba(stop.color, 0.15)
+        }));
+        svg.appendChild(svgEl('circle', {
+            cx: m.x,
+            cy: m.y,
+            r: m.r,
+            fill: '#FFFDF6',
+            stroke: stop.color,
+            'stroke-width': 2.5
+        }));
+        svg.appendChild(svgEl('circle', {
+            cx: m.x,
+            cy: m.y,
+            r: m.r - 5,
+            fill: 'none',
+            stroke: rgba(stop.color, 0.42),
+            'stroke-width': 1.3
+        }));
+        var letter = svgEl('text', {
+            x: m.x,
+            y: m.y + 7,
+            'text-anchor': 'middle',
+            'font-family': 'Inter, Trebuchet MS, sans-serif',
+            'font-size': m.r + 11,
+            'font-weight': 900,
+            fill: stop.color
+        });
+        letter.textContent = stop.letter;
+        svg.appendChild(letter);
+
+        if (current) {
+            svg.appendChild(svgEl('circle', {
+                cx: m.x,
+                cy: m.y,
+                r: m.r + 11,
+                fill: rgba(stop.color, 0.09)
+            }));
+        }
+    }
+
+    function buildLabels(wrapper) {
+        for (var i = 0; i <= step; i++) {
+            var stop = stops[i];
+            var label = document.createElement('div');
+            label.className = 'step-label ' + stop.key;
+            label.style.setProperty('--pill-color', stop.color);
+            label.textContent = stop.label;
+            wrapper.appendChild(label);
+            revealLabel(label, i === step ? 160 : 0);
+        }
+    }
+
+    function buildScene() {
+        var wrapper = document.getElementById('diagramWrapper');
+        var scene = document.getElementById('scene');
+        var caption = document.getElementById('sceneCaption');
+
+        scene.innerHTML = '';
+        Array.from(wrapper.querySelectorAll('.step-label')).forEach(function (node) { node.remove(); });
+
+        caption.textContent = step === -1 ? '' : stops[step].caption;
+
+        buildBackground(scene);
+        buildRoad(scene);
+        buildCross(scene);
+        buildGate(scene);
+
+        for (var i = 0; i <= step; i++) {
+            buildMarker(scene, stops[i], i === step);
+        }
+
+        if (step !== -1) buildLabels(wrapper);
+    }
+
+    function buildCard() {
+        var cardArea = document.getElementById('card-area');
+        cardArea.innerHTML = '';
+
+        if (step === -1) {
+            var beginWrap = document.createElement('div');
+            beginWrap.className = 'verse-card-wrapper';
+            var beginCard = document.createElement('div');
+            beginCard.className = 'verse-card';
+            beginCard.innerHTML =
+                '<div class="verse-card-bar" style="background:#1A6B55;"></div>' +
+                '<div class="verse-card-content" style="--accent-color:#1A6B55;">' +
+                    '<h2 class="verse-card-title">How Can Someone Be Saved?</h2>' +
+                    '<p class="verse-card-text">The Romans Road is a simple path through Paul&apos;s letter to the Romans. It leads from our need, through the cross, to a clear response of faith.</p>' +
+                '</div>';
+            beginWrap.appendChild(beginCard);
+
+            var nav = document.createElement('div');
+            nav.className = 'nav-bar';
+            var back = document.createElement('button');
+            back.className = 'nav-btn hidden';
+            back.textContent = '← Back';
+            var dots = document.createElement('div');
+            dots.className = 'dot-nav';
+            stops.forEach(function () {
+                var d = document.createElement('div');
+                d.className = 'dot';
+                d.style.background = '#D4CFC4';
+                dots.appendChild(d);
+            });
+            var next = document.createElement('button');
+            next.className = 'nav-btn primary';
+            next.style.background = '#1A6B55';
+            next.textContent = 'Begin →';
+            next.addEventListener('click', function () {
+                step = 0;
+                render();
+            });
+            nav.appendChild(back);
+            nav.appendChild(dots);
+            nav.appendChild(next);
+            beginWrap.appendChild(nav);
+            cardArea.appendChild(beginWrap);
+            return;
+        }
+
+        var current = stops[step];
+        var wrapper = document.createElement('div');
+        wrapper.className = 'verse-card-wrapper';
+        wrapper.style.setProperty('--accent-color', current.color);
+
+        var card = document.createElement('div');
+        card.className = 'verse-card';
+
+        var bar = document.createElement('div');
+        bar.className = 'verse-card-bar';
+        bar.style.background = current.color;
+        card.appendChild(bar);
+
+        var content = document.createElement('div');
+        content.className = 'verse-card-content';
+        content.style.setProperty('--accent-color', current.color);
+
+        var title = document.createElement('h2');
+        title.className = 'verse-card-title';
+        title.style.color = current.color;
+        title.textContent = current.title;
+
+        var text = document.createElement('p');
+        text.className = 'verse-card-text';
+        text.innerHTML = current.verse;
+
+        var ref = document.createElement('p');
+        ref.className = 'verse-card-ref';
+        ref.style.color = current.color;
+        ref.textContent = current.ref;
+
+        content.appendChild(title);
+        content.appendChild(text);
+        content.appendChild(ref);
+        card.appendChild(content);
+        wrapper.appendChild(card);
+        wrapper.appendChild(buildNav(current));
+        cardArea.appendChild(wrapper);
+    }
+
+    function buildNav(current) {
+        var nav = document.createElement('div');
+        nav.className = 'nav-bar';
+
+        var backBtn = document.createElement('button');
+        backBtn.className = 'nav-btn';
+        backBtn.textContent = '← Back';
+        if (step === 0) backBtn.disabled = true;
+        backBtn.addEventListener('click', function () {
+            if (step > 0) {
+                step -= 1;
+                render();
+            }
+        });
+        nav.appendChild(backBtn);
+
+        var dots = document.createElement('div');
+        dots.className = 'dot-nav';
+        stops.forEach(function (stop, idx) {
+            var dot = document.createElement('button');
+            dot.className = 'dot' + (idx <= step ? ' available' : '') + (idx === step ? ' current' : '');
+            dot.type = 'button';
+            dot.style.background = idx === step ? stop.color : (idx < step ? rgba(stop.color, 0.45) : '#D4CFC4');
+            if (idx <= step) {
+                dot.addEventListener('click', function () {
+                    step = idx;
+                    render();
+                });
+            }
+            dots.appendChild(dot);
+        });
+        nav.appendChild(dots);
+
+        var nextBtn = document.createElement('button');
+        nextBtn.className = 'nav-btn primary';
+        nextBtn.style.background = current.color;
+        if (step === stops.length - 1) {
+            nextBtn.textContent = '↻ Restart';
+        } else {
+            nextBtn.textContent = 'Next →';
+        }
+        nextBtn.addEventListener('click', function () {
+            if (step === stops.length - 1) {
+                step = -1;
+            } else {
+                step += 1;
+            }
+            render();
+        });
+        nav.appendChild(nextBtn);
+
+        return nav;
+    }
+
+    function render() {
+        var overlay = document.getElementById('introOverlay');
+        if (step === -1) {
+            overlay.style.display = 'flex';
+        } else {
+            overlay.style.display = 'none';
+        }
+        buildScene();
+        buildCard();
+    }
+
+    render();
+}());
+</script>
+</body>
+</html>

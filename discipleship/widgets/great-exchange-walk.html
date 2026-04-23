@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Great Exchange</title>
+<style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+        font-family: 'Georgia', 'Cambria', serif;
+        background: #F8F6F1;
+        color: #2C2416;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    button { -webkit-tap-highlight-color: transparent; font-family: inherit; }
+
+    .widget-outer {
+        background: #FFFFFF;
+        max-width: 100%;
+        width: 100%;
+        margin: 0;
+        position: relative;
+        overflow: hidden;
+    }
+
+    @media (min-width: 560px) {
+        body { padding: 16px; }
+        .widget-outer {
+            border-radius: 14px;
+            box-shadow: 0 6px 22px rgba(44, 36, 22, 0.09);
+            border: 1px solid #EBE5D9;
+            max-width: 620px;
+            margin: 0 auto;
+        }
+    }
+
+    .title-bar {
+        background: #2C2416;
+        padding: 10px 14px;
+        text-align: center;
+    }
+
+    .title-bar h1 {
+        font-size: 18px;
+        font-weight: 600;
+        color: #FAF8F3;
+        font-family: 'Playfair Display', Georgia, serif;
+        letter-spacing: 0.4px;
+        line-height: 1.15;
+    }
+
+    .stage {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 800 / 360;
+        background: #FBF9F3;
+        overflow: hidden;
+    }
+
+    .stage svg {
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+
+    .play-overlay {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(44, 36, 22, 0.28);
+        backdrop-filter: blur(1.5px);
+        -webkit-backdrop-filter: blur(1.5px);
+        cursor: pointer;
+        transition: opacity 0.35s ease;
+        z-index: 4;
+    }
+
+    .play-overlay.hidden {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .play-btn {
+        background: #FAF8F3;
+        color: #2C2416;
+        border: none;
+        border-radius: 999px;
+        padding: 12px 22px 12px 26px;
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 0.4px;
+        cursor: pointer;
+        box-shadow: 0 8px 22px rgba(0,0,0,0.25);
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-family: 'Trebuchet MS', sans-serif;
+        text-transform: uppercase;
+    }
+
+    .play-btn::before {
+        content: '';
+        display: inline-block;
+        width: 0; height: 0;
+        border-top: 7px solid transparent;
+        border-bottom: 7px solid transparent;
+        border-left: 11px solid #8B5A2B;
+    }
+
+    .caption-area {
+        background: #F6F4EE;
+        border-top: 1px solid #EBE5D9;
+        padding: 16px 20px 18px;
+        min-height: 110px;
+        position: relative;
+    }
+
+    .caption {
+        text-align: center;
+        transition: opacity 0.5s ease;
+    }
+
+    .caption-text {
+        font-size: 15px;
+        line-height: 1.45;
+        color: #3D3426;
+        font-family: 'Playfair Display', Georgia, serif;
+        font-style: italic;
+        margin-bottom: 6px;
+        min-height: 44px;
+    }
+
+    .caption-ref {
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.6px;
+        color: #8B5A2B;
+        font-family: 'Trebuchet MS', sans-serif;
+        text-transform: uppercase;
+    }
+
+    .controls {
+        display: flex;
+        justify-content: center;
+        padding: 10px 20px 16px;
+        background: #F6F4EE;
+    }
+
+    .replay-btn {
+        background: transparent;
+        color: #5A4E3C;
+        border: 1.5px solid #D4CFC4;
+        border-radius: 10px;
+        padding: 8px 18px;
+        font-size: 12px;
+        font-weight: 600;
+        cursor: pointer;
+        font-family: 'Trebuchet MS', sans-serif;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        opacity: 0;
+        transform: translateY(4px);
+        transition: opacity 0.4s ease, transform 0.4s ease, background 0.2s;
+        pointer-events: none;
+    }
+
+    .replay-btn.visible {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+    }
+
+    .replay-btn:hover {
+        background: #FFFFFF;
+        border-color: #B8AE9B;
+    }
+
+    .progress-track {
+        height: 3px;
+        background: #EBE5D9;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .progress-fill {
+        height: 100%;
+        width: 0%;
+        background: linear-gradient(90deg, #5A4E3C 0%, #8B5A2B 55%, #D4A843 100%);
+        transition: width 0.08s linear;
+    }
+</style>
+</head>
+<body>
+<div class="widget-outer">
+
+    <div class="title-bar">
+        <h1>The Great Exchange</h1>
+    </div>
+
+    <div class="stage" id="stage">
+        <svg id="scene" viewBox="0 0 800 360" preserveAspectRatio="xMidYMid meet" role="img" aria-label="A figure walks across a cross laid on the ground, exchanging a black shirt of sin for a white shirt of Christ's righteousness">
+            <defs>
+                <!-- Background gradient layers -->
+                <linearGradient id="skyShadow" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0%" stop-color="#C8BFAF" stop-opacity="0.55"/>
+                    <stop offset="70%" stop-color="#C8BFAF" stop-opacity="0"/>
+                </linearGradient>
+                <linearGradient id="skyGlory" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="30%" stop-color="#F5D98A" stop-opacity="0"/>
+                    <stop offset="100%" stop-color="#F5D98A" stop-opacity="0.55"/>
+                </linearGradient>
+                <radialGradient id="sunburst" cx="0.5" cy="0.5" r="0.5">
+                    <stop offset="0%" stop-color="#FFF4C2" stop-opacity="0.95"/>
+                    <stop offset="50%" stop-color="#F5D98A" stop-opacity="0.5"/>
+                    <stop offset="100%" stop-color="#F5D98A" stop-opacity="0"/>
+                </radialGradient>
+                <radialGradient id="figureGlow" cx="0.5" cy="0.5" r="0.5">
+                    <stop offset="0%" stop-color="#FFF4C2" stop-opacity="0.55"/>
+                    <stop offset="100%" stop-color="#FFF4C2" stop-opacity="0"/>
+                </radialGradient>
+
+                <!-- Wood grain pattern for cross -->
+                <linearGradient id="woodGrain" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#8B5A2B"/>
+                    <stop offset="50%" stop-color="#6B4423"/>
+                    <stop offset="100%" stop-color="#5A3818"/>
+                </linearGradient>
+                <linearGradient id="woodGrainV" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0%" stop-color="#8B5A2B"/>
+                    <stop offset="50%" stop-color="#6B4423"/>
+                    <stop offset="100%" stop-color="#5A3818"/>
+                </linearGradient>
+            </defs>
+
+            <!-- Base ground tone -->
+            <rect x="0" y="0" width="800" height="360" fill="#FBF9F3"/>
+
+            <!-- Shadow wash (left side, fades as exchange happens) -->
+            <rect id="shadowWash" x="0" y="0" width="800" height="360" fill="url(#skyShadow)"/>
+
+            <!-- Glory wash (right side, fades in as exchange happens) -->
+            <rect id="gloryWash" x="0" y="0" width="800" height="360" fill="url(#skyGlory)" opacity="0"/>
+
+            <!-- Horizon line -->
+            <line x1="0" y1="265" x2="800" y2="265" stroke="#D4CFC4" stroke-width="1.5" opacity="0.7"/>
+
+            <!-- Ground shadow under cross -->
+            <ellipse cx="453" cy="318" rx="220" ry="8" fill="#2C2416" opacity="0.08"/>
+
+            <!-- ============= CROSS LAID FLAT ============= -->
+            <!-- Upright beam (the long one, runs horizontally along the path) -->
+            <g id="crossGroup">
+                <rect x="240" y="232" width="320" height="32" fill="url(#woodGrainV)" rx="2"/>
+                <!-- Crossbeam (perpendicular, top of cross points up/off-screen) -->
+                <rect x="437" y="182" width="32" height="128" fill="url(#woodGrain)" rx="2"/>
+
+                <!-- Wood grain lines for texture -->
+                <line x1="250" y1="240" x2="550" y2="240" stroke="#4A2E12" stroke-width="0.6" opacity="0.5"/>
+                <line x1="250" y1="250" x2="550" y2="250" stroke="#4A2E12" stroke-width="0.6" opacity="0.4"/>
+                <line x1="250" y1="258" x2="550" y2="258" stroke="#4A2E12" stroke-width="0.6" opacity="0.5"/>
+
+                <line x1="442" y1="190" x2="442" y2="304" stroke="#4A2E12" stroke-width="0.6" opacity="0.5"/>
+                <line x1="452" y1="190" x2="452" y2="304" stroke="#4A2E12" stroke-width="0.6" opacity="0.4"/>
+                <line x1="462" y1="190" x2="462" y2="304" stroke="#4A2E12" stroke-width="0.6" opacity="0.5"/>
+
+                <!-- Subtle shadow on underside -->
+                <rect x="240" y="260" width="320" height="4" fill="#3D2610" opacity="0.35"/>
+                <rect x="437" y="306" width="32" height="4" fill="#3D2610" opacity="0.35"/>
+            </g>
+
+            <!-- ============= LIGHT BURST AT EXCHANGE ============= -->
+            <g id="lightBurst" opacity="0">
+                <circle cx="453" cy="246" r="180" fill="url(#sunburst)"/>
+                <!-- Rays -->
+                <g id="rays" opacity="0.8">
+                    <line x1="453" y1="246" x2="453" y2="80" stroke="#FFF4C2" stroke-width="2.5" opacity="0.6"/>
+                    <line x1="453" y1="246" x2="353" y2="110" stroke="#FFF4C2" stroke-width="2" opacity="0.5"/>
+                    <line x1="453" y1="246" x2="553" y2="110" stroke="#FFF4C2" stroke-width="2" opacity="0.5"/>
+                    <line x1="453" y1="246" x2="300" y2="175" stroke="#FFF4C2" stroke-width="1.5" opacity="0.4"/>
+                    <line x1="453" y1="246" x2="606" y2="175" stroke="#FFF4C2" stroke-width="1.5" opacity="0.4"/>
+                </g>
+            </g>
+
+            <!-- ============= BLACK SHIRT LEFT ON THE CROSS ============= -->
+            <!-- Appears draped on the crossbeam after the exchange -->
+            <g id="shirtOnCross" opacity="0" transform="translate(453 218)">
+                <!-- Shirt silhouette lying across the crossbeam -->
+                <path d="M -26 -8 L -40 0 L -28 10 L -22 3 L -19 22 L 19 22 L 22 3 L 28 10 L 40 0 L 26 -8 C 16 0 -16 0 -26 -8 Z"
+                      fill="#161616" stroke="#3D3426" stroke-width="0.6" opacity="0.95"/>
+                <!-- Neckline -->
+                <path d="M -12 -5 C -6 1 6 1 12 -5" fill="none" stroke="#3D3426" stroke-width="1" opacity="0.5"/>
+                <!-- Faded "SIN" text -->
+                <text x="0" y="10" fill="#4A4035" font-family="Trebuchet MS, sans-serif" font-size="9" font-weight="800" text-anchor="middle" opacity="0.85">SIN</text>
+            </g>
+
+            <!-- ============= FIGURE (WALKING) ============= -->
+            <g id="figure" transform="translate(90 265)">
+                <!-- Soft glow behind figure (post-exchange) -->
+                <circle id="figureAura" cx="0" cy="-55" r="70" fill="url(#figureGlow)" opacity="0"/>
+
+                <!-- Back leg -->
+                <line id="legBack" x1="0" y1="-30" x2="-8" y2="0" stroke="#5A4E3C" stroke-width="5" stroke-linecap="round"/>
+                <!-- Front leg -->
+                <line id="legFront" x1="0" y1="-30" x2="8" y2="0" stroke="#3D3426" stroke-width="5" stroke-linecap="round"/>
+
+                <!-- Torso + arms group -->
+                <g id="bodyGroup">
+                    <!-- Back arm -->
+                    <line id="armBack" x1="0" y1="-75" x2="-10" y2="-44" stroke="#5A4E3C" stroke-width="4" stroke-linecap="round"/>
+
+                    <!-- SHIRT: Black (sin) -->
+                    <g id="shirtSin">
+                        <path d="M -22 -82 L -32 -72 L -23 -62 L -18 -67 L -15 -40 L 15 -40 L 18 -67 L 23 -62 L 32 -72 L 22 -82 C 14 -76 -14 -76 -22 -82 Z"
+                              fill="#121212" stroke="#000000" stroke-width="1"/>
+                        <!-- Neckline -->
+                        <path d="M -10 -78 C -5 -74 5 -74 10 -78" fill="none" stroke="#2C2C2C" stroke-width="1.2"/>
+                        <!-- SIN label -->
+                        <text x="0" y="-55" fill="#FFFFFF" font-family="Trebuchet MS, sans-serif" font-size="11" font-weight="800" text-anchor="middle" letter-spacing="0.5">SIN</text>
+                    </g>
+
+                    <!-- SHIRT: White (righteousness) -->
+                    <g id="shirtRight" opacity="0">
+                        <path d="M -22 -82 L -32 -72 L -23 -62 L -18 -67 L -15 -40 L 15 -40 L 18 -67 L 23 -62 L 32 -72 L 22 -82 C 14 -76 -14 -76 -22 -82 Z"
+                              fill="#FFFFFF" stroke="#E3DCC8" stroke-width="1.2"/>
+                        <!-- Neckline -->
+                        <path d="M -10 -78 C -5 -74 5 -74 10 -78" fill="none" stroke="#D4CBB0" stroke-width="1.2"/>
+                        <!-- Small cross on chest (gold — Christ's righteousness) -->
+                        <g transform="translate(0 -58)">
+                            <rect x="-1.8" y="-8" width="3.6" height="14" fill="#C9932E" rx="0.5"/>
+                            <rect x="-6" y="-3" width="12" height="3.6" fill="#C9932E" rx="0.5"/>
+                        </g>
+                    </g>
+
+                    <!-- Front arm -->
+                    <line id="armFront" x1="0" y1="-75" x2="10" y2="-44" stroke="#3D3426" stroke-width="4" stroke-linecap="round"/>
+
+                    <!-- Head -->
+                    <circle cx="0" cy="-96" r="11" fill="#E8CBA8" stroke="#7C5A42" stroke-width="1.2"/>
+                    <!-- Hair -->
+                    <path d="M -9 -103 C -4 -110 6 -108 9 -101" fill="#5A3A1F" opacity="0.85"/>
+                </g>
+            </g>
+
+            <!-- Subtle foreground ground dots (light flecks after cross) -->
+            <g id="lifeFlecks" opacity="0">
+                <circle cx="590" cy="290" r="2" fill="#D4A843" opacity="0.5"/>
+                <circle cx="635" cy="306" r="1.6" fill="#D4A843" opacity="0.4"/>
+                <circle cx="670" cy="282" r="2.2" fill="#D4A843" opacity="0.55"/>
+                <circle cx="710" cy="300" r="1.8" fill="#D4A843" opacity="0.45"/>
+                <circle cx="620" cy="320" r="1.4" fill="#D4A843" opacity="0.35"/>
+                <circle cx="685" cy="318" r="1.6" fill="#D4A843" opacity="0.4"/>
+            </g>
+        </svg>
+
+        <div class="play-overlay" id="playOverlay">
+            <button class="play-btn" id="playBtn">Watch the Exchange</button>
+        </div>
+    </div>
+
+    <div class="progress-track">
+        <div class="progress-fill" id="progressFill"></div>
+    </div>
+
+    <div class="caption-area">
+        <div class="caption" id="caption">
+            <div class="caption-text" id="captionText">We stand in our own record — a life marked by sin.</div>
+            <div class="caption-ref" id="captionRef">Romans 3:23</div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <button class="replay-btn" id="replayBtn">↻ Replay</button>
+    </div>
+</div>
+
+<script>
+(function() {
+    var DURATION = 10500; // ms — the walk takes about 10.5 seconds
+
+    // Figure walk range (in viewBox units)
+    var START_X = 90;
+    var END_X   = 712;
+    var CROSS_X = 453;            // center of crossbeam (the exchange point)
+    var CROSS_PROGRESS = (CROSS_X - START_X) / (END_X - START_X); // ~0.583
+
+    var captions = [
+        { threshold: 0.00, text: "We stand in our own record — a life marked by sin.", ref: "Romans 3:23" },
+        { threshold: 0.28, text: "The wages of sin is death — but God, being rich in mercy…", ref: "Romans 6:23 · Ephesians 2:4" },
+        { threshold: CROSS_PROGRESS - 0.02, text: "For our sake He made Him to be sin who knew no sin…", ref: "2 Corinthians 5:21a" },
+        { threshold: CROSS_PROGRESS + 0.10, text: "…so that in Him we might become the righteousness of God.", ref: "2 Corinthians 5:21b" },
+        { threshold: 0.86, text: "We walk in newness of life — clothed in the righteousness of Christ.", ref: "Romans 6:4 · Philippians 3:9" }
+    ];
+
+    var figure       = document.getElementById('figure');
+    var shirtSin     = document.getElementById('shirtSin');
+    var shirtRight   = document.getElementById('shirtRight');
+    var shirtOnCross = document.getElementById('shirtOnCross');
+    var lightBurst   = document.getElementById('lightBurst');
+    var shadowWash   = document.getElementById('shadowWash');
+    var gloryWash    = document.getElementById('gloryWash');
+    var aura         = document.getElementById('figureAura');
+    var lifeFlecks   = document.getElementById('lifeFlecks');
+    var legBack      = document.getElementById('legBack');
+    var legFront     = document.getElementById('legFront');
+    var armBack      = document.getElementById('armBack');
+    var armFront     = document.getElementById('armFront');
+
+    var captionText  = document.getElementById('captionText');
+    var captionRef   = document.getElementById('captionRef');
+    var progressFill = document.getElementById('progressFill');
+    var playOverlay  = document.getElementById('playOverlay');
+    var playBtn      = document.getElementById('playBtn');
+    var replayBtn    = document.getElementById('replayBtn');
+
+    var playing = false;
+    var startTime = 0;
+    var rafId = null;
+    var currentCaptionIdx = -1;
+
+    function lerp(a, b, t) { return a + (b - a) * t; }
+    function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
+    function ease(t) { return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2; }
+
+    function render(p) {
+        // ========== Figure position ==========
+        // Pause briefly at the cross to let the exchange "happen"
+        var walkP;
+        var PAUSE_START = CROSS_PROGRESS - 0.015;
+        var PAUSE_END   = CROSS_PROGRESS + 0.12;
+        if (p < PAUSE_START) {
+            walkP = (p / PAUSE_START) * CROSS_PROGRESS;
+        } else if (p < PAUSE_END) {
+            walkP = CROSS_PROGRESS;
+        } else {
+            walkP = CROSS_PROGRESS + ((p - PAUSE_END) / (1 - PAUSE_END)) * (1 - CROSS_PROGRESS);
+        }
+        walkP = clamp(walkP, 0, 1);
+
+        var x = lerp(START_X, END_X, walkP);
+
+        // Walking bob (subtle)
+        var isWalking = (p < PAUSE_START) || (p >= PAUSE_END);
+        var bob = isWalking ? Math.sin(p * 48) * 1.4 : 0;
+
+        figure.setAttribute('transform', 'translate(' + x.toFixed(2) + ' ' + (265 + bob).toFixed(2) + ')');
+
+        // ========== Leg & arm swing (walking cycle) ==========
+        if (isWalking) {
+            var swing = Math.sin(p * 48);
+            // Legs swing opposite
+            legFront.setAttribute('x2', (8 * swing).toFixed(2));
+            legBack.setAttribute('x2', (-8 * swing).toFixed(2));
+            // Arms swing opposite to legs for natural gait
+            armFront.setAttribute('x2', (-10 * swing * 0.8).toFixed(2));
+            armFront.setAttribute('y2', (-44 + Math.abs(swing) * 2).toFixed(2));
+            armBack.setAttribute('x2', (10 * swing * 0.8).toFixed(2));
+            armBack.setAttribute('y2', (-44 + Math.abs(swing) * 2).toFixed(2));
+        } else {
+            // Still at the cross — arms slightly lowered, head reverent
+            legFront.setAttribute('x2', '6');
+            legBack.setAttribute('x2', '-6');
+            armFront.setAttribute('x2', '8');
+            armFront.setAttribute('y2', '-44');
+            armBack.setAttribute('x2', '-8');
+            armBack.setAttribute('y2', '-44');
+        }
+
+        // ========== The Exchange ==========
+        // Shirt on figure transitions from black to white during the pause
+        var exchangeP = clamp((p - PAUSE_START) / (PAUSE_END - PAUSE_START), 0, 1);
+
+        // Black shirt on figure: visible until midway through the pause, then fades
+        var sinFade = 1 - clamp((exchangeP - 0.15) / 0.35, 0, 1);
+        shirtSin.setAttribute('opacity', sinFade.toFixed(3));
+
+        // White shirt on figure: fades in during the second half of the pause
+        var rightFade = clamp((exchangeP - 0.45) / 0.35, 0, 1);
+        shirtRight.setAttribute('opacity', rightFade.toFixed(3));
+
+        // Black shirt left on the cross: fades in as the figure's sin-shirt fades out
+        var onCrossFade = clamp((exchangeP - 0.20) / 0.30, 0, 1);
+        shirtOnCross.setAttribute('opacity', onCrossFade.toFixed(3));
+
+        // ========== Light burst ==========
+        // Peaks at the middle of the exchange, then settles
+        var burstPeak = Math.sin(clamp(exchangeP, 0, 1) * Math.PI);
+        lightBurst.setAttribute('opacity', (burstPeak * 0.92).toFixed(3));
+
+        // ========== Background wash ==========
+        // Shadow fades out as we progress; glory fades in
+        var overallP = ease(p);
+        shadowWash.setAttribute('opacity', (1 - overallP * 0.95).toFixed(3));
+        gloryWash.setAttribute('opacity', (overallP * 1.0).toFixed(3));
+
+        // ========== Figure aura (post-exchange) ==========
+        var auraOp = clamp((p - CROSS_PROGRESS) / 0.25, 0, 1);
+        aura.setAttribute('opacity', (auraOp * 0.85).toFixed(3));
+
+        // ========== Life flecks (after cross) ==========
+        var flecksOp = clamp((p - CROSS_PROGRESS - 0.05) / 0.25, 0, 1);
+        lifeFlecks.setAttribute('opacity', flecksOp.toFixed(3));
+
+        // ========== Progress bar ==========
+        progressFill.style.width = (p * 100).toFixed(2) + '%';
+
+        // ========== Caption ==========
+        var targetIdx = 0;
+        for (var i = captions.length - 1; i >= 0; i--) {
+            if (p >= captions[i].threshold) { targetIdx = i; break; }
+        }
+        if (targetIdx !== currentCaptionIdx) {
+            currentCaptionIdx = targetIdx;
+            fadeCaption(captions[targetIdx]);
+        }
+    }
+
+    function fadeCaption(c) {
+        var cap = document.getElementById('caption');
+        cap.style.opacity = '0';
+        setTimeout(function() {
+            captionText.textContent = c.text;
+            captionRef.textContent  = c.ref;
+            cap.style.opacity = '1';
+        }, 280);
+    }
+
+    function tick(ts) {
+        if (!playing) return;
+        var elapsed = ts - startTime;
+        var p = clamp(elapsed / DURATION, 0, 1);
+        render(p);
+        if (p < 1) {
+            rafId = requestAnimationFrame(tick);
+        } else {
+            playing = false;
+            replayBtn.classList.add('visible');
+        }
+    }
+
+    function play() {
+        // Reset to start
+        currentCaptionIdx = -1;
+        render(0);
+        replayBtn.classList.remove('visible');
+        playOverlay.classList.add('hidden');
+        playing = true;
+        startTime = performance.now();
+        rafId = requestAnimationFrame(tick);
+    }
+
+    function replay() {
+        if (rafId) cancelAnimationFrame(rafId);
+        play();
+    }
+
+    playBtn.addEventListener('click', play);
+    playOverlay.addEventListener('click', function(e) {
+        if (e.target === playOverlay) play();
+    });
+    replayBtn.addEventListener('click', replay);
+
+    // Initial render (static, pre-play state)
+    render(0);
+})();
+</script>
+</body>
+</html>

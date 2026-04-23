@@ -13,20 +13,15 @@
     },
     {
       "type": "image",
-      "src": "images/woman-well.jpg"
+      "imageBw": "images/woman-well-bw.png",
+      "imageColor": "images/woman-well-color.png",
+      "alt": "Jesus speaking with the Samaritan woman at the well",
+      "touchNext": true
     },
     {
-      "type": "text",
-      "text": "Jesus once stopped at a well and struck up a conversation with a Samaritan woman who had every reason to avoid people. She had a complicated past, she was from the wrong tribe, and she had come to draw water alone at noon when no one else would be there. But Jesus talked to her anyway, and what happened next is one of the most spontaneous moments of evangelism in the entire Bible."
-    },
-    {
-      "type": "verse",
-      "reference": "John 4:28-29",
-      "text": "So the woman left her water jar and went away into town and said to the people, \"Come, see a man who told me all that I ever did. Can this be the Christ?\""
-    },
-    {
-      "type": "text",
-      "text": "She left her water jar, ran back into the very town she had been hiding from, and told everyone what happened. No training, no program, no polished presentation - just a woman who had met Jesus and could not keep it to herself. She said, \"Come and see.\" That is all sharing your faith is at its simplest: pointing people toward Jesus and telling them what He did for you."
+      "type": "parable",
+      "title": "The Woman at the Well",
+      "text": "Jesus once stopped at a well and struck up a conversation with a Samaritan woman who had every reason to avoid people. She had a complicated past, she was from the wrong tribe, and she had come to draw water alone at noon when no one else would be there. But Jesus talked to her anyway, and what happened next is one of the most spontaneous moments of evangelism in the entire Bible.<br><br><em>\"So the woman left her water jar and went away into town and said to the people, 'Come, see a man who told me all that I ever did. Can this be the Christ?'\" (John 4:28-29)</em><br><br>She left her water jar, ran back into the very town she had been hiding from, and told everyone what happened. No training, no program, no polished presentation, just a woman who had met Jesus and could not keep it to herself. She said, \"Come and see.\" That is all sharing your faith is at its simplest: pointing people toward Jesus and telling them what He did for you."
     },
     {
       "type": "question",
