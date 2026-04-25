@@ -1124,6 +1124,27 @@
             opacity: 0 !important;
         }
 
+        .block-image-dissolve .parable-sequence-frame {
+            width: 100%;
+            margin: 0;
+            border-radius: inherit;
+        }
+
+        .block-image-dissolve .parable-sequence-frame:not(:first-child) {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .block-image-dissolve.parable-dissolve-static .parable-sequence-frame {
+            opacity: 0 !important;
+        }
+
+        .block-image-dissolve.parable-dissolve-static .parable-sequence-frame:last-child {
+            opacity: 1 !important;
+        }
+
         .block-image.block-image-touch-next + .block-parable {
             margin-top: 0;
             border-top-left-radius: 0;
@@ -2695,7 +2716,7 @@
                     case 'text':
                         return requireString(block.text);
                     case 'image':
-                        return requireString(block.src) || (requireString(block.imageBw) && requireString(block.imageColor));
+                        return requireString(block.src) || (requireString(block.imageBw) && requireString(block.imageColor)) || (Array.isArray(block.imageSequence) && block.imageSequence.length > 0);
                     case 'verse':
                         return requireString(block.reference) && requireString(block.text);
                     case 'list':
@@ -2818,7 +2839,17 @@
                             case 'image':
                                 const imgStyle = b.width ? `style="width: ${b.width}; max-width: 100%; height: auto;"` : '';
                                 const imageClasses = `block-image${b.touchNext ? ' block-image-touch-next' : ''}`;
-                                if (b.imageBw && b.imageColor) {
+                                if (Array.isArray(b.imageSequence) && b.imageSequence.length) {
+                                    const dissolveClasses = `block-image-dissolve${b.frame ? ' block-image-dissolve-framed' : ''}`;
+                                    const sequenceStops = Array.isArray(b.imageSequenceStops) ? ` data-sequence-stops="${b.imageSequenceStops.join(',')}"` : '';
+                                    html += `<div class="${imageClasses}">
+                                        <div class="${dissolveClasses}" data-parable-dissolve data-parable-sequence${sequenceStops}>`;
+                                    b.imageSequence.forEach((src, frameIdx) => {
+                                        html += `<img class="parable-sequence-frame" src="${src}?v=${BUILD_VERSION}" alt="${frameIdx === 0 ? (b.alt || '') : ''}" aria-hidden="${frameIdx === 0 ? 'false' : 'true'}">`;
+                                    });
+                                    html += `</div>
+                                    </div>`;
+                                } else if (b.imageBw && b.imageColor) {
                                     const dissolveClasses = `block-image-dissolve${b.frame ? ' block-image-dissolve-framed' : ''}`;
                                     html += `<div class="${imageClasses}">
                                         <div class="${dissolveClasses}" data-parable-dissolve>
@@ -3136,6 +3167,12 @@
                     el.classList.add('parable-dissolve-static');
                     const bwImg = el.querySelector('.parable-img-bw');
                     if (bwImg) bwImg.style.opacity = '0';
+                    const sequenceFrames = Array.from(el.querySelectorAll('.parable-sequence-frame'));
+                    if (sequenceFrames.length) {
+                        sequenceFrames.forEach((frame, idx) => {
+                            frame.style.opacity = idx === sequenceFrames.length - 1 ? '1' : '0';
+                        });
+                    }
                 });
                 return;
             }
@@ -3150,6 +3187,44 @@
                 const fadeRange = Math.max(fadeStartY - fadeEndY, 1);
 
                 dissolveEls.forEach((el) => {
+                    const sequenceFrames = Array.from(el.querySelectorAll('.parable-sequence-frame'));
+                    if (sequenceFrames.length) {
+                        const rect = el.getBoundingClientRect();
+                        let progress = (fadeStartY - rect.top) / fadeRange;
+                        progress = Math.max(0, Math.min(1, progress));
+                        const parsedStops = (el.dataset.sequenceStops || '')
+                            .split(',')
+                            .map((stop) => Number(stop))
+                            .filter((stop) => Number.isFinite(stop));
+                        const stops = parsedStops.length === sequenceFrames.length
+                            ? parsedStops
+                            : sequenceFrames.map((_, idx) => idx / Math.max(sequenceFrames.length - 1, 1));
+
+                        let segment = 0;
+                        for (let idx = 0; idx < stops.length - 1; idx += 1) {
+                            if (progress >= stops[idx] && progress <= stops[idx + 1]) {
+                                segment = idx;
+                                break;
+                            }
+                            if (progress > stops[idx + 1]) segment = idx + 1;
+                        }
+                        segment = Math.min(segment, sequenceFrames.length - 1);
+                        const nextSegment = Math.min(segment + 1, sequenceFrames.length - 1);
+                        const segmentRange = Math.max(stops[nextSegment] - stops[segment], 0.001);
+                        const segmentProgress = segment === nextSegment
+                            ? 1
+                            : Math.max(0, Math.min(1, (progress - stops[segment]) / segmentRange));
+
+                        sequenceFrames.forEach((frame, idx) => {
+                            let opacity = 0;
+                            if (idx === segment) opacity = 1;
+                            if (idx === nextSegment && nextSegment !== segment) opacity = segmentProgress;
+                            if (progress >= stops[stops.length - 1] && idx === sequenceFrames.length - 1) opacity = 1;
+                            frame.style.opacity = opacity.toFixed(3);
+                        });
+                        return;
+                    }
+
                     const bwImg = el.querySelector('.parable-img-bw');
                     if (!bwImg) return;
 

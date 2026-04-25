@@ -1,67 +1,49 @@
 {
   "id": "2",
   "title": "Lesson 2: New Identity in Jesus",
-  "description": "The gospel does not just forgive you. It changes who you are. Jesus is the eternal Word and true Light who entered your darkness, took your sin, gave you His righteousness, and clothed you with Himself. In Him, your old self was crucified, the new has come, and you no longer live from your own record. You are found in Christ.",
+  "description": "In the last lesson, the Loving Father ran toward the prodigal before the son could earn his way home. In this lesson, that same homecoming image becomes a picture of your identity in Jesus: the Father does not leave you in the clothes of your old life, He clothes you with Christ.",
   "blocks": [
     {
       "type": "text",
-      "text": "In the last lesson, you met the Father who runs toward you and loves you before you ever love Him back. Now the next question is simple: if the Father loves me like that, then <em>who am I?</em> This lesson turns to Jesus, the Son who takes what is yours, gives what is His, and makes you new."
+      "text": "In the last lesson, the Loving Father ran toward the son before the son could earn his way home. That is where the Christian life begins: with the Father's love moving first."
+    },
+    {
+      "type": "text",
+      "text": "Now the same story gives you another picture. When the son came home, the father called for the best robe and put it on him. Identity in Jesus means God does not only forgive the road you walked. He covers you with the life of His Son and calls you His own."
     },
     {
       "type": "image",
-      "imageBw": "images/jesus-light-bw.jpg",
-      "imageColor": "images/jesus-light-color.jpg",
-      "alt": "Jesus as the Light of the world entering the darkness",
+      "imageSequence": [
+        "images/robe-down.jpg",
+        "images/robe-mid.jpg",
+        "images/robe-up.jpg"
+      ],
+      "imageSequenceStops": [
+        0,
+        0.25,
+        0.45
+      ],
+      "alt": "A father gently placing a robe over his returning son as the son's head lifts from shame toward his father",
       "touchNext": true
     },
     {
       "type": "parable",
-      "title": "The Light Came Down",
-      "text": "John begins his Gospel by pulling the camera all the way back. Before Bethlehem, before creation, before time itself, Jesus already was. He is the Word who was with God and was God. In Him was life, and that life was the light of men.<br><br>Then the wonder of the gospel: the Light came into the world He made. Some rejected Him and stayed hidden in darkness. But others received Him, believed in His name, and were given the right to become children of God.<br><br>Jesus did not come to leave you hiding in shame. He came so your sin could be brought into the light, punished at the cross, and replaced with His righteousness. That is the Great Exchange."
+      "title": "The Robe at the Door",
+      "text": "Picture the prodigal son standing in the road near his home, his clothes still stained from the far country and his rehearsed speech ready on his lips. He is feeling guilty for his selfish decisions, and he knows he has no right to ask anything of his father.<br><br>But before the son can finish his speech, the father has already run to him and pulled him close. While the boy is still trembling in his father's arms, the father calls an order to the servants: <em>\"Bring quickly the best robe, and put it on him\"</em> (Luke 15:22).<br><br>The robe was not a reward for a good comeback speech. It was an announcement spoken over the son: you are home, you are mine, you are a son. The robe covered the evidence of the far country without pretending the son had never run, and it declared that the father's welcome was stronger than the son's shame."
     },
     {
       "type": "question",
       "id": "201-02-1",
-      "text": "2.1 - When you picture Jesus as the Light coming into your darkness, what feels most personal to you: being seen, being forgiven, or being made new?",
+      "text": "2.1 - Where do you still feel like you have to earn the robe before God will call you His child?",
       "height": "tall"
     },
     {
       "type": "heading",
-      "text": "The True Light"
+      "text": "Put On Christ"
     },
     {
       "type": "text",
-      "text": "John does not begin his Gospel with Jesus as a good teacher or a helpful example. He begins before creation, before time, before anything existed except God Himself. Jesus is the eternal Word, the Son who has always been with God and has always been God."
-    },
-    {
-      "type": "verse",
-      "reference": "John 1:1-5",
-      "text": "In the beginning was the Word, and the Word was with God, and the Word was God. He was in the beginning with God. All things were made through him, and without him was not any thing made that was made. In him was life, and the life was the light of men. The light shines in the darkness, and the darkness has not overcome it."
-    },
-    {
-      "type": "text",
-      "text": "Jesus is the light that darkness cannot overcome. That means your new identity does not begin with your self-image, your effort, or your past. It begins with who Jesus is. He is the perfect Son, perfectly loved by the Father, perfectly righteous in every thought, desire, word, and action. And the miracle of the gospel is that He brings His light into your darkness."
-    },
-    {
-      "type": "text",
-      "text": "John says that to all who receive Jesus and believe in His name, He gives the right to become children of God (John 1:12). Not the chance to earn it. Not a trial period. The right. Jesus brings you into His own relationship with the Father, so your identity is no longer built on your record. It is built on Him."
-    },
-    {
-      "type": "heading",
-      "text": "Crucified With Christ"
-    },
-    {
-      "type": "text",
-      "text": "The gospel does not just forgive your past. It joins you to Jesus. Paul says the old self, the you defined by sin, shame, striving, and self-rule, was put to death with Christ."
-    },
-    {
-      "type": "verse",
-      "reference": "Galatians 2:20",
-      "text": "I have been crucified with Christ. It is no longer I who live, but Christ who lives in me. And the life I now live in the flesh I live by faith in the Son of God, who loved me and gave himself for me."
-    },
-    {
-      "type": "text",
-      "text": "Paul does not say, \"I improved myself with Christ.\" He says, <em>I have been crucified with Christ.</em> The old identity went to the cross. The new identity is Christ living in you. This is why Christianity is not just behavior change. It is a new life joined to Jesus."
+      "text": "The robe is a doorway into the truth of this lesson. Your deepest identity is not the worst thing you have done, the best thing you can do, or the way you feel about yourself on a given day. If you belong to Jesus, your identity is in Christ."
     },
     {
       "type": "verse",
@@ -70,7 +52,17 @@
     },
     {
       "type": "text",
-      "text": "That phrase matters: <strong>put on Christ.</strong> Remember the robe the father wrapped around his son at the end of the last lesson? That robe was not just welcome-home clothing. It was a picture of this. Jesus <em>is</em> the robe. When the Father brought you home, He did not only open the door. He clothed you with His own Son's righteousness. You do not stand before God in your best effort. <em>You stand before Him wearing Christ.</em>"
+      "text": "Paul says believers have <strong>put on Christ.</strong> When he speaks of being baptized into Christ, he means you have been so identified with Jesus that His life is now spoken over yours. To put on Christ is to be covered in Him. Jesus came as the perfect Son. He loved the Father with all His heart, soul, mind, and strength. He obeyed with clean motives, spoke with holy love, resisted every temptation, and lived the human life you could not live."
+    },
+    {
+      "type": "text",
+      "text": "Then He went to the cross in your place. By faith, His perfect life is counted as yours, and your sin is counted to Him. The robe of righteousness is not you doing your best. It is Christ's own life covering you."
+    },
+    {
+      "type": "question",
+      "id": "201-02-2",
+      "text": "2.2 - Where are you tempted to build your identity out of your own effort instead of resting in Christ?",
+      "height": "tall"
     },
     {
       "type": "heading",
@@ -78,7 +70,7 @@
     },
     {
       "type": "text",
-      "text": "Christians have often called this the Great Exchange. Your sin is counted to Jesus. His righteousness is counted to you. That word <em>righteousness</em> means right standing with God. It is not a feeling and not a mood. It is the settled status Jesus gives you by faith."
+      "text": "This is why Christians have often called the cross the Great Exchange. Your sin was placed on Jesus. His righteousness was given to you. Your old clothes were not cleaned up and handed back. You were clothed in someone else's perfect life."
     },
     {
       "type": "verse",
@@ -87,11 +79,11 @@
     },
     {
       "type": "text",
-      "text": "This is the robe of righteousness. Your sin does not get ignored. It gets placed on Jesus. His righteousness does not stay far away from you. It covers you. The Great Exchange means you are not trying to stitch together an identity from your own goodness. You receive the perfect standing of Christ."
+      "text": "That word <em>righteousness</em> means a right standing before God. It is not a mood, a personality type, or a spiritual confidence you have to manufacture. It is the settled place Jesus gives you by faith. His life covers you like the robe in the father's hands."
     },
     {
       "type": "text",
-      "text": "Walk through the exchange below slowly. Watch what Jesus takes, and what He gives."
+      "text": "Walk through the exchange below slowly. Watch your sin land on Jesus, and His righteousness become yours. This is the truth beneath the robe: Christ takes what is yours so you can receive what is His."
     },
     {
       "type": "widget",
@@ -99,18 +91,33 @@
       "height": "500px"
     },
     {
-      "type": "question",
-      "id": "201-02-2",
-      "text": "2.2 - Where are you still trying to stand before God in your own record instead of receiving the righteousness of Jesus?",
-      "height": "tall"
-    },
-    {
       "type": "heading",
-      "text": "Found in Him"
+      "text": "Crucified With Christ"
     },
     {
       "type": "text",
-      "text": "Paul had plenty of religious achievements, but he did not want to stand before God wearing any of them. He wrote that his one desire was to be found in Christ, not having a righteousness of his own, but the righteousness that comes through faith in Jesus (Philippians 3:9). That is the heart of Christian identity: you are not building a record of your own. You are found in Him."
+      "text": "The exchange is not only legal, as if God only moved numbers in a ledger. It is deeply personal. The old you, the you defined by sin, shame, striving, and self-rule, was joined to Jesus at the cross."
+    },
+    {
+      "type": "verse",
+      "reference": "Galatians 2:20",
+      "text": "I have been crucified with Christ. It is no longer I who live, but Christ who lives in me. And the life I now live in the flesh I live by faith in the Son of God, who loved me and gave himself for me."
+    },
+    {
+      "type": "text",
+      "text": "Paul does not say, \"I improved myself with Christ.\" He says, <em>I have been crucified with Christ.</em> Christ took the old life under judgment. He took the punishment your sin deserved. Then He gave you a new life: His life in you, His righteousness over you, His relationship with the Father opened to you."
+    },
+    {
+      "type": "text",
+      "text": "That is how a sinner can have a real relationship with a holy God. God does not ignore sin. He punishes sin in Christ. And God does not ask you to climb up to Him by your works. He brings you near in the Son, covered by a righteousness you received, not a status you achieved."
+    },
+    {
+      "type": "heading",
+      "text": "A New Creation"
+    },
+    {
+      "type": "text",
+      "text": "Paul does not just say you have been cleaned up. He says you have been made new. Your standing with God is not because of what you have done, but because of how you are covered."
     },
     {
       "type": "verse",
@@ -119,20 +126,16 @@
     },
     {
       "type": "text",
-      "text": "In Christ, you are not your old self with cleaner habits. You are a new creation. The old has passed away. The new has come. You are justified, because your guilt has been answered by Jesus. You are adopted, because the Son brings you into the Father's family. You are alive, because Christ now lives in you."
+      "text": "Trying to earn your standing with God through your own works will always make you either proud or afraid. Wearing Christ frees you from both. You can be honest about your sin because Jesus has taken it. You can be confident before God because Jesus has given you His perfect life. You can get up after failure because the robe is still His gift, not your wage."
     },
     {
       "type": "text",
-      "text": "This changes daily life at the deepest level. You stop obeying to earn your identity and start obeying from the identity Jesus gave you. You do not obey to be clothed in Christ. You obey because you are clothed in Christ. You do not fight sin to get a relationship with God. You fight sin because Jesus has already brought you into one."
-    },
-    {
-      "type": "text",
-      "text": "That is the shift: <em>not having a righteousness of my own, but being found in Him.</em> When you fail, you do not run back to self-hatred or self-improvement as your savior. You run back to Jesus, where the Light still shines, the robe still covers, and Christ still lives in you."
+      "text": "Remembering the robe does not make sin small. It makes Jesus big. It gives you courage to confess because you are not protecting a fragile self-made identity. It gives you strength to obey because obedience is no longer a way to get loved. It is the family resemblance of someone already loved."
     },
     {
       "type": "question",
       "id": "201-02-3",
-      "text": "2.3 - Say this line out loud and sit with it for a moment: <em>You stand before God wearing Christ.</em> If that were the first sentence you believed every morning, what would change about how you handle failure, fight sin, and walk into your week?",
+      "text": "2.3 - What would it look like this week to live with quiet confidence that you stand before God wearing the robe of Christ's life?",
       "height": "tall"
     },
     {
@@ -141,11 +144,11 @@
     },
     {
       "type": "text",
-      "text": "Each morning this week, before the day gets loud, say this line out loud and sit with it for one minute: <em>You stand before God wearing Christ.</em> Let that be the first sentence of your day. Then ask one honest question: where am I tempted to live today as if my own record is still my identity?"
+      "text": "Each morning this week, before the day gets loud, say this line out loud and sit with it for one minute: <em>I stand before God wearing Christ.</em> Then ask one honest question: where am I tempted to live today as if my own effort is still my identity?"
     },
     {
       "type": "text",
-      "text": "Also this week, read John 1:1-18 in one sitting. Watch who Jesus is before you think about who you are. He is the Word, the Life, and the Light. Your identity is secure because it is found in Him."
+      "text": "Also this week, read Galatians 2:20 and Galatians 3:27 slowly. Let the two phrases stay with you: <em>crucified with Christ</em> and <em>put on Christ.</em> The old life went to the cross. The robe of Christ's life now covers you."
     },
     {
       "type": "heading",
@@ -153,7 +156,7 @@
     },
     {
       "type": "text",
-      "text": "Jesus is the eternal Word and true Light. At the cross, He took your sin and gave you His righteousness. In Him, your old self has been crucified, you are clothed in Christ, and you are a new creation. You do not live from your own record anymore. You are found in Him."
+      "text": "God does not leave you standing in the clothes of your old life. In Jesus, you have put on Christ: His perfect life covers you, your old self has been crucified with Him, and His life now lives in you. The robe of righteousness frees you from earning status with God and sends you into the week as a loved child. In the next lesson, you will meet the Spirit who makes this new life real in your daily walk."
     },
     {
       "type": "heading",
