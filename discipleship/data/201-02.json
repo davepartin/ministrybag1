@@ -1,42 +1,58 @@
 {
   "id": "2",
   "title": "Lesson 2: New Identity in Jesus",
-  "description": "The gospel does not just forgive you. It changes who you are. In this lesson you will discover that your old self was crucified with Christ, that you are a fully adopted child of God clothed in His righteousness, and that freedom and obedience both flow from knowing you are already in the family. Identity comes before behavior. Know who you are, and the rest will follow.",
+  "description": "The gospel does not just forgive you. It changes who you are. Jesus is the eternal Word and true Light who entered your darkness, took your sin, gave you His righteousness, and clothed you with Himself. In Him, your old self was crucified, the new has come, and you no longer live from your own record. You are found in Christ.",
   "blocks": [
     {
       "type": "text",
-      "text": "In the last lesson, you encountered God the Father: the one who runs toward you, who delights in you, who loves you before you ever love Him back. That love is where everything begins. But there is a question that follows: if God loves me like that, then <em>who am I?</em> This lesson answers that question. And the answer will change how you see yourself, how you fight sin, and how you walk into every room for the rest of your life."
+      "text": "In the last lesson, you met the Father who runs toward you and loves you before you ever love Him back. Now the next question is simple: if the Father loves me like that, then <em>who am I?</em> This lesson turns to Jesus, the Son who takes what is yours, gives what is His, and makes you new."
     },
     {
-      "type": "heading",
-      "text": "Made to Reflect"
+      "type": "image",
+      "imageBw": "images/jesus-light-bw.jpg",
+      "imageColor": "images/jesus-light-color.jpg",
+      "alt": "Jesus as the Light of the world entering the darkness",
+      "touchNext": true
     },
     {
-      "type": "verse",
-      "reference": "Genesis 1:27",
-      "text": "So God created man in his own image, in the image of God he created him; male and female he created them."
-    },
-    {
-      "type": "text",
-      "text": "You were not just made <em>as</em> an image-bearer. You were made <em>to image</em>: to actively display, reflect, and point people toward who God is. Imagine the glory of God is straight above us, blinding and beautiful, yet people rarely look up to see Him. So God designed humans to be mirrors set at an angle, so that when people look at other people living in step with God, they catch a glimpse of Him. His power, love, and purpose, designed into you, displayed through you. That is your original design."
-    },
-    {
-      "type": "text",
-      "text": "But you know what happened. When the first humans turned from God, they cracked the mirror. The image was not destroyed, and every person still bears it, but it was distorted. Instead of reflecting God's glory outward, we turned inward, chasing significance through approval, status, control, comfort, and performance. None of those things are big enough to hold the weight of an identity, and they all eventually crack under the pressure."
+      "type": "parable",
+      "title": "The Light Came Down",
+      "text": "John begins his Gospel by pulling the camera all the way back. Before Bethlehem, before creation, before time itself, Jesus already was. He is the Word who was with God and was God. In Him was life, and that life was the light of men.<br><br>Then the wonder of the gospel: the Light came into the world He made. Some rejected Him and stayed hidden in darkness. But others received Him, believed in His name, and were given the right to become children of God.<br><br>Jesus did not come to leave you hiding in shame. He came so your sin could be brought into the light, punished at the cross, and replaced with His righteousness. That is the Great Exchange."
     },
     {
       "type": "question",
       "id": "201-02-1",
-      "text": "2.1 - Where in your own life have you looked for significance, approval, or belonging in things that could not deliver it? What did that feel like?",
+      "text": "2.1 - When you picture Jesus as the Light coming into your darkness, what feels most personal to you: being seen, being forgiven, or being made new?",
       "height": "tall"
     },
     {
       "type": "heading",
-      "text": "The Old You Is Gone"
+      "text": "The True Light"
     },
     {
       "type": "text",
-      "text": "Here is the part that most people miss about the gospel. When you placed your faith in Jesus, something happened that went far deeper than forgiveness. The old you, the self that was enslaved to sin, defined by the world's approval, and trapped on the performance treadmill, that self was put to death."
+      "text": "John does not begin his Gospel with Jesus as a good teacher or a helpful example. He begins before creation, before time, before anything existed except God Himself. Jesus is the eternal Word, the Son who has always been with God and has always been God."
+    },
+    {
+      "type": "verse",
+      "reference": "John 1:1-5",
+      "text": "In the beginning was the Word, and the Word was with God, and the Word was God. He was in the beginning with God. All things were made through him, and without him was not any thing made that was made. In him was life, and the life was the light of men. The light shines in the darkness, and the darkness has not overcome it."
+    },
+    {
+      "type": "text",
+      "text": "Jesus is the light that darkness cannot overcome. That means your new identity does not begin with your self-image, your effort, or your past. It begins with who Jesus is. He is the perfect Son, perfectly loved by the Father, perfectly righteous in every thought, desire, word, and action. And the miracle of the gospel is that He brings His light into your darkness."
+    },
+    {
+      "type": "text",
+      "text": "John says that to all who receive Jesus and believe in His name, He gives the right to become children of God (John 1:12). Not the chance to earn it. Not a trial period. The right. Jesus brings you into His own relationship with the Father, so your identity is no longer built on your record. It is built on Him."
+    },
+    {
+      "type": "heading",
+      "text": "Crucified With Christ"
+    },
+    {
+      "type": "text",
+      "text": "The gospel does not just forgive your past. It joins you to Jesus. Paul says the old self, the you defined by sin, shame, striving, and self-rule, was put to death with Christ."
     },
     {
       "type": "verse",
@@ -45,31 +61,24 @@
     },
     {
       "type": "text",
-      "text": "Paul does not say he was improved or upgraded. He says he was <em>crucified</em>. The old self went into the grave with Jesus, and a new self came out. This is not a makeover but a new creation, and this new self is so deeply connected to Jesus that Paul can say it is no longer merely \"I\" who lives, but <strong>Christ who lives in me</strong>. That means your identity is no longer defined by your past, your failures, or your performance record. It is defined by the presence of Jesus living in you."
+      "text": "Paul does not say, \"I improved myself with Christ.\" He says, <em>I have been crucified with Christ.</em> The old identity went to the cross. The new identity is Christ living in you. This is why Christianity is not just behavior change. It is a new life joined to Jesus."
+    },
+    {
+      "type": "verse",
+      "reference": "Galatians 3:27",
+      "text": "For as many of you as were baptized into Christ have put on Christ."
+    },
+    {
+      "type": "text",
+      "text": "That phrase matters: <strong>put on Christ.</strong> Remember the robe the father wrapped around his son at the end of the last lesson? That robe was not just welcome-home clothing. It was a picture of this. Jesus <em>is</em> the robe. When the Father brought you home, He did not only open the door. He clothed you with His own Son's righteousness. You do not stand before God in your best effort. <em>You stand before Him wearing Christ.</em>"
     },
     {
       "type": "heading",
-      "text": "The Hired Worker's Mistake"
+      "text": "The Great Exchange"
     },
     {
       "type": "text",
-      "text": "In the last lesson you saw the Father run toward his lost son. But there is a detail in that story most people walk right past, and it is the key to understanding your identity."
-    },
-    {
-      "type": "text",
-      "text": "When the prodigal son was sitting in the pig pen, broke, starving, and covered in shame, he came up with a plan. He rehearsed a speech: \"Father, I have sinned against heaven and before you. I am no longer worthy to be called your son. Treat me as one of your hired servants\" (Luke 15:18-19). Do you see what he was doing? He was preparing to negotiate an employment arrangement. He would come home, not as a son, but as a worker. He would earn his meals, sleep in the servants' quarters, and pay off his debt one day at a time. He believed his failure had disqualified him from the family, so the best he could hope for was a job."
-    },
-    {
-      "type": "text",
-      "text": "That is the lie most people carry into their relationship with God. They believe they are too far gone to be family, so they settle for being employees. They show up, they perform, they try to earn back what they lost, and they never stop feeling like they owe something. But watch what the Father does. He runs. He embraces. And then he does three things that shatter the hired-worker identity forever."
-    },
-    {
-      "type": "text",
-      "text": "He puts a <strong>robe</strong> on the son: not the son's old clothes, not a worker's uniform, but the best robe in the house. He puts a <strong>ring</strong> on his finger: the family ring, the sign of belonging and authority. And he puts <strong>sandals</strong> on his feet, because hired workers and slaves went barefoot, but sons wore shoes. The father did not let the son finish his speech. He did not negotiate terms. He clothed him, named him, and restored him, all before the son did a single thing to earn it."
-    },
-    {
-      "type": "text",
-      "text": "That robe matters more than you might think. It is the same picture Paul paints when he describes what Jesus did for you:"
+      "text": "Christians have often called this the Great Exchange. Your sin is counted to Jesus. His righteousness is counted to you. That word <em>righteousness</em> means right standing with God. It is not a feeling and not a mood. It is the settled status Jesus gives you by faith."
     },
     {
       "type": "verse",
@@ -78,99 +87,52 @@
     },
     {
       "type": "text",
-      "text": "God took your sin and placed it on Jesus, and then He took the perfect righteousness of Jesus and placed it on you. Think of it like the father's robe: when you come before God, you are not standing in your own goodness but wrapped in the goodness, the rightness, and the perfection of Jesus. <strong>He is seen, not you.</strong> That is not something you earn. It is something you receive, the same way the prodigal received the robe: with empty hands and a stunned heart."
+      "text": "This is the robe of righteousness. Your sin does not get ignored. It gets placed on Jesus. His righteousness does not stay far away from you. It covers you. The Great Exchange means you are not trying to stitch together an identity from your own goodness. You receive the perfect standing of Christ."
+    },
+    {
+      "type": "text",
+      "text": "Walk through the exchange below slowly. Watch what Jesus takes, and what He gives."
     },
     {
       "type": "widget",
-      "src": "widgets/great-exchange.html",
-      "height": "560px"
+      "src": "widgets/great-exchange3.html",
+      "height": "500px"
     },
     {
       "type": "question",
       "id": "201-02-2",
-      "text": "2.2 - Have you been relating to God more like a hired worker trying to earn your place, or like a son or daughter who already belongs? What does that look like in your daily life?",
+      "text": "2.2 - Where are you still trying to stand before God in your own record instead of receiving the righteousness of Jesus?",
       "height": "tall"
     },
     {
       "type": "heading",
-      "text": "Adopted and Secure"
+      "text": "Found in Him"
+    },
+    {
+      "type": "text",
+      "text": "Paul had plenty of religious achievements, but he did not want to stand before God wearing any of them. He wrote that his one desire was to be found in Christ, not having a righteousness of his own, but the righteousness that comes through faith in Jesus (Philippians 3:9). That is the heart of Christian identity: you are not building a record of your own. You are found in Him."
     },
     {
       "type": "verse",
-      "reference": "1 John 3:1",
-      "text": "See what kind of love the Father has given to us, that we should be called children of God; and so we are."
+      "reference": "2 Corinthians 5:17",
+      "text": "Therefore, if anyone is in Christ, he is a new creation. The old has passed away; behold, the new has come."
     },
     {
       "type": "text",
-      "text": "John stops to marvel at this. <em>\"See what kind of love,\"</em> as if he is still stunned after years of thinking about it. You are not a forgiven criminal on parole, and you are not a spiritual employee scrapping for God's favor. You are a fully adopted son or daughter with all the rights, belonging, and inheritance that come with it. Your security in this family is not based on your skill set or your track record but on the love of the Father and the finished work of the Son."
-    },
-    {
-      "type": "verse",
-      "reference": "Galatians 4:6-7",
-      "text": "And because you are sons, God has sent the Spirit of his Son into our hearts, crying, \"Abba! Father!\" So you are no longer a slave, but a son, and if a son, then an heir through God."
+      "text": "In Christ, you are not your old self with cleaner habits. You are a new creation. The old has passed away. The new has come. You are justified, because your guilt has been answered by Jesus. You are adopted, because the Son brings you into the Father's family. You are alive, because Christ now lives in you."
     },
     {
       "type": "text",
-      "text": "Notice the shift Paul describes: no longer a slave but a son, no longer performing for approval but resting in a relationship. The prodigal son in the pig pen thought the best he could hope for was a job. Paul says God gave you a family, and not just a seat at the table but an inheritance. You do not perform to be included. You are already in."
-    },
-    {
-      "type": "heading",
-      "text": "Free Indeed"
+      "text": "This changes daily life at the deepest level. You stop obeying to earn your identity and start obeying from the identity Jesus gave you. You do not obey to be clothed in Christ. You obey because you are clothed in Christ. You do not fight sin to get a relationship with God. You fight sin because Jesus has already brought you into one."
     },
     {
       "type": "text",
-      "text": "There is a verse that would have saved the prodigal son a lot of pain if he had heard it in the pig pen:"
-    },
-    {
-      "type": "verse",
-      "reference": "John 8:36",
-      "text": "So if the Son sets you free, you will be free indeed."
-    },
-    {
-      "type": "text",
-      "text": "Free from what? Free from the lie that you have to earn your way back. Free from the performance record that kept you awake at night. Free from the fear that one more failure will finally disqualify you. The prodigal was sitting in a pig pen planning his worker's contract, and the whole time the father was watching the road, ready to run, ready to restore him as a son. If the son had known he could come home to his family all along, think of how much pain it would have saved him. That is what this verse is telling you: the door is not locked, and it never was. You are free, not because you earned freedom, but because the Son secured it."
-    },
-    {
-      "type": "text",
-      "text": "This freedom is not permission to live however you want. It is something far better: it is the security to obey from love instead of fear. A hired worker obeys because his paycheck depends on it. A son obeys because his father's name is his name, his father's house is his house, and his father's heart is the safest place he has ever known. The worker asks, \"What am I required to do?\" The son asks, \"Who am I?\" and the obedience flows from there."
-    },
-    {
-      "type": "heading",
-      "text": "The Identity Exchange"
-    },
-    {
-      "type": "text",
-      "text": "Here is a simple way to see everything Jesus accomplished for you. Think of what you had before, and what you have now:"
-    },
-    {
-      "type": "text",
-      "text": "<strong>Guilty</strong> in the Fall, but now <strong>Justified</strong> in Christ. Your record is sealed by His. <strong>Orphan</strong> in the Fall, but now <strong>Adopted</strong> in Christ. You have a Father who chose you. <strong>Dead</strong> in the Fall, but now <strong>Alive</strong> in Christ. A new self with a new nature."
-    },
-    {
-      "type": "text",
-      "text": "This framework is simple enough to draw on a napkin and share with a friend. Justified means your legal standing before God is settled. Adopted means your relational standing in His family is settled. Alive means your spiritual standing as a new creation is settled. All three were accomplished by Jesus, received by faith, and secured forever. These are not goals to achieve; they are realities to believe."
-    },
-    {
-      "type": "heading",
-      "text": "Become What You Are"
-    },
-    {
-      "type": "text",
-      "text": "So if all of this is true, why do we still struggle? Why do we still sin, and why do we still feel like hired workers some mornings? The answer is that the Christian life is learning to live from what is already true about you. You do not obey God to become accepted; <strong>you obey because you already are.</strong> You do not fight sin to earn a relationship with God; you fight sin because you already have one. The secret to the Christian's battle with sin is not trying harder but believing deeper: believing that you are a son, not a worker, and letting that identity shape every choice you make."
-    },
-    {
-      "type": "verse",
-      "reference": "2 Corinthians 3:18",
-      "text": "And we all, with unveiled face, beholding the glory of the Lord, are being transformed into the same image from one degree of glory to another. For this comes from the Lord who is the Spirit."
-    },
-    {
-      "type": "text",
-      "text": "The cracked mirror is being restored, one degree of glory at a time. Not because you are straining but because the Source is flowing through you. Identity comes first. Obedience follows. Know who you are, and the rest will come."
+      "text": "That is the shift: <em>not having a righteousness of my own, but being found in Him.</em> When you fail, you do not run back to self-hatred or self-improvement as your savior. You run back to Jesus, where the Light still shines, the robe still covers, and Christ still lives in you."
     },
     {
       "type": "question",
       "id": "201-02-3",
-      "text": "2.3 - Where are you still trying to earn what Jesus already secured? What would it look like this week to live as a son or daughter instead of a hired worker?",
+      "text": "2.3 - Say this line out loud and sit with it for a moment: <em>You stand before God wearing Christ.</em> If that were the first sentence you believed every morning, what would change about how you handle failure, fight sin, and walk into your week?",
       "height": "tall"
     },
     {
@@ -179,11 +141,19 @@
     },
     {
       "type": "text",
-      "text": "Each morning this week, read John 8:36 slowly: \"If the Son sets you free, you will be free indeed.\" Then ask yourself one question before your day begins: <em>Where am I still living like a hired worker instead of a son?</em> Let that question shape how you walk into your work, your relationships, and your hardest moments this week."
+      "text": "Each morning this week, before the day gets loud, say this line out loud and sit with it for one minute: <em>You stand before God wearing Christ.</em> Let that be the first sentence of your day. Then ask one honest question: where am I tempted to live today as if my own record is still my identity?"
     },
     {
       "type": "text",
-      "text": "Also this week, read Ephesians 1 in one sitting. Watch for how many times Paul uses the phrase <em>\"in Christ\"</em> or <em>\"in him.\"</em> Every blessing he describes, chosen, adopted, forgiven, sealed, is yours because of your union with Jesus. You are not trying to get something from God. You already have it. The task is learning to believe it."
+      "text": "Also this week, read John 1:1-18 in one sitting. Watch who Jesus is before you think about who you are. He is the Word, the Life, and the Light. Your identity is secure because it is found in Him."
+    },
+    {
+      "type": "heading",
+      "text": "Lesson 2 Review"
+    },
+    {
+      "type": "text",
+      "text": "Jesus is the eternal Word and true Light. At the cross, He took your sin and gave you His righteousness. In Him, your old self has been crucified, you are clothed in Christ, and you are a new creation. You do not live from your own record anymore. You are found in Him."
     },
     {
       "type": "heading",
@@ -192,13 +162,13 @@
     {
       "type": "question",
       "id": "201-02-key",
-      "text": "What is one key thing you learned from this lesson, and what next step can you take this week?",
+      "text": "What is one key thing you learned from this lesson?",
       "height": "short"
     },
     {
       "type": "question",
-      "id": "201-02-devos",
-      "text": "What have you learned about God and yourself recently in your Daily Devotions?",
+      "id": "201-02-step",
+      "text": "What is one step you are going to take this week?",
       "height": "short"
     },
     {

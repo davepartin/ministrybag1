@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Great Exchange</title>
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            width: 100%;
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
+        body {
+            padding: 0;
+            margin: 0;
+            font-family: Georgia, Cambria, serif;
+            background: #F8F6F1;
+            color: #2C2416;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        button {
+            font: inherit;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .widget-outer {
+            background: #FFFFFF;
+            border-radius: 0;
+            overflow: hidden;
+            box-shadow: none;
+            border: none;
+            max-width: 100%;
+            width: 100%;
+            margin: 0;
+            position: relative;
+        }
+
+        @media (min-width: 560px) {
+            body {
+                padding: 16px;
+                background: #F8F6F1;
+            }
+
+            .widget-outer {
+                border-radius: 12px;
+                box-shadow: 0 6px 20px rgba(44, 36, 22, 0.08);
+                border: 1px solid #EBE5D9;
+                width: 100%;
+                max-width: 460px;
+                margin: 0 auto;
+            }
+        }
+
+        .title-bar {
+            background: #2C2416;
+            padding: 6px 14px;
+            text-align: center;
+        }
+
+        .title-bar h1 {
+            color: #FAF8F3;
+            font-family: Georgia, Cambria, serif;
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: 0;
+            line-height: 1.15;
+            margin: 0;
+        }
+
+        .diagram-wrapper {
+            position: relative;
+            max-width: 100%;
+            height: 300px;
+            overflow: hidden;
+            background: #FFFFFF;
+        }
+
+        .info-area {
+            background: #F6F4EE;
+            border-top: 1px solid #EBE5D9;
+            padding: 9px 12px 12px;
+        }
+
+        .info-card {
+            background: #FFFFFF;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 14px rgba(44, 36, 22, 0.06);
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        .info-bar {
+            height: 4px;
+            background: #C49A3A;
+            transition: background 0.35s ease;
+        }
+
+        .info-content {
+            min-height: 116px;
+            padding: 10px 15px 12px;
+        }
+
+        .info-title {
+            color: #4A3F31;
+            font-size: 15px;
+            font-weight: 700;
+            line-height: 1.22;
+            margin: 0 0 5px;
+            max-width: 275px;
+        }
+
+        .info-text {
+            color: #3D3426;
+            font-family: "Trebuchet MS", Arial, sans-serif;
+            font-size: 13px;
+            line-height: 1.38;
+            margin: 0 0 7px;
+            max-width: 275px;
+            overflow-wrap: break-word;
+        }
+
+        .info-ref {
+            color: #1A6B55;
+            font-family: "Trebuchet MS", Arial, sans-serif;
+            font-size: 11px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin: 0;
+            max-width: 275px;
+            transition: color 0.35s ease;
+        }
+
+        @media (min-width: 390px) {
+            .info-title,
+            .info-text,
+            .info-ref {
+                max-width: 360px;
+            }
+        }
+
+        .scene-svg {
+            display: block;
+            width: 100%;
+            height: 100%;
+            transform: translateY(-30px);
+        }
+
+        .diagram-label {
+            fill: #3B3328;
+            font-family: "Trebuchet MS", Arial, sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0;
+            pointer-events: none;
+        }
+
+        .cross-piece,
+        .cross-glow,
+        .path-line,
+        .bridge-mist,
+        .sacrifice-marker {
+            transition: opacity 0.45s ease;
+        }
+
+        #crossGroup,
+        #sacrificeMarker {
+            transition: opacity 0.9s ease;
+        }
+
+        .dot-core {
+            transition: fill 0.72s ease, r 0.72s ease, stroke 0.72s ease, stroke-width 0.72s ease, opacity 0.72s ease;
+        }
+
+        .controls {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 9px;
+            z-index: 4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            pointer-events: none;
+        }
+
+        .icon-btn,
+        .dot {
+            pointer-events: auto;
+        }
+
+        .icon-btn {
+            width: 34px;
+            height: 34px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 1.5px solid rgba(90, 78, 60, 0.22);
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #3B3328;
+            cursor: pointer;
+            font-family: "Trebuchet MS", Arial, sans-serif;
+            font-size: 20px;
+            font-weight: 800;
+            line-height: 1;
+            box-shadow: 0 4px 12px rgba(44, 36, 22, 0.08);
+        }
+
+        .icon-btn:disabled {
+            opacity: 0.35;
+            cursor: default;
+        }
+
+        .dot-nav {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            padding: 8px 10px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.74);
+            box-shadow: 0 4px 12px rgba(44, 36, 22, 0.06);
+        }
+
+        .dot {
+            width: 7px;
+            height: 7px;
+            border: 0;
+            border-radius: 999px;
+            background: #D4CFC4;
+            cursor: default;
+            transition: width 0.25s ease, background 0.25s ease;
+        }
+
+        .dot.current {
+            width: 18px;
+            background: #1A6B55;
+        }
+
+        .dot.available {
+            cursor: pointer;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="widget-outer">
+    <div class="title-bar">
+        <h1>The Great Exchange</h1>
+    </div>
+
+    <div class="diagram-wrapper">
+        <svg class="scene-svg" id="scene" viewBox="0 0 390 330" preserveAspectRatio="xMidYMid meet" role="img" aria-label="The Great Exchange diagram">
+            <defs>
+                <marker id="arrowDark" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                    <path d="M 0 0 L 10 5 L 0 10 Z" fill="#3B3328"></path>
+                </marker>
+            </defs>
+
+            <rect x="0" y="0" width="390" height="330" fill="#FFFFFF"></rect>
+
+            <line class="path-line" x1="32" y1="114" x2="340" y2="114" stroke="#3B3328" stroke-width="4" stroke-linecap="round" marker-end="url(#arrowDark)"></line>
+            <line class="path-line" id="bottomPath" x1="32" y1="258" x2="340" y2="258" stroke="#3B3328" stroke-width="4" stroke-linecap="round" marker-end="url(#arrowDark)" opacity="0.8"></line>
+            <text class="diagram-label" x="198" y="78" text-anchor="middle">Life in Relationship with God</text>
+            <text class="diagram-label" x="198" y="302" text-anchor="middle">Life Separate from God</text>
+
+            <g id="crossGlow" class="cross-glow" opacity="0">
+                <circle cx="198" cy="166" r="66" fill="#EACB67" opacity="0.16"></circle>
+                <circle cx="198" cy="166" r="42" fill="#FFFFFF" opacity="0.42"></circle>
+            </g>
+
+            <g id="bridgeMist" class="bridge-mist" opacity="0">
+                <path d="M 176 126 C 189 140, 207 140, 220 126" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round" opacity="0.55"></path>
+                <path d="M 176 238 C 189 224, 207 224, 220 238" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round" opacity="0.5"></path>
+            </g>
+
+            <g id="crossGroup" opacity="0">
+                <line class="cross-piece" x1="198" y1="114" x2="198" y2="258" stroke="#CFCFCF" stroke-width="40" stroke-linecap="butt"></line>
+                <line class="cross-piece" x1="142" y1="166" x2="254" y2="166" stroke="#CFCFCF" stroke-width="40" stroke-linecap="butt"></line>
+            </g>
+
+            <g id="sacrificeMarker" class="sacrifice-marker" opacity="0">
+                <circle cx="198" cy="166" r="21" fill="none" stroke="#B7352A" stroke-width="3.5"></circle>
+            </g>
+
+            <g class="moving-dot" id="whiteDot" transform="translate(58 114)">
+                <circle class="dot-core" id="whiteCore" r="21" fill="#FFFDF7" stroke="#C49A3A" stroke-width="4"></circle>
+            </g>
+
+            <g class="moving-dot" id="blackDot" opacity="0" transform="translate(58 258)">
+                <circle class="dot-core" id="blackCore" r="21" fill="#2E2E2E" stroke="#171717" stroke-width="4"></circle>
+            </g>
+        </svg>
+
+        <div class="controls" aria-label="Diagram controls">
+            <button class="icon-btn" id="backBtn" type="button" aria-label="Previous step">&#8249;</button>
+            <div class="dot-nav" id="dotNav"></div>
+            <button class="icon-btn" id="nextBtn" type="button" aria-label="Next step">&#8250;</button>
+        </div>
+    </div>
+
+    <div class="info-area">
+        <div class="info-card">
+            <div class="info-bar" id="infoBar"></div>
+            <div class="info-content">
+                <h2 class="info-title" id="infoTitle"></h2>
+                <p class="info-text" id="infoText"></p>
+                <p class="info-ref" id="infoRef"></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var step = 0;
+    var steps = [
+        {
+            white: [58, 114],
+            whiteOpacity: 1,
+            black: [58, 258],
+            blackOpacity: 0,
+            blackOnTop: false,
+            cross: 0,
+            glow: 0,
+            mist: 0,
+            bottom: 0.8,
+            marker: 0,
+            title: 'Jesus is God',
+            text: 'In the beginning was the Word, and the Word was with God, and the Word was God.',
+            ref: 'John 1:1',
+            accent: '#C49A3A'
+        },
+        {
+            white: [58, 114],
+            whiteOpacity: 1,
+            black: [58, 258],
+            blackOpacity: 1,
+            blackOnTop: false,
+            cross: 0,
+            glow: 0,
+            mist: 0,
+            bottom: 0.8,
+            marker: 0,
+            title: 'We Are in Darkness',
+            text: 'All have sinned and fall short of the glory of God. Sin separates us from God.',
+            ref: 'Romans 3:23',
+            accent: '#7A4B42'
+        },
+        {
+            white: [198, 114],
+            whiteOpacity: 1,
+            black: [58, 258],
+            blackOpacity: 1,
+            blackOnTop: false,
+            cross: 0,
+            glow: 0,
+            mist: 0,
+            bottom: 0.8,
+            marker: 0,
+            title: 'God with Us',
+            text: 'The Word became flesh and dwelt among us.',
+            ref: 'John 1:14',
+            accent: '#C49A3A'
+        },
+        {
+            white: [198, 114],
+            whiteOpacity: 1,
+            black: [58, 258],
+            blackOpacity: 1,
+            blackOnTop: false,
+            cross: 1,
+            glow: 0.34,
+            mist: 0.42,
+            bottom: 0.8,
+            marker: 1,
+            title: 'Jesus is the Final Sacrifice',
+            text: 'Behold, the Lamb of God, who takes away the sin of the world!',
+            ref: 'John 1:29',
+            accent: '#C49A3A'
+        },
+        {
+            white: [198, 166],
+            whiteOpacity: 1,
+            black: [58, 258],
+            blackOpacity: 1,
+            blackOnTop: false,
+            cross: 1,
+            glow: 0.5,
+            mist: 0.62,
+            bottom: 0.8,
+            marker: 1,
+            title: 'God Shows His Love',
+            text: 'While we were still sinners, Christ died for us.',
+            ref: 'Romans 5:8',
+            accent: '#C49A3A'
+        },
+        {
+            white: [198, 166],
+            whiteOpacity: 1,
+            black: [198, 258],
+            blackOpacity: 1,
+            blackOnTop: false,
+            cross: 1,
+            glow: 0.55,
+            mist: 0.62,
+            bottom: 0.72,
+            marker: 1,
+            title: 'Choose to Receive or Reject Jesus',
+            text: 'His own people did not receive him. But to all who did receive him, who believed in his name, he gave the right to become children of God.',
+            ref: 'John 1:11-12',
+            accent: '#7A4B42'
+        },
+        {
+            white: [198, 166],
+            whiteOpacity: 1,
+            black: [198, 166],
+            blackOpacity: 1,
+            blackOnTop: true,
+            blackStroke: '#171717',
+            cross: 1,
+            glow: 0.62,
+            mist: 0.62,
+            bottom: 0.58,
+            marker: 1,
+            title: 'Jesus Became Sin',
+            text: 'For our sake he made him to be sin who knew no sin...',
+            ref: '2 Corinthians 5:21',
+            accent: '#7A4B42'
+        },
+        {
+            white: [198, 166],
+            whiteOpacity: 1,
+            black: [198, 166],
+            blackOpacity: 1,
+            blackOnTop: false,
+            blackStroke: '#171717',
+            whiteStroke: '#171717',
+            whiteStrokeWidth: 2,
+            whiteRadius: 22,
+            whiteReveal: true,
+            cross: 1,
+            glow: 0.78,
+            mist: 0.7,
+            bottom: 0.42,
+            marker: 1,
+            title: 'The Great Exchange',
+            text: '...so that in him we might become the righteousness of God.',
+            ref: '2 Corinthians 5:21',
+            accent: '#1A6B55'
+        },
+        {
+            white: [198, 114],
+            whiteOpacity: 1,
+            black: [198, 166],
+            blackOpacity: 1,
+            blackOnTop: false,
+            blackStroke: '#B7352A',
+            whiteStroke: '#171717',
+            whiteStrokeWidth: 2,
+            whiteRadius: 22,
+            cross: 1,
+            glow: 0.62,
+            mist: 0.44,
+            bottom: 0.25,
+            marker: 1,
+            title: 'Jesus Lives in Us',
+            text: 'I have been crucified with Christ. It is no longer I who live, but Christ who lives in me.',
+            ref: 'Galatians 2:20',
+            accent: '#1A6B55'
+        },
+        {
+            white: [269, 114],
+            whiteOpacity: 1,
+            black: [198, 166],
+            blackOpacity: 1,
+            blackOnTop: false,
+            blackStroke: '#B7352A',
+            whiteStroke: '#171717',
+            whiteStrokeWidth: 2,
+            whiteRadius: 22,
+            cross: 1,
+            glow: 0.62,
+            mist: 0.44,
+            bottom: 0.25,
+            marker: 1,
+            title: 'A New Creation',
+            text: 'If anyone is in Christ, he is a new creation. The old has passed away; the new has come.',
+            ref: '2 Corinthians 5:17',
+            accent: '#1A6B55'
+        }
+    ];
+
+    var scene = document.getElementById('scene');
+    var whiteDot = document.getElementById('whiteDot');
+    var blackDot = document.getElementById('blackDot');
+    var whiteCore = document.getElementById('whiteCore');
+    var blackCore = document.getElementById('blackCore');
+    var crossGroup = document.getElementById('crossGroup');
+    var sacrificeMarker = document.getElementById('sacrificeMarker');
+    var crossGlow = document.getElementById('crossGlow');
+    var bridgeMist = document.getElementById('bridgeMist');
+    var bottomPath = document.getElementById('bottomPath');
+    var backBtn = document.getElementById('backBtn');
+    var nextBtn = document.getElementById('nextBtn');
+    var dotNav = document.getElementById('dotNav');
+    var infoBar = document.getElementById('infoBar');
+    var infoTitle = document.getElementById('infoTitle');
+    var infoText = document.getElementById('infoText');
+    var infoRef = document.getElementById('infoRef');
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function move(el, xy, opacity, path) {
+        if (path && path.length) {
+            animatePath(el, path, opacity);
+            return;
+        }
+
+        animateTo(el, xy, opacity);
+    }
+
+    function animatePath(el, points, opacity) {
+        var index = 0;
+
+        function next() {
+            if (index >= points.length) {
+                return;
+            }
+
+            var target = points[index];
+            index += 1;
+            animateTo(el, target, opacity, next, 560);
+        }
+
+        next();
+    }
+
+    function animateTo(el, xy, opacity, done, durationOverride) {
+        var from = el._xy || xy;
+        var to = [xy[0], xy[1]];
+        var fromOpacity = typeof el._opacity === 'number'
+            ? el._opacity
+            : Number(el.getAttribute('opacity') || el.style.opacity || 1);
+        var toOpacity = opacity;
+        var travel = Math.abs(to[0] - from[0]) + Math.abs(to[1] - from[1]);
+        var opacityShift = Math.abs(toOpacity - fromOpacity);
+        var isOpacityOnly = travel < 1 && opacityShift > 0.5;
+        var duration = reduceMotion ? 0 : (durationOverride || (isOpacityOnly ? 1400 : 720));
+        var start = performance.now();
+
+        if (el._raf) {
+            cancelAnimationFrame(el._raf);
+        }
+
+        function tick(now) {
+            var progress = duration ? Math.min((now - start) / duration, 1) : 1;
+            var eased = 1 - Math.pow(1 - progress, 3);
+            var opacityProgress = isOpacityOnly ? progress : eased;
+            var x = from[0] + (to[0] - from[0]) * eased;
+            var y = from[1] + (to[1] - from[1]) * eased;
+            var currentOpacity = fromOpacity + (toOpacity - fromOpacity) * opacityProgress;
+
+            el.setAttribute('transform', 'translate(' + x.toFixed(2) + ' ' + y.toFixed(2) + ')');
+            el.setAttribute('opacity', currentOpacity.toFixed(3));
+            el._xy = progress === 1 ? to : [x, y];
+            el._opacity = progress === 1 ? toOpacity : currentOpacity;
+
+            if (progress < 1) {
+                el._raf = requestAnimationFrame(tick);
+            } else if (done) {
+                done();
+            }
+        }
+
+        el._raf = requestAnimationFrame(tick);
+    }
+
+    function renderDots() {
+        dotNav.innerHTML = '';
+        steps.forEach(function (_, idx) {
+            var dot = document.createElement('button');
+            dot.className = 'dot' + (idx <= step ? ' available' : '') + (idx === step ? ' current' : '');
+            dot.type = 'button';
+            dot.setAttribute('aria-label', 'Go to step ' + (idx + 1));
+            if (idx <= step) {
+                dot.addEventListener('click', function () {
+                    step = idx;
+                    render();
+                });
+            }
+            dotNav.appendChild(dot);
+        });
+    }
+
+    function render() {
+        var cur = steps[step];
+        var previousStep = render.lastStep;
+
+        if (cur.blackOnTop) {
+            scene.appendChild(whiteDot);
+            scene.appendChild(blackDot);
+        } else {
+            scene.appendChild(blackDot);
+            scene.appendChild(whiteDot);
+        }
+
+        crossGroup.style.opacity = String(cur.cross);
+        sacrificeMarker.style.opacity = String(cur.marker);
+        crossGlow.style.opacity = String(cur.glow);
+        bridgeMist.style.opacity = String(cur.mist);
+        whiteCore.setAttribute('stroke', cur.whiteStroke || '#C49A3A');
+        whiteCore.setAttribute('stroke-width', String(cur.whiteStrokeWidth || 4));
+        whiteCore.setAttribute('r', String(cur.whiteRadius || 21));
+        blackCore.setAttribute('stroke', cur.blackStroke || '#171717');
+        bottomPath.style.opacity = String(cur.bottom);
+
+        if (cur.whiteReveal && previousStep === step - 1) {
+            whiteDot._opacity = 0;
+            whiteDot.setAttribute('opacity', '0');
+        }
+
+        move(whiteDot, cur.white, cur.whiteOpacity, cur.whitePath);
+        move(blackDot, cur.black, cur.blackOpacity);
+
+        infoBar.style.background = cur.accent;
+        infoRef.style.color = cur.accent;
+        infoTitle.textContent = cur.title;
+        infoText.textContent = cur.text;
+        infoRef.textContent = cur.ref;
+
+        backBtn.disabled = step === 0;
+        nextBtn.innerHTML = step === steps.length - 1 ? '&#8635;' : '&#8250;';
+        nextBtn.setAttribute('aria-label', step === steps.length - 1 ? 'Restart diagram' : 'Next step');
+        renderDots();
+        render.lastStep = step;
+    }
+
+    backBtn.addEventListener('click', function () {
+        if (step > 0) {
+            step -= 1;
+            render();
+        }
+    });
+
+    nextBtn.addEventListener('click', function () {
+        step = step === steps.length - 1 ? 0 : step + 1;
+        render();
+    });
+
+    render();
+}());
+</script>
+</body>
+</html>

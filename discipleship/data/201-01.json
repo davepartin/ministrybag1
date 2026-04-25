@@ -1,8 +1,16 @@
 {
   "id": "1",
   "title": "Lesson 1: Loving God",
-  "description": "The title of this lesson carries a double meaning, and both meanings matter. God is a loving God who pursues you, and loving God is what you were made to do. In this lesson you will explore the Greatest Commandment through an interactive diagram, encounter the pursuing love of God the Father, and discover that your love for God is always a response to His love for you.",
+  "description": "The Father runs toward you first. This lesson introduces the Greatest Commandment as a response to God's initiating love: receive His love, then respond with your whole self.",
   "blocks": [
+    {
+      "type": "heading",
+      "text": "Welcome to the Growing Courses"
+    },
+    {
+      "type": "text",
+      "text": "The 200-level path has three connected courses: <strong>Growing Deep</strong> (201), <strong>Growing Up</strong> (202), and <strong>Growing Out</strong> (203). Together they show the shape of a growing life: deep roots in the gospel, strong character in daily life, and visible fruit in love for others."
+    },
     {
       "type": "image",
       "src": "images/3circlesgreen.png",
@@ -11,29 +19,38 @@
       "align": "center"
     },
     {
+      "type": "text",
+      "text": "Growing Deep begins with your most important relationship: the vertical one between you and God. His love comes down, and your love for Him and others is a response. The title of this lesson carries a double meaning, and both sides matter. God is a <em>loving</em> God who pursues you, and <em>loving God</em> back is what you were made to do."
+    },
+    {
+      "type": "image",
+      "imageBw": "images/running-father-bw3.jpeg",
+      "imageColor": "images/running-father-color3.jpeg",
+      "alt": "A father lifting his robe and running down the road to embrace his returning son",
+      "touchNext": true
+    },
+    {
+      "type": "parable",
+      "title": "The Running Father",
+      "text": "Jesus once told a story about a father and his two sons. Most people know it as the Parable of the Prodigal Son, but the father is the picture we need to see first.<br><br>The younger son asked for his inheritance early, which was like saying, \"I wish you were dead.\" Then he left home and wasted everything. When he finally came to himself, he started back with a speech ready, hoping to be treated like a servant.<br><br><em>\"But while he was still a long way off, his father saw him and felt compassion, and ran and embraced him and kissed him.\" (Luke 15:20)</em><br><br>The father did not wait for the speech. He ran. He embraced him. He kissed him. Then came the robe, the ring, and the feast. Before the son could earn anything back, the father welcomed him home.<br><br>This is the heart of God toward you. Not patient tolerance. Not cautious acceptance. A Father running to bring His child home."
+    },
+    {
+      "type": "text",
+      "text": "Hold on to the image of that robe the father wrapped around his son. It is more than welcome-home clothing. It is a picture of something Jesus was about to do, and we will come back to it in the next lesson."
+    },
+    {
+      "type": "question",
+      "id": "201-01-1",
+      "text": "1.1 - When you picture the Father running toward you, not waiting for a speech, not waiting for you to clean up, what stirs inside you?",
+      "height": "tall"
+    },
+    {
       "type": "heading",
-      "text": "Welcome to Growing Deep"
+      "text": "Because He Loved First"
     },
     {
       "type": "text",
-      "text": "If you are opening this lesson, you have already laid the central foundations in the Starting course. Now it is time to grow deeper. This course begins with the most important relationship in your life: the vertical relationship between you and God. His love comes down, and your love goes back up. That vertical connection is the root system that everything else in this series grows from. The interactive diagram below walks you through this truth step by step. Tap \"Begin\" and move through each stage slowly, and notice where the love starts and where it leads."
-    },
-    {
-      "type": "widget",
-      "src": "widgets/great-command.html",
-      "height": "520px"
-    },
-    {
-      "type": "text",
-      "text": "The title of this lesson, \"Loving God,\" carries a double meaning, and both sides matter. First, God is a <em>loving</em> God. He moves first, He pursues, and He initiates. His love comes down the vertical beam before anything else happens. Second, <em>loving God</em> is what you were made to do. You respond with everything you are: heart, soul, mind, and strength, sending your love back up. This up-and-down love forms the vertical beam of the cross, the relationship between a loving God and a people who were created to love Him in return. And when that vertical love overflows, it moves outward to the people around you. That is the Greatest Commandment, and it is shaped like a cross for a reason."
-    },
-    {
-      "type": "heading",
-      "text": "The Shema (sheh-MAH): Love With Everything"
-    },
-    {
-      "type": "text",
-      "text": "When Jesus answered the question about the greatest commandment, He quoted one of the oldest and most sacred prayers in Israel, the <strong>Shema</strong> (pronounced \"sheh-MAH\"), from Deuteronomy 6:"
+      "text": "This is why, when Jesus was asked what matters most in all of life, He did not answer with a philosophy or a program. He went back to the oldest prayer in Israel, the words faithful families had prayed morning and evening for a thousand years. It is called the <strong>Shema</strong> (pronounced \"sheh-MAH\"), and it means \"hear.\""
     },
     {
       "type": "verse",
@@ -42,23 +59,11 @@
     },
     {
       "type": "text",
-      "text": "The word <em>Shema</em> means \"hear,\" and it was the heartbeat of Israel's identity. Faithful families recited these words morning and evening, taught them to their children, and wrote them on their doorposts. When Jesus pointed back to this ancient prayer, He was saying something that still shakes us today: the single most important thing you can do with your life is love God with everything you have."
+      "text": "Heart, soul, mind, and strength are not four separate compartments. They are four ways of saying <strong>your whole self</strong>. Your deepest desires, the core of who you are, your thoughts, your energy, all of it. Nothing held back. It is the highest command Jesus ever gave, and if we are honest it sounds impossible. How do you love anyone that completely, let alone an invisible God?"
     },
     {
       "type": "text",
-      "text": "Heart, soul, mind, and strength are not four separate compartments but four ways of saying <strong>your whole self</strong>. Your heart is your deepest desires and loyalties, your soul is the core of who you are, your mind is your thoughts and reasoning, and your strength is your energy, your body, your daily effort. Jesus is saying: all of it. Nothing held back."
-    },
-    {
-      "type": "text",
-      "text": "But here is the question most people never ask: <em>How?</em> How is that even possible? If we are honest, most of us can barely love God with part of our heart on a good day. So where does this kind of love come from?"
-    },
-    {
-      "type": "heading",
-      "text": "We Love Because He Loved First"
-    },
-    {
-      "type": "text",
-      "text": "This is the part that changes everything. The vertical relationship does not start with us. The Greatest Commandment is not the starting line; it is the upward <em>echo</em> of His downward love."
+      "text": "Here is the part that changes everything. You do not have to generate this kind of love from nothing."
     },
     {
       "type": "verse",
@@ -67,100 +72,53 @@
     },
     {
       "type": "text",
-      "text": "Read that short verse again. We love because He first loved us. The command to love God is not asking you to generate something from nothing; it is inviting you to respond to something already given. God's love comes first, and your love is the echo. So the first question is not \"How do I love God more?\" but \"Do I know how much the Father already loves me?\""
+      "text": "Read that short verse again. We love because He first loved us. The command to love God is not asking you to produce something you do not have. It is inviting you to respond to something already given. Say this line until it sinks all the way in: <em>I do not love God to make Him love me. I love God because He loved me first.</em> That single confession is the hinge the whole Christian life swings on. Every morning, every act of obedience, every return from drifting begins there."
     },
     {
       "type": "text",
-      "text": "Think of it this way: loving God is like getting a new tongue. When we taste something we do not like, we spit it out, and we cannot help it. But if you got a tongue transplant, you might find yourself liking things you never could before. God does not just change our behavior; He gives us a new heart and this changes our desires. What we once ran from, the love of the Father, His presence, His ways, we now want to run toward. With a new heart we receive new loves. Who you are changes what you want."
-    },
-    {
-      "type": "question",
-      "id": "201-01-1",
-      "text": "1.1 - Has anyone ever loved you in a way that changed how you treated them? How does that help you understand 1 John 4:19?",
-      "height": "tall"
-    },
-    {
-      "type": "heading",
-      "text": "The Running Father"
+      "text": "This is the simple rhythm of the Christian life: <strong>receive and respond.</strong> First, you receive the Father's love. Then you respond with love for Him and for others. Love does not begin with you trying harder. It begins with letting God's love come to you before you try to give love back."
     },
     {
       "type": "text",
-      "text": "So what does the Father's love actually look like? Jesus told a story that answers that question better than any theology book could. Most people call it the story of the Prodigal Son, but it is really a story about the <strong>Father</strong>."
+      "text": "When that love comes down and lands in your heart, it does not stay there. It moves. The diagram below walks you through the shape of that love, how it comes from God to you, how it returns from you to Him, and how it finally overflows from you to the people around you. Tap \"Begin\" and walk through each stage slowly."
+    },
+    {
+      "type": "widget",
+      "src": "widgets/great-command.html",
+      "height": "520px"
     },
     {
       "type": "text",
-      "text": "A young man asks his father for his inheritance early, which in that culture was the same as saying, \"I wish you were dead.\" The father gives it to him anyway. The son leaves, wastes everything, and ends up starving in a pig pen, so he decides to go home and beg to be hired as a servant. But here is the moment that matters most:"
+      "text": "This is the Greatest Commandment, and it is shaped like a cross for a reason. The vertical beam is the love between God and you, His coming down and your responding up. The horizontal beam is where that love overflows into the people God has placed near you. You cannot get to the horizontal without first receiving the vertical. Which means the whole Christian life begins not with what you do for God, but with what He has already done for you."
+    },
+    {
+      "type": "text",
+      "text": "That is very different from the way many people picture God. A boss watches your work and measures your performance. A father watches the road and longs for you to come home. If you see God mainly as a boss, obedience will feel like proving yourself. If you receive Him as Father, obedience becomes a grateful response to the One who already called you His child."
+    },
+    {
+      "type": "text",
+      "text": "One last word before we close this first lesson. The Father who runs is also the Father who gives. He did not only lift His robe and cross the distance of a dusty road. He gave the most precious thing He had so the road home would exist at all."
     },
     {
       "type": "verse",
-      "reference": "Luke 15:20",
-      "text": "But while he was still a long way off, his father saw him and felt compassion, and ran and embraced him and kissed him."
+      "reference": "John 3:16",
+      "text": "For God so loved the world, that he gave his only Son, that whoever believes in him should not perish but have eternal life."
     },
     {
       "type": "text",
-      "text": "The father was watching. The father <em>ran</em>. In that culture a dignified man never ran, but this father did. He did not wait for an apology or for the son to clean up; he ran, embraced him, and threw a party. The robe, the ring, the fattened calf: extravagant restoration, all given before the son even finished his rehearsed speech. That is the heart of God the Father toward you. He is not waiting for you to get your life together. He is running toward you right now."
-    },
-    {
-      "type": "text",
-      "text": "There is a second son in the story, the older brother. He stayed home, kept all the rules, and did everything right, but when the party started he was furious. He had never left home, but he had never received the father's love either, because he had been managing his performance record instead of being a son. The father went out to him, too. The question the older brother could not answer is the same question this lesson is asking: <em>Have you ever received the Father's love, or have you only been keeping score?</em>"
+      "text": "The Father loves you. The Son saves you. The Spirit fills you. In the next lesson you will meet the Son who was given for you, the One who made the road home possible. In the lesson after that you will meet the Spirit who lives inside you and guides your daily walk. These three lessons belong together, and this week is where you plant the root."
     },
     {
       "type": "question",
       "id": "201-01-2",
-      "text": "1.2 - Which son do you relate to more: the one who ran away, or the one who stayed home but never really received the Father's love? Why?",
+      "text": "1.2 - Where do you tend to picture God more like a boss watching your performance than a Father watching the road? What would change if you received Him as Father first?",
       "height": "tall"
-    },
-    {
-      "type": "heading",
-      "text": "Boss or Father?"
-    },
-    {
-      "type": "text",
-      "text": "Too many of us see God the way an employee sees a boss. He hired us off the street, He is kind enough, but now that we are in the company we had better stay in line, because if we mess up we are in trouble. But what about a Father who owns a small shop and brings you in, not because you are skilled but because you are His? He knows you will struggle and He knows you will fail, but He says, \"I want you here, and I will be right here with you the whole time.\" The security in that relationship is not based on how well you perform but on the love of the Father and your identity as His child."
-    },
-    {
-      "type": "text",
-      "text": "The Boss is watching for mistakes. The Father is watching for you to come home. These are completely different relationships, and they produce completely different hearts."
-    },
-    {
-      "type": "heading",
-      "text": "What Changes Tomorrow?"
-    },
-    {
-      "type": "text",
-      "text": "There is a verse most believers do not know, and that is exactly why it lands so hard."
-    },
-    {
-      "type": "verse",
-      "reference": "Zephaniah 3:17",
-      "text": "The Lord your God is in your midst, a mighty one who will save; he will rejoice over you with gladness; he will quiet you by his love; he will exult over you with loud singing."
-    },
-    {
-      "type": "text",
-      "text": "God does not merely tolerate you. He <em>rejoices</em> over you with gladness and <em>sings</em> over you. This is the face of the Father: not disappointment but <strong>delight</strong>, not distance but presence, not a performance review but a love song. So here is the question worth sitting with all week: <strong>What changes tomorrow if God's face toward you is delight, not disappointment?</strong> What changes about how you handle failure, how you talk to yourself, and how you pray?"
-    },
-    {
-      "type": "text",
-      "text": "When you encounter a Father like this, loving Him with everything stops being an impossible burden and starts being the most natural thing you can do. The Father's love does not lower the standard; <strong>it changes the heart that meets it.</strong> We are not fighting sin to have a relationship with God; we are fighting sin because we have a relationship with God."
-    },
-    {
-      "type": "verse",
-      "reference": "1 John 5:3",
-      "text": "For this is the love of God, that we keep his commandments. And his commandments are not burdensome."
     },
     {
       "type": "question",
       "id": "201-01-3",
-      "text": "1.3 - Sit with this: What changes tomorrow if God's face toward you is delight, not disappointment? Write whatever comes to mind.",
+      "text": "1.3 - Say this line out loud and sit with it for a moment: <em>I do not love God to make Him love me. I love God because He loved me first.</em> What would change in your life if this became the first sentence you believed every morning?",
       "height": "tall"
-    },
-    {
-      "type": "heading",
-      "text": "What Comes Next"
-    },
-    {
-      "type": "text",
-      "text": "In this lesson you encountered God the Father: the one who made you, who pursues you, and who runs toward you with delight. In the next lesson you will encounter God the Son, Jesus Christ, and discover the identity He gives you. And in the lesson after that, you will meet God the Holy Spirit, the one who lives inside you and empowers your daily walk. The Father loves you, the Son saves you, and the Spirit fills you. These three lessons belong together, and this foundation is what everything else in the course is built on."
     },
     {
       "type": "heading",
@@ -168,11 +126,15 @@
     },
     {
       "type": "text",
-      "text": "Each morning this week, before you check your phone, read Zephaniah 3:17 slowly and then sit quietly for sixty seconds with one question: <em>If the Father's face toward me right now is delight, how does that change how I walk into this day?</em> You do not need to write a paragraph or feel something profound. Just let the Father's love be the first thing that shapes your morning, before the noise rushes in."
+      "text": "Each morning this week, before you check your phone, say this line out loud and sit with it for one minute: <em>I do not love God to make Him love me. I love God because He loved me first.</em> You do not need to write a paragraph or feel something profound. Just let the Father's love be the first thing that shapes your morning, before the noise rushes in. And somewhere this week, read the full story in Luke 15:11-32, this time with your eyes on the Father."
+    },
+    {
+      "type": "heading",
+      "text": "Lesson 1 Review"
     },
     {
       "type": "text",
-      "text": "Also this week, read Luke 15:11-32, the full story of the Prodigal Son. Read it slowly, and this time watch the <strong>Father</strong>. Notice what he does, when he does it, and what it tells you about God's heart toward you."
+      "text": "God loved you before you ever loved Him back. The whole Christian life begins there: receive His love, then respond with your whole self. You do not love God to make Him love you. You love God because He loved you first."
     },
     {
       "type": "heading",
@@ -181,13 +143,13 @@
     {
       "type": "question",
       "id": "201-01-key",
-      "text": "What is one key thing you learned from this lesson, and what next step can you take this week?",
+      "text": "What is one key thing you learned from this lesson?",
       "height": "short"
     },
     {
       "type": "question",
-      "id": "201-01-devos",
-      "text": "What have you learned about God and yourself recently in your Daily Devotions?",
+      "id": "201-01-step",
+      "text": "What is one step you are going to take this week?",
       "height": "short"
     },
     {

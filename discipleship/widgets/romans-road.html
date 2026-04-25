@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Romans Road</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@600;700&display=swap');
-
         * , *::before, *::after {
             box-sizing: border-box;
             margin: 0;
@@ -64,8 +62,8 @@
             font-size: 18px;
             font-weight: 700;
             color: #FAF8F3;
-            font-family: 'Playfair Display', Georgia, serif;
-            letter-spacing: 0.3px;
+            font-family: Georgia, 'Cambria', serif;
+            letter-spacing: 0;
             margin: 0;
             line-height: 1.15;
         }
@@ -91,10 +89,10 @@
             left: 0;
             right: 0;
             text-align: center;
-            font-family: 'Inter', 'Trebuchet MS', sans-serif;
+            font-family: 'Trebuchet MS', Arial, sans-serif;
             font-size: 10px;
             font-weight: 900;
-            letter-spacing: 0.14em;
+            letter-spacing: 0;
             text-transform: uppercase;
             color: rgba(44, 36, 22, 0.42);
             pointer-events: none;
@@ -103,21 +101,19 @@
 
         .step-label {
             position: absolute;
-            display: flex;
+            display: grid;
+            grid-template-columns: 26px minmax(0, 1fr);
             align-items: center;
-            justify-content: center;
-            min-width: 120px;
-            height: 34px;
-            padding: 0 14px;
-            border-radius: 999px;
+            gap: 7px;
+            min-width: 0;
+            height: 44px;
+            padding: 6px 9px;
+            border-radius: 14px;
             background: rgba(255, 255, 255, 0.95);
-            border: 2px solid var(--pill-color, #1A6B55);
+            border: 1.5px solid var(--pill-color, #1E6FA0);
             box-shadow: 0 5px 14px rgba(44, 36, 22, 0.10);
             color: #3D352B;
-            font-family: 'Inter', 'Trebuchet MS', sans-serif;
-            font-size: 13px;
-            font-weight: 800;
-            white-space: nowrap;
+            font-family: 'Trebuchet MS', Arial, sans-serif;
             opacity: 0;
             transform: translateY(8px);
             transition: opacity 0.38s ease, transform 0.38s ease;
@@ -131,21 +127,62 @@
         }
 
         .step-label.a {
-            left: 16px;
+            left: 14px;
             bottom: 38px;
-            min-width: 124px;
+            width: 138px;
         }
 
         .step-label.b {
-            left: 118px;
-            bottom: 128px;
-            min-width: 188px;
+            left: 102px;
+            bottom: 135px;
+            width: 198px;
         }
 
         .step-label.c {
-            right: 18px;
+            right: 14px;
             bottom: 30px;
-            min-width: 164px;
+            width: 194px;
+        }
+
+        .label-letter {
+            width: 26px;
+            height: 26px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 999px;
+            background: var(--pill-color, #1E6FA0);
+            color: #FFFFFF;
+            font-size: 15px;
+            font-weight: 900;
+            line-height: 1;
+            font-family: Georgia, 'Cambria', serif;
+        }
+
+        .label-copy {
+            min-width: 0;
+            line-height: 1.04;
+        }
+
+        .label-title,
+        .label-subtitle {
+            display: block;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .label-title {
+            color: #332A20;
+            font-size: 11.7px;
+            font-weight: 900;
+        }
+
+        .label-subtitle {
+            margin-top: 2px;
+            color: #786C5B;
+            font-size: 9.4px;
+            font-weight: 700;
         }
 
         .intro-overlay {
@@ -172,8 +209,8 @@
 
         .intro-title {
             margin: 0 0 7px;
-            color: #1A6B55;
-            font-family: 'Inter', 'Trebuchet MS', sans-serif;
+            color: #1E6FA0;
+            font-family: 'Trebuchet MS', Arial, sans-serif;
             font-size: 16px;
             font-weight: 900;
             line-height: 1.2;
@@ -207,7 +244,7 @@
 
         .verse-card-bar {
             height: 4px;
-            background: var(--accent-color, #1A6B55);
+            background: var(--accent-color, #1E6FA0);
         }
 
         .verse-card-content {
@@ -222,30 +259,42 @@
         .verse-card-title {
             font-size: 15px;
             font-weight: 800;
-            color: var(--accent-color, #1A6B55);
-            margin: 0 0 4px 0;
+            color: var(--accent-color, #1E6FA0);
+            margin: 0 0 2px 0;
             line-height: 1.25;
-            font-family: 'Inter', 'Trebuchet MS', sans-serif;
+            font-family: 'Trebuchet MS', Arial, sans-serif;
+        }
+
+        .verse-card-subtitle {
+            color: #6B604F;
+            font-family: 'Trebuchet MS', Arial, sans-serif;
+            font-size: 11.2px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin: 0 0 4px;
         }
 
         .verse-card-text {
-            font-size: 12.7px;
-            line-height: 1.38;
+            font-size: 11.4px;
+            line-height: 1.27;
             color: #3D3426;
             margin: 0;
             flex-grow: 1;
         }
 
         .verse-card-text b {
-            color: var(--accent-color, #1A6B55);
+            color: var(--accent-color, #1E6FA0);
+            font-family: 'Trebuchet MS', Arial, sans-serif;
+            font-size: 10.8px;
+            font-weight: 900;
         }
 
         .verse-card-ref {
             font-size: 11px;
-            color: var(--accent-color, #1A6B55);
+            color: var(--accent-color, #1E6FA0);
             margin: 5px 0 0;
             font-weight: 800;
-            font-family: 'Inter', 'Trebuchet MS', sans-serif;
+            font-family: 'Trebuchet MS', Arial, sans-serif;
         }
 
         .nav-bar {
@@ -316,27 +365,58 @@
 
         @media (max-width: 372px) {
             .step-label {
-                font-size: 12px;
-                height: 32px;
-                padding: 0 12px;
+                grid-template-columns: 24px minmax(0, 1fr);
+                gap: 5px;
+                height: 40px;
+                padding: 5px 7px;
             }
 
             .step-label.a {
-                min-width: 116px;
+                left: 12px;
+                width: 129px;
             }
 
             .step-label.b {
-                left: 100px;
-                min-width: 170px;
+                left: 86px;
+                width: 184px;
+                bottom: 136px;
             }
 
             .step-label.c {
-                min-width: 150px;
+                right: 8px;
+                width: 184px;
+            }
+
+            .label-letter {
+                width: 24px;
+                height: 24px;
+                font-size: 14px;
+            }
+
+            .label-title {
+                font-size: 10.8px;
+            }
+
+            .label-subtitle {
+                font-size: 8.8px;
             }
 
             .verse-card-text {
-                font-size: 12px;
-                line-height: 1.34;
+                font-size: 10.8px;
+                line-height: 1.24;
+            }
+
+            .verse-card-text b {
+                font-size: 10.2px;
+            }
+
+            .verse-card-title {
+                font-size: 14px;
+            }
+
+            .verse-card-subtitle {
+                font-size: 10.6px;
+                margin-bottom: 3px;
             }
         }
 
@@ -383,11 +463,12 @@
             letter: 'A',
             key: 'a',
             title: 'Admit Sin',
-            label: 'Admit Sin',
+            labelTitle: 'Admit Sin',
+            labelSubtitle: 'We are in need',
+            subtitle: 'We are in need',
             caption: 'A - Admit',
             color: '#8A4A3F',
-            ref: 'Romans 3:23; 6:23',
-            verse: 'We all fall short. <b>The wages of sin is death</b>, and we are in need of rescue. The road starts by telling the truth about our condition.',
+            verse: '<b>Romans 3:23</b> For all have sinned and fall short of the glory of God. <b>Romans 6:23</b> For the wages of sin is death, but the free gift of God is eternal life in Christ Jesus our Lord.',
             marker: { x: 64, y: 208, r: 20, stem: 22 },
             segment: 'M 24 232 C 78 226, 118 197, 154 171'
         },
@@ -395,11 +476,12 @@
             letter: 'B',
             key: 'b',
             title: 'Believe Jesus as Savior',
-            label: 'Believe Jesus as Savior',
+            labelTitle: 'Believe Jesus as Savior',
+            labelSubtitle: 'He died to save us',
+            subtitle: 'He died for our sins to save us',
             caption: 'B - Believe',
             color: '#B58A2D',
-            ref: 'Romans 5:8',
-            verse: 'At the center of the road stands the cross. <b>While we were still sinners, Christ died for us.</b> Salvation rests on what Jesus has done.',
+            verse: '<b>Romans 5:8</b> but God shows his love for us in that while we were still sinners, Christ died for us.',
             marker: { x: 205, y: 133, r: 22, stem: 24 },
             segment: 'M 154 171 C 184 149, 210 132, 234 126 C 259 119, 280 127, 299 113'
         },
@@ -407,11 +489,12 @@
             letter: 'C',
             key: 'c',
             title: 'Confess Jesus as Lord',
-            label: 'Confess Jesus as Lord',
+            labelTitle: 'Confess Jesus',
+            labelSubtitle: 'as Lord',
+            subtitle: 'Living under the authority of the resurrected Jesus',
             caption: 'C - Confess',
-            color: '#1A6B55',
-            ref: 'Romans 10:9',
-            verse: 'The road opens into new life when you respond to the risen Jesus. <b>If you confess Jesus as Lord and believe that God raised him from the dead, you will be saved.</b>',
+            color: '#1E6FA0',
+            verse: '<b>Romans 10:9</b> If you confess with your mouth that Jesus is Lord and believe in your heart that God raised him from the dead, you will be saved.',
             marker: { x: 334, y: 74, r: 22, stem: 24 },
             segment: 'M 299 113 C 320 98, 339 66, 366 42'
         }
@@ -432,10 +515,6 @@
         var g = (num >> 8) & 255;
         var b = num & 255;
         return 'rgba(' + r + ', ' + g + ', ' + b + ', ' + alpha + ')';
-    }
-
-    function currentColor() {
-        return step === -1 ? '#1A6B55' : stops[step].color;
     }
 
     function animateStroke(path, delay) {
@@ -628,7 +707,7 @@
             x: m.x,
             y: m.y + 7,
             'text-anchor': 'middle',
-            'font-family': 'Inter, Trebuchet MS, sans-serif',
+            'font-family': 'Trebuchet MS, Arial, sans-serif',
             'font-size': m.r + 11,
             'font-weight': 900,
             fill: stop.color
@@ -652,7 +731,12 @@
             var label = document.createElement('div');
             label.className = 'step-label ' + stop.key;
             label.style.setProperty('--pill-color', stop.color);
-            label.textContent = stop.label;
+            label.innerHTML =
+                '<span class="label-letter">' + stop.letter + '</span>' +
+                '<span class="label-copy">' +
+                    '<span class="label-title">' + stop.labelTitle + '</span>' +
+                    '<span class="label-subtitle">' + stop.labelSubtitle + '</span>' +
+                '</span>';
             wrapper.appendChild(label);
             revealLabel(label, i === step ? 160 : 0);
         }
@@ -690,10 +774,11 @@
             var beginCard = document.createElement('div');
             beginCard.className = 'verse-card';
             beginCard.innerHTML =
-                '<div class="verse-card-bar" style="background:#1A6B55;"></div>' +
-                '<div class="verse-card-content" style="--accent-color:#1A6B55;">' +
+                '<div class="verse-card-bar" style="background:#1E6FA0;"></div>' +
+                '<div class="verse-card-content" style="--accent-color:#1E6FA0;">' +
                     '<h2 class="verse-card-title">How Can Someone Be Saved?</h2>' +
-                    '<p class="verse-card-text">The Romans Road is a simple path through Paul&apos;s letter to the Romans. It leads from our need, through the cross, to a clear response of faith.</p>' +
+                    '<p class="verse-card-subtitle">The ABCs of the steps of salvation</p>' +
+                    '<p class="verse-card-text">The Romans Road leads through Paul&apos;s letter to the Romans: <b>A</b> admit sin, <b>B</b> believe Jesus as Savior, and <b>C</b> confess Jesus as Lord.</p>' +
                 '</div>';
             beginWrap.appendChild(beginCard);
 
@@ -712,7 +797,7 @@
             });
             var next = document.createElement('button');
             next.className = 'nav-btn primary';
-            next.style.background = '#1A6B55';
+            next.style.background = '#1E6FA0';
             next.textContent = 'Begin →';
             next.addEventListener('click', function () {
                 step = 0;
@@ -748,18 +833,17 @@
         title.style.color = current.color;
         title.textContent = current.title;
 
+        var subtitle = document.createElement('p');
+        subtitle.className = 'verse-card-subtitle';
+        subtitle.textContent = current.subtitle;
+
         var text = document.createElement('p');
         text.className = 'verse-card-text';
         text.innerHTML = current.verse;
 
-        var ref = document.createElement('p');
-        ref.className = 'verse-card-ref';
-        ref.style.color = current.color;
-        ref.textContent = current.ref;
-
         content.appendChild(title);
+        content.appendChild(subtitle);
         content.appendChild(text);
-        content.appendChild(ref);
         card.appendChild(content);
         wrapper.appendChild(card);
         wrapper.appendChild(buildNav(current));
