@@ -1,4 +1,4 @@
-# Prayer Streaks
+# Pray Together
 
 A private prayer web app for a couple to:
 
@@ -79,7 +79,7 @@ Room creators can delete a room from **Manage rooms**. The app asks for confirma
 
 1. Make sure `config.js` has your Supabase URL and anon key.
 2. Go to [app.netlify.com/drop](https://app.netlify.com/drop).
-3. Drag this whole `prayerstreaks` folder onto the page.
+3. Drag this whole `praytogether` folder onto the page.
 4. Netlify gives you a live URL.
 
 ### Option B: Vercel
@@ -97,7 +97,7 @@ Room creators can delete a room from **Manage rooms**. The app asks for confirma
 After deployment, go to **Authentication > URL Configuration** in Supabase:
 
 - Site URL: your deployed app URL
-- Redirect URLs: add your deployed app URL and `http://localhost:4173`
+- Redirect URLs: add your deployed app URL, such as `https://ministrybag.com/praytogether/`, and `http://localhost:4173`
 
 ## Files
 
