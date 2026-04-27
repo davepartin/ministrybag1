@@ -97,10 +97,6 @@ begin
     raise exception 'You must be signed in.';
   end if;
 
-  if exists (select 1 from public.household_members where user_id = auth.uid()) then
-    raise exception 'You already belong to a prayer room.';
-  end if;
-
   loop
     code := public.invite_code();
     exit when not exists (select 1 from public.households where invite_code = code);
@@ -131,10 +127,6 @@ begin
     raise exception 'You must be signed in.';
   end if;
 
-  if exists (select 1 from public.household_members where user_id = auth.uid()) then
-    raise exception 'You already belong to a prayer room.';
-  end if;
-
   normalized_invite := upper(trim(invite));
 
   select *
@@ -149,10 +141,24 @@ begin
   end if;
 
   insert into public.household_members (household_id, user_id, role)
-  values (target.id, auth.uid(), 'member');
+  values (target.id, auth.uid(), 'member')
+  on conflict (household_id, user_id) do nothing;
 
   return target;
 end;
+$$;
+
+create or replace function public.get_my_households()
+returns setof public.households
+language sql
+security definer
+set search_path = public
+as $$
+  select h.*
+  from public.households h
+  join public.household_members hm on hm.household_id = h.id
+  where hm.user_id = auth.uid()
+  order by hm.created_at asc;
 $$;
 
 create or replace function public.get_my_household()
@@ -222,6 +228,7 @@ grant select, insert on public.prayer_days to authenticated;
 grant select, insert, update, delete on public.prayers to authenticated;
 grant execute on function public.create_household(text) to authenticated;
 grant execute on function public.join_household_by_code(text) to authenticated;
+grant execute on function public.get_my_households() to authenticated;
 grant execute on function public.get_my_household() to authenticated;
 grant execute on function public.is_household_member(uuid) to authenticated;
 

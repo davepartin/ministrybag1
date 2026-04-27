@@ -15,11 +15,14 @@ let answerTargetId = null;
 
 const state = {
   mode: SUPABASE_READY ? "cloud" : "demo",
+  authMode: "login",
   session: null,
   household: null,
+  households: [],
   prayers: [],
   prayerDays: [],
   busy: false,
+  showRoomManager: false,
 };
 
 const els = {};
@@ -52,12 +55,20 @@ function bindElements() {
     "signOutButton",
     "authView",
     "authForm",
+    "showLoginButton",
+    "showSignupButton",
+    "authFormTitle",
+    "authFormText",
     "emailInput",
     "passwordInput",
-    "loginButton",
-    "signupButton",
+    "authSubmitButton",
     "authMessage",
     "setupView",
+    "backToDashboardButton",
+    "roomListSection",
+    "roomsTitle",
+    "roomCount",
+    "roomList",
     "createHouseholdForm",
     "householdNameInput",
     "joinHouseholdForm",
@@ -71,9 +82,12 @@ function bindElements() {
     "streakStatus",
     "dayStrip",
     "roomTitle",
+    "roomSwitcher",
+    "roomSelect",
     "inviteCode",
     "copyInviteButton",
     "roomHelperText",
+    "openRoomsButton",
     "requestForm",
     "requestTitleInput",
     "requestNoteInput",
@@ -94,11 +108,15 @@ function bindElements() {
 }
 
 function bindEvents() {
-  els.authForm.addEventListener("submit", handleLogin);
-  els.signupButton.addEventListener("click", handleSignup);
+  els.authForm.addEventListener("submit", handleAuthSubmit);
+  els.showLoginButton.addEventListener("click", () => setAuthMode("login"));
+  els.showSignupButton.addEventListener("click", () => setAuthMode("signup"));
   els.signOutButton.addEventListener("click", handleSignOut);
+  els.backToDashboardButton.addEventListener("click", closeRoomManager);
   els.createHouseholdForm.addEventListener("submit", handleCreateHousehold);
   els.joinHouseholdForm.addEventListener("submit", handleJoinHousehold);
+  els.roomSelect.addEventListener("change", () => switchHousehold(els.roomSelect.value));
+  els.openRoomsButton.addEventListener("click", openRoomManager);
   els.markPrayedButton.addEventListener("click", handleMarkPrayed);
   els.requestForm.addEventListener("submit", handleAddRequest);
   els.answeredForm.addEventListener("submit", handleAddAnsweredPrayer);
@@ -113,14 +131,16 @@ function bindEvents() {
 async function loadAfterAuth() {
   if (!state.session) {
     state.household = null;
+    state.households = [];
     state.prayers = [];
     state.prayerDays = [];
+    state.showRoomManager = false;
     unsubscribeRealtime();
     render();
     return;
   }
 
-  await loadHousehold();
+  await loadHouseholds();
   if (state.household) {
     await loadDashboardData();
     subscribeRealtime();
@@ -128,15 +148,41 @@ async function loadAfterAuth() {
   render();
 }
 
-async function loadHousehold() {
+async function loadHouseholds(preferredHouseholdId = null) {
   setMessage(els.setupMessage, "");
-  const { data, error } = await supabaseClient.rpc("get_my_household");
-  if (error) {
+  const { data, error } = await supabaseClient.rpc("get_my_households");
+  let households = [];
+
+  if (error && isMissingFunctionError(error)) {
+    const fallback = await supabaseClient.rpc("get_my_household");
+    if (fallback.error) {
+      setMessage(els.setupMessage, fallback.error.message, true);
+      return;
+    }
+    const fallbackHousehold = normalizeHousehold(fallback.data);
+    households = fallbackHousehold ? [fallbackHousehold] : [];
+  } else if (error) {
     setMessage(els.setupMessage, error.message, true);
     return;
+  } else {
+    households = normalizeHouseholds(data);
   }
-  const household = Array.isArray(data) ? data[0] || null : data;
-  state.household = household?.id ? household : null;
+
+  state.households = households;
+  state.household = chooseHousehold(households, preferredHouseholdId);
+}
+
+function chooseHousehold(households, preferredHouseholdId = null) {
+  if (!households.length) return null;
+
+  const savedId = getSavedHouseholdId();
+  const nextHousehold =
+    households.find((household) => household.id === preferredHouseholdId) ||
+    households.find((household) => household.id === savedId) ||
+    households[0];
+
+  saveSelectedHousehold(nextHousehold.id);
+  return nextHousehold;
 }
 
 async function loadDashboardData() {
@@ -197,8 +243,50 @@ async function refreshDashboard() {
   render();
 }
 
-async function handleLogin(event) {
+async function switchHousehold(householdId) {
+  const nextHousehold = state.households.find((household) => household.id === householdId);
+  if (!nextHousehold || nextHousehold.id === state.household?.id) return;
+
+  saveSelectedHousehold(nextHousehold.id);
+  state.household = nextHousehold;
+  state.prayers = [];
+  state.prayerDays = [];
+  unsubscribeRealtime();
+
+  if (state.mode === "cloud") {
+    await loadDashboardData();
+    subscribeRealtime();
+  }
+
+  render();
+}
+
+function openRoomManager() {
+  state.showRoomManager = true;
+  render();
+}
+
+function closeRoomManager() {
+  state.showRoomManager = false;
+  render();
+}
+
+function setAuthMode(mode) {
+  state.authMode = mode;
+  setMessage(els.authMessage, "");
+  renderAuthMode();
+}
+
+async function handleAuthSubmit(event) {
   event.preventDefault();
+  if (state.authMode === "signup") {
+    await handleSignup();
+  } else {
+    await handleLogin();
+  }
+}
+
+async function handleLogin() {
   if (state.mode !== "cloud") return;
   setBusy(true);
   setMessage(els.authMessage, "Signing in...");
@@ -228,7 +316,9 @@ async function handleSignup() {
   if (data.session) {
     setMessage(els.authMessage, "Account created.");
   } else {
-    setMessage(els.authMessage, "Check your email to confirm your account, then log in.");
+    setMessage(els.authMessage, "Check your email to confirm your account, then come back and log in.");
+    state.authMode = "login";
+    renderAuthMode();
   }
 }
 
@@ -240,6 +330,7 @@ async function handleSignOut() {
     loadDemoState();
     render();
   }
+  state.showRoomManager = false;
 }
 
 async function handleCreateHousehold(event) {
@@ -256,17 +347,30 @@ async function handleCreateHousehold(event) {
       setMessage(els.setupMessage, error.message, true);
       return;
     }
-    state.household = normalizeHousehold(data);
-    await loadHousehold();
+    const newHousehold = normalizeHousehold(data);
+    unsubscribeRealtime();
+    await loadHouseholds(newHousehold?.id);
     await loadDashboardData();
     subscribeRealtime();
+    state.showRoomManager = false;
   } else {
-    state.household.name = els.householdNameInput.value.trim() || "Our Prayer Room";
+    const newHousehold = {
+      id: crypto.randomUUID(),
+      name: els.householdNameInput.value.trim() || "Our Prayer Room",
+      invite_code: "DEMO",
+    };
+    state.households.push(newHousehold);
+    state.household = newHousehold;
+    state.prayers = [];
+    state.prayerDays = [];
     saveDemoState();
     setBusy(false);
+    state.showRoomManager = false;
   }
 
   setMessage(els.setupMessage, "");
+  els.createHouseholdForm.reset();
+  els.householdNameInput.value = "Our Prayer Room";
   render();
 }
 
@@ -286,11 +390,14 @@ async function handleJoinHousehold(event) {
     return;
   }
 
-  state.household = normalizeHousehold(data);
-  await loadHousehold();
+  const joinedHousehold = normalizeHousehold(data);
+  unsubscribeRealtime();
+  await loadHouseholds(joinedHousehold?.id);
   await loadDashboardData();
   subscribeRealtime();
   setMessage(els.setupMessage, "");
+  state.showRoomManager = false;
+  els.joinHouseholdForm.reset();
   render();
 }
 
@@ -454,13 +561,19 @@ async function deletePrayer(id) {
 function render() {
   const loggedIn = state.mode === "demo" || Boolean(state.session);
   const hasHousehold = Boolean(state.household);
+  const showRoomSetup = loggedIn && (!hasHousehold || state.showRoomManager);
 
   els.authView.classList.toggle("hidden", state.mode === "demo" || loggedIn);
-  els.setupView.classList.toggle("hidden", !loggedIn || hasHousehold);
-  els.dashboardView.classList.toggle("hidden", !loggedIn || !hasHousehold);
+  els.setupView.classList.toggle("hidden", !showRoomSetup);
+  els.dashboardView.classList.toggle("hidden", !loggedIn || !hasHousehold || state.showRoomManager);
   els.signOutButton.classList.toggle("hidden", !loggedIn);
 
+  renderAuthMode();
   renderConnectionBadge();
+
+  if (showRoomSetup) {
+    renderRoomManager();
+  }
 
   if (hasHousehold) {
     renderDashboard();
@@ -487,6 +600,64 @@ function renderConnectionBadge() {
   els.connectionBadge.className = "status-pill online";
 }
 
+function renderAuthMode() {
+  if (!els.authForm) return;
+  const isSignup = state.authMode === "signup";
+
+  els.showLoginButton.classList.toggle("active", !isSignup);
+  els.showSignupButton.classList.toggle("active", isSignup);
+  els.showLoginButton.setAttribute("aria-selected", String(!isSignup));
+  els.showSignupButton.setAttribute("aria-selected", String(isSignup));
+  els.authFormTitle.textContent = isSignup ? "Create your account" : "Log in";
+  els.authFormText.textContent = isSignup
+    ? "Create an account first. After you confirm your email, you can start a room or join with a code."
+    : "Log in, then choose a prayer room or join one with an invite code.";
+  els.passwordInput.autocomplete = isSignup ? "new-password" : "current-password";
+  els.authSubmitButton.innerHTML = isSignup
+    ? '<i data-lucide="user-plus"></i> Create account'
+    : '<i data-lucide="log-in"></i> Log in';
+}
+
+function renderRoomManager() {
+  const rooms = state.households;
+  const hasRooms = rooms.length > 0;
+
+  els.backToDashboardButton.classList.toggle("hidden", !state.household);
+  els.roomListSection.classList.toggle("hidden", !hasRooms);
+  els.roomCount.textContent = String(rooms.length);
+
+  if (!hasRooms) {
+    els.roomList.replaceChildren();
+    return;
+  }
+
+  const fragment = document.createDocumentFragment();
+  rooms.forEach((household) => {
+    const room = document.createElement("article");
+    room.className = ["room-option", household.id === state.household?.id ? "active" : ""].filter(Boolean).join(" ");
+    room.innerHTML = `
+      <div>
+        <h3>${escapeHtml(household.name || "Prayer Room")}</h3>
+        <p>${escapeHtml(getInviteCode(household))}</p>
+      </div>
+      <button class="secondary-button" type="button" data-room-id="${household.id}">
+        <i data-lucide="door-open"></i>
+        Open
+      </button>
+    `;
+    fragment.appendChild(room);
+  });
+
+  els.roomList.replaceChildren(fragment);
+  els.roomList.querySelectorAll("[data-room-id]").forEach((button) => {
+    button.addEventListener("click", async () => {
+      await switchHousehold(button.dataset.roomId);
+      state.showRoomManager = false;
+      render();
+    });
+  });
+}
+
 function renderDashboard() {
   const days = state.prayerDays.map((item) => item.day).sort();
   const stats = calculateStreaks(days);
@@ -494,6 +665,7 @@ function renderDashboard() {
   const answered = state.prayers.filter((prayer) => prayer.answered_at);
 
   els.roomTitle.textContent = state.household.name || "Our Prayer Room";
+  renderRoomSelect();
   els.inviteCode.textContent = getInviteCode(state.household);
   els.roomHelperText.textContent =
     state.mode === "demo"
@@ -515,6 +687,20 @@ function renderDashboard() {
   els.answeredCount.textContent = String(answered.length);
   renderPrayerList(els.requestList, requests, "request");
   renderPrayerList(els.answeredList, answered, "answered");
+}
+
+function renderRoomSelect() {
+  const rooms = state.households;
+  els.roomSwitcher.classList.toggle("hidden", rooms.length <= 1);
+  els.roomSelect.replaceChildren(
+    ...rooms.map((household) => {
+      const option = document.createElement("option");
+      option.value = household.id;
+      option.textContent = household.name || "Prayer Room";
+      option.selected = household.id === state.household?.id;
+      return option;
+    })
+  );
 }
 
 function renderDayStrip(days) {
@@ -654,6 +840,8 @@ function loadDemoState() {
   const saved = JSON.parse(localStorage.getItem("prayer-streaks-demo") || "null");
   if (saved) {
     Object.assign(state, saved, { mode: "demo", session: { user: { email: "demo@local" } } });
+    state.households = state.households?.length ? state.households : state.household ? [state.household] : [];
+    state.household = state.household || state.households[0] || null;
     return;
   }
 
@@ -663,6 +851,7 @@ function loadDemoState() {
     name: "Our Prayer Room",
     invite_code: "DEMO",
   };
+  state.households = [state.household];
   state.prayerDays = [];
   state.prayers = [
     makePrayer({
@@ -678,6 +867,7 @@ function saveDemoState() {
     "prayer-streaks-demo",
     JSON.stringify({
       household: state.household,
+      households: state.households,
       prayers: state.prayers,
       prayerDays: state.prayerDays,
     })
@@ -717,19 +907,49 @@ function normalizeHousehold(data) {
   return household?.id ? household : null;
 }
 
+function normalizeHouseholds(data) {
+  if (!Array.isArray(data)) {
+    const household = normalizeHousehold(data);
+    return household ? [household] : [];
+  }
+
+  return data.filter((household) => household?.id);
+}
+
+function isMissingFunctionError(error) {
+  return error?.code === "PGRST202" || String(error?.message || "").includes("get_my_households");
+}
+
+function getSavedHouseholdId() {
+  const key = getSelectedHouseholdStorageKey();
+  return key ? localStorage.getItem(key) : null;
+}
+
+function saveSelectedHousehold(householdId) {
+  const key = getSelectedHouseholdStorageKey();
+  if (key && householdId) {
+    localStorage.setItem(key, householdId);
+  }
+}
+
+function getSelectedHouseholdStorageKey() {
+  const userId = state.session?.user?.id || state.session?.user?.email;
+  return userId ? `prayer-streaks-selected-room-${userId}` : null;
+}
+
 async function copyInviteCode() {
   const code = els.inviteCode.textContent.trim();
   try {
     await navigator.clipboard.writeText(code);
     els.copyInviteButton.title = "Copied";
   } catch (_error) {
-    window.prompt("Invite code", code);
+    els.roomHelperText.textContent = `Invite code: ${code}`;
   }
 }
 
 function setBusy(isBusy) {
   state.busy = isBusy;
-  document.querySelectorAll("button, input, textarea").forEach((control) => {
+  document.querySelectorAll("button, input, textarea, select").forEach((control) => {
     const shouldKeepEnabled = control.matches("[data-close-dialog]");
     control.disabled = isBusy && !shouldKeepEnabled;
   });

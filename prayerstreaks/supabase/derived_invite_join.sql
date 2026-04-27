@@ -12,10 +12,6 @@ begin
     raise exception 'You must be signed in.';
   end if;
 
-  if exists (select 1 from public.household_members where user_id = auth.uid()) then
-    raise exception 'You already belong to a prayer room.';
-  end if;
-
   normalized_invite := upper(trim(invite));
 
   select *
@@ -30,7 +26,8 @@ begin
   end if;
 
   insert into public.household_members (household_id, user_id, role)
-  values (target.id, auth.uid(), 'member');
+  values (target.id, auth.uid(), 'member')
+  on conflict (household_id, user_id) do nothing;
 
   return target;
 end;

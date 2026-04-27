@@ -39,7 +39,23 @@
               </p>
             </div>
 
-            <form id="authForm" class="auth-form">
+            <form id="authForm" class="auth-form auth-card">
+              <div class="auth-mode-toggle" role="tablist" aria-label="Account action">
+                <button id="showLoginButton" class="mode-tab active" type="button" role="tab" aria-selected="true">
+                  <i data-lucide="log-in"></i>
+                  Log in
+                </button>
+                <button id="showSignupButton" class="mode-tab" type="button" role="tab" aria-selected="false">
+                  <i data-lucide="user-plus"></i>
+                  Create account
+                </button>
+              </div>
+
+              <div>
+                <h2 id="authFormTitle">Log in</h2>
+                <p id="authFormText" class="helper-text">Use the email and password for your Prayer Streaks account.</p>
+              </div>
+
               <label for="emailInput">Email</label>
               <input id="emailInput" name="email" type="email" autocomplete="email" placeholder="you@example.com" required />
 
@@ -47,13 +63,9 @@
               <input id="passwordInput" name="password" type="password" autocomplete="current-password" minlength="6" placeholder="At least 6 characters" required />
 
               <div class="button-row">
-                <button id="loginButton" class="primary-button" type="submit">
+                <button id="authSubmitButton" class="primary-button" type="submit">
                   <i data-lucide="log-in"></i>
                   Log in
-                </button>
-                <button id="signupButton" class="secondary-button" type="button">
-                  <i data-lucide="user-plus"></i>
-                  Create account
                 </button>
               </div>
               <p id="authMessage" class="form-message" role="status"></p>
@@ -62,11 +74,34 @@
         </section>
 
         <section id="setupView" class="setup-view hidden" aria-labelledby="setupTitle">
+          <div class="setup-heading">
+            <div>
+              <p class="eyebrow">Prayer rooms</p>
+              <h1 id="setupTitle">Choose where you want to pray.</h1>
+              <p class="lede">Start a new shared room, join your wife’s room with a code, or switch between rooms you already belong to.</p>
+            </div>
+            <button id="backToDashboardButton" class="secondary-button hidden" type="button">
+              <i data-lucide="layout-dashboard"></i>
+              Back to dashboard
+            </button>
+          </div>
+
+          <section id="roomListSection" class="room-list-section hidden" aria-labelledby="roomsTitle">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Your rooms</p>
+                <h2 id="roomsTitle">Open a prayer room</h2>
+              </div>
+              <span id="roomCount" class="count-pill">0</span>
+            </div>
+            <div id="roomList" class="room-list"></div>
+          </section>
+
           <div class="setup-grid">
             <article class="setup-card">
               <p class="eyebrow">Start your room</p>
-              <h1 id="setupTitle">Create a shared prayer room.</h1>
-              <p>Make one room for you and your wife. She can join with the invite code shown after setup.</p>
+              <h2>Create a shared prayer room.</h2>
+              <p>Make a room and share its invite code with the person praying with you.</p>
               <form id="createHouseholdForm" class="stacked-form">
                 <label for="householdNameInput">Room name</label>
                 <input id="householdNameInput" name="name" type="text" maxlength="80" value="Our Prayer Room" required />
@@ -80,7 +115,7 @@
             <article class="setup-card">
               <p class="eyebrow">Already invited?</p>
               <h2>Join with a code.</h2>
-              <p>Use the invite code from the room owner to join the same prayer list and streak.</p>
+              <p>Enter a room code to connect to the same streak, prayer requests, and answered prayers.</p>
               <form id="joinHouseholdForm" class="stacked-form">
                 <label for="inviteCodeInput">Invite code</label>
                 <input id="inviteCodeInput" name="inviteCode" type="text" maxlength="20" placeholder="AB12CD34" required />
@@ -135,6 +170,10 @@
                 </div>
                 <i data-lucide="heart-handshake" aria-hidden="true"></i>
               </div>
+              <div id="roomSwitcher" class="room-switcher hidden">
+                <label for="roomSelect">Viewing room</label>
+                <select id="roomSelect"></select>
+              </div>
               <div class="invite-box">
                 <span>Invite code</span>
                 <button id="copyInviteButton" class="copy-code" type="button" title="Copy invite code">
@@ -143,6 +182,10 @@
                 </button>
               </div>
               <p id="roomHelperText" class="helper-text">Share this code with your wife after she creates an account.</p>
+              <button id="openRoomsButton" class="secondary-button full-button" type="button">
+                <i data-lucide="door-open"></i>
+                Manage rooms
+              </button>
             </aside>
           </div>
 

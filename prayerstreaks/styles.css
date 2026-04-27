@@ -218,7 +218,8 @@ button:disabled {
 }
 
 .auth-panel,
-.setup-grid {
+.setup-grid,
+.setup-heading {
   display: grid;
   grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
   gap: 28px;
@@ -227,6 +228,7 @@ button:disabled {
 
 .auth-panel,
 .setup-card,
+.room-list-section,
 .streak-panel,
 .room-panel,
 .list-section,
@@ -245,9 +247,88 @@ button:disabled {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
+.setup-heading {
+  align-items: end;
+  margin-bottom: 22px;
+}
+
 .setup-card {
   min-height: 330px;
   padding: 28px;
+}
+
+.auth-card {
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--paper-strong);
+}
+
+.auth-mode-toggle {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+  padding: 6px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: rgba(247, 244, 238, 0.85);
+}
+
+.mode-tab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 42px;
+  border: 0;
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--muted);
+  font-weight: 900;
+}
+
+.mode-tab.active {
+  background: var(--paper-strong);
+  color: var(--accent-strong);
+  box-shadow: 0 8px 18px rgba(42, 50, 45, 0.1);
+}
+
+.room-list-section {
+  padding: 22px;
+  margin-bottom: 22px;
+}
+
+.room-list {
+  display: grid;
+  gap: 10px;
+}
+
+.room-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--paper-strong);
+}
+
+.room-option.active {
+  border-color: rgba(37, 111, 104, 0.5);
+  background: var(--accent-soft);
+}
+
+.room-option h3,
+.room-option p {
+  margin-bottom: 0;
+}
+
+.room-option p {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 0.86rem;
+  font-weight: 800;
 }
 
 .eyebrow {
@@ -467,6 +548,24 @@ textarea:focus {
   margin: 20px 0 12px;
 }
 
+.room-switcher {
+  display: grid;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.room-switcher select {
+  width: 100%;
+  min-height: 46px;
+  padding: 0 13px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--paper-strong);
+  color: var(--ink);
+  font: inherit;
+  font-weight: 800;
+}
+
 .invite-box span {
   color: var(--muted);
   font-size: 0.82rem;
@@ -490,6 +589,11 @@ textarea:focus {
 .copy-code strong {
   font-size: 1.15rem;
   letter-spacing: 0;
+}
+
+.full-button {
+  width: 100%;
+  margin-top: 16px;
 }
 
 .content-grid {
@@ -602,6 +706,7 @@ svg {
 @media (max-width: 920px) {
   .auth-panel,
   .setup-grid,
+  .setup-heading,
   .hero-band,
   .content-grid {
     grid-template-columns: 1fr;
@@ -637,6 +742,7 @@ svg {
 
   .auth-panel,
   .setup-card,
+  .room-list-section,
   .streak-panel,
   .room-panel,
   .list-section {
@@ -666,10 +772,16 @@ svg {
   }
 
   .button-row,
+  .room-option,
   .primary-button,
   .secondary-button,
   .danger-button {
     width: 100%;
+  }
+
+  .room-option {
+    align-items: stretch;
+    flex-direction: column;
   }
 
   .entry-form button {

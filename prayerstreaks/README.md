@@ -7,6 +7,8 @@ A private prayer web app for a couple to:
 - add and delete shared prayer requests
 - move current requests into answered prayers
 - add answered prayers directly
+- start or join multiple prayer rooms
+- switch between prayer rooms after signing in
 
 The app is a plain static site. It runs locally in demo mode with browser storage, and it uses Supabase for real login plus shared cloud storage.
 
@@ -57,16 +59,16 @@ In Supabase:
 
 If email confirmation is enabled, each person must confirm their email before logging in.
 
-## Create Your Shared Room
+## Create Or Join A Prayer Room
 
 1. Open the app.
-2. Create your account.
-3. Create a prayer room.
-4. Copy the invite code shown in the app.
+2. Choose **Create account** if you are new, or **Log in** if you already have an account.
+3. After signing in, choose **Create room** to start a room or **Join room** to enter someone else's invite code.
+4. Copy the invite code from the room panel.
 5. Have your wife create her account.
 6. She chooses **Join room** and enters the invite code.
 
-After that, both accounts share the same prayer streak, prayer requests, and answered prayers.
+After that, both accounts share the same prayer streak, prayer requests, and answered prayers. If you belong to more than one room, use the room switcher or **Manage rooms** to choose which one you are viewing.
 
 ## Deploy
 
