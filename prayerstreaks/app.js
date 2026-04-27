@@ -12,6 +12,7 @@ const DAY_MS = 24 * 60 * 60 * 1000;
 let supabaseClient = null;
 let realtimeChannel = null;
 let answerTargetId = null;
+let deleteRoomTargetId = null;
 
 const state = {
   mode: SUPABASE_READY ? "cloud" : "demo",
@@ -102,6 +103,12 @@ function bindElements() {
     "answerDialogForm",
     "answerDialogTitle",
     "answerNoteInput",
+    "deleteRoomDialog",
+    "deleteRoomDialogForm",
+    "deleteRoomName",
+    "deleteRoomConfirmCheck",
+    "deleteRoomMessage",
+    "confirmDeleteRoomButton",
   ].forEach((id) => {
     els[id] = document.getElementById(id);
   });
@@ -122,9 +129,18 @@ function bindEvents() {
   els.answeredForm.addEventListener("submit", handleAddAnsweredPrayer);
   els.copyInviteButton.addEventListener("click", copyInviteCode);
   els.answerDialogForm.addEventListener("submit", handleConfirmAnswered);
+  els.deleteRoomDialogForm.addEventListener("submit", handleConfirmDeleteRoom);
+  els.deleteRoomConfirmCheck.addEventListener("change", () => {
+    els.confirmDeleteRoomButton.disabled = !els.deleteRoomConfirmCheck.checked || state.busy;
+  });
 
   document.querySelectorAll("[data-close-dialog]").forEach((button) => {
-    button.addEventListener("click", () => els.answeredDialog.close());
+    button.addEventListener("click", () => {
+      button.closest("dialog")?.close();
+      if (button.closest("#deleteRoomDialog")) {
+        resetDeleteRoomDialog();
+      }
+    });
   });
 }
 
@@ -170,6 +186,9 @@ async function loadHouseholds(preferredHouseholdId = null) {
 
   state.households = households;
   state.household = chooseHousehold(households, preferredHouseholdId);
+  if (!state.household) {
+    clearSelectedHousehold();
+  }
 }
 
 function chooseHousehold(households, preferredHouseholdId = null) {
@@ -399,6 +418,74 @@ async function handleJoinHousehold(event) {
   state.showRoomManager = false;
   els.joinHouseholdForm.reset();
   render();
+}
+
+function openDeleteRoomDialog(householdId) {
+  const household = state.households.find((room) => room.id === householdId);
+  if (!household) return;
+
+  if (!canDeleteHousehold(household)) {
+    setMessage(els.setupMessage, "Only the room creator can delete this prayer room.", true);
+    return;
+  }
+
+  deleteRoomTargetId = household.id;
+  els.deleteRoomName.textContent = household.name || "Prayer Room";
+  els.deleteRoomConfirmCheck.checked = false;
+  els.confirmDeleteRoomButton.disabled = true;
+  setMessage(els.deleteRoomMessage, "");
+  els.deleteRoomDialog.showModal();
+  renderIcons();
+}
+
+async function handleConfirmDeleteRoom(event) {
+  event.preventDefault();
+  const householdId = deleteRoomTargetId;
+  if (!householdId || !els.deleteRoomConfirmCheck.checked) return;
+
+  setBusy(true);
+  setMessage(els.deleteRoomMessage, "Deleting room...");
+
+  if (state.mode === "cloud") {
+    const { error } = await supabaseClient.rpc("delete_household", {
+      target_household_id: householdId,
+    });
+    setBusy(false);
+
+    if (error) {
+      setMessage(els.deleteRoomMessage, error.message, true);
+      return;
+    }
+
+    if (state.household?.id === householdId) {
+      unsubscribeRealtime();
+      state.prayers = [];
+      state.prayerDays = [];
+    }
+
+    await loadHouseholds();
+    if (state.household) {
+      await loadDashboardData();
+      subscribeRealtime();
+      state.showRoomManager = false;
+    } else {
+      state.showRoomManager = true;
+    }
+  } else {
+    deleteDemoHousehold(householdId);
+    setBusy(false);
+  }
+
+  resetDeleteRoomDialog();
+  els.deleteRoomDialog.close();
+  render();
+}
+
+function resetDeleteRoomDialog() {
+  deleteRoomTargetId = null;
+  els.deleteRoomConfirmCheck.checked = false;
+  els.confirmDeleteRoomButton.disabled = true;
+  setMessage(els.deleteRoomMessage, "");
 }
 
 async function handleMarkPrayed() {
@@ -640,10 +727,20 @@ function renderRoomManager() {
         <h3>${escapeHtml(household.name || "Prayer Room")}</h3>
         <p>${escapeHtml(getInviteCode(household))}</p>
       </div>
-      <button class="secondary-button" type="button" data-room-id="${household.id}">
-        <i data-lucide="door-open"></i>
-        Open
-      </button>
+      <div class="room-actions">
+        <button class="secondary-button" type="button" data-room-id="${household.id}">
+          <i data-lucide="door-open"></i>
+          Open
+        </button>
+        ${
+          canDeleteHousehold(household)
+            ? `<button class="danger-button" type="button" data-delete-room-id="${household.id}">
+                <i data-lucide="trash-2"></i>
+                Delete
+              </button>`
+            : ""
+        }
+      </div>
     `;
     fragment.appendChild(room);
   });
@@ -655,6 +752,9 @@ function renderRoomManager() {
       state.showRoomManager = false;
       render();
     });
+  });
+  els.roomList.querySelectorAll("[data-delete-room-id]").forEach((button) => {
+    button.addEventListener("click", () => openDeleteRoomDialog(button.dataset.deleteRoomId));
   });
 }
 
@@ -720,10 +820,15 @@ function renderDayStrip(days) {
       .filter(Boolean)
       .join(" ");
     cell.innerHTML = `
+      <span class="day-month">${date.toLocaleDateString(undefined, { month: "short" })}</span>
       <span>${date.toLocaleDateString(undefined, { weekday: "short" })}</span>
       <span class="day-dot" aria-hidden="true"></span>
       <span>${date.getDate()}</span>
     `;
+    cell.setAttribute(
+      "aria-label",
+      `${formatDate(date)} ${daySet.has(key) ? "prayed together" : "not marked prayed"}`
+    );
     fragment.appendChild(cell);
   }
 
@@ -874,6 +979,24 @@ function saveDemoState() {
   );
 }
 
+function deleteDemoHousehold(householdId) {
+  state.households = state.households.filter((household) => household.id !== householdId);
+  state.prayers = state.prayers.filter((prayer) => prayer.household_id !== householdId);
+  state.prayerDays = state.prayerDays.filter((day) => day.household_id !== householdId);
+  state.household = chooseHousehold(state.households);
+
+  if (!state.household) {
+    clearSelectedHousehold();
+    state.prayers = [];
+    state.prayerDays = [];
+    state.showRoomManager = true;
+  } else {
+    state.showRoomManager = false;
+  }
+
+  saveDemoState();
+}
+
 function makePrayer(fields) {
   return {
     id: crypto.randomUUID(),
@@ -932,6 +1055,13 @@ function saveSelectedHousehold(householdId) {
   }
 }
 
+function clearSelectedHousehold() {
+  const key = getSelectedHouseholdStorageKey();
+  if (key) {
+    localStorage.removeItem(key);
+  }
+}
+
 function getSelectedHouseholdStorageKey() {
   const userId = state.session?.user?.id || state.session?.user?.email;
   return userId ? `prayer-streaks-selected-room-${userId}` : null;
@@ -953,9 +1083,16 @@ function setBusy(isBusy) {
     const shouldKeepEnabled = control.matches("[data-close-dialog]");
     control.disabled = isBusy && !shouldKeepEnabled;
   });
+  if (els.confirmDeleteRoomButton) {
+    els.confirmDeleteRoomButton.disabled = isBusy || !els.deleteRoomConfirmCheck.checked;
+  }
   if (state.household) {
     els.markPrayedButton.disabled = isBusy || hasPrayedToday();
   }
+}
+
+function canDeleteHousehold(household) {
+  return state.mode === "demo" || household.owner_id === state.session?.user?.id;
 }
 
 function setMessage(element, message, isError = false) {

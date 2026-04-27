@@ -331,6 +331,14 @@ button:disabled {
   font-weight: 800;
 }
 
+.room-actions {
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
 .eyebrow {
   margin: 0 0 8px;
   color: var(--gold);
@@ -502,23 +510,29 @@ textarea:focus {
 
 .day-strip {
   display: grid;
-  grid-template-columns: repeat(14, minmax(32px, 1fr));
+  grid-template-columns: repeat(14, minmax(42px, 1fr));
   gap: 8px;
   margin-top: 18px;
 }
 
 .day-cell {
   display: grid;
-  min-height: 64px;
+  min-height: 78px;
   align-content: center;
   justify-items: center;
-  gap: 4px;
+  gap: 3px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: rgba(255, 255, 255, 0.7);
   color: var(--muted);
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   font-weight: 800;
+}
+
+.day-month {
+  color: var(--gold);
+  font-size: 0.64rem;
+  text-transform: uppercase;
 }
 
 .day-cell.prayed {
@@ -697,6 +711,34 @@ textarea:focus {
   overflow-wrap: anywhere;
 }
 
+.danger-dialog .delete-room-name {
+  margin-bottom: 0;
+  padding: 12px 14px;
+  border: 1px solid rgba(162, 79, 91, 0.28);
+  border-radius: var(--radius);
+  background: var(--rose-soft);
+  color: #7c3440;
+  font-weight: 900;
+  overflow-wrap: anywhere;
+}
+
+.confirm-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: var(--ink);
+  line-height: 1.45;
+}
+
+.confirm-check input {
+  width: 18px;
+  min-width: 18px;
+  height: 18px;
+  min-height: 18px;
+  margin-top: 2px;
+  accent-color: var(--rose);
+}
+
 svg {
   width: 20px;
   height: 20px;
@@ -768,7 +810,7 @@ svg {
   }
 
   .day-cell {
-    min-height: 58px;
+    min-height: 72px;
   }
 
   .button-row,
@@ -782,6 +824,14 @@ svg {
   .room-option {
     align-items: stretch;
     flex-direction: column;
+  }
+
+  .room-actions {
+    justify-content: stretch;
+  }
+
+  .room-actions button {
+    flex: 1 1 120px;
   }
 
   .entry-form button {

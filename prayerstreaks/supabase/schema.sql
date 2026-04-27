@@ -175,6 +175,32 @@ as $$
   limit 1;
 $$;
 
+create or replace function public.delete_household(target_household_id uuid)
+returns void
+language plpgsql
+security definer
+set search_path = public
+as $$
+begin
+  if auth.uid() is null then
+    raise exception 'You must be signed in.';
+  end if;
+
+  if not exists (
+    select 1
+    from public.households h
+    where h.id = target_household_id
+      and h.owner_id = auth.uid()
+  ) then
+    raise exception 'Only the room creator can delete this prayer room.';
+  end if;
+
+  delete from public.households h
+  where h.id = target_household_id
+    and h.owner_id = auth.uid();
+end;
+$$;
+
 alter table public.households enable row level security;
 alter table public.household_members enable row level security;
 alter table public.prayer_days enable row level security;
@@ -230,6 +256,7 @@ grant execute on function public.create_household(text) to authenticated;
 grant execute on function public.join_household_by_code(text) to authenticated;
 grant execute on function public.get_my_households() to authenticated;
 grant execute on function public.get_my_household() to authenticated;
+grant execute on function public.delete_household(uuid) to authenticated;
 grant execute on function public.is_household_member(uuid) to authenticated;
 
 do $$

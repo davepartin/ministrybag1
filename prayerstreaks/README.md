@@ -9,6 +9,7 @@ A private prayer web app for a couple to:
 - add answered prayers directly
 - start or join multiple prayer rooms
 - switch between prayer rooms after signing in
+- delete prayer rooms you created after a double-check confirmation
 
 The app is a plain static site. It runs locally in demo mode with browser storage, and it uses Supabase for real login plus shared cloud storage.
 
@@ -69,6 +70,8 @@ If email confirmation is enabled, each person must confirm their email before lo
 6. She chooses **Join room** and enters the invite code.
 
 After that, both accounts share the same prayer streak, prayer requests, and answered prayers. If you belong to more than one room, use the room switcher or **Manage rooms** to choose which one you are viewing.
+
+Room creators can delete a room from **Manage rooms**. The app asks for confirmation before deleting because this permanently removes the room's streak days, prayer requests, answered prayers, invite code, and memberships.
 
 ## Deploy
 

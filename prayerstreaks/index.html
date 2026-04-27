@@ -182,10 +182,10 @@
                 </button>
               </div>
               <p id="roomHelperText" class="helper-text">Share this code with your wife after she creates an account.</p>
-              <button id="openRoomsButton" class="secondary-button full-button" type="button">
-                <i data-lucide="door-open"></i>
-                Manage rooms
-              </button>
+            <button id="openRoomsButton" class="secondary-button full-button" type="button">
+              <i data-lucide="door-open"></i>
+              Manage rooms
+            </button>
             </aside>
           </div>
 
@@ -254,6 +254,36 @@
           <button id="confirmAnsweredButton" class="primary-button" type="submit">
             <i data-lucide="check-check"></i>
             Move prayer
+          </button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog id="deleteRoomDialog" class="answer-dialog danger-dialog">
+      <form id="deleteRoomDialogForm" method="dialog">
+        <div class="dialog-heading">
+          <div>
+            <p class="eyebrow">Delete room</p>
+            <h2>Are you sure?</h2>
+          </div>
+          <button class="icon-button" type="button" data-close-dialog aria-label="Close" title="Close">
+            <i data-lucide="x"></i>
+          </button>
+        </div>
+        <p id="deleteRoomName" class="delete-room-name">Prayer Room</p>
+        <p class="helper-text">
+          This permanently deletes the room, its streak days, prayer requests, answered prayers, invite code, and memberships.
+        </p>
+        <label class="confirm-check" for="deleteRoomConfirmCheck">
+          <input id="deleteRoomConfirmCheck" type="checkbox" />
+          I understand this prayer room will be permanently deleted.
+        </label>
+        <p id="deleteRoomMessage" class="form-message" role="status"></p>
+        <div class="button-row end">
+          <button class="secondary-button" type="button" data-close-dialog>Cancel</button>
+          <button id="confirmDeleteRoomButton" class="danger-button" type="submit" disabled>
+            <i data-lucide="trash-2"></i>
+            Delete room
           </button>
         </div>
       </form>
