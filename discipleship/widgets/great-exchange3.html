@@ -179,7 +179,7 @@
         }
 
         .dot-core {
-            transition: fill 0.72s ease, r 0.72s ease, stroke 0.72s ease, stroke-width 0.72s ease, opacity 0.72s ease;
+            transition: opacity 0.72s ease, r 0.72s ease;
         }
 
         .controls {
@@ -285,8 +285,6 @@
             <text class="diagram-label" x="198" y="302" text-anchor="middle">Life Separate from God</text>
 
             <g id="crossGlow" class="cross-glow" opacity="0">
-                <circle cx="198" cy="166" r="66" fill="#EACB67" opacity="0.16"></circle>
-                <circle cx="198" cy="166" r="42" fill="#FFFFFF" opacity="0.42"></circle>
             </g>
 
             <g id="bridgeMist" class="bridge-mist" opacity="0">
@@ -309,6 +307,10 @@
 
             <g class="moving-dot" id="blackDot" opacity="0" transform="translate(58 258)">
                 <circle class="dot-core" id="blackCore" r="21" fill="#2E2E2E" stroke="#171717" stroke-width="4"></circle>
+            </g>
+
+            <g class="moving-dot" id="humanFrontDot" opacity="1" transform="translate(58 258)">
+                <circle class="dot-core" id="humanFrontCore" r="21" fill="#FFFDF7" stroke="#171717" stroke-width="2" opacity="0"></circle>
             </g>
         </svg>
 
@@ -434,7 +436,7 @@
         {
             white: [198, 166],
             whiteOpacity: 1,
-            black: [198, 166],
+            black: [198, 186],
             blackOpacity: 1,
             blackOnTop: true,
             blackStroke: '#171717',
@@ -451,34 +453,38 @@
         {
             white: [198, 166],
             whiteOpacity: 1,
-            black: [198, 166],
+            whiteFill: '#2E2E2E',
+            black: [198, 186],
             blackOpacity: 1,
-            blackOnTop: false,
+            blackFill: '#FFFDF7',
+            blackOnTop: true,
             blackStroke: '#171717',
-            whiteStroke: '#171717',
-            whiteStrokeWidth: 2,
-            whiteRadius: 22,
-            whiteReveal: true,
+            blackStrokeWidth: 2,
+            whiteStroke: '#B7352A',
+            whiteStrokeWidth: 4,
             cross: 1,
             glow: 0.78,
             mist: 0.7,
             bottom: 0.42,
             marker: 1,
+            dissolveExchange: true,
             title: 'The Great Exchange',
             text: '...so that in him we might become the righteousness of God.',
             ref: '2 Corinthians 5:21',
             accent: '#1A6B55'
         },
         {
-            white: [198, 114],
+            white: [198, 166],
             whiteOpacity: 1,
-            black: [198, 166],
+            whiteFill: '#2E2E2E',
+            black: [198, 114],
             blackOpacity: 1,
-            blackOnTop: false,
-            blackStroke: '#B7352A',
-            whiteStroke: '#171717',
-            whiteStrokeWidth: 2,
-            whiteRadius: 22,
+            blackFill: '#FFFDF7',
+            blackOnTop: true,
+            blackStroke: '#171717',
+            blackStrokeWidth: 2,
+            whiteStroke: '#B7352A',
+            whiteStrokeWidth: 4,
             cross: 1,
             glow: 0.62,
             mist: 0.44,
@@ -490,15 +496,17 @@
             accent: '#1A6B55'
         },
         {
-            white: [269, 114],
+            white: [198, 166],
             whiteOpacity: 1,
-            black: [198, 166],
+            whiteFill: '#2E2E2E',
+            black: [269, 114],
             blackOpacity: 1,
-            blackOnTop: false,
-            blackStroke: '#B7352A',
-            whiteStroke: '#171717',
-            whiteStrokeWidth: 2,
-            whiteRadius: 22,
+            blackFill: '#FFFDF7',
+            blackOnTop: true,
+            blackStroke: '#171717',
+            blackStrokeWidth: 2,
+            whiteStroke: '#B7352A',
+            whiteStrokeWidth: 4,
             cross: 1,
             glow: 0.62,
             mist: 0.44,
@@ -514,8 +522,10 @@
     var scene = document.getElementById('scene');
     var whiteDot = document.getElementById('whiteDot');
     var blackDot = document.getElementById('blackDot');
+    var humanFrontDot = document.getElementById('humanFrontDot');
     var whiteCore = document.getElementById('whiteCore');
     var blackCore = document.getElementById('blackCore');
+    var humanFrontCore = document.getElementById('humanFrontCore');
     var crossGroup = document.getElementById('crossGroup');
     var sacrificeMarker = document.getElementById('sacrificeMarker');
     var crossGlow = document.getElementById('crossGlow');
@@ -595,6 +605,73 @@
         el._raf = requestAnimationFrame(tick);
     }
 
+    function colorParts(hex) {
+        var value = hex.replace('#', '');
+        return [
+            parseInt(value.slice(0, 2), 16),
+            parseInt(value.slice(2, 4), 16),
+            parseInt(value.slice(4, 6), 16)
+        ];
+    }
+
+    function mixColor(fromHex, toHex, progress) {
+        var from = colorParts(fromHex);
+        var to = colorParts(toHex);
+        var mixed = from.map(function (part, index) {
+            return Math.round(part + (to[index] - part) * progress);
+        });
+
+        return 'rgb(' + mixed[0] + ', ' + mixed[1] + ', ' + mixed[2] + ')';
+    }
+
+    function setCoreStyle(el, style) {
+        if (el._styleRaf) {
+            cancelAnimationFrame(el._styleRaf);
+        }
+
+        el.style.fill = style.fill;
+        el.style.stroke = style.stroke;
+        el.style.strokeWidth = String(style.strokeWidth);
+        el._coreStyle = {
+            fill: style.fill,
+            stroke: style.stroke,
+            strokeWidth: style.strokeWidth
+        };
+    }
+
+    function animateCoreStyle(el, targetStyle, duration) {
+        var fromStyle = el._coreStyle || targetStyle;
+        var start = performance.now();
+
+        if (el._styleRaf) {
+            cancelAnimationFrame(el._styleRaf);
+        }
+
+        function tick(now) {
+            var progress = Math.min((now - start) / duration, 1);
+            var eased = progress < 0.5
+                ? 2 * progress * progress
+                : 1 - Math.pow(-2 * progress + 2, 2) / 2;
+            var current = {
+                fill: mixColor(fromStyle.fill, targetStyle.fill, eased),
+                stroke: mixColor(fromStyle.stroke, targetStyle.stroke, eased),
+                strokeWidth: fromStyle.strokeWidth + (targetStyle.strokeWidth - fromStyle.strokeWidth) * eased
+            };
+
+            el.style.fill = current.fill;
+            el.style.stroke = current.stroke;
+            el.style.strokeWidth = String(current.strokeWidth);
+
+            if (progress < 1) {
+                el._styleRaf = requestAnimationFrame(tick);
+            } else {
+                setCoreStyle(el, targetStyle);
+            }
+        }
+
+        el._styleRaf = requestAnimationFrame(tick);
+    }
+
     function renderDots() {
         dotNav.innerHTML = '';
         steps.forEach(function (_, idx) {
@@ -616,22 +693,41 @@
         var cur = steps[step];
         var previousStep = render.lastStep;
 
-        if (cur.blackOnTop) {
-            scene.appendChild(whiteDot);
-            scene.appendChild(blackDot);
-        } else {
-            scene.appendChild(blackDot);
-            scene.appendChild(whiteDot);
-        }
+        scene.appendChild(whiteDot);
+        scene.appendChild(blackDot);
+        scene.appendChild(humanFrontDot);
 
         crossGroup.style.opacity = String(cur.cross);
         sacrificeMarker.style.opacity = String(cur.marker);
         crossGlow.style.opacity = String(cur.glow);
         bridgeMist.style.opacity = String(cur.mist);
-        whiteCore.setAttribute('stroke', cur.whiteStroke || '#C49A3A');
-        whiteCore.setAttribute('stroke-width', String(cur.whiteStrokeWidth || 4));
+        var jesusStyle = {
+            fill: cur.whiteFill || '#FFFDF7',
+            stroke: cur.whiteStroke || '#C49A3A',
+            strokeWidth: cur.whiteStrokeWidth || 4
+        };
+        var humanStyle = {
+            fill: cur.blackFill || '#2E2E2E',
+            stroke: cur.blackStroke || '#171717',
+            strokeWidth: cur.blackStrokeWidth || 4
+        };
+        var shouldDissolve = cur.dissolveExchange && previousStep === step - 1;
+
+        if (shouldDissolve) {
+            animateCoreStyle(whiteCore, jesusStyle, 2000);
+            animateCoreStyle(humanFrontCore, humanStyle, 2000);
+        } else {
+            setCoreStyle(whiteCore, jesusStyle);
+            setCoreStyle(humanFrontCore, humanStyle);
+        }
+
         whiteCore.setAttribute('r', String(cur.whiteRadius || 21));
-        blackCore.setAttribute('stroke', cur.blackStroke || '#171717');
+        blackCore.style.fill = cur.blackFill || '#2E2E2E';
+        blackCore.style.stroke = cur.blackStroke || '#171717';
+        blackCore.style.strokeWidth = String(cur.blackStrokeWidth || 4);
+        blackCore.style.opacity = '0';
+        humanFrontCore.setAttribute('r', String(cur.blackRadius || 21));
+        humanFrontCore.style.opacity = String(cur.blackOpacity);
         bottomPath.style.opacity = String(cur.bottom);
 
         if (cur.whiteReveal && previousStep === step - 1) {
@@ -641,6 +737,7 @@
 
         move(whiteDot, cur.white, cur.whiteOpacity, cur.whitePath);
         move(blackDot, cur.black, cur.blackOpacity);
+        move(humanFrontDot, cur.black, 1);
 
         infoBar.style.background = cur.accent;
         infoRef.style.color = cur.accent;
