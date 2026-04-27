@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Prayer Streaks</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
+    <script src="./config.js" defer></script>
+    <script src="./app.js" defer></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="app-header">
+        <a class="brand" href="#" aria-label="Prayer Streaks home">
+          <span class="brand-mark" aria-hidden="true"><i data-lucide="sparkles"></i></span>
+          <span>
+            <span class="brand-title">Prayer Streaks</span>
+            <span class="brand-subtitle">A shared place to pray daily</span>
+          </span>
+        </a>
+        <div class="header-actions">
+          <span id="connectionBadge" class="status-pill">Loading</span>
+          <button id="signOutButton" class="icon-button hidden" type="button" aria-label="Sign out" title="Sign out">
+            <i data-lucide="log-out"></i>
+          </button>
+        </div>
+      </header>
+
+      <main>
+        <section id="authView" class="auth-view hidden" aria-labelledby="authTitle">
+          <div class="auth-panel">
+            <div>
+              <p class="eyebrow">For the two of you</p>
+              <h1 id="authTitle">Keep a daily rhythm of praying together.</h1>
+              <p class="lede">
+                Sign in to share prayer requests, celebrate answered prayers, and protect your daily streak across your devices.
+              </p>
+            </div>
+
+            <form id="authForm" class="auth-form">
+              <label for="emailInput">Email</label>
+              <input id="emailInput" name="email" type="email" autocomplete="email" placeholder="you@example.com" required />
+
+              <label for="passwordInput">Password</label>
+              <input id="passwordInput" name="password" type="password" autocomplete="current-password" minlength="6" placeholder="At least 6 characters" required />
+
+              <div class="button-row">
+                <button id="loginButton" class="primary-button" type="submit">
+                  <i data-lucide="log-in"></i>
+                  Log in
+                </button>
+                <button id="signupButton" class="secondary-button" type="button">
+                  <i data-lucide="user-plus"></i>
+                  Create account
+                </button>
+              </div>
+              <p id="authMessage" class="form-message" role="status"></p>
+            </form>
+          </div>
+        </section>
+
+        <section id="setupView" class="setup-view hidden" aria-labelledby="setupTitle">
+          <div class="setup-grid">
+            <article class="setup-card">
+              <p class="eyebrow">Start your room</p>
+              <h1 id="setupTitle">Create a shared prayer room.</h1>
+              <p>Make one room for you and your wife. She can join with the invite code shown after setup.</p>
+              <form id="createHouseholdForm" class="stacked-form">
+                <label for="householdNameInput">Room name</label>
+                <input id="householdNameInput" name="name" type="text" maxlength="80" value="Our Prayer Room" required />
+                <button class="primary-button" type="submit">
+                  <i data-lucide="home"></i>
+                  Create room
+                </button>
+              </form>
+            </article>
+
+            <article class="setup-card">
+              <p class="eyebrow">Already invited?</p>
+              <h2>Join with a code.</h2>
+              <p>Use the invite code from the room owner to join the same prayer list and streak.</p>
+              <form id="joinHouseholdForm" class="stacked-form">
+                <label for="inviteCodeInput">Invite code</label>
+                <input id="inviteCodeInput" name="inviteCode" type="text" maxlength="20" placeholder="AB12CD34" required />
+                <button class="secondary-button" type="submit">
+                  <i data-lucide="key-round"></i>
+                  Join room
+                </button>
+              </form>
+            </article>
+          </div>
+          <p id="setupMessage" class="form-message centered" role="status"></p>
+        </section>
+
+        <section id="dashboardView" class="dashboard hidden" aria-label="Prayer dashboard">
+          <div class="hero-band">
+            <section class="streak-panel" aria-labelledby="streakTitle">
+              <div class="panel-heading">
+                <div>
+                  <p class="eyebrow">Daily together</p>
+                  <h1 id="streakTitle">Prayer streak</h1>
+                </div>
+                <button id="markPrayedButton" class="primary-button" type="button">
+                  <i data-lucide="check"></i>
+                  We prayed today
+                </button>
+              </div>
+
+              <div class="streak-metrics" aria-label="Prayer streak stats">
+                <div>
+                  <span id="currentStreak" class="big-number">0</span>
+                  <span class="metric-label">days in a row</span>
+                </div>
+                <div>
+                  <span id="longestStreak" class="big-number smaller">0</span>
+                  <span class="metric-label">longest streak</span>
+                </div>
+                <div>
+                  <span id="totalPrayerDays" class="big-number smaller">0</span>
+                  <span class="metric-label">total days</span>
+                </div>
+              </div>
+
+              <p id="streakStatus" class="streak-status">Loading your prayer rhythm...</p>
+              <div id="dayStrip" class="day-strip" aria-label="Recent prayer days"></div>
+            </section>
+
+            <aside class="room-panel" aria-labelledby="roomTitle">
+              <div class="panel-heading compact">
+                <div>
+                  <p class="eyebrow">Shared room</p>
+                  <h2 id="roomTitle">Our Prayer Room</h2>
+                </div>
+                <i data-lucide="heart-handshake" aria-hidden="true"></i>
+              </div>
+              <div class="invite-box">
+                <span>Invite code</span>
+                <button id="copyInviteButton" class="copy-code" type="button" title="Copy invite code">
+                  <strong id="inviteCode">DEMO</strong>
+                  <i data-lucide="copy"></i>
+                </button>
+              </div>
+              <p id="roomHelperText" class="helper-text">Share this code with your wife after she creates an account.</p>
+            </aside>
+          </div>
+
+          <div class="content-grid">
+            <section class="list-section" aria-labelledby="requestsTitle">
+              <div class="section-heading">
+                <div>
+                  <p class="eyebrow">Working through together</p>
+                  <h2 id="requestsTitle">Prayer requests</h2>
+                </div>
+                <span id="requestCount" class="count-pill">0</span>
+              </div>
+
+              <form id="requestForm" class="entry-form">
+                <input id="requestTitleInput" name="title" type="text" maxlength="120" placeholder="What are you praying for?" required />
+                <textarea id="requestNoteInput" name="note" rows="3" maxlength="700" placeholder="Add helpful details, scripture, names, or context"></textarea>
+                <button class="primary-button" type="submit">
+                  <i data-lucide="plus"></i>
+                  Add request
+                </button>
+              </form>
+
+              <div id="requestList" class="prayer-list"></div>
+            </section>
+
+            <section class="list-section answered-section" aria-labelledby="answeredTitle">
+              <div class="section-heading">
+                <div>
+                  <p class="eyebrow">Remember and rejoice</p>
+                  <h2 id="answeredTitle">Answered prayers</h2>
+                </div>
+                <span id="answeredCount" class="count-pill">0</span>
+              </div>
+
+              <form id="answeredForm" class="entry-form">
+                <input id="answeredTitleInput" name="title" type="text" maxlength="120" placeholder="What did God answer?" required />
+                <textarea id="answeredNoteInput" name="note" rows="3" maxlength="700" placeholder="Capture the story so you can look back later"></textarea>
+                <button class="secondary-button" type="submit">
+                  <i data-lucide="party-popper"></i>
+                  Add answered prayer
+                </button>
+              </form>
+
+              <div id="answeredList" class="prayer-list"></div>
+            </section>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <dialog id="answeredDialog" class="answer-dialog">
+      <form id="answerDialogForm" method="dialog">
+        <div class="dialog-heading">
+          <div>
+            <p class="eyebrow">Mark answered</p>
+            <h2 id="answerDialogTitle">Move to answered prayers</h2>
+          </div>
+          <button class="icon-button" type="button" data-close-dialog aria-label="Close" title="Close">
+            <i data-lucide="x"></i>
+          </button>
+        </div>
+        <label for="answerNoteInput">How was this prayer answered?</label>
+        <textarea id="answerNoteInput" rows="5" maxlength="700" placeholder="Optional note"></textarea>
+        <div class="button-row end">
+          <button class="secondary-button" type="button" data-close-dialog>Cancel</button>
+          <button id="confirmAnsweredButton" class="primary-button" type="submit">
+            <i data-lucide="check-check"></i>
+            Move prayer
+          </button>
+        </div>
+      </form>
+    </dialog>
+  </body>
+</html>
