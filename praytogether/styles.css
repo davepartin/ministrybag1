@@ -68,20 +68,26 @@ button:disabled {
 .brand {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
+  gap: 18px;
   color: inherit;
   text-decoration: none;
 }
 
 .brand-mark {
   display: grid;
-  width: 42px;
-  height: 42px;
+  width: 84px;
+  height: 84px;
   place-items: center;
   border-radius: var(--radius);
-  color: #fff;
-  background: var(--accent);
-  box-shadow: 0 10px 22px rgba(37, 111, 104, 0.2);
+  overflow: hidden;
+  background: #a94f1d;
+  box-shadow: 0 10px 22px rgba(88, 46, 28, 0.2);
+}
+
+.brand-mark img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .brand-title,
@@ -89,14 +95,23 @@ button:disabled {
   display: block;
 }
 
+.brand-copy {
+  display: grid;
+  gap: 4px;
+}
+
 .brand-title {
-  font-size: 1.05rem;
-  font-weight: 800;
+  color: var(--ink);
+  font-size: clamp(1.55rem, 2vw, 2rem);
+  font-weight: 900;
+  line-height: 0.95;
 }
 
 .brand-subtitle {
   color: var(--muted);
-  font-size: 0.86rem;
+  font-size: clamp(0.98rem, 1.2vw, 1.12rem);
+  font-weight: 650;
+  line-height: 1.25;
 }
 
 .header-actions,
@@ -138,6 +153,11 @@ button:disabled {
   font-size: 0.84rem;
   font-weight: 700;
   white-space: nowrap;
+}
+
+.status-pill {
+  padding-inline: 18px;
+  font-size: 0.55rem;
 }
 
 .status-pill.online {
@@ -468,14 +488,18 @@ textarea:focus {
 
 .streak-metrics {
   display: grid;
-  grid-template-columns: minmax(150px, 1.2fr) repeat(2, minmax(115px, 0.6fr));
-  gap: 14px;
-  margin: 24px 0 12px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  min-width: 0;
+  margin: 18px 0 12px;
 }
 
 .streak-metrics > div {
-  min-height: 126px;
-  padding: 18px;
+  display: grid;
+  align-content: center;
+  min-width: 0;
+  min-height: 96px;
+  padding: 12px 14px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: var(--paper-strong);
@@ -484,22 +508,24 @@ textarea:focus {
 .big-number {
   display: block;
   color: var(--accent-strong);
-  font-size: clamp(3.2rem, 7vw, 6.4rem);
+  font-size: clamp(2.8rem, 5vw, 4.9rem);
   font-weight: 900;
   line-height: 0.9;
 }
 
 .big-number.smaller {
   color: var(--ink);
-  font-size: clamp(2.4rem, 4.5vw, 4.2rem);
+  font-size: clamp(2.5rem, 4vw, 3.9rem);
 }
 
 .metric-label {
   display: block;
-  margin-top: 8px;
+  margin-top: 6px;
   color: var(--muted);
-  font-size: 0.9rem;
+  font-size: 0.82rem;
   font-weight: 800;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
 }
 
 .streak-status,
@@ -769,6 +795,7 @@ svg {
 
   .app-header {
     align-items: flex-start;
+    flex-wrap: wrap;
     margin-bottom: 18px;
   }
 
@@ -776,8 +803,22 @@ svg {
     display: none;
   }
 
+  .brand {
+    gap: 12px;
+  }
+
+  .brand-mark {
+    width: 64px;
+    height: 64px;
+  }
+
+  .brand-title {
+    font-size: 1.35rem;
+    line-height: 1;
+  }
+
   .status-pill {
-    max-width: 150px;
+    max-width: 225px;
     overflow: hidden;
     text-overflow: ellipsis;
   }
@@ -802,15 +843,35 @@ svg {
   }
 
   .streak-metrics {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    margin-top: 16px;
+  }
+
+  .streak-metrics > div {
+    text-align: center;
+    min-height: 82px;
+    padding: 10px 8px;
+  }
+
+  .big-number,
+  .big-number.smaller {
+    font-size: 2.35rem;
+  }
+
+  .metric-label {
+    margin-top: 5px;
+    font-size: 0.68rem;
   }
 
   .day-strip {
-    grid-template-columns: repeat(7, minmax(34px, 1fr));
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 6px;
   }
 
   .day-cell {
     min-height: 72px;
+    min-width: 0;
   }
 
   .button-row,
@@ -836,5 +897,48 @@ svg {
 
   .entry-form button {
     justify-self: stretch;
+  }
+}
+
+@media (max-width: 420px) {
+  .header-actions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .streak-panel {
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+
+  .streak-metrics {
+    gap: 5px;
+  }
+
+  .streak-metrics > div {
+    min-height: 76px;
+    padding: 8px 4px;
+  }
+
+  .big-number,
+  .big-number.smaller {
+    font-size: 1.9rem;
+  }
+
+  .metric-label {
+    font-size: 0.56rem;
+  }
+
+  .day-strip {
+    gap: 4px;
+  }
+
+  .day-cell {
+    min-height: 66px;
+    font-size: 0.62rem;
+  }
+
+  .day-month {
+    font-size: 0.56rem;
   }
 }

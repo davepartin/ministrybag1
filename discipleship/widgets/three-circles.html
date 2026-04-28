@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The 3 Circles</title>
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            padding: 0;
+            margin: 0;
+            font-family: 'Georgia', 'Cambria', serif;
+            background: #F8F6F1;
+            color: #2C2416;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        button {
+            font: inherit;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .widget-outer {
+            background: #FFFFFF;
+            border-radius: 0;
+            overflow: hidden;
+            box-shadow: none;
+            border: none;
+            max-width: 100%;
+            width: 100%;
+            margin: 0;
+            position: relative;
+        }
+
+        @media (min-width: 560px) {
+            body {
+                padding: 16px;
+                background: #F8F6F1;
+            }
+            .widget-outer {
+                border-radius: 12px;
+                box-shadow: 0 6px 20px rgba(44, 36, 22, 0.08);
+                border: 1px solid #EBE5D9;
+                max-width: 460px;
+                margin: 0 auto;
+            }
+        }
+
+        .title-bar {
+            background: #2C2416;
+            padding: 6px 14px;
+            text-align: center;
+        }
+
+        .title-bar h1 {
+            font-size: 18px;
+            font-weight: 700;
+            color: #FAF8F3;
+            font-family: Georgia, 'Cambria', serif;
+            letter-spacing: 0;
+            margin: 0;
+            line-height: 1.15;
+        }
+
+        .diagram-wrapper {
+            position: relative;
+            height: 300px;
+            overflow: hidden;
+            background:
+                radial-gradient(circle at 20% 10%, rgba(255, 255, 255, 0.55) 0 35%, transparent 70%),
+                radial-gradient(circle at 80% 95%, rgba(0, 0, 0, 0.04) 0 40%, transparent 70%),
+                linear-gradient(180deg, #F6F1E4 0%, #EFE7D3 100%);
+        }
+
+        .scene-svg {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        .scene-caption {
+            position: absolute;
+            top: 9px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-family: 'Trebuchet MS', Arial, sans-serif;
+            font-size: 10px;
+            font-weight: 900;
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+            color: rgba(44, 36, 22, 0.42);
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .intro-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 18px 24px;
+            background: linear-gradient(180deg, rgba(252, 250, 244, 0.10), rgba(252, 250, 244, 0.78));
+        }
+
+        .intro-card {
+            max-width: 320px;
+            padding: 18px 18px 16px;
+            border: 1px solid rgba(227, 219, 203, 0.92);
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.92);
+            box-shadow: 0 14px 32px rgba(44, 36, 22, 0.10);
+            backdrop-filter: blur(4px);
+        }
+
+        .intro-title {
+            margin: 0 0 7px;
+            color: #1E6FA0;
+            font-family: 'Trebuchet MS', Arial, sans-serif;
+            font-size: 16px;
+            font-weight: 900;
+            line-height: 1.2;
+        }
+
+        .intro-copy {
+            margin: 0;
+            color: #4C4236;
+            font-size: 14px;
+            line-height: 1.45;
+        }
+
+        #card-area {
+            background-color: #F6F4EE;
+            border-top: 1px solid #EBE5D9;
+            padding-top: 8px;
+        }
+
+        .verse-card-wrapper {
+            margin: 0 auto;
+            padding: 0 12px 8px;
+        }
+
+        .verse-card {
+            background: #FFFFFF;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 14px rgba(44, 36, 22, 0.06);
+            animation: fadeSlide 0.35s ease;
+        }
+
+        .verse-card-bar {
+            height: 4px;
+            background: var(--accent-color, #1E6FA0);
+        }
+
+        .verse-card-content {
+            padding: 10px 16px;
+            height: 112px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            overflow: hidden;
+        }
+
+        .verse-card-title {
+            font-size: 15px;
+            font-weight: 800;
+            color: var(--accent-color, #1E6FA0);
+            margin: 0 0 2px 0;
+            line-height: 1.25;
+            font-family: 'Trebuchet MS', Arial, sans-serif;
+        }
+
+        .verse-card-subtitle {
+            color: #6B604F;
+            font-family: 'Trebuchet MS', Arial, sans-serif;
+            font-size: 11.2px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin: 0 0 4px;
+        }
+
+        .verse-card-text {
+            font-size: 11.4px;
+            line-height: 1.27;
+            color: #3D3426;
+            margin: 0;
+            flex-grow: 1;
+        }
+
+        .verse-card-text b {
+            color: var(--accent-color, #1E6FA0);
+            font-family: 'Trebuchet MS', Arial, sans-serif;
+            font-size: 10.8px;
+            font-weight: 900;
+        }
+
+        .nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+            padding: 0 2px;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            background: transparent;
+            border: 1.5px solid #D4CFC4;
+            border-radius: 10px;
+            padding: 8px 14px;
+            font-size: 12px;
+            font-family: 'Trebuchet MS', sans-serif;
+            cursor: pointer;
+            font-weight: 700;
+            color: #4D4337;
+        }
+
+        .nav-btn.primary {
+            color: #fff;
+            border: none;
+            min-width: 96px;
+        }
+
+        .nav-btn.hidden {
+            visibility: hidden;
+        }
+
+        .dot-nav {
+            display: flex;
+            gap: 5px;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 999px;
+            border: 0;
+            background: #D4CFC4;
+            transition: width 0.25s ease, background 0.25s ease;
+        }
+
+        .dot.available {
+            cursor: pointer;
+        }
+
+        .dot.current {
+            width: 20px;
+        }
+
+        @keyframes fadeSlide {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="widget-outer">
+    <div class="title-bar">
+        <h1>The 3 Circles</h1>
+    </div>
+
+    <div class="diagram-wrapper" id="diagramWrapper">
+        <div class="scene-caption" id="sceneCaption"></div>
+        <svg class="scene-svg" id="scene" viewBox="0 0 390 300" preserveAspectRatio="xMidYMid meet" role="img" aria-label="The 3 Circles gospel diagram"></svg>
+        <div class="intro-overlay" id="introOverlay">
+            <div class="intro-card">
+                <p class="intro-title">A Simple Way to Share Jesus</p>
+                <p class="intro-copy">Three circles tell the whole gospel: <strong>God&rsquo;s Design</strong>, <strong>Brokenness</strong>, and the <strong>Gospel</strong>.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="card-area"></div>
+</div>
+
+<script>
+(function () {
+    var NS = 'http://www.w3.org/2000/svg';
+    var ACCENT = '#1E6FA0';
+    var MARKER = '#D9461F';
+    var INK    = '#1B1B1B';
+    var step = -1;
+
+    /* Oval centers and radii (rx > ry for the marker-drawn oval look). */
+    var GD = { cx: 78,  cy: 90,  rx: 52, ry: 30 };
+    var BK = { cx: 308, cy: 92,  rx: 60, ry: 36 };
+    var GP = { cx: 158, cy: 232, rx: 54, ry: 30 };
+
+    /* Cycle arrow paths, sweeping OUTSIDE the triangle. */
+    var SIN_PATH    = 'M 122 70 Q 195 18 250 60';
+    var REPENT_PATH = 'M 348 116 Q 380 198 210 235';
+    var RECOVER_PATH = 'M 102 230 Q 12 196 38 110';
+
+    /* Offset paths used as invisible textPath rails so labels sit OUTSIDE
+       the visible arrows instead of crashing into them. */
+    var SIN_TEXT_PATH     = 'M 130 56 Q 195 4 244 46';
+    var REPENT_TEXT_PATH  = 'M 358 128 Q 392 208 218 252';
+    var RECOVER_TEXT_PATH = 'M 24 100 Q -2 196 96 244';
+
+    var stops = [
+        {
+            key: 'design',
+            caption: 'God’s Design',
+            color: '#1E6FA0',
+            cardTitle: 'God’s Design',
+            cardSubtitle: 'Where the story begins',
+            cardText: 'God made the world good and made us for a close relationship with Him. Every part of life is meant to work the way He designed it. <b>Genesis 1:31</b> God saw all He had made, and it was very good.'
+        },
+        {
+            key: 'sin',
+            caption: 'Sin - We turned away',
+            color: '#8A4A3F',
+            cardTitle: 'Sin',
+            cardSubtitle: 'We chose our own way',
+            cardText: 'We turned from God’s design and went our own way. The Bible calls this sin, anything that dishonors God. <b>Romans 3:23</b> For all have sinned and fall short of the glory of God.'
+        },
+        {
+            key: 'broken',
+            caption: 'Brokenness - The world we live in',
+            color: '#8A4A3F',
+            cardTitle: 'Brokenness',
+            cardSubtitle: 'Why life feels cracked',
+            cardText: 'Sin broke the world. We feel it in pain, sickness, and broken homes. We chase escape, but it snaps us back. <b>Romans 6:23</b> The wages of sin is death, but the gift of God is eternal life.'
+        },
+        {
+            key: 'gospel',
+            caption: 'The Gospel',
+            color: '#1E6FA0',
+            cardTitle: 'The Gospel',
+            cardSubtitle: 'Jesus came, the cross, He rose',
+            cardText: 'God did not leave us stuck. Jesus came down, lived sinless, died for our sin, and rose on the third day. <b>1 Cor. 15:3-4</b> Christ died for our sins, was buried, and was raised again.'
+        },
+        {
+            key: 'repent',
+            caption: 'Repent & Believe',
+            color: '#1E6FA0',
+            cardTitle: 'Repent & Believe',
+            cardSubtitle: 'Turn to Jesus and trust Him',
+            cardText: 'Turn from going your own way and put your faith in Jesus as Savior and King. This is how you receive His gift. <b>Mark 1:15</b> Repent and believe in the gospel.'
+        },
+        {
+            key: 'recover',
+            caption: 'Recover & Pursue God’s Design',
+            color: '#1A6B55',
+            cardTitle: 'Recover & Pursue',
+            cardSubtitle: 'New life, restored to God',
+            cardText: 'Turn to Jesus, and God forgives you, makes you new, and restores you to His design. His Spirit walks with you every day. <b>2 Cor. 5:17</b> If anyone is in Christ, he is a new creation.'
+        },
+        {
+            key: 'invite',
+            caption: 'Where do you see yourself?',
+            color: '#1E6FA0',
+            cardTitle: 'Your Turn',
+            cardSubtitle: 'Where are you on this picture?',
+            cardText: 'Which circle are you in right now? Where do you want to be? What is keeping you from turning to Jesus today? <b>Romans 10:13</b> Everyone who calls on the name of the Lord will be saved.'
+        }
+    ];
+
+    function svgEl(tag, attrs) {
+        var el = document.createElementNS(NS, tag);
+        Object.keys(attrs || {}).forEach(function (k) { el.setAttribute(k, attrs[k]); });
+        return el;
+    }
+
+    function ensureDefs(svg) {
+        var defs = svg.querySelector('defs');
+        if (!defs) { defs = svgEl('defs'); svg.appendChild(defs); }
+        return defs;
+    }
+
+    function defineArrowMarker(svg, id, color) {
+        var defs = ensureDefs(svg);
+        var marker = svgEl('marker', {
+            id: id, viewBox: '0 0 10 10', refX: 8, refY: 5,
+            markerWidth: 5.2, markerHeight: 5.2, orient: 'auto-start-reverse'
+        });
+        marker.appendChild(svgEl('path', { d: 'M 0 0 L 10 5 L 0 10 z', fill: color }));
+        defs.appendChild(marker);
+    }
+
+    function definePath(svg, id, d) {
+        var defs = ensureDefs(svg);
+        defs.appendChild(svgEl('path', { id: id, d: d, fill: 'none' }));
+    }
+
+    /* Marker-style stroke: a soft halo + a tighter inner stroke for a hand-drawn
+       coral feel. */
+    function markerStroke(svg, d, opts) {
+        opts = opts || {};
+        var width = opts.width || 5.5;
+        var color = opts.color || MARKER;
+        var dashed = opts.dashed;
+        var marker = opts.markerEnd;
+
+        var halo = svgEl('path', {
+            d: d, fill: 'none',
+            stroke: color, 'stroke-width': width + 3,
+            'stroke-linecap': 'round', 'stroke-linejoin': 'round',
+            opacity: 0.22
+        });
+        svg.appendChild(halo);
+
+        var inner = {
+            d: d, fill: 'none',
+            stroke: color, 'stroke-width': width,
+            'stroke-linecap': 'round', 'stroke-linejoin': 'round'
+        };
+        if (dashed) inner['stroke-dasharray'] = '6 6';
+        if (marker) inner['marker-end'] = 'url(#' + marker + ')';
+        svg.appendChild(svgEl('path', inner));
+    }
+
+    /* Build the path for a hand-drawn oval. We trace a full ellipse, then add a
+       short overshoot loop at the start - the marker pass that goes around again
+       past where it first met. */
+    function ovalPath(o) {
+        var cx = o.cx, cy = o.cy, rx = o.rx, ry = o.ry;
+        return [
+            'M', cx - rx, cy,
+            'C', cx - rx, cy - ry * 1.05, cx - rx * 0.35, cy - ry * 1.10, cx, cy - ry,
+            'C', cx + rx * 0.45, cy - ry * 1.10, cx + rx * 1.02, cy - ry * 0.55, cx + rx, cy,
+            'C', cx + rx * 1.02, cy + ry * 0.85, cx + rx * 0.35, cy + ry * 1.05, cx, cy + ry,
+            'C', cx - rx * 0.5, cy + ry * 1.05, cx - rx * 1.02, cy + ry * 0.7, cx - rx, cy
+        ].join(' ');
+    }
+
+    /* The "second pass" of marker around the top of the oval - small overshoot
+       starting near the top-right of the ellipse, looping ~140 degrees back over.
+       Gives the doubled-stroke feel the reference images have. */
+    function ovalOvershootPath(o) {
+        var cx = o.cx, cy = o.cy, rx = o.rx, ry = o.ry;
+        return [
+            'M', cx + rx * 0.55, cy - ry * 0.92,
+            'C', cx + rx * 0.95, cy - ry * 0.75, cx + rx * 1.02, cy - ry * 0.10, cx + rx * 0.95, cy + ry * 0.20,
+            'C', cx + rx * 0.65, cy - ry * 0.20, cx + rx * 0.10, cy - ry * 1.10, cx - rx * 0.30, cy - ry * 1.04
+        ].join(' ');
+    }
+
+    function drawOval(svg, o, faded) {
+        var alpha = faded ? 0.32 : 1;
+        var g = svgEl('g', { opacity: alpha });
+        var halo = svgEl('path', {
+            d: ovalPath(o), fill: 'none',
+            stroke: MARKER, 'stroke-width': 9.5,
+            'stroke-linecap': 'round', 'stroke-linejoin': 'round',
+            opacity: 0.22
+        });
+        g.appendChild(halo);
+        g.appendChild(svgEl('path', {
+            d: ovalPath(o), fill: 'none',
+            stroke: MARKER, 'stroke-width': 5.5,
+            'stroke-linecap': 'round', 'stroke-linejoin': 'round'
+        }));
+        g.appendChild(svgEl('path', {
+            d: ovalOvershootPath(o), fill: 'none',
+            stroke: MARKER, 'stroke-width': 4.4,
+            'stroke-linecap': 'round', 'stroke-linejoin': 'round',
+            opacity: 0.85
+        }));
+        svg.appendChild(g);
+    }
+
+    function drawOvalLabel(svg, o, lines) {
+        var lineHeight = 13.5;
+        var totalH = lines.length * lineHeight;
+        var startY = o.cy - totalH / 2 + lineHeight - 2;
+        for (var i = 0; i < lines.length; i++) {
+            var t = svgEl('text', {
+                x: o.cx, y: startY + i * lineHeight,
+                'text-anchor': 'middle',
+                'font-family': 'Trebuchet MS, Arial Black, Arial, sans-serif',
+                'font-size': 12.5,
+                'font-weight': 900,
+                'letter-spacing': 0.4,
+                fill: INK
+            });
+            t.textContent = lines[i];
+            svg.appendChild(t);
+        }
+    }
+
+    /* Brokenness "bungee" arrows - jagged outward zigzags ending in arrowheads.
+       Fixed paths kept comfortably inside viewBox. */
+    function drawBungees(svg) {
+        var bungees = [
+            'M 354 76 L 362 64 L 360 56 L 372 44 L 368 36',     // up-right
+            'M 370 96 L 378 90 L 380 100 L 388 96',             // right
+            'M 360 124 L 372 130 L 370 140 L 384 144',          // down-right
+            'M 320 130 L 322 142 L 314 146 L 318 158'           // down
+        ];
+        bungees.forEach(function (d, i) {
+            markerStroke(svg, d, { width: 3.4, markerEnd: 'arrow' });
+        });
+    }
+
+    /* Curved label that follows a textPath. dy pushes baseline perpendicular
+       to keep the label off the visible arrow line. */
+    function drawArcLabel(svg, pathId, text, fontSize) {
+        var t = svgEl('text', {
+            'font-family': 'Trebuchet MS, Arial Black, Arial, sans-serif',
+            'font-size': fontSize || 11.5,
+            'font-weight': 900,
+            'letter-spacing': 0.5,
+            fill: INK
+        });
+        var tp = svgEl('textPath', {
+            href: '#' + pathId,
+            startOffset: '50%',
+            'text-anchor': 'middle'
+        });
+        tp.setAttribute('xlink:href', '#' + pathId);
+        tp.textContent = text;
+        t.appendChild(tp);
+        svg.appendChild(t);
+    }
+
+    function buildScene() {
+        var scene = document.getElementById('scene');
+        var caption = document.getElementById('sceneCaption');
+        scene.innerHTML = '';
+        caption.textContent = step === -1 ? '' : stops[step].caption;
+
+        defineArrowMarker(scene, 'arrow', MARKER);
+        definePath(scene, 'sinTextPath',     SIN_TEXT_PATH);
+        definePath(scene, 'repentTextPath',  REPENT_TEXT_PATH);
+        definePath(scene, 'recoverTextPath', RECOVER_TEXT_PATH);
+
+        /* All three ovals are present from the first step so the structure is
+           never confusing - they are faded until their step lights them up. */
+        var godActive    = step >= 0;
+        var brokenActive = step >= 2;
+        var gospelActive = step >= 3;
+
+        drawOval(scene, GD, !godActive);
+        drawOvalLabel(scene, GD, ['GOD’S', 'DESIGN']);
+
+        drawOval(scene, BK, !brokenActive);
+        drawOvalLabel(scene, BK, ['BROKENNESS']);
+
+        drawOval(scene, GP, !gospelActive);
+        drawOvalLabel(scene, GP, ['GOSPEL']);
+
+        if (step >= 1) {
+            markerStroke(scene, SIN_PATH, { width: 4.5, markerEnd: 'arrow' });
+            drawArcLabel(scene, 'sinTextPath', 'SIN', 12);
+        }
+
+        if (step >= 2) {
+            drawBungees(scene);
+        }
+
+        if (step >= 4) {
+            markerStroke(scene, REPENT_PATH, { width: 4.5, markerEnd: 'arrow' });
+            drawArcLabel(scene, 'repentTextPath', 'REPENT & BELIEVE', 11);
+        }
+
+        if (step >= 5) {
+            markerStroke(scene, RECOVER_PATH, { width: 4.5, markerEnd: 'arrow' });
+            drawArcLabel(scene, 'recoverTextPath', 'RECOVER & PURSUE', 11);
+        }
+
+        if (step === 6) {
+            [GD, BK, GP].forEach(function (o) {
+                scene.appendChild(svgEl('ellipse', {
+                    cx: o.cx, cy: o.cy, rx: o.rx + 8, ry: o.ry + 8,
+                    fill: 'none', stroke: '#1E6FA0',
+                    'stroke-width': 1.2, opacity: 0.42,
+                    'stroke-dasharray': '3 4'
+                }));
+            });
+        }
+    }
+
+    /* --- Card --- */
+    function buildCard() {
+        var cardArea = document.getElementById('card-area');
+        cardArea.innerHTML = '';
+
+        if (step === -1) {
+            var beginWrap = document.createElement('div');
+            beginWrap.className = 'verse-card-wrapper';
+            var beginCard = document.createElement('div');
+            beginCard.className = 'verse-card';
+            beginCard.innerHTML =
+                '<div class="verse-card-bar" style="background:' + ACCENT + ';"></div>' +
+                '<div class="verse-card-content" style="--accent-color:' + ACCENT + ';">' +
+                    '<h2 class="verse-card-title">How Do I Share the Gospel?</h2>' +
+                    '<p class="verse-card-subtitle">A picture you can draw on a napkin</p>' +
+                    '<p class="verse-card-text">Three circles tell the whole story: God’s good design, our brokenness, and the rescue Jesus came to bring. Walk through it once, and you’ll be able to share it anywhere.</p>' +
+                '</div>';
+            beginWrap.appendChild(beginCard);
+
+            var nav = document.createElement('div');
+            nav.className = 'nav-bar';
+            var back = document.createElement('button');
+            back.className = 'nav-btn hidden';
+            back.textContent = '← Back';
+            var dots = buildDots(false);
+            var next = document.createElement('button');
+            next.className = 'nav-btn primary';
+            next.style.background = ACCENT;
+            next.textContent = 'Begin →';
+            next.addEventListener('click', function () { step = 0; render(); });
+            nav.appendChild(back);
+            nav.appendChild(dots);
+            nav.appendChild(next);
+            beginWrap.appendChild(nav);
+            cardArea.appendChild(beginWrap);
+            return;
+        }
+
+        var current = stops[step];
+        var wrapper = document.createElement('div');
+        wrapper.className = 'verse-card-wrapper';
+        wrapper.style.setProperty('--accent-color', current.color);
+
+        var card = document.createElement('div');
+        card.className = 'verse-card';
+
+        var bar = document.createElement('div');
+        bar.className = 'verse-card-bar';
+        bar.style.background = current.color;
+        card.appendChild(bar);
+
+        var content = document.createElement('div');
+        content.className = 'verse-card-content';
+        content.style.setProperty('--accent-color', current.color);
+
+        var title = document.createElement('h2');
+        title.className = 'verse-card-title';
+        title.style.color = current.color;
+        title.textContent = current.cardTitle;
+
+        var subtitle = document.createElement('p');
+        subtitle.className = 'verse-card-subtitle';
+        subtitle.textContent = current.cardSubtitle;
+
+        var text = document.createElement('p');
+        text.className = 'verse-card-text';
+        text.innerHTML = current.cardText;
+
+        content.appendChild(title);
+        content.appendChild(subtitle);
+        content.appendChild(text);
+        card.appendChild(content);
+        wrapper.appendChild(card);
+        wrapper.appendChild(buildNav(current));
+        cardArea.appendChild(wrapper);
+    }
+
+    function rgba(hex, alpha) {
+        var clean = hex.replace('#', '');
+        var num = parseInt(clean, 16);
+        return 'rgba(' + ((num >> 16) & 255) + ',' + ((num >> 8) & 255) + ',' + (num & 255) + ',' + alpha + ')';
+    }
+
+    function buildDots(interactive) {
+        var dots = document.createElement('div');
+        dots.className = 'dot-nav';
+        stops.forEach(function (stop, idx) {
+            var dot = document.createElement(interactive ? 'button' : 'div');
+            dot.className = 'dot' + (interactive && idx <= step ? ' available' : '') + (idx === step ? ' current' : '');
+            if (interactive) {
+                dot.type = 'button';
+                dot.style.background = idx === step ? stop.color
+                                     : idx < step  ? rgba(stop.color, 0.45)
+                                     : '#D4CFC4';
+                if (idx <= step) {
+                    dot.addEventListener('click', function () { step = idx; render(); });
+                }
+            } else {
+                dot.style.background = '#D4CFC4';
+            }
+            dots.appendChild(dot);
+        });
+        return dots;
+    }
+
+    function buildNav(current) {
+        var nav = document.createElement('div');
+        nav.className = 'nav-bar';
+
+        var backBtn = document.createElement('button');
+        backBtn.className = 'nav-btn';
+        backBtn.textContent = '← Back';
+        if (step === 0) backBtn.disabled = true;
+        backBtn.addEventListener('click', function () {
+            if (step > 0) { step -= 1; render(); }
+        });
+        nav.appendChild(backBtn);
+
+        nav.appendChild(buildDots(true));
+
+        var nextBtn = document.createElement('button');
+        nextBtn.className = 'nav-btn primary';
+        nextBtn.style.background = current.color;
+        nextBtn.textContent = (step === stops.length - 1) ? '↻ Restart' : 'Next →';
+        nextBtn.addEventListener('click', function () {
+            if (step === stops.length - 1) { step = -1; }
+            else { step += 1; }
+            render();
+        });
+        nav.appendChild(nextBtn);
+
+        return nav;
+    }
+
+    function render() {
+        var overlay = document.getElementById('introOverlay');
+        overlay.style.display = (step === -1) ? 'flex' : 'none';
+        buildScene();
+        buildCard();
+    }
+
+    render();
+}());
+</script>
+</body>
+</html>

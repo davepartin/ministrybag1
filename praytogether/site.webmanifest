@@ -1,0 +1,21 @@
+{
+  "name": "Pray Together",
+  "short_name": "Pray Together",
+  "description": "A shared place to pray daily, keep prayer requests, and celebrate answered prayers.",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#f7f4ee",
+  "theme_color": "#a94f1d",
+  "icons": [
+    {
+      "src": "./assets/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "./assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

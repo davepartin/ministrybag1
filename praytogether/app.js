@@ -9,6 +9,10 @@ const SUPABASE_READY =
 const todayKey = () => toDateKey(new Date());
 const DAY_MS = 24 * 60 * 60 * 1000;
 
+if ("scrollRestoration" in window.history) {
+  window.history.scrollRestoration = "manual";
+}
+
 let supabaseClient = null;
 let realtimeChannel = null;
 let answerTargetId = null;
@@ -27,6 +31,7 @@ const state = {
 };
 
 const els = {};
+let didResetInitialScroll = false;
 
 document.addEventListener("DOMContentLoaded", init);
 
@@ -47,6 +52,7 @@ async function init() {
   } else {
     loadDemoState();
     render();
+    resetInitialScroll();
   }
 }
 
@@ -153,6 +159,7 @@ async function loadAfterAuth() {
     state.showRoomManager = false;
     unsubscribeRealtime();
     render();
+    resetInitialScroll();
     return;
   }
 
@@ -162,6 +169,18 @@ async function loadAfterAuth() {
     subscribeRealtime();
   }
   render();
+  resetInitialScroll();
+}
+
+function resetInitialScroll() {
+  if (didResetInitialScroll) return;
+  didResetInitialScroll = true;
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  };
+  scrollToTop();
+  window.requestAnimationFrame(scrollToTop);
+  window.setTimeout(scrollToTop, 60);
 }
 
 async function loadHouseholds(preferredHouseholdId = null) {
@@ -678,7 +697,7 @@ function renderConnectionBadge() {
   }
 
   if (!state.session) {
-    els.connectionBadge.textContent = "Supabase ready";
+    els.connectionBadge.textContent = "Log in or Create account";
     els.connectionBadge.className = "status-pill";
     return;
   }
@@ -770,7 +789,7 @@ function renderDashboard() {
   els.roomHelperText.textContent =
     state.mode === "demo"
       ? "Demo mode saves only in this browser. Connect Supabase to share this room across accounts."
-      : "Share this code with your wife after she creates an account.";
+      : "Share this code to invite others to your Prayer Room.";
 
   els.currentStreak.textContent = stats.current;
   els.longestStreak.textContent = stats.longest;

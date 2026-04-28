@@ -4,18 +4,27 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pray Together</title>
-    <link rel="stylesheet" href="./styles.css" />
+    <meta name="theme-color" content="#a94f1d" />
+    <meta name="apple-mobile-web-app-title" content="Pray Together" />
+    <meta name="application-name" content="Pray Together" />
+    <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon-16.png" />
+    <link rel="manifest" href="./site.webmanifest" />
+    <link rel="stylesheet" href="./styles.css?v=20260427-layout" />
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2" defer></script>
     <script src="./config.js" defer></script>
-    <script src="./app.js" defer></script>
+    <script src="./app.js?v=20260427-layout" defer></script>
   </head>
   <body>
     <div class="app-shell">
       <header class="app-header">
         <a class="brand" href="#" aria-label="Pray Together home">
-          <span class="brand-mark" aria-hidden="true"><i data-lucide="sparkles"></i></span>
-          <span>
+          <span class="brand-mark" aria-hidden="true">
+            <img src="./assets/pray-together-logo-square.png" alt="" />
+          </span>
+          <span class="brand-copy">
             <span class="brand-title">Pray Together</span>
             <span class="brand-subtitle">A shared place to pray daily</span>
           </span>
@@ -32,7 +41,7 @@
         <section id="authView" class="auth-view hidden" aria-labelledby="authTitle">
           <div class="auth-panel">
             <div>
-              <p class="eyebrow">For the two of you</p>
+              <p class="eyebrow">For your prayer circle</p>
               <h1 id="authTitle">Keep a daily rhythm of praying together.</h1>
               <p class="lede">
                 Sign in to share prayer requests, celebrate answered prayers, and protect your daily streak across your devices.
@@ -78,7 +87,7 @@
             <div>
               <p class="eyebrow">Prayer rooms</p>
               <h1 id="setupTitle">Choose where you want to pray.</h1>
-              <p class="lede">Start a new shared room, join your wife’s room with a code, or switch between rooms you already belong to.</p>
+              <p class="lede">Start a new shared room, join another room with a code, or switch between rooms you already belong to.</p>
             </div>
             <button id="backToDashboardButton" class="secondary-button hidden" type="button">
               <i data-lucide="layout-dashboard"></i>
@@ -101,7 +110,7 @@
             <article class="setup-card">
               <p class="eyebrow">Start your room</p>
               <h2>Create a shared prayer room.</h2>
-              <p>Make a room and share its invite code with the person praying with you.</p>
+              <p>Make a room and share its invite code with the people praying with you.</p>
               <form id="createHouseholdForm" class="stacked-form">
                 <label for="householdNameInput">Room name</label>
                 <input id="householdNameInput" name="name" type="text" maxlength="80" value="Our Prayer Room" required />
@@ -181,7 +190,7 @@
                   <i data-lucide="copy"></i>
                 </button>
               </div>
-              <p id="roomHelperText" class="helper-text">Share this code with your wife after she creates an account.</p>
+              <p id="roomHelperText" class="helper-text">Share this code to invite others to your Prayer Room.</p>
               <button id="openRoomsButton" class="secondary-button full-button" type="button">
                 <i data-lucide="door-open"></i>
                 Manage rooms

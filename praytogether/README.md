@@ -1,6 +1,6 @@
 # Pray Together
 
-A private prayer web app for a couple to:
+A private prayer web app for couples, families, and small groups to:
 
 - mark that you prayed together today
 - track your current streak, longest streak, and total prayer days
@@ -55,8 +55,8 @@ In Supabase:
 
 1. Go to **Authentication > Providers > Email**.
 2. Keep email/password enabled.
-3. For the easiest private couple app, you can temporarily turn off email confirmations while creating accounts.
-4. After both accounts are created, you can turn confirmations back on.
+3. For the easiest private setup, you can temporarily turn off email confirmations while creating accounts.
+4. After everyone has created an account, you can turn confirmations back on.
 
 If email confirmation is enabled, each person must confirm their email before logging in.
 
@@ -66,10 +66,10 @@ If email confirmation is enabled, each person must confirm their email before lo
 2. Choose **Create account** if you are new, or **Log in** if you already have an account.
 3. After signing in, choose **Create room** to start a room or **Join room** to enter someone else's invite code.
 4. Copy the invite code from the room panel.
-5. Have your wife create her account.
-6. She chooses **Join room** and enters the invite code.
+5. Have the people you want to invite create their accounts.
+6. They choose **Join room** and enter the invite code.
 
-After that, both accounts share the same prayer streak, prayer requests, and answered prayers. If you belong to more than one room, use the room switcher or **Manage rooms** to choose which one you are viewing.
+After that, everyone in the room shares the same prayer streak, prayer requests, and answered prayers. If you belong to more than one room, use the room switcher or **Manage rooms** to choose which one you are viewing.
 
 Room creators can delete a room from **Manage rooms**. The app asks for confirmation before deleting because this permanently removes the room's streak days, prayer requests, answered prayers, invite code, and memberships.
 
