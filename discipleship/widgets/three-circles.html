@@ -83,22 +83,6 @@
             height: 100%;
         }
 
-        .scene-caption {
-            position: absolute;
-            top: 9px;
-            left: 0;
-            right: 0;
-            text-align: center;
-            font-family: 'Trebuchet MS', Arial, sans-serif;
-            font-size: 10px;
-            font-weight: 900;
-            letter-spacing: 0.4px;
-            text-transform: uppercase;
-            color: rgba(44, 36, 22, 0.42);
-            pointer-events: none;
-            z-index: 5;
-        }
-
         .intro-overlay {
             position: absolute;
             inset: 0;
@@ -230,6 +214,22 @@
             min-width: 96px;
         }
 
+        .nav-bar.final-nav {
+            gap: 8px;
+        }
+
+        .nav-bar.final-nav .nav-btn {
+            padding-left: 11px;
+            padding-right: 11px;
+        }
+
+        .nav-btn.prayer {
+            min-width: 70px;
+            color: #1E6FA0;
+            border-color: rgba(30, 111, 160, 0.38);
+            background: #FFFFFF;
+        }
+
         .nav-btn.hidden {
             visibility: hidden;
         }
@@ -259,6 +259,52 @@
             width: 20px;
         }
 
+        .prayer-modal {
+            position: absolute;
+            inset: 0;
+            z-index: 30;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 18px;
+            background: rgba(44, 36, 22, 0.52);
+        }
+
+        .prayer-modal.hidden {
+            display: none;
+        }
+
+        .prayer-dialog {
+            width: 100%;
+            max-width: 390px;
+            border-radius: 12px;
+            border: 1px solid rgba(235, 229, 217, 0.96);
+            background: #FFFFFF;
+            box-shadow: 0 18px 42px rgba(24, 20, 14, 0.24);
+            padding: 16px 18px 18px;
+        }
+
+        .prayer-dialog h2 {
+            margin: 0 0 8px;
+            color: #1E6FA0;
+            font-family: 'Trebuchet MS', Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 900;
+            line-height: 1.2;
+        }
+
+        .prayer-copy {
+            color: #332B20;
+            font-size: 14px;
+            line-height: 1.48;
+            margin: 0 0 14px;
+        }
+
+        .prayer-dismiss {
+            width: 100%;
+            background: #1E6FA0;
+        }
+
         @keyframes fadeSlide {
             from { opacity: 0; transform: translateY(6px); }
             to { opacity: 1; transform: translateY(0); }
@@ -280,7 +326,6 @@
     </div>
 
     <div class="diagram-wrapper" id="diagramWrapper">
-        <div class="scene-caption" id="sceneCaption"></div>
         <svg class="scene-svg" id="scene" viewBox="0 0 390 300" preserveAspectRatio="xMidYMid meet" role="img" aria-label="The 3 Circles gospel diagram"></svg>
         <div class="intro-overlay" id="introOverlay">
             <div class="intro-card">
@@ -291,6 +336,14 @@
     </div>
 
     <div id="card-area"></div>
+
+    <div class="prayer-modal hidden" id="prayerModal" role="dialog" aria-modal="true" aria-labelledby="prayerTitle">
+        <div class="prayer-dialog">
+            <h2 id="prayerTitle">A Prayer to Receive Jesus</h2>
+            <p class="prayer-copy">&ldquo;Jesus, I want to know You. I believe You died on the cross for my sins and rose again. I open my heart and receive You as my Savior and Lord. Thank You for forgiving all my sins and giving me eternal life. Help me follow You from this day forward. Amen.&rdquo;</p>
+            <button class="nav-btn primary prayer-dismiss" id="prayerClose" type="button">Close</button>
+        </div>
+    </div>
 </div>
 
 <script>
@@ -313,9 +366,9 @@
 
     /* Offset paths used as invisible textPath rails so labels sit OUTSIDE
        the visible arrows instead of crashing into them. */
-    var SIN_TEXT_PATH     = 'M 130 56 Q 195 4 244 46';
-    var REPENT_TEXT_PATH  = 'M 358 128 Q 392 208 218 252';
-    var RECOVER_TEXT_PATH = 'M 24 100 Q -2 196 96 244';
+    var SIN_TEXT_PATH     = 'M 130 61 Q 195 9 244 51';
+    var REPENT_TEXT_PATH  = 'M 218 252 Q 392 208 358 128';
+    var RECOVER_TEXT_PATH = 'M 17 100 Q -9 196 89 244';
 
     var stops = [
         {
@@ -371,8 +424,8 @@
             caption: 'Where do you see yourself?',
             color: '#1E6FA0',
             cardTitle: 'Your Turn',
-            cardSubtitle: 'Where are you on this picture?',
-            cardText: 'Which circle are you in right now? Where do you want to be? What is keeping you from turning to Jesus today? <b>Romans 10:13</b> Everyone who calls on the name of the Lord will be saved.'
+            cardSubtitle: 'Admit, believe, confess',
+            cardText: 'If you confess with your mouth that Jesus is Lord and believe in your heart that God raised him from the dead, you will be saved. <b>Romans 10:9</b>'
         }
     ];
 
@@ -430,9 +483,7 @@
         svg.appendChild(svgEl('path', inner));
     }
 
-    /* Build the path for a hand-drawn oval. We trace a full ellipse, then add a
-       short overshoot loop at the start - the marker pass that goes around again
-       past where it first met. */
+    /* Build the path for a hand-drawn oval. */
     function ovalPath(o) {
         var cx = o.cx, cy = o.cy, rx = o.rx, ry = o.ry;
         return [
@@ -441,18 +492,6 @@
             'C', cx + rx * 0.45, cy - ry * 1.10, cx + rx * 1.02, cy - ry * 0.55, cx + rx, cy,
             'C', cx + rx * 1.02, cy + ry * 0.85, cx + rx * 0.35, cy + ry * 1.05, cx, cy + ry,
             'C', cx - rx * 0.5, cy + ry * 1.05, cx - rx * 1.02, cy + ry * 0.7, cx - rx, cy
-        ].join(' ');
-    }
-
-    /* The "second pass" of marker around the top of the oval - small overshoot
-       starting near the top-right of the ellipse, looping ~140 degrees back over.
-       Gives the doubled-stroke feel the reference images have. */
-    function ovalOvershootPath(o) {
-        var cx = o.cx, cy = o.cy, rx = o.rx, ry = o.ry;
-        return [
-            'M', cx + rx * 0.55, cy - ry * 0.92,
-            'C', cx + rx * 0.95, cy - ry * 0.75, cx + rx * 1.02, cy - ry * 0.10, cx + rx * 0.95, cy + ry * 0.20,
-            'C', cx + rx * 0.65, cy - ry * 0.20, cx + rx * 0.10, cy - ry * 1.10, cx - rx * 0.30, cy - ry * 1.04
         ].join(' ');
     }
 
@@ -471,16 +510,10 @@
             stroke: MARKER, 'stroke-width': 5.5,
             'stroke-linecap': 'round', 'stroke-linejoin': 'round'
         }));
-        g.appendChild(svgEl('path', {
-            d: ovalOvershootPath(o), fill: 'none',
-            stroke: MARKER, 'stroke-width': 4.4,
-            'stroke-linecap': 'round', 'stroke-linejoin': 'round',
-            opacity: 0.85
-        }));
         svg.appendChild(g);
     }
 
-    function drawOvalLabel(svg, o, lines) {
+    function drawOvalLabel(svg, o, lines, faded) {
         var lineHeight = 13.5;
         var totalH = lines.length * lineHeight;
         var startY = o.cy - totalH / 2 + lineHeight - 2;
@@ -492,7 +525,8 @@
                 'font-size': 12.5,
                 'font-weight': 900,
                 'letter-spacing': 0.4,
-                fill: INK
+                fill: INK,
+                opacity: faded ? 0.10 : 1
             });
             t.textContent = lines[i];
             svg.appendChild(t);
@@ -503,10 +537,10 @@
        Fixed paths kept comfortably inside viewBox. */
     function drawBungees(svg) {
         var bungees = [
-            'M 354 76 L 362 64 L 360 56 L 372 44 L 368 36',     // up-right
-            'M 370 96 L 378 90 L 380 100 L 388 96',             // right
-            'M 360 124 L 372 130 L 370 140 L 384 144',          // down-right
-            'M 320 130 L 322 142 L 314 146 L 318 158'           // down
+            'M 354 76 L 362 64 L 360 56 L 370 47 L 382 35',     // up-right
+            'M 370 96 L 378 90 L 380 96 L 398 91',              // right
+            'M 360 124 L 372 130 L 371 139 L 386 150',          // down-right
+            'M 320 130 L 322 142 L 318 146 L 318 160'           // down
         ];
         bungees.forEach(function (d, i) {
             markerStroke(svg, d, { width: 3.4, markerEnd: 'arrow' });
@@ -534,11 +568,42 @@
         svg.appendChild(t);
     }
 
+    function drawAbcs(svg) {
+        var lines = [
+            { text: "ABC's", size: 16.4, weight: 900, fill: ACCENT },
+            { text: "1) Admit You're a Sinner", size: 12.4, weight: 900, fill: INK },
+            { text: "2) Believe Jesus, the Savior, Died for Your Sins", size: 11.4, weight: 900, fill: INK, width: 246 },
+            { text: "3) Confess Jesus as Your Lord.", size: 12.4, weight: 900, fill: INK }
+        ];
+        var startY = 128;
+        lines.forEach(function (line, idx) {
+            var attrs = {
+                x: 194,
+                y: startY + idx * 16,
+                'text-anchor': 'middle',
+                'font-family': 'Arial Narrow, Trebuchet MS, Arial Black, Arial, sans-serif',
+                'font-size': line.size,
+                'font-weight': line.weight,
+                'letter-spacing': idx === 0 ? 0.4 : 0,
+                fill: line.fill,
+                stroke: '#F8F6F1',
+                'stroke-width': idx === 0 ? 3.8 : 3.1,
+                'stroke-linejoin': 'round',
+                'paint-order': 'stroke fill'
+            };
+            if (line.width) {
+                attrs.textLength = line.width;
+                attrs.lengthAdjust = 'spacingAndGlyphs';
+            }
+            var t = svgEl('text', attrs);
+            t.textContent = line.text;
+            svg.appendChild(t);
+        });
+    }
+
     function buildScene() {
         var scene = document.getElementById('scene');
-        var caption = document.getElementById('sceneCaption');
         scene.innerHTML = '';
-        caption.textContent = step === -1 ? '' : stops[step].caption;
 
         defineArrowMarker(scene, 'arrow', MARKER);
         definePath(scene, 'sinTextPath',     SIN_TEXT_PATH);
@@ -555,10 +620,10 @@
         drawOvalLabel(scene, GD, ['GOD’S', 'DESIGN']);
 
         drawOval(scene, BK, !brokenActive);
-        drawOvalLabel(scene, BK, ['BROKENNESS']);
+        drawOvalLabel(scene, BK, ['BROKENNESS'], !brokenActive);
 
         drawOval(scene, GP, !gospelActive);
-        drawOvalLabel(scene, GP, ['GOSPEL']);
+        drawOvalLabel(scene, GP, ['GOSPEL'], !gospelActive);
 
         if (step >= 1) {
             markerStroke(scene, SIN_PATH, { width: 4.5, markerEnd: 'arrow' });
@@ -588,6 +653,7 @@
                     'stroke-dasharray': '3 4'
                 }));
             });
+            drawAbcs(scene);
         }
     }
 
@@ -699,6 +765,7 @@
     function buildNav(current) {
         var nav = document.createElement('div');
         nav.className = 'nav-bar';
+        if (step === stops.length - 1) nav.className += ' final-nav';
 
         var backBtn = document.createElement('button');
         backBtn.className = 'nav-btn';
@@ -710,6 +777,15 @@
         nav.appendChild(backBtn);
 
         nav.appendChild(buildDots(true));
+
+        if (step === stops.length - 1) {
+            var prayerBtn = document.createElement('button');
+            prayerBtn.className = 'nav-btn prayer';
+            prayerBtn.type = 'button';
+            prayerBtn.textContent = 'Prayer';
+            prayerBtn.addEventListener('click', showPrayerModal);
+            nav.appendChild(prayerBtn);
+        }
 
         var nextBtn = document.createElement('button');
         nextBtn.className = 'nav-btn primary';
@@ -725,12 +801,31 @@
         return nav;
     }
 
+    function showPrayerModal() {
+        var modal = document.getElementById('prayerModal');
+        var close = document.getElementById('prayerClose');
+        modal.classList.remove('hidden');
+        close.focus();
+    }
+
+    function hidePrayerModal() {
+        document.getElementById('prayerModal').classList.add('hidden');
+    }
+
     function render() {
         var overlay = document.getElementById('introOverlay');
         overlay.style.display = (step === -1) ? 'flex' : 'none';
         buildScene();
         buildCard();
     }
+
+    document.getElementById('prayerClose').addEventListener('click', hidePrayerModal);
+    document.getElementById('prayerModal').addEventListener('click', function (event) {
+        if (event.target.id === 'prayerModal') hidePrayerModal();
+    });
+    document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape') hidePrayerModal();
+    });
 
     render();
 }());

@@ -1,6 +1,189 @@
 {
   "id": "5",
-  "title": "Lesson 5: Faith at Work - Integrity, Ambition, and Calling",
-  "description": "You already know how to live on mission where you work (BLESS). This lesson goes deeper into the real tensions believers face Monday through Friday - integrity under pressure, ambition vs. contentment, rest in a hustle culture, what to do when your boss asks you to compromise, and how to think about calling vs. career.",
-  "blocks": []
+  "title": "Lesson 5: Sharing Your Story and the Gospel",
+  "description": "Sharing the gospel is sharing the story of Jesus and how He has changed your story. After praying, listening, eating, and serving, the bridge of relationship is built. Now you get to say something. This lesson gives you a clear way to tell what Jesus has done for you and a simple picture you can draw on a napkin to share the gospel anywhere.",
+  "blocks": [
+    {
+      "type": "text",
+      "text": "In Lesson 1 you saw that you are sent. Lesson 2 gave you the BLESS rhythms. Lesson 3 turned your home and table into a frontline of welcome. Lesson 4 reminded you that Jesus came not to be served but to serve, and so do you. All of that has been about building the bridge. This lesson is the moment you get to walk across it. After praying for someone, listening to them, eating with them, and serving them, the trust is real and the conversation is ready. Now you have something to say."
+    },
+    {
+      "type": "parable",
+      "title": "I Was Blind, Now I See",
+      "text": "Jesus once met a man who had been blind from birth. After Jesus healed him, the religious leaders dragged him in for an interrogation. They wanted theology. They wanted answers. They wanted him to take their side against Jesus.<br><br>The man did not have a sermon ready. He did not have a polished argument. He simply told them what he knew.<br><br><em>\"One thing I do know, that though I was blind, now I see.\" (John 9:25)</em><br><br>That is sharing your faith at its simplest. You do not have to be a theologian. You do not need every answer. You just need to tell someone honestly what Jesus has done in your life, and then point them to the One who can do it in theirs."
+    },
+    {
+      "type": "heading",
+      "text": "From Bridge to Crossing"
+    },
+    {
+      "type": "text",
+      "text": "When you have prayed for someone, listened to them, shared a meal, and shown up to serve, you have earned the right to share. Sharing your faith in that kind of relationship feels natural, not awkward. The conversation has been on its way for a while. The Holy Spirit has been at work in you and in them long before this moment. The only thing left is for you to actually open your mouth."
+    },
+    {
+      "type": "verse",
+      "reference": "Romans 10:14-15",
+      "text": "How then will they call on him in whom they have not believed? And how are they to believe in him of whom they have never heard? And how are they to hear without someone preaching? And how are they to preach unless they are sent? As it is written, \"How beautiful are the feet of those who preach the good news!\""
+    },
+    {
+      "type": "text",
+      "text": "Sharing the gospel is sharing the story of Jesus and how He has changed your story. You get to tell someone the story of Jesus' life, death, and resurrection, and how that story has rewritten the story of your own life. Ask yourself often, <strong>\"Does everyone who knows me know about the gospel?\"</strong> If the answer is no, the people you have been BLESSing are exactly where to start."
+    },
+    {
+      "type": "question",
+      "id": "203-05-1",
+      "text": "5.1 - Look back at the people you have been praying for, listening to, eating with, and serving. Write the names of one or two whose conversation feels ready. What has happened in the relationship that makes this feel like the right time?",
+      "height": "tall"
+    },
+    {
+      "type": "heading",
+      "text": "Three Stories"
+    },
+    {
+      "type": "text",
+      "text": "There is a simple way to think about a faith conversation. There are three stories on the table whenever you sit down with someone: <strong>their story, your story, and Jesus' story.</strong> All three matter. All three honor the person you are with. And all three are easier to share than you might think."
+    },
+    {
+      "type": "text",
+      "text": "<strong>Their story</strong> is the part you have already been doing. Through the BLESS rhythms you have been listening. You know something of what they carry, what they hope for, where they hurt. Hearing someone before you speak is not a delay tactic. It is what makes anything you say after land in their actual life rather than bouncing off."
+    },
+    {
+      "type": "verse",
+      "reference": "Proverbs 18:13",
+      "text": "If one gives an answer before he hears, it is his folly and shame."
+    },
+    {
+      "type": "heading",
+      "text": "Your Story: Keep It Short"
+    },
+    {
+      "type": "text",
+      "text": "<strong>Your story</strong> is a short bridge into Jesus' story, not the whole conversation. Keep it simple: <strong>\"There was a time when ____, but then I met Jesus and discovered ____, and now I am ____.\"</strong>"
+    },
+    {
+      "type": "question",
+      "id": "203-05-2",
+      "text": "5.2 - Write one short testimony using that frame. Keep it plain enough to say in about 15 seconds.",
+      "height": "short"
+    },
+    {
+      "type": "heading",
+      "text": "Jesus' Story: The 3 Circles"
+    },
+    {
+      "type": "text",
+      "text": "<strong>Jesus' story</strong> is the heart of the gospel. There may come a moment in a conversation where what your friend needs is not just your story, but His. For that you need a tool. Something simple enough to draw on a napkin, clear enough that you do not stumble, and reproducible enough that the friend you share it with could turn around and share it with someone else."
+    },
+    {
+      "type": "text",
+      "text": "The 3 Circles is a simple gospel picture many Christians use in ordinary conversations. Walk through it slowly below. Do not just read it, click through each step. By the end you will already be most of the way to being able to draw it from memory."
+    },
+    {
+      "type": "widget",
+      "src": "widgets/three-circles.html",
+      "height": "560px"
+    },
+    {
+      "type": "heading",
+      "text": "Walking Through the Diagram"
+    },
+    {
+      "type": "text",
+      "text": "<strong>God's Design.</strong> God created the world good and made you for a close relationship with Him. Life was meant to flow the way He designed it."
+    },
+    {
+      "type": "text",
+      "text": "<strong>Sin and Brokenness.</strong> Instead of trusting God, people turned away and went their own way. The Bible calls that sin, and sin broke the world. Brokenness shows up in pain, sickness, and broken homes. The squiggly arrows are the ways people try to escape: money, success, relationships, distractions. They promise freedom, but they snap people back into the same brokenness."
+    },
+    {
+      "type": "text",
+      "text": "<strong>The Gospel.</strong> God did not leave people stuck. He sent His Son Jesus down to earth, where Jesus lived without sin, died on the cross to pay for sin, and rose again on the third day. That is the good news in a sentence."
+    },
+    {
+      "type": "verse",
+      "reference": "1 Corinthians 15:3-4",
+      "text": "For I delivered to you as of first importance what I also received: that Christ died for our sins in accordance with the Scriptures, that he was buried, that he was raised on the third day in accordance with the Scriptures."
+    },
+    {
+      "type": "text",
+      "text": "<strong>Repent and Believe.</strong> The way back to God is not earning, it is turning. Repent means to turn from going your own way. Believe means to trust Jesus as Savior and King. <strong>Recover and Pursue.</strong> When you turn to Jesus, God forgives you, makes you new, and restores you to His design."
+    },
+    {
+      "type": "question",
+      "id": "203-05-3",
+      "text": "5.3 - As you walked through the diagram, which circle or arrow felt easiest to explain in your own words? Which one felt the hardest? What would help you grow in the harder one?",
+      "height": "tall"
+    },
+    {
+      "type": "heading",
+      "text": "Your Practice This Week"
+    },
+    {
+      "type": "text",
+      "text": "Most people never share the gospel because they do not feel ready. The way to feel ready is to practice with someone who already loves you. Drawing the 3 Circles for a Christian friend, your spouse, or a child takes the pressure off and helps the words come more naturally."
+    },
+    {
+      "type": "box",
+      "title": "Practice Drawing the 3 Circles",
+      "content": [
+        "Pick one person this week to walk through the 3 Circles with. A friend, a family member, or a trusted Christian works great as a first try.",
+        "Grab a napkin, a sheet of paper, or a whiteboard. Draw it as you talk, not before. Drawing as you go is what makes it feel natural.",
+        "If it fits naturally, tell your 15-second testimony before the diagram or as you describe the Repent and Believe arrow.",
+        "End with a simple invitation: \"Where do you see yourself on this picture? Where do you want to be? Is there anything keeping you from turning to Jesus today?\""
+      ]
+    },
+    {
+      "type": "question",
+      "id": "203-05-4",
+      "text": "5.4 - Write down who you are going to draw the 3 Circles for this week. After you do it, come back here and write a few sentences about how it went. What surprised you? What did you learn about the diagram or about yourself as you tried to share it?",
+      "height": "tall"
+    },
+    {
+      "type": "heading",
+      "text": "Faithful, Not Successful"
+    },
+    {
+      "type": "text",
+      "text": "Here is a truth that takes the pressure off: faithful sharing is not measured by the response of the person you share with. It is measured by your willingness to offer the good news. You may be the first step in someone's story or the tenth. You may plant the seed and someone else may water it later."
+    },
+    {
+      "type": "verse",
+      "reference": "1 Corinthians 3:6-7",
+      "text": "I planted, Apollos watered, but God gave the growth. So neither he who plants nor he who waters is anything, but only God who gives the growth."
+    },
+    {
+      "type": "text",
+      "text": "Only God grows what is planted. Your job is to plant; His job is to grow. That frees you from the weight of having to convince anyone, and it frees the other person from feeling like a project."
+    },
+    {
+      "type": "heading",
+      "text": "Lesson 5 Review"
+    },
+    {
+      "type": "text",
+      "text": "You started this course with the words of Jesus, \"Go and make disciples.\" You learned to pray for the people in your life, to listen well, to share meals, and to serve with no strings attached. Now you have a way to share the story of Jesus and a way to share what He has done in your story. Three stories on every table: theirs, yours, and His. The bridge is built, the picture is in your hand, and the Spirit goes with you. In the next lesson you will learn to live this same mission in your second space, the place where most of your week is spent."
+    },
+    {
+      "type": "heading",
+      "text": "Closing Reflections"
+    },
+    {
+      "type": "question",
+      "id": "203-05-key",
+      "text": "What is one key thing you learned from this lesson?",
+      "height": "short"
+    },
+    {
+      "type": "question",
+      "id": "203-05-step",
+      "text": "What is one step you are going to take this week?",
+      "height": "short"
+    },
+    {
+      "type": "question",
+      "id": "203-05-prayer",
+      "text": "What is a prayer request for this week?",
+      "height": "short"
+    }
+  ]
 }
