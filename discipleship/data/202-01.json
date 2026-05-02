@@ -1,8 +1,16 @@
 {
   "id": "1",
-  "title": "Loving Your Neighbors",
-  "description": "The second greatest commandment is not a separate assignment from the first. It is the overflow of it. When you are loved by the Father, that love moves outward toward the people around you. In this lesson you will explore what Jesus meant when He said love your neighbor as yourself, discover who your neighbor really is through the story of the Good Samaritan, and learn that the love you give away was never yours to begin with.",
+  "title": "Lesson 1: Loving Your Neighbors",
+  "description": "The second great commandment is not a separate assignment from the first. It is the overflow of it. When the Father's love lands in your heart, it does not stay there. It moves outward toward the people God has placed near you. In this lesson the Good Samaritan shows you what neighbor-love really looks like, and the Greatest Commandment diagram from Lesson 1 of Growing Deep returns to remind you where that love comes from in the first place.",
   "blocks": [
+    {
+      "type": "heading",
+      "text": "Welcome to Growing Up"
+    },
+    {
+      "type": "text",
+      "text": "The 200-level path has three connected courses: <strong>Growing Deep</strong> (201), <strong>Growing Up</strong> (202), and <strong>Growing Out</strong> (203). In Starting (101) the roots went down into the soil of the gospel. In Growing Deep your identity in Christ took shape and the foundations of life with God were planted. Now in Growing Up, the branches start to extend outward. These ten lessons are about what happens when the love that went deep in you begins to reach the people around you, your neighbors, your family, your church, and the people God has placed in your daily path."
+    },
     {
       "type": "image",
       "src": "images/202-3circles-logo.png",
@@ -11,25 +19,30 @@
       "align": "center"
     },
     {
-      "type": "heading",
-      "text": "Welcome to Growing Up"
+      "type": "text",
+      "text": "In the first lesson of Growing Deep you explored what it means to love God with all your heart, soul, mind, and strength. That was the vertical beam of the cross, God reaching down to you and your love going back up to Him. This first lesson of Growing Up is about the horizontal beam, the place where that love overflows toward other people. Loving your neighbor is not a separate command added on top of loving God. It is what loving God looks like when it starts to move."
+    },
+    {
+      "type": "image",
+      "src": "images/good-samaritan-story.jpg",
+      "alt": "A Samaritan kneeling beside a wounded man on a desolate road",
+      "width": "100%",
+      "align": "center"
+    },
+    {
+      "type": "parable",
+      "title": "The Good Samaritan",
+      "text": "A man was traveling the road from Jerusalem to Jericho, seventeen miles of wilderness, steep and winding, known for bandits. He never made it. He was attacked, stripped, beaten, and left for dead on the side of the road.<br><br>A priest came by first. He saw the man and crossed to the other side. Then a Levite, a temple worker, passed the same way. He looked, and he crossed to the other side too. These were not evil men. They had important religious work waiting for them. But they were not moved by suffering close at hand where they would have to get their own hands dirty.<br><br>Then a Samaritan came. To understand what this meant, you have to know that Jews and Samaritans had despised each other for centuries. The hostility between them was deep and personal, ethnic, religious, and political all at once. A Jewish audience hearing this story would have expected the Samaritan to be the villain, not the hero. But Jesus made him the hero.<br><br>The Samaritan stopped. He knelt in the dirt beside a stranger who, by every social and cultural standard, was his enemy. He poured oil and wine on the wounds, lifted the man onto his own donkey, carried him to an inn, and paid for his care out of his own pocket. He did not ask the man's name, his nationality, or his theology. He saw a human being broken on the ground, and he moved toward the mess.<br><br><em>\"Which of these three, do you think, proved to be a neighbor to the man who fell among the robbers?\" (Luke 10:36)</em>"
     },
     {
       "type": "text",
-      "text": "If you are opening this lesson, you have already laid deep roots. In the Starting course you were planted. In Growing Deep the gospel took root, your identity in Christ was established, and the foundations of life with God were put in place. Now in Growing Up, the branches start to extend outward. These lessons are about what happens when the love of God that went deep in you begins to reach the people around you: your neighbors, your family, your church, your community. The tree is growing, and these lessons follow the branches."
+      "text": "Sit with the picture for a moment before any teaching tries to make sense of it. Picture the road, the wounded man, the two religious figures stepping to the far side, and then the one who was supposed to be the enemy kneeling down to bind up the wounds. The meaning underneath the image is going to take the rest of this lesson to unfold, and it is going to begin somewhere unexpected."
     },
     {
-      "type": "text",
-      "text": "In the first lesson of the last course you explored what it means to love God with all your heart, soul, mind, and strength. That is the vertical beam of the cross, God reaching down to you and your love going back up to Him. But the cross also has a horizontal beam, and that beam stretches outward. This lesson is about where that horizontal love comes from, who it is for, and what it looks like when it costs you something."
-    },
-    {
-      "type": "widget",
-      "src": "widgets/great-command.html",
-      "height": "520px"
-    },
-    {
-      "type": "text",
-      "text": "Walk through the diagram above one more time. Notice where the love starts. It begins with God, coming down. It moves through the cross. And then it extends outward to the people around you. That outward movement is not a separate topic from loving God. It is where loving God leads. The vertical produces the horizontal. If the first course was about the roots going down, this course is about the branches reaching out."
+      "type": "question",
+      "id": "202-01-1",
+      "text": "1.1 - As you sit with the picture of the Samaritan kneeling in the dirt beside someone who, by every cultural standard, was his enemy, what stirs in you? Honestly, which of the three travelers do you most resemble in your daily life right now?",
+      "height": "tall"
     },
     {
       "type": "heading",
@@ -37,7 +50,7 @@
     },
     {
       "type": "text",
-      "text": "Before asking who your neighbor is, there is a more important question: where does the love come from? Because if the answer is willpower, you will run dry. If the answer is guilt, you will burn out. If the answer is religious duty, you will quietly start keeping score of who deserves your kindness and who does not."
+      "text": "Before asking who your neighbor is, there is a more important question to settle. Where does the love come from? If the answer is willpower, you will run dry. If the answer is guilt, you will burn out. If the answer is religious duty, you will quietly start keeping a tally of who deserves your kindness and who does not. The whole second commandment depends on a source you cannot generate yourself."
     },
     {
       "type": "verse",
@@ -46,7 +59,7 @@
     },
     {
       "type": "text",
-      "text": "The love comes from God. He moved first. While you were still His enemy, He came toward you in love, sacrifice, and restoration. He did not wait for you to clean up, earn it, or deserve it. He just came. And because He moved toward you, you now have the ability to move toward others. You are not generating love from an empty tank. You are giving away what has already been poured into you."
+      "text": "The love comes from God. He moved first, coming toward you in sacrifice and restoration while you were still His enemy. He did not wait for you to clean up, earn it, or deserve it. He just came. And because He moved toward you, you now have something real to give to others. You are not generating love from an empty tank. You are giving away what has already been poured into you."
     },
     {
       "type": "verse",
@@ -55,11 +68,11 @@
     },
     {
       "type": "text",
-      "text": "John Piper once defined love as \"the overflow of joy in God that gladly meets the needs of others.\" That is the kind of love Jesus is after. Not love that grinds through acts of service to earn approval. Not love that forces itself to care about people out of obligation. Love that flows freely from a heart already satisfied in God. You can give because you have already received. You can love because you have already been loved. The source never changes. Only the direction shifts, from vertical to horizontal."
+      "text": "That little verse holds the whole engine of the second commandment. Love does not start with you trying harder. Love starts with you receiving. The rhythm Lesson 1 of Growing Deep named was simple: <strong>receive, then respond.</strong> Receive the Father's love, then respond by loving Him back and loving the people He has placed near you. John Piper once defined love this way: <em>love is the overflow of joy in God that gladly meets the needs of others.</em> That is the kind of love Jesus is asking for, not the kind that grinds through service to earn approval, and not the kind that forces itself to care about people out of guilt. It is love that flows freely from a heart already satisfied in God. The source never changes. Only the direction shifts, from vertical to horizontal."
     },
     {
       "type": "heading",
-      "text": "The Second Commandment"
+      "text": "The Second Is Like the First"
     },
     {
       "type": "verse",
@@ -68,16 +81,29 @@
     },
     {
       "type": "text",
-      "text": "Notice that Jesus says the second commandment is \"like\" the first. Not lesser than it. Like it. Loving people is the visible, horizontal expression of the invisible, vertical love between you and God. The world around you only sees the horizontal. People care for each other, sacrifice for each other, and build community all the time without God. But as a follower of Jesus, you bring the vertical into those horizontal spaces. When you love your neighbor, you are not just being a good person. You are putting the character of God on display."
+      "text": "Notice that Jesus calls the second commandment <em>like</em> the first. Not lesser than it. Like it. The two are the same kind of love, just pointed in different directions. The world around you sees only the horizontal. People care for each other, sacrifice for each other, and build community all the time without ever turning to God. As a follower of Jesus, you bring the vertical love into those horizontal spaces. When you love your neighbor, you are not just being a good person. You are putting the character of God on display in a place where no one was looking for Him."
     },
     {
       "type": "text",
-      "text": "Now look at the phrase \"as yourself.\" Jesus is not shaming you for caring about your own needs. You already think about your food, your safety, your comfort, your future. That is natural. Jesus takes that natural self-concern and redirects it. As often as you think about your own well-being, think about the well-being of the person next to you. As you work to have a healthy family and home, desire that for your neighbor. As you want to feel safe and secure, seek that for the people around you. Your own self-concern becomes the measuring stick for how much attention you give to others."
+      "text": "And look at the phrase <em>as yourself.</em> Jesus is not shaming you for caring about your own needs. You already think about your meals, your safety, your comfort, and your future. That kind of self-concern is built into being human. Jesus takes that natural concern and redirects it. As often as you think about your own well-being, think about the well-being of the person next to you. As you work for a healthy family and home, want that for the family across the street. As you long to feel safe and secure, seek that for the people around you. Your own self-concern becomes the measuring stick for how much attention you give to the people God has placed in your life."
+    },
+    {
+      "type": "text",
+      "text": "The diagram below is the same one you walked through in the first lesson of Growing Deep. The shape has not changed. The cross is still the cross. But the focus is going to shift. In 201 you traced the love coming down from the Father, landing in your heart, and rising back to Him in worship and obedience. In this lesson, watch what happens at the foot of the cross when that love does not stop. Tap \"Begin\" and walk through it again, this time with your eyes on the horizontal beam."
+    },
+    {
+      "type": "widget",
+      "src": "widgets/great-command.html",
+      "height": "520px"
+    },
+    {
+      "type": "text",
+      "text": "This is why the Greatest Commandment is shaped like a cross. The vertical beam is the love between God and you, His coming down to you and your love rising back to Him. The horizontal beam is where that love overflows into the people God has placed around you. You cannot get to the horizontal without first receiving the vertical, which means the whole shape of the Christian life starts not with what you do for God, but with what He has already done for you. Loving your neighbor is what the vertical love looks like when it spills out sideways."
     },
     {
       "type": "question",
-      "id": "202-01-1",
-      "text": "1.1 - When you hear \"love your neighbor as yourself,\" what is your first honest reaction? Does it feel like a heavy burden or an invitation? What does your reaction tell you about where your love is coming from?",
+      "id": "202-01-2",
+      "text": "1.2 - Where do you tend to live as if you have to make this love yourself, by sheer effort or willpower? What would change in your week if you started from \"I have already been loved\" instead of \"I have to love better\"?",
       "height": "tall"
     },
     {
@@ -86,40 +112,29 @@
     },
     {
       "type": "text",
-      "text": "This is the question a man who studied religious laws asked Jesus in Luke 10, and it is the same question most of us are still asking. \"Who is my neighbor?\" sounds reasonable. But Jesus saw right through it. The religious man was not asking because he wanted to love more people. He was asking to find out what was the least he had to do. He wanted Jesus to draw a circle around the people he was responsible for so he could safely ignore everyone else."
+      "text": "Now that the source question is settled, the scope question can finally be asked honestly. The Samaritan story was Jesus' answer to a man who was trying to dodge the answer. The man was a religious lawyer, an expert in the Law of Moses. He had just heard Jesus quote the two Greatest Commandments and he agreed with both. Then he asked the question that gave him away: \"And who is my neighbor?\""
     },
     {
       "type": "text",
-      "text": "Jesus answered with a story that blew the question apart."
-    },
-    {
-      "type": "parable",
-      "title": "The Good Samaritan",
-      "image": "images/good-samaritan-story.jpg",
-      "alt": "A Samaritan kneeling beside a wounded man on a desolate road",
-      "text": "The road from Jerusalem to Jericho was seventeen miles of wilderness, steep and winding, known for bandits. A man traveling alone was attacked, stripped, beaten, and left for dead on the side of the road.<br><br>A priest came by first. He saw the man and crossed to the other side. Then a Levite, a temple worker, passed the same way. He looked, and he crossed to the other side too. These were not evil men. They had lofty religious aims. But they were not moved by suffering close at hand where they would have had to get their own hands dirty.<br><br>Then a Samaritan came. To understand what this meant, you need to know that Jews and Samaritans had despised each other for centuries. Deep ethnic, religious, and political hostility separated them. A Jewish audience hearing this story would have expected the Samaritan to be the villain, not the hero. But Jesus made him the hero.<br><br>The Samaritan stopped. He knelt in the dirt beside a stranger who, by every social and cultural standard, was his enemy. He poured oil and wine on the man's wounds, lifted him onto his own donkey, carried him to an inn, and paid for his care out of his own pocket. He did not ask the man's name, his nationality, or his theology. He saw a human being broken on the ground, and he moved toward the mess."
+      "text": "Luke gives you the reason behind the question. The lawyer wanted to justify himself. He was not asking because he was trying to expand his love. He was asking because he was trying to limit it. He wanted Jesus to draw a small circle around the people he was responsible for so he could safely ignore everyone outside that circle. Most people have asked some version of his question at some point. Who actually counts? Who is on my list? Who can I leave off?"
     },
     {
       "type": "text",
-      "text": "At the end of the story Jesus did not answer the lawyer's original question. He flipped it entirely. The lawyer had asked, \"Who is my neighbor?\" meaning, \"Which people qualify for my love?\" But Jesus responded, \"Which of these three proved to be a neighbor to the man?\" He changed the question from <em>What kind of person is my neighbor?</em> to <em>What kind of person am I?</em> He was no longer interested in who deserves your love. He was asking what kind of neighbor you are becoming."
+      "text": "Jesus answered with a story that broke the circle apart. A priest and a Levite, the most religious figures in the culture, walked past a wounded man on the side of the road. A Samaritan, the very last person a Jewish audience expected to see in the role of hero, stopped and gave the man everything he had. And then Jesus did something the lawyer was not ready for. He flipped the question. The lawyer had asked, \"Who is my neighbor?\" meaning, \"Which people qualify for my love?\" Jesus asked back, \"Which of these three proved to be a neighbor to the man?\" In one sentence, Jesus changed the question from <em>What kind of person is my neighbor?</em> to <em>What kind of person am I becoming?</em>"
     },
     {
       "type": "text",
-      "text": "This is the part that still confronts us. It is easy to have a heart for distant causes while ignoring the mess right in front of you. The priest and the Levite probably had ministry plans that afternoon. They had places to be, important religious work to do. But love is not an emotion you feel from a distance. It is a decision you make when it costs you something. The Samaritan used his own oil, his own wine, his own donkey, his own money. Love that does not cost anything is not the love Jesus is talking about."
+      "text": "That is the part of the parable that still confronts every believer. It is easy to have a heart for distant causes while ignoring the mess right in front of you. The priest and the Levite probably had ministry plans that afternoon, places to be, important work to do for God. But love for your neighbor is not an emotion you feel from a distance. It is a decision you make when it costs you something close at hand."
     },
     {
       "type": "question",
-      "id": "202-01-2",
-      "text": "1.2 - Is there anyone in your life you have been keeping outside your circle of concern, someone different from you, difficult to love, or easy to overlook? What would it look like to move toward them instead of crossing to the other side?",
+      "id": "202-01-3",
+      "text": "1.3 - Is there anyone in your life you have been quietly keeping outside your circle of concern? Someone different from you, hard to love, easy to overlook, or culturally and politically on the other side of a line? What would it look like to move toward them this week instead of crossing to the other side?",
       "height": "tall"
     },
     {
       "type": "heading",
-      "text": "Love That Shows Up"
-    },
-    {
-      "type": "text",
-      "text": "If loving others flows from loving God, then the reverse should give you pause. The absence of love for others is worth examining honestly. The Bible is direct about this. You are saved by faith alone, but the faith that saves is never alone. Genuine faith produces love for others the way a healthy tree produces fruit. It is the natural evidence of a heart that has been changed by the gospel."
+      "text": "Love That Costs Something"
     },
     {
       "type": "verse",
@@ -128,34 +143,20 @@
     },
     {
       "type": "text",
-      "text": "This is a sobering passage, but it is not meant to crush you with guilt. It is meant to give you clarity. Love is not a feeling you wait to have. It is a decision you make with your hands, your time, and your resources. \"In deed and in truth\" means love has to show up somewhere. It has to land on someone. It is one thing to say you love people. It is another thing to see someone in need and actually open your heart instead of closing it."
+      "text": "This is a sobering passage, but it is not meant to crush you. It is meant to give you clarity. Love is not a feeling you wait to feel. It is a decision you make with your hands, your time, your money, and your attention. \"In deed and in truth\" means love has to land somewhere. It has to show up in a real life, on a real day, for a real person. The Samaritan used his own oil and wine, his own donkey, and his own money. The cost of the rescue fell entirely on him. Love that costs you nothing is not the kind of love Jesus is asking for, because the love that came down from the Father at the cross cost Him everything."
     },
     {
       "type": "text",
-      "text": "Here is the encouragement: you do not love others to become a child of God. You love others because you already are one. A child does not earn a place in the family by being good. That child is born into it. Your love for others is not what earns your salvation. It is what proves it is real. You love because you have already been freely forgiven and ransomed by the blood of Jesus."
-    },
-    {
-      "type": "question",
-      "id": "202-01-3",
-      "text": "1.3 - Read 1 John 3:17 again slowly. Is there a specific person or situation where God might be asking you to open your heart instead of closing it?",
-      "height": "tall"
-    },
-    {
-      "type": "heading",
-      "text": "Who Is in Your Path?"
+      "text": "Take a breath here, because the gospel walks with you in this verse. You do not love your neighbor in order to become a child of God. You love your neighbor because you already are one. A child does not earn a place in the family by being kind. The child is born into it, and kindness becomes the family resemblance. Your love for others is not what earns your salvation. It is what proves it is real, because the same Spirit who united you to the Father is the Spirit who is forming the Father's own kindness in you."
     },
     {
       "type": "text",
-      "text": "The Samaritan did not go looking for a project. He was on a journey and found someone in his path. That is usually how it works. God does not ask you to love the whole world at once. He asks you to love the person He has placed in front of you today. The neighbor on your street whose name you still do not know. The coworker who talks too much and never asks how you are doing. The family member who is hard to be around. The person in the checkout line who looks like they are barely holding it together. These are not interruptions to your day. They are the assignment."
-    },
-    {
-      "type": "text",
-      "text": "Practical love starts with small, ordinary things. Learn someone's name. Put your phone away when a friend is talking. Bring a meal to a family going through a hard season. Pay attention to the person everyone else overlooks. These are not impressive acts. But they are the kind of love that makes people ask why you are different. And that question opens a door that no argument ever could."
+      "text": "Practical love begins with small ordinary things. Learn the name of the neighbor across the street. Put the phone down when a friend is talking. Bring a meal to a family going through a hard season. Ask the coworker who talks too much one real question, then stay long enough to hear the real answer. Notice the person at the checkout who looks like they are barely holding it together, and let your eyes meet theirs. None of these acts will make a headline, but they are the kind of love that makes someone ask why you are different. And that question opens a door no argument ever could."
     },
     {
       "type": "question",
       "id": "202-01-4",
-      "text": "1.4 - Think about your actual daily routine, your street, your workplace, your regular stops. Who has God placed in your path that you might be treating more like an interruption than an assignment? Write down one or two names.",
+      "text": "1.4 - Walk through your normal week in your mind, your street, your job, your regular stops. Who has God placed in your path that you have been treating more like an interruption than an assignment? Write down one or two names.",
       "height": "tall"
     },
     {
@@ -164,11 +165,19 @@
     },
     {
       "type": "text",
-      "text": "This week, pick one person God has placed in your regular path and do one costly thing for them. Not costly in money, necessarily, but costly in attention, time, or comfort. Learn their name if you do not know it. Ask them a real question and actually listen to the answer. Bring them something they did not ask for. The goal is not to check a box. The goal is to let the love that God has poured into you overflow toward one specific person this week. Pay attention to what God does in you when you move toward someone instead of past them."
+      "text": "Pick one of the names you just wrote down and do one costly thing for that person this week. Costly does not have to mean expensive. Costly means it costs you something in attention, time, or comfort. Learn their name if you do not know it. Ask a real question and stay long enough to hear the real answer. Bring them something they did not ask for. The goal is not to check a box. The goal is to let the love that the Father has poured into you spill over toward one specific person this week, and to pay attention to what God does in you when you move toward someone instead of past them."
     },
     {
       "type": "text",
-      "text": "Also this week, read Luke 10:25-37 slowly, the full Good Samaritan passage. As you read, sit with the question Jesus asked at the end: \"Which of these three proved to be a neighbor?\" Let that question settle, and ask yourself honestly which character in the story you most resemble right now."
+      "text": "Also this week, read Luke 10:25-37 slowly, the full Good Samaritan passage. As you read, sit with the question Jesus asked at the end of the parable: \"Which of these three proved to be a neighbor?\" Let the question settle, and ask honestly which character in the story you most resemble right now."
+    },
+    {
+      "type": "heading",
+      "text": "Lesson 1 Review"
+    },
+    {
+      "type": "text",
+      "text": "Loving your neighbor is not a separate assignment from loving God. It is the overflow of it. The love comes down from the Father, lands in your heart, and moves outward toward the people God has placed in your path. You do not love your neighbor to earn your way home. You love because you have already been brought home. The vertical produces the horizontal, and the horizontal is where the world around you finally sees the love of God on display."
     },
     {
       "type": "heading",
@@ -177,13 +186,13 @@
     {
       "type": "question",
       "id": "202-01-key",
-      "text": "What is one key thing you learned from this lesson, and what next step can you take this week?",
+      "text": "What is one key thing you learned from this lesson?",
       "height": "short"
     },
     {
       "type": "question",
-      "id": "202-01-devos",
-      "text": "What have you learned about God and yourself recently in your Daily Devotions?",
+      "id": "202-01-step",
+      "text": "What is one step you are going to take this week?",
       "height": "short"
     },
     {

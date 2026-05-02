@@ -17,6 +17,7 @@ let supabaseClient = null;
 let realtimeChannel = null;
 let answerTargetId = null;
 let deleteRoomTargetId = null;
+let prayedDialogDate = null;
 
 const state = {
   mode: SUPABASE_READY ? "cloud" : "demo",
@@ -115,6 +116,12 @@ function bindElements() {
     "deleteRoomConfirmCheck",
     "deleteRoomMessage",
     "confirmDeleteRoomButton",
+    "prayedDialog",
+    "prayedDialogForm",
+    "prayedDialogTitle",
+    "prayedDialogStatus",
+    "prayedDialogYesButton",
+    "prayedDialogNoButton",
   ].forEach((id) => {
     els[id] = document.getElementById(id);
   });
@@ -139,6 +146,8 @@ function bindEvents() {
   els.deleteRoomConfirmCheck.addEventListener("change", () => {
     els.confirmDeleteRoomButton.disabled = !els.deleteRoomConfirmCheck.checked || state.busy;
   });
+  els.prayedDialogYesButton.addEventListener("click", handlePrayedYes);
+  els.prayedDialogNoButton.addEventListener("click", handlePrayedNo);
 
   document.querySelectorAll("[data-close-dialog]").forEach((button) => {
     button.addEventListener("click", () => {
@@ -548,6 +557,68 @@ async function markPrayedForDate(dateKey) {
   }
 }
 
+async function unmarkPrayedForDate(dateKey) {
+  if (!state.household) return;
+  if (!dateKey) return;
+
+  // Not marked? Nothing to do.
+  if (!state.prayerDays.some((item) => item.day === dateKey)) return;
+
+  setBusy(true);
+
+  if (state.mode === "cloud") {
+    const { error } = await supabaseClient
+      .from("prayer_days")
+      .delete()
+      .eq("household_id", state.household.id)
+      .eq("day", dateKey);
+    setBusy(false);
+    if (error) {
+      window.alert(error.message);
+      return;
+    }
+    await refreshDashboard();
+  } else {
+    state.prayerDays = state.prayerDays.filter((item) => item.day !== dateKey);
+    saveDemoState();
+    setBusy(false);
+    render();
+  }
+}
+
+function openPrayedDialog(dateKey) {
+  if (!dateKey) return;
+  if (dateKey > todayKey()) return; // future days are not in the strip, but guard anyway
+
+  prayedDialogDate = dateKey;
+  const date = parseDateKey(dateKey);
+  const isPrayed = state.prayerDays.some((item) => item.day === dateKey);
+
+  els.prayedDialogTitle.textContent = `Did you pray on ${formatDate(date)}?`;
+  els.prayedDialogStatus.textContent = isPrayed
+    ? "This day is currently marked as prayed. Choose No to remove it."
+    : "This day is not yet marked. Choose Yes to mark it as prayed.";
+
+  els.prayedDialog.showModal();
+  renderIcons();
+}
+
+async function handlePrayedYes() {
+  const dateKey = prayedDialogDate;
+  prayedDialogDate = null;
+  els.prayedDialog.close();
+  if (!dateKey) return;
+  await markPrayedForDate(dateKey);
+}
+
+async function handlePrayedNo() {
+  const dateKey = prayedDialogDate;
+  prayedDialogDate = null;
+  els.prayedDialog.close();
+  if (!dateKey) return;
+  await unmarkPrayedForDate(dateKey);
+}
+
 async function handleAddRequest(event) {
   event.preventDefault();
   const title = els.requestTitleInput.value.trim();
@@ -851,7 +922,7 @@ function renderDayStrip(days) {
       "day-cell",
       isPrayed ? "prayed" : "",
       isToday ? "today" : "",
-      isPrayed ? "" : "clickable",
+      "clickable",
     ]
       .filter(Boolean)
       .join(" ");
@@ -864,23 +935,9 @@ function renderDayStrip(days) {
     `;
 
     const stateLabel = isPrayed ? "prayed together" : "not marked prayed";
-    const actionLabel = isPrayed
-      ? ""
-      : isToday
-        ? " - click to mark today as prayed"
-        : " - click to mark this day as prayed";
-    cell.setAttribute("aria-label", `${formatDate(date)} ${stateLabel}${actionLabel}`);
-    cell.title = isPrayed
-      ? `${formatDate(date)} - prayed together`
-      : isToday
-        ? "Click to mark today as prayed"
-        : `Click to mark ${formatDate(date)} as prayed`;
-
-    if (isPrayed) {
-      cell.disabled = true;
-    } else {
-      cell.addEventListener("click", () => markPrayedForDate(key));
-    }
+    cell.setAttribute("aria-label", `${formatDate(date)} ${stateLabel} - click to change`);
+    cell.title = `${formatDate(date)} - click to confirm`;
+    cell.addEventListener("click", () => openPrayedDialog(key));
 
     fragment.appendChild(cell);
   }
