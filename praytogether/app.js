@@ -508,13 +508,25 @@ function resetDeleteRoomDialog() {
 }
 
 async function handleMarkPrayed() {
-  if (hasPrayedToday()) return;
+  await markPrayedForDate(todayKey());
+}
+
+async function markPrayedForDate(dateKey) {
+  if (!state.household) return;
+  if (!dateKey) return;
+
+  // Don't allow future dates.
+  if (dateKey > todayKey()) return;
+
+  // Already marked? Nothing to do.
+  if (state.prayerDays.some((item) => item.day === dateKey)) return;
+
   setBusy(true);
 
   if (state.mode === "cloud") {
     const { error } = await supabaseClient.from("prayer_days").insert({
       household_id: state.household.id,
-      day: todayKey(),
+      day: dateKey,
     });
     setBusy(false);
     if (error && error.code !== "23505") {
@@ -526,7 +538,7 @@ async function handleMarkPrayed() {
     state.prayerDays.unshift({
       id: crypto.randomUUID(),
       household_id: state.household.id,
-      day: todayKey(),
+      day: dateKey,
       created_at: new Date().toISOString(),
     });
     state.prayerDays = uniqueByDay(state.prayerDays);
@@ -830,24 +842,46 @@ function renderDayStrip(days) {
   for (let offset = 13; offset >= 0; offset -= 1) {
     const date = new Date(today.getTime() - offset * DAY_MS);
     const key = toDateKey(date);
-    const cell = document.createElement("div");
+    const isPrayed = daySet.has(key);
+    const isToday = key === todayKey();
+
+    const cell = document.createElement("button");
+    cell.type = "button";
     cell.className = [
       "day-cell",
-      daySet.has(key) ? "prayed" : "",
-      key === todayKey() ? "today" : "",
+      isPrayed ? "prayed" : "",
+      isToday ? "today" : "",
+      isPrayed ? "" : "clickable",
     ]
       .filter(Boolean)
       .join(" ");
+    cell.dataset.day = key;
     cell.innerHTML = `
       <span class="day-month">${date.toLocaleDateString(undefined, { month: "short" })}</span>
       <span>${date.toLocaleDateString(undefined, { weekday: "short" })}</span>
       <span class="day-dot" aria-hidden="true"></span>
       <span>${date.getDate()}</span>
     `;
-    cell.setAttribute(
-      "aria-label",
-      `${formatDate(date)} ${daySet.has(key) ? "prayed together" : "not marked prayed"}`
-    );
+
+    const stateLabel = isPrayed ? "prayed together" : "not marked prayed";
+    const actionLabel = isPrayed
+      ? ""
+      : isToday
+        ? " - click to mark today as prayed"
+        : " - click to mark this day as prayed";
+    cell.setAttribute("aria-label", `${formatDate(date)} ${stateLabel}${actionLabel}`);
+    cell.title = isPrayed
+      ? `${formatDate(date)} - prayed together`
+      : isToday
+        ? "Click to mark today as prayed"
+        : `Click to mark ${formatDate(date)} as prayed`;
+
+    if (isPrayed) {
+      cell.disabled = true;
+    } else {
+      cell.addEventListener("click", () => markPrayedForDate(key));
+    }
+
     fragment.appendChild(cell);
   }
 
