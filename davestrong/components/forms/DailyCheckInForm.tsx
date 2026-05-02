@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useMemo, useState, type InputHTMLAttributes } from "react";
+import { FormEvent, useMemo, useState, useEffect, type InputHTMLAttributes } from "react";
 import { CheckCircle2 } from "lucide-react";
 import { useDaveData } from "@/lib/data/DaveDataProvider";
 import { todayIso, toIsoDate } from "@/lib/utils/date";
@@ -57,6 +57,48 @@ export function DailyCheckInForm() {
   const [status, setStatus] = useState<{ score: number; message: string } | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [submitting, setSubmitting] = useState(false);
+
+  // Auto-fill form if a check-in for the selected date already exists
+  useMemo(() => {
+    const existing = dailyCheckins.find((c) => c.date === state.date);
+    if (existing) {
+      // Only update if we haven't already loaded this date to avoid infinite loops
+      // We can do this safely in a useEffect
+    }
+  }, [dailyCheckins, state.date]);
+
+  useEffect(() => {
+    const existing = dailyCheckins.find((c) => c.date === state.date);
+    if (existing) {
+      setState({
+        date: existing.date,
+        weight: existing.weight != null ? String(existing.weight) : "",
+        waist: existing.waist != null ? String(existing.waist) : "",
+        sleep_hours: existing.sleep_hours != null ? String(existing.sleep_hours) : "",
+        energy: existing.energy != null ? String(existing.energy) : "3",
+        mood: existing.mood != null ? String(existing.mood) : "3",
+        stress: existing.stress != null ? String(existing.stress) : "3",
+        back_pain: existing.back_pain != null ? String(existing.back_pain) : "2",
+        shoulder_pain: existing.shoulder_pain != null ? String(existing.shoulder_pain) : "0",
+        leg_symptoms: existing.leg_symptoms ?? false,
+        walking_minutes: existing.walking_minutes != null ? String(existing.walking_minutes) : "",
+        steps: existing.steps != null ? String(existing.steps) : "",
+        protein_grams: existing.protein_grams != null ? String(existing.protein_grams) : "",
+        calories: existing.calories != null ? String(existing.calories) : "",
+        water_ounces: existing.water_ounces != null ? String(existing.water_ounces) : "",
+        workout_completed: existing.workout_completed ?? false,
+        mobility_completed: existing.mobility_completed ?? false,
+        notes: existing.notes ?? ""
+      });
+    } else {
+      // Reset to default for this date if no existing record
+      setState((current) => ({
+        ...initialState,
+        date: current.date,
+        weight: String(profile.starting_weight)
+      }));
+    }
+  }, [state.date, dailyCheckins, profile.starting_weight]);
 
   const readiness = useMemo(() => {
     const date = new Date(`${state.date}T12:00:00`);

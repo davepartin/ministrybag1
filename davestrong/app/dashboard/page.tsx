@@ -13,6 +13,7 @@ import { calculateReadinessScore, getReadinessBand } from "@/lib/utils/readiness
 import { getSafetyWarnings } from "@/lib/utils/safety";
 import { getScheduledWorkout, getWorkoutRecommendation, scheduledLabel } from "@/lib/utils/workout";
 import { getLatestByName } from "@/lib/utils/progress";
+import { calculateHealthScore, calculateStrengthScore } from "@/lib/utils/percentiles";
 
 export default function DashboardPage() {
   const { profile, dailyCheckins, foodEntries, workouts, strengthTests } = useDaveData();
@@ -36,6 +37,10 @@ export default function DashboardPage() {
   const recommendation = getWorkoutRecommendation({ readiness, checkin: todayCheckin, scheduled });
   const latestTests = getLatestByName(strengthTests);
   const latestWorkout = workouts[0];
+  const currentWeight = todayCheckin?.weight ?? profile.starting_weight;
+  const healthScore = calculateHealthScore(currentWeight, profile.height_inches);
+  const strengthScore = calculateStrengthScore(latestTests);
+
   const trendData = dailyCheckins
     .slice(0, 7)
     .reverse()
@@ -62,6 +67,24 @@ export default function DashboardPage() {
             <p className="text-sm font-semibold uppercase tracking-[0.22em] text-emerald-200">Strong for life</p>
             <h1 className="mt-2 text-3xl font-bold">Build the body you can trust, Dave.</h1>
             <p className="mt-3 max-w-2xl text-sm leading-6 text-stone-200">{profile.primary_goal}</p>
+            
+            <div className="mt-8 flex flex-wrap gap-8">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-widest text-stone-400">Health Score</p>
+                <div className="mt-1 flex items-baseline gap-2">
+                  <span className="text-5xl font-black tracking-tighter text-white">{healthScore}</span>
+                  <span className="text-sm font-medium text-stone-400">percentile</span>
+                </div>
+              </div>
+              <div className="h-12 w-px bg-stone-700 hidden sm:block"></div>
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-widest text-stone-400">Strength Score</p>
+                <div className="mt-1 flex items-baseline gap-2">
+                  <span className="text-5xl font-black tracking-tighter text-emerald-400">{strengthScore}</span>
+                  <span className="text-sm font-medium text-stone-400">percentile</span>
+                </div>
+              </div>
+            </div>
           </div>
           <div className="grid gap-4 p-4 md:grid-cols-3">
             <div>
@@ -93,7 +116,7 @@ export default function DashboardPage() {
         <DashboardCard title="Workout completed" value={todayCheckin?.workout_completed || latestWorkout?.date === today ? "Yes" : "Not yet"} subtext={latestWorkout ? `Latest: ${latestWorkout.workout_type}` : "Back-safe progress"} icon={<Dumbbell className="h-5 w-5" />} />
         <DashboardCard title="Walking minutes" value={todayCheckin?.walking_minutes ?? 0} subtext="Disc golf engine" icon={<Footprints className="h-5 w-5" />} tone="blue" />
         <DashboardCard title="Current streak" value={calculateStreak(dailyCheckins)} subtext="Check-in days" icon={<Flame className="h-5 w-5" />} tone="orange" />
-        <DashboardCard title="Current weight" value={`${todayCheckin?.weight ?? profile.starting_weight} lb`} subtext="Track the trend, not the mood" icon={<Scale className="h-5 w-5" />} />
+        <DashboardCard title="Current weight" value={`${currentWeight} lb`} subtext="Track the trend, not the mood" icon={<Scale className="h-5 w-5" />} />
       </section>
 
       <section className="grid gap-4 lg:grid-cols-[0.8fr_1.2fr]">
