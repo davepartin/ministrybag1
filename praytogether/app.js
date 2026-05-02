@@ -567,14 +567,23 @@ async function unmarkPrayedForDate(dateKey) {
   setBusy(true);
 
   if (state.mode === "cloud") {
-    const { error } = await supabaseClient
+    // .select() so we can confirm at least one row was actually deleted.
+    // If RLS blocks the delete silently, data will be an empty array.
+    const { data, error } = await supabaseClient
       .from("prayer_days")
       .delete()
       .eq("household_id", state.household.id)
-      .eq("day", dateKey);
+      .eq("day", dateKey)
+      .select();
     setBusy(false);
     if (error) {
       window.alert(error.message);
+      return;
+    }
+    if (!data || data.length === 0) {
+      window.alert(
+        "Could not remove this prayer day. Your Supabase database does not yet allow deleting prayer days. Please run the SQL in praytogether/supabase/allow_unmark_prayer_day.sql in your Supabase SQL Editor, then try again."
+      );
       return;
     }
     await refreshDashboard();
