@@ -54,7 +54,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           email,
           options: {
             emailRedirectTo:
-              typeof window === "undefined" ? undefined : `${window.location.origin}/dashboard`
+              typeof window === "undefined" ? undefined : `${window.location.origin}/davestrong/dashboard`
           }
         });
         if (error) throw error;
