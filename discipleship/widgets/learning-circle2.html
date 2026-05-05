@@ -53,7 +53,7 @@
 
         .title-bar {
             background: #2C2416;
-            padding: 10px 20px 8px;
+            padding: 10px 20px 10px;
             text-align: center;
         }
 
@@ -67,21 +67,11 @@
             letter-spacing: 0.1px;
         }
 
-        .title-bar p {
-            font-size: 13px;
-            color: #D4CFC4;
-            margin: 4px 0 0 0;
-            font-family: 'Inter', -apple-system, sans-serif;
-            font-style: normal;
-            font-weight: 400;
-            letter-spacing: 0.2px;
-        }
-
         .diagram-wrapper {
             padding: 4px 0 0;
             display: flex;
             justify-content: center;
-            height: 370px;
+            height: 340px;
         }
 
         .diagram-container {
@@ -185,8 +175,8 @@
         }
 
         .verse-card-content {
-            padding: 10px 16px;
-            height: 100px;
+            padding: 12px 16px 12px;
+            min-height: 135px;
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
@@ -316,7 +306,6 @@
 <div class="widget-outer">
     <div class="title-bar">
         <h1>The Learning Circle</h1>
-        <p>Turning from sin and back to Christ</p>
     </div>
 
     <div class="diagram-wrapper">
@@ -350,7 +339,7 @@ var stops = [
         color: "#8C4B3B",
         bgColor: "#F5F1EA",
         ref: "",
-        verse: 'Conviction is the Spirit bringing your sin into the light to guide you to freedom.<br>I <b>considered my ways</b>, and turned my feet to your testimonies. <span style="white-space:nowrap;">Ps&nbsp;119:59</span>'
+        verse: 'Conviction is the Spirit bringing your sin into the light to guide you to freedom.<br><b>Search me, God, and know my heart;</b> test me and know my anxious thoughts. See if there is any offensive way in me. <span style="white-space:nowrap;">Ps&nbsp;139:23-24</span>'
     },
     {
         id: "repent",
@@ -358,7 +347,7 @@ var stops = [
         color: "#4A6B8B",
         bgColor: "#EEF3F7",
         ref: "",
-        verse: '<b>1. Reflect</b> - I considered my ways, and turned my feet to your testimonies. Ps 119:59<br><b>2. Remorse</b> - Godly sorrow brings repentance that leads to salvation and leaves no regret. 2 Cor 7:10'
+        verse: '<b>1. Reflect</b> - I considered my ways, and turned my feet to your testimonies. <span style="white-space:nowrap;">Ps&nbsp;119:59</span><br><b>2. Remorse</b> - Godly sorrow brings repentance that leads to salvation and leaves no regret. <span style="white-space:nowrap;">2&nbsp;Cor&nbsp;7:10</span>'
     },
     {
         id: "believe",
@@ -366,7 +355,7 @@ var stops = [
         color: "#B8860B",
         bgColor: "#FDF8EC",
         ref: "",
-        verse: '<b>3. Plan</b> - Pray, create a step or two, and invite someone in for accountability for your plan.<br><b>4. Obey</b> - Be doers of the word, and not hearers only, deceiving yourselves. James 1:22'
+        verse: '<b>3. Plan</b> - Pray, create a step or two, and invite someone in for accountability for your plan.<br><b>4. Obey</b> - Be doers of the word, and not hearers only, deceiving yourselves. <span style="white-space:nowrap;">James&nbsp;1:22</span>'
     },
     {
         id: "restored",
@@ -378,21 +367,21 @@ var stops = [
     }
 ];
 
-var W = 350, H = 370;
+var W = 350, H = 340;
 var NS = 'http://www.w3.org/2000/svg';
 var GREY = "#DDD8CE";
 var CHARCOAL = "#3A3834";
 var HUNTER = "#5A6B4F";
 var HUMAN = "#111111";
 
-var PATH_Y = 50;
+var PATH_Y = 45;
 var PATH_X1 = 16;
 var PATH_X2 = 318;
 var PATH_THICK = 10;
-var PATH_BAND_Y = 72;
+var PATH_BAND_Y = 67;
 var PATH_BAND_THICK = 34;
 
-var HUMAN_Y = 94;
+var HUMAN_Y = 89;
 var HUMAN_START_X = 16;
 var HUMAN_TURN_X = 82;
 var HUMAN_REJOIN_X = 268;
@@ -401,7 +390,7 @@ var HUMAN_THICK = 6;
 
 var CX = 175;
 var CR = 96;
-var CIRCLE_TOP_Y = 150;
+var CIRCLE_TOP_Y = 135;
 var CY = CIRCLE_TOP_Y + CR;
 var CIRCLE_BOTTOM_Y = CY + CR;
 
@@ -842,7 +831,7 @@ function render() {
         topLabel.style.fontSize = '16px';
         topLabel.style.color = HUNTER;
         topLabel.style.left = (W / 2) + 'px';
-        topLabel.style.top = '20px';
+        topLabel.style.top = '15px';
         topLabel.style.transform = 'translateX(-50%)';
         topLabel.textContent = 'The Path of Jesus';
         if (step === 0) {
@@ -857,7 +846,7 @@ function render() {
         turningAway.style.fontSize = '12px';
         turningAway.style.color = '#2C2416';
         turningAway.style.left = HUMAN_START_X + 'px';
-        turningAway.style.top = '72px';
+        turningAway.style.top = '67px';
         turningAway.style.transform = 'none';
         turningAway.style.textAlign = 'left';
         turningAway.textContent = 'We Turn Away';
@@ -900,7 +889,7 @@ function render() {
         pathBack.style.fontSize = '12px';
         pathBack.style.color = '#2C2416';
         pathBack.style.left = (HUMAN_END_X - 108) + 'px';
-        pathBack.style.top = '72px';
+        pathBack.style.top = '67px';
         pathBack.style.width = '108px';
         pathBack.style.transform = 'none';
         pathBack.style.textAlign = 'right';
@@ -993,13 +982,12 @@ function renderCard(isIntro) {
 
     var verse = document.createElement('p');
     verse.className = 'verse-card-text';
-    verse.innerHTML = cur.verse;
+    var verseHtml = cur.verse;
+    if (cur.ref) {
+        verseHtml += ' <span style="white-space:nowrap;">' + cur.ref.replace(/ /g, '&nbsp;') + '</span>';
+    }
+    verse.innerHTML = verseHtml;
     content.appendChild(verse);
-
-    var ref = document.createElement('p');
-    ref.className = 'verse-card-ref';
-    ref.textContent = cur.ref;
-    content.appendChild(ref);
 
     card.appendChild(content);
     wrapper.appendChild(card);
