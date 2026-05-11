@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tribe Game Calendar</title>
+    <link rel="icon" href="assets/tribe-logo.png">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="app-config.js"></script>
+    <script src="app.js" defer></script>
+  </head>
+  <body>
+    <main class="login-screen" id="loginScreen">
+      <section class="login-panel" aria-labelledby="loginTitle">
+        <img class="brand-logo large" src="assets/tribe-logo.png" alt="Tribe logo">
+        <div class="login-heading">
+          <p class="eyebrow">Board game calendar</p>
+          <h1 id="loginTitle">Tribe</h1>
+        </div>
+
+        <form class="login-form" id="loginForm">
+          <label class="field-label" for="calendarCode">Calendar code</label>
+          <input
+            id="calendarCode"
+            name="calendarCode"
+            type="password"
+            autocomplete="off"
+            placeholder="tribe"
+            required
+          >
+
+          <fieldset class="person-picker">
+            <legend>Choose your name</legend>
+            <div class="person-options" id="personOptions"></div>
+          </fieldset>
+
+          <p class="form-error" id="loginError" role="alert"></p>
+          <button class="primary-action" type="submit">Enter Calendar</button>
+        </form>
+      </section>
+    </main>
+
+    <main class="app-shell" id="appScreen" hidden>
+      <header class="top-bar">
+        <div class="brand-lockup">
+          <img class="brand-logo" src="assets/tribe-logo.png" alt="Tribe logo">
+          <div>
+            <p class="eyebrow">Strategy night</p>
+            <h1>Tribe</h1>
+          </div>
+        </div>
+
+        <div class="session-controls">
+          <div class="sync-pill" id="syncStatus">Loading</div>
+          <div class="user-pill" id="activePerson">Player</div>
+          <button class="ghost-action" type="button" id="refreshButton">Refresh</button>
+          <button class="ghost-action" type="button" id="switchButton">Switch</button>
+        </div>
+      </header>
+
+      <section class="summary-strip" aria-label="Calendar summary">
+        <article class="summary-block">
+          <span class="summary-label">Best Count</span>
+          <strong id="bestCount">0</strong>
+        </article>
+        <article class="summary-block">
+          <span class="summary-label">My Picks</span>
+          <strong id="myCount">0</strong>
+        </article>
+        <article class="summary-block wide">
+          <span class="summary-label">Selected Day</span>
+          <strong id="selectedDayLabel">Today</strong>
+        </article>
+      </section>
+
+      <div class="content-grid">
+        <section class="calendar-board" id="calendarBoard" aria-label="Four month calendar"></section>
+
+        <aside class="side-panel" aria-label="Availability details">
+          <section class="detail-panel">
+            <div class="panel-heading">
+              <p class="eyebrow">Day details</p>
+              <h2 id="detailDate">Selected day</h2>
+            </div>
+            <div class="detail-count">
+              <strong id="detailCount">0</strong>
+              <span>available</span>
+            </div>
+            <div class="attendee-list" id="detailPeople"></div>
+            <button class="primary-action full" type="button" id="detailToggle">Mark Available</button>
+          </section>
+
+          <section class="best-panel">
+            <div class="panel-heading">
+              <p class="eyebrow">Top dates</p>
+              <h2>Best Options</h2>
+            </div>
+            <div class="best-list" id="bestDates"></div>
+          </section>
+        </aside>
+      </div>
+    </main>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </body>
+</html>
