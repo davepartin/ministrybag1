@@ -1,4 +1,4 @@
 window.TRIBE_CONFIG = {
-  supabaseUrl: "",
-  supabaseAnonKey: ""
+  supabaseUrl: "https://cnykbkdhzqbqocveljok.supabase.co",
+  supabaseAnonKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNueWtia2RoenFicW9jdmVsam9rIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc3MDQ4ODAsImV4cCI6MjA5MzI4MDg4MH0.uWAIFxwhQV2rb9lrIdyjU2Ati6nVBpXSPJYu6A1Wy6E"
 };
