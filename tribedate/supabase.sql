@@ -20,13 +20,13 @@ drop policy if exists "tribe availability delete" on public.tribe_availability;
 create policy "tribe availability read"
 on public.tribe_availability
 for select
-to anon
+to anon, authenticated
 using (calendar_code = 'tribe');
 
 create policy "tribe availability insert"
 on public.tribe_availability
 for insert
-to anon
+to anon, authenticated
 with check (
   calendar_code = 'tribe'
   and person in ('Dave', 'Chris', 'Curtis', 'Brian', 'Silas', 'Joel')
@@ -35,7 +35,7 @@ with check (
 create policy "tribe availability delete"
 on public.tribe_availability
 for delete
-to anon
+to anon, authenticated
 using (
   calendar_code = 'tribe'
   and person in ('Dave', 'Chris', 'Curtis', 'Brian', 'Silas', 'Joel')
