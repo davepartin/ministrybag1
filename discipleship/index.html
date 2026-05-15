@@ -2639,14 +2639,17 @@
                     currentSeriesLessonMeta[lesson.num] = lesson;
                 });
             }
-            const expectedLessonNums = Object.keys(currentSeriesLessonMeta).map(Number);
-            const expectedMaxLessonNum = expectedLessonNums.length > 0 ? Math.max(...expectedLessonNums) : 0;
+            const expectedLessonNums = Object.keys(currentSeriesLessonMeta)
+                .map(Number)
+                .sort((a, b) => a - b);
+            const lessonNumsToFetch = expectedLessonNums.length > 0
+                ? expectedLessonNums
+                : Array.from({ length: 20 }, (_, idx) => idx + 1);
 
-            // Fetch all possible sessions
-            const MAX = 20;
+            // Fetch the lessons listed in the TOC. Fall back to the old 1-20 sweep only if TOC data is unavailable.
             const promises = [];
 
-            for (let i = 1; i <= MAX; i++) {
+            for (const i of lessonNumsToFetch) {
                 const fileNum = i.toString().padStart(2, '0');
                 promises.push(
                     fetch(`data/${seriesId}-${fileNum}.json?v=${BUILD_VERSION}`)
@@ -2659,7 +2662,7 @@
                         })
                         .catch((err) => {
                             // Warn only for lessons expected by the curriculum TOC to avoid noisy logs.
-                            if (i <= expectedMaxLessonNum) {
+                            if (expectedLessonNums.includes(i)) {
                                 console.warn(`Failed to load lesson file data/${seriesId}-${fileNum}.json`, err);
                             }
                         })

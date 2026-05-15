@@ -35,7 +35,7 @@
     {
       "type": "question",
       "id": "201-10-1",
-      "text": "10.1 - Which son do you relate to more right now, the one who ran or the one who stayed and hardened?",
+      "text": "10.1 - Which son do you relate to more right now and why, the one who ran or the one who stayed and hardened?",
       "height": "tall"
     },
     {
@@ -70,7 +70,7 @@
     },
     {
       "type": "text",
-      "text": "<strong>Then you hit the turning point and enter the circle. The right side is Repent.</strong> This is where you pause, reflect, and let the heart feel the weight. Reflect means you look honestly at what happened. God shines a light on the why, maybe a weakness you ignored, a lie you bought into, a pattern you have been running from. The Psalmist says God desires truth in our inner parts. Ask yourself: where did I miss His voice? What pulled me away? Then comes remorse, not beating yourself up but letting the ache do its work, because you were made for more than this. Like the son in the pigpen realizing, \"This is not who I am.\" Conviction hurts, but it is love waking you up."
+      "text": "<strong>Then you hit the turning point and enter the circle. The right side is Repent.</strong><br><br><strong>1) REFLECT</strong> is where you pause and let the heart feel the weight. It means you look honestly at what happened. God shines a light on the why, maybe a weakness you ignored, a lie you bought into, a pattern you have been running from. Ask yourself: Am I off the path? What pulled me away?<br><br><strong>2) REMORSE</strong> is not beating yourself up but letting the pain do its work, because you know God wants better for you. Like the son in the pigpen realizing, \"This is not who I am.\" Conviction hurts, but it is love waking you up."
     },
     {
       "type": "verse",
@@ -79,7 +79,7 @@
     },
     {
       "type": "text",
-      "text": "<strong>The left side of the circle is Believe.</strong> This is where repentance gets practical. First you plan. Jesus said, \"Go and sin no more,\" but He never meant alone. Think small and real: who can keep you accountable? What one change can you make? What is your first move tomorrow? Then you obey. You walk it out. Humility shows up when you confess, when you change, when you trust that He is stronger than your mess. You do not earn grace. You just receive it and let it move your feet."
+      "text": "<strong>The left side of the circle is Believe.</strong> This is where repentance gets practical.<br><br><strong>3) Plan.</strong> Jesus said, \"Go and sin no more,\" but He never meant alone. Think small and real: who can keep you accountable? What one change can you make? What is your first move tomorrow?<br><br><strong>4) Obey.</strong> You walk it out. Humility shows up when you confess, when you change, when you trust that He is stronger than your mess. You do not earn grace. You just receive it and let it move your feet."
     },
     {
       "type": "verse",
@@ -88,29 +88,18 @@
     },
     {
       "type": "text",
-      "text": "<strong>Finally, you return to the path.</strong> Not at the same spot, but further along. The prodigal did not just get home; he learned the Father was not stingy but lavish. You grow too. You see where pride was hiding. You see where truth sets you free. Each turn through the circle brings you closer to the Father's heart, not because you performed well, but because humility cracked you open and let His grace pour in."
-    },
-    {
-      "type": "verse",
-      "reference": "Micah 7:8",
-      "text": "Rejoice not over me, O my enemy; when I fall, I shall rise; when I sit in darkness, the Lord will be a light to me."
+      "text": "<strong>Finally, you return to the path.</strong> Not at the same spot, but further along. The prodigal did not just get home; he learned his Father's character of love and acceptance. You grow too. You see where pride was hiding and where truth sets you free. Each turn through the circle brings you closer to the Father's heart, not because of your perfect behavior, but because humility cracked you open and let His grace pour in. You no longer want to take advantage of his forgiveness like a spoiled child; you worship God and want to please Him."
     },
     {
       "type": "question",
       "id": "201-10-2",
-      "text": "10.2 - As you walked through the Learning Circle, which step felt most personal to you right now? Is there something specific God is asking you to reflect on, feel the weight of, plan around, or obey?",
+      "text": "10.2 - As you walked through the Learning Circle, which step in the process is the weakest for you?",
       "height": "tall"
     },
     {
       "type": "question",
       "id": "201-10-3",
-      "text": "10.3 - Think about the difference between worldly grief (feeling bad because of consequences) and godly grief (feeling the weight because you were made for more). Where do you see each one showing up in your own life right now?",
-      "height": "tall"
-    },
-    {
-      "type": "question",
-      "id": "201-10-4",
-      "text": "10.4 - The \"Believe\" side of the circle asks you to plan and obey. What is one specific, practical step you can take this week to walk differently? Who could you ask to hold you accountable?",
+      "text": "10.3 - Consider one area of life you need to work on to get back on the path. Write out your reflections and your feelings of remorse. Then write out your plan and steps of obedience.",
       "height": "tall"
     },
     {
@@ -153,13 +142,13 @@
     {
       "type": "question",
       "id": "201-10-key",
-      "text": "What is one key thing you learned from this lesson, and what next step can you take this week?",
+      "text": "What is one key thing you learned from this lesson?",
       "height": "short"
     },
     {
       "type": "question",
-      "id": "201-10-devos",
-      "text": "What have you learned about God and yourself recently in your Daily Devotions?",
+      "id": "201-10-step",
+      "text": "What is one step you are going to take this week?",
       "height": "short"
     },
     {

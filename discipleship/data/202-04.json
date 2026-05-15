@@ -1,36 +1,148 @@
 {
   "id": "4",
   "title": "Lesson 4: Discovering Your Gifts",
-  "description": "Life Skill: The 3-minute testimony (Before, How, After).",
+  "description": "In Ephesians 4, Jesus gives Apostles, Prophets, Evangelists, Shepherds, and Teachers to equip all His people for ministry. Through the picture of five farmers working one field, you will begin noticing how God may have wired you to strengthen His Church.",
   "blocks": [
     {
-      "type": "heading",
-      "text": "The Power of Your Story"
+      "type": "text",
+      "text": "Lessons 1, 2, and 3 walked outward through three connected homes: your neighbors next door, your family under your roof, and the church family God has given you. Now the question becomes more personal: <em>What kind of grace has God placed in me for the good of His people?</em> This lesson will help you notice how Jesus may be wiring you to strengthen His Church."
+    },
+    {
+      "type": "image",
+      "imageBw": "images/Farmer-bw.jpeg",
+      "imageColor": "images/Farmer-color.jpg",
+      "alt": "A farmer standing in a wide field, tools at hand, ready for the work the field needs",
+      "touchNext": true
+    },
+    {
+      "type": "parable",
+      "title": "The Five Farmers in the Field",
+      "text": "A master farmer owned a field full of possibility, but the field needed more than one kind of work. Some ground needed to be started from scratch. Some rows needed a careful watcher, some places needed seed, and some new plants needed water. Some branches needed pruning so the fruit could grow strong.<br><br>So the master farmer called five farmers and gave each one what the field would need: a plow, a watcher's eye on the sky, a seed bag, a watering can, and pruning shears. When each farmer used what had been given, the whole field changed. No single farmer could tend the whole field, but each one carried a grace the field needed."
     },
     {
       "type": "text",
-      "text": "The greatest tool you have is your own story of what Jesus has done for you. Learning to clearly communicate your life before Christ, how you met Him, and the difference He makes now is a vital skill."
-    },
-    {
-      "type": "verse",
-      "reference": "1 Peter 3:15",
-      "text": "But in your hearts honor Christ the Lord as holy, always being prepared to make a defense to anyone who asks you for a reason for the hope that is in you; yet do it with gentleness and respect."
-    },
-    {
-      "type": "question",
-      "id": "203-4-1",
-      "text": "4.1 - Try drafting the outline of your story in three sentences: Before Christ, Meeting Christ, and Life Now. What are they?",
-      "data_question": "4.1 - Draft of testimony"
+      "text": "That is the question underneath this lesson. What tool has the Master Farmer placed in your hands for the field He loves?"
     },
     {
       "type": "heading",
-      "text": "BLESS Check-in"
+      "text": "Equipped for the Work of Ministry"
+    },
+    {
+      "type": "verse",
+      "reference": "Ephesians 4:11-13",
+      "text": "And he gave the <strong>Apostles</strong>, the <strong>Prophets</strong>, the <strong>Evangelists</strong>, the <strong>Shepherds</strong> and <strong>Teachers</strong>, to equip the saints for the work of ministry, for building up the body of Christ, until we all attain to the unity of the faith and of the knowledge of the Son of God, to mature manhood, to the measure of the stature of the fullness of Christ."
+    },
+    {
+      "type": "text",
+      "text": "This verse changes the way most people think about church. Jesus gave apostles, prophets, evangelists, shepherds, and teachers <em>to equip the saints for the work of ministry.</em> The gifts are not handed out so a small group of professionals can do the work while everyone else watches. They are given so every believer can be equipped and useful in the body."
+    },
+    {
+      "type": "text",
+      "text": "The word <em>saints</em> means every person who belongs to Jesus. The word <em>ministry</em> simply means serving in a way that builds up the body of Christ. Welcoming a newcomer, teaching a child, praying for a drifting friend, starting a group, or helping a new believer find their footing can all be ministry."
+    },
+    {
+      "type": "text",
+      "text": "Before any of that becomes pressure, hear the grace underneath. Paul does not say, \"Earn your way onto the team.\" He says Jesus <em>gave.</em> Whatever gift God has placed in you, He put it there. Your job is to notice it, use it, and let Him build the body through you."
     },
     {
       "type": "question",
-      "id": "203-04-bless",
-      "text": "Who are you currently BLESSing? Who are you praying for and actively moving toward? What is one specific step you are taking this week?",
+      "id": "202-04-1",
+      "text": "4.1 - When you think about \"the work of ministry\" and building up the body of Christ, what kinds of things do you enjoy doing or feel like you are good at in your community, church, or everyday relationships?",
       "height": "tall"
+    },
+    {
+      "type": "heading",
+      "text": "Five Farmers, One Field"
+    },
+    {
+      "type": "text",
+      "text": "Paul names five kinds of gifts in Ephesians 4: Apostle, Prophet, Evangelist, Shepherd, and Teacher. They are often called APEST for short, the first letter of each word. These are not five ranks of clergy. They are five ways Jesus continues His own ministry through His people."
+    },
+    {
+      "type": "text",
+      "text": "Use the tool below to notice what each farmer sees, what each farmer cares about, and what kind of work makes the field come alive."
+    },
+    {
+      "type": "widget",
+      "src": "widgets/five-gardeners.html",
+      "height": "540px"
+    },
+    {
+      "type": "heading",
+      "text": "Noticing the Five Roles"
+    },
+    {
+      "type": "text",
+      "text": "Most believers carry a blend of gifts, and your role may grow clearer over time. As you read each role, ask: What do I notice first? What burdens me? What kind of work gives me holy energy? What do other people already ask me to help with?"
+    },
+    {
+      "type": "text",
+      "text": "<strong>The Apostle is the Plower.</strong> Apostles notice unopened ground: a new ministry, a new group, a neighborhood need, or a way forward before others see it. They push the church into places gospel work has not reached, carrying vision, courage, and a holy restlessness that says, <em>There is more ground to cultivate.</em>"
+    },
+    {
+      "type": "text",
+      "text": "<strong>The Prophet is the Watcher.</strong> Prophets notice the condition of the field, sensing when a group is drifting, someone is being overlooked, a value is being compromised, or God is calling people back to His heart. They ask honest questions and help the church stay awake to truth, justice, holiness, and compassion."
+    },
+    {
+      "type": "text",
+      "text": "<strong>The Evangelist is the Planter.</strong> Evangelists notice where seed can be scattered, naturally telling stories of God's goodness, creating warm invitations, and connecting people who might otherwise stay distant. They help spiritually curious people feel seen, wanted, and invited toward Jesus."
+    },
+    {
+      "type": "text",
+      "text": "<strong>The Shepherd is the Waterer.</strong> Shepherds notice the tender and the tired, seeking out lonely people, listening well, protecting relationships, and creating safe places where people can heal. They help faith stay alive when people are weak, wounded, or worn down."
+    },
+    {
+      "type": "text",
+      "text": "<strong>The Teacher is the Pruner.</strong> Teachers notice what needs clarity and depth, explaining Scripture, simplifying complicated ideas, building resources, and mentoring patiently. They help truth take root so fruit can grow strong and healthy."
+    },
+    {
+      "type": "question",
+      "id": "202-04-2",
+      "text": "4.2 - As you consider the five APEST roles, which one or two most resonate with you? What do you already notice, care about, or naturally do that may point toward that wiring?",
+      "height": "tall"
+    },
+    {
+      "type": "heading",
+      "text": "A Gift Is Grace, Not a Label"
+    },
+    {
+      "type": "verse",
+      "reference": "Romans 12:6-8",
+      "text": "Having gifts that differ according to the grace given to us, let us use them: if prophecy, in proportion to our faith; if service, in our serving; the one who teaches, in his teaching; the one who exhorts, in his exhortation; the one who contributes, in generosity; the one who leads, with zeal; the one who does acts of mercy, with cheerfulness."
+    },
+    {
+      "type": "text",
+      "text": "Notice that little phrase, <em>according to the grace given to us.</em> Your gift is grace. APEST is one helpful lens, and Romans 12 gives another list of ways grace shows up in the church. The point is simple: use what God has given you."
+    },
+    {
+      "type": "text",
+      "text": "Here is a simple way to keep discerning your role. Pay attention to what you notice first in the field: unopened ground, spiritual drift, people far from Jesus, hurting people who need care, or confusion that needs clarity. Then pay attention to fruit. Where does your service seem to strengthen others?"
+    },
+    {
+      "type": "text",
+      "text": "Jesus is the center of all five gifts. He is the perfect Apostle, sent by the Father. He is the perfect Prophet, speaking the Father's heart. He is the perfect Evangelist, announcing good news. He is the perfect Shepherd, laying down His life for the sheep. He is the perfect Teacher, opening the Scriptures. When Jesus gives gifts to His Church, He is sharing pieces of His own ministry with His people."
+    },
+    {
+      "type": "question",
+      "id": "202-04-3",
+      "text": "4.3 - Choose one APEST role that resonated with you. What is one way you could try this week to use that gift in your church family or everyday life?",
+      "height": "tall"
+    },
+    {
+      "type": "heading",
+      "text": "This Week's Practice"
+    },
+    {
+      "type": "text",
+      "text": "Pick one APEST role you sensed God may have placed in you and pray a short prayer over it each morning this week. Thank God that this is a grace He gave, not a wage you earned. Then ask Him for one person, one moment, or one need where you can use it that day."
+    },
+    {
+      "type": "heading",
+      "text": "Lesson 4 Review"
+    },
+    {
+      "type": "text",
+      "text": "Jesus gave five kinds of gifts to His Church: Apostle, Prophet, Evangelist, Shepherd, and Teacher. He gives grace throughout His people so every believer can help build up the Church. Like five farmers tending one field, each role notices something different and contributes something needed. Your job is to notice the grace God has placed in you and start putting it to use. In the next lesson, you will see what it looks like when faith gets tested by the hard places God walks His people through."
     },
     {
       "type": "heading",
@@ -38,19 +150,19 @@
     },
     {
       "type": "question",
-      "id": "203-04-key",
-      "text": "What is one key thing you learned from this lesson, and what next step can you take this week?",
+      "id": "202-04-key",
+      "text": "What is one key thing you learned from this lesson?",
       "height": "short"
     },
     {
       "type": "question",
-      "id": "203-04-devos",
-      "text": "What have you learned about God and yourself recently in your Daily Devotions?",
+      "id": "202-04-step",
+      "text": "What is one step you are going to take this week?",
       "height": "short"
     },
     {
       "type": "question",
-      "id": "203-04-prayer",
+      "id": "202-04-prayer",
       "text": "What is a prayer request for this week?",
       "height": "short"
     }

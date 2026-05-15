@@ -168,7 +168,6 @@
         .cross-piece,
         .cross-glow,
         .path-line,
-        .bridge-mist,
         .sacrifice-marker {
             transition: opacity 0.45s ease;
         }
@@ -183,42 +182,38 @@
         }
 
         .controls {
-            position: absolute;
-            left: 0;
-            right: 0;
-            bottom: 9px;
-            z-index: 4;
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
-            gap: 12px;
-            pointer-events: none;
+            margin-top: 10px;
+            padding: 0 2px;
+            gap: 10px;
         }
 
-        .icon-btn,
-        .dot {
-            pointer-events: auto;
-        }
-
-        .icon-btn {
-            width: 34px;
-            height: 34px;
+        .nav-btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            border: 1.5px solid rgba(90, 78, 60, 0.22);
-            border-radius: 999px;
-            background: rgba(255, 255, 255, 0.9);
-            color: #3B3328;
+            border: 1.5px solid #D4CFC4;
+            border-radius: 10px;
+            background: #FFFFFF;
+            color: #4D4337;
             cursor: pointer;
             font-family: "Trebuchet MS", Arial, sans-serif;
-            font-size: 20px;
-            font-weight: 800;
-            line-height: 1;
-            box-shadow: 0 4px 12px rgba(44, 36, 22, 0.08);
+            font-size: 12px;
+            font-weight: 700;
+            line-height: 1.1;
+            min-height: 34px;
+            padding: 8px 14px;
         }
 
-        .icon-btn:disabled {
+        .nav-btn.primary {
+            border-color: transparent;
+            color: #FFFFFF;
+            min-width: 96px;
+        }
+
+        .nav-btn:disabled {
             opacity: 0.35;
             cursor: default;
         }
@@ -227,11 +222,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 4px;
-            padding: 8px 10px;
-            border-radius: 999px;
-            background: rgba(255, 255, 255, 0.74);
-            box-shadow: 0 4px 12px rgba(44, 36, 22, 0.06);
+            flex: 1;
+            gap: 5px;
         }
 
         .dot {
@@ -279,22 +271,17 @@
 
             <rect x="0" y="0" width="390" height="330" fill="#FFFFFF"></rect>
 
+            <g id="crossGroup" opacity="0">
+                <line class="cross-piece" x1="198" y1="114" x2="198" y2="258" stroke="#CFCFCF" stroke-width="40" stroke-linecap="butt"></line>
+                <line class="cross-piece" x1="142" y1="166" x2="254" y2="166" stroke="#CFCFCF" stroke-width="40" stroke-linecap="butt"></line>
+            </g>
+
             <line class="path-line" x1="32" y1="114" x2="340" y2="114" stroke="#3B3328" stroke-width="4" stroke-linecap="round" marker-end="url(#arrowDark)"></line>
             <line class="path-line" id="bottomPath" x1="32" y1="258" x2="340" y2="258" stroke="#3B3328" stroke-width="4" stroke-linecap="round" marker-end="url(#arrowDark)" opacity="0.8"></line>
             <text class="diagram-label" x="198" y="78" text-anchor="middle">Life in Relationship with God</text>
             <text class="diagram-label" x="198" y="302" text-anchor="middle">Life Separate from God</text>
 
             <g id="crossGlow" class="cross-glow" opacity="0">
-            </g>
-
-            <g id="bridgeMist" class="bridge-mist" opacity="0">
-                <path d="M 176 126 C 189 140, 207 140, 220 126" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round" opacity="0.55"></path>
-                <path d="M 176 238 C 189 224, 207 224, 220 238" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round" opacity="0.5"></path>
-            </g>
-
-            <g id="crossGroup" opacity="0">
-                <line class="cross-piece" x1="198" y1="114" x2="198" y2="258" stroke="#CFCFCF" stroke-width="40" stroke-linecap="butt"></line>
-                <line class="cross-piece" x1="142" y1="166" x2="254" y2="166" stroke="#CFCFCF" stroke-width="40" stroke-linecap="butt"></line>
             </g>
 
             <g id="sacrificeMarker" class="sacrifice-marker" opacity="0">
@@ -314,11 +301,6 @@
             </g>
         </svg>
 
-        <div class="controls" aria-label="Diagram controls">
-            <button class="icon-btn" id="backBtn" type="button" aria-label="Previous step">&#8249;</button>
-            <div class="dot-nav" id="dotNav"></div>
-            <button class="icon-btn" id="nextBtn" type="button" aria-label="Next step">&#8250;</button>
-        </div>
     </div>
 
     <div class="info-area">
@@ -329,6 +311,11 @@
                 <p class="info-text" id="infoText"></p>
                 <p class="info-ref" id="infoRef"></p>
             </div>
+        </div>
+        <div class="controls" aria-label="Diagram controls">
+            <button class="nav-btn" id="backBtn" type="button" aria-label="Previous step">&larr; Back</button>
+            <div class="dot-nav" id="dotNav"></div>
+            <button class="nav-btn primary" id="nextBtn" type="button" aria-label="Next step">Next &rarr;</button>
         </div>
     </div>
 </div>
@@ -345,7 +332,6 @@
             blackOnTop: false,
             cross: 0,
             glow: 0,
-            mist: 0,
             bottom: 0.8,
             marker: 0,
             title: 'Jesus is God',
@@ -361,7 +347,6 @@
             blackOnTop: false,
             cross: 0,
             glow: 0,
-            mist: 0,
             bottom: 0.8,
             marker: 0,
             title: 'We Are in Darkness',
@@ -377,7 +362,6 @@
             blackOnTop: false,
             cross: 0,
             glow: 0,
-            mist: 0,
             bottom: 0.8,
             marker: 0,
             title: 'God with Us',
@@ -393,7 +377,6 @@
             blackOnTop: false,
             cross: 1,
             glow: 0.34,
-            mist: 0.42,
             bottom: 0.8,
             marker: 1,
             title: 'Jesus is the Final Sacrifice',
@@ -409,7 +392,6 @@
             blackOnTop: false,
             cross: 1,
             glow: 0.5,
-            mist: 0.62,
             bottom: 0.8,
             marker: 1,
             title: 'God Shows His Love',
@@ -425,7 +407,6 @@
             blackOnTop: false,
             cross: 1,
             glow: 0.55,
-            mist: 0.62,
             bottom: 0.72,
             marker: 1,
             title: 'Choose to Receive or Reject Jesus',
@@ -442,7 +423,6 @@
             blackStroke: '#171717',
             cross: 1,
             glow: 0.62,
-            mist: 0.62,
             bottom: 0.58,
             marker: 1,
             title: 'Jesus Became Sin',
@@ -464,7 +444,6 @@
             whiteStrokeWidth: 4,
             cross: 1,
             glow: 0.78,
-            mist: 0.7,
             bottom: 0.42,
             marker: 1,
             dissolveExchange: true,
@@ -487,7 +466,6 @@
             whiteStrokeWidth: 4,
             cross: 1,
             glow: 0.62,
-            mist: 0.44,
             bottom: 0.25,
             marker: 1,
             title: 'Jesus Lives in Us',
@@ -509,7 +487,6 @@
             whiteStrokeWidth: 4,
             cross: 1,
             glow: 0.62,
-            mist: 0.44,
             bottom: 0.25,
             marker: 1,
             title: 'A New Creation',
@@ -529,7 +506,6 @@
     var crossGroup = document.getElementById('crossGroup');
     var sacrificeMarker = document.getElementById('sacrificeMarker');
     var crossGlow = document.getElementById('crossGlow');
-    var bridgeMist = document.getElementById('bridgeMist');
     var bottomPath = document.getElementById('bottomPath');
     var backBtn = document.getElementById('backBtn');
     var nextBtn = document.getElementById('nextBtn');
@@ -700,7 +676,6 @@
         crossGroup.style.opacity = String(cur.cross);
         sacrificeMarker.style.opacity = String(cur.marker);
         crossGlow.style.opacity = String(cur.glow);
-        bridgeMist.style.opacity = String(cur.mist);
         var jesusStyle = {
             fill: cur.whiteFill || '#FFFDF7',
             stroke: cur.whiteStroke || '#C49A3A',
@@ -746,7 +721,8 @@
         infoRef.textContent = cur.ref;
 
         backBtn.disabled = step === 0;
-        nextBtn.innerHTML = step === steps.length - 1 ? '&#8635;' : '&#8250;';
+        nextBtn.style.background = cur.accent;
+        nextBtn.innerHTML = step === steps.length - 1 ? '&#8635; Restart' : 'Next &rarr;';
         nextBtn.setAttribute('aria-label', step === steps.length - 1 ? 'Restart diagram' : 'Next step');
         renderDots();
         render.lastStep = step;

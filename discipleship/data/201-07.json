@@ -73,7 +73,8 @@
     {
       "type": "question",
       "id": "201-07-1",
-      "text": "7.1 - Which of the three steps (Observe, Interpret, Apply) feels most new to you? Which one do you think you tend to skip?"
+      "text": "7.1 - Which of the three steps (Observe, Interpret, Apply) feels most new to you? Which one do you think you tend to skip?",
+      "height": "tall"
     },
     {
       "type": "heading",
@@ -159,13 +160,13 @@
     {
       "type": "question",
       "id": "201-07-key",
-      "text": "What is one key thing you learned from this lesson, and what next step can you take this week?",
+      "text": "What is one key thing you learned from this lesson?",
       "height": "short"
     },
     {
       "type": "question",
-      "id": "201-07-devos",
-      "text": "What have you learned about God and yourself recently in your Daily Devotions?",
+      "id": "201-07-step",
+      "text": "What is one step you are going to take this week?",
       "height": "short"
     },
     {
