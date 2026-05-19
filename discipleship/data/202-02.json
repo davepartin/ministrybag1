@@ -1,26 +1,152 @@
 {
   "id": "2",
-  "title": "Lesson 2: Loving Your Home Family: Your First Neighbors",
-  "description": "Establishing a gospel-centered home where your family is your first mission field - and where forgiveness is most needed and most tested. Covers marriage, singleness, household life as discipleship, and the hard work of forgiving the people closest to you.",
+  "title": "Lesson 2: Loving Your Family at Home",
+  "description": "Jesus is the cornerstone of a life of faith. His love does not skip over the people closest to us on the way to the nations. This lesson asks what it looks like to build from Christ outward by loving our family as our first neighbors.",
   "blocks": [
     {
-      "type": "heading",
-      "text": "Gospel in the Home"
+      "type": "text",
+      "text": "Lesson 1 turned the love of Jesus outward toward the neighbor in your path. This lesson brings that love closer to home. Your first neighbors are often the people at your table, in your car, under your roof, or on the other end of the family text thread. The love of Jesus does not skip over the people closest to us on the way to the nations."
+    },
+    {
+      "type": "image",
+      "imageSequence": [
+        "images/house-rock-1.png",
+        "images/house-rock-2.jpg",
+        "images/house-rock-2.jpg",
+        "images/house-rock-3.jpg"
+      ],
+      "imageSequenceStops": [
+        0.10,
+        0.35,
+        0.40,
+        0.65
+      ],
+      "alt": "Two houses built on different ground as a storm gathers, then a great wave destroys the sand house while the rock house stands, and finally calm reveals only the house on the rock still standing",
+      "touchNext": true
+    },
+    {
+      "type": "parable",
+      "title": "The Wise and Foolish Builders",
+      "text": "Jesus ended His Sermon on the Mount with a story about two builders. Two men set out to build their houses, and they used the same tools, the same wood, and the same nails. The only difference was the ground beneath their feet.<br><br>The wise man dug down and laid his foundation on the rock. The rains fell. The floods came. The winds beat against his house. But it did not fall, because it had been built on the rock.<br><br>The foolish man built his house on the sand. The same rains fell. The same floods came. The same winds beat against his house. But it collapsed, and great was the fall of it.<br><br>Then Jesus said, <em>\"Everyone then who hears these words of mine and does them will be like a wise man who built his house on the rock.\" (Matthew 7:24-27)</em>"
     },
     {
       "type": "text",
-      "text": "Whether married or single, our homes are meant to display the love of the Gospel. It involves practicing forgiveness, choosing service over selfishness, and keeping Christ at the center of our daily interactions."
-    },
-    {
-      "type": "verse",
-      "reference": "Colossians 3:12-13",
-      "text": "Put on then, as God's chosen ones, holy and beloved, compassionate hearts, kindness, humility, meekness, and patience... forgiving each other; as the Lord has forgiven you, so you also must forgive."
+      "text": "Every life is being built. The question is not whether the rains will come. They will. The question is what your house is sitting on. A life built on Jesus stands because His words set the foundation, the level, and the direction for everything else."
     },
     {
       "type": "question",
-      "id": "202-5-1",
-      "text": "5.1 - In what practical way can you show 'compassionate hearts, kindness, and patience' in your home this week?",
-      "data_question": "5.1 - Showing kindness at home"
+      "id": "202-02-1",
+      "text": "2.1 - What does it look like in everyday life when Jesus is truly the cornerstone of a home? Where do you see that most clearly, or where do you feel the need for realignment?",
+      "height": "tall"
+    },
+    {
+      "type": "heading",
+      "text": "Jesus Is the Cornerstone"
+    },
+    {
+      "type": "verse",
+      "reference": "Ephesians 2:19-22",
+      "text": "So then you are no longer strangers and aliens, but you are fellow citizens with the saints and members of the household of God, built on the foundation of the apostles and prophets, <strong>Christ Jesus himself being the cornerstone</strong>, in whom the whole structure, being joined together, grows into a holy temple in the Lord. In him you also are being built together into a dwelling place for God by the Spirit."
+    },
+    {
+      "type": "text",
+      "text": "A cornerstone was not decorative. Builders used it to set the line and angle of the whole structure. If the first stone was crooked, the wall above it would lean. Jesus is that stone for the Christian life. We do not add Him onto a life we already planned. We build from Him. When our deepest satisfaction rests in Christ, loving others becomes an overflow of grace instead of a performance to prove ourselves."
+    },
+    {
+      "type": "heading",
+      "text": "Your First Neighbors"
+    },
+    {
+      "type": "text",
+      "text": "The people closest to the cornerstone are usually your family: a spouse, children, parents, siblings, roommates, or the people whose needs shape your ordinary week. They are your first neighbors. This does not mean family is more important than Jesus. Jesus is first. It means His love should become visible first where you are most known."
+    },
+    {
+      "type": "text",
+      "text": "Use the picture below to see the outward movement. Jesus is the cornerstone. His love shapes the home, then the church family, then the community, then the world. This lesson focuses on the first neighbors closest to you."
+    },
+    {
+      "type": "widget",
+      "src": "widgets/cornerstone.html",
+      "height": "490px"
+    },
+    {
+      "type": "heading",
+      "text": "Love Starts Close"
+    },
+    {
+      "type": "text",
+      "text": "The home is often the first testing ground of whether Jesus is really shaping our love. At home, people see us before the coffee, after the hard day, and when no one is applauding. That is why family love matters so much. It is not a distraction from discipleship. It is one of the first places discipleship becomes visible."
+    },
+    {
+      "type": "verse",
+      "reference": "1 Timothy 3:4-5",
+      "text": "He must manage his own household well, with all dignity keeping his children submissive, for if someone does not know how to manage his own household, how will he care for God's church?"
+    },
+    {
+      "type": "text",
+      "text": "Paul does not require church leaders to have perfect families. He does show that home life matters to God. The home reveals patience, humility, gentleness, self-control, repentance, and care. Before someone can care for God's larger household, they must learn to care for the household closest to them."
+    },
+    {
+      "type": "text",
+      "text": "For a spouse, this may look like sacrifice instead of scorekeeping, gentleness instead of harshness, and addressing the issue in front of you without dragging up every past failure. For children, it means correction with warmth, repentance when you sin against them, and a faith that feels real rather than only rule-heavy. For parents, it means honor, care, gratitude, wise boundaries when needed, and refusing to use busyness or ministry as an excuse to neglect real love."
+    },
+    {
+      "type": "verse",
+      "reference": "Ephesians 5:25; 6:4",
+      "text": "Husbands, love your wives, as Christ loved the church and gave himself up for her... Fathers, do not provoke your children to anger, but bring them up in the discipline and instruction of the Lord."
+    },
+    {
+      "type": "question",
+      "id": "202-02-2",
+      "text": "2.2 - Which first-neighbor relationship needs the most attention right now: spouse, child, parent, sibling, roommate, or another person close to home? What would love look like there this week?",
+      "height": "tall"
+    },
+    {
+      "type": "heading",
+      "text": "Family Patterns Travel"
+    },
+    {
+      "type": "text",
+      "text": "Family patterns travel. A home where love is present, forgiveness is practiced, and Jesus is real gives the next generation a picture to carry. A home where love is harsh, scarce, or unsafe leaves a mark too. This does not mean every child is controlled by their family story. It means home life matters, and by the grace of Jesus, new patterns can begin."
+    },
+    {
+      "type": "heading",
+      "text": "When Home Was Cracked"
+    },
+    {
+      "type": "text",
+      "text": "Some of you came from a home that did not look like the picture the Bible teaches. You saw the lean. You felt the storm hit and parts of the wall fall down. If that is your story, this lesson is not meant to add weight. It is meant to give you hope. Jesus is the cornerstone strong enough to reset the lean. He does not leave you alone with the rubble."
+    },
+    {
+      "type": "verse",
+      "reference": "John 14:18",
+      "text": "I will not leave you as orphans; I will come to you."
+    },
+    {
+      "type": "text",
+      "text": "He does more than come to you. He adopts you into His own family. In Christ, you are not stuck building on the foundation your parents handed you. You are building on Him. With the love of Jesus and the help of a healthy spiritual family, which you will meet in the next lesson, you can begin a new pattern in your own life, in your own home, and for the generations who come after you."
+    },
+    {
+      "type": "question",
+      "id": "202-02-3",
+      "text": "2.3 - Where in your home or family story do you need Jesus to do new work? What is one small step you could take this week to build a new pattern of love?",
+      "height": "tall"
+    },
+    {
+      "type": "heading",
+      "text": "This Week's Practice"
+    },
+    {
+      "type": "text",
+      "text": "Choose one first-neighbor practice this week. Thank someone close to home for something specific. Apologize where you have been harsh or selfish. Address one current conflict without dragging in old failures. Call or visit a parent with honor. Pray for the cornerstone work of Jesus in your home, asking Him to reset whatever leans and begin a new pattern of love."
+    },
+    {
+      "type": "heading",
+      "text": "Lesson 2 Review"
+    },
+    {
+      "type": "text",
+      "text": "Jesus is the cornerstone of a life of faith. His love does not skip over the people closest to us on the way to the nations. Family members are often our first neighbors: spouse, children, parents, siblings, roommates, or others close to home. The home is where love becomes concrete through sacrifice, repentance, gentleness, honor, and care. If your family story has been cracked, do not lose heart. Jesus is strong enough to reset the lean and begin a new pattern of love."
     },
     {
       "type": "heading",
@@ -28,19 +154,19 @@
     },
     {
       "type": "question",
-      "id": "202-05-key",
-      "text": "What is one key thing you learned from this lesson, and what next step can you take this week?",
+      "id": "202-02-key",
+      "text": "What is one key thing you learned from this lesson?",
       "height": "short"
     },
     {
       "type": "question",
-      "id": "202-05-devos",
-      "text": "What have you learned about God and yourself recently in your Daily Devotions?",
+      "id": "202-02-step",
+      "text": "What is one step you are going to take this week?",
       "height": "short"
     },
     {
       "type": "question",
-      "id": "202-05-prayer",
+      "id": "202-02-prayer",
       "text": "What is a prayer request for this week?",
       "height": "short"
     }
