@@ -328,7 +328,7 @@
     var W = 460;
     var H = 260;
     var step = -1;
-    var jesusDissolvePending = false;
+    var animateStage = -1;
     var baseColor = '#5A4E3C';
     var marker = '#2A2820';
 
@@ -342,7 +342,7 @@
             button: '#4A7CA8',
             title: 'Jesus',
             verse: '"<b>Christ Jesus himself being the cornerstone.</b>"',
-            note: 'Jesus is not one block in the wall. He is the cornerstone. He sets the line, level, and direction for every relationship built above Him.',
+            note: 'Jesus is not just one block in the wall. He is the cornerstone. He sets the line, level, and direction for every relationship built above Him.',
             ref: 'Ephesians 2:20'
         },
         {
@@ -573,29 +573,35 @@
     }
 
     function buildWall(svg) {
-        // Draw non-Jesus bricks normally
-        bricks.forEach(function (b) {
-            if (b.stage !== 0) drawBrick(svg, b);
+        // Draw each stage as its own group so we can animate it when activated
+        stages.forEach(function (stage, stageIdx) {
+            var group = svgEl('g', {});
+            
+            // Check if this stage should animate (moving forward)
+            if (animateStage === stageIdx) {
+                var fromVal = (stageIdx === 0) ? '-120 0' : '120 0'; // Jesus from left, others from right
+                group.appendChild(svgEl('animateTransform', {
+                    attributeName: 'transform',
+                    type: 'translate',
+                    from: fromVal,
+                    to: '0 0',
+                    dur: '0.55s',
+                    fill: 'freeze',
+                    calcMode: 'spline',
+                    keyTimes: '0;1',
+                    keySplines: '0.0 0.0 0.3 1.0'
+                }));
+            }
+            
+            // Render only bricks belonging to this stage
+            bricks.forEach(function (b) {
+                if (b.stage === stageIdx) {
+                    drawBrick(group, b);
+                }
+            });
+            
+            svg.appendChild(group);
         });
-        // Draw Jesus bricks in a group so we can animate them as a unit
-        var jesusGroup = svgEl('g', {});
-        if (jesusDissolvePending) {
-            jesusGroup.appendChild(svgEl('animateTransform', {
-                attributeName: 'transform',
-                type: 'translate',
-                from: '-120 0',
-                to: '0 0',
-                dur: '0.55s',
-                fill: 'freeze',
-                calcMode: 'spline',
-                keyTimes: '0;1',
-                keySplines: '0.0 0.0 0.3 1.0'
-            }));
-        }
-        bricks.forEach(function (b) {
-            if (b.stage === 0) drawBrick(jesusGroup, b);
-        });
-        svg.appendChild(jesusGroup);
     }
 
     function buildLegend(svg) {
@@ -753,6 +759,17 @@
         area.appendChild(buildNav());
     }
 
+    function setStep(newStep) {
+        var prevStep = step;
+        if (newStep > prevStep && newStep >= 0) {
+            animateStage = newStep;
+        } else {
+            animateStage = -1;
+        }
+        step = newStep;
+        render();
+    }
+
     function buildNav() {
         var nav = document.createElement('div');
         nav.className = 'nav';
@@ -763,8 +780,7 @@
         back.innerHTML = '&larr; Back';
         back.addEventListener('click', function () {
             if (step > -1) {
-                step -= 1;
-                render();
+                setStep(step - 1);
             }
         });
         nav.appendChild(back);
@@ -780,8 +796,7 @@
                 dot.classList.add('available');
                 dot.style.background = idx === step ? s.color : hexToRgba(s.color, 0.42);
                 dot.addEventListener('click', function () {
-                    step = idx;
-                    render();
+                    setStep(idx);
                 });
             }
             if (idx === step) dot.classList.add('current');
@@ -802,16 +817,11 @@
         }
         next.addEventListener('click', function () {
             if (step === -1) {
-                jesusDissolvePending = true;
-                step = 0;
-                render();
-                jesusDissolvePending = false;
+                setStep(0);
             } else if (step === stages.length - 1) {
-                step = -1;
-                render();
+                setStep(-1);
             } else {
-                step += 1;
-                render();
+                setStep(step + 1);
             }
         });
         nav.appendChild(next);

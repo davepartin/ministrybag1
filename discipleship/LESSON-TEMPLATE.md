@@ -47,6 +47,8 @@ Every lesson should hit these eight goals. The slots below are designed to make 
 - Block type: `parable`
 - Purpose: anchor the lesson in a memorable story before any teaching begins. The image gives the learner something to see. The short narrative gives them something to hold onto for the rest of the lesson.
 - Image style: black-and-white Grok sketch at the top of the parable card, paired with a second identical composition that carries a color splash or slight motion. The color variant reveals on scroll. Honor `prefers-reduced-motion` settings so users with motion sensitivity see the color version statically.
+  - **Standard Prompt (B&W Base):** `[Describe scene] in a 16:9 wide aspect ratio. A rough black and white charcoal sketch, dynamic and expressive linework, loose and energetic pencil strokes, high contrast lighting with deep shadows, storyboard concept art style, emotional and evocative body language, heavy cross-hatching, grayscale monochromatic palette.`
+  - **Standard Prompt (Color Reveal):** `[Describe scene] in a 16:9 wide aspect ratio. A rough charcoal sketch with a vibrant color-splash/color-highlight treatment on the key focal elements [specify elements], dynamic and expressive linework, loose and energetic pencil strokes, high contrast lighting with deep shadows, storyboard concept art style, emotional and evocative body language, heavy cross-hatching, grayscale monochromatic palette with vivid color highlights.`
 - Exemplar: `data/201-08.json` is the reference implementation for this block.
 - Exception: a course opener can skip the parable block and open with the course welcome and logo image, since the whole course is the hook.
 
