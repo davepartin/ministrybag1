@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Send Network KC — Planter Lunch RSVP</title>
+<meta name="description" content="RSVP for the Send Network KC Planter Lunch">
+<link rel="icon" type="image/svg+xml" href="/ministrybagsatchel1.svg">
+<meta property="og:title" content="Planter Lunch RSVP — Send Network KC" />
+<meta property="og:description" content="Tap to RSVP for the Send Network KC Planter Lunch. Takes 15 seconds." />
+<style>
+  :root {
+    --navy: #16283e;
+    --navy-2: #1f3a5a;
+    --teal: #2e9e8f;
+    --teal-dark: #23816f;
+    --sand: #f4f1ea;
+    --ink: #24303d;
+    --muted: #6b7787;
+    --red: #c0564f;
+    --radius: 14px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: linear-gradient(160deg, var(--navy) 0%, var(--navy-2) 55%, #2a4a6b 100%);
+    min-height: 100vh; display: flex; align-items: center; justify-content: center;
+    padding: 20px; color: var(--ink);
+  }
+  .card {
+    background: #fff; width: 100%; max-width: 440px;
+    border-radius: var(--radius); overflow: hidden;
+    box-shadow: 0 18px 50px rgba(0,0,0,.35);
+  }
+  .head { background: var(--navy); color: #fff; padding: 26px 26px 20px; }
+  .head .brand { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: #9fc3bd; font-weight: 700; }
+  .head h1 { font-size: 26px; margin-top: 6px; line-height: 1.2; }
+  .details { background: var(--sand); padding: 16px 26px; font-size: 15px; line-height: 1.65; border-bottom: 1px solid #e5e0d4; }
+  .details b { color: var(--navy); }
+  .details a { color: var(--teal-dark); }
+  .body { padding: 22px 26px 28px; }
+  .lead { font-size: 15px; color: var(--muted); margin-bottom: 16px; }
+  .choice { display: flex; gap: 10px; margin-bottom: 18px; }
+  .choice button {
+    flex: 1; padding: 14px 8px; font-size: 16px; font-weight: 700; cursor: pointer;
+    border-radius: var(--radius); border: 2px solid #d8dee6; background: #fff; color: var(--ink);
+    transition: all .15s;
+  }
+  .choice button.yes.sel { background: var(--teal); border-color: var(--teal); color: #fff; }
+  .choice button.no.sel  { background: var(--red);  border-color: var(--red);  color: #fff; }
+  label { display: block; font-size: 13px; font-weight: 700; color: var(--navy); margin: 14px 0 5px; letter-spacing: .02em; }
+  input[type=text] {
+    width: 100%; padding: 12px 14px; font-size: 16px; border: 2px solid #d8dee6;
+    border-radius: 10px; outline: none; background: #fbfcfd;
+  }
+  input:focus { border-color: var(--teal); background: #fff; }
+  .stepper { display: flex; align-items: center; gap: 14px; }
+  .stepper button {
+    width: 46px; height: 46px; font-size: 24px; font-weight: 700; cursor: pointer;
+    border-radius: 50%; border: 2px solid #d8dee6; background: #fff; color: var(--navy);
+  }
+  .stepper button:active { background: var(--sand); }
+  .stepper .num { font-size: 26px; font-weight: 800; min-width: 40px; text-align: center; color: var(--navy); }
+  .stepper .hint { font-size: 13px; color: var(--muted); }
+  .submit {
+    width: 100%; margin-top: 22px; padding: 16px; font-size: 17px; font-weight: 800;
+    background: var(--teal); color: #fff; border: none; border-radius: var(--radius); cursor: pointer;
+    letter-spacing: .02em;
+  }
+  .submit:hover { background: var(--teal-dark); }
+  .submit:disabled { background: #a9b6c4; cursor: default; }
+  .err { color: var(--red); font-size: 14px; margin-top: 10px; display: none; }
+  .done { text-align: center; padding: 46px 30px 50px; display: none; }
+  .done .big { font-size: 52px; }
+  .done h2 { color: var(--navy); font-size: 24px; margin: 12px 0 8px; }
+  .done p { color: var(--muted); font-size: 15px; line-height: 1.6; }
+  .done .cal {
+    display: inline-block; margin-top: 18px; padding: 12px 22px; border-radius: 10px;
+    background: var(--sand); color: var(--navy); font-weight: 700; text-decoration: none; font-size: 15px;
+    border: 1px solid #e0dacb;
+  }
+  .foot { text-align: center; font-size: 12.5px; color: var(--muted); padding: 0 26px 22px; }
+  #extra { display: none; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="head">
+    <div class="brand">Send Network Kansas City</div>
+    <h1 id="evTitle">Planter Lunch</h1>
+  </div>
+  <div class="details" id="evDetails"></div>
+
+  <div class="body" id="form">
+    <div class="lead">Two taps and you're done — no sign-in, no account.</div>
+    <div class="choice">
+      <button type="button" class="yes" id="btnYes">🎉 I'm coming!</button>
+      <button type="button" class="no" id="btnNo">No, Can't make it</button>
+    </div>
+    <label for="name">Your name</label>
+    <input type="text" id="name" autocomplete="name" placeholder="First and last name">
+    <div id="extra">
+      <label>How many coming total (including you)?</label>
+      <div class="stepper">
+        <button type="button" id="minus">−</button>
+        <div class="num" id="count">1</div>
+        <button type="button" id="plus">+</button>
+        <div class="hint">spouses welcome!</div>
+      </div>
+    </div>
+    <button class="submit" id="submit">Send my RSVP</button>
+    <div class="err" id="err"></div>
+  </div>
+
+  <div class="done" id="done">
+    <div class="big" id="doneEmoji">🙌</div>
+    <h2 id="doneTitle">You're on the list!</h2>
+    <p id="doneMsg"></p>
+    <a class="cal" id="calLink" target="_blank" rel="noopener">📅 Add to calendar</a>
+  </div>
+
+  <div class="foot">Questions? Text Dave Partin at (913) 901-7581.</div>
+</div>
+
+<script>
+/* ============================================================
+   MONTHLY SETUP — edit this block for each lunch, then
+   commit + push to GitHub (goes live at ministrybag.com/lunch-rsvp).
+   ============================================================ */
+const EVENT = {
+  id: "planter-lunch-2026-07",
+  title: "Planter Lunch — July",
+  dateText: "Thursday, July 23, 2026",
+  timeText: "11:30 AM – 1:00 PM",
+  place: "Neighborhood Church",
+  address: "8600 W 91st Terrace, Overland Park, KS 66212",
+  rsvpBy: "Tuesday, July 21",
+  // Google Calendar template times: YYYYMMDDTHHMMSS local (Central)
+  gcalStart: "20260723T113000",
+  gcalEnd: "20260723T130000",
+};
+/* Paste your Apps Script Web App URL here (see apps-script.gs setup notes): */
+const ENDPOINT = "PASTE_YOUR_APPS_SCRIPT_URL_HERE";
+/* ============================================================ */
+
+const $ = id => document.getElementById(id);
+$("evTitle").textContent = EVENT.title;
+$("evDetails").innerHTML =
+  `<b>📅 ${EVENT.dateText}</b><br>🕦 ${EVENT.timeText}<br>📍 <b>${EVENT.place}</b><br>` +
+  `<a href="https://maps.google.com/?q=${encodeURIComponent(EVENT.address)}" target="_blank" rel="noopener">${EVENT.address}</a><br>` +
+  `Please RSVP by <b>${EVENT.rsvpBy}</b> so we can plan the food well.`;
+
+let coming = null, count = 1;
+
+function pick(yes) {
+  coming = yes;
+  $("btnYes").classList.toggle("sel", yes);
+  $("btnNo").classList.toggle("sel", !yes);
+  $("extra").style.display = yes ? "block" : "none";
+}
+$("btnYes").addEventListener("click", () => pick(true));
+$("btnNo").addEventListener("click", () => pick(false));
+$("plus").addEventListener("click", () => { count = Math.min(10, count + 1); $("count").textContent = count; });
+$("minus").addEventListener("click", () => { count = Math.max(1, count - 1); $("count").textContent = count; });
+
+$("submit").addEventListener("click", async () => {
+  const name = $("name").value.trim();
+  const err = $("err");
+  err.style.display = "none";
+  if (coming === null) { err.textContent = "Tap “I'm coming” or “No, Can't make it” first."; err.style.display = "block"; return; }
+  if (name.length < 2)  { err.textContent = "Please add your name so Dave knows it's you."; err.style.display = "block"; return; }
+  $("submit").disabled = true;
+  $("submit").textContent = "Sending…";
+  const payload = {
+    event: EVENT.id,
+    name: name,
+    coming: coming ? "YES" : "NO",
+    count: coming ? count : 0,
+    phone: "",
+    note: "",
+  };
+  try {
+    await fetch(ENDPOINT, { method: "POST", mode: "no-cors",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify(payload) });
+    showDone(name);
+  } catch (e) {
+    $("submit").disabled = false;
+    $("submit").textContent = "Send my RSVP";
+    err.textContent = "Hmm, that didn't go through. Try again, or just text Dave: (913) 901-7581.";
+    err.style.display = "block";
+  }
+});
+
+function showDone(name) {
+  $("form").style.display = "none";
+  const first = name.split(" ")[0];
+  if (coming) {
+    $("doneEmoji").textContent = "🙌";
+    $("doneTitle").textContent = "You're on the list, " + first + "!";
+    $("doneMsg").textContent = `${EVENT.dateText}, ${EVENT.timeText} at ${EVENT.place}. Lunch is on us — see you there.`;
+    const cal = "https://calendar.google.com/calendar/render?action=TEMPLATE"
+      + "&text=" + encodeURIComponent("Send Network KC " + EVENT.title)
+      + "&dates=" + EVENT.gcalStart + "/" + EVENT.gcalEnd
+      + "&location=" + encodeURIComponent(EVENT.place + ", " + EVENT.address)
+      + "&details=" + encodeURIComponent("Send Network KC Planter Lunch. Questions? Dave Partin (913) 901-7581");
+    $("calLink").href = cal;
+    $("calLink").style.display = "inline-block";
+  } else {
+    $("doneEmoji").textContent = "🙏";
+    $("doneTitle").textContent = "Thanks for letting us know, " + first + ".";
+    $("doneMsg").textContent = "You'll be missed! We'll see you at the next one.";
+    $("calLink").style.display = "none";
+  }
+  $("done").style.display = "block";
+}
+</script>
+</body>
+</html>
