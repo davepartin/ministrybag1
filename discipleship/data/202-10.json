@@ -1,26 +1,153 @@
 {
   "id": "10",
-  "title": "Lesson 10: Baptism & the Lord's Table",
-  "description": "The meaning and beauty of Baptism and the Lord's Supper.",
+  "title": "Lesson 10: Baptism & the Lord's Supper",
+  "description": "Jesus gave His church two visible signs of the gospel: baptism and the Lord's Supper. One is a doorway you walk through once. The other is a table you return to for the rest of your life. This final lesson of Growing Up shows you what these two gifts mean and why sharing them with you is God's desire, not His demand.",
   "blocks": [
     {
-      "type": "heading",
-      "text": "Visible Signs of Invisible Grace"
+      "type": "text",
+      "text": "You have spent this course growing up into the character of Jesus, learning to love your neighbors, your family, and your church family, to serve with your gifts, to stand firm in suffering, to worship, to give, and to guard your heart. Now you arrive at the final lesson of Growing Up, and it ends at a table. Jesus left His church two gifts that gather up everything you have learned and put the gospel where you can see it, feel it, and taste it: baptism and the Lord's Supper."
     },
     {
       "type": "text",
-      "text": "Jesus gave the church two beautiful practices: Baptism (marking our entry into the new life in Christ) and the Lord's Supper (an ongoing remembrance of His sacrifice and our unity)."
+      "text": "Here is the surprise most people miss. Baptism and the Lord's Supper are not tests God uses to find out whether you are serious. They are gifts He delights to share with you. On the night before He died, Jesus did not say He was willing to eat one last meal with His friends. He told them He had been longing for it."
     },
     {
       "type": "verse",
-      "reference": "1 Corinthians 11:26",
-      "text": "For as often as you eat this bread and drink the cup, you proclaim the Lord's death until he comes."
+      "reference": "Luke 22:15",
+      "text": "And he said to them, \"I have earnestly desired to eat this Passover with you before I suffer.\""
+    },
+    {
+      "type": "image",
+      "imageBw": "images/last-supper-bw.jpg",
+      "imageColor": "images/last-supper-color.jpg",
+      "alt": "Jesus breaking bread at the Passover table, surrounded by His disciples in an upper room",
+      "frame": true,
+      "touchNext": true
+    },
+    {
+      "type": "parable",
+      "title": "The Table He Longed For",
+      "text": "On the night before the cross, Jesus gathered His closest friends around a Passover table in a borrowed upstairs room in Jerusalem. He had already told them how much the meal meant to Him: <em>\"I have earnestly desired to eat this Passover with you before I suffer\"</em> (Luke 22:15).<br><br>Then He did something no one at the table expected. He took the bread, gave thanks, broke it, and handed it to them. \"This is my body, which is given for you.\" He lifted the cup. \"This cup that is poured out for you is the new covenant in my blood.\"<br><br>Look around that table. Judas would betray Him before midnight. Peter would deny Him three times before sunrise. The rest would scatter into the dark. Jesus knew every bit of it, and He still longed to eat with them. The meal was His idea, His desire, His gift."
+    },
+    {
+      "type": "heading",
+      "text": "Why Jesus Gives Signs You Can Touch"
+    },
+    {
+      "type": "text",
+      "text": "God has always attached His promises to things His people could see and hold. He hung a rainbow in the sky for Noah, took Abraham outside to count the stars, and gave Israel a Passover meal so that every generation could taste the night God set them free. In the story of the prodigal son, the father did not just say \"you are forgiven.\" He wrapped his boy in a robe and put a ring on his hand. God knows how He made you. You are not just a mind that needs information. You are a whole person, body and heart together, and you forget. So Jesus gave His church two practices that preach the gospel to your senses: water you go under, bread you taste, a cup you hold."
+    },
+    {
+      "type": "text",
+      "text": "Churches often call these two practices the <strong>ordinances</strong>, an old word that simply means Jesus ordained them. He set them in place and told His followers to keep them until He returns. He gave only two. Neither one earns you anything, and neither one finishes anything. Both of them hand you something. That is the grace pattern you have seen all through this series: God acts first, and His gifts come before His commands."
+    },
+    {
+      "type": "verse",
+      "reference": "Matthew 28:19-20",
+      "text": "Go therefore and make disciples of all nations, baptizing them in the name of the Father and of the Son and of the Holy Spirit, teaching them to observe all that I have commanded you. And behold, I am with you always, to the end of the age."
+    },
+    {
+      "type": "text",
+      "text": "Notice where baptism sits: inside Jesus' parting words to His church, woven into the very heart of making disciples. And notice the promise wrapped around the command. The One who asks you into the water is the One who says, \"I am with you always.\""
     },
     {
       "type": "question",
-      "id": "202-9-1",
-      "text": "9.1 - How does participating in communion (the Lord's Supper) help center your heart back on the Gospel?",
-      "data_question": "9.1 - Meaning of communion"
+      "id": "202-10-1",
+      "text": "10.1 - Jesus longed to share that meal with His disciples even though He knew how they would fail Him that same night. What does that tell you about how He feels toward you in your own failures?",
+      "height": "tall"
+    },
+    {
+      "type": "text",
+      "text": "The tool below sets the two ordinances side by side. Tap each question and watch how the two gifts answer it, one as a doorway and one as a table. As you go, notice that both of them are preaching the same gospel."
+    },
+    {
+      "type": "widget",
+      "src": "widgets/two-ordinances.html",
+      "height": "640px"
+    },
+    {
+      "type": "heading",
+      "text": "Baptism: The Doorway You Walk Through Once"
+    },
+    {
+      "type": "text",
+      "text": "The word <em>baptize</em> in the New Testament means to immerse, to dip under. Baptism is going under the water and rising again in the name of the Father, the Son, and the Holy Spirit after you have trusted in Jesus. It does not save you, and it does not complete you. It announces what God has already done in you. Think of a wedding ring. The ring does not make anyone married. It tells the truth about a covenant already made, and it tells that truth in public to everyone who sees it."
+    },
+    {
+      "type": "verse",
+      "reference": "Romans 6:3-4",
+      "text": "Do you not know that all of us who have been baptized into Christ Jesus were baptized into his death? We were buried therefore with him by baptism into death, in order that, just as Christ was raised from the dead by the glory of the Father, we too might walk in newness of life."
+    },
+    {
+      "type": "text",
+      "text": "Paul says the water tells the story of a death and a resurrection. Going under, your old life is buried with Christ. Rising up, you walk in His new life. Back in Growing Deep you learned that everyone baptized into Christ has <em>put on Christ</em> like a robe (Galatians 3:27). Baptism is where that robe goes public. It is your whole body saying out loud what your heart already believes: I belong to Jesus now."
+    },
+    {
+      "type": "text",
+      "text": "From the church's very first day, this was the believer's first step. When Peter finished preaching the first gospel sermon, about three thousand people believed, and Scripture says those who received his word were baptized that same day (Acts 2:41). They did not wait until they had grown enough or cleaned themselves up. If you have trusted Jesus and have never been baptized, hear this as a kind invitation rather than a demand. You do not need to become a better Christian first. The doorway is for beginners. Talk with your pastor or the person discipling you this week, and take the step."
+    },
+    {
+      "type": "question",
+      "id": "202-10-2",
+      "text": "10.2 - If you have been baptized, what did that day mean to you, and what does it mean to you now? If you have not been baptized yet, what is holding you back, and who could you talk with about it this week?",
+      "height": "tall"
+    },
+    {
+      "type": "heading",
+      "text": "The Lord's Supper: The Table You Return To"
+    },
+    {
+      "type": "text",
+      "text": "If baptism is the doorway you walk through once, the Lord's Supper is the table you come back to for the rest of your life. At that Passover meal, Jesus took the oldest supper in Israel's story and filled it with Himself. The bread is His body given for you. The cup is His blood poured out for you. When your church shares this meal, it is not performing a ceremony. It is doing exactly what Jesus asked for on the hardest night of His life: remember me."
+    },
+    {
+      "type": "verse",
+      "reference": "1 Corinthians 11:23-26",
+      "text": "For I received from the Lord what I also delivered to you, that the Lord Jesus on the night when he was betrayed took bread, and when he had given thanks, he broke it, and said, \"This is my body, which is for you. Do this in remembrance of me.\" In the same way also he took the cup, after supper, saying, \"This cup is the new covenant in my blood. Do this, as often as you drink it, in remembrance of me.\" For as often as you eat this bread and drink the cup, you proclaim the Lord's death until he comes."
+    },
+    {
+      "type": "text",
+      "text": "This meal looks in three directions at once. <strong>It looks back</strong> to the cross, where the body was broken and the blood was poured out, so that you never drift far from the center of your faith. <strong>It looks around</strong> at the family eating with you, one loaf shared by many people, a quiet reminder that you were saved into a household and not into a private spirituality. <strong>And it looks forward</strong>, because Paul says you proclaim the Lord's death <em>until he comes</em>. Every Lord's Supper is a small rehearsal for the wedding feast of the Lamb, the day you finally eat with Jesus face to face."
+    },
+    {
+      "type": "text",
+      "text": "Paul also says to examine yourself before you eat (1 Corinthians 11:28). That examination is not a worthiness contest, because no one at the table has had a perfect week. It is a moment of honesty: you name your sin, you remember the cross, and then you eat. The table was never a reward for the strong. It is food for hungry sinners who know where the bread is."
+    },
+    {
+      "type": "question",
+      "id": "202-10-3",
+      "text": "10.3 - The next time the bread and the cup come to you, what is one thing from this lesson you want to remember as you take them?",
+      "height": "tall"
+    },
+    {
+      "type": "heading",
+      "text": "Two Signs That Point Outward"
+    },
+    {
+      "type": "text",
+      "text": "Here is one last thing to notice, and it sets up everything that comes next in your journey. Both of these gifts preach. Baptism tells the gospel to everyone standing around the water, watching an old life go under and a new life come up. The Supper, Paul says, <em>proclaims</em> the Lord's death until He comes. Every baptism is a testimony, and every Supper is a sermon without a pulpit. Jesus designed His two gifts so that even while they are feeding you, they are telling His story to the people watching your life."
+    },
+    {
+      "type": "question",
+      "id": "202-10-4",
+      "text": "10.4 - Baptism and the Lord's Supper both tell the gospel to people who are watching. Who has been watching you follow Jesus lately, and what story are they seeing?",
+      "height": "tall"
+    },
+    {
+      "type": "heading",
+      "text": "Growing Out from Here"
+    },
+    {
+      "type": "text",
+      "text": "With this lesson, the Growing Up course comes to a close. The branches have grown strong: love for your neighbors, your family, and your church, gifts discovered, worship deepened, generosity stretched, purity fought for, and now two gifts from Jesus to carry with you for the rest of your life. The next course is 203, Growing Out, where the branches begin to bear fruit. You will learn simple rhythms for blessing the people around you, sharing your story, and living on mission right where God has planted you. The table feeds you so the tree can feed others. Keep coming back to it."
+    },
+    {
+      "type": "heading",
+      "text": "Lesson 10 Review"
+    },
+    {
+      "type": "text",
+      "text": "Jesus gave His church two visible signs of the gospel because He desires to share them with you, not because He needs you to prove anything. Baptism is the doorway you walk through once: your old life buried with Christ, your new life raised with Him. The Lord's Supper is the table you return to again and again, proclaiming His death until He comes. One doorway, one table, one gospel you can see, feel, and taste."
     },
     {
       "type": "heading",
@@ -28,19 +155,19 @@
     },
     {
       "type": "question",
-      "id": "202-09-key",
-      "text": "What is one key thing you learned from this lesson, and what next step can you take this week?",
+      "id": "202-10-key",
+      "text": "What is one key thing you learned from this lesson?",
       "height": "short"
     },
     {
       "type": "question",
-      "id": "202-09-devos",
-      "text": "What have you learned about God and yourself recently in your Daily Devotions?",
+      "id": "202-10-step",
+      "text": "What is one step you are going to take this week?",
       "height": "short"
     },
     {
       "type": "question",
-      "id": "202-09-prayer",
+      "id": "202-10-prayer",
       "text": "What is a prayer request for this week?",
       "height": "short"
     }
