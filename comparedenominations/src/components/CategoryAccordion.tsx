@@ -1,84 +1,67 @@
-import React, { useState } from 'react';
-import { type Category, type Denomination } from '../data';
+import { useState } from 'react';
+import { ChevronDown } from 'lucide-react';
+import type { Category, Denomination } from '../data';
 import { SpectrumBar } from './SpectrumBar';
-import { ChevronDown, ChevronUp, AlertCircle, CheckCircle2, AlertTriangle } from 'lucide-react';
 
 interface CategoryAccordionProps {
-    category: Category;
-    denomA: Denomination;
-    denomB: Denomination;
+  category: Category;
+  denomA: Denomination;
+  denomB: Denomination;
 }
 
-export const CategoryAccordion: React.FC<CategoryAccordionProps> = ({ category, denomA, denomB }) => {
-    const [isOpen, setIsOpen] = useState(false);
+export function CategoryAccordion({ category, denomA, denomB }: CategoryAccordionProps) {
+  const [isOpen, setIsOpen] = useState(false);
+  const scoreA = denomA.scores[category.id];
+  const scoreB = denomB.scores[category.id];
+  const gap = Math.abs(scoreA - scoreB);
+  const alignment = gap === 0 ? 'Same placement' : gap === 1 ? 'Closely aligned' : gap === 2 ? 'Meaningful difference' : 'Major difference';
 
-    const scoreA = denomA.scores[category.id];
-    const scoreB = denomB.scores[category.id];
-    const gap = Math.abs(scoreA - scoreB);
-
-    const getStatus = (gap: number) => {
-        if (gap <= 1) return { label: 'Core Agreement', icon: CheckCircle2, color: 'text-emerald-600', bg: 'bg-emerald-50' };
-        if (gap <= 3) return { label: 'Distinction', icon: AlertCircle, color: 'text-amber-600', bg: 'bg-amber-50' };
-        return { label: 'Major Divergence', icon: AlertTriangle, color: 'text-rose-600', bg: 'bg-rose-50' };
-    };
-
-    const status = getStatus(gap);
-    const StatusIcon = status.icon;
-
-    return (
-        <div className="border border-slate-200 rounded-xl mb-3 overflow-hidden bg-white shadow-sm hover:shadow-md transition-shadow">
-            <div
-                className="p-4 cursor-pointer select-none"
-                onClick={() => setIsOpen(!isOpen)}
-            >
-                {/* Header Row */}
-                <div className="flex items-center justify-between mb-2">
-                    <h3 className="font-bold text-slate-800 text-lg">{category.name}</h3>
-                    <div className={`flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-semibold ${status.color} ${status.bg}`}>
-                        <StatusIcon size={14} />
-                        <span>{status.label}</span>
-                    </div>
-                </div>
-
-                {/* Visual Bar */}
-                <SpectrumBar
-                    scoreA={scoreA}
-                    scoreB={scoreB}
-                    gap={gap}
-                    leftLabel={category.leftLabel}
-                    rightLabel={category.rightLabel}
-                />
-
-                {/* Hint for expansion */}
-                <div className="flex justify-center mt-2 group">
-                    {isOpen ? <ChevronUp className="text-slate-300" size={16} /> : <ChevronDown className="text-slate-300 group-hover:text-slate-400" size={16} />}
-                </div>
-            </div>
-
-            {/* Expanded Content */}
-            {isOpen && (
-                <div className="bg-slate-50 px-5 py-4 border-t border-slate-100 text-sm text-slate-600 space-y-2">
-                    <div className="grid grid-cols-2 gap-4">
-                        <div>
-                            <span className="block text-xs font-bold text-slate-400 mb-1 uppercase tracking-wider">{denomA.name}</span>
-                            <p>Believes towards <span className="font-semibold text-slate-700">{scoreA <= 2 ? category.leftLabel : scoreA >= 4 ? category.rightLabel : 'a moderate view'}</span>.</p>
-                        </div>
-                        <div>
-                            <span className="block text-xs font-bold text-slate-400 mb-1 uppercase tracking-wider">{denomB.name}</span>
-                            <p>Believes towards <span className="font-semibold text-slate-700">{scoreB <= 2 ? category.leftLabel : scoreB >= 4 ? category.rightLabel : 'a moderate view'}</span>.</p>
-                        </div>
-                    </div>
-                    <div className="mt-3 pt-3 border-t border-slate-200">
-                        <p className="italic text-slate-500">
-                            {gap <= 1
-                                ? "These traditions are largely aligned in this area."
-                                : gap >= 4
-                                    ? "This is a fundamental point of separation between these traditions."
-                                    : "Visualizing the nuance shows distinct emphases despite some common ground."}
-                        </p>
-                    </div>
-                </div>
-            )}
+  return (
+    <article className="overflow-hidden rounded-3xl border border-stone-200 bg-[#fffdf8] shadow-[0_1px_2px_rgba(28,25,23,0.04)] transition hover:border-stone-300 hover:shadow-md">
+      <button
+        type="button"
+        className="w-full p-5 text-left focus:outline-none focus-visible:ring-4 focus-visible:ring-inset focus-visible:ring-amber-200 sm:p-6"
+        onClick={() => setIsOpen((current) => !current)}
+        aria-expanded={isOpen}
+      >
+        <div className="flex items-start justify-between gap-4">
+          <div>
+            <h3 className="font-serif text-xl font-bold text-stone-950 sm:text-2xl">{category.name}</h3>
+            <p className="mt-1 text-sm leading-relaxed text-stone-500">{category.question}</p>
+          </div>
+          <span className={`shrink-0 rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide ${gap <= 1 ? 'bg-emerald-50 text-emerald-700' : gap === 2 ? 'bg-amber-50 text-amber-800' : 'bg-rose-50 text-rose-700'}`}>
+            {alignment}
+          </span>
         </div>
-    );
-};
+
+        <SpectrumBar
+          scoreA={scoreA}
+          scoreB={scoreB}
+          denomA={denomA}
+          denomB={denomB}
+          leftLabel={category.leftLabel}
+          rightLabel={category.rightLabel}
+        />
+
+        <span className="mt-1 flex items-center justify-center gap-1 text-xs font-bold text-stone-500">
+          {isOpen ? 'Hide placement notes' : 'Explain these placements'}
+          <ChevronDown size={15} className={`transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+        </span>
+      </button>
+
+      {isOpen && (
+        <div className="grid border-t border-stone-200 bg-stone-50/70 sm:grid-cols-2">
+          {[{ denomination: denomA, score: scoreA }, { denomination: denomB, score: scoreB }].map(({ denomination, score }, index) => (
+            <div key={denomination.id} className={`p-5 sm:p-6 ${index === 1 ? 'border-t border-stone-200 sm:border-l sm:border-t-0' : ''}`}>
+              <div className="mb-3 flex items-center gap-2">
+                <span className="h-3 w-3 rounded-full" style={{ backgroundColor: denomination.color }} />
+                <h4 className="text-sm font-extrabold text-stone-900">{denomination.shortName}</h4>
+              </div>
+              <p className="text-sm leading-relaxed text-stone-600">{category.steps[score - 1]}</p>
+            </div>
+          ))}
+        </div>
+      )}
+    </article>
+  );
+}
