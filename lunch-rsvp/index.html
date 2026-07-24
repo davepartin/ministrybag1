@@ -43,10 +43,16 @@
     border-radius: var(--radius); overflow: hidden;
     box-shadow: 0 18px 50px rgba(6, 18, 38, .45);
   }
-  .head { background: var(--navy); padding: 24px 26px 20px; }
+  .head { background: var(--navy); padding: 24px 26px 20px; position: relative; }
   .head img.logo { width: 200px; max-width: 60%; display: block; }
   .head .kicker { margin-top: 16px; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--blue); font-weight: 800; }
   .head h1 { font-size: 26px; margin-top: 4px; line-height: 1.2; color: #fff; }
+  .admin-open {
+    display: none; position: absolute; top: 14px; right: 14px; width: 34px; height: 34px;
+    border: 1px solid rgba(255,255,255,.28); border-radius: 50%; background: rgba(255,255,255,.08);
+    color: rgba(255,255,255,.72); cursor: pointer; font-size: 17px; line-height: 1;
+  }
+  .admin-open:hover, .admin-open:focus-visible { background: rgba(255,255,255,.18); color: #fff; outline: none; }
   .details { background: var(--gray-light); padding: 16px 26px; font-size: 15px; line-height: 1.65; border-bottom: 3px solid var(--blue); }
   .details b { color: var(--navy); }
   .details a { color: var(--steel); }
@@ -103,10 +109,45 @@
     border: 1px solid var(--gray-mid);
   }
   .foot { text-align: center; font-size: 12.5px; color: var(--slate); padding: 0 26px 22px; }
+  .modal-backdrop {
+    display: none; position: fixed; inset: 0; z-index: 20; padding: 18px;
+    background: rgba(6,18,38,.72); align-items: center; justify-content: center;
+  }
+  .modal-backdrop.open { display: flex; }
+  .admin-modal {
+    width: 100%; max-width: 470px; max-height: calc(100vh - 36px); overflow-y: auto;
+    background: #fff; border-radius: 16px; box-shadow: 0 18px 60px rgba(0,0,0,.42); padding: 24px;
+  }
+  .admin-top { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .admin-top h2 { color: var(--navy); font-size: 21px; }
+  .admin-close { border: 0; background: transparent; color: var(--slate); font-size: 28px; cursor: pointer; line-height: 1; }
+  .admin-help { color: var(--slate); font-size: 13px; line-height: 1.45; margin-top: 6px; }
+  .admin-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 12px; }
+  .admin-grid .wide { grid-column: 1 / -1; }
+  .admin-modal input, .admin-modal textarea {
+    width: 100%; padding: 11px 12px; font: inherit; font-size: 16px; color: var(--ink);
+    border: 2px solid var(--gray-mid); border-radius: 9px; background: #fbfcfd; outline: none;
+  }
+  .admin-modal input:focus, .admin-modal textarea:focus { border-color: var(--blue); background: #fff; }
+  .admin-modal textarea { min-height: 88px; resize: vertical; line-height: 1.45; }
+  .details .blurb { margin-top: 8px; color: var(--slate); font-size: 14px; line-height: 1.55; }
+  .foot a.staff-edit {
+    color: rgba(92,102,112,.85); text-decoration: none; border-bottom: 1px dotted var(--gray-mid);
+  }
+  .foot a.staff-edit:hover { color: var(--navy); border-bottom-color: var(--navy); }
+  .admin-save {
+    width: 100%; border: 0; border-radius: 11px; margin-top: 18px; padding: 14px;
+    background: var(--navy); color: #fff; font-size: 16px; font-weight: 800; cursor: pointer;
+  }
+  .admin-save:disabled { background: var(--gray-mid); cursor: default; }
+  .admin-status { min-height: 20px; margin-top: 10px; font-size: 13px; font-weight: 700; color: var(--slate); }
+  .admin-status.error { color: var(--red); }
+  .admin-status.success { color: #337d2e; }
   /* Compact layout on phones: goal is Yes/Maybe/No, name, and Send all above the fold */
   @media (max-width: 480px) {
     body { padding: 8px; align-items: flex-start; }
     .head { padding: 12px 18px 10px; }
+    .admin-open { top: 8px; right: 8px; width: 32px; height: 32px; }
     .head img.logo { width: 140px; }
     .head .kicker { margin-top: 8px; font-size: 11px; }
     .head h1 { font-size: 20px; margin-top: 2px; }
@@ -125,6 +166,8 @@
     .stepper .num { font-size: 26px; }
     .submit { margin-top: 12px; padding: 13px; font-size: 16px; }
     .foot { padding: 0 18px 12px; font-size: 12px; }
+    .modal-backdrop { padding: 8px; align-items: flex-start; }
+    .admin-modal { max-height: calc(100vh - 16px); padding: 18px; border-radius: 13px; }
   }
 </style>
 </head>
@@ -134,6 +177,7 @@
     <img class="logo" src="sn-logo-white.png" alt="Send Network">
     <div class="kicker">SendKC</div>
     <h1 id="evTitle">SendKC Planter Lunch</h1>
+    <button class="admin-open" id="adminOpen" type="button" aria-label="Edit lunch details" title="Edit lunch details">&#9881;</button>
   </div>
   <div class="details" id="evDetails"></div>
 
@@ -166,35 +210,148 @@
     <a class="cal" id="calLink" target="_blank" rel="noopener">&#128197; Add to calendar</a>
   </div>
 
-  <div class="foot">Questions? Text Dave Partin at (913) 901-7581.</div>
+  <div class="foot">Questions? Text Dave Partin at (913) 901-7581.<br>
+    <a class="staff-edit" href="#" id="staffEditLink">Staff: edit lunch details</a></div>
+</div>
+
+<div class="modal-backdrop" id="adminBackdrop" role="dialog" aria-modal="true" aria-labelledby="adminHeading">
+  <div class="admin-modal">
+    <div class="admin-top">
+      <h2 id="adminHeading">Edit lunch details</h2>
+      <button class="admin-close" id="adminClose" type="button" aria-label="Close">&times;</button>
+    </div>
+    <p class="admin-help">Any SendKC staff with the team password can update this lunch. Saving changes the page for everyone and records this event on the Google Sheet <b>Events</b> tab so RSVPs stay tied to the right month.</p>
+    <div class="admin-grid">
+      <div class="wide">
+        <label for="adminTitle">Title</label>
+        <input type="text" id="adminTitle" maxlength="120" placeholder="SendKC Planter Lunch — July">
+      </div>
+      <div class="wide">
+        <label for="adminDate">Lunch date</label>
+        <input type="date" id="adminDate">
+      </div>
+      <div>
+        <label for="adminStart">Start time</label>
+        <input type="time" id="adminStart">
+      </div>
+      <div>
+        <label for="adminEnd">End time</label>
+        <input type="time" id="adminEnd">
+      </div>
+      <div class="wide">
+        <label for="adminPlace">Location name</label>
+        <input type="text" id="adminPlace" maxlength="100" autocomplete="organization">
+      </div>
+      <div class="wide">
+        <label for="adminAddress">Street address</label>
+        <input type="text" id="adminAddress" maxlength="180" autocomplete="street-address">
+      </div>
+      <div class="wide">
+        <label for="adminRsvpBy">RSVP deadline</label>
+        <input type="date" id="adminRsvpBy">
+      </div>
+      <div class="wide">
+        <label for="adminParagraph">Paragraph on the page</label>
+        <textarea id="adminParagraph" maxlength="800" placeholder="Short welcome / what to expect (optional)"></textarea>
+      </div>
+      <div class="wide">
+        <label for="adminPassword">Team password</label>
+        <input type="password" id="adminPassword" autocomplete="current-password" placeholder="Enter the team password">
+      </div>
+    </div>
+    <button class="admin-save" id="adminSave" type="button">Save lunch details</button>
+    <div class="admin-status" id="adminStatus" aria-live="polite"></div>
+  </div>
 </div>
 
 <script>
-/* ============================================================
-   MONTHLY SETUP — edit this block for each lunch, then
-   commit + push to GitHub (goes live at ministrybag.com/lunch-rsvp).
-   ============================================================ */
-const EVENT = {
-  id: "planter-lunch-2026-07",
+/* Fallback details keep the page useful if Google is briefly unavailable. */
+let EVENT = {
   title: "SendKC Planter Lunch — July",
-  dateText: "Thursday, July 23, 2026",
-  timeText: "11:30 AM – 1:00 PM",
+  date: "2026-07-23",
+  startTime: "11:30",
+  endTime: "13:00",
   place: "Neighborhood Church",
   address: "8600 W 91st Terrace, Overland Park, KS 66212",
-  rsvpBy: "Tuesday, July 21",
-  // Google Calendar template times: YYYYMMDDTHHMMSS local (Central)
-  gcalStart: "20260723T113000",
-  gcalEnd: "20260723T130000",
+  rsvpBy: "2026-07-21",
+  paragraph: "Monthly Send Network KC planter lunch — fellowship, a shared meal, a short talk, table discussion, and prayer. Spouses welcome.",
 };
 const ENDPOINT = "https://script.google.com/macros/s/AKfycby1tzgv6ANAHWlNt6JCxsknP11hmu9vT9aijgXX3jjLrshhBZjXIVFQo5v97wWTeczE/exec";
-/* ============================================================ */
 
 const $ = id => document.getElementById(id);
-$("evTitle").textContent = EVENT.title;
-$("evDetails").innerHTML =
-  `<b>&#128197; ${EVENT.dateText}</b> &middot; ${EVENT.timeText}<br>` +
-  `&#128205; <b>${EVENT.place}</b> &middot; <a href="https://maps.google.com/?q=${encodeURIComponent(EVENT.address)}" target="_blank" rel="noopener">${EVENT.address}</a><br>` +
-  `Please RSVP by <b>${EVENT.rsvpBy}</b> so we can plan the food well.`;
+
+function localDate(value) { return new Date(value + "T12:00:00"); }
+function monthName(value) { return localDate(value).toLocaleDateString("en-US", { month: "long" }); }
+function longDate(value) {
+  return localDate(value).toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric", year: "numeric" });
+}
+function shortDate(value) {
+  return localDate(value).toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" });
+}
+function clockTime(value) {
+  const [hour, minute] = value.split(":").map(Number);
+  return new Date(2000, 0, 1, hour, minute).toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" });
+}
+function eventId() { return "planter-lunch-" + EVENT.date.slice(0, 7); }
+function eventTitle() {
+  const custom = (EVENT.title || "").trim();
+  return custom || ("SendKC Planter Lunch — " + monthName(EVENT.date));
+}
+function calendarStamp(date, time) { return date.replaceAll("-", "") + "T" + time.replace(":", "") + "00"; }
+function isEventConfig(value) {
+  return value && /^\d{4}-\d{2}-\d{2}$/.test(value.date || "")
+    && /^\d{2}:\d{2}$/.test(value.startTime || "") && /^\d{2}:\d{2}$/.test(value.endTime || "")
+    && typeof value.place === "string" && typeof value.address === "string"
+    && /^\d{4}-\d{2}-\d{2}$/.test(value.rsvpBy || "")
+    && (value.title === undefined || typeof value.title === "string")
+    && (value.paragraph === undefined || typeof value.paragraph === "string");
+}
+function escapeHtml(value) {
+  const div = document.createElement("div");
+  div.textContent = value;
+  return div.innerHTML;
+}
+function renderEvent() {
+  $("evTitle").textContent = eventTitle();
+  document.title = eventTitle() + " — RSVP";
+  const blurb = (EVENT.paragraph || "").trim();
+  $("evDetails").innerHTML =
+    `<b>&#128197; ${longDate(EVENT.date)}</b> &middot; ${clockTime(EVENT.startTime)} &ndash; ${clockTime(EVENT.endTime)}<br>` +
+    `&#128205; <b>${escapeHtml(EVENT.place)}</b> &middot; <a href="https://maps.google.com/?q=${encodeURIComponent(EVENT.address)}" target="_blank" rel="noopener">${escapeHtml(EVENT.address)}</a><br>` +
+    `Please RSVP by <b>${shortDate(EVENT.rsvpBy)}</b> so we can plan the food well.` +
+    (blurb ? `<div class="blurb">${escapeHtml(blurb)}</div>` : "");
+}
+
+let eventServiceReady = false;
+function loadEventConfig() {
+  return new Promise((resolve, reject) => {
+    const callback = "__loadLunchEvent" + Date.now() + Math.floor(Math.random() * 10000);
+    const script = document.createElement("script");
+    const timer = setTimeout(() => finish(new Error("Event service timed out")), 7000);
+    function cleanup() { clearTimeout(timer); delete window[callback]; script.remove(); }
+    function finish(error, payload) { cleanup(); error ? reject(error) : resolve(payload); }
+    window[callback] = payload => {
+      if (!payload || payload.ok !== true || !isEventConfig(payload.event)) {
+        finish(new Error("Event service returned an invalid response")); return;
+      }
+      EVENT = payload.event;
+      eventServiceReady = true;
+      $("adminOpen").style.display = "block";
+      renderEvent();
+      finish(null, payload);
+    };
+    script.onerror = () => finish(new Error("Could not reach event service"));
+    script.src = ENDPOINT + "?action=event&callback=" + encodeURIComponent(callback) + "&_=" + Date.now();
+    document.head.appendChild(script);
+  });
+}
+
+renderEvent();
+loadEventConfig().catch(() => { /* fallback details stay visible; editor stays hidden */ });
+if (["localhost", "127.0.0.1"].includes(window.location.hostname)) {
+  eventServiceReady = true;
+  $("adminOpen").style.display = "block";
+}
 
 let choice = null, count = 1;
 const buttons = { YES: $("btnYes"), MAYBE: $("btnMaybe"), NO: $("btnNo") };
@@ -219,7 +376,8 @@ $("submit").addEventListener("click", async () => {
   $("submit").disabled = true;
   $("submit").textContent = "Sending…";
   const payload = {
-    event: EVENT.id,
+    action: "rsvp",
+    event: eventId(),
     name: name,
     coming: choice,
     count: choice === "YES" ? count : 0,
@@ -241,8 +399,9 @@ $("submit").addEventListener("click", async () => {
 
 function calUrl() {
   return "https://calendar.google.com/calendar/render?action=TEMPLATE"
-    + "&text=" + encodeURIComponent(EVENT.title)
-    + "&dates=" + EVENT.gcalStart + "/" + EVENT.gcalEnd
+    + "&text=" + encodeURIComponent(eventTitle())
+    + "&dates=" + calendarStamp(EVENT.date, EVENT.startTime) + "/" + calendarStamp(EVENT.date, EVENT.endTime)
+    + "&ctz=America%2FChicago"
     + "&location=" + encodeURIComponent(EVENT.place + ", " + EVENT.address)
     + "&details=" + encodeURIComponent("SendKC Planter Lunch. Questions? Dave Partin (913) 901-7581");
 }
@@ -253,7 +412,7 @@ function showDone(name) {
   if (choice === "YES") {
     $("doneEmoji").innerHTML = "&#127881;";
     $("doneTitle").textContent = "You're on the list, " + first + "!";
-    $("doneMsg").textContent = `${EVENT.dateText}, ${EVENT.timeText} at ${EVENT.place}. Lunch is on us — see you there.`;
+    $("doneMsg").textContent = `${longDate(EVENT.date)}, ${clockTime(EVENT.startTime)} – ${clockTime(EVENT.endTime)} at ${EVENT.place}. Lunch is on us — see you there.`;
     $("calLink").href = calUrl();
     $("calLink").style.display = "inline-block";
   } else if (choice === "MAYBE") {
@@ -270,6 +429,88 @@ function showDone(name) {
   }
   $("done").style.display = "block";
 }
+
+function fillAdminForm() {
+  $("adminTitle").value = EVENT.title || eventTitle();
+  $("adminDate").value = EVENT.date;
+  $("adminStart").value = EVENT.startTime;
+  $("adminEnd").value = EVENT.endTime;
+  $("adminPlace").value = EVENT.place;
+  $("adminAddress").value = EVENT.address;
+  $("adminRsvpBy").value = EVENT.rsvpBy;
+  $("adminParagraph").value = EVENT.paragraph || "";
+  $("adminPassword").value = "";
+  $("adminStatus").textContent = "";
+  $("adminStatus").className = "admin-status";
+}
+function openAdmin() {
+  if (!eventServiceReady) return;
+  fillAdminForm();
+  $("adminBackdrop").classList.add("open");
+  document.body.style.overflow = "hidden";
+  setTimeout(() => $("adminDate").focus(), 0);
+}
+function closeAdmin() {
+  $("adminBackdrop").classList.remove("open");
+  document.body.style.overflow = "";
+}
+$("adminOpen").addEventListener("click", openAdmin);
+$("staffEditLink").addEventListener("click", event => { event.preventDefault(); openAdmin(); });
+$("adminClose").addEventListener("click", closeAdmin);
+$("adminBackdrop").addEventListener("click", event => { if (event.target === $("adminBackdrop")) closeAdmin(); });
+document.addEventListener("keydown", event => { if (event.key === "Escape") closeAdmin(); });
+
+$("adminSave").addEventListener("click", async () => {
+  const nextEvent = {
+    title: $("adminTitle").value.trim(),
+    date: $("adminDate").value,
+    startTime: $("adminStart").value,
+    endTime: $("adminEnd").value,
+    place: $("adminPlace").value.trim(),
+    address: $("adminAddress").value.trim(),
+    rsvpBy: $("adminRsvpBy").value,
+    paragraph: $("adminParagraph").value.trim(),
+  };
+  const password = $("adminPassword").value;
+  const status = $("adminStatus");
+  status.className = "admin-status";
+  if (!isEventConfig(nextEvent) || !nextEvent.place || !nextEvent.address || !password) {
+    status.textContent = "Please complete every field, including the team password.";
+    status.classList.add("error"); return;
+  }
+  if (nextEvent.startTime >= nextEvent.endTime) {
+    status.textContent = "The ending time needs to be after the starting time.";
+    status.classList.add("error"); return;
+  }
+  if (nextEvent.rsvpBy > nextEvent.date) {
+    status.textContent = "The RSVP deadline needs to be on or before the lunch date.";
+    status.classList.add("error"); return;
+  }
+  $("adminSave").disabled = true;
+  $("adminSave").textContent = "Saving…";
+  status.textContent = "Updating the page…";
+  try {
+    await fetch(ENDPOINT, {
+      method: "POST", mode: "no-cors", headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify({ action: "updateEvent", password, event: nextEvent }),
+    });
+    await new Promise(resolve => setTimeout(resolve, 900));
+    await loadEventConfig();
+    const saved = ["title", "date", "startTime", "endTime", "place", "address", "rsvpBy", "paragraph"]
+      .every(key => EVENT[key] === nextEvent[key]);
+    if (!saved) throw new Error("The password was not accepted or the update was not saved.");
+    status.textContent = "Saved. The new lunch details are live.";
+    status.classList.add("success");
+    $("adminPassword").value = "";
+    setTimeout(closeAdmin, 1100);
+  } catch (error) {
+    status.textContent = error.message || "The update did not go through. Check the password and try again.";
+    status.classList.add("error");
+  } finally {
+    $("adminSave").disabled = false;
+    $("adminSave").textContent = "Save lunch details";
+  }
+});
 </script>
 </body>
 </html>
