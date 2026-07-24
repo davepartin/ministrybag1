@@ -131,10 +131,6 @@
   .admin-modal input:focus, .admin-modal textarea:focus { border-color: var(--blue); background: #fff; }
   .admin-modal textarea { min-height: 88px; resize: vertical; line-height: 1.45; }
   .details .blurb { margin-top: 8px; color: var(--slate); font-size: 14px; line-height: 1.55; }
-  .foot a.staff-edit {
-    color: rgba(92,102,112,.85); text-decoration: none; border-bottom: 1px dotted var(--gray-mid);
-  }
-  .foot a.staff-edit:hover { color: var(--navy); border-bottom-color: var(--navy); }
   .admin-save {
     width: 100%; border: 0; border-radius: 11px; margin-top: 18px; padding: 14px;
     background: var(--navy); color: #fff; font-size: 16px; font-weight: 800; cursor: pointer;
@@ -210,8 +206,7 @@
     <a class="cal" id="calLink" target="_blank" rel="noopener">&#128197; Add to calendar</a>
   </div>
 
-  <div class="foot">Questions? Text Dave Partin at (913) 901-7581.<br>
-    <a class="staff-edit" href="#" id="staffEditLink">Staff: edit lunch details</a></div>
+  <div class="foot">Questions? Text Dave Partin at (913) 901-7581.</div>
 </div>
 
 <div class="modal-backdrop" id="gateBackdrop" role="dialog" aria-modal="true" aria-labelledby="gateHeading">
@@ -490,7 +485,6 @@ function closeAdmin() {
 }
 
 $("adminOpen").addEventListener("click", openGate);
-$("staffEditLink").addEventListener("click", event => { event.preventDefault(); openGate(); });
 $("gateClose").addEventListener("click", closeGate);
 $("adminClose").addEventListener("click", closeAdmin);
 $("gateBackdrop").addEventListener("click", event => { if (event.target === $("gateBackdrop")) closeGate(); });
