@@ -57,6 +57,11 @@ function doGet(e) {
   if (e && e.parameter && e.parameter.action === "event") {
     return jsonOutput_({ ok: true, event: getEvent_() }, e.parameter.callback);
   }
+  if (e && e.parameter && e.parameter.action === "verifyPassword") {
+    var expected = PropertiesService.getScriptProperties().getProperty("ADMIN_PASSWORD");
+    var ok = !!(expected && String(e.parameter.password || "") === expected);
+    return jsonOutput_({ ok: ok }, e.parameter.callback);
+  }
   return ContentService.createTextOutput("Planter Lunch RSVP collector is running.");
 }
 
