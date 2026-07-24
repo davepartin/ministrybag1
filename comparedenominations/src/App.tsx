@@ -1,169 +1,172 @@
-import { useState } from 'react';
-import { DENOMINATIONS, CATEGORY_SETS, CATEGORIES, type DenominationId } from './data';
+import { useMemo, useState } from 'react';
+import { ArrowRightLeft, BookOpen, Compass, Info, Scale } from 'lucide-react';
+import { CATEGORY_SETS, CATEGORIES, DENOMINATIONS, type DenominationId } from './data';
 import { CategoryAccordion } from './components/CategoryAccordion';
+import { DenominationBadge } from './components/DenominationBadge';
+import { DenominationPicker } from './components/DenominationPicker';
 import { Summary } from './components/Summary';
-import { Scale, ChevronDown } from 'lucide-react';
+
+function getDenomination(id: DenominationId) {
+  return DENOMINATIONS.find((denomination) => denomination.id === id) ?? DENOMINATIONS[0];
+}
 
 function App() {
-  const [denomAId, setDenomAId] = useState<DenominationId | ''>('');
-  const [denomBId, setDenomBId] = useState<DenominationId | ''>('');
+  const [denomAId, setDenomAId] = useState<DenominationId>('sbc');
+  const [denomBId, setDenomBId] = useState<DenominationId>('umc');
 
-  const denomA = DENOMINATIONS.find(d => d.id === denomAId);
-  const denomB = DENOMINATIONS.find(d => d.id === denomBId);
+  const denomA = getDenomination(denomAId);
+  const denomB = getDenomination(denomBId);
+  const comparisonCount = CATEGORIES.length;
+  const majorDifferences = useMemo(
+    () => CATEGORIES.filter((category) => Math.abs(denomA.scores[category.id] - denomB.scores[category.id]) >= 3).length,
+    [denomA, denomB],
+  );
+
+  const swap = () => {
+    setDenomAId(denomBId);
+    setDenomBId(denomAId);
+  };
 
   return (
-    <div className="min-h-screen bg-slate-50 font-sans text-slate-900 pb-20">
-      {/* Navbar / Brand */}
-      <div className="bg-slate-900 text-white py-4 px-4 shadow-md z-50 relative">
-        <div className="max-w-3xl mx-auto flex items-center justify-center gap-3">
-          <Scale className="text-indigo-400" />
-          <h1 className="text-xl font-bold tracking-tight">Denomivs <span className="text-slate-400 font-normal text-sm ml-2">Theological Comparison Engine</span></h1>
+    <div className="min-h-screen bg-[#f5f2ea] text-stone-900">
+      <header className="border-b border-stone-800 bg-stone-950 text-white">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6">
+          <a href="#top" className="flex items-center gap-3" aria-label="Denomination Comparison Guide home">
+            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-amber-300 text-stone-950">
+              <Compass size={22} strokeWidth={2.5} />
+            </span>
+            <span>
+              <span className="block font-serif text-lg font-bold leading-none">Denomination Comparison Guide</span>
+              <span className="mt-1 hidden text-[10px] font-bold uppercase tracking-[0.18em] text-stone-400 sm:block">A clear map of Christian traditions</span>
+            </span>
+          </a>
+          <a href="#method" className="hidden items-center gap-2 text-sm font-semibold text-stone-300 hover:text-white sm:flex">
+            <Info size={16} /> How to read this
+          </a>
         </div>
-      </div>
+      </header>
 
-      {/* Sticky Header for Selections */}
-      <div className="sticky top-0 z-40 bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-200 transition-all">
-        <div className="max-w-3xl mx-auto px-4 py-4">
-          <div className="flex items-center justify-between gap-4">
-            {/* Denom A Selector */}
-            <div className="flex-1">
-              <label className="block text-xs font-bold text-slate-400 mb-1 uppercase tracking-wider">Tradition A</label>
-              <div className="relative">
-                <select
-                  className="w-full bg-slate-100 border border-slate-200 text-slate-800 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block p-2.5 pr-8 font-semibold appearance-none cursor-pointer hover:bg-slate-50 transition-colors"
-                  value={denomAId}
-                  onChange={(e) => setDenomAId(e.target.value as DenominationId)}
-                >
-                  <option value="" disabled>Choose Denomination</option>
-                  {DENOMINATIONS.map(d => (
-                    <option key={d.id} value={d.id}>{d.name}</option>
-                  ))}
-                </select>
-                <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none text-slate-500">
-                  <ChevronDown size={16} />
-                </div>
-              </div>
+      <main id="top">
+        <section className="relative overflow-hidden bg-stone-950 px-4 pb-28 pt-16 text-white sm:px-6 sm:pb-32 sm:pt-24">
+          <div className="absolute left-1/2 top-0 h-[520px] w-[900px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(251,191,36,0.15),transparent_62%)]" />
+          <div className="relative mx-auto max-w-4xl text-center">
+            <div className="mx-auto mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3.5 py-2 text-xs font-bold uppercase tracking-[0.16em] text-amber-200">
+              <Scale size={15} /> Compare 12 familiar U.S. traditions
             </div>
+            <h1 className="font-serif text-4xl font-bold leading-[1.04] tracking-tight sm:text-6xl lg:text-7xl">
+              Compare Christian denominations, clearly.
+            </h1>
+            <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-stone-300 sm:text-lg">
+              Choose any two traditions and see where their official teachings align, differ, or need more explanation.
+            </p>
+          </div>
+        </section>
 
-            {/* VS Badge */}
-            <div className="flex flex-col items-center justify-center pt-5">
-              <div className="w-8 h-8 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center font-black text-xs shadow-inner">
-                VS
-              </div>
-            </div>
-
-            {/* Denom B Selector */}
-            <div className="flex-1 text-right">
-              <label className="block text-xs font-bold text-slate-400 mb-1 uppercase tracking-wider">Tradition B</label>
-              <div className="relative">
-                <select
-                  dir="rtl"
-                  className="w-full bg-slate-100 border border-slate-200 text-slate-800 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 block p-2.5 pr-8 font-semibold appearance-none cursor-pointer hover:bg-slate-50 transition-colors text-right"
-                  value={denomBId}
-                  onChange={(e) => setDenomBId(e.target.value as DenominationId)}
-                >
-                  <option value="" disabled>Choose Denomination</option>
-                  {DENOMINATIONS.map(d => (
-                    <option key={d.id} value={d.id}>{d.name}</option>
-                  ))}
-                </select>
-                <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none text-slate-500 left-0 right-auto">
-                  {/* Note: User asked for arrows. The previous input had dir="rtl", so the arrow should be on the left? 
-                       Standard select arrows are usually on the right. 
-                       But the original was text-right aligned.
-                       Let's put the arrow on the LEFT if it's RTL text, or standard right.
-                       Actually, for the second one, it's tradition B, aligned right. 
-                       The label is right aligned.
-                       The select text is right aligned.
-                       The User said "inside the box to the right of the denominaion label"... wait.
-                       "add an arrow triangle icon inside the box to the right of the denominaion label"
-                       For Trad B, the label is on the right? 
-                       Let's just put it on the side that makes sense. 
-                       Typically custom arrows are on the right (end) of the input.
-                       But if text is RTL, the 'start' is right and 'end' is left.
-                       Let's stick to standard UI: arrow on the right.
-                       However, the user said "inside the box to the right of the denominaion label".
-                       Let's just place it on the right side for both for consistency unless it overlaps text.
-                       The styled component I'm replacing had 'dir="rtl"'. 
-                       If I put the arrow on the right, it might overlap the text if the text is right-aligned.
-                       Wait, the original code had `dir="rtl"` on the select.
-                       Let's keep the arrow on the left for the RTL input to mimic standard RTL behavior, 
-                       OR just keep it on the right and add padding-right.
-                       The user's prompt "inside the box to the right of the denominaion label" is slightly ambiguous for the layout.
-                       I will place the arrow on the right for both, adding pr-8 to both selects.
-                   */}
-                  {/* Wait, for the SECOND select, I will put the arrow on the LEFT because the text is on the RIGHT. 
-                       Original code: <div className="flex-1 text-right">
-                       So everything is right aligned.
-                       Let's put arrow on LEFT for B.
-                   */}
-                  <ChevronDown size={16} />
-                </div>
-                {/* Re-doing the arrow positioning for B properly */}
-              </div>
+        <section className="relative z-10 mx-auto -mt-16 max-w-5xl px-4 sm:px-6" aria-label="Choose denominations to compare">
+          <div className="rounded-[30px] border border-stone-200 bg-[#fffdf8] p-4 shadow-2xl shadow-stone-900/10 sm:p-6">
+            <div className="grid items-center gap-3 md:grid-cols-[1fr_auto_1fr]">
+              <DenominationPicker label="First tradition" value={denomA} excludedId={denomBId} onChange={setDenomAId} />
+              <button
+                type="button"
+                onClick={swap}
+                aria-label="Swap denominations"
+                className="mx-auto flex h-11 w-11 items-center justify-center rounded-full border border-stone-200 bg-stone-100 text-stone-600 transition hover:rotate-180 hover:bg-stone-950 hover:text-white focus:outline-none focus-visible:ring-4 focus-visible:ring-amber-200 md:h-12 md:w-12"
+              >
+                <ArrowRightLeft size={19} />
+              </button>
+              <DenominationPicker label="Second tradition" value={denomB} excludedId={denomAId} onChange={setDenomBId} />
             </div>
           </div>
-        </div>
-      </div>
+        </section>
 
-      {/* Main Content: Categories */}
-      <main className="max-w-3xl mx-auto px-4 py-8 space-y-12">
-        {!denomA || !denomB ? (
-          <div className="text-center py-20 animate-in fade-in zoom-in duration-500">
-            <div className="inline-flex items-center justify-center p-4 bg-indigo-50 text-indigo-200 rounded-full mb-4">
-              <Scale size={48} />
+        <section className="sticky top-0 z-40 mt-7 border-y border-stone-200 bg-[#fffdf8]/95 shadow-sm backdrop-blur-xl">
+          <div className="mx-auto flex max-w-5xl items-center justify-between gap-3 px-4 py-3 sm:px-6">
+            <div className="flex min-w-0 items-center gap-2 sm:gap-3">
+              <DenominationBadge denomination={denomA} size="sm" />
+              <span className="truncate text-sm font-extrabold text-stone-900 sm:text-base">{denomA.shortName}</span>
             </div>
-            <h2 className="text-2xl font-bold text-slate-800 mb-2">Select Traditions to Compare</h2>
-            <p className="text-slate-500">Choose two denominations from the dropdowns above to see their theological differences.</p>
+            <div className="shrink-0 text-center">
+              <span className="block text-[9px] font-black uppercase tracking-[0.18em] text-stone-400">Compared with</span>
+              <span className="mt-0.5 block text-[10px] font-bold text-stone-600">{majorDifferences} major differences</span>
+            </div>
+            <div className="flex min-w-0 items-center justify-end gap-2 text-right sm:gap-3">
+              <span className="truncate text-sm font-extrabold text-stone-900 sm:text-base">{denomB.shortName}</span>
+              <DenominationBadge denomination={denomB} size="sm" />
+            </div>
           </div>
-        ) : (
-          <>
-            {CATEGORY_SETS.map(set => {
-              const setCategories = CATEGORIES.filter(c => c.setId === set.id);
+        </section>
 
+        <section className="mx-auto max-w-5xl px-4 py-12 sm:px-6 sm:py-16">
+          <div className="mb-12 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+            <div>
+              <p className="mb-2 text-[11px] font-bold uppercase tracking-[0.2em] text-amber-700">The comparison</p>
+              <h2 className="font-serif text-3xl font-bold text-stone-950 sm:text-4xl">See where each tradition lands</h2>
+              <p className="mt-2 max-w-2xl text-sm leading-relaxed text-stone-600">Each marker uses the denomination’s abbreviation and color, so you never have to remember which side is “A” or “B.”</p>
+            </div>
+            <span className="shrink-0 rounded-full border border-stone-200 bg-white px-3 py-1.5 text-xs font-bold text-stone-500">{comparisonCount} points of comparison</span>
+          </div>
+
+          <div className="space-y-14">
+            {CATEGORY_SETS.map((set) => {
+              const categories = CATEGORIES.filter((category) => category.setId === set.id);
               return (
-                <div key={set.id} className="animate-in fade-in slide-in-from-bottom-4 duration-700">
-                  <h2 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4 border-b border-slate-200 pb-2">
-                    {set.name}
-                  </h2>
+                <section key={set.id}>
+                  <div className="mb-5 border-l-4 border-amber-400 pl-4">
+                    <h2 className="font-serif text-2xl font-bold text-stone-950">{set.name}</h2>
+                    <p className="mt-1 text-sm text-stone-500">{set.description}</p>
+                  </div>
                   <div className="space-y-4">
-                    {setCategories.map(cat => (
-                      <CategoryAccordion
-                        key={cat.id}
-                        category={cat}
-                        denomA={denomA}
-                        denomB={denomB}
-                      />
+                    {categories.map((category) => (
+                      <CategoryAccordion key={category.id} category={category} denomA={denomA} denomB={denomB} />
                     ))}
                   </div>
-                </div>
+                </section>
               );
             })}
+          </div>
 
-            {/* Dynamic Summary */}
-            <div className="animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-300">
-              <Summary denomA={denomA} denomB={denomB} />
+          <div className="mt-16">
+            <Summary denomA={denomA} denomB={denomB} />
+          </div>
+
+          <section id="method" className="mt-16 scroll-mt-24 rounded-[28px] border border-stone-200 bg-white p-6 sm:p-8">
+            <div className="grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
+              <div>
+                <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-amber-100 text-amber-800">
+                  <BookOpen size={21} />
+                </div>
+                <h2 className="font-serif text-2xl font-bold text-stone-950">How to read this guide</h2>
+                <p className="mt-3 text-sm leading-relaxed text-stone-600">
+                  A spectrum makes differences visible, but it also compresses nuance. Placements summarize official or representative sources at a denominational level. They are a starting point for understanding, not a verdict on every congregation or member.
+                </p>
+              </div>
+              <div className="grid gap-3 sm:grid-cols-2">
+                <div className="rounded-2xl bg-stone-50 p-4">
+                  <h3 className="text-sm font-extrabold text-stone-900">Selection</h3>
+                  <p className="mt-1 text-xs leading-relaxed text-stone-600">The list follows Pew’s U.S. denominational families and includes prominent Catholic, evangelical, mainline, confessional, Pentecostal, Orthodox, and Restorationist traditions.</p>
+                </div>
+                <div className="rounded-2xl bg-stone-50 p-4">
+                  <h3 className="text-sm font-extrabold text-stone-900">Sources</h3>
+                  <p className="mt-1 text-xs leading-relaxed text-stone-600">Official catechisms, confessions, denominational statements, and policy pages guide the placements. Source links appear in the summary above.</p>
+                </div>
+                <div className="rounded-2xl bg-stone-50 p-4">
+                  <h3 className="text-sm font-extrabold text-stone-900">Scale</h3>
+                  <p className="mt-1 text-xs leading-relaxed text-stone-600">Left and right are descriptive endpoints only. Neither direction represents “more Christian,” “better,” or politically left and right.</p>
+                </div>
+                <div className="rounded-2xl bg-stone-50 p-4">
+                  <h3 className="text-sm font-extrabold text-stone-900">Local variation</h3>
+                  <p className="mt-1 text-xs leading-relaxed text-stone-600">Nondenominational churches and autonomous congregations vary especially widely. Always check a local church’s own beliefs and practice.</p>
+                </div>
+              </div>
             </div>
-          </>
-        )}
-
-        {/* Footer */}
-        <div className="text-center text-slate-400 text-xs mt-12 pb-8">
-          <p>© 2024 Denomivs. Theological data is approximate for educational purposes.</p>
-        </div>
+          </section>
+        </section>
       </main>
 
-      {/* Floating Action Button for Swap (Mobile optimization maybe?) - Optional */}
-      {/* <button 
-        className="fixed bottom-6 right-6 bg-indigo-600 text-white p-4 rounded-full shadow-lg hover:bg-indigo-700 transition-all z-50 md:hidden"
-        onClick={() => {
-          const temp = denomAId;
-          setDenomAId(denomBId);
-          setDenomBId(temp);
-        }}
-      >
-        <ArrowRightLeft size={20} />
-      </button> */}
+      <footer className="border-t border-stone-200 bg-[#fffdf8] px-4 py-8 text-center text-xs leading-relaxed text-stone-500 sm:px-6">
+        <p className="font-bold text-stone-700">Denomination Comparison Guide</p>
+        <p className="mt-1">Educational overview. Last reviewed July 2026.</p>
+      </footer>
     </div>
   );
 }

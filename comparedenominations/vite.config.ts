@@ -1,7 +1,9 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { cloudflare } from '@cloudflare/vite-plugin';
+import react from '@vitejs/plugin-react';
+import { defineConfig } from 'vite';
+import { sites } from './build/sites-vite-plugin';
 
-// https://vite.dev/config/
 export default defineConfig({
-  plugins: [react()],
-})
+  base: process.env.VITE_BASE_PATH ?? '/',
+  plugins: [react(), sites(), cloudflare()],
+});
