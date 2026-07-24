@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#8f3d36">
+  <meta name="description" content="Heart52: learn one ESV Scripture passage each week through guided practice and games.">
+  <meta property="og:title" content="Heart52 Scripture Memory">
+  <meta property="og:description" content="Read, listen, practice, and review 52 Scripture passages.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/social-card.svg">
+  <title>Heart52 · Scripture Memory</title>
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="js/app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <a class="brand" href="#" aria-label="Heart52 home"><span aria-hidden="true">♥</span> Heart52</a>
+    <nav aria-label="Primary">
+      <button id="back-button" class="quiet hidden" type="button">← Back</button>
+      <a href="#">Home</a>
+      <button id="review-nav" class="quiet" type="button">Review</button>
+    </nav>
+  </header>
+
+  <main id="main" tabindex="-1">
+    <section id="dashboard" aria-labelledby="dashboard-title">
+      <div class="hero">
+        <div>
+          <p class="eyebrow">Scripture memory, week by week</p>
+          <h1 id="dashboard-title">Carry truth with you.</h1>
+          <p>Read, listen, practice, and remember 52 passages from the ESV.</p>
+        </div>
+        <div id="stats" class="stats" aria-label="Your progress"></div>
+      </div>
+      <section id="continue-card" class="continue-card" aria-label="Continue learning"></section>
+      <div class="section-heading">
+        <div><p class="eyebrow">Your library</p><h2>All 52 weeks</h2></div>
+        <button id="due-review" class="button secondary" type="button">Review due verses</button>
+      </div>
+      <div class="filters">
+        <label><span>Search</span><input id="search" type="search" placeholder="Reference, theme, or words…"></label>
+        <label><span>Theme</span><select id="theme-filter"><option value="">All themes</option></select></label>
+      </div>
+      <p id="filter-status" class="muted" aria-live="polite"></p>
+      <div id="verse-grid" class="verse-grid" aria-busy="true">
+        <p class="loading">Loading passages…</p>
+      </div>
+    </section>
+
+    <section id="verse-view" class="hidden" aria-live="polite"></section>
+  </main>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <noscript><p class="noscript">Heart52 needs JavaScript to load its passage library and save your progress.</p></noscript>
+</body>
+</html>

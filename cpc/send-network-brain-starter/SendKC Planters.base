@@ -1,0 +1,94 @@
+filters:
+  and:
+    - person_type == "planter"
+    - file.inFolder("wiki/people")
+properties:
+  file.name:
+    displayName: Planter
+  note.field_staff:
+    displayName: CPC
+  note.planter_pathway:
+    displayName: Pathway
+  note.sending_church:
+    displayName: Sending Church
+  note.church:
+    displayName: Church Plant
+  note.health_status:
+    displayName: Health
+  note.latest_attendance:
+    displayName: Attendance
+  note.baptisms_since_q4_2025:
+    displayName: Baptisms
+  note.care_end:
+    displayName: Care Ends
+  note.phone:
+    displayName: Phone
+views:
+  - type: table
+    name: All Planters by Pathway
+    groupBy:
+      property: planter_pathway
+      direction: ASC
+    order:
+      - file.name
+      - field_staff
+      - sending_church
+      - church
+      - health_status
+      - latest_attendance
+      - baptisms_since_q4_2025
+      - care_end
+      - phone
+    sort:
+      - property: field_staff
+        direction: ASC
+    summaries:
+      file.name: Filled
+    columnSize:
+      file.name: 200
+      note.church: 294
+      note.care_end: 121
+  - type: table
+    name: By Field Staff
+    groupBy:
+      property: field_staff
+      direction: ASC
+    order:
+      - file.name
+      - planter_pathway
+      - sending_church
+      - health_status
+      - latest_attendance
+      - care_end
+      - phone
+    summaries:
+      file.name: Filled
+  - type: table
+    name: Funded
+    filters:
+      and:
+        - planter_pathway == "funded"
+    order:
+      - file.name
+      - field_staff
+      - church
+      - health_status
+      - latest_attendance
+      - baptisms_since_q4_2025
+      - care_end
+    summaries:
+      file.name: Filled
+  - type: table
+    name: Needs Care (At Risk)
+    filters:
+      and:
+        - health_status == "At Risk"
+    order:
+      - file.name
+      - field_staff
+      - church
+      - latest_attendance
+      - care_end
+      - phone
+    summaries:
+      file.name: Filled

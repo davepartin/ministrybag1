@@ -1,0 +1,130 @@
+filters:
+  and:
+    - type == "church"
+    - file.inFolder("wiki/churches")
+properties:
+  file.name:
+    displayName: Church
+  note.mobilization_level:
+    displayName: Mobilization
+  note.pastor:
+    displayName: Pastor
+  note.pastors:
+    displayName: Pastors
+  note.other_staff:
+    displayName: Other Staff
+  note.association:
+    displayName: Association
+  note.church_type:
+    displayName: Church Type
+  note.planters_sent:
+    displayName: Planters Sent
+  note.address:
+    displayName: Address
+  note.phone:
+    displayName: Phone
+  note.website:
+    displayName: Website
+  note.sbc_id:
+    displayName: SBC ID
+  note.status:
+    displayName: Status
+views:
+  - type: table
+    name: All Churches by Mobilization
+    groupBy:
+      property: mobilization_level
+      direction: DESC
+    order:
+      - file.name
+      - mobilization_level
+      - pastor
+      - planters_sent
+      - association
+      - church_type
+      - website
+      - phone
+    sort:
+      - property: mobilization_level
+        direction: DESC
+      - property: file.name
+        direction: ASC
+    summaries:
+      file.name: Filled
+    columnSize:
+      file.name: 260
+      note.mobilization_level: 155
+      note.pastor: 180
+      note.planters_sent: 260
+      note.phone: 130
+  - type: table
+    name: Sending Churches
+    filters:
+      and:
+        - mobilization_level == "3 - Sending"
+    order:
+      - file.name
+      - pastor
+      - planters_sent
+      - association
+      - website
+      - phone
+      - address
+    sort:
+      - property: file.name
+        direction: ASC
+    summaries:
+      file.name: Filled
+  - type: table
+    name: Multiplying / Movement
+    filters:
+      or:
+        - mobilization_level == "4 - Multiplying"
+        - mobilization_level == "5 - Movement"
+    order:
+      - file.name
+      - mobilization_level
+      - pastor
+      - planters_sent
+      - association
+      - church_type
+      - website
+    summaries:
+      file.name: Filled
+  - type: table
+    name: By Association
+    groupBy:
+      property: association
+      direction: ASC
+    order:
+      - file.name
+      - mobilization_level
+      - pastor
+      - planters_sent
+      - church_type
+      - website
+      - phone
+    sort:
+      - property: association
+        direction: ASC
+      - property: file.name
+        direction: ASC
+    summaries:
+      file.name: Filled
+  - type: table
+    name: Needs Assessment
+    filters:
+      or:
+        - mobilization_level == ""
+        - church_type == ""
+        - pastor == ""
+    order:
+      - file.name
+      - mobilization_level
+      - pastor
+      - association
+      - church_type
+      - website
+      - phone
+    summaries:
+      file.name: Filled
