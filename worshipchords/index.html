@@ -3,7 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Worship Songs - Ministry Bag</title>
+  <title>Worship Chords & Guitar Lessons | Ministry Bag</title>
+  <meta name="description" content="Learn worship songs with Dave Partin's play-through videos, chord sheets, and practical guitar lessons.">
+  <meta name="theme-color" content="#102f3a">
+  <link rel="canonical" href="https://ministrybag.com/worshipchords/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ministrybag.com/worshipchords/">
+  <meta property="og:title" content="Worship Chords | Ministry Bag">
+  <meta property="og:description" content="Play it. Practice it. Lead it. Learn worship songs with videos, chord sheets, and practical guitar lessons.">
+  <meta property="og:image" content="https://ministrybag.com/worshipchords/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Ministry Bag Worship Chords with an acoustic guitar">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Worship Chords | Ministry Bag">
+  <meta name="twitter:description" content="Play it. Practice it. Lead it.">
+  <meta name="twitter:image" content="https://ministrybag.com/worshipchords/og.png">
   <style>
     * {
       margin: 0;
@@ -490,64 +505,159 @@
       position: relative;
     }
   </style>
+  <link rel="stylesheet" href="modern.css">
 </head>
 <body>
-  <div class="header">
+  <header class="header">
     <div class="header-inner">
       <div class="header-title-row">
-        <a href="../index.html" class="satchel-logo">
+        <a href="https://ministrybag.com" class="satchel-logo" aria-label="Ministry Bag home">
           <img src="../ministrybagsatchel1.svg" alt="Ministry Bag Home" width="40" height="40">
         </a>
-        <h1>Worship Chords & Videos</h1>
-      </div>
-      
-      <div class="search-container">
-        <input type="text" class="search-input" placeholder="Search for a song..." id="searchInput">
-      </div>
-      <div class="alphabet-nav" id="alphabetNav">
-        <button class="alphabet-btn" data-range="A-G">A-G</button>
-        <button class="alphabet-btn" data-range="H-L">H-L</button>
-        <button class="alphabet-btn" data-range="M-R">M-R</button>
-        <button class="alphabet-btn" data-range="S-Z">S-Z</button>
-        <button class="alphabet-btn" data-range="ALL">All</button>
-      </div>
-      <div class="favorites-toggle">
-        <button class="favorites-btn" id="favoritesToggle">
-          ❤️ Show Favorites Only
-        </button>
+        <a href="#top" class="brand-lockup">
+          <span class="brand-kicker">Ministry Bag</span>
+          <span class="brand-name">Worship Chords</span>
+        </a>
+        <nav class="site-nav" aria-label="Main navigation">
+          <a href="#songs">Songs</a>
+          <a href="#chord-guides">Chord guides</a>
+          <a href="#lessons">Lessons</a>
+        </nav>
       </div>
     </div>
-  </div>
+  </header>
 
-  <div class="container">
-    
-    <div id="favoritesSection" style="display: none;">
-      <div class="section-header">❤️ Favorite Songs</div>
-      <div id="favoritesList" class="song-list"></div>
-    </div>
-    
-    <div id="mainSection">
-      <div id="songsList" class="song-list"></div>
-    </div>
-    
-    <div id="noResults" class="no-results" style="display: none;">
-      No songs found. Try a different search or filter.
-    </div>
-  </div>
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <p class="eyebrow">Play it. Practice it. Lead it.</p>
+          <h1 id="hero-title">Worship songs made easier to learn.</h1>
+          <p class="hero-lede">Watch a clear play-through, then keep the chord sheet right below the video while you practice.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#songs">Find a song</a>
+            <a class="button button-quiet" href="#lessons">Start guitar lessons</a>
+          </div>
+        </div>
+        <aside class="hero-note" aria-label="How the library works">
+          <span class="hero-note-number">81</span>
+          <span class="hero-note-label">worship songs</span>
+          <span class="hero-note-rule"></span>
+          <p>Every song opens in one simple practice view: video on top, chord sheet below.</p>
+        </aside>
+      </div>
+    </section>
 
-  <!-- Modal for YouTube videos -->
-  <div id="youtubeModal" class="modal">
+    <section class="song-library" id="songs" aria-labelledby="songs-title">
+      <div class="content-section">
+        <div class="section-intro library-intro">
+          <div>
+            <p class="eyebrow">The song library</p>
+            <h2 id="songs-title">Choose a song and start playing.</h2>
+          </div>
+          <p>Search by title, narrow the list by letter, or save songs to your favorites for quick access later.</p>
+        </div>
+
+        <div class="library-tools" aria-label="Song filters">
+          <label class="search-container" for="searchInput">
+            <span class="search-icon" aria-hidden="true">⌕</span>
+            <span class="visually-hidden">Search songs</span>
+            <input type="search" class="search-input" placeholder="Search 81 worship songs…" id="searchInput" autocomplete="off">
+          </label>
+          <div class="filter-row">
+            <div class="alphabet-nav" id="alphabetNav" aria-label="Filter songs by title">
+              <button class="alphabet-btn active" type="button" data-range="ALL">All</button>
+              <button class="alphabet-btn" type="button" data-range="A-G">A–G</button>
+              <button class="alphabet-btn" type="button" data-range="H-L">H–L</button>
+              <button class="alphabet-btn" type="button" data-range="M-R">M–R</button>
+              <button class="alphabet-btn" type="button" data-range="S-Z">S–Z</button>
+            </div>
+            <div class="favorites-toggle">
+              <button class="favorites-btn" type="button" id="favoritesToggle">♡ Favorites only</button>
+            </div>
+          </div>
+          <p class="results-count" id="resultsCount" aria-live="polite"></p>
+        </div>
+
+        <div id="favoritesSection" style="display: none;">
+          <div class="section-header">Saved favorites</div>
+          <div id="favoritesList" class="song-list"></div>
+        </div>
+
+        <div id="mainSection">
+          <div id="songsList" class="song-list"></div>
+        </div>
+
+        <div id="noResults" class="no-results" style="display: none;">
+          <strong>No songs found.</strong>
+          <span>Try a different title or filter.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section guide-section" id="chord-guides" aria-labelledby="guides-title">
+      <div class="section-intro">
+        <div>
+          <p class="eyebrow">Keep these close</p>
+          <h2 id="guides-title">Two practical chord guides.</h2>
+        </div>
+        <p>Open the key you are practicing and keep the shapes nearby as you work through a lesson or song.</p>
+      </div>
+      <div class="guides-grid" id="guidesGrid"></div>
+    </section>
+
+    <section class="content-section lessons-section" id="lessons" aria-labelledby="lessons-title">
+      <div class="section-intro">
+        <div>
+          <p class="eyebrow">Guitar foundations</p>
+          <h2 id="lessons-title">Start with the four-part lesson series.</h2>
+        </div>
+        <p>Dave walks through the essentials in order. Begin with Lesson 1, or jump back in wherever you left off.</p>
+      </div>
+      <div class="lessons-grid" id="lessonsGrid"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Created by Dave Partin for worship leaders who want to keep learning.</p>
+    <a href="https://ministrybag.com">Back to Ministry Bag</a>
+  </footer>
+
+  <dialog id="youtubeModal" class="modal" aria-labelledby="modalTitle">
     <div class="modal-content">
       <div class="modal-header">
-        <h2 id="modalTitle">Song Title</h2>
-        <button class="modal-close" onclick="closeModal()">&times;</button>
+        <div>
+          <p class="modal-eyebrow" id="modalEyebrow">Song practice</p>
+          <h2 id="modalTitle">Song Title</h2>
+          <p class="modal-meta" id="modalMeta"></p>
+        </div>
+        <button class="modal-close" type="button" onclick="closeModal()" aria-label="Close practice view">&times;</button>
       </div>
       <div class="modal-body">
-        <div class="youtube-container" id="youtubeContainer"></div>
-        <div class="chords-pdf-container" id="chordsPdfContainer" style="margin-top: 24px;"></div>
+        <section aria-labelledby="videoHeading">
+          <div class="viewer-section-heading">
+            <span class="step-number">01</span>
+            <div>
+              <p class="viewer-kicker">Watch</p>
+              <h3 id="videoHeading">Play the video</h3>
+            </div>
+          </div>
+          <div class="youtube-container" id="youtubeContainer"></div>
+        </section>
+        <section class="sheet-section" id="sheetSection" aria-labelledby="sheetHeading">
+          <div class="viewer-section-heading">
+            <span class="step-number">02</span>
+            <div>
+              <p class="viewer-kicker">Practice</p>
+              <h3 id="sheetHeading">Use the chord sheet</h3>
+            </div>
+          </div>
+          <div class="viewer-actions" id="viewerActions"></div>
+          <div class="chords-pdf-container" id="chordsPdfContainer"></div>
+        </section>
       </div>
     </div>
-  </div>
+  </dialog>
 
   <script>
     // Song data
@@ -636,7 +746,12 @@
     ];
 
     // Initialize favorites from localStorage
-    let favorites = JSON.parse(localStorage.getItem('worshipFavorites')) || [];
+    let favorites = [];
+    try {
+      favorites = JSON.parse(localStorage.getItem('worshipFavorites')) || [];
+    } catch (error) {
+      localStorage.removeItem('worshipFavorites');
+    }
     let showFavoritesOnly = false;
     let currentFilter = 'ALL';
     let searchTerm = '';
@@ -886,5 +1001,6 @@
       lastScrollTop = scrollTop;
     });
   </script>
+  <script src="modern.js"></script>
 </body>
 </html>
