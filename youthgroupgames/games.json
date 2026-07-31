@@ -1,11 +1,11 @@
 [
   {
     "id": 1,
-    "name": "Amoeba / Blob Tag",
+    "name": "Amoeba / Blob / Centipede Tag",
     "category": "Elimination & Tag Games",
     "players": "10+",
     "equipment": "None",
-    "rules": "When \"it\" tags someone, that person becomes part of the blob. Tagged players must join hands and run together to catch others. The blob grows as more people are tagged. Last person caught wins. Can split into two blobs when reaching 6+ people."
+    "rules": "Start with one tagger. When the tagger catches someone, that person joins hands with them and helps tag the remaining runners. Every tagged player joins the connected blob or centipede. When the chain reaches 6 or more people, either keep one long centipede or split into two smaller blobs. The last runner caught wins."
   },
   {
     "id": 2,
@@ -22,14 +22,6 @@
     "players": "15+",
     "equipment": "None",
     "rules": "Players line up on one side and must run to the other side without being caught. Catchers in the middle try to tag runners. Tagged players become catchers. Similar to sharks and minnows but on land."
-  },
-  {
-    "id": 4,
-    "name": "Centipede Tag",
-    "category": "Elimination & Tag Games",
-    "players": "10+",
-    "equipment": "None",
-    "rules": "When \"it\" tags someone, that person joins hands with \"it\". They continue tagging as a connected unit. The chain grows until everyone is caught."
   },
   {
     "id": 5,
@@ -505,11 +497,11 @@
   },
   {
     "id": 65,
-    "name": "Rock Paper Scissors Variations",
+    "name": "Rock Paper Scissors Tournament",
     "category": "Quick/Simple Games",
     "players": "Varies",
     "equipment": "None",
-    "rules": "There are many fun RPS variations: **RPS Train** – everyone pairs up for RPS; each time someone loses, they become a 'fan' and follow the winner, cheering them on as the winner challenges other winners. Eventually two final players each with a cheering train behind them face off. **RPS Baseball** – treat RPS outcomes as hits and outs to 'run bases'. **Extreme RPS** – team vs team where each team collectively decides on a move (Rock, Paper, or Scissors) and acts it out with their bodies or motions."
+    "rules": "Everyone pairs up for Rock Paper Scissors. After each match, the loser becomes the winner's fan and follows behind them, cheering while the winner challenges another winner. Each new loser and their fan group joins the winning side. Continue until two final players face off with a cheering crowd behind each of them. The last winner and their full fan train win the tournament."
   },
   {
     "id": 66,
@@ -961,19 +953,11 @@
   },
   {
     "id": 122,
-    "name": "Pool Noodle Name Game",
+    "name": "Pool Noodle / Sock Bop Name Game",
     "category": "Name Games",
     "players": "10-20",
-    "equipment": "Pool noodle",
-    "rules": "Players stand in a circle with one person in the middle holding a pool noodle like a bat or club. The person in the middle will close their eyes (or just spin around). Meanwhile, someone on the outer circle starts by calling the name of someone else in the circle. The person in the middle opens eyes and rushes to tap that named person with the noodle. However, if the named person can call another person's name *before* they get hit, the middle person now changes target to that new person. If the middle person succeeds in lightly bopping someone before they say a new name, the bopped person becomes the new middle."
-  },
-  {
-    "id": 123,
-    "name": "Sock Bop Name Game",
-    "category": "Name Games",
-    "players": "10-20",
-    "equipment": "Sock with another sock balled up inside (makes a soft \"whacker\")",
-    "rules": "Similar to the pool noodle game, but using a long sock as a soft whip. One person in the middle with the sock tries to gently tag someone after a name is called. A rule variation: you cannot call the name of the person who just called one (can't bounce back). If tagged, you switch places."
+    "equipment": "Pool noodle or long sock with another sock balled inside",
+    "rules": "Players stand in a circle with one person in the middle holding a pool noodle or soft sock bopper. Someone in the circle calls another player's name, and the person in the middle tries to gently tap that named player. The named player can escape by calling a different person's name before being tapped, which immediately changes the target. Players cannot call the name of the person who just called them. If the middle player lands a tap first, the tapped player becomes the new person in the middle."
   },
   {
     "id": 124,
@@ -1192,14 +1176,6 @@
     "rules": "Form two lines of players (for example, girls form two parallel lines facing each other, creating a 'gauntlet' corridor). Tie a balloon to each boy's waist (or ankle) and one by one they must run through the corridor while all the girls try to pop the balloon by whacking it with rolled-up newspapers as they pass. If they make it through without their balloon popping, they succeed. Then switch (boys create gauntlet, girls run through)."
   },
   {
-    "id": 153,
-    "name": "Balloon Feet Smash",
-    "category": "Tag Variations",
-    "players": "15+",
-    "equipment": "Balloons, string",
-    "rules": "Tie a balloon to each player's ankle with a string (so the balloon drags on the ground). All players move around within a bounded area trying to stomp on others' balloons to pop them while protecting their own. If your balloon pops, you're out (or you sit out until last person). Last person with an intact balloon wins."
-  },
-  {
     "id": 154,
     "name": "Two Truths and a Lie",
     "category": "Memory/Word Games",
@@ -1278,14 +1254,6 @@
     "players": "20+",
     "equipment": "None",
     "rules": "Have the group form two concentric circles (an inner circle and an outer circle), with equal numbers if possible, facing each other. The inner circle faces outward, each person paired with someone in the outer circle facing inward (like two rings of partners). A leader calls out two body parts, for example 'elbow to knee' or 'foot to foot' or 'back to back'. Every pair of partners must quickly touch those body parts together. The last pair to do so (or any pair that cannot) is eliminated. Then you can rotate one circle to give new pairings and call another set of body parts. Continue until one pair remains."
-  },
-  {
-    "id": 164,
-    "name": "Paper Maze Grid",
-    "category": "Mixer Games",
-    "players": "10+",
-    "equipment": "Paper squares",
-    "rules": "This is similar to the 'Paper Maze' described earlier (#75) but can be done as a mixer where one team tries to figure out the maze while others watch or multiple teams compete side by side with identical grids. It's a memory/communication activity in which the team tries to find the secret path through a grid by stepping square by square. Wrong step sends you back, so team members have to remember the correct sequence. It's cooperative and a good icebreaker for new teams."
   },
   {
     "id": 165,
