@@ -1,449 +1,349 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weekly Connection Time</title>
-
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap"
-        rel="stylesheet">
-
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        deepBlue: '#003366',
-                        lightBlue: '#3399CC',
-                        accentOrange: '#F39C12',
-                    },
-                    fontFamily: {
-                        serif: ['"Crimson Text"', 'serif'],
-                        sans: ['Inter', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
-
-    <style>
-        body {
-            background: linear-gradient(to bottom, #f1f5f9, #e2e8f0);
-            font-family: 'Inter', sans-serif;
-            color: #1a202c;
-        }
-
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6 {
-            font-family: '"Crimson Text"', serif;
-        }
-
-        .card {
-            background: white;
-            border-radius: 0.75rem;
-            /* 12px */
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .input-field {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid #e2e8f0;
-            border-radius: 0.5rem;
-            margin-top: 0.5rem;
-            font-size: 1rem;
-            transition: border-color 0.2s;
-        }
-
-        .input-field:focus {
-            outline: none;
-            border-color: #3399CC;
-            ring: 1px solid #3399CC;
-        }
-
-        textarea.input-field {
-            min-height: 100px;
-            resize: vertical;
-        }
-
-        .attr-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0.5rem 1rem;
-            border-radius: 9999px;
-            /* Pill */
-            border: 1px solid #cbd5e1;
-            background-color: white;
-            color: #475569;
-            font-size: 0.9rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s;
-            margin: 0.25rem;
-        }
-
-        .attr-btn:hover {
-            border-color: #3399CC;
-            color: #003366;
-        }
-
-        .attr-btn.selected {
-            background-color: #F39C12;
-            color: white;
-            border-color: #F39C12;
-            box-shadow: 0 2px 4px rgba(243, 156, 18, 0.3);
-        }
-
-        .primary-btn {
-            background-color: #003366;
-            color: white;
-            padding: 1rem 2rem;
-            border-radius: 0.5rem;
-            font-weight: 600;
-            width: 100%;
-            text-align: center;
-            transition: background-color 0.2s;
-        }
-
-        .primary-btn:hover {
-            background-color: #002244;
-        }
-
-        .hidden {
-            display: none !important;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weekly Connection Time | Ministry Bag</title>
+  <meta name="description" content="A simple, guided weekly conversation to help married couples celebrate, listen, plan, pray, and grow closer.">
+  <meta name="theme-color" content="#163c45">
+  <link rel="canonical" href="https://ministrybag.com/weeklyconnectiontime/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Weekly Connection Time | Ministry Bag">
+  <meta property="og:description" content="Slow down. Catch up. Grow closer with a guided weekly marriage conversation.">
+  <meta property="og:url" content="https://ministrybag.com/weeklyconnectiontime/">
+  <meta property="og:image" content="https://ministrybag.com/weeklyconnectiontime/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Weekly Connection Time | Ministry Bag">
+  <meta name="twitter:description" content="Slow down. Catch up. Grow closer with a guided weekly marriage conversation.">
+  <meta name="twitter:image" content="https://ministrybag.com/weeklyconnectiontime/og.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
-
-<body class="min-h-screen py-8 px-4 sm:px-6 lg:px-8 max-w-2xl mx-auto">
-
-    <!-- Header -->
-    <header class="text-center mb-8">
-        <div class="flex items-center justify-center gap-3 mb-2">
-            <a href="https://ministrybag.com/" target="_blank" rel="noopener noreferrer" aria-label="Ministry Bag home"
-                class="inline-flex items-center hover:opacity-80 transition-opacity">
-                <img src="ministrybagsatchel1.svg" alt="Ministry Bag logo" class="h-10 w-auto">
-            </a>
-            <h1 class="text-4xl font-semibold text-deepBlue">Weekly Connection Time</h1>
-        </div>
-        <img src="weeklyconnectiontimelogo.png" alt="Weekly Connection Time Logo" class="mx-auto mb-4 w-48 h-auto">
-        <p class="text-slate-600 italic font-serif text-lg">"Strengthening Marriages with Intentional Conversations"</p>
-    </header>
-
-    <!-- Main Form Section -->
-    <main id="app-form">
-
-        <!-- Section 0: Regular Connection Time -->
-        <section class="card">
-            <h2 class="text-2xl font-semibold text-deepBlue mb-4">Our Regular Connection time will be...</h2>
-            <input type="text" id="connectionTime" class="input-field" placeholder="e.g., Sunday at 8pm">
-        </section>
-
-        <!-- Section 1: Weekly Affirmation -->
-        <section class="card">
-            <h2 class="text-2xl font-semibold text-deepBlue mb-1">An Affirmation</h2>
-            <p class="text-sm text-slate-500 mb-4">This week: I saw you... / I was impressed by your... / you really did
-                a great job...</p>
-
-            <textarea id="affirmation" class="input-field" placeholder="I really appreciated when you..."></textarea>
-        </section>
-
-        <!-- Section 2: Highs & Lows -->
-        <section class="card">
-            <h2 class="text-2xl font-semibold text-deepBlue mb-4">Looking Back</h2>
-
-            <div class="mb-4">
-                <label class="block mb-1 font-medium text-slate-700">A high from this week was...</label>
-                <input type="text" id="highPoint" class="input-field" placeholder="A moment of joy or success...">
-            </div>
-
-            <div>
-                <label class="block mb-1 font-medium text-slate-700">A low from this week was...</label>
-                <input type="text" id="lowPoint" class="input-field" placeholder="A struggle or disappointment...">
-            </div>
-        </section>
-
-        <!-- Section 3: Dreams & Goals -->
-        <section class="card">
-            <h2 class="text-2xl font-semibold text-deepBlue mb-4">Looking Ahead</h2>
-            <label class="block mb-1 font-medium text-slate-700">What are we dreaming about or working toward this week
-                or year?</label>
-            <textarea id="dreams" class="input-field" placeholder="Planning for... / Hoping to..."></textarea>
-        </section>
-
-        <!-- Section 4: Loving Sacrifice -->
-        <section class="card">
-            <h2 class="text-2xl font-semibold text-deepBlue mb-4">Serving One Another</h2>
-            <label class="block mb-1 font-medium text-slate-700">How can I serve you and love you well this
-                week?</label>
-            <textarea id="service" class="input-field"
-                placeholder="I would feel loved if... / I need help with..."></textarea>
-        </section>
-
-        <!-- Section 4.2: Date Night -->
-        <section class="card">
-            <h2 class="text-2xl font-semibold text-deepBlue mb-4">Date Night</h2>
-            <label class="block mb-1 font-medium text-slate-700">When and where is our next Date Night?</label>
-            <textarea id="dateNight" class="input-field" placeholder="Let's go to..."></textarea>
-        </section>
-
-        <!-- Section 4.25: Custom Question -->
-        <section class="card">
-            <h2 class="text-2xl font-semibold text-deepBlue mb-4">Add Your Own Question</h2>
-            <div class="mb-4">
-                <input type="text" id="customQuestion" class="input-field mb-2 font-semibold"
-                    placeholder="Type your custom question here...">
-                <textarea id="customAnswer" class="input-field" placeholder="Your answer..."></textarea>
-            </div>
-        </section>
-
-        <!-- Section 4.5: Prayer Requests -->
-        <section class="card">
-            <h2 class="text-2xl font-semibold text-deepBlue mb-4">Prayer Requests</h2>
-            <label class="block mb-1 font-medium text-slate-700">How can I pray for you this week?</label>
-            <textarea id="prayer" class="input-field" placeholder="Please pray for..."></textarea>
-        </section>
-
-        <!-- Section 5: My Growth Area -->
-        <section class="card">
-            <h2 class="text-2xl font-semibold text-deepBlue mb-1">My Personal Growth Areas</h2>
-            <p class="text-sm text-slate-500 mb-4">Having a healthy marriage is a priority for me. I want to work on
-                these things for the good of our family and the glory of God.</p>
-
-            <textarea id="growth" class="input-field" placeholder="I am working on..."></textarea>
-        </section>
-
-        <!-- Section 6: Marriage Bible Verse -->
-        <section class="card">
-            <h2 class="text-2xl font-semibold text-deepBlue mb-1">Our Marriage Bible Verse</h2>
-            <textarea id="bibleVerse" class="input-field" placeholder="Paste your verse here..."></textarea>
-        </section>
-
-        <!-- Finish Button -->
-        <div class="mt-8 mb-12">
-            <button onclick="showSummary()" class="primary-btn shadow-lg">
-                Create Summary
-            </button>
-        </div>
-    </main>
-
-    <!-- Summary Section (Hidden by default) -->
-    <div id="summary-view" class="hidden">
-        <div class="card bg-white border-t-4 border-accentOrange">
-            <h2 class="text-3xl text-center text-deepBlue mb-6">Connection Summary</h2>
-
-            <div class="space-y-6">
-                <div>
-                    <h3 class="text-lg font-bold text-slate-800 uppercase tracking-wide text-xs mb-1">Regular Connection
-                        Time</h3>
-                    <p id="summary-connectionTime" class="text-slate-700 font-medium text-deepBlue border-b pb-2 mb-2">
-                    </p>
-                </div>
-
-                <div>
-                    <h3 class="text-lg font-bold text-slate-800 uppercase tracking-wide text-xs mb-1">Affirmation</h3>
-                    <p id="summary-affirmation"
-                        class="text-slate-700 italic border-l-4 border-lightBlue pl-3 py-1 bg-slate-50"></p>
-                </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                        <h3 class="text-lg font-bold text-slate-800 uppercase tracking-wide text-xs mb-1">High Point
-                        </h3>
-                        <p id="summary-high" class="text-slate-700"></p>
-                    </div>
-                    <div>
-                        <h3 class="text-lg font-bold text-slate-800 uppercase tracking-wide text-xs mb-1">Low Point</h3>
-                        <p id="summary-low" class="text-slate-700"></p>
-                    </div>
-                </div>
-
-                <div>
-                    <h3 class="text-lg font-bold text-slate-800 uppercase tracking-wide text-xs mb-1">Dreams & Goals
-                    </h3>
-                    <p id="summary-dreams" class="text-slate-700"></p>
-                </div>
-
-                <div>
-                    <h3 class="text-lg font-bold text-slate-800 uppercase tracking-wide text-xs mb-1">How to Serve</h3>
-                    <p id="summary-service" class="text-slate-700"></p>
-                </div>
-
-                <div>
-                    <h3 class="text-lg font-bold text-slate-800 uppercase tracking-wide text-xs mb-1">Next Date Night
-                    </h3>
-                    <p id="summary-dateNight" class="text-slate-700"></p>
-                </div>
-
-                <div id="summary-custom-container" class="hidden">
-                    <h3 id="summary-custom-question"
-                        class="text-lg font-bold text-slate-800 uppercase tracking-wide text-xs mb-1">Custom Question
-                    </h3>
-                    <p id="summary-custom-answer" class="text-slate-700"></p>
-                </div>
-
-                <div>
-                    <h3 class="text-lg font-bold text-slate-800 uppercase tracking-wide text-xs mb-1">Prayer Requests
-                    </h3>
-                    <p id="summary-prayer" class="text-slate-700"></p>
-                </div>
-
-                <div>
-                    <h3 class="text-lg font-bold text-slate-800 uppercase tracking-wide text-xs mb-1">Current Focus
-                        <h3 class="text-lg font-bold text-slate-800 uppercase tracking-wide text-xs mb-1">Current Focus
-                            Areas</h3>
-                        <p id="summary-growth" class="text-slate-700"></p>
-                </div>
-
-                <div>
-                    <h3 class="text-lg font-bold text-slate-800 uppercase tracking-wide text-xs mb-1">Our Marriage Bible
-                        Verse</h3>
-                    <p id="summary-bibleVerse"
-                        class="text-slate-700 font-serif italic border-l-4 border-accentOrange pl-4 py-2 bg-slate-50">
-                    </p>
-                </div>
-            </div>
-
-            <div class="mt-8 pt-6 border-t border-slate-100 text-center">
-                <button onclick="emailSummary()" class="primary-btn shadow-lg mb-4">
-                    Email Summary
-                </button>
-                <br>
-                <button onclick="editForm()" class="text-slate-400 hover:text-deepBlue text-sm underline pb-4">
-                    Back to Edit
-                </button>
-            </div>
-        </div>
+<body>
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a class="brand" href="https://ministrybag.com/" aria-label="Ministry Bag home">
+        <img src="ministrybagsatchel1.svg" alt="" width="36" height="36">
+        <span>
+          <span class="brand-kicker">Ministry Bag</span>
+          <span class="brand-name">Weekly Connection Time</span>
+        </span>
+      </a>
+      <div class="save-status" id="saveStatus" aria-live="polite">
+        <span class="save-dot" aria-hidden="true"></span>
+        <span>Saved on this device</span>
+      </div>
     </div>
+  </header>
 
-    <!-- JavaScript Logic -->
-    <script>
-        // State keys
-        const STORAGE_KEY_PREFIX = 'connection_time_';
+  <main>
+    <section class="welcome-screen" id="welcomeScreen" aria-labelledby="welcomeTitle">
+      <div class="welcome-inner">
+        <div class="welcome-copy">
+          <p class="eyebrow">A weekly marriage rhythm</p>
+          <h1 id="welcomeTitle">Slow down.<br><em>Catch up.</em> Grow closer.</h1>
+          <p class="welcome-lede">A simple guided conversation to help you celebrate the week, listen well, plan together, and pray for one another.</p>
+          <div class="welcome-actions">
+            <button class="primary-button" id="startButton" type="button">
+              <span id="startButtonText">Start our check-in</span>
+              <span aria-hidden="true">→</span>
+            </button>
+            <button class="text-button" id="clearSavedWelcome" type="button" hidden>Start fresh</button>
+          </div>
+          <p class="privacy-note"><span aria-hidden="true">●</span> Your answers stay private and are saved only on this device.</p>
+        </div>
 
-        // Load data on start
-        window.addEventListener('DOMContentLoaded', () => {
-            loadFormInputs();
-        });
+        <aside class="welcome-card" aria-label="What to expect">
+          <div class="welcome-card-art">
+            <img src="weeklyconnectiontimelogo.png" alt="" width="116" height="116">
+          </div>
+          <p class="welcome-card-label">Make a little room</p>
+          <h2>Seven meaningful moments. About twenty minutes.</h2>
+          <ol class="moment-list">
+            <li><span>01</span> Set your rhythm</li>
+            <li><span>02</span> Celebrate each other</li>
+            <li><span>03</span> Look back together</li>
+            <li><span>04</span> Look ahead together</li>
+            <li><span>05</span> Serve one another</li>
+            <li><span>06</span> Pray and grow</li>
+            <li><span>07</span> Make it your own</li>
+          </ol>
+        </aside>
+      </div>
+    </section>
 
-        function loadFormInputs() {
-            const inputs = ['connectionTime', 'affirmation', 'highPoint', 'lowPoint', 'dreams', 'service', 'dateNight', 'prayer', 'growth', 'bibleVerse', 'customQuestion', 'customAnswer'];
-            inputs.forEach(id => {
-                const savedValue = localStorage.getItem(STORAGE_KEY_PREFIX + id);
-                if (savedValue) {
-                    document.getElementById(id).value = savedValue;
-                }
-                // Add listener to save on change
-                document.getElementById(id).addEventListener('input', (e) => {
-                    localStorage.setItem(STORAGE_KEY_PREFIX + id, e.target.value);
-                });
-            });
-        }
+    <section class="conversation-screen" id="conversationScreen" hidden aria-labelledby="stepTitle">
+      <div class="conversation-layout">
+        <aside class="step-sidebar">
+          <div class="sidebar-intro">
+            <p class="eyebrow">Your conversation</p>
+            <h2>Take your time.<br>Listen with care.</h2>
+          </div>
+          <ol class="step-list" id="stepList">
+            <li data-step-nav="0"><button type="button"><span>01</span><strong>Set your rhythm</strong></button></li>
+            <li data-step-nav="1"><button type="button"><span>02</span><strong>Celebrate</strong></button></li>
+            <li data-step-nav="2"><button type="button"><span>03</span><strong>Look back</strong></button></li>
+            <li data-step-nav="3"><button type="button"><span>04</span><strong>Look ahead</strong></button></li>
+            <li data-step-nav="4"><button type="button"><span>05</span><strong>Serve</strong></button></li>
+            <li data-step-nav="5"><button type="button"><span>06</span><strong>Pray and grow</strong></button></li>
+            <li data-step-nav="6"><button type="button"><span>07</span><strong>Your question</strong></button></li>
+          </ol>
+          <button class="sidebar-reset" id="resetButton" type="button">Clear this check-in</button>
+        </aside>
 
-        function showSummary() {
-            // Populate Summary Fields
-            document.getElementById('summary-connectionTime').innerText = document.getElementById('connectionTime').value || "Not set";
-            document.getElementById('summary-affirmation').innerText = document.getElementById('affirmation').value || "None shared";
-            document.getElementById('summary-high').innerText = document.getElementById('highPoint').value || "-";
-            document.getElementById('summary-low').innerText = document.getElementById('lowPoint').value || "-";
-            document.getElementById('summary-dreams').innerText = document.getElementById('dreams').value || "No notes";
-            document.getElementById('summary-service').innerText = document.getElementById('service').value || "No notes";
-            document.getElementById('summary-dateNight').innerText = document.getElementById('dateNight').value || "Not planned yet";
-            document.getElementById('summary-prayer').innerText = document.getElementById('prayer').value || "No requests";
-            document.getElementById('summary-prayer').innerText = document.getElementById('prayer').value || "No requests";
-            document.getElementById('summary-growth').innerText = document.getElementById('growth').value || "No specific focus.";
-            document.getElementById('summary-bibleVerse').innerText = document.getElementById('bibleVerse').value || "None set";
+        <div class="step-stage">
+          <div class="mobile-progress">
+            <div class="mobile-progress-copy">
+              <span id="stepCounter">Part 1 of 7</span>
+              <strong id="mobileStepName">Set your rhythm</strong>
+            </div>
+            <div class="progress-track" aria-hidden="true">
+              <span id="progressBar"></span>
+            </div>
+          </div>
 
-            // Custom Question Logic
-            const customQ = document.getElementById('customQuestion').value;
-            const customA = document.getElementById('customAnswer').value;
-            if (customQ) {
-                document.getElementById('summary-custom-container').classList.remove('hidden');
-                document.getElementById('summary-custom-question').innerText = customQ;
-                document.getElementById('summary-custom-answer').innerText = customA || "No answer provided";
-            } else {
-                document.getElementById('summary-custom-container').classList.add('hidden');
-            }
+          <form id="connectionForm" novalidate>
+            <section class="step-panel" data-step="0">
+              <header class="step-heading">
+                <p class="step-number">01 / Set your rhythm</p>
+                <h2 id="stepTitle">Protect the time before the week takes it.</h2>
+                <p>A regular day and time turns a good intention into a dependable rhythm.</p>
+              </header>
+              <label class="field-label" for="connectionTime">
+                <span>Our regular connection time will be…</span>
+                <input id="connectionTime" name="connectionTime" type="text" placeholder="Sunday evening at 8:00" autocomplete="off">
+              </label>
+              <aside class="conversation-tip">
+                <span class="tip-mark" aria-hidden="true">✦</span>
+                <div>
+                  <strong>Keep it realistic</strong>
+                  <p>Choose a repeatable time when you can put away screens and be fully present.</p>
+                </div>
+              </aside>
+            </section>
 
-            // Toggle Visibility
-            document.getElementById('app-form').classList.add('hidden');
-            document.getElementById('summary-view').classList.remove('hidden');
-            window.scrollTo(0, 0);
-        }
+            <section class="step-panel" data-step="1" hidden>
+              <header class="step-heading">
+                <p class="step-number">02 / Celebrate</p>
+                <h2>Begin by naming something good.</h2>
+                <p>Specific encouragement helps your spouse feel seen, known, and appreciated.</p>
+              </header>
+              <label class="field-label" for="affirmation">
+                <span>This week, I saw you…</span>
+                <textarea id="affirmation" name="affirmation" rows="5" placeholder="I appreciated the way you…"></textarea>
+                <small>Try naming one moment, quality, or act of love you noticed.</small>
+              </label>
+              <div class="prompt-chips" aria-label="Affirmation starters">
+                <button type="button" data-prompt-target="affirmation" data-prompt="I saw you… ">I saw you…</button>
+                <button type="button" data-prompt-target="affirmation" data-prompt="I was impressed by… ">I was impressed by…</button>
+                <button type="button" data-prompt-target="affirmation" data-prompt="Thank you for… ">Thank you for…</button>
+              </div>
+            </section>
 
-        function editForm() {
-            document.getElementById('summary-view').classList.add('hidden');
-            document.getElementById('app-form').classList.remove('hidden');
-            window.scrollTo(0, 0);
-        }
+            <section class="step-panel" data-step="2" hidden>
+              <header class="step-heading">
+                <p class="step-number">03 / Look back</p>
+                <h2>Share the high and the hard.</h2>
+                <p>Listen to understand the week your spouse actually experienced.</p>
+              </header>
+              <div class="field-grid">
+                <label class="field-label field-card" for="highPoint">
+                  <span><b class="field-icon field-icon-high" aria-hidden="true">↑</b> A high from this week</span>
+                  <textarea id="highPoint" name="highPoint" rows="4" placeholder="A moment of joy, gratitude, or progress…"></textarea>
+                </label>
+                <label class="field-label field-card" for="lowPoint">
+                  <span><b class="field-icon field-icon-low" aria-hidden="true">↓</b> A low from this week</span>
+                  <textarea id="lowPoint" name="lowPoint" rows="4" placeholder="A struggle, disappointment, or concern…"></textarea>
+                </label>
+              </div>
+              <aside class="conversation-tip">
+                <span class="tip-mark" aria-hidden="true">✦</span>
+                <div>
+                  <strong>Listen before fixing</strong>
+                  <p>Ask, “Do you want me to listen, help you think, or help you act?”</p>
+                </div>
+              </aside>
+            </section>
 
-        function emailSummary() {
-            const date = new Date().toLocaleDateString();
-            const subject = `Weekly Connection Summary - ${date}`;
+            <section class="step-panel" data-step="3" hidden>
+              <header class="step-heading">
+                <p class="step-number">04 / Look ahead</p>
+                <h2>Dream and plan as a team.</h2>
+                <p>Bring the practical week and the bigger hopes into the same conversation.</p>
+              </header>
+              <label class="field-label" for="dreams">
+                <span>What are we dreaming about or working toward?</span>
+                <textarea id="dreams" name="dreams" rows="5" placeholder="This week we need to… / Someday we would love to…"></textarea>
+              </label>
+              <label class="field-label field-accent" for="dateNight">
+                <span>Our next date night</span>
+                <textarea id="dateNight" name="dateNight" rows="3" placeholder="When, where, and who is planning it?"></textarea>
+              </label>
+            </section>
 
-            const connectionTime = document.getElementById('connectionTime').value || "Not set";
-            const affirmation = document.getElementById('affirmation').value || "None shared";
-            const highPoint = document.getElementById('highPoint').value || "-";
-            const lowPoint = document.getElementById('lowPoint').value || "-";
-            const dreams = document.getElementById('dreams').value || "No notes";
-            const service = document.getElementById('service').value || "No notes";
-            const dateNight = document.getElementById('dateNight').value || "Not planned yet";
-            const prayer = document.getElementById('prayer').value || "No requests";
-            const growth = document.getElementById('growth').value || "No specific focus.";
-            const bibleVerse = document.getElementById('bibleVerse').value || "None set";
+            <section class="step-panel" data-step="4" hidden>
+              <header class="step-heading">
+                <p class="step-number">05 / Serve</p>
+                <h2>Turn love into something concrete.</h2>
+                <p>Make space to ask for help and offer care without guessing what your spouse needs.</p>
+              </header>
+              <label class="field-label" for="service">
+                <span>How can I serve you and love you well this week?</span>
+                <textarea id="service" name="service" rows="6" placeholder="I would feel loved if… / I could use help with…"></textarea>
+              </label>
+              <p class="scripture-note">“Through love serve one another.” <span>Galatians 5:13</span></p>
+            </section>
 
-            const bodyContent = `Weekly Connection Time - ${date}
+            <section class="step-panel" data-step="5" hidden>
+              <header class="step-heading">
+                <p class="step-number">06 / Pray and grow</p>
+                <h2>Invite God into what matters most.</h2>
+                <p>Share honestly, choose one area for growth, and keep Scripture close.</p>
+              </header>
+              <label class="field-label" for="prayer">
+                <span>How can I pray for you this week?</span>
+                <textarea id="prayer" name="prayer" rows="4" placeholder="Please pray for…"></textarea>
+              </label>
+              <label class="field-label" for="growth">
+                <span>My personal growth area</span>
+                <textarea id="growth" name="growth" rows="4" placeholder="For the good of our family and the glory of God, I am working on…"></textarea>
+              </label>
+              <label class="field-label" for="bibleVerse">
+                <span>Our marriage Bible verse</span>
+                <textarea id="bibleVerse" name="bibleVerse" rows="3" placeholder="Write or paste a verse you want to carry into the week…"></textarea>
+              </label>
+            </section>
 
--- REGULAR TIME --
-${connectionTime}
+            <section class="step-panel" data-step="6" hidden>
+              <header class="step-heading">
+                <p class="step-number">07 / Make it yours</p>
+                <h2>Ask the question only you two need.</h2>
+                <p>This final question is optional. Use it for a decision, a dream, or something that deserves more attention.</p>
+              </header>
+              <label class="field-label" for="customQuestion">
+                <span>Our question</span>
+                <input id="customQuestion" name="customQuestion" type="text" placeholder="What do we need to talk about?">
+              </label>
+              <label class="field-label" for="customAnswer">
+                <span>What we said</span>
+                <textarea id="customAnswer" name="customAnswer" rows="6" placeholder="Capture the heart of your conversation…"></textarea>
+              </label>
+              <aside class="ready-card">
+                <div>
+                  <span class="ready-check" aria-hidden="true">✓</span>
+                  <div>
+                    <strong>You made room for each other.</strong>
+                    <p>Review the conversation, then copy, email, or print a summary if you want to keep it.</p>
+                  </div>
+                </div>
+              </aside>
+            </section>
+          </form>
 
--- AN AFFIRMATION --
-${affirmation}
+          <nav class="step-actions" aria-label="Conversation navigation">
+            <button class="secondary-button" id="previousButton" type="button" disabled>
+              <span aria-hidden="true">←</span>
+              Back
+            </button>
+            <button class="primary-button next-button" id="nextButton" type="button">
+              <span>Continue</span>
+              <span aria-hidden="true">→</span>
+            </button>
+          </nav>
+        </div>
+      </div>
+    </section>
 
--- LOOKING BACK --
-High: ${highPoint}
-Low: ${lowPoint}
+    <section class="summary-screen" id="summaryScreen" hidden aria-labelledby="summaryTitle">
+      <div class="summary-shell">
+        <header class="summary-hero">
+          <p class="eyebrow">Your weekly check-in</p>
+          <h1 id="summaryTitle">A good conversation<br><em>worth remembering.</em></h1>
+          <p id="summaryDate"></p>
+          <div class="summary-actions">
+            <button class="primary-button" id="copyButton" type="button"><span>Copy summary</span><span aria-hidden="true">□</span></button>
+            <button class="secondary-button" id="emailButton" type="button"><span>Email</span><span aria-hidden="true">↗</span></button>
+            <button class="secondary-button" id="printButton" type="button"><span>Print</span><span aria-hidden="true">⌁</span></button>
+          </div>
+        </header>
 
--- LOOKING AHEAD --
-Dreams & Goals:
-${dreams}
+        <article class="summary-paper">
+          <section class="summary-lead">
+            <div>
+              <span>Our regular rhythm</span>
+              <p id="summary-connectionTime"></p>
+            </div>
+          </section>
+          <div class="summary-grid" id="summaryGrid">
+            <section class="summary-item summary-item-wide">
+              <span>Affirmation</span>
+              <h2>What I noticed and appreciated</h2>
+              <p id="summary-affirmation"></p>
+            </section>
+            <section class="summary-item">
+              <span>Looking back</span>
+              <h2>High point</h2>
+              <p id="summary-highPoint"></p>
+            </section>
+            <section class="summary-item">
+              <span>Looking back</span>
+              <h2>Low point</h2>
+              <p id="summary-lowPoint"></p>
+            </section>
+            <section class="summary-item summary-item-wide">
+              <span>Looking ahead</span>
+              <h2>Dreams and goals</h2>
+              <p id="summary-dreams"></p>
+            </section>
+            <section class="summary-item">
+              <span>Serving one another</span>
+              <h2>How I can love you well</h2>
+              <p id="summary-service"></p>
+            </section>
+            <section class="summary-item">
+              <span>Time together</span>
+              <h2>Next date night</h2>
+              <p id="summary-dateNight"></p>
+            </section>
+            <section class="summary-item">
+              <span>Prayer</span>
+              <h2>How I can pray</h2>
+              <p id="summary-prayer"></p>
+            </section>
+            <section class="summary-item">
+              <span>Personal growth</span>
+              <h2>What I am working on</h2>
+              <p id="summary-growth"></p>
+            </section>
+            <section class="summary-item summary-item-wide summary-verse">
+              <span>Scripture for the week</span>
+              <p id="summary-bibleVerse"></p>
+            </section>
+            <section class="summary-item summary-item-wide" id="summaryCustom" hidden>
+              <span>Our question</span>
+              <h2 id="summary-customQuestion"></h2>
+              <p id="summary-customAnswer"></p>
+            </section>
+          </div>
+        </article>
 
--- SERVING ONE ANOTHER --
-How to Serve:
-${service}
+        <div class="summary-footer-actions">
+          <button class="text-button" id="editButton" type="button">← Back to edit</button>
+          <button class="text-button danger-text" id="finishButton" type="button">Finish and clear answers</button>
+        </div>
+      </div>
+    </section>
+  </main>
 
--- DATE NIGHT --
-${dateNight}
+  <footer class="site-footer">
+    <p>Connection grows one honest conversation at a time.</p>
+    <a href="https://ministrybag.com/">More tools from Ministry Bag</a>
+  </footer>
 
-${document.getElementById('customQuestion').value ? `-- CUSTOM: ${document.getElementById('customQuestion').value.toUpperCase()} --\n${document.getElementById('customAnswer').value || "No answer"}\n` : ''}
--- PRAYER REQUESTS --
-${prayer}
-
--- MY PERSONAL GROWTH AREAS --
-${growth}
-
--- OUR MARRIAGE BIBLE VERSE --
-${bibleVerse}
-`;
-
-            const body = encodeURIComponent(bodyContent);
-            window.location.href = `mailto:?subject=${subject}&body=${body}`;
-        }
-    </script>
+  <script src="app.js"></script>
 </body>
-
 </html>
