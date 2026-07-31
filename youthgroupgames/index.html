@@ -1,397 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Youth Group Games</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 50%, #f0f2f5 100%);
-            min-height: 100vh;
-            color: #333;
-            position: relative;
-        }
-        
-        .satchel-logo {
-            position: absolute;
-            top: 15px;
-            left: 20px;
-            width: 40px;
-            height: 40px;
-            z-index: 1000;
-            filter: drop-shadow(0 0 5px rgba(0,0,0,0.3));
-            transition: transform 0.2s;
-        }
-        
-        .satchel-logo:hover {
-            transform: scale(1.1);
-        }
-        
-        h1 {
-            text-align: center;
-            margin-top: 40px;
-            margin-bottom: 30px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-            color: #333;
-        }
-        
-        .filters {
-            background: rgba(255,255,255,0.8);
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 30px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-        
-        .filters label {
-            display: inline-block;
-            margin-right: 10px;
-            margin-bottom: 10px;
-            font-weight: bold;
-            color: #333;
-        }
-        
-        .filters select {
-            padding: 8px 12px;
-            margin-right: 20px;
-            margin-bottom: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            background: white;
-            color: #333;
-        }
-        
-        .game-list {
-            list-style: none;
-            padding: 0;
-        }
-        
-        .game-item {
-            background: linear-gradient(135deg, #3399CC 0%, #66B2FF 100%);
-            margin: 10px 0;
-            padding: 15px;
-            border-radius: 8px;
-            transition: transform 0.2s;
-            cursor: pointer;
-            box-shadow: 0 4px 12px rgba(51, 153, 204, 0.5);
-            color: white;
-            position: relative;
-        }
-        
-        .game-item:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(51, 153, 204, 0.6);
-        }
-        
-        .game-item a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1.1em;
-            display: block;
-            width: 100%;
-            height: 100%;
-        }
-        
-        .game-item a:hover {
-            text-decoration: none;
-        }
-        
-        .game-meta {
-            margin-top: 8px;
-            font-size: 0.9em;
-            opacity: 0.9;
-        }
-        
-        #status {
-            text-align: center;
-            padding: 20px;
-            font-size: 1.2em;
-            color: #333;
-        }
-        
-        .error {
-            color: #ff6b6b;
-            background: rgba(255,107,107,0.1);
-            padding: 15px;
-            border-radius: 8px;
-            margin: 20px 0;
-        }
-        
-        .favorite-btn {
-            background: none;
-            border: none;
-            color: #FFF8DC;
-            font-size: 1.2em;
-            cursor: pointer;
-            padding: 5px;
-            border-radius: 50%;
-            transition: all 0.2s;
-            position: absolute;
-            top: 10px;
-            right: 10px;
-        }
-        
-        .favorite-btn:hover {
-            transform: scale(1.1);
-            background: rgba(255, 248, 220, 0.1);
-        }
-        
-        .favorite-btn.favorited {
-            color: #FFF8DC;
-            text-shadow: 0 0 5px rgba(255, 248, 220, 0.5);
-        }
-        
-        .game-item {
-            background: linear-gradient(135deg, #3399CC 0%, #66B2FF 100%);
-            margin: 10px 0;
-            padding: 15px;
-            border-radius: 8px;
-            transition: transform 0.2s;
-            cursor: pointer;
-            box-shadow: 0 4px 12px rgba(51, 153, 204, 0.5);
-            color: white;
-            position: relative;
-        }
-        
-        .game-item.favorite {
-            background: linear-gradient(135deg, #660000 0%, #8B0000 100%);
-            box-shadow: 0 4px 12px rgba(102, 0, 0, 0.5);
-        }
-        
-        .game-item.favorite:hover {
-            box-shadow: 0 6px 16px rgba(102, 0, 0, 0.6);
-        }
-        
-        .favorites-toggle {
-            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
-            color: #333;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 8px rgba(255, 215, 0, 0.3);
-        }
-        
-        .favorites-toggle:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(255, 215, 0, 0.4);
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Youth Group Games | Ministry Bag</title>
+  <meta name="description" content="Find a fun youth group game fast. Search by activity, group size, equipment, or category, then get clear instructions for how to play.">
+  <meta name="theme-color" content="#172630">
+  <link rel="canonical" href="https://ministrybag.com/youthgroupgames/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Youth Group Games | Ministry Bag">
+  <meta property="og:description" content="Find a great youth group game in under a minute.">
+  <meta property="og:url" content="https://ministrybag.com/youthgroupgames/">
+  <meta property="og:image" content="https://ministrybag.com/youthgroupgames/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Youth Group Games | Ministry Bag">
+  <meta name="twitter:description" content="Find a great youth group game in under a minute.">
+  <meta name="twitter:image" content="https://ministrybag.com/youthgroupgames/og.png">
+  <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-    <a href="../index.html" class="satchel-logo">
-        <img src="../ministrybagsatchel1.svg" alt="Ministry Bag Home" width="40" height="40">
-    </a>
-    <h1>Youth Group Games</h1>
-    <div id="status">Loading games...</div>
-    
-    <div class="filters">
-        <div style="margin-bottom: 15px;">
-            <label for="searchBox" style="display: block; margin-bottom: 5px;">Search:</label>
-            <input type="text" id="searchBox" placeholder="Search games by name or description..." style="width: 100%; max-width: 500px; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 1em;">
-        </div>
-        
-        <label for="categoryFilter">Category:</label>
-        <select id="categoryFilter">
-            <option value="all" selected>All Categories</option>
-        </select>
+<body class="library-page">
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a href="https://ministrybag.com" class="satchel-logo" aria-label="Ministry Bag home">
+        <img src="../ministrybagsatchel1.svg" alt="" width="40" height="40">
+      </a>
+      <a href="index.html" class="brand-lockup">
+        <span class="brand-kicker">Ministry Bag</span>
+        <span class="brand-name">Youth Group Games</span>
+      </a>
+      <a class="header-action" href="#game-library">
+        <span class="header-label">Browse games</span>
+        <span aria-hidden="true">↓</span>
+      </a>
     </div>
-    
-    <ul id="gameList" class="game-list"></ul>
+  </header>
 
-    <script>
-        let gamesData = [];
-        let favorites = JSON.parse(localStorage.getItem('youthGroupGameFavorites') || '[]');
-        
-        // Initialize the app
-        function initApp() {
-            console.log('Initializing app...');
-            
-            // Fetch the games data
-            fetch('games.json')
-                .then(response => {
-                    console.log('Response status:', response.status);
-                    if (!response.ok) {
-                        throw new Error('HTTP ' + response.status);
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    console.log('Loaded games:', data.length);
-                    gamesData = data;
-                    document.getElementById('status').innerHTML = `Your favorite games will be displayed at the top.`;
-                    
-                    // Setup filters and display
-                    populateCategoryFilter();
-                    setupEventListeners();
-                    updateGameList();
-                    restoreScrollPosition(); // Restore scroll position after games are loaded
-                })
-                .catch(error => {
-                    console.error('Error loading games:', error);
-                    document.getElementById('status').innerHTML = 
-                        `<div class="error">Error loading games: ${error.message}</div>`;
-                });
-        }
-        
-        // Populate category filter options
-        function populateCategoryFilter() {
-            const categorySelect = document.getElementById('categoryFilter');
-            const categories = [...new Set(gamesData.map(game => game.category))];
-            categories.forEach(cat => {
-                const opt = document.createElement('option');
-                opt.value = cat;
-                opt.textContent = cat;
-                categorySelect.appendChild(opt);
-            });
-        }
-        
-        // Setup event listeners
-        function setupEventListeners() {
-            document.getElementById('categoryFilter').addEventListener('change', updateGameList);
-            document.getElementById('searchBox').addEventListener('input', updateGameList);
-        }
-        
-        // Toggle favorite status
-        function toggleFavorite(gameId, event) {
-            event.preventDefault();
-            event.stopPropagation();
-            
-            const index = favorites.indexOf(gameId);
-            if (index > -1) {
-                favorites.splice(index, 1);
-            } else {
-                favorites.push(gameId);
-            }
-            
-            localStorage.setItem('youthGroupGameFavorites', JSON.stringify(favorites));
-            updateGameList();
-        }
-        
-        // Filter logic
-        function updateGameList() {
-            console.log('Updating game list...');
-            const catValue = document.getElementById('categoryFilter').value;
-            const searchValue = document.getElementById('searchBox').value.toLowerCase().trim();
-            const listEl = document.getElementById('gameList');
-            listEl.innerHTML = ''; // clear current list
+  <main>
+    <section class="hero" aria-labelledby="heroTitle">
+      <div class="hero-inner">
+        <div>
+          <p class="eyebrow">Less searching. More playing.</p>
+          <h1 id="heroTitle">Find a great game in under a minute.</h1>
+          <p class="hero-lede">Quick reminders help you choose. Clear instructions help you lead. Search the full library or let us pick something fun.</p>
+          <div class="hero-actions">
+            <a class="primary-button" href="#game-library">Find a game</a>
+            <button class="secondary-button" id="randomButtonHero" type="button">
+              <span aria-hidden="true">↝</span>
+              Surprise me
+            </button>
+          </div>
+        </div>
+        <aside class="hero-stat" aria-label="Game library size">
+          <span class="hero-stat-number" id="gameTotal">—</span>
+          <span class="hero-stat-label">ready-to-play ideas</span>
+          <span class="hero-stat-rule"></span>
+          <p>Every card gives you the group size, supplies, and a one-sentence reminder before you click.</p>
+        </aside>
+      </div>
+    </section>
 
-            // Filter games based on selections
-            const filtered = gamesData.filter(game => {
-                // Search filter - search in name, rules, equipment, and category
-                if (searchValue) {
-                    const searchableText = (
-                        game.name + ' ' + 
-                        (game.rules || '') + ' ' + 
-                        (game.equipment || '') + ' ' + 
-                        (game.category || '')
-                    ).toLowerCase();
-                    if (!searchableText.includes(searchValue)) {
-                        return false;
-                    }
-                }
-                
-                // Category filter
-                if (catValue !== 'all' && game.category !== catValue) {
-                    return false;
-                }
-                
-                return true;
-            });
+    <section class="library" id="game-library" aria-labelledby="libraryTitle">
+      <div class="library-inner">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">The game library</p>
+            <h2 id="libraryTitle">What would work tonight?</h2>
+          </div>
+          <p>Search for what you remember, scan the quick filters, or look for something that fits the supplies you already have.</p>
+        </div>
 
-            // Sort games: favorites first, then alphabetically
-            const sorted = filtered.sort((a, b) => {
-                const aIsFavorite = favorites.includes(a.id);
-                const bIsFavorite = favorites.includes(b.id);
-                
-                if (aIsFavorite && !bIsFavorite) return -1;
-                if (!aIsFavorite && bIsFavorite) return 1;
-                return a.name.localeCompare(b.name);
-            });
+        <div class="browse-tools" aria-label="Game search and filters">
+          <div class="search-row">
+            <label class="search-field" for="searchInput">
+              <span class="search-icon" aria-hidden="true">⌕</span>
+              <span class="visually-hidden">Search games</span>
+              <input id="searchInput" type="search" placeholder="Search names, supplies, or how a game works…" autocomplete="off">
+            </label>
 
-            console.log('Filtered games:', sorted.length);
+            <label>
+              <span class="visually-hidden">Filter by category</span>
+              <select class="category-select" id="categorySelect">
+                <option value="all">All categories</option>
+              </select>
+            </label>
 
-            // Create list items for filtered games
-            sorted.forEach(game => {
-                const li = document.createElement('li');
-                li.className = 'game-item';
-                if (favorites.includes(game.id)) {
-                    li.classList.add('favorite');
-                }
-                
-                // Create the link that wraps the entire content
-                const a = document.createElement('a');
-                a.href = 'detail.html?id=' + game.id;
-                
-                // Create the game name div
-                const nameDiv = document.createElement('div');
-                nameDiv.className = 'name';
-                nameDiv.textContent = game.name;
-                a.appendChild(nameDiv);
-                
-                // Create the meta info div
-                const meta = document.createElement('div');
-                meta.className = 'game-meta';
-                meta.textContent = 'Players: ' + game.players + ' | Equipment: ' + game.equipment;
-                a.appendChild(meta);
-                
-                // Create favorite button
-                const favoriteBtn = document.createElement('button');
-                favoriteBtn.className = 'favorite-btn';
-                favoriteBtn.innerHTML = favorites.includes(game.id) ? '★' : '☆';
-                favoriteBtn.onclick = (e) => toggleFavorite(game.id, e);
-                
-                // Add the link to the list item
-                li.appendChild(a);
-                li.appendChild(favoriteBtn);
-                listEl.appendChild(li);
-            });
+            <button class="random-button" id="randomButton" type="button" aria-label="Choose a random game">
+              Surprise me
+            </button>
+          </div>
 
-            if (sorted.length === 0) {
-                const msg = document.createElement('li');
-                msg.textContent = 'No games found matching those criteria.';
-                msg.style.listStyleType = 'none';
-                listEl.appendChild(msg);
-            }
-        }
+          <div class="quick-filter-row">
+            <span class="quick-filter-label">Quick picks</span>
+            <div class="quick-filters" id="quickFilters">
+              <button class="filter-chip is-active" type="button" data-quick-filter="all" aria-pressed="true">All games</button>
+              <button class="filter-chip" type="button" data-quick-filter="no-equipment" aria-pressed="false">No supplies</button>
+              <button class="filter-chip" type="button" data-quick-filter="quick" aria-pressed="false">Quick & simple</button>
+              <button class="filter-chip" type="button" data-quick-filter="active" aria-pressed="false">Get moving</button>
+              <button class="filter-chip" type="button" data-quick-filter="team" aria-pressed="false">Team builders</button>
+              <button class="filter-chip" type="button" data-quick-filter="messy" aria-pressed="false">Messy & food</button>
+            </div>
+            <button class="favorites-toggle" id="favoritesToggle" type="button" aria-pressed="false">☆ Favorites</button>
+          </div>
+        </div>
 
-        
-        // Start the app when DOM is loaded
-        document.addEventListener('DOMContentLoaded', initApp);
-        
-        // Save scroll position when leaving the page
-        window.addEventListener('beforeunload', function() {
-            localStorage.setItem('youthGroupGamesScrollPosition', window.scrollY);
-            console.log('Saved scroll position:', window.scrollY);
-        });
-        
-        // Also save scroll position when clicking on game links
-        document.addEventListener('click', function(e) {
-            if (e.target.closest('.game-item a')) {
-                localStorage.setItem('youthGroupGamesScrollPosition', window.scrollY);
-                console.log('Saved scroll position on click:', window.scrollY);
-            }
-        });
-        
-        // Restore scroll position after games are loaded
-        function restoreScrollPosition() {
-            const savedPosition = localStorage.getItem('youthGroupGamesScrollPosition');
-            console.log('Attempting to restore scroll position:', savedPosition);
-            if (savedPosition) {
-                setTimeout(() => {
-                    window.scrollTo(0, parseInt(savedPosition));
-                    console.log('Restored scroll position to:', parseInt(savedPosition));
-                }, 500);
-            }
-        }
-    </script>
+        <div class="result-bar" aria-live="polite">
+          <span class="result-count" id="resultCount"></span>
+          <span class="result-divider" aria-hidden="true"></span>
+          <span id="activeFilterSummary">Browse the whole library</span>
+        </div>
+
+        <div class="loading-state" id="loadingState">
+          <strong>Loading the game library…</strong>
+          <span>Getting the fun ready.</span>
+        </div>
+
+        <div class="game-grid" id="gameGrid"></div>
+
+        <div class="empty-state" id="emptyState" hidden>
+          <h3>No games match those filters.</h3>
+          <p>Try a broader search or clear the filters and start fresh.</p>
+          <button class="text-button" id="clearFilters" type="button">Clear all filters</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Built for youth leaders who need a good idea before the students arrive.</p>
+    <a href="https://ministrybag.com">Back to Ministry Bag</a>
+  </footer>
+
+  <script src="app.js"></script>
 </body>
-</html> 
+</html>

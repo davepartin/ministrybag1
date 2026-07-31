@@ -1,177 +1,129 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game Details</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 50%, #f0f2f5 100%);
-            min-height: 100vh;
-            color: #333;
-            position: relative;
-        }
-        
-        .satchel-logo {
-            position: absolute;
-            top: 15px;
-            left: 20px;
-            width: 40px;
-            height: 40px;
-            z-index: 1000;
-            filter: drop-shadow(0 0 5px rgba(0,0,0,0.3));
-            transition: transform 0.2s;
-        }
-        
-        .satchel-logo:hover {
-            transform: scale(1.1);
-        }
-        
-        h1 {
-            text-align: center;
-            margin-top: 40px;
-            margin-bottom: 30px;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-            color: #333;
-        }
-        
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: rgba(255,255,255,0.9);
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            backdrop-filter: blur(10px);
-        }
-        
-        .game-detail {
-            margin-top: 20px;
-        }
-        
-        .game-detail h2 {
-            color: #333;
-            margin-bottom: 15px;
-            font-size: 1.8em;
-        }
-        
-        .game-detail p {
-            margin: 10px 0;
-            padding: 8px 0;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .game-detail p:last-child {
-            border-bottom: none;
-        }
-        
-        .game-detail strong {
-            color: #3399CC;
-            display: inline-block;
-            width: 120px;
-            font-weight: bold;
-        }
-        
-        .back-link {
-            display: inline-block;
-            margin-top: 20px;
-            color: #3399CC;
-            text-decoration: none;
-            font-weight: bold;
-            padding: 10px 20px;
-            background: linear-gradient(135deg, #3399CC 0%, #66B2FF 100%);
-            color: white;
-            border-radius: 5px;
-            transition: transform 0.2s;
-            box-shadow: 0 2px 8px rgba(51, 153, 204, 0.3);
-        }
-        
-        .back-link:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(51, 153, 204, 0.4);
-            text-decoration: none;
-        }
-        
-        .rules {
-            background: rgba(51, 153, 204, 0.1);
-            padding: 20px;
-            border-radius: 8px;
-            margin-top: 20px;
-            border-left: 4px solid #3399CC;
-        }
-        
-        .rules strong {
-            color: #3399CC;
-            display: block;
-            margin-bottom: 10px;
-            font-size: 1.1em;
-        }
-        
-        .rules p {
-            margin: 0;
-            line-height: 1.6;
-            border: none;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game Details | Youth Group Games</title>
+  <meta name="description" content="Clear instructions, group size, and supplies for a youth group game.">
+  <meta name="theme-color" content="#172630">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Youth Group Games | Ministry Bag">
+  <meta property="og:description" content="Clear instructions, group size, and supplies for a youth group game.">
+  <meta property="og:image" content="https://ministrybag.com/youthgroupgames/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://ministrybag.com/youthgroupgames/og.png">
+  <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-    <a href="../index.html" class="satchel-logo">
-        <img src="../ministrybagsatchel1.svg" alt="Ministry Bag Home" width="40" height="40">
-    </a>
-    
-    <div class="container">
-        <h1>Game Details</h1>
-        <div class="game-detail" id="gameDetail">
-            <h2 id="gameName">Loading...</h2>
-            <p><strong>Category:</strong> <span id="category">Loading...</span></p>
-            <p><strong>Players:</strong> <span id="players">Loading...</span></p>
-            <p><strong>Equipment:</strong> <span id="equipment">Loading...</span></p>
-            <div class="rules">
-                <strong>Rules:</strong>
-                <p id="rules">Loading...</p>
-            </div>
-        </div>
-        <a href="index.html" class="back-link">← Back to all games</a>
+<body class="detail-body">
+  <header class="site-header">
+    <div class="site-header-inner">
+      <a href="https://ministrybag.com" class="satchel-logo" aria-label="Ministry Bag home">
+        <img src="../ministrybagsatchel1.svg" alt="" width="40" height="40">
+      </a>
+      <a href="index.html" class="brand-lockup">
+        <span class="brand-kicker">Ministry Bag</span>
+        <span class="brand-name">Youth Group Games</span>
+      </a>
+      <a class="header-action" href="index.html">
+        <span aria-hidden="true">←</span>
+        <span class="header-label">All games</span>
+      </a>
     </div>
+  </header>
 
-    <script>
-        // Get the game ID from the URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const gameId = parseInt(urlParams.get('id'));
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="https://ministrybag.com">Ministry Bag</a>
+    <span class="breadcrumb-separator" aria-hidden="true">/</span>
+    <a href="index.html">Youth Group Games</a>
+    <span class="breadcrumb-separator" aria-hidden="true">/</span>
+    <span class="breadcrumb-current" id="breadcrumbGame">Game</span>
+  </nav>
 
-        // Fetch and display game details
-        fetch('games.json')
-            .then(response => response.json())
-            .then(games => {
-                const game = games.find(g => g.id === gameId);
-                if (game) {
-                    document.getElementById('gameName').textContent = game.name;
-                    document.getElementById('category').textContent = game.category;
-                    document.getElementById('players').textContent = game.players;
-                    document.getElementById('equipment').textContent = game.equipment;
-                    document.getElementById('rules').textContent = game.rules;
-                    document.title = game.name + ' - Game Details';
-                } else {
-                    document.getElementById('gameName').textContent = 'Game Not Found';
-                    document.getElementById('category').textContent = 'N/A';
-                    document.getElementById('players').textContent = 'N/A';
-                    document.getElementById('equipment').textContent = 'N/A';
-                    document.getElementById('rules').textContent = 'The requested game could not be found.';
-                }
-            })
-            .catch(error => {
-                console.error('Error loading game details:', error);
-                document.getElementById('gameName').textContent = 'Error Loading Game';
-                document.getElementById('category').textContent = 'Error';
-                document.getElementById('players').textContent = 'Error';
-                document.getElementById('equipment').textContent = 'Error';
-                document.getElementById('rules').textContent = 'There was an error loading the game details.';
-            });
-    </script>
+  <main class="detail-shell">
+    <div class="detail-loading" id="detailLoading">Loading game…</div>
+
+    <section class="detail-error" id="detailError" hidden>
+      <div>
+        <h1>That game could not be found.</h1>
+        <p>The link may be old, or the game may have been consolidated with another entry.</p>
+        <a class="back-link" href="index.html">← Browse all games</a>
+      </div>
+    </section>
+
+    <article id="gamePage" hidden>
+      <header class="detail-hero">
+        <div class="detail-hero-inner">
+          <p class="random-notice" id="randomNotice" hidden>Here’s your random pick</p>
+          <p class="eyebrow" id="gameCategory">Game category</p>
+          <h1 id="gameTitle">Game title</h1>
+          <p class="detail-summary" id="gameSummary"></p>
+          <div class="detail-actions">
+            <button class="detail-action" id="detailFavorite" type="button" aria-pressed="false">
+              <span aria-hidden="true">☆</span>
+              Save game
+            </button>
+            <button class="detail-action" id="copyGameLink" type="button">
+              <span aria-hidden="true">↗</span>
+              Share
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <div class="detail-content">
+        <section class="at-a-glance" aria-label="Game details">
+          <div class="fact">
+            <span class="fact-label">Players</span>
+            <strong class="fact-value" id="gamePlayers"></strong>
+          </div>
+          <div class="fact">
+            <span class="fact-label">What you need</span>
+            <strong class="fact-value" id="gameEquipment"></strong>
+          </div>
+          <div class="fact">
+            <span class="fact-label">Game type</span>
+            <strong class="fact-value" id="gameOriginalCategory"></strong>
+          </div>
+        </section>
+
+        <section class="how-to-section" aria-labelledby="howToTitle">
+          <div class="detail-section-heading">
+            <div>
+              <p class="eyebrow">Lead it confidently</p>
+              <h2 id="howToTitle">How to play</h2>
+            </div>
+            <p>Read through once, gather what you need, and explain the game in your own words.</p>
+          </div>
+          <ol class="how-to-steps" id="howToSteps"></ol>
+        </section>
+
+        <aside class="safety-section" id="safetySection" hidden>
+          <h2>Worth noting</h2>
+          <p id="safetyText"></p>
+        </aside>
+
+        <div class="back-section">
+          <a class="back-link" href="index.html">← Back to all games</a>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <p>Built for youth leaders who need a good idea before the students arrive.</p>
+    <a href="https://ministrybag.com">Back to Ministry Bag</a>
+  </footer>
+
+  <div class="mobile-detail-bar" aria-label="Return to game library">
+    <div class="mobile-detail-copy">
+      <span class="mobile-detail-label">Now viewing</span>
+      <strong class="mobile-detail-title" id="stickyGameTitle">Game</strong>
+    </div>
+    <a class="mobile-back-link" href="index.html">All games</a>
+  </div>
+
+  <script src="detail.js"></script>
 </body>
 </html>
