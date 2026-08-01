@@ -1,0 +1,162 @@
+filters:
+  and:
+    - file.inFolder("wiki/people")
+properties:
+  file.name:
+    displayName: Name
+  note.person_type:
+    displayName: Primary Type
+  note.person_types:
+    displayName: Person Types
+  note.affiliations:
+    displayName: Affiliations
+  note.staff_role:
+    displayName: Staff Role
+  note.job_title:
+    displayName: Job Title
+  note.staff_region:
+    displayName: Staff Region
+  note.planter_pathway:
+    displayName: Planter Pathway
+  note.field_staff:
+    displayName: CPC
+  note.church:
+    displayName: Church
+  note.role:
+    displayName: Church Role
+  note.association:
+    displayName: Association
+  note.organization:
+    displayName: Organization
+  note.events:
+    displayName: Events
+  note.email:
+    displayName: Email
+  note.cell:
+    displayName: Cell
+views:
+  - type: table
+    name: Everyone by Primary Type
+    groupBy:
+      property: person_type
+      direction: ASC
+    order:
+      - file.name
+      - person_type
+      - person_types
+      - affiliations
+      - staff_role
+      - job_title
+      - staff_region
+      - planter_pathway
+      - field_staff
+      - church
+      - role
+      - email
+    sort:
+      - property: person_type
+        direction: ASC
+      - property: file.name
+        direction: ASC
+    summaries:
+      file.name: Filled
+    columnSize:
+      file.name: 210
+      note.person_types: 240
+      note.affiliations: 280
+      note.email: 260
+  - type: table
+    name: Staff
+    filters:
+      and:
+        - or:
+            - person_type == "staff"
+            - person_types.contains("staff")
+    order:
+      - file.name
+      - staff_role
+      - job_title
+      - staff_region
+      - staff_team
+      - person_types
+      - affiliations
+      - church
+      - role
+      - email
+      - cell
+    sort:
+      - property: staff_region
+        direction: ASC
+      - property: staff_role
+        direction: ASC
+      - property: file.name
+        direction: ASC
+    summaries:
+      file.name: Filled
+  - type: table
+    name: Pastors
+    filters:
+      and:
+        - or:
+            - person_type == "pastor"
+            - person_types.contains("pastor")
+    order:
+      - file.name
+      - person_type
+      - church
+      - role
+      - affiliations
+      - email
+      - cell
+    sort:
+      - property: file.name
+        direction: ASC
+    summaries:
+      file.name: Filled
+  - type: table
+    name: Planters
+    filters:
+      and:
+        - or:
+            - person_type == "planter"
+            - person_types.contains("planter")
+    order:
+      - file.name
+      - planter_pathway
+      - field_staff
+      - church
+      - affiliations
+      - email
+      - cell
+    sort:
+      - property: planter_pathway
+        direction: ASC
+      - property: file.name
+        direction: ASC
+    summaries:
+      file.name: Filled
+  - type: table
+    name: NAMB Staff
+    filters:
+      and:
+        - or:
+            - person_type == "staff"
+            - person_types.contains("staff")
+        - affiliations.contains("namb")
+    order:
+      - file.name
+      - staff_role
+      - job_title
+      - staff_region
+      - person_types
+      - church
+      - role
+      - email
+      - cell
+    sort:
+      - property: staff_region
+        direction: ASC
+      - property: file.name
+        direction: ASC
+    summaries:
+      file.name: Filled

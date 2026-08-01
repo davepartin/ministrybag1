@@ -1,0 +1,82 @@
+filters:
+  and:
+    - file.inFolder("wiki/people")
+    - or:
+        - person_type == "staff"
+        - person_types.contains("staff")
+    - affiliations.contains("namb")
+properties:
+  file.name:
+    displayName: Name
+  note.staff_role:
+    displayName: Staff Role
+  note.job_title:
+    displayName: Job Title
+  note.staff_region:
+    displayName: Region
+  note.staff_team:
+    displayName: Team
+  note.person_types:
+    displayName: Person Types
+  note.affiliations:
+    displayName: Affiliations
+  note.church:
+    displayName: Church
+  note.role:
+    displayName: Church Role
+  note.email:
+    displayName: Email
+  note.cell:
+    displayName: Cell
+views:
+  - type: table
+    name: NAMB Staff
+    order:
+      - file.name
+      - staff_role
+      - job_title
+      - staff_region
+      - staff_team
+      - person_types
+      - affiliations
+      - church
+      - role
+      - email
+      - cell
+    sort:
+      - property: staff_region
+        direction: ASC
+      - property: staff_role
+        direction: ASC
+      - property: file.name
+        direction: ASC
+    summaries:
+      file.name: Filled
+    columnSize:
+      file.name: 210
+      note.staff_role: 140
+      note.staff_region: 150
+      note.affiliations: 280
+      note.church: 220
+      note.email: 260
+  - type: table
+    name: NAMB KC Staff
+    filters:
+      and:
+        - staff_region == "Kansas City"
+    order:
+      - file.name
+      - staff_role
+      - job_title
+      - person_types
+      - church
+      - role
+      - email
+      - cell
+    sort:
+      - property: staff_role
+        direction: ASC
+      - property: file.name
+        direction: ASC
+    summaries:
+      file.name: Filled

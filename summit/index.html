@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Think, Make, Organize, Share</title>
+<style>
+  :root{
+    --forest:#1F3A34; --pine:#2C5F4E; --sage:#5B9279; --amber:#E1A140;
+    --cream:#F4EFE6; --ink:#20302B; --mute:#6B7B74; --line:#E3E0D8;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink); background:#FBFAF7; line-height:1.55;
+  }
+  a{color:var(--pine)}
+
+  /* ---------- Password gate ---------- */
+  #gate{
+    position:fixed; inset:0; z-index:100; background:var(--forest);
+    display:flex; align-items:center; justify-content:center; padding:24px;
+  }
+  #gate .box{max-width:420px; width:100%; text-align:center; color:#fff}
+  #gate .dot{width:16px;height:16px;border-radius:50%;background:var(--amber);margin:0 auto 22px}
+  #gate h1{font-size:26px; margin-bottom:8px; font-weight:700}
+  #gate p{color:#CFE0D6; margin-bottom:22px; font-size:15px}
+  #gate input{
+    width:100%; padding:14px 16px; border-radius:10px; border:1px solid #3d5a51;
+    background:#173029; color:#fff; font-size:17px; text-align:center; outline:none;
+  }
+  #gate input:focus{border-color:var(--amber)}
+  #gate button{
+    margin-top:14px; width:100%; padding:14px; border:none; border-radius:10px;
+    background:var(--amber); color:var(--forest); font-size:17px; font-weight:700; cursor:pointer;
+  }
+  #gate .err{color:#F0B7A8; font-size:14px; margin-top:12px; min-height:18px}
+  .hidden{display:none !important}
+
+  /* ---------- Header ---------- */
+  header{ background:var(--forest); color:#fff; padding:46px 22px 40px; }
+  header .wrap{max-width:960px; margin:0 auto}
+  header .dot{width:14px;height:14px;border-radius:50%;background:var(--amber);margin-bottom:18px}
+  header h1{font-size:34px; line-height:1.15; font-weight:800; letter-spacing:-.5px}
+  header h1 .amber{color:var(--amber)}
+  header p.sub{color:#CFE0D6; font-size:17px; margin-top:14px; max-width:640px}
+
+  /* ---------- Sticky nav ---------- */
+  nav{ position:sticky; top:0; z-index:20; background:#fff; border-bottom:1px solid var(--line); box-shadow:0 2px 6px rgba(0,0,0,.04); }
+  nav .wrap{max-width:960px; margin:0 auto; display:flex; gap:6px; overflow-x:auto; padding:0 14px}
+  nav button{ flex:0 0 auto; background:none; border:none; padding:16px 14px; font-size:15px; font-weight:600; color:var(--mute); cursor:pointer; border-bottom:3px solid transparent; white-space:nowrap; }
+  nav button.active{color:var(--forest); border-bottom-color:var(--amber)}
+
+  /* ---------- Sections ---------- */
+  main{max-width:960px; margin:0 auto; padding:34px 22px 80px}
+  section{display:none}
+  section.active{display:block; animation:fade .25s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+  .lvl-head{display:flex; align-items:center; gap:16px; margin-bottom:8px}
+  .lvl-num{ width:52px;height:52px;flex:0 0 auto;border-radius:50%;background:var(--amber); color:var(--forest);font-size:26px;font-weight:800;display:flex;align-items:center;justify-content:center; }
+  .lvl-head h2{font-size:26px;font-weight:800;color:var(--forest)}
+  .lvl-tag{color:var(--sage);font-weight:700;font-size:13px;letter-spacing:2px;text-transform:uppercase}
+  .lvl-intro{color:var(--ink);font-size:17px;margin:14px 0 26px;max-width:680px}
+
+  .card{ background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 22px 20px; margin-bottom:18px;box-shadow:0 2px 8px rgba(0,0,0,.03); }
+  .card h3{font-size:19px;color:var(--forest);margin-bottom:6px;display:flex;align-items:center;gap:10px}
+  .card h3 .pill{background:var(--cream);color:var(--pine);font-size:12px;font-weight:700;padding:3px 9px;border-radius:20px}
+  .card p{color:var(--ink);font-size:15.5px;margin-bottom:12px}
+  .card p.why{color:var(--mute);font-size:14.5px;font-style:italic}
+
+  .prompt{ position:relative;background:var(--forest);color:#EAF1EC;border-radius:10px; padding:16px 46px 16px 16px;font-size:14.5px;line-height:1.5;white-space:pre-wrap; font-family:'SFMono-Regular',Consolas,'Liberation Mono',Menlo,monospace; }
+  .prompt .copy{ position:absolute;top:10px;right:10px;background:var(--amber);color:var(--forest); border:none;border-radius:7px;padding:5px 10px;font-size:12px;font-weight:700;cursor:pointer; }
+  .prompt .copy.done{background:var(--sage);color:#fff}
+
+  .callout{background:var(--cream);border-radius:14px;padding:22px;margin-bottom:18px}
+  .callout h3{color:var(--pine);font-size:18px;margin-bottom:8px}
+
+  .imgph{ border:2px dashed var(--line); border-radius:14px; padding:34px 20px; text-align:center; color:var(--mute); font-size:14px; margin-bottom:18px; background:#fff; }
+  .imgph b{display:block; color:var(--sage); font-size:12px; letter-spacing:1.5px; text-transform:uppercase; margin-bottom:6px}
+
+  .moves{list-style:none; counter-reset:mv; margin-bottom:18px}
+  .moves li{ position:relative; padding:8px 0 8px 46px; margin:0; border-bottom:1px solid var(--line); }
+  .moves li:last-child{border-bottom:none}
+  .moves li:before{ counter-increment:mv; content:counter(mv); position:absolute;left:0;top:6px; width:30px;height:30px;border-radius:50%;background:var(--line);color:var(--mute); font-weight:700;display:flex;align-items:center;justify-content:center;font-size:14px; }
+  .moves li.share:before{background:var(--amber); color:var(--forest)}
+  .moves li b{color:var(--forest)}
+  .moves li.share{font-weight:700}
+
+  .rule{background:var(--forest);color:var(--amber);font-weight:700;border-radius:10px;padding:14px 18px;font-size:16px}
+  footer{border-top:1px solid var(--line);padding:26px 22px;text-align:center;color:var(--mute);font-size:13.5px}
+
+  @media(max-width:560px){ header h1{font-size:27px} .lvl-head h2{font-size:22px} }
+</style>
+</head>
+<body>
+
+<!-- ================= PASSWORD GATE ================= -->
+<div id="gate">
+  <div class="box">
+    <div class="dot"></div>
+    <h1>Think, Make, Organize, Share</h1>
+    <p>Everything from today's talk lives here. Type the password you were given to unlock it.</p>
+    <input id="pw" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="password" />
+    <button onclick="tryUnlock()">Unlock</button>
+    <div class="err" id="err"></div>
+  </div>
+</div>
+
+<!-- ================= CONTENT ================= -->
+<div id="content" class="hidden">
+
+  <header>
+    <div class="wrap">
+      <div class="dot"></div>
+      <h1>A year of AI in ministry, <span class="amber">handed to you.</span></h1>
+      <p class="sub">This is move seven. Everything from the talk — the stories, the prompts, and the seven moves that took an idea to reality — so you don't have to remember it, just come back and take one step.</p>
+    </div>
+  </header>
+
+  <nav>
+    <div class="wrap">
+      <button class="active" data-t="start">Start Here</button>
+      <button data-t="think">1 · Think</button>
+      <button data-t="make">2 · Make</button>
+      <button data-t="organize">3 · Organize</button>
+      <button data-t="share">4 · Share</button>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ============ START HERE ============ -->
+    <section id="start" class="active">
+      <div class="lvl-head">
+        <div class="lvl-num" style="background:var(--pine);color:#fff">▶</div>
+        <div><div class="lvl-tag">The whole talk, in four words</div><h2>Start Here</h2></div>
+      </div>
+      <p class="lvl-intro">AI can help us think, make, organize, and share. That's the whole framework — four things this last year of experimenting kept coming back to. Wherever you're stuck this week, start with the tab that matches it.</p>
+
+      <div class="callout">
+        <h3>Think</h3>
+        <p style="margin:0">Turning rough thoughts, conversations, and ministry experience into clarity.</p>
+      </div>
+      <div class="callout" style="background:#EAF1EC">
+        <h3>Make</h3>
+        <p style="margin:0">Turning ideas and experience into things you can hold, print, or hand off.</p>
+      </div>
+      <div class="callout">
+        <h3>Organize</h3>
+        <p style="margin:0">Holding information together so nobody falls through the cracks.</p>
+      </div>
+      <div class="callout" style="background:#EAF1EC">
+        <h3>Share</h3>
+        <p style="margin:0">Getting what one person learns to the next person, before they have to learn it the hard way.</p>
+      </div>
+
+      <div class="card" style="margin-top:22px">
+        <h3>At your table today, you were asked</h3>
+        <p style="margin:0">What ministry knowledge, repeated work, or unfinished idea are you carrying that AI could help you make clearer, more useful, or more shareable? Keep that answer in mind as you look through the tabs above — there's probably a prompt below that's a first step toward it.</p>
+      </div>
+    </section>
+
+    <!-- ============ THINK ============ -->
+    <section id="think">
+      <div class="lvl-head"><div class="lvl-num" style="background:var(--sage);color:#fff">1</div>
+        <div><div class="lvl-tag">Turn experience into clarity</div><h2>Think</h2></div></div>
+      <p class="lvl-intro">This is the lowest-friction category and the best place to start if you've never tried any of this. It doesn't require building anything — just talking.</p>
+
+      <div class="imgph"><b>Screenshot</b>a voice memo turning into a clean call summary</div>
+
+      <div class="card">
+        <h3>The post-call voice dump <span class="pill">weekly move</span></h3>
+        <p>Right after a call with a planter, open the app and just talk. It writes a clean summary. Drop it into your note on that planter. Do this every week and your quarterly report is basically already written.</p>
+        <div class="prompt"><button class="copy">Copy</button>I just got off a call with a planter. I'm going to talk and you turn it into a clean summary I can save: who I talked to, where they are, what we covered, and the next step. Here it is: [talk or type]</div>
+      </div>
+
+      <div class="card">
+        <h3>Build a talk from a rough idea</h3>
+        <p>The same move that built the "From Dream to Done" lunch talk.</p>
+        <div class="prompt"><button class="copy">Copy</button>I want to give a short talk to planters on [topic]. Here's my rough idea: [paste your thoughts]. Help me turn this into a tight, 5-7 minute talk with a clear structure and a few lines worth underlining.</div>
+      </div>
+
+      <div class="card">
+        <h3>"What am I forgetting?"</h3>
+        <p>Use it as a second brain before a meeting or a pipeline step.</p>
+        <div class="prompt"><button class="copy">Copy</button>I have a pre-application meeting with a potential planter this week. What are good questions to discern calling, family health, doctrine, and readiness? Keep it to one page.</div>
+      </div>
+
+      <div class="card">
+        <h3>Confusing form or screenshot explained</h3>
+        <div class="prompt"><button class="copy">Copy</button>Here's a screenshot of a form/document I don't fully understand. Explain what it's asking for in plain language, and tell me what I actually need to fill in or do. [attach/paste]</div>
+      </div>
+
+      <div class="callout">
+        <h3>One reminder</h3>
+        <p style="margin:0">It can sound confident and still be wrong. You're always the editor — treat it like a sharp intern, not like Scripture.</p>
+      </div>
+    </section>
+
+    <!-- ============ MAKE ============ -->
+    <section id="make">
+      <div class="lvl-head"><div class="lvl-num" style="background:var(--pine);color:#fff">2</div>
+        <div><div class="lvl-tag">Turn ideas into things</div><h2>Make</h2></div></div>
+      <p class="lvl-intro">This is where it stops feeling like a smarter search engine and starts feeling like a shop. You describe what you want, and it builds it with you — no developer required.</p>
+
+      <div class="imgph"><b>Screenshot</b>the study Bible — sermon point / WEB text / handwriting columns</div>
+
+      <div class="card">
+        <h3>A study Bible built for you, not sold to you <span class="pill">Dave's story</span></h3>
+        <p>A personal PDF study Bible and sermon journal, one book at a time: left column for the sermon point, summary, and illustration; middle column with the WEB Bible passage; right column left blank for handwritten notes with an Apple Pencil. Nobody was ever going to build this for you — it took an afternoon.</p>
+        <div class="prompt"><button class="copy">Copy</button>Help me design a personal study Bible PDF for [book of the Bible]. Three columns: left for my sermon points/summary/illustrations, middle for the Bible text, right column left blank for handwritten notes. Walk me through building it one book at a time.</div>
+      </div>
+
+      <div class="imgph"><b>Screenshot</b>the four-page Sports Camp report</div>
+
+      <div class="card">
+        <h3>Turn notes into a shareable report</h3>
+        <p>The same move that made the four-page Sports Camp report you handed to another pastor.</p>
+        <div class="prompt"><button class="copy">Copy</button>Here are my rough notes and numbers from [event/ministry effort]: [paste notes]. Turn this into a clean, multi-page report another pastor could read in five minutes and actually reuse.</div>
+      </div>
+
+      <div class="card">
+        <h3>Turn a document into a clean one-page handout</h3>
+        <div class="prompt"><button class="copy">Copy</button>Take this content and make it a clean, one-page handout a planter could print: clear headings, short sections, and a checklist at the bottom. [paste content]</div>
+      </div>
+
+      <div class="card">
+        <h3>Slides or teaching visuals</h3>
+        <div class="prompt"><button class="copy">Copy</button>Help me build a short slide deck for [talk/topic]. Big, minimal slides — one idea per slide, my notes carry the detail. Give me the structure first, then we'll fill it in.</div>
+      </div>
+    </section>
+
+    <!-- ============ ORGANIZE ============ -->
+    <section id="organize">
+      <div class="lvl-head"><div class="lvl-num" style="background:var(--forest);color:#fff">3</div>
+        <div><div class="lvl-tag">Nobody falls through the cracks</div><h2>Organize</h2></div></div>
+      <p class="lvl-intro">You don't need to become an organized person. You need one dashboard that tells you who's falling through the cracks.</p>
+
+      <div class="imgph"><b>Screenshot</b>the planter dashboard — status, last contact, next step</div>
+
+      <div class="card">
+        <h3>The 30-day flag <span class="pill">Dave's story</span></h3>
+        <p>Every planter gets a note. Every note has a status and a next step. Once a week, one dashboard tells you who you haven't contacted in 30 days. The tracking is automatic once it's set up — you don't have to be naturally organized.</p>
+        <div class="prompt"><button class="copy">Copy</button>Help me build a simple spreadsheet to track my church planters. Columns for name, stage (potential, candidate, funded, aged-out), sending church, last contact, and next step. Then help me add a rule that flags anyone I haven't contacted in 30 days.</div>
+      </div>
+
+      <div class="card">
+        <h3>Hand it your current mess</h3>
+        <p>You don't start from scratch — you start from what you already have.</p>
+        <div class="prompt"><button class="copy">Copy</button>Here's how I currently keep up with my planters: [describe your messy system]. Here's what I wish it did: [describe]. Help me design a simpler, repeatable way to do this, step by step.</div>
+      </div>
+
+      <div class="card">
+        <h3>A repeatable weekly workflow</h3>
+        <div class="prompt"><button class="copy">Copy</button>Help me build a simple weekly routine with AI: review my planters, draft any follow-up emails, and update my tracker. Give me a short checklist I can run every week.</div>
+      </div>
+    </section>
+
+    <!-- ============ SHARE ============ -->
+    <section id="share">
+      <div class="lvl-head"><div class="lvl-num" style="background:var(--amber);color:var(--forest)">4</div>
+        <div><div class="lvl-tag">The turn</div><h2>Share</h2></div></div>
+      <p class="lvl-intro">This may be the most important category, because it's not really about AI. A few weeks ago the planters got a talk called "From Dream to Done" — seven moves that take an idea to reality.</p>
+
+      <ol class="moves">
+        <li><b>Dream it</b> — Vision. Name the win in one sentence.</li>
+        <li><b>Test it</b> — Prayer. Take it to God before the whiteboard.</li>
+        <li><b>Weigh it</b> — Wisdom. Bring in wise people and real information.</li>
+        <li><b>Divide it</b> — Plan. Cut it into pieces small enough to start Monday.</li>
+        <li><b>Do it</b> — Action. Take the first real step this week.</li>
+        <li><b>Sharpen it</b> — Review. Ask honestly, did this work.</li>
+        <li class="share"><b>Share it</b> — Multiply. Don't hoard it — hand it to the next guy starting from scratch.</li>
+      </ol>
+
+      <div class="callout" style="background:var(--forest);color:#fff">
+        <h3 style="color:var(--amber)">This page is move seven</h3>
+        <p style="color:#CFE0D6;margin-bottom:0">A year of thinking, making, and organizing with AI was moves one through six. Handing it to you — every prompt above, in one place — is move seven. Paul told Timothy the same thing: entrust what you've learned to faithful people who will teach others also (2 Timothy 2:2). The guy across the table may be praying for the exact thing you just figured out.</p>
+      </div>
+
+      <div class="card">
+        <h3>Turn your own year into something shareable</h3>
+        <p>The same question from the table discussion — now with a prompt to act on it.</p>
+        <div class="prompt"><button class="copy">Copy</button>Here's something I've learned or built this year in ministry: [describe it]. Help me turn it into something I could hand to another catalyst or pastor — a short doc, a template, or a one-page guide they could actually use.</div>
+      </div>
+
+      <div class="card">
+        <h3>Want the deeper system?</h3>
+        <p style="margin:0">The full Send Network AI on-ramp — the leveled walkthrough and the downloadable starter vault for your own planter/church tracking — lives at <a href="https://ministrybag.com/cpc">ministrybag.com/cpc</a> (separate password).</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    Built by Dave Partin &nbsp;•&nbsp; ministrybag.com/summit &nbsp;•&nbsp; Take one step, then hand it to the next guy.
+  </footer>
+
+</div><!-- /content -->
+
+<script>
+  // ---------- Password gate ----------
+  var PASSWORD = "cpc";
+  function unlock(){
+    document.getElementById('gate').classList.add('hidden');
+    document.getElementById('content').classList.remove('hidden');
+    try{ localStorage.setItem('summit_ok','1'); }catch(e){}
+  }
+  function tryUnlock(){
+    var v = (document.getElementById('pw').value || '').trim().toLowerCase();
+    if(v === PASSWORD){ unlock(); }
+    else{ document.getElementById('err').textContent = "Not quite. Try again."; }
+  }
+  document.getElementById('pw').addEventListener('keydown', function(e){
+    if(e.key === 'Enter'){ tryUnlock(); }
+  });
+  try{ if(localStorage.getItem('summit_ok') === '1'){ unlock(); } }catch(e){}
+  window.addEventListener('load', function(){ document.getElementById('pw').focus(); });
+
+  // ---------- Tabs ----------
+  document.querySelectorAll('nav button').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      document.querySelectorAll('nav button').forEach(function(b){ b.classList.remove('active'); });
+      document.querySelectorAll('section').forEach(function(s){ s.classList.remove('active'); });
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.t).classList.add('active');
+      window.scrollTo({top:0, behavior:'smooth'});
+    });
+  });
+
+  // ---------- Copy buttons ----------
+  document.querySelectorAll('.prompt .copy').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var text = btn.parentElement.innerText.replace(/^Copy\s*/,'').trim();
+      navigator.clipboard.writeText(text).then(function(){
+        btn.textContent = 'Copied'; btn.classList.add('done');
+        setTimeout(function(){ btn.textContent='Copy'; btn.classList.remove('done'); }, 1600);
+      });
+    });
+  });
+</script>
+</body>
+</html>

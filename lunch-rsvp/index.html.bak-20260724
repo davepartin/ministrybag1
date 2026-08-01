@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SendKC Planter Lunch — RSVP</title>
+<meta name="description" content="RSVP for the SendKC Planter Lunch">
+<link rel="icon" type="image/svg+xml" href="/ministrybagsatchel1.svg">
+<meta property="og:title" content="SendKC Planter Lunch — RSVP" />
+<meta property="og:description" content="Tap to RSVP for the SendKC Planter Lunch." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://ministrybag.com/lunch-rsvp/" />
+<meta property="og:image" content="https://ministrybag.com/lunch-rsvp/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://ministrybag.com/lunch-rsvp/og-image.png" />
+<style>
+  :root {
+    /* Send Network brand palette (NAMB design guidelines) */
+    --navy: #10294C;      /* SN primary navy */
+    --blue: #18AEE1;      /* SN primary blue */
+    --green: #50B849;     /* SN green */
+    --green-soft: #99CC67;
+    --amber: #FBAC33;     /* SN amber */
+    --steel: #3C7CA0;     /* SN tertiary blue */
+    --gray-light: #EBECED;
+    --gray-mid: #ADB3B8;
+    --slate: #5C6670;
+    --red: #D0453E;       /* not in SN palette; used only for the No button */
+    --ink: #10294C;
+    --radius: 14px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: linear-gradient(160deg, var(--navy) 0%, #163662 60%, #1d4478 100%);
+    min-height: 100vh; display: flex; align-items: center; justify-content: center;
+    padding: 20px; color: var(--ink);
+  }
+  .card {
+    background: #fff; width: 100%; max-width: 460px;
+    border-radius: var(--radius); overflow: hidden;
+    box-shadow: 0 18px 50px rgba(6, 18, 38, .45);
+  }
+  .head { background: var(--navy); padding: 24px 26px 20px; position: relative; }
+  .head img.logo { width: 200px; max-width: 60%; display: block; }
+  .head .kicker { margin-top: 16px; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--blue); font-weight: 800; }
+  .head h1 { font-size: 26px; margin-top: 4px; line-height: 1.2; color: #fff; }
+  .admin-open {
+    display: none; position: absolute; top: 14px; right: 14px; width: 34px; height: 34px;
+    border: 1px solid rgba(255,255,255,.28); border-radius: 50%; background: rgba(255,255,255,.08);
+    color: rgba(255,255,255,.72); cursor: pointer; font-size: 17px; line-height: 1;
+  }
+  .admin-open:hover, .admin-open:focus-visible { background: rgba(255,255,255,.18); color: #fff; outline: none; }
+  .details { background: var(--gray-light); padding: 16px 26px; font-size: 15px; line-height: 1.65; border-bottom: 3px solid var(--blue); }
+  .details b { color: var(--navy); }
+  .details a { color: var(--steel); }
+  .body { padding: 22px 26px 28px; }
+  .q { font-size: 16px; font-weight: 800; color: var(--navy); margin-bottom: 10px; }
+  .choice { display: flex; gap: 8px; margin-bottom: 18px; }
+  .choice button {
+    flex: 1; padding: 14px 4px; cursor: pointer; border-radius: 12px;
+    border: 2px solid var(--gray-mid); background: #fff; transition: all .15s;
+    display: flex; flex-direction: column; align-items: center; gap: 2px;
+  }
+  .choice .mark { font-size: 24px; font-weight: 900; line-height: 1; }
+  .choice .word { font-size: 15px; font-weight: 800; }
+  .choice .yes   { color: var(--green); border-color: var(--green); }
+  .choice .maybe { color: #C77F0A; border-color: var(--amber); }
+  .choice .no    { color: var(--red); border-color: var(--red); }
+  .choice .yes.sel   { background: var(--green); color: #fff; }
+  .choice .maybe.sel { background: var(--amber); color: var(--navy); }
+  .choice .no.sel    { background: var(--red); color: #fff; }
+  label { display: block; font-size: 13px; font-weight: 800; color: var(--navy); margin: 14px 0 5px; letter-spacing: .03em; text-transform: uppercase; }
+  input[type=text] {
+    width: 100%; padding: 12px 14px; font-size: 16px; border: 2px solid var(--gray-mid);
+    border-radius: 10px; outline: none; background: #fbfcfd; color: var(--ink);
+  }
+  input:focus { border-color: var(--blue); background: #fff; }
+  #totalBox {
+    display: none; margin-top: 16px; padding: 14px 16px 16px;
+    background: #f3faf1; border: 2px solid var(--green); border-radius: 12px;
+  }
+  #totalBox .tb-label { font-size: 14px; font-weight: 800; color: var(--navy); text-transform: uppercase; letter-spacing: .03em; }
+  #totalBox .tb-sub { font-size: 13px; color: var(--slate); margin: 2px 0 10px; }
+  .stepper { display: flex; align-items: center; gap: 16px; }
+  .stepper button {
+    width: 50px; height: 50px; font-size: 26px; font-weight: 800; cursor: pointer;
+    border-radius: 50%; border: 2px solid var(--green); background: #fff; color: var(--green);
+  }
+  .stepper button:active { background: var(--gray-light); }
+  .stepper .num { font-size: 32px; font-weight: 900; min-width: 46px; text-align: center; color: var(--navy); }
+  .submit {
+    width: 100%; margin-top: 22px; padding: 16px; font-size: 17px; font-weight: 800;
+    background: var(--navy); color: #fff; border: none; border-radius: var(--radius); cursor: pointer;
+    letter-spacing: .02em;
+  }
+  .submit:hover { background: #0b1f3a; }
+  .submit:disabled { background: var(--gray-mid); cursor: default; }
+  .err { color: var(--red); font-size: 14px; margin-top: 10px; display: none; font-weight: 600; }
+  .done { text-align: center; padding: 46px 30px 50px; display: none; }
+  .done .big { font-size: 52px; }
+  .done h2 { color: var(--navy); font-size: 24px; margin: 12px 0 8px; }
+  .done p { color: var(--slate); font-size: 15px; line-height: 1.6; }
+  .done .cal {
+    display: inline-block; margin-top: 18px; padding: 12px 22px; border-radius: 10px;
+    background: var(--gray-light); color: var(--navy); font-weight: 800; text-decoration: none; font-size: 15px;
+    border: 1px solid var(--gray-mid);
+  }
+  .foot { text-align: center; font-size: 12.5px; color: var(--slate); padding: 0 26px 22px; }
+  .modal-backdrop {
+    display: none; position: fixed; inset: 0; z-index: 20; padding: 18px;
+    background: rgba(6,18,38,.72); align-items: center; justify-content: center;
+  }
+  .modal-backdrop.open { display: flex; }
+  .admin-modal {
+    width: 100%; max-width: 470px; max-height: calc(100vh - 36px); overflow-y: auto;
+    background: #fff; border-radius: 16px; box-shadow: 0 18px 60px rgba(0,0,0,.42); padding: 24px;
+  }
+  .admin-top { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .admin-top h2 { color: var(--navy); font-size: 21px; }
+  .admin-close { border: 0; background: transparent; color: var(--slate); font-size: 28px; cursor: pointer; line-height: 1; }
+  .admin-help { color: var(--slate); font-size: 13px; line-height: 1.45; margin-top: 6px; }
+  .admin-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 12px; }
+  .admin-grid .wide { grid-column: 1 / -1; }
+  .admin-modal input {
+    width: 100%; padding: 11px 12px; font: inherit; font-size: 16px; color: var(--ink);
+    border: 2px solid var(--gray-mid); border-radius: 9px; background: #fbfcfd; outline: none;
+  }
+  .admin-modal input:focus { border-color: var(--blue); background: #fff; }
+  .admin-save {
+    width: 100%; border: 0; border-radius: 11px; margin-top: 18px; padding: 14px;
+    background: var(--navy); color: #fff; font-size: 16px; font-weight: 800; cursor: pointer;
+  }
+  .admin-save:disabled { background: var(--gray-mid); cursor: default; }
+  .admin-status { min-height: 20px; margin-top: 10px; font-size: 13px; font-weight: 700; color: var(--slate); }
+  .admin-status.error { color: var(--red); }
+  .admin-status.success { color: #337d2e; }
+  /* Compact layout on phones: goal is Yes/Maybe/No, name, and Send all above the fold */
+  @media (max-width: 480px) {
+    body { padding: 8px; align-items: flex-start; }
+    .head { padding: 12px 18px 10px; }
+    .admin-open { top: 8px; right: 8px; width: 32px; height: 32px; }
+    .head img.logo { width: 140px; }
+    .head .kicker { margin-top: 8px; font-size: 11px; }
+    .head h1 { font-size: 20px; margin-top: 2px; }
+    .details { padding: 9px 18px; font-size: 13.5px; line-height: 1.5; }
+    .body { padding: 12px 18px 16px; }
+    .q { font-size: 15px; margin-bottom: 8px; }
+    .choice { margin-bottom: 10px; gap: 6px; }
+    .choice button { padding: 8px 4px; border-radius: 10px; }
+    .choice .mark { font-size: 19px; }
+    .choice .word { font-size: 14px; }
+    label { margin: 8px 0 4px; font-size: 12px; }
+    input[type=text] { padding: 10px 12px; font-size: 16px; }
+    #totalBox { margin-top: 10px; padding: 10px 14px 12px; }
+    #totalBox .tb-sub { margin: 2px 0 8px; font-size: 12px; }
+    .stepper button { width: 42px; height: 42px; font-size: 22px; }
+    .stepper .num { font-size: 26px; }
+    .submit { margin-top: 12px; padding: 13px; font-size: 16px; }
+    .foot { padding: 0 18px 12px; font-size: 12px; }
+    .modal-backdrop { padding: 8px; align-items: flex-start; }
+    .admin-modal { max-height: calc(100vh - 16px); padding: 18px; border-radius: 13px; }
+  }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="head">
+    <img class="logo" src="sn-logo-white.png" alt="Send Network">
+    <div class="kicker">SendKC</div>
+    <h1 id="evTitle">SendKC Planter Lunch</h1>
+    <button class="admin-open" id="adminOpen" type="button" aria-label="Edit lunch details" title="Edit lunch details">&#9881;</button>
+  </div>
+  <div class="details" id="evDetails"></div>
+
+  <div class="body" id="form">
+    <div class="q">Are you coming?</div>
+    <div class="choice">
+      <button type="button" class="yes" id="btnYes"><span class="mark">&#10003;</span><span class="word">Yes</span></button>
+      <button type="button" class="maybe" id="btnMaybe"><span class="mark">?</span><span class="word">Maybe</span></button>
+      <button type="button" class="no" id="btnNo"><span class="mark">&#10005;</span><span class="word">No</span></button>
+    </div>
+    <label for="name">Your name</label>
+    <input type="text" id="name" autocomplete="name" placeholder="First and last name">
+    <div id="totalBox">
+      <div class="tb-label">Total number coming</div>
+      <div class="tb-sub">Count everyone, including you. Spouses welcome!</div>
+      <div class="stepper">
+        <button type="button" id="minus">&minus;</button>
+        <div class="num" id="count">1</div>
+        <button type="button" id="plus">+</button>
+      </div>
+    </div>
+    <button class="submit" id="submit">Send my RSVP</button>
+    <div class="err" id="err"></div>
+  </div>
+
+  <div class="done" id="done">
+    <div class="big" id="doneEmoji">&#127881;</div>
+    <h2 id="doneTitle">You're on the list!</h2>
+    <p id="doneMsg"></p>
+    <a class="cal" id="calLink" target="_blank" rel="noopener">&#128197; Add to calendar</a>
+  </div>
+
+  <div class="foot">Questions? Text Dave Partin at (913) 901-7581.</div>
+</div>
+
+<div class="modal-backdrop" id="adminBackdrop" role="dialog" aria-modal="true" aria-labelledby="adminTitle">
+  <div class="admin-modal">
+    <div class="admin-top">
+      <h2 id="adminTitle">Edit lunch details</h2>
+      <button class="admin-close" id="adminClose" type="button" aria-label="Close">&times;</button>
+    </div>
+    <p class="admin-help">These details update the page for everyone. The event name, RSVP month, and calendar button are updated automatically.</p>
+    <div class="admin-grid">
+      <div class="wide">
+        <label for="adminDate">Lunch date</label>
+        <input type="date" id="adminDate">
+      </div>
+      <div>
+        <label for="adminStart">Start time</label>
+        <input type="time" id="adminStart">
+      </div>
+      <div>
+        <label for="adminEnd">End time</label>
+        <input type="time" id="adminEnd">
+      </div>
+      <div class="wide">
+        <label for="adminPlace">Location name</label>
+        <input type="text" id="adminPlace" maxlength="100" autocomplete="organization">
+      </div>
+      <div class="wide">
+        <label for="adminAddress">Street address</label>
+        <input type="text" id="adminAddress" maxlength="180" autocomplete="street-address">
+      </div>
+      <div class="wide">
+        <label for="adminRsvpBy">RSVP deadline</label>
+        <input type="date" id="adminRsvpBy">
+      </div>
+      <div class="wide">
+        <label for="adminPassword">Team password</label>
+        <input type="password" id="adminPassword" autocomplete="current-password" placeholder="Enter the team password">
+      </div>
+    </div>
+    <button class="admin-save" id="adminSave" type="button">Save lunch details</button>
+    <div class="admin-status" id="adminStatus" aria-live="polite"></div>
+  </div>
+</div>
+
+<script>
+/* Fallback details keep the page useful if Google is briefly unavailable. */
+let EVENT = {
+  date: "2026-07-23",
+  startTime: "11:30",
+  endTime: "13:00",
+  place: "Neighborhood Church",
+  address: "8600 W 91st Terrace, Overland Park, KS 66212",
+  rsvpBy: "2026-07-21",
+};
+const ENDPOINT = "https://script.google.com/macros/s/AKfycby1tzgv6ANAHWlNt6JCxsknP11hmu9vT9aijgXX3jjLrshhBZjXIVFQo5v97wWTeczE/exec";
+
+const $ = id => document.getElementById(id);
+
+function localDate(value) { return new Date(value + "T12:00:00"); }
+function monthName(value) { return localDate(value).toLocaleDateString("en-US", { month: "long" }); }
+function longDate(value) {
+  return localDate(value).toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric", year: "numeric" });
+}
+function shortDate(value) {
+  return localDate(value).toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" });
+}
+function clockTime(value) {
+  const [hour, minute] = value.split(":").map(Number);
+  return new Date(2000, 0, 1, hour, minute).toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" });
+}
+function eventId() { return "planter-lunch-" + EVENT.date.slice(0, 7); }
+function eventTitle() { return "SendKC Planter Lunch — " + monthName(EVENT.date); }
+function calendarStamp(date, time) { return date.replaceAll("-", "") + "T" + time.replace(":", "") + "00"; }
+function isEventConfig(value) {
+  return value && /^\d{4}-\d{2}-\d{2}$/.test(value.date || "")
+    && /^\d{2}:\d{2}$/.test(value.startTime || "") && /^\d{2}:\d{2}$/.test(value.endTime || "")
+    && typeof value.place === "string" && typeof value.address === "string"
+    && /^\d{4}-\d{2}-\d{2}$/.test(value.rsvpBy || "");
+}
+function escapeHtml(value) {
+  const div = document.createElement("div");
+  div.textContent = value;
+  return div.innerHTML;
+}
+function renderEvent() {
+  $("evTitle").textContent = eventTitle();
+  $("evDetails").innerHTML =
+    `<b>&#128197; ${longDate(EVENT.date)}</b> &middot; ${clockTime(EVENT.startTime)} &ndash; ${clockTime(EVENT.endTime)}<br>` +
+    `&#128205; <b>${escapeHtml(EVENT.place)}</b> &middot; <a href="https://maps.google.com/?q=${encodeURIComponent(EVENT.address)}" target="_blank" rel="noopener">${escapeHtml(EVENT.address)}</a><br>` +
+    `Please RSVP by <b>${shortDate(EVENT.rsvpBy)}</b> so we can plan the food well.`;
+}
+
+let eventServiceReady = false;
+function loadEventConfig() {
+  return new Promise((resolve, reject) => {
+    const callback = "__loadLunchEvent" + Date.now() + Math.floor(Math.random() * 10000);
+    const script = document.createElement("script");
+    const timer = setTimeout(() => finish(new Error("Event service timed out")), 7000);
+    function cleanup() { clearTimeout(timer); delete window[callback]; script.remove(); }
+    function finish(error, payload) { cleanup(); error ? reject(error) : resolve(payload); }
+    window[callback] = payload => {
+      if (!payload || payload.ok !== true || !isEventConfig(payload.event)) {
+        finish(new Error("Event service returned an invalid response")); return;
+      }
+      EVENT = payload.event;
+      eventServiceReady = true;
+      $("adminOpen").style.display = "block";
+      renderEvent();
+      finish(null, payload);
+    };
+    script.onerror = () => finish(new Error("Could not reach event service"));
+    script.src = ENDPOINT + "?action=event&callback=" + encodeURIComponent(callback) + "&_=" + Date.now();
+    document.head.appendChild(script);
+  });
+}
+
+renderEvent();
+loadEventConfig().catch(() => { /* fallback details stay visible; editor stays hidden */ });
+if (["localhost", "127.0.0.1"].includes(window.location.hostname)) {
+  eventServiceReady = true;
+  $("adminOpen").style.display = "block";
+}
+
+let choice = null, count = 1;
+const buttons = { YES: $("btnYes"), MAYBE: $("btnMaybe"), NO: $("btnNo") };
+
+function pick(val) {
+  choice = val;
+  for (const [k, btn] of Object.entries(buttons)) btn.classList.toggle("sel", k === val);
+  $("totalBox").style.display = (val === "YES") ? "block" : "none";
+}
+$("btnYes").addEventListener("click", () => pick("YES"));
+$("btnMaybe").addEventListener("click", () => pick("MAYBE"));
+$("btnNo").addEventListener("click", () => pick("NO"));
+$("plus").addEventListener("click", () => { count = Math.min(10, count + 1); $("count").textContent = count; });
+$("minus").addEventListener("click", () => { count = Math.max(1, count - 1); $("count").textContent = count; });
+
+$("submit").addEventListener("click", async () => {
+  const name = $("name").value.trim();
+  const err = $("err");
+  err.style.display = "none";
+  if (!choice) { err.textContent = "Please tap Yes, Maybe, or No first."; err.style.display = "block"; return; }
+  if (name.length < 2) { err.textContent = "Please add your name so Dave knows it's you."; err.style.display = "block"; return; }
+  $("submit").disabled = true;
+  $("submit").textContent = "Sending…";
+  const payload = {
+    action: "rsvp",
+    event: eventId(),
+    name: name,
+    coming: choice,
+    count: choice === "YES" ? count : 0,
+    phone: "",
+    note: "",
+  };
+  try {
+    await fetch(ENDPOINT, { method: "POST", mode: "no-cors",
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify(payload) });
+    showDone(name);
+  } catch (e) {
+    $("submit").disabled = false;
+    $("submit").textContent = "Send my RSVP";
+    err.textContent = "Hmm, that didn't go through. Try again, or just text Dave: (913) 901-7581.";
+    err.style.display = "block";
+  }
+});
+
+function calUrl() {
+  return "https://calendar.google.com/calendar/render?action=TEMPLATE"
+    + "&text=" + encodeURIComponent(eventTitle())
+    + "&dates=" + calendarStamp(EVENT.date, EVENT.startTime) + "/" + calendarStamp(EVENT.date, EVENT.endTime)
+    + "&ctz=America%2FChicago"
+    + "&location=" + encodeURIComponent(EVENT.place + ", " + EVENT.address)
+    + "&details=" + encodeURIComponent("SendKC Planter Lunch. Questions? Dave Partin (913) 901-7581");
+}
+
+function showDone(name) {
+  $("form").style.display = "none";
+  const first = name.split(" ")[0];
+  if (choice === "YES") {
+    $("doneEmoji").innerHTML = "&#127881;";
+    $("doneTitle").textContent = "You're on the list, " + first + "!";
+    $("doneMsg").textContent = `${longDate(EVENT.date)}, ${clockTime(EVENT.startTime)} – ${clockTime(EVENT.endTime)} at ${EVENT.place}. Lunch is on us — see you there.`;
+    $("calLink").href = calUrl();
+    $("calLink").style.display = "inline-block";
+  } else if (choice === "MAYBE") {
+    $("doneEmoji").innerHTML = "&#128591;";
+    $("doneTitle").textContent = "Thanks, " + first + " — we'd love to have you.";
+    $("doneMsg").textContent = "If your plans firm up, come back and tap Yes, or just come — there will be a seat for you.";
+    $("calLink").href = calUrl();
+    $("calLink").style.display = "inline-block";
+  } else {
+    $("doneEmoji").innerHTML = "&#128591;";
+    $("doneTitle").textContent = "Thanks for letting us know, " + first + ".";
+    $("doneMsg").textContent = "You'll be missed! We'll see you at the next one.";
+    $("calLink").style.display = "none";
+  }
+  $("done").style.display = "block";
+}
+
+function fillAdminForm() {
+  $("adminDate").value = EVENT.date;
+  $("adminStart").value = EVENT.startTime;
+  $("adminEnd").value = EVENT.endTime;
+  $("adminPlace").value = EVENT.place;
+  $("adminAddress").value = EVENT.address;
+  $("adminRsvpBy").value = EVENT.rsvpBy;
+  $("adminPassword").value = "";
+  $("adminStatus").textContent = "";
+  $("adminStatus").className = "admin-status";
+}
+function openAdmin() {
+  if (!eventServiceReady) return;
+  fillAdminForm();
+  $("adminBackdrop").classList.add("open");
+  document.body.style.overflow = "hidden";
+  setTimeout(() => $("adminDate").focus(), 0);
+}
+function closeAdmin() {
+  $("adminBackdrop").classList.remove("open");
+  document.body.style.overflow = "";
+}
+$("adminOpen").addEventListener("click", openAdmin);
+$("adminClose").addEventListener("click", closeAdmin);
+$("adminBackdrop").addEventListener("click", event => { if (event.target === $("adminBackdrop")) closeAdmin(); });
+document.addEventListener("keydown", event => { if (event.key === "Escape") closeAdmin(); });
+
+$("adminSave").addEventListener("click", async () => {
+  const nextEvent = {
+    date: $("adminDate").value,
+    startTime: $("adminStart").value,
+    endTime: $("adminEnd").value,
+    place: $("adminPlace").value.trim(),
+    address: $("adminAddress").value.trim(),
+    rsvpBy: $("adminRsvpBy").value,
+  };
+  const password = $("adminPassword").value;
+  const status = $("adminStatus");
+  status.className = "admin-status";
+  if (!isEventConfig(nextEvent) || !nextEvent.place || !nextEvent.address || !password) {
+    status.textContent = "Please complete every field, including the team password.";
+    status.classList.add("error"); return;
+  }
+  if (nextEvent.startTime >= nextEvent.endTime) {
+    status.textContent = "The ending time needs to be after the starting time.";
+    status.classList.add("error"); return;
+  }
+  if (nextEvent.rsvpBy > nextEvent.date) {
+    status.textContent = "The RSVP deadline needs to be on or before the lunch date.";
+    status.classList.add("error"); return;
+  }
+  $("adminSave").disabled = true;
+  $("adminSave").textContent = "Saving…";
+  status.textContent = "Updating the page…";
+  try {
+    await fetch(ENDPOINT, {
+      method: "POST", mode: "no-cors", headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: JSON.stringify({ action: "updateEvent", password, event: nextEvent }),
+    });
+    await new Promise(resolve => setTimeout(resolve, 900));
+    await loadEventConfig();
+    const saved = ["date", "startTime", "endTime", "place", "address", "rsvpBy"]
+      .every(key => EVENT[key] === nextEvent[key]);
+    if (!saved) throw new Error("The password was not accepted or the update was not saved.");
+    status.textContent = "Saved. The new lunch details are live.";
+    status.classList.add("success");
+    $("adminPassword").value = "";
+    setTimeout(closeAdmin, 1100);
+  } catch (error) {
+    status.textContent = error.message || "The update did not go through. Check the password and try again.";
+    status.classList.add("error");
+  } finally {
+    $("adminSave").disabled = false;
+    $("adminSave").textContent = "Save lunch details";
+  }
+});
+</script>
+</body>
+</html>

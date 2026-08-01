@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI for Send Network</title>
+<style>
+  :root{
+    --forest:#1F3A34; --pine:#2C5F4E; --sage:#5B9279; --amber:#E1A140;
+    --cream:#F4EFE6; --ink:#20302B; --mute:#6B7B74; --line:#E3E0D8;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink); background:#FBFAF7; line-height:1.55;
+  }
+  a{color:var(--pine)}
+
+  /* ---------- Password gate ---------- */
+  #gate{
+    position:fixed; inset:0; z-index:100; background:var(--forest);
+    display:flex; align-items:center; justify-content:center; padding:24px;
+  }
+  #gate .box{max-width:420px; width:100%; text-align:center; color:#fff}
+  #gate .dot{width:16px;height:16px;border-radius:50%;background:var(--amber);margin:0 auto 22px}
+  #gate h1{font-size:26px; margin-bottom:8px; font-weight:700}
+  #gate p{color:#CFE0D6; margin-bottom:22px; font-size:15px}
+  #gate input{
+    width:100%; padding:14px 16px; border-radius:10px; border:1px solid #3d5a51;
+    background:#173029; color:#fff; font-size:17px; text-align:center; outline:none;
+  }
+  #gate input:focus{border-color:var(--amber)}
+  #gate button{
+    margin-top:14px; width:100%; padding:14px; border:none; border-radius:10px;
+    background:var(--amber); color:var(--forest); font-size:17px; font-weight:700; cursor:pointer;
+  }
+  #gate .err{color:#F0B7A8; font-size:14px; margin-top:12px; min-height:18px}
+  .hidden{display:none !important}
+
+  /* ---------- Header ---------- */
+  header{
+    background:var(--forest); color:#fff; padding:46px 22px 40px;
+  }
+  header .wrap{max-width:960px; margin:0 auto}
+  header .dot{width:14px;height:14px;border-radius:50%;background:var(--amber);margin-bottom:18px}
+  header h1{font-size:34px; line-height:1.15; font-weight:800; letter-spacing:-.5px}
+  header h1 .amber{color:var(--amber)}
+  header p.sub{color:#CFE0D6; font-size:17px; margin-top:14px; max-width:640px}
+
+  /* ---------- Sticky nav ---------- */
+  nav{
+    position:sticky; top:0; z-index:20; background:#fff; border-bottom:1px solid var(--line);
+    box-shadow:0 2px 6px rgba(0,0,0,.04);
+  }
+  nav .wrap{max-width:960px; margin:0 auto; display:flex; gap:6px; overflow-x:auto; padding:0 14px}
+  nav button{
+    flex:0 0 auto; background:none; border:none; padding:16px 14px; font-size:15px; font-weight:600;
+    color:var(--mute); cursor:pointer; border-bottom:3px solid transparent; white-space:nowrap;
+  }
+  nav button.active{color:var(--forest); border-bottom-color:var(--amber)}
+
+  /* ---------- Sections ---------- */
+  main{max-width:960px; margin:0 auto; padding:34px 22px 80px}
+  section{display:none}
+  section.active{display:block; animation:fade .25s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+  .lvl-head{display:flex; align-items:center; gap:16px; margin-bottom:8px}
+  .lvl-num{
+    width:52px;height:52px;flex:0 0 auto;border-radius:50%;background:var(--amber);
+    color:var(--forest);font-size:26px;font-weight:800;display:flex;align-items:center;justify-content:center;
+  }
+  .lvl-head h2{font-size:26px;font-weight:800;color:var(--forest)}
+  .lvl-tag{color:var(--sage);font-weight:700;font-size:13px;letter-spacing:2px;text-transform:uppercase}
+  .lvl-intro{color:var(--ink);font-size:17px;margin:14px 0 26px;max-width:680px}
+
+  .card{
+    background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 22px 20px;
+    margin-bottom:18px;box-shadow:0 2px 8px rgba(0,0,0,.03);
+  }
+  .card h3{font-size:19px;color:var(--forest);margin-bottom:6px;display:flex;align-items:center;gap:10px}
+  .card h3 .pill{background:var(--cream);color:var(--pine);font-size:12px;font-weight:700;padding:3px 9px;border-radius:20px}
+  .card p{color:var(--ink);font-size:15.5px;margin-bottom:12px}
+  .card p.why{color:var(--mute);font-size:14.5px;font-style:italic}
+  ol.steps{margin:8px 0 12px 20px}
+  ol.steps li{margin-bottom:6px;font-size:15.5px}
+
+  .prompt{
+    position:relative;background:var(--forest);color:#EAF1EC;border-radius:10px;
+    padding:16px 46px 16px 16px;font-size:14.5px;line-height:1.5;white-space:pre-wrap;
+    font-family:'SFMono-Regular',Consolas,'Liberation Mono',Menlo,monospace;
+  }
+  .prompt .copy{
+    position:absolute;top:10px;right:10px;background:var(--amber);color:var(--forest);
+    border:none;border-radius:7px;padding:5px 10px;font-size:12px;font-weight:700;cursor:pointer;
+  }
+  .prompt .copy.done{background:var(--sage);color:#fff}
+
+  .callout{background:var(--cream);border-radius:14px;padding:22px;margin-bottom:18px}
+  .callout h3{color:var(--pine);font-size:18px;margin-bottom:8px}
+  .big{
+    background:var(--forest);color:#fff;border-radius:16px;padding:30px;text-align:center;margin-bottom:22px;
+  }
+  .big .num{font-size:64px;font-weight:800;color:var(--amber);line-height:1}
+  .big p{color:#CFE0D6;margin-top:10px;font-size:16px}
+
+  .safe .card{border-color:#E9C9A6}
+  .rule{background:var(--forest);color:var(--amber);font-weight:700;border-radius:10px;padding:14px 18px;font-size:16px}
+
+  footer{border-top:1px solid var(--line);padding:26px 22px;text-align:center;color:var(--mute);font-size:13.5px}
+  .step-list{counter-reset:s;list-style:none}
+  .step-list li{position:relative;padding:2px 0 16px 44px;margin:0}
+  .step-list li:before{
+    counter-increment:s;content:counter(s);position:absolute;left:0;top:0;
+    width:30px;height:30px;border-radius:50%;background:var(--sage);color:#fff;
+    font-weight:700;display:flex;align-items:center;justify-content:center;font-size:15px;
+  }
+  @media(max-width:560px){
+    header h1{font-size:27px}
+    .lvl-head h2{font-size:22px}
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= PASSWORD GATE ================= -->
+<div id="gate">
+  <div class="box">
+    <div class="dot"></div>
+    <h1>AI for Send Network</h1>
+    <p>This page is for our team. Type the word you were given to unlock it.</p>
+    <input id="pw" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="password" />
+    <button onclick="tryUnlock()">Unlock</button>
+    <div class="err" id="err"></div>
+  </div>
+</div>
+
+<!-- ================= CONTENT ================= -->
+<div id="content" class="hidden">
+
+  <header>
+    <div class="wrap">
+      <div class="dot"></div>
+      <h1>People are the job. <span class="amber">AI is the assistant.</span></h1>
+      <p class="sub">A place to keep going after the talk. Give the assistant the paperwork so you have more of yourself left for the people. Start where you are and take one step.</p>
+    </div>
+  </header>
+
+  <nav>
+    <div class="wrap">
+      <button class="active" data-t="start">Start Here</button>
+      <button data-t="l1">Level 1 · Search</button>
+      <button data-t="l2">Level 2 · Communicate</button>
+      <button data-t="l3">Level 3 · Build</button>
+      <button data-t="safe">Keep It Safe</button>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- ============ START HERE ============ -->
+    <section id="start" class="active">
+      <div class="lvl-head">
+        <div class="lvl-num" style="background:var(--pine);color:#fff">▶</div>
+        <div><div class="lvl-tag">Get set up in 10 minutes</div><h2>Start Here</h2></div>
+      </div>
+      <p class="lvl-intro">You do not need to be techy. You need one account and one habit. Here is the whole on-ramp.</p>
+
+      <div class="big">
+        <div class="num">$20<span style="font-size:28px">/mo</span></div>
+        <p>Less than a couple of lunches for a tireless assistant on the administrative side of your week.</p>
+      </div>
+
+      <div class="card">
+        <h3>Set up your assistant</h3>
+        <ol class="step-list">
+          <li>Pick one tool and make an account. <b>ChatGPT</b> (chat.openai.com) or <b>Claude</b> (claude.ai) both work great. Either one is fine to start.</li>
+          <li>Get the paid plan (about $20/month). The free version is limited; the paid version is the one worth your time.</li>
+          <li>Put the app on your phone too, so a summary after a call is 10 seconds away.</li>
+          <li>Do the Level 1 step below today. That is it. You are started.</li>
+        </ol>
+      </div>
+
+      <div class="callout">
+        <h3>The one habit that makes AI useful</h3>
+        <p style="margin:0">Be specific and give context. Do not say "write an email." Say who it is for, what it needs to do, how long, and what tone. The more you tell it, the better it gets. Treat it like a sharp new assistant who is fast but needs clear direction.</p>
+      </div>
+
+      <div class="callout" style="background:#EAF1EC">
+        <h3>Find your level</h3>
+        <p style="margin:0"><b>Level 1 · Search</b> — you use it like a smarter Google. &nbsp;•&nbsp; <b>Level 2 · Communicate</b> — emails, notes, sermons, call summaries. &nbsp;•&nbsp; <b>Level 3 · Build</b> — spreadsheets, dashboards, pipeline tracking. Wherever you are, the next tab up is your next step.</p>
+      </div>
+    </section>
+
+    <!-- ============ LEVEL 1 ============ -->
+    <section id="l1">
+      <div class="lvl-head"><div class="lvl-num" style="background:var(--sage);color:#fff">1</div>
+        <div><div class="lvl-tag">Search</div><h2>Use it like a smarter Google</h2></div></div>
+      <p class="lvl-intro">You ask, it answers, in plain words. This is the easiest and best place to begin. Try one of these today.</p>
+
+      <div class="card">
+        <h3>Ask a real work question <span class="pill">try first</span></h3>
+        <p>Instead of digging through five links, just ask and then read what it gives you.</p>
+        <div class="prompt"><button class="copy">Copy</button>I'm a church planting catalyst with Send Network. Explain the difference between a cooperating, supporting, and sending church in simple terms I could use with a pastor over coffee.</div>
+      </div>
+
+      <div class="card">
+        <h3>Turn dense material into plain words</h3>
+        <p>Paste a long NAMB, denominational, or policy document and ask for the short version.</p>
+        <div class="prompt"><button class="copy">Copy</button>Here is a document. Summarize it in plain language in under 150 words, then list the 3 things I actually need to do. [paste the text]</div>
+        <p class="why">Great for onboarding a new planter to a process without making them read the whole packet.</p>
+      </div>
+
+      <div class="card">
+        <h3>"What am I forgetting?"</h3>
+        <p>Use it as a second brain before a meeting or a step in the pipeline.</p>
+        <div class="prompt"><button class="copy">Copy</button>I have a pre-application meeting with a potential planter this week. What are good questions to discern calling, family health, doctrine, and readiness? Keep it to one page.</div>
+      </div>
+
+      <div class="callout">
+        <h3>One reminder</h3>
+        <p style="margin:0">It can sound confident and still be wrong. You are always the editor. Trust it like a sharp intern, not like Scripture. Read what it gives you before you use it.</p>
+      </div>
+    </section>
+
+    <!-- ============ LEVEL 2 ============ -->
+    <section id="l2">
+      <div class="lvl-head"><div class="lvl-num" style="background:var(--pine);color:#fff">2</div>
+        <div><div class="lvl-tag">Communicate</div><h2>Write and remember, faster</h2></div></div>
+      <p class="lvl-intro">Most of our week is communication. This is where AI saves the most time without touching the ministry itself.</p>
+
+      <div class="card">
+        <h3>The email you keep rewriting <span class="pill">everyday</span></h3>
+        <p>Paste your rough version and let it tighten the tone and the steps.</p>
+        <div class="prompt"><button class="copy">Copy</button>Rewrite this email so it is warm, clear, and short, with numbered next steps, at a sixth-grade reading level. Keep my voice. [paste your draft]</div>
+        <p class="why">Clear communication is most of the job. Spelling right, tone warm, next steps obvious.</p>
+      </div>
+
+      <div class="card">
+        <h3>Off the phone → into the notes <span class="pill">Dave's weekly move</span></h3>
+        <p>The simplest habit that keeps a planter from falling through the cracks.</p>
+        <ol class="steps">
+          <li><b>Talk.</b> Right after a call, open the app and just talk it out.</li>
+          <li><b>Summarize.</b> It writes a clean summary as a document.</li>
+          <li><b>Save.</b> Drop it into your note on that planter so you remember next time.</li>
+        </ol>
+        <div class="prompt"><button class="copy">Copy</button>I just got off a call with a planter. I'm going to talk and you turn it into a clean summary I can save: who I talked to, where they are, what we covered, and the next step. Here it is: [talk or type]</div>
+        <p class="why">Do this all quarter and your quarterly report almost writes itself.</p>
+      </div>
+
+      <div class="card">
+        <h3>Draft a text or announcement</h3>
+        <div class="prompt"><button class="copy">Copy</button>Write a short, warm text inviting our planters to the 3rd Thursday lunch. Friendly, not formal. Two sentences. Include a spot for the date and place.</div>
+      </div>
+
+      <div class="card">
+        <h3>Sermon and teaching helper <span class="pill">for pastors &amp; AMS</span></h3>
+        <p>A study partner, not a ghostwriter. Use it to sharpen, not to replace your voice.</p>
+        <div class="prompt"><button class="copy">Copy</button>I'm preaching on [passage]. Give me the historical context, 3 possible sermon points that build on each other, and 2 everyday illustration ideas. I'll write it in my own words.</div>
+      </div>
+
+      <div class="card">
+        <h3>Meeting notes → action items</h3>
+        <div class="prompt"><button class="copy">Copy</button>Here are my messy meeting notes. Pull out the decisions and a clean action list with who owns each item. [paste notes]</div>
+      </div>
+    </section>
+
+    <!-- ============ LEVEL 3 ============ -->
+    <section id="l3">
+      <div class="lvl-head"><div class="lvl-num">3</div>
+        <div><div class="lvl-tag">Build</div><h2>Make things you can reuse</h2></div></div>
+      <p class="lvl-intro">Here is the unlock: you do not have to know how to build anything. You describe what you want and it builds it with you.</p>
+
+      <div class="card">
+        <h3>Track your pipeline <span class="pill">start here</span></h3>
+        <p>Get every planter and their next step in one view. No one gets lost.</p>
+        <div class="prompt"><button class="copy">Copy</button>Help me build a simple spreadsheet to track my church planters. Columns for name, stage (potential, candidate, funded, aged-out), sending church, last contact, and next step. Give me the headers and show me how to set it up in Google Sheets.</div>
+      </div>
+
+      <div class="card">
+        <h3>Hand it your workflow <span class="pill">the big one</span></h3>
+        <p>You do not start from scratch. You start from your current mess and let it help you shape it.</p>
+        <div class="prompt"><button class="copy">Copy</button>Here is how I currently keep up with my planters: [describe your messy system]. Here is what I wish it did: [describe]. Help me design a simpler, repeatable way to do this, step by step.</div>
+        <p class="why">This works in a tool like Claude or ChatGPT. Just talk it through like you would with an assistant.</p>
+      </div>
+
+      <div class="card">
+        <h3>Turn a document into a clean one-page PDF</h3>
+        <div class="prompt"><button class="copy">Copy</button>Take this content and make it a clean, one-page handout a planter could print: clear headings, short sections, and a checklist at the bottom. [paste content]</div>
+      </div>
+
+      <div class="card">
+        <h3>Build a simple dashboard</h3>
+        <p>Once your data is in a sheet, ask it to help you see it at a glance.</p>
+        <div class="prompt"><button class="copy">Copy</button>In my planter spreadsheet, help me add a summary at the top that counts how many planters are at each stage and flags anyone I haven't contacted in 30 days. Walk me through the formulas.</div>
+      </div>
+
+      <div class="card">
+        <h3>Set up a repeatable weekly workflow</h3>
+        <div class="prompt"><button class="copy">Copy</button>Help me build a simple Monday routine with AI: review my planters, draft any follow-up emails, and update my tracker. Give me a short checklist I can run every week.</div>
+      </div>
+
+      <div class="callout" style="background:var(--forest);color:#fff;margin-top:24px">
+        <h3 style="color:var(--amber)">Want the whole system? Build your own second brain</h3>
+        <p style="color:#CFE0D6;margin-bottom:14px">This is the Send Network vault used to track planters, churches, and the whole pipeline in one place: the framework only, with no real people in it. Download it, open it in Obsidian, and add your own planters. It runs on your computer and stays yours.</p>
+        <p style="margin-bottom:16px"><a href="send-network-brain-starter.zip" style="display:inline-block;background:var(--amber);color:var(--forest);font-weight:700;padding:12px 20px;border-radius:9px;text-decoration:none">Download the starter kit (.zip)</a></p>
+        <p style="color:#CFE0D6;margin-bottom:8px"><b style="color:#fff">Or have Claude build it with you.</b> Unzip it, open Claude, give it the folder, and paste this:</p>
+        <div class="prompt"><button class="copy">Copy</button>Read BUILD-GUIDE.md and README.md in this Send Network starter kit. Set the vault up in my folder, then walk me through adding my first planter.</div>
+        <p style="color:#9DB6AB;font-size:14px;margin-top:12px;margin-bottom:0">New to Obsidian? It's a free notes app. The README walks you through it step by step.</p>
+      </div>
+    </section>
+
+    <!-- ============ KEEP IT SAFE ============ -->
+    <section id="safe" class="safe">
+      <div class="lvl-head"><div class="lvl-num" style="background:var(--amber)">!</div>
+        <div><div class="lvl-tag">One guardrail</div><h2>We handle real people</h2></div></div>
+      <p class="lvl-intro">These tools are safe for everyday drafting, summarizing, and building. Just be wise about what you paste in, because we track real people and sometimes hard details.</p>
+
+      <div class="rule" style="margin-bottom:20px">Rule of thumb: if you wouldn't put it on a postcard, think before you paste it.</div>
+
+      <div class="card">
+        <h3>Fine to use it for</h3>
+        <p style="margin:0">Cleaning up emails, summarizing your own call notes, drafting announcements, building trackers and handouts, sermon and teaching prep, learning a process.</p>
+      </div>
+
+      <div class="card">
+        <h3>Be careful with</h3>
+        <p style="margin:0">Truly sensitive or confidential details: marriage struggles, assessment results, immigration status, integrity or legal matters, and full personal identifiers. Keep names and private details out of it, or use only the accounts our team approves for sensitive work.</p>
+      </div>
+
+      <div class="card">
+        <h3>A quick habit</h3>
+        <p style="margin:0">When in doubt, swap real names for "the planter" and describe the situation generally. You still get the help, without exposing a person's private story.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    Built for the Send Network team &nbsp;•&nbsp; ministrybag.com/cpc &nbsp;•&nbsp; Start where you are. Take one step this week.
+  </footer>
+
+</div><!-- /content -->
+
+<script>
+  // ---------- Password gate ----------
+  var PASSWORD = "send";
+  function unlock(){
+    document.getElementById('gate').classList.add('hidden');
+    document.getElementById('content').classList.remove('hidden');
+    try{ localStorage.setItem('cpc_ai_ok','1'); }catch(e){}
+  }
+  function tryUnlock(){
+    var v = (document.getElementById('pw').value || '').trim().toLowerCase();
+    if(v === PASSWORD){ unlock(); }
+    else{ document.getElementById('err').textContent = "Not quite. Try again."; }
+  }
+  document.getElementById('pw').addEventListener('keydown', function(e){
+    if(e.key === 'Enter'){ tryUnlock(); }
+  });
+  try{ if(localStorage.getItem('cpc_ai_ok') === '1'){ unlock(); } }catch(e){}
+  window.addEventListener('load', function(){ document.getElementById('pw').focus(); });
+
+  // ---------- Tabs ----------
+  document.querySelectorAll('nav button').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      document.querySelectorAll('nav button').forEach(function(b){ b.classList.remove('active'); });
+      document.querySelectorAll('section').forEach(function(s){ s.classList.remove('active'); });
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.t).classList.add('active');
+      window.scrollTo({top:0, behavior:'smooth'});
+    });
+  });
+
+  // ---------- Copy buttons ----------
+  document.querySelectorAll('.prompt .copy').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var text = btn.parentElement.innerText.replace(/^Copy\s*/,'').trim();
+      navigator.clipboard.writeText(text).then(function(){
+        btn.textContent = 'Copied'; btn.classList.add('done');
+        setTimeout(function(){ btn.textContent='Copy'; btn.classList.remove('done'); }, 1600);
+      });
+    });
+  });
+</script>
+</body>
+</html>
