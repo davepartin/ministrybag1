@@ -66,9 +66,7 @@
     font-weight:600;padding:13px 14px;background:#f4f6f8;border-bottom:2px solid var(--accent);white-space:nowrap}
   table.co td{padding:14px;border-bottom:1px solid var(--line);vertical-align:middle}
   table.co tr:last-child td{border-bottom:0}
-  .mark{width:42px;height:42px;border-radius:10px;display:flex;align-items:center;justify-content:center;
-    font-size:19px;font-weight:700;color:#fff}
-  .m1{background:#0f7d6b}.m2{background:#b4653a}.m3{background:#2b6cb0}.m4{background:#3a3f45}.m5{background:#1f5c86}
+  .mark{width:44px;height:44px;max-width:none;object-fit:contain;display:block}
   .tool{font-size:18px;font-weight:700;line-height:1.25}
   .agent{font-size:13px;color:var(--muted)}
   .models{font-size:15px;line-height:1.5}
@@ -121,34 +119,34 @@
 <div class="tablewrap">
 <table class="co">
   <tr>
-    <th style="width:58px"></th><th>Assistant</th><th>Models right now</th><th>Company</th><th>Led by</th>
+    <th style="width:76px"></th><th>Assistant</th><th>Models right now</th><th>Company</th><th>Led by</th>
   </tr>
   <tr>
-    <td><div class="mark m2">C</div></td>
+    <td><img class="mark" src="img/logo-openai.png" alt="OpenAI logo"></td>
     <td><div class="tool">ChatGPT</div><div class="agent">coding agent: Codex</div></td>
     <td class="models"><strong>GPT&#8209;6 Astra</strong> (newest)<br>GPT&#8209;5.6 Sol, Terra, Luna</td>
     <td>OpenAI</td><td>Sam Altman</td>
   </tr>
   <tr>
-    <td><div class="mark m1">A</div></td>
+    <td><img class="mark" src="img/logo-claude.png" alt="Anthropic logo"></td>
     <td><div class="tool">Claude</div><div class="agent">coding agent: Claude Code</div></td>
     <td class="models"><strong>Fable 5.1</strong>, <strong>Opus 5</strong><br>Sonnet 5, Haiku 4.5</td>
     <td>Anthropic</td><td>Dario Amodei</td>
   </tr>
   <tr>
-    <td><div class="mark m3">G</div></td>
+    <td><img class="mark" src="img/logo-gemini.png" alt="Google logo"></td>
     <td><div class="tool">Gemini</div><div class="agent">built into Google apps</div></td>
     <td class="models"><strong>Gemini 3.1 Pro</strong><br>Gemini 3.8 Flash</td>
     <td>Google DeepMind</td><td>Demis Hassabis</td>
   </tr>
   <tr>
-    <td><div class="mark m4">X</div></td>
+    <td><img class="mark" src="img/logo-grok.png" alt="xAI logo"></td>
     <td><div class="tool">Grok</div><div class="agent">built into X</div></td>
     <td class="models"><strong>Grok 4.7</strong></td>
     <td>xAI</td><td>Elon Musk</td>
   </tr>
   <tr>
-    <td><div class="mark m5">M</div></td>
+    <td><img class="mark" src="img/logo-copilot.png" alt="Microsoft logo"></td>
     <td><div class="tool">Copilot</div><div class="agent">built into Office and Windows</div></td>
     <td class="models">Microsoft <strong>MAI</strong> models, plus<br>OpenAI and Anthropic models</td>
     <td>Microsoft</td><td>Satya Nadella</td>
