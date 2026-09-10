@@ -1,0 +1,1933 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>AI for Church Forward · Gemini Edition</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-dark: #070a13;
+    --bg-dark-alt: #0d1424;
+    --bg-card: rgba(15, 23, 42, 0.72);
+    --border-card: rgba(56, 189, 248, 0.16);
+    --border-subtle: rgba(255, 255, 255, 0.08);
+    
+    --gemini-blue: #38bdf8;
+    --gemini-indigo: #6366f1;
+    --gemini-purple: #a855f7;
+    --gemini-cyan: #22d3ee;
+    --gemini-emerald: #10b981;
+    --gemini-grad: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%);
+    
+    --church-gold: #f59e0b;
+    --church-gold-deep: #d97706;
+    --church-gold-glow: rgba(245, 158, 11, 0.25);
+    --church-green: #10b981;
+    
+    --paper-bg: #f8fafc;
+    --paper-card: #ffffff;
+    --paper-border: #e2e8f0;
+    --paper-ink: #0f172a;
+    --paper-muted: #64748b;
+    
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --text-muted: #64748b;
+    
+    --serif: "Instrument Serif", Georgia, serif;
+    --sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    height: 100%;
+    background: var(--bg-dark);
+    color: var(--text-primary);
+    font: 17px/1.6 var(--sans);
+    -webkit-text-size-adjust: 100%;
+    overflow: hidden;
+  }
+  img { max-width: 100%; height: auto; display: block; }
+  button, input { font: inherit; }
+  a { color: var(--gemini-blue); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  :focus-visible { outline: 2px solid var(--gemini-blue); outline-offset: 3px; }
+
+  /* Background Ambient Aurora */
+  .aurora-bg {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background:
+      radial-gradient(1000px 600px at 15% 10%, rgba(56, 189, 248, 0.08), transparent 60%),
+      radial-gradient(900px 500px at 85% 85%, rgba(129, 140, 248, 0.09), transparent 65%),
+      radial-gradient(600px 400px at 50% 50%, rgba(245, 158, 11, 0.04), transparent 50%),
+      var(--bg-dark);
+  }
+
+  /* Interactive Starlight / Sparkles */
+  .stars {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      radial-gradient(1.5px 1.5px at 20% 30%, rgba(56, 189, 248, 0.7), transparent),
+      radial-gradient(1px 1px at 40% 70%, rgba(255, 255, 255, 0.5), transparent),
+      radial-gradient(1.5px 1.5px at 75% 25%, rgba(168, 85, 247, 0.65), transparent),
+      radial-gradient(1px 1px at 85% 65%, rgba(56, 189, 248, 0.5), transparent),
+      radial-gradient(1.5px 1.5px at 10% 80%, rgba(245, 158, 11, 0.6), transparent),
+      radial-gradient(1px 1px at 60% 15%, rgba(255, 255, 255, 0.45), transparent);
+  }
+
+  /* Password Gate */
+  #gate {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    background: radial-gradient(circle at center, #0e172e 0%, #060913 100%);
+    display: grid;
+    place-items: center;
+    padding: 24px;
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  #gate.out {
+    opacity: 0;
+    transform: scale(1.05);
+    pointer-events: none;
+  }
+  .gate-card {
+    width: min(440px, 100%);
+    background: rgba(13, 20, 36, 0.85);
+    backdrop-filter: blur(28px);
+    border: 1px solid var(--border-card);
+    border-radius: 28px;
+    padding: 44px 36px;
+    text-align: center;
+    box-shadow: 0 25px 60px -12px rgba(0, 0, 0, 0.6), 0 0 40px rgba(56, 189, 248, 0.12);
+  }
+  .gate-logo {
+    width: min(290px, 80%);
+    margin: 0 auto 18px;
+    filter: brightness(0) invert(1);
+    opacity: 0.95;
+  }
+  .gate-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(56, 189, 248, 0.12);
+    border: 1px solid rgba(56, 189, 248, 0.25);
+    color: var(--gemini-blue);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 999px;
+    margin-bottom: 14px;
+  }
+  .gate-card h1 {
+    font-family: var(--serif);
+    font-size: clamp(32px, 5vw, 42px);
+    font-weight: 400;
+    margin: 0 0 10px;
+    letter-spacing: -0.02em;
+    color: #fff;
+  }
+  .gate-card p {
+    color: var(--text-secondary);
+    font-size: 15px;
+    margin: 0 0 24px;
+  }
+  .gate-input-wrap {
+    position: relative;
+    margin-bottom: 14px;
+  }
+  .gate-card input {
+    width: 100%;
+    background: rgba(2, 6, 23, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 14px;
+    color: #fff;
+    font-size: 18px;
+    padding: 14px 18px;
+    text-align: center;
+    letter-spacing: 0.05em;
+    transition: all 0.25s;
+  }
+  .gate-card input:focus {
+    outline: none;
+    border-color: var(--gemini-blue);
+    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.25);
+    background: rgba(2, 6, 23, 0.85);
+  }
+  .gate-card button {
+    width: 100%;
+    background: var(--gemini-grad);
+    color: #040814;
+    border: 0;
+    border-radius: 14px;
+    padding: 14px 20px;
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 0.02em;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s, filter 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  .gate-card button:hover {
+    filter: brightness(1.1);
+    transform: translateY(-1px);
+    box-shadow: 0 10px 25px -5px rgba(56, 189, 248, 0.4);
+  }
+  .gate-err {
+    color: #f87171;
+    font-size: 14px;
+    min-height: 22px;
+    margin-top: 12px;
+  }
+
+  /* Global Presentation Progress Bar */
+  .gemini-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    z-index: 50;
+    background: rgba(255, 255, 255, 0.04);
+  }
+  .gemini-progress-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--gemini-grad);
+    box-shadow: 0 0 12px var(--gemini-blue);
+    transition: width 0.25s ease-out;
+  }
+
+  /* Header Chrome */
+  .chrome-top {
+    position: fixed;
+    top: 20px;
+    left: 24px;
+    right: 24px;
+    z-index: 40;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    pointer-events: none;
+    transition: opacity 0.4s;
+  }
+  .chrome-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    pointer-events: auto;
+    background: rgba(7, 10, 19, 0.7);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 8px 16px;
+    border-radius: 999px;
+  }
+  .chrome-brand img {
+    height: 20px;
+    width: auto;
+    filter: brightness(0) invert(1);
+  }
+  .chrome-brand span {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    border-left: 1px solid rgba(255, 255, 255, 0.15);
+    padding-left: 12px;
+  }
+  .chrome-brand span b {
+    color: #fff;
+  }
+
+  .gemini-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(13, 20, 36, 0.75);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(56, 189, 248, 0.22);
+    border-radius: 999px;
+    padding: 7px 15px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: #e2e8f0;
+    pointer-events: auto;
+  }
+  .gemini-sparkle-icon {
+    display: inline-block;
+    color: var(--gemini-blue);
+    font-size: 14px;
+    animation: pulse-sparkle 3s ease-in-out infinite;
+  }
+  @keyframes pulse-sparkle {
+    0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.9; }
+    50% { transform: scale(1.25) rotate(15deg); opacity: 1; filter: drop-shadow(0 0 6px var(--gemini-blue)); }
+  }
+
+  /* Floating Bottom Presenter HUD */
+  .presenter-hud {
+    position: fixed;
+    bottom: 22px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 45;
+    background: rgba(13, 20, 36, 0.82);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 999px;
+    padding: 6px 14px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(56, 189, 248, 0.1);
+  }
+  .hud-counter {
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    color: var(--gemini-blue);
+    padding: 4px 8px;
+  }
+  .hud-divider {
+    width: 1px;
+    height: 16px;
+    background: rgba(255, 255, 255, 0.14);
+  }
+  .hud-title {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    max-width: 220px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .hud-btn {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    font-size: 13px;
+    transition: all 0.2s;
+  }
+  .hud-btn:hover {
+    background: rgba(56, 189, 248, 0.2);
+    border-color: var(--gemini-blue);
+    color: #fff;
+    transform: translateY(-1px);
+  }
+  .hud-kbd {
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.04em;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 0 4px;
+  }
+  .hud-kbd span {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 4px;
+    padding: 1px 5px;
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--text-secondary);
+  }
+
+  /* Right Dot Rail */
+  .rail-nav {
+    position: fixed;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 40;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .rail-nav a {
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 0;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+  }
+  .rail-nav a:hover {
+    background: var(--gemini-blue);
+    transform: scale(1.3);
+  }
+  .rail-nav a.active {
+    height: 22px;
+    background: var(--gemini-grad);
+    box-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+  }
+
+  /* Main Presentation Deck */
+  #deck {
+    height: 100dvh;
+    overflow-y: auto;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+    position: relative;
+    z-index: 10;
+  }
+
+  /* Slide Foundations */
+  .slide {
+    min-height: 100dvh;
+    height: 100dvh;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: clamp(60px, 8vh, 88px) clamp(24px, 5vw, 76px) clamp(54px, 7vh, 80px);
+  }
+
+  /* Slide Themes */
+  .slide.dark {
+    background: transparent;
+    color: var(--text-primary);
+  }
+  .slide.light {
+    background: var(--paper-bg);
+    color: var(--paper-ink);
+  }
+  .slide.gold {
+    background: radial-gradient(ellipse at center top, #1e1b13 0%, #0d0c08 100%);
+    color: #fef3c7;
+    border-top: 1px solid rgba(245, 158, 11, 0.2);
+    border-bottom: 1px solid rgba(245, 158, 11, 0.2);
+  }
+
+  /* Inner Content Containers */
+  .inner {
+    width: min(1140px, 100%);
+    margin-inline: auto;
+    position: relative;
+    z-index: 2;
+  }
+  .inner.narrow { width: min(800px, 100%); }
+  .inner.wide { width: min(1200px, 100%); }
+
+  /* Eyebrows & Typography */
+  .eyebrow {
+    font-family: var(--sans);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--gemini-blue);
+    margin-bottom: 14px;
+  }
+  .eyebrow::before {
+    content: "✦";
+    font-size: 11px;
+    color: inherit;
+  }
+  .light .eyebrow { color: #0284c7; }
+  .gold .eyebrow { color: var(--church-gold); }
+
+  h2 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(34px, 5.2vw, 68px);
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    margin: 0 0 16px;
+    color: inherit;
+  }
+  .light h2 { color: #0f172a; }
+
+  .kicker {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: clamp(19px, 2.3vw, 28px);
+    color: var(--church-gold);
+    margin: 0 0 20px;
+    line-height: 1.35;
+  }
+  .light .kicker { color: #b45309; }
+
+  .lede {
+    font-size: clamp(16px, 1.35vw, 19px);
+    color: var(--text-secondary);
+    line-height: 1.65;
+    margin: 0 0 16px;
+    max-width: 68ch;
+  }
+  .light .lede { color: #475569; }
+  .gold .lede { color: #fde68a; }
+
+  /* Slide Reveal Stagger Animations */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .slide.in .reveal {
+    opacity: 1;
+    transform: none;
+  }
+  .slide.in .d1 { transition-delay: 0.08s; }
+  .slide.in .d2 { transition-delay: 0.16s; }
+  .slide.in .d3 { transition-delay: 0.24s; }
+  .slide.in .d4 { transition-delay: 0.32s; }
+  .slide.in .d5 { transition-delay: 0.40s; }
+  .slide.in .d6 { transition-delay: 0.48s; }
+
+  /* 01 · Hero Slide */
+  #hero {
+    text-align: center;
+    background:
+      radial-gradient(1000px 500px at 50% 60%, rgba(56, 189, 248, 0.15), transparent 65%),
+      radial-gradient(700px 350px at 50% 40%, rgba(168, 85, 247, 0.1), transparent 70%),
+      var(--bg-dark);
+  }
+  #hero .hero-logo {
+    width: min(440px, 75%);
+    margin: 0 auto 16px;
+    filter: brightness(0) invert(1);
+    opacity: 0.95;
+  }
+  #hero .hero-title {
+    font-family: var(--serif);
+    font-size: clamp(44px, 7.5vw, 94px);
+    font-weight: 400;
+    line-height: 0.95;
+    margin: 0;
+    letter-spacing: -0.03em;
+    background: linear-gradient(180deg, #ffffff 0%, #cbd5e1 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  #hero .hero-line {
+    width: 0;
+    height: 2px;
+    background: var(--gemini-grad);
+    margin: 28px auto;
+    border-radius: 999px;
+    transition: width 1s 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+  }
+  #hero.in .hero-line {
+    width: min(280px, 45%);
+  }
+  #hero .hero-tag {
+    font-size: clamp(18px, 1.8vw, 24px);
+    color: var(--text-secondary);
+    margin: 0;
+  }
+  #hero .hero-tag b {
+    color: #fff;
+    font-weight: 700;
+    background: linear-gradient(135deg, #ffffff 0%, var(--gemini-blue) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .scroll-indicator {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+  }
+  .scroll-indicator .drip {
+    width: 1px;
+    height: 24px;
+    background: linear-gradient(var(--gemini-blue), transparent);
+    animation: drip-anim 2s infinite ease-in-out;
+  }
+  @keyframes drip-anim {
+    0%, 100% { transform: scaleY(0.4); opacity: 0.3; }
+    50% { transform: scaleY(1); opacity: 1; filter: drop-shadow(0 0 4px var(--gemini-blue)); }
+  }
+
+  /* Bullet Dots List */
+  .gemini-dots {
+    list-style: none;
+    padding: 0;
+    margin: 22px 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .gemini-dots li {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    font-size: clamp(17px, 1.45vw, 21px);
+    line-height: 1.5;
+    color: #f1f5f9;
+  }
+  .gemini-dots li::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--church-gold);
+    box-shadow: 0 0 8px var(--church-gold-glow);
+    flex: none;
+    margin-top: 0.65em;
+  }
+
+  /* Two Card Tension Grid */
+  .tension-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 24px;
+  }
+  .tension-pane {
+    border-radius: 20px;
+    padding: 28px 32px;
+    backdrop-filter: blur(16px);
+    transition: transform 0.25s, border-color 0.25s;
+  }
+  .tension-pane:hover {
+    transform: translateY(-2px);
+  }
+  .tension-pane.pastor {
+    background: rgba(15, 23, 42, 0.7);
+    border: 1px solid rgba(245, 158, 11, 0.3);
+  }
+  .tension-pane.pastor h3 {
+    color: var(--church-gold);
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin: 0 0 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .tension-pane.assistant {
+    background: rgba(30, 41, 59, 0.5);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+  }
+  .tension-pane.assistant h3 {
+    color: var(--gemini-blue);
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin: 0 0 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .tension-pane ul {
+    margin: 0;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .tension-pane li {
+    font-size: clamp(16px, 1.3vw, 18px);
+    color: #e2e8f0;
+  }
+
+  /* 06 · Five Companies Reel Grid */
+  .company-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 14px;
+    margin-top: 24px;
+  }
+  .company-card {
+    background: var(--paper-card);
+    border: 1px solid var(--paper-border);
+    border-radius: 18px;
+    padding: 20px 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+    transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+  .company-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px -6px rgba(0, 0, 0, 0.08);
+  }
+  .company-card.gemini-spotlight {
+    border-color: rgba(56, 189, 248, 0.6);
+    background: linear-gradient(180deg, #ffffff 0%, #f0f9ff 100%);
+    box-shadow: 0 8px 24px -4px rgba(56, 189, 248, 0.18);
+  }
+  .gemini-ribbon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: var(--gemini-grad);
+    color: #040814;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 999px;
+  }
+  .company-card .logo-mark {
+    width: 44px;
+    height: 44px;
+    object-fit: contain;
+    border-radius: 10px;
+  }
+  .company-card .tool-name {
+    font-size: 19px;
+    font-weight: 800;
+    color: var(--paper-ink);
+    letter-spacing: -0.01em;
+    line-height: 1.1;
+  }
+  .company-card .agent-info {
+    font-size: 12px;
+    color: var(--paper-muted);
+    line-height: 1.3;
+    margin-top: -4px;
+  }
+  .company-card .model-info {
+    font-size: 13.5px;
+    color: #334155;
+    line-height: 1.45;
+    margin-top: auto;
+    padding-top: 10px;
+    border-top: 1px solid #f1f5f9;
+  }
+  .company-card .company-leader {
+    font-size: 12px;
+    color: var(--paper-muted);
+    font-weight: 600;
+  }
+  .company-card .company-leader span {
+    display: block;
+    font-weight: 400;
+    color: #94a3b8;
+  }
+  .table-footnote {
+    font-size: 13.5px;
+    color: var(--paper-muted);
+    margin-top: 18px;
+    font-style: italic;
+  }
+
+  /* 07 · Price / Cost Slide */
+  .cost-box {
+    display: flex;
+    align-items: baseline;
+    gap: 18px;
+    margin: 0 0 10px;
+  }
+  .cost-amt {
+    font-family: var(--serif);
+    font-size: clamp(84px, 16vw, 190px);
+    line-height: 0.85;
+    font-weight: 400;
+    color: var(--church-gold);
+    letter-spacing: -0.04em;
+    text-shadow: 0 0 40px rgba(245, 158, 11, 0.35);
+  }
+  .cost-per {
+    font-size: clamp(20px, 2.2vw, 30px);
+    color: var(--text-secondary);
+    font-weight: 500;
+  }
+
+  /* Numbered Rows */
+  .numrow-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 18px;
+  }
+  .gemini-numrow {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    background: rgba(15, 23, 42, 0.65);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 18px;
+    padding: 18px 24px;
+    backdrop-filter: blur(16px);
+    transition: transform 0.2s, border-color 0.2s;
+  }
+  .gemini-numrow:hover {
+    transform: translateX(4px);
+    border-color: rgba(56, 189, 248, 0.3);
+  }
+  .gemini-numrow .num-badge {
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
+    background: rgba(56, 189, 248, 0.12);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    color: var(--gemini-blue);
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 700;
+    display: grid;
+    place-items: center;
+    flex: none;
+  }
+  .gemini-numrow.gold-num .num-badge {
+    background: rgba(245, 158, 11, 0.15);
+    border-color: rgba(245, 158, 11, 0.35);
+    color: var(--church-gold);
+  }
+  .gemini-numrow .num-content {
+    font-size: clamp(15px, 1.25vw, 17.5px);
+    line-height: 1.55;
+    color: #e2e8f0;
+  }
+  .gemini-numrow .num-content b {
+    display: block;
+    font-size: clamp(17px, 1.35vw, 19px);
+    color: #fff;
+    margin-bottom: 2px;
+  }
+
+  /* Prompt Cards System */
+  .prompt-cards-grid {
+    display: grid;
+    gap: 16px;
+    margin-top: 20px;
+  }
+  .prompt-cards-grid.pair { grid-template-columns: 1fr 1fr; }
+  .prompt-cards-grid.trio { grid-template-columns: 1fr 1fr 1fr; }
+  .prompt-cards-grid.quad { grid-template-columns: 1fr 1fr; }
+
+  .gemini-prompt-card {
+    background: var(--paper-card);
+    border: 1px solid var(--paper-border);
+    border-radius: 18px;
+    padding: 20px 22px;
+    cursor: pointer;
+    position: relative;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .gemini-prompt-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--gemini-blue);
+    box-shadow: 0 10px 24px -4px rgba(56, 189, 248, 0.15);
+  }
+  .gemini-prompt-card .prompt-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+  .gemini-prompt-card .prompt-title {
+    font-family: var(--serif);
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--paper-ink);
+    letter-spacing: -0.01em;
+  }
+  .gemini-prompt-card .copy-btn-pill {
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #0284c7;
+    background: #e0f2fe;
+    padding: 3px 9px;
+    border-radius: 999px;
+    transition: all 0.2s;
+  }
+  .gemini-prompt-card:hover .copy-btn-pill {
+    background: var(--gemini-blue);
+    color: #fff;
+  }
+  .gemini-prompt-card .prompt-text {
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: #334155;
+  }
+
+  /* Weak vs Good Prompt Contrast */
+  .gemini-prompt-card.weak {
+    border-left: 5px solid #ef4444;
+  }
+  .gemini-prompt-card.weak .prompt-title { color: #dc2626; }
+  .gemini-prompt-card.weak .copy-btn-pill { background: #fee2e2; color: #b91c1c; }
+  .gemini-prompt-card.weak:hover .copy-btn-pill { background: #ef4444; color: #fff; }
+
+  .gemini-prompt-card.good {
+    border-left: 5px solid #10b981;
+    background: linear-gradient(180deg, #ffffff 0%, #f0fdf4 100%);
+  }
+  .gemini-prompt-card.good .prompt-title { color: #059669; }
+  .gemini-prompt-card.good .copy-btn-pill { background: #d1fae5; color: #047857; }
+  .gemini-prompt-card.good:hover .copy-btn-pill { background: #10b981; color: #fff; }
+
+  /* Split Showcase Slides (Images + Text) */
+  .showcase-split {
+    display: grid;
+    grid-template-columns: 1fr 1.05fr;
+    gap: 36px;
+    align-items: center;
+  }
+  .showcase-split.flip {
+    grid-template-columns: 1fr 1.15fr;
+  }
+  .showcase-split.flip .showcase-text {
+    order: 2;
+  }
+  .showcase-img-wrap {
+    background: #ffffff;
+    border-radius: 20px;
+    border: 1px solid var(--paper-border);
+    padding: 10px;
+    box-shadow: 0 16px 36px -8px rgba(0, 0, 0, 0.08);
+  }
+  .showcase-img {
+    border-radius: 14px;
+    max-height: 58vh;
+    width: 100%;
+    object-fit: contain;
+  }
+  .showcase-caption {
+    font-size: 13.5px;
+    color: var(--paper-muted);
+    margin-top: 10px;
+    line-height: 1.45;
+  }
+
+  /* Phone Trio Showcase */
+  .phones-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 18px;
+    margin-top: 18px;
+  }
+  .phone-card {
+    background: #ffffff;
+    border: 1px solid var(--paper-border);
+    border-radius: 24px;
+    padding: 12px;
+    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.06);
+    transition: transform 0.25s, box-shadow 0.25s;
+    text-align: center;
+  }
+  .phone-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+  }
+  .phone-shell {
+    background: #0f172a;
+    border-radius: 20px;
+    padding: 8px;
+    overflow: hidden;
+  }
+  .phone-shell img {
+    border-radius: 14px;
+    width: 100%;
+    height: 44vh;
+    object-fit: cover;
+    object-position: top;
+  }
+  .phone-label {
+    margin-top: 12px;
+    font-size: 14px;
+    font-weight: 700;
+  }
+  .phone-label a {
+    color: var(--paper-ink);
+  }
+  .phone-label a:hover {
+    color: #0284c7;
+  }
+
+  /* Roles Grid */
+  .roles-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 18px;
+    margin-top: 24px;
+  }
+  .role-card {
+    background: #ffffff;
+    border: 1px solid var(--paper-border);
+    border-radius: 20px;
+    padding: 26px 24px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+  }
+  .role-card h3 {
+    font-family: var(--serif);
+    font-size: 24px;
+    font-weight: 400;
+    color: #0f172a;
+    margin: 0 0 12px;
+    letter-spacing: -0.015em;
+  }
+  .role-card p {
+    font-size: 14.5px;
+    color: #475569;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* Toast Notification */
+  #gemini-toast {
+    position: fixed;
+    bottom: 80px;
+    left: 50%;
+    transform: translate(-50%, 20px);
+    background: rgba(15, 23, 42, 0.92);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--gemini-blue);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 99;
+    transition: opacity 0.25s, transform 0.25s;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 20px rgba(56, 189, 248, 0.25);
+  }
+  #gemini-toast.show {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+  #gemini-toast .sparkle {
+    color: var(--gemini-blue);
+  }
+
+  /* Closing Slide Sun Aura */
+  .sun-aurora {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--church-gold);
+    margin: 0 auto 28px;
+    box-shadow: 0 0 60px 20px rgba(245, 158, 11, 0.4), 0 0 100px 40px rgba(56, 189, 248, 0.2);
+  }
+
+  /* Responsive Breakpoints */
+  @media (max-width: 960px) {
+    .tension-grid,
+    .prompt-cards-grid.pair,
+    .prompt-cards-grid.trio,
+    .prompt-cards-grid.quad,
+    .showcase-split,
+    .showcase-split.flip,
+    .roles-grid {
+      grid-template-columns: 1fr;
+    }
+    .showcase-split.flip .showcase-text { order: 0; }
+    .company-grid {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding-bottom: 12px;
+    }
+    .company-card {
+      min-width: 80vw;
+      scroll-snap-align: center;
+    }
+    .phones-container {
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+    }
+    .phone-shell img { height: 32vh; }
+    .rail-nav { display: none; }
+    .hud-title, .hud-kbd { display: none; }
+    .slide {
+      padding: 72px 20px 72px;
+    }
+    .showcase-img { max-height: 38vh; }
+  }
+
+  @media (max-height: 740px) {
+    h2 { font-size: clamp(26px, 4.8vh, 44px); margin-bottom: 10px; }
+    .lede { font-size: 15px; margin-bottom: 10px; }
+    .company-card { padding: 12px 14px; gap: 6px; }
+    .phone-shell img { height: 35vh; }
+    .showcase-img { max-height: 44vh; }
+    .cost-amt { font-size: clamp(64px, 14vh, 120px); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    #deck { scroll-behavior: auto; }
+    .reveal { opacity: 1; transform: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="aurora-bg"></div>
+
+<!-- Password Gate -->
+<div id="gate">
+  <div class="gate-card">
+    <img class="gate-logo" src="img/church-forward-bw.png" alt="Church Forward">
+    <div class="gate-badge">✦ Gemini Edition</div>
+    <h1>and Using AI</h1>
+    <p>Type the word you were given to unlock the presentation slides.</p>
+    <div class="gate-input-wrap">
+      <input id="pw" type="text" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="Enter password" aria-label="Presentation Password">
+    </div>
+    <button id="go"><span>Unlock Presentation</span> <span>→</span></button>
+    <div class="gate-err" id="err"></div>
+  </div>
+</div>
+
+<!-- Progress Bar -->
+<div class="gemini-progress" aria-hidden="true">
+  <div class="gemini-progress-fill" id="pbar"></div>
+</div>
+
+<!-- Top Chrome -->
+<header class="chrome-top">
+  <div class="chrome-brand">
+    <img src="img/church-forward-bw.png" alt="Church Forward">
+    <span>and Using AI · <b>KNCSB</b></span>
+  </div>
+  <div class="gemini-badge">
+    <span class="gemini-sparkle-icon">✦</span>
+    <span>Gemini 3.8 Flash Edition</span>
+  </div>
+</header>
+
+<!-- Right Dot Rail Navigation -->
+<nav class="rail-nav" id="rail" aria-label="Slide Navigation"></nav>
+
+<!-- Floating Presenter HUD -->
+<aside class="presenter-hud" id="hud" aria-label="Presenter Controls">
+  <div class="hud-counter" id="hud-count">01 / 20</div>
+  <div class="hud-divider"></div>
+  <div class="hud-title" id="hud-title">Title Slide</div>
+  <div class="hud-divider"></div>
+  <button class="hud-btn" id="btn-prev" title="Previous Slide (Arrow Up)">↑</button>
+  <button class="hud-btn" id="btn-next" title="Next Slide (Arrow Down / Space)">↓</button>
+  <button class="hud-btn" id="btn-fs" title="Toggle Fullscreen (F)">⛶</button>
+  <div class="hud-kbd">
+    <span>↑</span><span>↓</span><span>Space</span>
+  </div>
+</aside>
+
+<!-- Click-to-Copy Toast -->
+<div id="gemini-toast" role="status">
+  <span class="sparkle">✦</span>
+  <span id="toast-text">Copied prompt to clipboard</span>
+</div>
+
+<!-- Main Snapping Deck -->
+<main id="deck" hidden>
+
+  <!-- 01 · Hero -->
+  <section class="slide dark" id="slide-hero" data-title="Title Slide">
+    <div class="stars"></div>
+    <div class="inner">
+      <img class="hero-logo reveal" src="img/church-forward-bw.png" alt="Church Forward">
+      <h1 class="hero-title reveal d1">and Using AI</h1>
+      <div class="hero-line"></div>
+      <p class="hero-tag reveal d2"><b>People are the job. AI is the assistant.</b></p>
+    </div>
+    <div class="scroll-indicator reveal d3" onclick="goToSlide(1)">
+      <span>Scroll or Space</span>
+      <div class="drip"></div>
+    </div>
+  </section>
+
+  <!-- 02 · Why Consider AI -->
+  <section class="slide light" id="slide-why" data-title="Why Consider AI">
+    <div class="inner narrow">
+      <div class="eyebrow reveal">Why consider using AI</div>
+      <h2 class="reveal d1">The next tool in a line you already trust.</h2>
+      <p class="lede reveal d2">As Christian workers, our main focus is people. We want to help people connect with God and with the church, and we want to come alongside churches doing the same. Phones and laptops already help us network, run and promote events, and tell the church and the world what God is doing.</p>
+      <p class="lede reveal d3">AI is the next tool in that same line, and it is a strong one. Used well it carries the typing, the drafting, and the keeping track, so our systems run better and we spend more of the week with people.</p>
+      <p class="lede reveal d4">Nothing on this page assumes you have used these tools before. Start where you actually are, do one thing, and tell somebody about it.</p>
+    </div>
+  </section>
+
+  <!-- 03 · Conviction -->
+  <section class="slide dark" id="slide-conviction" data-title="The Conviction">
+    <div class="stars"></div>
+    <div class="inner narrow">
+      <div class="eyebrow reveal">First, the conviction</div>
+      <h2 class="reveal d1">People are the job.</h2>
+      <p class="kicker reveal d2">AI cannot do the part that matters most.</p>
+      <ul class="gemini-dots reveal d3">
+        <li>Sit across the table and listen</li>
+        <li>Discern whether a man is called to stay, called to leave his church, or just tired</li>
+        <li>Comfort a discouraged spouse</li>
+        <li>Deliver hard truth with love</li>
+        <li>Shepherd, notice, and pray</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 04 · Tension -->
+  <section class="slide dark" id="slide-tension" data-title="The Tension">
+    <div class="inner">
+      <div class="eyebrow reveal">The tension you live in</div>
+      <h2 class="reveal d1">You are a minister and a paperwork tracker.</h2>
+      <div class="tension-grid">
+        <div class="tension-pane pastor reveal d2">
+          <h3>Only you can do</h3>
+          <ul>
+            <li>Discernment</li>
+            <li>Pastoral care</li>
+            <li>Hard, loving clarity</li>
+            <li>Prayer and presence</li>
+          </ul>
+        </div>
+        <div class="tension-pane assistant reveal d3">
+          <h3>The assistant can help</h3>
+          <ul>
+            <li>The monthly newsletter</li>
+            <li>Notes after every church visit</li>
+            <li>The annual calendar</li>
+            <li>The report you owe the state office</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 · Reframe -->
+  <section class="slide gold" id="slide-reframe" data-title="The Reframe">
+    <div class="inner narrow">
+      <div class="eyebrow reveal">The reframe</div>
+      <h2 class="reveal d1" style="color:#fef3c7">Give it the admin. Keep the people.</h2>
+      <p class="lede reveal d2">Not “AI does my job.” Instead: AI does the parts of my job that were never the point, so I can do the parts that are.</p>
+    </div>
+  </section>
+
+  <!-- 06 · Five Companies -->
+  <section class="slide light" id="slide-companies" data-title="Five Companies">
+    <div class="inner wide">
+      <div class="eyebrow reveal">Who makes these tools</div>
+      <h2 class="reveal d1">Five companies, five assistants.</h2>
+      <p class="lede reveal d2">The names in the middle column change every few weeks, and you do not need to keep up with them. You need one account and one habit.</p>
+      
+      <div class="company-grid reveal d3">
+        <!-- OpenAI -->
+        <article class="company-card">
+          <img class="logo-mark" src="img/logo-openai.png" alt="OpenAI">
+          <div class="tool-name">ChatGPT</div>
+          <div class="agent-info">coding agent: Codex</div>
+          <div class="model-info">
+            <strong>GPT‑6 Astra</strong> (newest)<br>
+            GPT‑5.6 Sol, Terra, Luna
+          </div>
+          <div class="company-leader">OpenAI <span>Sam Altman</span></div>
+        </article>
+
+        <!-- Anthropic -->
+        <article class="company-card">
+          <img class="logo-mark" src="img/logo-claude.png" alt="Anthropic">
+          <div class="tool-name">Claude</div>
+          <div class="agent-info">coding agent: Claude Code</div>
+          <div class="model-info">
+            <strong>Fable 5.1</strong>, <strong>Opus 5</strong><br>
+            Sonnet 5, Haiku 4.5
+          </div>
+          <div class="company-leader">Anthropic <span>Dario Amodei</span></div>
+        </article>
+
+        <!-- Google Gemini Spotlight -->
+        <article class="company-card gemini-spotlight">
+          <div class="gemini-ribbon">✦ Featured</div>
+          <img class="logo-mark" src="img/logo-gemini.png" alt="Google DeepMind">
+          <div class="tool-name" style="color:#0284c7">Gemini</div>
+          <div class="agent-info">built into Google apps & Antigravity</div>
+          <div class="model-info">
+            <strong>Gemini 3.1 Pro</strong><br>
+            Gemini 3.8 Flash
+          </div>
+          <div class="company-leader">Google DeepMind <span>Demis Hassabis</span></div>
+        </article>
+
+        <!-- xAI Grok -->
+        <article class="company-card">
+          <img class="logo-mark" src="img/logo-grok.png" alt="xAI">
+          <div class="tool-name">Grok</div>
+          <div class="agent-info">built into X</div>
+          <div class="model-info">
+            <strong>Grok 4.7</strong>
+          </div>
+          <div class="company-leader">xAI <span>Elon Musk</span></div>
+        </article>
+
+        <!-- Microsoft Copilot -->
+        <article class="company-card">
+          <img class="logo-mark" src="img/logo-copilot.png" alt="Microsoft">
+          <div class="tool-name">Copilot</div>
+          <div class="agent-info">built into Office and Windows</div>
+          <div class="model-info">
+            Microsoft <strong>MAI</strong> models, plus OpenAI & Anthropic
+          </div>
+          <div class="company-leader">Microsoft <span>Satya Nadella</span></div>
+        </article>
+      </div>
+
+      <p class="table-footnote reveal d4">Checked September 8, 2026. If a model name here looks out of date by the time you read it, that is the point: pick one assistant, learn it, and let the version numbers race without you.</p>
+    </div>
+  </section>
+
+  <!-- 07 · Cost of Entry -->
+  <section class="slide dark" id="slide-cost" data-title="Cost of Entry">
+    <div class="inner narrow">
+      <div class="eyebrow reveal">The cost of entry</div>
+      <div class="cost-box reveal d1">
+        <span class="cost-amt" id="cost-counter">$0</span>
+        <span class="cost-per">a month</span>
+      </div>
+      <h2 class="reveal d2" style="font-size:clamp(30px, 4.4vw, 52px)">Less than two lunches.</h2>
+      <p class="kicker reveal d3">Paid is the difference between a novelty and an assistant.</p>
+      <p class="lede reveal d4">The free versions are real but slower and more limited. Pick one, ChatGPT or Claude, and stay with it for a month rather than sampling four.</p>
+    </div>
+  </section>
+
+  <!-- 08 · Start Here / Context -->
+  <section class="slide light" id="slide-context" data-title="Context Skill">
+    <div class="inner">
+      <div class="eyebrow reveal">Start here</div>
+      <h2 class="reveal d1">The only skill that matters is context.</h2>
+      <p class="lede reveal d2">Most people type six words, get something generic back, and decide the tool is overrated. Tell it who you are, who it is for, how long it should be, and what you want it to sound like. The difference is not subtle. <em>Tap either card to copy.</em></p>
+
+      <div class="prompt-cards-grid pair">
+        <div class="gemini-prompt-card weak reveal d3" data-copy="Write a newsletter about our meeting.">
+          <div>
+            <div class="prompt-top">
+              <span class="prompt-title">✗ Too little to go on</span>
+              <span class="copy-btn-pill">Copy</span>
+            </div>
+            <div class="prompt-text">Write a newsletter about our meeting.</div>
+          </div>
+        </div>
+
+        <div class="gemini-prompt-card good reveal d4" data-copy="I am the associational mission strategist for an association of 22 churches in rural Kansas. Write a short monthly newsletter update, about 300 words, warm and plain, no hype. Here are my notes: [paste your bullet points]. Most of my readers are bivocational pastors who will read this on a phone.">
+          <div>
+            <div class="prompt-top">
+              <span class="prompt-title">✓ The same ask, with context</span>
+              <span class="copy-btn-pill">Copy</span>
+            </div>
+            <div class="prompt-text">I am the associational mission strategist for an association of 22 churches in rural Kansas. Write a short monthly newsletter update, about 300 words, warm and plain, no hype. Here are my notes: [paste your bullet points]. Most of my readers are bivocational pastors who will read this on a phone.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 09 · Three Levels Map -->
+  <section class="slide dark" id="slide-map" data-title="Three Levels Map">
+    <div class="inner narrow">
+      <div class="eyebrow reveal">A simple map</div>
+      <h2 class="reveal d1">Three levels. Find yourself.</h2>
+      
+      <div class="numrow-list reveal d2">
+        <div class="gemini-numrow">
+          <div class="num-badge">1</div>
+          <div class="num-content">
+            <b>Search</b>
+            Ask it questions like a smarter Google, and hand it things too long to read.
+          </div>
+        </div>
+        <div class="gemini-numrow">
+          <div class="num-badge">2</div>
+          <div class="num-content">
+            <b>Communicate</b>
+            Emails, newsletters, visit notes, minutes, teaching prep.
+          </div>
+        </div>
+        <div class="gemini-numrow">
+          <div class="num-badge">3</div>
+          <div class="num-content">
+            <b>Build</b>
+            Documents, summaries of a whole folder, trackers, pages people can open.
+          </div>
+        </div>
+      </div>
+
+      <p class="lede reveal d3" style="margin-top:20px">Nobody is behind. You are just somewhere. Everybody goes up exactly one level, not three.</p>
+    </div>
+  </section>
+
+  <!-- 10 · Level 1 Search -->
+  <section class="slide light" id="slide-level1" data-title="Level 1: Search">
+    <div class="inner wide">
+      <div class="eyebrow reveal">Level 1</div>
+      <h2 class="reveal d1">Search</h2>
+      <p class="lede reveal d2">Asking it a question instead of searching the web, and handing it something long instead of reading all of it. Lowest possible risk, easiest place to start. <em>Tap any prompt to copy.</em></p>
+
+      <div class="prompt-cards-grid trio">
+        <div class="gemini-prompt-card reveal d3" data-copy="Here is a 40 page document. Give me one page a bivocational pastor could read in 20 minutes. Plain language. Tell me what it asks him to actually do.">
+          <div>
+            <div class="prompt-top">
+              <span class="prompt-title">Read this so I do not have to</span>
+              <span class="copy-btn-pill">Copy</span>
+            </div>
+            <div class="prompt-text">Here is a 40 page document. Give me one page a bivocational pastor could read in 20 minutes. Plain language. Tell me what it asks him to actually do.</div>
+          </div>
+        </div>
+
+        <div class="gemini-prompt-card reveal d4" data-copy="I am meeting with a pastor whose church has declined from 120 to 35 over 15 years in a farming town losing population. Give me eight honest questions to ask him that are not insulting, and three things I should be careful not to say.">
+          <div>
+            <div class="prompt-top">
+              <span class="prompt-title">Get me ready for this meeting</span>
+              <span class="copy-btn-pill">Copy</span>
+            </div>
+            <div class="prompt-text">I am meeting with a pastor whose church has declined from 120 to 35 over 15 years in a farming town losing population. Give me eight honest questions to ask him that are not insulting, and three things I should be careful not to say.</div>
+          </div>
+        </div>
+
+        <div class="gemini-prompt-card reveal d5" data-copy="Tell me what is publicly known about the population trend, main employers, and age makeup of [county], Kansas over the last 20 years, and what that would likely mean for a small church there.">
+          <div>
+            <div class="prompt-top">
+              <span class="prompt-title">Tell me about this town</span>
+              <span class="copy-btn-pill">Copy</span>
+            </div>
+            <div class="prompt-text">Tell me what is publicly known about the population trend, main employers, and age makeup of [county], Kansas over the last 20 years, and what that would likely mean for a small church there.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11 · Level 2 Drive / Voice Memo -->
+  <section class="slide light" id="slide-drive" data-title="Level 2: Voice Memo">
+    <div class="inner wide">
+      <div class="showcase-split">
+        <div class="showcase-text">
+          <div class="eyebrow reveal">Level 2</div>
+          <h2 class="reveal d1">Communicate</h2>
+          <p class="lede reveal d2">Using it to write the thing that has been sitting undone. It gets you to about seventy percent in under a minute. The last thirty percent is still yours, and it always will be.</p>
+          <p class="lede reveal d3"><strong>The single most useful move for anyone who drives this state:</strong> You talk for forty seconds pulling out of the parking lot, and the note writes itself.</p>
+        </div>
+        <div class="reveal d4">
+          <div class="showcase-img-wrap">
+            <img class="showcase-img" src="img/drive.png" alt="A voice memo recorded leaving a church visit, turned into a written visit note with follow ups pulled out">
+            <div class="showcase-caption">You still made the drive. You still had the conversation. You just did not lose it on the way back.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12 · Level 2 Prompts -->
+  <section class="slide light" id="slide-level2-prompts" data-title="Level 2: Prompts">
+    <div class="inner wide">
+      <div class="eyebrow reveal">Level 2 · Prompts</div>
+      <h2 class="reveal d1">Write the thing sitting undone.</h2>
+
+      <div class="prompt-cards-grid quad">
+        <div class="gemini-prompt-card reveal d2" data-copy="Here is a voice memo I recorded leaving a church visit. Turn it into a visit note with the date, who I met, what we discussed, and a separate list of anything I said I would do.">
+          <div>
+            <div class="prompt-top">
+              <span class="prompt-title">Write up my visit</span>
+              <span class="copy-btn-pill">Copy</span>
+            </div>
+            <div class="prompt-text">Here is a voice memo I recorded leaving a church visit. Turn it into a visit note with the date, who I met, what we discussed, and a separate list of anything I said I would do.</div>
+          </div>
+        </div>
+
+        <div class="gemini-prompt-card reveal d3" data-copy="Turn these four bullet points into a warm 300 word update for our churches. Do not use exclamation points. Sound like a pastor, not a marketing department.">
+          <div>
+            <div class="prompt-top">
+              <span class="prompt-title">Draft my newsletter</span>
+              <span class="copy-btn-pill">Copy</span>
+            </div>
+            <div class="prompt-text">Turn these four bullet points into a warm 300 word update for our churches. Do not use exclamation points. Sound like a pastor, not a marketing department.</div>
+          </div>
+        </div>
+
+        <div class="gemini-prompt-card reveal d4" data-copy="Help me write a kind and clear email to a pastor who did not follow through on something he committed to. Direct, not harsh. I want to keep the relationship.">
+          <div>
+            <div class="prompt-top">
+              <span class="prompt-title">Write the email I am avoiding</span>
+              <span class="copy-btn-pill">Copy</span>
+            </div>
+            <div class="prompt-text">Help me write a kind and clear email to a pastor who did not follow through on something he committed to. Direct, not harsh. I want to keep the relationship.</div>
+          </div>
+        </div>
+
+        <div class="gemini-prompt-card reveal d5" data-copy="Here is the recording of our committee meeting. Give me clean minutes, then a separate list of decisions made and who owns each follow up.">
+          <div>
+            <div class="prompt-top">
+              <span class="prompt-title">Turn this recording into minutes</span>
+              <span class="copy-btn-pill">Copy</span>
+            </div>
+            <div class="prompt-text">Here is the recording of our committee meeting. Give me clean minutes, then a separate list of decisions made and who owns each follow up.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 13 · Weekly Move -->
+  <section class="slide dark" id="slide-weekly" data-title="My Weekly Move">
+    <div class="inner narrow">
+      <div class="eyebrow reveal">My weekly move</div>
+      <h2 class="reveal d1">Off the phone, into the notes.</h2>
+      
+      <div class="numrow-list reveal d2">
+        <div class="gemini-numrow gold-num">
+          <div class="num-badge">1</div>
+          <div class="num-content">
+            <b>Talk</b>
+            Right after a visit or a call, I just talk. Here is who I saw, here is where they are, here is the next step.
+          </div>
+        </div>
+        <div class="gemini-numrow gold-num">
+          <div class="num-badge">2</div>
+          <div class="num-content">
+            <b>Summarize</b>
+            It writes a clean note out of what I said.
+          </div>
+        </div>
+        <div class="gemini-numrow gold-num">
+          <div class="num-badge">3</div>
+          <div class="num-content">
+            <b>Save</b>
+            I drop it onto that church's page, so next time I remember.
+          </div>
+        </div>
+      </div>
+
+      <p class="lede reveal d3" style="margin-top:20px">Now think about your annual report on every church in the association. It nearly writes itself, and the pastor feels remembered.</p>
+    </div>
+  </section>
+
+  <!-- 14 · Level 3 Build: Sports Camp -->
+  <section class="slide light" id="slide-sportscamp" data-title="Level 3: Reproducible">
+    <div class="inner wide">
+      <div class="showcase-split flip">
+        <div class="showcase-text">
+          <div class="eyebrow reveal">Level 3</div>
+          <h2 class="reveal d1">Build</h2>
+          <p class="lede reveal d2">Making something that did not exist before. Most people assume they cannot reach this level. It is the one that pays back the most, because you build it once and it serves people for years.</p>
+          <p class="lede reveal d3"><strong>Make a good thing reproducible:</strong> Our church runs a free neighborhood sports camp every June. Other pastors kept asking how we do it and I kept re-explaining it, so I had everything we know turned into one document another church could pick up and run: schedule, budget, volunteer structure, timeline.</p>
+          <p class="lede reveal d4">You have something your association does well. Somebody in another association is going to ask you about it. Make it once instead of explaining it eleven times.</p>
+        </div>
+        <div class="reveal d5">
+          <div class="showcase-img-wrap">
+            <img class="showcase-img" src="img/sportscamp.png" alt="Sports Camp Overview document">
+            <div class="showcase-caption">Built in an afternoon from notes we already had.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 15 · Level 3 Build: Send Network One Page -->
+  <section class="slide light" id="slide-onepage" data-title="Level 3: One Page">
+    <div class="inner wide">
+      <div class="showcase-split">
+        <div class="showcase-text">
+          <div class="eyebrow reveal">Level 3</div>
+          <h2 class="reveal d1">Turn a pile into one page.</h2>
+          <p class="lede reveal d2">Every potential church planter I work with goes through a pre-application packet. It was a stack of PDFs nobody could hold in their head. I had the whole stack read and synthesized, the folder reorganized, and this made: one picture a man can look at once and finally understand what he is walking into.</p>
+          <p class="lede reveal d3">Yours might be the constitution, the bylaws, four years of minutes and the personnel policy. Right now that is a drawer. It could be one page a search committee could actually read.</p>
+        </div>
+        <div class="reveal d4">
+          <div class="showcase-img-wrap">
+            <img class="showcase-img" src="img/sendnetwork-phases.jpg" alt="Send Network planting phases infographic">
+            <div class="showcase-caption">Twelve steps across four phases, on one single page.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 16 · Level 3 Build: Training into Links -->
+  <section class="slide light" id="slide-links" data-title="Level 3: Live Links">
+    <div class="inner wide">
+      <div class="eyebrow reveal">Level 3</div>
+      <h2 class="reveal d1">Turn training into a link.</h2>
+      <p class="lede reveal d2">Material you already teach can become a page you text to a pastor instead of a binder you mail him. All three are free, all work on a phone, and none of them required knowing how to write code. <em>Tap any phone to open it.</em></p>
+
+      <div class="phones-container reveal d3">
+        <div class="phone-card">
+          <a href="https://ministrybag.com/" target="_blank" rel="noopener">
+            <div class="phone-shell">
+              <img src="img/ministrybag.jpg" alt="MinistryBag website on mobile">
+            </div>
+          </a>
+          <div class="phone-label"><a href="https://ministrybag.com/" target="_blank" rel="noopener">ministrybag.com</a></div>
+        </div>
+
+        <div class="phone-card">
+          <a href="https://ministrybag.com/discipleship/" target="_blank" rel="noopener">
+            <div class="phone-shell">
+              <img src="img/discipleship.jpg" alt="Growing Together Discipleship on mobile">
+            </div>
+          </a>
+          <div class="phone-label"><a href="https://ministrybag.com/discipleship/" target="_blank" rel="noopener">the discipleship series</a></div>
+        </div>
+
+        <div class="phone-card">
+          <a href="https://ministrybag.com/genex/" target="_blank" rel="noopener">
+            <div class="phone-shell">
+              <img src="img/genex.jpg" alt="GENEX Alphabet on mobile">
+            </div>
+          </a>
+          <div class="phone-label"><a href="https://ministrybag.com/genex/" target="_blank" rel="noopener">the GENEX alphabet</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 17 · Guardrails -->
+  <section class="slide dark" id="slide-guardrails" data-title="Two Guardrails">
+    <div class="inner">
+      <div class="eyebrow reveal">Two guardrails</div>
+      <h2 class="reveal d1">We handle real people.</h2>
+      
+      <div class="tension-grid">
+        <div class="tension-pane pastor reveal d2">
+          <h3>Read everything it makes</h3>
+          <p style="color:#cbd5e1;line-height:1.6;margin:0">It gets you most of the way there and hands it to you with total confidence, including when it is wrong. It will invent a date, a statistic, or a Scripture reference that sounds right. Check names, numbers, dates and Scripture, then fix the voice. It is a very fast typist with no discernment. You are still the one with discernment.</p>
+        </div>
+
+        <div class="tension-pane assistant reveal d3">
+          <h3>Keep private things out</h3>
+          <p style="color:#cbd5e1;line-height:1.6;margin:0">A pastor's marriage, a moral failure, a church fight, a personnel file. Take the names out. “A pastor in a church of forty is dealing with a conflict between two deacons” gets you the same help and costs you nothing. If you would not put it on a postcard, think before you paste it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 18 · Seat at the Table -->
+  <section class="slide light" id="slide-roles" data-title="In Your Job">
+    <div class="inner wide">
+      <div class="eyebrow reveal">For your seat at the table</div>
+      <h2 class="reveal d1">What this looks like in your job.</h2>
+
+      <div class="roles-grid">
+        <article class="role-card reveal d2">
+          <h3>Associational mission strategists</h3>
+          <p>The newsletter, the annual calendar, the visit notes from a two hour drive, the report to the state office, the ordination council question set, the county demographic picture, the forty page document condensed for a man with twenty minutes. None of this touches the part of your work that is actually yours.</p>
+        </article>
+
+        <article class="role-card reveal d3">
+          <h3>Webster Conference Center</h3>
+          <p>Confirmation emails that sound like a person wrote them, packing lists by age group, retreat schedules, summer staff onboarding material, dietary and food count summaries, work order logs, and honest description copy for the families and civic groups who have never been out there.</p>
+        </article>
+
+        <article class="role-card reveal d4">
+          <h3>Convention office and support staff</h3>
+          <p>Minutes from a recording, form letters that do not read like form letters, scholarship applications summarized side by side, expense categorization, a spreadsheet turned into a chart for a board report, and the first draft of anything you have been dreading.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 19 · This Week -->
+  <section class="slide dark" id="slide-week" data-title="This Week">
+    <div class="inner narrow">
+      <div class="eyebrow reveal">This week</div>
+      <h2 class="reveal d1">Everyone leaves with one step.</h2>
+
+      <div class="numrow-list reveal d2">
+        <div class="gemini-numrow">
+          <div class="num-badge">1</div>
+          <div class="num-content">
+            <b>Level 1</b>
+            Ask it one real work question you would have Googled.
+          </div>
+        </div>
+        <div class="gemini-numrow">
+          <div class="num-badge">2</div>
+          <div class="num-content">
+            <b>Level 2</b>
+            After your next church visit, talk out a summary and save it.
+          </div>
+        </div>
+        <div class="gemini-numrow">
+          <div class="num-badge">3</div>
+          <div class="num-content">
+            <b>Level 3</b>
+            Hand it your way of keeping up with your churches and build a cleaner one.
+          </div>
+        </div>
+      </div>
+
+      <p class="lede reveal d3" style="margin-top:20px">One task. Not three. Pick the smallest real thing on your desk.</p>
+    </div>
+  </section>
+
+  <!-- 20 · Close -->
+  <section class="slide dark" id="slide-close" data-title="Closing">
+    <div class="stars"></div>
+    <div class="inner narrow" style="text-align:center">
+      <div class="sun-aurora reveal"></div>
+      <div class="eyebrow reveal d1" style="justify-content:center">Then two habits</div>
+      <h2 class="reveal d2" style="font-size:clamp(36px, 5.5vw, 68px)">Better tools, so we can be better shepherds.</h2>
+      <p class="lede reveal d3" style="margin-inline:auto">When you learn something useful, tell somebody. Call the strategist two counties over and show him. Try it badly. Ask for help out loud. The point was never speed. The point is the hour it gives back, and the pastor in a town of nine hundred who has not had anybody ask how he is doing since March.</p>
+      <p class="lede reveal d4" style="margin-inline:auto">Give the assistant the assistant work. Spend the time you save on people. Start where you are, and take one step this week. More tools at <a href="https://ministrybag.com/" target="_blank" rel="noopener">ministrybag.com</a>.</p>
+    </div>
+  </section>
+
+</main>
+
+<script>
+(function(){
+  var PASS = "forward";
+  var gate = document.getElementById("gate");
+  var deck = document.getElementById("deck");
+  var pw = document.getElementById("pw");
+  var go = document.getElementById("go");
+  var err = document.getElementById("err");
+  var slides = Array.from(document.querySelectorAll(".slide"));
+  var rail = document.getElementById("rail");
+  var hud = document.getElementById("hud");
+  var hudCount = document.getElementById("hud-count");
+  var hudTitle = document.getElementById("hud-title");
+  var pbar = document.getElementById("pbar");
+  var btnPrev = document.getElementById("btn-prev");
+  var btnNext = document.getElementById("btn-next");
+  var btnFs = document.getElementById("btn-fs");
+  var toastEl = document.getElementById("gemini-toast");
+  var toastText = document.getElementById("toast-text");
+  var costCounter = document.getElementById("cost-counter");
+  
+  var toastTimer;
+  var counted = false;
+  var currentIndex = 0;
+
+  // Build Rail Navigation Dots
+  slides.forEach(function(s, idx){
+    var a = document.createElement("a");
+    a.href = "#" + s.id;
+    a.title = (idx + 1) + ". " + (s.getAttribute("data-title") || s.id);
+    a.setAttribute("aria-label", "Jump to slide " + (idx + 1));
+    a.addEventListener("click", function(e){
+      e.preventDefault();
+      s.scrollIntoView({ behavior: "smooth" });
+    });
+    rail.appendChild(a);
+  });
+  var railDots = Array.from(rail.querySelectorAll("a"));
+
+  function pad(n){ return (n < 10 ? "0" : "") + n; }
+
+  // Update Active State
+  function setActiveSlide(slide){
+    var idx = slides.indexOf(slide);
+    if (idx === -1) return;
+    currentIndex = idx;
+
+    railDots.forEach(function(dot, k){
+      dot.classList.toggle("active", k === idx);
+    });
+
+    hudCount.textContent = pad(idx + 1) + " / " + pad(slides.length);
+    var title = slide.getAttribute("data-title") || "Slide " + (idx + 1);
+    hudTitle.textContent = title;
+
+    if (slide.id === "slide-cost" && !counted) {
+      countUpCost();
+    }
+  }
+
+  // Cost Counter Animation ($0 -> $20)
+  function countUpCost(){
+    counted = true;
+    var current = 0;
+    var target = 20;
+    var stepTime = 40;
+    var timer = setInterval(function(){
+      current++;
+      costCounter.textContent = "$" + current;
+      if (current >= target) {
+        clearInterval(timer);
+      }
+    }, stepTime);
+  }
+
+  // Intersection Observer for Slide In Animations & State
+  var observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if (entry.isIntersecting){
+        entry.target.classList.add("in");
+        setActiveSlide(entry.target);
+      }
+    });
+  }, { root: deck, threshold: 0.52 });
+
+  // Progress Bar Tracking
+  deck.addEventListener("scroll", function(){
+    var maxScroll = deck.scrollHeight - deck.clientHeight;
+    var pct = maxScroll <= 0 ? 0 : (deck.scrollTop / maxScroll) * 100;
+    pbar.style.width = pct + "%";
+  }, { passive: true });
+
+  // Slide Jump Functions
+  window.goToSlide = function(targetIdx){
+    var clamped = Math.max(0, Math.min(slides.length - 1, targetIdx));
+    slides[clamped].scrollIntoView({ behavior: "smooth" });
+  };
+
+  btnPrev.addEventListener("click", function(){
+    goToSlide(currentIndex - 1);
+  });
+  btnNext.addEventListener("click", function(){
+    goToSlide(currentIndex + 1);
+  });
+
+  // Fullscreen Toggle
+  btnFs.addEventListener("click", function(){
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen().catch(function(){});
+    } else {
+      document.exitFullscreen().catch(function(){});
+    }
+  });
+
+  // Keyboard Navigation
+  document.addEventListener("keydown", function(e){
+    if (gate && !gate.classList.contains("out")) {
+      if (e.key === "Enter") unlockGate();
+      return;
+    }
+
+    if (["ArrowDown", "PageDown", " "].indexOf(e.key) >= 0) {
+      e.preventDefault();
+      goToSlide(currentIndex + 1);
+    } else if (["ArrowUp", "PageUp"].indexOf(e.key) >= 0) {
+      e.preventDefault();
+      goToSlide(currentIndex - 1);
+    } else if (e.key === "Home") {
+      e.preventDefault();
+      goToSlide(0);
+    } else if (e.key === "End") {
+      e.preventDefault();
+      goToSlide(slides.length - 1);
+    } else if (e.key.toLowerCase() === "f") {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(function(){});
+      } else {
+        document.exitFullscreen().catch(function(){});
+      }
+    }
+  });
+
+  // Toast System
+  function showToast(msg){
+    toastText.textContent = msg;
+    toastEl.classList.add("show");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){
+      toastEl.classList.remove("show");
+    }, 1800);
+  }
+
+  // Click-to-copy handler
+  document.querySelectorAll(".gemini-prompt-card[data-copy]").forEach(function(card){
+    card.addEventListener("click", function(){
+      var text = card.getAttribute("data-copy");
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function(){
+          showToast("Copied prompt to clipboard");
+        }).catch(function(){
+          showToast("Prompt copied");
+        });
+      } else {
+        var ta = document.createElement("textarea");
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand("copy");
+        document.body.removeChild(ta);
+        showToast("Copied prompt to clipboard");
+      }
+    });
+  });
+
+  // Unlock Gate Logic
+  function unlockGate(){
+    if (pw.value.trim().toLowerCase() === PASS) {
+      deck.hidden = false;
+      gate.classList.add("out");
+      slides.forEach(function(s){ observer.observe(s); });
+      slides[0].classList.add("in");
+      setActiveSlide(slides[0]);
+      try { sessionStorage.setItem("cf-ai-gemini-unlocked", "1"); } catch(e){}
+      setTimeout(function(){
+        if (gate && gate.parentNode) gate.remove();
+      }, 700);
+    } else {
+      err.textContent = "That is not it. Try again.";
+      pw.select();
+    }
+  }
+
+  go.addEventListener("click", unlockGate);
+  pw.addEventListener("keydown", function(e){
+    if (e.key === "Enter") unlockGate();
+  });
+  pw.focus();
+
+  // Auto-unlock if session exists
+  try {
+    if (sessionStorage.getItem("cf-ai-gemini-unlocked") === "1") {
+      deck.hidden = false;
+      if (gate && gate.parentNode) gate.remove();
+      slides.forEach(function(s){ observer.observe(s); });
+      slides[0].classList.add("in");
+      setActiveSlide(slides[0]);
+    }
+  } catch(e){}
+
+})();
+</script>
+</body>
+</html>

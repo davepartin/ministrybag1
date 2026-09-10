@@ -1,0 +1,944 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>AI for Church Forward · Sonnet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green:#1e3a32; --green-deep:#14261f; --green-soft:#2b4a40;
+    --gold:#d99b3f; --gold-deep:#b97e29; --orange:#c46808; --rust:#a4523c;
+    --paper:#f6f1e6; --paper-2:#efe7d6; --card:#fffdf8;
+    --ink:#1b2420; --ink-soft:#3c463f; --muted:#6b756d; --line:#ddd5c6;
+    --serif:"Fraunces","Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+    --sans:"Inter","Segoe UI",system-ui,-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;scroll-snap-type:y proximity;scroll-padding-top:0}
+  body{margin:0;background:var(--paper);color:var(--ink);
+    font:18px/1.62 var(--sans);-webkit-text-size-adjust:100%;overflow-x:hidden}
+  img{max-width:100%;height:auto;display:block}
+  a{color:var(--green)}
+  button,input{font:inherit}
+  :focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+
+  /* paper grain */
+  body::after{
+    content:"";position:fixed;inset:0;z-index:60;pointer-events:none;opacity:.4;mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .05 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+
+  /* ---------- gate ---------- */
+  #gate{position:fixed;inset:0;z-index:80;background:var(--paper);display:grid;place-items:center;padding:24px;
+    transition:opacity .6s ease, visibility .6s}
+  #gate.out{opacity:0;visibility:hidden}
+  #gate .box{width:min(420px,100%);text-align:center}
+  #gate .logo{width:min(300px,80%);margin:0 auto 16px}
+  #gate h1{font-family:var(--serif);font-weight:400;font-size:clamp(26px,5vw,36px);font-style:italic;margin:0 0 8px;letter-spacing:-.01em}
+  #gate p{color:var(--muted);margin:0 0 20px}
+  #gate input{width:100%;background:var(--card);border:1px solid var(--line);border-radius:10px;color:var(--ink);
+    font-size:20px;padding:13px 15px;text-align:center;margin:0 0 12px}
+  #gate input:focus{outline:none;border-color:var(--gold)}
+  #gate button{width:100%;background:var(--green);color:#fff;border:0;border-radius:10px;padding:14px 18px;
+    font-weight:600;letter-spacing:.02em;cursor:pointer}
+  #gate button:hover{background:var(--green-soft)}
+  #gate .err{color:var(--rust);min-height:22px;font-size:15px;margin-top:10px}
+
+  /* ---------- fixed chrome ---------- */
+  .pbar{position:fixed;left:0;top:0;bottom:0;width:3px;z-index:40;background:rgba(30,58,50,.12)}
+  .pbar i{display:block;width:100%;height:0;background:var(--gold)}
+
+  .brand{position:fixed;top:20px;left:20px;z-index:40;display:flex;align-items:center;gap:10px;
+    opacity:0;transform:translateY(-6px);transition:opacity .45s,transform .45s;pointer-events:none}
+  .brand.show{opacity:1;transform:none}
+  .brand img{height:22px;width:auto}
+  body[data-band="1"] .brand img{filter:invert(1) brightness(1.6)}
+
+  .tab{position:fixed;top:18px;right:20px;z-index:40;font-family:var(--sans);font-weight:700;font-size:10px;
+    letter-spacing:.28em;text-transform:uppercase;color:var(--green);border:1px solid var(--line);
+    background:var(--card);border-radius:999px;padding:7px 13px 6px;opacity:0;transition:opacity .45s,color .4s,border-color .4s,background .4s}
+  .tab.show{opacity:1}
+  .tab b{color:var(--gold-deep);font-weight:700}
+  body[data-band="1"] .tab{color:#f2ede1;background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.22)}
+  body[data-band="1"] .tab b{color:var(--gold)}
+
+  .folio{position:fixed;bottom:18px;left:20px;z-index:40;font-family:var(--serif);font-size:14px;letter-spacing:.14em;
+    color:var(--muted);opacity:0;transition:opacity .45s,color .4s}
+  .folio.show{opacity:1}
+  body[data-band="1"] .folio{color:rgba(242,237,225,.75)}
+
+  .rail{position:fixed;right:16px;top:50%;transform:translateY(-50%);z-index:40;display:flex;flex-direction:column;gap:8px;
+    opacity:0;transition:opacity .45s}
+  .rail.show{opacity:1}
+  .rail button{all:unset;cursor:pointer;width:22px;height:12px;display:flex;align-items:center;justify-content:flex-end}
+  .rail button::after{content:"";display:block;width:14px;height:2px;background:rgba(30,58,50,.32);transition:width .25s,background .25s}
+  .rail button:hover::after{width:22px;background:var(--gold)}
+  .rail button.on::after{width:22px;background:var(--green)}
+  body[data-band="1"] .rail button::after{background:rgba(242,237,225,.4)}
+  body[data-band="1"] .rail button.on::after{background:var(--gold)}
+
+  /* ---------- deck / slides ---------- */
+  main{position:relative;z-index:1}
+  .slide{min-height:100svh;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden;
+    scroll-snap-align:start;scroll-snap-stop:normal;
+    padding:clamp(84px,12vh,128px) clamp(22px,6vw,80px) clamp(60px,9vh,96px)}
+  .slide .ghost{position:absolute;right:-.12em;bottom:-.28em;font-family:var(--serif);font-weight:700;
+    font-size:min(46vw,520px);line-height:1;color:rgba(30,58,50,.05);pointer-events:none;user-select:none;letter-spacing:-.04em;
+    will-change:transform}
+  body[data-band="1"] .slide .ghost, .slide.band .ghost{color:rgba(255,255,255,.05)}
+
+  .page{display:grid;grid-template-columns:168px minmax(0,1fr);gap:clamp(24px,5vw,60px);
+    width:100%;max-width:1060px;margin-inline:auto;align-items:start;position:relative}
+  .margin{display:flex;flex-direction:column;gap:14px}
+  .margin .fnum{font-family:var(--serif);font-size:44px;font-weight:600;color:var(--gold-deep);line-height:.9}
+  .eyebrow{font-family:var(--sans);font-weight:700;font-size:12px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--green);display:flex;align-items:center;gap:9px}
+  .eyebrow::before{content:"";width:20px;height:1px;background:var(--gold);flex:none}
+  .band .eyebrow{color:var(--gold)}
+  .band .eyebrow::before{background:var(--gold)}
+
+  .col{max-width:64ch}
+  .col.wide{max-width:none}
+  h2{font-family:var(--serif);font-weight:600;letter-spacing:-.02em;line-height:1.04;
+    font-size:clamp(30px,4.6vw,54px);margin:0 0 6px;color:var(--ink)}
+  .band h2{color:#fff;font-size:clamp(34px,6vw,72px)}
+  .drawn{height:2px;width:0;background:var(--gold);margin:18px 0 22px;transition:width .8s cubic-bezier(.2,.7,.2,1) .15s}
+  .slide.in .drawn{width:110px}
+  .kicker{font-family:var(--serif);font-style:italic;font-size:clamp(17px,2vw,23px);color:var(--gold-deep);margin:0 0 16px}
+  .band .kicker{color:var(--gold)}
+  p{margin:0 0 15px;color:var(--ink-soft)}
+  .band p{color:#e7ece8}
+  .lede{font-size:clamp(16px,1.3vw,19px)}
+  strong{color:var(--ink);font-weight:600}
+  .band strong{color:#fff}
+  .band a{color:var(--gold);text-underline-offset:2px}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .5s ease,transform .55s cubic-bezier(.2,.7,.2,1)}
+  .slide.in .reveal{opacity:1;transform:none}
+  .slide.in .reveal{transition-delay:calc(var(--d,0) * 70ms)}
+
+  /* band slide layout */
+  .band{background:var(--green);color:#fff}
+  .band.deep{background:var(--green-deep)}
+  .band .wrapb{width:100%;max-width:880px;margin-inline:auto;text-align:center}
+  .band .wrapb .eyebrow{justify-content:center}
+  .band .wrapb .drawn{margin-inline:auto}
+  .band .wrapb p{color:#e7ece8;max-width:60ch;margin-inline:auto}
+
+  /* conviction dots */
+  .dots{list-style:none;padding:0;margin:6px 0 0}
+  .dots li{display:flex;gap:14px;align-items:flex-start;margin:0 0 12px;font-size:clamp(16px,1.5vw,20px);color:var(--ink)}
+  .dots li::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--gold);flex:none;margin-top:.6em}
+  .slide.in .dots li{animation:slidein .5s both}
+  .slide.in .dots li:nth-child(1){animation-delay:.10s}
+  .slide.in .dots li:nth-child(2){animation-delay:.17s}
+  .slide.in .dots li:nth-child(3){animation-delay:.24s}
+  .slide.in .dots li:nth-child(4){animation-delay:.31s}
+  .slide.in .dots li:nth-child(5){animation-delay:.38s}
+  @keyframes slidein{from{opacity:0;transform:translateX(-14px)}to{opacity:1;transform:none}}
+
+  /* two panes */
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:24px;text-align:left}
+  .pane{border-radius:16px;padding:24px 26px}
+  .pane h3{font-family:var(--sans);font-size:12px;letter-spacing:.14em;text-transform:uppercase;margin:0 0 14px;font-weight:700}
+  .pane ul{margin:0;padding-left:18px}
+  .pane li{margin:0 0 8px}
+  .pane.hold{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.18);color:#f2ede1}
+  .pane.hold h3{color:var(--gold)}
+  .pane.give{background:var(--card);color:var(--green)}
+  .pane.give h3{color:var(--orange)}
+  .pane.give p{color:var(--ink-soft)}
+  .pane p{margin:10px 0 0;font-size:15.5px;line-height:1.58}
+
+  /* companies list */
+  .firms{list-style:none;margin:24px 0 14px;padding:0}
+  .firm{display:grid;grid-template-columns:44px 1fr 1.3fr;gap:10px 18px;align-items:center;
+    background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 18px}
+  .firm+.firm{margin-top:7px}
+  .firm img{width:36px;height:36px;object-fit:contain}
+  .fname{font-weight:700;font-size:16px;color:var(--ink)}
+  .fname .sub{display:block;font-weight:400;font-size:12px;color:var(--muted);letter-spacing:.02em}
+  .fmodels{font-size:13.5px;line-height:1.5;color:var(--ink-soft)}
+  .fmodels b{color:var(--ink)}
+  .fwho{font-size:12px;color:var(--muted);grid-column:3}
+  .firm.is-this{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold),0 6px 24px rgba(217,155,63,.14);background:#fffef9}
+  .firm.is-this .fname{color:var(--green)}
+  .badge{display:inline-block;font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+    color:#fff;background:var(--gold-deep);border-radius:999px;padding:2px 8px;margin-left:8px;
+    vertical-align:2px;line-height:1.5}
+  .note{font-size:13.5px;color:var(--muted);margin-top:14px}
+
+  /* price */
+  .amt{font-family:var(--serif);font-weight:700;font-size:clamp(96px,20vw,240px);line-height:.8;color:var(--gold);
+    margin:0 0 8px;letter-spacing:-.04em}
+  .per{font-size:17px;color:#cdd7d1;margin:0 0 14px;letter-spacing:.02em}
+
+  /* prompt cards */
+  .prompts{display:grid;gap:14px;margin-top:20px;text-align:left}
+  .prompts.pair{grid-template-columns:1fr 1fr}
+  .prompts.trio{grid-template-columns:1fr 1fr 1fr}
+  .prompts.quad{grid-template-columns:1fr 1fr}
+  .prompt{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--green);
+    border-radius:0 12px 12px 0;padding:15px 18px 16px;cursor:pointer;transition:transform .18s,border-color .18s,box-shadow .18s}
+  .prompt:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(27,36,32,.08)}
+  .prompt .pl{font-family:var(--serif);font-weight:600;font-size:18px;margin:0 0 8px;display:flex;
+    justify-content:space-between;gap:10px;align-items:baseline;color:var(--ink)}
+  .prompt .pb{font-size:14.5px;line-height:1.55;color:var(--ink-soft)}
+  .prompt .cp{font-family:var(--sans);font-size:9.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-deep);opacity:.75;flex:none}
+  .prompt.weak{border-left-color:var(--rust)}
+  .prompt.weak .pl{color:var(--rust)}
+  .prompt.good{border-left-color:var(--gold)}
+  .prompt.good .pl{color:var(--gold-deep)}
+  .band .prompt{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.16);border-left-color:var(--gold)}
+  .band .prompt .pl{color:#fff}
+  .band .prompt .pb{color:#dbe3de}
+
+  /* numbered rows */
+  .steps{margin-top:22px;text-align:left}
+  .numrow{display:flex;gap:16px;align-items:flex-start;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);
+    border-radius:14px;padding:16px 20px;margin:0 0 10px}
+  .slide:not(.band) .numrow{background:var(--card);border-color:var(--line)}
+  .numrow .n{font-family:var(--serif);font-weight:700;font-size:32px;color:var(--gold);line-height:1;width:30px;flex:none}
+  .numrow .t{font-size:16px;line-height:1.5;color:#e7ece8}
+  .slide:not(.band) .numrow .t{color:var(--ink-soft)}
+  .numrow .t b{display:block;font-size:17px;color:#fff;margin-bottom:2px}
+  .slide:not(.band) .numrow .t b{color:var(--ink)}
+
+  /* figure splits */
+  .split{display:grid;grid-template-columns:1fr 1.02fr;gap:clamp(24px,4vw,44px);align-items:center;margin-top:6px}
+  .split.flip .txt{order:2}
+  .split .shot{border:1px solid var(--line);border-radius:14px;background:var(--card);width:100%;max-height:64vh;object-fit:contain}
+  .cap{font-size:13px;color:var(--muted);margin-top:9px;line-height:1.5}
+  .callout{margin-top:20px;padding:16px 18px;background:var(--paper-2);border-radius:12px;font-size:15px;color:var(--ink-soft)}
+  .callout strong{color:var(--ink)}
+
+  /* phones */
+  .phones{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-top:22px}
+  .phones figure{margin:0}
+  .phones a{display:block;text-decoration:none;color:inherit}
+  .phone{background:#20262c;border-radius:20px;padding:6px;box-shadow:0 14px 34px rgba(28,33,38,.2)}
+  .phone img{border-radius:14px;width:100%;height:44vh;max-height:420px;object-fit:cover;object-position:top}
+  .phones figcaption{text-align:center;font-size:13px;margin-top:9px}
+  .phones figcaption a{color:var(--green);font-weight:600}
+
+  /* roles */
+  .roles{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-top:22px;text-align:left}
+  .role{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px 22px}
+  .role h3{font-family:var(--serif);font-weight:600;font-size:21px;margin:0 0 8px;letter-spacing:-.01em;color:var(--ink)}
+  .role p{margin:0;font-size:14px;color:var(--muted)}
+
+  /* hero */
+  #hero{text-align:center;background:
+    radial-gradient(1100px 480px at 50% 118%, rgba(217,155,63,.16), transparent 60%),var(--paper)}
+  #hero .inner{width:100%;max-width:720px;margin-inline:auto}
+  #hero .logo{width:min(420px,74%);margin:0 auto 6px}
+  #hero .andai{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(38px,7vw,84px);
+    line-height:.95;margin:10px 0 0;letter-spacing:-.02em}
+  #hero .rule{width:0;height:1px;background:var(--gold-deep);margin:24px auto;transition:width 1s .35s ease}
+  #hero.in .rule{width:min(200px,44%)}
+  #hero .tag{font-size:clamp(16px,1.7vw,21px);color:var(--muted);margin:0}
+  #hero .tag b{color:var(--green);font-weight:600}
+  .cue{position:absolute;left:50%;bottom:30px;transform:translateX(-50%);display:flex;flex-direction:column;
+    align-items:center;gap:8px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+  .cue span{width:1px;height:30px;background:linear-gradient(var(--gold-deep),transparent);animation:cue 1.8s ease-in-out infinite}
+  @keyframes cue{0%,100%{transform:scaleY(.4);opacity:.35}50%{transform:scaleY(1);opacity:1}}
+
+  /* close */
+  #close{text-align:center}
+  #close .inner{width:100%;max-width:760px;margin-inline:auto}
+  #close .sun{width:12px;height:12px;border-radius:50%;background:var(--gold);margin:0 auto 22px;
+    box-shadow:0 0 44px 16px rgba(217,155,63,.34)}
+  #close .big{font-family:var(--serif);font-weight:600;font-size:clamp(30px,5vw,60px);line-height:1.08;margin:0 0 18px;color:#fff}
+  #close p{color:#dbe3de;max-width:36em;margin:0 auto 16px}
+
+  /* toast */
+  #toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,18px);background:var(--green);color:#fff;
+    padding:10px 18px;border-radius:999px;font-size:14px;font-weight:600;opacity:0;pointer-events:none;z-index:70;
+    transition:opacity .25s,transform .25s}
+  #toast.show{opacity:1;transform:translate(-50%,0)}
+
+  @media (max-width:900px){
+    .page{grid-template-columns:1fr;gap:16px}
+    .margin{flex-direction:row;align-items:center;gap:16px}
+    .margin .fnum{font-size:30px}
+    .two,.roles,.split,.split.flip{grid-template-columns:1fr}
+    .split.flip .txt{order:0}
+    .prompts.pair,.prompts.trio,.prompts.quad{grid-template-columns:1fr}
+    .firm{grid-template-columns:40px 1fr;gap:6px 14px}
+    .firm .fmodels,.firm .fwho{grid-column:2}
+    .rail{display:none}
+    .phone img{height:32vh}
+    .slide .ghost{font-size:62vw}
+  }
+  @media (max-height:760px) and (min-width:901px){
+    .slide{min-height:100svh}
+    h2{font-size:clamp(28px,4vh,44px)}
+    .amt{font-size:clamp(80px,18vh,150px)}
+    .phone img{height:38vh}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation:none!important;transition:none!important}
+    html{scroll-behavior:auto}
+    .reveal,.dots li{opacity:1;transform:none}
+    .drawn{width:110px}
+  }
+</style>
+</head>
+<body>
+
+<div id="gate">
+  <div class="box">
+    <img class="logo" src="img/church-forward-bw.png" alt="Church Forward">
+    <h1>and Using AI</h1>
+    <p>Type the word you were given to unlock it.</p>
+    <input id="pw" type="text" autocomplete="off" autocapitalize="none" spellcheck="false" aria-label="Password">
+    <button id="go">Unlock</button>
+    <div class="err" id="err"></div>
+  </div>
+</div>
+
+<div class="pbar" aria-hidden="true"><i id="pbarfill"></i></div>
+<div class="brand" id="brand"><img src="img/church-forward-bw.png" alt="Church Forward"></div>
+<div class="tab" id="tab">Built by <b>Sonnet&nbsp;5</b></div>
+<div class="folio" id="folio">01 / 21</div>
+<nav class="rail" id="rail" aria-label="Sections"></nav>
+<div id="toast" role="status">Copied the prompt</div>
+
+<main id="deck" hidden>
+
+  <!-- 01 -->
+  <section class="slide" id="hero" data-nav="Open">
+    <div class="inner">
+      <img class="logo reveal" src="img/church-forward-bw.png" alt="Church Forward">
+      <div class="andai reveal" style="--d:1">and Using AI</div>
+      <div class="rule"></div>
+      <p class="tag reveal" style="--d:2"><b>People are the job. AI is the assistant.</b></p>
+    </div>
+    <div class="cue">Scroll<span></span></div>
+  </section>
+
+  <!-- 02 -->
+  <section class="slide" id="why" data-nav="Why AI">
+    <div class="ghost">02</div>
+    <div class="page">
+      <div class="margin">
+        <div class="eyebrow reveal">Why consider using AI</div>
+        <div class="fnum reveal" style="--d:1">02</div>
+      </div>
+      <div class="col">
+        <h2 class="reveal" style="--d:1">The next tool in a line you already trust.</h2>
+        <div class="drawn"></div>
+        <p class="lede reveal" style="--d:2">As Christian workers, our main focus is people. We want to help people connect with God and with the church, and we want to come alongside churches doing the same. Phones and laptops already help us network, run and promote events, and tell the church and the world what God is doing.</p>
+        <p class="lede reveal" style="--d:3">AI is the next tool in that same line, and it is a strong one. Used well it carries the typing, the drafting, and the keeping track, so our systems run better and we spend more of the week with people.</p>
+        <p class="lede reveal" style="--d:4">Nothing on this page assumes you have used these tools before. Start where you actually are, do one thing, and tell somebody about it.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 -->
+  <section class="slide" id="conviction" data-nav="The conviction">
+    <div class="ghost">03</div>
+    <div class="page">
+      <div class="margin">
+        <div class="eyebrow reveal">First, the conviction</div>
+        <div class="fnum reveal" style="--d:1">03</div>
+      </div>
+      <div class="col">
+        <h2 class="reveal" style="--d:1">People are the job.</h2>
+        <p class="kicker reveal" style="--d:2">AI cannot do the part that matters most.</p>
+        <div class="drawn"></div>
+        <ul class="dots">
+          <li>Sit across the table and listen</li>
+          <li>Discern whether a man is called to stay, called to leave his church, or just tired</li>
+          <li>Comfort a discouraged spouse</li>
+          <li>Deliver hard truth with love</li>
+          <li>Shepherd, notice, and pray</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 -->
+  <section class="slide band" id="tension" data-nav="The tension">
+    <div class="ghost">04</div>
+    <div class="wrapb">
+      <div class="eyebrow reveal">The tension you live in</div>
+      <h2 class="reveal" style="--d:1">You are a minister and a paperwork tracker.</h2>
+      <div class="drawn"></div>
+      <div class="two">
+        <div class="pane hold reveal" style="--d:2">
+          <h3>Only you can do</h3>
+          <ul>
+            <li>Discernment</li>
+            <li>Pastoral care</li>
+            <li>Hard, loving clarity</li>
+            <li>Prayer and presence</li>
+          </ul>
+        </div>
+        <div class="pane give reveal" style="--d:3">
+          <h3>The assistant can help</h3>
+          <ul>
+            <li>The monthly newsletter</li>
+            <li>Notes after every church visit</li>
+            <li>The annual calendar</li>
+            <li>The report you owe the state office</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 -->
+  <section class="slide band deep" id="reframe" data-nav="The reframe">
+    <div class="ghost">05</div>
+    <div class="wrapb">
+      <div class="eyebrow reveal">The reframe</div>
+      <h2 class="reveal" style="--d:1">Give it the admin. Keep the people.</h2>
+      <div class="drawn"></div>
+      <p class="lede reveal" style="--d:2">Not &ldquo;AI does my job.&rdquo; Instead: AI does the parts of my job that were never the point, so I can do the parts that are.</p>
+    </div>
+  </section>
+
+  <!-- 06 -->
+  <section class="slide" id="tools" data-nav="Who makes them">
+    <div class="ghost">06</div>
+    <div class="page">
+      <div class="margin">
+        <div class="eyebrow reveal">Who makes these tools</div>
+        <div class="fnum reveal" style="--d:1">06</div>
+      </div>
+      <div class="col wide">
+        <h2 class="reveal" style="--d:1">Five companies, five assistants.</h2>
+        <div class="drawn"></div>
+        <p class="lede reveal" style="--d:2">The names in the middle column change every few weeks, and you do not need to keep up with them. You need one account and one habit.</p>
+        <ol class="firms reveal" style="--d:3">
+          <li class="firm">
+            <img src="img/logo-openai.png" alt="OpenAI logo">
+            <div class="fname">ChatGPT <span class="sub">coding agent: Codex</span></div>
+            <div class="fmodels"><b>GPT&#8209;6 Astra</b> (newest) &middot; GPT&#8209;5.6 Sol, Terra, Luna</div>
+            <div class="fwho">OpenAI &middot; Sam Altman</div>
+          </li>
+          <li class="firm is-this">
+            <img src="img/logo-claude.png" alt="Anthropic logo">
+            <div class="fname">Claude <span class="badge">This page</span> <span class="sub">coding agent: Claude Code</span></div>
+            <div class="fmodels"><b>Fable 5.1</b>, <b>Opus 5</b> &middot; Sonnet 5, Haiku 4.5</div>
+            <div class="fwho">Anthropic &middot; Dario Amodei</div>
+          </li>
+          <li class="firm">
+            <img src="img/logo-gemini.png" alt="Google logo">
+            <div class="fname">Gemini <span class="sub">built into Google apps</span></div>
+            <div class="fmodels"><b>Gemini 3.1 Pro</b> &middot; Gemini 3.8 Flash</div>
+            <div class="fwho">Google DeepMind &middot; Demis Hassabis</div>
+          </li>
+          <li class="firm">
+            <img src="img/logo-grok.png" alt="xAI logo">
+            <div class="fname">Grok <span class="sub">built into X</span></div>
+            <div class="fmodels"><b>Grok 4.7</b></div>
+            <div class="fwho">xAI &middot; Elon Musk</div>
+          </li>
+          <li class="firm">
+            <img src="img/logo-copilot.png" alt="Microsoft logo">
+            <div class="fname">Copilot <span class="sub">built into Office and Windows</span></div>
+            <div class="fmodels">Microsoft <b>MAI</b> models, plus OpenAI and Anthropic models</div>
+            <div class="fwho">Microsoft &middot; Satya Nadella</div>
+          </li>
+        </ol>
+        <p class="note reveal" style="--d:4">Checked September 8, 2026. If a model name here looks out of date by the time you read it, that is the point: pick one assistant, learn it, and let the version numbers race without you.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 -->
+  <section class="slide band" id="cost" data-nav="The cost">
+    <div class="ghost">07</div>
+    <div class="wrapb">
+      <div class="eyebrow reveal">The cost of entry</div>
+      <div class="amt reveal" id="amt" style="--d:1">$20</div>
+      <p class="per reveal" style="--d:2">a month</p>
+      <h2 class="reveal" style="--d:3">Less than two lunches.</h2>
+      <div class="drawn"></div>
+      <p class="lede reveal" style="--d:4">The free versions are real but slower and more limited. Paid is the difference between a novelty and an assistant. Pick one, ChatGPT or Claude, and stay with it for a month rather than sampling four.</p>
+    </div>
+  </section>
+
+  <!-- 08 -->
+  <section class="slide" id="context" data-nav="Start here">
+    <div class="ghost">08</div>
+    <div class="page">
+      <div class="margin">
+        <div class="eyebrow reveal">Start here</div>
+        <div class="fnum reveal" style="--d:1">08</div>
+      </div>
+      <div class="col wide">
+        <h2 class="reveal" style="--d:1">The only skill that matters is context.</h2>
+        <div class="drawn"></div>
+        <p class="lede reveal" style="--d:2">Most people type six words, get something generic back, and decide the tool is overrated. Tell it who you are, who it is for, how long it should be, and what you want it to sound like. The difference is not subtle. <em>Tap a prompt to copy it.</em></p>
+        <div class="prompts pair">
+          <div class="prompt weak reveal" style="--d:3" data-copy="Write a newsletter about our meeting.">
+            <div class="pl"><span>&#10007;&nbsp; Too little to go on</span><span class="cp">Copy</span></div>
+            <div class="pb">Write a newsletter about our meeting.</div>
+          </div>
+          <div class="prompt good reveal" style="--d:4" data-copy="I am the associational mission strategist for an association of 22 churches in rural Kansas. Write a short monthly newsletter update, about 300 words, warm and plain, no hype. Here are my notes: [paste your bullet points]. Most of my readers are bivocational pastors who will read this on a phone.">
+            <div class="pl"><span>&#10003;&nbsp; The same ask, with context</span><span class="cp">Copy</span></div>
+            <div class="pb">I am the associational mission strategist for an association of 22 churches in rural Kansas. Write a short monthly newsletter update, about 300 words, warm and plain, no hype. Here are my notes: [paste your bullet points]. Most of my readers are bivocational pastors who will read this on a phone.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 09 -->
+  <section class="slide band" id="map" data-nav="A simple map">
+    <div class="ghost">09</div>
+    <div class="wrapb">
+      <div class="eyebrow reveal">A simple map</div>
+      <h2 class="reveal" style="--d:1">Three levels. Find yourself.</h2>
+      <div class="drawn"></div>
+      <div class="steps reveal" style="--d:2">
+        <div class="numrow"><div class="n">1</div><div class="t"><b>Search</b>Ask it questions like a smarter Google, and hand it things too long to read.</div></div>
+        <div class="numrow"><div class="n">2</div><div class="t"><b>Communicate</b>Emails, newsletters, visit notes, minutes, teaching prep.</div></div>
+        <div class="numrow"><div class="n">3</div><div class="t"><b>Build</b>Documents, summaries of a whole folder, trackers, pages people can open.</div></div>
+      </div>
+      <p class="lede reveal" style="--d:3">Nobody is behind. You are just somewhere. Everybody goes up exactly one level, not three.</p>
+    </div>
+  </section>
+
+  <!-- 10 -->
+  <section class="slide" id="search" data-nav="Level 1 · Search">
+    <div class="ghost">10</div>
+    <div class="page">
+      <div class="margin">
+        <div class="eyebrow reveal">Level 1</div>
+        <div class="fnum reveal" style="--d:1">10</div>
+      </div>
+      <div class="col wide">
+        <h2 class="reveal" style="--d:1">Search</h2>
+        <div class="drawn"></div>
+        <p class="lede reveal" style="--d:2">Asking it a question instead of searching the web, and handing it something long instead of reading all of it. Lowest possible risk, easiest place to start.</p>
+        <div class="prompts trio">
+          <div class="prompt reveal" style="--d:3" data-copy="Here is a 40 page document. Give me one page a bivocational pastor could read in 20 minutes. Plain language. Tell me what it asks him to actually do.">
+            <div class="pl"><span>Read this so I do not have to</span><span class="cp">Copy</span></div>
+            <div class="pb">Here is a 40 page document. Give me one page a bivocational pastor could read in 20 minutes. Plain language. Tell me what it asks him to actually do.</div>
+          </div>
+          <div class="prompt reveal" style="--d:4" data-copy="I am meeting with a pastor whose church has declined from 120 to 35 over 15 years in a farming town losing population. Give me eight honest questions to ask him that are not insulting, and three things I should be careful not to say.">
+            <div class="pl"><span>Get me ready for this meeting</span><span class="cp">Copy</span></div>
+            <div class="pb">I am meeting with a pastor whose church has declined from 120 to 35 over 15 years in a farming town losing population. Give me eight honest questions to ask him that are not insulting, and three things I should be careful not to say.</div>
+          </div>
+          <div class="prompt reveal" style="--d:5" data-copy="Tell me what is publicly known about the population trend, main employers, and age makeup of [county], Kansas over the last 20 years, and what that would likely mean for a small church there.">
+            <div class="pl"><span>Tell me about this town</span><span class="cp">Copy</span></div>
+            <div class="pb">Tell me what is publicly known about the population trend, main employers, and age makeup of [county], Kansas over the last 20 years, and what that would likely mean for a small church there.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11 -->
+  <section class="slide" id="communicate" data-nav="Level 2 · Communicate">
+    <div class="ghost">11</div>
+    <div class="page">
+      <div class="margin">
+        <div class="eyebrow reveal">Level 2</div>
+        <div class="fnum reveal" style="--d:1">11</div>
+      </div>
+      <div class="col wide">
+        <h2 class="reveal" style="--d:1">Communicate</h2>
+        <div class="drawn"></div>
+        <div class="split">
+          <div class="txt">
+            <p class="lede reveal" style="--d:2">Using it to write the thing that has been sitting undone. It gets you to about seventy percent in under a minute. The last thirty percent is still yours, and it always will be.</p>
+            <p class="lede reveal" style="--d:3">The single most useful move for anyone who drives this state. You talk for forty seconds pulling out of the parking lot, and the note writes itself.</p>
+          </div>
+          <figure class="reveal" style="--d:4;margin:0">
+            <img class="shot" src="img/drive.png" alt="A voice memo recorded leaving a church visit, turned into a written visit note with follow ups pulled out">
+            <figcaption class="cap">You talk for forty seconds pulling out of the parking lot, and the note writes itself.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12 -->
+  <section class="slide" id="write" data-nav="Level 2 · Prompts">
+    <div class="ghost">12</div>
+    <div class="page">
+      <div class="margin">
+        <div class="eyebrow reveal">Level 2 &middot; prompts</div>
+        <div class="fnum reveal" style="--d:1">12</div>
+      </div>
+      <div class="col wide">
+        <h2 class="reveal" style="--d:1">Write the thing sitting undone.</h2>
+        <div class="drawn"></div>
+        <div class="prompts quad">
+          <div class="prompt reveal" style="--d:2" data-copy="Here is a voice memo I recorded leaving a church visit. Turn it into a visit note with the date, who I met, what we discussed, and a separate list of anything I said I would do.">
+            <div class="pl"><span>Write up my visit</span><span class="cp">Copy</span></div>
+            <div class="pb">Here is a voice memo I recorded leaving a church visit. Turn it into a visit note with the date, who I met, what we discussed, and a separate list of anything I said I would do.</div>
+          </div>
+          <div class="prompt reveal" style="--d:3" data-copy="Turn these four bullet points into a warm 300 word update for our churches. Do not use exclamation points. Sound like a pastor, not a marketing department.">
+            <div class="pl"><span>Draft my newsletter</span><span class="cp">Copy</span></div>
+            <div class="pb">Turn these four bullet points into a warm 300 word update for our churches. Do not use exclamation points. Sound like a pastor, not a marketing department.</div>
+          </div>
+          <div class="prompt reveal" style="--d:4" data-copy="Help me write a kind and clear email to a pastor who did not follow through on something he committed to. Direct, not harsh. I want to keep the relationship.">
+            <div class="pl"><span>Write the email I am avoiding</span><span class="cp">Copy</span></div>
+            <div class="pb">Help me write a kind and clear email to a pastor who did not follow through on something he committed to. Direct, not harsh. I want to keep the relationship.</div>
+          </div>
+          <div class="prompt reveal" style="--d:5" data-copy="Here is the recording of our committee meeting. Give me clean minutes, then a separate list of decisions made and who owns each follow up.">
+            <div class="pl"><span>Turn this recording into minutes</span><span class="cp">Copy</span></div>
+            <div class="pb">Here is the recording of our committee meeting. Give me clean minutes, then a separate list of decisions made and who owns each follow up.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 13 -->
+  <section class="slide band" id="weekly" data-nav="My weekly move">
+    <div class="ghost">13</div>
+    <div class="wrapb">
+      <div class="eyebrow reveal">My weekly move</div>
+      <h2 class="reveal" style="--d:1">Off the phone, into the notes.</h2>
+      <div class="drawn"></div>
+      <div class="steps reveal" style="--d:2">
+        <div class="numrow"><div class="n">1</div><div class="t"><b>Talk</b>Right after a visit or a call, I just talk. Here is who I saw, here is where they are, here is the next step.</div></div>
+        <div class="numrow"><div class="n">2</div><div class="t"><b>Summarize</b>It writes a clean note out of what I said.</div></div>
+        <div class="numrow"><div class="n">3</div><div class="t"><b>Save</b>I drop it onto that church's page, so next time I remember.</div></div>
+      </div>
+      <p class="lede reveal" style="--d:3">Now think about your annual report on every church in the association. It nearly writes itself, and the pastor feels remembered.</p>
+    </div>
+  </section>
+
+  <!-- 14 -->
+  <section class="slide" id="build" data-nav="Level 3 · Build">
+    <div class="ghost">14</div>
+    <div class="page">
+      <div class="margin">
+        <div class="eyebrow reveal">Level 3</div>
+        <div class="fnum reveal" style="--d:1">14</div>
+      </div>
+      <div class="col wide">
+        <h2 class="reveal" style="--d:1">Build</h2>
+        <div class="drawn"></div>
+        <div class="split flip">
+          <div class="txt">
+            <p class="lede reveal" style="--d:2">Making something that did not exist before. Most people assume they cannot reach this level. It is the one that pays back the most, because you build it once and it serves people for years.</p>
+            <p class="lede reveal" style="--d:3"><strong>Make a good thing reproducible.</strong> Our church runs a free neighborhood sports camp every June. Other pastors kept asking how we do it and I kept re-explaining it, so I had everything we know turned into one document another church could pick up and run: schedule, budget, volunteer structure, timeline.</p>
+            <p class="lede reveal" style="--d:4">You have something your association does well. Somebody in another association is going to ask you about it. Make it once instead of explaining it eleven times.</p>
+          </div>
+          <figure class="reveal" style="--d:5;margin:0">
+            <img class="shot" src="img/sportscamp.png" alt="First page of the Sports Camp Overview document">
+            <figcaption class="cap">Built in an afternoon from notes we already had.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 15 -->
+  <section class="slide" id="onepage" data-nav="Level 3 · One page">
+    <div class="ghost">15</div>
+    <div class="page">
+      <div class="margin">
+        <div class="eyebrow reveal">Level 3</div>
+        <div class="fnum reveal" style="--d:1">15</div>
+      </div>
+      <div class="col wide">
+        <h2 class="reveal" style="--d:1">Turn a pile into one page.</h2>
+        <div class="drawn"></div>
+        <div class="split">
+          <div class="txt">
+            <p class="lede reveal" style="--d:2">Every potential church planter I work with goes through a pre-application packet. It was a stack of PDFs nobody could hold in their head. I had the whole stack read and synthesized, the folder reorganized, and this made: one picture a man can look at once and finally understand what he is walking into.</p>
+            <p class="lede reveal" style="--d:3">Yours might be the constitution, the bylaws, four years of minutes and the personnel policy. Right now that is a drawer. It could be one page a search committee could actually read.</p>
+          </div>
+          <figure class="reveal" style="--d:4;margin:0">
+            <img class="shot" src="img/sendnetwork-phases.jpg" alt="A one page infographic showing the four phases and twelve steps of applying to plant a church">
+            <figcaption class="cap">Twelve steps across four phases, on one page.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 16 -->
+  <section class="slide" id="links" data-nav="Level 3 · A link">
+    <div class="ghost">16</div>
+    <div class="page">
+      <div class="margin">
+        <div class="eyebrow reveal">Level 3</div>
+        <div class="fnum reveal" style="--d:1">16</div>
+      </div>
+      <div class="col wide">
+        <h2 class="reveal" style="--d:1">Turn training into a link.</h2>
+        <div class="drawn"></div>
+        <p class="lede reveal" style="--d:2">Material you already teach can become a page you text to a pastor instead of a binder you mail him. All three are free, all work on a phone, and none of them required knowing how to write code. Tap any phone to open it.</p>
+        <div class="phones reveal" style="--d:3">
+          <figure>
+            <a href="https://ministrybag.com/" target="_blank" rel="noopener">
+              <div class="phone"><img src="img/ministrybag.jpg" alt="MinistryBag.com on a phone"></div>
+            </a>
+            <figcaption><a href="https://ministrybag.com/" target="_blank" rel="noopener">ministrybag.com</a></figcaption>
+          </figure>
+          <figure>
+            <a href="https://ministrybag.com/discipleship/" target="_blank" rel="noopener">
+              <div class="phone"><img src="img/discipleship.jpg" alt="The Growing Together discipleship series on a phone"></div>
+            </a>
+            <figcaption><a href="https://ministrybag.com/discipleship/" target="_blank" rel="noopener">the discipleship series</a></figcaption>
+          </figure>
+          <figure>
+            <a href="https://ministrybag.com/genex/" target="_blank" rel="noopener">
+              <div class="phone"><img src="img/genex.jpg" alt="The GENEX alphabet, 24 charcoal ink-wash tiles from Genesis and Exodus, A through X"></div>
+            </a>
+            <figcaption><a href="https://ministrybag.com/genex/" target="_blank" rel="noopener">the GENEX alphabet</a></figcaption>
+          </figure>
+        </div>
+        <div class="callout reveal" style="--d:4"><strong>Start from your mess.</strong> Whatever your current messy way of keeping up with churches and pastors is, hand it over and say what you wish it did. It shapes it into something usable. None of these started as projects. Every one started with a problem.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 17 -->
+  <section class="slide band" id="guardrails" data-nav="Two guardrails">
+    <div class="ghost">17</div>
+    <div class="wrapb">
+      <div class="eyebrow reveal">Two guardrails</div>
+      <h2 class="reveal" style="--d:1">We handle real people.</h2>
+      <div class="drawn"></div>
+      <div class="two">
+        <div class="pane hold reveal" style="--d:2">
+          <h3>Read everything it makes</h3>
+          <p>It gets you most of the way there and hands it to you with total confidence, including when it is wrong. It will invent a date, a statistic, or a Scripture reference that sounds right. Check names, numbers, dates and Scripture, then fix the voice. It is a very fast typist with no discernment. You are still the one with discernment.</p>
+        </div>
+        <div class="pane give reveal" style="--d:3">
+          <h3>Keep private things out</h3>
+          <p>A pastor's marriage, a moral failure, a church fight, a personnel file. Take the names out. &ldquo;A pastor in a church of forty is dealing with a conflict between two deacons&rdquo; gets you the same help and costs you nothing. If you would not put it on a postcard, think before you paste it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 18 -->
+  <section class="slide" id="roles" data-nav="In your job">
+    <div class="ghost">18</div>
+    <div class="page">
+      <div class="margin">
+        <div class="eyebrow reveal">For your seat at the table</div>
+        <div class="fnum reveal" style="--d:1">18</div>
+      </div>
+      <div class="col wide">
+        <h2 class="reveal" style="--d:1">What this looks like in your job.</h2>
+        <div class="drawn"></div>
+        <div class="roles">
+          <article class="role reveal" style="--d:2">
+            <h3>Associational mission strategists</h3>
+            <p>The newsletter, the annual calendar, the visit notes from a two hour drive, the report to the state office, the ordination council question set, the county demographic picture, the forty page document condensed for a man with twenty minutes. None of this touches the part of your work that is actually yours.</p>
+          </article>
+          <article class="role reveal" style="--d:3">
+            <h3>Webster Conference Center</h3>
+            <p>Confirmation emails that sound like a person wrote them, packing lists by age group, retreat schedules, summer staff onboarding material, dietary and food count summaries, work order logs, and honest description copy for the families and civic groups who have never been out there.</p>
+          </article>
+          <article class="role reveal" style="--d:4">
+            <h3>Convention office and support staff</h3>
+            <p>Minutes from a recording, form letters that do not read like form letters, scholarship applications summarized side by side, expense categorization, a spreadsheet turned into a chart for a board report, and the first draft of anything you have been dreading.</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 19 -->
+  <section class="slide band" id="week" data-nav="This week">
+    <div class="ghost">19</div>
+    <div class="wrapb">
+      <div class="eyebrow reveal">This week</div>
+      <h2 class="reveal" style="--d:1">Everyone leaves with one step.</h2>
+      <div class="drawn"></div>
+      <div class="steps reveal" style="--d:2">
+        <div class="numrow"><div class="n">1</div><div class="t"><b>Level 1</b>Ask it one real work question you would have Googled.</div></div>
+        <div class="numrow"><div class="n">2</div><div class="t"><b>Level 2</b>After your next church visit, talk out a summary and save it.</div></div>
+        <div class="numrow"><div class="n">3</div><div class="t"><b>Level 3</b>Hand it your way of keeping up with your churches and build a cleaner one.</div></div>
+      </div>
+      <p class="lede reveal" style="--d:3">One task. Not three. Pick the smallest real thing on your desk.</p>
+    </div>
+  </section>
+
+  <!-- 20 -->
+  <section class="slide" id="habits" data-nav="Then two habits">
+    <div class="ghost">20</div>
+    <div class="page">
+      <div class="margin">
+        <div class="eyebrow reveal">Then two habits</div>
+        <div class="fnum reveal" style="--d:1">20</div>
+      </div>
+      <div class="col">
+        <h2 class="reveal" style="--d:1">Solve one problem.</h2>
+        <div class="drawn"></div>
+        <p class="lede reveal" style="--d:2">When you learn something useful, tell somebody. Call the strategist two counties over and show him. And when you hear that somebody else is trying something, go try it yourself. Try it badly. Ask for help out loud, from somebody younger than you if that is who knows.</p>
+        <p class="lede reveal" style="--d:3">The point was never speed. The point is the hour it gives back, and the pastor in a town of nine hundred who has not had anybody ask how he is doing since March.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 21 -->
+  <section class="slide band deep" id="close" data-nav="The close">
+    <div class="ghost">21</div>
+    <div class="inner">
+      <div class="sun reveal"></div>
+      <div class="big reveal" style="--d:1">Better tools, so we can be better shepherds.</div>
+      <p class="reveal" style="--d:2">Give the assistant the assistant work. Spend the time you save on people. Start where you are, and take one step this week. More tools at <a href="https://ministrybag.com/">ministrybag.com</a>.</p>
+    </div>
+  </section>
+
+</main>
+
+<script>
+(function(){
+  var WORD = "forward";
+  var gate = document.getElementById("gate"),
+      deck = document.getElementById("deck"),
+      pw = document.getElementById("pw"),
+      go = document.getElementById("go"),
+      err = document.getElementById("err"),
+      brand = document.getElementById("brand"),
+      tab = document.getElementById("tab"),
+      folio = document.getElementById("folio"),
+      rail = document.getElementById("rail"),
+      pfill = document.getElementById("pbarfill"),
+      toastEl = document.getElementById("toast"),
+      amt = document.getElementById("amt");
+  var slides = [].slice.call(document.querySelectorAll(".slide"));
+  var counted = false, toastT;
+
+  function pad(n){ return (n < 10 ? "0" : "") + n; }
+
+  // build nav rail
+  slides.forEach(function(s, i){
+    var b = document.createElement("button");
+    b.type = "button";
+    b.title = s.getAttribute("data-nav") || s.id;
+    b.setAttribute("aria-label", b.title);
+    b.addEventListener("click", function(){ s.scrollIntoView({behavior:"smooth", block:"start"}); });
+    rail.appendChild(b);
+  });
+  var ticks = [].slice.call(rail.querySelectorAll("button"));
+
+  function setActive(slide){
+    var i = slides.indexOf(slide);
+    ticks.forEach(function(t, k){ t.classList.toggle("on", k === i); });
+    folio.textContent = pad(i + 1) + " / " + pad(slides.length);
+    document.body.dataset.band = slide.classList.contains("band") ? "1" : "0";
+    var show = i > 0;
+    brand.classList.toggle("show", show);
+    tab.classList.add("show");
+    folio.classList.add("show");
+    rail.classList.add("show");
+    if (slide.id === "cost" && !counted) countUp();
+  }
+
+  function countUp(){
+    counted = true;
+    var n = 0;
+    amt.textContent = "$0";
+    var t = setInterval(function(){
+      n += 1; amt.textContent = "$" + n;
+      if (n >= 20) clearInterval(t);
+    }, 42);
+  }
+
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting){
+        e.target.classList.add("in");
+        setActive(e.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  function watch(){ slides.forEach(function(s){ io.observe(s); }); }
+
+  // progress bar + gentle parallax on ghost numerals
+  var ticking = false;
+  function onScroll(){
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function(){
+      var max = document.documentElement.scrollHeight - window.innerHeight;
+      pfill.style.height = (max <= 0 ? 0 : (window.scrollY / max) * 100) + "%";
+      var vh = window.innerHeight;
+      slides.forEach(function(s){
+        var r = s.getBoundingClientRect();
+        if (r.bottom > -200 && r.top < vh + 200){
+          var g = s.querySelector(".ghost");
+          if (g){
+            var p = (r.top + r.height / 2 - vh / 2) / vh;
+            g.style.transform = "translateY(" + (p * -46) + "px)";
+          }
+        }
+      });
+      ticking = false;
+    });
+  }
+  window.addEventListener("scroll", onScroll, {passive:true});
+
+  function goTo(dir){
+    var y = window.scrollY, best = 0, dist = Infinity;
+    slides.forEach(function(s, k){
+      var d = Math.abs(s.offsetTop - y);
+      if (d < dist){ dist = d; best = k; }
+    });
+    var i = Math.max(0, Math.min(slides.length - 1, best + dir));
+    slides[i].scrollIntoView({behavior:"smooth", block:"start"});
+  }
+
+  document.addEventListener("keydown", function(e){
+    if (gate && !gate.classList.contains("out")){
+      if (e.key === "Enter") tryIt();
+      return;
+    }
+    if (["ArrowDown","PageDown"].indexOf(e.key) >= 0){ e.preventDefault(); goTo(1); }
+    else if (["ArrowUp","PageUp"].indexOf(e.key) >= 0){ e.preventDefault(); goTo(-1); }
+    else if (e.key === "Home"){ e.preventDefault(); slides[0].scrollIntoView({behavior:"smooth"}); }
+    else if (e.key === "End"){ e.preventDefault(); slides[slides.length - 1].scrollIntoView({behavior:"smooth"}); }
+  });
+
+  function toast(msg){
+    toastEl.textContent = msg;
+    toastEl.classList.add("show");
+    clearTimeout(toastT);
+    toastT = setTimeout(function(){ toastEl.classList.remove("show"); }, 1400);
+  }
+  document.querySelectorAll(".prompt[data-copy]").forEach(function(el){
+    el.addEventListener("click", function(){
+      var t = el.getAttribute("data-copy");
+      if (navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(t).then(function(){ toast("Copied the prompt"); },
+          function(){ toast("Could not copy"); });
+      }
+    });
+  });
+
+  function open(){
+    deck.hidden = false;
+    gate.classList.add("out");
+    watch();
+    slides[0].classList.add("in");
+    setActive(slides[0]);
+    onScroll();
+    try { sessionStorage.setItem("cf-ai-sonnet", "1"); } catch(e){}
+    setTimeout(function(){ if (gate && gate.parentNode) gate.parentNode.removeChild(gate); }, 700);
+  }
+  function tryIt(){
+    if (pw.value.trim().toLowerCase() === WORD) open();
+    else { err.textContent = "That is not it. Try again."; pw.select(); }
+  }
+  go.addEventListener("click", tryIt);
+  pw.addEventListener("keydown", function(e){ if (e.key === "Enter") tryIt(); });
+  pw.focus();
+  try { if (sessionStorage.getItem("cf-ai-sonnet") === "1") open(); } catch(e){}
+})();
+</script>
+</body>
+</html>

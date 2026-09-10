@@ -1,0 +1,791 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>AI for Church Forward · Grok</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Outfit:wght@320;400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --night:#0c100e;
+    --night-2:#151a16;
+    --paper:#f3eee4;
+    --paper-2:#e7dfd0;
+    --ink:#14160f;
+    --bone:#efe8d8;
+    --muted:#8a9184;
+    --muted-d:#5c6358;
+    --wheat:#e0b15c;
+    --wheat-deep:#c48a2e;
+    --sage:#9aaf96;
+    --danger:#c45c3a;
+    --line:rgba(224,177,92,.28);
+    --serif:"Instrument Serif", "Iowan Old Style", Palatino, Georgia, serif;
+    --sans:"Outfit", "Segoe UI", system-ui, sans-serif;
+    --display:"Syne", "Outfit", sans-serif;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;background:var(--night);color:#f3eee4;
+    font:18px/1.55 var(--sans);-webkit-text-size-adjust:100%}
+  img{max-width:100%;height:auto;display:block}
+  button,input{font:inherit}
+  a{color:var(--wheat)}
+  :focus-visible{outline:2px solid var(--wheat);outline-offset:3px}
+
+  /* grain */
+  body::before{
+    content:"";pointer-events:none;position:fixed;inset:0;z-index:40;opacity:.035;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .7 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+
+  /* gate */
+  #gate{position:fixed;inset:0;z-index:30;background:var(--night);display:grid;place-items:center;padding:24px;
+    clip-path:circle(150% at 50% 50%);transition:clip-path .9s cubic-bezier(.7,0,.2,1)}
+  #gate.out{clip-path:circle(0% at 50% 48%)}
+  #gate .box{width:min(420px,100%);text-align:center}
+  #gate .logo{width:min(320px,82%);margin:0 auto 18px;filter:invert(1)}
+  #gate h1{font-family:var(--serif);font-size:clamp(28px,4vw,40px);font-weight:400;margin:0 0 8px;letter-spacing:-.02em}
+  #gate p{color:var(--muted);margin:0 0 22px}
+  #gate input{width:100%;background:transparent;border:0;border-bottom:1px solid var(--line);color:var(--bone);
+    font-size:22px;padding:12px 4px;text-align:center;margin:0 0 18px;border-radius:0;caret-color:var(--wheat)}
+  #gate input:focus,#gate input:focus-visible{outline:none;border-bottom-color:var(--wheat)}
+  #gate button{width:100%;background:var(--wheat);color:var(--night);border:0;border-radius:999px;padding:14px 18px;
+    font-weight:600;letter-spacing:.04em;cursor:pointer}
+  #gate button:hover{background:#edc36e}
+  #gate .err{color:var(--danger);min-height:22px;font-size:15px;margin-top:12px}
+
+  /* chrome */
+  .progress{position:fixed;left:0;top:0;bottom:0;width:3px;z-index:12;background:rgba(224,177,92,.12)}
+  .progress i{display:block;width:100%;height:0;background:var(--wheat);box-shadow:0 0 12px var(--wheat)}
+  .chrome{position:fixed;top:18px;left:22px;z-index:12;display:flex;align-items:center;gap:14px;
+    opacity:0;transform:translateY(-8px);transition:opacity .4s,transform .4s,filter .3s;pointer-events:none}
+  .chrome.show{opacity:1;transform:none;pointer-events:auto}
+  .chrome img{height:22px;width:auto}
+  body[data-theme="dark"] .chrome img{filter:invert(1)}
+  body[data-theme="gold"] .chrome img{filter:none}
+  body[data-theme="gold"] .by, body[data-theme="gold"] .count{color:#1a1408}
+  body[data-theme="gold"] .by{background:rgba(255,255,255,.28);padding:5px 10px;border-radius:999px}
+  body[data-theme="gold"] .rail a{border-color:rgba(26,20,8,.4)}
+  body[data-theme="gold"] .rail a.on{background:#1a1408;border-color:#1a1408}
+  .by{position:fixed;top:18px;right:28px;z-index:12;font-family:var(--display);font-size:11px;font-weight:800;
+    letter-spacing:.22em;text-transform:uppercase;color:var(--wheat);opacity:0;transition:opacity .4s}
+  .by.show{opacity:1}
+  .rail{position:fixed;right:18px;top:50%;transform:translateY(-50%);z-index:12;display:flex;flex-direction:column;gap:9px;
+    opacity:0;transition:opacity .4s}
+  .rail.show{opacity:1}
+  .rail a{width:9px;height:9px;border-radius:50%;background:transparent;border:1px solid rgba(224,177,92,.45);
+    display:block;text-indent:-999px;overflow:hidden}
+  .rail a.on{background:var(--wheat);border-color:var(--wheat);transform:scale(1.25)}
+  .count{position:fixed;bottom:20px;left:22px;z-index:12;font-family:var(--display);font-size:12px;font-weight:800;
+    letter-spacing:.16em;color:var(--wheat);opacity:0;transition:opacity .4s}
+  .count.show{opacity:1}
+
+  /* deck */
+  #deck{height:100dvh;overflow-y:auto;scroll-snap-type:y mandatory;scroll-behavior:smooth}
+  .slide{min-height:100%;height:100dvh;scroll-snap-align:start;scroll-snap-stop:always;overflow:hidden;
+    display:flex;flex-direction:column;justify-content:center;position:relative;
+    padding:clamp(64px,9vh,92px) clamp(28px,6vw,88px) clamp(48px,7vh,72px)}
+  .slide.light{background:var(--paper);color:#16170f}
+  .slide.gold{background:linear-gradient(160deg,#d7a24a 0%,#c48a2e 55%,#9a6a1e 100%);color:#1a1408}
+  .inner{width:min(1120px,100%);margin-inline:auto}
+  .inner.narrow{width:min(780px,100%)}
+  .inner.wide{width:min(1180px,100%)}
+
+  .eye{font-family:var(--display);font-weight:800;letter-spacing:.2em;text-transform:uppercase;font-size:11px;
+    color:var(--wheat);margin:0 0 14px;display:flex;align-items:center;gap:10px}
+  .light .eye{color:var(--wheat-deep)}
+  .gold .eye{color:#1a1408}
+  .eye::before{content:"";width:18px;height:1px;background:currentColor}
+  h2{font-family:var(--serif);font-weight:400;letter-spacing:-.03em;line-height:.98;
+    font-size:clamp(34px,5.6vw,76px);margin:0 0 16px;color:#f6f1e6}
+  .light h2{color:#16170f}
+  .gold h2{color:#1a1408}
+  .kicker{font-family:var(--serif);font-style:italic;font-size:clamp(18px,2.2vw,26px);color:var(--wheat);margin:0 0 18px}
+  .light .kicker{color:var(--wheat-deep)}
+  .lede{font-size:clamp(16px,1.35vw,19px);color:#d0d6cc;max-width:62ch;margin:0 0 14px}
+  .light .lede{color:#3d4338}
+  .gold .lede{color:#2a1e0a}
+
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .45s ease, transform .5s cubic-bezier(.2,.7,.2,1)}
+  .slide.in .reveal{opacity:1;transform:none}
+  .slide.in .d1{transition-delay:.05s}.slide.in .d2{transition-delay:.1s}.slide.in .d3{transition-delay:.16s}
+  .slide.in .d4{transition-delay:.22s}.slide.in .d5{transition-delay:.28s}.slide.in .d6{transition-delay:.34s}
+
+  /* hero */
+  #open{text-align:center;background:
+    radial-gradient(1200px 500px at 50% 115%, rgba(224,177,92,.18), transparent 55%), var(--night)}
+  #open .logo{width:min(420px,70%);margin:0 auto 10px;filter:invert(1)}
+  #open .andai{font-family:var(--serif);font-size:clamp(40px,7vw,92px);line-height:.9;margin:0}
+  #open .rule{width:0;height:1px;background:var(--wheat);margin:22px auto;transition:width 1s .3s ease}
+  #open.in .rule{width:min(220px,40%)}
+  #open .tag{font-size:clamp(16px,1.6vw,22px);color:var(--sage);margin:0}
+  #open .tag b{color:var(--wheat);font-weight:600}
+  .scrollhint{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);font-size:12px;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:8px}
+  .scrollhint span{width:1px;height:28px;background:linear-gradient(var(--wheat), transparent);animation:drip 1.8s ease-in-out infinite}
+  @keyframes drip{0%,100%{transform:scaleY(.4);opacity:.3}50%{transform:scaleY(1);opacity:1}}
+
+  /* stars */
+  .stars{position:absolute;inset:0;pointer-events:none;background-image:
+    radial-gradient(1.2px 1.2px at 12% 22%, rgba(224,177,92,.7), transparent),
+    radial-gradient(1px 1px at 28% 48%, rgba(255,255,255,.45), transparent),
+    radial-gradient(1.4px 1.4px at 67% 18%, rgba(224,177,92,.6), transparent),
+    radial-gradient(1px 1px at 81% 36%, rgba(255,255,255,.4), transparent),
+    radial-gradient(1.2px 1.2px at 91% 62%, rgba(224,177,92,.5), transparent),
+    radial-gradient(1px 1px at 44% 14%, rgba(255,255,255,.35), transparent),
+    radial-gradient(1px 1px at 8% 72%, rgba(255,255,255,.3), transparent)}
+
+  /* lists */
+  .dots{list-style:none;padding:0;margin:18px 0 0}
+  .dots li{display:flex;gap:14px;align-items:flex-start;margin:0 0 12px;font-size:clamp(16px,1.4vw,20px);
+    color:#f3eee4;opacity:0;transform:translateX(-12px)}
+  .slide.in .dots li{opacity:1;transform:none;transition:opacity .4s ease, transform .4s ease}
+  .slide.in .dots li:nth-child(1){transition-delay:.08s}
+  .slide.in .dots li:nth-child(2){transition-delay:.14s}
+  .slide.in .dots li:nth-child(3){transition-delay:.2s}
+  .slide.in .dots li:nth-child(4){transition-delay:.26s}
+  .slide.in .dots li:nth-child(5){transition-delay:.32s}
+  .dots li::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--wheat);flex:none;margin-top:.55em}
+
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:22px}
+  .pane{border-radius:18px;padding:26px 28px;min-height:220px}
+  .pane h3{font-family:var(--display);font-size:13px;letter-spacing:.16em;text-transform:uppercase;margin:0 0 14px}
+  .pane ul{margin:0;padding-left:18px}
+  .pane li{margin:0 0 8px}
+  .pane.you{background:rgba(255,255,255,.06);border:1px solid var(--line);color:#f3eee4}
+  .pane.you h3{color:var(--wheat)}
+  .pane.aid{background:var(--paper);color:#16170f}
+  .pane.aid h3{color:var(--wheat-deep)}
+  .gold .pane.you{background:rgba(26,20,8,.12);border-color:rgba(26,20,8,.2);color:#1a1408}
+  .gold .pane.aid{background:#1a1408;color:var(--bone)}
+  .gold .pane.aid h3{color:var(--wheat)}
+
+  /* companies */
+  .reel{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:22px}
+  .co{background:var(--night-2);border:1px solid var(--line);border-radius:16px;padding:16px 14px 18px;
+    display:flex;flex-direction:column;gap:8px;min-height:240px}
+  .co.this{border-color:var(--wheat);box-shadow:0 0 0 1px var(--wheat)}
+  .light .co{background:#fff;border-color:#ddd6c8}
+  .co img{width:42px;height:42px;object-fit:contain;border-radius:10px}
+  .co .tool{font-weight:700;font-size:18px;letter-spacing:-.02em}
+  .co .agent{font-size:12px;color:var(--muted);margin-top:-4px}
+  .light .co .agent{color:var(--muted-d)}
+  .co .models{font-size:13px;line-height:1.45;margin-top:auto}
+  .co .who{font-size:12px;color:var(--muted);margin-top:6px}
+  .note{font-size:13px;color:var(--muted);margin:16px 0 0}
+
+  /* price */
+  .amt{font-family:var(--serif);font-size:clamp(90px,18vw,210px);line-height:.8;color:var(--wheat);margin:0 0 8px;letter-spacing:-.04em}
+  .per{font-size:18px;color:var(--sage);margin:0 0 10px}
+
+  /* prompts */
+  .prompts{display:grid;gap:14px;margin-top:18px}
+  .prompts.pair{grid-template-columns:1fr 1fr}
+  .prompts.trio{grid-template-columns:1fr 1fr 1fr}
+  .prompts.quad{grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr}
+  .prompt{background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:14px;padding:16px 18px;cursor:pointer;
+    transition:transform .2s, border-color .2s, background .2s;position:relative}
+  .light .prompt{background:#fff;border-color:#ddd6c8}
+  .prompt:hover{transform:translateY(-2px);border-color:var(--wheat)}
+  .prompt .pl{font-family:var(--serif);font-size:18px;margin:0 0 8px;display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+  .prompt .pb{font-size:14.5px;line-height:1.5;color:#cfd5cb}
+  .light .prompt .pb{color:#3d4338}
+  .prompt.weak{border-color:rgba(196,92,58,.45)}
+  .prompt.weak .pl{color:var(--danger)}
+  .prompt.good{border-color:rgba(224,177,92,.55)}
+  .prompt.good .pl{color:var(--wheat-deep)}
+  .copy{font-family:var(--display);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--wheat);opacity:.7}
+
+  .numrow{display:flex;gap:16px;align-items:flex-start;background:rgba(255,255,255,.05);border-radius:14px;padding:16px 18px;margin:0 0 10px}
+  .light .numrow{background:#fff;border:1px solid #ddd6c8}
+  .numrow .n{font-family:var(--serif);font-size:32px;color:var(--wheat);line-height:1;width:28px;flex:none}
+  .numrow b{display:block;font-size:16px;margin-bottom:2px}
+
+  /* figures */
+  .split{display:grid;grid-template-columns:1fr 1.05fr;gap:32px;align-items:center}
+  .split.flip{grid-template-columns:1fr 1.15fr}
+  .split.flip .txt{order:2}
+  .shot{border-radius:14px;max-height:62vh;width:100%;object-fit:contain;background:#0a0c0a}
+  .light .shot{background:#fff;border:1px solid #ddd6c8}
+  .cap{font-size:13px;color:var(--muted);margin-top:8px}
+
+  .phones{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+  .phones figure{min-width:0}
+  .phone{background:#1a1f1c;border-radius:22px;padding:8px;box-shadow:0 18px 40px rgba(0,0,0,.28)}
+  .phone img{border-radius:16px;height:46vh;width:100%;object-fit:cover;object-position:top}
+  .phones figcaption{text-align:center;margin-top:8px;font-size:13px}
+  .phones a{color:inherit;text-decoration:none;font-weight:600}
+  .light .phones a{color:var(--ink)}
+
+  .roles{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-top:18px}
+  .role{background:#fff;border-radius:16px;padding:22px 20px;border:1px solid #ddd6c8}
+  .role h3{font-family:var(--serif);font-size:22px;margin:0 0 8px;letter-spacing:-.02em}
+  .role p{margin:0;font-size:14.5px;color:var(--muted-d)}
+
+  .guard .pane p{margin:8px 0 0;font-size:15.5px;line-height:1.55}
+
+  #toast{position:fixed;bottom:28px;left:50%;transform:translate(-50%,20px);background:var(--wheat);color:var(--night);
+    padding:10px 16px;border-radius:999px;font-weight:600;font-size:14px;opacity:0;pointer-events:none;z-index:20;
+    transition:opacity .25s, transform .25s}
+  #toast.show{opacity:1;transform:translate(-50%,0)}
+
+  footer.slide{text-align:center}
+  footer .big{font-family:var(--serif);font-size:clamp(32px,5vw,64px);line-height:1.05;margin:0 0 16px;color:#f6f1e6}
+  footer p{color:#d0d6cc;max-width:34em;margin:0 auto 18px}
+  .sun{width:12px;height:12px;border-radius:50%;background:var(--wheat);margin:0 auto 22px;
+    box-shadow:0 0 40px 14px rgba(224,177,92,.35)}
+
+  @media (max-width:980px){
+    .two,.split,.split.flip,.roles{grid-template-columns:1fr}
+    .split.flip .txt{order:0}
+    .reel,.prompts.pair,.prompts.trio,.prompts.quad{display:flex;overflow-x:auto;gap:12px;scroll-snap-type:x mandatory;padding-bottom:10px;-webkit-overflow-scrolling:touch}
+    .co,.prompt{flex:0 0 82vw;width:82vw;max-width:82vw;scroll-snap-align:start;white-space:normal}
+    .prompt .pb{overflow-wrap:break-word;word-break:break-word}
+    .phones{display:flex;overflow-x:auto;gap:12px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+    .phones figure{flex:0 0 42vw;scroll-snap-align:start}
+    .phone img{height:36vh}
+    .rail{display:none}
+    .slide{padding:72px 18px 72px;height:auto;min-height:100dvh;overflow:visible}
+    .shot{max-height:28vh}
+    h2{font-size:clamp(28px,8vw,40px)}
+    .lede{font-size:15px}
+    .role{padding:14px 16px}
+    .role h3{font-size:18px}
+    .role p{font-size:13.5px}
+    .amt{font-size:22vw}
+  }
+  @media (max-height:740px){
+    h2{font-size:clamp(28px,5vh,48px)}
+    .amt{font-size:clamp(72px,16vh,140px)}
+    .phone img{height:38vh}
+    .shot{max-height:48vh}
+    .co{min-height:0;padding:12px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation:none !important;transition:none !important}
+    #deck{scroll-behavior:auto}
+    .reveal,.dots li{opacity:1;transform:none}
+  }
+</style>
+</head>
+<body data-theme="dark">
+
+<div id="gate">
+  <div class="box">
+    <img class="logo" src="img/church-forward-bw.png" alt="Church Forward">
+    <h1>and Using AI</h1>
+    <p>Type the word you were given to unlock it.</p>
+    <input id="pw" type="text" autocomplete="off" autocapitalize="none" spellcheck="false" aria-label="Password">
+    <button id="go">Unlock</button>
+    <div class="err" id="err"></div>
+  </div>
+</div>
+
+<div class="progress" aria-hidden="true"><i id="pbar"></i></div>
+<div class="chrome" id="chrome"><img src="img/church-forward-bw.png" alt=""></div>
+<div class="by" id="by">Grok</div>
+<nav class="rail" id="rail" aria-label="Sections"></nav>
+<div class="count" id="count">01 / 20</div>
+<div id="toast" role="status">Copied the prompt</div>
+
+<main id="deck" hidden>
+
+<section class="slide" id="open">
+  <div class="stars"></div>
+  <div class="inner">
+    <img class="logo reveal" src="img/church-forward-bw.png" alt="Church Forward">
+    <h1 class="andai reveal d1">and Using AI</h1>
+    <div class="rule"></div>
+    <p class="tag reveal d2"><b>People are the job. AI is the assistant.</b></p>
+  </div>
+  <div class="scrollhint">Scroll<span></span></div>
+</section>
+
+<section class="slide" id="why">
+  <div class="inner narrow">
+    <div class="eye reveal">Why consider using AI</div>
+    <h2 class="reveal d1">The next tool in a line you already trust.</h2>
+    <p class="lede reveal d2">As Christian workers, our main focus is people. We want to help people connect with God and with the church, and we want to come alongside churches doing the same. Phones and laptops already help us network, run and promote events, and tell the church and the world what God is doing.</p>
+    <p class="lede reveal d3">AI is the next tool in that same line, and it is a strong one. Used well it carries the typing, the drafting, and the keeping track, so our systems run better and we spend more of the week with people.</p>
+    <p class="lede reveal d4">Nothing on this page assumes you have used these tools before. Start where you actually are, do one thing, and tell somebody about it.</p>
+  </div>
+</section>
+
+<section class="slide" id="people">
+  <div class="inner narrow">
+    <div class="eye reveal">First, the conviction</div>
+    <h2 class="reveal d1">People are the job.</h2>
+    <p class="kicker reveal d2">AI cannot do the part that matters most.</p>
+    <ul class="dots">
+      <li>Sit across the table and listen</li>
+      <li>Discern whether a man is called to stay, called to leave his church, or just tired</li>
+      <li>Comfort a discouraged spouse</li>
+      <li>Deliver hard truth with love</li>
+      <li>Shepherd, notice, and pray</li>
+    </ul>
+  </div>
+</section>
+
+<section class="slide" id="tension">
+  <div class="inner">
+    <div class="eye reveal">The tension you live in</div>
+    <h2 class="reveal d1">You are a minister and a paperwork tracker.</h2>
+    <div class="two">
+      <div class="pane you reveal d2">
+        <h3>Only you can do</h3>
+        <ul>
+          <li>Discernment</li>
+          <li>Pastoral care</li>
+          <li>Hard, loving clarity</li>
+          <li>Prayer and presence</li>
+        </ul>
+      </div>
+      <div class="pane aid reveal d3">
+        <h3>The assistant can help</h3>
+        <ul>
+          <li>The monthly newsletter</li>
+          <li>Notes after every church visit</li>
+          <li>The annual calendar</li>
+          <li>The report you owe the state office</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide gold" id="reframe">
+  <div class="inner narrow">
+    <div class="eye reveal">The reframe</div>
+    <h2 class="reveal d1">Give it the admin. Keep the people.</h2>
+    <p class="lede reveal d2">Not “AI does my job.” Instead: AI does the parts of my job that were never the point, so I can do the parts that are.</p>
+  </div>
+</section>
+
+<section class="slide light" id="tools">
+  <div class="inner wide">
+    <div class="eye reveal">Who makes these tools</div>
+    <h2 class="reveal d1">Five companies, five assistants.</h2>
+    <p class="lede reveal d2">The names in the middle column change every few weeks, and you do not need to keep up with them. You need one account and one habit.</p>
+    <div class="reel reveal d3">
+      <article class="co">
+        <img src="img/logo-openai.png" alt="OpenAI">
+        <div class="tool">ChatGPT</div>
+        <div class="agent">coding agent: Codex</div>
+        <div class="models"><strong>GPT‑6 Astra</strong> (newest)<br>GPT‑5.6 Sol, Terra, Luna</div>
+        <div class="who">OpenAI · Sam Altman</div>
+      </article>
+      <article class="co">
+        <img src="img/logo-claude.png" alt="Anthropic">
+        <div class="tool">Claude</div>
+        <div class="agent">coding agent: Claude Code</div>
+        <div class="models"><strong>Fable 5.1</strong>, <strong>Opus 5</strong><br>Sonnet 5, Haiku 4.5</div>
+        <div class="who">Anthropic · Dario Amodei</div>
+      </article>
+      <article class="co">
+        <img src="img/logo-gemini.png" alt="Google">
+        <div class="tool">Gemini</div>
+        <div class="agent">built into Google apps</div>
+        <div class="models"><strong>Gemini 3.1 Pro</strong><br>Gemini 3.8 Flash</div>
+        <div class="who">Google DeepMind · Demis Hassabis</div>
+      </article>
+      <article class="co this">
+        <img src="img/logo-grok.png" alt="xAI">
+        <div class="tool">Grok</div>
+        <div class="agent">built into X</div>
+        <div class="models"><strong>Grok 4.7</strong></div>
+        <div class="who">xAI · Elon Musk</div>
+      </article>
+      <article class="co">
+        <img src="img/logo-copilot.png" alt="Microsoft">
+        <div class="tool">Copilot</div>
+        <div class="agent">built into Office and Windows</div>
+        <div class="models">Microsoft <strong>MAI</strong> models, plus OpenAI and Anthropic</div>
+        <div class="who">Microsoft · Satya Nadella</div>
+      </article>
+    </div>
+    <p class="note reveal d4">Checked September 8, 2026. If a model name here looks out of date by the time you read it, that is the point: pick one assistant, learn it, and let the version numbers race without you.</p>
+  </div>
+</section>
+
+<section class="slide" id="cost">
+  <div class="inner narrow">
+    <div class="eye reveal">The cost of entry</div>
+    <div class="amt reveal d1" id="amt">$0</div>
+    <p class="per reveal d2">a month · less than two lunches.</p>
+    <h2 class="reveal d3" style="font-size:clamp(28px,4vw,48px)">Paid is the difference between a novelty and an assistant.</h2>
+    <p class="lede reveal d4">The free versions are real but slower and more limited. Pick one, ChatGPT or Claude, and stay with it for a month rather than sampling four.</p>
+  </div>
+</section>
+
+<section class="slide light" id="context">
+  <div class="inner">
+    <div class="eye reveal">Start here</div>
+    <h2 class="reveal d1">The only skill that matters is context.</h2>
+    <p class="lede reveal d2">Most people type six words, get something generic back, and decide the tool is overrated. Tell it who you are, who it is for, how long it should be, and what you want it to sound like. The difference is not subtle. Tap a prompt to copy it.</p>
+    <div class="prompts pair">
+      <div class="prompt weak reveal d3" data-copy="Write a newsletter about our meeting.">
+        <div class="pl"><span>✗ Too little to go on</span><span class="copy">Copy</span></div>
+        <div class="pb">Write a newsletter about our meeting.</div>
+      </div>
+      <div class="prompt good reveal d4" data-copy="I am the associational mission strategist for an association of 22 churches in rural Kansas. Write a short monthly newsletter update, about 300 words, warm and plain, no hype. Here are my notes: [paste your bullet points]. Most of my readers are bivocational pastors who will read this on a phone.">
+        <div class="pl"><span>✓ The same ask, with context</span><span class="copy">Copy</span></div>
+        <div class="pb">I am the associational mission strategist for an association of 22 churches in rural Kansas. Write a short monthly newsletter update, about 300 words, warm and plain, no hype. Here are my notes: [paste your bullet points]. Most of my readers are bivocational pastors who will read this on a phone.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" id="map">
+  <div class="inner narrow">
+    <div class="eye reveal">A simple map</div>
+    <h2 class="reveal d1">Three levels. Find yourself.</h2>
+    <div class="reveal d2">
+      <div class="numrow"><div class="n">1</div><div class="t"><b>Search</b>Ask it questions like a smarter Google, and hand it things too long to read.</div></div>
+      <div class="numrow"><div class="n">2</div><div class="t"><b>Communicate</b>Emails, newsletters, visit notes, minutes, teaching prep.</div></div>
+      <div class="numrow"><div class="n">3</div><div class="t"><b>Build</b>Documents, summaries of a whole folder, trackers, pages people can open.</div></div>
+    </div>
+    <p class="lede reveal d3" style="margin-top:16px">Nobody is behind. You are just somewhere. Everybody goes up exactly one level, not three.</p>
+  </div>
+</section>
+
+<section class="slide light" id="search">
+  <div class="inner wide">
+    <div class="eye reveal">Level 1</div>
+    <h2 class="reveal d1">Search</h2>
+    <p class="lede reveal d2">Asking it a question instead of searching the web, and handing it something long instead of reading all of it. Lowest possible risk, easiest place to start.</p>
+    <div class="prompts trio">
+      <div class="prompt reveal d3" data-copy="Here is a 40 page document. Give me one page a bivocational pastor could read in 20 minutes. Plain language. Tell me what it asks him to actually do.">
+        <div class="pl"><span>Read this so I do not have to</span><span class="copy">Copy</span></div>
+        <div class="pb">Here is a 40 page document. Give me one page a bivocational pastor could read in 20 minutes. Plain language. Tell me what it asks him to actually do.</div>
+      </div>
+      <div class="prompt reveal d4" data-copy="I am meeting with a pastor whose church has declined from 120 to 35 over 15 years in a farming town losing population. Give me eight honest questions to ask him that are not insulting, and three things I should be careful not to say.">
+        <div class="pl"><span>Get me ready for this meeting</span><span class="copy">Copy</span></div>
+        <div class="pb">I am meeting with a pastor whose church has declined from 120 to 35 over 15 years in a farming town losing population. Give me eight honest questions to ask him that are not insulting, and three things I should be careful not to say.</div>
+      </div>
+      <div class="prompt reveal d5" data-copy="Tell me what is publicly known about the population trend, main employers, and age makeup of [county], Kansas over the last 20 years, and what that would likely mean for a small church there.">
+        <div class="pl"><span>Tell me about this town</span><span class="copy">Copy</span></div>
+        <div class="pb">Tell me what is publicly known about the population trend, main employers, and age makeup of [county], Kansas over the last 20 years, and what that would likely mean for a small church there.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide light" id="drive">
+  <div class="inner wide">
+    <div class="split">
+      <div class="txt">
+        <div class="eye reveal">Level 2</div>
+        <h2 class="reveal d1">Communicate</h2>
+        <p class="lede reveal d2">Using it to write the thing that has been sitting undone. It gets you to about seventy percent in under a minute. The last thirty percent is still yours, and it always will be.</p>
+        <p class="lede reveal d3">The single most useful move for anyone who drives this state. You talk for forty seconds pulling out of the parking lot, and the note writes itself.</p>
+      </div>
+      <figure class="reveal d4">
+        <img class="shot" src="img/drive.png" alt="A voice memo recorded leaving a church visit, turned into a written visit note with follow ups pulled out">
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="slide light" id="write">
+  <div class="inner wide">
+    <div class="eye reveal">Level 2 · prompts</div>
+    <h2 class="reveal d1">Write the thing sitting undone.</h2>
+    <div class="prompts quad">
+      <div class="prompt reveal d2" data-copy="Here is a voice memo I recorded leaving a church visit. Turn it into a visit note with the date, who I met, what we discussed, and a separate list of anything I said I would do.">
+        <div class="pl"><span>Write up my visit</span><span class="copy">Copy</span></div>
+        <div class="pb">Here is a voice memo I recorded leaving a church visit. Turn it into a visit note with the date, who I met, what we discussed, and a separate list of anything I said I would do.</div>
+      </div>
+      <div class="prompt reveal d3" data-copy="Turn these four bullet points into a warm 300 word update for our churches. Do not use exclamation points. Sound like a pastor, not a marketing department.">
+        <div class="pl"><span>Draft my newsletter</span><span class="copy">Copy</span></div>
+        <div class="pb">Turn these four bullet points into a warm 300 word update for our churches. Do not use exclamation points. Sound like a pastor, not a marketing department.</div>
+      </div>
+      <div class="prompt reveal d4" data-copy="Help me write a kind and clear email to a pastor who did not follow through on something he committed to. Direct, not harsh. I want to keep the relationship.">
+        <div class="pl"><span>Write the email I am avoiding</span><span class="copy">Copy</span></div>
+        <div class="pb">Help me write a kind and clear email to a pastor who did not follow through on something he committed to. Direct, not harsh. I want to keep the relationship.</div>
+      </div>
+      <div class="prompt reveal d5" data-copy="Here is the recording of our committee meeting. Give me clean minutes, then a separate list of decisions made and who owns each follow up.">
+        <div class="pl"><span>Turn this recording into minutes</span><span class="copy">Copy</span></div>
+        <div class="pb">Here is the recording of our committee meeting. Give me clean minutes, then a separate list of decisions made and who owns each follow up.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide" id="weekly">
+  <div class="inner narrow">
+    <div class="eye reveal">My weekly move</div>
+    <h2 class="reveal d1">Off the phone, into the notes.</h2>
+    <div class="reveal d2">
+      <div class="numrow"><div class="n">1</div><div class="t"><b>Talk</b>Right after a visit or a call, I just talk. Here is who I saw, here is where they are, here is the next step.</div></div>
+      <div class="numrow"><div class="n">2</div><div class="t"><b>Summarize</b>It writes a clean note out of what I said.</div></div>
+      <div class="numrow"><div class="n">3</div><div class="t"><b>Save</b>I drop it onto that church's page, so next time I remember.</div></div>
+    </div>
+    <p class="lede reveal d3" style="margin-top:16px">Now think about your annual report on every church in the association. It nearly writes itself, and the pastor feels remembered.</p>
+  </div>
+</section>
+
+<section class="slide light" id="build">
+  <div class="inner wide">
+    <div class="split flip">
+      <div class="txt">
+        <div class="eye reveal">Level 3</div>
+        <h2 class="reveal d1">Build</h2>
+        <p class="lede reveal d2">Making something that did not exist before. Most people assume they cannot reach this level. It is the one that pays back the most, because you build it once and it serves people for years.</p>
+        <p class="lede reveal d3"><strong>Make a good thing reproducible.</strong> Our church runs a free neighborhood sports camp every June. Other pastors kept asking how we do it and I kept re-explaining it, so I had everything we know turned into one document another church could pick up and run: schedule, budget, volunteer structure, timeline.</p>
+        <p class="lede reveal d4">You have something your association does well. Somebody in another association is going to ask you about it. Make it once instead of explaining it eleven times.</p>
+      </div>
+      <figure class="reveal d5">
+        <img class="shot" src="img/sportscamp.png" alt="First page of the Sports Camp Overview document">
+        <figcaption class="cap">Built in an afternoon from notes we already had.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="slide light" id="onepage">
+  <div class="inner wide">
+    <div class="split">
+      <div class="txt">
+        <div class="eye reveal">Level 3</div>
+        <h2 class="reveal d1">Turn a pile into one page.</h2>
+        <p class="lede reveal d2">Every potential church planter I work with goes through a pre-application packet. It was a stack of PDFs nobody could hold in their head. I had the whole stack read and synthesized, the folder reorganized, and this made: one picture a man can look at once and finally understand what he is walking into.</p>
+        <p class="lede reveal d3">Yours might be the constitution, the bylaws, four years of minutes and the personnel policy. Right now that is a drawer. It could be one page a search committee could actually read.</p>
+      </div>
+      <figure class="reveal d4">
+        <img class="shot" src="img/sendnetwork-phases.jpg" alt="A one page infographic showing the four phases and twelve steps of applying to plant a church">
+        <figcaption class="cap">Twelve steps across four phases, on one page.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="slide light" id="links">
+  <div class="inner wide">
+    <div class="eye reveal">Level 3</div>
+    <h2 class="reveal d1">Turn training into a link.</h2>
+    <p class="lede reveal d2">Material you already teach can become a page you text to a pastor instead of a binder you mail him. All three are free, all work on a phone, and none of them required knowing how to write code. Tap any phone to open it.</p>
+    <div class="phones reveal d3">
+      <figure>
+        <a href="https://ministrybag.com/" target="_blank" rel="noopener">
+          <div class="phone"><img src="img/ministrybag.jpg" alt="MinistryBag.com on a phone"></div>
+        </a>
+        <figcaption><a href="https://ministrybag.com/" target="_blank" rel="noopener">ministrybag.com</a></figcaption>
+      </figure>
+      <figure>
+        <a href="https://ministrybag.com/discipleship/" target="_blank" rel="noopener">
+          <div class="phone"><img src="img/discipleship.jpg" alt="The Growing Together discipleship series on a phone"></div>
+        </a>
+        <figcaption><a href="https://ministrybag.com/discipleship/" target="_blank" rel="noopener">the discipleship series</a></figcaption>
+      </figure>
+      <figure>
+        <a href="https://ministrybag.com/genex/" target="_blank" rel="noopener">
+          <div class="phone"><img src="img/genex.jpg" alt="The GENEX alphabet, 24 charcoal ink-wash tiles from Genesis and Exodus, A through X"></div>
+        </a>
+        <figcaption><a href="https://ministrybag.com/genex/" target="_blank" rel="noopener">the GENEX alphabet</a></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="slide" id="guardrails">
+  <div class="inner">
+    <div class="eye reveal">Two guardrails</div>
+    <h2 class="reveal d1">We handle real people.</h2>
+    <div class="two guard">
+      <div class="pane you reveal d2">
+        <h3>Read everything it makes</h3>
+        <p>It gets you most of the way there and hands it to you with total confidence, including when it is wrong. It will invent a date, a statistic, or a Scripture reference that sounds right. Check names, numbers, dates and Scripture, then fix the voice. It is a very fast typist with no discernment. You are still the one with discernment.</p>
+      </div>
+      <div class="pane aid reveal d3">
+        <h3>Keep private things out</h3>
+        <p>A pastor's marriage, a moral failure, a church fight, a personnel file. Take the names out. “A pastor in a church of forty is dealing with a conflict between two deacons” gets you the same help and costs you nothing. If you would not put it on a postcard, think before you paste it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="slide light" id="roles">
+  <div class="inner wide">
+    <div class="eye reveal">For your seat at the table</div>
+    <h2 class="reveal d1">What this looks like in your job.</h2>
+    <div class="roles">
+      <article class="role reveal d2">
+        <h3>Associational mission strategists</h3>
+        <p>The newsletter, the annual calendar, the visit notes from a two hour drive, the report to the state office, the ordination council question set, the county demographic picture, the forty page document condensed for a man with twenty minutes. None of this touches the part of your work that is actually yours.</p>
+      </article>
+      <article class="role reveal d3">
+        <h3>Webster Conference Center</h3>
+        <p>Confirmation emails that sound like a person wrote them, packing lists by age group, retreat schedules, summer staff onboarding material, dietary and food count summaries, work order logs, and honest description copy for the families and civic groups who have never been out there.</p>
+      </article>
+      <article class="role reveal d4">
+        <h3>Convention office and support staff</h3>
+        <p>Minutes from a recording, form letters that do not read like form letters, scholarship applications summarized side by side, expense categorization, a spreadsheet turned into a chart for a board report, and the first draft of anything you have been dreading.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="slide" id="week">
+  <div class="inner narrow">
+    <div class="eye reveal">This week</div>
+    <h2 class="reveal d1">Everyone leaves with one step.</h2>
+    <div class="reveal d2">
+      <div class="numrow"><div class="n">1</div><div class="t"><b>Level 1</b>Ask it one real work question you would have Googled.</div></div>
+      <div class="numrow"><div class="n">2</div><div class="t"><b>Level 2</b>After your next church visit, talk out a summary and save it.</div></div>
+      <div class="numrow"><div class="n">3</div><div class="t"><b>Level 3</b>Hand it your way of keeping up with your churches and build a cleaner one.</div></div>
+    </div>
+    <p class="lede reveal d3" style="margin-top:16px">One task. Not three. Pick the smallest real thing on your desk.</p>
+  </div>
+</section>
+
+<footer class="slide" id="close">
+  <div class="stars"></div>
+  <div class="inner narrow">
+    <div class="sun reveal"></div>
+    <div class="eye reveal d1">Then two habits</div>
+    <div class="big reveal d2">Better tools, so we can be better shepherds.</div>
+    <p class="reveal d3">When you learn something useful, tell somebody. Call the strategist two counties over and show him. Try it badly. Ask for help out loud. The point was never speed. The point is the hour it gives back, and the pastor in a town of nine hundred who has not had anybody ask how he is doing since March.</p>
+    <p class="reveal d4">Give the assistant the assistant work. Spend the time you save on people. Start where you are, and take one step this week. More tools at <a href="https://ministrybag.com/">ministrybag.com</a>.</p>
+  </div>
+</footer>
+
+</main>
+
+<script>
+(function(){
+  var WORD = "forward";
+  var gate = document.getElementById("gate");
+  var deck = document.getElementById("deck");
+  var pw = document.getElementById("pw");
+  var go = document.getElementById("go");
+  var err = document.getElementById("err");
+  var slides = [].slice.call(document.querySelectorAll(".slide"));
+  var rail = document.getElementById("rail");
+  var chrome = document.getElementById("chrome");
+  var by = document.getElementById("by");
+  var count = document.getElementById("count");
+  var pbar = document.getElementById("pbar");
+  var amt = document.getElementById("amt");
+  var counted = false;
+  var toastEl = document.getElementById("toast");
+  var toastT;
+
+  slides.forEach(function(s, i){
+    var a = document.createElement("a");
+    a.href = "#" + s.id;
+    a.title = s.id;
+    a.addEventListener("click", function(e){
+      e.preventDefault();
+      s.scrollIntoView({behavior:"smooth"});
+    });
+    rail.appendChild(a);
+  });
+  var dots = [].slice.call(rail.querySelectorAll("a"));
+
+  function pad(n){ return (n < 10 ? "0" : "") + n; }
+
+  function setActive(slide){
+    var i = slides.indexOf(slide);
+    dots.forEach(function(d, k){ d.classList.toggle("on", k === i); });
+    count.textContent = pad(i + 1) + " / " + pad(slides.length);
+    document.body.dataset.theme = slide.classList.contains("gold") ? "gold" : (slide.classList.contains("light") ? "light" : "dark");
+    chrome.classList.toggle("show", i > 0);
+    by.classList.toggle("show", true);
+    count.classList.toggle("show", true);
+    rail.classList.toggle("show", true);
+    if (slide.id === "cost" && !counted) countUp();
+  }
+
+  function countUp(){
+    counted = true;
+    var n = 0;
+    var t = setInterval(function(){
+      n += 1;
+      amt.textContent = "$" + n;
+      if (n >= 20) clearInterval(t);
+    }, 45);
+    setTimeout(function(){ amt.textContent = "$20"; clearInterval(t); }, 1100);
+  }
+
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (e.isIntersecting){
+        e.target.classList.add("in");
+        setActive(e.target);
+      }
+    });
+  }, { root: deck, threshold: 0.55 });
+
+  function watch(){ slides.forEach(function(s){ io.observe(s); }); }
+
+  deck.addEventListener("scroll", function(){
+    var max = deck.scrollHeight - deck.clientHeight;
+    pbar.style.height = (max <= 0 ? 0 : (deck.scrollTop / max) * 100) + "%";
+  }, {passive:true});
+
+  function goTo(dir){
+    var vis = slides.findIndex(function(s){ return s.classList.contains("in") && s.getBoundingClientRect().top > -40 && s.getBoundingClientRect().top < 80; });
+    var top = deck.scrollTop;
+    var i = 0, best = 0, dist = Infinity;
+    slides.forEach(function(s, k){
+      var d = Math.abs(s.offsetTop - top);
+      if (d < dist){ dist = d; best = k; }
+    });
+    i = Math.max(0, Math.min(slides.length - 1, best + dir));
+    slides[i].scrollIntoView({behavior:"smooth"});
+  }
+
+  document.addEventListener("keydown", function(e){
+    if (gate && !gate.classList.contains("out")){
+      if (e.key === "Enter") tryIt();
+      return;
+    }
+    if (["ArrowDown","PageDown"," "].indexOf(e.key) >= 0){ e.preventDefault(); goTo(1); }
+    if (["ArrowUp","PageUp"].indexOf(e.key) >= 0){ e.preventDefault(); goTo(-1); }
+    if (e.key === "Home"){ e.preventDefault(); slides[0].scrollIntoView({behavior:"smooth"}); }
+    if (e.key === "End"){ e.preventDefault(); slides[slides.length-1].scrollIntoView({behavior:"smooth"}); }
+  });
+
+  function toast(msg){
+    toastEl.textContent = msg;
+    toastEl.classList.add("show");
+    clearTimeout(toastT);
+    toastT = setTimeout(function(){ toastEl.classList.remove("show"); }, 1400);
+  }
+  document.querySelectorAll(".prompt[data-copy]").forEach(function(el){
+    el.addEventListener("click", function(){
+      var t = el.getAttribute("data-copy");
+      if (navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(t).then(function(){ toast("Copied the prompt"); });
+      }
+    });
+  });
+
+  function open(){
+    deck.hidden = false;
+    gate.classList.add("out");
+    watch();
+    document.getElementById("open").classList.add("in");
+    setActive(slides[0]);
+    try { sessionStorage.setItem("cf-ai-grok", "1"); } catch(e){}
+    setTimeout(function(){ if (gate && gate.parentNode) gate.remove(); pw = null; }, 900);
+    if (location.hash){
+      var t = document.querySelector(location.hash);
+      if (t) setTimeout(function(){ t.scrollIntoView(); }, 50);
+    }
+  }
+  function tryIt(){
+    if (pw.value.trim().toLowerCase() === WORD) open();
+    else { err.textContent = "That is not it. Try again."; pw.select(); }
+  }
+  go.addEventListener("click", tryIt);
+  pw.addEventListener("keydown", function(e){ if (e.key === "Enter") tryIt(); });
+  pw.focus();
+  try { if (sessionStorage.getItem("cf-ai-grok") === "1") open(); } catch(e){}
+})();
+</script>
+</body>
+</html>
