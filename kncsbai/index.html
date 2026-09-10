@@ -25,6 +25,13 @@
   header .andai{font-family:var(--serif);font-size:36px;font-weight:700;line-height:1.15;margin-top:12px}
   header .tag{margin:16px 0 0;font-size:19px;color:var(--muted)}
   header .tag b{color:var(--green);font-weight:600}
+  header .editions{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:22px}
+  header .editions a{display:inline-block;text-decoration:none;font-size:15px;font-weight:600;
+    letter-spacing:.02em;color:var(--green);background:var(--cream);border:1px solid var(--line);
+    border-radius:999px;padding:9px 18px;transition:background .15s,color .15s,border-color .15s}
+  header .editions a:hover,header .editions a:focus-visible{background:var(--green);color:#fff;border-color:var(--green)}
+  header .editions-label{margin:26px 0 0;font-size:13px;font-weight:700;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--muted)}
 
   /* eyebrow labels, straight off the slides */
   .eyebrow{display:flex;align-items:center;gap:14px;font-size:24px;font-weight:800;
@@ -175,6 +182,13 @@
     <img class="logo" src="img/church-forward-bw.png" alt="Church Forward">
     <div class="andai">and Using AI</div>
     <p class="tag"><b>People are the job. AI is the assistant.</b></p>
+    <p class="editions-label">Other editions</p>
+    <nav class="editions" aria-label="Other editions of this page">
+      <a href="index-codex.html" target="_blank" rel="noopener">Codex</a>
+      <a href="index-gemini.html" target="_blank" rel="noopener">Gemini</a>
+      <a href="index-grok.html" target="_blank" rel="noopener">Grok</a>
+      <a href="index-sonnet.html" target="_blank" rel="noopener">Sonnet</a>
+    </nav>
   </div>
 </header>
 
