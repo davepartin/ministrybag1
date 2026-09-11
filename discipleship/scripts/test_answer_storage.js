@@ -237,6 +237,20 @@ try {
 }
 assert('failed persist does not throw', persistFailed !== null && persistFailed.responses['question-101-1-key'] === 'SYN-101-keep');
 
+// A failed load must not erase the raw copy during migration.
+['not-json', '["SYN-array"]', 'null'].forEach(function (raw) {
+    var damagedStore = memoryStorage(raw);
+    var loaded = storage.loadAndMigrateResponses(damagedStore);
+    assert('malformed raw copy survives migration: ' + raw,
+        damagedStore.getItem(storage.RESPONSES_KEY) === raw && !loaded.changed);
+});
+var failedReadWrites = 0;
+storage.loadAndMigrateResponses({
+    getItem: function () { throw new Error('read denied'); },
+    setItem: function () { failedReadWrites += 1; }
+});
+assert('failed read does not trigger migration writes', failedReadWrites === 0);
+
 // --- All-course runtime uniqueness, including checklist IDs ---
 var dupes = storage.findDuplicateRuntimeIds(collectAllLessons());
 assert(
