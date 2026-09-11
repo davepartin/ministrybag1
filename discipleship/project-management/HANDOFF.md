@@ -6,7 +6,7 @@ Updated September 11, 2026. Keep this file short. The detailed board is [TASKS.m
 
 - Planning packet PM-001 complete. Initial audit is archived in `reviews/2026-09-11-baseline.md` for selective reference.
 - App/content baseline examined: `fce80bc` on main. No app, lesson, image or widget repairs have been implemented by this planning packet.
-- Next worker: **ENG-001, saved-answer collisions**, fully scoped at the bottom of the software board. No owner assigned yet.
+- Current worker: **ENG-001, saved-answer collisions**, claimed by DiscipleshipBot on `cursor/eng-001-answer-storage-6dbd` (2026-09-11).
 - Next after that: ENG-002 missing images; ENG-003 iframe initialization. ENG-004 export follows. SEC-001 must be addressed before broader release.
 - Dave's next action: DAVE-001, the two short pastoral briefs in [DAVE.md](DAVE.md). It does not block ENG-001.
 - Login/provider remains undecided. Do not implement the old Supabase proposal automatically.

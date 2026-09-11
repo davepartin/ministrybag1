@@ -58,4 +58,23 @@ grep -q "let loadedSessionNums = \[\]" index.html || fail "loadedSessionNums nav
 grep -q "console.warn(\`Failed to load lesson file data/" index.html || fail "Lesson load warning not found."
 echo "PASS: index.html includes CSV/validation/navigation safety guards."
 
+# 7) All-course runtime question and checklist IDs must be unique.
+# Runtime keys match the renderer: question-{course}-{id} and checklist-{course}-{id}.
+runtime_ids="$(
+  while IFS= read -r f; do
+    series="$(basename "$f" | cut -d- -f1)"
+    jq -r --arg series "$series" --arg lesson "$(basename "${f%.json}")" '
+      .blocks[]? | select(.type=="question" or .type=="checklist") | select((.id|type)=="string" and (.id|length)>0) |
+      (if .type=="question" then "question" else "checklist" end) as $kind |
+      "\($kind)-\($series)-\(.id)\t\($lesson)"
+    ' "$f"
+  done < <(find data -maxdepth 1 -type f -name '*.json' | sort)
+)"
+runtime_dupes="$(printf '%s\n' "$runtime_ids" | awk -F'\t' 'NF && $1!="" {c[$1]++; l[$1]=l[$1] (l[$1]?", ":"") $2} END {for (id in c) if (c[id]>1) print id " -> " l[id]}')"
+if [[ -n "$runtime_dupes" ]]; then
+  echo "$runtime_dupes" >&2
+  fail "Duplicate runtime question/checklist IDs found."
+fi
+echo "PASS: all-course runtime question and checklist IDs are unique."
+
 echo "All foundation QA checks passed."

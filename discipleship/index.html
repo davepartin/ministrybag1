@@ -2276,6 +2276,7 @@
         </div>
     </div>
 
+    <script src="scripts/answer-storage.js"></script>
     <script>
         // ============================================
         // VERSION - bump this when JSON content changes
@@ -2304,8 +2305,14 @@
             requestAnimationFrame(() => { _suppressHashNav = false; });
         }
 
+        const answerStorage = window.GrowingTogetherAnswerStorage;
         try {
-            responses = JSON.parse(localStorage.getItem('christianFoundationsResponses') || '{}');
+            const loaded = answerStorage
+                ? answerStorage.loadAndMigrateResponses(window.localStorage)
+                : { responses: JSON.parse(localStorage.getItem('christianFoundationsResponses') || '{}') };
+            responses = loaded.responses && typeof loaded.responses === 'object' && !Array.isArray(loaded.responses)
+                ? loaded.responses
+                : {};
         } catch (e) {
             responses = {};
         }
@@ -3416,15 +3423,27 @@
         // ============================================
         // SAVE / LOAD RESPONSES
         // ============================================
+        function persistResponses() {
+            if (answerStorage) {
+                answerStorage.writeResponsesToStorage(window.localStorage, responses);
+                return;
+            }
+            try {
+                localStorage.setItem('christianFoundationsResponses', JSON.stringify(responses));
+            } catch (e) {
+                // ENG-005 owns visible save-failure feedback. Do not throw here.
+            }
+        }
+
         function saveResponse(el) {
             responses[el.id] = el.value;
-            localStorage.setItem('christianFoundationsResponses', JSON.stringify(responses));
+            persistResponses();
 
         }
 
         function saveCommitment(el) {
             responses[`commitment-${currentSeries}`] = el.value;
-            localStorage.setItem('christianFoundationsResponses', JSON.stringify(responses));
+            persistResponses();
         }
 
         function toggleChecklistTile(el) {
@@ -3436,7 +3455,7 @@
             const selected = [];
             tiles.forEach((t, i) => { if (t.classList.contains('selected')) selected.push(i); });
             responses[clId] = selected;
-            localStorage.setItem('christianFoundationsResponses', JSON.stringify(responses));
+            persistResponses();
         }
 
         function loadAllResponses() {
@@ -3760,7 +3779,7 @@
         // Periodic save
         setInterval(() => {
             if (Object.keys(responses).length) {
-                localStorage.setItem('christianFoundationsResponses', JSON.stringify(responses));
+                persistResponses();
             }
         }, 30000);
     </script>
