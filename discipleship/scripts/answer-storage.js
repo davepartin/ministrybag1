@@ -222,6 +222,14 @@
 
     function loadAndMigrateResponses(storage) {
         var read = readResponsesFromStorage(storage);
+        // An unreadable copy may still contain recoverable answers. Leave it
+        // untouched, and let the host block later autosaves for this session.
+        if (!read.available || read.malformed) {
+            return {
+                responses: {}, available: read.available, malformed: read.malformed,
+                changed: false, alreadyApplied: false
+            };
+        }
         var migrated = migrateSharedQuestionResponses(read.responses);
         if (read.available && migrated.changed) {
             writeResponsesToStorage(storage, migrated.responses);

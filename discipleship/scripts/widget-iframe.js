@@ -114,9 +114,22 @@
     }
 
     function applyHeight(iframe) {
-        var measured = measureContentHeight(iframe);
-        if (measured > MIN_MEASURED_HEIGHT && iframe && iframe.style) {
-            iframe.style.height = Math.round(measured) + 'px';
+        if (!iframe || !iframe.style || !getIframeDocument(iframe)) {
+            return measureContentHeight(iframe);
+        }
+        // Root scroll/client heights include the current viewport. Remove that
+        // floor while measuring, otherwise a once-tall widget can never shrink.
+        // Restore tiny/hidden measurements; do not collapse an inactive lesson.
+        var previousHeight = iframe.style.height;
+        var measured;
+        iframe.style.height = '0px';
+        try {
+            measured = measureContentHeight(iframe);
+        } finally {
+            iframe.style.height = previousHeight;
+        }
+        if (measured > MIN_MEASURED_HEIGHT) {
+            iframe.style.height = Math.ceil(measured) + 'px';
         }
         return measured;
     }

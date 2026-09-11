@@ -2307,6 +2307,7 @@
         }
 
         const answerStorage = window.GrowingTogetherAnswerStorage;
+        let responseStorageWritable = false;
         const widgetIframeApi = window.GrowingTogetherWidgetIframe;
         let widgetIframeHost = null;
 
@@ -2335,6 +2336,8 @@
             responses = loaded.responses && typeof loaded.responses === 'object' && !Array.isArray(loaded.responses)
                 ? loaded.responses
                 : {};
+            responseStorageWritable = loaded.available !== false && !loaded.malformed &&
+                !!loaded.responses && typeof loaded.responses === 'object' && !Array.isArray(loaded.responses);
         } catch (e) {
             responses = {};
         }
@@ -3446,14 +3449,18 @@
         // SAVE / LOAD RESPONSES
         // ============================================
         function persistResponses() {
-            if (answerStorage) {
-                answerStorage.writeResponsesToStorage(window.localStorage, responses);
-                return;
-            }
+            // Never replace an unreadable stored copy with the empty fallback
+            // or subsequent edits. ENG-005 owns visible feedback and recovery.
+            if (!responseStorageWritable) return false;
             try {
+                if (answerStorage) {
+                    return answerStorage.writeResponsesToStorage(window.localStorage, responses);
+                }
                 localStorage.setItem('christianFoundationsResponses', JSON.stringify(responses));
+                return true;
             } catch (e) {
-                // ENG-005 owns visible save-failure feedback. Do not throw here.
+                // Includes a blocked localStorage getter, not only setItem.
+                return false;
             }
         }
 
