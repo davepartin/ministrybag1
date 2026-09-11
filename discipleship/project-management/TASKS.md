@@ -6,8 +6,8 @@ Status: TODO, ACTIVE, PAUSED, REVIEW, BLOCKED, DONE. Owner cell format: `agent /
 
 ## Immediate queue
 
-1. **ENG-003:** fix widget iframe initialization and resizing errors (ACTIVE on this branch).
-2. **ENG-004:** correct export scope and preview the selected responses.
+1. **ENG-003:** fix widget iframe initialization and resizing errors (REVIEW on this branch).
+2. **ENG-004:** correct export scope and preview the selected responses after ENG-003 review.
 3. **SEC-001:** remove exposed credential dependency before broader release.
 4. **ENG-002:** on main pending Dave artwork and phone-display review.
 
@@ -20,7 +20,7 @@ Dave's parallel task is DAVE-001. Login/provider selection remains deferred to D
 | [x] | PM-001 | DONE | Codex / main / 2026-09-11 | - | Create plan, all-lesson board, handoff prompts, approval queue, task logs and agent entry points. Check links/counts and sync planning packet to GitHub. Evidence: logs/2026-09-11-PM-001-codex.md |
 | [x] | ENG-001 | DONE | DiscipleshipBot / cursor/eng-001-answer-storage-6dbd / 2026-09-11 | PM-001 | Repair the six shared runtime question keys across 202-05/09 and 203-06/07. Preserve old data without inventing which lesson it belonged to. Regression checks cover independent new answers, reload/navigation, repeated migration, existing new values, malformed/unavailable storage, and all-course unique runtime IDs. Scope: these four JSON files, answer-storage code, targeted test/QA code. Evidence: logs/2026-09-11-ENG-001-discipleshipbot.md. Integrated to main as merge commit dc14f625 (PR #10). |
 | [ ] | ENG-002 | REVIEW | DiscipleshipBot / cursor/eng-002-missing-images-52ec / 2026-09-11 | PM-001 | Recover or produce Last Supper and foot-washing B&W/color pairs for 202-10 and 203-04. Verify artwork with Dave and phone display. Add read-only asset checks covering src, image, imageBw/imageColor and imageSequence. Do not replace missing teaching images with generic placeholders. Evidence: logs/2026-09-11-ENG-002-discipleshipbot.md. Artwork and phone display remain Dave-locked before DONE. |
-| [ ] | ENG-003 | ACTIVE | DiscipleshipBot / cursor/eng-003-iframe-init-ea64 / 2026-09-11 | ENG-001 | Fix iframe readiness, resize handling and observer/listener cleanup. No MutationObserver exceptions for affected courses; controls remain reachable through every tested step, back/restart and viewport changes. Add meaningful iframe titles. Preserve existing widget designs. |
+| [ ] | ENG-003 | REVIEW | DiscipleshipBot / cursor/eng-003-iframe-init-ea64 / 2026-09-11 | ENG-001 | Fix iframe readiness, resize handling and observer/listener cleanup. No MutationObserver exceptions for affected courses; controls remain reachable through every tested step, back/restart and viewport changes. Add meaningful iframe titles. Preserve existing widget designs. Evidence: logs/2026-09-11-ENG-003-discipleshipbot.md |
 | [ ] | ENG-004 | TODO | - | ENG-001 | Default Email Lesson to the current lesson; explicit optional course scope and visible preview before opening a mail draft. Include only selected responses, never auto-send. Verify other lessons' prayers stay out of a current-lesson export. Add tests for scope and text encoding. |
 | [ ] | ENG-005 | TODO | - | ENG-001 | Add Saving/Saved/Could not save feedback and preserve edits on storage failure. Verify quota/unavailable-storage behavior and recovery. Do not overwrite a good stored copy with a failed/empty load. |
 | [ ] | ENG-006 | TODO | - | ENG-001, ENG-005 | Versioned downloadable backup and validated restore for responses, completion and reading notes. Preview counts/conflicts, preserve a pre-restore backup, reject bad files and prove a round trip. Do not upload learner data. |

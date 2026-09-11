@@ -64,7 +64,7 @@ async function primaryControl(frame) {
 }
 
 async function backControl(frame) {
-    return frame.getByRole('button', { name: /^back/i }).first();
+    return frame.getByRole('button', { name: /back/i }).first();
 }
 
 async function controlReachable(page, sessionId, frame, label) {
@@ -100,13 +100,17 @@ async function walkSteppedWidget(page, hash, sessionId, label, nextClicks) {
     await btn.click();
     await page.waitForTimeout(250);
 
+    var restart = frame.getByRole('button', { name: /restart|start over/i });
     for (var i = 0; i < nextClicks; i++) {
+        if (await restart.count() && await restart.first().isVisible()) {
+            break;
+        }
         btn = await controlReachable(page, sessionId, frame, label + ' step ' + (i + 1));
         await btn.click();
         await page.waitForTimeout(200);
     }
 
-    var restart = frame.getByRole('button', { name: /restart|start over/i }).first();
+    restart = restart.first();
     await restart.waitFor({ state: 'visible', timeout: 8000 });
     await controlReachable(page, sessionId, frame, label + ' restart');
     await restart.click();
@@ -176,6 +180,8 @@ async function checkCourseTitles(page, hash, sessionPrefix, expectedMin, label) 
     await page.setViewportSize({ width: 390, height: 844 });
     await walkSteppedWidget(page, '#201-1', '#session-1', '201-01 phone', 4);
     await walkSteppedWidget(page, '#201-8', '#session-8', '201-08 phone', 5);
+
+    await checkCourseTitles(page, '#201-1', '#session-1.active', 10, '201 course');
 
     await page.setViewportSize({ width: 375, height: 812 });
     await page.goto(BASE + '#201-8', { waitUntil: 'domcontentloaded' });
