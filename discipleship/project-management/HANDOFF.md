@@ -6,14 +6,14 @@ Updated September 11, 2026. Keep this file short. The detailed board is [TASKS.m
 
 - Planning packet PM-001 complete. Initial audit is archived in `reviews/2026-09-11-baseline.md` for selective reference.
 - App/content baseline examined: `fce80bc` on main. No app, lesson, image or widget repairs have been implemented by this planning packet.
-- Next worker: **ENG-001, saved-answer collisions**, fully scoped at the bottom of the software board. No owner assigned yet.
-- Next after that: ENG-002 missing images; ENG-003 iframe initialization. ENG-004 export follows. SEC-001 must be addressed before broader release.
+- ENG-001 is in **REVIEW** on `cursor/eng-001-answer-storage-6dbd` (PR https://github.com/davepartin/ministrybag1/pull/10). Evidence: logs/2026-09-11-ENG-001-discipleshipbot.md.
+- Next worker after review/integration: **ENG-002, missing images**. Then ENG-003 iframe initialization. ENG-004 export follows. SEC-001 must be addressed before broader release.
 - Dave's next action: DAVE-001, the two short pastoral briefs in [DAVE.md](DAVE.md). It does not block ENG-001.
 - Login/provider remains undecided. Do not implement the old Supabase proposal automatically.
 
 ## Known baseline failures
 
-- Six shared runtime question IDs: 202-05 with 202-09; 203-06 with 203-07. Three closing answers in each pair can overwrite one another.
+- Six shared runtime question IDs: repair is in ENG-001 REVIEW. Until that branch is integrated, main still has the 202-05/09 and 203-06/07 collisions.
 - Four missing image files in 202-10 and 203-04.
 - Iframe MutationObserver exceptions observed during browser review.
 - Email Lesson exports a course; storage writes have no failure feedback.
