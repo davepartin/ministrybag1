@@ -6,13 +6,14 @@ status: active
 
 # AI Start Here
 
-Read these files in this order before doing any work:
+Start with **AGENTS.md**, **project-management/HANDOFF.md**, and your assigned row in **project-management/TASKS.md**. On first entry, read **PROJECT-STATE.md** and **project-management/PLAN.md**. Then use the applicable route below. Keep the work packet small so another agent can resume it without the whole conversation.
 
-1. **DISCIPLESHIP-COMPASS.md** - who we are writing for, how we write, and what makes a lesson good. This is the master direction file and wins when guidance overlaps.
-2. **LESSON-TEMPLATE.md** - the structural law for every lesson. The spine, the eight-goal check, and the 200-level closing question standard. Read alongside the two exemplar lessons, `data/201-08.json` and `data/201-10.json`.
-3. **PROJECT-BRIEF.md** - technical architecture, file structure, JSON format, course colors, numbering system, and app mechanics.
-4. **PROJECT-STATE.md** - what has been built, what changed recently, and what is pending.
-5. **AI-LESSON-CHECKLIST.md** - the practical slot-by-slot checklist for drafting, revising, or reviewing any lesson. Uses LESSON-TEMPLATE.md as its spine.
+- **Lesson writing or review:** read DISCIPLESHIP-COMPASS.md, LESSON-TEMPLATE.md, AI-LESSON-CHECKLIST.md, the assigned JSON, and relevant research. Read PROJECT-BRIEF.md for block/schema changes. The template exemplars remain 201-08 and 201-10; 201-01 is also the production voice benchmark. Exemplars still need the corrections tracked on the board.
+- **Software repair:** read the applicable architecture sections of PROJECT-BRIEF.md, the assigned code and affected data. Consult the Compass/template if a change affects teaching, order or learner-facing behavior. The technical brief contains a legacy credential: do not print or copy credential values into logs/prompts.
+- **Image/widget work:** read the assigned lesson, Compass/template, relevant PROJECT-BRIEF sections and widgets/widget.md. Resolve documented guide conflicts in the assigned task rather than following stale examples blindly.
+- **Daily review:** read the checkpoint, changed files and task logs; follow PLAN.md's review checklist. Do not re-audit every lesson or reread the whole historical report without a reason.
+
+In an ongoing conversation, reuse standards already read unless they changed. The Compass remains the master editorial direction. Task files govern coordination and readiness, not a competing curriculum.
 
 When working on lesson content, also read the relevant lesson JSON and any research files in `Lesson_research/`.
 
@@ -20,6 +21,9 @@ When working on lesson content, also read the relevant lesson JSON and any resea
 
 | File | Owns | Does not own |
 |------|------|-------------|
+| project-management/TASKS.md | Work status, task owners, dependencies, lesson quality gates | Curriculum titles or theological authority |
+| project-management/HANDOFF.md | Immediate next action and last review checkpoint | Full historical record |
+| project-management/logs/ | Per-task changes, verification, branch and approval evidence | Current task priority |
 | DISCIPLESHIP-COMPASS.md | Philosophy, audience, tone, writing standards, lesson standards, editorial decisions, non-negotiables | Technical details, file structure, session history |
 | LESSON-TEMPLATE.md | The structural law for every lesson: slot order, eight-goal check, closing-reflection trio (200-level) and 101 exception, parable and scroll-reveal image convention | Tone, editorial philosophy, JSON technical schema |
 | PROJECT-BRIEF.md | App architecture, JSON format, course colors, numbering, typography, file structure, how the app works | Tone, editorial philosophy, audience definition, lesson spine |
@@ -38,7 +42,7 @@ When working on lesson content, also read the relevant lesson JSON and any resea
 - No em dashes anywhere. Ever. In any file. Use commas, colons, periods, or " - " instead.
 - No bullet points in lesson prose. Write in paragraphs.
 - Do not re-add Augustine quotes to 201-01.
-- BUILD_VERSION is automatic (Date.now()). Never bump it manually.
+- BUILD_VERSION is currently automatic (Date.now()). Do not bump it manually. The approved production-versioning change is scoped to PERF-001, which must update the technical guidance when implemented.
 - Dave does final theological review on every lesson. AI writes drafts; Dave approves.
 - When priority conflicts, DISCIPLESHIP-COMPASS.md wins over all other files.
 
