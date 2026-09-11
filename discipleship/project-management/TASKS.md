@@ -11,7 +11,7 @@ Status: TODO, ACTIVE, PAUSED, REVIEW, BLOCKED, DONE. Owner cell format: `agent /
 3. **SEC-001:** remove exposed credential dependency before broader release.
 4. **ENG-002:** on main pending Dave artwork and actual phone review.
 
-Dave's parallel task is DAVE-001. Login/provider selection remains deferred to DATA-001. Do not start all rows at once.
+Dave reports Claude is actively drafting L-202-08 and L-202-09 locally. Reserve those lesson files and their dedicated assets for Claude. Grokbot works on the software queue from another computer through GitHub; ENG-004's actual branch/start remains unconfirmed. The coordinator owns shared board/handoff updates during this parallel work; workers write their own logs. Login/provider selection remains deferred to DATA-001.
 
 ## Project and software work
 
@@ -83,8 +83,8 @@ Each row is a stable task ID `L-<lesson>`. Initial `present` means substantive t
 | L-202-05 | TODO | - | present | pending | pending | pending | unrecorded | pending | IDs repaired by ENG-001; add visual/summary, standard closing, pastoral suffering review. |
 | L-202-06 | TODO | - | present | pending | pending | pending | unrecorded | pending | Revise: story/visual presentation, lesson review, standard closing. |
 | L-202-07 | TODO | - | present | pending | pending | pending | unrecorded | pending | Revise: narrative hook, title/review/closing consistency; practical generosity without overpromising. |
-| L-202-08 | TODO | - | missing | pending | pending | pending | unrecorded | pending | EMPTY: write Marriage and Relationships; set scope distinct from family-at-home lesson. |
-| L-202-09 | TODO | - | stub | pending | pending | pending | unrecorded | pending | BRIEF STUB: write purity lesson; IDs repaired by ENG-001; standardize closing; build practical framework. |
+| L-202-08 | ACTIVE | Claude / local folder, branch unconfirmed / 2026-09-11 | missing | pending | pending | pending | unrecorded | pending | EMPTY: write Marriage and Relationships; set scope distinct from family-at-home lesson. |
+| L-202-09 | ACTIVE | Claude / local folder, branch unconfirmed / 2026-09-11 | stub | pending | pending | pending | unrecorded | pending | BRIEF STUB: write purity lesson; IDs repaired by ENG-001; standardize closing; build practical framework. |
 | L-202-10 | TODO | - | present | pending | pending | pending | unrecorded | pending | Last Supper pair present via ENG-002, awaiting Dave review; verify ordinances widget and doctrinal clarity. |
 | L-203-01 | TODO | - | present | pending | pending | pending | unrecorded | pending | Revise: build ministry-map visual; reduce question load and standardize closing/review. |
 | L-203-02 | TODO | - | present | pending | pending | pending | unrecorded | pending | Revise: focus on Begin with Prayer per Compass; keep full BLESS only as recap. |

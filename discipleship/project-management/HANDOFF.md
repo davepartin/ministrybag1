@@ -8,8 +8,18 @@ Updated September 11, 2026 after daily review REV-001. The board is [TASKS.md](T
 - REV-001 preserved malformed/unreadable saved data through startup and later saves, and fixed real iframe shrink behavior. Evidence and exact checks: [review log](logs/2026-09-11-REV-001-codex.md).
 - ENG-002 / PR #11 is on main with passing asset checks. Status remains **REVIEW** for Dave's artwork and actual phone assessment.
 - **ENG-004 is cleared to start now.** It is unclaimed until the worker records its branch. The earlier hold is lifted. Next: ENG-005, then SEC-001 before broader release.
-- Dave's parallel work: the two 202-08/09 pastoral briefs in [DAVE.md](DAVE.md), plus the artwork check. These do not block ENG-004.
+- Dave is working with Claude on 202-08/09 now. Supply/review pastoral direction there and review the ENG-002 artwork. These do not block ENG-004.
 - Login/provider remains undecided. Do not implement the old Supabase proposal automatically.
+
+## Active worker split, reported by Dave
+
+- Claude is building **L-202-08 and L-202-09 on Dave's hard drive**. Reserve `data/202-08.json`, `data/202-09.json` and their dedicated new assets for Claude. Branch/path details and completed output have not yet been verified. Draft/approval gates remain unchanged until evidence exists.
+- Grokbot works on a **different computer using GitHub** for the engineering queue. ENG-004 is cleared; record its actual branch when it starts. Keep lesson prose/IDs out of that packet.
+- Workers should read AGENTS.md and use separate task branches. Claude must preserve the repaired 202-09 IDs. Shared `index.html`, scripts and shared widgets belong to engineering unless the coordinator explicitly reallocates them. Put a needed shared-code change in a task note rather than editing it concurrently.
+- Coordinator owns TASKS/HANDOFF integration while both workers run. Each worker records evidence in its own task log; avoid competing edits to the shared board.
+- GitHub carries committed and pushed changes only. Local edits are not automatically visible on the other computer. Push review branches, then integrate; do not merge unapproved lesson drafts to a publishing main branch.
+- Do not pull into, switch branches in, reset, or clean Claude's active checkout while it is working. Review remote changes in a separate worktree. After Claude checkpoints its work, reconcile with current main without discarding its changes.
+- Dave remains the final theology/art reviewer. Drafting underway does not establish that his DAVE-001 briefs or lesson approvals are complete.
 
 ## Remaining risks
 
