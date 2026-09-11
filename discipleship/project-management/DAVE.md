@@ -27,6 +27,7 @@ You do not need to write complete lessons or learn the code. Your judgment about
 | DAVE-003 | TODO | Introduce willing pilot pairs and a pastor from another church. Keep names/contact details outside the public repo. | PILOT-001 |
 | DAVE-004 | TODO | At week six, choose whether all 47 can pass the gates by December or whether 301 gets a later release. Set the intended 301 closing rhythm before its drafting batch. | Final release scope |
 | DAVE-005 | DEFERRED | Choose account/device-handoff approach after the Read/Discuss prototype and cost/privacy options are concrete. | DATA-001 |
+| DAVE-006 | TODO | Review the Last Supper pair in 202-10 and foot-washing pair in 203-04 on your phone. Confirm that the teaching action is clear and the charcoal/color treatment fits. Both are now on main; technical asset checks pass. | ENG-002 artwork acceptance |
 
 ## Decisions already made
 
