@@ -6,7 +6,7 @@ Status: TODO, ACTIVE, PAUSED, REVIEW, BLOCKED, DONE. Owner cell format: `agent /
 
 ## Immediate queue
 
-1. **ENG-004:** in REVIEW on `cursor/eng-004-export-preview-42be` (PR #14). Default to the current lesson and preview the selected responses before opening a mail draft.
+1. **ENG-004:** merged via PR #14 at c04efb7, still REVIEW pending independent verification. Default to the current lesson and preview the selected responses before opening a mail draft.
 2. **ENG-005:** visible save-failure feedback and recovery, including the failed-load session guard added in REV-001.
 3. **SEC-001:** remove exposed credential dependency before broader release.
 4. **ENG-002:** on main pending Dave artwork and actual phone review.
@@ -83,8 +83,8 @@ Each row is a stable task ID `L-<lesson>`. Initial `present` means substantive t
 | L-202-05 | TODO | - | present | pending | pending | pending | unrecorded | pending | IDs repaired by ENG-001; add visual/summary, standard closing, pastoral suffering review. |
 | L-202-06 | TODO | - | present | pending | pending | pending | unrecorded | pending | Revise: story/visual presentation, lesson review, standard closing. |
 | L-202-07 | TODO | - | present | pending | pending | pending | unrecorded | pending | Revise: narrative hook, title/review/closing consistency; practical generosity without overpromising. |
-| L-202-08 | ACTIVE | Claude / local folder, branch unconfirmed / 2026-09-11 | missing | pending | pending | pending | unrecorded | pending | EMPTY: write Marriage and Relationships; set scope distinct from family-at-home lesson. |
-| L-202-09 | ACTIVE | Claude / local folder, branch unconfirmed / 2026-09-11 | stub | pending | pending | pending | unrecorded | pending | BRIEF STUB: write purity lesson; IDs repaired by ENG-001; standardize closing; build practical framework. |
+| L-202-08 | ACTIVE | Claude / Obsidian manuscript, Git branch unconfirmed / 2026-09-11 | external draft | pending | pending | pending | unrecorded | pending | Manuscript verified in Obsidian; app JSON still empty. Revise pastoral scope, sources, story/tool and closing, then integrate on review branch. See reviews/2026-09-11-202-08-09-drafts.md. |
+| L-202-09 | ACTIVE | Claude / Obsidian manuscript, Git branch unconfirmed / 2026-09-11 | external draft | pending | pending | pending | unrecorded | pending | Manuscript verified in Obsidian; app JSON still a stub. Revise sources, story/tool and closing, preserving saved identities. See reviews/2026-09-11-202-08-09-drafts.md. |
 | L-202-10 | TODO | - | present | pending | pending | pending | unrecorded | pending | Last Supper pair present via ENG-002, awaiting Dave review; verify ordinances widget and doctrinal clarity. |
 | L-203-01 | TODO | - | present | pending | pending | pending | unrecorded | pending | Revise: build ministry-map visual; reduce question load and standardize closing/review. |
 | L-203-02 | TODO | - | present | pending | pending | pending | unrecorded | pending | Revise: focus on Begin with Prayer per Compass; keep full BLESS only as recap. |
