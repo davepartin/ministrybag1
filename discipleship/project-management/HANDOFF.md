@@ -6,16 +6,17 @@ Updated September 11, 2026. Keep this file short. The detailed board is [TASKS.m
 
 - Planning packet PM-001 complete. Initial audit is archived in `reviews/2026-09-11-baseline.md` for selective reference.
 - ENG-001 is **DONE** on main (merge commit `dc14f625`, PR #10).
-- ENG-002 is in **REVIEW** on `cursor/eng-002-missing-images-52ec`. Evidence: logs/2026-09-11-ENG-002-discipleshipbot.md.
-- Next worker after review/integration: **ENG-003, iframe initialization**. Then ENG-004 export. SEC-001 must be addressed before broader release.
-- Dave's next action: DAVE-001, the two short pastoral briefs in [DAVE.md](DAVE.md), plus the ENG-002 artwork and phone-display lock below. It does not block ENG-003.
+- ENG-002 is on main (merge commit `9b07d906`, PR #11) and still needs Dave's artwork and phone-display review before DONE.
+- ENG-003 is in **REVIEW** on `cursor/eng-003-iframe-init-ea64` (PR https://github.com/davepartin/ministrybag1/pull/12). Evidence: logs/2026-09-11-ENG-003-discipleshipbot.md.
+- Next worker after review/integration: **ENG-004, export scope**. SEC-001 must be addressed before broader release.
+- Dave's next action: DAVE-001, the two short pastoral briefs in [DAVE.md](DAVE.md), plus the ENG-002 artwork and phone-display lock. It does not block ENG-004.
 - Login/provider remains undecided. Do not implement the old Supabase proposal automatically.
 
 ## Known baseline failures
 
 - Saved-answer collisions: repaired and merged in ENG-001.
-- Last Supper and foot-washing teaching pairs are now on this ENG-002 branch. They were created in the Growing Together charcoal style because no originals existed in git history or elsewhere in ministrybag1. Dave must approve the artwork and confirm phone display before ENG-002 can be DONE.
-- Iframe MutationObserver exceptions observed during browser review.
+- Last Supper and foot-washing teaching pairs are on main from ENG-002. Dave must approve the artwork and confirm phone display before ENG-002 can be DONE.
+- Iframe MutationObserver exceptions: repair is in ENG-003 REVIEW. Until that branch is integrated, main still has the unguarded `contentDocument.body` observe.
 - Email Lesson exports a course; storage writes have no failure feedback.
 - 203-06 has mismatched title/topic; 203-08 contains older Belonging content.
 - Credential present in source/docs; never reproduce its value in a log or prompt.
