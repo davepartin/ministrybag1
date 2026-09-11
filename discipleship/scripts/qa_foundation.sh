@@ -77,4 +77,9 @@ if [[ -n "$runtime_dupes" ]]; then
 fi
 echo "PASS: all-course runtime question and checklist IDs are unique."
 
+# 8) Read-only asset checks: src, image, imageBw/imageColor, imageSequence.
+# Missing teaching images must fail. This check never writes placeholder files.
+node scripts/check_lesson_assets.js || fail "Lesson asset references are missing or incomplete."
+echo "PASS: lesson src/image/imageBw/imageColor/imageSequence files exist."
+
 echo "All foundation QA checks passed."
