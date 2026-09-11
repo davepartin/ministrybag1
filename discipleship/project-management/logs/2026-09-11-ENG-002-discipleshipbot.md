@@ -30,14 +30,17 @@ Exact command or browser action, result, and evidence path.
 
 1. Inventory of all `src` / `image` / `imageBw` / `imageColor` / `imageSequence` lesson references before adding files: 66 references, exactly four missing (the 202-10 and 203-04 pairs). No other missing lesson assets.
 2. `node scripts/test_lesson_assets.js` from `discipleship/`
-   Result: recorded in the same work session after implementation.
-3. `node scripts/check_lesson_assets.js` and `bash scripts/qa_foundation.sh` from `discipleship/`
-   Result: recorded in the same work session after implementation.
-4. `node scripts/eng002_browser_check.js` against `http://127.0.0.1:8765/index.html`
-   Result: recorded after the local server check.
+   Result: 8 tests passed, including synthetic missing-src, incomplete pair, empty sequence item, and no placeholder-file creation.
+3. `node scripts/check_lesson_assets.js` from `discipleship/`
+   Result: `PASS: 66 src/image/imageBw/imageColor/imageSequence references resolve to files.`
+4. `bash scripts/qa_foundation.sh` from `discipleship/`
+   Result: all previous foundation checks passed, plus the new asset check.
+5. `NODE_PATH=/tmp/node_modules node scripts/eng002_browser_check.js` against `http://127.0.0.1:8765/index.html`
+   Result: 14 browser checks passed. `#202-10` and `#203-4` loaded the expected B&W/color files at 390 x 844 and 1280 x 800. Both pairs share one composition size.
+6. Playwright screenshots of the rendered lessons: 390, 375, and 1280 widths. Images load in the lesson column. On a 390-pixel phone the side figures crop; the bread-breaking and foot-washing actions stay in frame. Dave still needs to confirm this on a real phone.
 
 Checks not run and why:
-- Real iPhone Safari was not available in this environment. Playwright used 390 x 844 and 1280 x 800. Dave's phone check remains required.
+- Real iPhone Safari was not available in this environment. Dave's phone check remains required.
 - Print, offline, and reduced-motion dissolve timing were not treated as this packet's acceptance gate.
 
 Known baseline failures distinguished from new regressions: iframe observer errors, export scope, save-failure UI, 203-06 title/topic mismatch, 203-08 wrong content, and SEC-001 remain out of scope.

@@ -19,12 +19,20 @@ function assert(name, condition, detail) {
     console.error('FAIL: ' + name + (detail ? ' | ' + detail : ''));
 }
 
-async function checkLessonPair(page, hash, expected, label) {
+async function checkLessonPair(page, hash, sessionId, expected, label) {
     await page.goto(BASE + hash, { waitUntil: 'domcontentloaded' });
-    await page.waitForSelector('.parable-img-color', { timeout: 15000 });
-    var info = await page.evaluate(function () {
-        var color = document.querySelector('.parable-img-color');
-        var bw = document.querySelector('.parable-img-bw');
+    await page.waitForSelector(sessionId + '.active', { timeout: 15000 });
+    await page.waitForSelector(sessionId + ' .parable-img-color', { timeout: 15000 });
+    await page.waitForFunction(function (sid) {
+        var root = document.querySelector(sid);
+        var color = root && root.querySelector('.parable-img-color');
+        var bw = root && root.querySelector('.parable-img-bw');
+        return color && bw && color.complete && bw.complete && color.naturalWidth > 0 && bw.naturalWidth > 0;
+    }, sessionId, { timeout: 15000 });
+    var info = await page.evaluate(function (sid) {
+        var root = document.querySelector(sid);
+        var color = root ? root.querySelector('.parable-img-color') : null;
+        var bw = root ? root.querySelector('.parable-img-bw') : null;
         return {
             colorSrc: color ? color.getAttribute('src') : null,
             bwSrc: bw ? bw.getAttribute('src') : null,
@@ -35,7 +43,7 @@ async function checkLessonPair(page, hash, expected, label) {
             colorComplete: color ? color.complete : false,
             bwComplete: bw ? bw.complete : false
         };
-    });
+    }, sessionId);
     assert(label + ' color src points at expected file', info.colorSrc && info.colorSrc.indexOf(expected.color) !== -1, info.colorSrc);
     assert(label + ' B&W src points at expected file', info.bwSrc && info.bwSrc.indexOf(expected.bw) !== -1, info.bwSrc);
     assert(label + ' color image loaded', info.colorComplete && info.colorW > 0, JSON.stringify(info));
@@ -48,18 +56,18 @@ async function checkLessonPair(page, hash, expected, label) {
     var page = await browser.newPage();
 
     await page.setViewportSize({ width: 390, height: 844 });
-    var supper = await checkLessonPair(page, '#202-10', {
+    var supper = await checkLessonPair(page, '#202-10', '#session-10', {
         color: 'images/last-supper-color.jpg',
         bw: 'images/last-supper-bw.jpg'
     }, '202-10 phone');
 
-    var feet = await checkLessonPair(page, '#203-4', {
+    var feet = await checkLessonPair(page, '#203-4', '#session-4', {
         color: 'images/jesus-washing-feet-color.png',
         bw: 'images/jesus-washing-feet-bw.png'
     }, '203-04 phone');
 
     await page.setViewportSize({ width: 1280, height: 800 });
-    await checkLessonPair(page, '#202-10', {
+    await checkLessonPair(page, '#202-10', '#session-10', {
         color: 'images/last-supper-color.jpg',
         bw: 'images/last-supper-bw.jpg'
     }, '202-10 laptop');
