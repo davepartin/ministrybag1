@@ -2277,6 +2277,7 @@
     </div>
 
     <script src="scripts/answer-storage.js"></script>
+    <script src="scripts/widget-iframe.js"></script>
     <script>
         // ============================================
         // VERSION - bump this when JSON content changes
@@ -2306,6 +2307,27 @@
         }
 
         const answerStorage = window.GrowingTogetherAnswerStorage;
+        const widgetIframeApi = window.GrowingTogetherWidgetIframe;
+        let widgetIframeHost = null;
+
+        function teardownWidgetIframes() {
+            if (widgetIframeHost) {
+                widgetIframeHost.teardown();
+                widgetIframeHost = null;
+            }
+        }
+
+        function bindWidgetIframes(root) {
+            teardownWidgetIframes();
+            if (!widgetIframeApi || !root) return;
+            widgetIframeHost = widgetIframeApi.createHost();
+            widgetIframeHost.bindAll(root);
+        }
+
+        function refreshWidgetIframes() {
+            if (widgetIframeHost) widgetIframeHost.refresh();
+        }
+
         try {
             const loaded = answerStorage
                 ? answerStorage.loadAndMigrateResponses(window.localStorage)
@@ -2618,6 +2640,8 @@
 
             const loadingEl = document.getElementById('loading-indicator');
             if (loadingEl) loadingEl.style.display = 'block';
+
+            teardownWidgetIframes();
 
             // Clear old sessions
             document.querySelectorAll('#lessons-list .session').forEach(el => el.remove());
@@ -3036,21 +3060,17 @@
                             case 'widget': {
                                 const widgetId = `widget-${currentSeries}-${sessionNum}-${blockIdx}`;
                                 const widgetHeight = b.height || '500px';
+                                const widgetTitle = widgetIframeApi
+                                    ? widgetIframeApi.titleForWidget(b)
+                                    : (b.title || 'Lesson widget');
+                                const widgetTitleAttr = widgetIframeApi
+                                    ? widgetIframeApi.escapeAttr(widgetTitle)
+                                    : String(widgetTitle).replace(/"/g, '&quot;');
                                 html += `<div class="block-widget">
-                                    <iframe id="${widgetId}" src="${b.src}?v=${BUILD_VERSION}"
+                                    <iframe id="${widgetId}" class="gt-widget-frame" src="${b.src}?v=${BUILD_VERSION}"
+                                        title="${widgetTitleAttr}"
                                         style="width: 100%; border: none; overflow: hidden; height: ${widgetHeight};"
                                         scrolling="no"
-                                        onload="(function(f){
-                                            function resize(){
-                                                try {
-                                                    var h = f.contentDocument.documentElement.scrollHeight;
-                                                    if(h > 50) f.style.height = h + 'px';
-                                                } catch(e){}
-                                            }
-                                            resize();
-                                            new MutationObserver(resize).observe(f.contentDocument.body, {childList:true, subtree:true, attributes:true});
-                                            window.addEventListener('resize', resize);
-                                        })(this)"
                                     ></iframe>
                                 </div>`;
                                 break;
@@ -3151,6 +3171,7 @@
             });
 
             initParableDissolves();
+            bindWidgetIframes(container);
         }
 
         let parableDissolveCleanup = null;
@@ -3354,6 +3375,7 @@
 
             // Scroll lesson content to top
             window.scrollTo({ top: 0, behavior: 'smooth' });
+            refreshWidgetIframes();
         }
 
         function nextSession() {
