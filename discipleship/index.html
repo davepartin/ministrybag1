@@ -1690,6 +1690,214 @@
         }
 
         /* ============================================
+           EXPORT PREVIEW
+           ============================================ */
+        body.export-preview-open {
+            overflow: hidden;
+        }
+
+        .export-preview-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 400;
+            display: none;
+            align-items: stretch;
+            justify-content: center;
+            padding: 12px;
+            padding-top: max(12px, env(safe-area-inset-top));
+            padding-bottom: max(12px, env(safe-area-inset-bottom));
+            background: rgba(26, 26, 26, 0.46);
+        }
+
+        .export-preview-overlay.open {
+            display: flex;
+        }
+
+        .export-preview-dialog {
+            background: var(--surface);
+            color: var(--text-primary);
+            width: 100%;
+            max-width: 560px;
+            max-height: 100%;
+            margin: auto 0;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-md);
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+            overflow: hidden;
+        }
+
+        .export-preview-dialog:focus {
+            outline: none;
+        }
+
+        .export-preview-header {
+            padding: 16px 16px 8px;
+        }
+
+        .export-preview-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            line-height: 1.3;
+            margin: 0 0 6px;
+        }
+
+        .export-preview-selected {
+            font-size: 0.92rem;
+            font-weight: 600;
+            color: var(--accent);
+            line-height: 1.4;
+        }
+
+        .export-scope {
+            border: none;
+            margin: 0;
+            padding: 0 16px 10px;
+        }
+
+        .export-scope legend {
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            padding: 0 0 8px;
+        }
+
+        .export-scope-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 16px;
+        }
+
+        .export-scope-option {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.92rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            min-height: 44px;
+        }
+
+        .export-scope-option input {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--accent);
+        }
+
+        .export-preview-label {
+            display: block;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            padding: 0 16px 6px;
+        }
+
+        .export-preview-text {
+            margin: 0 16px;
+            padding: 12px;
+            background: var(--surface-warm);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xs);
+            font-family: inherit;
+            font-size: 0.92rem;
+            line-height: 1.5;
+            white-space: pre-wrap;
+            word-break: break-word;
+            overflow: auto;
+            min-height: 140px;
+            max-height: min(42dvh, 360px);
+            flex: 1 1 auto;
+        }
+
+        .export-preview-text:focus {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+        }
+
+        .export-preview-note {
+            margin: 8px 16px 0;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            line-height: 1.45;
+        }
+
+        .export-preview-note[hidden],
+        .export-preview-status[hidden] {
+            display: none;
+        }
+
+        .export-preview-status {
+            margin: 6px 16px 0;
+            font-size: 0.8rem;
+            color: var(--accent);
+        }
+
+        .export-preview-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 14px 16px 16px;
+        }
+
+        .export-preview-actions button {
+            flex: 1 1 140px;
+            min-height: 44px;
+            border: none;
+            border-radius: 20px;
+            font-family: inherit;
+            font-size: 0.88rem;
+            font-weight: 600;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .export-preview-cancel {
+            background: var(--surface-warm);
+            color: var(--text-primary);
+            border: 1px solid var(--border) !important;
+        }
+
+        .export-preview-copy {
+            background: var(--accent-light);
+            color: var(--accent);
+        }
+
+        .export-preview-mail {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        .export-preview-actions button:focus {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+        }
+
+        .export-preview-actions button:active {
+            opacity: 0.75;
+        }
+
+        @media (min-width: 720px) {
+            .export-preview-overlay {
+                align-items: center;
+                padding: 32px;
+            }
+
+            .export-preview-dialog {
+                max-height: min(88vh, 760px);
+            }
+
+            .export-preview-text {
+                max-height: min(46vh, 420px);
+                font-size: 0.95rem;
+            }
+        }
+
+        /* ============================================
            PRINT / SAVE AS PDF
            ============================================ */
         @media print {
@@ -1699,6 +1907,7 @@
             body.printing .bottom-nav,
             body.printing .session-complete-bar,
             body.printing .export-line,
+            body.printing .export-preview-overlay,
             body.printing .esv-footnote,
             body.printing .session-course-logo,
             body.printing .bible-reading-section,
@@ -2276,7 +2485,45 @@
         </div>
     </div>
 
+    <div id="export-preview-overlay" class="export-preview-overlay" hidden>
+        <div class="export-preview-dialog" role="dialog" aria-modal="true" aria-labelledby="export-preview-title"
+            id="export-preview-dialog">
+            <div class="export-preview-header">
+                <h2 class="export-preview-title" id="export-preview-title">Email Lesson</h2>
+                <div class="export-preview-selected" id="export-preview-selected"></div>
+            </div>
+            <fieldset class="export-scope">
+                <legend>What to include</legend>
+                <div class="export-scope-options">
+                    <label class="export-scope-option">
+                        <input type="radio" name="export-scope" value="lesson" id="export-scope-lesson" checked
+                            onchange="refreshExportPreview()">
+                        <span>This lesson</span>
+                    </label>
+                    <label class="export-scope-option">
+                        <input type="radio" name="export-scope" value="course" id="export-scope-course"
+                            onchange="refreshExportPreview()">
+                        <span>This course</span>
+                    </label>
+                </div>
+            </fieldset>
+            <label class="export-preview-label" for="export-preview-text">Outgoing text</label>
+            <pre id="export-preview-text" class="export-preview-text" tabindex="0"></pre>
+            <p class="export-preview-note" id="export-preview-note" hidden></p>
+            <p class="export-preview-status" id="export-preview-status" hidden></p>
+            <div class="export-preview-actions">
+                <button type="button" class="export-preview-cancel" id="export-preview-cancel"
+                    onclick="closeExportPreview()">Cancel</button>
+                <button type="button" class="export-preview-copy" id="export-preview-copy"
+                    onclick="copyExportPreview()">Copy text</button>
+                <button type="button" class="export-preview-mail" id="export-preview-mail"
+                    onclick="openExportMailDraft()">Open mail draft</button>
+            </div>
+        </div>
+    </div>
+
     <script src="scripts/answer-storage.js"></script>
+    <script src="scripts/lesson-export.js"></script>
     <script src="scripts/widget-iframe.js"></script>
     <script>
         // ============================================
@@ -2307,7 +2554,10 @@
         }
 
         const answerStorage = window.GrowingTogetherAnswerStorage;
+        const lessonExport = window.GrowingTogetherLessonExport;
         let responseStorageWritable = false;
+        let exportPreviewLastFocus = null;
+        let lastBuiltExport = null;
         const widgetIframeApi = window.GrowingTogetherWidgetIframe;
         let widgetIframeHost = null;
 
@@ -2441,6 +2691,7 @@
         }
 
         function goHome() {
+            if (isExportPreviewOpen()) closeExportPreview();
             document.getElementById('lesson-view').classList.remove('active');
             document.getElementById('home-view').classList.remove('hidden');
             document.getElementById('toc-panel').classList.remove('open');
@@ -3157,7 +3408,7 @@
             exportDiv.innerHTML = `
                 <span class="export-hint">Responses save automatically on this device</span>
                 <div class="export-buttons">
-                    <button class="export-link" onclick="exportAllResponses()">Email Lesson &rarr;</button>
+                    <button type="button" class="export-link" id="email-lesson-btn" onclick="openExportPreview()">Email Lesson &rarr;</button>
                     <button class="export-link export-pdf-btn" onclick="printLesson()">Save PDF &#8595;</button>
                 </div>
             `;
@@ -3368,6 +3619,7 @@
             if (sess) sess.classList.add('active');
 
             currentSession = targetNum;
+            if (isExportPreviewOpen()) closeExportPreview();
             updateNav();
             updateTOCHighlight();
 
@@ -3685,33 +3937,184 @@
             }, 1000);
         }
 
-        function exportAllResponses() {
-            let body = `${seriesTitles[currentSeries] || 'The Walk Discipleship'} - Complete Journey\n`;
-            body += '='.repeat(50) + '\n\n';
-
-            loadedSessionNums.forEach((sessionNum, idx) => {
-                const d = sessionData[sessionNum];
-                if (!d) return;
-
-                body += d.title + '\n' + '-'.repeat(d.title.length) + '\n\n';
-
-                const sess = document.getElementById(`session-${sessionNum}`);
-                if (sess) {
-                    sess.querySelectorAll('.question-textarea').forEach(ta => {
-                        const q = ta.dataset.question || ta.id;
-                        body += q + '\n' + (ta.value || '[No response]') + '\n\n';
-                    });
-                }
-
-                if (idx === 0 && responses[`commitment-${currentSeries}`]) {
-                    body += 'Course Commitment\n' + responses[`commitment-${currentSeries}`] + '\n\n';
-                }
-
-                body += '\n';
+        function collectLiveExportValues() {
+            const live = {};
+            document.querySelectorAll('.question-textarea').forEach(ta => {
+                live[ta.id] = ta.value;
             });
+            document.querySelectorAll('.block-checklist').forEach(container => {
+                const tiles = container.querySelectorAll('.checklist-tile');
+                const selected = [];
+                tiles.forEach((t, i) => {
+                    if (t.classList.contains('selected')) selected.push(i);
+                });
+                live[container.id] = selected;
+            });
+            const commitKey = `commitment-${currentSeries}`;
+            const checked = document.querySelector(`input[name="${commitKey}"]:checked`);
+            if (checked) live[commitKey] = checked.value;
+            return live;
+        }
 
-            const subject = `My ${seriesTitles[currentSeries] || 'The Walk Discipleship'} Journey`;
-            window.location.href = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        function collectLoadedLessonsForExport() {
+            return loadedSessionNums.map((num) => {
+                const meta = currentSeriesLessonMeta[num] || {};
+                const data = sessionData[num];
+                return {
+                    num: num,
+                    data: data,
+                    metaTitle: meta.title || (data && data.title
+                        ? data.title.replace(/^Lesson\s+\d+:\s*/i, '')
+                        : '')
+                };
+            });
+        }
+
+        function selectedExportScope() {
+            const course = document.getElementById('export-scope-course');
+            return course && course.checked ? 'course' : 'lesson';
+        }
+
+        function buildCurrentExport() {
+            if (!lessonExport) return null;
+            return lessonExport.buildExport({
+                scope: selectedExportScope(),
+                courseId: currentSeries,
+                courseTitle: seriesTitles[currentSeries] || 'Growing Together',
+                currentLessonNum: currentSession,
+                lessons: collectLoadedLessonsForExport(),
+                responses: responses,
+                liveValues: collectLiveExportValues()
+            });
+        }
+
+        function isExportPreviewOpen() {
+            const overlay = document.getElementById('export-preview-overlay');
+            return !!(overlay && overlay.classList.contains('open'));
+        }
+
+        function exportPreviewFocusables() {
+            const dialog = document.getElementById('export-preview-dialog');
+            if (!dialog) return [];
+            return Array.from(dialog.querySelectorAll(
+                'button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])'
+            ));
+        }
+
+        function refreshExportPreview() {
+            if (!lessonExport) return;
+            const built = buildCurrentExport();
+            lastBuiltExport = built;
+            const selectedEl = document.getElementById('export-preview-selected');
+            const textEl = document.getElementById('export-preview-text');
+            const noteEl = document.getElementById('export-preview-note');
+            const statusEl = document.getElementById('export-preview-status');
+            if (!built || !textEl) return;
+            if (selectedEl) selectedEl.textContent = built.title;
+            textEl.textContent = built.body;
+            const href = lessonExport.buildMailtoHref(built.subject, built.body);
+            const advisory = lessonExport.mailtoAdvisory(href);
+            if (noteEl) {
+                if (advisory.mayExceedSomeClients) {
+                    noteEl.hidden = false;
+                    noteEl.textContent = advisory.note;
+                } else {
+                    noteEl.hidden = true;
+                    noteEl.textContent = '';
+                }
+            }
+            if (statusEl) {
+                statusEl.hidden = true;
+                statusEl.textContent = '';
+            }
+        }
+
+        function openExportPreview() {
+            if (!lessonExport) return;
+            const overlay = document.getElementById('export-preview-overlay');
+            const lessonScope = document.getElementById('export-scope-lesson');
+            if (!overlay) return;
+            exportPreviewLastFocus = document.activeElement;
+            if (lessonScope) lessonScope.checked = true;
+            refreshExportPreview();
+            overlay.hidden = false;
+            overlay.classList.add('open');
+            document.body.classList.add('export-preview-open');
+            const cancelBtn = document.getElementById('export-preview-cancel');
+            if (cancelBtn) cancelBtn.focus();
+        }
+
+        function closeExportPreview() {
+            const overlay = document.getElementById('export-preview-overlay');
+            if (overlay) {
+                overlay.classList.remove('open');
+                overlay.hidden = true;
+            }
+            document.body.classList.remove('export-preview-open');
+            const statusEl = document.getElementById('export-preview-status');
+            if (statusEl) {
+                statusEl.hidden = true;
+                statusEl.textContent = '';
+            }
+            if (exportPreviewLastFocus && typeof exportPreviewLastFocus.focus === 'function') {
+                exportPreviewLastFocus.focus();
+            }
+            exportPreviewLastFocus = null;
+        }
+
+        function copyExportPreview() {
+            if (!lastBuiltExport) refreshExportPreview();
+            const text = lastBuiltExport ? lastBuiltExport.body : '';
+            const statusEl = document.getElementById('export-preview-status');
+            const showStatus = (message) => {
+                if (!statusEl) return;
+                statusEl.hidden = false;
+                statusEl.textContent = message;
+            };
+            const fallbackCopy = () => {
+                const area = document.createElement('textarea');
+                area.value = text;
+                area.setAttribute('readonly', '');
+                area.style.position = 'fixed';
+                area.style.left = '-9999px';
+                document.body.appendChild(area);
+                area.select();
+                let ok = false;
+                try {
+                    ok = document.execCommand('copy');
+                } catch (err) {
+                    ok = false;
+                }
+                document.body.removeChild(area);
+                return ok;
+            };
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).then(() => {
+                    showStatus('Copied. You can paste this into a message.');
+                }).catch(() => {
+                    showStatus(fallbackCopy()
+                        ? 'Copied. You can paste this into a message.'
+                        : 'Could not copy. Select the outgoing text and copy it.');
+                });
+                return;
+            }
+            showStatus(fallbackCopy()
+                ? 'Copied. You can paste this into a message.'
+                : 'Could not copy. Select the outgoing text and copy it.');
+        }
+
+        function openExportMailDraft() {
+            if (!lessonExport) return;
+            if (!lastBuiltExport) refreshExportPreview();
+            if (!lastBuiltExport) return;
+            const href = lessonExport.buildMailtoHref(lastBuiltExport.subject, lastBuiltExport.body);
+            window.__gtLastMailtoHref = href;
+            closeExportPreview();
+            window.location.href = href;
+        }
+
+        function exportAllResponses() {
+            openExportPreview();
         }
 
         // ============================================
@@ -3800,10 +4203,38 @@
         // KEYBOARD NAV
         // ============================================
         document.addEventListener('keydown', e => {
+            if (isExportPreviewOpen()) {
+                if (e.key === 'Escape') {
+                    e.preventDefault();
+                    closeExportPreview();
+                    return;
+                }
+                if (e.key === 'Tab') {
+                    const items = exportPreviewFocusables();
+                    if (!items.length) return;
+                    const first = items[0];
+                    const last = items[items.length - 1];
+                    if (e.shiftKey && document.activeElement === first) {
+                        e.preventDefault();
+                        last.focus();
+                    } else if (!e.shiftKey && document.activeElement === last) {
+                        e.preventDefault();
+                        first.focus();
+                    }
+                }
+                return;
+            }
             if (!document.getElementById('lesson-view').classList.contains('active')) return;
             if ((e.ctrlKey || e.metaKey) && e.key === 'ArrowLeft') { e.preventDefault(); previousSession(); }
             if ((e.ctrlKey || e.metaKey) && e.key === 'ArrowRight') { e.preventDefault(); nextSession(); }
         });
+
+        const exportPreviewOverlay = document.getElementById('export-preview-overlay');
+        if (exportPreviewOverlay) {
+            exportPreviewOverlay.addEventListener('click', (event) => {
+                if (event.target === exportPreviewOverlay) closeExportPreview();
+            });
+        }
 
         // Periodic save
         setInterval(() => {

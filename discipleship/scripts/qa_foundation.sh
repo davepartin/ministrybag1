@@ -91,4 +91,8 @@ echo "PASS: lesson src/image/imageBw/imageColor/imageSequence files exist."
 node scripts/test_widget_iframe.js || fail "Widget iframe readiness checks failed."
 echo "PASS: widget iframe readiness, resize, and cleanup checks."
 
+# 10) Lesson export scope, preview text, and mailto encoding.
+node scripts/test_lesson_export.js || fail "Lesson export scope and encoding checks failed."
+echo "PASS: lesson export scope, encoding, and metadata-exclusion checks."
+
 echo "All foundation QA checks passed."
