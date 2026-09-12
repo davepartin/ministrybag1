@@ -227,6 +227,7 @@ Course header rows use only the `Course` column. Lesson rows supply the rest of 
 - Keyboard nav: Ctrl/Cmd + Arrow Left/Right between lessons
 - Periodic backup save every 30 seconds
 - Local backup download (ENG-006a): `scripts/backup-download.js`, format in `scripts/backup-format.md`. Covers answers, completion and reading stores. No restore writes.
+- Local backup preview (ENG-006b): `scripts/backup-preview.js`. Validates a user-selected version-1 file and shows a read-only restore preview. No restore writes.
 - BUILD_VERSION = Date.now() (automatic cache busting, never bump manually)
 - Version badge: `"version": "v03"` in JSON renders as small tag above lesson title
 
