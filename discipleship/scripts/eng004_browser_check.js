@@ -281,6 +281,19 @@ function launchBrowser() {
         tabTarget
     );
 
+    // A radio group has one Tab stop: its selected radio, not always the first.
+    // Both directions must wrap correctly after changing export scope.
+    for (var scope of ['course', 'lesson']) {
+        await page.check('#export-scope-' + scope);
+        await page.focus('#export-scope-' + scope);
+        await page.keyboard.press('Shift+Tab');
+        assert(scope + ': Shift+Tab wraps to the last dialog action',
+            await page.evaluate(function () { return document.activeElement.id; }) === 'export-preview-mail');
+        await page.keyboard.press('Tab');
+        assert(scope + ': Tab wraps to the selected scope radio',
+            await page.evaluate(function () { return document.activeElement.id; }) === 'export-scope-' + scope);
+    }
+
     await browser.close();
     if (failed) {
         console.error('\n' + failed + ' browser check(s) failed.');

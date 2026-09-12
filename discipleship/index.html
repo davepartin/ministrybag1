@@ -3998,7 +3998,7 @@
             if (!dialog) return [];
             return Array.from(dialog.querySelectorAll(
                 'button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex="-1"])'
-            ));
+            )).filter(el => el.type !== 'radio' || el.checked);
         }
 
         function refreshExportPreview() {
