@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 780" role="img" aria-labelledby="fp-title fp-desc">
+  <title id="fp-title">The FIGHT Plan</title>
+  <desc id="fp-desc">Fighting from grace, not for it. F: Flee early, leave at the first step, not the fifth (1 Corinthians 6:18). I: Identity, you are not your own, you are His (1 Corinthians 6:19-20). G: Grace, run to God, not away from Him (Hebrews 4:16). H: Help, let a trusted believer help you fight (James 5:16). T: Treasure, want something better, joy in Jesus (Psalm 16:11). Five letters, five fingers: count it out when temptation knocks.</desc>
+  <style>
+    .serif { font-family: Georgia, 'Times New Roman', serif; }
+    .sans { font-family: -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif; }
+  </style>
+  <rect x="0" y="0" width="600" height="780" rx="24" fill="#FBF8F1"/>
+  <text x="300" y="62" text-anchor="middle" class="serif" font-size="40" fill="#1D6B3F">The FIGHT Plan</text>
+  <text x="300" y="98" text-anchor="middle" class="sans" font-size="20" fill="#5E5A52">Fighting from grace, not for it</text>
+
+  <g>
+    <rect x="24" y="124" width="552" height="100" rx="16" fill="#FFFFFF" stroke="#D1EDD9" stroke-width="2"/>
+    <circle cx="84" cy="174" r="34" fill="#1D6B3F"/>
+    <text x="84" y="188" text-anchor="middle" class="serif" font-size="38" font-weight="700" fill="#FFFFFF">F</text>
+    <text x="142" y="166" class="serif" font-size="28" fill="#155030">Flee early</text>
+    <text x="560" y="166" text-anchor="end" class="sans" font-size="17" fill="#1D6B3F">1 Cor 6:18</text>
+    <text x="142" y="200" class="sans" font-size="20" fill="#3E3B35">Leave at the first step, not the fifth.</text>
+  </g>
+  <g>
+    <rect x="24" y="236" width="552" height="100" rx="16" fill="#FFFFFF" stroke="#D1EDD9" stroke-width="2"/>
+    <circle cx="84" cy="286" r="34" fill="#1D6B3F"/>
+    <text x="84" y="300" text-anchor="middle" class="serif" font-size="38" font-weight="700" fill="#FFFFFF">I</text>
+    <text x="142" y="278" class="serif" font-size="28" fill="#155030">Identity</text>
+    <text x="560" y="278" text-anchor="end" class="sans" font-size="17" fill="#1D6B3F">1 Cor 6:19-20</text>
+    <text x="142" y="312" class="sans" font-size="20" fill="#3E3B35">You are not your own. You are His.</text>
+  </g>
+  <g>
+    <rect x="24" y="348" width="552" height="100" rx="16" fill="#FFFFFF" stroke="#D1EDD9" stroke-width="2"/>
+    <circle cx="84" cy="398" r="34" fill="#1D6B3F"/>
+    <text x="84" y="412" text-anchor="middle" class="serif" font-size="38" font-weight="700" fill="#FFFFFF">G</text>
+    <text x="142" y="390" class="serif" font-size="28" fill="#155030">Grace</text>
+    <text x="560" y="390" text-anchor="end" class="sans" font-size="17" fill="#1D6B3F">Hebrews 4:16</text>
+    <text x="142" y="424" class="sans" font-size="20" fill="#3E3B35">Run to God, not away from Him.</text>
+  </g>
+  <g>
+    <rect x="24" y="460" width="552" height="100" rx="16" fill="#FFFFFF" stroke="#D1EDD9" stroke-width="2"/>
+    <circle cx="84" cy="510" r="34" fill="#1D6B3F"/>
+    <text x="84" y="524" text-anchor="middle" class="serif" font-size="38" font-weight="700" fill="#FFFFFF">H</text>
+    <text x="142" y="502" class="serif" font-size="28" fill="#155030">Help</text>
+    <text x="560" y="502" text-anchor="end" class="sans" font-size="17" fill="#1D6B3F">James 5:16</text>
+    <text x="142" y="536" class="sans" font-size="20" fill="#3E3B35">Let a trusted believer help you fight.</text>
+  </g>
+  <g>
+    <rect x="24" y="572" width="552" height="100" rx="16" fill="#FFFFFF" stroke="#D1EDD9" stroke-width="2"/>
+    <circle cx="84" cy="622" r="34" fill="#1D6B3F"/>
+    <text x="84" y="636" text-anchor="middle" class="serif" font-size="38" font-weight="700" fill="#FFFFFF">T</text>
+    <text x="142" y="614" class="serif" font-size="28" fill="#155030">Treasure</text>
+    <text x="560" y="614" text-anchor="end" class="sans" font-size="17" fill="#1D6B3F">Psalm 16:11</text>
+    <text x="142" y="648" class="sans" font-size="20" fill="#3E3B35">Want something better: joy in Jesus.</text>
+  </g>
+
+  <text x="300" y="716" text-anchor="middle" class="sans" font-size="20" font-style="italic" fill="#5E5A52">Five letters, five fingers.</text>
+  <text x="300" y="746" text-anchor="middle" class="sans" font-size="20" font-style="italic" fill="#5E5A52">Count it out when temptation knocks.</text>
+</svg>

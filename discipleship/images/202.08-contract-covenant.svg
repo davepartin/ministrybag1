@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 720" role="img" aria-labelledby="cc-title cc-desc">
+  <title id="cc-title">Contract or Covenant?</title>
+  <desc id="cc-desc">Two cards side by side. A contract says I will, if you will: built on performance, protects me first, ends when needs stop. A covenant says I will, even when: built on a promise, gives itself first, holds on hard days. Underneath, God keeps covenant with you first, and covenant love flows out after it flows in.</desc>
+  <style>
+    .serif { font-family: Georgia, 'Times New Roman', serif; }
+    .sans { font-family: -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif; }
+  </style>
+  <rect x="0" y="0" width="600" height="720" rx="24" fill="#FBF8F1"/>
+  <text x="300" y="62" text-anchor="middle" class="serif" font-size="38" fill="#1D6B3F">Contract or Covenant?</text>
+  <text x="300" y="98" text-anchor="middle" class="sans" font-size="20" fill="#5E5A52">Two ways to hold a relationship</text>
+
+  <rect x="24" y="124" width="264" height="380" rx="18" fill="#EFEDE7" stroke="#B9B4A8" stroke-width="2"/>
+  <text x="156" y="168" text-anchor="middle" class="sans" font-size="20" font-weight="700" letter-spacing="3" fill="#6B665C">CONTRACT</text>
+  <circle cx="126" cy="232" r="26" fill="none" stroke="#8C877C" stroke-width="6"/>
+  <circle cx="186" cy="232" r="26" fill="none" stroke="#8C877C" stroke-width="6"/>
+  <text x="156" y="312" text-anchor="middle" class="serif" font-size="32" fill="#3E3B35">I will,</text>
+  <text x="156" y="350" text-anchor="middle" class="serif" font-size="32" fill="#3E3B35">if you will.</text>
+  <line x1="60" y1="378" x2="252" y2="378" stroke="#CFCAC0" stroke-width="2"/>
+  <text x="156" y="414" text-anchor="middle" class="sans" font-size="20" fill="#5E5A52">Built on performance</text>
+  <text x="156" y="448" text-anchor="middle" class="sans" font-size="20" fill="#5E5A52">Protects me first</text>
+  <text x="156" y="482" text-anchor="middle" class="sans" font-size="20" fill="#5E5A52">Ends when needs stop</text>
+
+  <rect x="312" y="124" width="264" height="380" rx="18" fill="#D1EDD9" stroke="#1D6B3F" stroke-width="2"/>
+  <text x="444" y="168" text-anchor="middle" class="sans" font-size="20" font-weight="700" letter-spacing="3" fill="#1D6B3F">COVENANT</text>
+  <circle cx="422" cy="232" r="26" fill="none" stroke="#1D6B3F" stroke-width="6"/>
+  <circle cx="466" cy="232" r="26" fill="none" stroke="#1D6B3F" stroke-width="6"/>
+  <text x="444" y="312" text-anchor="middle" class="serif" font-size="32" fill="#155030">I will,</text>
+  <text x="444" y="350" text-anchor="middle" class="serif" font-size="32" fill="#155030">even when.</text>
+  <line x1="348" y1="378" x2="540" y2="378" stroke="#1D6B3F" stroke-opacity="0.3" stroke-width="2"/>
+  <text x="444" y="414" text-anchor="middle" class="sans" font-size="20" fill="#1F4D33">Built on a promise</text>
+  <text x="444" y="448" text-anchor="middle" class="sans" font-size="20" fill="#1F4D33">Gives itself first</text>
+  <text x="444" y="482" text-anchor="middle" class="sans" font-size="20" fill="#1F4D33">Holds on hard days</text>
+
+  <line x1="444" y1="594" x2="444" y2="526" stroke="#1D6B3F" stroke-width="5"/>
+  <polygon points="430,530 458,530 444,510" fill="#1D6B3F"/>
+
+  <rect x="24" y="596" width="552" height="100" rx="18" fill="#1D6B3F"/>
+  <text x="300" y="638" text-anchor="middle" class="serif" font-size="26" fill="#FFFFFF">God keeps covenant with you first.</text>
+  <text x="300" y="674" text-anchor="middle" class="sans" font-size="19" fill="#D1EDD9">Covenant love flows out after it flows in.</text>
+</svg>

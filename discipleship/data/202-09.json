@@ -1,15 +1,83 @@
 {
   "id": "9",
   "title": "Lesson 9: Fighting for Purity",
-  "description": "Life Skill: Honoring God with our bodies and minds.",
+  "description": "Purity is not how you earn God's love. It is how you protect a heart that already belongs to Him. Through King David's fall and restoration, you will see how sin grows in small steps, how grace leads back out, and you will learn the <strong>FIGHT</strong> plan for honoring God with your body and mind.",
   "blocks": [
     {
-      "type": "heading",
-      "text": "Living with Integrity"
+      "type": "text",
+      "text": "In the last lesson, you saw that God loves you with covenant love, a love that keeps its promises. This lesson turns to purity, which is how you guard your body, your eyes, and your mind so that your closest relationships stay faithful and your heart stays free. Purity matters whether you are married or single, and it always starts with grace."
+    },
+    {
+      "type": "parable",
+      "title": "The View from the Roof",
+      "text": "David was Israel's greatest king, a man the Bible describes as a man after God's own heart (1 Samuel 13:14). One spring, at the time when kings usually went out to battle, David stayed home in Jerusalem while his army went to war (2 Samuel 11:1).<br><br>Late one afternoon, he got up from his couch and walked on the roof of his palace. From there he saw a woman bathing. He could have turned away. Instead he kept looking. Then he asked who she was and learned that she was Bathsheba, the wife of Uriah, one of his own soldiers. Then David used his power as king. He <em>\"sent messengers and took her\"</em> (2 Samuel 11:4).<br><br>When Bathsheba became pregnant, David tried to hide what he had done. When hiding failed, he arranged for Uriah to be killed in battle. One look became a string of choices, and each one made the next one easier. The chapter ends with one heavy sentence: <em>\"But the thing that David had done displeased the LORD\"</em> (2 Samuel 11:27).<br><br>For months David stayed silent. Later he wrote about that season: <em>\"For when I kept silent, my bones wasted away through my groaning all day long\"</em> (Psalm 32:3). Then God sent the prophet Nathan to confront him, and David finally said, <em>\"I have sinned against the LORD.\"</em> Nathan answered with words David did not deserve: <em>\"The LORD also has put away your sin\"</em> (2 Samuel 12:13)."
     },
     {
       "type": "text",
-      "text": "Our bodies and minds are temples of the Holy Spirit. Pursuing personal purity is an intentional daily act of honoring God, protecting our relationships, and dwelling in His holiness."
+      "text": "David's story is a warning, but it is also a rescue. It shows how sin grows: a look, a choice, a cover-up, and a heavy silence. It also shows what God does when a sinner stops hiding. He forgives. Before you read a single strategy in this lesson, hold on to that. Jesus did not just die to forgive you of all the sin you have done and will do. He died to give you the power to fight sin."
+    },
+    {
+      "type": "question",
+      "id": "202-09-story",
+      "text": "9.1 - Look at the steps in David's story: a look, a choice, a cover-up, and a long silence. Why do you think small first steps matter so much when it comes to temptation?",
+      "height": "tall"
+    },
+    {
+      "type": "heading",
+      "text": "Purity Starts with Belonging"
+    },
+    {
+      "type": "text",
+      "text": "Many people think of purity as a list of rules from a God who is waiting to catch them. Paul shows something different. Before he says anything about sex, he calls the church his brothers and sisters and reminds them that they already belong to God's family."
+    },
+    {
+      "type": "verse",
+      "reference": "1 Thessalonians 4:1",
+      "text": "Finally, then, brothers, we ask and urge you in the Lord Jesus, that as you received from us how you ought to walk and to please God, just as you are doing, that you do so more and more."
+    },
+    {
+      "type": "text",
+      "text": "Then he names God's will plainly."
+    },
+    {
+      "type": "verse",
+      "reference": "1 Thessalonians 4:3-5",
+      "text": "For this is the will of God, your sanctification: that you abstain from sexual immorality; that each one of you know how to control his own body in holiness and honor, not in the passion of lust like the Gentiles who do not know God;"
+    },
+    {
+      "type": "text",
+      "text": "The big word here is <strong>sanctification</strong>. It means the lifelong work of God making you more like Jesus. Notice the order. You are not fighting for purity so God will let you into His family. You are fighting because you are already in it. God is not a boss waiting on your performance. He is a Father who has already adopted you, and He wants you free."
+    },
+    {
+      "type": "text",
+      "text": "Behind every \"no\" God gives are two good purposes: His boundaries <strong>protect</strong> you, and they <strong>provide</strong> for you. Faithfulness protects you from images that crowd your mind, from mistrust, and from confusing a moment of intensity with real closeness. It provides trust, freedom, and a clear conscience in your relationships, including a marriage now or in the future. God is not a killjoy. He is guarding something precious."
+    },
+    {
+      "type": "question",
+      "id": "202-09-motive",
+      "text": "9.2 - Has your fight for purity mostly been driven by fear of getting caught or by love for a Father who already calls you His own? What might change if love became the reason?",
+      "height": "tall"
+    },
+    {
+      "type": "heading",
+      "text": "The FIGHT Plan"
+    },
+    {
+      "type": "text",
+      "text": "When temptation comes, good intentions are not enough. You need a plan you can remember in the moment. The FIGHT plan has five parts, one for each finger on your hand, so you can count it out when temptation knocks."
+    },
+    {
+      "type": "image",
+      "src": "images/202.09-fight-plan.svg",
+      "alt": "The FIGHT plan: Flee early, Identity, Grace, Help, and Treasure, each with a short phrase and a Bible verse"
+    },
+    {
+      "type": "text",
+      "text": "<strong>F is for Flee early.</strong> David's fall did not start with the fifth step. It started when he kept looking. Paul's command is short: <em>\"Flee from sexual immorality\"</em> (1 Corinthians 6:18). Fleeing early means walking away at the first step, not the fifth. Close the app, turn off the show, leave the room, or put a filter on your phone. It is much easier to step back from the edge of a cliff than to climb back up from the bottom."
+    },
+    {
+      "type": "text",
+      "text": "<strong>I is for Identity.</strong> Temptation tells you that your body is yours to use however you want. God's Word tells you who you really are."
     },
     {
       "type": "verse",
@@ -17,10 +85,89 @@
       "text": "Or do you not know that your body is a temple of the Holy Spirit within you, whom you have from God? You are not your own, for you were bought with a price. So glorify God in your body."
     },
     {
+      "type": "text",
+      "text": "You were bought with the life of Jesus. When you remember whose you are, you can say no to what does not fit who you are."
+    },
+    {
+      "type": "text",
+      "text": "<strong>G is for Grace.</strong> When you feel the pull of temptation, or when you have already given in, run toward God, not away from Him. Jesus understands temptation from the inside, and He invites you to come close."
+    },
+    {
+      "type": "verse",
+      "reference": "Hebrews 4:15-16",
+      "text": "For we do not have a high priest who is unable to sympathize with our weaknesses, but one who in every respect has been tempted as we are, yet without sin. Let us then with confidence draw near to the throne of grace, that we may receive mercy and find grace to help in time of need."
+    },
+    {
+      "type": "text",
+      "text": "Grace does not only forgive. It also trains. Paul says the grace of God is <em>\"training us to renounce ungodliness and worldly passions\"</em> (Titus 2:12). God's grace is the power source for the whole fight."
+    },
+    {
+      "type": "text",
+      "text": "<strong>H is for Help.</strong> Sin grows best in hiding, just as it did for David. Not everything private is sinful, and you do not need to tell everyone everything. But a struggle you hide from everyone who could help you tends to grow in the dark. God gives you brothers and sisters in Christ so that you do not have to fight alone."
+    },
+    {
+      "type": "verse",
+      "reference": "James 5:16",
+      "text": "Therefore, confess your sins to one another and pray for one another, that you may be healed. The prayer of a righteous person has great power as it is working."
+    },
+    {
+      "type": "text",
+      "text": "<strong>T is for Treasure.</strong> You cannot beat a false pleasure with willpower alone. You beat it with a better one. Temptation promises a joy it cannot deliver. God offers a joy that lasts forever."
+    },
+    {
+      "type": "verse",
+      "reference": "Psalm 16:11",
+      "text": "You make known to me the path of life; in your presence there is fullness of joy; at your right hand are pleasures forevermore."
+    },
+    {
+      "type": "text",
+      "text": "Pastor John Piper sums it up this way: <em>\"God is most glorified in us when we are most satisfied in him.\"</em> When Jesus becomes your treasure, the counterfeit loses its shine."
+    },
+    {
       "type": "question",
       "id": "201-9-1",
-      "text": "9.1 - What is one habit or boundary you can establish to better protect your mind and heart?",
-      "data_question": "9.1 - Guarding mind and heart"
+      "text": "9.3 - What is one habit or boundary you can establish to better protect your mind and heart?",
+      "data_question": "9.3 - Guarding mind and heart",
+      "height": "tall"
+    },
+    {
+      "type": "heading",
+      "text": "When You Have Already Fallen"
+    },
+    {
+      "type": "text",
+      "text": "Maybe you read David's story and thought, \"That is me.\" If so, the most important part of his story is not the fall. It is what happened when he stopped hiding. God did not throw David away. He forgave him, and He will forgive you."
+    },
+    {
+      "type": "verse",
+      "reference": "1 John 1:9",
+      "text": "If we confess our sins, he is faithful and just to forgive us our sins and to cleanse us from all unrighteousness."
+    },
+    {
+      "type": "text",
+      "text": "Confession opens the door, but growth is often slow. Some struggles have deep roots and will take time, patience, and wise help to heal. That is normal. It is not a sign that God has given up on you. <em>\"There is therefore now no condemnation for those who are in Christ Jesus\"</em> (Romans 8:1). You are not a lost cause. Keep coming back to the Father, keep using the FIGHT plan, and let other believers walk with you."
+    },
+    {
+      "type": "box",
+      "title": "If you have been harmed",
+      "content": [
+        "If someone used their power to pressure or harm you sexually, what was done to you is not your sin to confess. It was sin against you. Please tell a pastor, a counselor, or another safe and trusted person, and let them help you get care.",
+        "If a child is being harmed, contact local authorities right away. If you are in immediate danger, call 911."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "202-09-help",
+      "text": "9.4 - Who is one mature, trusted believer you could ask to pray for you and check in with you about purity? What would help you take that step? You do not need to write any private details here.",
+      "height": "tall"
+    },
+    {
+      "type": "heading",
+      "text": "Lesson 9 Review"
+    },
+    {
+      "type": "text",
+      "text": "David's fall began with a look he did not walk away from, and it grew in hiding. His restoration began the moment he stopped hiding and confessed, and God forgave him. Purity is not how you earn God's love. It is how you protect a heart that already belongs to Him. When temptation knocks, remember the FIGHT plan: Flee early, remember your Identity, run to Grace, get Help, and Treasure Jesus above every counterfeit. In the next lesson, you will come to the table Jesus set for His people, where that same grace is put on display."
     },
     {
       "type": "heading",
@@ -29,13 +176,13 @@
     {
       "type": "question",
       "id": "202-09-key",
-      "text": "What is one key thing you learned from this lesson, and what next step can you take this week?",
+      "text": "What is one key thing you learned from this lesson?",
       "height": "short"
     },
     {
       "type": "question",
-      "id": "202-09-devos",
-      "text": "What have you learned about God and yourself recently in your Daily Devotions?",
+      "id": "202-09-step",
+      "text": "What is one step you are going to take this week?",
       "height": "short"
     },
     {
