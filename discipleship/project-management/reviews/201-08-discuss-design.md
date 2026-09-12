@@ -2,6 +2,8 @@
 
 Prepared September 12, 2026 by Grok Build. Documentation only. This is not implementation, lesson approval, a human conversation test, or a claim that UX-001 is done.
 
+Coordinator review REV-009, September 12: corrected the illustrative Mercy wording and clarified source fidelity, long-answer navigation, live unsaved values and diagram reuse. This is an accepted prototype specification, not a tested screen.
+
 Supports parent task UX-001. Builds on [UX-001a](2026-09-12-UX-001a-grok-build.md), [UX-001b / REV-007](../logs/2026-09-12-REV-007-codex.md), and [EDIT-001](201-08-benchmark-proposal.md). Shared `index.html` remains with engineering until ENG-006b is finished. Do not start the Discuss UI from this file.
 
 ## Purpose
@@ -26,9 +28,9 @@ Laptop preparation and phone conversation use that one view. There is no second 
 
 ## Phone layout (375px)
 
-Target: the five required pieces visible in one or two short screens at 375x812, after the sticky course header. Do not make the learner scroll the whole Read lesson. Prayer must not be a third long-scroll destination.
+Target: the five required pieces visible in one or two short screens at 375x812 for short sample answers, after the sticky course header. This is a design target, not a measured fit or a limit on learner writing. Provide in-view jump links to Insight, Next step and Prayer so long answers never force scrolling through everything above them. Preserve full answers, line breaks and readable type; do not silently truncate or shrink text to meet the target.
 
-Use current Lesson 8 Review as the main truth until Dave accepts EDIT-001. If that proposal is accepted, replace the paragraph with: Because God has shown you mercy in Christ, you can begin to show that mercy to others.
+Use the current Lesson 8 Review text from its existing block as the main truth until Dave accepts EDIT-001. The abbreviated main-truth text in the sketch below is a layout illustration, not replacement lesson prose. The prototype must render the actual source block without a hard-coded rewrite. If that proposal is accepted, replace the paragraph with: Because God has shown you mercy in Christ, you can begin to show that mercy to others.
 
 ```
 +--------------------------------------+
@@ -46,7 +48,8 @@ Use current Lesson 8 Review as the main truth until Dave accepts EDIT-001. If th
 |                                      |
 |   +--------+        +--------+       |
 |   | Grace  | -----> | Mercy  |       |
-|   | GIFT   |        | PUNISH-|       |
+|   | GIFT   |        |not getting|     |
+|   |        |        | PUNISH-|       |
 |   | you    |        | MENT   |       |
 |   | don't  |        | you do |       |
 |   | deserve|        | deserve|       |
@@ -90,7 +93,7 @@ Layout notes:
 - The diagram is the complete four-box cycle with existing names and definitions: Mercy, Justified, Righteous, Grace. Include the cycle arrows and the existing overview caption. Do not walk the five teaching cards in this view.
 - Insight, next step, and prayer are read-only in Discuss. Editing happens in Read at the existing closing fields.
 - **Previous lesson's step** and **This lesson's mercy application** stay collapsed. They are not part of the first five pieces. Tapping them is explicit, not automatic.
-- If the compact tool iframe still forces the answers below the fold, render the same boxes as a static complete diagram in Discuss. Do not grow the iframe to solve meeting layout.
+- Start with the existing compact overview and preserve its full definitions, arrows and caption. The sketch abbreviates labels for space; it is not the text source. Hiding controls requires an explicit presentation mode in the widget that removes both behavior and tab stops, not host CSS that leaves invisible interactive tiles. Prefer a static, noninteractive meeting mode backed by the same in-file renderer/data. If a shared renderer is later extracted, both presentations must consume it; do not hand-copy boxes or teaching strings into index.html. Do not shrink teaching labels to fit answers above the fold.
 
 ## Existing content and IDs
 
@@ -106,7 +109,7 @@ Renderer IDs follow the current pattern `question-{course}-{block.id}`.
 | Previous lesson's step | 201-07 closing step, same prompt wording | `question-201-201-07-step` |
 | This lesson's mercy application | 8.3, collapsed, never labeled as the previous step | `question-201-201-08-3` |
 
-Do not create `201-08-discuss-*` IDs. Do not copy values into another key. Switching Read and Discuss must read the live fields already used by save, export, and backup.
+Do not create `201-08-discuss-*` IDs. Do not copy values into another key. Switching Read and Discuss must read the canonical live answer state already used by save, export, and backup, including unsaved current-page edits. Do not rely only on localStorage or on a textarea still being mounted. Call these learner responses rather than claiming every value is saved. Preserve the existing save-error banner and distinguish current-page-only edits from saved values without triggering writes on a mode switch. An unreadable store is not an empty answer: retain available page values and the warning instead of saying no previous step has ever been recorded.
 
 ## Switching between Read and Discuss
 
@@ -115,7 +118,7 @@ Keep today's long lesson as **Read**. **Discuss** is another presentation of tha
 How a learner opens Discuss:
 
 1. On 201-08, tap **Discuss** in the lesson header beside the existing menu.
-2. The same two-control switch on the current lesson in the course dropdown and TOC, without leaving lesson 8.
+2. For the first prototype, use the header switch and Closing Reflections link only; defer duplicate dropdown/TOC switches until the pilot shows they are needed.
 3. In-app hash `#201-8-discuss`, resolved only after `#201-8` can already load.
 4. Under Closing Reflections in Read, a line "Use this in a conversation" that opens the same Discuss view.
 
@@ -131,7 +134,7 @@ Rules for the switch:
 - The chosen mode is only for this lesson in this browser session. Do not invent a global account preference.
 - Hash updates with the mode (`#201-8` or `#201-8-discuss`) so Back/Forward matches what is on screen.
 - No save, copy, or clear of answers on switch.
-- Do not auto-play the widget or auto-open previous-step text.
+- Do not auto-play the widget or auto-open previous-step text. Reset previous-step and 8.3 disclosures to collapsed whenever Discuss is entered, including reload and history navigation. Never persist revealed text or disclosure state in the URL. The explicit Discuss action reveals the three current closing responses on this device; it does not transmit them.
 
 ## Blank answers
 
@@ -181,7 +184,7 @@ When shared app-code ownership is free after ENG-006b, UX-001 can prototype this
 
 1. Allocate `index.html` navigation and the 201-08 lesson chrome explicitly. Keep `widgets/grace-diagram.html` as the diagram source.
 2. Read existing answers by the IDs above. Preserve save, export, and backup behavior.
-3. Verify at 375x812, 390x844, and about 1280x800: switch Read/Discuss, blank and filled states, collapsed previous-step and 8.3, keyboard focus, and no extra answer keys.
+3. Verify at 375x812, 390x844, and about 1280x800: switch Read/Discuss, direct hash and Back/Forward, restored Read scroll position, focus on the chosen field after Answer in the lesson, blank/short/long/multiline responses, live unsaved edits and unreadable storage, disclosures reset on entry, keyboard use, plain-text rendering of learner values, and no extra or duplicate answer/DOM IDs. Prove switches do not save, erase or copy responses. Keep the same save/export/backup behavior. Verify Prayer is directly reachable with long answers and 200% text zoom.
 4. Then run a real conversation test before expanding to other lessons.
 
 Until that packet is assigned, this file is the Discuss design, not authorization to edit the host.
