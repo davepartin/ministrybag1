@@ -167,6 +167,47 @@ async function walkToLast(frame) {
     }
 }
 
+async function activeControl(page) {
+    return page.evaluate(function () {
+        var doc = document.querySelector('#session-8.active iframe.gt-widget-frame').contentDocument;
+        return doc.activeElement && doc.activeElement.getAttribute('data-control');
+    });
+}
+
+async function checkAlignedOverview(page, prefix) {
+    // Ordinary outer scroll is allowed. Check actual occlusion, not just iframe bounds.
+    await page.evaluate(function () {
+        var iframe = document.querySelector('#session-8.active iframe.gt-widget-frame');
+        var header = document.querySelector('.lesson-topbar');
+        var banner = document.getElementById('save-status-banner');
+        var floor = Math.max(header.getBoundingClientRect().bottom,
+            banner && !banner.hidden ? banner.getBoundingClientRect().bottom : 0) + 8;
+        window.scrollBy(0, iframe.getBoundingClientRect().top - floor);
+    });
+    await page.waitForTimeout(150);
+    var fit = await page.evaluate(function () {
+        var iframe = document.querySelector('#session-8.active iframe.gt-widget-frame');
+        var ir = iframe.getBoundingClientRect(), doc = iframe.contentDocument;
+        var header = document.querySelector('.lesson-topbar').getBoundingClientRect();
+        var banner = document.getElementById('save-status-banner');
+        var floor = Math.max(header.bottom, banner && !banner.hidden ? banner.getBoundingClientRect().bottom : 0);
+        var selector = '.grace-box, .box-label, .box-desc, .arrow-group, .overview-caption, .overview-panel button';
+        var clipped = Array.from(doc.querySelectorAll(selector)).filter(function (el) {
+            var r = el.getBoundingClientRect();
+            return r.width > 0 && r.height > 0 && (r.top < -1 || r.bottom > iframe.clientHeight + 1 ||
+                r.left < -1 || r.right > iframe.clientWidth + 1 ||
+                ir.top + r.top < floor || ir.top + r.bottom > innerHeight);
+        }).map(function (el) { return el.className.baseVal || el.className; });
+        return { clipped: clipped, arrows: doc.querySelectorAll('.arrow-group.visible').length,
+            height: iframe.clientHeight, floor: floor };
+    });
+    assert(prefix + 'whole diagram, definitions, arrows and controls fit below header after outer scroll',
+        fit.clipped.length === 0 && fit.arrows === 4, JSON.stringify(fit));
+    if (process.env.UX001B_SCREENSHOTS === '1') {
+        await page.screenshot({ path: '/tmp/ux001b-' + prefix.trim().replace(/[^a-z0-9]+/gi, '-') + '.png' });
+    }
+}
+
 async function checkViewport(browser, vp) {
     var context = await browser.newContext({ viewport: { width: vp.width, height: vp.height } });
     var page = await context.newPage();
@@ -184,6 +225,7 @@ async function checkViewport(browser, vp) {
 
     await frame.getByRole('button', { name: /show whole diagram/i }).click();
     await page.waitForTimeout(350);
+    assert(prefix + 'opening overview focuses Return', await activeControl(page) === 'return');
     var fromIntro = await overviewLabels(page);
     var names = fromIntro.labels.map(function (l) { return l.name; }).sort();
     assert(
@@ -231,6 +273,7 @@ async function checkViewport(browser, vp) {
     await page.waitForTimeout(250);
     await frame.getByRole('button', { name: /return to steps/i }).click();
     await page.waitForTimeout(250);
+    assert(prefix + 'return to Justified focuses Next', await activeControl(page) === 'next');
     var restoredTitle = await cardTitle(page);
     assert(prefix + 'return preserves Justified step', /justified/i.test(restoredTitle), restoredTitle);
 
@@ -270,6 +313,7 @@ async function checkViewport(browser, vp) {
     assert(prefix + 'final step has Restart', lastNames.some(function (n) { return /restart/i.test(n); }), JSON.stringify(lastNames));
     await frame.getByRole('button', { name: /restart/i }).click();
     await page.waitForTimeout(250);
+    assert(prefix + 'Restart focuses Begin', await activeControl(page) === 'begin');
     var afterRestart = await controlNames(page);
     assert(
         prefix + 'Restart returns to Begin',
@@ -321,15 +365,35 @@ async function checkViewport(browser, vp) {
 
     await frame.getByRole('button', { name: /show whole diagram/i }).click();
     await page.waitForTimeout(250);
+    await checkAlignedOverview(page, prefix + 'normal ');
     var normalFit = await overviewLabels(page);
     var inViewNormal = normalFit.labels.filter(function (l) { return l.inViewport; }).length;
     await setBanner(page, 'error');
     await page.waitForTimeout(150);
+    await checkAlignedOverview(page, prefix + 'save-error ');
     var errorFit = await overviewLabels(page);
     var inViewError = errorFit.labels.filter(function (l) { return l.inViewport; }).length;
     console.log(prefix + 'overview labels in viewport: normal ' + inViewNormal + '/4, save-error banner ' + inViewError + '/4');
     assert(prefix + 'overview labels remain inside iframe with save-error banner', errorFit.labels.every(function (l) { return l.inIframe; }), JSON.stringify(errorFit.labels));
     await setBanner(page, 'hidden');
+
+    var mercy = frame.getByRole('button', { name: /Mercy.*PUNISHMENT/i });
+    assert(prefix + 'overview tile exposes teaching in native button name',
+        await mercy.count() === 1 && await mercy.evaluate(function (el) { return el.tagName === 'BUTTON'; }));
+    await mercy.focus();
+    await mercy.press('Space');
+    assert(prefix + 'Space on overview Mercy opens Mercy and focuses Next',
+        /mercy/i.test(await cardTitle(page)) && await activeControl(page) === 'next');
+    await frame.getByRole('button', { name: /show whole diagram/i }).click();
+    await frame.getByRole('button', { name: /Grace.*GIFT/i }).press('Enter');
+    assert(prefix + 'Enter on overview Grace opens Grace and focuses Next',
+        /grace/i.test(await cardTitle(page)) && await activeControl(page) === 'next');
+    await frame.getByRole('button', { name: /^next/i }).click();
+    await frame.getByRole('button', { name: /show whole diagram/i }).click();
+    await frame.getByRole('button', { name: /return to steps/i }).click();
+    assert(prefix + 'return preserves final cycle step and focuses Restart',
+        await activeControl(page) === 'restart' && /Give Grace, Show Mercy, & Forgive/i.test(await cardTitle(page)));
+
 
     assert(prefix + 'no outer overflow after interactions', (await overflowX(page)) <= 1, String(await overflowX(page)));
 
