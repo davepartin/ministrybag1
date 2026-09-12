@@ -415,7 +415,8 @@
         }
 
         .home-backup-status[hidden],
-        .backup-download-status[hidden] {
+        .backup-download-status[hidden],
+        .backup-preview-status[hidden] {
             display: none;
         }
 
@@ -1737,7 +1738,8 @@
         /* ============================================
            EXPORT PREVIEW
            ============================================ */
-        body.export-preview-open {
+        body.export-preview-open,
+        body.backup-preview-open {
             overflow: hidden;
         }
 
@@ -2028,6 +2030,57 @@
                 max-height: min(46vh, 420px);
                 font-size: 0.95rem;
             }
+
+            .backup-preview-body {
+                max-height: min(52vh, 480px);
+                font-size: 0.95rem;
+            }
+        }
+
+        .backup-preview-body {
+            margin: 0 16px;
+            padding: 12px;
+            background: var(--surface-warm);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xs);
+            font-size: 0.92rem;
+            line-height: 1.5;
+            overflow: auto;
+            min-height: 140px;
+            max-height: min(52dvh, 440px);
+            flex: 1 1 auto;
+        }
+
+        .backup-preview-body:focus {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+        }
+
+        .backup-preview-body p {
+            margin: 0 0 10px;
+        }
+
+        .backup-preview-body h3 {
+            margin: 12px 0 6px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            color: var(--text-secondary);
+        }
+
+        .backup-preview-body ul {
+            margin: 0 0 10px 1.15em;
+            padding: 0;
+        }
+
+        .backup-preview-body li {
+            margin: 0 0 4px;
+        }
+
+        .backup-preview-error {
+            color: #7A3E22;
+            font-weight: 600;
         }
 
         /* ============================================
@@ -2042,6 +2095,7 @@
             body.printing .export-line,
             body.printing .save-status-banner,
             body.printing .export-preview-overlay,
+            body.printing .backup-preview-overlay,
             body.printing .esv-footnote,
             body.printing .session-course-logo,
             body.printing .bible-reading-section,
@@ -2563,8 +2617,11 @@
                 <button class="home-tree-btn" onclick="openTree()">Browse All Courses and Lessons</button>
                 <button type="button" class="home-backup-btn" id="home-download-backup"
                     onclick="downloadVersionedBackup('home')">Download backup</button>
+                <button type="button" class="home-backup-btn" id="home-preview-backup"
+                    onclick="openBackupFilePicker('home')">Preview a backup</button>
                 <p class="home-backup-scope" id="home-backup-scope"></p>
                 <p class="home-backup-status" id="home-backup-status" hidden></p>
+                <p class="home-backup-status backup-preview-status" id="home-backup-preview-status" hidden></p>
             </div>
         </div>
 
@@ -2679,9 +2736,28 @@
         </div>
     </div>
 
+    <input type="file" id="backup-preview-file" accept=".json,application/json" hidden>
+
+    <div id="backup-preview-overlay" class="export-preview-overlay backup-preview-overlay" hidden>
+        <div class="export-preview-dialog backup-preview-dialog" role="dialog" aria-modal="true"
+            aria-labelledby="backup-preview-title" id="backup-preview-dialog">
+            <div class="export-preview-header">
+                <h2 class="export-preview-title" id="backup-preview-title">Backup preview</h2>
+                <div class="export-preview-selected" id="backup-preview-file-name"></div>
+            </div>
+            <div id="backup-preview-body" class="backup-preview-body" tabindex="0"></div>
+            <p class="export-preview-note" id="backup-preview-note"></p>
+            <div class="export-preview-actions">
+                <button type="button" class="export-preview-cancel" id="backup-preview-close"
+                    onclick="closeBackupPreview()">Close</button>
+            </div>
+        </div>
+    </div>
+
     <script src="scripts/answer-storage.js"></script>
     <script src="scripts/save-feedback.js"></script>
     <script src="scripts/backup-download.js"></script>
+    <script src="scripts/backup-preview.js"></script>
     <script src="scripts/lesson-export.js"></script>
     <script src="scripts/widget-iframe.js"></script>
     <script>
@@ -2715,6 +2791,7 @@
         const answerStorage = window.GrowingTogetherAnswerStorage;
         const saveFeedback = window.GrowingTogetherSaveFeedback;
         const backupDownload = window.GrowingTogetherBackupDownload;
+        const backupPreview = window.GrowingTogetherBackupPreview;
         const lessonExport = window.GrowingTogetherLessonExport;
         let responseStorageWritable = false;
         let completionStorageWritable = false;
@@ -2730,6 +2807,8 @@
         let lastSaveReason = null;
         let exportPreviewLastFocus = null;
         let lastBuiltExport = null;
+        let backupPreviewLastFocus = null;
+        let backupPreviewSource = 'app';
         const widgetIframeApi = window.GrowingTogetherWidgetIframe;
         let widgetIframeHost = null;
 
@@ -2910,6 +2989,7 @@
 
         function goHome() {
             if (isExportPreviewOpen()) closeExportPreview();
+            if (isBackupPreviewOpen()) closeBackupPreview();
             document.getElementById('lesson-view').classList.remove('active');
             document.getElementById('home-view').classList.remove('hidden');
             document.getElementById('toc-panel').classList.remove('open');
@@ -3624,15 +3704,18 @@
             exportDiv.id = 'export-section';
             const seriesName = seriesTitles[currentSeries] || 'this series';
             exportDiv.innerHTML = `
-                <span class="export-hint">Saved means the last edited answers, completion, or reading notes were stored on this device. Download backup keeps a local file and does not upload or restore.</span>
+                <span class="export-hint">Saved means the last edited answers, completion, or reading notes were stored on this device. Download backup keeps a local file and does not upload or restore. Preview a backup checks a local file and does not apply it.</span>
                 <p class="backup-download-scope" id="backup-download-scope"></p>
                 <div class="export-buttons">
                     <button type="button" class="export-link" id="email-lesson-btn" onclick="openExportPreview()">Email Lesson &rarr;</button>
                     <button class="export-link export-pdf-btn" onclick="printLesson()">Save PDF &#8595;</button>
                     <button type="button" class="export-link" id="lesson-download-backup"
                         onclick="downloadVersionedBackup('lesson')">Download backup</button>
+                    <button type="button" class="export-link" id="lesson-preview-backup"
+                        onclick="openBackupFilePicker('lesson')">Preview a backup</button>
                 </div>
                 <p class="backup-download-status" id="backup-download-status" hidden></p>
+                <p class="backup-download-status backup-preview-status" id="backup-preview-status" hidden></p>
             `;
             container.appendChild(exportDiv);
 
@@ -3843,6 +3926,7 @@
 
             currentSession = targetNum;
             if (isExportPreviewOpen()) closeExportPreview();
+            if (isBackupPreviewOpen()) closeBackupPreview();
             updateNav();
             updateTOCHighlight();
 
@@ -4266,6 +4350,281 @@
             return envelope;
         }
 
+        function snapshotLearnerState() {
+            let storageAnswers = null;
+            let storageCompletion = null;
+            let storageReading = null;
+            try { storageAnswers = localStorage.getItem('christianFoundationsResponses'); } catch (e) { storageAnswers = 'unavailable'; }
+            try { storageCompletion = localStorage.getItem('foundationsCompletionData'); } catch (e) { storageCompletion = 'unavailable'; }
+            try { storageReading = localStorage.getItem('foundationsReadingData'); } catch (e) { storageReading = 'unavailable'; }
+            return {
+                answers: JSON.stringify(responses),
+                completion: JSON.stringify(completionData),
+                reading: JSON.stringify(readingData),
+                storageAnswers: storageAnswers,
+                storageCompletion: storageCompletion,
+                storageReading: storageReading,
+                writable: {
+                    answers: responseStorageWritable,
+                    completion: completionStorageWritable,
+                    reading: readingStorageWritable
+                },
+                loadReason: {
+                    answers: responseLoadReason,
+                    completion: completionLoadReason,
+                    reading: readingLoadReason
+                },
+                migration: responses && responses.__gtSharedKeyMigrationV1 === true
+            };
+        }
+
+        function showBackupPreviewStatus(text) {
+            ['backup-preview-status', 'home-backup-preview-status'].forEach(function (id) {
+                const el = document.getElementById(id);
+                if (!el) return;
+                el.textContent = text || '';
+                el.hidden = !text;
+            });
+            syncSaveBannerOffset();
+        }
+
+        function isBackupPreviewOpen() {
+            const overlay = document.getElementById('backup-preview-overlay');
+            return !!(overlay && overlay.classList.contains('open'));
+        }
+
+        function backupPreviewFocusables() {
+            const dialog = document.getElementById('backup-preview-dialog');
+            if (!dialog) return [];
+            return Array.from(dialog.querySelectorAll(
+                'button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+            ));
+        }
+
+        function appendPreviewText(parent, tag, className, text) {
+            const el = document.createElement(tag);
+            if (className) el.className = className;
+            el.textContent = text;
+            parent.appendChild(el);
+            return el;
+        }
+
+        function appendPreviewList(parent, items) {
+            if (!items || !items.length) {
+                appendPreviewText(parent, 'p', '', 'None.');
+                return;
+            }
+            const list = document.createElement('ul');
+            items.forEach(function (item) {
+                const li = document.createElement('li');
+                li.textContent = item;
+                list.appendChild(li);
+            });
+            parent.appendChild(list);
+        }
+
+        function renderBackupPreview(result, fileName) {
+            const body = document.getElementById('backup-preview-body');
+            const note = document.getElementById('backup-preview-note');
+            const nameEl = document.getElementById('backup-preview-file-name');
+            if (nameEl) nameEl.textContent = fileName || '';
+            if (!body) return;
+            while (body.firstChild) body.removeChild(body.firstChild);
+            if (!result || !result.ok) {
+                appendPreviewText(body, 'p', 'backup-preview-error', result && result.message
+                    ? result.message
+                    : 'That file cannot be previewed.');
+                appendPreviewText(body, 'p', '', 'Current answers, completion, reading notes, migration flags and write guards were not changed.');
+                if (note) note.textContent = 'Applying a backup is not available yet.';
+                return;
+            }
+            appendPreviewText(body, 'p', '', result.status);
+            appendPreviewText(body, 'h3', '', 'Counts');
+            appendPreviewText(body, 'p', '',
+                'Answers: ' + result.counts.answers.keys +
+                ' (' + result.counts.answers.questions + ' questions, ' +
+                result.counts.answers.checklists + ' checklists, ' +
+                result.counts.answers.commitments + ' commitments). Completion: ' +
+                result.counts.completion.flags + ' flags. Reading: ' +
+                result.counts.reading.notes + ' notes, ' + result.counts.reading.checks +
+                ' checks. Retained ambiguous answers: ' + result.counts.ambiguousAnswers + '.');
+            appendPreviewText(body, 'h3', '', 'Partial and unsaved status');
+            appendPreviewText(body, 'p', '', result.complete
+                ? (result.includesUnsavedEdits
+                    ? 'All three stores are complete in this file. The file includes unsaved edits from the source page.'
+                    : 'All three stores are complete in this file.')
+                : 'Partial file. Unreadable stores: ' + (result.partialStores.join(', ') || 'none') + '.');
+            if (result.unsavedStores.length) {
+                appendPreviewText(body, 'p', '', 'Stores that include unsaved source-page edits: ' + result.unsavedStores.join(', ') + '.');
+            }
+            appendPreviewText(body, 'h3', '', 'Conflicts with current device values');
+            appendPreviewList(body, result.conflictKeys.length
+                ? result.conflictKeys.map(function (key) { return key + ' (proposed default: keep current device value)'; })
+                : []);
+            appendPreviewText(body, 'h3', '', 'Unknown keys');
+            appendPreviewText(body, 'p', '', 'Unknown keys are kept as stored keys. They are not dropped or assigned to a lesson.');
+            appendPreviewList(body, result.unknownKeys);
+            appendPreviewText(body, 'h3', '', 'Proposed selection');
+            appendPreviewText(body, 'p', '', result.selection);
+            appendPreviewText(body, 'h3', '', 'Retained ambiguous answers');
+            if (!result.ambiguousAnswers.present) {
+                appendPreviewText(body, 'p', '', 'None.');
+            } else {
+                appendPreviewText(body, 'p', '', result.ambiguousAnswers.note);
+                Object.keys(result.ambiguousAnswers.items).forEach(function (key) {
+                    const item = result.ambiguousAnswers.items[key];
+                    const lessons = (item.candidateLessons || []).join(', ') || 'none recorded';
+                    appendPreviewText(body, 'p', '', key + ': status ' + item.status +
+                        '; candidate lessons ' + lessons + '; value follows as text.');
+                    appendPreviewText(body, 'p', '', item.value == null ? '' : String(item.value));
+                });
+            }
+            appendPreviewText(body, 'h3', '', 'What a future restore could and could not do');
+            appendPreviewText(body, 'p', '', 'Could consider:');
+            appendPreviewList(body, result.couldRestore);
+            appendPreviewText(body, 'p', '', 'Could not do:');
+            appendPreviewList(body, result.couldNotRestore);
+            if (result.inconsistencies && result.inconsistencies.length) {
+                appendPreviewText(body, 'h3', '', 'File inconsistencies');
+                appendPreviewList(body, result.inconsistencies);
+            }
+            if (note) note.textContent = result.applyNote;
+        }
+
+        function openBackupPreviewOverlay() {
+            if (isExportPreviewOpen()) closeExportPreview();
+            const overlay = document.getElementById('backup-preview-overlay');
+            if (!overlay) return;
+            if (!backupPreviewLastFocus) backupPreviewLastFocus = document.activeElement;
+            overlay.hidden = false;
+            overlay.classList.add('open');
+            document.body.classList.add('backup-preview-open');
+            const closeBtn = document.getElementById('backup-preview-close');
+            if (closeBtn) closeBtn.focus();
+        }
+
+        function closeBackupPreview() {
+            const overlay = document.getElementById('backup-preview-overlay');
+            if (overlay) {
+                overlay.classList.remove('open');
+                overlay.hidden = true;
+            }
+            document.body.classList.remove('backup-preview-open');
+            const input = document.getElementById('backup-preview-file');
+            if (input) input.value = '';
+            if (backupPreviewLastFocus && typeof backupPreviewLastFocus.focus === 'function') {
+                backupPreviewLastFocus.focus();
+            }
+            backupPreviewLastFocus = null;
+        }
+
+        function summarizePreviewResult(result) {
+            if (!result) return { ok: false, code: 'unknown' };
+            if (!result.ok) {
+                return { ok: false, code: result.code, message: result.message };
+            }
+            return {
+                ok: true,
+                code: result.code,
+                complete: result.complete,
+                includesUnsavedEdits: result.includesUnsavedEdits,
+                counts: result.counts,
+                conflictKeys: result.conflictKeys,
+                unknownKeys: result.unknownKeys,
+                inconsistencies: result.inconsistencies,
+                partialStores: result.partialStores,
+                unsavedStores: result.unsavedStores,
+                originalRawStores: result.originalRawStores,
+                ambiguousCount: result.ambiguousAnswers.count,
+                applyAvailable: result.applyAvailable,
+                selection: result.selection
+            };
+        }
+
+        function recordBackupPreview(result, fileName, beforeState) {
+            const afterState = snapshotLearnerState();
+            window.__gtLastBackupPreview = {
+                ok: !!(result && result.ok),
+                code: result && result.code,
+                message: result && result.message,
+                filename: fileName || '',
+                summary: summarizePreviewResult(result),
+                before: beforeState,
+                after: afterState,
+                unchanged: JSON.stringify(beforeState) === JSON.stringify(afterState)
+            };
+            return window.__gtLastBackupPreview;
+        }
+
+        function handleValidatedBackupFile(file, text) {
+            const beforeState = snapshotLearnerState();
+            const result = backupPreview.previewFromText(text, {
+                name: file.name,
+                size: file.size,
+                type: file.type
+            }, currentBackupInput());
+            renderBackupPreview(result, file.name);
+            showBackupPreviewStatus(backupPreview.previewStatusText(result));
+            recordBackupPreview(result, file.name, beforeState);
+            openBackupPreviewOverlay();
+            return result;
+        }
+
+        function openBackupFilePicker(source) {
+            if (!backupPreview) return;
+            backupPreviewSource = source || 'app';
+            backupPreviewLastFocus = document.activeElement;
+            const input = document.getElementById('backup-preview-file');
+            if (!input) return;
+            input.value = '';
+            input.click();
+        }
+
+        function onBackupFileSelected(event) {
+            if (!backupPreview) return;
+            const input = event && event.target;
+            const file = input && input.files && input.files[0];
+            if (!file) return;
+            const beforeState = snapshotLearnerState();
+            const inspected = backupPreview.inspectSelectedFile({
+                name: file.name,
+                size: file.size,
+                type: file.type
+            });
+            if (!inspected.ok) {
+                renderBackupPreview(inspected, file.name);
+                showBackupPreviewStatus(backupPreview.previewStatusText(inspected));
+                recordBackupPreview(inspected, file.name, beforeState);
+                openBackupPreviewOverlay();
+                return;
+            }
+            const applyText = function (text) {
+                handleValidatedBackupFile(file, text);
+            };
+            if (typeof file.text === 'function') {
+                file.text().then(applyText).catch(function () {
+                    const failed = { ok: false, code: 'malformed-json', message: 'That backup could not be read as text.' };
+                    renderBackupPreview(failed, file.name);
+                    showBackupPreviewStatus(backupPreview.previewStatusText(failed));
+                    recordBackupPreview(failed, file.name, beforeState);
+                    openBackupPreviewOverlay();
+                });
+                return;
+            }
+            const reader = new FileReader();
+            reader.onload = function () {
+                applyText(String(reader.result || ''));
+            };
+            reader.onerror = function () {
+                const failed = { ok: false, code: 'malformed-json', message: 'That backup could not be read as text.' };
+                renderBackupPreview(failed, file.name);
+                showBackupPreviewStatus(backupPreview.previewStatusText(failed));
+                recordBackupPreview(failed, file.name, beforeState);
+                openBackupPreviewOverlay();
+            };
+            reader.readAsText(file);
+        }
+
         function downloadSaveRecovery() {
             const name = lastSaveStore === 'completion'
                 ? 'growing-together-completion-recovery.json'
@@ -4589,6 +4948,7 @@
 
         function openExportPreview() {
             if (!lessonExport) return;
+            if (isBackupPreviewOpen()) closeBackupPreview();
             const overlay = document.getElementById('export-preview-overlay');
             const lessonScope = document.getElementById('export-scope-lesson');
             if (!overlay) return;
@@ -4761,6 +5121,27 @@
         // KEYBOARD NAV
         // ============================================
         document.addEventListener('keydown', e => {
+            if (isBackupPreviewOpen()) {
+                if (e.key === 'Escape') {
+                    e.preventDefault();
+                    closeBackupPreview();
+                    return;
+                }
+                if (e.key === 'Tab') {
+                    const items = backupPreviewFocusables();
+                    if (!items.length) return;
+                    const first = items[0];
+                    const last = items[items.length - 1];
+                    if (e.shiftKey && document.activeElement === first) {
+                        e.preventDefault();
+                        last.focus();
+                    } else if (!e.shiftKey && document.activeElement === last) {
+                        e.preventDefault();
+                        first.focus();
+                    }
+                }
+                return;
+            }
             if (isExportPreviewOpen()) {
                 if (e.key === 'Escape') {
                     e.preventDefault();
@@ -4792,6 +5173,16 @@
             exportPreviewOverlay.addEventListener('click', (event) => {
                 if (event.target === exportPreviewOverlay) closeExportPreview();
             });
+        }
+        const backupPreviewOverlay = document.getElementById('backup-preview-overlay');
+        if (backupPreviewOverlay) {
+            backupPreviewOverlay.addEventListener('click', (event) => {
+                if (event.target === backupPreviewOverlay) closeBackupPreview();
+            });
+        }
+        const backupPreviewFile = document.getElementById('backup-preview-file');
+        if (backupPreviewFile) {
+            backupPreviewFile.addEventListener('change', onBackupFileSelected);
         }
 
         // Periodic save
