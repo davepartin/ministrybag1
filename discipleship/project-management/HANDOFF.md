@@ -1,6 +1,6 @@
 # Resume here
 
-Updated September 12, 2026 after ENG-006b review REV-008 / PR #20 (changes required). The board is [TASKS.md](TASKS.md); workflow is [PLAN.md](PLAN.md).
+Updated September 12, 2026 after Discuss design review REV-009 / PR #23. ENG-006b corrections remain with Grokbot. The board is [TASKS.md](TASKS.md); workflow is [PLAN.md](PLAN.md).
 
 ## Current position
 
@@ -50,19 +50,23 @@ Fetch and merge current main normally. Keep the coordinator's current TASKS/HAND
 
 > PR #20 was reviewed at 94cff90. Read project-management/reviews/2026-09-12-eng006b-pr20-review.md on current main and fix all four correction groups. Merge current main normally and preserve the latest coordinator records and merged UX widget. Add regression tests, rerun the relevant suites, push to PR #20, and stop at REVIEW. Do not merge or start ENG-006c. Coordinator owns TASKS/HANDOFF.
 
-## Claude: finishing packet returned to REVIEW
+## Claude: handoff complete; awaiting Dave's review
 
-The earlier Ruth direction and missing-image finishing packet are superseded. Claude completed Genesis 15 / Ephesians 5 teaching at `2dad678`; Codex reviewed it and delivered both image pairs at `6d3019b`. Keep Ephesians 5:25 in both 202-02 and 202-08. Dave supports returning to the passage with a special focus: household application in 202-02, covenant marriage reflecting Christ and His church in 202-08. No 202-02 edit is needed.
+Claude's latest PR #17 head is `a89e94e0f219984faaf83508e96dd91df8107a75`, still open and unmerged. Coordinator compared both lesson JSON files, both diagrams and all four story PNGs against reviewed ART-003 commit `6d3019b`: no differences. The final Claude commit adds only its sync log after normally merging main. No repeated lesson editing is needed.
 
-> Fetch your PR #17 branch normally. Codex added the four story images at 6d3019b and checked the finishing pass. Read the ART-003 log. Keep Ephesians 5:25 in both lessons; their emphasis is intentionally different. Refresh any Obsidian copies and preview you maintain from this version. Preserve all IDs and answers. Stop at REVIEW; no merge or 203-06 work yet.
+Claude reports the Obsidian manuscripts/summaries and the same phone preview now include all artwork, with lightweight JPEG derivatives for the preview and a five-item decision box. These external copies were not independently inspected by the coordinator in this checkpoint. Claude reports 47 storage checks and foundation QA passing on its merged tree. No new coordinator runtime test was needed for the unchanged lesson/assets. Preview compression does not resolve PERF-001 for the production app's PNGs.
 
-Dave's next job is to review the finished 202-08/09 theology, FIGHT wording, safeguards and four story pictures. No retroactive drafting brief is required. The next writing packet remains 203-06 after this review handoff is settled; coordinator must define its scope separately. Grokbot continues ENG-006b; Grok Build has completed UX-001b and holds wider Discuss implementation.
+Claude should pause at REVIEW. Dave reviews Ephesians 5 submission/headship language, the Genesis 15 interpretation, FIGHT wording, both pastoral safety boxes and the story artwork. Ephesians 5:25 stays in both 202-02 and 202-08. No retroactive drafting brief is required. PR #17 stays unmerged until Dave reviews the exact version. 203-06 remains held pending a separate writing packet.
 
-## Grok Build: UX-001b complete; hold wider Discuss
+Gemini's independent read-only learner review can be collected alongside Dave's feedback; it does not replace pastoral approval or a human pilot. Consolidate feedback into one bounded revision packet rather than asking Claude for repeated uncoordinated passes. Grokbot continues ENG-006b corrections; Grok Build's design is complete and implementation remains held.
+
+## Grok Build: widget and Discuss design complete; hold implementation
 
 PR #22 is reviewed and merged as `7495a03`. Restart returns to Begin; Show whole diagram is separate and Return to steps preserves the prior step. The coordinator corrected overview tiles to native buttons whose accessible names include the definitions and expanded the browser suite to 108 assertions. Teaching data and font sizes are unchanged. The whole diagram, definitions, arrows and controls fit below the header after ordinary outer scrolling, including the synthetic save-error state. Actual iPhone/Safari and a human meeting are still untested.
 
-> UX-001b is reviewed and merged in PR #22 at 7495a03. Read the REV-007 log and fetch normally. Keep your existing work safe. Hold the wider Discuss UI and shared host edits while Grokbot finishes ENG-006b. No additional coding packet is assigned yet.
+> Your Discuss design is reviewed and merged in PR #23 at 6512003. Read the coordinator corrections in project-management/reviews/201-08-discuss-design.md and REV-009. Fetch normally. Hold UI/shared-host edits while ENG-006b corrections are in progress; no further coding packet is assigned.
+
+The accepted design verifies existing response IDs and explicitly covers source wording, full diagram definitions, long-answer jump links, current-page unsaved values, unreadable storage and resetting private disclosures on entry. It is a prototype specification, not measured layout or a human pilot. The next packet must use this corrected document.
 
 Parent UX-001 remains TODO. Its next implementation packet must explicitly allocate shared index/navigation ownership, reuse the same lesson and answer IDs, avoid automatic disclosure, and test a real conversation before rollout. The Grace overview is one prerequisite, not a completed Discuss view.
 
