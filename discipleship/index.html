@@ -404,7 +404,7 @@
 
         .tree-topbar {
             position: sticky;
-            top: 0;
+            top: var(--save-status-height, 0px);
             background: var(--surface);
             border-bottom: 1px solid var(--border-light);
             padding: 12px 20px;
@@ -606,7 +606,7 @@
         /* Top bar */
         .lesson-topbar {
             position: sticky;
-            top: 0;
+            top: var(--save-status-height, 0px);
             z-index: 100;
             background: rgba(250, 250, 248, 0.92);
             backdrop-filter: blur(12px);
@@ -1856,6 +1856,90 @@
             -webkit-tap-highlight-color: transparent;
         }
 
+        /* ============================================
+           SAVE STATUS (ENG-005)
+           ============================================ */
+        .save-status-banner {
+            position: sticky;
+            top: 0;
+            z-index: 120;
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            padding: 8px 16px;
+            padding-top: max(8px, env(safe-area-inset-top));
+        }
+
+        .save-status-banner[hidden] {
+            display: none !important;
+        }
+
+        .save-status-banner[data-state="saved"] {
+            background: var(--accent-light);
+            border-bottom-color: #b7ddc4;
+        }
+
+        .save-status-banner[data-state="error"] {
+            background: #F8EDE6;
+            border-bottom-color: #E4C4B2;
+        }
+
+        .save-status-label {
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            line-height: 1.3;
+            margin: 0;
+        }
+
+        .save-status-banner[data-state="saved"] .save-status-label {
+            color: var(--accent-hover);
+        }
+
+        .save-status-banner[data-state="error"] .save-status-label {
+            color: #7A3E22;
+        }
+
+        .save-status-detail {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            line-height: 1.45;
+            margin: 2px 0 0;
+        }
+
+        .save-status-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .save-status-actions[hidden] {
+            display: none !important;
+        }
+
+        .save-status-actions button {
+            min-height: 44px;
+            padding: 8px 12px;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            background: var(--surface);
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .save-status-actions button[hidden] {
+            display: none !important;
+        }
+
+        .save-status-actions button:focus {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+        }
+
         .export-preview-cancel {
             background: var(--surface-warm);
             color: var(--text-primary);
@@ -1907,6 +1991,7 @@
             body.printing .bottom-nav,
             body.printing .session-complete-bar,
             body.printing .export-line,
+            body.printing .save-status-banner,
             body.printing .export-preview-overlay,
             body.printing .esv-footnote,
             body.printing .session-course-logo,
@@ -2330,6 +2415,18 @@
 <body>
     <div class="app-container">
 
+        <div id="save-status-banner" class="save-status-banner" hidden data-state="idle" data-store="answers">
+            <p id="save-status-label" class="save-status-label" aria-live="polite"></p>
+            <p id="save-status-detail" class="save-status-detail"></p>
+            <div id="save-status-actions" class="save-status-actions" hidden>
+                <button type="button" id="save-status-retry" onclick="retryLastSave()">Retry save</button>
+                <button type="button" id="save-status-copy" onclick="copySaveRecovery()">Copy answers</button>
+                <button type="button" id="save-status-download" onclick="downloadSaveRecovery()">Download answers</button>
+                <button type="button" id="save-status-download-original" hidden
+                    onclick="downloadOriginalStoredCopy()">Download original copy</button>
+            </div>
+        </div>
+
         <!-- ============================
              HOME VIEW
              ============================ -->
@@ -2523,6 +2620,7 @@
     </div>
 
     <script src="scripts/answer-storage.js"></script>
+    <script src="scripts/save-feedback.js"></script>
     <script src="scripts/lesson-export.js"></script>
     <script src="scripts/widget-iframe.js"></script>
     <script>
@@ -2554,8 +2652,19 @@
         }
 
         const answerStorage = window.GrowingTogetherAnswerStorage;
+        const saveFeedback = window.GrowingTogetherSaveFeedback;
         const lessonExport = window.GrowingTogetherLessonExport;
         let responseStorageWritable = false;
+        let completionStorageWritable = false;
+        let readingStorageWritable = false;
+        let responseLoadReason = null;
+        let completionLoadReason = null;
+        let readingLoadReason = null;
+        let originalResponsesRaw = null;
+        let originalCompletionRaw = null;
+        let originalReadingRaw = null;
+        let lastSaveStore = 'answers';
+        let lastSaveReason = null;
         let exportPreviewLastFocus = null;
         let lastBuiltExport = null;
         const widgetIframeApi = window.GrowingTogetherWidgetIframe;
@@ -2579,25 +2688,70 @@
             if (widgetIframeHost) widgetIframeHost.refresh();
         }
 
+        let completionData = {};
+        let readingData = {};
+
         try {
+            if (saveFeedback) {
+                const rawRead = saveFeedback.readJsonStore(window.localStorage, saveFeedback.STORES.answers.key);
+                originalResponsesRaw = rawRead.raw;
+            }
             const loaded = answerStorage
                 ? answerStorage.loadAndMigrateResponses(window.localStorage)
                 : { responses: JSON.parse(localStorage.getItem('christianFoundationsResponses') || '{}') };
             responses = loaded.responses && typeof loaded.responses === 'object' && !Array.isArray(loaded.responses)
                 ? loaded.responses
                 : {};
-            responseStorageWritable = loaded.available !== false && !loaded.malformed &&
-                !!loaded.responses && typeof loaded.responses === 'object' && !Array.isArray(loaded.responses);
+            responseStorageWritable = saveFeedback
+                ? saveFeedback.isWritableLoad({
+                    available: loaded.available,
+                    malformed: loaded.malformed,
+                    responses: loaded.responses
+                })
+                : (loaded.available !== false && !loaded.malformed &&
+                    !!loaded.responses && typeof loaded.responses === 'object' && !Array.isArray(loaded.responses));
+            responseLoadReason = saveFeedback ? saveFeedback.loadReason(loaded) : null;
         } catch (e) {
             responses = {};
+            responseStorageWritable = false;
+            responseLoadReason = 'unavailable';
         }
 
-        let completionData = {};
         try {
-            completionData = JSON.parse(localStorage.getItem('foundationsCompletionData') || '{}');
+            if (saveFeedback) {
+                const loadedCompletion = saveFeedback.readJsonStore(window.localStorage, saveFeedback.STORES.completion.key);
+                completionData = loadedCompletion.data;
+                originalCompletionRaw = loadedCompletion.raw;
+                completionStorageWritable = saveFeedback.isWritableLoad(loadedCompletion);
+                completionLoadReason = saveFeedback.loadReason(loadedCompletion);
+            } else {
+                completionData = JSON.parse(localStorage.getItem('foundationsCompletionData') || '{}');
+                completionStorageWritable = true;
+            }
         } catch (e) {
             completionData = {};
+            completionStorageWritable = false;
+            completionLoadReason = 'unavailable';
         }
+
+        try {
+            if (saveFeedback) {
+                const loadedReading = saveFeedback.readJsonStore(window.localStorage, saveFeedback.STORES.reading.key);
+                readingData = loadedReading.data;
+                originalReadingRaw = loadedReading.raw;
+                readingStorageWritable = saveFeedback.isWritableLoad(loadedReading);
+                readingLoadReason = saveFeedback.loadReason(loadedReading);
+            } else {
+                readingData = JSON.parse(localStorage.getItem('foundationsReadingData') || '{}');
+                readingStorageWritable = true;
+            }
+        } catch (e) {
+            readingData = {};
+            readingStorageWritable = false;
+            readingLoadReason = 'unavailable';
+        }
+
+        announceInitialSaveState();
 
         const seriesTitles = {
             '101': 'Starting in Discipleship',
@@ -3406,7 +3560,7 @@
             exportDiv.id = 'export-section';
             const seriesName = seriesTitles[currentSeries] || 'this series';
             exportDiv.innerHTML = `
-                <span class="export-hint">Responses save automatically on this device</span>
+                <span class="export-hint">Saved means the last edited answers, completion, or reading notes were stored on this device</span>
                 <div class="export-buttons">
                     <button type="button" class="export-link" id="email-lesson-btn" onclick="openExportPreview()">Email Lesson &rarr;</button>
                     <button class="export-link export-pdf-btn" onclick="printLesson()">Save PDF &#8595;</button>
@@ -3700,26 +3854,224 @@
         // ============================================
         // SAVE / LOAD RESPONSES
         // ============================================
-        function persistResponses() {
-            // Never replace an unreadable stored copy with the empty fallback
-            // or subsequent edits. ENG-005 owns visible feedback and recovery.
-            if (!responseStorageWritable) return false;
-            try {
-                if (answerStorage) {
-                    return answerStorage.writeResponsesToStorage(window.localStorage, responses);
+        function storeWritable(storeId) {
+            if (storeId === 'completion') return completionStorageWritable;
+            if (storeId === 'reading') return readingStorageWritable;
+            return responseStorageWritable;
+        }
+
+        function storeLoadReason(storeId) {
+            if (storeId === 'completion') return completionLoadReason;
+            if (storeId === 'reading') return readingLoadReason;
+            return responseLoadReason;
+        }
+
+        function storeMemory(storeId) {
+            if (storeId === 'completion') return completionData;
+            if (storeId === 'reading') return readingData;
+            return responses;
+        }
+
+        function storeOriginalRaw(storeId) {
+            if (storeId === 'completion') return originalCompletionRaw;
+            if (storeId === 'reading') return originalReadingRaw;
+            return originalResponsesRaw;
+        }
+
+        function storeKey(storeId) {
+            if (saveFeedback && saveFeedback.STORES[storeId]) {
+                return saveFeedback.STORES[storeId].key;
+            }
+            if (storeId === 'completion') return 'foundationsCompletionData';
+            if (storeId === 'reading') return 'foundationsReadingData';
+            return 'christianFoundationsResponses';
+        }
+
+        function syncSaveBannerOffset() {
+            const banner = document.getElementById('save-status-banner');
+            const height = (!banner || banner.hidden) ? 0 : banner.offsetHeight;
+            document.documentElement.style.setProperty('--save-status-height', height + 'px');
+        }
+
+        function renderSaveStatus(storeId, result) {
+            lastSaveStore = storeId;
+            lastSaveReason = result.reason;
+            const banner = document.getElementById('save-status-banner');
+            const label = document.getElementById('save-status-label');
+            const detail = document.getElementById('save-status-detail');
+            const actions = document.getElementById('save-status-actions');
+            const retryBtn = document.getElementById('save-status-retry');
+            const copyBtn = document.getElementById('save-status-copy');
+            const downloadBtn = document.getElementById('save-status-download');
+            const originalBtn = document.getElementById('save-status-download-original');
+            if (!banner || !label) return;
+            const status = result.status;
+            label.textContent = status;
+            if (detail && saveFeedback) {
+                detail.textContent = saveFeedback.detailFor(storeId, status, result.reason);
+            }
+            banner.hidden = false;
+            banner.setAttribute('data-state', status === 'Saved' ? 'saved' : status === 'Saving' ? 'saving' : 'error');
+            banner.setAttribute('data-store', storeId);
+            const shown = saveFeedback
+                ? saveFeedback.actionsFor(status, result.reason, !!storeOriginalRaw(storeId))
+                : { retry: false, copy: false, download: false, downloadOriginal: false };
+            if (actions) {
+                actions.hidden = !(shown.retry || shown.copy || shown.download);
+            }
+            if (retryBtn) retryBtn.hidden = !shown.retry;
+            if (copyBtn) {
+                copyBtn.hidden = !shown.copy;
+                copyBtn.textContent = storeId === 'completion'
+                    ? 'Copy completion'
+                    : storeId === 'reading'
+                        ? 'Copy reading notes'
+                        : 'Copy answers';
+            }
+            if (downloadBtn) {
+                downloadBtn.hidden = !shown.download;
+                downloadBtn.textContent = storeId === 'completion'
+                    ? 'Download completion'
+                    : storeId === 'reading'
+                        ? 'Download reading notes'
+                        : 'Download answers';
+            }
+            if (originalBtn) originalBtn.hidden = !shown.downloadOriginal;
+            syncSaveBannerOffset();
+        }
+
+        function announceInitialSaveState() {
+            if (!saveFeedback) return;
+            if (!responseStorageWritable) {
+                renderSaveStatus('answers', saveFeedback.statusAfterAttempt({
+                    wrote: false,
+                    guarded: true,
+                    loadReason: responseLoadReason || 'unavailable'
+                }));
+                return;
+            }
+            if (!completionStorageWritable) {
+                renderSaveStatus('completion', saveFeedback.statusAfterAttempt({
+                    wrote: false,
+                    guarded: true,
+                    loadReason: completionLoadReason || 'unavailable'
+                }));
+                return;
+            }
+            if (!readingStorageWritable) {
+                renderSaveStatus('reading', saveFeedback.statusAfterAttempt({
+                    wrote: false,
+                    guarded: true,
+                    loadReason: readingLoadReason || 'unavailable'
+                }));
+            }
+        }
+
+        function persistNamedStore(storeId, memoryValue) {
+            if (saveFeedback) {
+                renderSaveStatus(storeId, saveFeedback.statusAfterAttempt({ phase: 'saving' }));
+            }
+            if (!storeWritable(storeId)) {
+                if (saveFeedback) {
+                    renderSaveStatus(storeId, saveFeedback.statusAfterAttempt({
+                        wrote: false,
+                        guarded: true,
+                        loadReason: storeLoadReason(storeId) || 'unavailable'
+                    }));
                 }
-                localStorage.setItem('christianFoundationsResponses', JSON.stringify(responses));
-                return true;
-            } catch (e) {
-                // Includes a blocked localStorage getter, not only setItem.
                 return false;
             }
+            let ok = false;
+            let writeError = 'write-failed';
+            try {
+                // The failed-load guard above is the REV-001 write block.
+                // setItem is used here so quota and blocked-getter errors stay classifiable.
+                window.localStorage.setItem(storeKey(storeId), JSON.stringify(memoryValue));
+                ok = true;
+            } catch (e) {
+                ok = false;
+                writeError = saveFeedback ? saveFeedback.classifyWriteError(e) : 'write-failed';
+            }
+            if (saveFeedback) {
+                renderSaveStatus(storeId, saveFeedback.statusAfterAttempt({
+                    wrote: ok,
+                    writeError: writeError
+                }));
+            }
+            return ok;
+        }
+
+        function persistResponses() {
+            // Never replace an unreadable stored copy with the empty fallback
+            // or subsequent edits. Recovery keeps that original raw copy.
+            return persistNamedStore('answers', responses);
+        }
+
+        function persistCompletion() {
+            return persistNamedStore('completion', completionData);
+        }
+
+        function persistReading() {
+            return persistNamedStore('reading', readingData);
+        }
+
+        function retryLastSave() {
+            if (lastSaveStore === 'completion') return persistCompletion();
+            if (lastSaveStore === 'reading') return persistReading();
+            return persistResponses();
+        }
+
+        function currentRecoveryPayload() {
+            if (!saveFeedback) return { kind: 'growing-together-in-memory-recovery', store: lastSaveStore, data: storeMemory(lastSaveStore) };
+            return saveFeedback.buildRecoveryPayload(lastSaveStore, storeMemory(lastSaveStore));
+        }
+
+        function currentRecoveryText() {
+            const payload = currentRecoveryPayload();
+            return saveFeedback ? saveFeedback.recoveryText(payload) : JSON.stringify(payload, null, 2);
+        }
+
+        async function copySaveRecovery() {
+            const text = currentRecoveryText();
+            window.__gtLastRecoveryCopy = text;
+            try {
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    await navigator.clipboard.writeText(text);
+                }
+            } catch (e) {
+                // Clipboard can be denied. The in-memory copy remains for recovery.
+            }
+        }
+
+        function downloadTextFile(filename, text, mime) {
+            window.__gtLastRecoveryDownload = { filename: filename, text: text };
+            const blob = new Blob([text], { type: mime || 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = filename;
+            link.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function downloadSaveRecovery() {
+            const name = lastSaveStore === 'completion'
+                ? 'growing-together-completion-recovery.json'
+                : lastSaveStore === 'reading'
+                    ? 'growing-together-reading-recovery.json'
+                    : 'growing-together-answers-recovery.json';
+            downloadTextFile(name, currentRecoveryText(), 'application/json');
+        }
+
+        function downloadOriginalStoredCopy() {
+            const raw = storeOriginalRaw(lastSaveStore);
+            if (raw == null) return;
+            downloadTextFile('growing-together-original-storage.txt', String(raw), 'text/plain');
         }
 
         function saveResponse(el) {
             responses[el.id] = el.value;
             persistResponses();
-
         }
 
         function saveCommitment(el) {
@@ -3775,7 +4127,7 @@
         function saveSessionComplete(el, series, sessionNum) {
             const key = `complete-${series}-${sessionNum}`;
             completionData[key] = el.checked;
-            localStorage.setItem('foundationsCompletionData', JSON.stringify(completionData));
+            persistCompletion();
 
             // Update the bar visual
             const bar = document.getElementById(`bar-session-complete-${series}-${sessionNum}`);
@@ -3802,12 +4154,6 @@
         // BIBLE READING  -  ESV API
         // ============================================
         const ESV_API_TOKEN = 'Token 7e4b8df428bed84fc9ee3afd18c666fb64775e06';
-        let readingData = {};
-        try {
-            readingData = JSON.parse(localStorage.getItem('foundationsReadingData') || '{}');
-        } catch (e) {
-            readingData = {};
-        }
 
         function toggleChapter(chId) {
             const body = document.getElementById('body-' + chId);
@@ -3885,7 +4231,7 @@
 
         function saveReadingCheck(el, chId) {
             readingData['check-' + chId] = el.checked;
-            localStorage.setItem('foundationsReadingData', JSON.stringify(readingData));
+            persistReading();
 
             // Update card visual state (border + header background + badge)
             const card = document.getElementById('card-' + chId);
@@ -3894,7 +4240,7 @@
 
         function saveReadingNotes(el, chId) {
             readingData['notes-' + chId] = el.value;
-            localStorage.setItem('foundationsReadingData', JSON.stringify(readingData));
+            persistReading();
         }
 
         function loadReadingData() {
