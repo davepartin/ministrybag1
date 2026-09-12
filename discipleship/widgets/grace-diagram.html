@@ -50,6 +50,12 @@
             -webkit-tap-highlight-color: transparent;
         }
 
+        button:focus-visible,
+        .grace-box:focus-visible {
+            outline: 3px solid #2C2416;
+            outline-offset: 2px;
+        }
+
         .title-bar {
             background: #2C2416;
             padding: 14px 20px 12px;
@@ -100,7 +106,8 @@
             z-index: 2;
         }
 
-        .grace-box.active {
+        .grace-box.active,
+        .grace-box.overview-box {
             cursor: pointer;
         }
 
@@ -242,6 +249,7 @@
             border: 1.5px solid #D4CFC4;
             border-radius: 10px;
             padding: 8px 14px;
+            min-height: 44px;
             font-size: 12px;
             font-family: 'Trebuchet MS', sans-serif;
             cursor: pointer;
@@ -278,8 +286,10 @@
         /* Begin button */
         .begin-wrapper {
             display: flex;
-            justify-content: center;
-            padding: 20px 16px 28px;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 16px 20px;
         }
 
         .begin-btn {
@@ -287,12 +297,53 @@
             border: 1.5px solid #2C2416;
             border-radius: 10px;
             padding: 10px 28px;
+            min-height: 44px;
             font-size: 14px;
             font-family: 'Trebuchet MS', sans-serif;
             color: #fff;
             cursor: pointer;
             font-weight: 600;
             box-shadow: 0 2px 8px rgba(44,36,22,0.2);
+        }
+
+        .overview-btn {
+            background: transparent;
+            border: 1.5px solid #D4CFC4;
+            border-radius: 10px;
+            padding: 10px 16px;
+            min-height: 44px;
+            font-size: 13px;
+            font-family: 'Trebuchet MS', sans-serif;
+            color: #5A4E3C;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .overview-panel {
+            max-width: 640px;
+            margin: 8px auto 0;
+            padding: 0 16px 16px;
+        }
+
+        .overview-caption {
+            font-size: 15px;
+            line-height: 1.35;
+            color: #3D3426;
+            text-align: center;
+            margin: 0 0 10px;
+            font-family: 'Georgia', 'Cambria', serif;
+        }
+
+        .widget-outer.overview-mode .title-bar {
+            padding: 8px 16px;
+        }
+
+        .widget-outer.overview-mode .title-bar p {
+            display: none;
+        }
+
+        .widget-outer.overview-mode .diagram-wrapper {
+            padding-top: 8px;
         }
 
         @keyframes fadeSlide {
@@ -371,6 +422,9 @@
     const greyBorder = "#D4CFC4", greyBg = "#F5F3EF", greyText = "#B8B1A4";
 
     let step = -1;
+    let mode = 'guide';
+    let resumeStep = -1;
+    let pendingFocus = null;
 
     // ---- Box positions: [idx, top, left, height] ----
     // Top-left=Grace(3), Top-right=Mercy(0), Bot-right=Justified(1), Bot-left=Righteous(2)
@@ -388,13 +442,60 @@
         { label: "Grace", lines: ['getting a', '<span class="big">GIFT</span>', "you don't deserve"], bigSize: '16px' }
     ];
 
-    function isActive(idx) { return idx <= step || step === 4; }
+    function isOverview() { return mode === 'overview'; }
+
+    function isActive(idx) {
+        if (isOverview()) return idx <= 3;
+        return idx <= step || step === 4;
+    }
+
+    function setFocus(name) {
+        pendingFocus = name;
+    }
+
+    function applyFocus() {
+        if (!pendingFocus) return;
+        const el = document.querySelector('[data-control="' + pendingFocus + '"]');
+        pendingFocus = null;
+        if (el && typeof el.focus === 'function') el.focus();
+    }
+
+    function goOverview() {
+        resumeStep = step;
+        mode = 'overview';
+        setFocus('return');
+        render();
+    }
+
+    function returnToSteps() {
+        mode = 'guide';
+        step = resumeStep;
+        setFocus(step === -1 ? 'begin' : (step === stops.length - 1 ? 'restart' : 'next'));
+        render();
+    }
+
+    function restartToBegin() {
+        mode = 'guide';
+        step = -1;
+        resumeStep = -1;
+        setFocus('begin');
+        render();
+    }
+
+    function openStep(idx) {
+        mode = 'guide';
+        step = idx;
+        resumeStep = idx;
+        setFocus(idx === stops.length - 1 ? 'restart' : 'next');
+        render();
+    }
 
     function render() {
-        const showIntro = step === -1;
-        const allDim = step === -1;
-        const showCross = step === 4;
+        const showIntro = !isOverview() && step === -1;
+        const allDim = showIntro;
+        const showCross = isOverview() || step === 4;
         const current = step >= 0 ? stops[step] : stops[0];
+        document.querySelector('.widget-outer').classList.toggle('overview-mode', isOverview());
 
         const diagram = document.getElementById('diagram');
         diagram.style.width = W + 'px';
@@ -430,7 +531,7 @@
         function addArrow(minStep, x1, y1, x2, y2, tipX, tipY, tipPoints) {
             const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
             g.classList.add('arrow-group');
-            if (step >= minStep) g.classList.add('visible');
+            if (isOverview() || step >= minStep) g.classList.add('visible');
             const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
             line.setAttribute('x1', x1); line.setAttribute('y1', y1);
             line.setAttribute('x2', x2); line.setAttribute('y2', y2);
@@ -468,15 +569,28 @@
             const desc = boxDescriptions[idx];
 
             const box = document.createElement('div');
-            box.className = 'grace-box' + (active ? ' active' : '');
+            box.className = 'grace-box' + (active ? ' active' : '') + (isOverview() ? ' overview-box' : '');
             box.style.cssText = `top:${bp.top}px;left:${bp.left}px;width:${BOX}px;height:${bp.height}px;
                 background:${active ? (viewing ? s.bgColor : '#FFFFFF') : greyBg};
                 border:2.5px solid ${active ? s.borderColor : greyBorder};
                 box-shadow:${viewing ? `0 4px 16px ${s.color}40` : active ? '0 1px 6px rgba(44,36,22,0.05)' : 'none'};
-                transform:${viewing ? 'scale(1.03)' : 'scale(1)'};
+                transform:${!isOverview() && viewing ? 'scale(1.03)' : 'scale(1)'};
                 opacity:${active ? 1 : 0.45};`;
 
-            if (active) {
+            if (isOverview()) {
+                box.setAttribute('role', 'button');
+                box.tabIndex = 0;
+                box.setAttribute('data-control', 'box-' + desc.label.toLowerCase());
+                box.setAttribute('aria-label', desc.label + ': open this guided step');
+                const openThis = () => { openStep(idx); };
+                box.addEventListener('click', openThis);
+                box.addEventListener('keydown', (event) => {
+                    if (event.key === 'Enter' || event.key === ' ') {
+                        event.preventDefault();
+                        openThis();
+                    }
+                });
+            } else if (active) {
                 box.addEventListener('click', () => { step = idx; render(); });
             }
 
@@ -516,14 +630,55 @@
         const cardArea = document.getElementById('card-area');
         cardArea.innerHTML = '';
 
-        if (showIntro) {
+        if (isOverview()) {
+            const panel = document.createElement('div');
+            panel.className = 'overview-panel';
+
+            const caption = document.createElement('p');
+            caption.className = 'overview-caption';
+            caption.innerHTML = stops[4].cardTitle;
+            panel.appendChild(caption);
+
+            const nav = document.createElement('div');
+            nav.className = 'nav-bar';
+
+            const returnBtn = document.createElement('button');
+            returnBtn.type = 'button';
+            returnBtn.className = 'nav-btn';
+            returnBtn.setAttribute('data-control', 'return');
+            returnBtn.textContent = 'Return to steps';
+            returnBtn.addEventListener('click', returnToSteps);
+
+            const restartBtn = document.createElement('button');
+            restartBtn.type = 'button';
+            restartBtn.className = 'nav-btn primary';
+            restartBtn.setAttribute('data-control', 'restart');
+            restartBtn.textContent = '\u21BB Restart';
+            restartBtn.style.background = '#6B5232';
+            restartBtn.addEventListener('click', restartToBegin);
+
+            nav.appendChild(returnBtn);
+            nav.appendChild(restartBtn);
+            panel.appendChild(nav);
+            cardArea.appendChild(panel);
+        } else if (showIntro) {
             const wrap = document.createElement('div');
             wrap.className = 'begin-wrapper';
             const btn = document.createElement('button');
+            btn.type = 'button';
             btn.className = 'begin-btn';
+            btn.setAttribute('data-control', 'begin');
             btn.textContent = 'Begin \u2192';
-            btn.addEventListener('click', () => { step = 0; render(); });
+            btn.addEventListener('click', () => { step = 0; setFocus('next'); render(); });
             wrap.appendChild(btn);
+
+            const overviewBtn = document.createElement('button');
+            overviewBtn.type = 'button';
+            overviewBtn.className = 'overview-btn';
+            overviewBtn.setAttribute('data-control', 'overview');
+            overviewBtn.textContent = 'Show whole diagram';
+            overviewBtn.addEventListener('click', goOverview);
+            wrap.appendChild(overviewBtn);
             cardArea.appendChild(wrap);
         } else {
             const wrapper = document.createElement('div');
@@ -565,11 +720,17 @@
             nav.className = 'nav-bar';
 
             const backBtn = document.createElement('button');
+            backBtn.type = 'button';
             backBtn.className = 'nav-btn';
+            backBtn.setAttribute('data-control', 'back');
             backBtn.textContent = '\u2190 Back';
             backBtn.style.color = step === -1 ? '#CCC5B8' : '#5A4E3C';
             backBtn.disabled = step === -1;
-            backBtn.addEventListener('click', () => { step = Math.max(-1, step - 1); render(); });
+            backBtn.addEventListener('click', () => {
+                step = Math.max(-1, step - 1);
+                setFocus(step === -1 ? 'begin' : 'back');
+                render();
+            });
 
             const dots = document.createElement('div');
             dots.className = 'dot-nav';
@@ -586,13 +747,20 @@
             });
 
             const nextBtn = document.createElement('button');
+            nextBtn.type = 'button';
             nextBtn.className = 'nav-btn primary';
             const isLast = step === stops.length - 1;
+            nextBtn.setAttribute('data-control', isLast ? 'restart' : 'next');
             nextBtn.textContent = isLast ? '\u21BB Restart' : 'Next \u2192';
             nextBtn.style.background = current.color;
             nextBtn.style.boxShadow = `0 2px 8px ${current.color}33`;
             nextBtn.addEventListener('click', () => {
-                step = isLast ? 0 : Math.min(stops.length - 1, step + 1);
+                if (isLast) {
+                    restartToBegin();
+                    return;
+                }
+                step = Math.min(stops.length - 1, step + 1);
+                setFocus(step === stops.length - 1 ? 'restart' : 'next');
                 render();
             });
 
@@ -601,8 +769,20 @@
             nav.appendChild(nextBtn);
             wrapper.appendChild(nav);
 
+            const overviewBtn = document.createElement('button');
+            overviewBtn.type = 'button';
+            overviewBtn.className = 'overview-btn';
+            overviewBtn.setAttribute('data-control', 'overview');
+            overviewBtn.textContent = 'Show whole diagram';
+            overviewBtn.style.width = '100%';
+            overviewBtn.style.marginTop = '10px';
+            overviewBtn.addEventListener('click', goOverview);
+            wrapper.appendChild(overviewBtn);
+
             cardArea.appendChild(wrapper);
         }
+
+        applyFocus();
     }
 
     render();
