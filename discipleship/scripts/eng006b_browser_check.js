@@ -126,7 +126,7 @@ function sameState(before, after) {
     return JSON.stringify(before) === JSON.stringify(after);
 }
 
-async function setBackupFile(page, filePath, buttonSelector) {
+async function chooseBackupFile(page, filePath, buttonSelector) {
     await page.evaluate(function () { window.__gtLastBackupPreview = null; });
     if (buttonSelector) {
         var chooserPromise = page.waitForEvent('filechooser');
@@ -136,9 +136,39 @@ async function setBackupFile(page, filePath, buttonSelector) {
     } else {
         await page.locator('#backup-preview-file').setInputFiles(filePath);
     }
+}
+
+async function setBackupFile(page, filePath, buttonSelector) {
+    await chooseBackupFile(page, filePath, buttonSelector);
     await page.waitForFunction(function () {
         return !!window.__gtLastBackupPreview;
     }, null, { timeout: 10000 });
+}
+
+function overlayView(page) {
+    return page.evaluate(function () {
+        var overlay = document.getElementById('backup-preview-overlay');
+        var nameEl = document.getElementById('backup-preview-file-name');
+        var body = document.getElementById('backup-preview-body');
+        return {
+            open: !!(overlay && overlay.classList.contains('open')),
+            hidden: !overlay || overlay.hidden,
+            filename: nameEl ? nameEl.textContent : '',
+            body: body ? body.textContent : '',
+            last: window.__gtLastBackupPreview || null
+        };
+    });
+}
+
+function syntheticBackupText(tag) {
+    return downloadHelper.backupText(downloadHelper.buildBackupEnvelope({
+        exportedAt: '2026-09-12T00:00:00.000Z',
+        stores: {
+            answers: { loadState: 'ok', writable: true, data: { 'question-101-5-key': tag } },
+            completion: { loadState: 'ok', writable: true, data: {} },
+            reading: { loadState: 'ok', writable: true, data: {} }
+        }
+    }));
 }
 
 (async function () {
@@ -468,8 +498,216 @@ async function setBackupFile(page, filePath, buttonSelector) {
     assert('failed-load preview leaves the write guard in place', failAfter.writable === false && failAfter.label === 'Could not save');
     assert('failed-load preview keeps in-memory edits', failAfter.memory === 'SYN-unsaved-after-failed-load');
     assert('failed-load recovery controls remain', failAfter.originalHidden === false && failAfter.backupHidden === false);
+    var failPreview = await failPage.evaluate(function () {
+        var body = document.getElementById('backup-preview-body');
+        var summary = window.__gtLastBackupPreview && window.__gtLastBackupPreview.summary;
+        return {
+            body: body ? body.textContent : '',
+            comparisonStatus: summary && summary.comparisonStatus,
+            unknownStores: summary && summary.unknownDestinationStores,
+            answersBackupOnly: summary && summary.comparisonTotals &&
+                summary.comparisonStatus && summary.comparisonStatus.answers === 'unknown-destination'
+                ? 0
+                : null,
+            selection: summary && summary.selection
+        };
+    });
+    assert('failed-load destination comparison is unknown', failPreview.comparisonStatus &&
+        failPreview.comparisonStatus.answers === 'unknown-destination' &&
+        failPreview.unknownStores.indexOf('answers') !== -1);
+    assert('failed-load preview does not treat stored answers as absent', failPreview.body.indexOf('cannot be confirmed') !== -1 &&
+        failPreview.selection.indexOf('cannot be confirmed') !== -1 &&
+        failPreview.body.indexOf('Do not treat backup-only keys as known stored adds') !== -1);
+    var failAfterUnknown = await failPage.evaluate(function () {
+        return {
+            raw: localStorage.getItem('christianFoundationsResponses'),
+            writable: responseStorageWritable,
+            memory: responses['question-101-5-key']
+        };
+    });
+    assert('failed-load unknown comparison still leaves guards unchanged', failAfterUnknown.raw === '{"SYN-broken":' &&
+        failAfterUnknown.writable === false &&
+        failAfterUnknown.memory === 'SYN-unsaved-after-failed-load');
     await failPage.keyboard.press('Escape');
     await failCtx.close();
+
+    var staleCtx = await browser.newContext({ acceptDownloads: true });
+    await staleCtx.addInitScript(seedAllStores());
+    var stalePage = await staleCtx.newPage();
+    await stalePage.setViewportSize({ width: 390, height: 844 });
+    await stalePage.goto(BASE + '#101-5', { waitUntil: 'domcontentloaded' });
+    await stalePage.waitForSelector('#lesson-preview-backup', { timeout: 20000 });
+    var staleBefore = await learnerState(stalePage);
+    var slowText = syntheticBackupText('SYN-slow-content');
+    var fastText = syntheticBackupText('SYN-fast-content');
+    var slowPath = writeTempBackup(slowText, 'SYN-slow.json');
+    var fastPath = writeTempBackup(fastText, 'SYN-fast.json');
+    var invalidPath = writeTempBackup('{not-json', 'SYN-new-invalid.json');
+    temps.push(slowPath, fastPath, invalidPath);
+
+    await stalePage.evaluate(function () {
+        var orig = File.prototype.text;
+        window.__gtFileTextQueue = [];
+        File.prototype.text = function () {
+            var name = this.name || '';
+            if (name.indexOf('SYN-slow') !== -1) {
+                return new Promise(function (resolve, reject) {
+                    window.__gtFileTextQueue.push({ name: name, resolve: resolve, reject: reject });
+                });
+            }
+            return orig.call(this);
+        };
+        window.__gtRestoreFileText = function () {
+            File.prototype.text = orig;
+        };
+    });
+
+    await chooseBackupFile(stalePage, slowPath);
+    await stalePage.waitForFunction(function () {
+        return window.__gtFileTextQueue && window.__gtFileTextQueue.length >= 1;
+    });
+    await chooseBackupFile(stalePage, fastPath);
+    await stalePage.waitForFunction(function () {
+        return !!window.__gtLastBackupPreview;
+    }, null, { timeout: 10000 });
+    var afterFast = await overlayView(stalePage);
+    assert('fast second selection opens its preview', afterFast.open === true &&
+        afterFast.filename.indexOf('SYN-fast.json') !== -1);
+    await stalePage.evaluate(function (text) {
+        window.__gtFileTextQueue.forEach(function (pending) {
+            pending.resolve(text);
+        });
+        window.__gtFileTextQueue = [];
+    }, slowText);
+    await stalePage.waitForTimeout(250);
+    var afterStaleSuccess = await overlayView(stalePage);
+    assert('stale slow success does not replace the newer preview', afterStaleSuccess.open === true &&
+        afterStaleSuccess.filename.indexOf('SYN-fast.json') !== -1 &&
+        afterStaleSuccess.filename.indexOf('SYN-slow.json') === -1 &&
+        afterStaleSuccess.body.indexOf('SYN-fast-content') !== -1);
+    assert('stale success leaves learner state unchanged', sameState(staleBefore, await learnerState(stalePage)));
+    await stalePage.locator('#backup-preview-close').click();
+
+    await chooseBackupFile(stalePage, slowPath);
+    await stalePage.waitForFunction(function () {
+        return window.__gtFileTextQueue && window.__gtFileTextQueue.length >= 1;
+    });
+    await setBackupFile(stalePage, invalidPath);
+    var invalidOpen = await overlayView(stalePage);
+    assert('newer invalid selection opens an error preview', invalidOpen.open === true &&
+        invalidOpen.filename.indexOf('SYN-new-invalid.json') !== -1);
+    await stalePage.locator('#backup-preview-close').click();
+    var closedBeforeStale = await overlayView(stalePage);
+    assert('newer invalid preview can be closed', closedBeforeStale.open === false);
+    await stalePage.evaluate(function (text) {
+        window.__gtFileTextQueue.forEach(function (pending) {
+            pending.resolve(text);
+        });
+        window.__gtFileTextQueue = [];
+    }, slowText);
+    await stalePage.waitForTimeout(250);
+    var stayedClosed = await overlayView(stalePage);
+    assert('stale success after close does not reopen the overlay', stayedClosed.open === false &&
+        stayedClosed.filename.indexOf('SYN-slow.json') === -1);
+    assert('close-before-resolution leaves learner state unchanged', sameState(staleBefore, await learnerState(stalePage)));
+
+    await chooseBackupFile(stalePage, slowPath);
+    await stalePage.waitForFunction(function () {
+        return window.__gtFileTextQueue && window.__gtFileTextQueue.length >= 1;
+    });
+    await setBackupFile(stalePage, fastPath);
+    var beforeStaleFail = await overlayView(stalePage);
+    await stalePage.evaluate(function () {
+        window.__gtFileTextQueue.forEach(function (pending) {
+            pending.reject(new Error('SYN-stale-failure'));
+        });
+        window.__gtFileTextQueue = [];
+    });
+    await stalePage.waitForTimeout(250);
+    var afterStaleFail = await overlayView(stalePage);
+    assert('stale failure does not replace the newer preview', afterStaleFail.open === true &&
+        afterStaleFail.filename.indexOf('SYN-fast.json') !== -1 &&
+        beforeStaleFail.filename.indexOf('SYN-fast.json') !== -1 &&
+        afterStaleFail.body.indexOf('could not be read as text') === -1);
+    assert('stale failure leaves learner state unchanged', sameState(staleBefore, await learnerState(stalePage)));
+    await stalePage.locator('#backup-preview-close').click();
+
+    var fallbackOkPath = writeTempBackup(syntheticBackupText('SYN-fallback-ok'), 'SYN-fallback-ok.json');
+    var fallbackStalePath = writeTempBackup(syntheticBackupText('SYN-fallback-stale'), 'SYN-fallback-stale.json');
+    temps.push(fallbackOkPath, fallbackStalePath);
+    await stalePage.evaluate(function () {
+        var OrigReader = window.FileReader;
+        window.__gtReaders = [];
+        File.prototype.text = function () {
+            return Promise.reject(new Error('SYN-force-fallback'));
+        };
+        window.FileReader = function () {
+            var self = this;
+            self.onload = null;
+            self.onerror = null;
+            self.result = '';
+            self.readAsText = function (file) {
+                window.__gtReaders.push({
+                    name: file && file.name ? file.name : '',
+                    complete: function (text) {
+                        self.result = text;
+                        if (typeof self.onload === 'function') {
+                            self.onload();
+                        }
+                    },
+                    fail: function () {
+                        if (typeof self.onerror === 'function') {
+                            self.onerror();
+                        }
+                    }
+                });
+            };
+            self.abort = function () {
+                self._aborted = true;
+            };
+        };
+        window.__gtRestoreReaders = function () {
+            window.FileReader = OrigReader;
+            if (typeof window.__gtRestoreFileText === 'function') {
+                window.__gtRestoreFileText();
+            }
+        };
+    });
+    await chooseBackupFile(stalePage, fallbackStalePath);
+    await stalePage.waitForFunction(function () {
+        return window.__gtReaders && window.__gtReaders.length >= 1;
+    });
+    await chooseBackupFile(stalePage, fallbackOkPath);
+    await stalePage.waitForFunction(function () {
+        return window.__gtReaders && window.__gtReaders.length >= 2;
+    });
+    await stalePage.evaluate(function (text) {
+        window.__gtReaders[1].complete(text);
+    }, syntheticBackupText('SYN-fallback-ok'));
+    await stalePage.waitForFunction(function () {
+        var nameEl = document.getElementById('backup-preview-file-name');
+        return nameEl && nameEl.textContent.indexOf('SYN-fallback-ok.json') !== -1;
+    }, null, { timeout: 10000 });
+    await stalePage.evaluate(function (text) {
+        window.__gtReaders[0].complete(text);
+    }, syntheticBackupText('SYN-fallback-stale'));
+    await stalePage.waitForTimeout(250);
+    var fallbackView = await overlayView(stalePage);
+    assert('fallback FileReader preview uses the newer file', fallbackView.open === true &&
+        fallbackView.filename.indexOf('SYN-fallback-ok.json') !== -1 &&
+        fallbackView.filename.indexOf('SYN-fallback-stale.json') === -1 &&
+        fallbackView.body.indexOf('SYN-fallback-ok') !== -1);
+    assert('fallback FileReader leaves learner state unchanged', sameState(staleBefore, await learnerState(stalePage)));
+    await stalePage.evaluate(function () {
+        if (typeof window.__gtRestoreReaders === 'function') {
+            window.__gtRestoreReaders();
+        }
+        if (typeof window.__gtRestoreFileText === 'function') {
+            window.__gtRestoreFileText();
+        }
+    });
+    await stalePage.locator('#backup-preview-close').click();
+    await staleCtx.close();
 
     await browser.close();
     temps.forEach(function (tempPath) {

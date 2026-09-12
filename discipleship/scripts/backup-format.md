@@ -10,7 +10,7 @@ The downloaded file is UTF-8 JSON with a `.json` filename that starts with `grow
 
 | Field | Meaning |
 |---|---|
-| `kind` | Always `growing-together-backup`. Distinguishes this file from ENG-005 in-memory recovery snapshots (`growing-together-in-memory-recovery`) and from raw original storage copies. |
+| `kind` | Exact string `growing-together-backup`. Null, numeric, missing or any other value is not a versioned backup. Distinguishes this file from ENG-005 in-memory recovery snapshots (`growing-together-in-memory-recovery`) and from raw original storage copies. |
 | `formatVersion` | Integer `1`. |
 | `exportedAt` | ISO-8601 timestamp from the page that built the file. |
 | `app` | `Growing Together`. |
@@ -26,13 +26,13 @@ The downloaded file is UTF-8 JSON with a `.json` filename that starts with `grow
 
 ## Per-store object
 
-Each `stores[id]` object has:
+Each `stores[id]` object must include own `data` and `loadState` fields. Missing required fields are not treated as a complete empty store. Other fields:
 
 | Field | Meaning |
 |---|---|
 | `id` | `answers`, `completion` or `reading`. |
 | `storageKey` | `christianFoundationsResponses`, `foundationsCompletionData` or `foundationsReadingData`. |
-| `loadState` | `ok`, `malformed` or `unavailable`. |
+| `loadState` | Own value exactly `ok`, `malformed` or `unavailable`. Inherited names such as `toString` are not allowed. |
 | `writable` | Whether the failed-load guard currently allows writes. |
 | `includesUnsavedEdits` | Whether this store's `data` includes page edits that were not stored. |
 | `complete` | `true` only when `loadState` is `ok`. |
@@ -47,7 +47,7 @@ Stable runtime IDs stay as stored: `question-*`, `checklist-*`, `commitment-*`, 
 
 ## Ambiguous answers
 
-`ambiguousAnswers.items` copies `__gtAmbiguousSharedAnswers.items` when present. Candidate lessons stay unordered. Status stays `ambiguous`. No packet may write those values into a lesson key.
+`ambiguousAnswers.items` copies `__gtAmbiguousSharedAnswers.items` when present. Each item must include own `value` (string), `candidateLessons` (array of strings) and `status` exactly `ambiguous`. Preview does not invent missing metadata. Candidate lessons stay unordered, so order alone is not a disagreement. Status stays `ambiguous`. The answers-data copy is authoritative and stays unassigned. A top-level duplicate with the same key but a different value, candidate set, status or note is an inconsistency. No packet may write those values into a lesson key.
 
 ## What this file is not
 
@@ -66,7 +66,7 @@ Read `File.size` before reading bytes or parsing JSON. Reject files larger than 
 
 ### Kind and version
 
-- `kind` must be `growing-together-backup` and `formatVersion` must be the integer `1`.
+- `kind` must be the exact string `growing-together-backup` (own property, exact equality) and `formatVersion` must be the integer `1`. Null, numeric, missing or other kinds are rejected.
 - `growing-together-in-memory-recovery` is an older ENG-005 per-store snapshot. Reject it as a recovery snapshot, not as a versioned backup.
 - A `growing-together-original-storage` name, a `.txt` original-copy download, or a JSON object with no backup `kind` that looks like raw store keys is an older storage copy. Reject it instead of pretending it is versioned.
 - Any other `kind` or version is unsupported.
@@ -87,7 +87,7 @@ Known learner keys must use these JSON types:
 | `__gtSharedKeyMigrationV1` | boolean |
 | `__gtAmbiguousSharedAnswers` | object with `items` as a plain object |
 
-Ambiguous items keep `status: "ambiguous"`, a value, and `candidateLessons` as an array of strings. Lesson attribution is not inferred. Invalid structures or types fail the file with a useful message.
+Ambiguous items must include own `value`, `candidateLessons` as an array of strings, and `status: "ambiguous"`. Lesson attribution is not inferred. Missing required fields are not filled in. Invalid structures or types fail the file with a useful message.
 
 ### Unknown keys
 
@@ -101,10 +101,11 @@ A key that is not a known learner prefix and not an internal `__gt` key is an **
 
 Preview describes a future restore. It does not apply one.
 
-- Backup-only known keys: would be added from the file.
-- Device-only keys: would stay on the device.
-- Matching values: no change.
-- Conflicting values: held for a later choice. The proposed default is keep the current device value.
+- Backup-only known keys: would be added from the file, only when the destination store is readable (`loadState` is `ok`, or an in-memory snapshot omitted loadState).
+- Device-only keys: would stay on the device, only for readable destination stores.
+- Matching values: no change, only for readable destination stores.
+- Conflicting values: held for a later choice. The proposed default is keep the current device value, only for readable destination stores.
+- If a destination store is `malformed` or `unavailable`, comparison against stored data is unknown. The preview may inspect available in-memory values as limited evidence, but must not claim zero conflicts or backup-only adds as if stored matches were absent. Write guards and destination `originalRaw` stay in place.
 - Unknown keys: keep as stored unknown keys, no lesson assignment.
 - Ambiguous answers: remain retained metadata with candidate lessons, never auto-assigned.
 - `originalRaw`: remain evidence only.

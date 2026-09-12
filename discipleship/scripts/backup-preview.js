@@ -44,11 +44,10 @@
     function isDangerousKey(key) {
         return key === '__proto__' || key === 'constructor' || key === 'prototype';
     }
-    var LOAD_STATES = {
-        ok: true,
-        malformed: true,
-        unavailable: true
-    };
+
+    function isAllowedLoadState(value) {
+        return value === 'ok' || value === 'malformed' || value === 'unavailable';
+    }
 
     function isPlainObject(value) {
         return !!value && typeof value === 'object' && !Array.isArray(value);
@@ -233,24 +232,31 @@
             if (!isPlainObject(item)) {
                 return fail('invalid-type', 'Ambiguous item ' + key + ' must be an object.');
             }
-            if (hasOwn(item, 'candidateLessons') && !Array.isArray(item.candidateLessons)) {
-                return fail('invalid-type', 'Ambiguous item ' + key + ' candidateLessons must be an array.');
+            if (!hasOwn(item, 'value') || typeof item.value !== 'string') {
+                return fail('invalid-type', 'Ambiguous item ' + key + ' value is required and must be a string.');
             }
-            var lessons = Array.isArray(item.candidateLessons) ? item.candidateLessons.slice() : [];
-            for (var j = 0; j < lessons.length; j++) {
-                if (typeof lessons[j] !== 'string') {
+            if (!hasOwn(item, 'candidateLessons') || !Array.isArray(item.candidateLessons)) {
+                return fail('invalid-type', 'Ambiguous item ' + key + ' candidateLessons is required and must be an array of strings.');
+            }
+            for (var j = 0; j < item.candidateLessons.length; j++) {
+                if (typeof item.candidateLessons[j] !== 'string') {
                     return fail('invalid-type', 'Ambiguous item ' + key + ' candidate lessons must be strings.');
                 }
             }
-            if (hasOwn(item, 'status') && item.status !== 'ambiguous') {
-                return fail('invalid-type', 'Ambiguous item ' + key + ' must keep status "ambiguous". Lesson attribution is not inferred.');
+            if (!hasOwn(item, 'status') || item.status !== 'ambiguous') {
+                return fail('invalid-type', 'Ambiguous item ' + key + ' status is required and must be "ambiguous". Lesson attribution is not inferred.');
+            }
+            if (hasOwn(item, 'note') && typeof item.note !== 'string') {
+                return fail('invalid-type', 'Ambiguous item ' + key + ' note must be a string when present.');
             }
             normalized[key] = {
                 value: item.value,
-                candidateLessons: lessons,
-                status: 'ambiguous',
-                note: typeof item.note === 'string' ? item.note : 'Shared before unique IDs. Lesson unknown. Not assigned automatically.'
+                candidateLessons: item.candidateLessons.slice(),
+                status: item.status
             };
+            if (hasOwn(item, 'note')) {
+                normalized[key].note = item.note;
+            }
         }
         return { ok: true, items: normalized };
     }
@@ -316,13 +322,19 @@
         if (!isPlainObject(store)) {
             return fail('invalid-structure', 'Store "' + storeId + '" must be an object.');
         }
+        if (!hasOwn(store, 'data') || !hasOwn(store, 'loadState')) {
+            return fail(
+                'invalid-structure',
+                'Store "' + storeId + '" must include own data and loadState fields. Missing fields are not treated as an empty complete store.'
+            );
+        }
         if (hasOwn(store, 'id') && store.id !== storeId) {
             return fail('invalid-structure', 'Store "' + storeId + '" has a mismatched id.');
         }
         if (hasOwn(store, 'storageKey') && store.storageKey !== STORE_KEYS[storeId]) {
             return fail('invalid-structure', 'Store "' + storeId + '" has an unexpected storage key.');
         }
-        if (hasOwn(store, 'loadState') && !LOAD_STATES[store.loadState]) {
+        if (!isAllowedLoadState(store.loadState)) {
             return fail('invalid-structure', 'Store "' + storeId + '" has an unsupported loadState.');
         }
         if (hasOwn(store, 'writable') && typeof store.writable !== 'boolean') {
@@ -340,16 +352,13 @@
         if (hasOwn(store, 'originalRaw') && store.originalRaw != null && typeof store.originalRaw !== 'string') {
             return fail('invalid-type', 'Store "' + storeId + '" originalRaw must be a string or omitted. It is not parsed as learner data.');
         }
-        var dataCheck = validateStoreData(storeId, hasOwn(store, 'data') ? store.data : {});
+        var dataCheck = validateStoreData(storeId, store.data);
         if (!dataCheck.ok) {
             return dataCheck;
         }
-        var loadState = LOAD_STATES[store.loadState] ? store.loadState : 'unavailable';
-        if (!hasOwn(store, 'loadState')) {
-            loadState = 'ok';
-        }
+        var loadState = store.loadState;
         var derivedComplete = loadState === 'ok';
-        var data = isPlainObject(store.data) ? store.data : {};
+        var data = store.data;
         var counts = countStoreKeys(storeId, data);
         var emptyValid = derivedComplete && counts.keys === 0;
         var originalRaw = (!derivedComplete && typeof store.originalRaw === 'string' && store.originalRaw !== '')
@@ -378,6 +387,60 @@
                 claimedCounts: isPlainObject(store.counts) ? cloneJson(store.counts) : null
             }
         };
+    }
+
+    function uniqueKeys(keys) {
+        var seen = {};
+        var out = [];
+        (keys || []).forEach(function (key) {
+            if (seen[key]) {
+                return;
+            }
+            seen[key] = true;
+            out.push(key);
+        });
+        return out;
+    }
+
+    function sameLessonSet(left, right) {
+        if (!Array.isArray(left) || !Array.isArray(right) || left.length !== right.length) {
+            return false;
+        }
+        var a = left.slice().sort();
+        var b = right.slice().sort();
+        return a.every(function (value, index) {
+            return value === b[index];
+        });
+    }
+
+    function ambiguityNote(item) {
+        return item && typeof item.note === 'string' ? item.note : '';
+    }
+
+    function sameAmbiguityItem(answersItem, listedItem) {
+        if (!isPlainObject(answersItem) || !isPlainObject(listedItem)) {
+            return false;
+        }
+        if (answersItem.value !== listedItem.value) {
+            return false;
+        }
+        if (answersItem.status !== listedItem.status) {
+            return false;
+        }
+        if (ambiguityNote(answersItem) !== ambiguityNote(listedItem)) {
+            return false;
+        }
+        return sameLessonSet(answersItem.candidateLessons || [], listedItem.candidateLessons || []);
+    }
+
+    function isDestinationComparisonKnown(destStore) {
+        if (!isPlainObject(destStore)) {
+            return false;
+        }
+        if (!hasOwn(destStore, 'loadState') || destStore.loadState == null) {
+            return true;
+        }
+        return destStore.loadState === 'ok';
     }
 
     function sameValue(left, right) {
@@ -435,21 +498,21 @@
         if (looksLikeOriginalCopyName(name)) {
             return fail('original-copy', 'That file looks like an older original storage copy, not a versioned Growing Together backup.');
         }
-        if (isPlainObject(parsed) && typeof parsed.kind === 'string' && parsed.kind !== KIND) {
-            return fail('unsupported-kind', 'That file has an unsupported kind (' + parsed.kind + '). Only growing-together-backup version 1 can be previewed.');
-        }
-        if (isPlainObject(parsed) && !hasOwn(parsed, 'kind')) {
-            var maybeStoreKeys = Object.keys(parsed).some(function (key) {
-                return key.indexOf('question-') === 0 || key.indexOf('complete-') === 0 ||
-                    key.indexOf('notes-') === 0 || key === MIGRATION_FLAG;
-            });
-            if (maybeStoreKeys) {
-                return fail('original-copy', 'That JSON looks like a raw storage copy, not a versioned Growing Together backup. It cannot be previewed as a restore source.');
-            }
-            return fail('unsupported-kind', 'That JSON file is not a Growing Together versioned backup. It has no backup kind.');
-        }
         if (!isPlainObject(parsed)) {
             return fail('invalid-structure', 'A Growing Together backup must be a JSON object.');
+        }
+        if (!hasOwn(parsed, 'kind') || parsed.kind !== KIND) {
+            if (!hasOwn(parsed, 'kind')) {
+                var maybeStoreKeys = Object.keys(parsed).some(function (key) {
+                    return key.indexOf('question-') === 0 || key.indexOf('complete-') === 0 ||
+                        key.indexOf('notes-') === 0 || key === MIGRATION_FLAG;
+                });
+                if (maybeStoreKeys) {
+                    return fail('original-copy', 'That JSON looks like a raw storage copy, not a versioned Growing Together backup. It cannot be previewed as a restore source.');
+                }
+                return fail('unsupported-kind', 'That JSON file is not a Growing Together versioned backup. It has no backup kind.');
+            }
+            return fail('unsupported-kind', 'That file has an unsupported kind (' + String(parsed.kind) + '). Only growing-together-backup version 1 can be previewed.');
         }
         return null;
     }
@@ -508,12 +571,20 @@
         };
     }
 
-    function selectionText(summary) {
-        return 'Proposed future restore, not applied: add ' + summary.backupOnly +
-            ' backup-only key(s), retain ' + summary.deviceOnly +
-            ' device-only key(s), leave ' + summary.matching +
-            ' matching key(s) unchanged, and hold ' + summary.conflicts +
-            ' conflict(s) for a later choice (default keep the current device value). Unknown keys stay stored without a lesson assignment. Ambiguous answers stay unassigned. Unreadable originalRaw stays evidence only.';
+    function selectionText(summary, unknownStoreIds) {
+        var unknownNouns = (unknownStoreIds || []).map(function (id) {
+            return STORE_NOUNS[id];
+        });
+        var unknownPart = '';
+        if (unknownNouns.length) {
+            unknownPart = 'Stored matches and conflicts for ' + unknownNouns.join(', ') +
+                ' cannot be confirmed because destination storage is unreadable. In-memory values were inspected only as limited evidence. Do not treat backup-only keys as known stored adds, and do not treat conflicts as absent. Write guards and original stored bytes stay in place. ';
+        }
+        return unknownPart + 'Proposed future restore, not applied: add ' + summary.backupOnly +
+            ' known backup-only key(s) from readable destination stores, retain ' + summary.deviceOnly +
+            ' known device-only key(s), leave ' + summary.matching +
+            ' known matching key(s) unchanged, and hold ' + summary.conflicts +
+            ' known conflict(s) for a later choice (default keep the current device value). Unknown keys stay stored without a lesson assignment. Ambiguous answers stay unassigned. Unreadable originalRaw stays evidence only.';
     }
 
     function buildPreview(validated, currentDevice) {
@@ -527,15 +598,38 @@
             deviceOnly: 0,
             matching: 0,
             conflicts: 0,
-            unknownKeys: 0
+            unknownKeys: 0,
+            unknownDestinationStores: 0,
+            unknownComparisonKeys: 0
         };
         var unknownKeys = [];
         var conflictKeys = [];
+        var unknownDestinationStores = [];
         STORE_ORDER.forEach(function (id) {
             var store = validated.stores[id];
             var deviceStore = isPlainObject(device[id]) ? device[id] : {};
             var deviceData = isPlainObject(deviceStore.data) ? deviceStore.data : {};
             var compared = compareStore(id, store.data, deviceData);
+            var destKnown = isDestinationComparisonKnown(deviceStore);
+            var destLoadState = hasOwn(deviceStore, 'loadState') ? deviceStore.loadState : null;
+            var destNote = destKnown
+                ? null
+                : 'Destination storage is unreadable or unavailable. Stored matches and conflicts are unknown. In-memory values were inspected only as limited evidence, not as confirmed stored data.';
+            var knownComparison = destKnown
+                ? {
+                    backupOnly: compared.backupOnly.slice(),
+                    deviceOnly: compared.deviceOnly.slice(),
+                    matching: compared.matching.slice(),
+                    conflicts: compared.conflicts.slice(),
+                    unknown: []
+                }
+                : {
+                    backupOnly: [],
+                    deviceOnly: [],
+                    matching: [],
+                    conflicts: [],
+                    unknown: uniqueKeys(learnerKeys(id, store.data).concat(learnerKeys(id, deviceData)))
+                };
             storePreviews[id] = {
                 id: id,
                 noun: STORE_NOUNS[id],
@@ -547,23 +641,35 @@
                 counts: store.counts,
                 unknownKeys: store.unknownKeys.slice(),
                 originalRawAvailable: store.originalRawAvailable,
-                comparison: compared,
+                comparisonStatus: destKnown ? 'known' : 'unknown-destination',
+                destinationLoadState: destLoadState,
+                destinationWritable: deviceStore.writable,
+                destinationOriginalRawAvailable: typeof deviceStore.originalRaw === 'string' && deviceStore.originalRaw !== '',
+                destinationNote: destNote,
+                comparison: knownComparison,
+                inMemoryComparison: compared,
                 entries: learnerKeys(id, store.data).concat(store.unknownKeys).filter(function (key, index, all) {
                     return all.indexOf(key) === index;
                 }).map(function (key) {
                     return { key: key, value: displayValue(store.data[key]) };
                 })
             };
-            totals.backupOnly += compared.backupOnly.length;
-            totals.deviceOnly += compared.deviceOnly.length;
-            totals.matching += compared.matching.length;
-            totals.conflicts += compared.conflicts.length;
+            if (destKnown) {
+                totals.backupOnly += compared.backupOnly.length;
+                totals.deviceOnly += compared.deviceOnly.length;
+                totals.matching += compared.matching.length;
+                totals.conflicts += compared.conflicts.length;
+                compared.conflicts.forEach(function (key) {
+                    conflictKeys.push(id + ':' + key);
+                });
+            } else {
+                totals.unknownDestinationStores += 1;
+                totals.unknownComparisonKeys += knownComparison.unknown.length;
+                unknownDestinationStores.push(id);
+            }
             totals.unknownKeys += store.unknownKeys.length;
             store.unknownKeys.forEach(function (key) {
                 unknownKeys.push(id + ':' + key);
-            });
-            compared.conflicts.forEach(function (key) {
-                conflictKeys.push(id + ':' + key);
             });
         });
         var ambiguousKeys = Object.keys(validated.ambiguous.items);
@@ -597,6 +703,9 @@
             couldRestore.push('Retained ambiguous answers as inspectable metadata, still unassigned');
             couldNotRestore.push('Automatic lesson assignment for retained ambiguous answers');
         }
+        unknownDestinationStores.forEach(function (id) {
+            couldNotRestore.push(STORE_NOUNS[id] + ' stored matches and conflicts (destination storage is unreadable; comparison is unknown)');
+        });
         couldNotRestore.push('An applied restore. Applying a backup is not available yet.');
         var status = validated.complete
             ? (validated.includesUnsavedEdits
@@ -619,6 +728,8 @@
             stores: storePreviews,
             unknownKeys: unknownKeys,
             conflictKeys: conflictKeys,
+            unknownDestinationStores: unknownDestinationStores,
+            hasUnknownDestinationComparison: unknownDestinationStores.length > 0,
             comparisonTotals: totals,
             ambiguousAnswers: {
                 present: ambiguousKeys.length > 0,
@@ -627,7 +738,7 @@
                 note: 'Shared before unique IDs. Lesson unknown. Not assigned automatically.'
             },
             originalRawStores: originalRawStores,
-            selection: selectionText(totals),
+            selection: selectionText(totals, unknownDestinationStores),
             couldRestore: couldRestore,
             couldNotRestore: couldNotRestore,
             status: status,
@@ -719,10 +830,17 @@
                     ' but validated answers data has ' + derivedCount + '.');
             }
             if (isPlainObject(parsed.ambiguousAnswers.items)) {
-                var claimedKeys = Object.keys(parsed.ambiguousAnswers.items).sort().join(',');
-                var derivedKeys = Object.keys(derivedAmbiguous.items).sort().join(',');
-                if (claimedKeys !== derivedKeys) {
+                var claimedItems = parsed.ambiguousAnswers.items;
+                var claimedKeyList = Object.keys(claimedItems).sort();
+                var derivedKeyList = Object.keys(derivedAmbiguous.items).sort();
+                if (claimedKeyList.join(',') !== derivedKeyList.join(',')) {
                     inconsistencies.push('Duplicated ambiguousAnswers items do not match the retained metadata inside answers data. Preview uses the answers-data copy.');
+                } else {
+                    claimedKeyList.forEach(function (key) {
+                        if (!sameAmbiguityItem(derivedAmbiguous.items[key], claimedItems[key])) {
+                            inconsistencies.push('Duplicated ambiguousAnswers item ' + key + ' differs from the answers-data copy. Preview uses the answers-data copy and keeps it unassigned.');
+                        }
+                    });
                 }
             }
         }

@@ -330,6 +330,100 @@ delete missingStore.stores.reading;
 var missingText = JSON.stringify(missingStore);
 assert('missing stores are rejected', preview.previewFromText(missingText, meta('growing-together-backup.json', missingText)).code === 'invalid-structure');
 
+var nullKind = JSON.parse(fullText);
+nullKind.kind = null;
+var nullKindText = JSON.stringify(nullKind);
+assert('null kind is rejected', preview.previewFromText(nullKindText, meta('growing-together-backup.json', nullKindText)).ok === false);
+assert('null kind is unsupported, not previewed as complete', preview.previewFromText(nullKindText, meta('growing-together-backup.json', nullKindText)).code === 'unsupported-kind');
+
+var numericKind = JSON.parse(fullText);
+numericKind.kind = 1;
+var numericKindText = JSON.stringify(numericKind);
+assert('numeric kind is rejected', preview.previewFromText(numericKindText, meta('growing-together-backup.json', numericKindText)).code === 'unsupported-kind');
+
+var missingKind = JSON.parse(fullText);
+delete missingKind.kind;
+var missingKindText = JSON.stringify(missingKind);
+assert('missing kind is rejected', preview.previewFromText(missingKindText, meta('growing-together-backup.json', missingKindText)).code === 'unsupported-kind');
+
+var absentFields = JSON.parse(fullText);
+delete absentFields.stores.answers.data;
+delete absentFields.stores.answers.loadState;
+var absentFieldsText = JSON.stringify(absentFields);
+var absentFieldsPreview = preview.previewFromText(absentFieldsText, meta('growing-together-backup.json', absentFieldsText));
+assert('absent data and loadState are rejected', absentFieldsPreview.ok === false && absentFieldsPreview.code === 'invalid-structure');
+assert('absent store fields are not treated as a complete empty store', String(absentFieldsPreview.message || '').indexOf('empty complete store') !== -1);
+
+var inheritedState = JSON.parse(fullText);
+inheritedState.stores.answers.loadState = 'toString';
+var inheritedText = JSON.stringify(inheritedState);
+assert('inherited loadState names are rejected', preview.previewFromText(inheritedText, meta('growing-together-backup.json', inheritedText)).code === 'invalid-structure');
+
+var missingAmbValue = JSON.parse(fullText);
+delete missingAmbValue.stores.answers.data.__gtAmbiguousSharedAnswers.items['question-202-201-09-prayer'].value;
+assert('ambiguity items require a value', preview.previewFromText(JSON.stringify(missingAmbValue), meta('growing-together-backup.json', JSON.stringify(missingAmbValue))).code === 'invalid-type');
+
+var missingAmbLessons = JSON.parse(fullText);
+delete missingAmbLessons.stores.answers.data.__gtAmbiguousSharedAnswers.items['question-202-201-09-prayer'].candidateLessons;
+assert('ambiguity items require candidateLessons', preview.previewFromText(JSON.stringify(missingAmbLessons), meta('growing-together-backup.json', JSON.stringify(missingAmbLessons))).code === 'invalid-type');
+
+var missingAmbStatus = JSON.parse(fullText);
+delete missingAmbStatus.stores.answers.data.__gtAmbiguousSharedAnswers.items['question-202-201-09-prayer'].status;
+assert('ambiguity items require status', preview.previewFromText(JSON.stringify(missingAmbStatus), meta('growing-together-backup.json', JSON.stringify(missingAmbStatus))).code === 'invalid-type');
+
+var conflictAmb = JSON.parse(fullText);
+conflictAmb.ambiguousAnswers.items['question-202-201-09-prayer'].value = 'SYN-conflicting';
+var conflictAmbText = JSON.stringify(conflictAmb);
+var conflictAmbPreview = preview.previewFromText(conflictAmbText, meta('growing-together-backup.json', conflictAmbText), {
+    stores: { answers: { data: {} }, completion: { data: {} }, reading: { data: {} } }
+});
+assert('same-key ambiguous content mismatch is surfaced', conflictAmbPreview.ok === true &&
+    conflictAmbPreview.inconsistencies.some(function (item) {
+        return item.indexOf('differs from the answers-data copy') !== -1;
+    }));
+assert('answers-data copy stays authoritative after content mismatch', conflictAmbPreview.ambiguousAnswers.items['question-202-201-09-prayer'].value === 'SYN-ambiguous-legacy');
+assert('mismatched duplicate stays unassigned', conflictAmbPreview.ambiguousAnswers.items['question-202-201-09-prayer'].status === 'ambiguous');
+
+var reorderedAmb = JSON.parse(fullText);
+reorderedAmb.ambiguousAnswers.items['question-202-201-09-prayer'].candidateLessons = ['202-09', '202-05'];
+var reorderedAmbText = JSON.stringify(reorderedAmb);
+var reorderedAmbPreview = preview.previewFromText(reorderedAmbText, meta('growing-together-backup.json', reorderedAmbText), {
+    stores: { answers: { data: {} }, completion: { data: {} }, reading: { data: {} } }
+});
+assert('candidate lesson order alone does not conflict', reorderedAmbPreview.ok === true &&
+    !reorderedAmbPreview.inconsistencies.some(function (item) {
+        return item.indexOf('differs from the answers-data copy') !== -1;
+    }));
+
+var destUnknown = preview.previewFromText(fullText, meta('growing-together-backup.json', fullText), {
+    stores: {
+        answers: { loadState: 'malformed', writable: false, data: {}, originalRaw: 'SYN-unreadable' },
+        completion: { loadState: 'ok', writable: true, data: {} },
+        reading: { loadState: 'ok', writable: true, data: {} }
+    }
+});
+assert('unreadable destination is not treated as empty known storage', destUnknown.ok === true &&
+    destUnknown.stores.answers.comparisonStatus === 'unknown-destination');
+assert('unreadable destination does not claim answers backup-only adds', destUnknown.stores.answers.comparison.backupOnly.length === 0);
+assert('unreadable destination does not claim known answers conflicts are absent', destUnknown.stores.answers.comparison.unknown.length > 0 &&
+    destUnknown.conflictKeys.indexOf('answers:question-101-5-key') === -1);
+assert('unreadable destination preserves write-guard evidence', destUnknown.stores.answers.destinationWritable === false &&
+    destUnknown.stores.answers.destinationOriginalRawAvailable === true);
+assert('unreadable destination explains the comparison limit', destUnknown.selection.indexOf('cannot be confirmed') !== -1 &&
+    destUnknown.couldNotRestore.join(' ').indexOf('destination storage is unreadable') !== -1);
+assert('in-memory destination values remain available as limited evidence', destUnknown.stores.answers.inMemoryComparison.backupOnly.indexOf('question-101-5-key') !== -1);
+
+var destAllUnknown = preview.previewFromText(fullText, meta('growing-together-backup.json', fullText), {
+    stores: {
+        answers: { loadState: 'unavailable', writable: false, data: {}, originalRaw: 'SYN-unreadable-answers' },
+        completion: { loadState: 'malformed', writable: false, data: {} },
+        reading: { loadState: 'unavailable', writable: false, data: {} }
+    }
+});
+assert('all-unreadable destinations report zero known stored differences', destAllUnknown.comparisonTotals.backupOnly === 0 &&
+    destAllUnknown.comparisonTotals.conflicts === 0 &&
+    destAllUnknown.hasUnknownDestinationComparison === true);
+
 if (failed) {
     console.error('\n' + failed + ' check(s) failed, ' + passed + ' passed.');
     process.exit(1);

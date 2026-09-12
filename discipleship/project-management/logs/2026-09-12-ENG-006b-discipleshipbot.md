@@ -66,3 +66,16 @@ Remaining work / next command: reviewer verifies the diff and reruns the command
 Blocker and unblock action, if any: none for ENG-006b. Parent ENG-006 stays incomplete until 006c passes.
 Commit / PR / GitHub sync state: worker branch `cursor/eng-006b-backup-preview-2b79`; PR https://github.com/davepartin/ministrybag1/pull/20 awaiting independent review. Find this packet with `git log -- discipleship/project-management/logs/2026-09-12-ENG-006b-discipleshipbot.md` from repository root.
 Pastoral approval evidence, if applicable: not required for this software packet.
+
+## REV-008 corrections
+
+Merged current `origin/main` (`8322f7a`) normally into this branch. Did not edit TASKS.md, HANDOFF.md, Claude lesson files, or PR #17. Preserved the merged UX-001b Grace widget.
+
+Code changes stay in the existing preview packet:
+
+1. Exact own `kind === growing-together-backup`. Reject null, numeric and missing kind. Require own store `data` and `loadState`. Allow only explicit `ok` / `malformed` / `unavailable`. Require ambiguity `value`, `candidateLessons` and `status`. Do not invent missing metadata or treat missing data as a complete empty store.
+2. Compare duplicated ambiguous-answer value, unordered candidate lessons, status and note. Answers-data copy stays authoritative and unassigned.
+3. `buildPreview` uses destination `loadState` / writable. Malformed or unavailable destination comparison is unknown. In-memory values stay limited evidence. Write guards and destination originalRaw stay in place. No restore writes.
+4. Host file reads use a monotonic generation token. Close, newer selection and navigation invalidate in-flight `File.text` and FileReader success and failure callbacks. Failed `File.text` falls back to FileReader only for the current generation.
+
+Regression coverage is in `test_backup_preview.js` and `eng006b_browser_check.js`. Exact check results follow after the rerun. ENG-006c remains held.

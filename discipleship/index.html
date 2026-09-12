@@ -2809,6 +2809,8 @@
         let lastBuiltExport = null;
         let backupPreviewLastFocus = null;
         let backupPreviewSource = 'app';
+        let backupPreviewReadGeneration = 0;
+        let backupPreviewFileReader = null;
         const widgetIframeApi = window.GrowingTogetherWidgetIframe;
         let widgetIframeHost = null;
 
@@ -4457,10 +4459,20 @@
             if (result.unsavedStores.length) {
                 appendPreviewText(body, 'p', '', 'Stores that include unsaved source-page edits: ' + result.unsavedStores.join(', ') + '.');
             }
+            if (result.hasUnknownDestinationComparison) {
+                appendPreviewText(body, 'h3', '', 'Destination storage status');
+                appendPreviewText(body, 'p', '', 'Stored matches and conflicts for ' +
+                    (result.unknownDestinationStores || []).join(', ') +
+                    ' cannot be confirmed because destination storage is unreadable. In-memory values were inspected only as limited evidence. Do not treat backup-only keys as known stored adds, and do not treat conflicts as absent. Write guards and original stored bytes stay in place.');
+            }
             appendPreviewText(body, 'h3', '', 'Conflicts with current device values');
-            appendPreviewList(body, result.conflictKeys.length
-                ? result.conflictKeys.map(function (key) { return key + ' (proposed default: keep current device value)'; })
-                : []);
+            if (result.hasUnknownDestinationComparison && !result.conflictKeys.length) {
+                appendPreviewText(body, 'p', '', 'Known stored conflicts cannot be listed while destination storage is unreadable.');
+            } else {
+                appendPreviewList(body, result.conflictKeys.length
+                    ? result.conflictKeys.map(function (key) { return key + ' (proposed default: keep current device value)'; })
+                    : []);
+            }
             appendPreviewText(body, 'h3', '', 'Unknown keys');
             appendPreviewText(body, 'p', '', 'Unknown keys are kept as stored keys. They are not dropped or assigned to a lesson.');
             appendPreviewList(body, result.unknownKeys);
@@ -4513,7 +4525,20 @@
             if (closeBtn) closeBtn.focus();
         }
 
+        function invalidateBackupPreviewReads() {
+            backupPreviewReadGeneration += 1;
+            if (backupPreviewFileReader) {
+                try {
+                    backupPreviewFileReader.abort();
+                } catch (err) {
+                    /* ignore abort errors from a superseded reader */
+                }
+                backupPreviewFileReader = null;
+            }
+        }
+
         function closeBackupPreview() {
+            invalidateBackupPreviewReads();
             const overlay = document.getElementById('backup-preview-overlay');
             if (overlay) {
                 overlay.classList.remove('open');
@@ -4547,7 +4572,15 @@
                 originalRawStores: result.originalRawStores,
                 ambiguousCount: result.ambiguousAnswers.count,
                 applyAvailable: result.applyAvailable,
-                selection: result.selection
+                selection: result.selection,
+                unknownDestinationStores: result.unknownDestinationStores || [],
+                hasUnknownDestinationComparison: !!result.hasUnknownDestinationComparison,
+                comparisonTotals: result.comparisonTotals || null,
+                comparisonStatus: {
+                    answers: result.stores && result.stores.answers ? result.stores.answers.comparisonStatus : null,
+                    completion: result.stores && result.stores.completion ? result.stores.completion.comparisonStatus : null,
+                    reading: result.stores && result.stores.reading ? result.stores.reading.comparisonStatus : null
+                }
             };
         }
 
@@ -4595,13 +4628,27 @@
             const input = event && event.target;
             const file = input && input.files && input.files[0];
             if (!file) return;
+            invalidateBackupPreviewReads();
+            const generation = backupPreviewReadGeneration;
             const beforeState = snapshotLearnerState();
+            function isCurrentRead() {
+                return generation === backupPreviewReadGeneration;
+            }
+            function showReadFailure() {
+                if (!isCurrentRead()) return;
+                const failed = { ok: false, code: 'malformed-json', message: 'That backup could not be read as text.' };
+                renderBackupPreview(failed, file.name);
+                showBackupPreviewStatus(backupPreview.previewStatusText(failed));
+                recordBackupPreview(failed, file.name, beforeState);
+                openBackupPreviewOverlay();
+            }
             const inspected = backupPreview.inspectSelectedFile({
                 name: file.name,
                 size: file.size,
                 type: file.type
             });
             if (!inspected.ok) {
+                if (!isCurrentRead()) return;
                 renderBackupPreview(inspected, file.name);
                 showBackupPreviewStatus(backupPreview.previewStatusText(inspected));
                 recordBackupPreview(inspected, file.name, beforeState);
@@ -4609,30 +4656,34 @@
                 return;
             }
             const applyText = function (text) {
+                if (!isCurrentRead()) return;
                 handleValidatedBackupFile(file, text);
             };
+            function readWithFileReader() {
+                if (!isCurrentRead()) return;
+                const reader = new FileReader();
+                backupPreviewFileReader = reader;
+                reader.onload = function () {
+                    if (!isCurrentRead()) return;
+                    applyText(String(reader.result || ''));
+                };
+                reader.onerror = function () {
+                    if (!isCurrentRead()) return;
+                    showReadFailure();
+                };
+                reader.readAsText(file);
+            }
             if (typeof file.text === 'function') {
-                file.text().then(applyText).catch(function () {
-                    const failed = { ok: false, code: 'malformed-json', message: 'That backup could not be read as text.' };
-                    renderBackupPreview(failed, file.name);
-                    showBackupPreviewStatus(backupPreview.previewStatusText(failed));
-                    recordBackupPreview(failed, file.name, beforeState);
-                    openBackupPreviewOverlay();
+                file.text().then(function (text) {
+                    if (!isCurrentRead()) return;
+                    applyText(text);
+                }).catch(function () {
+                    if (!isCurrentRead()) return;
+                    readWithFileReader();
                 });
                 return;
             }
-            const reader = new FileReader();
-            reader.onload = function () {
-                applyText(String(reader.result || ''));
-            };
-            reader.onerror = function () {
-                const failed = { ok: false, code: 'malformed-json', message: 'That backup could not be read as text.' };
-                renderBackupPreview(failed, file.name);
-                showBackupPreviewStatus(backupPreview.previewStatusText(failed));
-                recordBackupPreview(failed, file.name, beforeState);
-                openBackupPreviewOverlay();
-            };
-            reader.readAsText(file);
+            readWithFileReader();
         }
 
         function downloadSaveRecovery() {
