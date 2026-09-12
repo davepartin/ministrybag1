@@ -1,6 +1,6 @@
 # Resume here
 
-Updated September 12, 2026 after daily review REV-004. The board is [TASKS.md](TASKS.md); workflow is [PLAN.md](PLAN.md).
+Updated September 12, 2026 after draft review REV-005. The board is [TASKS.md](TASKS.md); workflow is [PLAN.md](PLAN.md).
 
 ## Current position
 
@@ -14,8 +14,9 @@ Updated September 12, 2026 after daily review REV-004. The board is [TASKS.md](T
 
 ## Active worker split, reported by Dave
 
-- Claude has produced **L-202-08 and L-202-09 manuscripts in the Obsidian NC vault**. Both were read by Codex; the app JSON remains empty/stub. See [manuscript review](reviews/2026-09-11-202-08-09-drafts.md) for the next revision/integration packet. Reserve `data/202-08.json`, `data/202-09.json` and their dedicated new assets for Claude. Dave confirmed Claude is finishing its current packet in PR #17 on `claude/l-202-08-09-marriage-purity`. Its implementation/content diff was not reviewed during REV-003; it must remain unmerged pending lesson review. Draft/approval gates remain unchanged until evidence exists.
-- Grokbot works on a **different computer using GitHub** for the engineering queue. ENG-006a is reviewed and complete. Dave confirmed Grokbot is running ENG-006b; its exact branch awaits the worker report. ENG-006c remains held. Keep lesson prose/IDs out of the software packet.
+- Claude finished **L-202-08/09 app drafts** in PR #17 at `5e1c49d`. REV-005 reviewed both and added the ENG-001b storage-test correction on that PR at `4ec7277`. Both drafts remain **REVIEW**, unmerged. [Coordinator review and finishing packet](reviews/2026-09-12-202-08-09-pr17-review.md): improve phone diagram text, tighten story/promise wording, resolve the Keller quotation source and add missing charcoal/color story art. Targeted storage/browser checks pass; editorial, visual, Dave and pilot gates remain pending. Claude retains the lesson files and dedicated assets. No Obsidian copy or preview was changed by the coordinator.
+
+- Grokbot works on a **different computer using GitHub** for the engineering queue. ENG-006a is reviewed and complete. Grokbot is running ENG-006b on `cursor/eng-006b-backup-preview-2b79`; PR #20 is open but has not been reviewed. ENG-006c remains held. Keep lesson prose/IDs out of the software packet.
 - Grok Build in Dave's terminal is a separate worker from Grokbot. Dave confirmed it is running **UX-001a**, a read-only phone/laptop learner-journey review of 201-01 and 201-08. Its dedicated checkout is `/Users/dpartin/github/ministrybag1-grok-build-ux`, branch `codex/grok-build-ux001a`. Dave confirmed all three workers are running on September 12; finished output has not yet been reviewed. Do not run it in Claude's checkout or the older original main checkout.
 - Workers should read AGENTS.md and use separate task branches. Claude must preserve the repaired 202-09 IDs. Shared `index.html`, scripts and shared widgets belong to engineering unless the coordinator explicitly reallocates them. Put a needed shared-code change in a task note rather than editing it concurrently.
 - Coordinator owns TASKS/HANDOFF integration while workers run. Each worker records evidence in its own task log; avoid competing edits to the shared board.
@@ -28,12 +29,12 @@ Updated September 12, 2026 after daily review REV-004. The board is [TASKS.md](T
 - Failed-load guards and recovery controls are now present. Unresolved errors stay visible across unrelated successful saves. Guarded edits still remain in memory until recovery; never remove the guard just to make saving appear successful. ENG-006a now provides a versioned backup download; validated preview and restore remain to be built.
 - Historical ambiguous answers remain in recovery metadata. ENG-006 must provide usable recovery/backup access without assigning them automatically to a lesson.
 - Credential remains in source/docs. Never reproduce its value; SEC-001 is a release blocker.
-- 202-08/09 and 203-06/08/09/10 still need substantial writing; 301 placeholders and lesson approval gates remain on the board.
+- 202-08/09 now have app drafts on PR #17, with finishing work and art still pending. 203-06/08/09/10 need substantial writing; 301 placeholders and lesson approval gates remain on the board.
 - Real iPhone/Safari, cross-device sync and production deployment were not verified in this review.
 
 ## Last review checkpoint
 
-Verified integrated code commit: `caab24d6a2602df02adb533bcab578d0aa17fe48` (PR #19, ENG-006a and REV-004), including the corrected partial-backup message. Backup unit tests: 53; actual-file browser assertions: 60; recovery browser assertions: 20; export browser assertions: 46; foundation QA passed. Pending lesson PR #17 has NOT been reviewed or approved. Planning-only commits after this checkpoint are not unchecked software. Inspect origin and pending PRs again at the next review.
+Verified integrated code commit: `caab24d6a2602df02adb533bcab578d0aa17fe48` (PR #19, ENG-006a and REV-004), including the corrected partial-backup message. Backup unit tests: 53; actual-file browser assertions: 60; recovery browser assertions: 20; export browser assertions: 46; foundation QA passed. PR #17 draft content was reviewed separately in REV-005 at 5e1c49d; the test correction is 4ec7277. It has not been approved or merged. Planning-only commits after this checkpoint are not unchecked software. Inspect origin and pending PRs again at the next review.
 
 ## Active coding packet: ENG-006b, validation and read-only restore preview
 
@@ -52,13 +53,15 @@ The hold is lifted for this child packet only. Fetch current origin/main, includ
 
 > ENG-006a is reviewed and merged in PR #19 at caab24d6, including a small coordinator fix to partial-backup wording. Start ENG-006b only from current origin/main on a new branch. Read AGENTS.md, project-management/HANDOFF.md, the ENG-006b row and scripts/backup-format.md. Build strict local-file validation and a read-only restore preview with counts, conflicts, partial status and retained ambiguity. No restore writes, uploads, login or Claude lesson edits. Test real file input and prove preview/cancel/invalid files leave data and guards unchanged. Push a PR with evidence and stop at REVIEW before merging or starting ENG-006c.
 
-## Claude: finish the current lessons
+## Claude: focused finishing pass on PR #17
 
-Keep the current L-202-08/09 branch and dedicated lesson/asset ownership. Finish the current packet, address the manuscript review, run relevant checks, push the final commit to PR #17 and stop at REVIEW. Provide a short list of any missing story, artwork, tool, source checks or pastoral decisions. An item still missing must remain explicit rather than being marked complete. Do not edit shared app code, merge the PR, or start another lesson in this packet.
+The draft review is complete. Read [the exact finishing packet](reviews/2026-09-12-202-08-09-pr17-review.md). The coordinator fixed ENG-001b on your PR at `4ec7277`; fetch and fast-forward your dedicated branch if clean, or merge normally if you have new work. Never reset or force-push. Do not repeat the test fix or send it to Grokbot.
 
-The coordinator reviews the finished commit; Dave approves the theology and voice. The next proposed writing packet is L-203-06, Faith at Work and School, because the current lesson is a wrong-topic stub. Give it a separate brief and branch after this review; it is not started by this handoff.
+Keep the two lesson files, dedicated diagrams/art, research and task log. Address phone typography, biblical retelling precision, the promise sentence and the unverified Keller source. Finish the two story-image pairs if your tools support generation; otherwise report that dependency explicitly. Refresh content hashes and any copies/previews you maintain, rerun the storage suite, foundation QA and the coordinator's new browser check, then return to REVIEW. Shared app code and tests remain outside your editing packet.
 
-> Finish L-202-08 and L-202-09 in your existing dedicated checkout and PR #17. Read the current HANDOFF and reviews/2026-09-11-202-08-09-drafts.md. Preserve stable IDs, Dave's voice and the shared-code boundary. Push the finished lesson/asset work with checks, remaining gaps and the exact commit. Stop at REVIEW; do not merge or start another lesson. Dave and the coordinator will review the finished version.
+> The coordinator reviewed PR #17 and fixed ENG-001b at 4ec7277. Fetch your branch and current main normally, then read project-management/reviews/2026-09-12-202-08-09-pr17-review.md for the focused finishing list. Improve diagram readability on phones, address the specific source/wording corrections, and complete story art if you have image-generation access. Keep IDs and existing answers intact. Update your log, hashes and matching copies/previews; rerun storage, foundation and relevant browser checks. Push to PR #17 and stop at REVIEW. No shared-code/test edits, merge or 203-06 work yet.
+
+203-06 remains the next proposed writing task after this finishing pass is reviewed. Dave can review the proposed FIGHT wording, Ruth key verse and pastoral safeguards now; final lesson approval waits for the finished version. Do not require retroactive DAVE-001 briefs as a separate paperwork gate.
 
 ## Grok Build: UX-001a review packet
 
