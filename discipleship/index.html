@@ -4464,6 +4464,16 @@
             appendPreviewText(body, 'h3', '', 'Unknown keys');
             appendPreviewText(body, 'p', '', 'Unknown keys are kept as stored keys. They are not dropped or assigned to a lesson.');
             appendPreviewList(body, result.unknownKeys);
+            appendPreviewText(body, 'h3', '', 'Values in this file');
+            appendPreviewText(body, 'p', '', 'Shown as text only. Markup is not executed.');
+            ['answers', 'completion', 'reading'].forEach(function (id) {
+                const store = result.stores[id];
+                if (!store || !store.entries || !store.entries.length) return;
+                appendPreviewText(body, 'p', '', store.noun + ':');
+                store.entries.forEach(function (entry) {
+                    appendPreviewText(body, 'p', '', entry.key + ' = ' + (entry.value == null ? '' : String(entry.value)));
+                });
+            });
             appendPreviewText(body, 'h3', '', 'Proposed selection');
             appendPreviewText(body, 'p', '', result.selection);
             appendPreviewText(body, 'h3', '', 'Retained ambiguous answers');

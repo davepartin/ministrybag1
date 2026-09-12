@@ -265,6 +265,9 @@ var htmlPreview = preview.previewFromText(htmlText, meta('growing-together-backu
 });
 assert('HTML strings are accepted as text values', htmlPreview.ok === true);
 assert('preview builder does not turn HTML into markup helpers', htmlPreview.applyAvailable === false);
+assert('preview entries keep the HTML string as text', htmlPreview.stores.answers.entries.some(function (entry) {
+    return entry.key === 'question-101-5-key' && entry.value.indexOf('<img src=x onerror="alert(1)">SYN-html') !== -1;
+}));
 
 var unknownEnv = envelope({
     answers: {

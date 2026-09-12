@@ -466,6 +466,17 @@
         });
     }
 
+    function displayValue(value) {
+        if (typeof value === 'string') {
+            return value;
+        }
+        try {
+            return JSON.stringify(value);
+        } catch (err) {
+            return String(value);
+        }
+    }
+
     function compareStore(storeId, backupData, deviceData) {
         var backupKeys = learnerKeys(storeId, backupData);
         var deviceKeys = learnerKeys(storeId, deviceData);
@@ -536,7 +547,12 @@
                 counts: store.counts,
                 unknownKeys: store.unknownKeys.slice(),
                 originalRawAvailable: store.originalRawAvailable,
-                comparison: compared
+                comparison: compared,
+                entries: learnerKeys(id, store.data).concat(store.unknownKeys).filter(function (key, index, all) {
+                    return all.indexOf(key) === index;
+                }).map(function (key) {
+                    return { key: key, value: displayValue(store.data[key]) };
+                })
             };
             totals.backupOnly += compared.backupOnly.length;
             totals.deviceOnly += compared.deviceOnly.length;

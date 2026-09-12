@@ -7,8 +7,8 @@ Updated September 12, 2026 after UX report review REV-006. The board is [TASKS.m
 - ENG-001 and ENG-003 are **DONE**. PRs #10 and #12 were independently reviewed; two missed edge cases were repaired in PR #13, merged as `915ba568`.
 - REV-001 preserved malformed/unreadable saved data through startup and later saves, and fixed real iframe shrink behavior. Evidence and exact checks: [review log](logs/2026-09-11-REV-001-codex.md).
 - ENG-002 / PR #11 is on main with passing asset checks. Status remains **REVIEW** for Dave's artwork and actual phone assessment.
-- **ENG-005 and ENG-006a are DONE. ENG-006b is ACTIVE with Grokbot, as confirmed by Dave.** REV-004 independently reviewed PR #19, corrected misleading partial-backup wording, and verified actual downloaded files. Merged as `caab24d6`. Evidence: [REV-004](logs/2026-09-12-REV-004-codex.md). ENG-006b is validation and preview only. ENG-006c and parent ENG-006 remain incomplete.
-- Dave is working with Claude on 202-08/09 now. Supply/review pastoral direction there and review the ENG-002 artwork. These do not block ENG-006b.
+- **ENG-005 and ENG-006a are DONE. ENG-006b is in REVIEW.** PR #20 on `cursor/eng-006b-backup-preview-2b79` adds validation and a read-only restore preview. Evidence: [ENG-006b](logs/2026-09-12-ENG-006b-discipleshipbot.md). REV-004 independently reviewed PR #19, corrected misleading partial-backup wording, and verified actual downloaded files. Merged as `caab24d6`. Evidence: [REV-004](logs/2026-09-12-REV-004-codex.md). ENG-006c and parent ENG-006 remain incomplete. Do not start ENG-006c.
+- Dave is working with Claude on 202-08/09 now. Supply/review pastoral direction there and review the ENG-002 artwork. These do not block ENG-006b review.
 - EDIT-001 is complete: [201-08 benchmark proposal](reviews/201-08-benchmark-proposal.md) contains wording, source corrections and a short learner test. It is documentation only; L-201-08 approval and implementation remain pending.
 - Login/provider remains undecided. Do not implement the old Supabase proposal automatically.
 
@@ -16,7 +16,7 @@ Updated September 12, 2026 after UX report review REV-006. The board is [TASKS.m
 
 - Claude finished **L-202-08/09 app drafts** in PR #17 at `5e1c49d`. REV-005 reviewed both and added the ENG-001b storage-test correction on that PR at `4ec7277`. 202-08 is **ACTIVE** for Dave's new direction; 202-09 remains **REVIEW** with its finishing packet. Both are unmerged. [Coordinator review and finishing packet](reviews/2026-09-12-202-08-09-pr17-review.md): improve phone diagram text, tighten story/promise wording, resolve the Keller quotation source and add missing charcoal/color story art. Targeted storage/browser checks pass; editorial, visual, Dave and pilot gates remain pending. Claude retains the lesson files and dedicated assets. No Obsidian copy or preview was changed by the coordinator.
 
-- Grokbot works on a **different computer using GitHub** for the engineering queue. ENG-006a is reviewed and complete. Grokbot is running ENG-006b on `cursor/eng-006b-backup-preview-2b79`; PR #20 is open but has not been reviewed. ENG-006c remains held. Keep lesson prose/IDs out of the software packet.
+- Grokbot works on a **different computer using GitHub** for the engineering queue. ENG-006b is in REVIEW on `cursor/eng-006b-backup-preview-2b79`; PR #20 awaits independent review. ENG-006c remains held. Keep lesson prose/IDs out of the software packet. Do not start ENG-006c.
 - Grok Build completed **UX-001a**, merged in PR #21 as `06a942f2` after REV-006 verified and qualified its findings. **UX-001b is now cleared**: only the Grace widget, its dedicated test and task log. Use its existing isolated checkout `/Users/dpartin/github/ministrybag1-grok-build-ux`, with a new branch from current main after confirming the old work is committed. Start has not yet been reported. Do not touch Claude's checkout or the older original main checkout.
 
 - Workers should read AGENTS.md and use separate task branches. Claude must preserve the repaired 202-09 IDs. Shared `index.html`, scripts and shared widgets belong to engineering unless explicitly reallocated. Exception for UX-001b: Grok Build alone owns `widgets/grace-diagram.html` and the new `scripts/ux001b_browser_check.js`; Grokbot must leave those paths alone. Put a needed shared-code change in a task note rather than editing it concurrently.
@@ -27,7 +27,7 @@ Updated September 12, 2026 after UX report review REV-006. The board is [TASKS.m
 
 ## Remaining risks
 
-- Failed-load guards and recovery controls are now present. Unresolved errors stay visible across unrelated successful saves. Guarded edits still remain in memory until recovery; never remove the guard just to make saving appear successful. ENG-006a now provides a versioned backup download; validated preview and restore remain to be built.
+- Failed-load guards and recovery controls are now present. Unresolved errors stay visible across unrelated successful saves. Guarded edits still remain in memory until recovery; never remove the guard just to make saving appear successful. ENG-006a provides a versioned backup download. ENG-006b adds validation and a read-only preview. Confirmed restore writes remain ENG-006c.
 - Historical ambiguous answers remain in recovery metadata. ENG-006 must provide usable recovery/backup access without assigning them automatically to a lesson.
 - Credential remains in source/docs. Never reproduce its value; SEC-001 is a release blocker.
 - 202-08/09 now have app drafts on PR #17, with finishing work and art still pending. 203-06/08/09/10 need substantial writing; 301 placeholders and lesson approval gates remain on the board.
@@ -37,18 +37,9 @@ Updated September 12, 2026 after UX report review REV-006. The board is [TASKS.m
 
 Verified integrated code commit: `caab24d6a2602df02adb533bcab578d0aa17fe48` (PR #19, ENG-006a and REV-004), including the corrected partial-backup message. Backup unit tests: 53; actual-file browser assertions: 60; recovery browser assertions: 20; export browser assertions: 46; foundation QA passed. PR #17 draft content was reviewed separately in REV-005 at 5e1c49d; the test correction is 4ec7277. It has not been approved or merged. Planning-only commits after this checkpoint are not unchecked software. Inspect origin and pending PRs again at the next review.
 
-## Active coding packet: ENG-006b, validation and read-only restore preview
+## Next coding packet: hold ENG-006c
 
-The hold is lifted for this child packet only. Fetch current origin/main, including PR #19 and its coordinator correction. Use a new dedicated branch. Read AGENTS.md, the ENG-006/006b rows, `scripts/backup-format.md`, `scripts/backup-download.js`, and current storage/recovery paths. Claude owns 202-08/09 and their dedicated assets.
-
-- Add user-selected local JSON file validation and preview for the version 1 backup contract. Document and enforce a reasonable size limit before reading/parsing; reject malformed JSON, unsupported kind/version and invalid structures or value types with a useful message. Distinguish older recovery snapshots instead of pretending they are versioned backups.
-- Treat imported content as untrusted. Display strings as text, never executable markup. Reject dangerous object keys/prototype paths. Do not trust claimed counts, complete flags or duplicated ambiguity metadata: derive/check them against validated data and surface inconsistencies. Preserve multiline/Unicode answers, stable IDs and valid false/empty values.
-- Preview all three stores with counts, existing-value conflicts, partial/unsaved status, unknown keys and clear proposed selection semantics. Define handling of unknown keys explicitly; do not silently lose historical data or infer lesson attribution. Show retained ambiguous answers and candidate lessons without assigning them automatically.
-- Keep unreadable `originalRaw` as recovery evidence, not automatically parsed or restored learner data. A partial file cannot claim to recover inaccessible data. Explain what could and could not be restored in a future step.
-- Preview/cancel/invalid file must not change in-memory learner data, storage, migration state or write guards. No restore/apply writes, uploads, account work or email. Do not add a working restore button; explain that applying a backup is not available yet.
-- Test actual file input with a current downloaded backup, all stores, empty values, malformed/oversized/unsupported files, invalid types, adversarial keys/HTML strings, partial and ambiguous data, repeated selection and cancel. Compare state before and after the preview operation. Use synthetic data only; keep downloaded contents outside Git/logs.
-- Verify phone/laptop layout, readable preview, keyboard entry/focus/close, and regression behavior for download, recovery and scoped export. Add validation tests to foundation QA as appropriate.
-- Push a small PR with evidence and stop at REVIEW. ENG-006c remains held for confirmed writes, pre-restore preservation, stale-preview checks, rollback and round trips. The coordinator owns shared board/handoff integration while workers run; record evidence in your own task log.
+ENG-006b is in REVIEW on PR #20. Do not start ENG-006c until that review passes. ENG-006c remains held for confirmed writes, pre-restore preservation, stale-preview checks, rollback and round trips. Claude owns 202-08/09 and their dedicated assets. The coordinator owns shared board/handoff integration while workers run.
 
 ## Prompt for Grokbot
 
