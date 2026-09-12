@@ -78,4 +78,48 @@ Code changes stay in the existing preview packet:
 3. `buildPreview` uses destination `loadState` / writable. Malformed or unavailable destination comparison is unknown. In-memory values stay limited evidence. Write guards and destination originalRaw stay in place. No restore writes.
 4. Host file reads use a monotonic generation token. Close, newer selection and navigation invalidate in-flight `File.text` and FileReader success and failure callbacks. Failed `File.text` falls back to FileReader only for the current generation.
 
-Regression coverage is in `test_backup_preview.js` and `eng006b_browser_check.js`. Exact check results follow after the rerun. ENG-006c remains held.
+Regression coverage is in `test_backup_preview.js` and `eng006b_browser_check.js`. Exact check results:
+
+All commands run from `discipleship/`. Browser prefix:
+
+```sh
+python3 -m http.server 8765 --bind 127.0.0.1
+NODE_PATH=/tmp/gt-playwright/node_modules GT_BROWSER_CHANNEL=chrome node scripts/SCRIPT.js
+```
+
+1. `node scripts/test_backup_preview.js`
+   Result: 73 checks passed. Includes the prior preview contract plus REV-008 cases: null/numeric/missing kind, absent data/loadState, inherited loadState `toString`, required ambiguity fields, same-key content mismatch, unordered candidate lessons, unreadable destination comparison, and all-unreadable destinations.
+
+2. `node scripts/test_backup_download.js`
+   Result: 53 checks passed.
+
+3. `node scripts/test_save_feedback.js`
+   Result: 41 checks passed.
+
+4. `node scripts/test_answer_storage.js`
+   Result: 44 checks passed.
+
+5. `node scripts/test_lesson_export.js`
+   Result: 40 checks passed.
+
+6. `bash scripts/qa_foundation.sh`
+   Result: passed, including backup-preview as the last scripted check (73 preview checks).
+
+7. `NODE_PATH=/tmp/gt-playwright/node_modules GT_BROWSER_CHANNEL=chrome node scripts/eng006b_browser_check.js`
+   Result: all ENG-006b browser checks passed against `http://127.0.0.1:8765/index.html`. Covered the prior actual-file preview, invalid/cancel/failed-load unchanged-data cases, plus REV-008 destination-unknown wording and stale File.text / close / stale failure / FileReader fallback cases. Observed the actual overlay and filename. Learner storage, memory and write guards stayed unchanged. Downloaded contents were not printed or committed.
+
+8. `NODE_PATH=/tmp/gt-playwright/node_modules GT_BROWSER_CHANNEL=chrome node scripts/eng006a_browser_check.js`
+   Result: all ENG-006a browser checks passed. Download path unchanged.
+
+9. `NODE_PATH=/tmp/gt-playwright/node_modules GT_BROWSER_CHANNEL=chrome node scripts/review_save_recovery_browser_check.js`
+   Result: 20 checks passed. Recovery selector, original copy and retries preserved.
+
+10. `NODE_PATH=/tmp/gt-playwright/node_modules GT_BROWSER_CHANNEL=chrome node scripts/eng004_browser_check.js`
+    Result: browser ENG-004 checks passed. Scoped export preview and keyboard wrap preserved.
+
+Checks not run and why:
+- Real iPhone/Safari, a physical full storage disk, screen reader and production deployment were not tested.
+
+Known baseline failures distinguished from new regressions: SEC-001, ENG-006c restore writes, 202-08/09 writing, and ENG-002 Dave artwork review remain out of scope.
+
+Stop: REVIEW. Do not merge. Do not start ENG-006c. Parent ENG-006 stays incomplete.
