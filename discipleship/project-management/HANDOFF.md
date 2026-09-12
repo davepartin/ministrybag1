@@ -1,13 +1,13 @@
 # Resume here
 
-Updated September 12, 2026 after Grace-widget review REV-007 / PR #22. The board is [TASKS.md](TASKS.md); workflow is [PLAN.md](PLAN.md).
+Updated September 12, 2026 after ENG-006b review REV-008 / PR #20 (changes required). The board is [TASKS.md](TASKS.md); workflow is [PLAN.md](PLAN.md).
 
 ## Current position
 
 - ENG-001 and ENG-003 are **DONE**. PRs #10 and #12 were independently reviewed; two missed edge cases were repaired in PR #13, merged as `915ba568`.
 - REV-001 preserved malformed/unreadable saved data through startup and later saves, and fixed real iframe shrink behavior. Evidence and exact checks: [review log](logs/2026-09-11-REV-001-codex.md).
 - ENG-002 / PR #11 is on main with passing asset checks. Status remains **REVIEW** for Dave's artwork and actual phone assessment.
-- **ENG-005 and ENG-006a are DONE. ENG-006b is ACTIVE with Grokbot, as confirmed by Dave.** REV-004 independently reviewed PR #19, corrected misleading partial-backup wording, and verified actual downloaded files. Merged as `caab24d6`. Evidence: [REV-004](logs/2026-09-12-REV-004-codex.md). ENG-006b is validation and preview only. ENG-006c and parent ENG-006 remain incomplete.
+- **ENG-005 and ENG-006a are DONE. ENG-006b is ACTIVE with Grokbot for REV-008 corrections.** REV-004 independently reviewed PR #19, corrected misleading partial-backup wording, and verified actual downloaded files. Merged as `caab24d6`. Evidence: [REV-004](logs/2026-09-12-REV-004-codex.md). ENG-006b is validation and preview only. ENG-006c and parent ENG-006 remain incomplete.
 - Dave is working with Claude on 202-08/09 now. Supply/review pastoral direction there and review the ENG-002 artwork. These do not block ENG-006b.
 - EDIT-001 is complete: [201-08 benchmark proposal](reviews/201-08-benchmark-proposal.md) contains wording, source corrections and a short learner test. It is documentation only; L-201-08 approval and implementation remain pending.
 - Login/provider remains undecided. Do not implement the old Supabase proposal automatically.
@@ -16,7 +16,7 @@ Updated September 12, 2026 after Grace-widget review REV-007 / PR #22. The board
 
 - Claude's **L-202-08/09 finishing pass is reviewed** at `2dad678`. Codex generated and integrated the missing story art at **`6d3019b` on PR #17**. Both lessons and ART-003 remain REVIEW, unmerged for Dave's theology/art approval and pilot gates. Storage 47, lesson browser 20, foundation QA and 72 image references pass. Fresh phone/laptop checks cover art, diagrams and reduced motion; production compression remains PERF-001. [Evidence and prompts](logs/2026-09-12-ART-003-codex.md). Claude may refresh its checkout and copies from this commit; do not overwrite the new art. No Obsidian copy or hosted Claude preview was changed by Codex.
 
-- Grokbot works on a **different computer using GitHub** for the engineering queue. ENG-006a is reviewed and complete. Grokbot is running ENG-006b on `cursor/eng-006b-backup-preview-2b79`; PR #20 is open but has not been reviewed. ENG-006c remains held. Keep lesson prose/IDs out of the software packet.
+- Grokbot works on a **different computer using GitHub**. PR #20 at `94cff90` was independently reviewed in REV-008. Existing 52 unit / 69 browser checks and foundation QA pass, but four correction groups are required before merge: strict file contract, ambiguity-content comparison, unreadable destination status and stale file reads. [Exact packet and reproductions](reviews/2026-09-12-eng006b-pr20-review.md). ENG-006b returns to ACTIVE; ENG-006c remains held. Keep lesson prose/IDs and the merged Grace widget out of this packet.
 - Grok Build completed **UX-001a and UX-001b**. PR #22 is reviewed and merged as `7495a03`, including a coordinator correction to native overview buttons and accessible definitions. The expanded browser suite passes 108 assertions; overview fits at 444px on phone and 478px on laptop. See [REV-007](logs/2026-09-12-REV-007-codex.md). Hold the wider Discuss implementation until shared app-code ownership is available. Do not change another worker's checkout.
 
 - Workers should read AGENTS.md and use separate task branches. Claude must preserve the repaired 202-09 IDs. Shared `index.html`, scripts and shared widgets belong to engineering unless explicitly reallocated. UX-001b is integrated; its temporary ownership exception is complete. Do not start another widget or host change without a new bounded assignment. Put a needed shared-code change in a task note rather than editing it concurrently.
@@ -37,22 +37,18 @@ Updated September 12, 2026 after Grace-widget review REV-007 / PR #22. The board
 
 Verified integrated code commit: `7495a038b36b29cde9d12c3f77f36d53db2d2bf4` (PR #22, UX-001b and REV-007). The merge tree matches reviewed head 18a7221. New widget verification: 108 browser assertions, 30 iframe checks and foundation QA passed. Earlier ENG-006a checkpoint caab24d6 included the corrected partial-backup message; its verification remains: Backup unit tests: 53; actual-file browser assertions: 60; recovery browser assertions: 20; export browser assertions: 46; foundation QA passed. PR #17 was reviewed initially in REV-005 and again after Claude's finishing pass at 2dad678. The latest separately checked lesson/art commit is 6d3019b (ART-003); storage 47, browser 20 and foundation QA pass. It has not been approved or merged. Planning-only commits after this checkpoint are not unchecked software. Inspect origin and pending PRs again at the next review.
 
-## Active coding packet: ENG-006b, validation and read-only restore preview
+## Active correction packet: ENG-006b after REV-008
 
-The hold is lifted for this child packet only. Fetch current origin/main, including PR #19 and its coordinator correction. Use a new dedicated branch. Read AGENTS.md, the ENG-006/006b rows, `scripts/backup-format.md`, `scripts/backup-download.js`, and current storage/recovery paths. Claude owns 202-08/09 and their dedicated assets.
+Read [the review and reproducible correction packet](reviews/2026-09-12-eng006b-pr20-review.md). PR #20 at `94cff90` remains unmerged. Fix these issues in the existing preview packet, not a restore implementation:
 
-- Add user-selected local JSON file validation and preview for the version 1 backup contract. Document and enforce a reasonable size limit before reading/parsing; reject malformed JSON, unsupported kind/version and invalid structures or value types with a useful message. Distinguish older recovery snapshots instead of pretending they are versioned backups.
-- Treat imported content as untrusted. Display strings as text, never executable markup. Reject dangerous object keys/prototype paths. Do not trust claimed counts, complete flags or duplicated ambiguity metadata: derive/check them against validated data and surface inconsistencies. Preserve multiline/Unicode answers, stable IDs and valid false/empty values.
-- Preview all three stores with counts, existing-value conflicts, partial/unsaved status, unknown keys and clear proposed selection semantics. Define handling of unknown keys explicitly; do not silently lose historical data or infer lesson attribution. Show retained ambiguous answers and candidate lessons without assigning them automatically.
-- Keep unreadable `originalRaw` as recovery evidence, not automatically parsed or restored learner data. A partial file cannot claim to recover inaccessible data. Explain what could and could not be restored in a future step.
-- Preview/cancel/invalid file must not change in-memory learner data, storage, migration state or write guards. No restore/apply writes, uploads, account work or email. Do not add a working restore button; explain that applying a backup is not available yet.
-- Test actual file input with a current downloaded backup, all stores, empty values, malformed/oversized/unsupported files, invalid types, adversarial keys/HTML strings, partial and ambiguous data, repeated selection and cancel. Compare state before and after the preview operation. Use synthetic data only; keep downloaded contents outside Git/logs.
-- Verify phone/laptop layout, readable preview, keyboard entry/focus/close, and regression behavior for download, recovery and scoped export. Add validation tests to foundation QA as appropriate.
-- Push a small PR with evidence and stop at REVIEW. ENG-006c remains held for confirmed writes, pre-restore preservation, stale-preview checks, rollback and round trips. The coordinator owns shared board/handoff integration while workers run; record evidence in your own task log.
+- Reject invalid kind values, absent required data/loadState and unsupported inherited-property state names; enforce the documented metadata contract without treating missing data as known empty.
+- Detect same-key duplicated ambiguity content disagreements while retaining the answers-data copy unassigned.
+- Distinguish source completeness from unreadable destination comparisons; do not claim unavailable stored matches/conflicts are absent.
+- Cancel or ignore superseded asynchronous file reads, including stale success/failure after replacement, close or navigation, for File.text and FileReader.
 
-## Prompt for Grokbot
+Fetch and merge current main normally. Keep the coordinator's current TASKS/HANDOFF and Claude/UX records; no force push or worker edits to shared planning files. Scope is backup-preview.js, its host integration, format contract, dedicated tests and worker log. Add the missing regressions and rerun preview, foundation, download, recovery and export checks. Push to PR #20 and stop at REVIEW. No restore writes or ENG-006c yet.
 
-> ENG-006a is reviewed and merged in PR #19 at caab24d6, including a small coordinator fix to partial-backup wording. Start ENG-006b only from current origin/main on a new branch. Read AGENTS.md, project-management/HANDOFF.md, the ENG-006b row and scripts/backup-format.md. Build strict local-file validation and a read-only restore preview with counts, conflicts, partial status and retained ambiguity. No restore writes, uploads, login or Claude lesson edits. Test real file input and prove preview/cancel/invalid files leave data and guards unchanged. Push a PR with evidence and stop at REVIEW before merging or starting ENG-006c.
+> PR #20 was reviewed at 94cff90. Read project-management/reviews/2026-09-12-eng006b-pr20-review.md on current main and fix all four correction groups. Merge current main normally and preserve the latest coordinator records and merged UX widget. Add regression tests, rerun the relevant suites, push to PR #20, and stop at REVIEW. Do not merge or start ENG-006c. Coordinator owns TASKS/HANDOFF.
 
 ## Claude: finishing packet returned to REVIEW
 
