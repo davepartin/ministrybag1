@@ -99,4 +99,8 @@ echo "PASS: lesson export scope, encoding, and metadata-exclusion checks."
 node scripts/test_save_feedback.js || fail "Save feedback checks failed."
 echo "PASS: save feedback status, recovery, and store-read checks."
 
+# 12) Versioned backup envelope: all three stores, honest partial/unsaved status.
+node scripts/test_backup_download.js || fail "Backup download checks failed."
+echo "PASS: versioned backup envelope, counts, and partial-store checks."
+
 echo "All foundation QA checks passed."
