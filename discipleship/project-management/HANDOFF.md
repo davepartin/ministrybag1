@@ -1,6 +1,6 @@
 # Resume here
 
-Updated September 12, 2026 after ENG-006b review REV-008 / PR #20 (changes required). The board is [TASKS.md](TASKS.md); workflow is [PLAN.md](PLAN.md).
+Updated September 12, 2026 after Discuss design review REV-009 / PR #23. ENG-006b corrections remain with Grokbot. The board is [TASKS.md](TASKS.md); workflow is [PLAN.md](PLAN.md).
 
 ## Current position
 
@@ -58,11 +58,13 @@ The earlier Ruth direction and missing-image finishing packet are superseded. Cl
 
 Dave's next job is to review the finished 202-08/09 theology, FIGHT wording, safeguards and four story pictures. No retroactive drafting brief is required. The next writing packet remains 203-06 after this review handoff is settled; coordinator must define its scope separately. Grokbot continues ENG-006b; Grok Build has completed UX-001b and holds wider Discuss implementation.
 
-## Grok Build: UX-001b complete; hold wider Discuss
+## Grok Build: widget and Discuss design complete; hold implementation
 
 PR #22 is reviewed and merged as `7495a03`. Restart returns to Begin; Show whole diagram is separate and Return to steps preserves the prior step. The coordinator corrected overview tiles to native buttons whose accessible names include the definitions and expanded the browser suite to 108 assertions. Teaching data and font sizes are unchanged. The whole diagram, definitions, arrows and controls fit below the header after ordinary outer scrolling, including the synthetic save-error state. Actual iPhone/Safari and a human meeting are still untested.
 
-> UX-001b is reviewed and merged in PR #22 at 7495a03. Read the REV-007 log and fetch normally. Keep your existing work safe. Hold the wider Discuss UI and shared host edits while Grokbot finishes ENG-006b. No additional coding packet is assigned yet.
+> Your Discuss design is reviewed and merged in PR #23 at 6512003. Read the coordinator corrections in project-management/reviews/201-08-discuss-design.md and REV-009. Fetch normally. Hold UI/shared-host edits while ENG-006b corrections are in progress; no further coding packet is assigned.
+
+The accepted design verifies existing response IDs and explicitly covers source wording, full diagram definitions, long-answer jump links, current-page unsaved values, unreadable storage and resetting private disclosures on entry. It is a prototype specification, not measured layout or a human pilot. The next packet must use this corrected document.
 
 Parent UX-001 remains TODO. Its next implementation packet must explicitly allocate shared index/navigation ownership, reuse the same lesson and answer IDs, avoid automatic disclosure, and test a real conversation before rollout. The Grace overview is one prerequisite, not a completed Discuss view.
 
