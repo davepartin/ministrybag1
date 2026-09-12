@@ -50,13 +50,15 @@ Fetch and merge current main normally. Keep the coordinator's current TASKS/HAND
 
 > PR #20 was reviewed at 94cff90. Read project-management/reviews/2026-09-12-eng006b-pr20-review.md on current main and fix all four correction groups. Merge current main normally and preserve the latest coordinator records and merged UX widget. Add regression tests, rerun the relevant suites, push to PR #20, and stop at REVIEW. Do not merge or start ENG-006c. Coordinator owns TASKS/HANDOFF.
 
-## Claude: finishing packet returned to REVIEW
+## Claude: handoff complete; awaiting Dave's review
 
-The earlier Ruth direction and missing-image finishing packet are superseded. Claude completed Genesis 15 / Ephesians 5 teaching at `2dad678`; Codex reviewed it and delivered both image pairs at `6d3019b`. Keep Ephesians 5:25 in both 202-02 and 202-08. Dave supports returning to the passage with a special focus: household application in 202-02, covenant marriage reflecting Christ and His church in 202-08. No 202-02 edit is needed.
+Claude's latest PR #17 head is `a89e94e0f219984faaf83508e96dd91df8107a75`, still open and unmerged. Coordinator compared both lesson JSON files, both diagrams and all four story PNGs against reviewed ART-003 commit `6d3019b`: no differences. The final Claude commit adds only its sync log after normally merging main. No repeated lesson editing is needed.
 
-> Fetch your PR #17 branch normally. Codex added the four story images at 6d3019b and checked the finishing pass. Read the ART-003 log. Keep Ephesians 5:25 in both lessons; their emphasis is intentionally different. Refresh any Obsidian copies and preview you maintain from this version. Preserve all IDs and answers. Stop at REVIEW; no merge or 203-06 work yet.
+Claude reports the Obsidian manuscripts/summaries and the same phone preview now include all artwork, with lightweight JPEG derivatives for the preview and a five-item decision box. These external copies were not independently inspected by the coordinator in this checkpoint. Claude reports 47 storage checks and foundation QA passing on its merged tree. No new coordinator runtime test was needed for the unchanged lesson/assets. Preview compression does not resolve PERF-001 for the production app's PNGs.
 
-Dave's next job is to review the finished 202-08/09 theology, FIGHT wording, safeguards and four story pictures. No retroactive drafting brief is required. The next writing packet remains 203-06 after this review handoff is settled; coordinator must define its scope separately. Grokbot continues ENG-006b; Grok Build has completed UX-001b and holds wider Discuss implementation.
+Claude should pause at REVIEW. Dave reviews Ephesians 5 submission/headship language, the Genesis 15 interpretation, FIGHT wording, both pastoral safety boxes and the story artwork. Ephesians 5:25 stays in both 202-02 and 202-08. No retroactive drafting brief is required. PR #17 stays unmerged until Dave reviews the exact version. 203-06 remains held pending a separate writing packet.
+
+Gemini's independent read-only learner review can be collected alongside Dave's feedback; it does not replace pastoral approval or a human pilot. Consolidate feedback into one bounded revision packet rather than asking Claude for repeated uncoordinated passes. Grokbot continues ENG-006b corrections; Grok Build's design is complete and implementation remains held.
 
 ## Grok Build: widget and Discuss design complete; hold implementation
 

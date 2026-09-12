@@ -11,7 +11,7 @@ Status: TODO, ACTIVE, PAUSED, REVIEW, BLOCKED, DONE. Owner cell format: `agent /
 3. **ENG-006c:** remains held until ENG-006b passes review; no restore writes yet.
 4. **ENG-002:** still awaits Dave's artwork/actual-phone review. Claude's PR #17 awaits a separate lesson review.
 
-Claude completed the revised 202-08/09 drafts at `2dad678`; Codex reviewed the finishing pass and added story art at `6d3019b` on PR #17. Both lessons and ART-003 are REVIEW, unmerged. Claude can refresh its copies from that branch; do not regenerate art or change 202-02's key verse. 203-06 remains held for its next bounded packet. Grokbot continues ENG-006b. Grok Build completed UX-001b and the Discuss design (PR #23 / 6512003). Hold Discuss implementation while shared-code ownership remains with Grokbot. Coordinator owns shared board/handoff updates; workers use their own logs. Login/provider remains deferred.
+Claude completed its copies/preview handoff at PR #17 head `a89e94e`; Codex verified both lesson JSON files and all six images/diagrams are unchanged from reviewed ART-003 commit `6d3019b`. Both lessons and ART-003 are REVIEW, unmerged. Claude reports its copies and preview refreshed and should pause for Dave/Gemini feedback; do not regenerate art or change 202-02's key verse. 203-06 remains held for its next bounded packet. Grokbot continues ENG-006b. Grok Build completed UX-001b and the Discuss design (PR #23 / 6512003). Hold Discuss implementation while shared-code ownership remains with Grokbot. Coordinator owns shared board/handoff updates; workers use their own logs. Login/provider remains deferred.
 
 ## Project and software work
 
