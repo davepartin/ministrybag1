@@ -102,6 +102,17 @@
         };
     }
 
+    // A successful write in one store must not conceal another store's failure.
+    function recordAttempt(states, storeId, result) {
+        if (result.status !== STATUS.SAVING || !states[storeId] ||
+            states[storeId].status !== STATUS.COULD_NOT_SAVE) {
+            states[storeId] = result;
+        }
+        return Object.keys(states).filter(function (id) {
+            return states[id].status === STATUS.COULD_NOT_SAVE;
+        });
+    }
+
     function detailFor(storeId, status, reason) {
         var noun = storeInfo(storeId).noun;
         if (status === STATUS.SAVING) {
@@ -217,6 +228,7 @@
         isWritableLoad: isWritableLoad,
         loadReason: loadReason,
         statusAfterAttempt: statusAfterAttempt,
+        recordAttempt: recordAttempt,
         detailFor: detailFor,
         actionsFor: actionsFor,
         readJsonStore: readJsonStore,

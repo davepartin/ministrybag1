@@ -1906,6 +1906,10 @@
             margin: 2px 0 0;
         }
 
+        #save-status-store-label { display: block; margin-top: 8px; font-size: 0.82rem; }
+        #save-status-store-label[hidden], #save-recovery-message[hidden] { display: none; }
+        #save-status-store { min-height: 44px; margin-left: 6px; font: inherit; max-width: 100%; }
+
         .save-status-actions {
             display: flex;
             flex-wrap: wrap;
@@ -2418,6 +2422,11 @@
         <div id="save-status-banner" class="save-status-banner" hidden data-state="idle" data-store="answers">
             <p id="save-status-label" class="save-status-label" aria-live="polite"></p>
             <p id="save-status-detail" class="save-status-detail"></p>
+            <p id="save-recovery-message" class="save-status-detail" role="status" hidden></p>
+            <label id="save-status-store-label" hidden>
+                Unsaved work
+                <select id="save-status-store" aria-label="Choose unsaved work" onchange="selectSaveRecoveryStore(this.value)"></select>
+            </label>
             <div id="save-status-actions" class="save-status-actions" hidden>
                 <button type="button" id="save-status-retry" onclick="retryLastSave()">Retry save</button>
                 <button type="button" id="save-status-copy" onclick="copySaveRecovery()">Copy answers</button>
@@ -2663,6 +2672,7 @@
         let originalResponsesRaw = null;
         let originalCompletionRaw = null;
         let originalReadingRaw = null;
+        const saveResultsByStore = {};
         let lastSaveStore = 'answers';
         let lastSaveReason = null;
         let exportPreviewLastFocus = null;
@@ -3893,7 +3903,37 @@
             document.documentElement.style.setProperty('--save-status-height', height + 'px');
         }
 
+        window.addEventListener('resize', syncSaveBannerOffset);
+        if (typeof ResizeObserver !== 'undefined') {
+            new ResizeObserver(syncSaveBannerOffset).observe(document.getElementById('save-status-banner'));
+        }
+
         function renderSaveStatus(storeId, result) {
+            const failedStores = saveFeedback
+                ? saveFeedback.recordAttempt(saveResultsByStore, storeId, result)
+                : [];
+            if (failedStores.length) {
+                storeId = failedStores.includes(lastSaveStore) ? lastSaveStore : failedStores[0];
+                result = saveResultsByStore[storeId];
+            }
+            const selectionChanged = lastSaveStore !== storeId;
+            const message = document.getElementById('save-recovery-message');
+            if (message && (selectionChanged || result.status === 'Saved')) {
+                message.textContent = '';
+                message.hidden = true;
+            }
+            const chooser = document.getElementById('save-status-store');
+            const chooserLabel = document.getElementById('save-status-store-label');
+            if (chooser && chooserLabel) {
+                chooserLabel.hidden = failedStores.length < 2;
+                chooser.replaceChildren(...failedStores.map(id => {
+                    const option = document.createElement('option');
+                    option.value = id;
+                    option.textContent = saveFeedback.STORES[id].noun;
+                    return option;
+                }));
+                chooser.value = storeId;
+            }
             lastSaveStore = storeId;
             lastSaveReason = result.reason;
             const banner = document.getElementById('save-status-banner');
@@ -3948,7 +3988,6 @@
                     guarded: true,
                     loadReason: responseLoadReason || 'unavailable'
                 }));
-                return;
             }
             if (!completionStorageWritable) {
                 renderSaveStatus('completion', saveFeedback.statusAfterAttempt({
@@ -3956,7 +3995,6 @@
                     guarded: true,
                     loadReason: completionLoadReason || 'unavailable'
                 }));
-                return;
             }
             if (!readingStorageWritable) {
                 renderSaveStatus('reading', saveFeedback.statusAfterAttempt({
@@ -4015,6 +4053,14 @@
             return persistNamedStore('reading', readingData);
         }
 
+        function selectSaveRecoveryStore(storeId) {
+            if (!saveResultsByStore[storeId] || saveResultsByStore[storeId].status !== 'Could not save') return;
+            const message = document.getElementById('save-recovery-message');
+            if (message) { message.hidden = true; message.textContent = ''; }
+            lastSaveStore = storeId;
+            renderSaveStatus(storeId, saveResultsByStore[storeId]);
+        }
+
         function retryLastSave() {
             if (lastSaveStore === 'completion') return persistCompletion();
             if (lastSaveStore === 'reading') return persistReading();
@@ -4032,15 +4078,38 @@
         }
 
         async function copySaveRecovery() {
+            const storeId = lastSaveStore;
             const text = currentRecoveryText();
-            window.__gtLastRecoveryCopy = text;
+            let copied = false;
             try {
                 if (navigator.clipboard && navigator.clipboard.writeText) {
                     await navigator.clipboard.writeText(text);
+                    copied = true;
                 }
-            } catch (e) {
-                // Clipboard can be denied. The in-memory copy remains for recovery.
+            } catch (e) { /* Try the browser's manual-copy fallback below. */ }
+            if (!copied) {
+                const focus = document.activeElement;
+                const area = document.createElement('textarea');
+                area.value = text;
+                area.readOnly = true;
+                area.style.position = 'fixed';
+                area.style.left = '-9999px';
+                document.body.appendChild(area);
+                area.select();
+                try { copied = document.execCommand('copy'); } catch (e) { copied = false; }
+                area.remove();
+                if (focus && focus.isConnected) focus.focus({ preventScroll: true });
             }
+            if (copied) window.__gtLastRecoveryCopy = text;
+            const message = document.getElementById('save-recovery-message');
+            if (message && lastSaveStore === storeId) {
+                message.textContent = copied
+                    ? 'Copied this recovery snapshot. New edits still need to be saved.'
+                    : 'Could not copy. Use Download to keep a recovery file before you reload.';
+                message.hidden = false;
+                syncSaveBannerOffset();
+            }
+            return copied;
         }
 
         function downloadTextFile(filename, text, mime) {
