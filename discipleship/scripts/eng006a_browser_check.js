@@ -30,6 +30,7 @@ function launchBrowser() {
 
 function seedAllStores() {
     return function () {
+        if (window.top !== window) return;
         localStorage.setItem('christianFoundationsResponses', JSON.stringify({
             'question-101-5-key': 'SYN-line-one\nSYN-line-two',
             'question-101-5-prayer': 'SYN-unicode-cafe-\u00e9-\u03c0-\u4e16',
@@ -181,6 +182,7 @@ function controlFits(box, viewport) {
     // --- Failed-load answers plus unsaved edit: partial file, original kept. ---
     var failCtx = await browser.newContext({ acceptDownloads: true });
     await failCtx.addInitScript(function () {
+        if (window.top !== window) return;
         localStorage.setItem('christianFoundationsResponses', '{"SYN-broken":');
         localStorage.setItem('foundationsCompletionData', JSON.stringify({ 'complete-101-5': true }));
         localStorage.setItem('foundationsReadingData', JSON.stringify({ 'notes-101-John-13': 'SYN-reading-keep' }));
@@ -262,6 +264,36 @@ function controlFits(box, viewport) {
         assert(width + ': original copy control remains available', controlFits(layout.original, layout.viewport));
     }
     await failCtx.close();
+
+    // --- Inaccessible storage cannot supply an original recovery copy. ---
+    var blockedCtx = await browser.newContext({ acceptDownloads: true });
+    await blockedCtx.addInitScript(function () {
+        if (window.top !== window) return;
+        var getItem = Storage.prototype.getItem;
+        Storage.prototype.getItem = function (key) {
+            if (key === 'christianFoundationsResponses') {
+                throw new DOMException('Synthetic denied read', 'SecurityError');
+            }
+            return getItem.call(this, key);
+        };
+    });
+    var blockedPage = await blockedCtx.newPage();
+    await blockedPage.setViewportSize({ width: 375, height: 812 });
+    await blockedPage.goto(BASE + '#101-5', { waitUntil: 'domcontentloaded' });
+    await blockedPage.waitForSelector('#question-101-5-key');
+    await blockedPage.fill('#question-101-5-key', 'SYN-unsaved-blocked-read');
+    var blockedFile = await downloadFile(blockedPage, '#save-status-download-backup');
+    assert('blocked-read actual file is partial', blockedFile.json.complete === false);
+    assert('blocked-read file contains current unsaved edit', blockedFile.json.includesUnsavedEdits &&
+        blockedFile.json.stores.answers.data['question-101-5-key'] === 'SYN-unsaved-blocked-read');
+    assert('blocked-read file has no captured original', blockedFile.json.stores.answers.originalRaw === null &&
+        blockedFile.json.stores.answers.originalRawAvailable === false);
+    assert('blocked-read UI does not claim an original recovery copy',
+        (await blockedPage.locator('#backup-download-status').textContent()).includes('No original recovery copy could be read.'));
+    assert('blocked-read backup leaves the save guard active', await blockedPage.evaluate(function () {
+        return responseStorageWritable === false && document.getElementById('save-status-label').textContent === 'Could not save';
+    }));
+    await blockedCtx.close();
 
     // --- Laptop lesson backup control. ---
     var laptop = await browser.newContext({ acceptDownloads: true });

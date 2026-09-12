@@ -152,7 +152,7 @@ assert('malformed data object does not invent the unread keys', Object.keys(malf
 assert('malformed dataRepresents is current memory only', malformed.stores.answers.dataRepresents === 'current-memory-only-storage-unknown-or-unreadable');
 assert('malformed envelope reports unsaved edits', malformed.includesUnsavedEdits === true);
 assert('other readable stores stay complete on their own', malformed.stores.completion.complete === true && malformed.stores.reading.complete === true);
-assert('partial status keeps the original copy', backup.backupStatusText(malformed).indexOf('original recovery copy') !== -1);
+assert('partial status describes captured original data', backup.backupStatusText(malformed).includes('Captured original recovery data is included; inaccessible data is not.'));
 
 var unavailable = backup.buildBackupEnvelope({
     stores: {
@@ -164,6 +164,8 @@ var unavailable = backup.buildBackupEnvelope({
 assert('unavailable reading is partial, not a complete empty backup', unavailable.complete === false && unavailable.stores.reading.emptyValid === false);
 assert('unavailable reading does not claim known storage', unavailable.stores.reading.dataRepresents === 'current-memory-only-storage-unknown-or-unreadable');
 assert('unavailable reading has no original raw unless captured', unavailable.stores.reading.originalRawAvailable === false);
+assert('unavailable status does not claim a captured original', backup.backupStatusText(unavailable).includes('No original recovery copy could be read.'));
+assert('partial download says existing browser data was not replaced', backup.backupStatusText(unavailable).includes('Existing browser data was not replaced.'));
 
 var unsaved = backup.buildBackupEnvelope({
     stores: sampleStores({

@@ -230,7 +230,15 @@
             return 'Could not build a backup.';
         }
         if (!envelope.complete) {
-            return 'Downloaded a partial local backup. At least one store could not be read. The original recovery copy was kept and was not replaced. Restore is not available yet.';
+            var hasOriginal = STORE_ORDER.some(function (id) {
+                return envelope.stores && envelope.stores[id] &&
+                    typeof envelope.stores[id].originalRaw === 'string';
+            });
+            var recovery = hasOriginal
+                ? 'Captured original recovery data is included; inaccessible data is not.'
+                : 'No original recovery copy could be read.';
+            return 'Downloaded a partial local backup. At least one store could not be read. ' +
+                recovery + ' Existing browser data was not replaced. Restore is not available yet.';
         }
         if (envelope.includesUnsavedEdits) {
             return 'Downloaded a local backup that includes unsaved edits from this page. The file stays on this device. Restore is not available yet.';
