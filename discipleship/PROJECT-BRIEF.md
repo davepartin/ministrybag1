@@ -226,6 +226,7 @@ Course header rows use only the `Course` column. Lesson rows supply the rest of 
 - Commitment keys: `commitment-{series}`
 - Keyboard nav: Ctrl/Cmd + Arrow Left/Right between lessons
 - Periodic backup save every 30 seconds
+- Local backup download (ENG-006a): `scripts/backup-download.js`, format in `scripts/backup-format.md`. Covers answers, completion and reading stores. No restore writes.
 - BUILD_VERSION = Date.now() (automatic cache busting, never bump manually)
 - Version badge: `"version": "v03"` in JSON renders as small tag above lesson title
 

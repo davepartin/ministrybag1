@@ -380,6 +380,45 @@
             background: #DCEEFB;
         }
 
+        .home-backup-btn {
+            background: none;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 13px 24px;
+            min-height: 44px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            cursor: pointer;
+            font-family: var(--font);
+            width: 100%;
+            letter-spacing: 0.01em;
+        }
+
+        .home-backup-btn:focus {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+        }
+
+        .home-backup-btn:active {
+            background: var(--surface-warm);
+        }
+
+        .home-backup-scope,
+        .home-backup-status,
+        .backup-download-scope,
+        .backup-download-status {
+            font-size: 0.78rem;
+            color: var(--text-tertiary);
+            line-height: 1.4;
+            text-align: center;
+        }
+
+        .home-backup-status[hidden],
+        .backup-download-status[hidden] {
+            display: none;
+        }
+
         /* ============================================
            TREE VIEW (full-screen takeover)
            ============================================ */
@@ -1647,6 +1686,11 @@
             transition: opacity var(--transition);
         }
 
+        .export-link:focus {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+        }
+
         .export-link:active {
             opacity: 0.7;
         }
@@ -1668,15 +1712,16 @@
             display: flex;
             gap: 8px;
             justify-content: center;
-            flex-wrap: nowrap;
+            flex-wrap: wrap;
             width: 100%;
         }
 
         .export-buttons .export-link {
-            flex: 1;
+            flex: 1 1 140px;
             text-align: center;
             font-size: 0.82rem;
             padding: 10px 12px;
+            min-height: 44px;
         }
 
         .export-pdf-btn {
@@ -2433,6 +2478,8 @@
                 <button type="button" id="save-status-download" onclick="downloadSaveRecovery()">Download answers</button>
                 <button type="button" id="save-status-download-original" hidden
                     onclick="downloadOriginalStoredCopy()">Download original copy</button>
+                <button type="button" id="save-status-download-backup" hidden
+                    onclick="downloadVersionedBackup('recovery')">Download backup</button>
             </div>
         </div>
 
@@ -2514,6 +2561,10 @@
 
             <div class="home-tree-btn-wrap">
                 <button class="home-tree-btn" onclick="openTree()">Browse All Courses and Lessons</button>
+                <button type="button" class="home-backup-btn" id="home-download-backup"
+                    onclick="downloadVersionedBackup('home')">Download backup</button>
+                <p class="home-backup-scope" id="home-backup-scope"></p>
+                <p class="home-backup-status" id="home-backup-status" hidden></p>
             </div>
         </div>
 
@@ -2630,6 +2681,7 @@
 
     <script src="scripts/answer-storage.js"></script>
     <script src="scripts/save-feedback.js"></script>
+    <script src="scripts/backup-download.js"></script>
     <script src="scripts/lesson-export.js"></script>
     <script src="scripts/widget-iframe.js"></script>
     <script>
@@ -2662,6 +2714,7 @@
 
         const answerStorage = window.GrowingTogetherAnswerStorage;
         const saveFeedback = window.GrowingTogetherSaveFeedback;
+        const backupDownload = window.GrowingTogetherBackupDownload;
         const lessonExport = window.GrowingTogetherLessonExport;
         let responseStorageWritable = false;
         let completionStorageWritable = false;
@@ -2762,6 +2815,7 @@
         }
 
         announceInitialSaveState();
+        refreshBackupScopeLabels();
 
         const seriesTitles = {
             '101': 'Starting in Discipleship',
@@ -3570,11 +3624,15 @@
             exportDiv.id = 'export-section';
             const seriesName = seriesTitles[currentSeries] || 'this series';
             exportDiv.innerHTML = `
-                <span class="export-hint">Saved means the last edited answers, completion, or reading notes were stored on this device</span>
+                <span class="export-hint">Saved means the last edited answers, completion, or reading notes were stored on this device. Download backup keeps a local file and does not upload or restore.</span>
+                <p class="backup-download-scope" id="backup-download-scope"></p>
                 <div class="export-buttons">
                     <button type="button" class="export-link" id="email-lesson-btn" onclick="openExportPreview()">Email Lesson &rarr;</button>
                     <button class="export-link export-pdf-btn" onclick="printLesson()">Save PDF &#8595;</button>
+                    <button type="button" class="export-link" id="lesson-download-backup"
+                        onclick="downloadVersionedBackup('lesson')">Download backup</button>
                 </div>
+                <p class="backup-download-status" id="backup-download-status" hidden></p>
             `;
             container.appendChild(exportDiv);
 
@@ -3582,6 +3640,7 @@
             loadAllResponses();
             loadReadingData();
             loadSessionCompletion();
+            refreshBackupScopeLabels();
 
             // Auto-grow all textareas that have content
             document.querySelectorAll('.question-textarea').forEach(ta => {
@@ -3977,6 +4036,9 @@
                         : 'Download answers';
             }
             if (originalBtn) originalBtn.hidden = !shown.downloadOriginal;
+            const backupBtn = document.getElementById('save-status-download-backup');
+            if (backupBtn) backupBtn.hidden = !(shown.retry || shown.copy || shown.download);
+            refreshBackupScopeLabels();
             syncSaveBannerOffset();
         }
 
@@ -4112,8 +4174,8 @@
             return copied;
         }
 
-        function downloadTextFile(filename, text, mime) {
-            window.__gtLastRecoveryDownload = { filename: filename, text: text };
+        function downloadTextFile(filename, text, mime, debugKey) {
+            window[debugKey || '__gtLastRecoveryDownload'] = { filename: filename, text: text };
             const blob = new Blob([text], { type: mime || 'application/json' });
             const url = URL.createObjectURL(blob);
             const link = document.createElement('a');
@@ -4121,6 +4183,87 @@
             link.download = filename;
             link.click();
             URL.revokeObjectURL(url);
+        }
+
+        function storeHasLearnerMemory(storeId) {
+            if (!backupDownload) return false;
+            return backupDownload.countStoreKeys(storeId, storeMemory(storeId)).keys > 0;
+        }
+
+        function storeHasUnsavedEdits(storeId) {
+            const result = saveResultsByStore[storeId];
+            if (!result) return false;
+            if (result.status === 'Saving') return storeHasLearnerMemory(storeId);
+            if (result.status !== 'Could not save') return false;
+            if (result.reason === 'malformed' || result.reason === 'unavailable') {
+                return storeHasLearnerMemory(storeId);
+            }
+            return true;
+        }
+
+        function currentBackupInput() {
+            return {
+                stores: {
+                    answers: {
+                        loadState: responseLoadReason || 'ok',
+                        writable: responseStorageWritable,
+                        includesUnsavedEdits: storeHasUnsavedEdits('answers'),
+                        data: responses,
+                        originalRaw: responseLoadReason ? originalResponsesRaw : null
+                    },
+                    completion: {
+                        loadState: completionLoadReason || 'ok',
+                        writable: completionStorageWritable,
+                        includesUnsavedEdits: storeHasUnsavedEdits('completion'),
+                        data: completionData,
+                        originalRaw: completionLoadReason ? originalCompletionRaw : null
+                    },
+                    reading: {
+                        loadState: readingLoadReason || 'ok',
+                        writable: readingStorageWritable,
+                        includesUnsavedEdits: storeHasUnsavedEdits('reading'),
+                        data: readingData,
+                        originalRaw: readingLoadReason ? originalReadingRaw : null
+                    }
+                }
+            };
+        }
+
+        function currentBackupEnvelope() {
+            if (!backupDownload) return null;
+            return backupDownload.buildBackupEnvelope(currentBackupInput());
+        }
+
+        function refreshBackupScopeLabels() {
+            if (!backupDownload) return;
+            const scope = backupDownload.backupScopeText(currentBackupEnvelope());
+            const lessonScope = document.getElementById('backup-download-scope');
+            const homeScope = document.getElementById('home-backup-scope');
+            if (lessonScope) lessonScope.textContent = scope;
+            if (homeScope) homeScope.textContent = scope;
+        }
+
+        function showBackupStatus(text) {
+            ['backup-download-status', 'home-backup-status'].forEach(function (id) {
+                const el = document.getElementById(id);
+                if (!el) return;
+                el.textContent = text || '';
+                el.hidden = !text;
+            });
+            syncSaveBannerOffset();
+        }
+
+        function downloadVersionedBackup(source) {
+            if (!backupDownload) return null;
+            const envelope = currentBackupEnvelope();
+            const text = backupDownload.backupText(envelope);
+            downloadTextFile(backupDownload.backupFilename(), text, 'application/json', '__gtLastBackupDownload');
+            if (window.__gtLastBackupDownload) {
+                window.__gtLastBackupDownload.source = source || 'app';
+            }
+            showBackupStatus(backupDownload.backupStatusText(envelope));
+            refreshBackupScopeLabels();
+            return envelope;
         }
 
         function downloadSaveRecovery() {
