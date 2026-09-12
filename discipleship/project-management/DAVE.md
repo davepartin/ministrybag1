@@ -6,9 +6,9 @@ Keep this small. Agents can draft from the approved direction while these decisi
 
 Claude has finished app drafts of 202-08 Marriage and Relationships and 202-09 Fighting for Purity in PR #17. Read those drafts and mark what you want changed; you do not need to write the old drafting briefs before reviewing them.
 
-Focus on whether covenant love is clear for married and unmarried readers, whether the FIGHT letters sound like your teaching, and whether the two safety boxes give the pastoral care you intend. Your September 12 direction replaces Ruth and Naomi with an Ephesians 5 marriage focus, with God's covenant with Abraham available as supporting material. The coordinator proposes Ephesians 5:25 as the key verse. The coordinator verified the US hotline contact and the saved-answer handling; the standard key/step/prayer closing already follows the approved 200-series template.
+Focus on whether covenant love is clear for married and unmarried readers, whether the FIGHT letters sound like your teaching, and whether the two safety boxes give the pastoral care you intend. Your September 12 direction replaces Ruth and Naomi with an Ephesians 5 marriage focus, with God's covenant with Abraham available as supporting material. Keep Ephesians 5:25 in both 202-02 and 202-08 with distinct emphasis: everyday family roles first, covenant marriage and Christ's love for His church here. Repetition does not require changing 202-02. The coordinator verified the US hotline contact and the saved-answer handling; the standard key/step/prayer closing already follows the approved 200-series template.
 
-The [coordinator review](reviews/2026-09-12-202-08-09-pr17-review.md) gives Claude a focused finishing pass. Missing story art, small phone diagram text and source/wording corrections still need attention. Give pastoral feedback now; final approval will reference the finished text and art. Your feedback is not a claim that every lesson gate has passed.
+Claude's finishing corrections have been reviewed and Codex added all four story images at `6d3019b` on PR #17. See the [art and finishing review](logs/2026-09-12-ART-003-codex.md). Review that version's words and pictures. Phone Chrome and answer-storage checks pass; final art approval, human pilot and image-delivery optimization remain pending.
 
 ## Queue
 
