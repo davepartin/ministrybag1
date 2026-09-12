@@ -242,7 +242,13 @@ function installWriteHooks() {
     await page.evaluate(function () { window.__gtQuotaFail = true; });
     await page.fill('#question-101-5-key', 'SYN-copy-me');
     await page.click('#save-status-copy');
-    var copied = await page.evaluate(function () { return window.__gtLastRecoveryCopy || ''; });
+    // Copy is asynchronous. Verify the delivered clipboard text, not a marker
+    // that used to be set before the clipboard operation could succeed.
+    await page.waitForFunction(async function () {
+        try { return (await navigator.clipboard.readText()).indexOf('SYN-copy-me') !== -1; }
+        catch (err) { return false; }
+    });
+    var copied = await page.evaluate(function () { return navigator.clipboard.readText(); });
     assert('copy recovery includes the in-memory edit', copied.indexOf('SYN-copy-me') !== -1);
     assert('copy recovery is not a versioned backup claim', copied.indexOf('ENG-006') !== -1);
     await page.click('#save-status-download');

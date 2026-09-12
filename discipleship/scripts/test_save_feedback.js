@@ -182,6 +182,20 @@ assert('reading store key is foundationsReadingData', readingKey === 'foundation
 var completionRead = feedback.readJsonStore(memoryStorage({ 'complete-101-1': true }), completionKey);
 assert('completion store reads a synthetic flag', completionRead.data['complete-101-1'] === true && feedback.isWritableLoad(completionRead));
 
+// Unresolved failures must survive unrelated successful writes and retries.
+var states = {};
+feedback.recordAttempt(states, 'reading', { status: 'Could not save', reason: 'quota' });
+var remaining = feedback.recordAttempt(states, 'answers', { status: 'Saved' });
+assert('answer success leaves reading failure recoverable', remaining.length === 1 && remaining[0] === 'reading');
+remaining = feedback.recordAttempt(states, 'reading', { status: 'Saving' });
+assert('retry in progress does not prematurely clear an error', remaining[0] === 'reading');
+remaining = feedback.recordAttempt(states, 'completion', { status: 'Could not save', reason: 'malformed' });
+assert('multiple failed stores remain available', remaining.length === 2);
+remaining = feedback.recordAttempt(states, 'reading', { status: 'Saved' });
+assert('successful retry clears only its own store', remaining.length === 1 && remaining[0] === 'completion');
+remaining = feedback.recordAttempt(states, 'completion', { status: 'Saved' });
+assert('all errors clear only after each store succeeds', remaining.length === 0);
+
 if (failed) {
     console.error('\n' + failed + ' check(s) failed, ' + passed + ' passed.');
     process.exit(1);
