@@ -4,25 +4,17 @@ Keep this small. Agents can draft from the approved direction while these decisi
 
 ## Your next job: DAVE-001
 
-Spend about 20 minutes giving a pastoral brief for the two unwritten 202 lessons. Short notes or a voice-dictated reply are enough; an agent can turn them into a draft.
+Claude has finished app drafts of 202-08 Marriage and Relationships and 202-09 Fighting for Purity in PR #17. Read those drafts and mark what you want changed; you do not need to write the old drafting briefs before reviewing them.
 
-For **202-08 Marriage and Relationships**, finish these sentences:
+Focus on whether covenant love is clear for married and unmarried readers, whether the FIGHT letters sound like your teaching, and whether the two safety boxes give the pastoral care you intend. Consider Ruth 1:16 as the marriage lesson's key verse. The coordinator verified the US hotline contact and the saved-answer handling; the standard key/step/prayer closing already follows the approved 200-series template.
 
-- The one truth I most want someone to remember is...
-- The one practice I want them to try is...
-- The pastoral situation I especially want us to handle gently is...
-
-Proposed boundary: 202-02 covers love across the household; 202-08 gives focused relationship/marriage teaching with meaningful application for unmarried people. Avoid repeating the whole family lesson. Treat this as a starting outline, not approved prose.
-
-For **202-09 Fighting for Purity**, finish the same three sentences. Specify any conviction about sexual ethics, accountability or recovery that the draft must make explicit. Default approach: grace-rooted holiness, concrete temptation practices, honest help, and no shame-based shortcuts.
-
-You do not need to write complete lessons or learn the code. Your judgment about people and the main truth is the scarce ingredient.
+The [coordinator review](reviews/2026-09-12-202-08-09-pr17-review.md) gives Claude a focused finishing pass. Missing story art, small phone diagram text and source/wording corrections still need attention. Give pastoral feedback now; final approval will reference the finished text and art. Your feedback is not a claim that every lesson gate has passed.
 
 ## Queue
 
 | ID | Status | Needed from Dave | Unlocks |
 |---|---|---|---|
-| DAVE-001 | TODO | The two short pastoral briefs above. Drafting may begin from defaults, final acceptance waits for your review. | L-202-08 and L-202-09 direction |
+| DAVE-001 | TODO | Review the two finished drafts for theology, FIGHT language, Ruth key verse and pastoral safeguards; then approve the final corrected version with art. No retroactive drafting brief required. | L-202-08 and L-202-09 direction |
 | DAVE-002 | TODO | Review the [201-08 wording proposal](reviews/201-08-benchmark-proposal.md), especially justification and the parable warning; then review the implemented benchmark. 201-01 revision remains pending. Your broad agreement is already recorded; no need to repeat it. | Benchmark approval and wider rollout |
 | DAVE-003 | TODO | Introduce willing pilot pairs and a pastor from another church. Keep names/contact details outside the public repo. | PILOT-001 |
 | DAVE-004 | TODO | At week six, choose whether all 47 can pass the gates by December or whether 301 gets a later release. Set the intended 301 closing rhythm before its drafting batch. | Final release scope |
