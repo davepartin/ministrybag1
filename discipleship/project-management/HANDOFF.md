@@ -1,6 +1,6 @@
 # Resume here
 
-Updated September 12, 2026 after UX report review REV-006. The board is [TASKS.md](TASKS.md); workflow is [PLAN.md](PLAN.md).
+Updated September 12, 2026 after Claude finishing review and ART-003. The board is [TASKS.md](TASKS.md); workflow is [PLAN.md](PLAN.md).
 
 ## Current position
 
@@ -14,7 +14,7 @@ Updated September 12, 2026 after UX report review REV-006. The board is [TASKS.m
 
 ## Active worker split, reported by Dave
 
-- Claude finished **L-202-08/09 app drafts** in PR #17 at `5e1c49d`. REV-005 reviewed both and added the ENG-001b storage-test correction on that PR at `4ec7277`. 202-08 is **ACTIVE** for Dave's new direction; 202-09 remains **REVIEW** with its finishing packet. Both are unmerged. [Coordinator review and finishing packet](reviews/2026-09-12-202-08-09-pr17-review.md): improve phone diagram text, tighten story/promise wording, resolve the Keller quotation source and add missing charcoal/color story art. Targeted storage/browser checks pass; editorial, visual, Dave and pilot gates remain pending. Claude retains the lesson files and dedicated assets. No Obsidian copy or preview was changed by the coordinator.
+- Claude's **L-202-08/09 finishing pass is reviewed** at `2dad678`. Codex generated and integrated the missing story art at **`6d3019b` on PR #17**. Both lessons and ART-003 remain REVIEW, unmerged for Dave's theology/art approval and pilot gates. Storage 47, lesson browser 20, foundation QA and 72 image references pass. Fresh phone/laptop checks cover art, diagrams and reduced motion; production compression remains PERF-001. [Evidence and prompts](logs/2026-09-12-ART-003-codex.md). Claude may refresh its checkout and copies from this commit; do not overwrite the new art. No Obsidian copy or hosted Claude preview was changed by Codex.
 
 - Grokbot works on a **different computer using GitHub** for the engineering queue. ENG-006a is reviewed and complete. Grokbot is running ENG-006b on `cursor/eng-006b-backup-preview-2b79`; PR #20 is open but has not been reviewed. ENG-006c remains held. Keep lesson prose/IDs out of the software packet.
 - Grok Build completed **UX-001a**, merged in PR #21 as `06a942f2` after REV-006 verified and qualified its findings. **UX-001b is now cleared**: only the Grace widget, its dedicated test and task log. Use its existing isolated checkout `/Users/dpartin/github/ministrybag1-grok-build-ux`, with a new branch from current main after confirming the old work is committed. Start has not yet been reported. Do not touch Claude's checkout or the older original main checkout.
@@ -30,7 +30,7 @@ Updated September 12, 2026 after UX report review REV-006. The board is [TASKS.m
 - Failed-load guards and recovery controls are now present. Unresolved errors stay visible across unrelated successful saves. Guarded edits still remain in memory until recovery; never remove the guard just to make saving appear successful. ENG-006a now provides a versioned backup download; validated preview and restore remain to be built.
 - Historical ambiguous answers remain in recovery metadata. ENG-006 must provide usable recovery/backup access without assigning them automatically to a lesson.
 - Credential remains in source/docs. Never reproduce its value; SEC-001 is a release blocker.
-- 202-08/09 now have app drafts on PR #17, with finishing work and art still pending. 203-06/08/09/10 need substantial writing; 301 placeholders and lesson approval gates remain on the board.
+- 202-08/09 have reviewed finishing drafts and generated art on PR #17; Dave, pilot and delivery gates remain pending. 203-06/08/09/10 need substantial writing; 301 placeholders and lesson approval gates remain on the board.
 - Real iPhone/Safari, cross-device sync and production deployment were not verified in this review.
 
 ## Last review checkpoint
@@ -54,19 +54,13 @@ The hold is lifted for this child packet only. Fetch current origin/main, includ
 
 > ENG-006a is reviewed and merged in PR #19 at caab24d6, including a small coordinator fix to partial-backup wording. Start ENG-006b only from current origin/main on a new branch. Read AGENTS.md, project-management/HANDOFF.md, the ENG-006b row and scripts/backup-format.md. Build strict local-file validation and a read-only restore preview with counts, conflicts, partial status and retained ambiguity. No restore writes, uploads, login or Claude lesson edits. Test real file input and prove preview/cancel/invalid files leave data and guards unchanged. Push a PR with evidence and stop at REVIEW before merging or starting ENG-006c.
 
-## Claude: focused finishing pass on PR #17
+## Claude: finishing packet returned to REVIEW
 
-**Latest pastoral direction, September 12:** Dave does not want Ruth and Naomi as the marriage lesson's anchor. He prefers Ephesians 5 and is open to God's covenant with Abraham. This supersedes the earlier Ruth story/key-verse/artwork instructions. Stop producing Ruth/Naomi artwork for 202-08. Coordinator recommendation: center the teaching on Ephesians 5:21-33, with 5:25 as the proposed key verse; use a short Genesis 15 opening about God's faithful promise to Abram, then move promptly to Christ and the church and husband-wife application. Abraham illustrates God's covenant faithfulness, not an exemplary marriage. Keep Contract or Covenant as the single teaching diagram, meaningful unmarried-reader application and the pastoral safeguards. Update story, recap/review, question references, description, 202.08 TOC row, research and art prompts consistently. Preserve saved question meanings; if a prompt's meaning changes materially, use a new ID and retain old answers. Claude owns implementation; this is direction, not approval of an unseen revision.
+The earlier Ruth direction and missing-image finishing packet are superseded. Claude completed Genesis 15 / Ephesians 5 teaching at `2dad678`; Codex reviewed it and delivered both image pairs at `6d3019b`. Keep Ephesians 5:25 in both 202-02 and 202-08. Dave supports returning to the passage with a special focus: household application in 202-02, covenant marriage reflecting Christ and His church in 202-08. No 202-02 edit is needed.
 
-> Dave's change of direction for 202-08: replace Ruth and Naomi as the main story and stop their artwork. Center marriage teaching on Ephesians 5, especially Christ's self-giving love in 5:25. A short Genesis 15 opening about God's covenant with Abram can establish promise-keeping love before the marriage application. Keep one main truth and the Contract or Covenant diagram. Update all Ruth-specific prose/questions/metadata/art prompts, preserve answer meanings and safeguards, and keep unmarried readers included. Read the latest HANDOFF; this supersedes the earlier Ruth finishing instructions. Continue on PR #17 and stop at REVIEW.
+> Fetch your PR #17 branch normally. Codex added the four story images at 6d3019b and checked the finishing pass. Read the ART-003 log. Keep Ephesians 5:25 in both lessons; their emphasis is intentionally different. Refresh any Obsidian copies and preview you maintain from this version. Preserve all IDs and answers. Stop at REVIEW; no merge or 203-06 work yet.
 
-The draft review is complete. Read [the exact finishing packet](reviews/2026-09-12-202-08-09-pr17-review.md). The coordinator fixed ENG-001b on your PR at `4ec7277`; fetch and fast-forward your dedicated branch if clean, or merge normally if you have new work. Never reset or force-push. Do not repeat the test fix or send it to Grokbot.
-
-Keep the two lesson files, dedicated diagrams/art, research and task log. Address phone typography, biblical retelling precision, the promise sentence and the unverified Keller source. Finish the two story-image pairs if your tools support generation; otherwise report that dependency explicitly. Refresh content hashes and any copies/previews you maintain, rerun the storage suite, foundation QA and the coordinator's new browser check, then return to REVIEW. Shared app code and tests remain outside your editing packet.
-
-> The coordinator reviewed PR #17 and fixed ENG-001b at 4ec7277. Fetch your branch and current main normally, then read project-management/reviews/2026-09-12-202-08-09-pr17-review.md for the focused finishing list. Improve diagram readability on phones, address the specific source/wording corrections, and complete story art if you have image-generation access. Keep IDs and existing answers intact. Update your log, hashes and matching copies/previews; rerun storage, foundation and relevant browser checks. Push to PR #17 and stop at REVIEW. No shared-code/test edits, merge or 203-06 work yet.
-
-203-06 remains the next proposed writing task after this finishing pass is reviewed. Dave can review the proposed FIGHT wording, proposed Ephesians key verse and pastoral safeguards now; final lesson approval waits for the finished version. Do not require retroactive DAVE-001 briefs as a separate paperwork gate.
+Dave's next job is to review the finished 202-08/09 theology, FIGHT wording, safeguards and four story pictures. No retroactive drafting brief is required. The next writing packet remains 203-06 after this review handoff is settled; coordinator must define its scope separately. Grokbot continues ENG-006b and Grok Build retains UX-001b unchanged.
 
 ## Grok Build: UX-001b, isolated Grace-widget improvement
 
