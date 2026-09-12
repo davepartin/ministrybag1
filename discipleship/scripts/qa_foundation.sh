@@ -95,4 +95,12 @@ echo "PASS: widget iframe readiness, resize, and cleanup checks."
 node scripts/test_lesson_export.js || fail "Lesson export scope and encoding checks failed."
 echo "PASS: lesson export scope, encoding, and metadata-exclusion checks."
 
+# 11) Save-status words, write-gated Saved, and recovery helpers.
+node scripts/test_save_feedback.js || fail "Save feedback checks failed."
+echo "PASS: save feedback status, recovery, and store-read checks."
+
+# 12) Versioned backup envelope: all three stores, honest partial/unsaved status.
+node scripts/test_backup_download.js || fail "Backup download checks failed."
+echo "PASS: versioned backup envelope, counts, and partial-store checks."
+
 echo "All foundation QA checks passed."
