@@ -1,21 +1,21 @@
 # Resume here
 
-Updated September 12, 2026 after daily review REV-003. The board is [TASKS.md](TASKS.md); workflow is [PLAN.md](PLAN.md).
+Updated September 12, 2026 after daily review REV-004. The board is [TASKS.md](TASKS.md); workflow is [PLAN.md](PLAN.md).
 
 ## Current position
 
 - ENG-001 and ENG-003 are **DONE**. PRs #10 and #12 were independently reviewed; two missed edge cases were repaired in PR #13, merged as `915ba568`.
 - REV-001 preserved malformed/unreadable saved data through startup and later saves, and fixed real iframe shrink behavior. Evidence and exact checks: [review log](logs/2026-09-11-REV-001-codex.md).
 - ENG-002 / PR #11 is on main with passing asset checks. Status remains **REVIEW** for Dave's artwork and actual phone assessment.
-- **ENG-005 is DONE. ENG-006a is cleared to start now.** REV-003 verified PR #16 and repaired unresolved-error visibility and clipboard feedback in PR #18, merged as `e4e06cf`. Evidence: [REV-003](logs/2026-09-12-REV-003-codex.md). ENG-006 is split into backup download, restore preview, then restore. Start only ENG-006a; leave it at REVIEW before proceeding.
-- Dave is working with Claude on 202-08/09 now. Supply/review pastoral direction there and review the ENG-002 artwork. These do not block ENG-006a.
+- **ENG-005 and ENG-006a are DONE. ENG-006b is cleared to start now.** REV-004 independently reviewed PR #19, corrected misleading partial-backup wording, and verified actual downloaded files. Merged as `caab24d6`. Evidence: [REV-004](logs/2026-09-12-REV-004-codex.md). ENG-006b is validation and preview only. ENG-006c and parent ENG-006 remain incomplete.
+- Dave is working with Claude on 202-08/09 now. Supply/review pastoral direction there and review the ENG-002 artwork. These do not block ENG-006b.
 - EDIT-001 is complete: [201-08 benchmark proposal](reviews/201-08-benchmark-proposal.md) contains wording, source corrections and a short learner test. It is documentation only; L-201-08 approval and implementation remain pending.
 - Login/provider remains undecided. Do not implement the old Supabase proposal automatically.
 
 ## Active worker split, reported by Dave
 
 - Claude has produced **L-202-08 and L-202-09 manuscripts in the Obsidian NC vault**. Both were read by Codex; the app JSON remains empty/stub. See [manuscript review](reviews/2026-09-11-202-08-09-drafts.md) for the next revision/integration packet. Reserve `data/202-08.json`, `data/202-09.json` and their dedicated new assets for Claude. Claude has now submitted PR #17 on `claude/l-202-08-09-marriage-purity`. Its implementation/content diff was not reviewed during REV-003; it must remain unmerged pending lesson review. Draft/approval gates remain unchanged until evidence exists.
-- Grokbot works on a **different computer using GitHub** for the engineering queue. ENG-005 is reviewed and complete. The coordinator has lifted the hold for ENG-006a only. Keep lesson prose/IDs out of the software packet.
+- Grokbot works on a **different computer using GitHub** for the engineering queue. ENG-006a is reviewed and complete. The coordinator has lifted the hold for ENG-006b only. Keep lesson prose/IDs out of the software packet.
 - Workers should read AGENTS.md and use separate task branches. Claude must preserve the repaired 202-09 IDs. Shared `index.html`, scripts and shared widgets belong to engineering unless the coordinator explicitly reallocates them. Put a needed shared-code change in a task note rather than editing it concurrently.
 - Coordinator owns TASKS/HANDOFF integration while both workers run. Each worker records evidence in its own task log; avoid competing edits to the shared board.
 - GitHub carries committed and pushed changes only. Local edits are not automatically visible on the other computer. Push review branches, then integrate; do not merge unapproved lesson drafts to a publishing main branch.
@@ -24,7 +24,7 @@ Updated September 12, 2026 after daily review REV-003. The board is [TASKS.md](T
 
 ## Remaining risks
 
-- Failed-load guards and recovery controls are now present. Unresolved errors stay visible across unrelated successful saves. Guarded edits still remain in memory until recovery; never remove the guard just to make saving appear successful. ENG-006 will add versioned backup and validated restore.
+- Failed-load guards and recovery controls are now present. Unresolved errors stay visible across unrelated successful saves. Guarded edits still remain in memory until recovery; never remove the guard just to make saving appear successful. ENG-006a now provides a versioned backup download; validated preview and restore remain to be built.
 - Historical ambiguous answers remain in recovery metadata. ENG-006 must provide usable recovery/backup access without assigning them automatically to a lesson.
 - Credential remains in source/docs. Never reproduce its value; SEC-001 is a release blocker.
 - 202-08/09 and 203-06/08/09/10 still need substantial writing; 301 placeholders and lesson approval gates remain on the board.
@@ -32,22 +32,24 @@ Updated September 12, 2026 after daily review REV-003. The board is [TASKS.md](T
 
 ## Last review checkpoint
 
-Verified integrated code commit: `e4e06cf34be900e18e19961d78c1332f03f4bc23` (PR #18, REV-003), including ENG-005 / PR #16 and earlier reviews. Pending lesson PR #17 has NOT been reviewed or approved. Planning-only commits after this checkpoint are not unchecked software. Inspect origin and pending PRs again at the next review.
+Verified integrated code commit: `caab24d6a2602df02adb533bcab578d0aa17fe48` (PR #19, ENG-006a and REV-004), including the corrected partial-backup message. Backup unit tests: 53; actual-file browser assertions: 60; recovery browser assertions: 20; export browser assertions: 46; foundation QA passed. Pending lesson PR #17 has NOT been reviewed or approved. Planning-only commits after this checkpoint are not unchecked software. Inspect origin and pending PRs again at the next review.
 
-## Next coding packet: ENG-006a, versioned backup download
+## Next coding packet: ENG-006b, validation and read-only restore preview
 
-The hold is lifted for this child packet. Start from current origin/main, including PR #18. Read AGENTS.md, the ENG-006/006a rows, scripts/answer-storage.js, scripts/save-feedback.js and the current in-memory store/recovery paths. Claude owns 202-08/09 and their dedicated assets; coordinate any shared file needs.
+The hold is lifted for this child packet only. Fetch current origin/main, including PR #19 and its coordinator correction. Use a new dedicated branch. Read AGENTS.md, the ENG-006/006b rows, `scripts/backup-format.md`, `scripts/backup-download.js`, and current storage/recovery paths. Claude owns 202-08/09 and their dedicated assets.
 
-- Define and document a versioned JSON backup envelope for answers, completion and reading data, preserving stable IDs and retained ambiguous-answer metadata. Include explicit per-store load/state information so unknown data is not represented as a complete empty backup.
-- Export current in-memory edits, including unsaved edits, with clear scope/counts. When original storage was unreadable, identify the backup as partial and retain access to the original recovery copy. Never silently replace or discard it.
-- Offer a user-triggered local download from normal use as well as error recovery. Do not upload data, open email, choose accounts or implement any restore writes.
-- Validate the actual downloaded file in tests, not a debug marker. Test all three stores, checklists, commitments, completion/reading flags, multiline and Unicode answers, empty valid data, retained ambiguity metadata and failed-load/unsaved states. Use synthetic data only and keep download contents out of Git/logs.
-- Verify phone/laptop controls and keyboard use. Preserve ENG-005 failures/selector, export scope and the failed-load guard. Full import validation/preview is ENG-006b; confirmed writes and round trips are ENG-006c.
-- Push a small PR and stop at REVIEW. Parent ENG-006 stays incomplete until all child and original restore gates pass. The coordinator owns shared board/handoff integration while workers run.
+- Add user-selected local JSON file validation and preview for the version 1 backup contract. Document and enforce a reasonable size limit before reading/parsing; reject malformed JSON, unsupported kind/version and invalid structures or value types with a useful message. Distinguish older recovery snapshots instead of pretending they are versioned backups.
+- Treat imported content as untrusted. Display strings as text, never executable markup. Reject dangerous object keys/prototype paths. Do not trust claimed counts, complete flags or duplicated ambiguity metadata: derive/check them against validated data and surface inconsistencies. Preserve multiline/Unicode answers, stable IDs and valid false/empty values.
+- Preview all three stores with counts, existing-value conflicts, partial/unsaved status, unknown keys and clear proposed selection semantics. Define handling of unknown keys explicitly; do not silently lose historical data or infer lesson attribution. Show retained ambiguous answers and candidate lessons without assigning them automatically.
+- Keep unreadable `originalRaw` as recovery evidence, not automatically parsed or restored learner data. A partial file cannot claim to recover inaccessible data. Explain what could and could not be restored in a future step.
+- Preview/cancel/invalid file must not change in-memory learner data, storage, migration state or write guards. No restore/apply writes, uploads, account work or email. Do not add a working restore button; explain that applying a backup is not available yet.
+- Test actual file input with a current downloaded backup, all stores, empty values, malformed/oversized/unsupported files, invalid types, adversarial keys/HTML strings, partial and ambiguous data, repeated selection and cancel. Compare state before and after the preview operation. Use synthetic data only; keep downloaded contents outside Git/logs.
+- Verify phone/laptop layout, readable preview, keyboard entry/focus/close, and regression behavior for download, recovery and scoped export. Add validation tests to foundation QA as appropriate.
+- Push a small PR with evidence and stop at REVIEW. ENG-006c remains held for confirmed writes, pre-restore preservation, stale-preview checks, rollback and round trips. The coordinator owns shared board/handoff integration while workers run; record evidence in your own task log.
 
 ## Prompt for Grokbot
 
-> Start ENG-006a only. The coordinator reviewed ENG-005 and merged corrective PR #18. Fetch current main and use a dedicated branch. Read AGENTS.md, project-management/HANDOFF.md and the ENG-006/006a task rows. Build a versioned local backup download for all three stores, with honest partial/unsaved status and real downloaded-file tests. Preserve existing data and recovery guards. No restore writes, login or Claude lesson edits. Push a PR with evidence and stop at REVIEW before merging or starting ENG-006b.
+> ENG-006a is reviewed and merged in PR #19 at caab24d6, including a small coordinator fix to partial-backup wording. Start ENG-006b only from current origin/main on a new branch. Read AGENTS.md, project-management/HANDOFF.md, the ENG-006b row and scripts/backup-format.md. Build strict local-file validation and a read-only restore preview with counts, conflicts, partial status and retained ambiguity. No restore writes, uploads, login or Claude lesson edits. Test real file input and prove preview/cancel/invalid files leave data and guards unchanged. Push a PR with evidence and stop at REVIEW before merging or starting ENG-006c.
 
 ## Prompt for the daily reviewer
 
