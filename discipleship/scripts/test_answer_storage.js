@@ -70,7 +70,7 @@ function collectAllLessons() {
 // --- Baseline identity repair in the four scoped lesson files ---
 var closingIds = {
     '202-05.json': ['202-05-key', '202-05-devos', '202-05-prayer'],
-    '202-09.json': ['202-09-key', '202-09-devos', '202-09-prayer'],
+    '202-09.json': ['202-09-key', '202-09-step', '202-09-prayer'],
     '203-06.json': ['203-06-key', '203-06-devos', '203-06-prayer'],
     '203-07.json': ['203-07-key', '203-07-devos', '203-07-prayer']
 };
@@ -93,6 +93,23 @@ assert(
     '203-06 no longer uses 203-07 closing ids',
     readLesson('203-06.json').blocks.some(function (b) { return b.id === '203-07-key'; }) === false
 );
+
+// Retiring a question must not reuse its identity or erase its saved value.
+assert('202-09 retired devotions ID is not reused',
+    !readLesson('202-09.json').blocks.some(function (b) { return b.id === '202-09-devos'; }));
+var retiredStore = memoryStorage({
+    'question-202-202-09-devos': 'SYN-retired-devotions',
+    'question-202-201-9-1': 'SYN-existing-boundary'
+});
+var retiredLoaded = storage.loadAndMigrateResponses(retiredStore);
+retiredLoaded.responses['question-202-202-09-step'] = 'SYN-new-next-step';
+retiredStore.setItem(storage.RESPONSES_KEY, JSON.stringify(retiredLoaded.responses));
+var retiredReloaded = storage.loadAndMigrateResponses(retiredStore);
+assert('migration and reload preserve retired devotions and the new step independently',
+    retiredReloaded.responses['question-202-202-09-devos'] === 'SYN-retired-devotions' &&
+    retiredReloaded.responses['question-202-202-09-step'] === 'SYN-new-next-step');
+assert('existing boundary answer survives the lesson revision',
+    retiredReloaded.responses['question-202-201-9-1'] === 'SYN-existing-boundary');
 
 // --- Independent new answers after migration ---
 var first = storage.loadAndMigrateResponses(memoryStorage({
