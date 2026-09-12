@@ -23,7 +23,7 @@ You do not need to write complete lessons or learn the code. Your judgment about
 | ID | Status | Needed from Dave | Unlocks |
 |---|---|---|---|
 | DAVE-001 | TODO | The two short pastoral briefs above. Drafting may begin from defaults, final acceptance waits for your review. | L-202-08 and L-202-09 direction |
-| DAVE-002 | TODO | Review the exact revised 201-01 and 201-08 prose/phone prototype when presented. Your broad agreement is already recorded; no need to repeat it. | Benchmark approval and wider rollout |
+| DAVE-002 | TODO | Review the [201-08 wording proposal](reviews/201-08-benchmark-proposal.md), especially justification and the parable warning; then review the implemented benchmark. 201-01 revision remains pending. Your broad agreement is already recorded; no need to repeat it. | Benchmark approval and wider rollout |
 | DAVE-003 | TODO | Introduce willing pilot pairs and a pastor from another church. Keep names/contact details outside the public repo. | PILOT-001 |
 | DAVE-004 | TODO | At week six, choose whether all 47 can pass the gates by December or whether 301 gets a later release. Set the intended 301 closing rhythm before its drafting batch. | Final release scope |
 | DAVE-005 | DEFERRED | Choose account/device-handoff approach after the Read/Discuss prototype and cost/privacy options are concrete. | DATA-001 |

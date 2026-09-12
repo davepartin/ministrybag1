@@ -9,6 +9,7 @@ Updated September 11, 2026 after daily review REV-002. The board is [TASKS.md](T
 - ENG-002 / PR #11 is on main with passing asset checks. Status remains **REVIEW** for Dave's artwork and actual phone assessment.
 - **ENG-004 is DONE. ENG-005 is cleared to start now.** REV-002 independently verified export scope/preview and repaired a keyboard focus defect in PR #15, merged as `86f0439`. Evidence: [REV-002](logs/2026-09-11-REV-002-codex.md). ENG-005 remains unclaimed until Grokbot starts a branch. SEC-001 remains a release priority; ENG-006 follows save feedback.
 - Dave is working with Claude on 202-08/09 now. Supply/review pastoral direction there and review the ENG-002 artwork. These do not block ENG-005.
+- EDIT-001 is complete: [201-08 benchmark proposal](reviews/201-08-benchmark-proposal.md) contains wording, source corrections and a short learner test. It is documentation only; L-201-08 approval and implementation remain pending.
 - Login/provider remains undecided. Do not implement the old Supabase proposal automatically.
 
 ## Active worker split, reported by Dave
