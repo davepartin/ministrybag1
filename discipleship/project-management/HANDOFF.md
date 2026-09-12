@@ -35,7 +35,7 @@ Updated September 12, 2026 after Claude finishing review and ART-003. The board 
 
 ## Last review checkpoint
 
-Verified integrated code commit: `caab24d6a2602df02adb533bcab578d0aa17fe48` (PR #19, ENG-006a and REV-004), including the corrected partial-backup message. Backup unit tests: 53; actual-file browser assertions: 60; recovery browser assertions: 20; export browser assertions: 46; foundation QA passed. PR #17 draft content was reviewed separately in REV-005 at 5e1c49d; the test correction is 4ec7277. It has not been approved or merged. Planning-only commits after this checkpoint are not unchecked software. Inspect origin and pending PRs again at the next review.
+Verified integrated code commit: `caab24d6a2602df02adb533bcab578d0aa17fe48` (PR #19, ENG-006a and REV-004), including the corrected partial-backup message. Backup unit tests: 53; actual-file browser assertions: 60; recovery browser assertions: 20; export browser assertions: 46; foundation QA passed. PR #17 was reviewed initially in REV-005 and again after Claude's finishing pass at 2dad678. The latest separately checked lesson/art commit is 6d3019b (ART-003); storage 47, browser 20 and foundation QA pass. It has not been approved or merged. Planning-only commits after this checkpoint are not unchecked software. Inspect origin and pending PRs again at the next review.
 
 ## Active coding packet: ENG-006b, validation and read-only restore preview
 
