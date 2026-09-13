@@ -8,7 +8,7 @@ Claude has finished app drafts of 202-08 Marriage and Relationships and 202-09 F
 
 Focus on whether covenant love is clear for married and unmarried readers, whether the FIGHT letters sound like your teaching, and whether the two safety boxes give the pastoral care you intend. Your September 12 direction replaces Ruth and Naomi with an Ephesians 5 marriage focus, with God's covenant with Abraham available as supporting material. Keep Ephesians 5:25 in both 202-02 and 202-08 with distinct emphasis: everyday family roles first, covenant marriage and Christ's love for His church here. Repetition does not require changing 202-02. The coordinator verified the US hotline contact and the saved-answer handling; the standard key/step/prayer closing already follows the approved 200-series template.
 
-Claude's finishing corrections have been reviewed and Codex added all four story images at `6d3019b` on PR #17. See the [art and finishing review](logs/2026-09-12-ART-003-codex.md). Review that version's words and pictures. Phone Chrome and answer-storage checks pass; final art approval, human pilot and image-delivery optimization remain pending.
+Claude's finishing corrections have been reviewed and Codex added all four story images at `6d3019b` on PR #17. See the [art and finishing review](logs/2026-09-12-ART-003-codex.md). Current review head is `a89e94e`; coordinator verified its lesson text and assets match `6d3019b`. Claude reports the preview and Obsidian copies are refreshed. Review that version's words and pictures. Phone Chrome and answer-storage checks pass; final art approval, human pilot and image-delivery optimization remain pending.
 
 ## Queue
 
