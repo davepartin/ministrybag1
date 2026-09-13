@@ -1920,11 +1920,6 @@
             display: none !important;
         }
 
-        .save-status-banner[data-state="saved"] {
-            background: var(--accent-light);
-            border-bottom-color: #b7ddc4;
-        }
-
         .save-status-banner[data-state="error"] {
             background: #F8EDE6;
             border-bottom-color: #E4C4B2;
@@ -1936,10 +1931,6 @@
             color: var(--text-primary);
             line-height: 1.3;
             margin: 0;
-        }
-
-        .save-status-banner[data-state="saved"] .save-status-label {
-            color: var(--accent-hover);
         }
 
         .save-status-banner[data-state="error"] .save-status-label {
@@ -3709,7 +3700,7 @@
             exportDiv.id = 'export-section';
             const seriesName = seriesTitles[currentSeries] || 'this series';
             exportDiv.innerHTML = `
-                <span class="export-hint">Saved means the last edited answers, completion, or reading notes were stored on this device. Download backup keeps a local file and does not upload or restore. Preview a backup checks a local file and does not apply it.</span>
+                <span class="export-hint">Download a backup file, or preview one without changing your work.</span>
                 <p class="backup-download-scope" id="backup-download-scope"></p>
                 <div class="export-buttons">
                     <button type="button" class="export-link" id="email-lesson-btn" onclick="openExportPreview()">Email Lesson &rarr;</button>
@@ -4095,12 +4086,13 @@
             const originalBtn = document.getElementById('save-status-download-original');
             if (!banner || !label) return;
             const status = result.status;
-            label.textContent = status;
+            const showFailure = status === 'Could not save';
+            label.textContent = showFailure ? status : '';
             if (detail && saveFeedback) {
-                detail.textContent = saveFeedback.detailFor(storeId, status, result.reason);
+                detail.textContent = showFailure ? saveFeedback.detailFor(storeId, status, result.reason) : '';
             }
-            banner.hidden = false;
-            banner.setAttribute('data-state', status === 'Saved' ? 'saved' : status === 'Saving' ? 'saving' : 'error');
+            banner.hidden = !showFailure;
+            banner.setAttribute('data-state', showFailure ? 'error' : 'idle');
             banner.setAttribute('data-store', storeId);
             const shown = saveFeedback
                 ? saveFeedback.actionsFor(status, result.reason, !!storeOriginalRaw(storeId))
