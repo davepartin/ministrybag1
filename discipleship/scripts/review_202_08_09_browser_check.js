@@ -33,7 +33,7 @@ function check(name, condition) {
         check('old combined response displays under retained key', await page.inputValue('#question-202-202-09-key') === 'SYN-old-key-and-step');
         check('retired devotions field is absent', await page.locator('#question-202-202-09-devos').count() === 0);
         await page.fill('#question-202-202-09-step', 'SYN-next-step & café\nsecond line');
-        check('purity answer reports Saved', await page.locator('#save-status-label').textContent() === 'Saved');
+        check('purity answer keeps the routine save banner hidden', await page.locator('#save-status-banner').isHidden() && await page.locator('#save-status-label').textContent() === '');
         await page.goto(BASE + '#202-8');
         await page.waitForSelector('#question-202-202-08-step');
         await page.fill('#question-202-202-08-step', 'SYN-marriage-next-step');
