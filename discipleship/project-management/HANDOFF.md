@@ -10,7 +10,7 @@ Updated September 13, 2026 after ENG-005b / PR #24. The board is [TASKS.md](TASK
 - **ENG-005, ENG-005b, ENG-006a and ENG-006b are DONE.** Routine successful saves are now silent; only a real save failure opens the recovery banner. PR #24 merged as `64cfa9b`. ENG-006c is cleared as a separate confirmed-restore packet; parent ENG-006 remains incomplete.
 - Claude has finished the 202-08/09 handoff. Dave now reviews its pastoral wording and artwork, along with the ENG-002 artwork. These do not block ENG-006c.
 - EDIT-001 is complete: [201-08 benchmark proposal](reviews/201-08-benchmark-proposal.md) contains wording, source corrections and a short learner test. It is documentation only; L-201-08 approval and implementation remain pending.
-- Login/provider remains undecided. Do not implement the old Supabase proposal automatically.
+- Login/provider remains undecided. Dave's desired destination is Google sign-in or a separate account the learner creates. Use provider authentication rather than collecting a Google password directly. Firebase, Supabase or another provider will be chosen in DATA-001; do not implement the old Supabase proposal automatically.
 
 ## Active worker split, reported by Dave
 
