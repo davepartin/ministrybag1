@@ -2992,6 +2992,7 @@
         function goHome() {
             if (isExportPreviewOpen()) closeExportPreview();
             if (isBackupPreviewOpen()) closeBackupPreview();
+            else invalidateBackupPreviewReads();
             document.getElementById('lesson-view').classList.remove('active');
             document.getElementById('home-view').classList.remove('hidden');
             document.getElementById('toc-panel').classList.remove('open');
@@ -3187,6 +3188,8 @@
         // LOAD SERIES
         // ============================================
         async function loadSeries(seriesId) {
+            if (isBackupPreviewOpen()) closeBackupPreview();
+            else invalidateBackupPreviewReads();
             currentSeries = seriesId;
             sessionData = {};
             currentSeriesLessonMeta = {};
@@ -3929,6 +3932,7 @@
             currentSession = targetNum;
             if (isExportPreviewOpen()) closeExportPreview();
             if (isBackupPreviewOpen()) closeBackupPreview();
+            else invalidateBackupPreviewReads();
             updateNav();
             updateTOCHighlight();
 
@@ -4615,6 +4619,7 @@
 
         function openBackupFilePicker(source) {
             if (!backupPreview) return;
+            invalidateBackupPreviewReads();
             backupPreviewSource = source || 'app';
             backupPreviewLastFocus = document.activeElement;
             const input = document.getElementById('backup-preview-file');
@@ -5010,6 +5015,7 @@
         function openExportPreview() {
             if (!lessonExport) return;
             if (isBackupPreviewOpen()) closeBackupPreview();
+            else invalidateBackupPreviewReads();
             const overlay = document.getElementById('export-preview-overlay');
             const lessonScope = document.getElementById('export-scope-lesson');
             if (!overlay) return;
@@ -5244,6 +5250,7 @@
         const backupPreviewFile = document.getElementById('backup-preview-file');
         if (backupPreviewFile) {
             backupPreviewFile.addEventListener('change', onBackupFileSelected);
+            backupPreviewFile.addEventListener('cancel', invalidateBackupPreviewReads);
         }
 
         // Periodic save

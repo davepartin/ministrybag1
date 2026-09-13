@@ -280,10 +280,13 @@
                 if (!isPlainObject(value)) {
                     return fail('invalid-type', 'Retained ambiguous-answer metadata must be an object.');
                 }
+                if (!hasOwn(value, 'items')) {
+                    return fail('invalid-structure', 'Retained ambiguous-answer metadata must include its own items object.');
+                }
                 if (hasOwn(value, 'version') && typeof value.version !== 'number') {
                     return fail('invalid-type', 'Ambiguous-answer version must be a number when present.');
                 }
-                var itemsCheck = validateAmbiguousItems(hasOwn(value, 'items') ? value.items : {}, 'stores.' + storeId + '.data.' + RECOVERY_KEY + '.items');
+                var itemsCheck = validateAmbiguousItems(value.items, 'stores.' + storeId + '.data.' + RECOVERY_KEY + '.items');
                 if (!itemsCheck.ok) {
                     return itemsCheck;
                 }
@@ -390,7 +393,7 @@
     }
 
     function uniqueKeys(keys) {
-        var seen = {};
+        var seen = Object.create(null);
         var out = [];
         (keys || []).forEach(function (key) {
             if (seen[key]) {

@@ -47,7 +47,7 @@ Stable runtime IDs stay as stored: `question-*`, `checklist-*`, `commitment-*`, 
 
 ## Ambiguous answers
 
-`ambiguousAnswers.items` copies `__gtAmbiguousSharedAnswers.items` when present. Each item must include own `value` (string), `candidateLessons` (array of strings) and `status` exactly `ambiguous`. Preview does not invent missing metadata. Candidate lessons stay unordered, so order alone is not a disagreement. Status stays `ambiguous`. The answers-data copy is authoritative and stays unassigned. A top-level duplicate with the same key but a different value, candidate set, status or note is an inconsistency. No packet may write those values into a lesson key.
+`ambiguousAnswers.items` copies `__gtAmbiguousSharedAnswers.items` when present. A retained `__gtAmbiguousSharedAnswers` container must include its own `items` object, even when that object is empty. Each item must include own `value` (string), `candidateLessons` (array of strings) and `status` exactly `ambiguous`. Preview does not invent missing metadata. Candidate lessons stay unordered, so order alone is not a disagreement. Status stays `ambiguous`. The answers-data copy is authoritative and stays unassigned. A top-level duplicate with the same key but a different value, candidate set, status or note is an inconsistency. No packet may write those values into a lesson key.
 
 ## What this file is not
 

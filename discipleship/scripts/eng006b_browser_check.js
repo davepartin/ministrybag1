@@ -709,6 +709,41 @@ function syntheticBackupText(tag) {
     await stalePage.locator('#backup-preview-close').click();
     await staleCtx.close();
 
+
+    // A read can still be pending before any modal exists.
+    for (var action of ['navigate', 'new-picker', 'cancel']) {
+        var pendingCtx = await browser.newContext();
+        await pendingCtx.addInitScript(seedAllStores());
+        var pendingPage = await pendingCtx.newPage();
+        await pendingPage.goto(BASE + '#101-5');
+        await pendingPage.waitForSelector('#lesson-preview-backup');
+        await pendingPage.evaluate(function () {
+            File.prototype.text = function () {
+                return new Promise(function (resolve) { window.resolvePendingRead = resolve; });
+            };
+        });
+        var pendingBefore = await learnerState(pendingPage);
+        await chooseBackupFile(pendingPage, slowPath);
+        await pendingPage.waitForFunction(function () { return !!window.resolvePendingRead; });
+        if (action === 'navigate') {
+            await pendingPage.getByRole('button', {name: 'Back to courses'}).click();
+        } else if (action === 'new-picker') {
+            await Promise.all([
+                pendingPage.waitForEvent('filechooser'),
+                pendingPage.locator('#lesson-preview-backup').click()
+            ]);
+        } else {
+            await pendingPage.locator('#backup-preview-file').dispatchEvent('cancel');
+        }
+        await pendingPage.evaluate(function (text) { window.resolvePendingRead(text); }, slowText);
+        await pendingPage.waitForTimeout(200);
+        assert('pending read stays dismissed after ' + action,
+            !(await overlayView(pendingPage)).open);
+        assert('pending read cancellation preserves state after ' + action,
+            sameState(pendingBefore, await learnerState(pendingPage)));
+        await pendingCtx.close();
+    }
+
     await browser.close();
     temps.forEach(function (tempPath) {
         try { fs.unlinkSync(tempPath); } catch (err) { /* temp cleanup only */ }

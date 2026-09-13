@@ -424,6 +424,18 @@ assert('all-unreadable destinations report zero known stored differences', destA
     destAllUnknown.comparisonTotals.conflicts === 0 &&
     destAllUnknown.hasUnknownDestinationComparison === true);
 
+var noAmbItems = JSON.parse(fullText);
+delete noAmbItems.stores.answers.data.__gtAmbiguousSharedAnswers.items;
+assert('retained ambiguity container must have own items',
+    preview.previewFromText(JSON.stringify(noAmbItems), meta('synthetic.json', JSON.stringify(noAmbItems))).ok === false);
+var protoNamedData = JSON.parse(fullText);
+protoNamedData.stores.answers.data.toString = 'SYN-unknown-retained';
+var protoNamedPreview = preview.previewFromText(JSON.stringify(protoNamedData), meta('synthetic.json', JSON.stringify(protoNamedData)), {
+    stores: { answers: {loadState: 'unavailable', data: {}}, completion: {loadState: 'ok', data:{}}, reading: {loadState: 'ok', data:{}} }
+});
+assert('unknown comparison retains prototype-named stored key',
+    protoNamedPreview.stores.answers.comparison.unknown.includes('toString'));
+
 if (failed) {
     console.error('\n' + failed + ' check(s) failed, ' + passed + ' passed.');
     process.exit(1);
