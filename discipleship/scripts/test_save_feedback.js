@@ -100,16 +100,16 @@ assert(
 );
 
 assert(
-    'Saved answers detail names only lesson answers',
-    feedback.detailFor('answers', 'Saved', 'written') === 'Lesson answers are stored on this device.'
+    'Saved answers do not produce routine banner copy',
+    feedback.detailFor('answers', 'Saved', 'written') === ''
 );
 assert(
-    'Saved completion detail names only lesson completion',
-    feedback.detailFor('completion', 'Saved', 'written') === 'Lesson completion is stored on this device.'
+    'Saved completion does not produce routine banner copy',
+    feedback.detailFor('completion', 'Saved', 'written') === ''
 );
 assert(
-    'Saved reading detail names only reading notes',
-    feedback.detailFor('reading', 'Saved', 'written') === 'Reading notes are stored on this device.'
+    'Saved reading does not produce routine banner copy',
+    feedback.detailFor('reading', 'Saved', 'written') === ''
 );
 
 var failActions = feedback.actionsFor('Could not save', 'quota', false);

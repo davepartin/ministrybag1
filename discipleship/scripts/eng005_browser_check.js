@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 /**
  * ENG-005 browser check. Synthetic answers only.
- * Confirms truthful Saving/Saved/Could not save feedback, in-memory retention,
- * failed-load guard, retry/copy/download, and phone/laptop/keyboard status.
+ * Confirms routine saves stay quiet, failures remain visible, and in-memory
+ * retention, failed-load guards, recovery, and phone/laptop behavior work.
  * Does not read real learner answers or credentials.
  */
 'use strict';
@@ -78,7 +78,7 @@ function installWriteHooks() {
 (async function () {
     var browser = await launchBrowser();
 
-    // --- Valid write, Saved after write, reload, navigation, questions ---
+    // --- Valid writes stay quiet while persistence still works ---
     var context = await browser.newContext();
     await context.grantPermissions(['clipboard-read', 'clipboard-write']);
     await context.addInitScript(installWriteHooks());
@@ -88,12 +88,11 @@ function installWriteHooks() {
     await page.waitForSelector('#question-101-5-key', { timeout: 20000 });
 
     var beforeType = await bannerState(page);
-    assert('valid load does not claim Saved before a write', beforeType.label !== 'Saved');
+    assert('valid load has no routine save banner', beforeType.hidden && beforeType.label === '');
 
     await page.fill('#question-101-5-key', 'SYN-101-5-key');
     var afterQuestion = await bannerState(page);
-    assert('question save label is Saved after a successful write', afterQuestion.label === 'Saved');
-    assert('question save names lesson answers only', afterQuestion.detail.indexOf('Lesson answers') !== -1);
+    assert('question save does not show a routine banner', afterQuestion.hidden && afterQuestion.label === '' && afterQuestion.detail === '');
     assert('typing keeps focus in the question field', afterQuestion.focus === 'question-101-5-key');
     assert('successful save hides recovery actions', afterQuestion.actionsHidden === true);
 
@@ -107,10 +106,11 @@ function installWriteHooks() {
         var stored = JSON.parse(localStorage.getItem('christianFoundationsResponses') || '{}');
         return {
             label: document.getElementById('save-status-label').textContent,
+            hidden: document.getElementById('save-status-banner').hidden,
             selected: stored['checklist-101-service-interests']
         };
     });
-    assert('checklist save label is Saved', afterChecklist.label === 'Saved');
+    assert('checklist save does not show a routine banner', afterChecklist.hidden && afterChecklist.label === '');
     assert('checklist write stored a selected index', Array.isArray(afterChecklist.selected) && afterChecklist.selected.length === 1);
 
     var afterCommitment = await page.evaluate(function () {
@@ -121,11 +121,12 @@ function installWriteHooks() {
         var stored = JSON.parse(localStorage.getItem('christianFoundationsResponses') || '{}');
         return {
             label: document.getElementById('save-status-label').textContent,
+            hidden: document.getElementById('save-status-banner').hidden,
             value: stored['commitment-101'],
             memory: responses['commitment-101']
         };
     });
-    assert('commitment save label is Saved', afterCommitment.label === 'Saved');
+    assert('commitment save does not show a routine banner', afterCommitment.hidden && afterCommitment.label === '');
     assert('commitment write stored Yes', afterCommitment.value === 'Yes' && afterCommitment.memory === 'Yes');
 
     await page.fill('#reading-notes-101-John-13', 'SYN-reading-note');
@@ -133,12 +134,12 @@ function installWriteHooks() {
         return {
             label: document.getElementById('save-status-label').textContent,
             detail: document.getElementById('save-status-detail').textContent,
+            hidden: document.getElementById('save-status-banner').hidden,
             stored: JSON.parse(localStorage.getItem('foundationsReadingData') || '{}')['notes-101-John-13'],
             focus: document.activeElement ? document.activeElement.id : ''
         };
     });
-    assert('reading-note save label is Saved', afterReading.label === 'Saved');
-    assert('reading-note detail names reading notes', afterReading.detail.indexOf('Reading notes') !== -1);
+    assert('reading-note save does not show a routine banner', afterReading.hidden && afterReading.label === '' && afterReading.detail === '');
     assert('reading-note write reached storage', afterReading.stored === 'SYN-reading-note');
     assert('reading-note typing keeps focus', afterReading.focus === 'reading-notes-101-John-13');
 
@@ -147,26 +148,25 @@ function installWriteHooks() {
         return {
             label: document.getElementById('save-status-label').textContent,
             detail: document.getElementById('save-status-detail').textContent,
+            hidden: document.getElementById('save-status-banner').hidden,
             stored: JSON.parse(localStorage.getItem('foundationsCompletionData') || '{}')['complete-101-5']
         };
     });
-    assert('completion save label is Saved', afterComplete.label === 'Saved');
-    assert('completion detail names lesson completion', afterComplete.detail.indexOf('Lesson completion') !== -1);
+    assert('completion save does not show a routine banner', afterComplete.hidden && afterComplete.label === '' && afterComplete.detail === '');
     assert('completion write reached storage', afterComplete.stored === true);
 
     var phoneLayout = await page.evaluate(function () {
         var banner = document.getElementById('save-status-banner');
-        var label = document.getElementById('save-status-label');
         var b = banner.getBoundingClientRect();
+        var topbar = document.querySelector('.lesson-topbar').getBoundingClientRect();
         return {
             visible: banner.hidden === false && b.width > 0 && b.height > 0,
-            width: b.width,
-            labelSize: parseFloat(window.getComputedStyle(label).fontSize),
+            topbarTop: topbar.top,
             viewport: window.innerWidth
         };
     });
-    assert('phone 390 status banner is visible', phoneLayout.visible && phoneLayout.viewport === 390);
-    assert('phone status label is readable', phoneLayout.labelSize >= 13);
+    assert('phone 390 routine save banner is absent', !phoneLayout.visible && phoneLayout.viewport === 390);
+    assert('phone lesson header starts at the top', Math.abs(phoneLayout.topbarTop) < 1);
 
     await page.goto(BASE + '#101-1', { waitUntil: 'domcontentloaded' });
     await page.waitForSelector('#question-101-1-1', { timeout: 20000 });
@@ -188,18 +188,22 @@ function installWriteHooks() {
     var afterReload = await page.evaluate(function () {
         return {
             question: document.getElementById('question-101-5-key').value,
-            label: document.getElementById('save-status-label').textContent
+            label: document.getElementById('save-status-label').textContent,
+            hidden: document.getElementById('save-status-banner').hidden
         };
     });
     assert('reload keeps the synthetic question', afterReload.question === 'SYN-101-5-key');
-    assert('reload does not invent Saved without a new write', afterReload.label !== 'Saved');
+    assert('reload keeps the routine save banner absent', afterReload.hidden && afterReload.label === '');
 
-    // Memory assignment alone is not Saved.
+    // Memory assignment alone does not show a routine status.
     var memoryOnly = await page.evaluate(function () {
         responses['question-101-5-devos'] = 'SYN-memory-only';
-        return document.getElementById('save-status-label').textContent;
+        return {
+            label: document.getElementById('save-status-label').textContent,
+            hidden: document.getElementById('save-status-banner').hidden
+        };
     });
-    assert('in-memory assignment without persist is not Saved', memoryOnly !== 'Saved');
+    assert('in-memory assignment keeps the routine banner absent', memoryOnly.hidden && memoryOnly.label === '');
 
     // --- Quota failure, then safe retry ---
     await page.evaluate(function () { window.__gtQuotaFail = true; });
@@ -233,10 +237,11 @@ function installWriteHooks() {
     var afterRetry = await page.evaluate(function () {
         return {
             label: document.getElementById('save-status-label').textContent,
+            hidden: document.getElementById('save-status-banner').hidden,
             stored: JSON.parse(localStorage.getItem('christianFoundationsResponses') || '{}')['question-101-5-key']
         };
     });
-    assert('retry after quota shows Saved', afterRetry.label === 'Saved');
+    assert('retry after quota hides the resolved banner', afterRetry.hidden && afterRetry.label === '');
     assert('retry after quota writes the in-memory edit', afterRetry.stored === 'SYN-101-5-quota');
 
     await page.evaluate(function () { window.__gtQuotaFail = true; });
@@ -279,7 +284,7 @@ function installWriteHooks() {
     await laptopPage.waitForSelector('#question-101-5-key', { timeout: 20000 });
     await laptopPage.fill('#question-101-5-key', 'SYN-laptop');
     var laptopSaved = await bannerState(laptopPage);
-    assert('laptop 1280 Saved status is visible', laptopSaved.label === 'Saved' && laptopSaved.hidden === false);
+    assert('laptop 1280 routine save banner is absent', laptopSaved.label === '' && laptopSaved.hidden === true);
     await laptopPage.evaluate(function () { window.__gtQuotaFail = true; });
     await laptopPage.fill('#question-101-5-key', 'SYN-laptop-fail');
     var laptopFail = await laptopPage.evaluate(function () {
