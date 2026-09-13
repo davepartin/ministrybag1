@@ -102,7 +102,7 @@ async function downloadText(page, selector) {
         check('retrying one store leaves the other error visible', await retryPage.locator('#save-status-label').textContent() === 'Could not save' && await retryPage.locator('#save-status-banner').getAttribute('data-store') === 'reading');
         await retryPage.evaluate(() => window.syntheticBlockedKeys.clear());
         await retryPage.click('#save-status-retry');
-        check('Saved appears after the final failed store succeeds', await retryPage.locator('#save-status-label').textContent() === 'Saved' && await retryPage.locator('#save-status-actions').isHidden());
+        check('routine save banner hides after the final failed store succeeds', await retryPage.locator('#save-status-banner').isHidden() && await retryPage.locator('#save-status-label').textContent() === '' && await retryPage.locator('#save-status-actions').isHidden());
         check('both retries reached storage with intact edits', await retryPage.evaluate(() => JSON.parse(localStorage.getItem('foundationsCompletionData'))['complete-SYN'] === true && JSON.parse(localStorage.getItem('foundationsReadingData'))['notes-SYN'] === 'SYN-retry'));
         await retryContext.close();
         console.log(passed + ' review recovery browser checks passed.');

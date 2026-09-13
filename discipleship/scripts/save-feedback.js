@@ -116,10 +116,10 @@
     function detailFor(storeId, status, reason) {
         var noun = storeInfo(storeId).noun;
         if (status === STATUS.SAVING) {
-            return 'Storing ' + noun.toLowerCase() + ' on this device.';
+            return '';
         }
         if (status === STATUS.SAVED) {
-            return noun + ' ' + storeInfo(storeId).verb + ' stored on this device.';
+            return '';
         }
         if (reason === 'malformed') {
             return 'The original stored ' + noun.toLowerCase() +
