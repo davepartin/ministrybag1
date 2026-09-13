@@ -103,4 +103,8 @@ echo "PASS: save feedback status, recovery, and store-read checks."
 node scripts/test_backup_download.js || fail "Backup download checks failed."
 echo "PASS: versioned backup envelope, counts, and partial-store checks."
 
+# 13) Backup file validation and read-only restore preview.
+node scripts/test_backup_preview.js || fail "Backup preview checks failed."
+echo "PASS: backup validation, preview counts, conflicts, and rejection checks."
+
 echo "All foundation QA checks passed."
