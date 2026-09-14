@@ -100,6 +100,7 @@
   .submit:hover { background: #0b1f3a; }
   .submit:disabled { background: var(--gray-mid); cursor: default; }
   .err { color: var(--red); font-size: 14px; margin-top: 10px; display: none; font-weight: 600; }
+  .wait { color: var(--slate); font-size: 14px; margin-top: 10px; display: none; font-weight: 600; text-align: center; }
   .done { text-align: center; padding: 46px 30px 50px; display: none; }
   .done .big { font-size: 52px; }
   .done h2 { color: var(--navy); font-size: 24px; margin: 12px 0 8px; }
@@ -197,6 +198,7 @@
       </div>
     </div>
     <button class="submit" id="submit" disabled>Send my RSVP</button>
+    <div class="wait" id="wait">Hang tight — this can take up to 20 seconds. Please keep this page open.</div>
     <div class="err" id="err"></div>
   </div>
 
@@ -412,6 +414,7 @@ $("submit").addEventListener("click", async () => {
   if (name.length < 2) { err.textContent = "Please add your name so Dave knows it's you."; err.style.display = "block"; return; }
   $("submit").disabled = true;
   $("submit").textContent = "Sending…";
+  $("wait").style.display = "block";
   const payload = {
     action: "rsvp",
     event: eventId(),
@@ -429,6 +432,7 @@ $("submit").addEventListener("click", async () => {
   } catch (e) {
     $("submit").disabled = false;
     $("submit").textContent = "Send my RSVP";
+    $("wait").style.display = "none";
     err.textContent = "Hmm, that didn't go through. Try again, or just text Dave: (913) 901-7581.";
     err.style.display = "block";
   }
@@ -574,7 +578,7 @@ $("adminSave").addEventListener("click", async () => {
   }
   $("adminSave").disabled = true;
   $("adminSave").textContent = "Saving…";
-  status.textContent = "Updating the page…";
+  status.textContent = "Saving… Google can take up to 30 seconds. Please keep this open.";
   try {
     await fetch(ENDPOINT, {
       method: "POST", mode: "no-cors", headers: { "Content-Type": "text/plain;charset=utf-8" },

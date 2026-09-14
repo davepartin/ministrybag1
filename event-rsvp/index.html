@@ -80,19 +80,6 @@
     border-radius: 10px; outline: none; background: #fbfcfd; color: var(--ink);
   }
   input:focus { border-color: var(--blue); background: #fff; }
-  #totalBox {
-    display: none; margin-top: 16px; padding: 14px 16px 16px;
-    background: #f3faf1; border: 2px solid var(--green); border-radius: 12px;
-  }
-  #totalBox .tb-label { font-size: 14px; font-weight: 800; color: var(--navy); text-transform: uppercase; letter-spacing: .03em; }
-  #totalBox .tb-sub { font-size: 13px; color: var(--slate); margin: 2px 0 10px; }
-  .stepper { display: flex; align-items: center; gap: 16px; }
-  .stepper button {
-    width: 50px; height: 50px; font-size: 26px; font-weight: 800; cursor: pointer;
-    border-radius: 50%; border: 2px solid var(--green); background: #fff; color: var(--green);
-  }
-  .stepper button:active { background: var(--gray-light); }
-  .stepper .num { font-size: 32px; font-weight: 900; min-width: 46px; text-align: center; color: var(--navy); }
   #questionBox { display: none; }
   #questionBox .qb-sub { font-size: 13px; color: var(--slate); margin: -2px 0 6px; font-weight: 500; text-transform: none; letter-spacing: 0; }
   .submit {
@@ -103,6 +90,7 @@
   .submit:hover { background: #0b1f3a; }
   .submit:disabled { background: var(--gray-mid); cursor: default; }
   .err { color: var(--red); font-size: 14px; margin-top: 10px; display: none; font-weight: 600; }
+  .wait { color: var(--slate); font-size: 14px; margin-top: 10px; display: none; font-weight: 600; text-align: center; }
   .done { text-align: center; padding: 46px 30px 50px; display: none; }
   .done .big { font-size: 52px; }
   .done h2 { color: var(--navy); font-size: 24px; margin: 12px 0 8px; }
@@ -162,10 +150,6 @@
     .choice .word { font-size: 14px; }
     label { margin: 8px 0 4px; font-size: 12px; }
     input[type=text] { padding: 10px 12px; font-size: 16px; }
-    #totalBox { margin-top: 10px; padding: 10px 14px 12px; }
-    #totalBox .tb-sub { margin: 2px 0 8px; font-size: 12px; }
-    .stepper button { width: 42px; height: 42px; font-size: 22px; }
-    .stepper .num { font-size: 26px; }
     .submit { margin-top: 12px; padding: 13px; font-size: 16px; }
     .foot { padding: 0 18px 12px; font-size: 12px; }
     .modal-backdrop { padding: 8px; align-items: flex-start; }
@@ -192,21 +176,13 @@
     </div>
     <label for="name">Your name</label>
     <input type="text" id="name" autocomplete="name" placeholder="First and last name">
-    <div id="totalBox">
-      <div class="tb-label">Total number coming</div>
-      <div class="tb-sub">Count everyone in your group, including you.</div>
-      <div class="stepper">
-        <button type="button" id="minus">&minus;</button>
-        <div class="num" id="count">1</div>
-        <button type="button" id="plus">+</button>
-      </div>
-    </div>
     <div id="questionBox">
       <label for="answer" id="questionLabel"></label>
       <div class="qb-sub">Optional</div>
       <input type="text" id="answer" maxlength="200">
     </div>
     <button class="submit" id="submit" disabled>Send my RSVP</button>
+    <div class="wait" id="wait">Hang tight — this can take up to 20 seconds. Please keep this page open.</div>
     <div class="err" id="err"></div>
   </div>
 
@@ -405,7 +381,7 @@ function loadEventConfig() {
   });
 }
 
-let choice = null, count = 1;
+let choice = null;
 
 /* Keep the first request open; if it is slow or fails, send a second one alongside it
    and use whichever answers first. The submit button stays disabled until real details
@@ -436,15 +412,12 @@ const buttons = { YES: $("btnYes"), MAYBE: $("btnMaybe"), NO: $("btnNo") };
 function pick(val) {
   choice = val;
   for (const [k, btn] of Object.entries(buttons)) btn.classList.toggle("sel", k === val);
-  $("totalBox").style.display = (val === "YES") ? "block" : "none";
   const question = (EVENT.question || "").trim();
   $("questionBox").style.display = (question && (val === "YES" || val === "MAYBE")) ? "block" : "none";
 }
 $("btnYes").addEventListener("click", () => pick("YES"));
 $("btnMaybe").addEventListener("click", () => pick("MAYBE"));
 $("btnNo").addEventListener("click", () => pick("NO"));
-$("plus").addEventListener("click", () => { count = Math.min(25, count + 1); $("count").textContent = count; });
-$("minus").addEventListener("click", () => { count = Math.max(1, count - 1); $("count").textContent = count; });
 
 $("submit").addEventListener("click", async () => {
   const name = $("name").value.trim();
@@ -454,6 +427,7 @@ $("submit").addEventListener("click", async () => {
   if (name.length < 2) { err.textContent = "Please add your name so we know it's you."; err.style.display = "block"; return; }
   $("submit").disabled = true;
   $("submit").textContent = "Sending…";
+  $("wait").style.display = "block";
   const payload = {
     action: "rsvp",
     kind: KIND,
@@ -461,7 +435,7 @@ $("submit").addEventListener("click", async () => {
     eventTitle: eventTitle(),
     name: name,
     coming: choice,
-    count: choice === "YES" ? count : 0,
+    count: choice === "YES" ? 1 : 0,   /* one ticket per RSVP (lead planter only) */
     answer: (choice === "NO") ? "" : $("answer").value.trim(),
     phone: "",
     note: "",
@@ -474,6 +448,7 @@ $("submit").addEventListener("click", async () => {
   } catch (e) {
     $("submit").disabled = false;
     $("submit").textContent = "Send my RSVP";
+    $("wait").style.display = "none";
     err.textContent = "Hmm, that didn't go through. Try again, or reach out to us directly.";
     err.style.display = "block";
   }
@@ -625,7 +600,7 @@ $("adminSave").addEventListener("click", async () => {
   }
   $("adminSave").disabled = true;
   $("adminSave").textContent = "Saving…";
-  status.textContent = "Updating the page…";
+  status.textContent = "Saving… Google can take up to 30 seconds. Please keep this open.";
   try {
     await fetch(ENDPOINT, {
       method: "POST", mode: "no-cors", headers: { "Content-Type": "text/plain;charset=utf-8" },
