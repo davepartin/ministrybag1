@@ -238,6 +238,15 @@ const ENDPOINT = "https://script.google.com/macros/s/AKfycby1tzgv6ANAHWlNt6JCxsk
 const $ = id => document.getElementById(id);
 let choice = null;
 
+/* Require a real first AND last name, not just "Dave". */
+function nameParts(raw) {
+  return raw.trim().replace(/\s+/g, " ").split(" ").filter(Boolean);
+}
+function isFullName(raw) {
+  const parts = nameParts(raw);
+  return parts.length >= 2 && parts[0].length >= 2 && parts[parts.length - 1].length >= 2;
+}
+
 /* Store phones in one tidy shape so the sheet column stays readable. */
 function formatPhone(digits) {
   const d = digits.length === 11 && digits[0] === "1" ? digits.slice(1) : digits;
@@ -253,6 +262,10 @@ function pick(val) {
 }
 $("btnYes").addEventListener("click", () => pick("YES"));
 $("btnNo").addEventListener("click", () => pick("NO"));
+
+/* Clear a validation message as soon as they start fixing it */
+["name", "phone"].forEach(id =>
+  $(id).addEventListener("input", () => { $("err").style.display = "none"; }));
 
 /* Carpool pickup: highlight the chosen option */
 const carpoolInputs = [...document.querySelectorAll('input[name="carpool"]')];
@@ -270,14 +283,21 @@ carpoolInputs.forEach(input => {
 });
 
 $("submit").addEventListener("click", async () => {
-  const name = $("name").value.trim();
+  const name = nameParts($("name").value).join(" ");
   const err = $("err");
+  const fail = msg => { err.textContent = msg; err.style.display = "block"; err.scrollIntoView({ block: "nearest", behavior: "smooth" }); };
   err.style.display = "none";
-  if (!choice) { err.textContent = "Please tap “I'm in” or “Can't make it” first."; err.style.display = "block"; return; }
-  if (name.length < 2) { err.textContent = "Please add your name so we know it's you."; err.style.display = "block"; return; }
+
+  if (!choice) return fail("Please tap “I'm in” or “Can't make it” first.");
+  if (!name) return fail("Please add your first and last name.");
+  if (!isFullName(name)) return fail("Please enter both your first and last name — we need it for the ticket.");
+
   const digits = $("phone").value.replace(/\D/g, "");
-  if (choice === "YES" && digits.length < 10) { err.textContent = "Please add a cell number so we can text you your ticket."; err.style.display = "block"; return; }
-  if (choice === "YES" && !carpoolValue()) { err.textContent = "Please choose which carpool you'll ride with."; err.style.display = "block"; return; }
+  if (choice === "YES") {
+    if (!digits) return fail("Please add your cell number so we can text you your ticket.");
+    if (digits.length < 10 || digits.length > 11) return fail("That cell number doesn't look right — please enter 10 digits.");
+    if (!carpoolValue()) return fail("Please choose which carpool you'll ride with.");
+  }
 
   $("submit").disabled = true;
   $("submit").textContent = "Sending…";
