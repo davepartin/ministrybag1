@@ -130,7 +130,7 @@
   .choice .no.sel  { background: var(--red);   color: #fff; }
 
   label { display: block; font-size: 13px; font-weight: 800; color: var(--navy); margin: 18px 0 5px; letter-spacing: .03em; text-transform: uppercase; }
-  input[type=text], input[type=tel] {
+  input[type=text], input[type=tel], input[type=email] {
     width: 100%; padding: 13px 14px; font-size: 16px; font-family: inherit;
     border: 2px solid var(--gray-mid); border-radius: 10px; outline: none;
     background: #fbfcfd; color: var(--ink); -webkit-appearance: none; appearance: none;
@@ -177,6 +177,14 @@
     color: var(--navy); margin: 10px 0 8px; text-transform: uppercase; line-height: 1;
   }
   .done p { color: var(--slate); font-size: 15px; line-height: 1.6; }
+  .verify {
+    display: none; margin-top: 18px; padding: 11px 14px; border-radius: 10px;
+    font-size: 14px; line-height: 1.5; font-weight: 600; text-align: left;
+  }
+  .verify.checking { display: block; background: var(--gray-light); color: var(--slate); }
+  .verify.ok { display: block; background: #eef8ec; color: #2c6b28; border: 1px solid #b9dfb4; }
+  .verify.warn { display: block; background: #fff6e8; color: #8a5a10; border: 1px solid #f3d29a; }
+  .verify a { color: inherit; font-weight: 800; }
   .done .cal {
     display: inline-block; margin-top: 18px; padding: 12px 22px; border-radius: 10px;
     background: var(--gray-light); color: var(--navy); font-weight: 800; text-decoration: none; font-size: 15px;
@@ -278,6 +286,10 @@
       <input type="tel" id="phone" inputmode="tel" autocomplete="tel" placeholder="(816) 555-0123">
       <div class="hint">Your ticket gets texted to this number, so double-check it.</div>
 
+      <label for="email">Email</label>
+      <input type="email" id="email" inputmode="email" autocomplete="email" placeholder="you@church.org">
+      <div class="hint">We'll send a confirmation here so you know your RSVP went through.</div>
+
       <label id="carpoolHeading">Which carpool will you ride with?</label>
       <div class="carpool-list" role="radiogroup" aria-labelledby="carpoolHeading">
         <label class="carpool-opt"><input type="radio" name="carpool" value="Overland Park"><span class="dot"></span><span>Overland Park</span></label>
@@ -295,6 +307,7 @@
     <div class="big" id="doneEmoji">&#127944;</div>
     <h2 id="doneTitle">You're in!</h2>
     <p id="doneMsg"></p>
+    <div class="verify" id="verify"></div>
     <a class="cal" id="calLink" target="_blank" rel="noopener">Add to calendar</a>
   </div>
 
@@ -350,7 +363,7 @@ $("btnYes").addEventListener("click", () => pick("YES"));
 $("btnNo").addEventListener("click", () => pick("NO"));
 
 /* Clear a validation message as soon as they start fixing it */
-["name", "phone"].forEach(id =>
+["name", "phone", "email"].forEach(id =>
   $(id).addEventListener("input", () => { $("err").style.display = "none"; }));
 
 /* Carpool pickup: highlight the chosen option */
@@ -379,9 +392,12 @@ $("submit").addEventListener("click", async () => {
   if (!isFullName(name)) return fail("Please enter both your first and last name — we need it for the ticket.");
 
   const digits = $("phone").value.replace(/\D/g, "");
+  const email = $("email").value.trim();
   if (choice === "YES") {
     if (!digits) return fail("Please add your cell number so we can text you your ticket.");
     if (digits.length < 10 || digits.length > 11) return fail("That cell number doesn't look right — please enter 10 digits.");
+    if (!email) return fail("Please add your email so we can send you a confirmation.");
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) return fail("That email doesn't look right — please check it.");
     if (!carpoolValue()) return fail("Please choose which carpool you'll ride with.");
   }
 
@@ -399,6 +415,7 @@ $("submit").addEventListener("click", async () => {
     count: choice === "YES" ? 1 : 0,
     answer: choice === "YES" ? carpoolValue() : "",
     phone: choice === "YES" ? formatPhone(digits) : "",
+    email: choice === "YES" ? email : "",
     note: "",
   };
   if (sendRsvp(payload)) {
@@ -419,6 +436,59 @@ $("submit").addEventListener("click", async () => {
  * browser, which delivers it in the background and keeps going even if the page
  * is closed the instant after — more reliable than the old awaited fetch, not less.
  */
+/*
+ * Second safety net. The beacon above is fire-and-forget, so once the screen
+ * shows we quietly ask the sheet whether the row really landed and say so
+ * plainly either way. Nobody is left guessing.
+ */
+function askServer(action, params) {
+  return new Promise((resolve, reject) => {
+    const cb = "__cb" + Date.now() + Math.floor(Math.random() * 100000);
+    const s = document.createElement("script");
+    const timer = setTimeout(() => finish(new Error("timeout")), 12000);
+    function finish(err, payload) {
+      clearTimeout(timer); delete window[cb]; s.remove();
+      err ? reject(err) : resolve(payload);
+    }
+    window[cb] = p => finish(null, p);
+    s.onerror = () => finish(new Error("unreachable"));
+    const q = Object.keys(params)
+      .map(k => k + "=" + encodeURIComponent(params[k])).join("&");
+    s.src = ENDPOINT + "?action=" + action + "&kind=event&" + q
+          + "&callback=" + cb + "&_=" + Date.now();
+    document.head.appendChild(s);
+  });
+}
+
+function verifyRsvp(name) {
+  const box = $("verify");
+  const set = (cls, html) => { box.className = "verify " + cls; box.innerHTML = html; };
+  set("checking", "Making sure it saved…");
+
+  let tries = 0;
+  const MAX = 8;
+  const giveUp = () => set("warn",
+    "We couldn't confirm it automatically just yet. Watch for a confirmation from "
+    + "<b>daves-assistant@agentmail.to</b> — if it doesn't arrive, text Matt Marrs at "
+    + "<a href=\"sms:+18168101420\">(816) 810-1420</a> and he'll sort it out.");
+
+  const attempt = () => {
+    tries++;
+    askServer("checkRsvp", { event: EVENT.id, name: name })
+      .then(p => {
+        if (p && p.ok && p.found) {
+          set("ok", "Confirmed — you're on the list. A confirmation is on its way from "
+            + "<b>daves-assistant@agentmail.to</b>.");
+        } else if (tries < MAX) {
+          setTimeout(attempt, 2500);
+        } else { giveUp(); }
+      })
+      .catch(() => { tries < MAX ? setTimeout(attempt, 2500) : giveUp(); });
+  };
+  /* Give the beacon a moment to land before the first look. */
+  setTimeout(attempt, 1500);
+}
+
 function sendRsvp(payload) {
   const body = JSON.stringify(payload);
   try {
@@ -461,6 +531,7 @@ function showDone(name) {
       + formatPhone($("phone").value.replace(/\D/g, "")) + ". Go Chiefs.";
     $("calLink").href = calUrl();
     $("calLink").style.display = "inline-block";
+    verifyRsvp(name);
   } else {
     $("doneEmoji").innerHTML = "&#128591;";
     $("doneTitle").textContent = "Thanks for letting us know, " + first + ".";

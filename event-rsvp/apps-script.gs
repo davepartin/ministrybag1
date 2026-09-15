@@ -97,6 +97,17 @@ function doGet(e) {
     var config = isBigEvent ? getBigEvent_() : getEvent_();
     return jsonOutput_({ ok: true, event: config }, e.parameter.callback);
   }
+  /* Lets the RSVP page confirm a submission actually landed, without the
+     person waiting on the original post. Returns only a boolean. */
+  if (e && e.parameter && e.parameter.action === "checkRsvp") {
+    var found = false;
+    try {
+      found = bigEventRsvpExists_(e.parameter.event, e.parameter.name);
+    } catch (err) {
+      found = false;
+    }
+    return jsonOutput_({ ok: true, found: found }, e.parameter.callback);
+  }
   if (e && e.parameter && e.parameter.action === "verifyPassword") {
     var expected = PropertiesService.getScriptProperties().getProperty("ADMIN_PASSWORD");
     var ok = !!(expected && String(e.parameter.password || "") === expected);
@@ -305,25 +316,57 @@ function bigEventId_(event) {
   return slug + "-" + String(event.date || "").slice(0, 10);
 }
 
+var BIG_EVENT_RSVP_HEADERS = [
+  "Timestamp",
+  "EventId",
+  "Event",
+  "Name",
+  "Coming",
+  "Count",
+  "Answer",
+  "Phone",
+  "Note",
+  "Email",
+];
+
 function getBigEventRsvpSheet_() {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
   var sheet = ss.getSheetByName("Event RSVPs");
   if (!sheet) {
     sheet = ss.insertSheet("Event RSVPs");
-    sheet.appendRow([
-      "Timestamp",
-      "EventId",
-      "Event",
-      "Name",
-      "Coming",
-      "Count",
-      "Answer",
-      "Phone",
-      "Note",
-    ]);
+    sheet.appendRow(BIG_EVENT_RSVP_HEADERS);
     sheet.setFrozenRows(1);
+    return sheet;
+  }
+  /* Adds the Email header to a sheet created before that column existed.
+     Only writes the header cell — existing rows are never touched. */
+  if (sheet.getLastColumn() < BIG_EVENT_RSVP_HEADERS.length) {
+    sheet.getRange(1, BIG_EVENT_RSVP_HEADERS.length)
+         .setValue(BIG_EVENT_RSVP_HEADERS[BIG_EVENT_RSVP_HEADERS.length - 1]);
   }
   return sheet;
+}
+
+/** True when this event already has a row under this name. Newest rows first. */
+function bigEventRsvpExists_(eventId, name) {
+  eventId = String(eventId || "").trim();
+  name = String(name || "").trim().toLowerCase();
+  if (!eventId || !name) return false;
+
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Event RSVPs");
+  if (!sheet) return false;
+  var lastRow = sheet.getLastRow();
+  if (lastRow < 2) return false;
+
+  var start = Math.max(2, lastRow - 499);
+  var values = sheet.getRange(start, 2, lastRow - start + 1, 3).getValues(); // EventId, Event, Name
+  for (var i = values.length - 1; i >= 0; i--) {
+    if (String(values[i][0]).trim() === eventId
+        && String(values[i][2]).trim().toLowerCase() === name) {
+      return true;
+    }
+  }
+  return false;
 }
 
 function getBigEventDetailsSheet_() {
@@ -362,7 +405,132 @@ function appendBigEventRsvp_(data) {
     String(data.answer || "").slice(0, 200),
     String(data.phone || "").slice(0, 30),
     String(data.note || "").slice(0, 300),
+    String(data.email || "").slice(0, 120),
   ]);
+
+  /* The row is already saved above. A failure here must never cost an RSVP,
+     so the email is attempted separately and swallowed if it goes wrong. */
+  try {
+    sendConfirmationEmail_(data);
+  } catch (err) {
+    logEmailProblem_(data, err);
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/* Confirmation email (AgentMail)                                      */
+/* ------------------------------------------------------------------ */
+/*
+ * Dormant until AGENTMAIL_API_KEY exists in Script properties. Until then
+ * every RSVP still records normally and no email is attempted, so this can
+ * ship before the AgentMail account is ready.
+ *
+ * Project Settings -> Script properties:
+ *   AGENTMAIL_API_KEY   your AgentMail API key        (required to switch on)
+ *   AGENTMAIL_INBOX     daves-assistant@agentmail.to  (optional, this is default)
+ */
+function sendConfirmationEmail_(data) {
+  var props = PropertiesService.getScriptProperties();
+  var key = props.getProperty("AGENTMAIL_API_KEY");
+  var inbox = props.getProperty("AGENTMAIL_INBOX") || "daves-assistant@agentmail.to";
+  var email = String(data.email || "").trim();
+
+  if (!key || !email) return;                       // not configured, or no address given
+  if (String(data.coming || "") !== "YES") return;  // only people holding a ticket
+
+  var title = String(data.eventTitle || "the event");
+  var carpool = String(data.answer || "").trim();
+  var name = String(data.name || "").trim();
+  var first = name.split(" ")[0] || "friend";
+
+  var lines = [
+    "Hi " + first + ",",
+    "",
+    "Your RSVP for " + title + " is confirmed. This email is your proof that it went through.",
+    "",
+    "  Date:    Monday, December 21, 2026",
+    "  Carpool: " + (carpool ? carpool + ", leaving at 4:00 PM" : "4:00 PM"),
+    "  Where:   Arrowhead Stadium, 1 Arrowhead Dr, Kansas City, MO 64129",
+    "  Kickoff: 8:15 PM",
+    "",
+    "Your ticket will be texted to " + String(data.phone || "the number you gave") + " closer to the game.",
+    "",
+    "If anything above looks wrong, text Matt Marrs at (816) 810-1420.",
+    "",
+    "Grateful for you,",
+    "Send Network KC",
+  ];
+
+  var html =
+    '<div style="font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;font-size:15px;line-height:1.6;color:#10294C;max-width:520px">'
+    + '<p>Hi ' + escapeForHtml_(first) + ',</p>'
+    + '<p>Your RSVP for <b>' + escapeForHtml_(title) + '</b> is confirmed. This email is your proof that it went through.</p>'
+    + '<table cellpadding="0" cellspacing="0" style="margin:18px 0;border-left:4px solid #E31837;padding-left:14px">'
+    + '<tr><td style="padding:2px 14px 2px 0;color:#5C6670">Date</td><td><b>Monday, December 21, 2026</b></td></tr>'
+    + '<tr><td style="padding:2px 14px 2px 0;color:#5C6670">Carpool</td><td><b>'
+    + escapeForHtml_(carpool || "Pickup spot on file") + '</b>, leaving at <b>4:00 PM</b></td></tr>'
+    + '<tr><td style="padding:2px 14px 2px 0;color:#5C6670">Where</td><td>Arrowhead Stadium, 1 Arrowhead Dr, Kansas City, MO 64129</td></tr>'
+    + '<tr><td style="padding:2px 14px 2px 0;color:#5C6670">Kickoff</td><td>8:15 PM</td></tr>'
+    + '</table>'
+    + '<p>Your ticket will be texted to <b>' + escapeForHtml_(String(data.phone || "the number you gave")) + '</b> closer to the game.</p>'
+    + '<p>If anything above looks wrong, text Matt Marrs at <b>(816) 810-1420</b>.</p>'
+    + '<p style="color:#5C6670">Grateful for you,<br>Send Network KC</p>'
+    + '</div>';
+
+  var body = {
+    to: email,
+    subject: "You're in — " + title,
+    text: lines.join("\n"),
+    html: html,
+  };
+  var options = {
+    method: "post",
+    contentType: "application/json",
+    headers: { Authorization: "Bearer " + key },
+    payload: JSON.stringify(body),
+    muteHttpExceptions: true,
+  };
+
+  /* The docs show both a versioned and an unversioned path; try v0, fall back. */
+  var paths = [
+    "https://api.agentmail.to/v0/inboxes/" + encodeURIComponent(inbox) + "/messages/send",
+    "https://api.agentmail.to/inboxes/" + encodeURIComponent(inbox) + "/messages/send",
+  ];
+  for (var i = 0; i < paths.length; i++) {
+    var res = UrlFetchApp.fetch(paths[i], options);
+    var code = res.getResponseCode();
+    if (code >= 200 && code < 300) return;
+    if (code !== 404) {
+      logEmailProblem_(data, "AgentMail " + code + ": " + res.getContentText().slice(0, 300));
+      return;
+    }
+  }
+  logEmailProblem_(data, "AgentMail: both send paths returned 404");
+}
+
+function escapeForHtml_(value) {
+  return String(value)
+    .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+/** Failures land on an "Email Log" tab so nothing fails silently. */
+function logEmailProblem_(data, detail) {
+  try {
+    var ss = SpreadsheetApp.getActiveSpreadsheet();
+    var sheet = ss.getSheetByName("Email Log");
+    if (!sheet) {
+      sheet = ss.insertSheet("Email Log");
+      sheet.appendRow(["Timestamp", "Name", "Email", "Problem"]);
+      sheet.setFrozenRows(1);
+    }
+    sheet.appendRow([
+      new Date(),
+      String(data && data.name || ""),
+      String(data && data.email || ""),
+      String(detail).slice(0, 500),
+    ]);
+  } catch (err) { /* nothing more we can do */ }
 }
 
 /** Keeps one row per event on the Event Details tab, so past events stay listed. */
