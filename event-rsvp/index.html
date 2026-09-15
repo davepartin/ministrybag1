@@ -86,18 +86,35 @@
   .choice .no.sel  { background: var(--red);   color: #fff; }
 
   label { display: block; font-size: 13px; font-weight: 800; color: var(--navy); margin: 18px 0 5px; letter-spacing: .03em; text-transform: uppercase; }
-  input[type=text], select {
+  input[type=text], input[type=tel] {
     width: 100%; padding: 13px 14px; font-size: 16px; font-family: inherit;
     border: 2px solid var(--gray-mid); border-radius: 10px; outline: none;
     background: #fbfcfd; color: var(--ink); -webkit-appearance: none; appearance: none;
   }
-  select {
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath fill='%235C6670' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
-    background-repeat: no-repeat; background-position: right 14px center; background-size: 12px; padding-right: 38px;
-  }
-  input:focus, select:focus { border-color: var(--blue); background: #fff; }
-  .hint { font-size: 13px; color: var(--slate); margin-top: 5px; line-height: 1.45; }
+  input:focus { border-color: var(--blue); background: #fff; }
+  .hint { font-size: 13px; color: var(--slate); margin-top: 8px; line-height: 1.45; }
   #carpoolBox { display: none; }
+
+  /* Carpool pickup — three tappable options */
+  .carpool-list { display: grid; gap: 9px; }
+  .carpool-opt {
+    display: flex; align-items: center; gap: 13px; cursor: pointer; margin: 0;
+    padding: 15px 16px; border: 2px solid var(--gray-mid); border-radius: 12px;
+    background: #fbfcfd; transition: border-color .15s, background .15s;
+    font-size: 16px; font-weight: 700; color: var(--ink);
+    text-transform: none; letter-spacing: 0;
+  }
+  .carpool-opt input { position: absolute; opacity: 0; width: 0; height: 0; }
+  .carpool-opt .dot {
+    flex: none; width: 23px; height: 23px; border-radius: 50%; position: relative;
+    border: 2px solid var(--gray-mid); background: #fff; transition: border-color .15s;
+  }
+  .carpool-opt.sel { border-color: var(--blue); background: #ecf8fd; }
+  .carpool-opt.sel .dot { border-color: var(--blue); }
+  .carpool-opt.sel .dot::after {
+    content: ""; position: absolute; inset: 3px; border-radius: 50%; background: var(--blue);
+  }
+  .carpool-opt.focus { box-shadow: 0 0 0 3px rgba(24,174,225,.35); }
 
   .submit {
     width: 100%; margin-top: 24px; padding: 17px; font-size: 17px; font-weight: 800;
@@ -176,15 +193,17 @@
     <input type="text" id="name" autocomplete="name" placeholder="First and last name">
 
     <div id="carpoolBox">
-      <label for="carpool">Where will you catch the carpool?</label>
-      <select id="carpool">
-        <option value="">Choose a meeting spot…</option>
-        <option value="Overland Park">Overland Park</option>
-        <option value="North Kansas City">North Kansas City</option>
-        <option value="Raytown">Raytown</option>
-        <option value="Driving myself — meet at Arrowhead">Driving myself — meet at Arrowhead</option>
-      </select>
-      <div class="hint">All carpools roll out at 4:00 PM.</div>
+      <label for="phone">Cell phone</label>
+      <input type="tel" id="phone" inputmode="tel" autocomplete="tel" placeholder="(816) 555-0123">
+      <div class="hint">Your ticket gets texted to this number, so double-check it.</div>
+
+      <label id="carpoolHeading">Which carpool will you ride with?</label>
+      <div class="carpool-list" role="radiogroup" aria-labelledby="carpoolHeading">
+        <label class="carpool-opt"><input type="radio" name="carpool" value="Overland Park"><span class="dot"></span><span>Overland Park</span></label>
+        <label class="carpool-opt"><input type="radio" name="carpool" value="North Kansas City"><span class="dot"></span><span>North Kansas City</span></label>
+        <label class="carpool-opt"><input type="radio" name="carpool" value="Raytown"><span class="dot"></span><span>Raytown</span></label>
+      </div>
+      <div class="hint">All three carpools roll out at 4:00 PM.</div>
     </div>
 
     <button class="submit" id="submit">Send my RSVP</button>
@@ -219,6 +238,13 @@ const ENDPOINT = "https://script.google.com/macros/s/AKfycby1tzgv6ANAHWlNt6JCxsk
 const $ = id => document.getElementById(id);
 let choice = null;
 
+/* Store phones in one tidy shape so the sheet column stays readable. */
+function formatPhone(digits) {
+  const d = digits.length === 11 && digits[0] === "1" ? digits.slice(1) : digits;
+  if (d.length === 10) return "(" + d.slice(0, 3) + ") " + d.slice(3, 6) + "-" + d.slice(6);
+  return digits;
+}
+
 function pick(val) {
   choice = val;
   $("btnYes").classList.toggle("sel", val === "YES");
@@ -228,13 +254,30 @@ function pick(val) {
 $("btnYes").addEventListener("click", () => pick("YES"));
 $("btnNo").addEventListener("click", () => pick("NO"));
 
+/* Carpool pickup: highlight the chosen option */
+const carpoolInputs = [...document.querySelectorAll('input[name="carpool"]')];
+function carpoolValue() {
+  const hit = carpoolInputs.find(i => i.checked);
+  return hit ? hit.value : "";
+}
+carpoolInputs.forEach(input => {
+  input.addEventListener("change", () => {
+    carpoolInputs.forEach(i => i.closest(".carpool-opt").classList.toggle("sel", i.checked));
+    $("err").style.display = "none";
+  });
+  input.addEventListener("focus", () => input.closest(".carpool-opt").classList.add("focus"));
+  input.addEventListener("blur", () => input.closest(".carpool-opt").classList.remove("focus"));
+});
+
 $("submit").addEventListener("click", async () => {
   const name = $("name").value.trim();
   const err = $("err");
   err.style.display = "none";
   if (!choice) { err.textContent = "Please tap “I'm in” or “Can't make it” first."; err.style.display = "block"; return; }
   if (name.length < 2) { err.textContent = "Please add your name so we know it's you."; err.style.display = "block"; return; }
-  if (choice === "YES" && !$("carpool").value) { err.textContent = "Please pick where you'll catch the carpool."; err.style.display = "block"; return; }
+  const digits = $("phone").value.replace(/\D/g, "");
+  if (choice === "YES" && digits.length < 10) { err.textContent = "Please add a cell number so we can text you your ticket."; err.style.display = "block"; return; }
+  if (choice === "YES" && !carpoolValue()) { err.textContent = "Please choose which carpool you'll ride with."; err.style.display = "block"; return; }
 
   $("submit").disabled = true;
   $("submit").textContent = "Sending…";
@@ -246,8 +289,8 @@ $("submit").addEventListener("click", async () => {
     name: name,
     coming: choice,
     count: choice === "YES" ? 1 : 0,
-    answer: choice === "YES" ? $("carpool").value : "",
-    phone: "",
+    answer: choice === "YES" ? carpoolValue() : "",
+    phone: choice === "YES" ? formatPhone(digits) : "",
     note: "",
   };
   try {
@@ -281,8 +324,9 @@ function showDone(name) {
   if (choice === "YES") {
     $("doneEmoji").innerHTML = "&#127944;";
     $("doneTitle").textContent = "You're in, " + first + "!";
-    $("doneMsg").textContent = "Monday, December 21 — carpool leaves at 4:00 PM from "
-      + $("carpool").value + ". Matt will be in touch with the details. Go Chiefs.";
+    $("doneMsg").textContent = "Monday, December 21 — your carpool leaves "
+      + carpoolValue() + " at 4:00 PM. Your ticket will be texted to "
+      + formatPhone($("phone").value.replace(/\D/g, "")) + ". Go Chiefs.";
     $("calLink").href = calUrl();
     $("calLink").style.display = "inline-block";
   } else {
