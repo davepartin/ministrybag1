@@ -37,7 +37,9 @@
   body {
     font-family: var(--body);
     background: linear-gradient(160deg, var(--navy) 0%, #163662 60%, #1d4478 100%);
-    min-height: 100vh; display: flex; align-items: center; justify-content: center;
+    /* flex-start, not center: the card is taller than any viewport, and centering
+       overflowing content makes the page open partway down (or clip the top). */
+    min-height: 100vh; display: flex; align-items: flex-start; justify-content: center;
     padding: 20px; color: var(--ink);
   }
   .card {
@@ -48,7 +50,8 @@
 
   /* Hero */
   .hero { position: relative; background: var(--navy); line-height: 0; }
-  .hero img { width: 100%; display: block; }
+  /* aspect-ratio reserves the image's space before it loads, so nothing jumps */
+  .hero img { width: 100%; display: block; aspect-ratio: 456 / 336; max-width: 100%; }
   .hero .banner {
     position: absolute; left: 0; right: 0; bottom: 0;
     background: linear-gradient(to top, rgba(16,41,76,.96) 30%, rgba(16,41,76,0));
@@ -217,7 +220,7 @@
 <div class="card">
 
   <div class="hero">
-    <img src="chiefs-patriots.png" alt="Kansas City Chiefs vs New England Patriots">
+    <img src="chiefs-patriots.png" width="456" height="336" alt="Kansas City Chiefs vs New England Patriots">
     <div class="banner">
       <div class="when">Monday Night Football &middot; <span>Chiefs vs Patriots</span></div>
     </div>
@@ -313,6 +316,10 @@ const EVENT = {
   address: "1 Arrowhead Dr, Kansas City, MO 64129",
 };
 const ENDPOINT = "https://script.google.com/macros/s/AKfycby1tzgv6ANAHWlNt6JCxsknP11hmu9vT9aijgXX3jjLrshhBZjXIVFQo5v97wWTeczE/exec";
+
+/* Always open at the top — don't let the browser restore a previous scroll position. */
+if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+window.addEventListener("load", () => window.scrollTo(0, 0));
 
 const $ = id => document.getElementById(id);
 let choice = null;
