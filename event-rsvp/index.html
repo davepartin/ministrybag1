@@ -3,31 +3,28 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Event RSVP</title>
-<meta name="description" content="Tap to RSVP for our next event.">
+<title>Chiefs Game for Planters — RSVP</title>
+<meta name="description" content="Send Network KC is hosting planters at Arrowhead for Monday Night Football, December 21.">
 <link rel="icon" type="image/svg+xml" href="/ministrybagsatchel1.svg">
-<meta property="og:title" content="Event RSVP" />
-<meta property="og:description" content="Tap to RSVP for our next event." />
+<meta property="og:title" content="Chiefs Game for Planters — RSVP" />
+<meta property="og:description" content="Monday Night Football at Arrowhead, December 21. Our thank you to KC planters. Tap to RSVP." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://ministrybag.com/event-rsvp/" />
-<meta property="og:image" content="https://ministrybag.com/event-rsvp/og-image-event.png" />
-<meta property="og:image:width" content="1200" />
-<meta property="og:image:height" content="630" />
+<meta property="og:image" content="https://ministrybag.com/event-rsvp/chiefs-patriots.png" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:image" content="https://ministrybag.com/event-rsvp/og-image-event.png" />
+<meta name="twitter:image" content="https://ministrybag.com/event-rsvp/chiefs-patriots.png" />
 <style>
   :root {
-    /* Send Network brand palette (NAMB design guidelines) */
-    --navy: #10294C;      /* SN primary navy */
-    --blue: #18AEE1;      /* SN primary blue */
-    --green: #50B849;     /* SN green */
-    --green-soft: #99CC67;
-    --amber: #FBAC33;     /* SN amber */
-    --steel: #3C7CA0;     /* SN tertiary blue */
+    --navy: #10294C;
+    --blue: #18AEE1;
+    --green: #50B849;
+    --amber: #FBAC33;
+    --steel: #3C7CA0;
     --gray-light: #EBECED;
     --gray-mid: #ADB3B8;
     --slate: #5C6670;
-    --red: #D0453E;       /* not in SN palette; used only for the No button */
+    --red: #D0453E;
+    --chiefs: #E31837;
     --ink: #10294C;
     --radius: 14px;
   }
@@ -43,55 +40,74 @@
     border-radius: var(--radius); overflow: hidden;
     box-shadow: 0 18px 50px rgba(6, 18, 38, .45);
   }
-  .head { background: var(--navy); padding: 24px 26px 20px; position: relative; }
-  .head img.logo { width: 200px; max-width: 60%; display: block; }
-  .head .kicker { margin-top: 16px; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--blue); font-weight: 800; }
-  .head .kicker:empty { display: none; }
-  .head h1 { font-size: 26px; margin-top: 4px; line-height: 1.2; color: #fff; }
-  .admin-open {
-    display: none; position: absolute; top: 14px; right: 14px; width: 34px; height: 34px;
-    border: 1px solid rgba(255,255,255,.28); border-radius: 50%; background: rgba(255,255,255,.08);
-    color: rgba(255,255,255,.72); cursor: pointer; font-size: 17px; line-height: 1;
+
+  /* Hero */
+  .hero { position: relative; background: var(--navy); line-height: 0; }
+  .hero img { width: 100%; display: block; }
+  .hero .banner {
+    position: absolute; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(to top, rgba(16,41,76,.96) 30%, rgba(16,41,76,0));
+    padding: 30px 22px 12px; line-height: 1.25;
   }
-  .admin-open:hover, .admin-open:focus-visible { background: rgba(255,255,255,.18); color: #fff; outline: none; }
+  .hero .when {
+    color: #fff; font-size: 13px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase;
+  }
+  .hero .when span { color: var(--amber); }
+
+  .head { background: var(--navy); padding: 16px 26px 20px; }
+  .head img.logo { width: 170px; max-width: 55%; display: block; }
+  .head .kicker { margin-top: 14px; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--blue); font-weight: 800; }
+  .head h1 { font-size: 27px; margin-top: 4px; line-height: 1.15; color: #fff; }
+
   .details { background: var(--gray-light); padding: 16px 26px; font-size: 15px; line-height: 1.65; border-bottom: 3px solid var(--blue); }
   .details b { color: var(--navy); }
   .details a { color: var(--steel); }
-  .details .pending { color: var(--slate); }
+  .details .row + .row { margin-top: 2px; }
+  .details .blurb { margin-top: 10px; color: var(--slate); font-size: 14px; line-height: 1.6; }
+  .details .deadline {
+    margin-top: 11px; background: #fff; border-left: 4px solid var(--chiefs);
+    padding: 8px 12px; border-radius: 0 8px 8px 0; font-size: 14px; color: var(--navy); font-weight: 700;
+  }
+  .details .deadline em { font-style: normal; font-weight: 800; }
+
   .body { padding: 22px 26px 28px; }
-  .q { font-size: 16px; font-weight: 800; color: var(--navy); margin-bottom: 10px; }
-  .choice { display: flex; gap: 8px; margin-bottom: 18px; }
+  .q { font-size: 17px; font-weight: 800; color: var(--navy); margin-bottom: 12px; }
+  .choice { display: flex; gap: 10px; margin-bottom: 4px; }
   .choice button {
-    flex: 1; padding: 14px 4px; cursor: pointer; border-radius: 12px;
+    flex: 1; padding: 18px 4px; cursor: pointer; border-radius: 12px;
     border: 2px solid var(--gray-mid); background: #fff; transition: all .15s;
-    display: flex; flex-direction: column; align-items: center; gap: 2px;
+    display: flex; flex-direction: column; align-items: center; gap: 3px;
   }
-  .choice .mark { font-size: 24px; font-weight: 900; line-height: 1; }
-  .choice .word { font-size: 15px; font-weight: 800; }
-  .choice .yes   { color: var(--green); border-color: var(--green); }
-  .choice .maybe { color: #C77F0A; border-color: var(--amber); }
-  .choice .no    { color: var(--red); border-color: var(--red); }
-  .choice .yes.sel   { background: var(--green); color: #fff; }
-  .choice .maybe.sel { background: var(--amber); color: var(--navy); }
-  .choice .no.sel    { background: var(--red); color: #fff; }
-  label { display: block; font-size: 13px; font-weight: 800; color: var(--navy); margin: 14px 0 5px; letter-spacing: .03em; text-transform: uppercase; }
-  input[type=text] {
-    width: 100%; padding: 12px 14px; font-size: 16px; border: 2px solid var(--gray-mid);
-    border-radius: 10px; outline: none; background: #fbfcfd; color: var(--ink);
+  .choice .mark { font-size: 27px; font-weight: 900; line-height: 1; }
+  .choice .word { font-size: 16px; font-weight: 800; }
+  .choice .yes { color: var(--green); border-color: var(--green); }
+  .choice .no  { color: var(--red);   border-color: var(--red); }
+  .choice .yes.sel { background: var(--green); color: #fff; }
+  .choice .no.sel  { background: var(--red);   color: #fff; }
+
+  label { display: block; font-size: 13px; font-weight: 800; color: var(--navy); margin: 18px 0 5px; letter-spacing: .03em; text-transform: uppercase; }
+  input[type=text], select {
+    width: 100%; padding: 13px 14px; font-size: 16px; font-family: inherit;
+    border: 2px solid var(--gray-mid); border-radius: 10px; outline: none;
+    background: #fbfcfd; color: var(--ink); -webkit-appearance: none; appearance: none;
   }
-  input:focus { border-color: var(--blue); background: #fff; }
-  #questionBox { display: none; }
-  #questionBox .qb-sub { font-size: 13px; color: var(--slate); margin: -2px 0 6px; font-weight: 500; text-transform: none; letter-spacing: 0; }
+  select {
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'%3E%3Cpath fill='%235C6670' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 14px center; background-size: 12px; padding-right: 38px;
+  }
+  input:focus, select:focus { border-color: var(--blue); background: #fff; }
+  .hint { font-size: 13px; color: var(--slate); margin-top: 5px; line-height: 1.45; }
+  #carpoolBox { display: none; }
+
   .submit {
-    width: 100%; margin-top: 22px; padding: 16px; font-size: 17px; font-weight: 800;
-    background: var(--navy); color: #fff; border: none; border-radius: var(--radius); cursor: pointer;
-    letter-spacing: .02em;
+    width: 100%; margin-top: 24px; padding: 17px; font-size: 17px; font-weight: 800;
+    background: var(--navy); color: #fff; border: none; border-radius: var(--radius); cursor: pointer; letter-spacing: .02em;
   }
   .submit:hover { background: #0b1f3a; }
   .submit:disabled { background: var(--gray-mid); cursor: default; }
   .err { color: var(--red); font-size: 14px; margin-top: 10px; display: none; font-weight: 600; }
-  .wait { color: var(--slate); font-size: 14px; margin-top: 10px; display: none; font-weight: 600; text-align: center; }
-  .done { text-align: center; padding: 46px 30px 50px; display: none; }
+
+  .done { text-align: center; padding: 44px 30px 48px; display: none; }
   .done .big { font-size: 52px; }
   .done h2 { color: var(--navy); font-size: 24px; margin: 12px 0 8px; }
   .done p { color: var(--slate); font-size: 15px; line-height: 1.6; }
@@ -100,528 +116,183 @@
     background: var(--gray-light); color: var(--navy); font-weight: 800; text-decoration: none; font-size: 15px;
     border: 1px solid var(--gray-mid);
   }
-  .foot { text-align: center; font-size: 12.5px; color: var(--slate); padding: 0 26px 22px; }
-  .foot:empty { padding-bottom: 8px; }
-  .modal-backdrop {
-    display: none; position: fixed; inset: 0; z-index: 20; padding: 18px;
-    background: rgba(6,18,38,.72); align-items: center; justify-content: center;
-  }
-  .modal-backdrop.open { display: flex; }
-  .admin-modal {
-    width: 100%; max-width: 470px; max-height: calc(100vh - 36px); overflow-y: auto;
-    background: #fff; border-radius: 16px; box-shadow: 0 18px 60px rgba(0,0,0,.42); padding: 24px;
-  }
-  .admin-top { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-  .admin-top h2 { color: var(--navy); font-size: 21px; }
-  .admin-close { border: 0; background: transparent; color: var(--slate); font-size: 28px; cursor: pointer; line-height: 1; }
-  .admin-help { color: var(--slate); font-size: 13px; line-height: 1.45; margin-top: 6px; }
-  .admin-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 12px; }
-  .admin-grid .wide { grid-column: 1 / -1; }
-  .admin-hint { font-size: 12px; color: var(--slate); font-weight: 500; text-transform: none; letter-spacing: 0; margin-top: 4px; line-height: 1.4; }
-  .admin-modal input, .admin-modal textarea {
-    width: 100%; padding: 11px 12px; font: inherit; font-size: 16px; color: var(--ink);
-    border: 2px solid var(--gray-mid); border-radius: 9px; background: #fbfcfd; outline: none;
-  }
-  .admin-modal input:focus, .admin-modal textarea:focus { border-color: var(--blue); background: #fff; }
-  .admin-modal textarea { min-height: 88px; resize: vertical; line-height: 1.45; }
-  .details .blurb { margin-top: 8px; color: var(--slate); font-size: 14px; line-height: 1.55; }
-  .admin-save {
-    width: 100%; border: 0; border-radius: 11px; margin-top: 18px; padding: 14px;
-    background: var(--navy); color: #fff; font-size: 16px; font-weight: 800; cursor: pointer;
-  }
-  .admin-save:disabled { background: var(--gray-mid); cursor: default; }
-  .admin-status { min-height: 20px; margin-top: 10px; font-size: 13px; font-weight: 700; color: var(--slate); }
-  .admin-status.error { color: var(--red); }
-  .admin-status.success { color: #337d2e; }
-  /* Compact layout on phones: goal is Yes/Maybe/No, name, and Send all above the fold */
+  .foot { text-align: center; font-size: 12.5px; color: var(--slate); padding: 0 26px 22px; line-height: 1.5; }
+  .foot a { color: var(--steel); text-decoration: none; font-weight: 700; }
+
   @media (max-width: 480px) {
     body { padding: 8px; align-items: flex-start; }
-    .head { padding: 12px 18px 10px; }
-    .admin-open { top: 8px; right: 8px; width: 32px; height: 32px; }
-    .head img.logo { width: 140px; }
-    .head .kicker { margin-top: 8px; font-size: 11px; }
-    .head h1 { font-size: 20px; margin-top: 2px; }
-    .details { padding: 9px 18px; font-size: 13.5px; line-height: 1.5; }
-    .body { padding: 12px 18px 16px; }
-    .q { font-size: 15px; margin-bottom: 8px; }
-    .choice { margin-bottom: 10px; gap: 6px; }
-    .choice button { padding: 8px 4px; border-radius: 10px; }
-    .choice .mark { font-size: 19px; }
-    .choice .word { font-size: 14px; }
-    label { margin: 8px 0 4px; font-size: 12px; }
-    input[type=text] { padding: 10px 12px; font-size: 16px; }
-    .submit { margin-top: 12px; padding: 13px; font-size: 16px; }
-    .foot { padding: 0 18px 12px; font-size: 12px; }
-    .modal-backdrop { padding: 8px; align-items: flex-start; }
-    .admin-modal { max-height: calc(100vh - 16px); padding: 18px; border-radius: 13px; }
+    .hero .banner { padding: 26px 18px 10px; }
+    .hero .when { font-size: 12px; }
+    .head { padding: 12px 18px 14px; }
+    .head img.logo { width: 132px; }
+    .head .kicker { margin-top: 10px; font-size: 11px; }
+    .head h1 { font-size: 22px; }
+    .details { padding: 12px 18px; font-size: 14px; line-height: 1.55; }
+    .details .blurb { font-size: 13.5px; }
+    .body { padding: 16px 18px 20px; }
+    .q { font-size: 16px; margin-bottom: 10px; }
+    .choice button { padding: 15px 4px; }
+    .choice .mark { font-size: 24px; }
+    label { margin: 14px 0 4px; font-size: 12px; }
+    .submit { margin-top: 18px; padding: 15px; font-size: 16px; }
+    .foot { padding: 0 18px 14px; }
   }
 </style>
 </head>
 <body>
 <div class="card">
+
+  <div class="hero">
+    <img src="chiefs-patriots.png" alt="Kansas City Chiefs vs New England Patriots">
+    <div class="banner">
+      <div class="when">Monday Night Football &middot; <span>Kickoff 8:15 PM</span></div>
+    </div>
+  </div>
+
   <div class="head">
     <img class="logo" src="sn-logo-white.png" alt="Send Network">
-    <div class="kicker" id="evKicker"></div>
-    <h1 id="evTitle">Our Next Big Event</h1>
-    <button class="admin-open" id="adminOpen" type="button" aria-label="Edit event details" title="Edit event details">&#9881;</button>
+    <div class="kicker">SendKC</div>
+    <h1>Chiefs Game for Planters</h1>
   </div>
-  <div class="details" id="evDetails" aria-live="polite"><span class="pending">Loading event details…</span></div>
+
+  <div class="details">
+    <div class="row"><b>&#128197; Monday, December 21, 2026</b></div>
+    <div class="row">&#128663; Carpools leave <b>4:00 PM</b> &middot; home by about <b>11:30 PM</b></div>
+    <div class="row">&#128205; <b>Arrowhead Stadium</b> &middot; <a href="https://maps.google.com/?q=1%20Arrowhead%20Dr%2C%20Kansas%20City%2C%20MO%2064129" target="_blank" rel="noopener">1 Arrowhead Dr, Kansas City, MO 64129</a></div>
+    <div class="blurb">
+      Planters, we want you at Arrowhead. Send Network KC is hosting you for Monday Night Football as a simple thank you for a year of pouring yourselves out for your neighborhoods. We'll carpool from Overland Park, North Kansas City, and Raytown, and Send Network will cover your food at the concessions. Praying for a Chiefs win and a December warm front.
+    </div>
+    <div class="deadline">&#127915; Tickets are limited &mdash; <em>lead planter only</em>. Please RSVP by <em>Sunday, November 1</em>.</div>
+  </div>
 
   <div class="body" id="form">
-    <div class="q">Are you coming?</div>
+    <div class="q">Can you make it?</div>
     <div class="choice">
-      <button type="button" class="yes" id="btnYes"><span class="mark">&#10003;</span><span class="word">Yes</span></button>
-      <button type="button" class="maybe" id="btnMaybe"><span class="mark">?</span><span class="word">Maybe</span></button>
-      <button type="button" class="no" id="btnNo"><span class="mark">&#10005;</span><span class="word">No</span></button>
+      <button type="button" class="yes" id="btnYes"><span class="mark">&#10003;</span><span class="word">I'm in</span></button>
+      <button type="button" class="no" id="btnNo"><span class="mark">&#10005;</span><span class="word">Can't make it</span></button>
     </div>
+
     <label for="name">Your name</label>
     <input type="text" id="name" autocomplete="name" placeholder="First and last name">
-    <div id="questionBox">
-      <label for="answer" id="questionLabel"></label>
-      <div class="qb-sub">Optional</div>
-      <input type="text" id="answer" maxlength="200">
+
+    <div id="carpoolBox">
+      <label for="carpool">Where will you catch the carpool?</label>
+      <select id="carpool">
+        <option value="">Choose a meeting spot…</option>
+        <option value="Overland Park">Overland Park</option>
+        <option value="North Kansas City">North Kansas City</option>
+        <option value="Raytown">Raytown</option>
+        <option value="Driving myself — meet at Arrowhead">Driving myself — meet at Arrowhead</option>
+      </select>
+      <div class="hint">All carpools roll out at 4:00 PM.</div>
     </div>
-    <button class="submit" id="submit" disabled>Send my RSVP</button>
-    <div class="wait" id="wait">Hang tight — this can take up to 20 seconds. Please keep this page open.</div>
+
+    <button class="submit" id="submit">Send my RSVP</button>
     <div class="err" id="err"></div>
   </div>
 
   <div class="done" id="done">
-    <div class="big" id="doneEmoji">&#127881;</div>
-    <h2 id="doneTitle">You're on the list!</h2>
+    <div class="big" id="doneEmoji">&#127944;</div>
+    <h2 id="doneTitle">You're in!</h2>
     <p id="doneMsg"></p>
     <a class="cal" id="calLink" target="_blank" rel="noopener">&#128197; Add to calendar</a>
   </div>
 
-  <div class="foot" id="evContact"></div>
-</div>
-
-<div class="modal-backdrop" id="gateBackdrop" role="dialog" aria-modal="true" aria-labelledby="gateHeading">
-  <div class="admin-modal">
-    <div class="admin-top">
-      <h2 id="gateHeading">Staff access</h2>
-      <button class="admin-close" id="gateClose" type="button" aria-label="Close">&times;</button>
-    </div>
-    <p class="admin-help">Enter the team password to set up this event. Guests never see the editor fields.</p>
-    <div class="admin-grid">
-      <div class="wide">
-        <label for="gatePassword">Team password</label>
-        <input type="password" id="gatePassword" autocomplete="current-password" placeholder="Password">
-      </div>
-    </div>
-    <button class="admin-save" id="gateUnlock" type="button">Continue</button>
-    <div class="admin-status" id="gateStatus" aria-live="polite"></div>
-  </div>
-</div>
-
-<div class="modal-backdrop" id="adminBackdrop" role="dialog" aria-modal="true" aria-labelledby="adminHeading">
-  <div class="admin-modal">
-    <div class="admin-top">
-      <h2 id="adminHeading">Set up this event</h2>
-      <button class="admin-close" id="adminClose" type="button" aria-label="Close">&times;</button>
-    </div>
-    <p class="admin-help">Saving replaces what everyone sees on this page and records the event on the Google Sheet <b>Event Details</b> tab. RSVPs land on the <b>Event RSVPs</b> tab, grouped by event.</p>
-    <div class="admin-grid">
-      <div class="wide">
-        <label for="adminTitle">Event name</label>
-        <input type="text" id="adminTitle" maxlength="120" placeholder="Fall Festival">
-      </div>
-      <div class="wide">
-        <label for="adminKicker">Small label above the name</label>
-        <input type="text" id="adminKicker" maxlength="40" placeholder="SendKC">
-        <div class="admin-hint">Optional. Leave blank to hide it.</div>
-      </div>
-      <div class="wide">
-        <label for="adminDate">Event date</label>
-        <input type="date" id="adminDate">
-      </div>
-      <div>
-        <label for="adminStart">Start time</label>
-        <input type="time" id="adminStart">
-      </div>
-      <div>
-        <label for="adminEnd">End time</label>
-        <input type="time" id="adminEnd">
-      </div>
-      <div class="wide">
-        <label for="adminPlace">Location name</label>
-        <input type="text" id="adminPlace" maxlength="100" autocomplete="organization">
-      </div>
-      <div class="wide">
-        <label for="adminAddress">Street address</label>
-        <input type="text" id="adminAddress" maxlength="180" autocomplete="street-address">
-      </div>
-      <div class="wide">
-        <label for="adminRsvpBy">RSVP deadline</label>
-        <input type="date" id="adminRsvpBy">
-      </div>
-      <div class="wide">
-        <label for="adminParagraph">Paragraph on the page</label>
-        <textarea id="adminParagraph" maxlength="800" placeholder="Short welcome / what to expect (optional)"></textarea>
-      </div>
-      <div class="wide">
-        <label for="adminQuestion">Extra question to ask</label>
-        <input type="text" id="adminQuestion" maxlength="120" placeholder="Bringing a dish? What kind?">
-        <div class="admin-hint">Optional. Shows on the form for Yes and Maybe, and lands in the <b>Answer</b> column. Leave blank to hide it.</div>
-      </div>
-      <div class="wide">
-        <label for="adminContact">Footer / who to contact</label>
-        <input type="text" id="adminContact" maxlength="160" placeholder="Questions? Text Dave Partin at (913) 901-7581.">
-        <div class="admin-hint">Optional.</div>
-      </div>
-    </div>
-    <button class="admin-save" id="adminSave" type="button">Save event details</button>
-    <div class="admin-status" id="adminStatus" aria-live="polite"></div>
-  </div>
+  <div class="foot">Questions? Text Matt Marrs at <a href="sms:+18168101420">(816) 810-1420</a>.</div>
 </div>
 
 <script>
-/* Placeholder only (prefills the editor on localhost). Never rendered for guests:
-   the page shows a loading or error message until live details arrive from ENDPOINT. */
-let EVENT = {
-  title: "Our Next Big Event",
-  kicker: "SendKC",
-  date: "2026-12-31",
-  startTime: "18:00",
-  endTime: "20:00",
-  place: "Neighborhood Church",
-  address: "8600 W 91st Terrace, Overland Park, KS 66212",
-  rsvpBy: "2026-12-29",
-  paragraph: "Tap the gear icon and enter the team password to set up this event.",
-  question: "",
-  contact: "Questions? Text Dave Partin at (913) 901-7581.",
+/* Details are baked into the HTML above — nothing loads from Google on page open,
+   so the page is instant. RSVPs still post to the same Google Sheet.
+   To change the event, edit the HTML above and the EVENT block below. */
+const EVENT = {
+  id: "chiefs-game-for-planters-2026-12-21",
+  title: "Chiefs Game for Planters",
+  date: "2026-12-21",
+  startTime: "16:00",
+  endTime: "23:30",
+  place: "Arrowhead Stadium",
+  address: "1 Arrowhead Dr, Kansas City, MO 64129",
 };
 const ENDPOINT = "https://script.google.com/macros/s/AKfycby1tzgv6ANAHWlNt6JCxsknP11hmu9vT9aijgXX3jjLrshhBZjXIVFQo5v97wWTeczE/exec";
-/* Apps Script usually answers in about a second, but cold or busy starts can take 15s+. */
-const EVENT_TIMEOUT_MS = 30000;        /* give up on a single request after this long */
-const EVENT_BACKUP_AFTER_MS = 8000;    /* on page load, send a second request if the first is this slow */
-const CONTACT_LINE = "Questions? Text Dave Partin at (913) 901-7581.";
-const KIND = "event";   /* keeps this page on its own tabs, separate from the lunch page */
 
 const $ = id => document.getElementById(id);
-
-function localDate(value) { return new Date(value + "T12:00:00"); }
-function longDate(value) {
-  return localDate(value).toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric", year: "numeric" });
-}
-function shortDate(value) {
-  return localDate(value).toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" });
-}
-function clockTime(value) {
-  const [hour, minute] = value.split(":").map(Number);
-  return new Date(2000, 0, 1, hour, minute).toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" });
-}
-function eventTitle() { return (EVENT.title || "").trim() || "Our Next Big Event"; }
-/* Must match bigEventId_() in apps-script.gs so the sheet groups rows correctly. */
-function eventId() {
-  const slug = eventTitle().toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 40) || "event";
-  return slug + "-" + EVENT.date;
-}
-function calendarStamp(date, time) { return date.replaceAll("-", "") + "T" + time.replace(":", "") + "00"; }
-function isEventConfig(value) {
-  return value && typeof value.title === "string" && value.title.trim().length > 0
-    && /^\d{4}-\d{2}-\d{2}$/.test(value.date || "")
-    && /^\d{2}:\d{2}$/.test(value.startTime || "") && /^\d{2}:\d{2}$/.test(value.endTime || "")
-    && typeof value.place === "string" && typeof value.address === "string"
-    && /^\d{4}-\d{2}-\d{2}$/.test(value.rsvpBy || "")
-    && (value.kicker === undefined || typeof value.kicker === "string")
-    && (value.paragraph === undefined || typeof value.paragraph === "string")
-    && (value.question === undefined || typeof value.question === "string")
-    && (value.contact === undefined || typeof value.contact === "string");
-}
-function escapeHtml(value) {
-  const div = document.createElement("div");
-  div.textContent = value;
-  return div.innerHTML;
-}
-function renderEvent() {
-  $("evTitle").textContent = eventTitle();
-  $("evKicker").textContent = (EVENT.kicker || "").trim();
-  $("evContact").textContent = (EVENT.contact || "").trim();
-  document.title = eventTitle() + " — RSVP";
-  const blurb = (EVENT.paragraph || "").trim();
-  $("evDetails").innerHTML =
-    `<b>&#128197; ${longDate(EVENT.date)}</b> &middot; ${clockTime(EVENT.startTime)} &ndash; ${clockTime(EVENT.endTime)}<br>` +
-    `&#128205; <b>${escapeHtml(EVENT.place)}</b> &middot; <a href="https://maps.google.com/?q=${encodeURIComponent(EVENT.address)}" target="_blank" rel="noopener">${escapeHtml(EVENT.address)}</a><br>` +
-    `Please RSVP by <b>${shortDate(EVENT.rsvpBy)}</b> so we can plan well.` +
-    (blurb ? `<div class="blurb">${escapeHtml(blurb)}</div>` : "");
-  const question = (EVENT.question || "").trim();
-  $("questionLabel").textContent = question;
-  if (!question) $("questionBox").style.display = "none";
-  else if (choice === "YES" || choice === "MAYBE") $("questionBox").style.display = "block";
-}
-function renderLoadError() {
-  $("evDetails").innerHTML =
-    `<b>We couldn't load the event details right now.</b><br>` +
-    `Please <a href="">reload the page</a> to try again. ${escapeHtml(CONTACT_LINE)}`;
-}
-
-let eventServiceReady = false;
-function loadEventConfig() {
-  return new Promise((resolve, reject) => {
-    const callback = "__loadBigEvent" + Date.now() + Math.floor(Math.random() * 10000);
-    const script = document.createElement("script");
-    const timer = setTimeout(() => finish(new Error("Event service timed out")), EVENT_TIMEOUT_MS);
-    function cleanup() { clearTimeout(timer); delete window[callback]; script.remove(); }
-    function finish(error, payload) { cleanup(); error ? reject(error) : resolve(payload); }
-    window[callback] = payload => {
-      if (!payload || payload.ok !== true || !isEventConfig(payload.event)) {
-        finish(new Error("Event service returned an invalid response")); return;
-      }
-      EVENT = payload.event;
-      eventServiceReady = true;
-      $("adminOpen").style.display = "block";
-      renderEvent();
-      finish(null, payload);
-    };
-    script.onerror = () => finish(new Error("Could not reach event service"));
-    script.src = ENDPOINT + "?action=event&kind=" + KIND
-      + "&callback=" + encodeURIComponent(callback) + "&_=" + Date.now();
-    document.head.appendChild(script);
-  });
-}
-
 let choice = null;
-
-/* Keep the first request open; if it is slow or fails, send a second one alongside it
-   and use whichever answers first. The submit button stays disabled until real details
-   arrive, so RSVPs never go to a stale event. */
-function loadEventConfigPatiently() {
-  return new Promise((resolve, reject) => {
-    let settled = false, secondStarted = false, failures = 0;
-    const backup = setTimeout(startSecond, EVENT_BACKUP_AFTER_MS);
-    function succeeded() { settled = true; clearTimeout(backup); resolve(); }
-    function failed() { if (++failures === 2) reject(); else startSecond(); }
-    function startSecond() {
-      if (settled || secondStarted) return;
-      secondStarted = true;
-      $("evDetails").innerHTML = `<span class="pending">Still loading event details…</span>`;
-      loadEventConfig().then(succeeded, failed);
-    }
-    loadEventConfig().then(succeeded, failed);
-  });
-}
-loadEventConfigPatiently().then(() => { $("submit").disabled = false; }, renderLoadError);
-if (["localhost", "127.0.0.1"].includes(window.location.hostname)) {
-  eventServiceReady = true;
-  $("adminOpen").style.display = "block";
-}
-
-const buttons = { YES: $("btnYes"), MAYBE: $("btnMaybe"), NO: $("btnNo") };
 
 function pick(val) {
   choice = val;
-  for (const [k, btn] of Object.entries(buttons)) btn.classList.toggle("sel", k === val);
-  const question = (EVENT.question || "").trim();
-  $("questionBox").style.display = (question && (val === "YES" || val === "MAYBE")) ? "block" : "none";
+  $("btnYes").classList.toggle("sel", val === "YES");
+  $("btnNo").classList.toggle("sel", val === "NO");
+  $("carpoolBox").style.display = (val === "YES") ? "block" : "none";
 }
 $("btnYes").addEventListener("click", () => pick("YES"));
-$("btnMaybe").addEventListener("click", () => pick("MAYBE"));
 $("btnNo").addEventListener("click", () => pick("NO"));
 
 $("submit").addEventListener("click", async () => {
   const name = $("name").value.trim();
   const err = $("err");
   err.style.display = "none";
-  if (!choice) { err.textContent = "Please tap Yes, Maybe, or No first."; err.style.display = "block"; return; }
+  if (!choice) { err.textContent = "Please tap “I'm in” or “Can't make it” first."; err.style.display = "block"; return; }
   if (name.length < 2) { err.textContent = "Please add your name so we know it's you."; err.style.display = "block"; return; }
+  if (choice === "YES" && !$("carpool").value) { err.textContent = "Please pick where you'll catch the carpool."; err.style.display = "block"; return; }
+
   $("submit").disabled = true;
   $("submit").textContent = "Sending…";
-  $("wait").style.display = "block";
   const payload = {
     action: "rsvp",
-    kind: KIND,
-    event: eventId(),
-    eventTitle: eventTitle(),
+    kind: "event",
+    event: EVENT.id,
+    eventTitle: EVENT.title,
     name: name,
     coming: choice,
-    count: choice === "YES" ? 1 : 0,   /* one ticket per RSVP (lead planter only) */
-    answer: (choice === "NO") ? "" : $("answer").value.trim(),
+    count: choice === "YES" ? 1 : 0,
+    answer: choice === "YES" ? $("carpool").value : "",
     phone: "",
     note: "",
   };
   try {
-    await fetch(ENDPOINT, { method: "POST", mode: "no-cors",
+    await fetch(ENDPOINT, {
+      method: "POST", mode: "no-cors",
       headers: { "Content-Type": "text/plain;charset=utf-8" },
-      body: JSON.stringify(payload) });
+      body: JSON.stringify(payload),
+    });
     showDone(name);
   } catch (e) {
     $("submit").disabled = false;
     $("submit").textContent = "Send my RSVP";
-    $("wait").style.display = "none";
-    err.textContent = "Hmm, that didn't go through. Try again, or reach out to us directly.";
+    err.textContent = "Hmm, that didn't go through. Try again, or text Matt Marrs at (816) 810-1420.";
     err.style.display = "block";
   }
 });
 
+function stamp(time) { return EVENT.date.replaceAll("-", "") + "T" + time.replace(":", "") + "00"; }
 function calUrl() {
   return "https://calendar.google.com/calendar/render?action=TEMPLATE"
-    + "&text=" + encodeURIComponent(eventTitle())
-    + "&dates=" + calendarStamp(EVENT.date, EVENT.startTime) + "/" + calendarStamp(EVENT.date, EVENT.endTime)
+    + "&text=" + encodeURIComponent(EVENT.title + " — Chiefs vs Patriots")
+    + "&dates=" + stamp(EVENT.startTime) + "/" + stamp(EVENT.endTime)
     + "&ctz=America%2FChicago"
     + "&location=" + encodeURIComponent(EVENT.place + ", " + EVENT.address)
-    + "&details=" + encodeURIComponent(eventTitle() + ". " + (EVENT.contact || ""));
+    + "&details=" + encodeURIComponent("Send Network KC is hosting planters for Monday Night Football. Carpools leave at 4:00 PM. Kickoff 8:15 PM. Questions? Text Matt Marrs (816) 810-1420.");
 }
 
 function showDone(name) {
   $("form").style.display = "none";
   const first = name.split(" ")[0];
   if (choice === "YES") {
-    $("doneEmoji").innerHTML = "&#127881;";
-    $("doneTitle").textContent = "You're on the list, " + first + "!";
-    $("doneMsg").textContent = `${longDate(EVENT.date)}, ${clockTime(EVENT.startTime)} – ${clockTime(EVENT.endTime)} at ${EVENT.place}. We're glad you're coming — see you there.`;
-    $("calLink").href = calUrl();
-    $("calLink").style.display = "inline-block";
-  } else if (choice === "MAYBE") {
-    $("doneEmoji").innerHTML = "&#128591;";
-    $("doneTitle").textContent = "Thanks, " + first + " — we'd love to have you.";
-    $("doneMsg").textContent = "If your plans firm up, come back and tap Yes, or just come — there will be a place for you.";
+    $("doneEmoji").innerHTML = "&#127944;";
+    $("doneTitle").textContent = "You're in, " + first + "!";
+    $("doneMsg").textContent = "Monday, December 21 — carpool leaves at 4:00 PM from "
+      + $("carpool").value + ". Matt will be in touch with the details. Go Chiefs.";
     $("calLink").href = calUrl();
     $("calLink").style.display = "inline-block";
   } else {
     $("doneEmoji").innerHTML = "&#128591;";
     $("doneTitle").textContent = "Thanks for letting us know, " + first + ".";
-    $("doneMsg").textContent = "You'll be missed! We'll see you at the next one.";
+    $("doneMsg").textContent = "You'll be missed at Arrowhead. We're grateful for the work you're doing in your neighborhood.";
     $("calLink").style.display = "none";
   }
   $("done").style.display = "block";
 }
-
-let unlockedPassword = "";
-
-function fillAdminForm() {
-  $("adminTitle").value = EVENT.title || "";
-  $("adminKicker").value = EVENT.kicker || "";
-  $("adminDate").value = EVENT.date;
-  $("adminStart").value = EVENT.startTime;
-  $("adminEnd").value = EVENT.endTime;
-  $("adminPlace").value = EVENT.place;
-  $("adminAddress").value = EVENT.address;
-  $("adminRsvpBy").value = EVENT.rsvpBy;
-  $("adminParagraph").value = EVENT.paragraph || "";
-  $("adminQuestion").value = EVENT.question || "";
-  $("adminContact").value = EVENT.contact || "";
-  $("adminStatus").textContent = "";
-  $("adminStatus").className = "admin-status";
-}
-
-function openGate() {
-  unlockedPassword = "";
-  $("gatePassword").value = "";
-  $("gateStatus").textContent = "";
-  $("gateStatus").className = "admin-status";
-  $("adminBackdrop").classList.remove("open");
-  $("gateBackdrop").classList.add("open");
-  document.body.style.overflow = "hidden";
-  setTimeout(() => $("gatePassword").focus(), 0);
-}
-
-function closeGate() {
-  $("gateBackdrop").classList.remove("open");
-  if (!$("adminBackdrop").classList.contains("open")) document.body.style.overflow = "";
-}
-
-function openAdmin() {
-  fillAdminForm();
-  $("gateBackdrop").classList.remove("open");
-  $("adminBackdrop").classList.add("open");
-  document.body.style.overflow = "hidden";
-  setTimeout(() => $("adminTitle").focus(), 0);
-}
-
-function closeAdmin() {
-  $("adminBackdrop").classList.remove("open");
-  unlockedPassword = "";
-  document.body.style.overflow = "";
-}
-
-$("adminOpen").addEventListener("click", openGate);
-$("gateClose").addEventListener("click", closeGate);
-$("adminClose").addEventListener("click", closeAdmin);
-$("gateBackdrop").addEventListener("click", event => { if (event.target === $("gateBackdrop")) closeGate(); });
-$("adminBackdrop").addEventListener("click", event => { if (event.target === $("adminBackdrop")) closeAdmin(); });
-document.addEventListener("keydown", event => {
-  if (event.key !== "Escape") return;
-  if ($("adminBackdrop").classList.contains("open")) closeAdmin();
-  else if ($("gateBackdrop").classList.contains("open")) closeGate();
-});
-$("gatePassword").addEventListener("keydown", event => {
-  if (event.key === "Enter") { event.preventDefault(); $("gateUnlock").click(); }
-});
-
-/* Password gate first so guests never see edit fields. Real check happens on Save
-   against Apps Script ADMIN_PASSWORD (works without a separate verifyPassword deploy). */
-$("gateUnlock").addEventListener("click", () => {
-  const password = $("gatePassword").value;
-  const status = $("gateStatus");
-  status.className = "admin-status";
-  if (!password) {
-    status.textContent = "Please enter the team password.";
-    status.classList.add("error"); return;
-  }
-  unlockedPassword = password;
-  $("gatePassword").value = "";
-  status.textContent = "";
-  openAdmin();
-});
-
-$("adminSave").addEventListener("click", async () => {
-  const nextEvent = {
-    title: $("adminTitle").value.trim(),
-    kicker: $("adminKicker").value.trim(),
-    date: $("adminDate").value,
-    startTime: $("adminStart").value,
-    endTime: $("adminEnd").value,
-    place: $("adminPlace").value.trim(),
-    address: $("adminAddress").value.trim(),
-    rsvpBy: $("adminRsvpBy").value,
-    paragraph: $("adminParagraph").value.trim(),
-    question: $("adminQuestion").value.trim(),
-    contact: $("adminContact").value.trim(),
-  };
-  const password = unlockedPassword;
-  const status = $("adminStatus");
-  status.className = "admin-status";
-  if (!password) {
-    status.textContent = "Staff session expired. Close and enter the password again.";
-    status.classList.add("error"); return;
-  }
-  if (!isEventConfig(nextEvent) || !nextEvent.place || !nextEvent.address) {
-    status.textContent = "Please complete the name, date, times, location, address, and RSVP deadline.";
-    status.classList.add("error"); return;
-  }
-  if (nextEvent.startTime >= nextEvent.endTime) {
-    status.textContent = "The ending time needs to be after the starting time.";
-    status.classList.add("error"); return;
-  }
-  if (nextEvent.rsvpBy > nextEvent.date) {
-    status.textContent = "The RSVP deadline needs to be on or before the event date.";
-    status.classList.add("error"); return;
-  }
-  $("adminSave").disabled = true;
-  $("adminSave").textContent = "Saving…";
-  status.textContent = "Saving… Google can take up to 30 seconds. Please keep this open.";
-  try {
-    await fetch(ENDPOINT, {
-      method: "POST", mode: "no-cors", headers: { "Content-Type": "text/plain;charset=utf-8" },
-      body: JSON.stringify({ action: "updateEvent", kind: KIND, password, event: nextEvent }),
-    });
-    await new Promise(resolve => setTimeout(resolve, 900));
-    await loadEventConfig();
-    const saved = ["title", "kicker", "date", "startTime", "endTime", "place", "address", "rsvpBy", "paragraph", "question", "contact"]
-      .every(key => EVENT[key] === nextEvent[key]);
-    if (!saved) throw new Error("The update was not saved. Close and try signing in again.");
-    status.textContent = "Saved. The new event details are live.";
-    status.classList.add("success");
-    setTimeout(closeAdmin, 1100);
-  } catch (error) {
-    status.textContent = error.message || "The update did not go through. Try again.";
-    status.classList.add("error");
-  } finally {
-    $("adminSave").disabled = false;
-    $("adminSave").textContent = "Save event details";
-  }
-});
 </script>
 </body>
 </html>
