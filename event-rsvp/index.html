@@ -6,6 +6,9 @@
 <title>Chiefs Game for Planters — RSVP</title>
 <meta name="description" content="Send Network KC is hosting planters at Arrowhead for Monday Night Football, December 21.">
 <link rel="icon" type="image/svg+xml" href="/ministrybagsatchel1.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <meta property="og:title" content="Chiefs Game for Planters — RSVP" />
 <meta property="og:description" content="Monday Night Football at Arrowhead, December 21. Our thank you to KC planters. Tap to RSVP." />
 <meta property="og:type" content="website" />
@@ -27,10 +30,12 @@
     --chiefs: #E31837;
     --ink: #10294C;
     --radius: 14px;
+    --display: "Barlow Condensed", "Arial Narrow", Impact, sans-serif;
+    --body: "Barlow", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-family: var(--body);
     background: linear-gradient(160deg, var(--navy) 0%, #163662 60%, #1d4478 100%);
     min-height: 100vh; display: flex; align-items: center; justify-content: center;
     padding: 20px; color: var(--ink);
@@ -57,13 +62,46 @@
   .head { background: var(--navy); padding: 16px 26px 20px; }
   .head img.logo { width: 170px; max-width: 55%; display: block; }
   .head .kicker { margin-top: 14px; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--blue); font-weight: 800; }
-  .head h1 { font-size: 27px; margin-top: 4px; line-height: 1.15; color: #fff; }
+  .head h1 {
+    font-family: var(--display); font-weight: 700; font-size: 41px;
+    margin-top: 2px; line-height: .97; color: #fff; text-transform: uppercase;
+  }
 
-  .details { background: var(--gray-light); padding: 16px 26px; font-size: 15px; line-height: 1.65; border-bottom: 3px solid var(--blue); }
+  /* Gameday band — the key facts as a ticket, not a list of lines */
+  .gameday { background: #0B1F3C; padding: 15px 20px 18px; border-top: 3px solid var(--blue); }
+  .tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 9px; }
+  .tile {
+    background: rgba(255,255,255,.055); border: 1px solid rgba(255,255,255,.13);
+    border-radius: 11px; padding: 11px 6px 12px; text-align: center;
+  }
+  .tile .lbl {
+    display: block; font-size: 10px; font-weight: 700; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--blue); margin-bottom: 4px;
+  }
+  .tile .val {
+    display: block; font-family: var(--display); font-weight: 700; font-size: 26px;
+    line-height: .95; color: #fff; text-transform: uppercase; white-space: nowrap;
+  }
+  .tile .val em { font-style: normal; font-size: 15px; color: rgba(255,255,255,.6); }
+  .tile .sub { display: block; font-size: 11px; font-weight: 600; color: rgba(255,255,255,.42); margin-top: 3px; }
+  .tile.hot { background: rgba(251,172,51,.12); border-color: rgba(251,172,51,.42); }
+  .tile.hot .lbl { color: var(--amber); }
+
+  .venue {
+    display: block; margin-top: 9px; padding: 11px 14px; text-decoration: none;
+    background: rgba(255,255,255,.055); border: 1px solid rgba(255,255,255,.13); border-radius: 11px;
+  }
+  .venue:hover { background: rgba(255,255,255,.1); }
+  .venue .vname {
+    display: block; font-family: var(--display); font-weight: 700; font-size: 22px;
+    color: #fff; text-transform: uppercase; line-height: 1.05;
+  }
+  .venue .vaddr { display: block; font-size: 13px; color: var(--blue); margin-top: 1px; }
+
+  .details { background: var(--gray-light); padding: 16px 26px 18px; font-size: 15px; line-height: 1.65; border-bottom: 3px solid var(--blue); }
   .details b { color: var(--navy); }
   .details a { color: var(--steel); }
-  .details .row + .row { margin-top: 2px; }
-  .details .blurb { margin-top: 10px; color: var(--slate); font-size: 14px; line-height: 1.6; }
+  .details .blurb { color: var(--slate); font-size: 14.5px; line-height: 1.65; }
   .details .deadline {
     margin-top: 11px; background: #fff; border-left: 4px solid var(--chiefs);
     padding: 8px 12px; border-radius: 0 8px 8px 0; font-size: 14px; color: var(--navy); font-weight: 700;
@@ -71,7 +109,10 @@
   .details .deadline em { font-style: normal; font-weight: 800; }
 
   .body { padding: 22px 26px 28px; }
-  .q { font-size: 17px; font-weight: 800; color: var(--navy); margin-bottom: 12px; }
+  .q {
+    font-family: var(--display); font-weight: 700; font-size: 26px;
+    color: var(--navy); margin-bottom: 12px; text-transform: uppercase; line-height: 1;
+  }
   .choice { display: flex; gap: 10px; margin-bottom: 4px; }
   .choice button {
     flex: 1; padding: 18px 4px; cursor: pointer; border-radius: 12px;
@@ -79,7 +120,7 @@
     display: flex; flex-direction: column; align-items: center; gap: 3px;
   }
   .choice .mark { font-size: 27px; font-weight: 900; line-height: 1; }
-  .choice .word { font-size: 16px; font-weight: 800; }
+  .choice .word { font-family: var(--display); font-size: 21px; font-weight: 700; text-transform: uppercase; line-height: 1; }
   .choice .yes { color: var(--green); border-color: var(--green); }
   .choice .no  { color: var(--red);   border-color: var(--red); }
   .choice .yes.sel { background: var(--green); color: #fff; }
@@ -117,8 +158,10 @@
   .carpool-opt.focus { box-shadow: 0 0 0 3px rgba(24,174,225,.35); }
 
   .submit {
-    width: 100%; margin-top: 24px; padding: 17px; font-size: 17px; font-weight: 800;
-    background: var(--navy); color: #fff; border: none; border-radius: var(--radius); cursor: pointer; letter-spacing: .02em;
+    width: 100%; margin-top: 24px; padding: 16px; cursor: pointer;
+    font-family: var(--display); font-size: 25px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: .015em; line-height: 1;
+    background: var(--navy); color: #fff; border: none; border-radius: var(--radius);
   }
   .submit:hover { background: #0b1f3a; }
   .submit:disabled { background: var(--gray-mid); cursor: default; }
@@ -126,7 +169,10 @@
 
   .done { text-align: center; padding: 44px 30px 48px; display: none; }
   .done .big { font-size: 52px; }
-  .done h2 { color: var(--navy); font-size: 24px; margin: 12px 0 8px; }
+  .done h2 {
+    font-family: var(--display); font-weight: 700; font-size: 32px;
+    color: var(--navy); margin: 10px 0 8px; text-transform: uppercase; line-height: 1;
+  }
   .done p { color: var(--slate); font-size: 15px; line-height: 1.6; }
   .done .cal {
     display: inline-block; margin-top: 18px; padding: 12px 22px; border-radius: 10px;
@@ -143,15 +189,26 @@
     .head { padding: 12px 18px 14px; }
     .head img.logo { width: 132px; }
     .head .kicker { margin-top: 10px; font-size: 11px; }
-    .head h1 { font-size: 22px; }
-    .details { padding: 12px 18px; font-size: 14px; line-height: 1.55; }
+    .head h1 { font-size: 33px; }
+    .gameday { padding: 12px 14px 14px; }
+    .tiles { gap: 7px; }
+    .tile { padding: 9px 3px 10px; border-radius: 9px; }
+    .tile .lbl { font-size: 8.5px; letter-spacing: .07em; }
+    .tile .val { font-size: 21px; }
+    .tile .val em { font-size: 13px; }
+    .tile .sub { font-size: 10px; }
+    .venue { padding: 9px 12px; border-radius: 9px; }
+    .venue .vname { font-size: 19px; }
+    .venue .vaddr { font-size: 12px; }
+    .details { padding: 12px 18px 14px; font-size: 14px; line-height: 1.55; }
     .details .blurb { font-size: 13.5px; }
     .body { padding: 16px 18px 20px; }
-    .q { font-size: 16px; margin-bottom: 10px; }
+    .q { font-size: 23px; margin-bottom: 10px; }
     .choice button { padding: 15px 4px; }
     .choice .mark { font-size: 24px; }
+    .choice .word { font-size: 19px; }
     label { margin: 14px 0 4px; font-size: 12px; }
-    .submit { margin-top: 18px; padding: 15px; font-size: 16px; }
+    .submit { margin-top: 18px; padding: 14px; font-size: 22px; }
     .foot { padding: 0 18px 14px; }
   }
 </style>
@@ -162,7 +219,7 @@
   <div class="hero">
     <img src="chiefs-patriots.png" alt="Kansas City Chiefs vs New England Patriots">
     <div class="banner">
-      <div class="when">Monday Night Football &middot; <span>Kickoff 8:15 PM</span></div>
+      <div class="when">Monday Night Football &middot; <span>Chiefs vs Patriots</span></div>
     </div>
   </div>
 
@@ -172,10 +229,31 @@
     <h1>Chiefs Game for Planters</h1>
   </div>
 
+  <div class="gameday">
+    <div class="tiles">
+      <div class="tile">
+        <span class="lbl">Date</span>
+        <span class="val">Dec 21</span>
+        <span class="sub">Monday</span>
+      </div>
+      <div class="tile hot">
+        <span class="lbl">Carpools leave</span>
+        <span class="val">4:00 <em>PM</em></span>
+        <span class="sub">Be on time</span>
+      </div>
+      <div class="tile">
+        <span class="lbl">Kickoff</span>
+        <span class="val">8:15 <em>PM</em></span>
+        <span class="sub">Arrowhead</span>
+      </div>
+    </div>
+    <a class="venue" href="https://maps.google.com/?q=1%20Arrowhead%20Dr%2C%20Kansas%20City%2C%20MO%2064129" target="_blank" rel="noopener">
+      <span class="vname">Arrowhead Stadium</span>
+      <span class="vaddr">1 Arrowhead Dr, Kansas City, MO 64129</span>
+    </a>
+  </div>
+
   <div class="details">
-    <div class="row"><b>Monday, December 21, 2026</b></div>
-    <div class="row">Carpools leave at <b>4:00 PM</b></div>
-    <div class="row"><b>Arrowhead Stadium</b> &middot; <a href="https://maps.google.com/?q=1%20Arrowhead%20Dr%2C%20Kansas%20City%2C%20MO%2064129" target="_blank" rel="noopener">1 Arrowhead Dr, Kansas City, MO 64129</a></div>
     <div class="blurb">
       Planters, we want you at Arrowhead. Send Network KC is hosting you for Monday Night Football as a simple thank you for a year of pouring yourselves out for your neighborhoods. We'll carpool from Overland Park, North Kansas City, and Raytown, and Send Network will cover your food at the concessions. Praying for a Chiefs win and a December warm front.
     </div>
