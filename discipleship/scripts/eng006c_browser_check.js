@@ -108,6 +108,22 @@ function controlFits(box, viewport) {
         box.top >= -1 && box.bottom <= viewport.height + 2;
 }
 
+async function controlBox(page, selector) {
+    return page.evaluate(function (sel) {
+        var el = document.querySelector(sel);
+        if (!el) return null;
+        var r = el.getBoundingClientRect();
+        return {
+            width: r.width,
+            height: r.height,
+            left: r.left,
+            right: r.right,
+            top: r.top,
+            bottom: r.bottom
+        };
+    }, selector);
+}
+
 async function learnerState(page) {
     return page.evaluate(function () {
         return {
@@ -241,10 +257,10 @@ async function chooseAll(page, value) {
         for (var width of [375, 390, 1280]) {
             await page.setViewportSize({ width: width, height: width === 1280 ? 800 : 812 });
             var viewport = page.viewportSize();
-            var restoreBox = await page.locator('#backup-preview-restore').boundingBox();
-            var safetyBox = await page.locator('#backup-preview-safety').boundingBox();
-            var closeBox = await page.locator('#backup-preview-close').boundingBox();
-            var ackBox = await page.locator('#backup-preview-safety-ack-label').boundingBox();
+            var restoreBox = await controlBox(page, '#backup-preview-restore');
+            var safetyBox = await controlBox(page, '#backup-preview-safety');
+            var closeBox = await controlBox(page, '#backup-preview-close');
+            var ackBox = await controlBox(page, '#backup-preview-safety-ack-label');
             assert(width + 'px Restore control fits the viewport', controlFits(restoreBox, viewport));
             assert(width + 'px safety download control fits the viewport', controlFits(safetyBox, viewport));
             assert(width + 'px Close control fits the viewport', controlFits(closeBox, viewport));

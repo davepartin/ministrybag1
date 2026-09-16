@@ -2119,10 +2119,20 @@
             word-break: break-word;
         }
 
+        .backup-preview-dialog .export-preview-actions {
+            flex-shrink: 0;
+        }
+
         #backup-preview-restore:disabled,
         #backup-preview-safety:disabled {
             opacity: 0.55;
             cursor: not-allowed;
+        }
+
+        @media (max-width: 720px) {
+            .backup-preview-dialog .export-preview-actions button {
+                flex: 1 1 100%;
+            }
         }
 
         .backup-restore-status {
@@ -2807,12 +2817,12 @@
             <p class="export-preview-note" id="backup-preview-note"></p>
             <p class="backup-restore-status" id="backup-preview-restore-status" hidden></p>
             <div class="export-preview-actions">
-                <button type="button" class="export-preview-cancel" id="backup-preview-close"
-                    onclick="closeBackupPreview()">Close</button>
                 <button type="button" class="export-preview-copy" id="backup-preview-safety" hidden
                     onclick="downloadRestoreSafetyBackup()">Download safety backup</button>
                 <button type="button" class="export-preview-mail" id="backup-preview-restore" hidden disabled
                     onclick="confirmBackupRestore()">Restore</button>
+                <button type="button" class="export-preview-cancel" id="backup-preview-close"
+                    onclick="closeBackupPreview()">Close</button>
             </div>
         </div>
     </div>
