@@ -7,9 +7,9 @@ Updated September 16, 2026 at the coordinator change (COORD-002). Last code chec
 Verified integrated commit: `8dd3dc1` (PR #27, ENG-006c). ENG-006 and SEC-001 are DONE. REV-011 fixed a rollback gap and stale restore wording before merge; see [REV-011](logs/2026-09-16-REV-011-claude.md). All unit suites (restore 94), foundation QA and every browser check pass on the merged tree; foundation QA and the restore suite were rerun on main. Grok and ChatGPT/Codex have no further assignments.
 
 Next three priorities:
-1. DAVE-001: Dave reviews PR #17 (202-08, 202-09). Then repair the stale `202-09-devos` expectation in `scripts/eng001_browser_check.js` on the PR branch before integration.
-2. L-203-06 Faith at Work and School writing packet (1st/2nd/3rd Space framework), drafted by Claude unless Dave names another worker.
-3. UX-004 plain-language restore labels.
+1. DAVE-001: 202-08 and 202-09 are published on the alpha site for review (PR #17 merged as `7210c2f` at Dave's direction, stale ENG-001 browser expectation fixed first). Not approved; gather Dave's and others' feedback into one revision packet.
+2. L-203-06 Faith at Work and School (1st/2nd/3rd Space framework): Claude drafting on its own branch.
+3. UX-004 plain-language restore labels: Claude implementing on its own branch.
 
 ## Coordinator change, September 16
 
