@@ -6,6 +6,8 @@ Updated September 16, 2026 at the coordinator change (COORD-002). Last code chec
 
 Claude (Cowork) is now the coordinator, replacing ChatGPT (Astra/Codex). Nothing on main changed for `discipleship/` between September 13 and 16. All unit suites and foundation QA pass on main, and PR #17 still merges cleanly with its checks passing. ENG-006c has not been started. See [COORD-002](logs/2026-09-16-COORD-002-claude.md). Next three priorities: DAVE-001 review of PR #17, then ENG-006c and SEC-001, then the L-203-06 writing packet.
 
+Later on September 16, Claude Code took the coordinator seat and pushed COORD-002. All unit suites, foundation QA and all ten Playwright browser checks pass on main `1ebb1f1`. PR #17 still merges cleanly, but `scripts/eng001_browser_check.js` fails on the merged tree because it still fills the retired `202-09-devos` field. That is a stale test, not a lesson defect; repair it on the PR branch after DAVE-001 so Dave's review head does not move. ENG-006c and SEC-001 are unassigned until Dave names the workers. See [COORD-003](logs/2026-09-16-COORD-003-claude.md).
+
 ## Current position
 
 - ENG-001 and ENG-003 are **DONE**. PRs #10 and #12 were independently reviewed; two missed edge cases were repaired in PR #13, merged as `915ba568`.
