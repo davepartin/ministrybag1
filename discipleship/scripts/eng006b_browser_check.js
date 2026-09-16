@@ -341,7 +341,7 @@ function syntheticBackupText(tag) {
     });
     assert('partial file is not treated as complete', partialView.complete === false);
     assert('partial preview keeps originalRaw as evidence', partialView.original.indexOf('answers') !== -1 &&
-        partialView.body.indexOf('originalRaw bytes') !== -1);
+        partialView.body.indexOf('original unreadable copy') !== -1);
     assert('partial preview does not claim inaccessible recovery', partialView.body.indexOf('unreadable') !== -1);
     assert('partial preview does not write', partialView.unchanged === true);
     await page.keyboard.press('Escape');
@@ -463,7 +463,7 @@ function syntheticBackupText(tag) {
         return {
             open: document.getElementById('backup-preview-overlay').classList.contains('open'),
             complete: window.__gtLastBackupPreview.summary.complete,
-            emptyValid: document.getElementById('backup-preview-body').textContent.indexOf('All three stores are complete') !== -1,
+            emptyValid: document.getElementById('backup-preview-body').textContent.indexOf('reading notes are all included') !== -1,
             unchanged: window.__gtLastBackupPreview.unchanged
         };
     });
@@ -528,7 +528,7 @@ function syntheticBackupText(tag) {
         failPreview.unknownStores.indexOf('answers') !== -1);
     assert('failed-load preview does not treat stored answers as absent', failPreview.body.indexOf('cannot be confirmed') !== -1 &&
         failPreview.selection.indexOf('cannot be confirmed') !== -1 &&
-        failPreview.body.indexOf('Do not treat backup-only keys as known stored adds') !== -1);
+        failPreview.body.indexOf('items shown as only in the backup may already exist') !== -1);
     var failAfterUnknown = await failPage.evaluate(function () {
         return {
             raw: localStorage.getItem('christianFoundationsResponses'),

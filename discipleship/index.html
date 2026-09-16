@@ -2843,6 +2843,7 @@
     <script src="scripts/backup-download.js"></script>
     <script src="scripts/backup-preview.js"></script>
     <script src="scripts/backup-restore.js"></script>
+    <script src="scripts/backup-labels.js"></script>
     <script src="scripts/lesson-export.js"></script>
     <script src="scripts/widget-iframe.js"></script>
     <script>
@@ -2878,6 +2879,7 @@
         const backupDownload = window.GrowingTogetherBackupDownload;
         const backupPreview = window.GrowingTogetherBackupPreview;
         const backupRestore = window.GrowingTogetherBackupRestore;
+        const backupLabels = window.GrowingTogetherBackupLabels;
         const lessonExport = window.GrowingTogetherLessonExport;
         let responseStorageWritable = false;
         let completionStorageWritable = false;
@@ -4495,6 +4497,46 @@
             ));
         }
 
+        let backupLabelLookup = null;
+
+        async function ensureBackupLabelLookup() {
+            if (backupLabelLookup || !backupLabels) return backupLabelLookup;
+            const courseNames = {};
+            Object.keys(COURSE_META).forEach(function (id) { courseNames[id] = COURSE_META[id].name; });
+            let courses = [];
+            let answerIndex = null;
+            try {
+                courses = await getCurriculumData();
+            } catch (e) {
+                courses = [];
+            }
+            try {
+                const res = await fetch(`data/meta/answer-index.json?v=${BUILD_VERSION}`);
+                if (res.ok) answerIndex = await res.json();
+            } catch (e) {
+                answerIndex = null;
+            }
+            backupLabelLookup = backupLabels.lookupFromCourses(courses, courseNames, answerIndex);
+            return backupLabelLookup;
+        }
+
+        function savedItemLabel(key) {
+            if (!backupLabels) return String(key);
+            const lookup = backupLabelLookup || backupLabels.lookupFromCourses([], Object.fromEntries(
+                Object.keys(COURSE_META).map(function (id) { return [id, COURSE_META[id].name]; })), null);
+            return backupLabels.describeSavedKey(String(key).replace(/^(answers|completion|reading):/, ''), lookup);
+        }
+
+        function countLabel(count, singular, pluralWord) {
+            const n = Number(count) || 0;
+            return n + ' ' + (n === 1 ? singular : (pluralWord || singular + 's'));
+        }
+
+        function storeNounList(ids) {
+            const nouns = { answers: 'lesson answers', completion: 'lesson completion', reading: 'reading notes' };
+            return (ids || []).map(function (id) { return nouns[id] || id; }).join(', ');
+        }
+
         function appendPreviewText(parent, tag, className, text) {
             const el = document.createElement(tag);
             if (className) el.className = className;
@@ -4537,56 +4579,59 @@
                 return;
             }
             appendPreviewText(body, 'p', '', result.status);
-            appendPreviewText(body, 'h3', '', 'Counts');
+            appendPreviewText(body, 'h3', '', 'Summary');
+            const counts = result.counts;
             appendPreviewText(body, 'p', '',
-                'Answers: ' + result.counts.answers.keys +
-                ' (' + result.counts.answers.questions + ' questions, ' +
-                result.counts.answers.checklists + ' checklists, ' +
-                result.counts.answers.commitments + ' commitments). Completion: ' +
-                result.counts.completion.flags + ' flags. Reading: ' +
-                result.counts.reading.notes + ' notes, ' + result.counts.reading.checks +
-                ' checks. Retained ambiguous answers: ' + result.counts.ambiguousAnswers + '.');
-            appendPreviewText(body, 'h3', '', 'Partial and unsaved status');
+                'Answers: ' + countLabel(counts.answers.questions, 'question') + ', ' +
+                countLabel(counts.answers.checklists, 'checklist') + ', ' +
+                countLabel(counts.answers.commitments, 'commitment') + '. Lessons marked complete: ' +
+                counts.completion.flags + '. Reading: ' +
+                countLabel(counts.reading.notes, 'note') + ', ' +
+                countLabel(counts.reading.checks, 'chapter', 'chapters') + ' checked. Older shared answers: ' +
+                counts.ambiguousAnswers + '.');
+            appendPreviewText(body, 'h3', '', 'What this file includes');
             appendPreviewText(body, 'p', '', result.complete
                 ? (result.includesUnsavedEdits
-                    ? 'All three stores are complete in this file. The file includes unsaved edits from the source page.'
-                    : 'All three stores are complete in this file.')
-                : 'Partial file. Unreadable stores: ' + (result.partialStores.join(', ') || 'none') + '.');
+                    ? 'Lesson answers, lesson completion and reading notes are all included. The file also includes unsaved edits from the page it came from.'
+                    : 'Lesson answers, lesson completion and reading notes are all included.')
+                : 'Part of this file is missing. These could not be read on the device it came from: ' + (storeNounList(result.partialStores) || 'none') + '.');
             if (result.unsavedStores.length) {
-                appendPreviewText(body, 'p', '', 'Stores that include unsaved source-page edits: ' + result.unsavedStores.join(', ') + '.');
+                appendPreviewText(body, 'p', '', 'Includes unsaved edits for: ' + storeNounList(result.unsavedStores) + '.');
             }
             if (result.hasUnknownDestinationComparison) {
-                appendPreviewText(body, 'h3', '', 'Destination storage status');
-                appendPreviewText(body, 'p', '', 'Stored matches and conflicts for ' +
-                    (result.unknownDestinationStores || []).join(', ') +
-                    ' cannot be confirmed because destination storage is unreadable. In-memory values were inspected only as limited evidence. Do not treat backup-only keys as known stored adds, and do not treat conflicts as absent. Write guards and original stored bytes stay in place.');
+                appendPreviewText(body, 'h3', '', 'Saved data on this device');
+                appendPreviewText(body, 'p', '', 'Matches and differences for ' +
+                    storeNounList(result.unknownDestinationStores) +
+                    ' cannot be confirmed because saved data on this device is unreadable. What is on this page was checked only as limited evidence, so items shown as only in the backup may already exist and differences may be missing. The unreadable saved copy stays in place.');
             }
-            appendPreviewText(body, 'h3', '', 'Conflicts with current device values');
+            appendPreviewText(body, 'h3', '', 'Differences from this device');
             if (result.hasUnknownDestinationComparison && !result.conflictKeys.length) {
-                appendPreviewText(body, 'p', '', 'Known stored conflicts cannot be listed while destination storage is unreadable.');
+                appendPreviewText(body, 'p', '', 'Differences cannot be listed while saved data on this device is unreadable.');
             } else {
                 appendPreviewList(body, result.conflictKeys.length
                     ? result.conflictKeys.map(function (key) {
                         return restoreSession && restoreSession.prepared && restoreSession.prepared.confirmable
-                            ? key + ' (choice required; nothing preselected)'
-                            : key + ' (proposed default: keep current device value)';
+                            ? savedItemLabel(key) + ' (you choose which to keep; nothing preselected)'
+                            : savedItemLabel(key) + ' (this file cannot be restored)';
                     })
                     : []);
             }
-            appendPreviewText(body, 'h3', '', 'Unknown keys');
-            appendPreviewText(body, 'p', '', 'Unknown keys are kept as stored keys. They are not dropped or assigned to a lesson.');
-            appendPreviewList(body, result.unknownKeys);
-            appendPreviewText(body, 'h3', '', 'Values in this file');
-            appendPreviewText(body, 'p', '', 'Shown as text only. Markup is not executed.');
+            appendPreviewText(body, 'h3', '', 'Other saved items');
+            appendPreviewText(body, 'p', '', 'These are kept as they are. They are not dropped or assigned to a lesson.');
+            appendPreviewList(body, (result.unknownKeys || []).map(savedItemLabel));
+            appendPreviewText(body, 'h3', '', 'What is in this file');
+            appendPreviewText(body, 'p', '', 'Shown as plain text.');
             ['answers', 'completion', 'reading'].forEach(function (id) {
                 const store = result.stores[id];
                 if (!store || !store.entries || !store.entries.length) return;
-                appendPreviewText(body, 'p', '', store.noun + ':');
+                appendPreviewText(body, 'p', 'backup-preview-store-heading', store.noun + ':');
                 store.entries.forEach(function (entry) {
-                    appendPreviewText(body, 'p', '', entry.key + ' = ' + (entry.value == null ? '' : String(entry.value)));
+                    const value = entry.value == null ? '' : String(entry.value);
+                    const isFlag = id === 'completion' || /^check-/.test(entry.key);
+                    appendPreviewText(body, 'p', '', savedItemLabel(entry.key) + (isFlag && value === 'true' ? '' : ': ' + value));
                 });
             });
-            appendPreviewText(body, 'h3', '', 'Proposed selection');
+            appendPreviewText(body, 'h3', '', 'If you restore');
             appendPreviewText(body, 'p', '', result.selection);
             appendPreviewText(body, 'h3', '', 'Retained ambiguous answers');
             if (!result.ambiguousAnswers.present) {
@@ -4596,8 +4641,8 @@
                 Object.keys(result.ambiguousAnswers.items).forEach(function (key) {
                     const item = result.ambiguousAnswers.items[key];
                     const lessons = (item.candidateLessons || []).join(', ') || 'none recorded';
-                    appendPreviewText(body, 'p', '', key + ': status ' + item.status +
-                        '; candidate lessons ' + lessons + '; value follows as text.');
+                    appendPreviewText(body, 'p', '', 'Older shared ' + (backupLabels ? backupLabels.describePart(key) : 'answer') +
+                        ' from before each lesson had its own answers; candidate lessons ' + lessons + '. The answer is below.');
                     appendPreviewText(body, 'p', '', item.value == null ? '' : String(item.value));
                 });
             }
@@ -4608,13 +4653,13 @@
                 ? 'Will consider:'
                 : 'Could consider:');
             appendPreviewList(body, result.couldRestore.filter(function (item) {
-                return item.indexOf('Only a complete version 1 backup can be restored, after a review and a safety backup.') === -1;
+                return item.indexOf('Only a complete backup file can be restored, after a review and a safety backup.') === -1;
             }));
             appendPreviewText(body, 'p', '', restoreSession && restoreSession.prepared && restoreSession.prepared.confirmable
                 ? 'Will not do:'
                 : 'Could not do:');
             appendPreviewList(body, (result.couldNotRestore || []).filter(function (item) {
-                return item.indexOf('Only a complete version 1 backup can be restored, after a review and a safety backup.') === -1;
+                return item.indexOf('Only a complete backup file can be restored, after a review and a safety backup.') === -1;
             }));
             if (result.inconsistencies && result.inconsistencies.length) {
                 appendPreviewText(body, 'h3', '', 'File inconsistencies');
@@ -4730,27 +4775,29 @@
             const conflicts = restoreSession.prepared.conflicts || [];
             appendPreviewText(body, 'h3', '', 'Review and confirm');
             if (result.hasUnknownDestinationComparison) {
-                appendPreviewText(body, 'p', '', 'At least one store on this device could not be read. Restoring will replace that unreadable stored copy with the reviewed backup plus current page values. Captured original bytes stay in the safety backup. Write guards stay until this confirmed replacement verifies.');
+                appendPreviewText(body, 'p', '', 'Some saved data on this device could not be read. Restoring will replace that unreadable copy with the reviewed backup plus what is on this page now. The unreadable original goes into the safety backup, and saving stays paused for it until the restore is checked.');
             }
-            appendPreviewText(body, 'p', '', 'Backup-only values may be added. Device-only values stay. Matching values stay. Every conflicting value needs an explicit keep-device or use-backup choice. Nothing is preselected. Unknown keys stay stored keys. Ambiguous answers stay unassigned.');
+            appendPreviewText(body, 'p', '', 'Items only in the backup will be added. Items only on this device stay. Matching items stay as they are. Where the backup and this device differ, you choose which to keep for each one; nothing preselected. Other saved items stay as they are, and older shared answers stay unassigned.');
             if (!conflicts.length) {
-                appendPreviewText(body, 'p', '', 'No conflicting values. Device-only keys will stay. Backup-only keys will be added.');
+                appendPreviewText(body, 'p', '', 'Nothing differs. Items only on this device stay, and items only in the backup will be added.');
             } else {
-                appendPreviewText(body, 'p', '', 'Choose one option for each conflict. Imported strings are shown as text.');
+                appendPreviewText(body, 'p', '', 'Choose one option for each difference below.');
                 conflicts.forEach(function (item) {
                     const fieldset = document.createElement('fieldset');
                     fieldset.className = 'backup-restore-conflict';
                     const legend = document.createElement('legend');
-                    legend.textContent = item.noun + ': ' + item.key;
+                    legend.textContent = item.kind === 'ambiguous'
+                        ? 'Older shared ' + (backupLabels ? backupLabels.describePart(item.key) : 'answer') + ' (not assigned to a lesson)'
+                        : savedItemLabel(item.key);
                     fieldset.appendChild(legend);
                     const values = document.createElement('div');
                     values.className = 'backup-restore-values';
                     const deviceP = document.createElement('p');
-                    deviceP.textContent = 'Current device value:';
+                    deviceP.textContent = 'On this device now:';
                     const deviceVal = document.createElement('p');
                     deviceVal.textContent = item.deviceText == null ? '' : String(item.deviceText);
                     const backupP = document.createElement('p');
-                    backupP.textContent = 'Backup value:';
+                    backupP.textContent = 'In the backup:';
                     const backupVal = document.createElement('p');
                     backupVal.textContent = item.backupText == null ? '' : String(item.backupText);
                     values.appendChild(deviceP);
@@ -4799,7 +4846,7 @@
             ackLabel.appendChild(document.createTextNode('I have a copy of the safety backup. This page cannot prove the file was saved.'));
             body.appendChild(ackLabel);
             if (note) {
-                note.textContent = 'Download a safety backup of the current device first, including unsaved edits and any captured original copy. Restore is enabled only after every conflict has a choice and you acknowledge that safety file. A cancel or failed write leaves the original data unchanged.';
+                note.textContent = 'First download a safety backup of everything on this device right now, including unsaved edits. Restore is enabled only after you choose for each difference and confirm you have that safety backup. If you cancel or anything fails, your current data stays as it is.';
             }
             setRestoreStatus('', 'info');
             updateRestoreControls();
@@ -5245,7 +5292,9 @@
                 openBackupPreviewOverlay();
                 return;
             }
-            const applyText = function (text) {
+            const applyText = async function (text) {
+                if (!isCurrentRead()) return;
+                await ensureBackupLabelLookup();
                 if (!isCurrentRead()) return;
                 handleValidatedBackupFile(file, text);
             };

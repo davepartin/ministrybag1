@@ -574,20 +574,25 @@
         };
     }
 
+    function plural(count, singular, pluralWord) {
+        var n = Number(count) || 0;
+        return n + ' ' + (n === 1 ? singular : (pluralWord || singular + 's'));
+    }
+
     function selectionText(summary, unknownStoreIds) {
         var unknownNouns = (unknownStoreIds || []).map(function (id) {
             return STORE_NOUNS[id];
         });
         var unknownPart = '';
         if (unknownNouns.length) {
-            unknownPart = 'Stored matches and conflicts for ' + unknownNouns.join(', ') +
-                ' cannot be confirmed because destination storage is unreadable. In-memory values were inspected only as limited evidence. Do not treat backup-only keys as known stored adds, and do not treat conflicts as absent. Write guards and original stored bytes stay in place. ';
+            unknownPart = 'Matches and differences for ' + unknownNouns.join(', ') +
+                ' cannot be confirmed because saved data on this device is unreadable. What is on this page was checked only as limited evidence, so items shown as only in the backup may already exist and differences may be missing. The unreadable saved copy stays in place. ';
         }
-        return unknownPart + 'Proposed future restore, not applied: add ' + summary.backupOnly +
-            ' known backup-only key(s) from readable destination stores, retain ' + summary.deviceOnly +
-            ' known device-only key(s), leave ' + summary.matching +
-            ' known matching key(s) unchanged, and hold ' + summary.conflicts +
-            ' known conflict(s) for a later choice (each needs an explicit choice before restore; nothing is preselected). Unknown keys stay stored without a lesson assignment. Ambiguous answers stay unassigned. Unreadable originalRaw stays evidence only.';
+        return unknownPart + 'If restored: add ' + plural(summary.backupOnly, 'item') +
+            ' found only in the backup, keep ' + plural(summary.deviceOnly, 'item') +
+            ' found only on this device, leave ' + plural(summary.matching, 'matching item') +
+            ' as they are, and ask you about ' + plural(summary.conflicts, 'difference') +
+            ' (each needs an explicit choice before restore; nothing is preselected). Other saved items stay as they are, without a lesson assignment. Older shared answers stay unassigned. Any unreadable original copy is kept only as evidence.';
     }
 
     function buildPreview(validated, currentDevice) {
@@ -696,7 +701,7 @@
                 couldNotRestore.push(STORE_NOUNS[id] + ' data that was unreadable on the source device');
             }
             if (store.originalRawAvailable) {
-                couldNotRestore.push(STORE_NOUNS[id] + ' originalRaw bytes (kept as evidence, not parsed into answers)');
+                couldNotRestore.push(STORE_NOUNS[id] + ' original unreadable copy (kept as evidence, not read into answers)');
             }
         });
         if (!validated.complete) {
@@ -707,14 +712,14 @@
             couldNotRestore.push('Automatic lesson assignment for retained ambiguous answers');
         }
         unknownDestinationStores.forEach(function (id) {
-            couldNotRestore.push(STORE_NOUNS[id] + ' stored matches and conflicts (destination storage is unreadable; comparison is unknown)');
+            couldNotRestore.push(STORE_NOUNS[id] + ': matches and differences cannot be confirmed because saved data on this device is unreadable');
         });
-        couldNotRestore.push('An automatic restore. Only a complete version 1 backup can be restored, after a review and a safety backup.');
+        couldNotRestore.push('An automatic restore. Only a complete backup file can be restored, after a review and a safety backup.');
         var status = validated.complete
             ? (validated.includesUnsavedEdits
-                ? 'This version 1 backup is readable and includes unsaved edits from the source page.'
-                : 'This version 1 backup is readable.')
-            : 'This version 1 backup is partial. At least one store could not be read on the source device.';
+                ? 'This backup file is readable and includes unsaved edits from the page it came from.'
+                : 'This backup file is readable.')
+            : 'This backup file is partial. Some saved data could not be read on the device it came from.';
         return {
             ok: true,
             code: 'preview',
@@ -746,7 +751,7 @@
             couldNotRestore: couldNotRestore,
             status: status,
             applyAvailable: false,
-            applyNote: 'Only a complete version 1 backup can be restored, after a review and a safety backup. This preview does not change answers, completion, reading notes, migration flags or write guards.'
+            applyNote: 'Only a complete backup file can be restored, after a review and a safety backup. This preview does not change answers, completion, reading notes, migration flags or write guards.'
         };
     }
 
