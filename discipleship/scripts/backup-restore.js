@@ -714,7 +714,7 @@
             fileIdentity: prepared.fileIdentity,
             snapshot: snapshotFromDevice(currentDevice)
         });
-        if (opts.fingerprint && !fingerprintsMatch(opts.fingerprint, liveFingerprint)) {
+        if (!fingerprintsMatch(opts.fingerprint, liveFingerprint)) {
             return fail(
                 'stale-confirmation',
                 'This confirmation is out of date. Preview the file again before restoring. Nothing was changed.'
@@ -791,6 +791,11 @@
             var rolledBack = {};
             var rollbackFailed = {};
             var rollbackOk = true;
+            // A write can land and then fail verification; roll that store back too.
+            var failedNow = readRaw(storage, STORE_KEYS[writeFailed]);
+            if (!failedNow.ok || !rawMatches(failedNow.raw, pre.snapshot[writeFailed])) {
+                written.push(writeFailed);
+            }
             written.forEach(function (id) {
                 var restored = restoreSnapshotValue(storage, STORE_KEYS[id], pre.snapshot[id]);
                 if (restored.ok) {
@@ -802,7 +807,7 @@
                 }
             });
             STORE_ORDER.forEach(function (id) {
-                if (written.indexOf(id) === -1 && id !== writeFailed) {
+                if (written.indexOf(id) === -1) {
                     rolledBack[id] = false;
                 }
             });

@@ -4608,13 +4608,13 @@
                 ? 'Will consider:'
                 : 'Could consider:');
             appendPreviewList(body, result.couldRestore.filter(function (item) {
-                return item.indexOf('Applying a backup is not available yet') === -1;
+                return item.indexOf('Only a complete version 1 backup can be restored, after a review and a safety backup.') === -1;
             }));
             appendPreviewText(body, 'p', '', restoreSession && restoreSession.prepared && restoreSession.prepared.confirmable
                 ? 'Will not do:'
                 : 'Could not do:');
             appendPreviewList(body, (result.couldNotRestore || []).filter(function (item) {
-                return item.indexOf('Applying a backup is not available yet') === -1;
+                return item.indexOf('Only a complete version 1 backup can be restored, after a review and a safety backup.') === -1;
             }));
             if (result.inconsistencies && result.inconsistencies.length) {
                 appendPreviewText(body, 'h3', '', 'File inconsistencies');
@@ -4722,7 +4722,7 @@
                 if (note) {
                     note.textContent = result && result.ok
                         ? result.applyNote
-                        : 'Applying a backup is not available yet.';
+                        : 'That file cannot be restored.';
                 }
                 setRestoreStatus('', 'info');
                 return;

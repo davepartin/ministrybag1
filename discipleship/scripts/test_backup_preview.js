@@ -147,11 +147,13 @@ assert('preview keeps matching completion', fullPreview.stores.completion.compar
 assert('preview shows retained ambiguity without assigning a lesson', fullPreview.ambiguousAnswers.present === true &&
     fullPreview.ambiguousAnswers.items['question-202-201-09-prayer'].status === 'ambiguous' &&
     fullPreview.ambiguousAnswers.items['question-202-201-09-prayer'].candidateLessons[0] === '202-05');
-assert('selection semantics mention default keep-device for conflicts', fullPreview.selection.indexOf('default keep the current device value') !== -1);
+assert('selection semantics require an explicit conflict choice', fullPreview.selection.indexOf('nothing is preselected') !== -1 &&
+    fullPreview.selection.indexOf('default keep') === -1);
 assert('selection semantics mention unknown keys and unassigned ambiguity', fullPreview.selection.indexOf('Unknown keys stay stored') !== -1 &&
     fullPreview.selection.indexOf('Ambiguous answers stay unassigned') !== -1);
-assert('apply note says restore is not available', fullPreview.applyNote.indexOf('not available yet') !== -1);
-assert('could-not-restore includes applied restore', fullPreview.couldNotRestore.join(' ').indexOf('Applying a backup is not available yet') !== -1);
+assert('apply note says only a complete reviewed backup can be restored', fullPreview.applyNote.indexOf('Only a complete version 1 backup can be restored') !== -1 &&
+    fullPreview.applyNote.indexOf('not available yet') === -1);
+assert('could-not-restore rules out an automatic restore', fullPreview.couldNotRestore.join(' ').indexOf('An automatic restore.') !== -1);
 
 var emptyEnv = download.buildBackupEnvelope({
     exportedAt: '2026-09-12T00:00:00.000Z',

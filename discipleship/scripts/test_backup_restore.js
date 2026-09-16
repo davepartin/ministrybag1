@@ -589,6 +589,54 @@ assert('restoreReady stays off for partial source', restore.restoreReady({
     safetyAcknowledged: true
 }).reason === 'preview-only');
 
+
+// Coordinator review: a write that lands but fails verification must be rolled back too.
+(function () {
+    var device = deviceFrom({
+        answers: { data: { 'question-101-5-key': 'SYN-device-original' } },
+        completion: { data: { 'complete-101-1': true } },
+        reading: { data: { 'notes-101-John-1': 'SYN-device-note' } }
+    });
+    var map = {};
+    ['answers', 'completion', 'reading'].forEach(function (id) {
+        map[restore.STORE_KEYS[id]] = device.stores[id].persistedRaw;
+    });
+    var corruptHook = {};
+    corruptHook[restore.STORE_KEYS.completion] = true;
+    var storage = makeStorage(map, { corrupt: corruptHook });
+    var originalSet = storage.setItem;
+    storage.setItem = function (key, value) {
+        originalSet.call(storage, key, value);
+        if (key === restore.STORE_KEYS.completion) {
+            corruptHook[restore.STORE_KEYS.completion] = false;
+        }
+    };
+    var result = restore.applyConfirmedRestore(applyOpts(backupText, device,
+        { 'answers:question-101-5-key': restore.CHOICE_KEEP }, { storage: storage }));
+    assert('verify failure after a landed write is reported as write-failed', result.ok === false && result.code === 'write-failed' &&
+        result.failedStore === 'completion', result.code);
+    assert('verify failure rolls back the earlier answers store', storage._data[restore.STORE_KEYS.answers] === map[restore.STORE_KEYS.answers]);
+    assert('verify failure rolls back the failed completion store itself', storage._data[restore.STORE_KEYS.completion] === map[restore.STORE_KEYS.completion],
+        storage._data[restore.STORE_KEYS.completion]);
+    assert('reading store untouched after verify failure', storage._data[restore.STORE_KEYS.reading] === map[restore.STORE_KEYS.reading]);
+    assert('verify failure rollback is marked for the failed store', result.rolledBack && result.rolledBack.completion === true);
+
+    var alwaysCorrupt = {};
+    alwaysCorrupt[restore.STORE_KEYS.completion] = true;
+    var badStorage = makeStorage(map, { corrupt: alwaysCorrupt });
+    var stuck = restore.applyConfirmedRestore(applyOpts(backupText, device,
+        { 'answers:question-101-5-key': restore.CHOICE_KEEP }, { storage: badStorage }));
+    assert('a store that cannot be put back reports rollback-failed, never unchanged', stuck.ok === false &&
+        stuck.code === 'rollback-failed' && stuck.unchanged === false && stuck.offerSafetyDownload === true &&
+        stuck.rollbackFailed && !!stuck.rollbackFailed.completion, stuck.code);
+
+    var missing = applyOpts(backupText, device, { 'answers:question-101-5-key': restore.CHOICE_KEEP }, { storage: makeStorage(map) });
+    delete missing.fingerprint;
+    var noFingerprint = restore.applyConfirmedRestore(missing);
+    assert('restore without a confirmation fingerprint is refused as stale', noFingerprint.ok === false && noFingerprint.code === 'stale-confirmation',
+        noFingerprint.code);
+}());
+
 if (failed) {
     console.error('ENG-006c restore checks failed: ' + failed + ' failed, ' + passed + ' passed');
     process.exit(1);
