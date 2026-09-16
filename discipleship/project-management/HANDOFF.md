@@ -1,6 +1,10 @@
 # Resume here
 
-Updated September 13, 2026 after ENG-005b / PR #24. The board is [TASKS.md](TASKS.md); workflow is [PLAN.md](PLAN.md).
+Updated September 16, 2026 at the coordinator change (COORD-002). Last code checkpoint was ENG-005b / PR #24. The board is [TASKS.md](TASKS.md); workflow is [PLAN.md](PLAN.md).
+
+## Coordinator change, September 16
+
+Claude (Cowork) is now the coordinator, replacing ChatGPT (Astra/Codex). Nothing on main changed for `discipleship/` between September 13 and 16. All unit suites and foundation QA pass on main, and PR #17 still merges cleanly with its checks passing. ENG-006c has not been started. See [COORD-002](logs/2026-09-16-COORD-002-claude.md). Next three priorities: DAVE-001 review of PR #17, then ENG-006c and SEC-001, then the L-203-06 writing packet.
 
 ## Current position
 

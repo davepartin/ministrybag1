@@ -6,7 +6,7 @@ Updated September 11, 2026. This is a lightweight orientation. Current task stat
 
 Dave approved the baseline review's direction on September 11: protect saved work, preserve the pastoral story/Scripture/image/tool/practice rhythm, finish the curriculum, and add a Read/Discuss presentation for laptop preparation and phone conversations. The full project is 47 lessons; the 37 foundational lessons receive production priority. Leadership release timing will be reviewed at week six.
 
-The working plan, all-lesson checklist, approval queue and portable agent prompts are now in `project-management/`. Routine agents take one bounded task. Dave intends to use Astra for daily review when available. This is a manual workflow; no scheduler or automatic account/model switch has been configured.
+The working plan, all-lesson checklist, approval queue and portable agent prompts are now in `project-management/`. Routine agents take one bounded task. As of September 16, 2026, Claude (Cowork) is the coordinator and daily reviewer. This is a manual workflow; no scheduler or automatic account/model switch has been configured.
 
 ## Verified baseline
 
