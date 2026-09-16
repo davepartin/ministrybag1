@@ -95,7 +95,8 @@ function closingIds(course, lesson) {
     assert('202-09 is empty after 202-05 was filled', lesson09Before === '');
 
     await page.fill('#question-202-202-09-key', 'SYN-202-09-key');
-    await page.fill('#question-202-202-09-devos', 'SYN-202-09-devos');
+    assert('202-09 does not reuse the retired devos field', await page.locator('#question-202-202-09-devos').count() === 0);
+    await page.fill('#question-202-202-09-step', 'SYN-202-09-step');
     await page.fill('#question-202-202-09-prayer', 'SYN-202-09-prayer');
 
     await page.goto(BASE + '#202-5', { waitUntil: 'domcontentloaded' });
