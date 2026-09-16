@@ -8,8 +8,8 @@ Verified integrated commit: `8dd3dc1` (PR #27, ENG-006c). ENG-006 and SEC-001 ar
 
 Next three priorities:
 1. DAVE-001: 202-08 and 202-09 are published on the alpha site for review (PR #17 merged as `7210c2f` at Dave's direction, stale ENG-001 browser expectation fixed first). Not approved; gather Dave's and others' feedback into one revision packet.
-2. L-203-06 Faith at Work and School (1st/2nd/3rd Space framework): Claude drafting on its own branch.
-3. UX-004 plain-language restore labels: Claude implementing on its own branch.
+2. L-203-06 Faith at Work and School: full draft on PR #29 (`claude/l-203-06-faith-at-work`), all checks passing. Needs Dave's review, an esv.org check of every quotation and parable art (ART-004).
+3. UX-004 plain-language restore labels: PR #28 (`claude/ux-004-restore-labels`), all checks passing, waiting for Dave's go-ahead to merge. Whichever of PR #28 and #29 merges second must rerun `node scripts/build_answer_index.js` if #28 is already on main.
 
 ## Coordinator change, September 16
 
