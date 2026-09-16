@@ -107,4 +107,7 @@ echo "PASS: versioned backup envelope, counts, and partial-store checks."
 node scripts/test_backup_preview.js || fail "Backup preview checks failed."
 echo "PASS: backup validation, preview counts, conflicts, and rejection checks."
 
+node scripts/test_bible_text.js || fail "Bundled Bible text or credential removal checks failed."
+echo "PASS: bundled John text is complete and no Bible API credential remains."
+
 echo "All foundation QA checks passed."

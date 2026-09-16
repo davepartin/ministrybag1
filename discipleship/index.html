@@ -2374,6 +2374,16 @@
             margin-bottom: 12px;
         }
 
+        .esv-text p.poetry {
+            margin: 0 0 4px 1.5em;
+        }
+
+        .esv-text .bible-attribution {
+            margin: 16px 0 0;
+            font-size: 0.8rem;
+            color: var(--text-tertiary);
+        }
+
         .esv-text .mp3link,
         .esv-text .audio-link {
             display: none;
@@ -2676,7 +2686,8 @@
 
             <p class="esv-footnote">Scripture quotations are from the ESV&reg; Bible (The Holy Bible, English Standard
                 Version&reg;), copyright &copy; 2001 by Crossway, a publishing ministry of Good News Publishers. Used by
-                permission. All rights reserved.</p>
+                permission. All rights reserved. Weekly Gospel of John readings are from the World English Bible, which is in the public
+                domain.</p>
 
             <!-- Bottom nav - flows at end of lesson content -->
             <div class="bottom-nav" id="bottom-nav">
@@ -3646,10 +3657,6 @@
                                             </div>
                                             <div class="chapter-card-body" id="body-${currentSeries}-${chId}">
                                                 <div class="chapter-card-content">
-                                                    <div class="chapter-audio" id="audio-wrap-${currentSeries}-${chId}" style="display:none;">
-                                                        <div class="chapter-audio-label">Listen to ${ch.ref}</div>
-                                                        <audio controls preload="none" id="audio-${currentSeries}-${chId}"></audio>
-                                                    </div>
                                                     <div class="esv-text" id="esv-${currentSeries}-${chId}">
                                                         <div class="esv-loading">Loading ${ch.ref}...</div>
                                                     </div>
@@ -4780,9 +4787,33 @@
         }
 
         // ============================================
-        // BIBLE READING  -  ESV API
+        // BIBLE READING  -  World English Bible (public domain), bundled locally
         // ============================================
-        const ESV_API_TOKEN = 'Token 7e4b8df428bed84fc9ee3afd18c666fb64775e06';
+        const BIBLE_BOOK_FILES = { John: 'data/bible/john-web.json' };
+        const bibleBookCache = {};
+
+        function loadBibleBook(book) {
+            if (!bibleBookCache[book]) {
+                bibleBookCache[book] = fetch(`${BIBLE_BOOK_FILES[book]}?v=${BUILD_VERSION}`)
+                    .then(res => {
+                        if (!res.ok) throw new Error('HTTP ' + res.status);
+                        return res.json();
+                    })
+                    .catch(err => {
+                        delete bibleBookCache[book];
+                        throw err;
+                    });
+            }
+            return bibleBookCache[book];
+        }
+
+        function escapeBibleText(text) {
+            return String(text)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;');
+        }
 
         function toggleChapter(chId) {
             const body = document.getElementById('body-' + chId);
@@ -4802,11 +4833,11 @@
                     card.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }, 150);
 
-                // Fetch ESV text if not loaded yet
+                // Load the chapter text if not loaded yet
                 const esvEl = document.getElementById('esv-' + chId);
                 if (esvEl && esvEl.querySelector('.esv-loading')) {
                     const ref = esvEl.querySelector('.esv-loading').textContent.replace('Loading ', '').replace('...', '');
-                    fetchChapterESV(chId, ref);
+                    fetchChapterText(chId, ref);
                 }
             } else {
                 body.classList.remove('open');
@@ -4815,46 +4846,35 @@
             }
         }
 
-        async function fetchChapterESV(chId, ref) {
-            const esvEl = document.getElementById('esv-' + chId);
-            const audioWrap = document.getElementById('audio-wrap-' + chId);
-            const audioEl = document.getElementById('audio-' + chId);
+        async function fetchChapterText(chId, ref) {
+            const textEl = document.getElementById('esv-' + chId);
+            const match = /^(.+?)\s+(\d+)$/.exec(ref.trim());
+            const bookName = match ? match[1] : '';
+            if (!BIBLE_BOOK_FILES[bookName]) {
+                textEl.innerHTML = '<p style="color: var(--text-tertiary);">Text not available.</p>';
+                return;
+            }
 
             try {
-                const url = `https://api.esv.org/v3/passage/html/?q=${encodeURIComponent(ref)}&include-headings=true&include-verse-numbers=true&include-footnotes=false&include-chapter-numbers=false&include-audio-link=true&include-short-copyright=false`;
-
-                const res = await fetch(url, {
-                    headers: { 'Authorization': ESV_API_TOKEN }
-                });
-
-                const data = await res.json();
-
-                if (data.passages && data.passages.length > 0) {
-                    esvEl.innerHTML = data.passages.join('');
-
-                    // Extract audio link FIRST before any DOM changes (it may be inside the h2)
-                    const mp3Link = esvEl.querySelector('a.mp3link')
-                        || esvEl.querySelector('a[href*=".mp3"]')
-                        || esvEl.querySelector('a.audio-link');
-                    const audioSrc = (mp3Link && mp3Link.href) || data.audio_link || '';
-                    if (audioSrc && audioEl) {
-                        audioEl.src = audioSrc;
-                        audioWrap.style.display = 'block';
-                        if (mp3Link) mp3Link.style.display = 'none';
-                    }
-
-                    // Clean passage title AFTER extracting audio - strip verse range e.g. "John 2 (1-51)" → "John 2"
-                    const passageTitle = esvEl.querySelector('h2');
-                    if (passageTitle) {
-                        const titleText = passageTitle.textContent.replace(/\s*\(.*?\)/g, '').trim();
-                        passageTitle.textContent = titleText;
-                    }
-                } else {
-                    esvEl.innerHTML = '<p style="color: var(--text-tertiary);">Text not available.</p>';
+                const book = await loadBibleBook(bookName);
+                const chapter = book.chapters.find(ch => ch.chapter === Number(match[2]));
+                if (!chapter) {
+                    textEl.innerHTML = '<p style="color: var(--text-tertiary);">Text not available.</p>';
+                    return;
                 }
+
+                let html = `<h2>${escapeBibleText(ref.trim())}</h2>`;
+                chapter.paragraphs.forEach(para => {
+                    const verses = para.segments.map(seg =>
+                        (seg.v ? `<span class="verse-num">${seg.v}</span>` : '') + escapeBibleText(seg.text)
+                    ).join(' ');
+                    html += `<p${para.type === 'q' ? ' class="poetry"' : ''}>${verses}</p>`;
+                });
+                html += `<p class="bible-attribution">${escapeBibleText(book.translation)} (${escapeBibleText(book.abbreviation)}), public domain</p>`;
+                textEl.innerHTML = html;
             } catch (e) {
-                console.error('ESV fetch error:', e);
-                esvEl.innerHTML = '<p style="color: var(--text-tertiary);">Could not load text. Check your connection.</p>';
+                console.error('Bible text load error:', e);
+                textEl.innerHTML = '<p style="color: var(--text-tertiary);">Could not load text. Check your connection.</p>';
             }
         }
 
