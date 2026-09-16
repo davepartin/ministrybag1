@@ -6,7 +6,7 @@ Updated September 16, 2026 at the coordinator change (COORD-002). Last code chec
 
 Claude (Cowork) is now the coordinator, replacing ChatGPT (Astra/Codex). Nothing on main changed for `discipleship/` between September 13 and 16. All unit suites and foundation QA pass on main, and PR #17 still merges cleanly with its checks passing. ENG-006c has not been started. See [COORD-002](logs/2026-09-16-COORD-002-claude.md). Next three priorities: DAVE-001 review of PR #17, then ENG-006c and SEC-001, then the L-203-06 writing packet.
 
-Later on September 16, Claude Code took the coordinator seat and pushed COORD-002. All unit suites, foundation QA and all ten Playwright browser checks pass on main `1ebb1f1`. PR #17 still merges cleanly, but `scripts/eng001_browser_check.js` fails on the merged tree because it still fills the retired `202-09-devos` field. That is a stale test, not a lesson defect; repair it on the PR branch after DAVE-001 so Dave's review head does not move. Dave assigned ENG-006c to Grokbot; the paste-ready prompt is directly below the ENG-006c packet. SEC-001 is unassigned, and because its fix is the Scripture fetch in `index.html`, a concurrent SEC-001 worker stays read-only until ENG-006c reaches REVIEW. See [COORD-003](logs/2026-09-16-COORD-003-claude.md).
+Later on September 16, Claude Code took the coordinator seat and pushed COORD-002. All unit suites, foundation QA and all ten Playwright browser checks pass on main `1ebb1f1`. PR #17 still merges cleanly, but `scripts/eng001_browser_check.js` fails on the merged tree because it still fills the retired `202-09-devos` field. That is a stale test, not a lesson defect; repair it on the PR branch after DAVE-001 so Dave's review head does not move. Dave assigned ENG-006c to Grokbot; the paste-ready prompt is directly below the ENG-006c packet. Grok Build has SEC-001a, a documentation-only credential inventory and removal plan; the `index.html` change waits for SEC-001b after ENG-006c reaches REVIEW. Its prompt is in the section below. See [COORD-003](logs/2026-09-16-COORD-003-claude.md).
 
 ## Current position
 
@@ -72,6 +72,23 @@ Start from current `origin/main`, including PR #24, on a new branch. Read the EN
 > Tests: synthetic data and temporary downloads only. Cover real downloaded source and safety files, download to restore to reload round trips, empty/false/multiline/Unicode values, unknown and ambiguous data, every conflict choice, partial source and destination states, each stale-preview trigger, quota or unavailable writes at each store, rollback success and rollback failure, repeated restore and cancel. Check keyboard focus, confirmation wording and layout at 375, 390 and 1280 pixels. From `discipleship/`, rerun every `node scripts/test_*.js`, `bash scripts/qa_foundation.sh` and every `scripts/*browser_check.js` (Playwright, served with `python3 -m http.server 8765`). Report exact counts and anything you could not run.
 >
 > Finish: stage only your scoped paths, commit with `[ENG-006c]` in the message, push the branch, open a PR titled "ENG-006c: confirmed restore (REVIEW)", and stop at REVIEW. Do not merge, deploy, force push or start DATA-001. Final reply to Dave: outcome, files, checks with counts, remaining issue, branch, commit and PR number. No em dashes in anything you write.
+
+
+## Next planning packet: SEC-001a credential inventory and removal plan
+
+> You are Grok Build, the worker for SEC-001a in Growing Together, the discipleship app in the `discipleship/` folder of https://github.com/davepartin/ministrybag1. Claude is the coordinator. Grokbot is building ENG-006c in `index.html` on another computer at the same time, so this packet edits no application code.
+>
+> Setup: do not touch your old checkout `~/github/ministrybag1-grok-build-ux` or `~/github/ministrybag1-l-202-08-09`. From `~/github/ministrybag1`, run `git fetch origin` and `git worktree add ~/github/ministrybag1-sec-001a -b codex/sec-001a-credential-plan origin/main`, and work only there.
+>
+> Read `discipleship/AGENTS.md`, the SEC-001 and SEC-001a rows in `project-management/TASKS.md`, and the Scripture lookup code in `discipleship/index.html`.
+>
+> Absolute rule: never print, copy, quote, abbreviate or partially reveal the credential value, in your terminal output, files, commits or replies. Search with `grep -rln` or with output cut off before the value; refer to it only as "the ESV credential."
+>
+> Produce `discipleship/project-management/reviews/2026-09-16-SEC-001a-grok-build.md` covering: (1) every current location by path and line, including `discipleship/index.html`, `discipleship/dailybiblereading/`, the root `dailybiblereading/` folder, PROJECT-BRIEF.md and any other docs, noting which are outside `discipleship/`; (2) whether it exists in Git history (count of commits via `git log -S` style search, no values); (3) what each use does for the learner and what they see if the key stops working today; (4) two or three concrete removal options for the current static GitHub Pages hosting, such as a no-key fallback that links or shows Scripture without the API, a small serverless proxy (name the actual service, free tier limits and where the secret would live), or a licensed alternative, each with cost, privacy, ESV API terms, effort and risk; (5) one recommendation; (6) a ready-to-paste SEC-001b implementation packet with exact files, acceptance checks and a browser test plan. Leave Git history rewriting and key revocation as explicit decisions for Dave, not steps you take.
+>
+> Scope: that review file and your log `discipleship/project-management/logs/2026-09-16-SEC-001a-grok-build.md` only. No edits to `index.html`, `dailybiblereading/`, PROJECT-BRIEF.md, TASKS.md or HANDOFF.md.
+>
+> Finish: before committing, grep your two files and the staged diff to confirm the value is absent. Commit with `[SEC-001a]`, push the branch, open a PR titled "SEC-001a: credential inventory and removal plan (REVIEW)", and stop at REVIEW. Final reply to Dave: recommendation in two sentences, files, branch, commit, PR number, and anything you could not verify. No em dashes.
 
 ## Claude: handoff complete; awaiting Dave's review
 
