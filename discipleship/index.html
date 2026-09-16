@@ -2074,6 +2074,73 @@
             font-weight: 600;
         }
 
+        .backup-restore-conflict {
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xs);
+            padding: 10px 12px;
+            margin: 0 0 10px;
+            background: var(--surface);
+        }
+
+        .backup-restore-conflict legend {
+            font-size: 0.82rem;
+            font-weight: 700;
+            padding: 0 4px;
+        }
+
+        .backup-restore-choice {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .backup-restore-choice label,
+        .backup-restore-ack {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            min-height: 44px;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            cursor: pointer;
+        }
+
+        .backup-restore-choice input,
+        .backup-restore-ack input {
+            margin-top: 4px;
+            flex: 0 0 auto;
+        }
+
+        .backup-restore-values {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            white-space: pre-wrap;
+            word-break: break-word;
+        }
+
+        #backup-preview-restore:disabled,
+        #backup-preview-safety:disabled {
+            opacity: 0.55;
+            cursor: not-allowed;
+        }
+
+        .backup-restore-status {
+            margin: 6px 16px 0;
+            font-size: 0.82rem;
+            line-height: 1.45;
+            color: var(--text-secondary);
+        }
+
+        .backup-restore-status[data-state="error"] {
+            color: #7A3E22;
+            font-weight: 600;
+        }
+
+        .backup-restore-status[hidden] {
+            display: none;
+        }
+
         /* ============================================
            PRINT / SAVE AS PDF
            ============================================ */
@@ -2738,9 +2805,14 @@
             </div>
             <div id="backup-preview-body" class="backup-preview-body" tabindex="0"></div>
             <p class="export-preview-note" id="backup-preview-note"></p>
+            <p class="backup-restore-status" id="backup-preview-restore-status" hidden></p>
             <div class="export-preview-actions">
                 <button type="button" class="export-preview-cancel" id="backup-preview-close"
                     onclick="closeBackupPreview()">Close</button>
+                <button type="button" class="export-preview-copy" id="backup-preview-safety" hidden
+                    onclick="downloadRestoreSafetyBackup()">Download safety backup</button>
+                <button type="button" class="export-preview-mail" id="backup-preview-restore" hidden disabled
+                    onclick="confirmBackupRestore()">Restore</button>
             </div>
         </div>
     </div>
@@ -2749,6 +2821,7 @@
     <script src="scripts/save-feedback.js"></script>
     <script src="scripts/backup-download.js"></script>
     <script src="scripts/backup-preview.js"></script>
+    <script src="scripts/backup-restore.js"></script>
     <script src="scripts/lesson-export.js"></script>
     <script src="scripts/widget-iframe.js"></script>
     <script>
@@ -2783,6 +2856,7 @@
         const saveFeedback = window.GrowingTogetherSaveFeedback;
         const backupDownload = window.GrowingTogetherBackupDownload;
         const backupPreview = window.GrowingTogetherBackupPreview;
+        const backupRestore = window.GrowingTogetherBackupRestore;
         const lessonExport = window.GrowingTogetherLessonExport;
         let responseStorageWritable = false;
         let completionStorageWritable = false;
@@ -2802,6 +2876,9 @@
         let backupPreviewSource = 'app';
         let backupPreviewReadGeneration = 0;
         let backupPreviewFileReader = null;
+        let restoreSession = null;
+        let restoreApplyInProgress = false;
+        let lastSafetyEnvelope = null;
         const widgetIframeApi = window.GrowingTogetherWidgetIframe;
         let widgetIframeHost = null;
 
@@ -3700,7 +3777,7 @@
             exportDiv.id = 'export-section';
             const seriesName = seriesTitles[currentSeries] || 'this series';
             exportDiv.innerHTML = `
-                <span class="export-hint">Download a backup file, or preview one without changing your work.</span>
+                <span class="export-hint">Download a backup file, preview one, or restore a reviewed complete backup.</span>
                 <p class="backup-download-scope" id="backup-download-scope"></p>
                 <div class="export-buttons">
                     <button type="button" class="export-link" id="email-lesson-btn" onclick="openExportPreview()">Email Lesson &rarr;</button>
@@ -4161,6 +4238,7 @@
                         loadReason: storeLoadReason(storeId) || 'unavailable'
                     }));
                 }
+                noteRestoreRelevantChange('guard');
                 return false;
             }
             let ok = false;
@@ -4180,6 +4258,7 @@
                     writeError: writeError
                 }));
             }
+            noteRestoreRelevantChange('storage');
             return ok;
         }
 
@@ -4395,7 +4474,7 @@
             const dialog = document.getElementById('backup-preview-dialog');
             if (!dialog) return [];
             return Array.from(dialog.querySelectorAll(
-                'button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+                'button:not([disabled]), input:not([disabled]):not([type="hidden"]), [tabindex]:not([tabindex="-1"])'
             ));
         }
 
@@ -4433,7 +4512,11 @@
                     ? result.message
                     : 'That file cannot be previewed.');
                 appendPreviewText(body, 'p', '', 'Current answers, completion, reading notes, migration flags and write guards were not changed.');
-                if (note) note.textContent = 'Applying a backup is not available yet.';
+                if (note) note.textContent = 'That file cannot be restored.';
+                resetRestoreSession();
+                const titleEl = document.getElementById('backup-preview-title');
+                if (titleEl) titleEl.textContent = 'Backup preview';
+                setRestoreStatus('', 'info');
                 return;
             }
             appendPreviewText(body, 'p', '', result.status);
@@ -4466,7 +4549,11 @@
                 appendPreviewText(body, 'p', '', 'Known stored conflicts cannot be listed while destination storage is unreadable.');
             } else {
                 appendPreviewList(body, result.conflictKeys.length
-                    ? result.conflictKeys.map(function (key) { return key + ' (proposed default: keep current device value)'; })
+                    ? result.conflictKeys.map(function (key) {
+                        return restoreSession && restoreSession.prepared && restoreSession.prepared.confirmable
+                            ? key + ' (choice required; nothing preselected)'
+                            : key + ' (proposed default: keep current device value)';
+                    })
                     : []);
             }
             appendPreviewText(body, 'h3', '', 'Unknown keys');
@@ -4497,16 +4584,496 @@
                     appendPreviewText(body, 'p', '', item.value == null ? '' : String(item.value));
                 });
             }
-            appendPreviewText(body, 'h3', '', 'What a future restore could and could not do');
-            appendPreviewText(body, 'p', '', 'Could consider:');
-            appendPreviewList(body, result.couldRestore);
-            appendPreviewText(body, 'p', '', 'Could not do:');
-            appendPreviewList(body, result.couldNotRestore);
+            appendPreviewText(body, 'h3', '', restoreSession && restoreSession.prepared && restoreSession.prepared.confirmable
+                ? 'What this restore will and will not do'
+                : 'What a future restore could and could not do');
+            appendPreviewText(body, 'p', '', restoreSession && restoreSession.prepared && restoreSession.prepared.confirmable
+                ? 'Will consider:'
+                : 'Could consider:');
+            appendPreviewList(body, result.couldRestore.filter(function (item) {
+                return item.indexOf('Applying a backup is not available yet') === -1;
+            }));
+            appendPreviewText(body, 'p', '', restoreSession && restoreSession.prepared && restoreSession.prepared.confirmable
+                ? 'Will not do:'
+                : 'Could not do:');
+            appendPreviewList(body, (result.couldNotRestore || []).filter(function (item) {
+                return item.indexOf('Applying a backup is not available yet') === -1;
+            }));
             if (result.inconsistencies && result.inconsistencies.length) {
                 appendPreviewText(body, 'h3', '', 'File inconsistencies');
                 appendPreviewList(body, result.inconsistencies);
             }
-            if (note) note.textContent = result.applyNote;
+            renderRestoreConfirmation(body, result, note);
+        }
+
+        function persistedRawFor(storeId) {
+            try {
+                return window.localStorage.getItem(storeKey(storeId));
+            } catch (e) {
+                return 'unavailable';
+            }
+        }
+
+        function currentRestoreDevice() {
+            const input = currentBackupInput();
+            ['answers', 'completion', 'reading'].forEach(function (id) {
+                input.stores[id].persistedRaw = persistedRawFor(id);
+            });
+            return input;
+        }
+
+        function resetRestoreSession() {
+            restoreSession = null;
+            window.__gtRestoreSession = { confirmable: false, restoreEnabled: false, stale: false };
+            const safetyBtn = document.getElementById('backup-preview-safety');
+            const restoreBtn = document.getElementById('backup-preview-restore');
+            if (safetyBtn) safetyBtn.hidden = true;
+            if (restoreBtn) {
+                restoreBtn.hidden = true;
+                restoreBtn.disabled = true;
+            }
+        }
+
+        function setRestoreStatus(text, state) {
+            const el = document.getElementById('backup-preview-restore-status');
+            if (!el) return;
+            el.textContent = text || '';
+            el.hidden = !text;
+            el.setAttribute('data-state', state || 'info');
+        }
+
+        function liveRestoreFingerprint() {
+            if (!backupRestore || !restoreSession) return '';
+            return backupRestore.confirmationFingerprint({
+                sourceText: restoreSession.sourceText,
+                filename: restoreSession.filename,
+                currentDevice: currentRestoreDevice()
+            });
+        }
+
+        function noteRestoreRelevantChange(reason) {
+            if (restoreApplyInProgress || !restoreSession || restoreSession.stale || !backupRestore) return;
+            const live = liveRestoreFingerprint();
+            if (!backupRestore.fingerprintsMatch(restoreSession.prepared.fingerprint, live)) {
+                restoreSession.stale = true;
+                restoreSession.staleReason = reason || 'changed';
+                updateRestoreControls();
+                if (isBackupPreviewOpen()) {
+                    setRestoreStatus('This confirmation is out of date because the file, answers, storage or write guards changed. Close and preview the file again. Nothing was restored.', 'error');
+                    showBackupPreviewStatus('Restore confirmation is out of date. Preview the file again. Nothing was changed.');
+                }
+            }
+        }
+
+        function beginRestoreSession(file, text, previewResult) {
+            if (!backupRestore) {
+                restoreSession = null;
+                return;
+            }
+            const prepared = backupRestore.prepareConfirmation(text, {
+                name: file && file.name,
+                size: file && typeof file.size === 'number' ? file.size : (text ? text.length : 0)
+            }, currentRestoreDevice());
+            restoreSession = {
+                sourceText: text,
+                filename: file && file.name ? file.name : '',
+                prepared: prepared,
+                preview: previewResult,
+                choices: {},
+                safetyDownloaded: false,
+                safetyAcknowledged: false,
+                safetyEnvelope: null,
+                stale: false,
+                staleReason: null
+            };
+        }
+
+        function renderRestoreConfirmation(body, result, note) {
+            const titleEl = document.getElementById('backup-preview-title');
+            const safetyBtn = document.getElementById('backup-preview-safety');
+            const restoreBtn = document.getElementById('backup-preview-restore');
+            const confirmable = !!(backupRestore && restoreSession && restoreSession.prepared && restoreSession.prepared.confirmable && result && result.ok);
+            if (titleEl) {
+                titleEl.textContent = confirmable ? 'Review and confirm restore' : 'Backup preview';
+            }
+            if (safetyBtn) safetyBtn.hidden = !confirmable;
+            if (restoreBtn) {
+                restoreBtn.hidden = !confirmable;
+                restoreBtn.disabled = true;
+            }
+            if (!confirmable) {
+                if (note) {
+                    note.textContent = result && result.ok
+                        ? result.applyNote
+                        : 'Applying a backup is not available yet.';
+                }
+                setRestoreStatus('', 'info');
+                return;
+            }
+            const conflicts = restoreSession.prepared.conflicts || [];
+            appendPreviewText(body, 'h3', '', 'Review and confirm');
+            if (result.hasUnknownDestinationComparison) {
+                appendPreviewText(body, 'p', '', 'At least one store on this device could not be read. Restoring will replace that unreadable stored copy with the reviewed backup plus current page values. Captured original bytes stay in the safety backup. Write guards stay until this confirmed replacement verifies.');
+            }
+            appendPreviewText(body, 'p', '', 'Backup-only values may be added. Device-only values stay. Matching values stay. Every conflicting value needs an explicit keep-device or use-backup choice. Nothing is preselected. Unknown keys stay stored keys. Ambiguous answers stay unassigned.');
+            if (!conflicts.length) {
+                appendPreviewText(body, 'p', '', 'No conflicting values. Device-only keys will stay. Backup-only keys will be added.');
+            } else {
+                appendPreviewText(body, 'p', '', 'Choose one option for each conflict. Imported strings are shown as text.');
+                conflicts.forEach(function (item) {
+                    const fieldset = document.createElement('fieldset');
+                    fieldset.className = 'backup-restore-conflict';
+                    const legend = document.createElement('legend');
+                    legend.textContent = item.noun + ': ' + item.key;
+                    fieldset.appendChild(legend);
+                    const values = document.createElement('div');
+                    values.className = 'backup-restore-values';
+                    const deviceP = document.createElement('p');
+                    deviceP.textContent = 'Current device value:';
+                    const deviceVal = document.createElement('p');
+                    deviceVal.textContent = item.deviceText == null ? '' : String(item.deviceText);
+                    const backupP = document.createElement('p');
+                    backupP.textContent = 'Backup value:';
+                    const backupVal = document.createElement('p');
+                    backupVal.textContent = item.backupText == null ? '' : String(item.backupText);
+                    values.appendChild(deviceP);
+                    values.appendChild(deviceVal);
+                    values.appendChild(backupP);
+                    values.appendChild(backupVal);
+                    fieldset.appendChild(values);
+                    const choiceWrap = document.createElement('div');
+                    choiceWrap.className = 'backup-restore-choice';
+                    const keepLabel = document.createElement('label');
+                    const keepInput = document.createElement('input');
+                    keepInput.type = 'radio';
+                    keepInput.name = 'backup-restore-' + item.id;
+                    keepInput.value = 'keep-device';
+                    keepInput.addEventListener('change', function () {
+                        onRestoreChoiceChange(item.id, 'keep-device');
+                    });
+                    keepLabel.appendChild(keepInput);
+                    keepLabel.appendChild(document.createTextNode('Keep the current device value'));
+                    const useLabel = document.createElement('label');
+                    const useInput = document.createElement('input');
+                    useInput.type = 'radio';
+                    useInput.name = 'backup-restore-' + item.id;
+                    useInput.value = 'use-backup';
+                    useInput.addEventListener('change', function () {
+                        onRestoreChoiceChange(item.id, 'use-backup');
+                    });
+                    useLabel.appendChild(useInput);
+                    useLabel.appendChild(document.createTextNode('Use the backup value'));
+                    choiceWrap.appendChild(keepLabel);
+                    choiceWrap.appendChild(useLabel);
+                    fieldset.appendChild(choiceWrap);
+                    body.appendChild(fieldset);
+                });
+            }
+            const ackLabel = document.createElement('label');
+            ackLabel.className = 'backup-restore-ack';
+            ackLabel.id = 'backup-preview-safety-ack-label';
+            const ack = document.createElement('input');
+            ack.type = 'checkbox';
+            ack.id = 'backup-preview-safety-ack';
+            ack.addEventListener('change', function () {
+                onRestoreSafetyAckChange(ack.checked);
+            });
+            ackLabel.appendChild(ack);
+            ackLabel.appendChild(document.createTextNode('I have a copy of the safety backup. This page cannot prove the file was saved.'));
+            body.appendChild(ackLabel);
+            if (note) {
+                note.textContent = 'Download a safety backup of the current device first, including unsaved edits and any captured original copy. Restore is enabled only after every conflict has a choice and you acknowledge that safety file. A cancel or failed write leaves the original data unchanged.';
+            }
+            setRestoreStatus('', 'info');
+            updateRestoreControls();
+        }
+
+        function onRestoreChoiceChange(conflictId, value) {
+            if (!restoreSession || restoreSession.stale) return;
+            restoreSession.choices[conflictId] = value;
+            updateRestoreControls();
+        }
+
+        function onRestoreSafetyAckChange(checked) {
+            if (!restoreSession || restoreSession.stale) return;
+            restoreSession.safetyAcknowledged = !!checked;
+            updateRestoreControls();
+        }
+
+        function updateRestoreControls() {
+            const restoreBtn = document.getElementById('backup-preview-restore');
+            const safetyBtn = document.getElementById('backup-preview-safety');
+            const ack = document.getElementById('backup-preview-safety-ack');
+            const confirmable = !!(backupRestore && restoreSession && restoreSession.prepared && restoreSession.prepared.confirmable);
+            if (safetyBtn) {
+                safetyBtn.hidden = !confirmable;
+                safetyBtn.disabled = !confirmable || !!(restoreSession && restoreSession.stale);
+            }
+            if (ack && restoreSession && restoreSession.stale) {
+                ack.disabled = true;
+            }
+            if (!backupRestore || !restoreBtn) return;
+            if (!confirmable) {
+                restoreBtn.hidden = true;
+                restoreBtn.disabled = true;
+                return;
+            }
+            restoreBtn.hidden = false;
+            const ready = backupRestore.restoreReady({
+                confirmable: true,
+                stale: restoreSession.stale,
+                conflicts: restoreSession.prepared.conflicts,
+                choices: restoreSession.choices,
+                safetyDownloaded: restoreSession.safetyDownloaded,
+                safetyAcknowledged: restoreSession.safetyAcknowledged
+            });
+            restoreBtn.disabled = !ready.restoreEnabled;
+            window.__gtRestoreSession = {
+                confirmable: true,
+                stale: !!restoreSession.stale,
+                safetyDownloaded: !!restoreSession.safetyDownloaded,
+                safetyAcknowledged: !!restoreSession.safetyAcknowledged,
+                conflictIds: (restoreSession.prepared.conflicts || []).map(function (item) { return item.id; }),
+                restoreEnabled: !!ready.restoreEnabled,
+                filename: restoreSession.filename || ''
+            };
+        }
+
+        function downloadRestoreSafetyBackup() {
+            if (!backupDownload || !backupRestore || !restoreSession || !restoreSession.prepared.confirmable) return;
+            noteRestoreRelevantChange('preview');
+            if (restoreSession.stale) return;
+            const envelope = backupDownload.buildBackupEnvelope(currentRestoreDevice());
+            if (!backupRestore.safetyIncludesGuardEvidence(envelope, currentRestoreDevice())) {
+                setRestoreStatus('Could not include captured original recovery data and current page values in the safety backup. Restore stays disabled.', 'error');
+                showBackupPreviewStatus('Safety backup is missing required recovery evidence. Nothing was restored.');
+                return;
+            }
+            restoreSession.safetyEnvelope = envelope;
+            lastSafetyEnvelope = envelope;
+            const text = backupDownload.backupText(envelope);
+            downloadTextFile(backupRestore.safetyBackupFilename(), text, 'application/json', '__gtLastSafetyDownload');
+            restoreSession.safetyDownloaded = true;
+            setRestoreStatus(backupRestore.safetyStatusText(envelope), 'info');
+            updateRestoreControls();
+        }
+
+        function downloadLastSafetyEnvelope() {
+            if (!backupDownload || !lastSafetyEnvelope) return;
+            const text = backupDownload.backupText(lastSafetyEnvelope);
+            downloadTextFile(backupRestore ? backupRestore.safetyBackupFilename() : 'growing-together-backup-before-restore.json',
+                text, 'application/json', '__gtLastSafetyDownload');
+        }
+
+        function rereadStoresFromStorage() {
+            if (!saveFeedback) return;
+            const answersRead = saveFeedback.readJsonStore(window.localStorage, saveFeedback.STORES.answers.key);
+            if (answersRead.available && !answersRead.malformed) {
+                responses = answersRead.data;
+            }
+            const completionRead = saveFeedback.readJsonStore(window.localStorage, saveFeedback.STORES.completion.key);
+            if (completionRead.available && !completionRead.malformed) {
+                completionData = completionRead.data;
+            }
+            const readingRead = saveFeedback.readJsonStore(window.localStorage, saveFeedback.STORES.reading.key);
+            if (readingRead.available && !readingRead.malformed) {
+                readingData = readingRead.data;
+            }
+        }
+
+        function reloadLearnerFieldsFromMemory() {
+            document.querySelectorAll('.question-textarea').forEach(function (ta) {
+                ta.value = Object.prototype.hasOwnProperty.call(responses, ta.id) ? String(responses[ta.id]) : '';
+                if (ta.value) autoGrow(ta);
+            });
+            document.querySelectorAll('input[type="radio"]').forEach(function (r) {
+                const key = 'commitment-' + currentSeries;
+                r.checked = responses[key] === r.value;
+            });
+            document.querySelectorAll('.block-checklist').forEach(function (container) {
+                const saved = responses[container.id];
+                const tiles = container.querySelectorAll('.checklist-tile');
+                tiles.forEach(function (tile, index) {
+                    tile.classList.toggle('selected', Array.isArray(saved) && saved.indexOf(index) !== -1);
+                });
+            });
+            loadedSessionNums.forEach(function (sessionNum) {
+                const key = 'complete-' + currentSeries + '-' + sessionNum;
+                const on = !!completionData[key];
+                const cb = document.getElementById('session-complete-' + currentSeries + '-' + sessionNum);
+                if (cb) cb.checked = on;
+                const bar = document.getElementById('bar-session-complete-' + currentSeries + '-' + sessionNum);
+                if (bar) bar.classList.toggle('checked', on);
+                const tocCheck = document.getElementById('toc-check-' + sessionNum);
+                if (tocCheck) tocCheck.classList.toggle('done', on);
+            });
+            document.querySelectorAll('.chapter-card input[type="checkbox"]').forEach(function (cb) {
+                const chId = cb.id.replace('reading-check-', '');
+                const on = readingData['check-' + chId] === true;
+                cb.checked = on;
+                const card = document.getElementById('card-' + chId);
+                if (card) card.classList.toggle('completed', on);
+            });
+            document.querySelectorAll('.chapter-notes-textarea').forEach(function (ta) {
+                const chId = ta.id.replace('reading-notes-', '');
+                ta.value = Object.prototype.hasOwnProperty.call(readingData, 'notes-' + chId)
+                    ? String(readingData['notes-' + chId])
+                    : '';
+                if (ta.value) autoGrow(ta);
+            });
+        }
+
+        function clearRecoveredSaveErrors(recoveredGuards) {
+            (recoveredGuards || []).forEach(function (id) {
+                if (saveResultsByStore[id]) {
+                    delete saveResultsByStore[id];
+                }
+            });
+            const remaining = Object.keys(saveResultsByStore).filter(function (id) {
+                return saveResultsByStore[id] && saveResultsByStore[id].status === 'Could not save';
+            });
+            if (!remaining.length) {
+                const banner = document.getElementById('save-status-banner');
+                const label = document.getElementById('save-status-label');
+                const detail = document.getElementById('save-status-detail');
+                const actions = document.getElementById('save-status-actions');
+                if (banner) {
+                    banner.hidden = true;
+                    banner.setAttribute('data-state', 'idle');
+                }
+                if (label) label.textContent = '';
+                if (detail) detail.textContent = '';
+                if (actions) actions.hidden = true;
+                syncSaveBannerOffset();
+                return;
+            }
+            lastSaveStore = remaining.includes(lastSaveStore) ? lastSaveStore : remaining[0];
+            renderSaveStatus(lastSaveStore, saveResultsByStore[lastSaveStore]);
+        }
+
+        function applyVerifiedRestoreToHost(result) {
+            responses = result.stores.answers;
+            completionData = result.stores.completion;
+            readingData = result.stores.reading;
+            (result.recoveredGuards || []).forEach(function (id) {
+                if (id === 'answers') {
+                    responseStorageWritable = true;
+                    responseLoadReason = null;
+                    originalResponsesRaw = null;
+                } else if (id === 'completion') {
+                    completionStorageWritable = true;
+                    completionLoadReason = null;
+                    originalCompletionRaw = null;
+                } else if (id === 'reading') {
+                    readingStorageWritable = true;
+                    readingLoadReason = null;
+                    originalReadingRaw = null;
+                }
+            });
+            rereadStoresFromStorage();
+            reloadLearnerFieldsFromMemory();
+            clearRecoveredSaveErrors(result.recoveredGuards);
+            refreshBackupScopeLabels();
+        }
+
+        function recordBackupRestore(result, beforeState) {
+            const afterState = snapshotLearnerState();
+            window.__gtLastBackupRestore = {
+                ok: !!(result && result.ok),
+                code: result && result.code,
+                message: result && result.message,
+                counts: result && result.counts,
+                recoveredGuards: result && result.recoveredGuards,
+                storeErrors: result && result.storeErrors,
+                offerSafetyDownload: !!(result && result.offerSafetyDownload),
+                unchanged: JSON.stringify(beforeState) === JSON.stringify(afterState),
+                before: beforeState,
+                after: afterState,
+                saveBannerState: (function () {
+                    const banner = document.getElementById('save-status-banner');
+                    return banner ? banner.getAttribute('data-state') : null;
+                }())
+            };
+            return window.__gtLastBackupRestore;
+        }
+
+        function confirmBackupRestore() {
+            if (!backupRestore || !restoreSession || !restoreSession.prepared.confirmable) return;
+            const beforeState = snapshotLearnerState();
+            noteRestoreRelevantChange('apply');
+            if (restoreSession.stale) {
+                recordBackupRestore({
+                    ok: false,
+                    code: 'stale-confirmation',
+                    message: 'This confirmation is out of date. Nothing was changed.'
+                }, beforeState);
+                return;
+            }
+            restoreApplyInProgress = true;
+            let result;
+            try {
+                result = backupRestore.applyConfirmedRestore({
+                    sourceText: restoreSession.sourceText,
+                    filename: restoreSession.filename,
+                    currentDevice: currentRestoreDevice(),
+                    choices: restoreSession.choices,
+                    fingerprint: restoreSession.prepared.fingerprint,
+                    safetyDownloaded: restoreSession.safetyDownloaded,
+                    safetyAcknowledged: restoreSession.safetyAcknowledged,
+                    safetyEnvelope: restoreSession.safetyEnvelope,
+                    storage: window.localStorage
+                });
+                if (result.ok) {
+                    applyVerifiedRestoreToHost(result);
+                }
+            } finally {
+                restoreApplyInProgress = false;
+            }
+            if (!result.ok) {
+                recordBackupRestore(result, beforeState);
+                setRestoreStatus(result.message || 'Restore did not finish. Original data was not replaced.', 'error');
+                showBackupPreviewStatus(result.message || 'Restore did not finish.');
+                if (result.code === 'stale-confirmation') {
+                    restoreSession.stale = true;
+                    updateRestoreControls();
+                }
+                if (result.offerSafetyDownload && lastSafetyEnvelope) {
+                    const retryNote = document.getElementById('backup-preview-note');
+                    if (retryNote) {
+                        retryNote.textContent = (retryNote.textContent || '') +
+                            ' Use Download safety backup again to keep the pre-restore recovery file.';
+                    }
+                    const safetyBtn = document.getElementById('backup-preview-safety');
+                    if (safetyBtn) {
+                        safetyBtn.hidden = false;
+                        safetyBtn.disabled = false;
+                        safetyBtn.onclick = downloadLastSafetyEnvelope;
+                    }
+                }
+                if (result.code === 'rollback-failed' && result.storeErrors && saveFeedback) {
+                    Object.keys(result.storeErrors).forEach(function (id) {
+                        renderSaveStatus(id, saveFeedback.statusAfterAttempt({
+                            wrote: false,
+                            writeError: result.storeErrors[id]
+                        }));
+                    });
+                }
+                return;
+            }
+            recordBackupRestore(result, beforeState);
+            const countText = backupRestore.successCountsText(result.counts);
+            setRestoreStatus(countText, 'info');
+            showBackupPreviewStatus(countText);
+            const note = document.getElementById('backup-preview-note');
+            if (note) note.textContent = 'Restore finished. There is no upload or cross-device copy. Routine saves stay quiet.';
+            restoreSession = {
+                sourceText: restoreSession.sourceText,
+                filename: restoreSession.filename,
+                prepared: { confirmable: false },
+                choices: restoreSession.choices,
+                stale: true
+            };
+            updateRestoreControls();
         }
 
         function openBackupPreviewOverlay() {
@@ -4535,6 +5102,9 @@
 
         function closeBackupPreview() {
             invalidateBackupPreviewReads();
+            resetRestoreSession();
+            const safetyBtn = document.getElementById('backup-preview-safety');
+            if (safetyBtn) safetyBtn.onclick = downloadRestoreSafetyBackup;
             const overlay = document.getElementById('backup-preview-overlay');
             if (overlay) {
                 overlay.classList.remove('open');
@@ -4567,7 +5137,11 @@
                 unsavedStores: result.unsavedStores,
                 originalRawStores: result.originalRawStores,
                 ambiguousCount: result.ambiguousAnswers.count,
-                applyAvailable: result.applyAvailable,
+                applyAvailable: !!(restoreSession && restoreSession.prepared && restoreSession.prepared.confirmable),
+                restoreConfirmable: !!(restoreSession && restoreSession.prepared && restoreSession.prepared.confirmable),
+                restoreConflictCount: restoreSession && restoreSession.prepared && restoreSession.prepared.conflicts
+                    ? restoreSession.prepared.conflicts.length
+                    : 0,
                 selection: result.selection,
                 unknownDestinationStores: result.unknownDestinationStores || [],
                 hasUnknownDestinationComparison: !!result.hasUnknownDestinationComparison,
@@ -4590,7 +5164,8 @@
                 summary: summarizePreviewResult(result),
                 before: beforeState,
                 after: afterState,
-                unchanged: JSON.stringify(beforeState) === JSON.stringify(afterState)
+                unchanged: JSON.stringify(beforeState) === JSON.stringify(afterState),
+                restoreConfirmable: !!(restoreSession && restoreSession.prepared && restoreSession.prepared.confirmable)
             };
             return window.__gtLastBackupPreview;
         }
@@ -4602,6 +5177,7 @@
                 size: file.size,
                 type: file.type
             }, currentBackupInput());
+            beginRestoreSession(file, text, result);
             renderBackupPreview(result, file.name);
             showBackupPreviewStatus(backupPreview.previewStatusText(result));
             recordBackupPreview(result, file.name, beforeState);
@@ -5244,6 +5820,13 @@
             backupPreviewFile.addEventListener('change', onBackupFileSelected);
             backupPreviewFile.addEventListener('cancel', invalidateBackupPreviewReads);
         }
+        window.addEventListener('storage', function (event) {
+            if (!backupRestore) return;
+            const keys = backupRestore.STORE_KEYS;
+            if (!event.key || event.key === keys.answers || event.key === keys.completion || event.key === keys.reading) {
+                noteRestoreRelevantChange('storage');
+            }
+        });
 
         // Periodic save
         setInterval(() => {

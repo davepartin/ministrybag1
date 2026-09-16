@@ -107,4 +107,8 @@ echo "PASS: versioned backup envelope, counts, and partial-store checks."
 node scripts/test_backup_preview.js || fail "Backup preview checks failed."
 echo "PASS: backup validation, preview counts, conflicts, and rejection checks."
 
+# 14) Confirmed restore: conflicts, safety download, fingerprint, transactional writes.
+node scripts/test_backup_restore.js || fail "Backup restore checks failed."
+echo "PASS: confirmed restore, safety download, rollback, and stale-preview checks."
+
 echo "All foundation QA checks passed."
