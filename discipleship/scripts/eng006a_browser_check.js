@@ -147,7 +147,7 @@ function controlFits(box, viewport) {
     assert('lesson backup does not write completion storage', after.completion === before.completion);
     assert('lesson backup does not write reading storage', after.reading === before.reading);
     var lessonStatus = await page.locator('#backup-download-status').textContent();
-    assert('lesson backup status says local and not restore', lessonStatus.indexOf('local backup') !== -1 && lessonStatus.indexOf('Restore is not available yet') !== -1);
+    assert('lesson backup status says local and not restore', lessonStatus.indexOf('local backup') !== -1 && lessonStatus.indexOf('use Preview a backup') !== -1);
     await page.locator('#email-lesson-btn').waitFor();
     assert('email lesson control remains after backup', await page.locator('#email-lesson-btn').isVisible());
 

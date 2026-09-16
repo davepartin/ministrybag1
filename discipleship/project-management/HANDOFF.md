@@ -1,22 +1,37 @@
 # Resume here
 
-Updated September 12, 2026 after ENG-006b review REV-010 / PR #20. The board is [TASKS.md](TASKS.md); workflow is [PLAN.md](PLAN.md).
+Updated September 16, 2026 at the coordinator change (COORD-002). Last code checkpoint was ENG-005b / PR #24. The board is [TASKS.md](TASKS.md); workflow is [PLAN.md](PLAN.md).
+
+## Checkpoint, September 16 (REV-011)
+
+Verified integrated commit: `8dd3dc1` (PR #27, ENG-006c). ENG-006 and SEC-001 are DONE. REV-011 fixed a rollback gap and stale restore wording before merge; see [REV-011](logs/2026-09-16-REV-011-claude.md). All unit suites (restore 94), foundation QA and every browser check pass on the merged tree; foundation QA and the restore suite were rerun on main. Grok and ChatGPT/Codex have no further assignments.
+
+Next three priorities:
+1. DAVE-001: Dave reviews PR #17 (202-08, 202-09). Then repair the stale `202-09-devos` expectation in `scripts/eng001_browser_check.js` on the PR branch before integration.
+2. L-203-06 Faith at Work and School writing packet (1st/2nd/3rd Space framework), drafted by Claude unless Dave names another worker.
+3. UX-004 plain-language restore labels.
+
+## Coordinator change, September 16
+
+Claude (Cowork) is now the coordinator, replacing ChatGPT (Astra/Codex). Nothing on main changed for `discipleship/` between September 13 and 16. All unit suites and foundation QA pass on main, and PR #17 still merges cleanly with its checks passing. ENG-006c has not been started. See [COORD-002](logs/2026-09-16-COORD-002-claude.md). Next three priorities: DAVE-001 review of PR #17, then ENG-006c and SEC-001, then the L-203-06 writing packet.
+
+Later on September 16, Claude Code took the coordinator seat and pushed COORD-002. All unit suites, foundation QA and all ten Playwright browser checks pass on main `1ebb1f1`. PR #17 still merges cleanly, but `scripts/eng001_browser_check.js` fails on the merged tree because it still fills the retired `202-09-devos` field. That is a stale test, not a lesson defect; repair it on the PR branch after DAVE-001 so Dave's review head does not move. Dave assigned ENG-006c to Grokbot; the paste-ready prompt is directly below the ENG-006c packet. Grok Build has SEC-001a, a documentation-only credential inventory and removal plan; the `index.html` change waits for SEC-001b after ENG-006c reaches REVIEW. Its prompt is in the section below. See [COORD-003](logs/2026-09-16-COORD-003-claude.md).
 
 ## Current position
 
 - ENG-001 and ENG-003 are **DONE**. PRs #10 and #12 were independently reviewed; two missed edge cases were repaired in PR #13, merged as `915ba568`.
 - REV-001 preserved malformed/unreadable saved data through startup and later saves, and fixed real iframe shrink behavior. Evidence and exact checks: [review log](logs/2026-09-11-REV-001-codex.md).
 - ENG-002 / PR #11 is on main with passing asset checks. Status remains **REVIEW** for Dave's artwork and actual phone assessment.
-- **ENG-005, ENG-006a and ENG-006b are DONE.** PR #20 was independently reviewed twice, received the REV-010 edge corrections and merged as `1a9fe9f`. Validation and preview are read-only. ENG-006c is now cleared as a separate confirmed-restore packet; parent ENG-006 remains incomplete.
+- **ENG-005, ENG-005b, ENG-006a and ENG-006b are DONE.** Routine successful saves are now silent; only a real save failure opens the recovery banner. PR #24 merged as `64cfa9b`. ENG-006c is cleared as a separate confirmed-restore packet; parent ENG-006 remains incomplete.
 - Claude has finished the 202-08/09 handoff. Dave now reviews its pastoral wording and artwork, along with the ENG-002 artwork. These do not block ENG-006c.
 - EDIT-001 is complete: [201-08 benchmark proposal](reviews/201-08-benchmark-proposal.md) contains wording, source corrections and a short learner test. It is documentation only; L-201-08 approval and implementation remain pending.
-- Login/provider remains undecided. Do not implement the old Supabase proposal automatically.
+- Login/provider remains undecided. Dave's desired destination is Google sign-in or a separate account the learner creates. Use provider authentication rather than collecting a Google password directly. Firebase, Supabase or another provider will be chosen in DATA-001; do not implement the old Supabase proposal automatically.
 
 ## Active worker split, reported by Dave
 
-- Claude's **L-202-08/09 finishing pass is reviewed** at PR #17 head `a89e94e`; the lesson JSON and six lesson assets remain identical to reviewed ART-003 commit `6d3019b`. Both lessons and ART-003 remain REVIEW, unmerged for Dave's theology/art approval and pilot gates. Storage 47, lesson browser 20, foundation QA and 72 image references pass. Fresh phone/laptop checks cover art, diagrams and reduced motion; production compression remains PERF-001. [Evidence and prompts](logs/2026-09-12-ART-003-codex.md). Claude reports that its Obsidian copies and hosted preview are refreshed. Do not overwrite the new art.
+- Claude's **L-202-08/09 finishing pass is reviewed** at PR #17 head `6572477`. Commit `b7a4039` contains four Dave-approved review edits: a practical unmarried response in 8.3, narrower Genesis 15 covenant wording, a brief explanation of "Gentiles," and a concrete grace prayer. All question IDs and story artwork remain unchanged. The later coordinator commit only updates the lesson browser test for ENG-005b's quiet-save behavior. Both lessons and ART-003 remain REVIEW, unmerged for Dave's full theology/art approval and pilot gates. Storage 47, lesson browser 20, foundation QA and 72 image references pass. Production compression remains PERF-001. [Evidence and prompts](logs/2026-09-12-ART-003-codex.md). Do not overwrite the new art.
 
-- Grokbot works on a **different computer using GitHub**. ENG-006b is integrated. The next reserved packet is ENG-006c from current main on a new branch. It owns confirmed restore and related host/storage tests only. Keep lesson prose/IDs, Claude assets and the merged Grace widget out of this packet.
+- Grokbot works on a **different computer using GitHub**. ENG-006b is integrated. The next reserved packet is ENG-006c from current main, including PR #24's quiet-save behavior, on a new branch. It owns confirmed restore and related host/storage tests only. Keep lesson prose/IDs, Claude assets and the merged Grace widget out of this packet.
 - Grok Build completed **UX-001a and UX-001b**. PR #22 is reviewed and merged as `7495a03`, including a coordinator correction to native overview buttons and accessible definitions. The expanded browser suite passes 108 assertions; overview fits at 444px on phone and 478px on laptop. See [REV-007](logs/2026-09-12-REV-007-codex.md). Hold the wider Discuss implementation until shared app-code ownership is available. Do not change another worker's checkout.
 
 - Workers should read AGENTS.md and use separate task branches. Claude must preserve the repaired 202-09 IDs. Shared `index.html`, scripts and shared widgets belong to engineering unless explicitly reallocated. UX-001b is integrated; its temporary ownership exception is complete. Do not start another widget or host change without a new bounded assignment. Put a needed shared-code change in a task note rather than editing it concurrently.
@@ -29,17 +44,17 @@ Updated September 12, 2026 after ENG-006b review REV-010 / PR #20. The board is 
 
 - Failed-load guards and recovery controls are present. Versioned download and strict read-only preview are integrated. Confirmed restore, stale-preview protection and rollback remain ENG-006c. Never remove a guard merely to make saving appear successful.
 - Historical ambiguous answers remain in recovery metadata. ENG-006 must provide usable recovery/backup access without assigning them automatically to a lesson.
-- Credential remains in source/docs. Never reproduce its value; SEC-001 is a release blocker.
+- The free ESV key remains only in the root reading app and Git history, accepted by Dave. Never reproduce its value.
 - 202-08/09 have reviewed finishing drafts and generated art on PR #17; Dave, pilot and delivery gates remain pending. 203-06/08/09/10 need substantial writing; 301 placeholders and lesson approval gates remain on the board.
 - Real iPhone/Safari, cross-device sync and production deployment were not verified in this review.
 
 ## Last review checkpoint
 
-Verified integrated code commit: `1a9fe9f6e6d578498b86caeba684a57ee4f31657` (PR #20, ENG-006b and REV-010). Final preview evidence: 75 unit checks, 89 browser assertions, foundation QA, download 53, save 41, storage 44, export 40, recovery browser 20 and ENG-006a/ENG-004 browser regressions pass. No restore exists yet. UX-001b remains verified at `7495a03`. PR #17 lesson/art remains separately reviewed and unmerged. Inspect origin and pending PRs again at the next review.
+Verified integrated code commit: `64cfa9ba3085a9d9d99c7d6608f29eafef392fb4` (PR #24, ENG-005b). Routine successful saves are absent at 390px and 1280px, persisted values survive navigation/reload, and real failures keep recovery controls. Foundation QA, save 41, recovery browser 20, backup download 53, backup preview 75, storage 44, export 40 and ENG-004/005/006a/006b browser checks pass. No restore exists yet. PR #17 remains separately reviewed and unmerged at `6572477`; its four new lesson edits preserve every ID and its 20 lesson browser checks pass. Inspect origin and pending PRs again at the next review.
 
 ## Next coding packet: ENG-006c confirmed restore
 
-Start from current `origin/main` after PR #20 on a new branch. Read the ENG-006 row, `scripts/backup-format.md`, current download/preview helpers, failed-load guards and REV-010. Coordinator owns TASKS/HANDOFF. This packet may add restore-specific helper/tests, host controls and its own task log. Do not edit lessons, widgets, artwork, login/provider code or Discuss UI.
+Start from current `origin/main`, including PR #24, on a new branch. Read the ENG-006 row, `scripts/backup-format.md`, current download/preview helpers, failed-load guards and REV-010. Preserve ENG-005b's quiet routine-save behavior: restore success should not recreate a persistent green save banner, while restore errors must remain visible. Coordinator owns TASKS/HANDOFF. This packet may add restore-specific helper/tests, host controls and its own task log. Do not edit lessons, widgets, artwork, login/provider code or Discuss UI.
 
 - Only an exact version 1 file that passed the current validator may reach confirmation. Partial source backups remain preview-only for this first restore path. Preserve unknown keys as stored keys and retained ambiguity as unassigned metadata.
 - Add a clear review-and-confirm step. Backup-only values may be added, device-only values stay, matching values stay, and every conflicting value requires an explicit keep-device or use-backup choice. No preselected destructive choice, bulk silent overwrite or automatic ambiguity assignment. Render all imported strings as text.
@@ -51,11 +66,34 @@ Start from current `origin/main` after PR #20 on a new branch. Read the ENG-006 
 - Test actual downloaded source and safety files, full download-to-restore-to-reload round trips, empty/false/multiline/Unicode, unknown and ambiguous data, every conflict choice, source/destination partial states, stale preview triggers, quota/unavailable writes at each store, rollback success/failure, repeated restore and cancel. Use synthetic data and temporary downloads only. Verify keyboard focus, confirmation wording and 375/390/1280 layout. Rerun download, preview, save/recovery, export and answer-storage regressions.
 - Push a focused PR and stop at REVIEW. Parent ENG-006 remains incomplete until independent review. Do not merge, deploy or begin DATA-001.
 
-> ENG-006b is reviewed and merged in PR #20 at 1a9fe9f. Start ENG-006c from current origin/main on a new branch. Read the full packet in HANDOFF. Build explicit confirmed restore with a required pre-restore safety download, per-conflict choices, stale-preview rejection, all-store verification and rollback. Preserve failed-load guards, original raw evidence, unknown keys and unassigned ambiguity. Use synthetic data, add full round-trip and failure tests, push a PR, and stop at REVIEW. No lessons, widgets, Discuss UI, login, deployment or DATA-001. Coordinator owns TASKS/HANDOFF.
+### Prompt for Grokbot (paste as is)
+
+> You are Grokbot, the implementing worker for ENG-006c in Growing Together, the discipleship app in the `discipleship/` folder of https://github.com/davepartin/ministrybag1. Claude is now the coordinator.
+>
+> Setup: fetch origin and create a new branch `cursor/eng-006c-confirmed-restore` from current `origin/main` (at or after `aeb5676`). Do not reuse an old branch or checkout.
+>
+> Read, in order: `discipleship/AGENTS.md`, the section "Next coding packet: ENG-006c confirmed restore" in `discipleship/project-management/HANDOFF.md` (that packet is your full specification), the ENG-006 and ENG-006c rows in `project-management/TASKS.md`, `scripts/backup-format.md`, `scripts/backup-download.js`, `scripts/backup-preview.js`, `scripts/answer-storage.js`, `scripts/save-feedback.js`, the failed-load guard and backup preview code in `index.html`, and `project-management/logs/2026-09-12-REV-010-codex.md`.
+>
+> Build explicit confirmed restore on top of the ENG-006b preview: only an exact version 1 file that passes the current validator reaches confirmation; per-conflict keep-device or use-backup choices with nothing preselected; a required pre-restore safety download the learner acknowledges before Restore is enabled; a confirmation fingerprint that goes stale on any file, answer, navigation, preview, storage event or guard change; all three stores written as one transaction with verification reads and full rollback; failed-load guards cleared only after their raw evidence is in the safety download and the confirmed replacement verifies. Preserve unknown keys, unassigned ambiguity metadata and the quiet routine-save behavior from PR #24. Restore errors stay visible; success shows exact restored, kept and conflict counts without a persistent green banner.
+>
+> Scope: restore helper and its unit tests, the restore controls in `index.html`, a new browser check, `scripts/qa_foundation.sh` only to add your unit suite, and your own log `project-management/logs/2026-09-16-ENG-006c-grokbot.md`. Do not edit lesson JSON, widgets, images, login/provider code, Discuss UI, the Scripture/ESV fetch code (SEC-001 owns it), TASKS.md or HANDOFF.md.
+>
+> Tests: synthetic data and temporary downloads only. Cover real downloaded source and safety files, download to restore to reload round trips, empty/false/multiline/Unicode values, unknown and ambiguous data, every conflict choice, partial source and destination states, each stale-preview trigger, quota or unavailable writes at each store, rollback success and rollback failure, repeated restore and cancel. Check keyboard focus, confirmation wording and layout at 375, 390 and 1280 pixels. From `discipleship/`, rerun every `node scripts/test_*.js`, `bash scripts/qa_foundation.sh` and every `scripts/*browser_check.js` (Playwright, served with `python3 -m http.server 8765`). Report exact counts and anything you could not run.
+>
+> Finish: stage only your scoped paths, commit with `[ENG-006c]` in the message, push the branch, open a PR titled "ENG-006c: confirmed restore (REVIEW)", and stop at REVIEW. Do not merge, deploy, force push or start DATA-001. Final reply to Dave: outcome, files, checks with counts, remaining issue, branch, commit and PR number. No em dashes in anything you write.
+
+
+## Worker availability, September 16
+
+Dave's Grok and ChatGPT usage is nearly exhausted. ENG-006c (Grokbot) is the last packet for Grok or ChatGPT/Codex; do not assign them further work. Claude reviews ENG-006c. If Grokbot stops before finishing, it should push its branch and mark its log PAUSED, and Claude resumes from that branch. Later packets, including SEC-001b, default to Claude unless Dave names Cursor or Gemini.
+
+## SEC-001 status, September 16
+
+SEC-001 is DONE. SEC-001a (Grok Build inventory) merged as `1fa5206`; SEC-001b merged as `3661ac8` with Dave's go-ahead. The 101 John reading cards load bundled World English Bible text, the ESV API and key are gone from `discipleship/`, and the duplicate reading app copy is deleted. Dave keeps the root `dailybiblereading/` app as is and accepted the free key's remaining exposure there and in Git history. Do not alter the Bible text. ENG-006c touches different lines of `index.html` and should rebase cleanly onto `3661ac8`.
 
 ## Claude: handoff complete; awaiting Dave's review
 
-Claude's latest PR #17 head is `a89e94e0f219984faaf83508e96dd91df8107a75`, still open and unmerged. Coordinator compared both lesson JSON files, both diagrams and all four story PNGs against reviewed ART-003 commit `6d3019b`: no differences. The final Claude commit adds only its sync log after normally merging main. No repeated lesson editing is needed.
+Claude's latest PR #17 head is `65724774db2eacde319c1e8380c194c14b3d038d`, still open and unmerged. Claude's `b7a4039` applies four review edits Dave approved in a separate review: a practical unmarried response in 8.3, narrower Genesis 15 covenant wording, a brief explanation of "Gentiles," and a concrete prayer under Grace. Every question ID is unchanged. The story artwork is unchanged from ART-003. Shared main through PR #24 is merged, and the coordinator updated the one lesson-browser assertion that still expected the removed Saved banner. The full 20 lesson browser checks and foundation QA now pass on this exact tree.
 
 Claude reports the Obsidian manuscripts/summaries and the same phone preview now include all artwork, with lightweight JPEG derivatives for the preview and a five-item decision box. These external copies were not independently inspected by the coordinator in this checkpoint. Claude reports 47 storage checks and foundation QA passing on its merged tree. No new coordinator runtime test was needed for the unchanged lesson/assets. Preview compression does not resolve PERF-001 for the production app's PNGs.
 

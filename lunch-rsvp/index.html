@@ -56,6 +56,7 @@
   .details { background: var(--gray-light); padding: 16px 26px; font-size: 15px; line-height: 1.65; border-bottom: 3px solid var(--blue); }
   .details b { color: var(--navy); }
   .details a { color: var(--steel); }
+  .details .pending { color: var(--slate); }
   .body { padding: 22px 26px 28px; }
   .q { font-size: 16px; font-weight: 800; color: var(--navy); margin-bottom: 10px; }
   .choice { display: flex; gap: 8px; margin-bottom: 18px; }
@@ -99,6 +100,7 @@
   .submit:hover { background: #0b1f3a; }
   .submit:disabled { background: var(--gray-mid); cursor: default; }
   .err { color: var(--red); font-size: 14px; margin-top: 10px; display: none; font-weight: 600; }
+  .wait { color: var(--slate); font-size: 14px; margin-top: 10px; display: none; font-weight: 600; text-align: center; }
   .done { text-align: center; padding: 46px 30px 50px; display: none; }
   .done .big { font-size: 52px; }
   .done h2 { color: var(--navy); font-size: 24px; margin: 12px 0 8px; }
@@ -175,7 +177,7 @@
     <h1 id="evTitle">SendKC Planter Lunch</h1>
     <button class="admin-open" id="adminOpen" type="button" aria-label="Edit lunch details" title="Edit lunch details">&#9881;</button>
   </div>
-  <div class="details" id="evDetails"></div>
+  <div class="details" id="evDetails" aria-live="polite"><span class="pending">Loading event details…</span></div>
 
   <div class="body" id="form">
     <div class="q">Are you coming?</div>
@@ -195,7 +197,8 @@
         <button type="button" id="plus">+</button>
       </div>
     </div>
-    <button class="submit" id="submit">Send my RSVP</button>
+    <button class="submit" id="submit" disabled>Send my RSVP</button>
+    <div class="wait" id="wait">Hang tight — this can take up to 20 seconds. Please keep this page open.</div>
     <div class="err" id="err"></div>
   </div>
 
@@ -274,7 +277,8 @@
 </div>
 
 <script>
-/* Fallback details keep the page useful if Google is briefly unavailable. */
+/* Placeholder only (prefills the editor on localhost). Never rendered for guests:
+   the page shows a loading or error message until live details arrive from ENDPOINT. */
 let EVENT = {
   title: "SendKC Planter Lunch — July",
   date: "2026-07-23",
@@ -286,6 +290,10 @@ let EVENT = {
   paragraph: "Monthly Send Network KC planter lunch — fellowship, a shared meal, a short talk, table discussion, and prayer. Spouses welcome.",
 };
 const ENDPOINT = "https://script.google.com/macros/s/AKfycby1tzgv6ANAHWlNt6JCxsknP11hmu9vT9aijgXX3jjLrshhBZjXIVFQo5v97wWTeczE/exec";
+/* Apps Script usually answers in about a second, but cold or busy starts can take 15s+. */
+const EVENT_TIMEOUT_MS = 30000;        /* give up on a single request after this long */
+const EVENT_BACKUP_AFTER_MS = 8000;    /* on page load, send a second request if the first is this slow */
+const CONTACT_LINE = "Questions? Text Dave Partin at (913) 901-7581.";
 
 const $ = id => document.getElementById(id);
 
@@ -330,13 +338,18 @@ function renderEvent() {
     `Please RSVP by <b>${shortDate(EVENT.rsvpBy)}</b> so we can plan the food well.` +
     (blurb ? `<div class="blurb">${escapeHtml(blurb)}</div>` : "");
 }
+function renderLoadError() {
+  $("evDetails").innerHTML =
+    `<b>We couldn't load the event details right now.</b><br>` +
+    `Please <a href="">reload the page</a> to try again. ${escapeHtml(CONTACT_LINE)}`;
+}
 
 let eventServiceReady = false;
 function loadEventConfig() {
   return new Promise((resolve, reject) => {
     const callback = "__loadLunchEvent" + Date.now() + Math.floor(Math.random() * 10000);
     const script = document.createElement("script");
-    const timer = setTimeout(() => finish(new Error("Event service timed out")), 7000);
+    const timer = setTimeout(() => finish(new Error("Event service timed out")), EVENT_TIMEOUT_MS);
     function cleanup() { clearTimeout(timer); delete window[callback]; script.remove(); }
     function finish(error, payload) { cleanup(); error ? reject(error) : resolve(payload); }
     window[callback] = payload => {
@@ -355,8 +368,25 @@ function loadEventConfig() {
   });
 }
 
-renderEvent();
-loadEventConfig().catch(() => { /* fallback details stay visible; editor stays hidden */ });
+/* Keep the first request open; if it is slow or fails, send a second one alongside it
+   and use whichever answers first. The submit button stays disabled until real details
+   arrive, so RSVPs never go to a stale event. */
+function loadEventConfigPatiently() {
+  return new Promise((resolve, reject) => {
+    let settled = false, secondStarted = false, failures = 0;
+    const backup = setTimeout(startSecond, EVENT_BACKUP_AFTER_MS);
+    function succeeded() { settled = true; clearTimeout(backup); resolve(); }
+    function failed() { if (++failures === 2) reject(); else startSecond(); }
+    function startSecond() {
+      if (settled || secondStarted) return;
+      secondStarted = true;
+      $("evDetails").innerHTML = `<span class="pending">Still loading event details…</span>`;
+      loadEventConfig().then(succeeded, failed);
+    }
+    loadEventConfig().then(succeeded, failed);
+  });
+}
+loadEventConfigPatiently().then(() => { $("submit").disabled = false; }, renderLoadError);
 if (["localhost", "127.0.0.1"].includes(window.location.hostname)) {
   eventServiceReady = true;
   $("adminOpen").style.display = "block";
@@ -384,6 +414,7 @@ $("submit").addEventListener("click", async () => {
   if (name.length < 2) { err.textContent = "Please add your name so Dave knows it's you."; err.style.display = "block"; return; }
   $("submit").disabled = true;
   $("submit").textContent = "Sending…";
+  $("wait").style.display = "block";
   const payload = {
     action: "rsvp",
     event: eventId(),
@@ -401,6 +432,7 @@ $("submit").addEventListener("click", async () => {
   } catch (e) {
     $("submit").disabled = false;
     $("submit").textContent = "Send my RSVP";
+    $("wait").style.display = "none";
     err.textContent = "Hmm, that didn't go through. Try again, or just text Dave: (913) 901-7581.";
     err.style.display = "block";
   }
@@ -546,7 +578,7 @@ $("adminSave").addEventListener("click", async () => {
   }
   $("adminSave").disabled = true;
   $("adminSave").textContent = "Saving…";
-  status.textContent = "Updating the page…";
+  status.textContent = "Saving… Google can take up to 30 seconds. Please keep this open.";
   try {
     await fetch(ENDPOINT, {
       method: "POST", mode: "no-cors", headers: { "Content-Type": "text/plain;charset=utf-8" },

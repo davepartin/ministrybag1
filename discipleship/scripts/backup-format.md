@@ -104,10 +104,10 @@ Preview describes a future restore. It does not apply one.
 - Backup-only known keys: would be added from the file, only when the destination store is readable (`loadState` is `ok`, or an in-memory snapshot omitted loadState).
 - Device-only keys: would stay on the device, only for readable destination stores.
 - Matching values: no change, only for readable destination stores.
-- Conflicting values: held for a later choice. The proposed default is keep the current device value, only for readable destination stores.
+- Conflicting values: each needs an explicit keep-device or use-backup choice before restore; nothing is preselected.
 - If a destination store is `malformed` or `unavailable`, comparison against stored data is unknown. The preview may inspect available in-memory values as limited evidence, but must not claim zero conflicts or backup-only adds as if stored matches were absent. Write guards and destination `originalRaw` stay in place.
 - Unknown keys: keep as stored unknown keys, no lesson assignment.
 - Ambiguous answers: remain retained metadata with candidate lessons, never auto-assigned.
 - `originalRaw`: remain evidence only.
 
-Applying a backup is not available yet (ENG-006c).
+Confirmed restore (ENG-006c, `scripts/backup-restore.js`) accepts only a complete version 1 file that passes this validator. It requires every conflict choice, a pre-restore safety download the learner acknowledges and a fresh confirmation fingerprint, writes all three stores with verification reads, and rolls back every changed store if any write or verification fails.

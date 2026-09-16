@@ -238,12 +238,12 @@
                 ? 'Captured original recovery data is included; inaccessible data is not.'
                 : 'No original recovery copy could be read.';
             return 'Downloaded a partial local backup. At least one store could not be read. ' +
-                recovery + ' Existing browser data was not replaced. Restore is not available yet.';
+                recovery + ' Existing browser data was not replaced. To restore it later, use Preview a backup.';
         }
         if (envelope.includesUnsavedEdits) {
-            return 'Downloaded a local backup that includes unsaved edits from this page. The file stays on this device. Restore is not available yet.';
+            return 'Downloaded a local backup that includes unsaved edits from this page. The file stays on this device. To restore it later, use Preview a backup.';
         }
-        return 'Downloaded a local backup of answers, completion and reading notes. The file stays on this device. Restore is not available yet.';
+        return 'Downloaded a local backup of answers, completion and reading notes. The file stays on this device. To restore it later, use Preview a backup.';
     }
 
     function buildBackupEnvelope(input) {

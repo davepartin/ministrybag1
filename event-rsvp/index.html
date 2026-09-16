@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chiefs Game for Planters — RSVP</title>
+<meta name="description" content="Send Network KC is hosting planters at Arrowhead for Monday Night Football, December 21.">
+<link rel="icon" type="image/svg+xml" href="/ministrybagsatchel1.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<meta property="og:title" content="Chiefs Game for Planters — RSVP" />
+<meta property="og:description" content="Monday Night Football at Arrowhead, December 21. Our thank you to KC planters. Tap to RSVP." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://ministrybag.com/event-rsvp/" />
+<meta property="og:image" content="https://ministrybag.com/event-rsvp/chiefs-patriots.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://ministrybag.com/event-rsvp/chiefs-patriots.png" />
+<style>
+  :root {
+    --navy: #10294C;
+    --blue: #18AEE1;
+    --green: #50B849;
+    --amber: #FBAC33;
+    --steel: #3C7CA0;
+    --gray-light: #EBECED;
+    --gray-mid: #ADB3B8;
+    --slate: #5C6670;
+    --red: #D0453E;
+    --chiefs: #E31837;
+    --ink: #10294C;
+    --radius: 14px;
+    --display: "Barlow Condensed", "Arial Narrow", Impact, sans-serif;
+    --body: "Barlow", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: var(--body);
+    background: linear-gradient(160deg, var(--navy) 0%, #163662 60%, #1d4478 100%);
+    /* flex-start, not center: the card is taller than any viewport, and centering
+       overflowing content makes the page open partway down (or clip the top). */
+    min-height: 100vh; display: flex; align-items: flex-start; justify-content: center;
+    padding: 20px; color: var(--ink);
+  }
+  .card {
+    background: #fff; width: 100%; max-width: 460px;
+    border-radius: var(--radius); overflow: hidden;
+    box-shadow: 0 18px 50px rgba(6, 18, 38, .45);
+  }
+
+  /* Hero */
+  .hero { position: relative; background: var(--navy); line-height: 0; }
+  /* aspect-ratio reserves the image's space before it loads, so nothing jumps */
+  .hero img { width: 100%; display: block; aspect-ratio: 456 / 336; max-width: 100%; }
+  .hero .banner {
+    position: absolute; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(to top, rgba(16,41,76,.96) 30%, rgba(16,41,76,0));
+    padding: 30px 22px 12px; line-height: 1.25;
+  }
+  .hero .when {
+    color: #fff; font-size: 13px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase;
+  }
+  .hero .when span { color: var(--amber); }
+
+  .head { background: var(--navy); padding: 16px 26px 20px; }
+  .head img.logo { width: 170px; max-width: 55%; display: block; }
+  .head .kicker { margin-top: 14px; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--blue); font-weight: 800; }
+  .head h1 {
+    font-family: var(--display); font-weight: 700; font-size: 41px;
+    margin-top: 2px; line-height: .97; color: #fff; text-transform: uppercase;
+  }
+
+  /* Gameday band — the key facts as a ticket, not a list of lines */
+  .gameday { background: #0B1F3C; padding: 15px 20px 18px; border-top: 3px solid var(--blue); }
+  .tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 9px; }
+  .tile {
+    background: rgba(255,255,255,.055); border: 1px solid rgba(255,255,255,.13);
+    border-radius: 11px; padding: 11px 6px 12px; text-align: center;
+  }
+  .tile .lbl {
+    display: block; font-size: 10px; font-weight: 700; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--blue); margin-bottom: 4px;
+  }
+  .tile .val {
+    display: block; font-family: var(--display); font-weight: 700; font-size: 26px;
+    line-height: .95; color: #fff; text-transform: uppercase; white-space: nowrap;
+  }
+  .tile .val em { font-style: normal; font-size: 15px; color: rgba(255,255,255,.6); }
+  .tile .sub { display: block; font-size: 11px; font-weight: 600; color: rgba(255,255,255,.42); margin-top: 3px; }
+  .tile.hot { background: rgba(251,172,51,.12); border-color: rgba(251,172,51,.42); }
+  .tile.hot .lbl { color: var(--amber); }
+
+  .venue {
+    display: block; margin-top: 9px; padding: 11px 14px; text-decoration: none;
+    background: rgba(255,255,255,.055); border: 1px solid rgba(255,255,255,.13); border-radius: 11px;
+  }
+  .venue:hover { background: rgba(255,255,255,.1); }
+  .venue .vname {
+    display: block; font-family: var(--display); font-weight: 700; font-size: 22px;
+    color: #fff; text-transform: uppercase; line-height: 1.05;
+  }
+  .venue .vaddr { display: block; font-size: 13px; color: var(--blue); margin-top: 1px; }
+
+  .details { background: var(--gray-light); padding: 16px 26px 18px; font-size: 15px; line-height: 1.65; border-bottom: 3px solid var(--blue); }
+  .details b { color: var(--navy); }
+  .details a { color: var(--steel); }
+  .details .blurb { color: var(--slate); font-size: 14.5px; line-height: 1.65; }
+  .details .deadline {
+    margin-top: 11px; background: #fff; border-left: 4px solid var(--chiefs);
+    padding: 8px 12px; border-radius: 0 8px 8px 0; font-size: 14px; color: var(--navy); font-weight: 700;
+  }
+  .details .deadline em { font-style: normal; font-weight: 800; }
+
+  .body { padding: 22px 26px 28px; }
+  .q {
+    font-family: var(--display); font-weight: 700; font-size: 26px;
+    color: var(--navy); margin-bottom: 12px; text-transform: uppercase; line-height: 1;
+  }
+  .choice { display: flex; gap: 10px; margin-bottom: 4px; }
+  .choice button {
+    flex: 1; padding: 18px 4px; cursor: pointer; border-radius: 12px;
+    border: 2px solid var(--gray-mid); background: #fff; transition: all .15s;
+    display: flex; flex-direction: column; align-items: center; gap: 3px;
+  }
+  .choice .mark { font-size: 27px; font-weight: 900; line-height: 1; }
+  .choice .word { font-family: var(--display); font-size: 21px; font-weight: 700; text-transform: uppercase; line-height: 1; }
+  .choice .yes { color: var(--green); border-color: var(--green); }
+  .choice .no  { color: var(--red);   border-color: var(--red); }
+  .choice .yes.sel { background: var(--green); color: #fff; }
+  .choice .no.sel  { background: var(--red);   color: #fff; }
+
+  label { display: block; font-size: 13px; font-weight: 800; color: var(--navy); margin: 18px 0 5px; letter-spacing: .03em; text-transform: uppercase; }
+  input[type=text], input[type=tel], input[type=email] {
+    width: 100%; padding: 13px 14px; font-size: 16px; font-family: inherit;
+    border: 2px solid var(--gray-mid); border-radius: 10px; outline: none;
+    background: #fbfcfd; color: var(--ink); -webkit-appearance: none; appearance: none;
+  }
+  input:focus { border-color: var(--blue); background: #fff; }
+  .hint { font-size: 13px; color: var(--slate); margin-top: 8px; line-height: 1.45; }
+  #carpoolBox { display: none; }
+
+  /* Carpool pickup — three tappable options */
+  .carpool-list { display: grid; gap: 9px; }
+  .carpool-opt {
+    display: flex; align-items: center; gap: 13px; cursor: pointer; margin: 0;
+    padding: 15px 16px; border: 2px solid var(--gray-mid); border-radius: 12px;
+    background: #fbfcfd; transition: border-color .15s, background .15s;
+    font-size: 16px; font-weight: 700; color: var(--ink);
+    text-transform: none; letter-spacing: 0;
+  }
+  .carpool-opt input { position: absolute; opacity: 0; width: 0; height: 0; }
+  .carpool-opt .dot {
+    flex: none; width: 23px; height: 23px; border-radius: 50%; position: relative;
+    border: 2px solid var(--gray-mid); background: #fff; transition: border-color .15s;
+  }
+  .carpool-opt.sel { border-color: var(--blue); background: #ecf8fd; }
+  .carpool-opt.sel .dot { border-color: var(--blue); }
+  .carpool-opt.sel .dot::after {
+    content: ""; position: absolute; inset: 3px; border-radius: 50%; background: var(--blue);
+  }
+  .carpool-opt.focus { box-shadow: 0 0 0 3px rgba(24,174,225,.35); }
+
+  .submit {
+    width: 100%; margin-top: 24px; padding: 16px; cursor: pointer;
+    font-family: var(--display); font-size: 25px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: .015em; line-height: 1;
+    background: var(--navy); color: #fff; border: none; border-radius: var(--radius);
+  }
+  .submit:hover { background: #0b1f3a; }
+  .submit:disabled { background: var(--gray-mid); cursor: default; }
+  .err { color: var(--red); font-size: 14px; margin-top: 10px; display: none; font-weight: 600; }
+
+  .done { text-align: center; padding: 44px 30px 48px; display: none; }
+  .done .big { font-size: 52px; }
+  .done h2 {
+    font-family: var(--display); font-weight: 700; font-size: 32px;
+    color: var(--navy); margin: 10px 0 8px; text-transform: uppercase; line-height: 1;
+  }
+  .done p { color: var(--slate); font-size: 15px; line-height: 1.6; }
+  .verify {
+    display: none; margin-top: 18px; padding: 11px 14px; border-radius: 10px;
+    font-size: 14px; line-height: 1.5; font-weight: 600; text-align: left;
+  }
+  .verify.checking { display: block; background: var(--gray-light); color: var(--slate); }
+  .verify.ok { display: block; background: #eef8ec; color: #2c6b28; border: 1px solid #b9dfb4; }
+  .verify.warn { display: block; background: #fff6e8; color: #8a5a10; border: 1px solid #f3d29a; }
+  .verify a { color: inherit; font-weight: 800; }
+  .done .cal {
+    display: inline-block; margin-top: 18px; padding: 12px 22px; border-radius: 10px;
+    background: var(--gray-light); color: var(--navy); font-weight: 800; text-decoration: none; font-size: 15px;
+    border: 1px solid var(--gray-mid);
+  }
+  .foot { text-align: center; font-size: 12.5px; color: var(--slate); padding: 0 26px 22px; line-height: 1.5; }
+  .foot a { color: var(--steel); text-decoration: none; font-weight: 700; }
+
+  @media (max-width: 480px) {
+    body { padding: 8px; align-items: flex-start; }
+    .hero .banner { padding: 26px 18px 10px; }
+    .hero .when { font-size: 12px; }
+    .head { padding: 12px 18px 14px; }
+    .head img.logo { width: 132px; }
+    .head .kicker { margin-top: 10px; font-size: 11px; }
+    .head h1 { font-size: 33px; }
+    .gameday { padding: 12px 14px 14px; }
+    .tiles { gap: 7px; }
+    .tile { padding: 9px 3px 10px; border-radius: 9px; }
+    .tile .lbl { font-size: 8.5px; letter-spacing: .07em; }
+    .tile .val { font-size: 21px; }
+    .tile .val em { font-size: 13px; }
+    .tile .sub { font-size: 10px; }
+    .venue { padding: 9px 12px; border-radius: 9px; }
+    .venue .vname { font-size: 19px; }
+    .venue .vaddr { font-size: 12px; }
+    .details { padding: 12px 18px 14px; font-size: 14px; line-height: 1.55; }
+    .details .blurb { font-size: 13.5px; }
+    .body { padding: 16px 18px 20px; }
+    .q { font-size: 23px; margin-bottom: 10px; }
+    .choice button { padding: 15px 4px; }
+    .choice .mark { font-size: 24px; }
+    .choice .word { font-size: 19px; }
+    label { margin: 14px 0 4px; font-size: 12px; }
+    .submit { margin-top: 18px; padding: 14px; font-size: 22px; }
+    .foot { padding: 0 18px 14px; }
+  }
+</style>
+</head>
+<body>
+<div class="card">
+
+  <div class="hero">
+    <img src="chiefs-patriots.png" width="456" height="336" alt="Kansas City Chiefs vs New England Patriots">
+    <div class="banner">
+      <div class="when">Monday Night Football &middot; <span>Chiefs vs Patriots</span></div>
+    </div>
+  </div>
+
+  <div class="head">
+    <img class="logo" src="sn-logo-white.png" alt="Send Network">
+    <div class="kicker">SendKC</div>
+    <h1>Chiefs Game for Planters</h1>
+  </div>
+
+  <div class="gameday">
+    <div class="tiles">
+      <div class="tile">
+        <span class="lbl">Date</span>
+        <span class="val">Dec 21</span>
+        <span class="sub">Monday</span>
+      </div>
+      <div class="tile hot">
+        <span class="lbl">Carpools leave</span>
+        <span class="val">4:00 <em>PM</em></span>
+        <span class="sub">Be on time</span>
+      </div>
+      <div class="tile">
+        <span class="lbl">Kickoff</span>
+        <span class="val">8:15 <em>PM</em></span>
+        <span class="sub">Arrowhead</span>
+      </div>
+    </div>
+    <a class="venue" href="https://maps.google.com/?q=1%20Arrowhead%20Dr%2C%20Kansas%20City%2C%20MO%2064129" target="_blank" rel="noopener">
+      <span class="vname">Arrowhead Stadium</span>
+      <span class="vaddr">1 Arrowhead Dr, Kansas City, MO 64129</span>
+    </a>
+  </div>
+
+  <div class="details">
+    <div class="blurb">
+      Planters, we want you at Arrowhead. Send Network KC is hosting you for Monday Night Football as a simple thank you for a year of pouring yourselves out for your neighborhoods. We'll carpool from Overland Park, North Kansas City, and Raytown, and Send Network will cover your food at the concessions. Praying for a Chiefs win and a December warm front.
+    </div>
+    <div class="deadline">Tickets are limited &mdash; <em>lead planter only</em>. Please RSVP by <em>Sunday, November 1</em>.</div>
+  </div>
+
+  <div class="body" id="form">
+    <div class="q">Can you make it?</div>
+    <div class="choice">
+      <button type="button" class="yes" id="btnYes"><span class="mark">&#10003;</span><span class="word">I'm in</span></button>
+      <button type="button" class="no" id="btnNo"><span class="mark">&#10005;</span><span class="word">Can't make it</span></button>
+    </div>
+
+    <label for="name">Your name</label>
+    <input type="text" id="name" autocomplete="name" placeholder="First and last name">
+
+    <div id="carpoolBox">
+      <label for="phone">Cell phone</label>
+      <input type="tel" id="phone" inputmode="tel" autocomplete="tel" placeholder="(816) 555-0123">
+      <div class="hint">Your ticket gets texted to this number, so double-check it.</div>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" inputmode="email" autocomplete="email" placeholder="you@church.org">
+      <div class="hint">We'll send a confirmation here so you know your RSVP went through.</div>
+
+      <label id="carpoolHeading">Which carpool will you ride with?</label>
+      <div class="carpool-list" role="radiogroup" aria-labelledby="carpoolHeading">
+        <label class="carpool-opt"><input type="radio" name="carpool" value="Overland Park"><span class="dot"></span><span>Overland Park</span></label>
+        <label class="carpool-opt"><input type="radio" name="carpool" value="North Kansas City"><span class="dot"></span><span>North Kansas City</span></label>
+        <label class="carpool-opt"><input type="radio" name="carpool" value="Raytown"><span class="dot"></span><span>Raytown</span></label>
+      </div>
+      <div class="hint">All three carpools roll out at 4:00 PM.</div>
+    </div>
+
+    <button class="submit" id="submit">Send my RSVP</button>
+    <div class="err" id="err"></div>
+  </div>
+
+  <div class="done" id="done">
+    <div class="big" id="doneEmoji">&#127944;</div>
+    <h2 id="doneTitle">You're in!</h2>
+    <p id="doneMsg"></p>
+    <div class="verify" id="verify"></div>
+    <a class="cal" id="calLink" target="_blank" rel="noopener">Add to calendar</a>
+  </div>
+
+  <div class="foot">Questions? Text Matt Marrs at <a href="sms:+18168101420">(816) 810-1420</a>.</div>
+</div>
+
+<script>
+/* Details are baked into the HTML above — nothing loads from Google on page open,
+   so the page is instant. RSVPs still post to the same Google Sheet.
+   To change the event, edit the HTML above and the EVENT block below. */
+const EVENT = {
+  id: "chiefs-game-for-planters-2026-12-21",
+  title: "Chiefs Game for Planters",
+  date: "2026-12-21",
+  startTime: "16:00",
+  /* Not shown on the page — only used to give the "Add to calendar" entry a length. */
+  endTime: "23:30",
+  place: "Arrowhead Stadium",
+  address: "1 Arrowhead Dr, Kansas City, MO 64129",
+};
+const ENDPOINT = "https://script.google.com/macros/s/AKfycby1tzgv6ANAHWlNt6JCxsknP11hmu9vT9aijgXX3jjLrshhBZjXIVFQo5v97wWTeczE/exec";
+
+/* Always open at the top — don't let the browser restore a previous scroll position. */
+if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+window.addEventListener("load", () => window.scrollTo(0, 0));
+
+const $ = id => document.getElementById(id);
+let choice = null;
+
+/* Require a real first AND last name, not just "Dave". */
+function nameParts(raw) {
+  return raw.trim().replace(/\s+/g, " ").split(" ").filter(Boolean);
+}
+function isFullName(raw) {
+  const parts = nameParts(raw);
+  return parts.length >= 2 && parts[0].length >= 2 && parts[parts.length - 1].length >= 2;
+}
+
+/* Store phones in one tidy shape so the sheet column stays readable. */
+function formatPhone(digits) {
+  const d = digits.length === 11 && digits[0] === "1" ? digits.slice(1) : digits;
+  if (d.length === 10) return "(" + d.slice(0, 3) + ") " + d.slice(3, 6) + "-" + d.slice(6);
+  return digits;
+}
+
+function pick(val) {
+  choice = val;
+  $("btnYes").classList.toggle("sel", val === "YES");
+  $("btnNo").classList.toggle("sel", val === "NO");
+  $("carpoolBox").style.display = (val === "YES") ? "block" : "none";
+}
+$("btnYes").addEventListener("click", () => pick("YES"));
+$("btnNo").addEventListener("click", () => pick("NO"));
+
+/* Clear a validation message as soon as they start fixing it */
+["name", "phone", "email"].forEach(id =>
+  $(id).addEventListener("input", () => { $("err").style.display = "none"; }));
+
+/* Carpool pickup: highlight the chosen option */
+const carpoolInputs = [...document.querySelectorAll('input[name="carpool"]')];
+function carpoolValue() {
+  const hit = carpoolInputs.find(i => i.checked);
+  return hit ? hit.value : "";
+}
+carpoolInputs.forEach(input => {
+  input.addEventListener("change", () => {
+    carpoolInputs.forEach(i => i.closest(".carpool-opt").classList.toggle("sel", i.checked));
+    $("err").style.display = "none";
+  });
+  input.addEventListener("focus", () => input.closest(".carpool-opt").classList.add("focus"));
+  input.addEventListener("blur", () => input.closest(".carpool-opt").classList.remove("focus"));
+});
+
+$("submit").addEventListener("click", async () => {
+  const name = nameParts($("name").value).join(" ");
+  const err = $("err");
+  const fail = msg => { err.textContent = msg; err.style.display = "block"; err.scrollIntoView({ block: "nearest", behavior: "smooth" }); };
+  err.style.display = "none";
+
+  if (!choice) return fail("Please tap “I'm in” or “Can't make it” first.");
+  if (!name) return fail("Please add your first and last name.");
+  if (!isFullName(name)) return fail("Please enter both your first and last name — we need it for the ticket.");
+
+  const digits = $("phone").value.replace(/\D/g, "");
+  const email = $("email").value.trim();
+  if (choice === "YES") {
+    if (!digits) return fail("Please add your cell number so we can text you your ticket.");
+    if (digits.length < 10 || digits.length > 11) return fail("That cell number doesn't look right — please enter 10 digits.");
+    if (!email) return fail("Please add your email so we can send you a confirmation.");
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) return fail("That email doesn't look right — please check it.");
+    if (!carpoolValue()) return fail("Please choose which carpool you'll ride with.");
+  }
+
+  if (navigator.onLine === false) return fail("You look offline right now. Reconnect and tap Send again.");
+
+  $("submit").disabled = true;
+  $("submit").textContent = "Sending…";
+  const payload = {
+    action: "rsvp",
+    kind: "event",
+    event: EVENT.id,
+    eventTitle: EVENT.title,
+    name: name,
+    coming: choice,
+    count: choice === "YES" ? 1 : 0,
+    answer: choice === "YES" ? carpoolValue() : "",
+    phone: choice === "YES" ? formatPhone(digits) : "",
+    email: choice === "YES" ? email : "",
+    note: "",
+  };
+  if (sendRsvp(payload)) {
+    showDone(name);
+  } else {
+    $("submit").disabled = false;
+    $("submit").textContent = "Send my RSVP";
+    fail("Hmm, that didn't go through. Try again, or text Matt Marrs at (816) 810-1420.");
+  }
+});
+
+/*
+ * Hand the RSVP to the browser and move on — never make anyone watch a spinner.
+ *
+ * Google Apps Script can take ten seconds to wake up, and because this is a
+ * cross-origin no-cors post we could never read its reply anyway. So awaiting it
+ * bought a long wait and zero information. sendBeacon queues the POST with the
+ * browser, which delivers it in the background and keeps going even if the page
+ * is closed the instant after — more reliable than the old awaited fetch, not less.
+ */
+/*
+ * Second safety net. The beacon above is fire-and-forget, so once the screen
+ * shows we quietly ask the sheet whether the row really landed and say so
+ * plainly either way. Nobody is left guessing.
+ */
+function askServer(action, params) {
+  return new Promise((resolve, reject) => {
+    const cb = "__cb" + Date.now() + Math.floor(Math.random() * 100000);
+    const s = document.createElement("script");
+    const timer = setTimeout(() => finish(new Error("timeout")), 12000);
+    function finish(err, payload) {
+      clearTimeout(timer); delete window[cb]; s.remove();
+      err ? reject(err) : resolve(payload);
+    }
+    window[cb] = p => finish(null, p);
+    s.onerror = () => finish(new Error("unreachable"));
+    const q = Object.keys(params)
+      .map(k => k + "=" + encodeURIComponent(params[k])).join("&");
+    s.src = ENDPOINT + "?action=" + action + "&kind=event&" + q
+          + "&callback=" + cb + "&_=" + Date.now();
+    document.head.appendChild(s);
+  });
+}
+
+function verifyRsvp(name) {
+  const box = $("verify");
+  const set = (cls, html) => { box.className = "verify " + cls; box.innerHTML = html; };
+  set("checking", "Making sure it saved…");
+
+  let tries = 0;
+  const MAX = 8;
+  const giveUp = () => set("warn",
+    "We couldn't confirm it automatically just yet. Watch for a confirmation from "
+    + "<b>daves-assistant@agentmail.to</b> — if it doesn't arrive, text Matt Marrs at "
+    + "<a href=\"sms:+18168101420\">(816) 810-1420</a> and he'll sort it out.");
+
+  const attempt = () => {
+    tries++;
+    askServer("checkRsvp", { event: EVENT.id, name: name })
+      .then(p => {
+        if (p && p.ok && p.found) {
+          set("ok", "Confirmed — you're on the list. A confirmation is on its way from "
+            + "<b>daves-assistant@agentmail.to</b>.");
+        } else if (tries < MAX) {
+          setTimeout(attempt, 2500);
+        } else { giveUp(); }
+      })
+      .catch(() => { tries < MAX ? setTimeout(attempt, 2500) : giveUp(); });
+  };
+  /* Give the beacon a moment to land before the first look. */
+  setTimeout(attempt, 1500);
+}
+
+function sendRsvp(payload) {
+  const body = JSON.stringify(payload);
+  try {
+    if (navigator.sendBeacon) {
+      const blob = new Blob([body], { type: "text/plain;charset=UTF-8" });
+      if (navigator.sendBeacon(ENDPOINT, blob)) return true;
+    }
+  } catch (e) { /* fall through to fetch */ }
+  try {
+    /* keepalive lets the request outlive the page, same as a beacon */
+    fetch(ENDPOINT, {
+      method: "POST", mode: "no-cors", keepalive: true,
+      headers: { "Content-Type": "text/plain;charset=utf-8" },
+      body: body,
+    }).catch(() => {});
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+
+function stamp(time) { return EVENT.date.replaceAll("-", "") + "T" + time.replace(":", "") + "00"; }
+function calUrl() {
+  return "https://calendar.google.com/calendar/render?action=TEMPLATE"
+    + "&text=" + encodeURIComponent(EVENT.title + " — Chiefs vs Patriots")
+    + "&dates=" + stamp(EVENT.startTime) + "/" + stamp(EVENT.endTime)
+    + "&ctz=America%2FChicago"
+    + "&location=" + encodeURIComponent(EVENT.place + ", " + EVENT.address)
+    + "&details=" + encodeURIComponent("Send Network KC is hosting planters for Monday Night Football. Carpools leave at 4:00 PM. Kickoff 8:15 PM. Questions? Text Matt Marrs (816) 810-1420.");
+}
+
+function showDone(name) {
+  $("form").style.display = "none";
+  const first = name.split(" ")[0];
+  if (choice === "YES") {
+    $("doneEmoji").innerHTML = "&#127944;";
+    $("doneTitle").textContent = "You're in, " + first + "!";
+    $("doneMsg").textContent = "Monday, December 21 — your carpool leaves "
+      + carpoolValue() + " at 4:00 PM. Your ticket will be texted to "
+      + formatPhone($("phone").value.replace(/\D/g, "")) + ". Go Chiefs.";
+    $("calLink").href = calUrl();
+    $("calLink").style.display = "inline-block";
+    verifyRsvp(name);
+  } else {
+    $("doneEmoji").innerHTML = "&#128591;";
+    $("doneTitle").textContent = "Thanks for letting us know, " + first + ".";
+    $("doneMsg").textContent = "You'll be missed at Arrowhead. We're grateful for the work you're doing in your neighborhood.";
+    $("calLink").style.display = "none";
+  }
+  $("done").style.display = "block";
+}
+</script>
+</body>
+</html>
