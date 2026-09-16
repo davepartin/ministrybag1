@@ -587,7 +587,7 @@
             ' known backup-only key(s) from readable destination stores, retain ' + summary.deviceOnly +
             ' known device-only key(s), leave ' + summary.matching +
             ' known matching key(s) unchanged, and hold ' + summary.conflicts +
-            ' known conflict(s) for a later choice (default keep the current device value). Unknown keys stay stored without a lesson assignment. Ambiguous answers stay unassigned. Unreadable originalRaw stays evidence only.';
+            ' known conflict(s) for a later choice (each needs an explicit choice before restore; nothing is preselected). Unknown keys stay stored without a lesson assignment. Ambiguous answers stay unassigned. Unreadable originalRaw stays evidence only.';
     }
 
     function buildPreview(validated, currentDevice) {
@@ -709,7 +709,7 @@
         unknownDestinationStores.forEach(function (id) {
             couldNotRestore.push(STORE_NOUNS[id] + ' stored matches and conflicts (destination storage is unreadable; comparison is unknown)');
         });
-        couldNotRestore.push('An applied restore. Applying a backup is not available yet.');
+        couldNotRestore.push('An automatic restore. Only a complete version 1 backup can be restored, after a review and a safety backup.');
         var status = validated.complete
             ? (validated.includesUnsavedEdits
                 ? 'This version 1 backup is readable and includes unsaved edits from the source page.'
@@ -746,7 +746,7 @@
             couldNotRestore: couldNotRestore,
             status: status,
             applyAvailable: false,
-            applyNote: 'Applying a backup is not available yet. This preview does not change answers, completion, reading notes, migration flags or write guards.'
+            applyNote: 'Only a complete version 1 backup can be restored, after a review and a safety backup. This preview does not change answers, completion, reading notes, migration flags or write guards.'
         };
     }
 

@@ -3,7 +3,8 @@
  * ENG-006b browser check. Synthetic data only.
  * Exercises the actual file input and a current downloaded backup.
  * Does not print downloaded contents, credentials or real learner answers.
- * Does not write restore/apply data.
+ * Restore exists via the ENG-006c confirmation flow. This suite still does
+ * not click Restore or write apply data.
  */
 'use strict';
 
@@ -208,9 +209,15 @@ function syntheticBackupText(tag) {
             body: body.textContent,
             note: document.getElementById('backup-preview-note').textContent,
             focus: document.activeElement ? document.activeElement.id : '',
-            restoreButtons: Array.from(document.querySelectorAll('button')).filter(function (btn) {
-                return /restore|apply backup/i.test(btn.textContent || '');
-            }).length,
+            restoreBtn: (function () {
+                var btn = document.getElementById('backup-preview-restore');
+                return {
+                    present: !!btn,
+                    hidden: !btn || btn.hidden,
+                    disabled: !btn || btn.disabled,
+                    text: btn ? String(btn.textContent || '') : ''
+                };
+            }()),
             debug: window.__gtLastBackupPreview
         };
     });
@@ -222,8 +229,12 @@ function syntheticBackupText(tag) {
         firstPreview.debug.summary.counts.reading.notes === 1);
     assert('preview shows retained ambiguity', firstPreview.body.indexOf('candidate lessons 202-05, 202-09') !== -1 &&
         firstPreview.body.indexOf('Not assigned automatically') !== -1);
-    assert('preview explains restore is not available', firstPreview.note.indexOf('not available yet') !== -1);
-    assert('no working restore button is present', firstPreview.restoreButtons === 0);
+    assert('preview explains restore needs confirmation and a safety backup', firstPreview.note.indexOf('safety backup') !== -1 &&
+        firstPreview.note.indexOf('Restore is enabled only after') !== -1);
+    assert('Restore button exists via confirmation and stays disabled until confirmed', firstPreview.restoreBtn.present === true &&
+        firstPreview.restoreBtn.hidden === false &&
+        firstPreview.restoreBtn.disabled === true &&
+        firstPreview.restoreBtn.text.indexOf('Restore') !== -1);
     assert('close receives focus when preview opens', firstPreview.focus === 'backup-preview-close');
     assert('preview debug says learner state was unchanged', firstPreview.debug.unchanged === true);
     var afterPreview = await learnerState(page);
