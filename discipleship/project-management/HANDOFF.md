@@ -78,9 +78,9 @@ Start from current `origin/main`, including PR #24, on a new branch. Read the EN
 
 Dave's Grok and ChatGPT usage is nearly exhausted. ENG-006c (Grokbot) is the last packet for Grok or ChatGPT/Codex; do not assign them further work. Claude reviews ENG-006c. If Grokbot stops before finishing, it should push its branch and mark its log PAUSED, and Claude resumes from that branch. Later packets, including SEC-001b, default to Claude unless Dave names Cursor or Gemini.
 
-## SEC-001 decision, September 16
+## SEC-001 status, September 16
 
-Do not send the earlier SEC-001a planning prompt; Dave already chose the direction. Remove the ESV API and its credential and embed Scripture text instead. Lesson verse blocks already carry their text. The API is used only by the 101 reading cards (John 1 through 21, 879 verses, plus ESV audio) and by the 365-day `dailybiblereading/` app, which exists as identical copies at the repo root and inside `discipleship/`. ESV terms allow quoting up to 500 verses and never a complete book without written permission, so embedding the Gospel of John in ESV needs Crossway's permission or a different translation. Waiting on Dave for that choice and for the direction of the 365-day app. The index.html part of SEC-001b waits until ENG-006c reaches REVIEW.
+Dave chose to drop the ESV API, keep lesson verse text as written, use the World English Bible for the 101 John reading cards, leave the root `dailybiblereading/` app alone and delete its copy in `discipleship/`. SEC-001a (Grok Build inventory) merged as `1fa5206`. SEC-001b is PR #26 on `claude/sec-001b-remove-esv`, all checks passing; it edits only the Bible reading section of `index.html`, so ENG-006c should rebase cleanly whichever merges first. Merge waits for Dave's go-ahead because the coordinator implemented it and main publishes the live site. Parent SEC-001 remains open until Dave revokes the current and the older ESV keys at api.esv.org. The WEB text keeps its two original em dashes because altering the wording would forfeit the WEB name.
 
 ## Claude: handoff complete; awaiting Dave's review
 
