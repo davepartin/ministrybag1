@@ -35,7 +35,7 @@ Later on September 16, Claude Code took the coordinator seat and pushed COORD-00
 
 - Failed-load guards and recovery controls are present. Versioned download and strict read-only preview are integrated. Confirmed restore, stale-preview protection and rollback remain ENG-006c. Never remove a guard merely to make saving appear successful.
 - Historical ambiguous answers remain in recovery metadata. ENG-006 must provide usable recovery/backup access without assigning them automatically to a lesson.
-- Credential remains in source/docs. Never reproduce its value; SEC-001 is a release blocker.
+- The free ESV key remains only in the root reading app and Git history, accepted by Dave. Never reproduce its value.
 - 202-08/09 have reviewed finishing drafts and generated art on PR #17; Dave, pilot and delivery gates remain pending. 203-06/08/09/10 need substantial writing; 301 placeholders and lesson approval gates remain on the board.
 - Real iPhone/Safari, cross-device sync and production deployment were not verified in this review.
 
@@ -78,9 +78,9 @@ Start from current `origin/main`, including PR #24, on a new branch. Read the EN
 
 Dave's Grok and ChatGPT usage is nearly exhausted. ENG-006c (Grokbot) is the last packet for Grok or ChatGPT/Codex; do not assign them further work. Claude reviews ENG-006c. If Grokbot stops before finishing, it should push its branch and mark its log PAUSED, and Claude resumes from that branch. Later packets, including SEC-001b, default to Claude unless Dave names Cursor or Gemini.
 
-## SEC-001 decision, September 16
+## SEC-001 status, September 16
 
-Do not send the earlier SEC-001a planning prompt; Dave already chose the direction. Remove the ESV API and its credential and embed Scripture text instead. Lesson verse blocks already carry their text. The API is used only by the 101 reading cards (John 1 through 21, 879 verses, plus ESV audio) and by the 365-day `dailybiblereading/` app, which exists as identical copies at the repo root and inside `discipleship/`. ESV terms allow quoting up to 500 verses and never a complete book without written permission, so embedding the Gospel of John in ESV needs Crossway's permission or a different translation. Waiting on Dave for that choice and for the direction of the 365-day app. The index.html part of SEC-001b waits until ENG-006c reaches REVIEW.
+SEC-001 is DONE. SEC-001a (Grok Build inventory) merged as `1fa5206`; SEC-001b merged as `3661ac8` with Dave's go-ahead. The 101 John reading cards load bundled World English Bible text, the ESV API and key are gone from `discipleship/`, and the duplicate reading app copy is deleted. Dave keeps the root `dailybiblereading/` app as is and accepted the free key's remaining exposure there and in Git history. Do not alter the Bible text. ENG-006c touches different lines of `index.html` and should rebase cleanly onto `3661ac8`.
 
 ## Claude: handoff complete; awaiting Dave's review
 

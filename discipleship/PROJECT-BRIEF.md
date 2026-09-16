@@ -153,7 +153,7 @@ Each lesson JSON has a `title`, optional `description`, and a `blocks` array. Av
 - `question` - textarea with auto-save (`id`, `text`, optional `height`: "short" or "tall")
 - `image` - in-lesson image with `src` and `alt`
 - `commitment` - yes/no radio buttons
-- `bible_reading` - expandable chapter cards with ESV API text, audio, completion checkbox, notes
+- `bible_reading` - expandable chapter cards with bundled World English Bible text, completion checkbox, notes
 - `stepper` - step-by-step interactive element
 - `tool` - special tool/framework display
 - `checklist` - tappable tile grid with `id`, `prompt`, and `items` array (selections auto-save)
@@ -219,7 +219,7 @@ Course header rows use only the `Course` column. Lesson rows supply the rest of 
 ## Key Technical Details
 
 - localStorage key: `christianFoundationsResponses`
-- ESV Bible API Token: `7e4b8df428bed84fc9ee3afd18c666fb64775e06`
+- Bible reading text: bundled World English Bible (public domain) in `data/bible/`, one JSON file per book, built by `scripts/build_john_web.js`. No Bible API or credential is used. Lesson verse blocks keep their own `text`.
 - Question IDs in JSON: `lesson-question` format (e.g., `1-1`, `1-key`)
 - Runtime storage keys: `question-{series}-{id}` (e.g., `question-101-1-key`)
 - Display labels: dot format `1.3` (lesson.question)
