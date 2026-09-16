@@ -27,6 +27,7 @@ Claude's finishing corrections have been reviewed and Codex added all four story
 |---|---|---|
 | 2026-09-11 | Proceed with the baseline review's recommended direction; preserve story/Scripture/image/widget/practice balance; repair data risks; develop Read/Discuss; pursue AAA quality across the curriculum. | Dave: "I agree with everything you are proposing." |
 | 2026-09-11 | Keep the plan/checklist/log in the repository and sync via GitHub; make handoffs usable by other agents; use Astra for focused daily review when available. | Dave's follow-up request in the project conversation. |
+| 2026-09-16 | SEC-001: stop using the ESV API in the discipleship app and put Scripture text directly in the lessons. Agents may also edit the root `dailybiblereading/` folder outside `discipleship/` for this fix. Translation for the John reading chapters is still open. | Dave to Claude coordinator: "you can just write the verses in the discipleship lessons and not have to worry about the api"; "you can have access" to the root folder. |
 | 2026-09-12 | Replace Ruth and Naomi as the 202-08 marriage anchor. Dave prefers Ephesians 5 and is open to God's covenant with Abraham. Exact revision and art remain subject to review. | Dave's explicit direction in this conversation. |
 
 Agreement to direction authorizes the work. It does not record theological approval of text Dave has not yet seen. Agents should not ask again for permission to perform the ordinary tasks already listed in the plan.

@@ -74,21 +74,9 @@ Start from current `origin/main`, including PR #24, on a new branch. Read the EN
 > Finish: stage only your scoped paths, commit with `[ENG-006c]` in the message, push the branch, open a PR titled "ENG-006c: confirmed restore (REVIEW)", and stop at REVIEW. Do not merge, deploy, force push or start DATA-001. Final reply to Dave: outcome, files, checks with counts, remaining issue, branch, commit and PR number. No em dashes in anything you write.
 
 
-## Next planning packet: SEC-001a credential inventory and removal plan
+## SEC-001 decision, September 16
 
-> You are Grok Build, the worker for SEC-001a in Growing Together, the discipleship app in the `discipleship/` folder of https://github.com/davepartin/ministrybag1. Claude is the coordinator. Grokbot is building ENG-006c in `index.html` on another computer at the same time, so this packet edits no application code.
->
-> Setup: do not touch your old checkout `~/github/ministrybag1-grok-build-ux` or `~/github/ministrybag1-l-202-08-09`. From `~/github/ministrybag1`, run `git fetch origin` and `git worktree add ~/github/ministrybag1-sec-001a -b codex/sec-001a-credential-plan origin/main`, and work only there.
->
-> Read `discipleship/AGENTS.md`, the SEC-001 and SEC-001a rows in `project-management/TASKS.md`, and the Scripture lookup code in `discipleship/index.html`.
->
-> Absolute rule: never print, copy, quote, abbreviate or partially reveal the credential value, in your terminal output, files, commits or replies. Search with `grep -rln` or with output cut off before the value; refer to it only as "the ESV credential."
->
-> Produce `discipleship/project-management/reviews/2026-09-16-SEC-001a-grok-build.md` covering: (1) every current location by path and line, including `discipleship/index.html`, `discipleship/dailybiblereading/`, the root `dailybiblereading/` folder, PROJECT-BRIEF.md and any other docs, noting which are outside `discipleship/`; (2) whether it exists in Git history (count of commits via `git log -S` style search, no values); (3) what each use does for the learner and what they see if the key stops working today; (4) two or three concrete removal options for the current static GitHub Pages hosting, such as a no-key fallback that links or shows Scripture without the API, a small serverless proxy (name the actual service, free tier limits and where the secret would live), or a licensed alternative, each with cost, privacy, ESV API terms, effort and risk; (5) one recommendation; (6) a ready-to-paste SEC-001b implementation packet with exact files, acceptance checks and a browser test plan. Leave Git history rewriting and key revocation as explicit decisions for Dave, not steps you take.
->
-> Scope: that review file and your log `discipleship/project-management/logs/2026-09-16-SEC-001a-grok-build.md` only. No edits to `index.html`, `dailybiblereading/`, PROJECT-BRIEF.md, TASKS.md or HANDOFF.md.
->
-> Finish: before committing, grep your two files and the staged diff to confirm the value is absent. Commit with `[SEC-001a]`, push the branch, open a PR titled "SEC-001a: credential inventory and removal plan (REVIEW)", and stop at REVIEW. Final reply to Dave: recommendation in two sentences, files, branch, commit, PR number, and anything you could not verify. No em dashes.
+Do not send the earlier SEC-001a planning prompt; Dave already chose the direction. Remove the ESV API and its credential and embed Scripture text instead. Lesson verse blocks already carry their text. The API is used only by the 101 reading cards (John 1 through 21, 879 verses, plus ESV audio) and by the 365-day `dailybiblereading/` app, which exists as identical copies at the repo root and inside `discipleship/`. ESV terms allow quoting up to 500 verses and never a complete book without written permission, so embedding the Gospel of John in ESV needs Crossway's permission or a different translation. Waiting on Dave for that choice and for the direction of the 365-day app. The index.html part of SEC-001b waits until ENG-006c reaches REVIEW.
 
 ## Claude: handoff complete; awaiting Dave's review
 
