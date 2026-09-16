@@ -35,7 +35,7 @@ Later on September 16, Claude Code took the coordinator seat and pushed COORD-00
 
 - Failed-load guards and recovery controls are present. Versioned download and strict read-only preview are integrated. Confirmed restore, stale-preview protection and rollback remain ENG-006c. Never remove a guard merely to make saving appear successful.
 - Historical ambiguous answers remain in recovery metadata. ENG-006 must provide usable recovery/backup access without assigning them automatically to a lesson.
-- Credential remains in source/docs. Never reproduce its value; SEC-001 is a release blocker.
+- The free ESV key remains only in the root reading app and Git history, accepted by Dave. Never reproduce its value.
 - 202-08/09 have reviewed finishing drafts and generated art on PR #17; Dave, pilot and delivery gates remain pending. 203-06/08/09/10 need substantial writing; 301 placeholders and lesson approval gates remain on the board.
 - Real iPhone/Safari, cross-device sync and production deployment were not verified in this review.
 
@@ -80,7 +80,7 @@ Dave's Grok and ChatGPT usage is nearly exhausted. ENG-006c (Grokbot) is the las
 
 ## SEC-001 status, September 16
 
-Dave chose to drop the ESV API, keep lesson verse text as written, use the World English Bible for the 101 John reading cards, leave the root `dailybiblereading/` app alone and delete its copy in `discipleship/`. SEC-001a (Grok Build inventory) merged as `1fa5206`. SEC-001b is PR #26 on `claude/sec-001b-remove-esv`, all checks passing; it edits only the Bible reading section of `index.html`, so ENG-006c should rebase cleanly whichever merges first. Merge waits for Dave's go-ahead because the coordinator implemented it and main publishes the live site. Parent SEC-001 remains open until Dave revokes the current and the older ESV keys at api.esv.org. The WEB text keeps its two original em dashes because altering the wording would forfeit the WEB name.
+SEC-001 is DONE. SEC-001a (Grok Build inventory) merged as `1fa5206`; SEC-001b merged as `3661ac8` with Dave's go-ahead. The 101 John reading cards load bundled World English Bible text, the ESV API and key are gone from `discipleship/`, and the duplicate reading app copy is deleted. Dave keeps the root `dailybiblereading/` app as is and accepted the free key's remaining exposure there and in Git history. Do not alter the Bible text. ENG-006c touches different lines of `index.html` and should rebase cleanly onto `3661ac8`.
 
 ## Claude: handoff complete; awaiting Dave's review
 
