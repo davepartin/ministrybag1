@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * L-203-06 browser check. The Faith at Work and School lesson renders, its
- * Three Spaces diagram loads, answers survive navigation and reload, and the
+ * Your Three Spaces widget loads, answers survive navigation and reload, and the
  * page fits phone and laptop widths. Synthetic answers only.
  */
 'use strict';
@@ -24,22 +24,25 @@ function assert(name, condition, detail) {
 }
 
 (async function () {
-    var browser = await chromium.launch({ headless: true });
+    var browser = await chromium.launch({ headless: true, channel: process.env.GT_BROWSER_CHANNEL || 'chrome' });
     var errors = [];
     for (var width of [375, 390, 1280]) {
         var page = await browser.newPage({ viewport: { width: width, height: 844 } });
         page.on('pageerror', function (err) { errors.push(String(err)); });
         await page.goto(BASE + '#203-6', { waitUntil: 'domcontentloaded' });
         await page.waitForSelector('#question-203-203-06-story', { timeout: 20000 });
-        await page.locator('img[src*="203.06-three-spaces.svg"]').scrollIntoViewIfNeeded();
+        await page.locator('iframe[src*="three-spaces"]').scrollIntoViewIfNeeded();
+        await page.waitForTimeout(600);
         var info = await page.evaluate(function (ids) {
-            var img = document.querySelector('img[src*="203.06-three-spaces.svg"]');
+            var frame = document.querySelector('iframe[src*="three-spaces"]');
+            var doc = frame && frame.contentDocument;
             return {
                 present: ids.map(function (id) { return !!document.getElementById('question-203-' + id); }),
                 retired: ['203-06-devos', '203-7-1', '203-07-bless'].some(function (id) { return !!document.getElementById('question-203-' + id); }),
                 parable: document.body.textContent.indexOf('Faithful in Babylon') !== -1,
-                imgLoaded: !!(img && img.complete && img.naturalWidth > 0),
-                imgAlt: img ? img.getAttribute('alt') : '',
+                widgetLoaded: !!(doc && doc.querySelector('#tri') && doc.querySelector('[data-control="begin"]')),
+                widgetTitle: doc ? doc.title : '',
+                widgetFits: !!frame && frame.getBoundingClientRect().width <= window.innerWidth,
                 scrollWidth: document.documentElement.scrollWidth,
                 viewport: window.innerWidth
             };
@@ -47,7 +50,7 @@ function assert(name, condition, detail) {
         assert(width + ': all seven 203-06 questions render', info.present.every(Boolean), JSON.stringify(info.present));
         assert(width + ': retired 203-06 IDs are not rendered', info.retired === false);
         assert(width + ': Daniel parable renders', info.parable);
-        assert(width + ': Three Spaces diagram loads with alt text', info.imgLoaded && info.imgAlt.indexOf('Three Spaces') !== -1);
+        assert(width + ': Your Three Spaces widget loads within page width', info.widgetLoaded && info.widgetTitle === 'Your Three Spaces' && info.widgetFits);
         assert(width + ': page does not scroll sideways', info.scrollWidth <= info.viewport, info.scrollWidth + ' > ' + info.viewport);
 
         if (width === 390) {
