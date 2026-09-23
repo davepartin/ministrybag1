@@ -68,7 +68,7 @@ function check(name, condition) {
                 await page.waitForSelector('#session-' + lesson + '.active');
                 const selector = lesson === 8
                     ? '#session-8 iframe[src*="covenant-triangle"]'
-                    : '#session-9 img[src*="fight-plan"]';
+                    : '#session-9 img[src*="run-plan"]';
                 const img = page.locator(selector);
                 await img.scrollIntoViewIfNeeded();
                 await page.waitForTimeout(lesson === 8 ? 600 : 200);
