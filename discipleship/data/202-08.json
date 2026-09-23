@@ -1,11 +1,30 @@
 {
   "id": "8",
   "title": "Lesson 8: Marriage and Relationships",
-  "description": "Every close relationship runs on either a contract or a covenant. Starting with the night God made His covenant with Abram, you will see the promise-keeping love God shows you first, how Christ's love for His church shapes marriage in Ephesians 5, and why drawing near to God draws two people near to each other.",
+  "description": "Marriage is not finding a finished statue. It is two people who see what Jesus is making in each other, hand each other the chisel, and trust God to shape them both. Through a picture from Tim and Kathy Keller, God's covenant with Abram, and Ephesians 5, you will see the covenant love God gives first and why drawing near to God draws two people near to each other.",
   "blocks": [
     {
       "type": "text",
       "text": "You have spent this course learning to love outward: your neighbors, your family at home, your church family, and the people your gifts can bless. This lesson looks at the love that holds your closest relationships together. It is called covenant love, and it starts with the way God has already loved you."
+    },
+    {
+      "type": "parable",
+      "title": "The Marble and the Chisel",
+      "text": "In <em>The Meaning of Marriage</em>, Kathy Keller writes, <em>\"Most people, when they are looking for a spouse, are looking for a finished statue when they should be looking for a wonderful block of marble. Not so you can create the kind of person you want, but rather because you see what kind of person Jesus is making.\"</em> Nobody you love is finished, and neither are you. Love begins with the willingness to look at a rough block of stone and see what Jesus is making in it.<br><br>Tim Keller adds that marriage exposes the rough edges in your own character. So picture marriage like this: you hand the other person your chisel, and they hand you theirs. You let them see your pride and selfishness, and you trust God to use them to shape you. A chisel in loving hands is patient and careful, and it is never a license to wound. That is what marriage is: two people willing to see something good in each other, pass the chisel, and trust each other with it."
+    },
+    {
+      "type": "text",
+      "text": "That kind of trust does not come naturally. Most of us protect ourselves and keep score. So where does the courage to hand someone your chisel come from? It starts with the way God has already loved you."
+    },
+    {
+      "type": "question",
+      "id": "202-08-chisel",
+      "text": "8.1 - When you look at the people closest to you, do you tend to see a finished statue you are measuring or a block of marble Jesus is shaping? What makes it hard for you to hand someone your chisel?",
+      "height": "tall"
+    },
+    {
+      "type": "heading",
+      "text": "God Went First"
     },
     {
       "type": "image",
@@ -13,12 +32,11 @@
       "imageColor": "images/202.08-abram-covenant-color.png",
       "alt": "Abram asleep under the stars while a smoking fire pot and a flaming torch pass between shadowed covenant pieces",
       "frame": true,
-      "touchNext": true
+      "touchNext": false
     },
     {
-      "type": "parable",
-      "title": "The Night God Walked Alone",
-      "text": "God had made Abram a promise: a family too large to count and a land for that family to live in. But years went by, and Abram and his wife Sarai still had no children. Abram asked God how he could be sure (Genesis 15:2, 8).<br><br>So one night God brought Abram outside and said, <em>\"Look toward heaven, and number the stars, if you are able to number them.\"</em> Then He said, <em>\"So shall your offspring be\"</em> (Genesis 15:5). And Abram believed Him.<br><br>Then God told Abram to prepare for a covenant. Abram cut a heifer, a goat, and a ram in half and laid the halves opposite each other, with a path between them (Genesis 15:9-10). Bible scholars explain that in that time, both people making a covenant could walk between the cut animals, as if to say, \"May this happen to me if I break my promise\" (compare Jeremiah 34:18).<br><br>But as the sun went down, a deep sleep fell on Abram. Then, in the dark, <em>\"a smoking fire pot and a flaming torch passed between these pieces\"</em> (Genesis 15:17). Abram did not walk the path. Only God, pictured by the fire, passed through, taking the whole weight of the promise on Himself. <em>\"On that day the LORD made a covenant with Abram\"</em> (Genesis 15:18)."
+      "type": "text",
+      "text": "Long before Jesus, God showed Abram what covenant love looks like. God had promised Abram a family too large to count, but years went by with no child, and Abram asked how he could be sure (Genesis 15:8). So God told him to prepare a covenant. Abram cut a heifer, a goat, and a ram in half and laid the pieces in two rows with a path between them (Genesis 15:9-10). Bible scholars explain that in that time, both people making a covenant could walk between the pieces, as if to say, \"May this happen to me if I break my promise\" (compare Jeremiah 34:18). But a deep sleep fell on Abram, and in the dark <em>\"a smoking fire pot and a flaming torch passed between these pieces\"</em> (Genesis 15:17). Only God, pictured by the fire, passed through, taking the whole weight of the promise on Himself."
     },
     {
       "type": "text",
@@ -28,12 +46,6 @@
       "type": "verse",
       "reference": "Lamentations 3:22-23",
       "text": "The steadfast love of the LORD never ceases; his mercies never come to an end; they are new every morning; great is your faithfulness."
-    },
-    {
-      "type": "question",
-      "id": "202-08-1",
-      "text": "8.1 - Who has shown you faithful, staying love when leaving would have been easier? How did it help you see what God's love is like?",
-      "height": "tall"
     },
     {
       "type": "heading",
@@ -55,7 +67,7 @@
     {
       "type": "question",
       "id": "202-08-2",
-      "text": "8.2 - Think of one close relationship in your life. Where do you tend to treat it like a contract, \"I will, if you will\"? What would \"I will, even when\" look like there?",
+      "text": "8.2 - In one close relationship, where are you keeping score: \"I will, if you will\"? What would \"I will, even when\" look like there this week?",
       "height": "tall"
     },
     {
@@ -94,10 +106,6 @@
     },
     {
       "type": "text",
-      "text": "When you marry, you are not marrying a finished statue. Kathy Keller puts it this way in <em>The Meaning of Marriage</em>: <em>\"Most people, when they are looking for a spouse, are looking for a finished statue when they should be looking for a wonderful block of marble. Not so you can create the kind of person you want, but rather because you see what kind of person Jesus is making.\"</em> And you are marble too. Tim Keller notes that marriage exposes the rough edges in your own character, and God uses your spouse like a chisel in His hands to shape you. A chisel in loving hands is patient and careful. It is never a license to wound."
-    },
-    {
-      "type": "text",
       "text": "Because two sinners share one home, forgiveness is the oxygen of a Christian marriage. It sounds like, \"I was wrong. Will you forgive me?\" and \"I forgive you.\" Remember the servant in Jesus' parable who was forgiven an impossible debt and then refused to forgive a small one (Matthew 18:23-35). When you remember how much God has forgiven you, you can stop keeping score. In Christ, people change, and marriages can grow."
     },
     {
@@ -111,7 +119,7 @@
     {
       "type": "question",
       "id": "202-08-3",
-      "text": "8.3 - If you are married, what is one ordinary way you could show your spouse covenant love? If you are not married right now, what is one way you could practice covenant love in a close friendship or in your church family?",
+      "text": "8.3 - If you are married, where do you need to lay down your pride, ask forgiveness, or serve first this week? If you are not married, where can you practice covenant love in a close friendship or your church family?",
       "height": "tall"
     },
     {
@@ -138,7 +146,7 @@
     {
       "type": "question",
       "id": "202-08-4",
-      "text": "8.4 - What is hard about the season of life you are in right now? What would it look like to trust that God can make this season a place of faithfulness instead of a waiting room?",
+      "text": "8.4 - What is hardest about the season of life you are in right now? What would faithfulness look like in it this week, instead of waiting for a different season?",
       "height": "tall"
     },
     {
@@ -147,7 +155,7 @@
     },
     {
       "type": "text",
-      "text": "While Abram slept, God alone passed between the pieces. That is covenant love: a contract says, \"I will, if you will,\" but a covenant says, \"I will, even when.\" Jesus showed that love completely when He gave Himself up for His church (Ephesians 5:25). As two people draw near to God, they draw near to each other. In the next lesson, you will see how purity protects these covenant relationships."
+      "text": "Marriage is not finding a finished statue. It is two people willing to see what Jesus is making in each other, pass the chisel, and trust each other with it. That trust grows out of covenant love. While Abram slept, God alone passed between the pieces. A contract says, \"I will, if you will,\" but a covenant says, \"I will, even when.\" Jesus showed that love completely when He gave Himself up for His church (Ephesians 5:25), and as two people draw near to God, they draw near to each other. In the next lesson, you will see how purity protects these covenant relationships."
     },
     {
       "type": "heading",
