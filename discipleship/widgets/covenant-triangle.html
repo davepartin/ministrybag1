@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Closer to God, Closer to Each Other</title>
+    <title>The Closer to God Triangle</title>
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -85,17 +85,20 @@
         .overview-panel { padding: 0 12px 12px; max-width: 460px; margin: 0 auto; }
         .overview-caption { font-size: 16px; line-height: 1.4; text-align: center; color: #3D3426; margin: 2px 0 6px; }
         .link { transition: stroke-dashoffset 0.9s ease; }
-        @media (prefers-reduced-motion: reduce) { .link { transition: none; } }
+        #tri-fill, #ground-shadow { transition: opacity 0.9s ease 0.5s; }
+        @media (prefers-reduced-motion: reduce) { .link, #tri-fill, #ground-shadow { transition: none; } }
         #measure { position: absolute; left: 0; top: 0; visibility: hidden; pointer-events: none; }
         .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
     </style>
 </head>
 <body>
 <div class="widget-outer">
-    <div class="title-bar"><h1>Closer to God, Closer to Each Other</h1></div>
+    <div class="title-bar"><h1>The Closer to God Triangle</h1></div>
     <div class="diagram-wrapper">
         <svg id="tri" viewBox="0 0 360 290" role="img" aria-labelledby="tri-desc">
             <desc id="tri-desc">God at the top and two people at the bottom, far apart.</desc>
+            <ellipse id="ground-shadow" cx="180" cy="252" rx="112" ry="7" fill="#E3CD95" opacity="0"/>
+            <polygon id="tri-fill" points="180,46 94,240 266,240" fill="#F3E4B8" opacity="0"/>
             <line id="link-a" class="link" stroke="#E3CD95" stroke-width="4" stroke-linecap="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/>
             <line id="link-b" class="link" stroke="#E3CD95" stroke-width="4" stroke-linecap="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/>
             <line id="gap" stroke="#8C877C" stroke-width="3" stroke-dasharray="6 6"/>
@@ -131,7 +134,7 @@
             title: 'God came down to us.',
             text: 'God came to us in Jesus. When each person accepts His love, a line of grace connects them to Him.',
             ref: '“We love because he first loved us.” (1 John 4:19)',
-            desc: 'God lights up, and a line of grace comes down from God to each person as they accept His love.'
+            desc: 'God lights up, and lines of grace come down from God to each person, forming a triangle with a soft shadow on the ground.'
         },
         {
             t: 0.45, godLit: true, linked: true, phrase: 'I will, even when.', phraseColor: GREEN,
@@ -139,7 +142,7 @@
             title: 'Covenant: I will, even when.',
             text: 'Each person turns toward God. As you move closer to Him, you move closer to each other.',
             ref: '“Draw near to God, and he will draw near to you.” (James 4:8)',
-            desc: 'Both people move up their lines toward God, and the gap between them shrinks.'
+            desc: 'The triangle stays in place. Both people move up its sides toward God, and the gap between them shrinks.'
         },
         {
             t: 0.7, godLit: true, linked: true, phrase: 'I will, even when.', phraseColor: GREEN,
@@ -147,7 +150,7 @@
             title: 'Closer to God, closer to each other.',
             text: 'Christ’s love is the center that holds you together, whether they are your spouse, fiancé, or someone you are dating.',
             ref: '“as Christ loved the church and gave himself up for her” (Ephesians 5:25)',
-            desc: 'Both people are near the top, close to God and close to each other.'
+            desc: 'Inside the Closer to God Triangle, both people are near the top, close to God and close to each other.'
         }
     ];
 
@@ -167,11 +170,6 @@
         el('label-b').setAttribute('x', bx + 18); el('label-b').setAttribute('y', by + 6);
         el('gap').setAttribute('x1', ax + 13); el('gap').setAttribute('y1', ay);
         el('gap').setAttribute('x2', bx - 13); el('gap').setAttribute('y2', by);
-        [['link-a', ax, ay], ['link-b', bx, by]].forEach(function (l) {
-            var line = el(l[0]);
-            line.setAttribute('x1', APEX.x); line.setAttribute('y1', APEX.y);
-            line.setAttribute('x2', l[1]); line.setAttribute('y2', l[2]);
-        });
         currentT = t;
     }
 
@@ -196,6 +194,8 @@
         var linked = s && s.linked;
         el('link-a').setAttribute('stroke-dashoffset', linked ? '0' : '1');
         el('link-b').setAttribute('stroke-dashoffset', linked ? '0' : '1');
+        el('tri-fill').setAttribute('opacity', linked ? '0.55' : '0');
+        el('ground-shadow').setAttribute('opacity', linked ? '0.6' : '0');
         var phrase = el('phrase');
         phrase.textContent = s ? s.phrase : '';
         phrase.setAttribute('fill', s ? s.phraseColor : '#6B6358');
@@ -355,6 +355,11 @@
         applyFocus();
     }
 
+    [['link-a', LEFT], ['link-b', RIGHT]].forEach(function (l) {
+        var line = el(l[0]);
+        line.setAttribute('x1', APEX.x); line.setAttribute('y1', APEX.y);
+        line.setAttribute('x2', l[1].x); line.setAttribute('y2', l[1].y);
+    });
     placeDots(0);
     fitCards();
     render();
