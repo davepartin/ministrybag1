@@ -38,3 +38,17 @@ Checks not run: physical iPhone Safari, screen reader, print, human pilot.
 ## Handoff
 
 Remaining: Dave reviews the lesson text, the widget and the unattributed chisel wording, and decides between Genesis 15 and Joseph. Merge only on his approval.
+
+## Follow-up the same day: Dave's decisions applied
+
+- Widget labels changed to You and Them. The final card and the "Every Season" paragraph now cover spouse, fiancé and dating relationships.
+- Kathy Keller's marble line is quoted exactly with credit (Dave confirmed it in his copy; it also matches secondary sources). Tim Keller's chisel point is paraphrased with credit.
+- Genesis 15 stays as the story and image.
+- Question blocks are still byte-identical to main.
+- Checks rerun:
+  - foundation QA passed;
+  - storage 47 passed;
+  - assets 72 resolve;
+  - `review_202_08_09_browser_check.js` 20 passed;
+  - widget clicked through in the app at 390 and 1280px with 0 errors;
+  - every widget step screenshotted at 375 and 1280px, with labels inside the drawing.
