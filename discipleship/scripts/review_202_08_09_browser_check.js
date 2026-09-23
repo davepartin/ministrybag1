@@ -68,13 +68,13 @@ function check(name, condition) {
                 await page.waitForSelector('#session-' + lesson + '.active');
                 const selector = lesson === 8
                     ? '#session-8 iframe[src*="covenant-triangle"]'
-                    : '#session-9 img[src*="fight-plan"]';
+                    : '#session-9 iframe[src*="starting-gun"]';
                 const img = page.locator(selector);
                 await img.scrollIntoViewIfNeeded();
-                await page.waitForTimeout(lesson === 8 ? 600 : 200);
+                await page.waitForTimeout(600);
                 const layout = await img.evaluate(el => ({
                     loaded: el.tagName === 'IFRAME'
-                        ? !!(el.contentDocument && el.contentDocument.querySelector('#tri') && el.contentDocument.querySelector('[data-control="begin"]'))
+                        ? !!(el.contentDocument && (el.contentDocument.querySelector('#tri') || el.contentDocument.querySelector('#scene')) && el.contentDocument.querySelector('[data-control="begin"]'))
                         : el.complete && el.naturalWidth > 0,
                     width: el.getBoundingClientRect().width,
                     overflow: document.documentElement.scrollWidth > window.innerWidth + 1
