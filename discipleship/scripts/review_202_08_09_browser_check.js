@@ -66,11 +66,19 @@ function check(name, condition) {
             for (const lesson of [8, 9]) {
                 await page.goto(BASE + '#202-' + lesson);
                 await page.waitForSelector('#session-' + lesson + '.active');
-                const selector = '#session-' + lesson + ' img[src*="' + (lesson === 8 ? 'contract-covenant' : 'fight-plan') + '"]';
+                const selector = lesson === 8
+                    ? '#session-8 iframe[src*="covenant-triangle"]'
+                    : '#session-9 iframe[src*="starting-gun"]';
                 const img = page.locator(selector);
                 await img.scrollIntoViewIfNeeded();
-                await page.waitForTimeout(200);
-                const layout = await img.evaluate(el => ({ loaded: el.complete && el.naturalWidth > 0, width: el.getBoundingClientRect().width, overflow: document.documentElement.scrollWidth > window.innerWidth + 1 }));
+                await page.waitForTimeout(600);
+                const layout = await img.evaluate(el => ({
+                    loaded: el.tagName === 'IFRAME'
+                        ? !!(el.contentDocument && (el.contentDocument.querySelector('#tri') || el.contentDocument.querySelector('#scene')) && el.contentDocument.querySelector('[data-control="begin"]'))
+                        : el.complete && el.naturalWidth > 0,
+                    width: el.getBoundingClientRect().width,
+                    overflow: document.documentElement.scrollWidth > window.innerWidth + 1
+                }));
                 check(width + ': lesson ' + lesson + ' diagram loads within page width', layout.loaded && layout.width <= width && !layout.overflow);
                 if (process.env.GT_REVIEW_SCREENSHOTS === '1') {
                     await page.screenshot({ path: '/tmp/gt-pr17-' + lesson + '-' + width + '.png' });

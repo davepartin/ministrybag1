@@ -451,7 +451,7 @@ function sendConfirmationEmail_(data) {
     "  Date:    Monday, December 21, 2026",
     "  Carpool: " + (carpool ? carpool + ", leaving at 4:00 PM" : "4:00 PM"),
     "  Where:   Arrowhead Stadium, 1 Arrowhead Dr, Kansas City, MO 64129",
-    "  Kickoff: 8:15 PM",
+    "  Kickoff: 7:15 PM",
     "",
     "Your ticket will be texted to " + String(data.phone || "the number you gave") + " closer to the game.",
     "",
@@ -470,7 +470,7 @@ function sendConfirmationEmail_(data) {
     + '<tr><td style="padding:2px 14px 2px 0;color:#5C6670">Carpool</td><td><b>'
     + escapeForHtml_(carpool || "Pickup spot on file") + '</b>, leaving at <b>4:00 PM</b></td></tr>'
     + '<tr><td style="padding:2px 14px 2px 0;color:#5C6670">Where</td><td>Arrowhead Stadium, 1 Arrowhead Dr, Kansas City, MO 64129</td></tr>'
-    + '<tr><td style="padding:2px 14px 2px 0;color:#5C6670">Kickoff</td><td>8:15 PM</td></tr>'
+    + '<tr><td style="padding:2px 14px 2px 0;color:#5C6670">Kickoff</td><td>7:15 PM</td></tr>'
     + '</table>'
     + '<p>Your ticket will be texted to <b>' + escapeForHtml_(String(data.phone || "the number you gave")) + '</b> closer to the game.</p>'
     + '<p>If anything above looks wrong, text Matt Marrs at <b>(816) 810-1420</b>.</p>'
