@@ -40,4 +40,4 @@ When Dave approves a lesson, add one row with its task ID, date, reviewed commit
 
 | Lesson/task | Date | Approved version | Evidence / conditions |
 |---|---|---|---|
-| None recorded in this new register yet | - | - | Existing approvals can be recorded when Dave identifies the approved version; do not infer them from file length. |
+| L-202-08 | 2026-09-23 | PR #30 head `4c71957`, merged as `a0ab0c3`. sha256 data/202-08.json `865212d123b8a0aad8e253c5256be069856fd6fe9b5b101da735a0594316863c`; widgets/covenant-triangle.html `64d0b3d10ac13d94d811e48593e243747fb98a8bd0dfac745f765f018d53a855` | Dave in chat: "approved, merge it", after reviewing the phone preview. Covers the lesson text, the covenant triangle widget and the ART-003 Genesis 15 art. Pilot gate still pending. |
