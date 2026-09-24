@@ -57,21 +57,24 @@
         <svg id="scene" viewBox="0 0 360 280" role="img" aria-labelledby="scene-desc">
             <desc id="scene-desc">A runner on a slope. The pit is below to the left. Full Life is at the top of the hill to the right.</desc>
             <!-- Full Life at the top of the hill -->
-            <circle id="glow" cx="334" cy="44" r="26" fill="#F3D98B" opacity="0.35"/>
+            <g id="glow" opacity="0.75">
+                <circle cx="350" cy="14" r="36" fill="#F3D98B" opacity="0.35"/>
+                <circle cx="350" cy="14" r="20" fill="#F3D98B"/>
+            </g>
+            <text x="322" y="21" text-anchor="end" class="lbl" font-size="15" fill="#9A7222">Full Life</text>
             <!-- the hill: one slope from the pit up to Full Life -->
             <polygon id="hill" fill="#E8F3EB"/>
             <polyline id="slope" fill="none" stroke="#9CC7A9" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
-            <text x="357" y="101" text-anchor="end" class="lbl" font-size="15" fill="#9A7222">Full Life</text>
             <!-- R U N markers below the slope -->
-            <g class="flag" id="flag-r"><rect width="24" height="22" rx="4" fill="#CFC9BD"/><text text-anchor="middle" class="lbl" font-size="15" fill="#FFFFFF">R</text></g>
-            <g class="flag" id="flag-u"><rect width="24" height="22" rx="4" fill="#CFC9BD"/><text text-anchor="middle" class="lbl" font-size="15" fill="#FFFFFF">U</text></g>
-            <g class="flag" id="flag-n"><rect width="24" height="22" rx="4" fill="#CFC9BD"/><text text-anchor="middle" class="lbl" font-size="15" fill="#FFFFFF">N</text></g>
+            <g class="flag" id="flag-r"><rect width="32" height="30" rx="6" fill="#CFC9BD"/><text text-anchor="middle" class="lbl" font-size="20" fill="#FFFFFF">R</text></g>
+            <g class="flag" id="flag-u"><rect width="32" height="30" rx="6" fill="#CFC9BD"/><text text-anchor="middle" class="lbl" font-size="20" fill="#FFFFFF">U</text></g>
+            <g class="flag" id="flag-n"><rect width="32" height="30" rx="6" fill="#CFC9BD"/><text text-anchor="middle" class="lbl" font-size="20" fill="#FFFFFF">N</text></g>
             <!-- the pit -->
             <path d="M 8 226 L 96 226 L 88 276 L 16 276 Z" fill="#3E3B35"/>
             <text x="60" y="209" text-anchor="middle" class="lbl" font-size="15" fill="#3E3B35">The Pit</text>
             <!-- the cross lies along the slope, its base reaching down into the pit -->
-            <line id="post" stroke="#8A5A2B" stroke-width="9" stroke-linecap="round" opacity="0"/>
-            <line id="beam" stroke="#8A5A2B" stroke-width="9" stroke-linecap="round" opacity="0"/>
+            <line id="post" stroke="#8A5A2B" stroke-width="14" stroke-linecap="round" opacity="0"/>
+            <line id="beam" stroke="#8A5A2B" stroke-width="14" stroke-linecap="round" opacity="0"/>
             <!-- temptation arrives -->
             <g id="bang" opacity="0">
                 <circle cx="140" cy="102" r="17" fill="#9B3B2A"/>
@@ -96,7 +99,7 @@
     var DX = B.x - A.x, DY = B.y - A.y, LEN = Math.sqrt(DX * DX + DY * DY);
     var U = { x: DX / LEN, y: DY / LEN }, N_UP = { x: U.y, y: -U.x };
     function pt(t, off) { off = off || 0; return { x: A.x + DX * t + N_UP.x * off, y: A.y + DY * t + N_UP.y * off }; }
-    var ON_CROSS = 9;
+    var ON_CROSS = 14;
     var START = pt(0.2);
 
     var tempted = {
@@ -115,9 +118,9 @@
     ];
     var run = [
         { pos: pt(0.36, ON_CROSS), lit: 1, cross: true, color: GREEN, title: 'R: Remember the Cross', text: 'The cross comes to you. You were bought with a price, the life of God\'s own Son. Grace is free, but it is never cheap.', ref: '1 Corinthians 6:19-20', desc: 'The cross forms along the slope, and the runner steps onto it at the R marker.' },
-        { pos: pt(0.56, ON_CROSS), lit: 2, cross: true, color: GREEN, title: 'U: United with God', text: 'Christ is in you, and your body is a temple of the Holy Spirit. Remember He is always with you.', ref: '1 Corinthians 6:19', desc: 'The runner climbs the cross past the U marker.' },
-        { pos: pt(0.74, ON_CROSS), buddy: pt(0.65, ON_CROSS), lit: 3, cross: true, color: GREEN, title: 'N: Need Others', text: 'Do not run alone. Run with another believer beside you.', ref: '“flee youthful passions … along with those who call on the Lord” (2 Timothy 2:22)', desc: 'A running partner joins the runner on the cross at the N marker.' },
-        { pos: { x: 336, y: 70 }, buddy: { x: 314, y: 71 }, lit: 3, cross: true, life: true, color: GOLD, title: 'Full Life', text: '“The thief comes only to steal and kill and destroy. I came that they may have life and have it abundantly.”', ref: 'John 10:10', desc: 'The runner and a partner reach Full Life at the top of the hill.' }
+        { pos: pt(0.53, ON_CROSS), lit: 2, cross: true, color: GREEN, title: 'U: United with God', text: 'Christ is in you, and your body is a temple of the Holy Spirit. Remember He is always with you.', ref: '1 Corinthians 6:19', desc: 'The runner climbs the cross past the U marker.' },
+        { pos: pt(0.70, ON_CROSS), buddy: pt(0.61, ON_CROSS), lit: 3, cross: true, color: GREEN, title: 'N: Need Others', text: 'Do not run alone. Run with another believer beside you.', ref: '“flee youthful passions … along with those who call on the Lord” (2 Timothy 2:22)', desc: 'A running partner joins the runner on the cross at the N marker.' },
+        { pos: { x: 328, y: 70 }, buddy: { x: 306, y: 78 }, lit: 3, cross: true, life: true, color: GOLD, title: 'Full Life', text: '“The thief comes only to steal and kill and destroy. I came that they may have life and have it abundantly.”', ref: 'John 10:10', desc: 'The runner and a partner reach Full Life at the top of the hill.' }
     ];
 
     // Build the scene from the slope.
@@ -125,15 +128,15 @@
         function set(id, a) { var e = document.getElementById(id); for (var k in a) e.setAttribute(k, a[k]); }
         set('hill', { points: [A.x + ',' + A.y, B.x + ',' + B.y, '360,' + B.y, '360,280', A.x + ',280'].join(' ') });
         set('slope', { points: [A.x + ',' + A.y, B.x + ',' + B.y, '360,' + B.y].join(' ') });
-        [['flag-r', 0.36], ['flag-u', 0.56], ['flag-n', 0.74]].forEach(function (f) {
-            var c = pt(f[1], -24), g = document.getElementById(f[0]);
-            g.querySelector('rect').setAttribute('x', (c.x - 12).toFixed(1)); g.querySelector('rect').setAttribute('y', (c.y - 11).toFixed(1));
-            g.querySelector('text').setAttribute('x', c.x.toFixed(1)); g.querySelector('text').setAttribute('y', (c.y + 5).toFixed(1));
+        [['flag-r', 0.36], ['flag-u', 0.53], ['flag-n', 0.70]].forEach(function (f) {
+            var c = pt(f[1], -31), g = document.getElementById(f[0]);
+            g.querySelector('rect').setAttribute('x', (c.x - 16).toFixed(1)); g.querySelector('rect').setAttribute('y', (c.y - 15).toFixed(1));
+            g.querySelector('text').setAttribute('x', c.x.toFixed(1)); g.querySelector('text').setAttribute('y', (c.y + 7).toFixed(1));
         });
         // The post is drawn from the top down, so it reaches down to you.
-        var top = pt(0.99, 5), base = pt(-0.32, 5), mid = pt(0.84, 5);
+        var top = pt(1.0, 7), base = pt(-0.32, 7), mid = pt(0.88, 7);
         set('post', { x1: top.x, y1: top.y, x2: base.x, y2: base.y });
-        set('beam', { x1: mid.x + N_UP.x * 24, y1: mid.y + N_UP.y * 24, x2: mid.x - N_UP.x * 24, y2: mid.y - N_UP.y * 24 });
+        set('beam', { x1: mid.x + N_UP.x * 38, y1: mid.y + N_UP.y * 38, x2: mid.x - N_UP.x * 38, y2: mid.y - N_UP.y * 38 });
         ['post', 'beam'].forEach(function (id) {
             var e = document.getElementById(id), l = Math.hypot(e.x2.baseVal.value - e.x1.baseVal.value, e.y2.baseVal.value - e.y1.baseVal.value);
             e.setAttribute('stroke-dasharray', l.toFixed(1)); e.setAttribute('stroke-dashoffset', l.toFixed(1)); e.dataset.len = l.toFixed(1);
@@ -179,7 +182,7 @@
         });
         showCross(!!(s && s.cross));
         el('buddy1').setAttribute('opacity', s && s.buddy ? '1' : '0');
-        el('glow').setAttribute('opacity', s && s.life ? '1' : '0.35');
+        el('glow').setAttribute('opacity', s && s.life ? '1' : '0.75');
         el('you').setAttribute('opacity', s && (s.fallen || s.life) ? '0' : '1');
         el('scene-desc').textContent = s ? s.desc : 'A runner on a slope. The pit is below to the left. Full Life is at the top of the hill to the right.';
         var p = s ? s.pos : START;
