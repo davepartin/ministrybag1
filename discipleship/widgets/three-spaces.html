@@ -247,7 +247,14 @@
         el('status').textContent = 'Step ' + (step + 1) + ' of ' + steps.length + ': ' + s.title; applyFocus();
     }
     place(0); fitCards(); render();
-    var rt = null; window.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(fitCards, 150); });
+    var rt = null, lastWidth = window.innerWidth;
+    // Refit only when the width changes. The page briefly resizes this frame's height to measure it,
+    // and refitting on that would start a measure-resize loop that jolts the page while scrolling.
+    window.addEventListener('resize', function () {
+        if (window.innerWidth === lastWidth) return;
+        lastWidth = window.innerWidth;
+        clearTimeout(rt); rt = setTimeout(fitCards, 150);
+    });
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitCards);
 </script>
 </body>
