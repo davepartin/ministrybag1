@@ -75,9 +75,9 @@
             <line id="beam" stroke="#8A5A2B" stroke-width="14" stroke-linecap="round" opacity="0"/>
             <!-- temptation arrives -->
             <g id="bang" opacity="0">
-                <circle cx="140" cy="102" r="17" fill="#9B3B2A"/>
-                <text x="140" y="110" text-anchor="middle" class="lbl" font-size="22" fill="#FFFFFF">!</text>
-                <text x="140" y="74" text-anchor="middle" class="lbl" font-size="14" fill="#9B3B2A">Temptation</text>
+                <circle cx="123" cy="108" r="17" fill="#9B3B2A"/>
+                <text x="123" y="116" text-anchor="middle" class="lbl" font-size="22" fill="#FFFFFF">!</text>
+                <text x="123" y="80" text-anchor="middle" class="lbl" font-size="14" fill="#9B3B2A">Temptation</text>
             </g>
             <!-- a running partner -->
             <g id="buddy1" class="buddy" opacity="0"><circle cx="0" cy="-40" r="7.5" fill="#4A6B8B"/><line x1="0" y1="-32" x2="0" y2="-15" stroke="#4A6B8B" stroke-width="5" stroke-linecap="round"/><line x1="0" y1="-27" x2="-8" y2="-19" stroke="#4A6B8B" stroke-width="4" stroke-linecap="round"/><line x1="0" y1="-27" x2="8" y2="-19" stroke="#4A6B8B" stroke-width="4" stroke-linecap="round"/><line x1="0" y1="-15" x2="-7" y2="0" stroke="#4A6B8B" stroke-width="5" stroke-linecap="round"/><line x1="0" y1="-15" x2="7" y2="0" stroke="#4A6B8B" stroke-width="5" stroke-linecap="round"/></g>
@@ -98,7 +98,7 @@
     var U = { x: DX / LEN, y: DY / LEN }, N_UP = { x: U.y, y: -U.x };
     function pt(t, off) { off = off || 0; return { x: A.x + DX * t + N_UP.x * off, y: A.y + DY * t + N_UP.y * off }; }
     var ON_CROSS = 14;
-    var START = pt(0.2);
+    var START = pt(0.12);
 
     var tempted = {
         pos: START, bang: true, lit: 0, cross: false,
@@ -109,15 +109,15 @@
         desc: 'Temptation appears above the runner. The pit is below to the left and Full Life is up the hill to the right.'
     };
     var stay = [
-        { pos: pt(0.09), color: RUST, title: 'Look and Linger', text: 'You choose to not RUN away and the sinful thoughts begin to grow.', ref: '“Keep your way far from her, and do not go near the door of her house.” (Proverbs 5:8)', desc: 'The runner steps down toward the pit.' },
+        { pos: pt(0.05), color: RUST, title: 'Look and Linger', text: 'You choose to not RUN away and the sinful thoughts begin to grow.', ref: '“Keep your way far from her, and do not go near the door of her house.” (Proverbs 5:8)', desc: 'The runner steps down toward the pit.' },
         { pos: { x: A.x, y: A.y }, color: RUST, title: 'Sinful Action', text: 'The look becomes a choice.', ref: '“Each person is tempted when he is lured and enticed by his own desire. Then desire when it has conceived gives birth to sin.” (James 1:14-15)', desc: 'The runner stands at the edge of the pit.' },
         { pos: { x: 74, y: 266 }, tilt: -35, fallen: true, color: RUST, title: 'Hide in Shame', text: 'Now you want to cover it up. Sin grows best in the dark, and the pit gets deeper.', ref: '“For everyone who does wicked things hates the light and does not come to the light, lest his works should be exposed.” (John 3:20)', desc: 'The runner tumbles down into the pit.' },
         { pos: pt(-0.27, ON_CROSS), fallen: true, cross: true, color: GOLD, title: 'There Is Still Hope in the Pit', text: 'Jesus died for us while we were still in our sin. Will you respond in humble repentance?', ref: '“I acknowledged my sin to you … and you forgave the iniquity of my sin.” ~ King David\nPsalm 32:5', desc: 'The cross reaches down into the pit, and the runner stands on it, ready to climb out.' }
     ];
     var run = [
-        { pos: pt(0.36, ON_CROSS), lit: 1, cross: true, color: GREEN, title: 'R: Remember the Cross', text: 'The cross comes to you. You were bought with a price, the life of God\'s own Son. Grace is free, but it is never cheap.', ref: '1 Corinthians 6:19-20', desc: 'The cross forms along the slope, and the runner steps onto it at the R marker.' },
-        { pos: pt(0.52, ON_CROSS), lit: 2, cross: true, color: GREEN, title: 'U: United with God', text: 'Christ is in you, and your body is a temple of the Holy Spirit. Remember He is always with you.', ref: '1 Corinthians 6:19', desc: 'The runner climbs the cross past the U marker.' },
-        { pos: pt(0.68, ON_CROSS), buddy: pt(0.59, ON_CROSS), lit: 3, cross: true, color: GREEN, title: 'N: Need Others', text: 'Do not run alone. Run with another believer beside you.', ref: '“flee youthful passions … along with those who call on the Lord” (2 Timothy 2:22)', desc: 'A running partner joins the runner on the cross at the N marker.' },
+        { pos: pt(0.25, ON_CROSS), lit: 1, cross: true, color: GREEN, title: 'R: Remember the Cross', text: 'The cross comes to you. You were bought with a price, the life of God\'s own Son. Grace is free, but it is never cheap.', ref: '1 Corinthians 6:19-20', desc: 'The cross forms along the slope, and the runner steps onto it at the R marker.' },
+        { pos: pt(0.40, ON_CROSS), lit: 2, cross: true, color: GREEN, title: 'U: United with God', text: 'Christ is in you, and your body is a temple of the Holy Spirit. Remember He is always with you.', ref: '1 Corinthians 6:19', desc: 'The runner climbs the cross past the U marker.' },
+        { pos: pt(0.55, ON_CROSS), buddy: pt(0.46, ON_CROSS), lit: 3, cross: true, color: GREEN, title: 'N: Need Others', text: 'Do not run alone. Run with another believer beside you.', ref: '“flee youthful passions … along with those who call on the Lord” (2 Timothy 2:22)', desc: 'A running partner joins the runner on the cross at the N marker.' },
         { pos: { x: 328, y: 70 }, buddy: { x: 306, y: 78 }, lit: 3, cross: true, life: true, color: GOLD, title: 'Full Life', text: '“The thief comes only to steal and kill and destroy. I came that they may have life and have it abundantly.”', ref: 'John 10:10', desc: 'The runner and a partner reach Full Life at the top of the hill.' }
     ];
 
@@ -126,15 +126,15 @@
         function set(id, a) { var e = document.getElementById(id); for (var k in a) e.setAttribute(k, a[k]); }
         set('hill', { points: [A.x + ',' + A.y, B.x + ',' + B.y, '360,' + B.y, '360,280', A.x + ',280'].join(' ') });
         set('slope', { points: [A.x + ',' + A.y, B.x + ',' + B.y, '360,' + B.y].join(' ') });
-        [['flag-r', 0.36], ['flag-u', 0.52], ['flag-n', 0.68]].forEach(function (f) {
+        [['flag-r', 0.25], ['flag-u', 0.40], ['flag-n', 0.55]].forEach(function (f) {
             var c = pt(f[1], -31), g = document.getElementById(f[0]);
             g.querySelector('rect').setAttribute('x', (c.x - 16).toFixed(1)); g.querySelector('rect').setAttribute('y', (c.y - 15).toFixed(1));
             g.querySelector('text').setAttribute('x', c.x.toFixed(1)); g.querySelector('text').setAttribute('y', (c.y + 7).toFixed(1));
         });
         // The post is drawn from the top down, so it reaches down to you.
-        var top = pt(1.0, 7), base = pt(-0.32, 7), mid = pt(0.90, 7);
+        var top = pt(1.0, 7), base = pt(-0.32, 7), mid = pt(0.76, 7);
         set('post', { x1: top.x, y1: top.y, x2: base.x, y2: base.y });
-        set('beam', { x1: mid.x + N_UP.x * 52, y1: mid.y + N_UP.y * 52, x2: mid.x - N_UP.x * 52, y2: mid.y - N_UP.y * 52 });
+        set('beam', { x1: mid.x + N_UP.x * 64, y1: mid.y + N_UP.y * 64, x2: mid.x - N_UP.x * 64, y2: mid.y - N_UP.y * 64 });
         ['post', 'beam'].forEach(function (id) {
             var e = document.getElementById(id), l = Math.hypot(e.x2.baseVal.value - e.x1.baseVal.value, e.y2.baseVal.value - e.y1.baseVal.value);
             e.setAttribute('stroke-dasharray', l.toFixed(1)); e.setAttribute('stroke-dashoffset', l.toFixed(1)); e.dataset.len = l.toFixed(1);
