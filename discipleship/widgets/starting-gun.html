@@ -23,9 +23,12 @@
         .flag rect { transition: fill 0.4s ease; }
         .buddy { transition: opacity 0.5s ease; }
         #runner circle, #runner line { transition: fill 0.4s ease, stroke 0.4s ease; }
+        #post { transition: stroke-dashoffset 0.9s ease, opacity 0.2s ease; }
+        #beam { transition: stroke-dashoffset 0.4s ease 0.7s, opacity 0.2s ease 0.7s; }
+        #glow { transition: opacity 0.8s ease; }
         #runner.in-pit circle { fill: #F2EDE3; }
         #runner.in-pit line { stroke: #F2EDE3; }
-        @media (prefers-reduced-motion: reduce) { #bang, .flag rect, .buddy, #runner circle, #runner line { transition: none; } }
+        @media (prefers-reduced-motion: reduce) { #bang, .flag rect, .buddy, #runner circle, #runner line, #post, #beam, #glow { transition: none; } }
 
         #card-area { background-color: #F6F4EE; border-top: 1px solid #EBE5D9; padding-top: 8px; }
         .verse-card-wrapper { margin: 0 auto; padding: 0 12px 10px; max-width: 460px; }
@@ -52,43 +55,33 @@
     <div class="title-bar"><h1>RUN from Sin</h1></div>
     <div class="diagram-wrapper">
         <svg id="scene" viewBox="0 0 360 280" role="img" aria-labelledby="scene-desc">
-            <desc id="scene-desc">A runner at a starting line. To the left is a pit. To the right a path climbs a hill to a cross.</desc>
-            <!-- hill and path to the cross -->
-            <polygon points="196,214 344,214 344,96" fill="#E8F3EB"/>
-            <line x1="196" y1="214" x2="332" y2="104" stroke="#9CC7A9" stroke-width="4" stroke-linecap="round"/>
-            <g id="cross" opacity="0.5">
-                <rect x="327" y="46" width="8" height="58" rx="2" fill="#6B5232"/>
-                <rect x="313" y="60" width="36" height="8" rx="2" fill="#6B5232"/>
-            </g>
-            <text id="life" x="331" y="36" text-anchor="middle" class="lbl" font-size="15" fill="#1D6B3F" opacity="0">Life</text>
-            <!-- R U N flags along the path -->
-            <g class="flag" id="flag-r"><rect x="230" y="193" width="24" height="22" rx="4" fill="#CFC9BD"/><text x="242" y="209" text-anchor="middle" class="lbl" font-size="15" fill="#FFFFFF">R</text></g>
-            <g class="flag" id="flag-u"><rect x="266" y="164" width="24" height="22" rx="4" fill="#CFC9BD"/><text x="278" y="180" text-anchor="middle" class="lbl" font-size="15" fill="#FFFFFF">U</text></g>
-            <g class="flag" id="flag-n"><rect x="302" y="135" width="24" height="22" rx="4" fill="#CFC9BD"/><text x="314" y="151" text-anchor="middle" class="lbl" font-size="15" fill="#FFFFFF">N</text></g>
-            <!-- ground and start line -->
-            <line x1="112" y1="214" x2="200" y2="214" stroke="#B9B4A8" stroke-width="4"/>
-            <line x1="152" y1="208" x2="152" y2="220" stroke="#FFFFFF" stroke-width="3"/>
-            <text x="152" y="236" text-anchor="middle" class="lbl" font-size="13" fill="#8C877C">START</text>
+            <desc id="scene-desc">A runner on a slope. The pit is below to the left. Full Life is at the top of the hill to the right.</desc>
+            <!-- Full Life at the top of the hill -->
+            <circle id="glow" cx="334" cy="44" r="26" fill="#F3D98B" opacity="0.35"/>
+            <!-- the hill: one slope from the pit up to Full Life -->
+            <polygon id="hill" fill="#E8F3EB"/>
+            <polyline id="slope" fill="none" stroke="#9CC7A9" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+            <text x="357" y="101" text-anchor="end" class="lbl" font-size="15" fill="#9A7222">Full Life</text>
+            <!-- R U N markers below the slope -->
+            <g class="flag" id="flag-r"><rect width="24" height="22" rx="4" fill="#CFC9BD"/><text text-anchor="middle" class="lbl" font-size="15" fill="#FFFFFF">R</text></g>
+            <g class="flag" id="flag-u"><rect width="24" height="22" rx="4" fill="#CFC9BD"/><text text-anchor="middle" class="lbl" font-size="15" fill="#FFFFFF">U</text></g>
+            <g class="flag" id="flag-n"><rect width="24" height="22" rx="4" fill="#CFC9BD"/><text text-anchor="middle" class="lbl" font-size="15" fill="#FFFFFF">N</text></g>
             <!-- the pit -->
-            <path d="M 14 214 L 112 214 L 104 272 L 22 272 Z" fill="#3E3B35"/>
-            <text x="60" y="204" text-anchor="middle" class="lbl" font-size="15" fill="#3E3B35">The Pit</text>
+            <path d="M 8 226 L 96 226 L 88 276 L 16 276 Z" fill="#3E3B35"/>
+            <text x="60" y="209" text-anchor="middle" class="lbl" font-size="15" fill="#3E3B35">The Pit</text>
+            <!-- the cross lies along the slope, its base reaching down into the pit -->
+            <line id="post" stroke="#8A5A2B" stroke-width="9" stroke-linecap="round" opacity="0"/>
+            <line id="beam" stroke="#8A5A2B" stroke-width="9" stroke-linecap="round" opacity="0"/>
             <!-- temptation arrives -->
             <g id="bang" opacity="0">
-                <circle cx="152" cy="116" r="17" fill="#9B3B2A"/>
-                <text x="152" y="124" text-anchor="middle" class="lbl" font-size="22" fill="#FFFFFF">!</text>
-                <text x="152" y="88" text-anchor="middle" class="lbl" font-size="14" fill="#9B3B2A">Temptation</text>
+                <circle cx="140" cy="112" r="17" fill="#9B3B2A"/>
+                <text x="140" y="120" text-anchor="middle" class="lbl" font-size="22" fill="#FFFFFF">!</text>
+                <text x="140" y="84" text-anchor="middle" class="lbl" font-size="14" fill="#9B3B2A">Temptation</text>
             </g>
             <!-- a running partner -->
             <g id="buddy1" class="buddy" opacity="0"><circle cx="0" cy="-40" r="7.5" fill="#4A6B8B"/><line x1="0" y1="-32" x2="0" y2="-15" stroke="#4A6B8B" stroke-width="5" stroke-linecap="round"/><line x1="0" y1="-27" x2="-8" y2="-19" stroke="#4A6B8B" stroke-width="4" stroke-linecap="round"/><line x1="0" y1="-27" x2="8" y2="-19" stroke="#4A6B8B" stroke-width="4" stroke-linecap="round"/><line x1="0" y1="-15" x2="-7" y2="0" stroke="#4A6B8B" stroke-width="5" stroke-linecap="round"/><line x1="0" y1="-15" x2="7" y2="0" stroke="#4A6B8B" stroke-width="5" stroke-linecap="round"/></g>
-                        <!-- the runner -->
-            <g id="runner">
-                <circle cx="0" cy="-40" r="7.5" fill="#1D6B3F"/>
-                <line x1="0" y1="-32" x2="0" y2="-15" stroke="#1D6B3F" stroke-width="5" stroke-linecap="round"/>
-                <line x1="0" y1="-27" x2="-8" y2="-19" stroke="#1D6B3F" stroke-width="4" stroke-linecap="round"/>
-                <line x1="0" y1="-27" x2="8" y2="-19" stroke="#1D6B3F" stroke-width="4" stroke-linecap="round"/>
-                <line x1="0" y1="-15" x2="-7" y2="0" stroke="#1D6B3F" stroke-width="5" stroke-linecap="round"/>
-                <line x1="0" y1="-15" x2="7" y2="0" stroke="#1D6B3F" stroke-width="5" stroke-linecap="round"/>
-            </g>
+            <!-- the runner -->
+            <g id="runner"><circle cx="0" cy="-40" r="7.5" fill="#1D6B3F"/><line x1="0" y1="-32" x2="0" y2="-15" stroke="#1D6B3F" stroke-width="5" stroke-linecap="round"/><line x1="0" y1="-27" x2="-8" y2="-19" stroke="#1D6B3F" stroke-width="4" stroke-linecap="round"/><line x1="0" y1="-27" x2="8" y2="-19" stroke="#1D6B3F" stroke-width="4" stroke-linecap="round"/><line x1="0" y1="-15" x2="-7" y2="0" stroke="#1D6B3F" stroke-width="5" stroke-linecap="round"/><line x1="0" y1="-15" x2="7" y2="0" stroke="#1D6B3F" stroke-width="5" stroke-linecap="round"/></g>
             <text id="you" class="lbl" font-size="14" fill="#1D6B3F" text-anchor="middle">You</text>
         </svg>
     </div>
@@ -97,54 +90,86 @@
 </div>
 <script>
     var GREEN = '#1D6B3F', RUST = '#9B3B2A', GOLD = '#B8892B', GREY = '#8C877C';
-    var START = { x: 152, y: 214 };
+    // The slope runs from the pit's lip A up to the crest B. pt(t, off) is a point t of the way
+    // along it, lifted off pixels above the surface (negative is below, into the hill).
+    var A = { x: 96, y: 226 }, B = { x: 318, y: 70 };
+    var DX = B.x - A.x, DY = B.y - A.y, LEN = Math.sqrt(DX * DX + DY * DY);
+    var U = { x: DX / LEN, y: DY / LEN }, N_UP = { x: U.y, y: -U.x };
+    function pt(t, off) { off = off || 0; return { x: A.x + DX * t + N_UP.x * off, y: A.y + DY * t + N_UP.y * off }; }
+    var ON_CROSS = 9;
+    var START = pt(0.2);
 
     var tempted = {
-        pos: START, bang: true, lit: 0, buddies: false, life: false, fallen: false,
+        pos: START, bang: true, lit: 0, cross: false,
         color: RUST,
         title: 'Temptation arrives.',
         text: 'A tempting thought just knocked. Every second you wait makes running harder. What will you do?',
         ref: '“I made a covenant with my eyes not to look lustfully at a young woman.” (Job 31:1, NIV)',
-        desc: 'Temptation appears beside the runner. The pit is to the left and the path to the cross is to the right.'
+        desc: 'Temptation appears above the runner. The pit is below to the left and Full Life is up the hill to the right.'
     };
     var stay = [
-        { pos: { x: 128, y: 214 }, color: GREY, title: 'A look.', text: 'You do not walk away. You keep looking, and the thought grows. This is where David stood on the roof.', ref: '2 Samuel 11:2', desc: 'The runner steps toward the pit.' },
-        { pos: { x: 108, y: 214 }, color: GREY, title: 'The wrong decision.', text: 'The look becomes a choice. Each step makes the next one easier, and you are standing on the edge.', ref: '2 Samuel 11:4', desc: 'The runner stands at the edge of the pit.' },
-        { pos: { x: 88, y: 262 }, tilt: -35, color: GREY, fallen: true, title: 'Hiding.', text: 'Now you want to cover it up. Sin grows best in the dark, and the pit gets deeper.', ref: 'Psalm 32:3', desc: 'The runner tumbles down into the pit.' },
-        { pos: { x: 63, y: 268 }, color: GOLD, fallen: true, title: 'The pit is not the end.', text: 'Stop hiding and confess it, like David did. God forgives and lifts you out. It is never too late to turn around and run.', ref: '“I acknowledged my sin to you … and you forgave the iniquity of my sin” (Psalm 32:5)', desc: 'The runner is at the bottom of the pit, but confession brings forgiveness and God can lift them out.' }
+        { pos: pt(0.09), color: GREY, title: 'A look.', text: 'You do not walk away. You keep looking, and the thought grows. This is where David stood on the roof.', ref: '2 Samuel 11:2', desc: 'The runner steps down toward the pit.' },
+        { pos: { x: A.x, y: A.y }, color: GREY, title: 'The wrong decision.', text: 'The look becomes a choice. Each step makes the next one easier, and you are standing on the edge.', ref: '2 Samuel 11:4', desc: 'The runner stands at the edge of the pit.' },
+        { pos: { x: 74, y: 266 }, tilt: -35, fallen: true, color: GREY, title: 'Hiding.', text: 'Now you want to cover it up. Sin grows best in the dark, and the pit gets deeper.', ref: 'Psalm 32:3', desc: 'The runner tumbles down into the pit.' },
+        { pos: pt(-0.27, ON_CROSS), fallen: true, cross: true, color: GOLD, title: 'The pit is not the end.', text: 'The cross comes all the way down into the pit for you. Stop hiding and confess it, like David did, and God lifts you out.', ref: '“I acknowledged my sin to you … and you forgave the iniquity of my sin” (Psalm 32:5)', desc: 'The cross reaches down into the pit, and the runner stands on it, ready to climb out.' }
     ];
     var run = [
-        { pos: { x: 222, y: 193 }, lit: 1, color: GREEN, title: 'R: Remember the Cross.', text: 'You were bought with a price, the life of God\'s own Son. Grace is free, but it is never cheap.', ref: '1 Corinthians 6:19-20', desc: 'The runner sprints up the path and lights the R flag.' },
-        { pos: { x: 258, y: 164 }, lit: 2, color: GREEN, title: 'U: United with God.', text: 'You are joined to the Lord, and your body is a temple of the Holy Spirit. God Himself runs with you.', ref: '1 Corinthians 6:17, 19', desc: 'The runner climbs higher and lights the U flag.' },
-        { pos: { x: 294, y: 135 }, lit: 3, buddies: true, color: GREEN, title: 'N: Need others.', text: 'Do not run alone. Nathan was David\'s other. Run with another believer beside you.', ref: '“flee youthful passions … along with those who call on the Lord” (2 Timothy 2:22)', desc: 'A running partner joins the runner as the N flag lights.' },
-        { pos: { x: 306, y: 125 }, lit: 3, buddies: true, life: true, color: GOLD, title: 'You ran toward life.', text: 'Joseph ran, and you can too. The thief comes to destroy, but Jesus came to give you life.', ref: '“I came that they may have life and have it abundantly.” (John 10:10)', desc: 'The runner and a partner reach the cross at the top of the hill.' }
+        { pos: pt(0.36, ON_CROSS), lit: 1, cross: true, color: GREEN, title: 'R: Remember the Cross.', text: 'The cross comes to you. You were bought with a price, the life of God\'s own Son. Grace is free, but it is never cheap.', ref: '1 Corinthians 6:19-20', desc: 'The cross forms along the slope, and the runner steps onto it at the R marker.' },
+        { pos: pt(0.56, ON_CROSS), lit: 2, cross: true, color: GREEN, title: 'U: United with God.', text: 'You are joined to the Lord, and your body is a temple of the Holy Spirit. Christ is in you as you climb.', ref: '1 Corinthians 6:17, 19', desc: 'The runner climbs the cross past the U marker.' },
+        { pos: pt(0.74, ON_CROSS), buddy: pt(0.65, ON_CROSS), lit: 3, cross: true, color: GREEN, title: 'N: Need others.', text: 'Do not run alone. Nathan was David\'s other. Run with another believer beside you.', ref: '“flee youthful passions … along with those who call on the Lord” (2 Timothy 2:22)', desc: 'A running partner joins the runner on the cross at the N marker.' },
+        { pos: { x: 336, y: 70 }, buddy: { x: 314, y: 71 }, lit: 3, cross: true, life: true, color: GOLD, title: 'Full Life.', text: 'Joseph ran, and you can too. The thief comes to destroy, but Jesus came to give you full life.', ref: '“I came that they may have life and have it abundantly.” (John 10:10)', desc: 'The runner and a partner reach Full Life at the top of the hill.' }
     ];
-    run.forEach(function (s) { s.bang = false; s.fallen = false; s.buddies = !!s.buddies; s.life = !!s.life; });
-    stay.forEach(function (s) { s.bang = false; s.lit = 0; s.buddies = false; s.life = false; s.fallen = !!s.fallen; });
 
-    var mode = 'intro', idx = 0, pendingFocus = null, cur = { x: START.x, y: START.y }, anim = null;
+    // Build the scene from the slope.
+    (function () {
+        function set(id, a) { var e = document.getElementById(id); for (var k in a) e.setAttribute(k, a[k]); }
+        set('hill', { points: [A.x + ',' + A.y, B.x + ',' + B.y, '360,' + B.y, '360,280', A.x + ',280'].join(' ') });
+        set('slope', { points: [A.x + ',' + A.y, B.x + ',' + B.y, '360,' + B.y].join(' ') });
+        [['flag-r', 0.36], ['flag-u', 0.56], ['flag-n', 0.74]].forEach(function (f) {
+            var c = pt(f[1], -24), g = document.getElementById(f[0]);
+            g.querySelector('rect').setAttribute('x', (c.x - 12).toFixed(1)); g.querySelector('rect').setAttribute('y', (c.y - 11).toFixed(1));
+            g.querySelector('text').setAttribute('x', c.x.toFixed(1)); g.querySelector('text').setAttribute('y', (c.y + 5).toFixed(1));
+        });
+        // The post is drawn from the top down, so it reaches down to you.
+        var top = pt(0.99, 5), base = pt(-0.32, 5), mid = pt(0.84, 5);
+        set('post', { x1: top.x, y1: top.y, x2: base.x, y2: base.y });
+        set('beam', { x1: mid.x + N_UP.x * 24, y1: mid.y + N_UP.y * 24, x2: mid.x - N_UP.x * 24, y2: mid.y - N_UP.y * 24 });
+        ['post', 'beam'].forEach(function (id) {
+            var e = document.getElementById(id), l = Math.hypot(e.x2.baseVal.value - e.x1.baseVal.value, e.y2.baseVal.value - e.y1.baseVal.value);
+            e.setAttribute('stroke-dasharray', l.toFixed(1)); e.setAttribute('stroke-dashoffset', l.toFixed(1)); e.dataset.len = l.toFixed(1);
+        });
+    })();
+
+    var mode = 'intro', idx = 0, pendingFocus = null, anim = null, tilt = 0;
+    var cur = { x: START.x, y: START.y }, curB = { x: START.x, y: START.y };
     var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     function el(id) { return document.getElementById(id); }
 
-    function place(p) {
-        el('runner').setAttribute('transform', 'translate(' + p.x + ',' + p.y + ')' + (tilt ? ' rotate(' + tilt + ')' : ''));
-        el('you').setAttribute('x', p.x); el('you').setAttribute('y', p.y - 54);
-        el('buddy1').setAttribute('transform', 'translate(' + (p.x - 24) + ',' + (p.y + 19) + ')');
-        cur = { x: p.x, y: p.y };
+    function place(p, b) {
+        el('runner').setAttribute('transform', 'translate(' + p.x.toFixed(1) + ',' + p.y.toFixed(1) + ')' + (tilt ? ' rotate(' + tilt + ')' : ''));
+        el('you').setAttribute('x', p.x.toFixed(1)); el('you').setAttribute('y', (p.y - 54).toFixed(1));
+        el('buddy1').setAttribute('transform', 'translate(' + b.x.toFixed(1) + ',' + b.y.toFixed(1) + ')');
+        cur = { x: p.x, y: p.y }; curB = { x: b.x, y: b.y };
     }
-    function moveTo(p) {
+    function moveTo(p, b) {
         if (anim) cancelAnimationFrame(anim);
-        if (reduceMotion) { place(p); return; }
-        var from = { x: cur.x, y: cur.y }, t0 = null, dur = 700;
+        if (reduceMotion) { place(p, b); return; }
+        var from = { x: cur.x, y: cur.y }, fromB = { x: curB.x, y: curB.y }, t0 = null, dur = 700;
         function frame(ts) {
             if (t0 === null) t0 = ts;
             var k = Math.min((ts - t0) / dur, 1), e = k < 0.5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2;
-            place({ x: from.x + (p.x - from.x) * e, y: from.y + (p.y - from.y) * e });
+            place({ x: from.x + (p.x - from.x) * e, y: from.y + (p.y - from.y) * e }, { x: fromB.x + (b.x - fromB.x) * e, y: fromB.y + (b.y - fromB.y) * e });
             if (k < 1) anim = requestAnimationFrame(frame);
         }
         anim = requestAnimationFrame(frame);
     }
-    var tilt = 0;
+    function showCross(on) {
+        ['post', 'beam'].forEach(function (id) {
+            var e = el(id);
+            e.setAttribute('stroke-dashoffset', on ? '0' : e.dataset.len);
+            e.setAttribute('opacity', on ? '1' : '0');
+        });
+    }
     function paint(s) {
         tilt = s && s.tilt ? s.tilt : 0;
         el('runner').classList.toggle('in-pit', !!(s && s.fallen));
@@ -152,15 +177,14 @@
         ['flag-r', 'flag-u', 'flag-n'].forEach(function (id, i) {
             el(id).querySelector('rect').setAttribute('fill', s && s.lit > i ? GREEN : '#CFC9BD');
         });
-        el('buddy1').setAttribute('opacity', s && s.buddies ? '1' : '0');
-        el('life').setAttribute('opacity', s && s.life ? '1' : '0');
-        el('cross').setAttribute('opacity', s && s.life ? '1' : '0.5');
-        el('runner').setAttribute('opacity', '1');
+        showCross(!!(s && s.cross));
+        el('buddy1').setAttribute('opacity', s && s.buddy ? '1' : '0');
+        el('glow').setAttribute('opacity', s && s.life ? '1' : '0.35');
         el('you').setAttribute('opacity', s && (s.fallen || s.life) ? '0' : '1');
-        el('scene-desc').textContent = s ? s.desc : 'A runner at a starting line. To the left is a pit. To the right a path climbs a hill to a cross.';
-        moveTo(s ? s.pos : START);
+        el('scene-desc').textContent = s ? s.desc : 'A runner on a slope. The pit is below to the left. Full Life is at the top of the hill to the right.';
+        var p = s ? s.pos : START;
+        moveTo(p, s && s.buddy ? s.buddy : pt(0.1, ON_CROSS));
     }
-
     function setFocus(n) { pendingFocus = n; }
     function applyFocus() {
         if (!pendingFocus) return;
@@ -208,7 +232,7 @@
             paint(null);
             var wrap = document.createElement('div'); wrap.className = 'begin-wrapper';
             var intro = document.createElement('p'); intro.className = 'begin-text';
-            intro.textContent = 'You are on the starting line. When temptation comes, which way will you run?';
+            intro.textContent = 'When temptation comes, which way will you go: down into the pit, or up toward Full Life?';
             wrap.appendChild(intro);
             wrap.appendChild(button('Begin \u2192', 'begin', 'begin-btn', function () { go('tempted', 0, 'run'); }));
             area.appendChild(wrap);
@@ -233,7 +257,7 @@
             // The pit is on the left, so the stay path moves forward from the left,
             // right where "Stay and look" was tapped. Back sits on the right.
             if (idx < stay.length - 1) nav.appendChild(button('\u2190 Next', 'next', 'nav-btn danger', function () { go('stay', idx + 1, 'next'); }));
-            else nav.appendChild(button('Run this time', 'retry', 'nav-btn primary', function () { go('tempted', 0, 'run'); }));
+            else nav.appendChild(button('Climb out on the cross', 'retry', 'nav-btn primary', function () { go('run', 0, 'next'); }));
             count.textContent = (idx + 1) + ' of ' + stay.length;
             nav.appendChild(count);
             nav.appendChild(button('Back \u2192', 'back', 'nav-btn', function () {
@@ -254,7 +278,7 @@
         applyFocus();
     }
 
-    place(START);
+    place(START, pt(0.1, ON_CROSS));
     fitCards();
     render();
     var rt = null;
