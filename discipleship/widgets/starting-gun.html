@@ -229,16 +229,24 @@
             count.textContent = 'Choose';
             nav.appendChild(count);
             nav.appendChild(button('RUN →', 'run', 'nav-btn primary', function () { go('run', 0, 'next'); }));
-        } else {
-            var list = mode === 'stay' ? stay : run;
-            nav.appendChild(button('← Back', 'back', 'nav-btn', function () {
-                if (idx === 0) go('tempted', 0, mode === 'stay' ? 'stay' : 'run'); else go(mode, idx - 1, 'back');
-            }));
-            count.textContent = (idx + 1) + ' of ' + list.length;
+        } else if (mode === 'stay') {
+            // The pit is on the left, so the stay path moves forward from the left,
+            // right where "Stay and look" was tapped. Back sits on the right.
+            if (idx < stay.length - 1) nav.appendChild(button('\u2190 Next', 'next', 'nav-btn danger', function () { go('stay', idx + 1, 'next'); }));
+            else nav.appendChild(button('Run this time', 'retry', 'nav-btn primary', function () { go('tempted', 0, 'run'); }));
+            count.textContent = (idx + 1) + ' of ' + stay.length;
             nav.appendChild(count);
-            if (idx < list.length - 1) nav.appendChild(button('Next →', 'next', 'nav-btn primary', function () { go(mode, idx + 1, 'next'); }));
-            else if (mode === 'stay') nav.appendChild(button('Run this time', 'retry', 'nav-btn primary', function () { go('tempted', 0, 'run'); }));
-            else nav.appendChild(button('↻ Restart', 'restart', 'nav-btn primary', function () { go('intro', 0, 'begin'); }));
+            nav.appendChild(button('Back \u2192', 'back', 'nav-btn', function () {
+                if (idx === 0) go('tempted', 0, 'stay'); else go('stay', idx - 1, 'back');
+            }));
+        } else {
+            nav.appendChild(button('\u2190 Back', 'back', 'nav-btn', function () {
+                if (idx === 0) go('tempted', 0, 'run'); else go('run', idx - 1, 'back');
+            }));
+            count.textContent = (idx + 1) + ' of ' + run.length;
+            nav.appendChild(count);
+            if (idx < run.length - 1) nav.appendChild(button('Next \u2192', 'next', 'nav-btn primary', function () { go('run', idx + 1, 'next'); }));
+            else nav.appendChild(button('\u21BB Restart', 'restart', 'nav-btn primary', function () { go('intro', 0, 'begin'); }));
         }
         wrapper.appendChild(nav);
         area.appendChild(wrapper);
