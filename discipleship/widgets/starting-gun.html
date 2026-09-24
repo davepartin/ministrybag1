@@ -37,7 +37,7 @@
         .verse-card-content { padding: 10px 16px; min-height: var(--card-h, 112px); }
         .card-title { font-family: 'Trebuchet MS', sans-serif; font-size: 16px; font-weight: 700; line-height: 1.3; margin-bottom: 4px; }
         .card-text { font-size: 15px; line-height: 1.4; color: #3D3426; }
-        .card-ref { font-family: 'Trebuchet MS', sans-serif; font-size: 13px; color: #6B6358; margin-top: 4px; }
+        .card-ref { font-family: 'Trebuchet MS', sans-serif; font-size: 13px; color: #6B6358; margin-top: 4px; white-space: pre-line; }
         .nav-bar { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; padding: 0 2px; gap: 8px; }
         .nav-btn { background: transparent; border: 1.5px solid #D4CFC4; border-radius: 10px; padding: 10px 12px; min-height: 44px; min-width: 124px; text-align: center; font-size: 14px; color: #5A4E3C; cursor: pointer; font-weight: 600; }
         .nav-btn.primary { color: #FFFFFF; border: none; background: #1D6B3F; }
@@ -74,9 +74,9 @@
             <line id="beam" stroke="#8A5A2B" stroke-width="9" stroke-linecap="round" opacity="0"/>
             <!-- temptation arrives -->
             <g id="bang" opacity="0">
-                <circle cx="140" cy="112" r="17" fill="#9B3B2A"/>
-                <text x="140" y="120" text-anchor="middle" class="lbl" font-size="22" fill="#FFFFFF">!</text>
-                <text x="140" y="84" text-anchor="middle" class="lbl" font-size="14" fill="#9B3B2A">Temptation</text>
+                <circle cx="140" cy="102" r="17" fill="#9B3B2A"/>
+                <text x="140" y="110" text-anchor="middle" class="lbl" font-size="22" fill="#FFFFFF">!</text>
+                <text x="140" y="74" text-anchor="middle" class="lbl" font-size="14" fill="#9B3B2A">Temptation</text>
             </g>
             <!-- a running partner -->
             <g id="buddy1" class="buddy" opacity="0"><circle cx="0" cy="-40" r="7.5" fill="#4A6B8B"/><line x1="0" y1="-32" x2="0" y2="-15" stroke="#4A6B8B" stroke-width="5" stroke-linecap="round"/><line x1="0" y1="-27" x2="-8" y2="-19" stroke="#4A6B8B" stroke-width="4" stroke-linecap="round"/><line x1="0" y1="-27" x2="8" y2="-19" stroke="#4A6B8B" stroke-width="4" stroke-linecap="round"/><line x1="0" y1="-15" x2="-7" y2="0" stroke="#4A6B8B" stroke-width="5" stroke-linecap="round"/><line x1="0" y1="-15" x2="7" y2="0" stroke="#4A6B8B" stroke-width="5" stroke-linecap="round"/></g>
@@ -102,22 +102,22 @@
     var tempted = {
         pos: START, bang: true, lit: 0, cross: false,
         color: RUST,
-        title: 'Temptation arrives.',
-        text: 'A tempting thought just knocked. Every second you wait makes running harder. What will you do?',
-        ref: '“I made a covenant with my eyes not to look lustfully at a young woman.” (Job 31:1, NIV)',
+        title: 'Temptation Arrives',
+        text: 'You feel the pull of sin. What will you do?',
+        ref: '“The prudent sees danger and hides himself, but the simple go on and suffer for it.” (Proverbs 22:3)\n“Watch and pray that you may not enter into temptation. The spirit indeed is willing, but the flesh is weak.” (Matthew 26:41)',
         desc: 'Temptation appears above the runner. The pit is below to the left and Full Life is up the hill to the right.'
     };
     var stay = [
-        { pos: pt(0.09), color: GREY, title: 'A look.', text: 'You do not walk away. You keep looking, and the thought grows. This is where David stood on the roof.', ref: '2 Samuel 11:2', desc: 'The runner steps down toward the pit.' },
-        { pos: { x: A.x, y: A.y }, color: GREY, title: 'The wrong decision.', text: 'The look becomes a choice. Each step makes the next one easier, and you are standing on the edge.', ref: '2 Samuel 11:4', desc: 'The runner stands at the edge of the pit.' },
-        { pos: { x: 74, y: 266 }, tilt: -35, fallen: true, color: GREY, title: 'Hiding.', text: 'Now you want to cover it up. Sin grows best in the dark, and the pit gets deeper.', ref: 'Psalm 32:3', desc: 'The runner tumbles down into the pit.' },
-        { pos: pt(-0.27, ON_CROSS), fallen: true, cross: true, color: GOLD, title: 'The pit is not the end.', text: 'The cross comes all the way down into the pit for you. Stop hiding and confess it, like David did, and God lifts you out.', ref: '“I acknowledged my sin to you … and you forgave the iniquity of my sin” (Psalm 32:5)', desc: 'The cross reaches down into the pit, and the runner stands on it, ready to climb out.' }
+        { pos: pt(0.09), color: GREY, title: 'Look and Linger', text: 'You do not walk away and allow the thoughts to grow.', ref: '“Keep your way far from her [the forbidden woman], and do not go near the door of her house.” (Proverbs 5:8)', desc: 'The runner steps down toward the pit.' },
+        { pos: { x: A.x, y: A.y }, color: GREY, title: 'Sinful Action', text: 'The look becomes a choice.', ref: '“Each person is tempted when he is lured and enticed by his own desire. Then desire when it has conceived gives birth to sin.” (James 1:14-15)', desc: 'The runner stands at the edge of the pit.' },
+        { pos: { x: 74, y: 266 }, tilt: -35, fallen: true, color: GREY, title: 'Hide in Shame', text: 'Now you want to cover it up. Sin grows best in the dark, and the pit gets deeper.', ref: '“For everyone who does wicked things hates the light and does not come to the light, lest his works should be exposed.” (John 3:20)', desc: 'The runner tumbles down into the pit.' },
+        { pos: pt(-0.27, ON_CROSS), fallen: true, cross: true, color: GOLD, title: 'There Is Still Hope in the Pit', text: 'Jesus came for us while we were still in our sin.', ref: '“But God shows his love for us in that while we were still sinners, Christ died for us.” (Romans 5:8)', desc: 'The cross reaches down into the pit, and the runner stands on it, ready to climb out.' }
     ];
     var run = [
-        { pos: pt(0.36, ON_CROSS), lit: 1, cross: true, color: GREEN, title: 'R: Remember the Cross.', text: 'The cross comes to you. You were bought with a price, the life of God\'s own Son. Grace is free, but it is never cheap.', ref: '1 Corinthians 6:19-20', desc: 'The cross forms along the slope, and the runner steps onto it at the R marker.' },
-        { pos: pt(0.56, ON_CROSS), lit: 2, cross: true, color: GREEN, title: 'U: United with God.', text: 'You are joined to the Lord, and your body is a temple of the Holy Spirit. Christ is in you as you climb.', ref: '1 Corinthians 6:17, 19', desc: 'The runner climbs the cross past the U marker.' },
-        { pos: pt(0.74, ON_CROSS), buddy: pt(0.65, ON_CROSS), lit: 3, cross: true, color: GREEN, title: 'N: Need others.', text: 'Do not run alone. Nathan was David\'s other. Run with another believer beside you.', ref: '“flee youthful passions … along with those who call on the Lord” (2 Timothy 2:22)', desc: 'A running partner joins the runner on the cross at the N marker.' },
-        { pos: { x: 336, y: 70 }, buddy: { x: 314, y: 71 }, lit: 3, cross: true, life: true, color: GOLD, title: 'Full Life.', text: 'Joseph ran, and you can too. The thief comes to destroy, but Jesus came to give you full life.', ref: '“I came that they may have life and have it abundantly.” (John 10:10)', desc: 'The runner and a partner reach Full Life at the top of the hill.' }
+        { pos: pt(0.36, ON_CROSS), lit: 1, cross: true, color: GREEN, title: 'R: Remember the Cross', text: 'The cross comes to you. You were bought with a price, the life of God\'s own Son. Grace is free, but it is never cheap.', ref: '1 Corinthians 6:19-20', desc: 'The cross forms along the slope, and the runner steps onto it at the R marker.' },
+        { pos: pt(0.56, ON_CROSS), lit: 2, cross: true, color: GREEN, title: 'U: United with God', text: 'Christ is in you, and your body is a temple of the Holy Spirit. Remember He is always with you.', ref: '1 Corinthians 6:19', desc: 'The runner climbs the cross past the U marker.' },
+        { pos: pt(0.74, ON_CROSS), buddy: pt(0.65, ON_CROSS), lit: 3, cross: true, color: GREEN, title: 'N: Need Others', text: 'Do not run alone. Run with another believer beside you.', ref: '“flee youthful passions … along with those who call on the Lord” (2 Timothy 2:22)', desc: 'A running partner joins the runner on the cross at the N marker.' },
+        { pos: { x: 336, y: 70 }, buddy: { x: 314, y: 71 }, lit: 3, cross: true, life: true, color: GOLD, title: 'Full Life', text: '“The thief comes only to steal and kill and destroy. I came that they may have life and have it abundantly.”', ref: 'John 10:10', desc: 'The runner and a partner reach Full Life at the top of the hill.' }
     ];
 
     // Build the scene from the slope.
