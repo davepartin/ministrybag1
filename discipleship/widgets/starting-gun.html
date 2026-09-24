@@ -78,10 +78,9 @@
                 <text x="152" y="122" text-anchor="middle" class="lbl" font-size="12" fill="#FFFFFF">BANG</text>
                 <text x="152" y="78" text-anchor="middle" class="lbl" font-size="14" fill="#9B3B2A">Temptation</text>
             </g>
-            <!-- two running partners -->
-            <g id="buddy1" class="buddy" opacity="0"><circle cx="0" cy="-34" r="6" fill="#4A6B8B"/><line x1="0" y1="-28" x2="0" y2="-13" stroke="#4A6B8B" stroke-width="4" stroke-linecap="round"/><line x1="0" y1="-13" x2="-6" y2="0" stroke="#4A6B8B" stroke-width="4" stroke-linecap="round"/><line x1="0" y1="-13" x2="6" y2="0" stroke="#4A6B8B" stroke-width="4" stroke-linecap="round"/></g>
-            <g id="buddy2" class="buddy" opacity="0"><circle cx="0" cy="-34" r="6" fill="#8B4A5E"/><line x1="0" y1="-28" x2="0" y2="-13" stroke="#8B4A5E" stroke-width="4" stroke-linecap="round"/><line x1="0" y1="-13" x2="-6" y2="0" stroke="#8B4A5E" stroke-width="4" stroke-linecap="round"/><line x1="0" y1="-13" x2="6" y2="0" stroke="#8B4A5E" stroke-width="4" stroke-linecap="round"/></g>
-            <!-- the runner -->
+            <!-- a running partner -->
+            <g id="buddy1" class="buddy" opacity="0"><circle cx="0" cy="-40" r="7.5" fill="#4A6B8B"/><line x1="0" y1="-32" x2="0" y2="-15" stroke="#4A6B8B" stroke-width="5" stroke-linecap="round"/><line x1="0" y1="-27" x2="-8" y2="-19" stroke="#4A6B8B" stroke-width="4" stroke-linecap="round"/><line x1="0" y1="-27" x2="8" y2="-19" stroke="#4A6B8B" stroke-width="4" stroke-linecap="round"/><line x1="0" y1="-15" x2="-7" y2="0" stroke="#4A6B8B" stroke-width="5" stroke-linecap="round"/><line x1="0" y1="-15" x2="7" y2="0" stroke="#4A6B8B" stroke-width="5" stroke-linecap="round"/></g>
+                        <!-- the runner -->
             <g id="runner">
                 <circle cx="0" cy="-40" r="7.5" fill="#1D6B3F"/>
                 <line x1="0" y1="-32" x2="0" y2="-15" stroke="#1D6B3F" stroke-width="5" stroke-linecap="round"/>
@@ -112,13 +111,13 @@
         { pos: { x: 128, y: 214 }, color: GREY, title: 'A look.', text: 'You do not walk away. You keep looking, and the thought grows. This is where David stood on the roof.', ref: '2 Samuel 11:2', desc: 'The runner steps toward the pit.' },
         { pos: { x: 108, y: 214 }, color: GREY, title: 'The wrong decision.', text: 'The look becomes a choice. Each step makes the next one easier, and you are standing on the edge.', ref: '2 Samuel 11:4', desc: 'The runner stands at the edge of the pit.' },
         { pos: { x: 86, y: 240 }, color: GREY, fallen: true, title: 'Hiding.', text: 'Now you want to cover it up. Sin grows best in the dark, and the pit gets deeper.', ref: 'Psalm 32:3', desc: 'The runner has slid down into the pit.' },
-        { pos: { x: 63, y: 268 }, color: GOLD, fallen: true, title: 'The pit is not the end.', text: 'Confess it, and God lifts you out. It is never too late to turn around and run.', ref: '“He drew me up from the pit of destruction … and set my feet upon a rock” (Psalm 40:2)', desc: 'The runner is at the bottom of the pit, but God can lift them out.' }
+        { pos: { x: 63, y: 268 }, color: GOLD, fallen: true, title: 'The pit is not the end.', text: 'Stop hiding and confess it, like David did. God forgives and lifts you out. It is never too late to turn around and run.', ref: '“I acknowledged my sin to you … and you forgave the iniquity of my sin” (Psalm 32:5)', desc: 'The runner is at the bottom of the pit, but confession brings forgiveness and God can lift them out.' }
     ];
     var run = [
-        { pos: { x: 222, y: 193 }, lit: 1, color: GREEN, title: 'R: Remember the Cross.', text: 'You were bought with a price. Jesus paid for you with His life, so you are not your own.', ref: '1 Corinthians 6:19-20', desc: 'The runner sprints up the path and lights the R flag.' },
+        { pos: { x: 222, y: 193 }, lit: 1, color: GREEN, title: 'R: Remember the Cross.', text: 'You were bought with a price, the life of God\'s own Son. Grace is free, but it is never cheap.', ref: '1 Corinthians 6:19-20', desc: 'The runner sprints up the path and lights the R flag.' },
         { pos: { x: 258, y: 164 }, lit: 2, color: GREEN, title: 'U: United with God.', text: 'You are joined to the Lord, and your body is a temple of the Holy Spirit. God Himself runs with you.', ref: '1 Corinthians 6:17, 19', desc: 'The runner climbs higher and lights the U flag.' },
-        { pos: { x: 294, y: 135 }, lit: 3, buddies: true, color: GREEN, title: 'N: Need others.', text: 'Do not run alone. Notice all the 2s in 2 Timothy 2:22. Run with at least two trusted believers.', ref: '“flee youthful passions … along with those who call on the Lord” (2 Timothy 2:22)', desc: 'Two running partners join the runner as the N flag lights.' },
-        { pos: { x: 306, y: 125 }, lit: 3, buddies: true, life: true, color: GOLD, title: 'You ran toward life.', text: 'Joseph ran, and you can too. The thief comes to destroy, but Jesus came to give you life.', ref: '“I came that they may have life and have it abundantly.” (John 10:10)', desc: 'The runner and two partners reach the cross at the top of the hill.' }
+        { pos: { x: 294, y: 135 }, lit: 3, buddies: true, color: GREEN, title: 'N: Need others.', text: 'Do not run alone. God sent Nathan to tell David the truth. Run with a trusted believer beside you.', ref: '“flee youthful passions … along with those who call on the Lord” (2 Timothy 2:22)', desc: 'A running partner joins the runner as the N flag lights.' },
+        { pos: { x: 306, y: 125 }, lit: 3, buddies: true, life: true, color: GOLD, title: 'You ran toward life.', text: 'Joseph ran, and you can too. The thief comes to destroy, but Jesus came to give you life.', ref: '“I came that they may have life and have it abundantly.” (John 10:10)', desc: 'The runner and a partner reach the cross at the top of the hill.' }
     ];
     run.forEach(function (s) { s.bang = false; s.fallen = false; s.buddies = !!s.buddies; s.life = !!s.life; });
     stay.forEach(function (s) { s.bang = false; s.lit = 0; s.buddies = false; s.life = false; s.fallen = !!s.fallen; });
@@ -130,8 +129,7 @@
     function place(p) {
         el('runner').setAttribute('transform', 'translate(' + p.x + ',' + p.y + ')');
         el('you').setAttribute('x', p.x); el('you').setAttribute('y', p.y - 54);
-        el('buddy1').setAttribute('transform', 'translate(' + (p.x - 17) + ',' + (p.y + 14) + ')');
-        el('buddy2').setAttribute('transform', 'translate(' + (p.x - 32) + ',' + (p.y + 26) + ')');
+        el('buddy1').setAttribute('transform', 'translate(' + (p.x - 24) + ',' + (p.y + 19) + ')');
         cur = { x: p.x, y: p.y };
     }
     function moveTo(p) {
@@ -152,7 +150,6 @@
             el(id).querySelector('rect').setAttribute('fill', s && s.lit > i ? GREEN : '#CFC9BD');
         });
         el('buddy1').setAttribute('opacity', s && s.buddies ? '1' : '0');
-        el('buddy2').setAttribute('opacity', s && s.buddies ? '1' : '0');
         el('life').setAttribute('opacity', s && s.life ? '1' : '0');
         el('cross').setAttribute('opacity', s && s.life ? '1' : '0.5');
         el('runner').setAttribute('opacity', s && s.fallen ? '0.6' : '1');
