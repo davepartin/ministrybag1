@@ -120,12 +120,7 @@
         // Root scroll/client heights include the current viewport. Remove that
         // floor while measuring, otherwise a once-tall widget can never shrink.
         // Restore tiny/hidden measurements; do not collapse an inactive lesson.
-        // The brief 0px collapse can make the browser adjust the page's scroll
-        // position; when the height ends up unchanged, put the scroll back.
         var previousHeight = iframe.style.height;
-        var hostWin = iframe.ownerDocument && iframe.ownerDocument.defaultView;
-        var scrollX = hostWin ? hostWin.pageXOffset : 0;
-        var scrollY = hostWin ? hostWin.pageYOffset : 0;
         var measured;
         iframe.style.height = '0px';
         try {
@@ -133,12 +128,8 @@
         } finally {
             iframe.style.height = previousHeight;
         }
-        var nextHeight = measured > MIN_MEASURED_HEIGHT ? Math.ceil(measured) + 'px' : previousHeight;
-        if (nextHeight !== previousHeight) {
-            iframe.style.height = nextHeight;
-        } else if (hostWin && (hostWin.pageXOffset !== scrollX || hostWin.pageYOffset !== scrollY)) {
-            // Jump back instantly; the page's smooth scrolling would otherwise glide.
-            hostWin.scrollTo({ left: scrollX, top: scrollY, behavior: 'instant' });
+        if (measured > MIN_MEASURED_HEIGHT) {
+            iframe.style.height = Math.ceil(measured) + 'px';
         }
         return measured;
     }
@@ -185,6 +176,18 @@
         function refresh() {
             if (cleaned) return 0;
             return applyHeight(iframe);
+        }
+
+        // Phone browsers fire resize when their address bar slides in or out as you
+        // scroll. Only a width change can change a widget's height, so skip
+        // height-only resizes instead of collapsing the frame mid-scroll.
+        var lastWidth = win ? win.innerWidth : undefined;
+        function onWindowResize() {
+            if (win && typeof win.innerWidth === 'number') {
+                if (win.innerWidth === lastWidth) return 0;
+                lastWidth = win.innerWidth;
+            }
+            return refresh();
         }
 
         function attachObservers() {
@@ -238,7 +241,7 @@
         }
 
         if (win && win.addEventListener) {
-            win.addEventListener('resize', refresh);
+            win.addEventListener('resize', onWindowResize);
         }
         if (iframe && iframe.addEventListener) {
             iframe.addEventListener('load', onLoad);
@@ -253,7 +256,7 @@
                 clearRetry();
                 disconnectObservers();
                 if (win && win.removeEventListener) {
-                    win.removeEventListener('resize', refresh);
+                    win.removeEventListener('resize', onWindowResize);
                 }
                 if (iframe && iframe.removeEventListener) {
                     iframe.removeEventListener('load', onLoad);
