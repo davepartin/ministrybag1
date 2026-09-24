@@ -26,8 +26,6 @@
         #post { transition: stroke-dashoffset 0.9s ease, opacity 0.2s ease; }
         #beam { transition: stroke-dashoffset 0.4s ease 0.7s, opacity 0.2s ease 0.7s; }
         #glow { transition: opacity 0.8s ease; }
-        #runner.in-pit circle { fill: #F2EDE3; }
-        #runner.in-pit line { stroke: #F2EDE3; }
         @media (prefers-reduced-motion: reduce) { #bang, .flag rect, .buddy, #runner circle, #runner line, #post, #beam, #glow { transition: none; } }
 
         #card-area { background-color: #F6F4EE; border-top: 1px solid #EBE5D9; padding-top: 8px; }
@@ -175,7 +173,6 @@
     }
     function paint(s) {
         tilt = s && s.tilt ? s.tilt : 0;
-        el('runner').classList.toggle('in-pit', !!(s && s.fallen));
         el('bang').setAttribute('opacity', s && s.bang ? '1' : '0');
         ['flag-r', 'flag-u', 'flag-n'].forEach(function (id, i) {
             el(id).querySelector('rect').setAttribute('fill', s && s.lit > i ? GREEN : '#CFC9BD');
