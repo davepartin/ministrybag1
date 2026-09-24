@@ -115,6 +115,30 @@ function check(name, condition) {
             }
             check('lesson ' + lesson + ' scrolls up past the widget without snapping back', positions.every((y, i) => i === 0 || y <= positions[i - 1]));
         }
+        // Phone toolbar regression: scrolling up on a phone slides the address bar in and out,
+        // which changes only the window height. The widget must not re-measure or jolt the page.
+        for (const lesson of [8, 9]) {
+            await page.setViewportSize({ width: 390, height: 844 });
+            await page.goto(BASE + '#202-' + lesson);
+            await page.waitForSelector('#session-' + lesson + '.active iframe');
+            await page.waitForTimeout(1200);
+            await page.evaluate((n) => {
+                const f = document.querySelector('#session-' + n + ' iframe');
+                window.scrollTo({ top: f.getBoundingClientRect().bottom + window.scrollY + 600, behavior: 'instant' });
+                window.__frameWrites = 0;
+                new MutationObserver(() => window.__frameWrites++).observe(f, { attributes: true, attributeFilter: ['style'] });
+            }, lesson);
+            const positions = [];
+            for (let i = 0; i < 10; i++) {
+                await page.setViewportSize({ width: 390, height: i % 2 ? 844 : 764 });
+                await page.mouse.wheel(0, -100);
+                await page.waitForTimeout(120);
+                positions.push(await page.evaluate(() => Math.round(window.scrollY)));
+            }
+            const writes = await page.evaluate(() => window.__frameWrites);
+            check('lesson ' + lesson + ' ignores phone toolbar resizes while scrolling up', writes === 0 && positions.every((y, i) => i === 0 || y <= positions[i - 1]));
+        }
+        await page.setViewportSize({ width: 390, height: 844 });
         check('lesson journeys have no page exceptions', errors.length === 0);
         await context.close();
     } finally {
