@@ -235,7 +235,7 @@
             paint(null);
             var wrap = document.createElement('div'); wrap.className = 'begin-wrapper';
             var intro = document.createElement('p'); intro.className = 'begin-text';
-            intro.textContent = 'When temptation comes, which way will you go?';
+            intro.append('When temptation comes,', document.createElement('br'), 'which way will you go?');
             wrap.appendChild(intro);
             wrap.appendChild(button('Begin \u2192', 'begin', 'begin-btn', function () { go('tempted', 0, 'run'); }));
             area.appendChild(wrap);
