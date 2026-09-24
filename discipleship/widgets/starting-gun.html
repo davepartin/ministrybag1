@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>When the Gun Goes Off</title>
+    <title>RUN from Sin</title>
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Georgia', 'Cambria', serif; background: #F8F6F1; color: #2C2416; -webkit-font-smoothing: antialiased; padding: 0; margin: 0; }
@@ -40,16 +40,13 @@
         .begin-wrapper { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 10px 16px 16px; }
         .begin-text { font-size: 16px; line-height: 1.4; text-align: center; color: #3D3426; max-width: 340px; }
         .begin-btn { background: #9B3B2A; color: #FFFFFF; border: none; border-radius: 10px; padding: 12px 28px; min-height: 44px; font-size: 16px; font-weight: 700; cursor: pointer; }
-        .overview-btn { background: transparent; border: 1.5px solid #D4CFC4; border-radius: 10px; padding: 10px 16px; min-height: 44px; font-size: 14px; color: #5A4E3C; cursor: pointer; font-weight: 600; }
-        .overview-panel { padding: 0 12px 12px; max-width: 460px; margin: 0 auto; }
-        .overview-caption { font-size: 16px; line-height: 1.4; text-align: center; color: #3D3426; margin: 2px 0 6px; }
         #measure { position: absolute; left: 0; top: 0; visibility: hidden; pointer-events: none; }
         .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
     </style>
 </head>
 <body>
 <div class="widget-outer">
-    <div class="title-bar"><h1>When the Gun Goes Off</h1></div>
+    <div class="title-bar"><h1>RUN from Sin</h1></div>
     <div class="diagram-wrapper">
         <svg id="scene" viewBox="0 0 360 280" role="img" aria-labelledby="scene-desc">
             <desc id="scene-desc">A runner at a starting line. To the left is a pit. To the right a path climbs a hill to a cross.</desc>
@@ -72,11 +69,11 @@
             <!-- the pit -->
             <path d="M 14 214 L 112 214 L 104 272 L 22 272 Z" fill="#3E3B35"/>
             <text x="60" y="204" text-anchor="middle" class="lbl" font-size="15" fill="#3E3B35">The Pit</text>
-            <!-- starting gun flash -->
+            <!-- temptation arrives -->
             <g id="bang" opacity="0">
-                <polygon points="152,86 160,104 180,98 168,114 184,126 164,126 166,146 152,132 138,146 140,126 120,126 136,114 124,98 144,104" fill="#E07A3F"/>
-                <text x="152" y="122" text-anchor="middle" class="lbl" font-size="12" fill="#FFFFFF">BANG</text>
-                <text x="152" y="78" text-anchor="middle" class="lbl" font-size="14" fill="#9B3B2A">Temptation</text>
+                <circle cx="152" cy="116" r="17" fill="#9B3B2A"/>
+                <text x="152" y="124" text-anchor="middle" class="lbl" font-size="22" fill="#FFFFFF">!</text>
+                <text x="152" y="88" text-anchor="middle" class="lbl" font-size="14" fill="#9B3B2A">Temptation</text>
             </g>
             <!-- a running partner -->
             <g id="buddy1" class="buddy" opacity="0"><circle cx="0" cy="-40" r="7.5" fill="#4A6B8B"/><line x1="0" y1="-32" x2="0" y2="-15" stroke="#4A6B8B" stroke-width="5" stroke-linecap="round"/><line x1="0" y1="-27" x2="-8" y2="-19" stroke="#4A6B8B" stroke-width="4" stroke-linecap="round"/><line x1="0" y1="-27" x2="8" y2="-19" stroke="#4A6B8B" stroke-width="4" stroke-linecap="round"/><line x1="0" y1="-15" x2="-7" y2="0" stroke="#4A6B8B" stroke-width="5" stroke-linecap="round"/><line x1="0" y1="-15" x2="7" y2="0" stroke="#4A6B8B" stroke-width="5" stroke-linecap="round"/></g>
@@ -99,13 +96,13 @@
     var GREEN = '#1D6B3F', RUST = '#9B3B2A', GOLD = '#B8892B', GREY = '#8C877C';
     var START = { x: 152, y: 214 };
 
-    var fired = {
+    var tempted = {
         pos: START, bang: true, lit: 0, buddies: false, life: false, fallen: false,
         color: RUST,
-        title: 'Bang. The gun just went off.',
+        title: 'Temptation arrives.',
         text: 'A tempting thought just knocked. Every second you wait makes running harder. What will you do?',
         ref: '“I made a covenant with my eyes not to look lustfully at a young woman.” (Job 31:1, NIV)',
-        desc: 'The starting gun fires beside the runner. The pit is to the left and the path to the cross is to the right.'
+        desc: 'Temptation appears beside the runner. The pit is to the left and the path to the cross is to the right.'
     };
     var stay = [
         { pos: { x: 128, y: 214 }, color: GREY, title: 'A look.', text: 'You do not walk away. You keep looking, and the thought grows. This is where David stood on the roof.', ref: '2 Samuel 11:2', desc: 'The runner steps toward the pit.' },
@@ -116,7 +113,7 @@
     var run = [
         { pos: { x: 222, y: 193 }, lit: 1, color: GREEN, title: 'R: Remember the Cross.', text: 'You were bought with a price, the life of God\'s own Son. Grace is free, but it is never cheap.', ref: '1 Corinthians 6:19-20', desc: 'The runner sprints up the path and lights the R flag.' },
         { pos: { x: 258, y: 164 }, lit: 2, color: GREEN, title: 'U: United with God.', text: 'You are joined to the Lord, and your body is a temple of the Holy Spirit. God Himself runs with you.', ref: '1 Corinthians 6:17, 19', desc: 'The runner climbs higher and lights the U flag.' },
-        { pos: { x: 294, y: 135 }, lit: 3, buddies: true, color: GREEN, title: 'N: Need others.', text: 'Do not run alone. God sent Nathan to tell David the truth. Run with a trusted believer beside you.', ref: '“flee youthful passions … along with those who call on the Lord” (2 Timothy 2:22)', desc: 'A running partner joins the runner as the N flag lights.' },
+        { pos: { x: 294, y: 135 }, lit: 3, buddies: true, color: GREEN, title: 'N: Need others.', text: 'Do not run alone. Nathan was David\'s other. Run with another believer beside you.', ref: '“flee youthful passions … along with those who call on the Lord” (2 Timothy 2:22)', desc: 'A running partner joins the runner as the N flag lights.' },
         { pos: { x: 306, y: 125 }, lit: 3, buddies: true, life: true, color: GOLD, title: 'You ran toward life.', text: 'Joseph ran, and you can too. The thief comes to destroy, but Jesus came to give you life.', ref: '“I came that they may have life and have it abundantly.” (John 10:10)', desc: 'The runner and a partner reach the cross at the top of the hill.' }
     ];
     run.forEach(function (s) { s.bang = false; s.fallen = false; s.buddies = !!s.buddies; s.life = !!s.life; });
@@ -186,7 +183,7 @@
         var area = el('card-area'), m = document.createElement('div'), max = 0;
         m.id = 'measure'; m.style.width = area.clientWidth + 'px';
         document.documentElement.style.setProperty('--card-h', '0px');
-        [fired].concat(stay, run).forEach(function (s) {
+        [tempted].concat(stay, run).forEach(function (s) {
             var w = document.createElement('div'); w.className = 'verse-card-wrapper'; w.appendChild(buildCard(s)); m.appendChild(w);
         });
         document.body.appendChild(m);
@@ -201,42 +198,27 @@
         var area = el('card-area');
         area.innerHTML = '';
 
-        if (mode === 'intro' || mode === 'overview') {
-            if (mode === 'overview') {
-                paint(run[run.length - 1]);
-                var panel = document.createElement('div'); panel.className = 'overview-panel';
-                var cap = document.createElement('p'); cap.className = 'overview-caption';
-                cap.textContent = 'When temptation fires the gun, RUN: Remember the Cross, United with God, Need others.';
-                panel.appendChild(cap);
-                var onav = document.createElement('div'); onav.className = 'nav-bar';
-                onav.appendChild(button('← Start', 'return', 'nav-btn', function () { go('intro', 0, 'begin'); }));
-                onav.appendChild(button('Fire the gun', 'refire', 'nav-btn primary', function () { go('fired', 0, 'run'); }));
-                panel.appendChild(onav);
-                area.appendChild(panel);
-                el('status').textContent = 'Whole plan shown.';
-            } else {
-                paint(null);
-                var wrap = document.createElement('div'); wrap.className = 'begin-wrapper';
-                var intro = document.createElement('p'); intro.className = 'begin-text';
-                intro.textContent = 'You are on the starting line. When temptation fires the gun, which way will you run?';
-                wrap.appendChild(intro);
-                wrap.appendChild(button('Fire the gun', 'begin', 'begin-btn', function () { go('fired', 0, 'run'); }));
-                wrap.appendChild(button('Show the whole plan', 'overview', 'overview-btn', function () { go('overview', 0, 'return'); }));
-                area.appendChild(wrap);
-                el('status').textContent = '';
-            }
+        if (mode === 'intro') {
+            paint(null);
+            var wrap = document.createElement('div'); wrap.className = 'begin-wrapper';
+            var intro = document.createElement('p'); intro.className = 'begin-text';
+            intro.textContent = 'You are on the starting line. When temptation comes, which way will you run?';
+            wrap.appendChild(intro);
+            wrap.appendChild(button('Begin \u2192', 'begin', 'begin-btn', function () { go('tempted', 0, 'run'); }));
+            area.appendChild(wrap);
+            el('status').textContent = '';
             applyFocus();
             return;
         }
 
-        var s = mode === 'fired' ? fired : (mode === 'stay' ? stay[idx] : run[idx]);
+        var s = mode === 'tempted' ? tempted : (mode === 'stay' ? stay[idx] : run[idx]);
         paint(s);
         var wrapper = document.createElement('div'); wrapper.className = 'verse-card-wrapper';
         wrapper.appendChild(buildCard(s));
         var nav = document.createElement('div'); nav.className = 'nav-bar';
         var count = document.createElement('span'); count.className = 'step-count';
 
-        if (mode === 'fired') {
+        if (mode === 'tempted') {
             nav.appendChild(button('Stay and look', 'stay', 'nav-btn danger', function () { go('stay', 0, 'next'); }));
             count.textContent = 'Choose';
             nav.appendChild(count);
@@ -244,12 +226,12 @@
         } else {
             var list = mode === 'stay' ? stay : run;
             nav.appendChild(button('← Back', 'back', 'nav-btn', function () {
-                if (idx === 0) go('fired', 0, mode === 'stay' ? 'stay' : 'run'); else go(mode, idx - 1, 'back');
+                if (idx === 0) go('tempted', 0, mode === 'stay' ? 'stay' : 'run'); else go(mode, idx - 1, 'back');
             }));
             count.textContent = (idx + 1) + ' of ' + list.length;
             nav.appendChild(count);
             if (idx < list.length - 1) nav.appendChild(button('Next →', 'next', 'nav-btn primary', function () { go(mode, idx + 1, 'next'); }));
-            else if (mode === 'stay') nav.appendChild(button('Run this time', 'retry', 'nav-btn primary', function () { go('fired', 0, 'run'); }));
+            else if (mode === 'stay') nav.appendChild(button('Run this time', 'retry', 'nav-btn primary', function () { go('tempted', 0, 'run'); }));
             else nav.appendChild(button('↻ Restart', 'restart', 'nav-btn primary', function () { go('intro', 0, 'begin'); }));
         }
         wrapper.appendChild(nav);
