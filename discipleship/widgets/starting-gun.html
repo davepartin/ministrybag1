@@ -22,7 +22,10 @@
         #bang { transition: opacity 0.25s ease; }
         .flag rect { transition: fill 0.4s ease; }
         .buddy { transition: opacity 0.5s ease; }
-        @media (prefers-reduced-motion: reduce) { #bang, .flag rect, .buddy { transition: none; } }
+        #runner circle, #runner line { transition: fill 0.4s ease, stroke 0.4s ease; }
+        #runner.in-pit circle { fill: #F2EDE3; }
+        #runner.in-pit line { stroke: #F2EDE3; }
+        @media (prefers-reduced-motion: reduce) { #bang, .flag rect, .buddy, #runner circle, #runner line { transition: none; } }
 
         #card-area { background-color: #F6F4EE; border-top: 1px solid #EBE5D9; padding-top: 8px; }
         .verse-card-wrapper { margin: 0 auto; padding: 0 12px 10px; max-width: 460px; }
@@ -107,7 +110,7 @@
     var stay = [
         { pos: { x: 128, y: 214 }, color: GREY, title: 'A look.', text: 'You do not walk away. You keep looking, and the thought grows. This is where David stood on the roof.', ref: '2 Samuel 11:2', desc: 'The runner steps toward the pit.' },
         { pos: { x: 108, y: 214 }, color: GREY, title: 'The wrong decision.', text: 'The look becomes a choice. Each step makes the next one easier, and you are standing on the edge.', ref: '2 Samuel 11:4', desc: 'The runner stands at the edge of the pit.' },
-        { pos: { x: 86, y: 240 }, color: GREY, fallen: true, title: 'Hiding.', text: 'Now you want to cover it up. Sin grows best in the dark, and the pit gets deeper.', ref: 'Psalm 32:3', desc: 'The runner has slid down into the pit.' },
+        { pos: { x: 88, y: 262 }, tilt: -35, color: GREY, fallen: true, title: 'Hiding.', text: 'Now you want to cover it up. Sin grows best in the dark, and the pit gets deeper.', ref: 'Psalm 32:3', desc: 'The runner tumbles down into the pit.' },
         { pos: { x: 63, y: 268 }, color: GOLD, fallen: true, title: 'The pit is not the end.', text: 'Stop hiding and confess it, like David did. God forgives and lifts you out. It is never too late to turn around and run.', ref: '“I acknowledged my sin to you … and you forgave the iniquity of my sin” (Psalm 32:5)', desc: 'The runner is at the bottom of the pit, but confession brings forgiveness and God can lift them out.' }
     ];
     var run = [
@@ -124,7 +127,7 @@
     function el(id) { return document.getElementById(id); }
 
     function place(p) {
-        el('runner').setAttribute('transform', 'translate(' + p.x + ',' + p.y + ')');
+        el('runner').setAttribute('transform', 'translate(' + p.x + ',' + p.y + ')' + (tilt ? ' rotate(' + tilt + ')' : ''));
         el('you').setAttribute('x', p.x); el('you').setAttribute('y', p.y - 54);
         el('buddy1').setAttribute('transform', 'translate(' + (p.x - 24) + ',' + (p.y + 19) + ')');
         cur = { x: p.x, y: p.y };
@@ -141,7 +144,10 @@
         }
         anim = requestAnimationFrame(frame);
     }
+    var tilt = 0;
     function paint(s) {
+        tilt = s && s.tilt ? s.tilt : 0;
+        el('runner').classList.toggle('in-pit', !!(s && s.fallen));
         el('bang').setAttribute('opacity', s && s.bang ? '1' : '0');
         ['flag-r', 'flag-u', 'flag-n'].forEach(function (id, i) {
             el(id).querySelector('rect').setAttribute('fill', s && s.lit > i ? GREEN : '#CFC9BD');
@@ -149,7 +155,7 @@
         el('buddy1').setAttribute('opacity', s && s.buddies ? '1' : '0');
         el('life').setAttribute('opacity', s && s.life ? '1' : '0');
         el('cross').setAttribute('opacity', s && s.life ? '1' : '0.5');
-        el('runner').setAttribute('opacity', s && s.fallen ? '0.6' : '1');
+        el('runner').setAttribute('opacity', '1');
         el('you').setAttribute('opacity', s && (s.fallen || s.life) ? '0' : '1');
         el('scene-desc').textContent = s ? s.desc : 'A runner at a starting line. To the left is a pit. To the right a path climbs a hill to a cross.';
         moveTo(s ? s.pos : START);
