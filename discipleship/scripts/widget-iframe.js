@@ -120,7 +120,12 @@
         // Root scroll/client heights include the current viewport. Remove that
         // floor while measuring, otherwise a once-tall widget can never shrink.
         // Restore tiny/hidden measurements; do not collapse an inactive lesson.
+        // The brief 0px collapse can make the browser adjust the page's scroll
+        // position; when the height ends up unchanged, put the scroll back.
         var previousHeight = iframe.style.height;
+        var hostWin = iframe.ownerDocument && iframe.ownerDocument.defaultView;
+        var scrollX = hostWin ? hostWin.pageXOffset : 0;
+        var scrollY = hostWin ? hostWin.pageYOffset : 0;
         var measured;
         iframe.style.height = '0px';
         try {
@@ -128,8 +133,12 @@
         } finally {
             iframe.style.height = previousHeight;
         }
-        if (measured > MIN_MEASURED_HEIGHT) {
-            iframe.style.height = Math.ceil(measured) + 'px';
+        var nextHeight = measured > MIN_MEASURED_HEIGHT ? Math.ceil(measured) + 'px' : previousHeight;
+        if (nextHeight !== previousHeight) {
+            iframe.style.height = nextHeight;
+        } else if (hostWin && (hostWin.pageXOffset !== scrollX || hostWin.pageYOffset !== scrollY)) {
+            // Jump back instantly; the page's smooth scrolling would otherwise glide.
+            hostWin.scrollTo({ left: scrollX, top: scrollY, behavior: 'instant' });
         }
         return measured;
     }
