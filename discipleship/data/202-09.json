@@ -1,11 +1,15 @@
 {
   "id": "9",
   "title": "Lesson 9: Fighting for Purity",
-  "description": "Purity is not how you earn God's love. It is how you protect a heart that already belongs to Him. Through King David's fall, Jesus' words about the heart, and 1 Corinthians 6, you will learn what to do when temptation arrives: RUN. Remember the Cross, United with God, and Need others.",
+  "description": "Purity is not how you earn God's love. It is how you protect a heart that already belongs to Him.",
   "blocks": [
     {
       "type": "text",
-      "text": "In the last lesson, the Closer to God Triangle showed that as two people draw near to God, they draw near to each other. Temptation pulls the opposite way, away from God and away from the people you love. This lesson is about purity, which means guarding your body, your eyes, and your mind, whether you are married or single. Like everything in the Christian life, it starts with grace."
+      "text": "In the last lesson, you saw that as two people draw near to God, they draw near to each other. Temptation pulls the opposite way, away from God and away from the people you love. This lesson is about purity, which means guarding your body, your eyes, and your mind, whether you are married or single."
+    },
+    {
+      "type": "text",
+      "text": "Temptation will arrive. The question is what you do in the first moment, and the answer starts with grace."
     },
     {
       "type": "image",
@@ -18,11 +22,11 @@
     {
       "type": "parable",
       "title": "The View from the Roof",
-      "text": "David was Israel's greatest king, a man after God's own heart (1 Samuel 13:14). One spring, when kings went out to battle, David stayed home. Late one afternoon he walked on his palace roof and saw a woman bathing. Instead of turning away, he kept looking. He learned she was Bathsheba, the wife of one of his soldiers, and he <em>\"sent messengers and took her\"</em> (2 Samuel 11:4).<br><br>When Bathsheba became pregnant, David tried to keep secret what he had done. When hiding failed, he arranged for Uriah to be killed in battle. That one action to satisfy his temptation became a string of choices, and the pit got deeper and deeper.<br><br>David kept his sin hidden until God sent the prophet Nathan to confront him. God knew David needed another person to point him to the truth, and it was only then that David finally said, <em>\"I have sinned against the LORD\"</em> (2 Samuel 12:13)."
+      "text": "David was Israel's greatest king, a man after God's own heart. One spring, when kings went out to battle, David stayed home. Late one afternoon he walked on his palace roof and saw a woman bathing. Instead of turning away, he kept looking. He learned she was Bathsheba, the wife of one of his soldiers, and he sent messengers and took her.<br><br>When she became pregnant, David tried to hide what he had done. When hiding failed, he arranged for her husband Uriah to be killed in battle. One moment on a roof became a string of choices, and the pit got deeper.<br><br>David stayed hidden until God sent the prophet Nathan to confront him. Only then did he say, \"I have sinned against the LORD.\""
     },
     {
       "type": "text",
-      "text": "David's story is a warning. Years before, another leader faced a similar temptation in the house of Potiphar, an officer of Pharaoh, and chose to flee. When he was tempted, Joseph <em>\"left his garment in her hand and fled\"</em> (Genesis 39:12). Joseph ran from sin, and David did not. Sin comes to steal, kill, and destroy, but Jesus came to give life."
+      "text": "Years earlier, Joseph faced the same moment as a slave in Potiphar's house, with nothing and no power, and he ran. David had everything and stayed."
     },
     {
       "type": "verse",
@@ -31,9 +35,35 @@
     },
     {
       "type": "question",
-      "id": "202-09-story",
-      "text": "9.1 - Consider David's story: a look, then a sinful action, and then the hiding and the cover-up. Why do you think that first step matters so much when responding to temptation?",
+      "id": "202-09-pattern",
+      "text": "9.1 - When temptation comes, what is normally going on when you fall, and what has helped you run away from it?",
       "height": "tall"
+    },
+    {
+      "type": "heading",
+      "text": "At First Thought"
+    },
+    {
+      "type": "text",
+      "text": "Purity starts in the heart. In the Sermon on the Mount, Jesus said:"
+    },
+    {
+      "type": "verse",
+      "reference": "Matthew 5:27-28",
+      "text": "<sup>27</sup>You have heard that it was said, 'You shall not commit adultery.' <sup>28</sup>But I say to you that everyone who looks at a woman with lustful intent has already committed adultery with her in his heart."
+    },
+    {
+      "type": "text",
+      "text": "A passing thought is not a sin. Jesus Himself was tempted. A tempting thought is a knock at the door. Lust is opening the door and letting it stay."
+    },
+    {
+      "type": "text",
+      "text": "David's fall did not begin when he sent the messengers. It began on the roof, in the moment he decided to keep looking. So when the thought knocks, run."
+    },
+    {
+      "type": "widget",
+      "src": "widgets/starting-gun.html",
+      "height": "580px"
     },
     {
       "type": "heading",
@@ -53,13 +83,12 @@
       "text": "When we flee from sin we RUN away. When temptation arrives, you have a choice: run toward life, or fall toward the pit. When you get close to the line you should never cross, it is time to RUN the other way. Leave the party, turn off the screen, or call a friend for help."
     },
     {
-      "type": "widget",
-      "src": "widgets/starting-gun.html",
-      "height": "580px"
+      "type": "text",
+      "text": "<strong>R is for Remember the Cross.</strong> Temptation says your body is yours to use however you want. Paul says you are not your own, because you were <strong>bought with a price</strong>. Count the cost. Your forgiveness was bought with the life of God's own Son. Never take forgiveness for granted."
     },
     {
       "type": "text",
-      "text": "<strong>R is for Remember the Cross.</strong> Temptation says your body is yours to use however you want. Paul says you are not your own, because you were <strong>bought with a price</strong>. Count the cost. Your forgiveness was bought with the life of God's own Son. Dietrich Bonhoeffer put it this way: <em>\"what has cost God much cannot be cheap for us.\"</em> Grace is free, but it is never cheap. It never whispers, \"Go ahead, you will be forgiven anyway.\""
+      "text": "Grace does not whisper, \"Go ahead, you will be forgiven anyway.\""
     },
     {
       "type": "verse",
@@ -72,13 +101,21 @@
     },
     {
       "type": "question",
-      "id": "202-09-motive",
-      "text": "9.2 - How can remembering that Jesus died on the cross for your forgiveness help you fight temptation?",
+      "id": "202-09-permission",
+      "text": "9.2 - When has grace felt like permission instead of power, and what would change if you believed it could actually help you run?",
       "height": "tall"
     },
     {
       "type": "text",
-      "text": "<strong>U is for United with God.</strong> You are <strong>joined to the Lord</strong>, Christ is in you, and your body is a <strong>temple of the Holy Spirit</strong> (1 Corinthians 6:19)."
+      "text": "<strong>U is for United with God.</strong> Paul says something startling: you are <strong>joined to the Lord</strong>, one spirit with Him. Your body is a <strong>temple of the Holy Spirit</strong>. You are not your own, because you were bought with a price."
+    },
+    {
+      "type": "text",
+      "text": "David thought the roof was private. It never was. There is no secret sin, because there is no moment God is not present with you."
+    },
+    {
+      "type": "text",
+      "text": "But that same presence is your power. You are not fighting temptation on your own strength, and you are not fighting it alone. The God who lives in you is stronger than what is pulling at you. The cross did not only buy your forgiveness when you fail. It bought you the power to run."
     },
     {
       "type": "text",
@@ -92,27 +129,6 @@
     {
       "type": "text",
       "text": "<strong>A true friend comes close.</strong> Nathan went to David instead of talking about him. <strong>He tells the truth.</strong> Nathan loved David too much to let him keep hiding. <strong>He points to grace.</strong> When David said, <em>\"I have sinned against the LORD,\"</em> Nathan answered, <em>\"The LORD also has put away your sin\"</em> (2 Samuel 12:13). Ask God for your Nathan, and be ready to be one for someone else."
-    },
-    {
-      "type": "heading",
-      "text": "At First Thought"
-    },
-    {
-      "type": "text",
-      "text": "Purity starts in the heart. In the Sermon on the Mount, Jesus said:"
-    },
-    {
-      "type": "verse",
-      "reference": "Matthew 5:27-28",
-      "text": "<sup>27</sup>You have heard that it was said, 'You shall not commit adultery.' <sup>28</sup>But I say to you that everyone who looks at a woman with lustful intent has already committed adultery with her in his heart."
-    },
-    {
-      "type": "text",
-      "text": "A passing thought is not a sin, since Jesus Himself was tempted. A tempting thought is a knock at the door. Lust is opening the door and letting it stay."
-    },
-    {
-      "type": "text",
-      "text": "So when the thought knocks, run. Name the thought, hand it to Jesus, and choose what is right and helpful. Answer with the truth: Christ bought you at the cross, God lives in you, and gives you power over temptation."
     },
     {
       "type": "question",
@@ -141,7 +157,7 @@
     {
       "type": "question",
       "id": "202-09-help",
-      "text": "9.4 - Who is one mature, trusted believer you could ask to pray for you and check in with you about purity? What would help you take that step?",
+      "text": "9.4 - Who could be your Nathan, and how would you invite them into this part of your life?",
       "height": "tall"
     },
     {
@@ -150,7 +166,19 @@
     },
     {
       "type": "text",
-      "text": "David did not run. His fall began with a look and grew in hiding, until God sent Nathan with the truth and David repented (Psalm 32:5). Purity does not earn God's love; it protects a heart that already belongs to Him, bought with grace that is free but never cheap. So when temptation arrives, R-U-N: Remember the Cross, United with God, and Need others. When you fall, turn back and receive His forgiveness. Next, you will come to the table Jesus set for His people, where that costly grace is on display."
+      "text": "David did not run. His fall began with a look and grew in hiding, until God sent Nathan with the truth and David turned back."
+    },
+    {
+      "type": "text",
+      "text": "Purity does not earn God's love. It protects a heart that already belongs to Him. So when temptation arrives, RUN. Remember the Cross, United with God, and Need others."
+    },
+    {
+      "type": "text",
+      "text": "And the cross does more than forgive you when you fall. Jesus came down into the pit to get you out, and the God who lives in you now gives you the power to run."
+    },
+    {
+      "type": "text",
+      "text": "Next, you will come to the table Jesus set for His people, where the price of your forgiveness is on display."
     },
     {
       "type": "heading",
