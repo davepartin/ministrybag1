@@ -1,36 +1,131 @@
 {
   "id": "6",
-  "title": "Lesson 6: Answering Hard Questions",
-  "description": "Recognizing the enemy and fighting with spiritual weapons.",
+  "title": "Lesson 6: Faith at Work and School",
+  "description": "Most of your waking hours happen at work or school, your <strong>2nd Space</strong>. Through Daniel's faithful life in Babylon, you will see that your work matters to God and how to live there so there is <strong>nothing to find but faith</strong>.",
   "blocks": [
     {
-      "type": "heading",
-      "text": "The Unseen Battle"
+      "type": "text",
+      "text": "In the last lesson, you learned to share your story and the story of Jesus. Now we carry the BLESS rhythms into the place where most of your week happens: your job, your classroom, or whatever work fills your days. God does not wait in the parking lot when you walk through the door."
+    },
+    {
+      "type": "parable",
+      "title": "Faithful in Babylon",
+      "text": "Daniel was a teenager when Babylon conquered Jerusalem and carried him far from home (Daniel 1:1-6). The empire gave him a new name and trained him to serve the king. He did not choose his workplace, but he did choose how he would live in it. He studied hard, and God gave him skill and understanding (Daniel 1:17). When he was served food that would defile him before God, he respectfully asked for another way (Daniel 1:8).<br><br>Decades later, Daniel was serving a new king named Darius, who planned to put him over the whole kingdom. Jealous officials went looking for dirt and came up empty. They <em>\"could find no ground for complaint or any fault, because he was faithful, and no error or fault was found in him\"</em> (Daniel 6:4). So they went after the only thing left, his faith, and talked the king into a law that no one could pray to anyone but the king for thirty days.<br><br>Daniel went home, opened his windows toward Jerusalem, and got down on his knees three times a day, <em>\"as he had done previously\"</em> (Daniel 6:10). He was thrown to the lions. At dawn the king ran to the den, and Daniel called out that God had shut the lions' mouths (Daniel 6:22). Then the most powerful man in the world told his whole empire to <em>\"tremble and fear before the God of Daniel, for he is the living God\"</em> (Daniel 6:26)."
     },
     {
       "type": "text",
-      "text": "We are part of an unseen spiritual battle. Our enemy hates God and hates when people come to know Him. Our weapons are not physical, but rather the Gospel, prayer, truth, and faith."
-    },
-    {
-      "type": "verse",
-      "reference": "Ephesians 6:11-12",
-      "text": "Put on the whole armor of God, that you may be able to stand against the schemes of the devil. For we do not wrestle against flesh and blood..."
+      "text": "Daniel's story is not mainly about a brave man. It is about a faithful God who was in Babylon before Daniel ever got there. Daniel belonged to God first, and that shaped how he worked, how he spoke, and how he prayed. In Christ, the same is true of you."
     },
     {
       "type": "question",
-      "id": "203-7-1",
-      "text": "7.1 - In what areas of your life or ministry do you feel the most spiritual resistance right now?",
-      "data_question": "7.1 - Spiritual resistance"
+      "id": "203-06-story",
+      "text": "6.1 - Daniel's coworkers went looking for dirt and found only faithful work and faith in God. If the people at your work or school went looking, what would they find?",
+      "height": "tall"
     },
     {
       "type": "heading",
-      "text": "BLESS Check-in"
+      "text": "Your Three Spaces"
+    },
+    {
+      "type": "text",
+      "text": "Most of your life happens in three spaces. Your <strong>1st Space</strong> is home. Your <strong>2nd Space</strong> is work and school. Your <strong>3rd Space</strong> is everywhere else: the gym, the ball field, the coffee shop. Count the hours, and the 2nd Space is where most of your week goes, which means it is where most of your faith is lived and seen. It might be an office, a job site, a classroom, or a home where you care for kids or an aging parent."
+    },
+    {
+      "type": "widget",
+      "src": "widgets/three-spaces.html",
+      "height": "580px"
+    },
+    {
+      "type": "heading",
+      "text": "Your Work Matters to God"
+    },
+    {
+      "type": "text",
+      "text": "Work did not begin as a punishment. Before anything was broken, God put the first man in the garden <em>\"to work it and keep it\"</em> (Genesis 2:15). Jesus spent most of His adult life as a carpenter (Mark 6:3) before He preached a single sermon. Tim Keller, in <em>Every Good Endeavor</em>, reminds us that work is one of the main ways God cares for His world and one of the main ways we love our neighbor. When a nurse changes a bandage or a teacher explains fractions, God is caring for people through their hands."
+    },
+    {
+      "type": "verse",
+      "reference": "Colossians 3:23-24",
+      "text": "Whatever you do, work heartily, as for the Lord and not for men, knowing that from the Lord you will receive the inheritance as your reward. You are serving the Lord Christ."
+    },
+    {
+      "type": "text",
+      "text": "Paul wrote those words to servants who had little control over their work, and he told them every task could be done for Jesus. John Piper makes the same point in <em>Don't Waste Your Life</em>: what makes your work count is not mainly where you work, but how and why you do it. A spreadsheet, a stocked shelf, a homework assignment, or a changed diaper can all be done for the King, who watches with a Father's delight, not a critic's frown."
     },
     {
       "type": "question",
-      "id": "203-07-bless",
-      "text": "Who are you currently BLESSing? Who are you praying for and actively moving toward? What is one specific step you are taking this week?",
+      "id": "203-06-space",
+      "text": "6.2 - Where is your 2nd Space right now? Be honest: do you mostly treat it as a paycheck, a stage to perform on, or a place to serve Jesus?",
       "height": "tall"
+    },
+    {
+      "type": "heading",
+      "text": "Nothing to Find but Faith"
+    },
+    {
+      "type": "text",
+      "text": "The officials summed up Daniel's life this way: <em>\"We shall not find any ground for complaint against this Daniel unless we find it in connection with the law of his God\"</em> (Daniel 6:5). Carry it in one phrase: <strong>nothing to find but faith</strong>. Daniel shows us three marks."
+    },
+    {
+      "type": "text",
+      "text": "<strong>Faithful work.</strong> Daniel was so trustworthy that the king wanted to give him more (Daniel 6:3). Show up on time. Be honest about your hours. Do good work when no one is checking. Faithful does not mean the best in the room. It means trustworthy with what is in your hands."
+    },
+    {
+      "type": "text",
+      "text": "<strong>Clean integrity.</strong> Daniel stayed respectful without giving up what God had said. Your 2nd Space has its own pressures: a shortcut on a test, a joke at someone's expense, a report that bends the truth, a group that loves to trash the boss. You do not have to be preachy to be different. Quiet, kind honesty stands out."
+    },
+    {
+      "type": "text",
+      "text": "<strong>Steady prayer.</strong> When the pressure came, Daniel did not invent a new prayer life overnight. He kept praying <em>\"as he had done previously.\"</em> The faith that walked into the lions' den was built on ordinary Tuesdays. Pray on the drive in, before a hard meeting, between classes, and for coworkers by name."
+    },
+    {
+      "type": "question",
+      "id": "203-06-faithful",
+      "text": "6.3 - Faithful work, clean integrity, or steady prayer: which one would the people around you say is missing in you? What would change this week if you asked God for help with it?",
+      "height": "tall"
+    },
+    {
+      "type": "heading",
+      "text": "Bringing BLESS to Work"
+    },
+    {
+      "type": "text",
+      "text": "God gave His exiles in Babylon a surprising command. Do not hide, and do not check out. Seek the good of the city."
+    },
+    {
+      "type": "verse",
+      "reference": "Jeremiah 29:7",
+      "text": "But seek the welfare of the city where I have sent you into exile, and pray to the LORD on its behalf, for in its welfare you will find your welfare."
+    },
+    {
+      "type": "text",
+      "text": "The people you see every week are not interruptions to your mission. They may be the very people God placed around you to hear about Jesus. <strong>Begin</strong> by praying for two or three coworkers or classmates by name. <strong>Listen</strong> when someone mentions a sick parent or a rough week. <strong>Eat</strong> lunch with someone instead of alone at your desk. <strong>Serve</strong> the person who is behind, without keeping score. When the moment is right, <strong>Share</strong> your story with gentleness and respect. Honor your employer's time and rules as you do, because faith that is lived well opens more doors than faith that is pushed."
+    },
+    {
+      "type": "text",
+      "text": "Maybe this lesson brings to mind corners you have cut, a temper you have lost, or a faith you have kept hidden at work. Daniel's God is your God, and He is rich in mercy. Jesus was perfectly faithful in every place He ever worked, and in Him you are forgiven and fully loved. You do not work for Jesus to earn His love. You get to work for Him because you already have it."
+    },
+    {
+      "type": "box",
+      "title": "If your workplace is not safe",
+      "content": [
+        "Faithfulness does not mean staying silent while you are harmed. If you are being harassed, threatened, or pressured to do something illegal or clearly wrong, talk with a pastor or another trusted believer, use the proper reporting channels where you work or study, and get wise help.",
+        "If you are in immediate danger, call 911."
+      ]
+    },
+    {
+      "type": "question",
+      "id": "203-06-people",
+      "text": "6.4 - Write the first names or initials of two or three people in your 2nd Space. Which one will you begin praying for by name, and what is one BLESS step you can take toward them this week?",
+      "height": "tall"
+    },
+    {
+      "type": "heading",
+      "text": "Lesson 6 Review"
+    },
+    {
+      "type": "text",
+      "text": "Jesus is Lord of all three spaces, and your 2nd Space is where most of your week and much of your witness happen. Daniel belonged to God in a workplace he did not choose, and the people watching him could find nothing against him but his faith. By God's grace you can live the same way through faithful work, clean integrity, and steady prayer while you bring BLESS to the people beside you. In the next lesson, you will see why living on mission meets real spiritual resistance and how God equips you to stand."
     },
     {
       "type": "heading",
@@ -39,13 +134,13 @@
     {
       "type": "question",
       "id": "203-06-key",
-      "text": "What is one key thing you learned from this lesson, and what next step can you take this week?",
+      "text": "What is one key thing you learned from this lesson?",
       "height": "short"
     },
     {
       "type": "question",
-      "id": "203-06-devos",
-      "text": "What have you learned about God and yourself recently in your Daily Devotions?",
+      "id": "203-06-step",
+      "text": "What is one step you are going to take this week?",
       "height": "short"
     },
     {

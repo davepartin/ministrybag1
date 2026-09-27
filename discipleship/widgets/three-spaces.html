@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Three Spaces</title>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Georgia', 'Cambria', serif;
+            background: #F8F6F1;
+            color: #2C2416;
+            -webkit-font-smoothing: antialiased;
+            padding: 0;
+            margin: 0;
+        }
+
+        .widget-outer {
+            background: #FFFFFF;
+            border-radius: 0;
+            overflow: hidden;
+            box-shadow: none;
+            border: none;
+            max-width: 100%;
+            width: 100%;
+            margin: 0;
+            position: relative;
+        }
+
+        @media (min-width: 560px) {
+            body { padding: 16px; background: #F8F6F1; }
+            .widget-outer {
+                border-radius: 12px;
+                box-shadow: 0 6px 20px rgba(44, 36, 22, 0.08);
+                border: 1px solid #EBE5D9;
+                max-width: 460px;
+                margin: 0 auto;
+            }
+        }
+
+        button { -webkit-tap-highlight-color: transparent; font-family: 'Trebuchet MS', sans-serif; }
+        button:focus-visible { outline: 3px solid #2C2416; outline-offset: 2px; }
+
+        .title-bar { background: #1D6B3F; padding: 10px 16px; text-align: center; }
+        .title-bar h1 {
+            font-size: 19px; font-weight: 700; color: #FFFFFF; margin: 0; line-height: 1.2;
+            font-family: 'Trebuchet MS', 'Inter', sans-serif;
+        }
+
+        .diagram-wrapper { padding: 8px 8px 0; }
+        svg#tri { display: block; width: 100%; height: auto; max-height: 300px; }
+        .label { font-family: 'Trebuchet MS', sans-serif; font-size: 16px; font-weight: 700; }
+        .phrase { font-family: 'Georgia', serif; font-size: 17px; font-style: italic; }
+
+        #card-area { background-color: #F6F4EE; border-top: 1px solid #EBE5D9; padding-top: 8px; }
+        .verse-card-wrapper { margin: 0 auto; padding: 0 12px 8px; max-width: 460px; }
+        .verse-card { background: #FFFFFF; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 14px rgba(44,36,22,0.06); }
+        .verse-card-bar { height: 4px; }
+        .verse-card-content { padding: 10px 16px; min-height: var(--card-h, 112px); display: flex; flex-direction: column; justify-content: flex-start; }
+        .card-title { font-family: 'Trebuchet MS', sans-serif; font-size: 16px; font-weight: 700; line-height: 1.3; margin-bottom: 4px; }
+        .card-text { font-size: 15px; line-height: 1.4; color: #3D3426; }
+        .card-ref { font-family: 'Trebuchet MS', sans-serif; font-size: 13px; color: #6B6358; margin-top: 4px; }
+
+        .nav-bar { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; padding: 0 2px; gap: 8px; }
+        .nav-btn {
+            background: transparent; border: 1.5px solid #D4CFC4; border-radius: 10px;
+            padding: 10px 16px; min-height: 44px; font-size: 14px; color: #5A4E3C; cursor: pointer; font-weight: 600;
+        }
+        .nav-bar .nav-btn { min-width: 112px; text-align: center; }
+        .nav-btn.primary { color: #FFFFFF; border: none; background: #1D6B3F; }
+        .nav-btn[disabled] { opacity: 0.35; cursor: default; }
+        .step-count { font-family: 'Trebuchet MS', sans-serif; font-size: 13px; color: #6B6358; }
+
+        .begin-wrapper { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 10px 16px 16px; }
+        .begin-text { font-size: 16px; line-height: 1.4; text-align: center; color: #3D3426; max-width: 340px; }
+        .begin-btn {
+            background: #1D6B3F; color: #FFFFFF; border: none; border-radius: 10px;
+            padding: 12px 28px; min-height: 44px; font-size: 16px; font-weight: 700; cursor: pointer;
+        }
+        .overview-btn {
+            background: transparent; border: 1.5px solid #D4CFC4; border-radius: 10px;
+            padding: 10px 16px; min-height: 44px; font-size: 14px; color: #5A4E3C; cursor: pointer; font-weight: 600;
+        }
+        .overview-panel { padding: 0 12px 12px; max-width: 460px; margin: 0 auto; }
+        .overview-caption { font-size: 16px; line-height: 1.4; text-align: center; color: #3D3426; margin: 2px 0 6px; }
+        .item { transition: opacity 0.5s ease; }
+        @media (prefers-reduced-motion: reduce) { .item { transition: none; } }
+        #measure { position: absolute; left: 0; top: 0; visibility: hidden; pointer-events: none; }
+        .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+    </style>
+</head>
+<body>
+<div class="widget-outer">
+    <div class="title-bar"><h1>Your Three Spaces</h1></div>
+    <div class="diagram-wrapper">
+        <svg id="tri" viewBox="0 0 360 290" role="img" aria-labelledby="sp-desc">
+            <desc id="sp-desc">Three circles: home, work and school, and everywhere else.</desc>
+            <circle id="c1" fill="#E3EFE6" stroke="#9CC7A9" stroke-width="3"/>
+            <circle id="c3" fill="#E3EFE6" stroke="#9CC7A9" stroke-width="3"/>
+            <circle id="c2" fill="#D1EDD9" stroke="#1D6B3F" stroke-width="3"/>
+            <text id="t1a" class="label" text-anchor="middle" font-size="16" fill="#1D6B3F">1st Space</text>
+            <text id="t1b" text-anchor="middle" font-size="15" fill="#3E3B35" font-family="Georgia, serif">Home</text>
+            <text id="t3a" class="label" text-anchor="middle" font-size="16" fill="#1D6B3F">3rd Space</text>
+            <text id="t3b" text-anchor="middle" font-size="15" fill="#3E3B35" font-family="Georgia, serif">Everywhere</text>
+            <text id="t2a" class="label" text-anchor="middle" font-size="16" fill="#155030">2nd Space</text>
+            <text id="t2b" text-anchor="middle" font-size="13" fill="#3E3B35" font-family="Georgia, serif">Work and School</text>
+            <text id="star" text-anchor="middle" font-size="22" fill="#B8892B" opacity="0">&#9733;</text>
+            <g class="item" id="i1" opacity="0"><text x="180" y="112" text-anchor="middle" class="label" font-size="16" fill="#155030">&#10003; Faithful work</text></g>
+            <g class="item" id="i2" opacity="0"><text x="180" y="142" text-anchor="middle" class="label" font-size="16" fill="#155030">&#10003; Clean integrity</text></g>
+            <g class="item" id="i3" opacity="0"><text x="180" y="172" text-anchor="middle" class="label" font-size="16" fill="#155030">&#10003; Steady prayer</text></g>
+            <text id="phrase" x="180" y="272" text-anchor="middle" class="phrase"></text>
+        </svg>
+    </div>
+    <div id="card-area" aria-live="polite"></div>
+    <p class="sr-only" id="status" aria-live="polite"></p>
+</div>
+<script>
+    var GREEN = '#1D6B3F', GOLD = '#B8892B';
+    // layout: 0 = three equal circles, 1 = the 2nd Space zoomed in
+    var ROW = { c1: [62, 112, 50], c2: [180, 112, 58], c3: [298, 112, 50] };
+    var ZOOM = { c1: [30, 112, 26], c2: [180, 132, 100], c3: [330, 112, 26] };
+    var steps = [
+        { z: 0, items: 0, star: false, phrase: '', color: GREEN,
+          title: 'Your three spaces.', text: 'Home is your 1st Space. Work and school are your 2nd Space. Everywhere else is your 3rd Space. Jesus is Lord of all three.', ref: '',
+          desc: 'Three equal circles: home, work and school, and everywhere else.' },
+        { z: 1, items: 0, star: true, phrase: 'Most of your week is here.', color: GREEN,
+          title: 'Your 2nd Space.', text: 'Most of your waking hours happen at work or school, so much of your faith is lived and seen right here.', ref: '“Whatever you do, work heartily, as for the Lord and not for men” (Colossians 3:23)',
+          desc: 'The 2nd Space circle grows large and gets a star. Home and everywhere else shrink to the sides.' },
+        { z: 1, items: 1, star: true, phrase: '', color: GREEN,
+          title: 'Faithful work.', text: 'Do good, honest work, even when no one is checking, because your work serves real people.', ref: '“he was faithful, and no error or fault was found in him” (Daniel 6:4)',
+          desc: 'Faithful work appears inside the 2nd Space.' },
+        { z: 1, items: 2, star: true, phrase: '', color: GREEN,
+          title: 'Clean integrity.', text: 'Stay respectful and kind without giving up what God says is right, even when everyone else cuts corners.', ref: 'Daniel 1:8',
+          desc: 'Clean integrity appears under faithful work.' },
+        { z: 1, items: 3, star: true, phrase: '', color: GREEN,
+          title: 'Steady prayer.', text: 'Pray on the drive in, before a hard meeting, between classes, and for coworkers by name.', ref: '“He got down on his knees three times a day and prayed” (Daniel 6:10)',
+          desc: 'Steady prayer appears under clean integrity.' },
+        { z: 1, items: 3, star: true, phrase: 'Nothing to find but faith.', color: GOLD,
+          title: 'Nothing to find but faith.', text: 'The people who watched Daniel every day could find nothing against him except his faith in God.', ref: 'Daniel 6:5',
+          desc: 'All three marks fill the 2nd Space: nothing to find but faith.' }
+    ];
+
+    var step = -1, mode = 'guide', resumeStep = -1, pendingFocus = null;
+    var curZ = 0, animFrame = null;
+    var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function lerp(a, b, t) { return a + (b - a) * t; }
+    function el(id) { return document.getElementById(id); }
+
+    function place(z) {
+        ['c1', 'c2', 'c3'].forEach(function (k) {
+            var c = el(k), a = ROW[k], b = ZOOM[k];
+            c.setAttribute('cx', lerp(a[0], b[0], z)); c.setAttribute('cy', lerp(a[1], b[1], z)); c.setAttribute('r', lerp(a[2], b[2], z));
+        });
+        var c1 = [lerp(ROW.c1[0], ZOOM.c1[0], z), lerp(ROW.c1[1], ZOOM.c1[1], z)];
+        var c3 = [lerp(ROW.c3[0], ZOOM.c3[0], z), lerp(ROW.c3[1], ZOOM.c3[1], z)];
+        var labelY = lerp(190, 168, z);
+        el('t1a').setAttribute('x', lerp(62, 30, z)); el('t1a').setAttribute('y', labelY);
+        el('t1b').setAttribute('x', lerp(62, 30, z)); el('t1b').setAttribute('y', labelY + 19);
+        el('t3a').setAttribute('x', lerp(298, 330, z)); el('t3a').setAttribute('y', labelY);
+        el('t3b').setAttribute('x', lerp(298, 330, z)); el('t3b').setAttribute('y', labelY + 19);
+        el('t2a').setAttribute('x', 180); el('t2a').setAttribute('y', lerp(106, 72, z));
+        el('t2b').setAttribute('x', 180); el('t2b').setAttribute('y', lerp(126, 92, z));
+        el('star').setAttribute('x', 180); el('star').setAttribute('y', lerp(78, 46, z));
+        var side = z > 0.5 ? '0' : '1';
+        ['t1a', 't1b', 't3a', 't3b'].forEach(function (id) { el(id).setAttribute('opacity', side); });
+        ['c1', 'c3'].forEach(function (id) { el(id).setAttribute('opacity', String(1 - 0.55 * z)); });
+        el('t2b').setAttribute('opacity', z > 0.5 ? '0' : '1');
+        curZ = z;
+    }
+    function moveTo(target) {
+        if (animFrame) cancelAnimationFrame(animFrame);
+        if (reduceMotion || Math.abs(target - curZ) < 0.001) { place(target); return; }
+        var start = curZ, t0 = null, dur = 700;
+        function frame(ts) {
+            if (t0 === null) t0 = ts;
+            var p = Math.min((ts - t0) / dur, 1), e = p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
+            place(lerp(start, target, e));
+            if (p < 1) animFrame = requestAnimationFrame(frame);
+        }
+        animFrame = requestAnimationFrame(frame);
+    }
+    function paint(s, faded) {
+        moveTo(s ? s.z : 0);
+        el('star').setAttribute('opacity', s && s.star ? '1' : '0');
+        ['i1', 'i2', 'i3'].forEach(function (id, i) { el(id).setAttribute('opacity', s && s.items > i ? '1' : '0'); });
+        var ph = el('phrase'); ph.textContent = s ? s.phrase : ''; ph.setAttribute('fill', s ? s.color : GREEN);
+        el('tri').style.opacity = faded ? '0.55' : '1';
+        el('sp-desc').textContent = s ? s.desc : 'Three circles: home, work and school, and everywhere else.';
+    }
+    function setFocus(n) { pendingFocus = n; }
+    function applyFocus() { if (!pendingFocus) return; var t = document.querySelector('[data-control="' + pendingFocus + '"]'); pendingFocus = null; if (t) t.focus(); }
+    function button(label, control, cls, onClick) { var b = document.createElement('button'); b.type = 'button'; b.className = cls; b.setAttribute('data-control', control); b.textContent = label; b.addEventListener('click', onClick); return b; }
+    function buildCard(s) {
+        var vc = document.createElement('div'); vc.className = 'verse-card';
+        var bar = document.createElement('div'); bar.className = 'verse-card-bar'; bar.style.background = s.color; vc.appendChild(bar);
+        var c = document.createElement('div'); c.className = 'verse-card-content';
+        var t = document.createElement('p'); t.className = 'card-title'; t.style.color = s.color; t.textContent = s.title; c.appendChild(t);
+        var x = document.createElement('p'); x.className = 'card-text'; x.textContent = s.text; c.appendChild(x);
+        if (s.ref) { var r = document.createElement('p'); r.className = 'card-ref'; r.textContent = s.ref; c.appendChild(r); }
+        vc.appendChild(c); return vc;
+    }
+    function fitCards() {
+        var area = el('card-area'), m = document.createElement('div'), max = 0;
+        m.id = 'measure'; m.style.width = area.clientWidth + 'px';
+        document.documentElement.style.setProperty('--card-h', '0px');
+        steps.forEach(function (s) { var w = document.createElement('div'); w.className = 'verse-card-wrapper'; w.appendChild(buildCard(s)); m.appendChild(w); });
+        document.body.appendChild(m);
+        m.querySelectorAll('.verse-card-content').forEach(function (c) { max = Math.max(max, c.offsetHeight); });
+        document.body.removeChild(m);
+        document.documentElement.style.setProperty('--card-h', Math.max(max, 112) + 'px');
+    }
+    function go(i) { mode = 'guide'; step = i; resumeStep = i; render(); }
+    function render() {
+        var card = el('card-area'); card.innerHTML = '';
+        if (mode === 'overview') {
+            paint(steps[steps.length - 1], false);
+            var panel = document.createElement('div'); panel.className = 'overview-panel';
+            var cap = document.createElement('p'); cap.className = 'overview-caption';
+            cap.textContent = 'Jesus is Lord of all three spaces. In your 2nd Space, live so there is nothing to find but faith.';
+            panel.appendChild(cap);
+            var onav = document.createElement('div'); onav.className = 'nav-bar';
+            onav.appendChild(button('Return to steps', 'return', 'nav-btn', function () { mode = 'guide'; step = resumeStep; setFocus(step === -1 ? 'begin' : 'next'); render(); }));
+            onav.appendChild(button('↻ Restart', 'restart', 'nav-btn primary', function () { resumeStep = -1; setFocus('begin'); go(-1); }));
+            panel.appendChild(onav); card.appendChild(panel);
+            el('status').textContent = 'Whole diagram shown.'; applyFocus(); return;
+        }
+        if (step === -1) {
+            paint(null, true);
+            var wrap = document.createElement('div'); wrap.className = 'begin-wrapper';
+            var intro = document.createElement('p'); intro.className = 'begin-text';
+            intro.textContent = 'Where does your week actually happen? Tap Begin to see your three spaces.';
+            wrap.appendChild(intro);
+            wrap.appendChild(button('Begin →', 'begin', 'begin-btn', function () { setFocus('next'); go(0); }));
+            wrap.appendChild(button('Show whole diagram', 'overview', 'overview-btn', function () { resumeStep = step; mode = 'overview'; setFocus('return'); render(); }));
+            card.appendChild(wrap); el('status').textContent = ''; applyFocus(); return;
+        }
+        var s = steps[step]; paint(s, false);
+        var wrapper = document.createElement('div'); wrapper.className = 'verse-card-wrapper';
+        wrapper.appendChild(buildCard(s));
+        var nav = document.createElement('div'); nav.className = 'nav-bar';
+        nav.appendChild(button('← Back', 'back', 'nav-btn', function () { setFocus(step === 0 ? 'begin' : 'back'); go(step - 1); }));
+        var count = document.createElement('span'); count.className = 'step-count'; count.textContent = (step + 1) + ' of ' + steps.length; nav.appendChild(count);
+        if (step < steps.length - 1) nav.appendChild(button('Next →', 'next', 'nav-btn primary', function () { setFocus('next'); go(step + 1); }));
+        else nav.appendChild(button('↻ Restart', 'restart', 'nav-btn primary', function () { setFocus('begin'); go(-1); }));
+        wrapper.appendChild(nav); card.appendChild(wrapper);
+        el('status').textContent = 'Step ' + (step + 1) + ' of ' + steps.length + ': ' + s.title; applyFocus();
+    }
+    place(0); fitCards(); render();
+    var rt = null, lastWidth = window.innerWidth;
+    // Refit only when the width changes. The page briefly resizes this frame's height to measure it,
+    // and refitting on that would start a measure-resize loop that jolts the page while scrolling.
+    window.addEventListener('resize', function () {
+        if (window.innerWidth === lastWidth) return;
+        lastWidth = window.innerWidth;
+        clearTimeout(rt); rt = setTimeout(fitCards, 150);
+    });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitCards);
+</script>
+</body>
+</html>

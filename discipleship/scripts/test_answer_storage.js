@@ -71,7 +71,7 @@ function collectAllLessons() {
 var closingIds = {
     '202-05.json': ['202-05-key', '202-05-devos', '202-05-prayer'],
     '202-09.json': ['202-09-key', '202-09-step', '202-09-prayer'],
-    '203-06.json': ['203-06-key', '203-06-devos', '203-06-prayer'],
+    '203-06.json': ['203-06-key', '203-06-step', '203-06-prayer'],
     '203-07.json': ['203-07-key', '203-07-devos', '203-07-prayer']
 };
 
@@ -110,6 +110,28 @@ assert('migration and reload preserve retired devotions and the new step indepen
     retiredReloaded.responses['question-202-202-09-step'] === 'SYN-new-next-step');
 assert('existing boundary answer survives the lesson revision',
     retiredReloaded.responses['question-202-201-9-1'] === 'SYN-existing-boundary');
+
+// L-203-06 rewrite retired three questions from the old wrong-topic stub.
+['203-06-devos', '203-7-1', '203-07-bless'].forEach(function (retiredId) {
+    assert('203-06 retired ID ' + retiredId + ' is not reused',
+        !readLesson('203-06.json').blocks.some(function (b) { return b.id === retiredId; }));
+});
+var retired06Store = memoryStorage({
+    'question-203-203-06-devos': 'SYN-retired-203-devotions',
+    'question-203-203-7-1': 'SYN-retired-resistance',
+    'question-203-203-07-bless': 'SYN-retired-bless',
+    'question-203-203-06-key': 'SYN-kept-203-key'
+});
+var retired06Loaded = storage.loadAndMigrateResponses(retired06Store);
+retired06Loaded.responses['question-203-203-06-step'] = 'SYN-new-203-step';
+retired06Store.setItem(storage.RESPONSES_KEY, JSON.stringify(retired06Loaded.responses));
+var retired06Reloaded = storage.loadAndMigrateResponses(retired06Store);
+assert('203-06 rewrite keeps retired answers and the kept key answer after reload',
+    retired06Reloaded.responses['question-203-203-06-devos'] === 'SYN-retired-203-devotions' &&
+    retired06Reloaded.responses['question-203-203-7-1'] === 'SYN-retired-resistance' &&
+    retired06Reloaded.responses['question-203-203-07-bless'] === 'SYN-retired-bless' &&
+    retired06Reloaded.responses['question-203-203-06-key'] === 'SYN-kept-203-key' &&
+    retired06Reloaded.responses['question-203-203-06-step'] === 'SYN-new-203-step');
 
 // --- Independent new answers after migration ---
 var first = storage.loadAndMigrateResponses(memoryStorage({
