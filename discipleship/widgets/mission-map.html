@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Mission Map</title>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Georgia', 'Cambria', serif;
+            background: #F8F6F1;
+            color: #2C2416;
+            -webkit-font-smoothing: antialiased;
+            padding: 0;
+            margin: 0;
+        }
+
+        .widget-outer {
+            background: #FFFFFF;
+            border-radius: 0;
+            overflow: hidden;
+            box-shadow: none;
+            border: none;
+            max-width: 100%;
+            width: 100%;
+            margin: 0;
+            position: relative;
+        }
+
+        @media (min-width: 560px) {
+            body { padding: 16px; background: #F8F6F1; }
+            .widget-outer {
+                border-radius: 12px;
+                box-shadow: 0 6px 20px rgba(44, 36, 22, 0.08);
+                border: 1px solid #EBE5D9;
+                max-width: 460px;
+                margin: 0 auto;
+            }
+        }
+
+        button { -webkit-tap-highlight-color: transparent; font-family: 'Trebuchet MS', sans-serif; }
+        button:focus-visible { outline: 3px solid #2C2416; outline-offset: 2px; }
+
+        .title-bar { background: #1D6B3F; padding: 10px 16px; text-align: center; }
+        .title-bar h1 {
+            font-size: 19px; font-weight: 700; color: #FFFFFF; margin: 0; line-height: 1.2;
+            font-family: 'Trebuchet MS', 'Inter', sans-serif;
+        }
+
+        .diagram-wrapper { padding: 8px 8px 0; }
+        svg#tri { display: block; width: 100%; height: auto; max-height: 300px; }
+        .label { font-family: 'Trebuchet MS', sans-serif; font-size: 16px; font-weight: 700; }
+        .phrase { font-family: 'Georgia', serif; font-size: 17px; font-style: italic; }
+
+        #card-area { background-color: #F6F4EE; border-top: 1px solid #EBE5D9; padding-top: 8px; }
+        .verse-card-wrapper { margin: 0 auto; padding: 0 12px 8px; max-width: 460px; }
+        .verse-card { background: #FFFFFF; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 14px rgba(44,36,22,0.06); }
+        .verse-card-bar { height: 4px; }
+        .verse-card-content { padding: 10px 16px; min-height: var(--card-h, 112px); display: flex; flex-direction: column; justify-content: flex-start; }
+        .card-title { font-family: 'Trebuchet MS', sans-serif; font-size: 16px; font-weight: 700; line-height: 1.3; margin-bottom: 4px; }
+        .card-text { font-size: 15px; line-height: 1.4; color: #3D3426; }
+        .card-ref { font-family: 'Trebuchet MS', sans-serif; font-size: 13px; color: #6B6358; margin-top: 4px; }
+
+        .nav-bar { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; padding: 0 2px; gap: 8px; }
+        .nav-btn {
+            background: transparent; border: 1.5px solid #D4CFC4; border-radius: 10px;
+            padding: 10px 16px; min-height: 44px; font-size: 14px; color: #5A4E3C; cursor: pointer; font-weight: 600;
+        }
+        .nav-bar .nav-btn { min-width: 112px; text-align: center; }
+        .nav-btn.primary { color: #FFFFFF; border: none; background: #1D6B3F; }
+        .nav-btn[disabled] { opacity: 0.35; cursor: default; }
+        .step-count { font-family: 'Trebuchet MS', sans-serif; font-size: 13px; color: #6B6358; }
+
+        .begin-wrapper { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 10px 16px 16px; }
+        .begin-text { font-size: 16px; line-height: 1.4; text-align: center; color: #3D3426; max-width: 340px; }
+        .begin-btn {
+            background: #1D6B3F; color: #FFFFFF; border: none; border-radius: 10px;
+            padding: 12px 28px; min-height: 44px; font-size: 16px; font-weight: 700; cursor: pointer;
+        }
+        .overview-btn {
+            background: transparent; border: 1.5px solid #D4CFC4; border-radius: 10px;
+            padding: 10px 16px; min-height: 44px; font-size: 14px; color: #5A4E3C; cursor: pointer; font-weight: 600;
+        }
+        .overview-panel { padding: 0 12px 12px; max-width: 460px; margin: 0 auto; }
+        .overview-caption { font-size: 16px; line-height: 1.4; text-align: center; color: #3D3426; margin: 2px 0 6px; }
+        .item { transition: opacity 0.5s ease; }
+        @media (prefers-reduced-motion: reduce) { .item { transition: none; } }
+        #measure { position: absolute; left: 0; top: 0; visibility: hidden; pointer-events: none; }
+        .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+    </style>
+</head>
+<body>
+<div class="widget-outer">
+    <div class="title-bar"><h1>Your Mission Map</h1></div>
+    <div class="diagram-wrapper">
+        <svg id="tri" viewBox="0 0 360 290" role="img" aria-labelledby="mm-desc">
+            <desc id="mm-desc">Four circles, one inside another: your church, your city, new churches, and the nations.</desc>
+            <circle id="r3" cx="180" cy="150" r="134"/>
+            <circle id="r2" cx="180" cy="150" r="102"/>
+            <circle id="r1" cx="180" cy="150" r="70"/>
+            <circle id="r0" cx="180" cy="150" r="38"/>
+            <text id="l3" class="label" x="180" y="42" text-anchor="middle" font-size="13">The Nations</text>
+            <text id="l2" class="label" x="180" y="76" text-anchor="middle" font-size="13">New Churches</text>
+            <text id="l1" class="label" x="180" y="106" text-anchor="middle" font-size="13">Your City</text>
+            <text id="l0a" class="label" x="180" y="146" text-anchor="middle" font-size="13">Your</text>
+            <text id="l0b" class="label" x="180" y="162" text-anchor="middle" font-size="13">Church</text>
+            <g id="dots"></g>
+        </svg>
+    </div>
+    <div id="card-area" aria-live="polite"></div>
+    <p class="sr-only" id="status" aria-live="polite"></p>
+</div>
+<script>
+    var GREEN = '#1D6B3F', GOLD = '#B8892B', NS = 'http://www.w3.org/2000/svg';
+    var steps = [
+        { active: -1, dots: 0, gold: false, color: GREEN,
+          title: 'One mission, four circles.', text: 'Jesus sent His church from its own city to the end of the earth. You get to join that mission in four circles, and you never go alone.', ref: '“you will be my witnesses in Jerusalem and in all Judea and Samaria, and to the end of the earth” (Acts 1:8)',
+          desc: 'Four circles, one inside another: your church, your city, new churches, and the nations.' },
+        { active: 0, dots: 1, gold: false, color: GREEN,
+          title: 'Your church: home base.', text: 'Your local church is where you are known, fed, and sent. Every other circle flows out from here.', ref: '“Greet also the church in their house” (Romans 16:5)',
+          desc: 'The center circle, your church, lights up with people inside it.' },
+        { active: 1, dots: 2, gold: false, color: GREEN,
+          title: 'Your city: ministry partners.', text: 'Campus, pregnancy care, food pantry, refugee, and sports ministries come alongside the church to reach people it might not reach alone.', ref: '“your partnership in the gospel” (Philippians 1:5)',
+          desc: 'The second circle, your city, lights up and fills with partners.' },
+        { active: 2, dots: 3, gold: false, color: GREEN,
+          title: 'New churches.', text: 'Churches plant churches. Every new church needs people who pray, give, and serve, and a few who go.', ref: '“they laid their hands on them and sent them off” (Acts 13:3)',
+          desc: 'The third circle, new churches, lights up and fills with people.' },
+        { active: 3, dots: 4, gold: false, color: GREEN,
+          title: 'The nations.', text: 'Pray for a people group, give to missions, and welcome the nations already living in Kansas City.', ref: '“from every nation, from all tribes and peoples and languages” (Revelation 7:9)',
+          desc: 'The outer circle, the nations, lights up and fills with people.' },
+        { active: -1, dots: 4, gold: true, color: GOLD,
+          title: 'Your next step.', text: 'You cannot do all four alone, and you were never meant to. Pick one circle and take one step with others this week.', ref: '“my fellow workers in Christ Jesus” (Romans 16:3)',
+          desc: 'All four circles glow gold and full of people working together.' }
+    ];
+    // people in each ring: [angle in degrees, radius]
+    var PEOPLE = [
+        [[168, 176], [180, 177], [192, 176]],
+        [[20, 54], [90, 54], [160, 54], [205, 54], [335, 54]],
+        [[15, 86], [60, 86], [115, 86], [165, 86], [210, 86], [330, 86]],
+        [[10, 118], [45, 118], [80, 118], [115, 118], [150, 118], [195, 118], [225, 118], [320, 118]]
+    ];
+    var dotEls = [];
+    PEOPLE.forEach(function (ring, k) {
+        dotEls[k] = ring.map(function (p) {
+            var x, y;
+            if (k === 0) { x = p[0]; y = p[1]; }
+            else { var a = p[0] * Math.PI / 180; x = 180 + p[1] * Math.cos(a); y = 150 + p[1] * Math.sin(a); }
+            var c = document.createElementNS(NS, 'circle');
+            c.setAttribute('cx', x.toFixed(1)); c.setAttribute('cy', y.toFixed(1)); c.setAttribute('r', '4.5');
+            c.setAttribute('class', 'item'); c.setAttribute('opacity', '0');
+            document.getElementById('dots').appendChild(c); return c;
+        });
+    });
+
+    var step = -1, mode = 'guide', resumeStep = -1, pendingFocus = null;
+    function el(id) { return document.getElementById(id); }
+    function paint(s, faded) {
+        for (var k = 0; k < 4; k++) {
+            var ring = el('r' + k), on = !!s && (s.gold || s.active === -1 || k <= Math.max(s.active, s.dots - 1));
+            var active = !!s && s.active === k;
+            var fill = !s ? '#F3F5F2' : s.gold ? ['#F6E9C8', '#F9F0D8', '#FBF5E6', '#FDFAF2'][k] : active ? '#D1EDD9' : on ? '#E8F2EA' : '#F3F5F2';
+            ring.setAttribute('fill', fill);
+            ring.setAttribute('stroke', s && s.gold ? GOLD : active ? GREEN : on ? '#9CC7A9' : '#DDE3DD');
+            ring.setAttribute('stroke-width', active ? '3' : '2');
+            var lc = on ? (s.gold ? '#8A6519' : '#155030') : '#9AA89C';
+            (k === 0 ? ['l0a', 'l0b'] : ['l' + k]).forEach(function (id) { el(id).setAttribute('fill', lc); });
+            dotEls[k].forEach(function (d) {
+                d.setAttribute('opacity', s && s.dots > k ? '1' : '0');
+                d.setAttribute('fill', s && s.gold ? GOLD : GREEN);
+            });
+        }
+        el('tri').style.opacity = faded ? '0.55' : '1';
+        el('mm-desc').textContent = s ? s.desc : steps[0].desc;
+    }
+    function setFocus(n) { pendingFocus = n; }
+    function applyFocus() { if (!pendingFocus) return; var t = document.querySelector('[data-control="' + pendingFocus + '"]'); pendingFocus = null; if (t) t.focus(); }
+    function button(label, control, cls, onClick) { var b = document.createElement('button'); b.type = 'button'; b.className = cls; b.setAttribute('data-control', control); b.textContent = label; b.addEventListener('click', onClick); return b; }
+    function buildCard(s) {
+        var vc = document.createElement('div'); vc.className = 'verse-card';
+        var bar = document.createElement('div'); bar.className = 'verse-card-bar'; bar.style.background = s.color; vc.appendChild(bar);
+        var c = document.createElement('div'); c.className = 'verse-card-content';
+        var t = document.createElement('p'); t.className = 'card-title'; t.style.color = s.color; t.textContent = s.title; c.appendChild(t);
+        var x = document.createElement('p'); x.className = 'card-text'; x.textContent = s.text; c.appendChild(x);
+        if (s.ref) { var r = document.createElement('p'); r.className = 'card-ref'; r.textContent = s.ref; c.appendChild(r); }
+        vc.appendChild(c); return vc;
+    }
+    function fitCards() {
+        var area = el('card-area'), m = document.createElement('div'), max = 0;
+        m.id = 'measure'; m.style.width = area.clientWidth + 'px';
+        document.documentElement.style.setProperty('--card-h', '0px');
+        steps.forEach(function (s) { var w = document.createElement('div'); w.className = 'verse-card-wrapper'; w.appendChild(buildCard(s)); m.appendChild(w); });
+        document.body.appendChild(m);
+        m.querySelectorAll('.verse-card-content').forEach(function (c) { max = Math.max(max, c.offsetHeight); });
+        document.body.removeChild(m);
+        document.documentElement.style.setProperty('--card-h', Math.max(max, 112) + 'px');
+    }
+    function go(i) { mode = 'guide'; step = i; resumeStep = i; render(); }
+    function render() {
+        var card = el('card-area'); card.innerHTML = '';
+        if (mode === 'overview') {
+            paint(steps[steps.length - 1], false);
+            var panel = document.createElement('div'); panel.className = 'overview-panel';
+            var cap = document.createElement('p'); cap.className = 'overview-caption';
+            cap.textContent = 'Your church is home base. From there you join partners in your city, new churches, and the nations. Never alone. Always sent.';
+            panel.appendChild(cap);
+            var onav = document.createElement('div'); onav.className = 'nav-bar';
+            onav.appendChild(button('Return to steps', 'return', 'nav-btn', function () { mode = 'guide'; step = resumeStep; setFocus(step === -1 ? 'begin' : 'next'); render(); }));
+            onav.appendChild(button('↻ Restart', 'restart', 'nav-btn primary', function () { resumeStep = -1; setFocus('begin'); go(-1); }));
+            panel.appendChild(onav); card.appendChild(panel);
+            el('status').textContent = 'Whole map shown.'; applyFocus(); return;
+        }
+        if (step === -1) {
+            paint(steps[0], true);
+            var wrap = document.createElement('div'); wrap.className = 'begin-wrapper';
+            var intro = document.createElement('p'); intro.className = 'begin-text';
+            intro.textContent = 'Where does God want you on mission, and who is with you? Tap Begin to build your map.';
+            wrap.appendChild(intro);
+            wrap.appendChild(button('Begin →', 'begin', 'begin-btn', function () { setFocus('next'); go(0); }));
+            wrap.appendChild(button('Show whole map', 'overview', 'overview-btn', function () { resumeStep = step; mode = 'overview'; setFocus('return'); render(); }));
+            card.appendChild(wrap); el('status').textContent = ''; applyFocus(); return;
+        }
+        var s = steps[step]; paint(s, false);
+        var wrapper = document.createElement('div'); wrapper.className = 'verse-card-wrapper';
+        wrapper.appendChild(buildCard(s));
+        var nav = document.createElement('div'); nav.className = 'nav-bar';
+        nav.appendChild(button('← Back', 'back', 'nav-btn', function () { setFocus(step === 0 ? 'begin' : 'back'); go(step - 1); }));
+        var count = document.createElement('span'); count.className = 'step-count'; count.textContent = (step + 1) + ' of ' + steps.length; nav.appendChild(count);
+        if (step < steps.length - 1) nav.appendChild(button('Next →', 'next', 'nav-btn primary', function () { setFocus('next'); go(step + 1); }));
+        else nav.appendChild(button('↻ Restart', 'restart', 'nav-btn primary', function () { setFocus('begin'); go(-1); }));
+        wrapper.appendChild(nav); card.appendChild(wrapper);
+        el('status').textContent = 'Step ' + (step + 1) + ' of ' + steps.length + ': ' + s.title; applyFocus();
+    }
+    fitCards(); render();
+    var rt = null, lastWidth = window.innerWidth;
+    // Refit only when the width changes. The page briefly resizes this frame's height to measure it,
+    // and refitting on that would start a measure-resize loop that jolts the page while scrolling.
+    window.addEventListener('resize', function () {
+        if (window.innerWidth === lastWidth) return;
+        lastWidth = window.innerWidth;
+        clearTimeout(rt); rt = setTimeout(fitCards, 150);
+    });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitCards);
+</script>
+</body>
+</html>
