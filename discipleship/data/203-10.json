@@ -1,36 +1,106 @@
 {
   "id": "10",
-  "title": "Lesson 10: Your Calling at NC",
-  "description": "The goal of making disciples who make disciples.",
+  "title": "Lesson 10: Your Calling - Putting It All Together",
+  "description": "You were made for more than a seat in the crowd. This final lesson of Growing Out brings together everything you have learned and helps you see where God has shaped you to serve.",
   "blocks": [
     {
-      "type": "heading",
-      "text": "Passing the Baton"
+      "type": "text",
+      "text": "In the last lesson, you saw who God puts beside you in His mission, from your own church to the ends of the earth. Now the question gets personal: where do you fit?"
+    },
+    {
+      "type": "parable",
+      "title": "Called by Name",
+      "text": "When God's people built the tabernacle in the wilderness, the place where God would dwell among them, the first person God named was not a preacher. It was a builder. God said to Moses, <em>\"See, I have called by name Bezalel... and I have filled him with the Spirit of God, with ability and intelligence, with knowledge and all craftsmanship\"</em> (Exodus 31:2-3).<br><br>Bezalel could cut stones, carve wood, and shape gold. He is one of the first people the Bible describes as filled with the Spirit of God, and what the Spirit filled was his craft. God did not treat his skill as ordinary. He called it a calling.<br><br>Then God did one more thing. He gave Bezalel the ability to teach others what he knew (Exodus 35:34), and He surrounded him with skilled workers who built alongside him (Exodus 36:1-2). His gift was never meant to stay in his own hands."
     },
     {
       "type": "text",
-      "text": "The ultimate goal of our growth in Christ is to pour into others what has been poured into us. True discipleship is multiplication: making disciples who will inevitably go and make more disciples."
-    },
-    {
-      "type": "verse",
-      "reference": "2 Timothy 2:2",
-      "text": "And what you have heard from me in the presence of many witnesses entrust to faithful men, who will be able to teach others also."
+      "text": "You may not think of your skills, your personality, or your story as part of God's call. Bezalel's story says they are. The God who called him by name has called you by name too."
     },
     {
       "type": "question",
-      "id": "203-10-1",
-      "text": "10.1 - As you finish this 200 level series, who is one person you can begin discipling and passing these truths on to?",
-      "data_question": "10.1 - Discipling someone else"
+      "id": "203-10-craft",
+      "text": "10.1 - What ordinary skill or interest of yours might God want to use for His people?",
+      "height": "tall"
     },
     {
       "type": "heading",
-      "text": "BLESS Check-in"
+      "text": "Called First to Jesus"
+    },
+    {
+      "type": "text",
+      "text": "Before calling is about a role, it is about a Person. Paul wrote:"
+    },
+    {
+      "type": "verse",
+      "reference": "Ephesians 4:1-3",
+      "text": "I therefore, a prisoner for the Lord, urge you to walk in a manner worthy of the calling to which you have been called, with all humility and gentleness, with patience, bearing with one another in love, eager to maintain the unity of the Spirit in the bond of peace."
+    },
+    {
+      "type": "text",
+      "text": "<strong>Your first calling is to follow Jesus, and every other calling grows out of that one.</strong> You were saved by grace, not by your work, and yet you were <em>\"created in Christ Jesus for good works, which God prepared beforehand\"</em> (Ephesians 2:10). God has already prepared good works with your name on them. Your part is to walk in them."
+    },
+    {
+      "type": "heading",
+      "text": "Your SHAPE"
+    },
+    {
+      "type": "text",
+      "text": "God's call on your life shows up in how He made you. One simple way to see it is to look at your SHAPE: your spiritual gifts, your heart, your abilities, your personality, and your experiences. No two people have the same one."
+    },
+    {
+      "type": "widget",
+      "src": "widgets/shape.html",
+      "height": "580px"
+    },
+    {
+      "type": "text",
+      "text": "You began discovering your spiritual gifts in the Growing Up course. Your heart is the people or the need that stirs you most. Your abilities are the skills in your hands. Your personality is how God wired you. Your experiences, including the painful ones, can become comfort for someone else. Put them together and you start to see where you fit."
     },
     {
       "type": "question",
-      "id": "203-10-bless",
-      "text": "Who are you currently BLESSing? Who are you praying for and actively moving toward? What is one specific step you are taking this week?",
+      "id": "203-10-shape",
+      "text": "10.2 - Which part of your SHAPE do you see most clearly right now?",
       "height": "tall"
+    },
+    {
+      "type": "question",
+      "id": "203-10-see",
+      "text": "10.3 - Who knows you well enough to help you see your SHAPE?",
+      "height": "tall"
+    },
+    {
+      "type": "heading",
+      "text": "Putting It All Together"
+    },
+    {
+      "type": "text",
+      "text": "Look back at the road you have walked. In Growing Deep, you learned to love God and let your roots go down into Him. In Growing Up, you learned to love the people around you: your family, your church, and your neighbors. In Growing Out, you learned to live on mission: blessing the people around you, sharing your story, discipling others, and joining God's work from your church to the nations. Your calling is where all three meet: a life rooted in Jesus, loving His people, and sent into the world."
+    },
+    {
+      "type": "text",
+      "text": "You may feel unqualified. Moses did. When God called him, his first answer was, <em>\"Who am I?\"</em> God did not answer by listing Moses' strengths. He said, <em>\"But I will be with you\"</em> (Exodus 3:11-12). Your calling does not rest on how capable you feel. It rests on the God who goes with you."
+    },
+    {
+      "type": "text",
+      "text": "Finding your place usually happens by serving, not by waiting. Join a team. Ask your pastor or a mature believer what they see in you, because others often see your SHAPE before you do. Serve for a season, then notice where you come alive and where God seems to bear fruit. Calling becomes clearer as you walk, and like Bezalel, you will not build alone."
+    },
+    {
+      "type": "question",
+      "id": "203-10-need",
+      "text": "10.4 - Where in your church could your SHAPE meet a real need?",
+      "height": "tall"
+    },
+    {
+      "type": "heading",
+      "text": "Lesson 10 Review"
+    },
+    {
+      "type": "text",
+      "text": "God called Bezalel by name, filled him with His Spirit, and used his craft to build a place for His presence. He has called you by name too. Your first calling is to follow Jesus, and your particular calling shows up in your SHAPE: your spiritual gifts, heart, abilities, personality, and experiences. Everything you have learned in this series comes together here: a life rooted in Jesus, loving His people, and sent on His mission, lived out on a team in your church."
+    },
+    {
+      "type": "text",
+      "text": "This is the last lesson of the 200 series. The next step is the 300 series, Leading in Discipleship, where you will learn to lead others the way you have been led."
     },
     {
       "type": "heading",
@@ -39,13 +109,13 @@
     {
       "type": "question",
       "id": "203-10-key",
-      "text": "What is one key thing you learned from this lesson, and what next step can you take this week?",
+      "text": "What is one key thing you learned from this lesson?",
       "height": "short"
     },
     {
       "type": "question",
-      "id": "203-10-devos",
-      "text": "What have you learned about God and yourself recently in your Daily Devotions?",
+      "id": "203-10-step",
+      "text": "What is one step you are going to take this week?",
       "height": "short"
     },
     {
@@ -53,6 +123,10 @@
       "id": "203-10-prayer",
       "text": "What is a prayer request for this week?",
       "height": "short"
+    },
+    {
+      "type": "text",
+      "text": "This lesson draws on the SHAPE idea from <em>The Purpose Driven Life</em> by Rick Warren."
     }
   ]
 }

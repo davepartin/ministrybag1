@@ -1,151 +1,118 @@
 {
   "id": "8",
   "title": "Lesson 8: How to Disciple Others",
-  "description": "Introduction to “Belong” Sessions 8, 9 & 10 - Growing Together",
+  "description": "Someone once helped you follow Jesus. This lesson shows how to walk alongside another person the way Jesus walked with His disciples, so that what you have received keeps being passed on.",
   "blocks": [
     {
       "type": "text",
-      "text": "In these final three sessions we are going to lean into the third core value of “BELONG” and how our love for God and neighbors is lived out together in a welcoming spiritual family."
+      "text": "In the last lesson, you learned to stand firm in the armor of God. Standing firm was never meant to be a solo fight, and neither is growing. This lesson is about helping someone else grow."
     },
     {
-      "type": "text",
-      "text": "Our mission is to love God and our neighbors together. That “together” is not an afterthought - it is the beautiful way God designed His people to grow, serve, and multiply."
-    },
-    {
-      "type": "list",
-      "items": [
-        "Loving God → We desire to BE God’s satisfied children, love Him, and glorify Him.",
-        "And our neighbors → We desire to BLESS others where we live, work, and play.",
-        "Together → We BELONG to a welcoming spiritual family."
-      ]
-    },
-    {
-      "type": "text",
-      "text": "As we grow in our relationship with the Father, we are built into a spiritual family that holds one another up, encourages one another, and multiplies together. This is what it means to grow together - roots deep in Christ, branches reaching out to bless, and fruit that multiplies for the Kingdom."
-    },
-    {
-      "type": "heading",
-      "text": "Session #8"
-    },
-    {
-      "type": "heading",
-      "text": "Belonging to the Spiritual Family"
+      "type": "parable",
+      "title": "Four Generations",
+      "text": "Paul met Timothy in the town of Lystra. He was a young disciple with a believing mother and a good name among the believers (Acts 16:1-2). Paul did not hand him a book and wish him well. He took Timothy with him. City after city, Timothy watched Paul preach, pray, suffer, and forgive. Years later Paul could write, <em>\"You, however, have followed my teaching, my conduct, my aim in life, my faith, my patience, my love, my steadfastness\"</em> (2 Timothy 3:10).<br><br>Paul called him <em>\"my true child in the faith\"</em> (1 Timothy 1:2) and told another church that Timothy had served with him <em>\"as a son with a father\"</em> (Philippians 2:22). In time, Timothy was leading a church himself.<br><br>Near the end of his life, from a prison cell, Paul wrote Timothy one last letter. In one sentence he laid out the whole plan."
     },
     {
       "type": "verse",
-      "reference": "Ephesians 2:19-22",
-      "text": "So then you are no longer strangers and aliens, but you are fellow citizens with the saints and members of the household of God, built on the foundation of the apostles and prophets, Christ Jesus himself being the cornerstone, in whom the whole structure, being joined together, grows into a holy temple in the Lord. In him you also are being built together into a dwelling place for God by the Spirit."
+      "reference": "2 Timothy 2:2",
+      "text": "and what you have heard from me in the presence of many witnesses entrust to faithful men, who will be able to teach others also."
     },
     {
-      "type": "verse",
-      "reference": "Hebrews 10:24-25",
-      "text": "And let us consider how to stir up one another to love and good works, not neglecting to meet together, as is the habit of some, but encouraging one another, and all the more as you see the Day drawing near."
+      "type": "text",
+      "text": "Count the generations in that verse: Paul, Timothy, faithful people, and others also. Four generations of disciples in one sentence. That is how the gospel reached you, and it is how it keeps going."
+    },
+    {
+      "type": "question",
+      "id": "203-08-invested",
+      "text": "8.1 - Who has helped you grow in your faith, and what did they do that mattered most?",
+      "height": "tall"
     },
     {
       "type": "heading",
-      "text": "Current Reality"
+      "text": "With Him First"
     },
     {
-      "type": "question",
-      "id": "301-08-1",
-      "text": "On a scale of 1-10, how connected do you feel to the spiritual family of your church right now? Explain.",
-      "data_question": "On a scale of 1-10, how connected do you feel to the spiritual family of your church right now? Explain."
+      "type": "text",
+      "text": "Jesus had crowds, but He poured His life into a few. He chose twelve <em>\"so that they might be with him\"</em> (Mark 3:14) before He ever sent them out. They ate with Him, walked with Him, watched Him pray, and saw how He treated people. <strong>Discipleship is caught more than it is taught.</strong> It happens around a table and along the road as much as in a lesson."
     },
     {
-      "type": "question",
-      "id": "301-08-2",
-      "text": "Describe a time when you felt truly welcomed and belonged in a church family. What made it feel that way?",
-      "data_question": "Describe a time when you felt truly welcomed and belonged in a church family. What made it feel that way?"
-    },
-    {
-      "type": "question",
-      "id": "301-08-3",
-      "text": "What is one way you could help someone new feel like they truly belong at your church?",
-      "data_question": "What is one way you could help someone new feel like they truly belong at your church?"
+      "type": "text",
+      "text": "Paul said the same about his own ministry: <em>\"we were ready to share with you not only the gospel of God but also our own selves\"</em> (1 Thessalonians 2:8). You do not only pass on information. You pass on a life."
     },
     {
       "type": "heading",
-      "text": "Understanding the Bible"
+      "text": "What You Pass On"
     },
     {
-      "type": "verse",
-      "reference": "1 Peter 2:9-10",
-      "text": "But you are a chosen race, a royal priesthood, a holy nation, a people for his own possession, that you may proclaim the excellencies of him who called you out of darkness into his marvelous light. Once you were not a people, but now you are God’s people; once you had not received mercy, but now you have received mercy."
+      "type": "text",
+      "text": "One simple picture shows what you are helping another person build."
     },
     {
-      "type": "verse",
-      "reference": "Acts 2:42-47",
-      "text": "And they devoted themselves to the apostles’ teaching and the fellowship, to the breaking of bread and the prayers… And all who believed were together and had all things in common… And day by day, attending the temple together and breaking bread in their homes, they received their food with glad and generous hearts, praising God and having favor with all the people. And the Lord added to their number day by day those who were being saved."
+      "type": "widget",
+      "src": "widgets/wheel.html",
+      "height": "580px"
     },
     {
-      "type": "question",
-      "id": "301-08-4",
-      "text": "What are your initial thoughts as you read these passages?",
-      "data_question": "What are your initial thoughts as you read these passages?"
+      "type": "text",
+      "text": "Christ is the hub, and everything turns on Him. Two spokes connect you to God: the Word and prayer. Two connect you to people: fellowship and witness. Obedience is the rim, where faith meets the road of real life. When a spoke is missing, the ride gets rough. When you disciple someone, you help them build a life that keeps rolling, and then you help them help someone else."
     },
     {
       "type": "question",
-      "id": "301-08-5",
-      "text": "Based on these passages, what does it look like to truly belong to God’s spiritual family?",
-      "data_question": "Based on these passages, what does it look like to truly belong to God’s spiritual family?"
+      "id": "203-08-spoke",
+      "text": "8.2 - Which spoke is weakest in your own life right now?",
+      "height": "tall"
     },
     {
       "type": "heading",
-      "text": "Summary Teaching"
+      "text": "Who and How"
     },
     {
       "type": "text",
-      "text": "We are no longer strangers and aliens - we are family! God has made us members of His household, built together on the foundation of Christ the cornerstone. This belonging is not optional; it is the beautiful way God designed His people to grow, encourage one another, and multiply."
+      "text": "Paul told Timothy to look for faithful people. A simple way to remember what to look for is faithful, available, and teachable. Faithful people show up and keep their word. Available people make room in their week. Teachable people are humble enough to listen, confess, and grow. You are not looking for the most impressive person you know. You are looking for someone hungry."
     },
     {
       "type": "text",
-      "text": "In the early church they devoted themselves to teaching, fellowship, breaking bread, and prayer. They met in homes, shared everything, ate together with glad hearts, and the Lord added to their number daily. That same welcoming family spirit is alive in the church today."
+      "text": "Start small. Jesus had twelve and was closest to three. Two to four people of the same gender, meeting every week or two, is enough. Open the Bible together and ask simple questions: What does it say? What does it mean? How will we live it? Pray for one another. Ask how each person is really doing, and check back the next time you meet. That is most of it."
     },
     {
       "type": "text",
-      "text": "When we belong well, we stir one another up to love and good works. We hold each other up like trees growing together - roots deep in Christ, branches reaching out, fruit multiplying for the Kingdom."
+      "text": "Jesus also showed a simple way to pass on what you know. First the disciples watched Him. Then they helped. Then He sent them out, and they came back to tell Him what happened (Luke 9:1-10; 10:1-17). You can follow the same steps: <em>I do, you watch. I do, you help. You do, I help. You do, I watch.</em> Then the person you have walked with does the same for someone else."
+    },
+    {
+      "type": "question",
+      "id": "203-08-who",
+      "text": "8.3 - Who is one faithful, available, and teachable person God may be putting in front of you?",
+      "height": "tall"
     },
     {
       "type": "heading",
-      "text": "Family Snapshot (a quick growth exercise)"
+      "text": "You Do Not Have to Be Finished"
     },
     {
       "type": "text",
-      "text": "Close your eyes for 30 seconds and picture one person at your church who might feel like a “stranger” right now. Ask the Holy Spirit: “How can I help them feel like family this week?” Write the name and one simple idea (invite to coffee, sit with them, pray for them, etc.)."
+      "text": "Most people never start because they think they need to know more first. Timothy was young, and Paul still told him to lead (1 Timothy 4:12). Paul even wrote, <em>\"Be imitators of me, as I am of Christ\"</em> (1 Corinthians 11:1). You only need to be following Jesus and willing to let someone follow along. When you do not know an answer, say so and look for it together. Being honest about your own struggles may teach more than your strengths."
+    },
+    {
+      "type": "text",
+      "text": "And you are not alone in it. The Jesus who sent His followers to make disciples promised, <em>\"I am with you always, to the end of the age\"</em> (Matthew 28:20). He is the One who changes hearts. Your part is to show up, open the Word, pray, and love."
+    },
+    {
+      "type": "question",
+      "id": "203-08-start",
+      "text": "8.4 - What makes you hesitate to invest in someone, and what would help you take the first step?",
+      "height": "tall"
     },
     {
       "type": "heading",
-      "text": "Personal Challenge"
-    },
-    {
-      "type": "question",
-      "id": "301-08-6",
-      "text": "What is one practical way you can help someone new or hurting feel like they truly belong at your church this week?",
-      "data_question": "What is one practical way you can help someone new or hurting feel like they truly belong at your church this week?"
-    },
-    {
-      "type": "question",
-      "id": "301-08-7",
-      "text": "What fears or obstacles might keep you from taking that step? How can God’s Word help you overcome them?",
-      "data_question": "What fears or obstacles might keep you from taking that step? How can God’s Word help you overcome them?"
-    },
-    {
-      "type": "question",
-      "id": "301-08-8",
-      "text": "How does living out “Belong” make you a better leader in your home, neighborhood, and in your church?",
-      "data_question": "How does living out \"Belong\" make you a better leader in your home, neighborhood, and in your church?"
+      "text": "Lesson 8 Review"
     },
     {
       "type": "text",
-      "text": "Multiplication Step: Do the belonging step you wrote above this week, then tell one other leader what happened and invite them to do the same."
+      "text": "Paul poured his life into Timothy, and Timothy passed it on to faithful people who taught others also. That is how the gospel reached you. Jesus shared His life with a few before He sent them, so discipleship is caught more than it is taught. Help someone build a life with Christ at the center, joined to God through the Word and prayer, joined to people through fellowship and witness, and rolling forward in obedience. Look for someone faithful, available, and teachable, start small, and remember that you do not have to be finished to begin."
     },
     {
       "type": "text",
-      "text": "End this session by praying and asking God to make your church a place where every person feels truly welcomed, loved, and built together as family."
-    },
-    {
-      "type": "text",
-      "text": "End of Session #8"
+      "text": "In the next lesson, you will see who God puts beside you in His mission, from your own church to the ends of the earth."
     },
     {
       "type": "heading",
@@ -153,21 +120,25 @@
     },
     {
       "type": "question",
-      "id": "301-08-key",
-      "text": "What is one key thing you learned from this lesson, and what next step can you take this week?",
+      "id": "203-08-key",
+      "text": "What is one key thing you learned from this lesson?",
       "height": "short"
     },
     {
       "type": "question",
-      "id": "301-08-devos",
-      "text": "What have you learned about God and yourself recently in your Daily Devotions?",
+      "id": "203-08-step",
+      "text": "What is one step you are going to take this week?",
       "height": "short"
     },
     {
       "type": "question",
-      "id": "301-08-prayer",
+      "id": "203-08-prayer",
       "text": "What is a prayer request for this week?",
       "height": "short"
+    },
+    {
+      "type": "text",
+      "text": "This lesson draws on <em>The Master Plan of Evangelism</em> by Robert Coleman and the Wheel illustration of The Navigators."
     }
   ]
 }
