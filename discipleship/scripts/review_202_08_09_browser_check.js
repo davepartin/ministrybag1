@@ -85,6 +85,60 @@ function check(name, condition) {
                 }
             }
         }
+        // Scroll regression: a widget must not keep re-measuring itself while idle, and scrolling
+        // up past it must move steadily (a measure/resize loop used to snap the page back).
+        await page.setViewportSize({ width: 390, height: 844 });
+        for (const lesson of [8, 9]) {
+            await page.goto(BASE + '#202-' + lesson);
+            await page.waitForSelector('#session-' + lesson + '.active iframe');
+            await page.waitForTimeout(1500);
+            const writes = await page.evaluate(async (n) => {
+                const f = document.querySelector('#session-' + n + ' iframe');
+                let count = 0;
+                const mo = new MutationObserver(() => count++);
+                mo.observe(f, { attributes: true, attributeFilter: ['style'] });
+                await new Promise(r => setTimeout(r, 1500));
+                mo.disconnect();
+                return count;
+            }, lesson);
+            check('lesson ' + lesson + ' widget frame stays still while idle', writes === 0);
+            await page.evaluate((n) => {
+                const f = document.querySelector('#session-' + n + ' iframe');
+                window.scrollTo({ top: f.getBoundingClientRect().bottom + window.scrollY + 900, behavior: 'instant' });
+            }, lesson);
+            await page.waitForTimeout(300);
+            const positions = [];
+            for (let i = 0; i < 12; i++) {
+                await page.mouse.wheel(0, -120);
+                await page.waitForTimeout(120);
+                positions.push(await page.evaluate(() => Math.round(window.scrollY)));
+            }
+            check('lesson ' + lesson + ' scrolls up past the widget without snapping back', positions.every((y, i) => i === 0 || y <= positions[i - 1]));
+        }
+        // Phone toolbar regression: scrolling up on a phone slides the address bar in and out,
+        // which changes only the window height. The widget must not re-measure or jolt the page.
+        for (const lesson of [8, 9]) {
+            await page.setViewportSize({ width: 390, height: 844 });
+            await page.goto(BASE + '#202-' + lesson);
+            await page.waitForSelector('#session-' + lesson + '.active iframe');
+            await page.waitForTimeout(1200);
+            await page.evaluate((n) => {
+                const f = document.querySelector('#session-' + n + ' iframe');
+                window.scrollTo({ top: f.getBoundingClientRect().bottom + window.scrollY + 600, behavior: 'instant' });
+                window.__frameWrites = 0;
+                new MutationObserver(() => window.__frameWrites++).observe(f, { attributes: true, attributeFilter: ['style'] });
+            }, lesson);
+            const positions = [];
+            for (let i = 0; i < 10; i++) {
+                await page.setViewportSize({ width: 390, height: i % 2 ? 844 : 764 });
+                await page.mouse.wheel(0, -100);
+                await page.waitForTimeout(120);
+                positions.push(await page.evaluate(() => Math.round(window.scrollY)));
+            }
+            const writes = await page.evaluate(() => window.__frameWrites);
+            check('lesson ' + lesson + ' ignores phone toolbar resizes while scrolling up', writes === 0 && positions.every((y, i) => i === 0 || y <= positions[i - 1]));
+        }
+        await page.setViewportSize({ width: 390, height: 844 });
         check('lesson journeys have no page exceptions', errors.length === 0);
         await context.close();
     } finally {

@@ -11,7 +11,7 @@ The lesson renderer (index.html) embeds each widget in an `<iframe>` that is:
 - `width: 100%` of the lesson content area
 - No border, no border-radius
 - Margin of `24px -20px` (negative horizontal margin so the iframe bleeds edge-to-edge past the lesson's 20px side padding)
-- Height is set by the `height` field in the lesson JSON (e.g. `"height": "640px"`)
+- Height starts at the `height` field in the lesson JSON (e.g. `"height": "640px"`). After the widget loads, `scripts/widget-iframe.js` measures the content and resizes the iframe to fit. It re-measures whenever anything inside the widget changes. Read **Measuring, Resizing and Scroll Safety** below before writing any resize code.
 
 This means the widget's HTML is responsible for all its own internal layout. There is no surrounding card or frame from the parent page.
 
@@ -259,6 +259,59 @@ Do not increase these values. The card text must be written concisely enough to 
 
 ---
 
+## Measuring, Resizing and Scroll Safety
+
+This section exists because of a real bug in 202-08 and 202-09 (September 2026). On phones, scrolling up past the widget kept snapping the page back down by about the height of the widget, which made the lesson feel like it was "resetting." Read this before writing any code that reacts to `resize`.
+
+### How the page measures a widget
+
+To measure a widget, `scripts/widget-iframe.js` briefly sets the iframe to `0px` high, reads the content height, and sets the new height. It does this when the widget first loads, whenever anything in the widget's DOM changes (a MutationObserver watches the body, including attributes), and whenever the widget's size changes (a ResizeObserver). Each 0px collapse is itself a **resize of the widget's window**. It can also make the browser nudge the page's scroll position.
+
+### What went wrong
+
+Two things fed each other in a loop that never stopped.
+
+1. **The widget refit on every resize.** `covenant-triangle.html` and `starting-gun.html` ran `fitCards()` on every `window` resize. `fitCards()` measures the cards by adding a hidden `#measure` element to the body and removing it again.
+2. **The page re-measured on every DOM change.** Adding and removing `#measure` is a DOM change, so the page collapsed the iframe to 0px to measure again. That collapse was a resize, so `fitCards()` ran again, and so on, 5 to 10 times a second, even while nobody touched anything.
+
+A second trigger showed up only on real phones. When you scroll up, Safari (and other phone browsers) slide the address bar back in, which fires `resize` on the page with only the **height** changed. The page re-measured every widget on every one of those, so the frame collapsed mid-scroll. Desktop test browsers have no sliding address bar, so the first round of testing missed it.
+
+### Rules for widget code
+
+1. **Refit only when the width changes.** A height-only resize cannot change how your cards wrap, and the page causes height-only resizes every time it measures you. Use this pattern:
+
+```js
+var rt = null, lastWidth = window.innerWidth;
+// Refit only when the width changes. The page briefly resizes this frame's height to measure it,
+// and refitting on that would start a measure-resize loop that jolts the page while scrolling.
+window.addEventListener('resize', function () {
+    if (window.innerWidth === lastWidth) return;
+    lastWidth = window.innerWidth;
+    clearTimeout(rt); rt = setTimeout(fitCards, 150);
+});
+```
+
+2. **Nothing should change in the DOM while the widget is idle.** No timers that rewrite attributes, no measuring loops, no animations that keep writing `transform` after they finish. Every DOM change makes the page re-measure. Animate with `requestAnimationFrame` only while something is moving, then stop.
+3. **Never change the parent page's scroll.** Do not call `scrollIntoView`, `scrollTo` or anything else that moves the lesson page. Calling `.focus()` on a button inside the widget is fine only right after the reader clicked inside the widget.
+4. **Do not size anything from `window.innerHeight` or `vh` units inside a widget.** Inside the iframe, the viewport height is whatever the page last set, including that 0px moment.
+
+### Rules for the page's widget loader (`scripts/widget-iframe.js`)
+
+1. **Re-measure on window resize only when the width changes.** This ignores the phone address bar. It is already implemented as `onWindowResize`; keep it.
+2. **Do not try to "fix" scroll position by calling `scrollTo` after measuring.** That was tried in PR #35. On a phone it snaps the page back while the reader is still scrolling, and the page's `scroll-behavior: smooth` makes it glide. It also made the ENG-003 check flaky (3 of 8 runs failed). If the page moves, fix whatever is causing extra measurements instead.
+
+### How to test a widget for this
+
+The 202-08/09 browser check (`scripts/review_202_08_09_browser_check.js`) contains three checks worth copying for any new widget lesson:
+
+- **Stays still while idle:** after load, count changes to the iframe's `style` attribute for 1.5 seconds. It must be 0.
+- **Scrolls up without snapping back:** start below the widget, scroll up in steps, and check that every scroll position is lower than the one before.
+- **Ignores phone toolbar resizes:** do the same scroll-up while alternating the viewport height (for example 844 and 764 at the same 390 width). Frame writes must be 0 and scrolling must keep moving up.
+
+If you suspect this problem, the quickest diagnosis is to count mutations inside the widget while idle (`new MutationObserver(...).observe(iframe.contentDocument.body, { childList: true, subtree: true, attributes: true })`). Any steady stream of changes when nobody is touching the widget is the bug.
+
+---
+
 ## Common Mistakes to Avoid
 
 1. **Body padding** — any `padding` on `body` eats into the available width and causes clipping on phones. Always `padding: 0`.
@@ -268,3 +321,4 @@ Do not increase these values. The card text must be written concisely enough to 
 5. **Wrong height in JSON** — if the height is too small, the card area and navigation buttons get clipped off the bottom and the user cannot interact with the widget. Always calculate the total height using the budget table above, and test on a 390px-wide phone screen.
 6. **Card content too tall** — the verse-card-content height is locked at 112px. If card text overflows, shorten the text before making the widget taller.
 7. **Growing the iframe instead of redesigning** — if a widget does not fit in 600px, the answer is never to make the iframe taller. Reduce the diagram area, tighten padding, or simplify the layout. Tall iframes break the reading experience on standard iPhones.
+8. **Refitting on every resize:** running `fitCards()` or any other measuring code on every `window` resize starts a loop with the page's own measuring and makes the lesson jump while scrolling on phones. Refit only when `window.innerWidth` changes. See **Measuring, Resizing and Scroll Safety**.

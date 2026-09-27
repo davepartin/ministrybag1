@@ -251,6 +251,20 @@ var neverBinding = host.bindWidgetIframe(neverBody, {
     hostApi.refresh();
     assert('torn-down host no longer resizes stale iframes', first.style.height === '333px');
 
+    // Phone toolbars change only the window height while scrolling; that must not re-measure.
+    var phoneWin = fakeWindow();
+    phoneWin.innerWidth = 390;
+    var phoneFrame = fakeIframe({ scrollHeight: 400 });
+    phoneFrame._setBody({ nodeType: 1 });
+    host.bindWidgetIframe(phoneFrame, { windowObj: phoneWin, MutationObserverCtor: fakeObserverCtor([], true) });
+    var measuredAtBind = phoneFrame.style.height;
+    phoneFrame.contentDocument.documentElement.scrollHeight = 520;
+    phoneWin._listeners.resize.forEach(function (fn) { fn(); });
+    assert('height-only window resize does not re-measure the widget', phoneFrame.style.height === measuredAtBind);
+    phoneWin.innerWidth = 844;
+    phoneWin._listeners.resize.forEach(function (fn) { fn(); });
+    assert('width change still re-measures the widget', phoneFrame.style.height === '520px');
+
     if (failed) {
         console.error('\n' + failed + ' widget iframe check(s) failed.');
         process.exit(1);

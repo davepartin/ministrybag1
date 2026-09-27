@@ -178,6 +178,18 @@
             return applyHeight(iframe);
         }
 
+        // Phone browsers fire resize when their address bar slides in or out as you
+        // scroll. Only a width change can change a widget's height, so skip
+        // height-only resizes instead of collapsing the frame mid-scroll.
+        var lastWidth = win ? win.innerWidth : undefined;
+        function onWindowResize() {
+            if (win && typeof win.innerWidth === 'number') {
+                if (win.innerWidth === lastWidth) return 0;
+                lastWidth = win.innerWidth;
+            }
+            return refresh();
+        }
+
         function attachObservers() {
             disconnectObservers();
             var body = getIframeBody(iframe);
@@ -229,7 +241,7 @@
         }
 
         if (win && win.addEventListener) {
-            win.addEventListener('resize', refresh);
+            win.addEventListener('resize', onWindowResize);
         }
         if (iframe && iframe.addEventListener) {
             iframe.addEventListener('load', onLoad);
@@ -244,7 +256,7 @@
                 clearRetry();
                 disconnectObservers();
                 if (win && win.removeEventListener) {
-                    win.removeEventListener('resize', refresh);
+                    win.removeEventListener('resize', onWindowResize);
                 }
                 if (iframe && iframe.removeEventListener) {
                     iframe.removeEventListener('load', onLoad);
