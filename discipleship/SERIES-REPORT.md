@@ -60,7 +60,9 @@ When that happens at scale - when twenty people become forty, and forty become e
 
 ## Current Status
 
-As of spring 2026, the series is in active development. The full 101 course (7 lessons) is complete and refined, with attention to readability, sentence rhythm, and pastoral tone. The 201 course (10 lessons, the theological core of the series) is substantially built, with several lessons in advanced draft and the key anchor lessons fully written. The 202, 203, and 301 courses have lesson structures and research in place.
+202 course status verified October 12, 2026: all ten lessons have substantive drafts with Scripture, discussion questions and closing reflections. None are empty or brief placeholders. Lessons 202-08, 202-09 and 202-10 have recorded September 26 approvals matching the current lesson text. Final approval for lessons 202-01 through 202-07 is unrecorded. See the [202 review checklist](project-management/DAVE.md#202-review-checklist-october-12-2026). Written, approved and ready for release are separate statuses; remaining quality and pilot gates live in TASKS.md.
+
+This refresh verifies 202 only. Earlier development descriptions of the other courses are historical and are not a current readiness audit.
 
 The app itself is a single-file web application designed for phone screens, with no external dependencies, full offline capability for content, auto-saving responses to local storage, interactive widgets embedded directly in lesson flow, and a visual design built around warm earth tones and the tree metaphor. It is clean enough to feel trustworthy and simple enough to feel accessible.
 
