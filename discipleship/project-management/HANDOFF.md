@@ -1,5 +1,11 @@
 # Resume here
 
+## 203 organization checkpoint, October 12, 2026
+
+ORG-203 is ready for review on `codex/203-curriculum-organization`, not integrated. Ten active files stay in their numbered positions; five JSON title fields now match curriculum-toc.csv. Existing 06 work/school and 09 missions drafts are integrated with September 26 approvals recorded on the board. Chapters 02 and 03 need scope revision, 08 still teaches Belonging, and 10 is a brief stub. Original 08 material is preserved in data/standby. No lesson prose, saved-answer IDs or pastoral approval records changed. See [the placement checkpoint](reviews/2026-10-12-203-placement.md).
+
+Next 203 writing: prayer focus in 02, listening plus hospitality in 03, disciple-making rebuild in 08, then full calling/integration in 10. Older instructions below to draft 06/09 or gather their initial approval are historical. Artwork and pilot gates remain separate.
+
 ## 202 documentation checkpoint, October 12, 2026
 
 All ten current 202 lessons contain substantive drafts. None are empty or brief placeholders. Dave's September 26 approvals for 202-08/09/10 match the current lesson text; 202-01 through 202-07 have no final approval recorded. Use [DAVE.md's 202 checklist](DAVE.md#202-review-checklist-october-12-2026). The September narrative below is historical; its 202-08/09 drafting/review requests are superseded. This documentation refresh does not re-audit engineering or other courses, change lesson content, or establish release readiness.
