@@ -2,19 +2,30 @@
 
 Keep this small. Agents can draft from the approved direction while these decisions develop. A blocker in one row does not stop independent work.
 
-## Your next job: DAVE-001
+## 202 review checklist, October 12, 2026
 
-Claude has finished app drafts of 202-08 Marriage and Relationships and 202-09 Fighting for Purity in PR #17. Read those drafts and mark what you want changed; you do not need to write the old drafting briefs before reviewing them.
+All ten 202 lessons are written. No lesson is empty or a brief placeholder. This checklist records draft coverage separately from Dave's approval and from release readiness. Unrecorded means no final approval was found here; it does not mean Dave has never read the lesson. Existing approvals below remain unchanged.
 
-Focus on whether covenant love is clear for married and unmarried readers, whether the FIGHT letters sound like your teaching, and whether the two safety boxes give the pastoral care you intend. Your September 12 direction replaces Ruth and Naomi with an Ephesians 5 marriage focus, with God's covenant with Abraham available as supporting material. Keep Ephesians 5:25 in both 202-02 and 202-08 with distinct emphasis: everyday family roles first, covenant marriage and Christ's love for His church here. Repetition does not require changing 202-02. The coordinator verified the US hotline contact and the saved-answer handling; the standard key/step/prayer closing already follows the approved 200-series template.
+| Lesson | Written | Dave approval | Review action / approved version |
+|---|---|---|---|
+| 202-01 | substantive draft | unrecorded | [ ] Record Dave's review of the exact version; remaining gates in TASKS.md |
+| 202-02 | substantive draft | unrecorded | [ ] Record Dave's review of the exact version; remaining gates in TASKS.md |
+| 202-03 | substantive draft | unrecorded | [ ] Record Dave's review of the exact version; remaining gates in TASKS.md |
+| 202-04 | substantive draft | unrecorded | [ ] Record Dave's review of the exact version; remaining gates in TASKS.md |
+| 202-05 | substantive draft | unrecorded | [ ] Record Dave's review of the exact version; remaining gates in TASKS.md |
+| 202-06 | substantive draft | unrecorded | [ ] Record Dave's review of the exact version; remaining gates in TASKS.md |
+| 202-07 | substantive draft | unrecorded | [ ] Record Dave's review of the exact version; remaining gates in TASKS.md |
+| 202-08 | substantive draft | approved 2026-09-26 | 6d6e7c9 (PR #44), current text matches; pilot pending |
+| 202-09 | substantive draft | approved 2026-09-26 | 71f063e (PR #45), current text matches; pilot pending |
+| 202-10 | substantive draft | approved 2026-09-26 | a32a38d (PR #46), current text matches; pilot pending |
 
-Claude's finishing corrections have been reviewed and Codex added all four story images at `6d3019b` on PR #17. See the [art and finishing review](logs/2026-09-12-ART-003-codex.md). Current review head is `a89e94e`; coordinator verified its lesson text and assets match `6d3019b`. Claude reports the preview and Obsidian copies are refreshed. Review that version's words and pictures. Phone Chrome and answer-storage checks pass; final art approval, human pilot and image-delivery optimization remain pending.
+DAVE-001's former request to review the initial 202-08/09 drafts is superseded by the September approvals recorded below. This update does not approve any new lesson or waive remaining quality, pilot or release gates.
 
 ## Queue
 
 | ID | Status | Needed from Dave | Unlocks |
 |---|---|---|---|
-| DAVE-001 | TODO | Review the two finished drafts for theology, FIGHT language, revised Ephesians 5 marriage focus and pastoral safeguards; then approve the final corrected version with art. No retroactive drafting brief required. | L-202-08 and L-202-09 direction |
+| DAVE-001 | DONE: recorded lesson approvals | 202-08 and 202-09 approved, latest recorded versions September 26 (PRs #44/#45). Current lesson text matches those versions. No repeat initial-draft review needed. | Lesson wording approval; pilot/release gates remain separate |
 | DAVE-002 | TODO | Review the [201-08 wording proposal](reviews/201-08-benchmark-proposal.md), especially justification and the parable warning; then review the implemented benchmark. 201-01 revision remains pending. Your broad agreement is already recorded; no need to repeat it. | Benchmark approval and wider rollout |
 | DAVE-003 | TODO | Introduce willing pilot pairs and a pastor from another church. Keep names/contact details outside the public repo. | PILOT-001 |
 | DAVE-004 | TODO | At week six, choose whether all 47 can pass the gates by December or whether 301 gets a later release. Set the intended 301 closing rhythm before its drafting batch. | Final release scope |
