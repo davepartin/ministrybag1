@@ -4,9 +4,13 @@ Updated September 16, 2026. This file is the only current work-status board. Tit
 
 Status: TODO, ACTIVE, PAUSED, REVIEW, BLOCKED, DONE. Owner cell format: `agent / branch / date`; `-` means unclaimed. Check `[x]` only for DONE. A dependency must be DONE before claiming a dependent task; independent writing/research can proceed alongside software work in a separate assigned scope.
 
-## Immediate queue
+## 202 status checkpoint, October 12, 2026
 
-1. **DAVE-001:** 202-08 and 202-09 are live on the alpha site for Dave and others to read (PR #17, `7210c2f`). Approval and any edits follow his review.
+All ten 202 lessons have substantive drafts; none are empty or brief placeholders. Dave approval for 202-01 through 202-07 is unrecorded. September 26 approvals for 202-08/09/10 match current text. See [the current review checklist](DAVE.md#202-review-checklist-october-12-2026). Older initial-draft requests for 202-08/09 below are historical and superseded. Pilot and release gates remain separate.
+
+## Immediate queue (September checkpoint; 202 correction above)
+
+1. **DAVE-001:** Initial 202-08/09 review is superseded by recorded September approvals. See DAVE.md for the current 202 checklist.
 2. **L-203-06:** full draft on PR #29 for Dave's review; parable art (ART-004) and ESV wording checks remain.
 3. **UX-004:** plain-language restore labels on PR #28, all checks passing, waiting for Dave's go-ahead to merge.
 4. **UX-001:** shared host code is free again now that ENG-006c is merged, but Grok and ChatGPT usage is exhausted; the Discuss implementation waits for Dave to choose a worker.
@@ -17,7 +21,7 @@ ENG-006 (backup, preview, confirmed restore) and SEC-001 (credential) are DONE a
 
 | Check | ID | Status | Owner | Depends on | Scope and acceptance evidence |
 |---|---|---|---|---|---|
-| [ ] | DOC-202-STATUS | ACTIVE | Codex / main / 2026-10-12 | - | Dave requested a documentation-only refresh of 202 draft coverage and approval checklist. Scope: PROJECT-STATE, SERIES-REPORT, course-201-203-review, TASKS, HANDOFF, DAVE and task log. Preserve recorded approvals and historical evidence; no lesson/app changes. |
+| [ ] | DOC-202-STATUS | REVIEW | Codex / main / 2026-10-12 | - | Documentation refresh integrated on main: all ten 202 drafts present; no placeholders; approvals for 202-08/09/10 verified against recorded September 26 versions; approval for 202-01 through 202-07 unrecorded. Updated status/report, historical correction notices, DAVE checklist and handoff. Saved text verified. Evidence: logs/2026-10-12-DOC-202-STATUS-codex.md. No lesson/app changes. |
 | [x] | PM-001 | DONE | Codex / main / 2026-09-11 | - | Create plan, all-lesson board, handoff prompts, approval queue, task logs and agent entry points. Check links/counts and sync planning packet to GitHub. Evidence: logs/2026-09-11-PM-001-codex.md |
 | [x] | PM-002 | DONE | Codex / codex/review-eng-006a / 2026-09-12 | PM-001 | Allocated separate work; created Grok Build checkout and documented explicit handoff packets. Evidence: logs/2026-09-12-PM-002-codex.md. |
 | [x] | ENG-001 | DONE | DiscipleshipBot / cursor/eng-001-answer-storage-6dbd / 2026-09-11 | PM-001 | Repair the six shared runtime question keys across 202-05/09 and 203-06/07. Preserve old data without inventing which lesson it belonged to. Regression checks cover independent new answers, reload/navigation, repeated migration, existing new values, malformed/unavailable storage, and all-course unique runtime IDs. Scope: these four JSON files, answer-storage code, targeted test/QA code. Evidence: logs/2026-09-11-ENG-001-discipleshipbot.md. Integrated as dc14f625 (PR #10); verified with failed-load preservation correction in REV-001 / PR #13 / 915ba568. |
@@ -108,7 +112,7 @@ Each row is a stable task ID `L-<lesson>`. Initial `present` means substantive t
 | L-202-07 | TODO | - | present | pending | pending | pending | unrecorded | pending | Revise: narrative hook, title/review/closing consistency; practical generosity without overpromising. |
 | L-202-08 | DONE | Claude / claude/l-202-08-marble-chisel / 2026-09-23 | present | pass: Dave approved the tightened lesson | pass: marble-and-chisel sketch dissolve and Closer to God Triangle checked at 375/390/1280; real-phone check by Dave | pass: 47 storage + 20 browser + QA on merged main | approved 2026-09-23 | pending | Merged as `244ecde` (PR #32): Marble and the Chisel opening, The Closer to God Triangle widget, sharper questions (202-08-1 retired), trimmed to about 1,280 words. Only the pilot gate remains. See DAVE.md and logs/2026-09-23-L-202-08-marble-claude.md. Approved by Dave 2026-09-26 (round two, PR #44). |
 | L-202-09 | DONE | Claude / claude/l-202-09-cost-repent / 2026-09-24 | present | pass: Dave approved the R-U-N from Sin revision | pass: RUN from Sin widget checked at 375/1280 for every step; reviewed by Dave in the preview panel | pass: 47 storage + 20 browser + QA on the merged branch | approved 2026-09-24 | pending | Merged as `dd88ff0` (PR #34): costly grace and Romans 6:1-2, Nathan guides Need Others, clear repentance with Psalm 32:5, shorter David story, verse numbers, redesigned RUN from Sin widget. Question IDs unchanged. Evidence: logs/2026-09-23-L-202-09-cost-claude.md. Approved by Dave 2026-09-26 (round two, PR #45). |
-| L-202-10 | DONE | - | present | pending | pending | pending | unrecorded | pending | Last Supper pair present via ENG-002, awaiting Dave review; verify ordinances widget and doctrinal clarity. Approved by Dave 2026-09-26 (rewrite, PR #46). |
+| L-202-10 | DONE | - | present | pending | pending | pending | approved 2026-09-26 (PR #46) | pending | Last Supper pair present via ENG-002, awaiting Dave review; verify ordinances widget and doctrinal clarity. Approved by Dave 2026-09-26 (rewrite, PR #46). |
 | L-203-01 | TODO | - | present | pending | pending | pending | unrecorded | pending | Revise: build ministry-map visual; reduce question load and standardize closing/review. |
 | L-203-02 | TODO | - | present | pending | pending | pending | unrecorded | pending | Revise: focus on Begin with Prayer per Compass; keep full BLESS only as recap. |
 | L-203-03 | TODO | - | present | pending | pending | pending | unrecorded | pending | Revise: intentionally include listening as well as hospitality; add story/tool/review. |
