@@ -1,6 +1,6 @@
 # Growing Together - Project State
 
-Updated September 11, 2026. This is a lightweight orientation. Current task status lives in [project-management/TASKS.md](project-management/TASKS.md); immediate next work is in [project-management/HANDOFF.md](project-management/HANDOFF.md). Lesson order and browse metadata remain in curriculum-toc.csv.
+202 status refreshed October 12, 2026. Other project status below retains its prior audit dates. This is a lightweight orientation. Current task status lives in [project-management/TASKS.md](project-management/TASKS.md); immediate next work is in [project-management/HANDOFF.md](project-management/HANDOFF.md). Lesson order and browse metadata remain in curriculum-toc.csv.
 
 ## Current direction
 
@@ -8,13 +8,17 @@ Dave approved the baseline review's direction on September 11: protect saved wor
 
 The working plan, all-lesson checklist, approval queue and portable agent prompts are now in `project-management/`. Routine agents take one bounded task. As of September 16, 2026, Claude (Cowork) is the coordinator and daily reviewer. This is a manual workflow; no scheduler or automatic account/model switch has been configured.
 
-## Verified baseline
+## Current 202 status
+
+As of October 12, 2026, all ten current 202 lesson JSON files contain substantive teaching, Scripture, discussion questions and closing reflections. There are no empty lessons or brief placeholders in 202. Draft coverage does not establish editorial, visual, technical, pilot or release readiness. Dave's recorded September 26 approvals for 202-08, 202-09 and 202-10 match the current lesson text; final approval for 202-01 through 202-07 is unrecorded. See [the 202 review checklist](project-management/DAVE.md#202-review-checklist-october-12-2026).
+
+## Verified baseline (historical, September 11)
 
 The September 11 audit examined app/content commit `fce80bc`. There are 47 JSON lesson files: 32 with substantive material and 15 empty/brief placeholders. These are writing categories, not approval status. One substantive draft also needs a topic rebuild.
 
 - 101: all seven have substantive text; production/editorial checks remain.
 - 201: all ten have substantive text and widgets; priority edits include 201-03/04/08/09. 201-01 and 201-08 are production benchmarks to refine; 201-10 remains a template exemplar.
-- 202: 202-08 is empty and 202-09 is a brief stub. 202-02, 202-04 and 202-10 have since been written; the old April list calling them stubs is obsolete.
+- 202: the September 11 baseline found 202-08 empty and 202-09 a brief stub. Both have since been written and approved. The current 202 status above supersedes this historical finding.
 - 203: 203-06 and 203-10 are brief stubs; 203-09 is empty. 203-08 contains older Belonging material that does not match its current purpose. 203-05 is substantive.
 - 301: all ten are placeholders requiring full development.
 
@@ -24,7 +28,7 @@ The baseline foundation QA passes. Additional audit found shared saved-answer ID
 
 ENG-001 is next: preserve saved answers while repairing the ID collisions in 202-05/09 and 203-06/07, with regression checks. ENG-002 restores missing image assets; ENG-003 handles iframe initialization/resizing; ENG-004 corrects export behavior. Security cleanup is tracked separately as SEC-001.
 
-Dave's parallel action is the short pastoral brief for 202-08 and 202-09 in project-management/DAVE.md. His general approval authorizes drafting and fixes; final wording approval is recorded against specific lesson versions.
+The former 202-08/09 drafting and approval request is superseded by the recorded September approvals. The current 202 review checklist is in project-management/DAVE.md. His general approval authorizes drafting and fixes; final wording approval is recorded against specific lesson versions.
 
 ## Architecture and folder responsibilities
 
