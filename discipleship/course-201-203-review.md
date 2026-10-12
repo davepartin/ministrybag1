@@ -1,6 +1,14 @@
 # Courses 201-203 Completion Review
 
-This review covers the 30 lessons in courses 201, 202, and 203.
+This is a historical structural review of the 30 lessons in courses 201, 202, and 203. Its percentages and table are not current readiness measures.
+
+## Current 202 correction, October 12, 2026
+
+As of October 12, 2026, all ten current 202 lesson JSON files contain substantive teaching, Scripture, discussion questions and closing reflections. There are no empty lessons or brief placeholders in 202. Draft coverage does not establish editorial, visual, technical, pilot or release readiness. Dave's recorded September 26 approvals for 202-08, 202-09 and 202-10 match the current lesson text; final approval for 202-01 through 202-07 is unrecorded. See [the 202 review checklist](project-management/DAVE.md#202-review-checklist-october-12-2026).
+
+The table below is retained as historical evidence. Its blank/stub entries for 202-08, 202-09 and 202-10 have been superseded; do not use them to plan current drafting work.
+
+## Historical review
 
 The structural completion estimate is about **67% complete** overall.
 
