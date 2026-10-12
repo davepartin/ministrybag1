@@ -21,6 +21,7 @@ ENG-006 (backup, preview, confirmed restore) and SEC-001 (credential) are DONE a
 
 | Check | ID | Status | Owner | Depends on | Scope and acceptance evidence |
 |---|---|---|---|---|---|
+| [ ] | ORG-203 | ACTIVE | Codex / codex/203-curriculum-organization / 2026-10-12 | - | Dave requested alignment of 203 with the current TOC/screenshot. Scope: lesson title metadata, preservation of old 203-08 material, current placement/status report, navigation and handoff. No lesson prose or saved-answer ID changes. |
 | [ ] | DOC-202-STATUS | REVIEW | Codex / main / 2026-10-12 | - | Documentation refresh integrated on main: all ten 202 drafts present; no placeholders; approvals for 202-08/09/10 verified against recorded September 26 versions; approval for 202-01 through 202-07 unrecorded. Updated status/report, historical correction notices, DAVE checklist and handoff. Saved text verified. Evidence: logs/2026-10-12-DOC-202-STATUS-codex.md. No lesson/app changes. |
 | [x] | PM-001 | DONE | Codex / main / 2026-09-11 | - | Create plan, all-lesson board, handoff prompts, approval queue, task logs and agent entry points. Check links/counts and sync planning packet to GitHub. Evidence: logs/2026-09-11-PM-001-codex.md |
 | [x] | PM-002 | DONE | Codex / codex/review-eng-006a / 2026-09-12 | PM-001 | Allocated separate work; created Grok Build checkout and documented explicit handoff packets. Evidence: logs/2026-09-12-PM-002-codex.md. |
