@@ -1,12 +1,31 @@
 {
   "id": "6",
-  "version": "v02",
+  "version": "v03",
   "title": "Lesson 6: The Biblical Storyline",
-  "description": "The Bible is not a collection of disconnected stories. It is one unified story told in four movements: Creation, Fall, Redemption, Restoration. And Jesus is the hero of every part. This lesson shows you the shape of that story, reveals how the same pattern repeats in almost every story in Scripture, and helps you see your own life inside the same four movements.",
+  "description": "On the road to Emmaus, Jesus showed two discouraged friends that the whole Bible was about Him. This lesson traces that one story in four movements, Creation, Fall, Redemption, and Restoration, and helps you see where your own life fits.",
   "blocks": [
     {
       "type": "text",
-      "text": "In the last lesson you explored the Bible as a library, 66 books arranged across two testaments. Now you are going to follow the line that runs through the whole library: one story from creation to new creation."
+      "text": "In the last lesson you got the <strong>map</strong>: 66 books on the shelves of one library. Now comes the <strong>road trip</strong>. You are going to follow the one line that runs through the whole library, from creation to new creation, and the best guide for that trip is Jesus Himself."
+    },
+    {
+      "type": "parable",
+      "title": "The Road to Emmaus",
+      "text": "On the Sunday Jesus rose from the dead, two of His followers were walking home from Jerusalem to a village called Emmaus, about seven miles away. They were talking about everything that had happened: the trial, the cross, the tomb. A stranger came alongside and asked what they were discussing, and they stood still in the road, looking sad.<br><br>They told Him about Jesus, a prophet mighty in deed and word, and how the leaders had handed Him over to be crucified. Then came the saddest words in the story: <em>\"But we had hoped that he was the one to redeem Israel\" (Luke 24:21).</em> As far as they could tell, the story had ended at the cross.<br><br>The stranger was Jesus, but <em>\"their eyes were kept from recognizing him\" (Luke 24:16).</em> First He opened the Scriptures:<br><br><em>\"And beginning with Moses and all the Prophets, he interpreted to them in all the Scriptures the things concerning himself.\" (Luke 24:27)</em><br><br>Imagine that seven-mile walk, with Jesus tracing the line from the garden to the cross. That evening at the table, He took bread, blessed it, broke it, and gave it to them, and suddenly they knew Him. Then He vanished from their sight, and they said to each other, <em>\"Did not our hearts burn within us while he talked to us on the road, while he opened to us the Scriptures?\" (Luke 24:32)</em><br><br>They got up that same hour and went back to Jerusalem. The story had not ended at the cross. It had turned there."
+    },
+    {
+      "type": "text",
+      "text": "Those two disciples knew the facts, but they could not see the shape. Jesus showed them that the cross was the turning point, not the end, and that the whole Bible was about Him. <strong>The whole Bible is one story, Creation, Fall, Redemption, and Restoration, and Jesus is at the center of it.</strong>"
+    },
+    {
+      "type": "question",
+      "id": "201-06-hoped",
+      "text": "6.1 - The disciples said, \"We had hoped.\" Where does your own story feel stuck in the middle right now?",
+      "height": "tall"
+    },
+    {
+      "type": "heading",
+      "text": "One Story in Four Movements"
     },
     {
       "type": "image",
@@ -26,21 +45,24 @@
       "touchNext": true
     },
     {
-      "type": "parable",
-      "title": "The Story Line",
-      "text": "The Bible opens in a garden, and the line of the story begins with God. He made the heavens and the earth, filled the world with beauty, and placed Adam and Eve at the center of it as His image-bearers. They were made to walk with Him, enjoy His presence, and care for His world without shame or fear. This is <strong>Creation</strong>: everything good, everything whole, everything under the loving rule of God.<br><br>Then the serpent lied. He told them they could be like God without trusting God, and they believed him. They reached for the fruit, sin entered the world, and the garden became a place of hiding. The line dropped into brokenness, where their relationship with God was fractured and death entered what God had made alive. This is the <strong>Fall</strong>: sin breaking what God made good.<br><br>But God did not abandon His world. Even in the garden, He promised that one day a Son would come to crush the serpent and rescue His people. That promise carried through the whole Bible until Jesus came. At the cross, Jesus took the curse of sin. At the empty tomb, He defeated death. This is <strong>Redemption</strong>: God coming to rescue what people could never repair on their own.<br><br>And the story is not over. Jesus is coming again to make all things new. The Bible that begins in a garden ends in a new kingdom, where God dwells with His people and every tear is wiped away. This is <strong>Restoration</strong>: everything broken made whole again forever."
-    },
-    {
-      "type": "heading",
-      "text": "One Story in Four Movements"
+      "type": "text",
+      "text": "The Bible opens in a garden, and the line of the story begins with God. He made the heavens and the earth, filled the world with beauty, and placed Adam and Eve at the center of it as His image-bearers. Even here Jesus is at the center, because <em>\"all things were created through him and for him\" (Colossians 1:16).</em> This is <strong>Creation</strong>: everything good, everything whole, everything under the loving rule of God."
     },
     {
       "type": "text",
-      "text": "That is the storyline of the whole Bible: <strong>Creation</strong>, <strong>Fall</strong>, <strong>Redemption</strong>, and <strong>Restoration</strong>. The line begins with what God made good, drops when sin breaks the world, turns at the cross, and rises toward the day God makes all things new."
+      "text": "Then the serpent lied. He told them they could be like God without trusting God, and they believed him. Sin entered the world, and the garden became a place of hiding. Their relationship with God was fractured, and death entered what God had made alive. This is the <strong>Fall</strong>: sin breaking what God made good."
     },
     {
       "type": "text",
-      "text": "Use the interactive tool below to trace that line through the Bible's big story, through several smaller Bible stories, and then through your own life."
+      "text": "But God did not abandon His world. Even in the garden, He promised that one day a Son would come to crush the serpent. At the cross, Jesus took the curse of sin. At the empty tomb, He defeated death. This is <strong>Redemption</strong>: God coming to rescue what people could never repair on their own."
+    },
+    {
+      "type": "text",
+      "text": "And the story is not over. Jesus is coming again to make all things new. The Bible that begins in a garden ends in a renewed creation, where God dwells with His people and every tear is wiped away. This is <strong>Restoration</strong>: everything broken made whole again forever."
+    },
+    {
+      "type": "text",
+      "text": "The line begins with what God made good, drops when sin breaks the world, turns at the cross, and rises toward the day God makes all things new. Trace that line below through the big story, several smaller stories, and your own life."
     },
     {
       "type": "widget",
@@ -49,7 +71,7 @@
     },
     {
       "type": "text",
-      "text": "The whole Bible moves along one story line. Creation shows what God made good, the Fall shows how sin broke it, Redemption shows God coming to rescue through Jesus, and Restoration shows where the story is headed. The voice from the throne in the very last book of the Bible names the shape of the whole storyline in seven words."
+      "text": "The voice from the throne in the very last book of the Bible names the shape of the whole storyline in seven words."
     },
     {
       "type": "verse",
@@ -59,45 +81,41 @@
     {
       "type": "question",
       "id": "201-06-1",
-      "text": "6.1 - As you walked through the widget, which of the four movements (Creation, Fall, Redemption, Restoration) is sitting with you most right now? What in your life is making that movement feel close?",
+      "text": "6.2 - As you traced the four movements, where did you see Jesus most clearly?",
       "height": "tall"
     },
     {
-      "type": "text",
-      "text": "The parable and image sequence gave you the big picture first. Now the goal is to see the same pattern inside smaller Bible stories. As you read each one, look for what was good, what broke, how God stepped in, and what new beginning He brought."
-    },
-    {
       "type": "heading",
-      "text": "The Pattern That Repeats"
+      "text": "Stories That Echo the Pattern"
     },
     {
       "type": "text",
-      "text": "Here is what makes this framework so powerful: it is not just the shape of the Bible's big story. It is the shape of almost every story inside the Bible. The same four movements, creation, fall, redemption, restoration, show up again and again, like echoes of the one story God has been telling from the beginning. Once you see this pattern, you will find it everywhere."
+      "text": "Many smaller stories inside the Bible echo this shape, like the same melody in a different key. Not every story fits neatly, and you do not need to force one into four boxes, but once you know the pattern you will notice it often."
     },
     {
       "type": "text",
-      "text": "1. <strong>Noah</strong> lived in a world God made good, but humanity corrupted it so deeply that God grieved He had made them. The flood was judgment, but the ark was rescue. And when the waters receded, God set a rainbow in the sky and made a covenant to start again. Creation, fall, redemption, restoration."
+      "text": "1. <strong>Noah</strong> lived in a world God made good, but humanity corrupted it so deeply that God grieved He had made them. The flood was judgment, but the ark was rescue. When the waters receded, God set a rainbow in the sky and made a covenant to start again."
     },
     {
       "type": "text",
-      "text": "2. <strong>Joseph</strong> was a young man with dreams and a father's favor, until his brothers sold him into slavery and he spent years in a foreign prison. But God raised him from the pit to the palace, and the day came when Joseph could look at the brothers who betrayed him and say, <em>\"You meant it for evil, but God meant it for good.\"</em> Creation, fall, redemption, restoration."
+      "text": "2. <strong>Joseph</strong> had his father's favor and dreams from God, until his brothers sold him into slavery and he spent years in an Egyptian prison. But God raised him from the pit to the palace, and Joseph lived to see God turn his brothers' evil into the saving of many lives."
     },
     {
       "type": "text",
-      "text": "3. <strong>Israel</strong> was God's chosen people, but they ended up enslaved in Egypt for four hundred years, crying out for a deliverer. God sent Moses, poured out plagues on their captors, parted the sea, and led them out through blood and water into the land He had promised. Creation, fall, redemption, restoration."
+      "text": "3. <strong>Israel</strong> was God's chosen people, but they ended up enslaved in Egypt for four hundred years, crying out for a deliverer. God sent Moses, parted the sea, and led them out toward the land He had promised."
     },
     {
       "type": "text",
-      "text": "4. <strong>Paul</strong> was brilliant, trained in Scripture, and burning with zeal for God, until that zeal turned murderous and he began hunting the very people God loved. Jesus met him on the road to Damascus and turned his life inside out. The man who destroyed the church became its greatest builder. Creation, fall, redemption, restoration."
+      "text": "4. <strong>Paul</strong> was trained in Scripture and zealous for God, but his zeal was blind, and he hunted the very people God loved. Jesus met him on the road to Damascus. The man who tried to destroy the church spent the rest of his life building it."
     },
     {
       "type": "text",
-      "text": "Four stories. Four different centuries. Four completely different people. But the same line every time: something good, something broken, God stepping in, and a new beginning that is better than what was lost. This is not a coincidence. This is God's signature. He writes the same rescue into every chapter because He is the same rescuer in every chapter."
+      "text": "Something good, something broken, God stepping in, and a new beginning. The echoes are not exact. Each rescue is a small preview of the great rescue Jesus came to bring. God writes rescue into chapter after chapter because He is the same Rescuer in every chapter."
     },
     {
       "type": "question",
       "id": "201-06-2",
-      "text": "6.2 - Which of these four stories (Noah, Joseph, Moses, Paul) do you connect with most? What part of their storyline reminds you of something in your own life?",
+      "text": "6.3 - Which of these four stories do you connect with most, and why?",
       "height": "tall"
     },
     {
@@ -106,22 +124,20 @@
     },
     {
       "type": "text",
-      "text": "And now, your story. You were made in the image of God with purpose, dignity, and worth that was settled before you ever did a single thing, and that is your creation. Then something broke, sin entered your life, and what was meant to be whole was fractured in your relationships, in your heart, and in the distance you felt from God, and that is your fall. But Jesus came for you, found you, forgave you, and gave you new life, and that is your redemption. And now you are living in the fourth movement, being restored day by day, not yet finished but already held. The same pattern that runs through the Bible is running through your life right now."
+      "text": "And now, your story. You were made in the image of God, with dignity and worth that were settled before you ever did a single thing. Yet you were born into a broken world with a heart bent away from Him. That is where Creation and the Fall meet in every human life."
     },
     {
       "type": "text",
-      "text": "This means you are living between Redemption and Restoration. Jesus has won the victory, but you are still waiting for Him to return and make all things new. That is why life can feel confusing, with moments of breathtaking goodness reminding you of the way things were meant to be, and moments of deep pain reminding you the world is not yet what it will be. Both are real, and neither gets the last word. The last word belongs to the One who said, \"Behold, I am making all things new.\""
+      "text": "Redemption is not something you work up. It is Jesus coming for you. He lived the life you could not live, died for your sin, and rose again, and He invites you to turn from your sin and trust Him. If you have trusted Him, you have been found, forgiven, and given new life, and you are being restored day by day, not yet finished but already held. If you have not trusted Him yet, your story is not over. The same Jesus who walked beside two discouraged friends on that road is near to you, and today can be the day your story turns."
     },
     {
-      "type": "question",
-      "id": "201-06-3",
-      "text": "6.3 - Try mapping your own story onto the four movements. What was your creation (the good things God built into your life)? What was your fall (where things broke)? What was your redemption (how Jesus found you)? And where do you see restoration happening right now?",
-      "height": "tall"
+      "type": "text",
+      "text": "Followers of Jesus live between Redemption and Restoration. He has won the victory, but we are still waiting for Him to return and make all things new. Life holds both breathtaking goodness and deep pain, and neither gets the last word. The last word belongs to the One who said, \"Behold, I am making all things new.\""
     },
     {
       "type": "question",
       "id": "201-06-4",
-      "text": "6.4 - This is your private rehearsal before you take it out into the week. In your own words, how would you explain the four-movement story of the Bible to a friend in two or three minutes? Write it out here, just for yourself. You will use what you write below.",
+      "text": "6.4 - This is your private rehearsal before you take it out into the week. In your own words, how would you explain the four-movement story of the Bible to a friend in two or three minutes, including where your own life fits on the line?",
       "height": "tall"
     },
     {
@@ -129,13 +145,9 @@
       "text": "A Resource to Go Deeper"
     },
     {
-      "type": "text",
-      "text": "If this lesson sparked something in you and you want to see the biblical storyline explained visually, The Bible Project has a five-minute video that gives a beautiful overview of how the entire Bible fits together as one unified story. It is one of the best introductions out there."
-    },
-    {
       "type": "tool",
       "title": "The Bible Project: The Story of the Bible",
-      "description": "A five-minute visual overview of how the entire Bible fits together as one unified story.",
+      "description": "A short visual overview of how the entire Bible fits together as one unified story.",
       "url": "https://www.youtube.com/watch?v=7_CGP-12AE0",
       "buttonText": "Watch Video"
     },
@@ -145,7 +157,7 @@
     },
     {
       "type": "text",
-      "text": "Now take what you wrote in question 6.4 out into the week. First, pick one Bible story you already know, any story, and walk it through the four movements yourself. Where was creation in that story? Where did the fall happen? How did God step in to redeem? And what new beginning did the story end with? Then find one real person this week, a family member, a coworker, a friend over coffee, and tell them the storyline of the whole Bible in two or three minutes the way you rehearsed it above. You will own the shape the moment you say it out loud to someone whose face is in front of you."
+      "text": "Take what you wrote in question 6.4 out into the week. First, walk one Bible story you already know through the four movements. Then find one real person this week, a family member, a coworker, or a friend over coffee, and tell them the storyline of the whole Bible in two or three minutes, the way you rehearsed it above. You will own the shape the moment you say it out loud."
     },
     {
       "type": "heading",
@@ -153,7 +165,11 @@
     },
     {
       "type": "text",
-      "text": "The line that opened in a garden and bends through the cross is the same line still bending through your week. You have walked the four movements that hold the entire Bible together: Creation, Fall, Redemption, and Restoration. You have seen the same pattern repeat in Noah, Joseph, Moses, and Paul. And you have been invited to see your own life on the same line, with Jesus as the hero of every chapter. Carry this one sentence with you: <em>Creation, Fall, Redemption, Restoration. The same line runs through the Bible, and the same line runs through me.</em> In the next lesson, you will learn a deeper method for studying any passage of the Bible on your own, building on the foundation you have been laying since lesson 4 of the Starting course."
+      "text": "Two travelers on the road to Emmaus thought their story had ended at the cross, until Jesus opened the Scriptures and showed them it was all about Him. You have walked the same road: Creation, Fall, Redemption, and Restoration. <strong>The whole Bible is one story, Creation, Fall, Redemption, and Restoration, and Jesus is at the center of it.</strong> Carry this one sentence with you: <em>The same line runs through the Bible, and the same line runs through me.</em>"
+    },
+    {
+      "type": "text",
+      "text": "You have the map, and you have taken the road trip. In the next lesson, you will learn the skill: a simple method for studying any passage on your own, building on the Three Discovery Questions from the Starting course."
     },
     {
       "type": "heading",
@@ -176,6 +192,10 @@
       "id": "201-06-prayer",
       "text": "What is a prayer request for this week?",
       "height": "short"
+    },
+    {
+      "type": "text",
+      "text": "This lesson draws on the Creation, Fall, Redemption, Restoration framework widely used in gospel-centered Bible teaching."
     }
   ]
 }

@@ -1,11 +1,34 @@
 {
   "id": "5",
   "title": "Lesson 5: Overview of the Bible",
-  "description": "Welcome to a guided tour of the most important book you will ever read. The Bible isn't a single book. It is a library of 66 unique volumes written by 40 authors across 1,500 years. Learning how this life-changing book is organized will help you understand it and remember how the story of God fits together.",
+  "description": "A young king finds a lost book in God's house. This lesson gives you the map of the Bible: a library of 66 books where every shelf points to Jesus.",
   "blocks": [
     {
       "type": "text",
-      "text": "In the last lesson, you saw that deep roots grow down into Jesus, the Good Soil. One of the deepest roots in the Christian life is the <strong>Word of God</strong>. In the next three lessons you are going to learn how to receive that Word with more confidence: this lesson gives you the map, the next lesson takes you on the road trip, and the final lesson hands you the tools to dig into any passage on your own."
+      "text": "In the last lesson, you saw that you are rooted in Jesus, and one of the deepest roots is the <strong>Word of God</strong>. The next three lessons belong together. This lesson gives you the <strong>map</strong>, the next takes you on the <strong>road trip</strong> through the Bible's one big story, and the third hands you the <strong>skill</strong> to dig into any passage on your own."
+    },
+    {
+      "type": "parable",
+      "title": "The Book Found in the Temple",
+      "text": "Josiah became king of Judah when he was only eight years old. The kings before him had filled the land with idols, and God's own house in Jerusalem had fallen into disrepair. When Josiah was a young man, he sent workers to repair the temple.<br><br>In the middle of the dust and the repairs, the high priest made a discovery:<br><br><em>\"I have found the Book of the Law in the house of the LORD.\" (2 Kings 22:8)</em><br><br>Think about that. God's Word had been lost, and not in some far-off country. It was lost inside the house of God. The people still went through the motions of religion, but no one was listening to what God had actually said.<br><br>The king's secretary read the scroll aloud, and as the words landed, the young king saw how far his people had drifted from the God who loved them. <em>\"When the king heard the words of the Book of the Law, he tore his clothes\" (2 Kings 22:11).</em> He humbled himself before the LORD, and God heard him.<br><br>Then Josiah gathered all the people, both small and great, and read the book in their hearing. He renewed the covenant and tore down the idols. Scripture remembers him this way: <em>\"Before him there was no king like him, who turned to the LORD with all his heart and with all his soul and with all his might\" (2 Kings 23:25).</em><br><br>One lost book, found and read, turned a whole nation back to God."
+    },
+    {
+      "type": "text",
+      "text": "Many homes have a Bible the way the temple had that scroll: in the house, just not opened. If that is you, it is not a reason for shame. It is the reason for this lesson. Once you know how God's library is arranged, you can take His Word off the shelf with confidence."
+    },
+    {
+      "type": "text",
+      "text": "Carry this one sentence through the lesson: <strong>God's Word is a library to open, not a book to lose on a shelf, and every shelf points to Jesus.</strong>"
+    },
+    {
+      "type": "question",
+      "id": "201-05-found",
+      "text": "5.1 - What tends to keep the Bible on the shelf for you?",
+      "height": "tall"
+    },
+    {
+      "type": "heading",
+      "text": "A Library, Not a Single Book"
     },
     {
       "type": "image",
@@ -13,43 +36,41 @@
       "alt": "A bookshelf displaying all 66 books of the Bible organized by section"
     },
     {
-      "type": "parable",
-      "title": "A Library, Not a Single Book",
-      "text": "Because the Bible is a library and not a single book, its contents are incredibly diverse. There are kings, shepherds, fishermen, doctors, tax collectors, and prophets among the writers. They wrote in different countries, in different centuries, in different circumstances. And yet the whole library tells one unified story from beginning to end, as we will learn in the next lesson.<br><br>That is remarkable. No human editor could have planned this across fifteen centuries. This unity is one of the strongest evidences that God Himself was behind every page. As Paul wrote to Timothy:<br><br><em>\"All Scripture is breathed out by God and profitable for teaching, for reproof, for correction, and for training in righteousness, that the man of God may be complete, equipped for every good work.\" (2 Timothy 3:16-17)</em><br><br>\"Breathed out by God.\" That means when you open the Bible, you are not reading someone's personal journal or philosophical opinion. You are reading words that the living God intended for you to have. And because He organized this library with purpose, understanding how it is structured will help you read it with much greater confidence."
+      "type": "text",
+      "text": "The Bible is not a single book. It is a library of 66 books, written by about 40 authors across roughly 1,500 years. Among the writers are kings, shepherds, fishermen, a doctor, a tax collector, and prophets. And yet the whole library tells one unified story from beginning to end, as you will see in the next lesson."
     },
     {
       "type": "text",
-      "text": "A common question is, if Scripture was written long ago and copied for centuries, can it still be trusted? Christians do not believe the Bible is reliable because the copying process was casual. God preserved His Word through real history, through public reading, careful copying, and many manuscripts that allow scholars to compare copies and identify small copying differences."
+      "text": "That unity fits what the Bible says about where it came from:"
+    },
+    {
+      "type": "verse",
+      "reference": "2 Timothy 3:16-17",
+      "text": "All Scripture is breathed out by God and profitable for teaching, for reproof, for correction, and for training in righteousness, that the man of God may be complete, equipped for every good work."
     },
     {
       "type": "text",
-      "text": "The Dead Sea Scrolls are one helpful example. They include biblical manuscripts copied before the time of Jesus, including a nearly complete copy of Isaiah, and they showed that the Old Testament text had been preserved with remarkable care over many centuries. That does not mean every manuscript copy is letter-for-letter identical; most differences are spelling, word order, or small copying variations. It does mean the message of Scripture has not been lost. You are not building your life on a rumor that changed in the shadows. You are opening a Word God has carried faithfully through time."
+      "text": "When you open the Bible, you are not reading someone's best guesses about life. You are reading words the living God intended for you to have."
     },
     {
-      "type": "question",
-      "id": "201-05-1",
-      "text": "5.1 - On a scale of 1 to 10, how well would you say you know the Bible right now? What is one thing you are hoping these next three lessons help you understand better?",
-      "data_question": "5.1 - Bible familiarity"
+      "type": "text",
+      "text": "Can a book copied by hand for centuries still be trusted? God preserved His Word through public reading, careful copying, and many manuscripts that scholars can compare. The Dead Sea Scrolls, copied before the time of Jesus, include a nearly complete copy of Isaiah, and they showed how carefully the Old Testament had been preserved. Most differences between copies are spelling, word order, or small copying slips. You are not building your life on a rumor that changed in the shadows. You are opening a Word God has carried faithfully through time."
     },
     {
       "type": "heading",
-      "text": "Old Testament & New Testament"
+      "text": "Old Testament and New Testament"
     },
     {
       "type": "text",
-      "text": "The Bible is divided into two major parts: the Old Testament and the New Testament. The word \"testament\" means covenant, a binding promise between God and His people. The Old Testament tells the story of God creating the world, choosing a people (Israel), giving them His law, and promising that a Savior would come. The New Testament tells the story of that Savior arriving in Jesus, the birth of the church, and the future hope of all things being made new."
+      "text": "The library has two main parts. The word \"testament\" means covenant, a binding promise between God and His people. The 39 books of the Old Testament tell how God created the world, chose a people, gave them His law, and promised that a Savior would come. The 27 books of the New Testament tell of that Savior arriving in Jesus, the birth of the church, and the hope of all things being made new."
     },
     {
       "type": "text",
-      "text": "The Old Testament has 39 books. The New Testament has 27. Together they form the complete Word of God. Some people struggle with the Old Testament because it feels distant or confusing. But here is the key: the Old Testament is not a different story with a different God. It is the first part of the same story, and every page of it points forward to Jesus. You cannot fully understand the New Testament without the Old, and you cannot fully understand the Old without the New."
+      "text": "The Old Testament can feel distant, but it is not a different story with a different God. It is the first half of the same story, and Jesus Himself treated every word of it as the Word of God."
     },
     {
       "type": "text",
-      "text": "Here is one more reason to trust the Old Testament: Jesus did. He quoted it constantly, argued from it, and treated every word of it as completely authoritative. If the eternal Son of God read those pages and accepted them without reservation, that is all the endorsement they need."
-    },
-    {
-      "type": "text",
-      "text": "Below is every book of the Bible arranged on a shelf by section. Tap any book to learn what its section is about."
+      "text": "Below is every book of the Bible arranged on a shelf by section. Tap any section to learn what it is about."
     },
     {
       "type": "widget",
@@ -59,8 +80,29 @@
     {
       "type": "question",
       "id": "201-05-2",
-      "text": "5.2 - After exploring the Bible bookshelf above, which section stands out to you most and why? Is there a shelf that most interests you?",
-      "data_question": "5.2 - Bible section reflection"
+      "text": "5.2 - Which shelf of the library would you most like to explore, and why?",
+      "height": "tall"
+    },
+    {
+      "type": "heading",
+      "text": "Every Shelf Points to Jesus"
+    },
+    {
+      "type": "text",
+      "text": "The library has many shelves, but it has one main subject. Jesus said this to some very careful Bible readers:"
+    },
+    {
+      "type": "verse",
+      "reference": "John 5:39-40",
+      "text": "You search the Scriptures because you think that in them you have eternal life; and it is they that bear witness about me, yet you refuse to come to me that you may have life."
+    },
+    {
+      "type": "text",
+      "text": "You can know a lot about the Bible and still miss the point. The Law shows why we need a Savior. The History books show God keeping His promises through kings who never fully kept theirs. The Poetry gives words to our longing, the Prophets point to a coming King, and the Gospels show Him."
+    },
+    {
+      "type": "text",
+      "text": "Even Josiah could tear down idols but could not change a heart, and after he died the nation drifted again. Jeremiah, a prophet who began his ministry in Josiah's day, carried this promise from God: <em>\"I will put my law within them, and I will write it on their hearts\" (Jeremiah 31:33).</em> Jesus came to keep that promise. He is the King Josiah could not be. Through Him, God writes His Word on your heart, not as a test you must pass, but as a gift of grace."
     },
     {
       "type": "heading",
@@ -68,29 +110,29 @@
     },
     {
       "type": "text",
-      "text": "The Bible is organized like those books on that bookshelf, but was never meant to stay on a shelf. One of the most famous passages in all of Scripture comes from the very first section you explored, the Law. Moses spoke these words to Israel just before they crossed into the Promised Land:"
+      "text": "Many scholars believe the scroll found in the temple was the book of Deuteronomy, on the very first shelf of the library. One of its most famous passages sounds a lot like the way Scripture remembers Josiah:"
     },
     {
       "type": "verse",
-      "reference": "Deuteronomy 6:4-7",
-      "text": "Hear, O Israel: The LORD our God, the LORD is one. You shall love the LORD your God with all your heart and with all your soul and with all your might. And these words that I command you today shall be on your heart. You shall teach them diligently to your children, and shall talk of them when you sit in your house, and when you walk by the way, and when you lie down, and when you rise."
+      "reference": "Deuteronomy 6:4-6",
+      "text": "Hear, O Israel: The LORD our God, the LORD is one. You shall love the LORD your God with all your heart and with all your soul and with all your might. And these words that I command you today shall be on your heart."
     },
     {
       "type": "text",
-      "text": "This is the Shema, and Jesus called it the greatest commandment. Since you began this Growing Deep course, you have already seen these words in Lesson 1, where you learned that loving God is not a burden but a response to a Father who loved you first. Now you know exactly where that passage lives - Deuteronomy, the Law section, the first shelf on your bookshelf. That is what knowing the map does. It connects what you have already learned to where it lives in Scripture."
+      "text": "Josiah turned to the LORD \"with all his heart and with all his soul and with all his might.\" He did not only find the book. He let it find him. This is the Shema, which Jesus called the greatest commandment, and you met it in Lesson 1. Now you know where it lives: Deuteronomy, in the Law, on the first shelf. That is what a map does."
     },
     {
       "type": "text",
-      "text": "Notice what Moses says to do with God's Word: put it on your heart, teach it to your children, talk about it when you sit down and when you get up, when you are home and when you are on the road. This is not a book to study once and set aside. It is meant to become part of how you think, how you talk, and how you live - and when you do, God promises that it will go well with you."
+      "text": "This is not a book to study once and set aside. Near the end of Deuteronomy, Moses said it plainly:"
     },
     {
       "type": "verse",
       "reference": "Deuteronomy 32:47",
-      "text": "It is no empty word for you, but <strong>your very life</strong>, and by this word you shall live long in the land that you are going over the Jordan to possess."
+      "text": "For it is no empty word for you, but <strong>your very life</strong>, and by this word you shall live long in the land that you are going over the Jordan to possess."
     },
     {
       "type": "text",
-      "text": "No empty word. Your very life. Jesus echoed this same truth when Satan tempted Him in the wilderness. You can find it in Matthew 4, right on the Gospels shelf: man shall not live by bread alone, but by every word that comes from the mouth of God. The life that food gives you keeps you going for a few more hours. The life that God's Word gives you is firm, abundant, and never runs out."
+      "text": "Jesus said the same in the wilderness: man shall not live by bread alone, but by every word that comes from the mouth of God (Matthew 4:4)."
     },
     {
       "type": "image",
@@ -100,8 +142,8 @@
     {
       "type": "question",
       "id": "201-05-3",
-      "text": "5.3 - What would it look like for God's Word to become part of your everyday life, not just something you read, but something written on your heart?",
-      "data_question": "5.3 - Word in daily life"
+      "text": "5.3 - What would it look like for God's Word to be written on your heart, not just read?",
+      "height": "tall"
     },
     {
       "type": "heading",
@@ -109,15 +151,19 @@
     },
     {
       "type": "text",
-      "text": "The Bible was originally written in Hebrew (most of the Old Testament), Aramaic (small portions), and Greek (the New Testament). Because most readers do not read those languages, English translations matter. There are many good ones, and choosing a translation can feel confusing. Here is a simple way to think about it."
+      "text": "Some translations, like the ESV and NASB, lean toward word-for-word accuracy, which helps with careful study. Others, like the NIV and NLT, lean toward thought-for-thought clarity, which helps with steady reading."
     },
     {
       "type": "text",
-      "text": "Some translations lean toward word-for-word accuracy, staying as close to the original language as possible. The ESV (English Standard Version) and NASB are examples of this. Others lean toward thought-for-thought clarity, translating the meaning of each sentence in a way that feels more natural to a modern reader. The NIV and NLT are examples of this. Many faithful translations lean in one direction or the other. A more word-for-word translation is helpful for careful study. A more thought-for-thought translation is helpful for steady reading, especially when a passage feels difficult."
+      "text": "Unless noted, quotations in this course are from the ESV. Now and then a lesson uses another faithful translation on purpose, when its wording carries a key idea, and labels it. The best translation is the one you will actually open."
+    },
+    {
+      "type": "heading",
+      "text": "This Week's Practice"
     },
     {
       "type": "text",
-      "text": "This course uses the ESV, which gives you a reliable, readable translation that stays very close to the original words. Whatever translation you use, the most important thing is that you are reading the Bible consistently. The best translation is the one you will actually open."
+      "text": "This week, take a book off three different shelves. Read one chapter from the Law, one from Poetry and Wisdom, and one from the Gospels. Try Deuteronomy 6, Psalm 23, and Luke 24. You will meet the Shema, the Shepherd, and the risen Jesus opening the Scriptures. As you read each chapter, ask one simple question: <em>How does this point me to Jesus?</em>"
     },
     {
       "type": "heading",
@@ -125,7 +171,11 @@
     },
     {
       "type": "text",
-      "text": "You now have the map. The Bible is a library of 66 books arranged in clear sections: Law, History, Poetry, Prophets, Gospels, Acts, Letters, and Revelation. The Old Testament tells the story of God creating, choosing, and promising. The New Testament tells the story of God fulfilling every promise in Jesus. In the next lesson you will take the road trip through the one big story that ties all of these books together."
+      "text": "You now have the map. The Bible is a library of 66 books arranged in sections: Law, History, Poetry and Wisdom, Prophets, Gospels, Acts, Letters, and Revelation. The Old Testament promises, and the New Testament shows God keeping every promise in Jesus. Like Josiah, you do not have to leave God's Word lost in the house. <strong>God's Word is a library to open, not a book to lose on a shelf, and every shelf points to Jesus.</strong>"
+    },
+    {
+      "type": "text",
+      "text": "In the next lesson, you will take the road trip through the one big story that ties the whole library together."
     },
     {
       "type": "heading",
