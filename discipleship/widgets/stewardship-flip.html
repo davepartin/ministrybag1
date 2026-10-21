@@ -310,6 +310,36 @@
             from { opacity: 0; transform: translateY(6px); }
             to { opacity: 1; transform: translateY(0); }
         }
+    
+        /* ---- A-standard look and a steady height (g7 uplift) ---- */
+        button { font-family: 'Trebuchet MS', sans-serif; }
+        button:focus-visible { outline: 3px solid #2C2416; outline-offset: 2px; }
+        .title-bar { background: #1D6B3F; padding: 10px 16px; }
+        .title-bar h1 { font-size: 19px; color: #FFFFFF; letter-spacing: 0; }
+        .title-bar p { font-size: 13px; color: rgba(255, 255, 255, 0.9); margin-top: 3px; }
+        .content { padding: 12px 12px 16px; }
+        .question-area { margin-bottom: 10px; min-height: 46px; }
+        .question-text { font-size: 16px; line-height: 1.4; }
+        .paycheck { margin-bottom: 12px; }
+        .paycheck-header { padding: 10px 16px 8px; }
+        .paycheck-label { font-size: 12px; }
+        .line-items { padding: 2px 0; }
+        .line-item { padding: 8px 16px; }
+        .line-label { font-size: 15px; }
+        .line-sublabel { font-size: 13px; color: #8A8073; }
+        .line-amount { font-size: 15px; }
+        .flip-wrapper { margin-bottom: 12px; }
+        .flip-btn { min-height: 44px; min-width: 220px; font-size: 15px; font-weight: 700; padding: 10px 24px; }
+        .verse-card-content { padding: 10px 16px; min-height: var(--card-h, 112px); }
+        .verse-card-text { font-size: 15px; line-height: 1.45; margin: 0 0 4px; }
+        .verse-card-ref { font-size: 13px; font-weight: 400; color: #6B6358; }
+        /* The question block always holds its space, so flipping never moves the page. */
+        .big-question, .big-question.visible { opacity: 1; max-height: none; padding: 12px 8px 0; transition: none; }
+        .big-question .old-q { font-size: 15px; margin-bottom: 4px; color: #5A4E3C; text-decoration: none; }
+        .big-question.visible .old-q { color: #A39A8B; text-decoration: line-through; }
+        .big-question .new-q { font-size: 15px; font-weight: 400; font-style: italic; color: #8A8073; min-height: 48px; }
+        .big-question.visible .new-q { font-size: 17px; font-weight: 700; font-style: normal; color: #1D6B3F; }
+        #measure { position: absolute; left: 0; top: 0; visibility: hidden; pointer-events: none; }
     </style>
 </head>
 <body>
@@ -318,7 +348,7 @@
 
 <div class="title-bar">
     <h1>The Stewardship Flip</h1>
-    <p>"The earth is the Lord's, and everything in it."</p>
+    <p>"The earth is the LORD's and the fullness thereof." <span style="white-space:nowrap">Psalm 24:1</span></p>
 </div>
 
 <div class="content">
@@ -350,7 +380,7 @@
 
     <div class="big-question" id="bigQuestion">
         <p class="old-q">"How much of my money should I give to God?"</p>
-        <p class="new-q">"How much of God's money should I keep?"</p>
+        <p class="new-q" id="newQ">Flip it, and the question changes.</p>
     </div>
 </div>
 
@@ -427,6 +457,7 @@
             verseText.innerHTML = stewardVerse.text;
             verseRef.textContent = stewardVerse.ref;
             bigQuestion.classList.add('visible');
+            document.getElementById('newQ').textContent = '"How much of God\'s money should I keep?"';
             renderLines(stewardLines);
         } else {
             paycheck.classList.remove('flipped');
@@ -440,6 +471,7 @@
             verseText.innerHTML = ownerVerse.text;
             verseRef.textContent = ownerVerse.ref;
             bigQuestion.classList.remove('visible');
+            document.getElementById('newQ').textContent = 'Flip it, and the question changes.';
             renderLines(ownerLines);
         }
     }
@@ -450,6 +482,32 @@
     });
 
     render();
+
+    // Size the verse card to the longer verse so the page never moves when you flip.
+    function fitVerse() {
+        const card = document.getElementById('verseCard');
+        if (!card || !card.clientWidth) return;
+        const m = document.createElement('div');
+        m.id = 'measure'; m.style.width = card.clientWidth + 'px';
+        document.documentElement.style.setProperty('--card-h', '0px');
+        [ownerVerse, stewardVerse].forEach(v => {
+            m.insertAdjacentHTML('beforeend', '<div class="verse-card-content"><p class="verse-card-text">' + v.text + '</p><p class="verse-card-ref">' + v.ref + '</p></div>');
+        });
+        document.body.appendChild(m);
+        let max = 0;
+        m.querySelectorAll('.verse-card-content').forEach(c => { max = Math.max(max, c.offsetHeight); });
+        document.body.removeChild(m);
+        document.documentElement.style.setProperty('--card-h', max + 'px');
+    }
+    fitVerse();
+    let fitTimer = null, lastWidth = window.innerWidth;
+    // Refit only when the width changes; the page resizes this frame's height to measure it.
+    window.addEventListener('resize', () => {
+        if (window.innerWidth === lastWidth) return;
+        lastWidth = window.innerWidth;
+        clearTimeout(fitTimer); fitTimer = setTimeout(fitVerse, 150);
+    });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitVerse);
 </script>
 
 </div>

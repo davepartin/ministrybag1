@@ -20,6 +20,7 @@
         'biblical-storyline.html': 'The Biblical Storyline',
         'biblical-timeline.html': 'The Biblical Timeline',
         'cornerstone.html': 'Five Stones of a Life of Faith',
+        'cross-the-road.html': 'Cross the Road',
         'deep-roots.html': 'Roots of Discipline',
         'five-gardeners.html': 'Five Farmers, One Field',
         'fruit-of-spirit.html': 'The Fruit of the Spirit',
@@ -28,11 +29,16 @@
         'great-exchange3.html': 'The Great Exchange',
         'guide-spirit2.html': 'The GUIDE of the Holy Spirit',
         'learning-circle2.html': 'The Learning Circle',
+        'oia-method.html': 'Observe, Interpret, Apply',
+        'one-another.html': 'One Another',
+        'personal-ministry-map.html': 'Your Personal Ministry Map',
         'romans-road.html': 'The Romans Road',
         'stewardship-flip.html': 'The Stewardship Flip',
         'three-circles-video.html': 'Watch Someone Draw the 3 Circles',
         'three-circles.html': 'The 3 Circles',
-        'two-ordinances.html': 'The Doorway and the Table'
+        'two-ordinances.html': 'The Doorway and the Table',
+        'valley-road.html': 'The Valley Road',
+        'worship-is.html': 'Worship Is...'
     };
 
     function escapeAttr(value) {

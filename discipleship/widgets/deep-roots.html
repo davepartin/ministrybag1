@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Roots of Discipline</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@600;700&display=swap');
 
         :root {
             --green: #1A6B55;
@@ -304,6 +303,26 @@
                 transition-duration: 0.01ms !important;
             }
         }
+    
+        /* ---- A-standard chrome: matches three-spaces, wheel, shape, covenant-triangle, starting-gun, mission-map ---- */
+        button { font-family: 'Trebuchet MS', sans-serif; -webkit-tap-highlight-color: transparent; }
+        button:focus-visible { outline: 3px solid #2C2416; outline-offset: 2px; }
+        .title-bar { background: #1D6B3F; padding: 10px 16px; text-align: center; }
+        .title-bar h1 { font-size: 19px; font-weight: 700; color: #FFFFFF; margin: 0; line-height: 1.2; font-family: 'Trebuchet MS', 'Inter', sans-serif; letter-spacing: 0; text-transform: none; }
+        .title-bar p { display: none; }
+        .card-area { background-color: #F6F4EE; border-top: 1px solid #EBE5D9; padding: 8px 12px 10px; }
+        .verse-card { border-radius: 12px; border: none; box-shadow: 0 2px 14px rgba(44,36,22,0.06); background: #FFFFFF; }
+        .verse-content { height: auto; min-height: var(--card-h, 112px); overflow: visible; padding: 10px 16px; }
+        .verse-title { font-family: 'Trebuchet MS', sans-serif; font-size: 16px; font-weight: 700; line-height: 1.3; letter-spacing: 0; margin: 0 0 4px; }
+        .verse-text { font-family: Georgia, Cambria, serif; font-size: 15px; line-height: 1.4; color: #3D3426; }
+        .card-note { margin-top: 4px; }
+        .verse-ref { font-family: 'Trebuchet MS', sans-serif; font-size: 13px; font-weight: 400; color: #6B6358; margin: 4px 0 0; letter-spacing: 0; }
+        .nav { gap: 8px; margin-top: 10px; }
+        .nav-btn { min-width: 112px; min-height: 44px; padding: 10px 12px; border: 1.5px solid #D4CFC4; border-radius: 10px; background: transparent; color: #5A4E3C; font-size: 14px; font-weight: 600; font-family: 'Trebuchet MS', sans-serif; text-align: center; }
+        .nav-btn.primary { background: #1D6B3F !important; color: #FFFFFF; border: none; box-shadow: none !important; }
+        .nav-btn[disabled], .nav-btn:disabled { opacity: 0.35; }
+        #measure { position: absolute; left: 0; top: 0; visibility: hidden; pointer-events: none; }
+        .verse-ref-inline { font-size: 13px; font-weight: 400; color: #6B6358; }
     </style>
 </head>
 <body>
@@ -336,7 +355,7 @@
             labelPos: { x: 91, y: 163, angle: -50, size: 18.75 },
             path: 'M 160 68 C 132 94, 113 119, 94 151 C 79 176, 73 211, 70 240',
             title: 'Prayer',
-            verse: '"<b>Pray in the Spirit</b> on all occasions."',
+            verse: '"<b>Praying at all times</b> in the Spirit..."',
             note: 'Prayer is not how you climb to God. It is how you walk home.',
             ref: 'Ephesians 6:18'
         },
@@ -630,7 +649,7 @@
 
         if (step === -1) {
             title.textContent = 'Rooted in Jesus';
-            text.innerHTML = 'A tree stands or falls by what its roots are doing. Jesus is the Good Soil your life reaches into. The deeper your roots run in Him, the more steady and fruitful you become.';
+            text.innerHTML = 'A tree stands or falls by what its roots are doing. Paul says you are rooted in Jesus. The deeper your roots run in Him, the more steady and fruitful you become.';
             content.appendChild(title);
             content.appendChild(text);
         } else {
@@ -720,7 +739,42 @@
     }
 
     render();
+    window.gtCards = [{ title: 'Rooted in Jesus', text: 'A tree stands or falls by what its roots are doing. Paul says you are rooted in Jesus. The deeper your roots run in Him, the more steady and fruitful you become.' }].concat(roots.map(function (s) { return { title: s.title, text: s.verse + '<span class="card-note">' + s.note + '</span>', ref: s.ref }; }));
 }());
+
+// Size every card to the tallest step so the buttons never move (A-standard pattern).
+function gtFitCards(items) {
+    var area = document.querySelector('.card-area');
+    if (!area || !area.clientWidth) return;
+    var cs = getComputedStyle(area);
+    var w = area.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+    var m = document.createElement('div'), max = 0;
+    m.id = 'measure'; m.style.width = w + 'px';
+    document.documentElement.style.setProperty('--card-h', '0px');
+    items.forEach(function (it) {
+        m.insertAdjacentHTML('beforeend', '<div class="verse-card"><div class="verse-content">' +
+            '<h2 class="verse-title">' + (it.title || '') + '</h2>' +
+            '<p class="verse-text">' + (it.text || '') + '</p>' +
+            (it.ref ? '<p class="verse-ref">' + it.ref + '</p>' : '') + '</div></div>');
+    });
+    document.body.appendChild(m);
+    m.querySelectorAll('.verse-content').forEach(function (c) { max = Math.max(max, c.offsetHeight); });
+    document.body.removeChild(m);
+    document.documentElement.style.setProperty('--card-h', Math.max(max, 112) + 'px');
+}
+// Refit only when the width changes. The page briefly resizes this frame's height to measure it,
+// and refitting on that would start a measure-resize loop that jolts the page while scrolling.
+function gtWatchWidth(fn) {
+    var rt = null, lastWidth = window.innerWidth;
+    window.addEventListener('resize', function () {
+        if (window.innerWidth === lastWidth) return;
+        lastWidth = window.innerWidth;
+        clearTimeout(rt); rt = setTimeout(fn, 150);
+    });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fn);
+}
+function gtFit() { gtFitCards(window.gtCards || []); }
+gtFit(); gtWatchWidth(gtFit);
 </script>
 </body>
 </html>
