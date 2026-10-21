@@ -22,7 +22,7 @@ function assert(name, condition, detail) {
 function closingIds(course, lesson) {
     return [
         'question-' + course + '-' + lesson + '-key',
-        'question-' + course + '-' + lesson + '-devos',
+        'question-' + course + '-' + lesson + '-step',
         'question-' + course + '-' + lesson + '-prayer'
     ];
 }
@@ -84,7 +84,8 @@ function closingIds(course, lesson) {
     );
 
     await page.fill('#question-202-202-05-key', 'SYN-202-05-key');
-    await page.fill('#question-202-202-05-devos', 'SYN-202-05-devos');
+    assert('202-05 does not reuse the retired devos field', await page.locator('#question-202-202-05-devos').count() === 0);
+    await page.fill('#question-202-202-05-step', 'SYN-202-05-step');
     await page.fill('#question-202-202-05-prayer', 'SYN-202-05-prayer');
 
     await page.goto(BASE + '#202-9', { waitUntil: 'domcontentloaded' });

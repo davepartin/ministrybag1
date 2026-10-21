@@ -69,10 +69,10 @@ function collectAllLessons() {
 
 // --- Baseline identity repair in the four scoped lesson files ---
 var closingIds = {
-    '202-05.json': ['202-05-key', '202-05-devos', '202-05-prayer'],
+    '202-05.json': ['202-05-key', '202-05-step', '202-05-prayer'],
     '202-09.json': ['202-09-key', '202-09-step', '202-09-prayer'],
     '203-06.json': ['203-06-key', '203-06-step', '203-06-prayer'],
-    '203-07.json': ['203-07-key', '203-07-devos', '203-07-prayer']
+    '203-07.json': ['203-07-key', '203-07-step', '203-07-prayer']
 };
 
 Object.keys(closingIds).forEach(function (fileName) {
@@ -132,6 +132,41 @@ assert('203-06 rewrite keeps retired answers and the kept key answer after reloa
     retired06Reloaded.responses['question-203-203-07-bless'] === 'SYN-retired-bless' &&
     retired06Reloaded.responses['question-203-203-06-key'] === 'SYN-kept-203-key' &&
     retired06Reloaded.responses['question-203-203-06-step'] === 'SYN-new-203-step');
+
+// Closing-trio cleanup retired six more Daily Devotions questions.
+var retiredDevos = [
+    { file: '202-05.json', course: '202', retired: '202-05-devos', step: '202-05-step' },
+    { file: '202-06.json', course: '202', retired: '201-05-devos', step: '202-06-step' },
+    { file: '202-07.json', course: '202', retired: '202-07-devos', step: '202-07-step' },
+    { file: '203-01.json', course: '203', retired: '203-01-devos', step: '203-01-step' },
+    { file: '203-04.json', course: '203', retired: '203-04-devos', step: '203-04-step' },
+    { file: '203-07.json', course: '203', retired: '203-07-devos', step: '203-07-step' }
+];
+var retiredDevosSeed = {};
+retiredDevos.forEach(function (r) {
+    var blocks = readLesson(r.file).blocks;
+    assert(r.file + ' does not reuse retired ID ' + r.retired,
+        !blocks.some(function (b) { return b.id === r.retired; }));
+    assert(r.file + ' has the standard step question ' + r.step,
+        blocks.some(function (b) { return b.type === 'question' && b.id === r.step; }));
+    if (r.retired !== '203-07-devos') {
+        retiredDevosSeed['question-' + r.course + '-' + r.retired] = 'SYN-retired-' + r.retired;
+    }
+});
+var retiredDevosStore = memoryStorage(retiredDevosSeed);
+var retiredDevosLoaded = storage.loadAndMigrateResponses(retiredDevosStore);
+retiredDevos.forEach(function (r) {
+    retiredDevosLoaded.responses['question-' + r.course + '-' + r.step] = 'SYN-new-' + r.step;
+});
+retiredDevosStore.setItem(storage.RESPONSES_KEY, JSON.stringify(retiredDevosLoaded.responses));
+var retiredDevosReloaded = storage.loadAndMigrateResponses(retiredDevosStore);
+assert('migration and reload keep retired devotions answers and new step answers independently',
+    Object.keys(retiredDevosSeed).every(function (key) {
+        return retiredDevosReloaded.responses[key] === retiredDevosSeed[key];
+    }) &&
+    retiredDevos.every(function (r) {
+        return retiredDevosReloaded.responses['question-' + r.course + '-' + r.step] === 'SYN-new-' + r.step;
+    }));
 
 // --- Independent new answers after migration ---
 var first = storage.loadAndMigrateResponses(memoryStorage({

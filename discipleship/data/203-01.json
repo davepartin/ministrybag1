@@ -78,7 +78,7 @@
     {
       "type": "verse",
       "reference": "Deuteronomy 6:5-7",
-      "text": "You shall love the Lord your God with all your heart and with all your soul and with all your might. And these words that I command you today shall be on your heart. You shall teach them diligently to your children, and shall talk of them when you sit in your house, and when you walk by the way, and when you lie down, and when you rise."
+      "text": "You shall love the LORD your God with all your heart and with all your soul and with all your might. And these words that I command you today shall be on your heart. You shall teach them diligently to your children, and shall talk of them when you sit in your house, and when you walk by the way, and when you lie down, and when you rise."
     },
     {
       "type": "text",
@@ -97,10 +97,6 @@
     {
       "type": "text",
       "text": "Here is a practical tool to start with. Write your name in the center of a piece of paper. Around your name, draw four circles - one for each sphere of your life. Then begin filling in names."
-    },
-    {
-      "type": "text",
-      "text": "[PLACEHOLDER: Personal Ministry Map infographic - name in center, 4 spheres radiating out: Family, Friends, Acquaintances, New People]"
     },
     {
       "type": "list",
@@ -164,18 +160,26 @@
     },
     {
       "type": "heading",
+      "text": "Lesson 1 Review"
+    },
+    {
+      "type": "text",
+      "text": "Jesus' last words are a commission, and they are addressed to you. He sends you with all authority behind you, all nations before you, and His presence with you always. You are sent the way the Father sent the Son, into ordinary life, starting at your own front door and moving outward. Your Personal Ministry Map shows you where to begin, and you never go alone."
+    },
+    {
+      "type": "heading",
       "text": "Closing Reflections"
     },
     {
       "type": "question",
       "id": "203-01-key",
-      "text": "What is one key thing you learned from this lesson, and what next step can you take this week?",
+      "text": "What is one key thing you learned from this lesson?",
       "height": "short"
     },
     {
       "type": "question",
-      "id": "203-01-devos",
-      "text": "What have you learned about God and yourself recently in your Daily Devotions?",
+      "id": "203-01-step",
+      "text": "What is one step you are going to take this week?",
       "height": "short"
     },
     {
