@@ -1,12 +1,16 @@
 {
   "id": "7",
-  "version": "v02",
+  "version": "v03",
   "title": "Lesson 7: How to Study the Bible",
-  "description": "You have the map and you know the story. Now it is time to learn the skill. This lesson teaches you the OIA method, Observe, Interpret, Apply, and then puts you to work practicing it on Psalm 23. The biblical timeline widget helps you place any passage in its historical context, and the heart of this lesson is spent with your Bible open and your pen in hand.",
+  "description": "You have the map and you know the story. Now it is time to learn the skill. This lesson teaches the OIA method, Observe, Interpret, Apply, and then puts you to work with your Bible open to Psalm 23.",
   "blocks": [
     {
       "type": "text",
-      "text": "In Lesson 5 you explored the Bible as a library of 66 books organized by type. In Lesson 6 you traced the one story it tells, from creation to new creation. You now have the map and you know where the road leads. This lesson hands you the skill to dig into any passage on your own."
+      "text": "In Lesson 5 you got the <strong>map</strong> of the Bible's library. In Lesson 6 you took the <strong>road trip</strong> through its one story, with Jesus at the center. This lesson hands you the <strong>skill</strong> to dig into any passage on your own."
+    },
+    {
+      "type": "text",
+      "text": "Back in the Starting course, you learned the Three Discovery Questions: What does this passage tell me about God? What does it tell me about people? What is it calling me to do or believe? Keep using them every day. Today you will add a deeper tool to go with them."
     },
     {
       "type": "image",
@@ -18,7 +22,11 @@
     {
       "type": "parable",
       "title": "Philip and the Ethiopian",
-      "text": "In Acts 8, an Ethiopian official was riding home from Jerusalem. He was an important man, a court treasurer, and he had traveled a long way to worship God. Now on the dusty road home he had the scroll of Isaiah unrolled in front of him, reading aloud, hungry for truth but unable to make sense of what he saw. God sent Philip running to the side of the chariot with one simple question:<br><br><em>\"So Philip ran to him and heard him reading Isaiah the prophet and asked, 'Do you understand what you are reading?' And he said, 'How can I, unless someone guides me?'\" (Acts 8:30-31)</em><br><br>Philip climbed in, sat beside him, and helped him see what was already on the page. He did not add to Scripture. He showed the man how to read it. That is what Bible study is. It is not reading faster or reading more. It is learning to see what is there, understand what it means, and let it shape how you live."
+      "text": "In Acts 8, an Ethiopian official was riding home from Jerusalem. He was an important man, a court treasurer, and he had traveled a long way to worship God. Now on the dusty road home he had the scroll of Isaiah unrolled in front of him, reading aloud, hungry for truth but unable to make sense of what he saw. God sent Philip running to the side of the chariot with one simple question:<br><br><em>\"So Philip ran to him and heard him reading Isaiah the prophet and asked, 'Do you understand what you are reading?' And he said, 'How can I, unless someone guides me?'\" (Acts 8:30-31)</em><br><br>Philip climbed in, sat beside him, and helped him see what was already on the page. He did not add to Scripture. He showed the man how to read it. The passage was about a lamb led to the slaughter, and <em>\"beginning with this Scripture he told him the good news about Jesus\" (Acts 8:35).</em><br><br>That is what Bible study is. It is not reading faster or reading more. It is learning to see what is there, understand what it means, and let it shape how you live."
+    },
+    {
+      "type": "text",
+      "text": "Notice who started that conversation. God sent Philip running to a man who wanted to understand. God is not hiding His Word from you, and Bible study is not a test you pass to earn His approval. It is how you hear the voice of the One who already came looking for you. And if you belong to Jesus, the Holy Spirit who inspired Scripture lives in you to help you understand it (1 Corinthians 2:12)."
     },
     {
       "type": "heading",
@@ -26,40 +34,41 @@
     },
     {
       "type": "text",
-      "text": "Faithful Bible students have used this method for generations. It is called OIA: Observe, Interpret, and Apply. Think of it as three questions asked in order. What does the text say? What does the text mean? What does this mean for my life? The order matters. Most people jump straight to application, but the richest application always comes after you have done the honest work of observation and interpretation first."
-    },
-    {
-      "type": "heading",
-      "text": "Observe: What Does the Text Say?"
+      "text": "Faithful Bible students have used this method for generations. It is called OIA, and it is three questions asked in order. What does the text say? What did it mean? How should it shape my life? The order matters. Most people jump straight to application, but the richest application comes after the honest work of observing and interpreting."
     },
     {
       "type": "text",
-      "text": "Before you can understand what a passage means, you need to see what it actually says. Read the passage more than once. Ask: Who is speaking? Who is listening? What is happening? What words or phrases are repeated? What surprises you? Do not interpret yet. Just observe. Many of the richest discoveries in Scripture come from simply paying attention to details that everyone else skips past."
-    },
-    {
-      "type": "text",
-      "text": "Context is one of the most powerful tools you have when observing, and the last two lessons gave you two of the three pieces you need. Lesson 5 taught you what type of book you are reading, because a psalm is not a legal code and a parable is not a historical report. Lesson 6 gave you the biblical storyline, so you can see where a passage fits in the four movements of Creation, Fall, Redemption, and Restoration. The timeline below gives you the third piece: when it happened. Knowing the era, who was in power, and what God's people were going through helps you notice things you would otherwise miss."
+      "text": "Walk through the three steps below on a psalm you may already know by heart."
     },
     {
       "type": "widget",
-      "src": "widgets/biblical-timeline.html",
-      "height": "560px"
+      "src": "widgets/oia-method.html",
+      "title": "Observe, Interpret, Apply",
+      "height": "600px"
     },
     {
-      "type": "heading",
-      "text": "Interpret: What Does the Text Mean?"
-    },
-    {
-      "type": "text",
-      "text": "Once you have observed what the text says, ask what it means. Here is the most important rule of interpretation: a passage cannot mean today what it never meant to the original audience. Before you ask what it means for you, ask what it meant to them. What was the author trying to communicate? How does this passage fit in the larger chapter and book? How does it connect to the storyline of Scripture? This is where your map, your storyline, and your timeline all come together. Let the Bible interpret the Bible. Often the clearest explanation of a passage is found somewhere else in Scripture, and the more you read, the more those connections will light up."
-    },
-    {
-      "type": "heading",
-      "text": "Apply: What Does This Mean for My Life?"
+      "type": "subheading",
+      "text": "Observe: What Does It Say?"
     },
     {
       "type": "text",
-      "text": "After you have observed what the text says and interpreted what it means, ask how this truth reshapes the way you live. Is there a truth to believe? A command to obey? A sin to confess? A promise to trust? An example to follow? How does this passage point you to Jesus? The goal is not just knowledge but transformation. The Bible was never meant to sit on a shelf. It was meant to get into your bones and change the way you walk through your day."
+      "text": "Read the passage more than once. Who is speaking? What is happening? What words repeat? What surprises you? Do not interpret yet. Just notice. The last two lessons help here: know what kind of book you are reading, and where the passage sits in the Bible's story."
+    },
+    {
+      "type": "subheading",
+      "text": "Interpret: What Did It Mean?"
+    },
+    {
+      "type": "text",
+      "text": "A passage cannot mean today what it never meant to its first readers. So ask what the author was saying to them, and how the passage fits its chapter, its book, and the story that leads to Jesus. Let the Bible interpret the Bible. Often the clearest explanation of a passage is somewhere else in Scripture."
+    },
+    {
+      "type": "subheading",
+      "text": "Apply: How Should It Shape My Life?"
+    },
+    {
+      "type": "text",
+      "text": "Now ask how this truth reshapes the way you live. Start with what to believe before what to do. Is there a promise to trust, a sin to confess, a command to obey, or an example to follow? Obedience is your response to God's grace, never your way of earning it."
     },
     {
       "type": "verse",
@@ -68,12 +77,12 @@
     },
     {
       "type": "text",
-      "text": "Notice the word \"worker.\" Good Bible study takes effort, but the effort is worth it. When you rightly handle the Word of truth, the Bible stops being a confusing book you feel guilty about not reading and becomes a living conversation with the God who loves you."
+      "text": "Notice the word \"worker.\" Good Bible study takes effort, but it is the effort of a child who wants to know a Father, not a hired hand working for a wage. When you rightly handle the Word of truth, the Bible stops being a confusing book you feel guilty about and becomes a living conversation with the God who loves you."
     },
     {
       "type": "question",
       "id": "201-07-1",
-      "text": "7.1 - Which of the three steps (Observe, Interpret, Apply) feels most new to you? Which one do you think you tend to skip?",
+      "text": "7.1 - Which of the three steps do you tend to skip?",
       "height": "tall"
     },
     {
@@ -82,7 +91,12 @@
     },
     {
       "type": "text",
-      "text": "The best way to learn this method is to use it. Below is one of the most beloved passages in all of Scripture. You may already know the opening line by heart, but watch what happens when you slow down and walk through it with OIA."
+      "text": "Now it is your turn. Here is the whole psalm. Slow down and walk through it with OIA."
+    },
+    {
+      "type": "image",
+      "src": "images/201.07-shepherd-sheep.jpg",
+      "alt": "A sheep in a field looking toward the camera, with the rest of the flock behind it"
     },
     {
       "type": "verse",
@@ -95,12 +109,12 @@
     },
     {
       "type": "text",
-      "text": "Use the timeline above to place this psalm. David wrote it around 1000 BC, during the era of the kings. Before he was king of Israel, David was a literal shepherd who spent years in the fields with real sheep, leading them to food and water, protecting them from predators, using his rod to fight off wolves and his staff to pull wandering sheep back to the path. Knowing this changes everything about how you read the opening line."
+      "text": "David wrote this psalm around 1000 BC. Before he was king, he was a shepherd who led his sheep to food and water and fought off a lion and a bear to protect them (1 Samuel 17:34-35). He knew what sheep need, and how helpless they are on their own."
     },
     {
       "type": "question",
       "id": "201-07-2",
-      "text": "7.2 - Read Psalm 23 again slowly. What do you notice? What actions does the shepherd take? What words or images stand out? What shifts between the first three verses and verse four?",
+      "text": "7.2 - Read Psalm 23 again slowly. What do you notice that the walkthrough above did not point out?",
       "height": "tall"
     },
     {
@@ -108,9 +122,22 @@
       "text": "Interpret"
     },
     {
+      "type": "text",
+      "text": "Let the Bible interpret the Bible. Centuries after David, Jesus picked up the same picture and said it was about Him:"
+    },
+    {
+      "type": "verse",
+      "reference": "John 10:11",
+      "text": "I am the good shepherd. The good shepherd lays down his life for the sheep."
+    },
+    {
+      "type": "text",
+      "text": "David's shepherd risked his life for the sheep. Jesus went further and gave His life for them. Remember the Ethiopian, reading about a lamb led to the slaughter? Philip told him that Lamb was Jesus. The Good Shepherd became the Lamb, for you."
+    },
+    {
       "type": "question",
       "id": "201-07-3",
-      "text": "7.3 - Knowing that David was a real shepherd who tended real sheep, what does it mean that he calls God his shepherd? What is he saying about God's character and care? How does the \"valley of the shadow of death\" connect to what you saw in the biblical storyline?",
+      "text": "7.3 - How does John 10:11 deepen what David meant by \"The LORD is my shepherd\"?",
       "height": "tall"
     },
     {
@@ -120,12 +147,12 @@
     {
       "type": "question",
       "id": "201-07-4",
-      "text": "7.4 - What does this psalm call you to believe about God in your current season of life? Is there a fear you need to lay down because the Shepherd is with you? What is one way you can rest in His care this week?",
+      "text": "7.4 - What fear do you need to lay down because the Shepherd is with you?",
       "height": "tall"
     },
     {
       "type": "text",
-      "text": "You just studied the Bible. You observed what was on the page, placed it in its historical context, interpreted what it meant, and applied it to your life. That is not something only pastors and scholars can do. It is a skill you now have, and you can use it with any passage, any day, for the rest of your life."
+      "text": "You just studied the Bible. You observed what was on the page, interpreted what it meant, and applied it to your life. That is not something only pastors and scholars can do. It is a skill you now have for any passage, any day, for the rest of your life."
     },
     {
       "type": "heading",
@@ -133,16 +160,20 @@
     },
     {
       "type": "text",
-      "text": "Everything you have learned in these three lessons is transferable: the map of the Bible, the four-part storyline, the timeline, and the OIA method. You could sit down with a friend this week, open the Bible to any passage, and walk them through the same steps you just practiced. Remember the Ethiopian? He needed a Philip, someone willing to sit beside him and say, \"Let me show you what I have learned about reading this book.\" Someday soon, someone in your life will need that from you. And when that day comes, you will be ready."
+      "text": "Everything in these three lessons is transferable: the map, the road trip, and the skill. Remember the Ethiopian? He needed a Philip, someone willing to sit beside him and say, \"Let me show you what I have learned about reading this book.\" Someday soon, someone in your life will need that from you. And when that day comes, you will be ready."
+    },
+    {
+      "type": "heading",
+      "text": "This Week's Practice"
     },
     {
       "type": "text",
-      "text": "Before you move on, pick a passage of Scripture this week and walk through OIA on your own. It does not need to be long. A few verses are enough. Open your Bible, slow down, and see what God shows you."
+      "text": "Pick a short passage this week and walk through it with OIA on your own. A few verses are enough. Try Luke 15:1-7, where Jesus tells of a shepherd who leaves the ninety-nine to find one lost sheep, or choose your own. Open your Bible, slow down, and see what God shows you."
     },
     {
       "type": "question",
       "id": "201-07-5",
-      "text": "7.5 - What passage did you choose, and what were your takeaways from walking through Observe, Interpret, and Apply on your own?",
+      "text": "7.5 - Write down which passage you will study with OIA this week, and when.",
       "height": "tall"
     },
     {
@@ -151,7 +182,15 @@
     },
     {
       "type": "text",
-      "text": "You now have two tools for opening the Bible. The Three Discovery Questions from the Starting course are your daily method, simple enough to use every time you read. The OIA method is your deeper study tool, designed for when you want to slow down and dig into a passage with care. The Discovery Questions are your daily bread. OIA is your weekly feast. Use both, and the Word of God will come alive in your hands."
+      "text": "You now have the map, the road trip, and the skill. Like the Ethiopian, you do not read alone. God sends guides, gives His Spirit, and points every page to Jesus. <strong>Bible study is learning to see what is there, understand what it means, and let it shape how you live.</strong>"
+    },
+    {
+      "type": "text",
+      "text": "You also have two tools that work together. The Three Discovery Questions from the Starting course are your daily bread, simple enough to use every time you read. OIA is your weekly feast, for when you want to slow down and dig into a passage with care. Use both, and the Word of God will come alive in your hands."
+    },
+    {
+      "type": "text",
+      "text": "In the next lesson, you will see how God's grace and mercy come to you at the cross and then flow through you to others."
     },
     {
       "type": "heading",
@@ -174,6 +213,10 @@
       "id": "201-07-prayer",
       "text": "What is a prayer request for this week?",
       "height": "short"
+    },
+    {
+      "type": "text",
+      "text": "This lesson draws on the inductive study method taught in <em>Living by the Book</em> by Howard G. Hendricks and William D. Hendricks."
     }
   ]
 }

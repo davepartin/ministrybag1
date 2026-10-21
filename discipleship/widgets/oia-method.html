@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Observe, Interpret, Apply</title>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Georgia', 'Cambria', serif;
+            background: #F8F6F1;
+            color: #2C2416;
+            -webkit-font-smoothing: antialiased;
+            padding: 0;
+            margin: 0;
+        }
+
+        .widget-outer {
+            background: #FFFFFF;
+            border-radius: 0;
+            overflow: hidden;
+            box-shadow: none;
+            border: none;
+            max-width: 100%;
+            width: 100%;
+            margin: 0;
+            position: relative;
+        }
+
+        @media (min-width: 560px) {
+            body { padding: 16px; background: #F8F6F1; }
+            .widget-outer {
+                border-radius: 12px;
+                box-shadow: 0 6px 20px rgba(44, 36, 22, 0.08);
+                border: 1px solid #EBE5D9;
+                max-width: 460px;
+                margin: 0 auto;
+            }
+        }
+
+        button { -webkit-tap-highlight-color: transparent; font-family: 'Trebuchet MS', sans-serif; }
+        button:focus-visible { outline: 3px solid #2C2416; outline-offset: 2px; }
+
+        .title-bar { background: #1D6B3F; padding: 10px 16px; text-align: center; }
+        .title-bar h1 {
+            font-size: 19px; font-weight: 700; color: #FFFFFF; margin: 0; line-height: 1.2;
+            font-family: 'Trebuchet MS', 'Inter', sans-serif;
+        }
+
+        .diagram-wrapper { padding: 8px 8px 0; transition: opacity 0.4s ease; }
+        svg#track { display: block; width: 100%; height: auto; max-height: 96px; }
+        .label { font-family: 'Trebuchet MS', sans-serif; font-weight: 700; }
+        .ask { font-family: 'Georgia', serif; font-style: italic; }
+        .node, .num, .lbl, .ask { transition: fill 0.4s ease, stroke 0.4s ease, opacity 0.4s ease; }
+
+        .psalm {
+            margin: 6px 12px 12px; padding: 10px 14px 12px;
+            background: #FBFAF6; border: 1px solid #EBE5D9; border-radius: 12px;
+            transition: opacity 0.4s ease;
+        }
+        .psalm-ref {
+            font-family: 'Trebuchet MS', sans-serif; font-size: 13px; font-weight: 700;
+            color: #6B6358; letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 4px;
+        }
+        .psalm-text { font-size: 15px; line-height: 1.55; color: #3D3426; }
+        .psalm-text sup { font-family: 'Trebuchet MS', sans-serif; font-size: 10px; color: #8C877C; margin-right: 2px; }
+        .sc { font-variant: small-caps; }
+        .hl { border-radius: 4px; padding: 1px 0; transition: background-color 0.4s ease, box-shadow 0.4s ease; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+        .hl.on { box-shadow: 0 0 0 2px var(--tint); background-color: var(--tint); color: #2C2416; }
+
+        #card-area { background-color: #F6F4EE; border-top: 1px solid #EBE5D9; padding-top: 8px; }
+        .verse-card-wrapper { margin: 0 auto; padding: 0 12px 8px; max-width: 460px; }
+        .verse-card { background: #FFFFFF; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 14px rgba(44,36,22,0.06); }
+        .verse-card-bar { height: 4px; }
+        .verse-card-content { padding: 10px 16px; min-height: var(--card-h, 112px); display: flex; flex-direction: column; justify-content: flex-start; }
+        .card-kicker { font-family: 'Trebuchet MS', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 2px; }
+        .card-title { font-family: 'Trebuchet MS', sans-serif; font-size: 16px; font-weight: 700; line-height: 1.3; margin-bottom: 4px; }
+        .card-text { font-size: 15px; line-height: 1.4; color: #3D3426; }
+        .card-ref { font-family: 'Trebuchet MS', sans-serif; font-size: 13px; color: #6B6358; margin-top: 4px; }
+
+        .nav-bar { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; padding: 0 2px; gap: 8px; }
+        .nav-btn {
+            background: transparent; border: 1.5px solid #D4CFC4; border-radius: 10px;
+            padding: 10px 16px; min-height: 44px; font-size: 14px; color: #5A4E3C; cursor: pointer; font-weight: 600;
+        }
+        .nav-bar .nav-btn { min-width: 112px; text-align: center; }
+        .nav-btn.primary { color: #FFFFFF; border: none; background: #1D6B3F; }
+        .step-count { font-family: 'Trebuchet MS', sans-serif; font-size: 13px; color: #6B6358; }
+
+        .begin-wrapper { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 10px 16px 16px; }
+        .begin-text { font-size: 16px; line-height: 1.4; text-align: center; color: #3D3426; max-width: 340px; }
+        .begin-btn {
+            background: #1D6B3F; color: #FFFFFF; border: none; border-radius: 10px;
+            padding: 12px 28px; min-height: 44px; font-size: 16px; font-weight: 700; cursor: pointer;
+        }
+        .overview-btn {
+            background: transparent; border: 1.5px solid #D4CFC4; border-radius: 10px;
+            padding: 10px 16px; min-height: 44px; font-size: 14px; color: #5A4E3C; cursor: pointer; font-weight: 600;
+        }
+        .overview-panel { padding: 0 12px 12px; max-width: 460px; margin: 0 auto; }
+        .overview-caption { font-size: 16px; line-height: 1.4; text-align: center; color: #3D3426; margin: 2px 0 6px; }
+        @media (prefers-reduced-motion: reduce) {
+            .diagram-wrapper, .psalm, .hl, .node, .num, .lbl, .ask { transition: none; }
+        }
+        #measure { position: absolute; left: 0; top: 0; visibility: hidden; pointer-events: none; }
+        .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+    </style>
+</head>
+<body>
+<div class="widget-outer">
+    <div class="title-bar"><h1>Observe, Interpret, Apply</h1></div>
+    <div class="diagram-wrapper" id="diagram">
+        <svg id="track" viewBox="0 0 360 92" role="img" aria-labelledby="track-desc">
+            <desc id="track-desc">Three steps in a row: Observe, Interpret, Apply.</desc>
+            <line x1="60" y1="28" x2="300" y2="28" stroke="#E2DCCF" stroke-width="3"/>
+            <line id="prog" x1="60" y1="28" x2="60" y2="28" stroke="#1D6B3F" stroke-width="3" stroke-linecap="round"/>
+            <g id="s0">
+                <circle class="node" cx="60" cy="28" r="20" stroke-width="3"/>
+                <text class="num label" x="60" y="34" text-anchor="middle" font-size="17">1</text>
+                <text class="lbl label" x="60" y="66" text-anchor="middle" font-size="15">Observe</text>
+                <text class="ask" x="60" y="84" text-anchor="middle" font-size="12.5">What does it say?</text>
+            </g>
+            <g id="s1">
+                <circle class="node" cx="180" cy="28" r="20" stroke-width="3"/>
+                <text class="num label" x="180" y="34" text-anchor="middle" font-size="17">2</text>
+                <text class="lbl label" x="180" y="66" text-anchor="middle" font-size="15">Interpret</text>
+                <text class="ask" x="180" y="84" text-anchor="middle" font-size="12.5">What did it mean?</text>
+            </g>
+            <g id="s2">
+                <circle class="node" cx="300" cy="28" r="20" stroke-width="3"/>
+                <text class="num label" x="300" y="34" text-anchor="middle" font-size="17">3</text>
+                <text class="lbl label" x="300" y="66" text-anchor="middle" font-size="15">Apply</text>
+                <text class="ask" x="300" y="84" text-anchor="middle" font-size="12.5">How do I live it?</text>
+            </g>
+        </svg>
+    </div>
+    <div class="psalm" id="psalm">
+        <p class="psalm-ref">Psalm 23:1-4</p>
+        <p class="psalm-text">
+            <sup>1</sup><span class="hl" data-k="lord">The <span class="sc">Lord</span> is my </span><span class="hl" data-k="shepherd">shepherd</span>; I shall not want.
+            <sup>2</sup><span class="hl" data-k="he">He</span> <span class="hl" data-k="verb">makes me lie down</span> in green pastures.
+            <span class="hl" data-k="he">He</span> <span class="hl" data-k="verb">leads me</span> beside still waters.
+            <sup>3</sup><span class="hl" data-k="he">He</span> <span class="hl" data-k="verb">restores</span> my soul.
+            <span class="hl" data-k="he">He</span> <span class="hl" data-k="verb">leads me</span> in paths of righteousness for his name's sake.
+            <sup>4</sup>Even though I walk through the valley of the shadow of death, <span class="hl" data-k="fear">I will fear no evil</span>,
+            for <span class="hl" data-k="you">you are with me</span>; your rod and your staff, they comfort me.
+        </p>
+    </div>
+    <div id="card-area" aria-live="polite"></div>
+    <p class="sr-only" id="status" aria-live="polite"></p>
+</div>
+<script>
+    var GREEN = '#1D6B3F', GOLD = '#B8892B', PLUM = '#8B4A5E';
+    var TINT = { '#1D6B3F': '#D1EDD9', '#B8892B': '#F3E4B8', '#8B4A5E': '#EFD9E0' };
+    var STAGE_COLOR = [GREEN, GOLD, PLUM];
+    var STAGE_NAME = ['Step 1 · Observe', 'Step 2 · Interpret', 'Step 3 · Apply'];
+    // Final view: each highlight keeps the color of the step that found it.
+    var ALL = { verb: GREEN, he: GREEN, you: PLUM, lord: GOLD, shepherd: GOLD, fear: PLUM };
+
+    var steps = [
+        { stage: 0, hl: ['verb'],
+          title: 'Count what the shepherd does.',
+          text: 'Read it twice, slowly. He makes, leads, restores, and leads again. The sheep does none of it.',
+          ref: 'Psalm 23:1-3' },
+        { stage: 0, hl: ['he', 'you'],
+          title: 'Notice what shifts.',
+          text: 'Through verse 3, David talks about God: "He." In the dark valley, he starts talking to God: "you are with me."',
+          ref: 'Psalm 23:4' },
+        { stage: 1, hl: ['lord', 'shepherd'],
+          title: 'Ask what it meant to David.',
+          text: 'David had been a shepherd who fought off a lion and a bear for his sheep. To say "my shepherd" is to say, "I am the sheep."',
+          ref: '1 Samuel 17:34-35' },
+        { stage: 1, hl: ['shepherd'],
+          title: 'Let Scripture explain Scripture.',
+          text: 'Jesus takes David\'s word and says the Shepherd is Him. And He goes further than any shepherd: He dies for the sheep.',
+          ref: '"The good shepherd lays down his life for the sheep" (John 10:11)' },
+        { stage: 2, hl: ['fear', 'you'],
+          title: 'Believe first, then step.',
+          text: 'Start with grace: the Shepherd gave His life for you and is with you now. So name one fear and hand it to Him today.',
+          ref: 'Psalm 23:4' },
+        { stage: 3, hl: 'all',
+          title: 'See it. Understand it. Live it.',
+          text: 'Observe what it says. Interpret what it meant. Apply how it shapes your life. The same three steps open any passage.',
+          ref: '' }
+    ];
+
+    var step = -1, mode = 'guide', resumeStep = -1, pendingFocus = null;
+    function el(id) { return document.getElementById(id); }
+    function colorOf(s) { return s.stage > 2 ? GREEN : STAGE_COLOR[s.stage]; }
+
+    function paintTrack(stage, faded) {
+        // stage: -1 none active, 0..2 active step, 3 all complete
+        for (var i = 0; i < 3; i++) {
+            var g = el('s' + i), node = g.querySelector('.node'), num = g.querySelector('.num');
+            var lbl = g.querySelector('.lbl'), ask = g.querySelector('.ask');
+            var c = STAGE_COLOR[i];
+            if (stage === 3 || i < stage) {
+                node.setAttribute('fill', TINT[c]); node.setAttribute('stroke', c);
+                num.textContent = '✓'; num.setAttribute('fill', c);
+                lbl.setAttribute('fill', c); ask.setAttribute('fill', '#6B6358');
+            } else if (i === stage) {
+                node.setAttribute('fill', c); node.setAttribute('stroke', c);
+                num.textContent = String(i + 1); num.setAttribute('fill', '#FFFFFF');
+                lbl.setAttribute('fill', c); ask.setAttribute('fill', '#3D3426');
+            } else {
+                node.setAttribute('fill', '#FFFFFF'); node.setAttribute('stroke', '#D4CFC4');
+                num.textContent = String(i + 1); num.setAttribute('fill', '#8C877C');
+                lbl.setAttribute('fill', '#8C877C'); ask.setAttribute('fill', '#8C877C');
+            }
+        }
+        var end = stage < 0 ? 60 : Math.min(stage, 2) * 120 + 60;
+        el('prog').setAttribute('x2', end);
+        el('prog').setAttribute('stroke', stage >= 3 ? GREEN : (stage < 0 ? GREEN : STAGE_COLOR[stage]));
+        el('diagram').style.opacity = faded ? '0.55' : '1';
+        var names = ['Observe', 'Interpret', 'Apply'];
+        el('track-desc').textContent = stage < 0 ? 'Three steps in a row: Observe, Interpret, Apply.'
+            : stage >= 3 ? 'All three steps are complete: Observe, Interpret, Apply.'
+            : 'Current step: ' + names[stage] + '.';
+    }
+    function paintPsalm(s, faded) {
+        var spans = document.querySelectorAll('.hl');
+        for (var i = 0; i < spans.length; i++) {
+            var sp = spans[i], k = sp.getAttribute('data-k'), c = null;
+            if (s && s.hl === 'all') c = ALL[k];
+            else if (s && s.hl.indexOf(k) !== -1) c = colorOf(s);
+            if (c) { sp.classList.add('on'); sp.style.setProperty('--tint', TINT[c]); }
+            else { sp.classList.remove('on'); }
+        }
+        el('psalm').style.opacity = faded ? '0.7' : '1';
+    }
+    function paint(s, faded) {
+        paintTrack(s ? s.stage : -1, faded);
+        paintPsalm(s, faded);
+    }
+    function setFocus(n) { pendingFocus = n; }
+    function applyFocus() { if (!pendingFocus) return; var t = document.querySelector('[data-control="' + pendingFocus + '"]'); pendingFocus = null; if (t) t.focus(); }
+    function button(label, control, cls, onClick) { var b = document.createElement('button'); b.type = 'button'; b.className = cls; b.setAttribute('data-control', control); b.textContent = label; b.addEventListener('click', onClick); return b; }
+    function buildCard(s) {
+        var color = colorOf(s);
+        var vc = document.createElement('div'); vc.className = 'verse-card';
+        var bar = document.createElement('div'); bar.className = 'verse-card-bar'; bar.style.background = color; vc.appendChild(bar);
+        var c = document.createElement('div'); c.className = 'verse-card-content';
+        var k = document.createElement('p'); k.className = 'card-kicker'; k.style.color = color;
+        k.textContent = s.stage > 2 ? 'All three steps' : STAGE_NAME[s.stage]; c.appendChild(k);
+        var t = document.createElement('p'); t.className = 'card-title'; t.style.color = color; t.textContent = s.title; c.appendChild(t);
+        var x = document.createElement('p'); x.className = 'card-text'; x.textContent = s.text; c.appendChild(x);
+        if (s.ref) { var r = document.createElement('p'); r.className = 'card-ref'; r.textContent = s.ref; c.appendChild(r); }
+        vc.appendChild(c); return vc;
+    }
+    function fitCards() {
+        var area = el('card-area'), m = document.createElement('div'), max = 0;
+        m.id = 'measure'; m.style.width = area.clientWidth + 'px';
+        document.documentElement.style.setProperty('--card-h', '0px');
+        steps.forEach(function (s) { var w = document.createElement('div'); w.className = 'verse-card-wrapper'; w.appendChild(buildCard(s)); m.appendChild(w); });
+        document.body.appendChild(m);
+        m.querySelectorAll('.verse-card-content').forEach(function (c) { max = Math.max(max, c.offsetHeight); });
+        document.body.removeChild(m);
+        document.documentElement.style.setProperty('--card-h', Math.max(max, 112) + 'px');
+    }
+    function go(i) { mode = 'guide'; step = i; resumeStep = i; render(); }
+    function render() {
+        var card = el('card-area'); card.innerHTML = '';
+        if (mode === 'overview') {
+            paint(steps[steps.length - 1], false);
+            var panel = document.createElement('div'); panel.className = 'overview-panel';
+            var cap = document.createElement('p'); cap.className = 'overview-caption';
+            cap.textContent = 'Observe what it says. Interpret what it meant. Apply how it shapes your life.';
+            panel.appendChild(cap);
+            var onav = document.createElement('div'); onav.className = 'nav-bar';
+            onav.appendChild(button('Return to steps', 'return', 'nav-btn', function () { mode = 'guide'; step = resumeStep; setFocus(step === -1 ? 'begin' : 'next'); render(); }));
+            onav.appendChild(button('↻ Restart', 'restart', 'nav-btn primary', function () { resumeStep = -1; setFocus('begin'); go(-1); }));
+            panel.appendChild(onav); card.appendChild(panel);
+            el('status').textContent = 'Whole diagram shown.'; applyFocus(); return;
+        }
+        if (step === -1) {
+            paint(null, true);
+            var wrap = document.createElement('div'); wrap.className = 'begin-wrapper';
+            var intro = document.createElement('p'); intro.className = 'begin-text';
+            intro.textContent = 'Three questions, asked in order. Tap Begin to walk through Psalm 23 with them.';
+            wrap.appendChild(intro);
+            wrap.appendChild(button('Begin →', 'begin', 'begin-btn', function () { setFocus('next'); go(0); }));
+            wrap.appendChild(button('Show whole diagram', 'overview', 'overview-btn', function () { resumeStep = step; mode = 'overview'; setFocus('return'); render(); }));
+            card.appendChild(wrap); el('status').textContent = ''; applyFocus(); return;
+        }
+        var s = steps[step]; paint(s, false);
+        var wrapper = document.createElement('div'); wrapper.className = 'verse-card-wrapper';
+        wrapper.appendChild(buildCard(s));
+        var nav = document.createElement('div'); nav.className = 'nav-bar';
+        nav.appendChild(button('← Back', 'back', 'nav-btn', function () { setFocus(step === 0 ? 'begin' : 'back'); go(step - 1); }));
+        var count = document.createElement('span'); count.className = 'step-count'; count.textContent = (step + 1) + ' of ' + steps.length; nav.appendChild(count);
+        if (step < steps.length - 1) nav.appendChild(button('Next →', 'next', 'nav-btn primary', function () { setFocus('next'); go(step + 1); }));
+        else nav.appendChild(button('↻ Restart', 'restart', 'nav-btn primary', function () { setFocus('begin'); go(-1); }));
+        wrapper.appendChild(nav); card.appendChild(wrapper);
+        el('status').textContent = 'Step ' + (step + 1) + ' of ' + steps.length + ': ' + s.title; applyFocus();
+    }
+    fitCards(); render();
+    var rt = null, lastWidth = window.innerWidth;
+    // Refit only when the width changes, so the host's height measuring cannot start a resize loop.
+    window.addEventListener('resize', function () {
+        if (window.innerWidth === lastWidth) return;
+        lastWidth = window.innerWidth;
+        clearTimeout(rt); rt = setTimeout(fitCards, 150);
+    });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitCards);
+</script>
+</body>
+</html>
