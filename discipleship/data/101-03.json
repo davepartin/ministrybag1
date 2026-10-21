@@ -1,25 +1,52 @@
 {
   "id": "3",
   "title": "Lesson 3: Prayer",
+  "description": "Prayer is a child talking with a Father who loves to listen. This lesson walks through the six-step pattern Jesus gave in the Lord's Prayer and helps you build your own daily prayers.",
   "blocks": [
+    {
+      "type": "text",
+      "text": "In the last lesson you saw that God gave you new life and adopted you into His family. Children talk with their father. That is what prayer is, and in this lesson you will learn the pattern Jesus gave for it."
+    },
+    {
+      "type": "parable",
+      "title": "Teach Us to Pray",
+      "text": "The disciples watched Jesus pray. He got up while it was still dark and went to quiet places to talk with His Father (Mark 1:35). Before He chose the twelve, He prayed all night (Luke 6:12). Prayer was not a duty He squeezed in. It was the air He breathed.<br><br>One day, when He finished praying, one of His disciples asked Him for help: <em>\"Lord, teach us to pray, as John taught his disciples\"</em> (Luke 11:1).<br><br>They did not ask Jesus how to preach or how to do miracles. They asked Him how to pray. And the very first word He gave them was <strong>Father</strong> (Luke 11:2)."
+    },
     {
       "type": "heading",
       "text": "What is Prayer?"
     },
     {
       "type": "text",
-      "text": "Prayer is a conversation: talking with and listening to God. Prayer displays our dependence on a powerful and loving Father. Jesus taught us to pray in the Lord's Prayer, giving us a pattern to follow. Read the prayer below."
+      "text": "Even the disciples had to learn to pray, so you can too. Prayer is a conversation: talking with and listening to God. Prayer displays our dependence on a powerful and loving Father. Because of Jesus, you do not come to God as a stranger hoping He will notice you. You come as His child. <strong>Prayer is a child talking with a Father who loves to listen.</strong>"
     },
     {
       "type": "verse",
-      "reference": "The Lord's Prayer",
-      "text": "Our Father, who is in heaven,<br>\nHoly is your name,<br>\nyour kingdom come, your will be done<br>\non earth as it is in heaven.<br>\nGive us this day our daily bread.<br>\nForgive us our sins, as we forgive those who sin against us.<br>\nAnd lead us not into temptation, but deliver us from evil.<br>\nFor yours is the kingdom, and the power, and the glory forever, Amen."
+      "reference": "Romans 8:15",
+      "text": "For you did not receive the spirit of slavery to fall back into fear, but you have received the Spirit of adoption as sons, by whom we cry, \"Abba! Father!\""
     },
     {
       "type": "question",
       "id": "3-1",
       "text": "3.1 - How would you describe your prayer life right now?",
       "data_question": "3.1 - Current prayer life"
+    },
+    {
+      "type": "heading",
+      "text": "The Pattern Jesus Gave"
+    },
+    {
+      "type": "text",
+      "text": "Jesus taught us to pray in the Lord's Prayer, giving us a pattern to follow. Read the prayer below. This is the familiar wording many Christians pray, and it is the same wording the Daily Prayers tool uses at the end of this lesson. You can read Jesus' words for yourself in Matthew 6:9-13."
+    },
+    {
+      "type": "verse",
+      "reference": "The Lord's Prayer (traditional wording, from Matthew 6:9-13)",
+      "text": "Our Father, who is in heaven,<br>\nHoly is your name,<br>\nyour kingdom come, your will be done<br>\non earth as it is in heaven.<br>\nGive us this day our daily bread.<br>\nForgive us our sins, as we forgive those who sin against us.<br>\nAnd lead us not into temptation, but deliver us from evil.<br>\nFor yours is the kingdom, and the power, and the glory forever, Amen."
+    },
+    {
+      "type": "text",
+      "text": "The prayer moves in six simple steps. You do not have to pray them perfectly or word for word. Think of them as six rooms you walk through with your Father."
     },
     {
       "type": "subheading",
@@ -49,13 +76,7 @@
     },
     {
       "type": "text",
-      "text": "When we proclaim who He is, we worship Him by reminding ourselves how powerful and great our God is. He is love, grace, and forgiveness."
-    },
-    {
-      "type": "question",
-      "id": "3-3",
-      "text": "3.3 - What are some names and attributes of God you can proclaim in your prayers to honor Him?",
-      "data_question": "3.3 - God's names and attributes"
+      "text": "When we proclaim who He is, we worship Him by reminding ourselves how powerful and great our God is. He is love, grace, and forgiveness. Try naming one thing that is true about Him: He is faithful, He is holy, He is near."
     },
     {
       "type": "subheading",
@@ -72,8 +93,8 @@
     {
       "type": "question",
       "id": "3-4",
-      "text": "3.4 - What are some things that God cares about that you could pray about?",
-      "data_question": "3.4 - God's agenda"
+      "text": "3.3 - What are some things that God cares about that you could pray about?",
+      "data_question": "3.3 - God's agenda"
     },
     {
       "type": "subheading",
@@ -90,8 +111,8 @@
     {
       "type": "question",
       "id": "3-5",
-      "text": "3.5 - What are some of your current needs that you want God to provide for?",
-      "data_question": "3.5 - Current needs"
+      "text": "3.4 - What are some of your current needs that you want God to provide for?",
+      "data_question": "3.4 - Current needs"
     },
     {
       "type": "subheading",
@@ -103,13 +124,7 @@
     },
     {
       "type": "text",
-      "text": "God has offered us complete forgiveness. When we receive His forgiveness, our hearts are more prepared to forgive others as well."
-    },
-    {
-      "type": "question",
-      "id": "3-6",
-      "text": "3.6 - How does God's forgiveness help us forgive others?",
-      "data_question": "3.6 - Forgiveness connection"
+      "text": "Through Jesus, God has offered us complete forgiveness. When we receive His forgiveness, our hearts are more prepared to forgive others as well."
     },
     {
       "type": "subheading",
@@ -126,8 +141,12 @@
     {
       "type": "question",
       "id": "3-7",
-      "text": "3.7 - What temptations or spiritual battles do you need God's help with right now?",
-      "data_question": "3.7 - Spiritual battles"
+      "text": "3.5 - What temptation or spiritual battle do you need God's help with right now?",
+      "data_question": "3.5 - Spiritual battles"
+    },
+    {
+      "type": "heading",
+      "text": "This Week's Practice"
     },
     {
       "type": "text",
@@ -141,12 +160,20 @@
       "buttonText": "Open the Daily Prayers Tool"
     },
     {
+      "type": "text",
+      "text": "Each day this week, pray through your six steps once, even if it only takes five minutes. Use your own words, and start with \"Father.\" If you forget a day or your mind wanders, do not quit. Your Father is not keeping score. Just begin again."
+    },
+    {
       "type": "heading",
       "text": "Lesson 3 Review"
     },
     {
       "type": "text",
-      "text": "You have walked through the Lord's Prayer step by step and discovered how Jesus gave us a pattern that touches every part of life, from worship to forgiveness to spiritual warfare. Use the Daily Prayers tool to start putting that pattern into practice this week."
+      "text": "Prayer is a child talking with a Father who loves to listen. Jesus gave His disciples, and you, a pattern that touches every part of life: connect with your Father, worship His name, pray His agenda first, depend on Him, forgive and be forgiven, and stand against the enemy. Use the Daily Prayers tool to start putting that pattern into practice this week."
+    },
+    {
+      "type": "text",
+      "text": "In the next lesson, you will learn how God speaks to you through the Bible."
     },
     {
       "type": "bible_reading",
