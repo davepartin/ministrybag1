@@ -58,3 +58,10 @@ Shared "A chrome" applied to the older widgets (same values as the A-standard fi
 * bible-bookshelf is about 2,170 px on a phone. Starting the shelves collapsed would make it fit, but that changes how the lesson uses it.
 * learning-circle2 is 652 px, a little over the 620 px budget.
 * The corner numbers on the Learning Circle stay 1-4; the Trust line is unnumbered, as the 201-10 worker asked.
+
+## Follow-up: new widgets (branch `claude/uplift-g7-new-widgets`)
+
+* personal-ministry-map: "TO THE END OF THE EARTH" now runs along the bottom of the dashed ring, clear of the Neighborhood label at the top.
+* cross-the-road: the road group moved up 38 units and the viewBox shrank from 200 to 162 tall, removing the empty band. The phrase sits above the road, and the neighbor figure is smaller, with its label to its left. Priest and Levite are now 13 px (about 12.6 px rendered) with their lanes 15 units apart, so they no longer touch. Height at 375 went from 395-468 to 357-430.
+* one-another: tighter anchor, hint, grid and card spacing. The tap cards are still 44 px tall and no content was dropped. Height at 375 went from 675 to 616.
+* Verified every state at 375, 390 and 1280: no overflow, clipping, overlap, button jumps or errors. In-lesson check for 202-01, 202-03 and 203-01 passed, and all four test scripts pass.

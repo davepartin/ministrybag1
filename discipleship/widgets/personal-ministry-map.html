@@ -96,7 +96,8 @@
         <svg id="map" viewBox="0 0 360 290" role="img" aria-labelledby="pm-desc">
             <desc id="pm-desc">Circles around you: home, work and school, and your neighborhood.</desc>
             <defs>
-                <path id="outer-arc" d="M 58 150 A 122 122 0 0 1 302 150"/>
+                <!-- The outer label runs along the bottom of the dashed ring, clear of the Neighborhood label at the top. -->
+                <path id="outer-arc" d="M 49 150 A 131 131 0 0 0 311 150"/>
             </defs>
             <circle id="r4" class="item" cx="180" cy="150" r="138" fill="none" stroke-width="2" stroke-dasharray="5 6" opacity="0"/>
             <text id="l4" class="arc-label item" opacity="0"><textPath href="#outer-arc" startOffset="50%" text-anchor="middle">TO THE END OF THE EARTH</textPath></text>
