@@ -253,6 +253,23 @@
                 transition-duration: 0.01ms !important;
             }
         }
+    
+        /* ---- A-standard chrome: matches three-spaces, wheel, shape, covenant-triangle, starting-gun, mission-map ---- */
+        button { font-family: 'Trebuchet MS', sans-serif; }
+        button:focus-visible { outline: 3px solid #2C2416; outline-offset: 2px; }
+        .title-bar { background: #1D6B3F; padding: 10px 16px; text-align: center; }
+        .title-bar h1 { font-size: 19px; font-weight: 700; color: #FFFFFF; margin: 0; line-height: 1.2; font-family: 'Trebuchet MS', 'Inter', sans-serif; letter-spacing: 0; }
+        .info-area { padding: 8px 12px 10px; }
+        .info-card { border-radius: 12px; }
+        .info-content { min-height: var(--card-h, 112px); padding: 10px 16px; }
+        .info-title { font-family: 'Trebuchet MS', sans-serif; font-size: 16px; font-weight: 700; line-height: 1.3; margin: 0 0 4px; max-width: none; }
+        .info-text { font-family: Georgia, Cambria, serif; font-size: 15px; line-height: 1.4; margin: 0 0 4px; max-width: none; }
+        .info-ref { font-size: 13px; font-weight: 400; color: #6B6358; }
+        .controls { gap: 8px; }
+        .nav-btn { min-width: 100px; min-height: 44px; padding: 10px 12px; border: 1.5px solid #D4CFC4; border-radius: 10px; background: transparent; color: #5A4E3C; font-size: 14px; font-weight: 600; text-align: center; }
+        .nav-btn.primary { background: #1D6B3F !important; color: #FFFFFF; border: none; box-shadow: none !important; }
+        .dot-nav { gap: 4px; }
+        #measure { position: absolute; left: 0; top: 0; visibility: hidden; pointer-events: none; }
     </style>
 </head>
 <body>
@@ -741,6 +758,34 @@
     });
 
     render();
+    window.gtCards = steps;
+}());
+
+// Size the card to the longest step so the buttons never move (A-standard pattern).
+function gtFit() {
+    var card = document.querySelector('.info-card');
+    if (!card || !card.clientWidth || !window.gtCards) return;
+    var m = document.createElement('div'), max = 0;
+    m.id = 'measure'; m.style.width = card.clientWidth + 'px';
+    document.documentElement.style.setProperty('--card-h', '0px');
+    window.gtCards.forEach(function (s) {
+        m.insertAdjacentHTML('beforeend', '<div class="info-content"><h2 class="info-title">' + s.title + '</h2><p class="info-text">' + s.text + '</p><p class="info-ref">' + s.ref + '</p></div>');
+    });
+    document.body.appendChild(m);
+    m.querySelectorAll('.info-content').forEach(function (c) { max = Math.max(max, c.offsetHeight); });
+    document.body.removeChild(m);
+    document.documentElement.style.setProperty('--card-h', Math.max(max, 112) + 'px');
+}
+gtFit();
+(function () {
+    var rt = null, lastWidth = window.innerWidth;
+    // Refit only when the width changes; the page resizes this frame's height to measure it.
+    window.addEventListener('resize', function () {
+        if (window.innerWidth === lastWidth) return;
+        lastWidth = window.innerWidth;
+        clearTimeout(rt); rt = setTimeout(gtFit, 150);
+    });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(gtFit);
 }());
 </script>
 </body>

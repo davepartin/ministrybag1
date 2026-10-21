@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Five Farmers, One Field</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@600;700&display=swap');
 
         :root {
             --green: #1D6B3F;
@@ -297,12 +296,32 @@
                 transition-duration: 0.01ms !important;
             }
         }
+    
+        /* ---- A-standard chrome: matches three-spaces, wheel, shape, covenant-triangle, starting-gun, mission-map ---- */
+        button { font-family: 'Trebuchet MS', sans-serif; -webkit-tap-highlight-color: transparent; }
+        button:focus-visible { outline: 3px solid #2C2416; outline-offset: 2px; }
+        .title-bar { background: #1D6B3F; padding: 10px 16px; text-align: center; }
+        .title-bar h1 { font-size: 19px; font-weight: 700; color: #FFFFFF; margin: 0; line-height: 1.2; font-family: 'Trebuchet MS', 'Inter', sans-serif; letter-spacing: 0; text-transform: none; }
+        .title-bar p { display: none; }
+        .card-area { background-color: #F6F4EE; border-top: 1px solid #EBE5D9; padding: 8px 12px 10px; }
+        .verse-card { border-radius: 12px; border: none; box-shadow: 0 2px 14px rgba(44,36,22,0.06); background: #FFFFFF; }
+        .verse-content { height: auto; min-height: var(--card-h, 112px); overflow: visible; padding: 10px 16px; }
+        .verse-title { font-family: 'Trebuchet MS', sans-serif; font-size: 16px; font-weight: 700; line-height: 1.3; letter-spacing: 0; margin: 0 0 4px; }
+        .verse-text { font-family: Georgia, Cambria, serif; font-size: 15px; line-height: 1.4; color: #3D3426; }
+        .card-note { margin-top: 4px; }
+        .verse-ref { font-family: 'Trebuchet MS', sans-serif; font-size: 13px; font-weight: 400; color: #6B6358; margin: 4px 0 0; letter-spacing: 0; }
+        .nav { gap: 8px; margin-top: 10px; }
+        .nav-btn { min-width: 112px; min-height: 44px; padding: 10px 12px; border: 1.5px solid #D4CFC4; border-radius: 10px; background: transparent; color: #5A4E3C; font-size: 14px; font-weight: 600; font-family: 'Trebuchet MS', sans-serif; text-align: center; }
+        .nav-btn.primary { background: #1D6B3F !important; color: #FFFFFF; border: none; box-shadow: none !important; }
+        .nav-btn[disabled], .nav-btn:disabled { opacity: 0.35; }
+        #measure { position: absolute; left: 0; top: 0; visibility: hidden; pointer-events: none; }
+        .verse-ref-inline { font-size: 13px; font-weight: 400; color: #6B6358; }
     </style>
 </head>
 <body>
 <main class="widget" aria-label="A whiteboard-style diagram of five farmers in five columns, each mapped to an APEST gift, with a field below that fills with seeds and then plants as you progress">
     <header class="title-bar">
-        <h1>FIVE FARMERS, ONE FIELD</h1>
+        <h1>Five Farmers, One Field</h1>
         <p>A &middot; P &middot; E &middot; S &middot; T</p>
     </header>
 
@@ -412,10 +431,10 @@
                 y: apestY,
                 'text-anchor': 'middle',
                 'font-family': 'Inter, Trebuchet MS, sans-serif',
-                'font-size': active ? 13.65 : 10.5,
+                'font-size': active ? 13.5 : 12.5,
                 'font-weight': 800,
                 fill: active ? g.color : faded,
-                'letter-spacing': '0.14em'
+                'letter-spacing': '0.03em'
             });
             apest.textContent = g.apest.toUpperCase();
             svg.appendChild(apest);
@@ -426,7 +445,7 @@
                 y: personY,
                 'text-anchor': 'middle',
                 'font-family': 'Inter, Trebuchet MS, sans-serif',
-                'font-size': 13,
+                'font-size': 14,
                 'font-weight': 700,
                 fill: active ? g.color : marker,
                 opacity: active ? 1 : 0.75,
@@ -915,7 +934,42 @@
     }
 
     render();
+    window.gtCards = [{ title: 'Five Farmers, One Field', text: 'Jesus gave His Church five kinds of gifts so the whole body could do the work of ministry. Step through five farmers: Plower, Watcher, Planter, Waterer, Pruner. Each one is a picture of one APEST gift.' }].concat(gardeners.map(function (g) { return { title: g.title, text: g.verse + '<span class="card-note">' + g.note + '</span>' }; }));
 }());
+
+// Size every card to the tallest step so the buttons never move (A-standard pattern).
+function gtFitCards(items) {
+    var area = document.querySelector('.card-area');
+    if (!area || !area.clientWidth) return;
+    var cs = getComputedStyle(area);
+    var w = area.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+    var m = document.createElement('div'), max = 0;
+    m.id = 'measure'; m.style.width = w + 'px';
+    document.documentElement.style.setProperty('--card-h', '0px');
+    items.forEach(function (it) {
+        m.insertAdjacentHTML('beforeend', '<div class="verse-card"><div class="verse-content">' +
+            '<h2 class="verse-title">' + (it.title || '') + '</h2>' +
+            '<p class="verse-text">' + (it.text || '') + '</p>' +
+            (it.ref ? '<p class="verse-ref">' + it.ref + '</p>' : '') + '</div></div>');
+    });
+    document.body.appendChild(m);
+    m.querySelectorAll('.verse-content').forEach(function (c) { max = Math.max(max, c.offsetHeight); });
+    document.body.removeChild(m);
+    document.documentElement.style.setProperty('--card-h', Math.max(max, 112) + 'px');
+}
+// Refit only when the width changes. The page briefly resizes this frame's height to measure it,
+// and refitting on that would start a measure-resize loop that jolts the page while scrolling.
+function gtWatchWidth(fn) {
+    var rt = null, lastWidth = window.innerWidth;
+    window.addEventListener('resize', function () {
+        if (window.innerWidth === lastWidth) return;
+        lastWidth = window.innerWidth;
+        clearTimeout(rt); rt = setTimeout(fn, 150);
+    });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fn);
+}
+function gtFit() { gtFitCards(window.gtCards || []); }
+gtFit(); gtWatchWidth(gtFit);
 </script>
 </body>
 </html>
