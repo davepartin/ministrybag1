@@ -96,7 +96,7 @@
 <div class="widget-outer">
     <div class="title-bar"><h1>Cross the Road</h1></div>
     <div class="diagram-wrapper">
-        <svg id="road" viewBox="0 0 360 200" role="img" aria-labelledby="road-desc">
+        <svg id="road" viewBox="0 0 360 162" role="img" aria-labelledby="road-desc">
             <desc id="road-desc">A road from Jerusalem to Jericho with a wounded man lying at the edge.</desc>
             <defs>
                 <marker id="arrow-gray" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#A79D8C"/></marker>
@@ -104,6 +104,8 @@
                 <marker id="arrow-gold" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#B8892B"/></marker>
             </defs>
 
+            <!-- Everything on the road sits 38 units higher, so there is no empty band above it. -->
+            <g transform="translate(0 -38)">
             <!-- the road -->
             <rect x="0" y="86" width="360" height="84" fill="#F1EADB"/>
             <line x1="0" y1="86" x2="360" y2="86" stroke="#D9CFBA" stroke-width="2"/>
@@ -114,10 +116,10 @@
 
             <!-- the two who passed by -->
             <g id="passers" class="fade" opacity="0">
-                <path id="p1" class="draw" d="M 0 98 L 296 98" fill="none" stroke="#A79D8C" stroke-width="3" stroke-linecap="round"/>
+                <path id="p1" class="draw" d="M 0 95 L 296 95" fill="none" stroke="#A79D8C" stroke-width="3" stroke-linecap="round"/>
                 <path id="p2" class="draw" d="M 0 110 L 296 110" fill="none" stroke="#A79D8C" stroke-width="3" stroke-linecap="round"/>
-                <text class="label" x="304" y="102" font-size="12" fill="#6B6358">Priest</text>
-                <text class="label" x="304" y="114" font-size="12" fill="#6B6358">Levite</text>
+                <text class="label" x="302" y="99.5" font-size="13" fill="#6B6358">Priest</text>
+                <text class="label" x="302" y="115" font-size="13" fill="#6B6358">Levite</text>
             </g>
 
             <!-- the one who crossed over -->
@@ -136,12 +138,13 @@
             <!-- your crossing -->
             <g id="cross" class="fade" opacity="0">
                 <path id="p4" class="draw" d="M 244 150 C 268 150 284 122 296 82" fill="none" stroke="#1D6B3F" stroke-width="4" stroke-linecap="round"/>
-                <circle cx="304" cy="44" r="7" fill="#1D6B3F"/>
-                <rect x="297" y="53" width="14" height="22" rx="6" fill="#1D6B3F"/>
-                <text class="label" x="304" y="24" font-size="13" fill="#1D6B3F" text-anchor="middle">Your neighbor</text>
+                <circle cx="304" cy="55" r="7" fill="#1D6B3F"/>
+                <rect x="297" y="64" width="14" height="18" rx="6" fill="#1D6B3F"/>
+                <text class="label" x="289" y="70" font-size="13" fill="#1D6B3F" text-anchor="end">Your neighbor</text>
+            </g>
             </g>
 
-            <text id="phrase" x="160" y="50" text-anchor="middle" class="phrase"></text>
+            <text id="phrase" x="180" y="30" text-anchor="middle" class="phrase"></text>
         </svg>
     </div>
     <div id="card-area" aria-live="polite"></div>
@@ -221,7 +224,7 @@
         el('cross').setAttribute('opacity', cross ? '1' : '0');
         setPath('p4', cross, GREEN, 'arrow-green');
 
-        var ph = el('phrase'); ph.textContent = s ? s.phrase : ''; ph.setAttribute('fill', s && s.phrase === 'Who is my neighbor?' ? '#6B6358' : (s ? s.color : GREEN));
+        var ph = el('phrase'); ph.textContent = s ? s.phrase : ''; ph.setAttribute('x', s && s.cross ? '116' : '180'); ph.setAttribute('fill', s && s.phrase === 'Who is my neighbor?' ? '#6B6358' : (s ? s.color : GREEN));
         el('road').style.opacity = faded ? '0.55' : '1';
         el('road-desc').textContent = s ? s.desc : 'A road from Jerusalem to Jericho with a wounded man lying at the edge.';
     }
