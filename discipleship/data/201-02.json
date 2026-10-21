@@ -5,11 +5,7 @@
   "blocks": [
     {
       "type": "text",
-      "text": "Identity is one of the most pressing questions every person faces. Who am I? Most people answer with their skills, accomplishments, or what other people think about them. All of those answers can change tomorrow, but the gospel gives you one that never will. Your identity in Jesus is a gift, not earned by what you do but received by faith in what Jesus has already done."
-    },
-    {
-      "type": "text",
-      "text": "Jesus told a story about a son who walked away from his father, wasted everything he had, and came back hoping to be treated like a servant. When the son came home, the father called for the best robe and put it on him. Identity in Jesus means God does not only forgive the road you walked. He covers you with the life of His Son and calls you His own."
+      "text": "In the last lesson, you watched the Father run down the road to welcome His son home. This lesson looks at what He did next, and what it says about who you are. Who am I? Most people answer with their skills, accomplishments, or what other people think about them. All of those answers can change tomorrow, but the gospel gives you one that never will. Your identity in Jesus is a gift, not earned by what you do but received by faith in what Jesus has already done."
     },
     {
       "type": "image",
@@ -59,12 +55,6 @@
       "text": "Then He went to the cross in your place. By faith, His perfect life is counted as yours, and your sin is counted to Him. The robe of righteousness is not you doing your best. It is Christ's own life covering you."
     },
     {
-      "type": "question",
-      "id": "201-02-2",
-      "text": "2.2 - Where are you tempted to build your identity out of your own effort instead of resting in Christ?",
-      "height": "tall"
-    },
-    {
       "type": "heading",
       "text": "The Great Exchange"
     },
@@ -89,6 +79,12 @@
       "type": "widget",
       "src": "widgets/great-exchange3.html",
       "height": "560px"
+    },
+    {
+      "type": "question",
+      "id": "201-02-4",
+      "text": "2.2 - Explain the Great Exchange in your own words, as if you were telling a friend what happened at the cross.",
+      "height": "tall"
     },
     {
       "type": "heading",
@@ -144,7 +140,7 @@
     },
     {
       "type": "text",
-      "text": "Each morning this week, before the day gets loud, say this line out loud and sit with it for one minute: <em>I stand before God wearing Christ.</em> Then ask one honest question: where am I tempted to live today as if my own effort is still my identity?"
+      "text": "Find a card or a sticky note. On one side, write two or three old labels you are tempted to wear: a failure you replay, a success you lean on, or a name someone gave you. On the other side, write: <em>I have put on Christ (Galatians 3:27).</em> Keep the card where you get dressed. Each time you put on your clothes this week, turn it over and let the second side have the last word. The old labels may be real history, but they are not your identity. The robe is."
     },
     {
       "type": "text",
@@ -156,7 +152,11 @@
     },
     {
       "type": "text",
-      "text": "God does not leave you standing in the clothes of your old life. In Jesus, you have put on Christ: His perfect life covers you, your old self has been crucified with Him, and His life now lives in you. The robe of righteousness frees you from earning status with God and sends you into the week as a loved child. In the next lesson, you will meet the Spirit who makes this new life real in your daily walk."
+      "text": "God does not leave you standing in the clothes of your old life. In Jesus, you have put on Christ: His perfect life covers you, your old self has been crucified with Him, and His life now lives in you. The robe of righteousness frees you from earning status with God and sends you into the week as a loved child."
+    },
+    {
+      "type": "text",
+      "text": "In the next lesson, you will meet the Spirit who makes this new life real in your daily walk."
     },
     {
       "type": "heading",
