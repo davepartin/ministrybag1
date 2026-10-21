@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One Another</title>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Georgia', 'Cambria', serif;
+            background: #F8F6F1;
+            color: #2C2416;
+            -webkit-font-smoothing: antialiased;
+            padding: 0;
+            margin: 0;
+        }
+
+        .widget-outer {
+            background: #FFFFFF;
+            border-radius: 0;
+            overflow: hidden;
+            box-shadow: none;
+            border: none;
+            max-width: 100%;
+            width: 100%;
+            margin: 0;
+            position: relative;
+        }
+
+        @media (min-width: 560px) {
+            body { padding: 16px; background: #F8F6F1; }
+            .widget-outer {
+                border-radius: 12px;
+                box-shadow: 0 6px 20px rgba(44, 36, 22, 0.08);
+                border: 1px solid #EBE5D9;
+                max-width: 460px;
+                margin: 0 auto;
+            }
+        }
+
+        button { -webkit-tap-highlight-color: transparent; font-family: 'Trebuchet MS', sans-serif; }
+        button:focus-visible { outline: 3px solid #2C2416; outline-offset: 2px; }
+
+        .title-bar { background: #1D6B3F; padding: 10px 16px; text-align: center; }
+        .title-bar h1 {
+            font-size: 19px; font-weight: 700; color: #FFFFFF; margin: 0; line-height: 1.2;
+            font-family: 'Trebuchet MS', 'Inter', sans-serif;
+        }
+
+        .anchor { padding: 12px 18px 4px; text-align: center; }
+        .anchor-quote { font-size: 16px; font-style: italic; line-height: 1.35; color: #155030; }
+        .anchor-ref { font-family: 'Trebuchet MS', sans-serif; font-size: 13px; color: #6B6358; margin-top: 2px; }
+        .hint { font-family: 'Trebuchet MS', sans-serif; font-size: 13px; color: #6B6358; text-align: center; padding: 6px 12px 0; }
+
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 8px 12px 12px; }
+        .ocard {
+            position: relative; display: flex; flex-direction: column; align-items: flex-start; justify-content: center;
+            min-height: 52px; padding: 8px 12px; text-align: left; cursor: pointer;
+            background: #F6F4EE; border: 1.5px solid #E3DCCC; border-radius: 10px; color: #2C2416;
+        }
+        .ocard-name { font-size: 15px; font-weight: 700; line-height: 1.2; }
+        .ocard-ref { font-size: 12px; color: #6B6358; margin-top: 2px; }
+        .ocard.selected { background: #E3EFE6; border-color: #1D6B3F; }
+        .ocard.selected .ocard-name { color: #155030; }
+        .ocard.picked { background: #F6EEDB; border-color: #B8892B; }
+        .ocard.picked .ocard-name { color: #8A6418; }
+        .ocard .star { position: absolute; top: 6px; right: 9px; font-size: 15px; color: #B8892B; }
+
+        #card-area { background-color: #F6F4EE; border-top: 1px solid #EBE5D9; padding: 8px 0 12px; }
+        .verse-card-wrapper { margin: 0 auto; padding: 0 12px; max-width: 460px; }
+        .verse-card { background: #FFFFFF; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 14px rgba(44,36,22,0.06); }
+        .verse-card-bar { height: 4px; }
+        .verse-card-content { padding: 10px 16px; min-height: var(--card-h, 150px); display: flex; flex-direction: column; justify-content: flex-start; }
+        .card-title { font-family: 'Trebuchet MS', sans-serif; font-size: 16px; font-weight: 700; line-height: 1.3; margin-bottom: 4px; }
+        .card-verse { font-size: 15px; font-style: italic; line-height: 1.4; color: #3D3426; }
+        .card-ref { font-family: 'Trebuchet MS', sans-serif; font-size: 13px; color: #6B6358; margin-top: 2px; }
+        .card-line { font-size: 15px; line-height: 1.4; color: #3D3426; margin-top: 8px; }
+        .card-line b { font-family: 'Trebuchet MS', sans-serif; font-size: 13px; letter-spacing: 0.02em; text-transform: uppercase; }
+        .card-empty { font-size: 15px; line-height: 1.4; color: #3D3426; }
+
+        .nav-bar { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; padding: 0 2px; gap: 8px; }
+        .nav-btn {
+            background: transparent; border: 1.5px solid #D4CFC4; border-radius: 10px;
+            padding: 10px 16px; min-height: 44px; font-size: 14px; color: #5A4E3C; cursor: pointer; font-weight: 600;
+        }
+        .nav-bar .nav-btn { min-width: 112px; text-align: center; }
+        .nav-bar .nav-btn.right { min-width: 128px; }
+        .nav-btn.gold { cursor: default; }
+        .nav-btn.primary { color: #FFFFFF; border: none; background: #1D6B3F; }
+        .nav-btn.gold { color: #FFFFFF; border: none; background: #B8892B; }
+        .nav-btn[disabled] { opacity: 0.35; cursor: default; }
+        .pick-status { font-family: 'Trebuchet MS', sans-serif; font-size: 13px; color: #6B6358; text-align: center; flex: 1; }
+
+        #measure { position: absolute; left: 0; top: 0; visibility: hidden; pointer-events: none; }
+        .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+    </style>
+</head>
+<body>
+<div class="widget-outer">
+    <div class="title-bar"><h1>One Another</h1></div>
+    <div class="anchor">
+        <p class="anchor-quote">“Just as I have loved you, you also are to love one another.”</p>
+        <p class="anchor-ref">John 13:34</p>
+    </div>
+    <p class="hint">Tap a card to read it. Then pick one for this week.</p>
+    <div class="grid" id="grid" role="group" aria-label="One another commands"></div>
+    <div id="card-area" aria-live="polite"></div>
+    <p class="sr-only" id="status" aria-live="polite"></p>
+</div>
+<script>
+    var GREEN = '#1D6B3F', GOLD = '#B8892B';
+    var cards = [
+        { name: 'Welcome', title: 'Welcome one another', verse: '“welcome one another as Christ has welcomed you”', ref: 'Romans 15:7',
+          first: 'Christ welcomed you when you were far off.', tryit: 'Sit by someone new on Sunday and learn their name.' },
+        { name: 'Carry burdens', title: 'Bear one another’s burdens', verse: '“Bear one another’s burdens, and so fulfill the law of Christ.”', ref: 'Galatians 6:2',
+          first: 'Jesus carried your heaviest burden, your sin.', tryit: 'Ask someone what is heavy right now, and help carry it.' },
+        { name: 'Forgive', title: 'Forgive one another', verse: '“forgiving one another, as God in Christ forgave you”', ref: 'Ephesians 4:32',
+          first: 'God in Christ forgave you everything.', tryit: 'Let go of one grudge, or ask forgiveness for one thing.' },
+        { name: 'Encourage', title: 'Encourage one another', verse: '“encourage one another and build one another up”', ref: '1 Thessalonians 5:11',
+          first: 'Jesus speaks courage over you in His Word.', tryit: 'Send one specific note of thanks or encouragement.' },
+        { name: 'Pray for', title: 'Pray for one another', verse: '“pray for one another, that you may be healed”', ref: 'James 5:16',
+          first: 'Jesus is praying for you right now (Romans 8:34).', tryit: 'Ask how to pray for someone, then pray with them.' },
+        { name: 'Serve', title: 'Serve one another', verse: '“through love serve one another”', ref: 'Galatians 5:13',
+          first: 'Jesus came not to be served but to serve (Mark 10:45).', tryit: 'Do one quiet act of service no one asked for.' },
+        { name: 'Open your home', title: 'Show hospitality', verse: '“Show hospitality to one another without grumbling.”', ref: '1 Peter 4:9',
+          first: 'Jesus is preparing a place for you (John 14:2).', tryit: 'Invite someone from church for a meal or coffee.' },
+        { name: 'Honor', title: 'Honor one another', verse: '“Outdo one another in showing honor.”', ref: 'Romans 12:10',
+          first: 'Jesus calls you His friend (John 15:15).', tryit: 'Tell someone what you see God doing in them.' }
+    ];
+    var selected = -1, picked = -1, pendingFocus = null;
+    function el(id) { return document.getElementById(id); }
+
+    function buildGrid() {
+        var g = el('grid');
+        cards.forEach(function (c, i) {
+            var b = document.createElement('button');
+            b.type = 'button'; b.className = 'ocard'; b.setAttribute('data-card', i);
+            var n = document.createElement('span'); n.className = 'ocard-name'; n.textContent = c.name; b.appendChild(n);
+            var r = document.createElement('span'); r.className = 'ocard-ref'; r.textContent = c.ref; b.appendChild(r);
+            b.addEventListener('click', function () { selected = i; render(); });
+            g.appendChild(b);
+        });
+    }
+    function paintGrid() {
+        document.querySelectorAll('.ocard').forEach(function (b, i) {
+            b.classList.toggle('selected', i === selected && i !== picked);
+            b.classList.toggle('picked', i === picked);
+            b.setAttribute('aria-pressed', i === selected ? 'true' : 'false');
+            var star = b.querySelector('.star');
+            if (i === picked && !star) { star = document.createElement('span'); star.className = 'star'; star.setAttribute('aria-hidden', 'true'); star.textContent = '★'; b.appendChild(star); }
+            if (i !== picked && star) b.removeChild(star);
+            b.setAttribute('aria-label', cards[i].title + ', ' + cards[i].ref + (i === picked ? ', picked for this week' : ''));
+        });
+    }
+    function line(label, text, color) {
+        var p = document.createElement('p'); p.className = 'card-line';
+        var b = document.createElement('b'); b.textContent = label + ' '; b.style.color = color; p.appendChild(b);
+        p.appendChild(document.createTextNode(text)); return p;
+    }
+    function buildCard(i) {
+        var isPicked = i === picked;
+        var color = isPicked ? GOLD : GREEN;
+        var vc = document.createElement('div'); vc.className = 'verse-card';
+        var bar = document.createElement('div'); bar.className = 'verse-card-bar'; bar.style.background = color; vc.appendChild(bar);
+        var c = document.createElement('div'); c.className = 'verse-card-content';
+        if (i === -1) {
+            var t0 = document.createElement('p'); t0.className = 'card-title'; t0.style.color = GREEN; t0.textContent = 'Family love has a shape.'; c.appendChild(t0);
+            var e = document.createElement('p'); e.className = 'card-empty';
+            e.textContent = 'The New Testament says “one another” again and again. Each card shows how Jesus loved you first, and one simple way to pass that love on.';
+            c.appendChild(e);
+        } else {
+            var s = cards[i];
+            var t = document.createElement('p'); t.className = 'card-title'; t.style.color = color; t.textContent = (isPicked ? '★ ' : '') + s.title; c.appendChild(t);
+            var v = document.createElement('p'); v.className = 'card-verse'; v.textContent = s.verse; c.appendChild(v);
+            var r = document.createElement('p'); r.className = 'card-ref'; r.textContent = s.ref; c.appendChild(r);
+            c.appendChild(line('Jesus first:', s.first, GOLD));
+            c.appendChild(line('Try this:', s.tryit, GREEN));
+        }
+        vc.appendChild(c); return vc;
+    }
+    function fitCards() {
+        var area = el('card-area'), m = document.createElement('div'), max = 0, keep = picked;
+        m.id = 'measure'; m.style.width = area.clientWidth + 'px';
+        document.documentElement.style.setProperty('--card-h', '0px');
+        for (var i = -1; i < cards.length; i++) {
+            picked = i; // measure the longest (starred) title too
+            var w = document.createElement('div'); w.className = 'verse-card-wrapper'; w.appendChild(buildCard(i)); m.appendChild(w);
+        }
+        picked = keep;
+        document.body.appendChild(m);
+        m.querySelectorAll('.verse-card-content').forEach(function (c) { max = Math.max(max, c.offsetHeight); });
+        document.body.removeChild(m);
+        document.documentElement.style.setProperty('--card-h', Math.max(max, 150) + 'px');
+    }
+    function button(label, control, cls, onClick, disabled) {
+        var b = document.createElement('button'); b.type = 'button'; b.className = cls; b.setAttribute('data-control', control);
+        b.textContent = label; b.disabled = !!disabled; b.addEventListener('click', onClick); return b;
+    }
+    function applyFocus() { if (!pendingFocus) return; var t = document.querySelector('[data-control="' + pendingFocus + '"]'); pendingFocus = null; if (t) t.focus(); }
+    function render() {
+        paintGrid();
+        var area = el('card-area'); area.innerHTML = '';
+        var wrapper = document.createElement('div'); wrapper.className = 'verse-card-wrapper';
+        wrapper.appendChild(buildCard(selected));
+        var nav = document.createElement('div'); nav.className = 'nav-bar';
+        var status = document.createElement('span'); status.className = 'pick-status';
+        status.textContent = picked === -1 ? 'Nothing picked yet' : 'This week: ' + cards[picked].name;
+        if (selected !== -1 && selected === picked) {
+            nav.appendChild(button('Clear pick', 'clear', 'nav-btn', function () { picked = -1; pendingFocus = 'pick'; render(); }));
+            nav.appendChild(status);
+            var pb = button('★ Picked', 'picked', 'nav-btn gold right', function () {}); pb.setAttribute('aria-disabled', 'true'); nav.appendChild(pb);
+        } else {
+            nav.appendChild(button('Clear pick', 'clear', 'nav-btn', function () { picked = -1; pendingFocus = 'pick'; render(); }, picked === -1));
+            nav.appendChild(status);
+            nav.appendChild(button('Pick this one', 'pick', 'nav-btn primary right', function () { picked = selected; pendingFocus = 'clear'; render(); }, selected === -1));
+        }
+        wrapper.appendChild(nav); area.appendChild(wrapper);
+        el('status').textContent = selected === -1 ? '' : (cards[selected].title + (selected === picked ? '. Picked for this week.' : ''));
+        applyFocus();
+    }
+    buildGrid(); fitCards(); render();
+    var rt = null, lastWidth = window.innerWidth;
+    // Refit only when the width changes, so the host page's height measurement cannot start a loop.
+    window.addEventListener('resize', function () {
+        if (window.innerWidth === lastWidth) return;
+        lastWidth = window.innerWidth;
+        clearTimeout(rt); rt = setTimeout(fitCards, 150);
+    });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitCards);
+</script>
+</body>
+</html>

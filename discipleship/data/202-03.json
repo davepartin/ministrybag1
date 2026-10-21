@@ -1,39 +1,43 @@
 {
   "id": "3",
   "title": "Lesson 3: Loving Your Church Family",
-  "description": "God did not save you to follow Jesus alone. He placed you in a spiritual family where you are developed, cared for, corrected, encouraged, equipped for ministry, and sent on mission with others.",
+  "description": "God did not save you to follow Jesus alone. Through the early church in Acts 2, you will see that mercy makes you part of a family, and that family life is lived out in the New Testament one anothers.",
   "blocks": [
     {
       "type": "text",
-      "text": "Lessons 1 and 2 moved outward through two connected homes: your neighbors next door and your family under your roof. Now we come to another home God gives His people: the local church. This lesson is about why belonging to a spiritual family is not optional for a growing disciple of Jesus."
+      "text": "Lesson 1 turned your love toward the neighbor in your path, and Lesson 2 brought it home to the people under your roof. Now we come to the family God gives every believer: the local church."
     },
     {
       "type": "parable",
-      "title": "Jonathan in the Wilderness",
-      "text": "David had been anointed as Israel's future king, but that did not make his life easy. Saul hunted him. Obedience became costly. The wilderness was lonely, dangerous, and confusing.<br><br>Jonathan could have treated David as a rival, but he became a brother. He warned David when danger was coming. He protected him when Saul wanted to kill him. He reminded David of God's promise when fear could have taken over. Jonathan did not just wish David well from a distance. He stood with him when faithfulness was hard.<br><br>Before the New Testament church had a name, Jonathan was already showing us something the church is meant to be. God often keeps His people faithful through faith-filled family. We need people who warn us, speak truth, stand with us, and point us back to God."
+      "title": "The Early Church",
+      "text": "On the day of Pentecost, Jerusalem was crowded with pilgrims from every nation under heaven. Seven weeks earlier, Jesus' followers had scattered in fear on the night He was arrested. Now the Holy Spirit came upon them, and Peter stood up and preached Jesus, crucified and risen. About three thousand people were cut to the heart, repented, and were baptized that day.<br><br>That morning most of them had been strangers. They spoke different languages and came from different places. What happened next is the first picture we have of the church.<br><br><em>\"And they devoted themselves to the apostles' teaching and the fellowship, to the breaking of bread and the prayers... And all who believed were together and had all things in common. And they were selling their possessions and belongings and distributing the proceeds to all, as any had need. And day by day, attending the temple together and breaking bread in their homes, they received their food with glad and generous hearts, praising God and having favor with all the people. And the Lord added to their number day by day those who were being saved.\"</em> (Acts 2:42-47)"
+    },
+    {
+      "type": "text",
+      "text": "They did not become a family because they liked each other or had a lot in common. They became a family because they had all received the same mercy from the same Lord. Strangers shared tables. Needs were met before anyone had to beg. And the people watching from outside could see that something had happened to them."
     },
     {
       "type": "question",
-      "id": "202-03-1",
-      "text": "3.1 - Who has God used to warn, encourage, or strengthen you in your faith? Where are you tempted to try to follow Jesus alone?",
+      "id": "202-03-4",
+      "text": "3.1 - When you read Acts 2, what part of church life do you most want more of right now: teaching, prayer, meals, generosity, worship, or mission together?",
       "height": "tall"
     },
     {
       "type": "heading",
-      "text": "The Church Is a Family, Not a Service"
+      "text": "Once Not a People, Now God's People"
     },
     {
       "type": "text",
-      "text": "The church is not mainly a building, a Sunday event, a religious business, or a machine run by paid staff. The church is the adopted family of God. It is a people called together by Jesus, gathered around the gospel, and sent into the world with His love."
+      "text": "Peter, the same man who preached that day, later wrote these words to scattered believers who were often treated as outsiders."
     },
     {
       "type": "verse",
-      "reference": "Ephesians 2:19-22",
-      "text": "So then you are no longer strangers and aliens, but you are fellow citizens with the saints and members of the household of God... In him you also are being built together into a dwelling place for God by the Spirit."
+      "reference": "1 Peter 2:9-10",
+      "text": "But you are a chosen race, a royal priesthood, a holy nation, a people for his own possession, that you may proclaim the excellencies of him who called you out of darkness into his marvelous light. Once you were not a people, but now you are God's people; once you had not received mercy, but now you have received mercy."
     },
     {
       "type": "text",
-      "text": "In Christ, you are no longer a stranger looking in from the outside. You are a member of God's household. The local church is where that spiritual reality becomes visible and concrete. You are known, cared for, challenged, and given a real place in the family."
+      "text": "Notice the movement. Once not a people, now God's people. Once without mercy, now full of it. The church is not mainly a building, a Sunday event, or a machine run by paid staff. It is the adopted family of God, called together by Jesus, gathered around the gospel, and sent into the world with His love. You do not join it to earn a place. Mercy gave you a place, and the local church is where that place becomes real: you are known, cared for, challenged, and given work to do."
     },
     {
       "type": "question",
@@ -43,48 +47,35 @@
     },
     {
       "type": "heading",
-      "text": "One Body, Many Members"
+      "text": "Love One Another"
+    },
+    {
+      "type": "text",
+      "text": "On His last night with His disciples, Jesus gave His family one command that holds the rest together."
     },
     {
       "type": "verse",
-      "reference": "1 Corinthians 12:12-13",
-      "text": "For just as the body is one and has many members, and all the members of the body, though many, are one body, so it is with Christ. For in one Spirit we were all baptized into one body."
+      "reference": "John 13:34-35",
+      "text": "A new commandment I give to you, that you love one another: just as I have loved you, you also are to love one another. By this all people will know that you are my disciples, if you have love for one another."
     },
     {
       "type": "text",
-      "text": "Paul's picture is physical on purpose. A body is not a crowd of disconnected parts sitting in the same room. The eye needs the hand. The head needs the feet. The weak parts receive honor and care. When one member suffers, all suffer together. When one member is honored, all rejoice together."
+      "text": "Notice the order: <em>just as I have loved you.</em> Jesus loves first, and His love becomes the pattern. The New Testament spells out what that looks like with a little phrase it repeats again and again: <em>one another.</em> These are not jobs for professionals. They are the ordinary life of the family. Tap the cards below and pick one to practice this week."
+    },
+    {
+      "type": "widget",
+      "src": "widgets/one-another.html",
+      "title": "One Another",
+      "height": "620px"
     },
     {
       "type": "text",
-      "text": "That means the church is not a restaurant where professionals serve and everyone else consumes. It is more like a family potluck. Everyone brings what they have, everyone receives from others, and the whole table is stronger because the Spirit is working through ordinary people."
+      "text": "When believers forgive, carry burdens, and cross normal social lines, the world sees something of Jesus. Paul also pictures the church as a body where every part needs the others (1 Corinthians 12). In the next lesson you will discover the gifts Jesus gives each member to build that body up."
     },
     {
       "type": "question",
-      "id": "202-03-3",
-      "text": "3.3 - In Paul's body picture, what body part do you feel like right now and why? Do you feel visible like an eye, useful like a hand, unnoticed like a foot, weak and needing care, or disconnected from the rest of the body?",
-      "height": "tall"
-    },
-    {
-      "type": "heading",
-      "text": "What the Early Church Looked Like"
-    },
-    {
-      "type": "verse",
-      "reference": "Acts 2:42-47",
-      "text": "And they devoted themselves to the apostles' teaching and the fellowship, to the breaking of bread and the prayers... And all who believed were together and had all things in common... And day by day, attending the temple together and breaking bread in their homes, they received their food with glad and generous hearts, praising God and having favor with all the people. And the Lord added to their number day by day those who were being saved."
-    },
-    {
-      "type": "text",
-      "text": "Acts 2 shows a church that loved God and their neighbors together. They gathered around teaching and prayer. They shared meals and needs. They remembered who God is and what He had done. They opened their lives to one another, and the Lord used their shared life as a witness to the world."
-    },
-    {
-      "type": "text",
-      "text": "That is what a healthy church is meant to do. We learn to be God's satisfied children together. We bless others where we live, work, and play together. We belong as a welcoming spiritual family together. The big story of God is experienced together."
-    },
-    {
-      "type": "question",
-      "id": "202-03-4",
-      "text": "3.4 - When you read Acts 2, what part of church life do you most want more of right now: teaching, prayer, meals, generosity, shared needs, joy, worship, or mission together?",
+      "id": "202-03-1",
+      "text": "3.3 - Where are you most tempted to try to follow Jesus alone, without the help of His family?",
       "height": "tall"
     },
     {
@@ -97,7 +88,7 @@
     },
     {
       "type": "text",
-      "text": "That is why church membership matters. It gives assurance that your faith is not private and self-made. It gives you a base from which to care for others. It gives others a clear way to care for you. It helps leaders know whom they are responsible to shepherd. It strengthens our witness to unbelievers. And it helps us persevere when sin, suffering, or weariness make us want to drift."
+      "text": "That is why church membership matters. It shows that your faith is not private and self-made. It gives you a family to care for and a family to care for you. It helps leaders know whom they are responsible to shepherd, and it helps you persevere when sin, suffering, or weariness make you want to drift."
     },
     {
       "type": "verse",
@@ -105,14 +96,18 @@
       "text": "And let us consider how to stir up one another to love and good works, not neglecting to meet together... but encouraging one another, and all the more as you see the Day drawing near."
     },
     {
-      "type": "text",
-      "text": "A good church covenant is a promise to live as family on purpose. We regularly meet together, serve, encourage, warn, forgive, comfort, and suffer with one another. We include others through hospitality and generosity so they can see that they are welcome in God's family."
-    },
-    {
       "type": "question",
       "id": "202-03-5",
-      "text": "3.5 - Which part of a committed church family do you most need right now: care, correction, encouragement, accountability, a place to serve, mission with others, or help persevering?",
+      "text": "3.4 - Which part of a committed church family do you most need right now: care, correction, encouragement, accountability, a place to serve, or help persevering?",
       "height": "tall"
+    },
+    {
+      "type": "heading",
+      "text": "When Family Disagrees"
+    },
+    {
+      "type": "text",
+      "text": "Every family has conflict, and church families do too. Jesus gave a simple first step: <em>\"If your brother sins against you, go and tell him his fault, between you and him alone. If he listens to you, you have gained your brother\"</em> (Matthew 18:15). Go to the person, not around them. Go to win them back, not to win the argument. And go with a soft heart, remembering how much you have been forgiven: <em>\"Be kind to one another, tenderhearted, forgiving one another, as God in Christ forgave you\"</em> (Ephesians 4:32)."
     },
     {
       "type": "heading",
@@ -124,30 +119,11 @@
     },
     {
       "type": "heading",
-      "text": "Belonging That Blesses the World"
-    },
-    {
-      "type": "verse",
-      "reference": "John 13:34-35",
-      "text": "A new commandment I give to you, that you love one another: just as I have loved you, you also are to love one another. By this all people will know that you are my disciples, if you have love for one another."
-    },
-    {
-      "type": "text",
-      "text": "The church is a display of God's love. When believers forgive, carry burdens, cross normal social lines, and stay faithful through hard seasons, the world sees something of Jesus. We do not belong to a church only for our own care. We belong so we can love God and our neighbors together."
-    },
-    {
-      "type": "question",
-      "id": "202-03-6",
-      "text": "3.6 - What is one concrete step you could take in the next 30 days to connect more rightly to a local church or spiritual family?",
-      "height": "tall"
-    },
-    {
-      "type": "heading",
       "text": "This Week's Practice"
     },
     {
       "type": "text",
-      "text": "Choose one step toward belonging this week. Attend a Sunday gathering and introduce yourself to someone. Ask about a neighborhood group, discipleship group, ministry team, or membership class. Text someone from church and ask how you can pray for them. If church has been painful for you, talk with a mature Christian or trusted leader about what a wise next step could be."
+      "text": "Practice the one another you picked with one real person this week. Then choose one step toward belonging. Attend a Sunday gathering and introduce yourself to someone. Ask about a small group, ministry team, or membership class. Text someone from church and ask how you can pray for them. If church has been painful for you, talk with a mature Christian or trusted leader about a wise next step."
     },
     {
       "type": "heading",
@@ -155,7 +131,11 @@
     },
     {
       "type": "text",
-      "text": "The church is not a machine, a restaurant, or a weekly event. It is the adopted family of God, the body of Christ, and a local people joined together by the gospel. In this family you are developed, cared for, corrected, encouraged, equipped, and sent. In the next lesson, you will look more closely at the gifts Jesus gives His people so each member can build up the body."
+      "text": "The church is not a machine, a restaurant, or a weekly event. It is the family of God, made of people who were once not a people and once had not received mercy. Like the early church in Acts 2, we devote ourselves to God's Word, to prayer, to shared tables, and to one another. <strong>God has made you part of His family, so love one another the way Jesus has loved you.</strong>"
+    },
+    {
+      "type": "text",
+      "text": "In the next lesson, you will look more closely at the gifts Jesus gives His people so each member can build up the body."
     },
     {
       "type": "heading",
