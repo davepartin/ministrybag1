@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Worship Is...</title>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Georgia', 'Cambria', serif; background: #F8F6F1; color: #2C2416; -webkit-font-smoothing: antialiased; padding: 0; margin: 0; }
+        .widget-outer { background: #FFFFFF; border-radius: 0; overflow: hidden; box-shadow: none; border: none; max-width: 100%; width: 100%; margin: 0; position: relative; }
+        @media (min-width: 560px) {
+            body { padding: 16px; background: #F8F6F1; }
+            .widget-outer { border-radius: 12px; box-shadow: 0 6px 20px rgba(44, 36, 22, 0.08); border: 1px solid #EBE5D9; max-width: 460px; margin: 0 auto; }
+        }
+        button { -webkit-tap-highlight-color: transparent; font-family: 'Trebuchet MS', sans-serif; }
+        button:focus-visible { outline: 3px solid #2C2416; outline-offset: 2px; }
+        .title-bar { background: #1D6B3F; padding: 10px 16px; text-align: center; }
+        .title-bar h1 { font-size: 19px; font-weight: 700; color: #FFFFFF; margin: 0; line-height: 1.2; font-family: 'Trebuchet MS', 'Inter', sans-serif; }
+        .diagram-wrapper { background: #23304A; }
+        svg#scene { display: block; width: 100%; height: auto; }
+        .lbl { font-family: 'Trebuchet MS', sans-serif; font-weight: 700; }
+        #sun-glow, #beam-down, #beam-up, #notes, #heart, #cross, .tag { transition: opacity 0.5s ease; }
+        @media (prefers-reduced-motion: reduce) { #sun-glow, #beam-down, #beam-up, #notes, #heart, #cross, .tag { transition: none; } }
+
+        .phrase { padding: 10px 14px 8px; text-align: center; font-size: 16px; line-height: 1.45; color: #8C877C; border-top: 1px solid #EBE5D9; }
+        .phrase span { transition: color 0.4s ease, background-color 0.4s ease; border-radius: 3px; }
+        .phrase span.on, .phrase.all { color: #2C2416; }
+        .phrase span.now { color: #FFFFFF; background: #B8892B; box-shadow: 0 0 0 2px #B8892B; }
+
+        #card-area { background-color: #F6F4EE; border-top: 1px solid #EBE5D9; padding-top: 8px; }
+        .verse-card-wrapper { margin: 0 auto; padding: 0 12px 10px; max-width: 460px; }
+        .verse-card { background: #FFFFFF; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 14px rgba(44,36,22,0.06); }
+        .verse-card-bar { height: 4px; }
+        .verse-card-content { padding: 10px 16px; min-height: var(--card-h, 112px); }
+        .card-title { font-family: 'Trebuchet MS', sans-serif; font-size: 16px; font-weight: 700; line-height: 1.3; margin-bottom: 4px; }
+        .card-text { font-size: 15px; line-height: 1.4; color: #3D3426; }
+        .card-ref { font-family: 'Trebuchet MS', sans-serif; font-size: 13px; color: #6B6358; margin-top: 6px; }
+        .nav-bar { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; padding: 0 2px; gap: 8px; }
+        .nav-btn { background: transparent; border: 1.5px solid #D4CFC4; border-radius: 10px; padding: 10px 12px; min-height: 44px; min-width: 112px; text-align: center; font-size: 14px; color: #5A4E3C; cursor: pointer; font-weight: 600; }
+        .nav-btn.primary { color: #FFFFFF; border: none; background: #1D6B3F; }
+        .step-count { font-family: 'Trebuchet MS', sans-serif; font-size: 13px; color: #6B6358; }
+        .begin-wrapper { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 10px 16px 16px; }
+        .begin-text { font-size: 16px; line-height: 1.4; text-align: center; color: #3D3426; max-width: 340px; }
+        .begin-btn { background: #1D6B3F; color: #FFFFFF; border: none; border-radius: 10px; padding: 12px 28px; min-height: 44px; font-size: 16px; font-weight: 700; cursor: pointer; }
+        #measure { position: absolute; left: 0; top: 0; visibility: hidden; pointer-events: none; }
+        .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+    </style>
+</head>
+<body>
+<div class="widget-outer">
+    <div class="title-bar"><h1>Worship Is...</h1></div>
+    <div class="diagram-wrapper">
+        <svg id="scene" viewBox="0 0 360 230" role="img" aria-labelledby="scene-desc">
+            <desc id="scene-desc">A night sky. God's worth shines like the sun at the top. A person stands below.</desc>
+            <!-- night stars -->
+            <g fill="#FFFFFF" opacity="0.55">
+                <circle cx="30" cy="30" r="1.4"/><circle cx="70" cy="70" r="1.1"/><circle cx="300" cy="24" r="1.3"/>
+                <circle cx="330" cy="90" r="1.1"/><circle cx="24" cy="130" r="1.2"/><circle cx="96" cy="18" r="1"/>
+                <circle cx="268" cy="140" r="1.2"/><circle cx="340" cy="160" r="1"/>
+            </g>
+            <!-- God's worth -->
+            <g id="sun-glow" opacity="0.35">
+                <circle cx="180" cy="46" r="44" fill="#F3D98B" opacity="0.25"/>
+                <circle cx="180" cy="46" r="31" fill="#F3D98B" opacity="0.45"/>
+            </g>
+            <circle cx="180" cy="46" r="21" fill="#F3D98B"/>
+            <text class="lbl tag" id="tag-worth" x="214" y="38" font-size="14" fill="#F3D98B" opacity="0">His Worth</text>
+            <!-- radiance down to you, through Jesus -->
+            <line id="beam-down" x1="168" y1="70" x2="146" y2="160" stroke="#F3D98B" stroke-width="5" stroke-linecap="round" opacity="0"/>
+            <!-- reflected back to God -->
+            <line id="beam-up" x1="171" y1="160" x2="197" y2="68" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-dasharray="6 6" opacity="0"/>
+            <g id="cross" opacity="0">
+                <rect x="154" y="98" width="6" height="30" rx="1.5" fill="#E9C46A"/>
+                <rect x="146" y="105" width="22" height="6" rx="1.5" fill="#E9C46A"/>
+            </g>
+            <text class="lbl tag" id="tag-truth" x="137" y="118" font-size="14" fill="#F3D98B" text-anchor="end" opacity="0">Jesus, the Truth</text>
+            <!-- ground -->
+            <rect x="0" y="212" width="360" height="18" fill="#3A3226"/>
+            <!-- you, arms raised -->
+            <g id="person" transform="translate(158,212)">
+                <circle id="heart" cx="0" cy="-30" r="11" fill="#F3D98B" opacity="0"/>
+                <circle cx="0" cy="-48" r="7.5" fill="#F6F4EE"/>
+                <line x1="0" y1="-40" x2="0" y2="-18" stroke="#F6F4EE" stroke-width="5" stroke-linecap="round"/>
+                <line x1="0" y1="-36" x2="-11" y2="-52" stroke="#F6F4EE" stroke-width="4" stroke-linecap="round"/>
+                <line x1="0" y1="-36" x2="11" y2="-52" stroke="#F6F4EE" stroke-width="4" stroke-linecap="round"/>
+                <line x1="0" y1="-18" x2="-7" y2="0" stroke="#F6F4EE" stroke-width="5" stroke-linecap="round"/>
+                <line x1="0" y1="-18" x2="7" y2="0" stroke="#F6F4EE" stroke-width="5" stroke-linecap="round"/>
+            </g>
+            <text class="lbl" x="182" y="206" font-size="14" fill="#F6F4EE">You</text>
+            <text class="lbl tag" id="tag-spirit" x="122" y="186" font-size="14" fill="#F3D98B" text-anchor="end" opacity="0">The Spirit</text>
+            <!-- a song in the night -->
+            <g id="notes" opacity="0" fill="#F6F4EE" class="lbl">
+                <text x="196" y="150" font-size="20">&#9834;</text>
+                <text x="218" y="128" font-size="16">&#9835;</text>
+            </g>
+        </svg>
+    </div>
+    <p class="phrase" id="phrase" aria-hidden="true"><span id="w-gladly">Gladly</span> <span id="w-reflecting">reflecting back</span> to God <span id="w-worth">the radiance of His worth</span>, in <span id="w-spirit">spirit</span> and <span id="w-truth">truth</span>.</p>
+    <div id="card-area" aria-live="polite"></div>
+    <p class="sr-only" id="status" aria-live="polite"></p>
+</div>
+<script>
+    var GREEN = '#1D6B3F', GOLD = '#B8892B', NAVY = '#2E4A7A';
+    // Built in the order worship happens: God's worth shines first, then you reflect it.
+    var steps = [
+        { show: ['worth'], words: ['worth'], color: GOLD, title: 'The Radiance of His Worth',
+          text: 'Worship starts with God, not with you. His worth shines like the sun, whether anyone notices or not.',
+          ref: '“Worthy are you, our Lord and God, to receive glory and honor and power” (Revelation 4:11)',
+          desc: 'God’s worth shines at the top like the sun.' },
+        { show: ['worth', 'down', 'up'], words: ['worth', 'reflecting'], color: NAVY, title: 'Reflecting Back',
+          text: 'You are the mirror, not the sun. God shines His glory on you, and you give it back to Him.',
+          ref: '“beholding the glory of the Lord, are being transformed into the same image” (2 Corinthians 3:18)',
+          desc: 'Light comes down to the person, and a beam goes back up to God.' },
+        { show: ['worth', 'down', 'up', 'notes'], words: ['worth', 'reflecting', 'gladly'], color: GREEN, title: 'Gladly',
+          text: 'God is not after grudging duty. He wants worship that delights in Him, even at midnight.',
+          ref: '“About midnight Paul and Silas were praying and singing hymns to God” (Acts 16:25)',
+          desc: 'Music notes rise from the person as they sing.' },
+        { show: ['worth', 'down', 'up', 'notes', 'spirit'], words: ['worth', 'reflecting', 'gladly', 'spirit'], color: GREEN, title: 'In Spirit',
+          text: 'True worship comes from a heart the Holy Spirit has made alive, not from the right place or the right show.',
+          ref: '“who worship by the Spirit of God and glory in Christ Jesus” (Philippians 3:3)',
+          desc: 'A warm light glows in the person’s heart, labeled The Spirit.' },
+        { show: ['worth', 'down', 'up', 'notes', 'spirit', 'truth'], words: ['worth', 'reflecting', 'gladly', 'spirit', 'truth'], color: GOLD, title: 'In Truth',
+          text: 'True worship sees God as He really is. The Father’s light reaches you through Jesus, who is the truth.',
+          ref: '“I am the way, and the truth, and the life.” (John 14:6)',
+          desc: 'A cross appears on the beam of light between God and the person, labeled Jesus, the Truth.' },
+        { show: ['worth', 'down', 'up', 'notes', 'spirit', 'truth', 'glow'], words: ['worth', 'reflecting', 'gladly', 'spirit', 'truth'], all: true, color: GOLD, title: 'Worship Is...',
+          text: 'Gladly reflecting back to God the radiance of His worth. The Father is seeking people who worship Him like this.',
+          ref: '“the true worshipers will worship the Father in spirit and truth” (John 4:23)',
+          desc: 'Everything is lit: God’s worth, the light through Jesus, the Spirit in the heart, and the song going back up.' }
+    ];
+    var NOW = ['worth', 'reflecting', 'gladly', 'spirit', 'truth', null];
+
+    function el(id) { return document.getElementById(id); }
+    var mode = 'intro', idx = 0, pendingFocus = null;
+
+    function paint(s, i) {
+        var on = s ? s.show : [];
+        function has(k) { return on.indexOf(k) !== -1; }
+        el('sun-glow').setAttribute('opacity', has('glow') ? '1' : (has('worth') ? '0.8' : '0.35'));
+        el('tag-worth').setAttribute('opacity', has('worth') ? '1' : '0');
+        el('beam-down').setAttribute('opacity', has('down') ? '0.95' : '0');
+        el('beam-up').setAttribute('opacity', has('up') ? '0.9' : '0');
+        el('notes').setAttribute('opacity', has('notes') ? '1' : '0');
+        el('heart').setAttribute('opacity', has('spirit') ? '0.85' : '0');
+        el('tag-spirit').setAttribute('opacity', has('spirit') ? '1' : '0');
+        el('cross').setAttribute('opacity', has('truth') ? '1' : '0');
+        el('tag-truth').setAttribute('opacity', has('truth') ? '1' : '0');
+        ['gladly', 'reflecting', 'worth', 'spirit', 'truth'].forEach(function (w) {
+            var span = el('w-' + w), lit = s && s.words.indexOf(w) !== -1, now = s && NOW[i] === w;
+            span.className = now ? 'now' : (lit ? 'on' : '');
+        });
+        el('phrase').className = s && s.all ? 'phrase all' : 'phrase';
+        el('scene-desc').textContent = s ? s.desc : 'A night sky. God’s worth shines like the sun at the top. A person stands below.';
+    }
+    function button(label, control, cls, onClick) {
+        var b = document.createElement('button');
+        b.type = 'button'; b.className = cls; b.setAttribute('data-control', control);
+        b.textContent = label; b.addEventListener('click', onClick);
+        return b;
+    }
+    function buildCard(s) {
+        var vc = document.createElement('div'); vc.className = 'verse-card';
+        var bar = document.createElement('div'); bar.className = 'verse-card-bar'; bar.style.background = s.color; vc.appendChild(bar);
+        var c = document.createElement('div'); c.className = 'verse-card-content';
+        var t = document.createElement('p'); t.className = 'card-title'; t.style.color = s.color; t.textContent = s.title; c.appendChild(t);
+        var x = document.createElement('p'); x.className = 'card-text'; x.textContent = s.text; c.appendChild(x);
+        if (s.ref) { var r = document.createElement('p'); r.className = 'card-ref'; r.textContent = s.ref; c.appendChild(r); }
+        vc.appendChild(c);
+        return vc;
+    }
+    // Size every card to the tallest one so the buttons never move.
+    function fitCards() {
+        var area = el('card-area'), m = document.createElement('div'), max = 0;
+        m.id = 'measure'; m.style.width = area.clientWidth + 'px';
+        document.documentElement.style.setProperty('--card-h', '0px');
+        steps.forEach(function (s) {
+            var w = document.createElement('div'); w.className = 'verse-card-wrapper'; w.appendChild(buildCard(s)); m.appendChild(w);
+        });
+        document.body.appendChild(m);
+        m.querySelectorAll('.verse-card-content').forEach(function (c) { max = Math.max(max, c.offsetHeight); });
+        document.body.removeChild(m);
+        document.documentElement.style.setProperty('--card-h', Math.max(max, 112) + 'px');
+    }
+    function applyFocus() {
+        if (!pendingFocus) return;
+        var t = document.querySelector('[data-control="' + pendingFocus + '"]');
+        pendingFocus = null;
+        if (t) t.focus();
+    }
+    function go(newMode, newIdx, focus) { mode = newMode; idx = newIdx || 0; if (focus) pendingFocus = focus; render(); }
+
+    function render() {
+        var area = el('card-area');
+        area.innerHTML = '';
+        if (mode === 'intro') {
+            paint(null, -1);
+            var wrap = document.createElement('div'); wrap.className = 'begin-wrapper';
+            var intro = document.createElement('p'); intro.className = 'begin-text';
+            intro.append('Worship is bigger than a song.', document.createElement('br'), 'Build it one phrase at a time.');
+            wrap.appendChild(intro);
+            wrap.appendChild(button('Begin →', 'begin', 'begin-btn', function () { go('steps', 0, 'next'); }));
+            area.appendChild(wrap);
+            el('status').textContent = '';
+            applyFocus();
+            return;
+        }
+        var s = steps[idx];
+        paint(s, idx);
+        var wrapper = document.createElement('div'); wrapper.className = 'verse-card-wrapper';
+        wrapper.appendChild(buildCard(s));
+        var nav = document.createElement('div'); nav.className = 'nav-bar';
+        nav.appendChild(button('← Back', 'back', 'nav-btn', function () {
+            if (idx === 0) go('intro', 0, 'begin'); else go('steps', idx - 1, 'back');
+        }));
+        var count = document.createElement('span'); count.className = 'step-count';
+        count.textContent = (idx + 1) + ' of ' + steps.length;
+        nav.appendChild(count);
+        if (idx < steps.length - 1) nav.appendChild(button('Next →', 'next', 'nav-btn primary', function () { go('steps', idx + 1, 'next'); }));
+        else nav.appendChild(button('↻ Restart', 'restart', 'nav-btn primary', function () { go('intro', 0, 'begin'); }));
+        wrapper.appendChild(nav);
+        area.appendChild(wrapper);
+        el('status').textContent = s.title + '. ' + s.text;
+        applyFocus();
+    }
+
+    fitCards();
+    render();
+    var rt = null, lastWidth = window.innerWidth;
+    // Refit only when the width changes, so the host's height measuring cannot start a resize loop.
+    window.addEventListener('resize', function () {
+        if (window.innerWidth === lastWidth) return;
+        lastWidth = window.innerWidth;
+        clearTimeout(rt); rt = setTimeout(fitCards, 150);
+    });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitCards);
+</script>
+</body>
+</html>

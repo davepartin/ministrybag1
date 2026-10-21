@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Valley Road</title>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Georgia', 'Cambria', serif; background: #F8F6F1; color: #2C2416; -webkit-font-smoothing: antialiased; padding: 0; margin: 0; }
+        .widget-outer { background: #FFFFFF; border-radius: 0; overflow: hidden; box-shadow: none; border: none; max-width: 100%; width: 100%; margin: 0; position: relative; }
+        @media (min-width: 560px) {
+            body { padding: 16px; background: #F8F6F1; }
+            .widget-outer { border-radius: 12px; box-shadow: 0 6px 20px rgba(44, 36, 22, 0.08); border: 1px solid #EBE5D9; max-width: 460px; margin: 0 auto; }
+        }
+        button { -webkit-tap-highlight-color: transparent; font-family: 'Trebuchet MS', sans-serif; }
+        button:focus-visible { outline: 3px solid #2C2416; outline-offset: 2px; }
+        .title-bar { background: #1D6B3F; padding: 10px 16px; text-align: center; }
+        .title-bar h1 { font-size: 19px; font-weight: 700; color: #FFFFFF; margin: 0; line-height: 1.2; font-family: 'Trebuchet MS', 'Inter', sans-serif; }
+        .title-bar p { font-size: 13px; color: #E3EFE7; margin-top: 2px; font-family: 'Trebuchet MS', sans-serif; }
+        .diagram-wrapper { padding: 6px 6px 0; }
+        svg#scene { display: block; width: 100%; height: auto; max-height: 250px; }
+        .lbl { font-family: 'Trebuchet MS', sans-serif; font-weight: 700; }
+        .stop circle { transition: fill 0.4s ease, stroke 0.4s ease; }
+        .stop-lbl { transition: fill 0.4s ease; }
+        #trail { transition: stroke-dashoffset 0.7s ease; }
+        #light { transition: opacity 0.5s ease; }
+        #cross, #dawn { transition: opacity 0.6s ease; }
+        @media (prefers-reduced-motion: reduce) { .stop circle, .stop-lbl, #trail, #light, #cross, #dawn { transition: none; } }
+
+        #card-area { background-color: #F6F4EE; border-top: 1px solid #EBE5D9; padding-top: 8px; }
+        .verse-card-wrapper { margin: 0 auto; padding: 0 12px 10px; max-width: 460px; }
+        .verse-card { background: #FFFFFF; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 14px rgba(44,36,22,0.06); }
+        .verse-card-bar { height: 4px; }
+        .verse-card-content { padding: 10px 16px; min-height: var(--card-h, 120px); }
+        .card-title { font-family: 'Trebuchet MS', sans-serif; font-size: 16px; font-weight: 700; line-height: 1.3; margin-bottom: 4px; }
+        .card-text { font-size: 15px; line-height: 1.4; color: #3D3426; }
+        .card-joseph { font-size: 14px; line-height: 1.4; color: #5A4E3C; margin-top: 6px; padding-left: 10px; border-left: 3px solid #E7DCC4; }
+        .card-joseph b { font-family: 'Trebuchet MS', sans-serif; font-size: 13px; color: #8A6A2B; }
+        .card-ref { font-family: 'Trebuchet MS', sans-serif; font-size: 13px; color: #6B6358; margin-top: 6px; }
+        .nav-bar { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; padding: 0 2px; gap: 8px; }
+        .nav-btn { background: transparent; border: 1.5px solid #D4CFC4; border-radius: 10px; padding: 10px 12px; min-height: 44px; min-width: 112px; text-align: center; font-size: 14px; color: #5A4E3C; cursor: pointer; font-weight: 600; }
+        .nav-btn.primary { color: #FFFFFF; border: none; background: #1D6B3F; }
+        .step-count { font-family: 'Trebuchet MS', sans-serif; font-size: 13px; color: #6B6358; }
+        .begin-wrapper { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 10px 16px 16px; }
+        .begin-text { font-size: 16px; line-height: 1.4; text-align: center; color: #3D3426; max-width: 340px; }
+        .begin-btn { background: #1D6B3F; color: #FFFFFF; border: none; border-radius: 10px; padding: 12px 28px; min-height: 44px; font-size: 16px; font-weight: 700; cursor: pointer; }
+        #measure { position: absolute; left: 0; top: 0; visibility: hidden; pointer-events: none; }
+        .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+    </style>
+</head>
+<body>
+<div class="widget-outer">
+    <div class="title-bar"><h1>The Valley Road</h1><p>James 1:2-4</p></div>
+    <div class="diagram-wrapper">
+        <svg id="scene" viewBox="0 0 360 236" role="img" aria-labelledby="scene-desc">
+            <desc id="scene-desc">A road runs down from a hilltop on the left into a valley and climbs to a hilltop on the right, with four stops along the way.</desc>
+            <!-- dawn over the far hill, shown at the end -->
+            <g id="dawn" opacity="0">
+                <circle cx="330" cy="40" r="34" fill="#F3D98B" opacity="0.35"/>
+                <circle cx="330" cy="40" r="17" fill="#F3D98B"/>
+            </g>
+            <!-- the ground and the valley's shadow -->
+            <path id="ground" fill="#E8F3EB"/>
+            <ellipse cx="180" cy="214" rx="96" ry="20" fill="#D6DDD3" opacity="0.7"/>
+            <!-- the road: the whole way faint, the walked part bold -->
+            <path id="road" fill="none" stroke="#CFC9BD" stroke-width="5" stroke-linecap="round" stroke-dasharray="2 9"/>
+            <path id="trail" fill="none" stroke="#1D6B3F" stroke-width="5" stroke-linecap="round"/>
+            <!-- the cross at the deepest point, shown at the end -->
+            <g id="cross" opacity="0">
+                <rect x="176" y="148" width="8" height="46" rx="2" fill="#8A5A2B"/>
+                <rect x="164" y="160" width="32" height="8" rx="2" fill="#8A5A2B"/>
+            </g>
+            <!-- a light that walks beside you (drawn under the stops) -->
+            <circle id="light" r="20" fill="#F3D98B" opacity="0.55"/>
+            <!-- four stops -->
+            <g class="stop" id="stop-1"><circle r="11" fill="#FFFFFF" stroke="#CFC9BD" stroke-width="2.5"/><text class="lbl" text-anchor="middle" font-size="13" dy="4.5" fill="#8C877C">1</text></g>
+            <g class="stop" id="stop-2"><circle r="11" fill="#FFFFFF" stroke="#CFC9BD" stroke-width="2.5"/><text class="lbl" text-anchor="middle" font-size="13" dy="4.5" fill="#8C877C">2</text></g>
+            <g class="stop" id="stop-3"><circle r="11" fill="#FFFFFF" stroke="#CFC9BD" stroke-width="2.5"/><text class="lbl" text-anchor="middle" font-size="13" dy="4.5" fill="#8C877C">3</text></g>
+            <g class="stop" id="stop-4"><circle r="11" fill="#FFFFFF" stroke="#CFC9BD" stroke-width="2.5"/><text class="lbl" text-anchor="middle" font-size="13" dy="4.5" fill="#8C877C">4</text></g>
+            <text class="lbl stop-lbl" id="lbl-1" font-size="14" fill="#8C877C" text-anchor="end">Trials</text>
+            <text class="lbl stop-lbl" id="lbl-2" font-size="14" fill="#8C877C" text-anchor="middle">Testing</text>
+            <text class="lbl stop-lbl" id="lbl-3" font-size="14" fill="#8C877C" text-anchor="start">Steadfast</text>
+            <text class="lbl stop-lbl" id="lbl-4" font-size="14" fill="#8C877C" text-anchor="end">Complete</text>
+            <!-- the traveler -->
+            <g id="walker"><circle cx="0" cy="-36" r="7" fill="#1D6B3F"/><line x1="0" y1="-29" x2="0" y2="-14" stroke="#1D6B3F" stroke-width="5" stroke-linecap="round"/><line x1="0" y1="-25" x2="-7" y2="-17" stroke="#1D6B3F" stroke-width="4" stroke-linecap="round"/><line x1="0" y1="-25" x2="7" y2="-17" stroke="#1D6B3F" stroke-width="4" stroke-linecap="round"/><line x1="0" y1="-14" x2="-6" y2="0" stroke="#1D6B3F" stroke-width="5" stroke-linecap="round"/><line x1="0" y1="-14" x2="6" y2="0" stroke="#1D6B3F" stroke-width="5" stroke-linecap="round"/></g>
+        </svg>
+    </div>
+    <div id="card-area" aria-live="polite"></div>
+    <p class="sr-only" id="status" aria-live="polite"></p>
+</div>
+<script>
+    var GREEN = '#1D6B3F', RUST = '#9B3B2A', BROWN = '#7A5230', GOLD = '#B8892B', GREY = '#8C877C';
+    // The road: down from the left hill, along the valley floor, up to the right hill.
+    var ROAD = 'M 18 58 C 70 58, 92 196, 180 196 C 268 196, 290 58, 342 58';
+    // Each stop sits t of the way along the road. Labels sit beside the stop, away from the road.
+    var STOPS = [
+        { t: 0.24, lbl: { dx: -16, dy: 5 } },
+        { t: 0.50, lbl: { dx: 0, dy: 34 } },
+        { t: 0.76, lbl: { dx: 16, dy: 5 } },
+        { t: 0.985, lbl: { dx: -32, dy: -8 } }
+    ];
+    var START_T = 0.03;
+
+    var steps = [
+        { t: STOPS[0].t, upTo: 1, color: RUST, title: '1. Trials Come',
+          text: 'James says “when,” not “if.” Trials of every kind come to every believer.',
+          joseph: 'Thrown into a pit by his own brothers.',
+          ref: '“when you meet trials of various kinds” (James 1:2)',
+          desc: 'The traveler reaches stop 1, Trials, on the way down into the valley.' },
+        { t: STOPS[1].t, upTo: 2, color: BROWN, title: '2. Your Faith Is Tested',
+          text: 'Testing shows what your faith is resting on. Even on the valley floor, you are not alone.',
+          joseph: 'In prison, “the LORD was with Joseph” (Genesis 39:21).',
+          ref: '“the testing of your faith” (James 1:3)',
+          desc: 'The traveler reaches stop 2, Testing, at the bottom of the valley. A soft light walks beside them.' },
+        { t: STOPS[2].t, upTo: 3, color: GREEN, title: '3. Steadfastness Grows',
+          text: 'Steadfast faith keeps trusting under weight. It grows one faithful day at a time.',
+          joseph: 'Forgotten for two whole years, he kept serving.',
+          ref: '“produces steadfastness” (James 1:3)',
+          desc: 'The traveler climbs out of the valley to stop 3, Steadfast.' },
+        { t: STOPS[3].t, upTo: 4, color: GREEN, title: '4. Complete',
+          text: 'Let steadfastness finish its work. God is making you mature and whole.',
+          joseph: '“God sent me before you to preserve life” (Genesis 45:5).',
+          ref: '“perfect and complete, lacking in nothing” (James 1:4)',
+          desc: 'The traveler reaches stop 4, Complete, at the top of the far hill.' },
+        { t: STOPS[3].t, upTo: 4, end: true, color: GOLD, title: 'Count It All Joy',
+          text: 'Joy is not pretending it does not hurt. It is counting on what you know. Jesus walked the deepest valley, to the cross, and rose again.',
+          joseph: null,
+          ref: '“who for the joy that was set before him endured the cross” (Hebrews 12:2)',
+          desc: 'Dawn rises over the far hill, and a cross stands at the deepest point of the valley.' }
+    ];
+
+    function el(id) { return document.getElementById(id); }
+    var road = el('road'), trail = el('trail');
+    road.setAttribute('d', ROAD); trail.setAttribute('d', ROAD);
+    el('ground').setAttribute('d', ROAD + ' L 360 58 L 360 236 L 0 236 L 0 58 Z');
+    var LEN = road.getTotalLength();
+    trail.setAttribute('stroke-dasharray', LEN.toFixed(1));
+    function at(t) { var p = road.getPointAtLength(LEN * t); return { x: p.x, y: p.y }; }
+
+    STOPS.forEach(function (s, i) {
+        var p = at(s.t);
+        el('stop-' + (i + 1)).setAttribute('transform', 'translate(' + p.x.toFixed(1) + ',' + p.y.toFixed(1) + ')');
+        el('lbl-' + (i + 1)).setAttribute('x', (p.x + s.lbl.dx).toFixed(1));
+        el('lbl-' + (i + 1)).setAttribute('y', (p.y + s.lbl.dy).toFixed(1));
+    });
+
+    var mode = 'intro', idx = 0, pendingFocus = null, anim = null, curT = START_T;
+    var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // The traveler stands just before the stop, so the stop's number stays visible.
+    function placeWalker(t) {
+        var p = at(Math.max(0, t - 0.05));
+        el('walker').setAttribute('transform', 'translate(' + p.x.toFixed(1) + ',' + (p.y - 3).toFixed(1) + ')');
+        el('light').setAttribute('cx', (p.x + 15).toFixed(1));
+        el('light').setAttribute('cy', (p.y - 26).toFixed(1));
+        trail.setAttribute('stroke-dashoffset', (LEN * (1 - t)).toFixed(1));
+        curT = t;
+    }
+    function walkTo(t) {
+        if (anim) cancelAnimationFrame(anim);
+        if (reduceMotion) { placeWalker(t); return; }
+        var from = curT, t0 = null, dur = 800;
+        trail.style.transition = 'none';
+        function frame(ts) {
+            if (t0 === null) t0 = ts;
+            var k = Math.min((ts - t0) / dur, 1), e = k < 0.5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2;
+            placeWalker(from + (t - from) * e);
+            if (k < 1) anim = requestAnimationFrame(frame);
+        }
+        anim = requestAnimationFrame(frame);
+    }
+    function paint(s) {
+        var upTo = s ? s.upTo : 0;
+        STOPS.forEach(function (_, i) {
+            var g = el('stop-' + (i + 1)), on = i < upTo, c = on ? steps[i].color : '#CFC9BD';
+            g.querySelector('circle').setAttribute('fill', on ? c : '#FFFFFF');
+            g.querySelector('circle').setAttribute('stroke', c);
+            g.querySelector('text').setAttribute('fill', on ? '#FFFFFF' : GREY);
+            el('lbl-' + (i + 1)).setAttribute('fill', on ? (c === GREEN ? GREEN : c) : GREY);
+        });
+        el('light').setAttribute('opacity', s && (s.upTo === 2 || s.end) ? '0.9' : '0.55');
+        el('cross').setAttribute('opacity', s && s.end ? '1' : '0');
+        el('dawn').setAttribute('opacity', s && s.end ? '1' : '0');
+        el('scene-desc').textContent = s ? s.desc : 'A road runs down from a hilltop on the left into a valley and climbs to a hilltop on the right, with four stops along the way.';
+        walkTo(s ? s.t : START_T);
+    }
+    function button(label, control, cls, onClick) {
+        var b = document.createElement('button');
+        b.type = 'button'; b.className = cls; b.setAttribute('data-control', control);
+        b.textContent = label; b.addEventListener('click', onClick);
+        return b;
+    }
+    function buildCard(s) {
+        var vc = document.createElement('div'); vc.className = 'verse-card';
+        var bar = document.createElement('div'); bar.className = 'verse-card-bar'; bar.style.background = s.color; vc.appendChild(bar);
+        var c = document.createElement('div'); c.className = 'verse-card-content';
+        var t = document.createElement('p'); t.className = 'card-title'; t.style.color = s.color; t.textContent = s.title; c.appendChild(t);
+        var x = document.createElement('p'); x.className = 'card-text'; x.textContent = s.text; c.appendChild(x);
+        if (s.joseph) {
+            var j = document.createElement('p'); j.className = 'card-joseph';
+            var b = document.createElement('b'); b.textContent = 'Joseph: ';
+            j.appendChild(b); j.appendChild(document.createTextNode(s.joseph)); c.appendChild(j);
+        }
+        if (s.ref) { var r = document.createElement('p'); r.className = 'card-ref'; r.textContent = s.ref; c.appendChild(r); }
+        vc.appendChild(c);
+        return vc;
+    }
+    // Size every card to the tallest one so the buttons never move.
+    function fitCards() {
+        var area = el('card-area'), m = document.createElement('div'), max = 0;
+        m.id = 'measure'; m.style.width = area.clientWidth + 'px';
+        document.documentElement.style.setProperty('--card-h', '0px');
+        steps.forEach(function (s) {
+            var w = document.createElement('div'); w.className = 'verse-card-wrapper'; w.appendChild(buildCard(s)); m.appendChild(w);
+        });
+        document.body.appendChild(m);
+        m.querySelectorAll('.verse-card-content').forEach(function (c) { max = Math.max(max, c.offsetHeight); });
+        document.body.removeChild(m);
+        document.documentElement.style.setProperty('--card-h', Math.max(max, 120) + 'px');
+    }
+    function applyFocus() {
+        if (!pendingFocus) return;
+        var t = document.querySelector('[data-control="' + pendingFocus + '"]');
+        pendingFocus = null;
+        if (t) t.focus();
+    }
+    function go(newMode, newIdx, focus) { mode = newMode; idx = newIdx || 0; if (focus) pendingFocus = focus; render(); }
+
+    function render() {
+        var area = el('card-area');
+        area.innerHTML = '';
+        if (mode === 'intro') {
+            paint(null);
+            var wrap = document.createElement('div'); wrap.className = 'begin-wrapper';
+            var intro = document.createElement('p'); intro.className = 'begin-text';
+            intro.append('Trials will come.', document.createElement('br'), 'What is God doing in them?');
+            wrap.appendChild(intro);
+            wrap.appendChild(button('Walk the road →', 'begin', 'begin-btn', function () { go('walk', 0, 'next'); }));
+            area.appendChild(wrap);
+            el('status').textContent = '';
+            applyFocus();
+            return;
+        }
+        var s = steps[idx];
+        paint(s);
+        var wrapper = document.createElement('div'); wrapper.className = 'verse-card-wrapper';
+        wrapper.appendChild(buildCard(s));
+        var nav = document.createElement('div'); nav.className = 'nav-bar';
+        nav.appendChild(button('← Back', 'back', 'nav-btn', function () {
+            if (idx === 0) go('intro', 0, 'begin'); else go('walk', idx - 1, 'back');
+        }));
+        var count = document.createElement('span'); count.className = 'step-count';
+        count.textContent = (idx + 1) + ' of ' + steps.length;
+        nav.appendChild(count);
+        if (idx < steps.length - 1) nav.appendChild(button('Next →', 'next', 'nav-btn primary', function () { go('walk', idx + 1, 'next'); }));
+        else nav.appendChild(button('↻ Restart', 'restart', 'nav-btn primary', function () { go('intro', 0, 'begin'); }));
+        wrapper.appendChild(nav);
+        area.appendChild(wrapper);
+        el('status').textContent = s.title;
+        applyFocus();
+    }
+
+    placeWalker(START_T);
+    fitCards();
+    render();
+    var rt = null, lastWidth = window.innerWidth;
+    // Refit only when the width changes, so the host's height measuring cannot start a resize loop.
+    window.addEventListener('resize', function () {
+        if (window.innerWidth === lastWidth) return;
+        lastWidth = window.innerWidth;
+        clearTimeout(rt); rt = setTimeout(fitCards, 150);
+    });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitCards);
+</script>
+</body>
+</html>
