@@ -1,5 +1,9 @@
 # Courses 201-203 Completion Review
 
+## Current 203 correction, October 12, 2026
+
+Use [the 203 placement checkpoint](project-management/reviews/2026-10-12-203-placement.md) for current chapter mapping and topic coverage. Ten active files stay in their numbered positions; five JSON title fields now match curriculum-toc.csv. Existing 06 work/school and 09 missions drafts are integrated with September 26 approvals recorded on the board. Chapters 02 and 03 need scope revision, 08 still teaches Belonging, and 10 is a brief stub. Original 08 material is preserved in data/standby. No lesson prose, saved-answer IDs or pastoral approval records changed. Older labels and findings below are historical, including the former 06 title and empty 09 claim. Read the TOC for current chapter titles.
+
 This is a historical structural review of the 30 lessons in courses 201, 202, and 203. Its percentages and table are not current readiness measures.
 
 ## Current 202 correction, October 12, 2026

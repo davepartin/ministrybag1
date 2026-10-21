@@ -1,6 +1,6 @@
 # Growing Together - Project State
 
-202 status refreshed October 12, 2026. Other project status below retains its prior audit dates. This is a lightweight orientation. Current task status lives in [project-management/TASKS.md](project-management/TASKS.md); immediate next work is in [project-management/HANDOFF.md](project-management/HANDOFF.md). Lesson order and browse metadata remain in curriculum-toc.csv.
+202 and 203 status refreshed October 12, 2026. Other project status below retains its prior audit dates. This is a lightweight orientation. Current task status lives in [project-management/TASKS.md](project-management/TASKS.md); immediate next work is in [project-management/HANDOFF.md](project-management/HANDOFF.md). Lesson order and browse metadata remain in curriculum-toc.csv.
 
 ## Current direction
 
@@ -11,6 +11,10 @@ The working plan, all-lesson checklist, approval queue and portable agent prompt
 ## Current 202 status
 
 As of October 12, 2026, all ten current 202 lesson JSON files contain substantive teaching, Scripture, discussion questions and closing reflections. There are no empty lessons or brief placeholders in 202. Draft coverage does not establish editorial, visual, technical, pilot or release readiness. Dave's recorded September 26 approvals for 202-08, 202-09 and 202-10 match the current lesson text; final approval for 202-01 through 202-07 is unrecorded. See [the 202 review checklist](project-management/DAVE.md#202-review-checklist-october-12-2026).
+
+## Current 203 organization, October 12, 2026
+
+Ten active files stay in their numbered positions; five JSON title fields now match curriculum-toc.csv. Existing 06 work/school and 09 missions drafts are integrated with September 26 approvals recorded on the board. Chapters 02 and 03 need scope revision, 08 still teaches Belonging, and 10 is a brief stub. Original 08 material is preserved in data/standby. No lesson prose, saved-answer IDs or pastoral approval records changed. See [the placement checkpoint](project-management/reviews/2026-10-12-203-placement.md). This supersedes historical 203 coverage claims below, without establishing release readiness.
 
 ## Verified baseline (historical, September 11)
 
