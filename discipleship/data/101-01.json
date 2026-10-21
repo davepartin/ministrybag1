@@ -1,8 +1,7 @@
 {
   "id": "1",
   "title": "Lesson 1: Welcome. Let's Start Growing.",
-  "displayTitle": "Welcome.<br>Let's Start Growing.",
-  "description": "Following Jesus is the greatest decision you will ever make. This study is designed to help you build a strong spiritual foundation as you grow in your faith.",
+  "description": "Following Jesus is the greatest decision you will ever make. This first lesson shows you the shape of the journey, helps you see where God has already been at work in your story, and starts you reading the Gospel of John.",
   "blocks": [
     {
       "type": "image",
@@ -20,7 +19,7 @@
     },
     {
       "type": "text",
-      "text": "This discipleship series is built around a picture Jesus painted, a seed that falls on good soil, takes root, and produces an incredible harvest. That is what God has in mind for you. Not a checklist to finish, but a life that grows over time as you <strong>hear the word</strong>, <strong>accept it</strong>, and <strong>bear fruit</strong> that multiplies. These lessons will walk you through a set of progressive courses, from the foundations of your faith to reproducing what God has planted in you by leading and investing in others. Each course builds on the one before it, and every lesson is designed to be taken at your own pace. There is no rush. Read slowly, sit with the Scripture, and let the Holy Spirit do the work of growing you from the inside out."
+      "text": "This discipleship series is built around a picture Jesus painted: a seed that falls on good soil, takes root, and produces an incredible harvest. That is what God has in mind for you. Not a checklist to finish, but a life that grows over time as you <strong>hear the word</strong>, <strong>accept it</strong>, and <strong>bear fruit</strong> that multiplies. Each course builds on the one before it, from the foundations of your faith all the way to helping someone else follow Jesus. There is no rush. Read slowly, sit with the Scripture, and let the Holy Spirit grow you from the inside out."
     },
     {
       "type": "heading",
@@ -28,7 +27,16 @@
     },
     {
       "type": "text",
-      "text": "These seven lessons will walk you through some of the most important truths you will need as you begin following Jesus. Each lesson is designed to work with you in three simple ways: giving you something to learn, questions to help you process, and some steps to take. May this study move from your head, into your heart, and then to your hands as you learn to love God and your neighbors."
+      "text": "These seven lessons will walk you through some of the most important truths you will need as you begin following Jesus. Each lesson gives you something to learn, questions to help you process, and a step to take. May this study move from your head, into your heart, and then to your hands as you learn to love God and your neighbors."
+    },
+    {
+      "type": "text",
+      "text": "Here is the good news before you start. Your growth does not rest on how hard you try. A seed cannot make itself grow, and neither can you. The God who started new life in you is the One who will finish it."
+    },
+    {
+      "type": "verse",
+      "reference": "Philippians 1:6",
+      "text": "And I am sure of this, that he who began a good work in you will bring it to completion at the day of Jesus Christ."
     },
     {
       "type": "heading",
@@ -92,18 +100,14 @@
       "alt": "Peaks and Valleys Exercise Example"
     },
     {
+      "type": "text",
+      "text": "Some of your valleys may still hurt to look at, and that is okay. You do not have to explain every low point. Just notice the places where someone showed up, a door opened, or you sensed God drawing you closer. He was there before you knew His name."
+    },
+    {
       "type": "question",
       "id": "1-4",
-      "text": "1.4 - After finishing the Peaks and Valleys Exercise, what stands out to you? What patterns do you see in how God has been working in your life?",
+      "text": "1.4 - Looking at your whole timeline, where can you now see God's hand in your story?",
       "data_question": "1.4 - Peaks and Valleys observations"
-    },
-    {
-      "type": "heading",
-      "text": "Lesson 1 Review"
-    },
-    {
-      "type": "text",
-      "text": "You have taken your first honest look at where you are spiritually and what you are hoping God will do in your life. That kind of honesty with God is the best possible starting point for everything ahead."
     },
     {
       "type": "heading",
@@ -120,6 +124,18 @@
     {
       "type": "text",
       "text": "Each lesson includes three chapters of John. You can read them, listen to them, or both. You do not need to finish them all in one sitting. Spread them across your week and let the words settle into your heart. Take notes on anything that stands out to you. God will use this time."
+    },
+    {
+      "type": "heading",
+      "text": "Lesson 1 Review"
+    },
+    {
+      "type": "text",
+      "text": "God was at work in your story long before you noticed Him, and the One who began a good work in you will finish it. Following Jesus is not a checklist to complete. It is a life that grows as you hear His Word, accept it, and bear fruit. Your part is to stay planted: be honest with God, read His Word, and walk with people who love Him. He gives the growth."
+    },
+    {
+      "type": "text",
+      "text": "In the next lesson, you will look at how that new life began: what Jesus did to save you, and what baptism says about it."
     },
     {
       "type": "bible_reading",

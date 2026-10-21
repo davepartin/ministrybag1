@@ -1,10 +1,20 @@
 {
   "id": "2",
   "title": "Lesson 2: Salvation and Baptism",
+  "description": "Salvation is new life that God gives and you receive by faith. Baptism is the first visible sign of that life. This lesson walks the Romans Road, explains what baptism means, and shows why you can be sure you belong to God.",
   "blocks": [
     {
       "type": "text",
-      "text": "As we begin this lesson, consider the image for this Starting in Discipleship course: a young plant with young roots in a pot inside a greenhouse. The plant cannot make itself grow. A gardener can water it, adjust the light, and protect it from the cold, but the life inside that seed comes from God. The same is true for our faith: the Bible says it is God who gives the growth (1 Cor. 3:6). We cannot force spiritual growth any more than we can force a seed to sprout. What we can do is affect the environment: read the Bible, learn to pray, join a Christian community, and stay close to Jesus. Welcome to this discipleship greenhouse, where we faithfully show up and trust God with the growth."
+      "text": "In the last lesson you looked back over your story and saw God's hand in it. Now you will look at the most important moment in that story: when God gave you new life in Jesus."
+    },
+    {
+      "type": "parable",
+      "title": "The Greenhouse",
+      "text": "Picture the image for this course: a young plant with young roots in a pot inside a greenhouse. The plant cannot make itself grow. A gardener can water it, adjust the light, and protect it from the cold, but the life inside that seed comes from God. The Bible says it is God who gives the growth (1 Corinthians 3:6).<br><br>Here is something easy to miss. For a while, all of that life is underground. The seed has split open and roots are reaching down, but nobody can see it yet. Then one morning a green shoot breaks through the soil, and everyone can see what was already true.<br><br>That is a picture of this lesson. Salvation is God giving you a new life you could never produce yourself. Baptism is the first green shoot, the moment the life God started on the inside shows up where everyone can see it."
+    },
+    {
+      "type": "text",
+      "text": "You cannot force spiritual growth any more than you can force a seed to sprout. What you can do is tend the environment: read the Bible, learn to pray, join a Christian community, and stay close to Jesus. Welcome to this discipleship greenhouse, where you faithfully show up and trust God with the growth."
     },
     {
       "type": "heading",
@@ -22,7 +32,7 @@
     {
       "type": "question",
       "id": "2-1",
-      "text": "2.1 - What do we learn about God, Jesus, and mankind from John 3:16,17?",
+      "text": "2.1 - What does John 3:16-17 teach you about God, about Jesus, and about people?",
       "data_question": "2.1 - God, Jesus, and mankind from John 3:16,17"
     },
     {
@@ -31,12 +41,16 @@
     },
     {
       "type": "text",
-      "text": "The ABCs of the Steps of Salvation: \"The Romans Road\""
+      "text": "Paul's letter to the Romans explains the gospel so clearly that people call the path through it \"The Romans Road.\" You can remember it with three letters, the ABCs of salvation: <strong>Admit</strong>, <strong>Believe</strong>, and <strong>Confess</strong>. Walk through each stop below."
     },
     {
       "type": "widget",
       "src": "widgets/romans-road.html",
       "height": "560px"
+    },
+    {
+      "type": "text",
+      "text": "Notice who does the work on that road. You admit, believe, and confess, but none of those steps earn anything. They are empty hands receiving a gift that Jesus already paid for. <strong>Salvation is God's gift of new life, received by faith.</strong>"
     },
     {
       "type": "question",
@@ -61,28 +75,26 @@
     },
     {
       "type": "text",
-      "text": "When a believer steps into the water, they are declaring that their old self has passed away and they are embracing their new identity in Christ. The water is a powerful symbol. It represents the washing away of sin and the death of the old life. And as you rise up out of the water, it pictures the beauty of resurrection, that you are a new creation in Jesus. Galatians 2:20 says, \"I have been crucified with Christ. It is no longer I who live, but Christ who lives in me.\" Baptism is a sign and a celebration that you belong to God, that you have been blessed and cleansed by the work of Jesus, and that you are now sent to be a blessing to others."
+      "text": "When a believer steps into the water, they are declaring that their old self has passed away and they are embracing their new identity in Christ. Going under the water pictures the washing away of sin and the death of the old life. Rising up out of the water pictures the beauty of resurrection, that you are a new creation in Jesus. Galatians 2:20 says, \"I have been crucified with Christ. It is no longer I who live, but Christ who lives in me.\" Baptism is a sign and a celebration that you belong to God, that you have been cleansed by the work of Jesus, and that you are now sent to be a blessing to others."
     },
     {
       "type": "verse",
       "reference": "Romans 6:3-4",
-      "text": "All of us who have been baptized into Christ Jesus were baptized into his death? We were buried therefore with him by baptism into death, in order that, just as Christ was raised from the dead by the glory of the Father, we too might walk in newness of life."
+      "text": "Do you not know that all of us who have been baptized into Christ Jesus were baptized into his death? We were buried therefore with him by baptism into death, in order that, just as Christ was raised from the dead by the glory of the Father, we too might walk in newness of life."
     },
     {
-      "type": "question",
-      "id": "2-4",
-      "text": "2.4 - Why is it important for a Christian to be baptized?",
-      "data_question": "2.4 - Importance of baptism"
+      "type": "text",
+      "text": "If you have trusted Jesus and have not been baptized yet, you do not need to wait until you feel more grown up in your faith. The green shoot comes early in a plant's life, not late. Tell a pastor or the person walking through this study with you that you want to take that step."
     },
     {
       "type": "question",
       "id": "2-5",
-      "text": "2.5 - Have you been baptized, when? If not, do you want to be baptized? Why or why not?",
-      "data_question": "2.5 - Baptism experience"
+      "text": "2.4 - Where are you with baptism right now: already baptized, ready to take the step, or still unsure?",
+      "data_question": "2.4 - Baptism experience"
     },
     {
       "type": "heading",
-      "text": "You are a New Creation"
+      "text": "You Are a New Creation"
     },
     {
       "type": "text",
@@ -90,14 +102,23 @@
     },
     {
       "type": "verse",
-      "reference": "2 Corinthians 5:17,21",
-      "text": "Therefore, if anyone is in Christ, he is a new creation. The old has passed away; behold, the new has come...For our sake he made him to be sin who knew no sin, so that in him we might become the righteousness of God."
+      "reference": "2 Corinthians 5:17, 21",
+      "text": "Therefore, if anyone is in Christ, he is a new creation. The old has passed away; behold, the new has come... For our sake he made him to be sin who knew no sin, so that in him we might become the righteousness of God."
+    },
+    {
+      "type": "text",
+      "text": "Some days you will not feel new. You will still sin, and you may wonder whether anything really changed. Your salvation does not rest on how you feel on a given day. It rests on what Jesus has done, and God wants you to be sure of it."
+    },
+    {
+      "type": "verse",
+      "reference": "1 John 5:13",
+      "text": "I write these things to you who believe in the name of the Son of God, that you may know that you have eternal life."
     },
     {
       "type": "question",
       "id": "2-6",
-      "text": "2.6 - How are you encouraged by 2 Cor. 5:17,21?",
-      "data_question": "2.6 - Encouraged by 2 Cor 5:17,21"
+      "text": "2.5 - Which part of 2 Corinthians 5:17, 21 encourages you most today?",
+      "data_question": "2.5 - Encouraged by 2 Cor 5:17,21"
     },
     {
       "type": "heading",
@@ -105,7 +126,11 @@
     },
     {
       "type": "text",
-      "text": "You have spent time this lesson thinking through what Jesus did for you through salvation and what baptism means as your public declaration of a new life. These are the foundations everything else in your faith is built on."
+      "text": "Salvation is God's gift of new life, received by faith in Jesus and never earned. The Romans Road shows the way: admit your sin, believe in Jesus, and confess Him as Lord. Baptism is the first green shoot, the outward sign of the life God has already started inside you. And because your salvation rests on Jesus and not on you, you can know that you have eternal life."
+    },
+    {
+      "type": "text",
+      "text": "In the next lesson, you will learn to talk with the God who saved you, using the pattern Jesus gave His disciples for prayer."
     },
     {
       "type": "bible_reading",

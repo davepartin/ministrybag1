@@ -1,33 +1,25 @@
 {
   "id": "7",
   "title": "Lesson 7: When You Drift",
-  "description": "You will stumble. Every Christian does. This lesson is not about guilt. It is about knowing how to turn around when you wander off the path, how to confess honestly, and how to trust the God who comes looking for you before you even know you are lost.",
+  "description": "You will stumble. Every Christian does. This lesson is not about guilt. It is about knowing how to turn around when you wander off the path, how to confess honestly, and how to trust the Shepherd who comes looking for you before you even know you are lost.",
   "blocks": [
     {
       "type": "text",
-      "text": "You have walked through six lessons now. You have learned what it means to follow Jesus, to be saved and baptized, to pray, to read the Bible, to be part of a church family, and to share your faith. This final lesson may be the one that holds all the others together. Because no matter how well you learn the foundations, there will be days when you drift. You will sin. You will wander. And when that happens, you need to know what to do next."
+      "text": "You have walked through six lessons now: what it means to follow Jesus, to be saved and baptized, to pray, to read the Bible, to be part of a church family, and to share your faith. This final lesson may be the one that holds all the others together. No matter how well you learn the foundations, there will be days when you drift. You will sin. You will wander. And when that happens, you need to know what to do next."
     },
     {
-      "type": "heading",
-      "text": "The Shepherd Who Comes Looking"
-    },
-    {
-      "type": "text",
-      "text": "Jesus told a story about a shepherd who had a hundred sheep. One wandered off, not in rebellion, not by any plan, just drifting one patch of grass at a time, until it looked up and realized it was alone."
-    },
-    {
-      "type": "verse",
-      "reference": "Luke 15:4-7",
-      "text": "What man of you, having a hundred sheep, if he has lost one of them, does not leave the ninety-nine in the open country, and go after the one that is lost, until he finds it? And when he has found it, he lays it on his shoulders, rejoicing. And when he comes home, he calls together his friends and his neighbors, saying to them, 'Rejoice with me, for I have found my sheep that was lost.' Just so, I tell you, there will be more joy in heaven over one sinner who repents than over ninety-nine righteous persons who need no repentance."
+      "type": "parable",
+      "title": "The Shepherd Who Comes Looking",
+      "text": "Jesus told a story about a shepherd who had a hundred sheep. Picture one of them wandering off, not in rebellion and not by any plan, just drifting one patch of grass at a time, until it looks up and realizes it is alone.<br><br><em>\"What man of you, having a hundred sheep, if he has lost one of them, does not leave the ninety-nine in the open country, and go after the one that is lost, until he finds it? And when he has found it, he lays it on his shoulders, rejoicing.\" (Luke 15:4-5)</em><br><br>Notice what the shepherd does. He does not wait for the sheep to find its way back. He does not stand at the gate shaking his head. He leaves everything and goes after the one. And when he finds it, he does not scold it. He puts it on his shoulders and carries it home, and then he calls his friends and neighbors to celebrate. Jesus finished the story this way: <em>\"Just so, I tell you, there will be more joy in heaven over one sinner who repents than over ninety-nine righteous persons who need no repentance\"</em> (Luke 15:7)."
     },
     {
       "type": "text",
-      "text": "Notice what the shepherd does. He does not wait for the sheep to find its way back. He does not stand at the gate shaking his head. He leaves everything and goes after the one. And when he finds it, he does not scold it. He puts it on his shoulders and carries it home, and then he throws a party. That is the heart of God toward you. He is not angry when you wander. He comes looking. And there is more joy in heaven over your return than you can possibly imagine."
+      "text": "That is the heart of God toward you. He is not waiting to punish you when you wander. He comes looking. <strong>When you drift, you do not have to find your way back alone. Turn around, and the Shepherd carries you home.</strong>"
     },
     {
       "type": "question",
       "id": "7-1",
-      "text": "7.1 - Have you ever felt like the lost sheep, drifting without even realizing it? What did that look like?",
+      "text": "7.1 - When have you felt like the lost sheep, drifting without even realizing it?",
       "data_question": "7.1 - Lost sheep experience"
     },
     {
@@ -36,11 +28,11 @@
     },
     {
       "type": "text",
-      "text": "Many people hear the word \"repentance\" and picture guilt, shame, or punishment. But the Bible paints a completely different picture. The Greek word for repentance is <em>metanoia</em>, and it means a complete change of mind. It is a 180-degree turn. You were walking one direction, away from God, and now you stop, turn around, and walk toward Him. That is it. Not groveling. Not earning your way back. Just turning."
+      "text": "Many people hear the word \"repentance\" and picture guilt, shame, or punishment. But the Bible paints a completely different picture. The Greek word for repentance is <em>metanoia</em>, and it means a change of mind that leads to a change of direction. Picture a 180-degree turn. You were walking one direction, away from God, and now you stop, turn around, and walk toward Him. Not groveling. Not earning your way back. Just turning."
     },
     {
       "type": "text",
-      "text": "Think about walking down a road. Every step away from God takes you further from His voice, His peace, and the life He designed for you. Sin always promises something good around the next bend, but the road just gets darker. Repentance is the moment you stop believing that lie, turn your whole self around, and start walking back toward the Father. And here is what makes it different from every other religion in the world: the moment you turn, you discover He was already running toward you."
+      "text": "Sin always promises something good around the next bend, but the road just gets darker. Repentance is the moment you stop believing that lie and turn your whole self around. And the moment you turn, you discover the Shepherd was already coming to find you."
     },
     {
       "type": "verse",
@@ -49,13 +41,7 @@
     },
     {
       "type": "text",
-      "text": "Did you catch that? Turning back does not lead to punishment, it leads to refreshing. Repentance is not the end of something good - it is the beginning of something better, the doorway back to peace, back to closeness with God, back to the life you were actually made for."
-    },
-    {
-      "type": "question",
-      "id": "7-2",
-      "text": "7.2 - What comes to mind when you hear the word \"repentance\"? Is it something you associate with guilt, or with freedom? Why?",
-      "data_question": "7.2 - Repentance associations"
+      "text": "Did you catch that? Turning back does not lead to punishment, it leads to refreshing. Repentance is not the end of something good. It is the beginning of something better: the doorway back to peace, back to closeness with God, back to the life you were actually made for."
     },
     {
       "type": "heading",
@@ -63,7 +49,7 @@
     },
     {
       "type": "text",
-      "text": "If repentance is the big turn, confession is the daily practice that keeps your heart clean. Confession simply means agreeing with God about what happened. You stop hiding, stop excusing, and stop pretending. You just say it out loud: \"Lord, I was impatient with my family. I lied about that. I chose my comfort over obedience.\" When you name it honestly before God, something powerful happens. The weight lifts."
+      "text": "If repentance is the big turn, confession is the daily practice that keeps your heart clean. Confession simply means agreeing with God about what happened. You stop hiding, stop excusing, and stop pretending. You just say it out loud: \"Lord, I was impatient with my family. I lied about that. I chose my comfort over obedience.\""
     },
     {
       "type": "verse",
@@ -72,17 +58,31 @@
     },
     {
       "type": "text",
-      "text": "Read that promise slowly. He is <em>faithful</em>, meaning He will always do it. He is <em>just</em>, meaning the cross already paid the price, so forgiving you is not a favor, it is a finished transaction. And He does not just forgive, He <em>cleanses</em>. Not halfway. All of it. Every time you confess, God meets you with the full weight of the cross and wipes the slate clean."
+      "text": "Read that promise slowly. He is <em>faithful</em>, meaning He will always do it. He is <em>just</em>, meaning the cross already paid the price, so forgiving you is not a favor, it is a finished transaction. And He does not just forgive, He <em>cleanses</em>. Not halfway. All of it."
     },
     {
       "type": "text",
-      "text": "Here is what a new believer needs to understand: confession does not change your standing with God. When you trusted Jesus, you became His child forever. That never changes. But unconfessed sin clouds the closeness you feel with Him. Think of it this way: a child who disobeys a parent is still their child, but there is tension in the home until things are made right. Confession clears the air and brings you back into the warmth of the Father's presence."
+      "text": "Here is what a new believer needs to understand: confession does not change your standing with God. When you trusted Jesus, you became His child forever. But unconfessed sin clouds the closeness you feel with Him. A child who disobeys a parent is still their child, but there is tension in the home until things are made right. Confession clears the air and brings you back into the warmth of the Father's presence."
+    },
+    {
+      "type": "box",
+      "title": "The Way Home: Stop, Turn, Tell, Receive",
+      "content": [
+        "<strong>Stop.</strong> Notice the drift. Be honest that you have wandered off the path.",
+        "<strong>Turn.</strong> Change direction and walk back toward God. \"Repent therefore, and turn back\" (Acts 3:19).",
+        "<strong>Tell.</strong> Confess to God what happened, by name and without excuses (1 John 1:9).",
+        "<strong>Receive.</strong> Take the forgiveness Jesus already secured at the cross. \"There is therefore now no condemnation for those who are in Christ Jesus\" (Romans 8:1)."
+      ]
+    },
+    {
+      "type": "text",
+      "text": "That is the simplest version of repentance, and you can walk it in a few honest minutes, any day, anywhere. In a future course, you will learn a fuller tool called The Learning Circle that walks through this rhythm step by step."
     },
     {
       "type": "question",
       "id": "7-3",
-      "text": "7.3 - Is there something you have been carrying around that you need to confess to God? What would it feel like to just name it honestly and let Him forgive it?",
-      "data_question": "7.3 - Practicing confession"
+      "text": "7.2 - Is there something you have been carrying that you need to confess to God today?",
+      "data_question": "7.2 - Practicing confession"
     },
     {
       "type": "heading",
@@ -94,7 +94,7 @@
     },
     {
       "type": "text",
-      "text": "The difference is the direction they push you. Condemnation pushes you into hiding, isolation, and despair. Conviction pushes you toward honesty, confession, and the open arms of a God who already knows and still loves you. If what you are feeling makes you want to run from God, that is not His voice. If what you are feeling makes you want to run to God, that is the Holy Spirit doing exactly what He was sent to do."
+      "text": "The difference is the direction they push you. If what you are feeling makes you want to run from God, that is not His voice. If what you are feeling makes you want to run to God, that is the Holy Spirit doing exactly what He was sent to do."
     },
     {
       "type": "verse",
@@ -104,8 +104,8 @@
     {
       "type": "question",
       "id": "7-4",
-      "text": "7.4 - Think about a time you felt guilty about something. Was it more like condemnation (driving you away from God) or conviction (drawing you toward Him)? How can you tell the difference?",
-      "data_question": "7.4 - Conviction vs condemnation"
+      "text": "7.3 - Think about a time you felt guilty. Did that feeling push you away from God or draw you toward Him?",
+      "data_question": "7.3 - Conviction vs condemnation"
     },
     {
       "type": "heading",
@@ -118,15 +118,11 @@
     {
       "type": "verse",
       "reference": "Micah 7:8",
-      "text": "Rejoice not over me, O my enemy; when I fall, I shall rise. When I sit in darkness, the Lord will be a light to me."
+      "text": "Rejoice not over me, O my enemy; when I fall, I shall rise; when I sit in darkness, the LORD will be a light to me."
     },
     {
       "type": "text",
       "text": "That is the promise. When you fall, you will rise. When you sit in darkness, the Lord Himself will be a light to you. Not because you are strong enough to recover, but because the Shepherd who left the ninety-nine is strong enough to carry you home."
-    },
-    {
-      "type": "text",
-      "text": "In a future course, you will learn a practical tool called The Learning Circle that walks you through the rhythm of repentance step by step. But for now, here is the simplest version: when you drift, stop. Turn around. Tell God what happened. And receive the forgiveness He already secured for you at the cross. That is all repentance is. And it will keep your heart soft, your faith growing, and your walk with Jesus moving forward for the rest of your life."
     },
     {
       "type": "heading",
@@ -134,7 +130,7 @@
     },
     {
       "type": "text",
-      "text": "You have now walked through all seven lessons of the Starting in Discipleship Course. You have explored what it means to follow Jesus, to be saved and baptized, to pray, to read the Bible, to be part of the church, to share your faith, and to turn back to God when you drift. These are not just topics you have studied. They are the foundations of a life that is being transformed by the grace of God."
+      "text": "You have now walked through all seven lessons of the Starting in Discipleship course. You have explored what it means to follow Jesus, to be saved and baptized, to pray, to read the Bible, to be part of the church, to share your faith, and to turn back to God when you drift. These are not just topics you have studied. They are the foundations of a life that is being transformed by the grace of God."
     },
     {
       "type": "verse",
@@ -144,8 +140,8 @@
     {
       "type": "question",
       "id": "7-6",
-      "text": "7.6 - As you look back on all seven lessons, how has this study and reading the Gospel of John shaped your walk with God? What has changed in you?",
-      "data_question": "7.6 - Full course reflection",
+      "text": "7.4 - As you look back on all seven lessons and the Gospel of John, what has changed in your walk with God?",
+      "data_question": "7.4 - Full course reflection",
       "height": "tall"
     },
     {
@@ -154,7 +150,11 @@
     },
     {
       "type": "text",
-      "text": "Repentance is not a burden. It is a gift. A 180-degree turn back to a God who was already coming to find you. Confession keeps the air clear. And the Holy Spirit's conviction is not condemnation, it is love drawing you home. You have completed the Starting in Discipleship course. The next step is Growing Deep, where you will go deeper into your identity in Christ, explore the cross, and learn practical tools for walking with God through every season."
+      "text": "When you drift, you do not have to find your way back alone. Repentance is not a burden. It is a gift: a turn back to a Shepherd who was already coming to find you. Stop, turn, tell God what happened, and receive the forgiveness Jesus already secured. Confession keeps the air clear, and the Holy Spirit's conviction is not condemnation. It is love drawing you home."
+    },
+    {
+      "type": "text",
+      "text": "You have completed the Starting in Discipleship course. The next step is Growing Deep, where you will go deeper into your identity in Christ, explore the cross, and learn practical tools for walking with God through every season."
     },
     {
       "type": "bible_reading",
