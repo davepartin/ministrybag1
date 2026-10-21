@@ -328,6 +328,21 @@
             line-height: 1.3;
         }
 
+        .coming-soon-tag {
+            display: inline-block;
+            margin-left: 6px;
+            padding: 1px 8px;
+            border-radius: 999px;
+            background: #FCEAE8;
+            color: #B04C48;
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            line-height: 1.5;
+            white-space: nowrap;
+            vertical-align: middle;
+        }
+
         .level-dropdown-subtitle {
             font-size: 0.74rem;
             color: var(--text-secondary);
@@ -2682,7 +2697,7 @@
                     <button class="level-card" data-series="301" onclick="toggleCourseDropdown('301')">
                         <div class="level-marker">301</div>
                         <div class="level-info">
-                            <h2>Leading in Discipleship</h2>
+                            <h2>Leading in Discipleship <span class="coming-soon-tag">Coming Soon</span></h2>
                             <p>Multiplying the Harvest</p>
                         </div>
                         <div class="level-arrow">&#8250;</div>
@@ -3042,10 +3057,10 @@
                         const subtitleHTML = lesson.subtitle
                             ? `<span class="level-dropdown-subtitle">${lesson.subtitle}</span>`
                             : '';
-                        html += `<button type="button" class="level-dropdown-lesson" onclick="openFromDropdown('${seriesId}', ${lesson.num})" aria-label="Open lesson ${lesson.num}: ${lesson.title}">
+                        html += `<button type="button" class="level-dropdown-lesson" onclick="openFromDropdown('${seriesId}', ${lesson.num})" aria-label="Open lesson ${lesson.num}: ${lesson.title}${COMING_SOON_SERIES.has(seriesId) ? ' (coming soon)' : ''}">
                             <div class="level-dropdown-num" style="background:${meta.bg}; color:${meta.color};">${lesson.num}</div>
                             <span class="level-dropdown-text">
-                                <span class="level-dropdown-title">${lesson.title}</span>
+                                <span class="level-dropdown-title">${lesson.title}${comingSoonTag(seriesId)}</span>
                                 ${subtitleHTML}
                             </span>
                             <div class="level-dropdown-check ${isDone ? 'done' : ''}" style="${isDone ? 'background:' + meta.color + '; border-color:' + meta.color + ';' : ''}">&#10003;</div>
@@ -3093,6 +3108,12 @@
         // THE TREE - Full Curriculum Overview
         // Reads live from curriculum-toc.csv
         // ============================================
+        // Courses still being written: titles stay visible with a Coming Soon tag.
+        const COMING_SOON_SERIES = new Set(['301']);
+        function comingSoonTag(seriesId) {
+            return COMING_SOON_SERIES.has(String(seriesId)) ? ' <span class="coming-soon-tag">Coming Soon</span>' : '';
+        }
+
         const COURSE_META = {
             '101': { name: 'Starting in Discipleship', color: '#1E6FA0', bg: '#DCEEFB', hover: '#175580', logo: 'images/101-starting-logo-v3.png' },
             '201': { name: 'Growing Deep', color: '#1A6B55', bg: '#D4F2E8', hover: '#135040', logo: 'images/201-growing-logo.png' },
@@ -3229,7 +3250,7 @@
                 <div class="tree-course-section" style="border-color:${course.color};">
                     <div class="tree-course-header" style="background:${course.bg}; color:${course.color}; border-bottom-color:${course.color};">
                         <div class="tree-course-badge" style="color:${course.color};">${course.id}</div>
-                        <span class="tree-course-name">${course.name}</span>
+                        <span class="tree-course-name">${course.name}${comingSoonTag(course.id)}</span>
                         <span class="tree-course-progress">${done}/${total}</span>
                     </div>
                     <div class="tree-lesson-list">`;
@@ -3243,7 +3264,7 @@
                         <div class="tree-lesson-row" onclick="openTreeLesson('${course.id}', ${lesson.num})">
                             <div class="tree-lesson-num" style="background:${course.bg}; color:${course.color};">${lesson.num}</div>
                             <span class="tree-lesson-text">
-                                <span class="tree-lesson-topic">${lesson.title}</span>
+                                <span class="tree-lesson-topic">${lesson.title}${comingSoonTag(course.id)}</span>
                                 ${subtitleHTML}
                             </span>
                             <div class="tree-lesson-check ${isComplete ? 'done' : ''}" style="${isComplete ? 'background:' + course.color + '; border-color:' + course.color + ';' : ''}">&#10003;</div>
@@ -3982,7 +4003,7 @@
                 btn.innerHTML = `
                     <div class="toc-check ${isComplete ? 'done' : ''}" id="toc-check-${sessionNum}">&#10003;</div>
                     <span class="toc-item-text">
-                        <span class="toc-item-title"><span class="toc-item-num">${sessionNum}.</span> ${title}</span>
+                        <span class="toc-item-title"><span class="toc-item-num">${sessionNum}.</span> ${title}${comingSoonTag(currentSeries)}</span>
                         ${subtitle ? `<span class="toc-item-subtitle">${subtitle}</span>` : ''}
                     </span>
                 `;

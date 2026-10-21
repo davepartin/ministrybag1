@@ -1,6 +1,6 @@
 # Running task board
 
-Updated September 16, 2026. This file is the only current work-status board. Titles/order remain in [curriculum-toc.csv](../curriculum-toc.csv). Process and DONE gates are in [PLAN.md](PLAN.md). Evidence belongs in [logs/](logs/).
+203 organization refreshed October 12, 2026; other rows retain their checkpoint dates. This file is the only current work-status board. Titles/order remain in [curriculum-toc.csv](../curriculum-toc.csv). Process and DONE gates are in [PLAN.md](PLAN.md). Evidence belongs in [logs/](logs/).
 
 Status: TODO, ACTIVE, PAUSED, REVIEW, BLOCKED, DONE. Owner cell format: `agent / branch / date`; `-` means unclaimed. Check `[x]` only for DONE. A dependency must be DONE before claiming a dependent task; independent writing/research can proceed alongside software work in a separate assigned scope.
 
@@ -8,10 +8,18 @@ Status: TODO, ACTIVE, PAUSED, REVIEW, BLOCKED, DONE. Owner cell format: `agent /
 
 All ten 202 lessons have substantive drafts; none are empty or brief placeholders. Dave approval for 202-01 through 202-07 is unrecorded. September 26 approvals for 202-08/09/10 match current text. See [the current review checklist](DAVE.md#202-review-checklist-october-12-2026). Older initial-draft requests for 202-08/09 below are historical and superseded. Pilot and release gates remain separate.
 
-## Immediate queue (September checkpoint; 202 correction above)
+## Current 203 organization checkpoint, October 12, 2026
+
+Ten active files stay in their numbered positions; five JSON title fields now match curriculum-toc.csv. Existing 06 work/school and 09 missions drafts are integrated with September 26 approvals recorded on the board. Chapters 02 and 03 need scope revision, 08 still teaches Belonging, and 10 is a brief stub. Original 08 material is preserved in data/standby. No lesson prose, saved-answer IDs or pastoral approval records changed. See [the placement review](reviews/2026-10-12-203-placement.md). Historical instructions below do not supersede this checkpoint.
+
+## Main as reading environment, October 21, 2026
+
+Dave directed that drafted lessons be merged to main so he can read, study and respond to them on the live site. No learners use the curriculum yet. This supersedes PLAN.md GitHub workflow step 5 (keep unapproved revisions off main) until Dave says otherwise. Being on main is not approval; the Dave gate stays `unrecorded` until he records it.
+
+## Immediate queue (September checkpoint; October corrections above)
 
 1. **DAVE-001:** Initial 202-08/09 review is superseded by recorded September approvals. See DAVE.md for the current 202 checklist.
-2. **L-203-06:** full draft on PR #29 for Dave's review; parable art (ART-004) and ESV wording checks remain.
+2. **203 writing:** focus 02 on prayer, add listening to 03, rebuild 08, then develop 10. The integrated 06/09 drafts have September 26 approvals recorded; artwork and pilot gates remain.
 3. **UX-004:** plain-language restore labels on PR #28, all checks passing, waiting for Dave's go-ahead to merge.
 4. **UX-001:** shared host code is free again now that ENG-006c is merged, but Grok and ChatGPT usage is exhausted; the Discuss implementation waits for Dave to choose a worker.
 
@@ -21,6 +29,7 @@ ENG-006 (backup, preview, confirmed restore) and SEC-001 (credential) are DONE a
 
 | Check | ID | Status | Owner | Depends on | Scope and acceptance evidence |
 |---|---|---|---|---|---|
+| [ ] | ORG-203 | REVIEW | Codex / codex/203-curriculum-organization / 2026-10-12 | - | Dave requested alignment of 203 with the current TOC/screenshot. Scope: lesson title metadata, preservation of old 203-08 material, current placement/status report, navigation and handoff. No lesson prose or saved-answer ID changes. Five title fields aligned; exact 08 standby copy and current placement report added. Evidence: logs/2026-10-12-ORG-203-codex.md. Branch prepared for review, not integrated. |
 | [ ] | DOC-202-STATUS | REVIEW | Codex / main / 2026-10-12 | - | Documentation refresh integrated on main: all ten 202 drafts present; no placeholders; approvals for 202-08/09/10 verified against recorded September 26 versions; approval for 202-01 through 202-07 unrecorded. Updated status/report, historical correction notices, DAVE checklist and handoff. Saved text verified. Evidence: logs/2026-10-12-DOC-202-STATUS-codex.md. No lesson/app changes. |
 | [x] | PM-001 | DONE | Codex / main / 2026-09-11 | - | Create plan, all-lesson board, handoff prompts, approval queue, task logs and agent entry points. Check links/counts and sync planning packet to GitHub. Evidence: logs/2026-09-11-PM-001-codex.md |
 | [x] | PM-002 | DONE | Codex / codex/review-eng-006a / 2026-09-12 | PM-001 | Allocated separate work; created Grok Build checkout and documented explicit handoff packets. Evidence: logs/2026-09-12-PM-002-codex.md. |
@@ -118,11 +127,11 @@ Each row is a stable task ID `L-<lesson>`. Initial `present` means substantive t
 | L-203-03 | REVIEW | Claude / claude/l-203-02-03-bless / 2026-10-21 | present (revised) | ESV verified 2026-10-21; three prior quotations corrected; pending Dave review | Ask, Ask Again, Remember and The Open Table boxes plus Listen/Eat icons checked at 375/390/1280; Emmaus story art pair missing (prompts in log) | pass: same run as L-203-02 | unrecorded | pending | Rebuilt around Listen and Eat: the Emmaus road story, listening teaching (James 1:19, Mark 10:51, Proverbs 20:5) and the Ask, Ask Again, Remember tool, then the table, philoxenia, IS vs ISN'T, practical invitations, grace close. Unattributed Diane anecdote and infographic placeholder removed; credits added. Kept IDs 203-03-2, -6, -key, -prayer; new -heard, -listen, -step; retired -1, -3, -4, -5, -devos. Evidence: logs/2026-10-21-L-203-02-03-claude.md. |
 | L-203-04 | TODO | - | present | pending | pending | pending | unrecorded | pending | Foot-washing pair present via ENG-002, awaiting Dave review; add reusable service tool, standard closing. |
 | L-203-05 | TODO | - | present | pending | pending | pending | unrecorded | pending | Polish: align Three Stories metadata with Three Circles execution; preserve personal practice. |
-| L-203-06 | DONE | Claude / claude/l-203-06-faith-at-work / 2026-09-23 | present on PR #29 | ESV verified 2026-09-23; pending Dave review | Your Three Spaces widget pass; parable art pair missing (ART-004, prompts in research) | pass: storage 51 + L-203-06 browser 17 + 202-08/09 browser 20 + QA 415 | approved 2026-09-26 | pending | 2026-09-23 revision: lean 25-minute lesson (about 1,400 words), Daniel in Babylon, work as gift (Keller and Piper paraphrased), "nothing to find but faith" (faithful work, clean integrity, steady prayer), BLESS at work. Question IDs unchanged. Evidence: logs/2026-09-16-L-203-06-claude.md. Merged as `8c973ea` (PR #29) with Dave's approval 2026-09-26. |
+| L-203-06 | DONE | Claude / claude/l-203-06-faith-at-work / 2026-09-23 | present (integrated PR #29) | ESV verified 2026-09-23; pending Dave review | Your Three Spaces widget pass; parable art pair missing (ART-004, prompts in research) | pass: storage 51 + L-203-06 browser 17 + 202-08/09 browser 20 + QA 415 | approved 2026-09-26 | pending | 2026-09-23 revision: lean 25-minute lesson (about 1,400 words), Daniel in Babylon, work as gift (Keller and Piper paraphrased), "nothing to find but faith" (faithful work, clean integrity, steady prayer), BLESS at work. Question IDs unchanged. Evidence: logs/2026-09-16-L-203-06-claude.md. Merged as `8c973ea` (PR #29) with Dave's approval 2026-09-26. |
 | L-203-07 | TODO | - | present | pending | pending | pending | unrecorded | pending | Revise: keep warfare here; shared IDs repaired by ENG-001; align review heading and closing format. |
-| L-203-08 | TODO | - | rebuild | pending | pending | pending | unrecorded | pending | REBUILD: current Belonging content does not teach advertised How to Disciple Others. |
+| L-203-08 | REVIEW | Claude / claude/l-203-08-10-drafts / 2026-09-27 | present | pending | pending: wheel widget checked at 375/1280 | pass: QA, storage 51, assets 76, widget iframe 32 | unrecorded | pending | Rebuilt as How to Disciple Others: Paul and Timothy (2 Timothy 2:2), Navigators Wheel widget, faithful/available/teachable, "You do not have to be finished." Merged to main 2026-10-21 (PR #49) as a reading draft at Dave's direction; Dave review pending. Old Belonging body preserved in data/standby/203-08-belonging-spiritual-family.json. |
 | L-203-09 | DONE | Claude / claude/l-203-09-church-planting / 2026-09-23 | present | ESV and Keller/Piper quotes verified; pending Dave review | Your Mission Map widget pass; story art pair missing (prompts in research) | pass: storage 47 + L-203-09 browser 14 + 202-08/09 browser 20 + QA 415 | approved 2026-09-26 | pending | Priscilla and Aquila the tentmakers; never meant to do ministry alone; church, city partners, new churches (Send Network, NC plants), nations; pray, give, serve, go. Evidence: logs/2026-09-23-L-203-09-claude.md. Merged as `b3b45a1` (PR #33) with Dave's approval 2026-09-26. |
-| L-203-10 | TODO | - | stub | pending | pending | pending | unrecorded | pending | BRIEF STUB: write calling/integration; make shared edition usable beyond NC. |
+| L-203-10 | REVIEW | Claude / claude/l-203-08-10-drafts / 2026-09-27 | present | pending | pending: SHAPE widget checked at 375/1280 | pass: QA, storage 51, assets 76, widget iframe 32 | unrecorded | pending | Full calling/integration lesson: Bezalel (Exodus 31, 35, 36), SHAPE puzzle widget, Growing Deep/Up/Out summary, points to 301. Merged to main 2026-10-21 (PR #49) as a reading draft at Dave's direction; Dave review pending. |
 | L-301-01 | TODO | - | placeholder | pending | pending | pending | unrecorded | pending | PLACEHOLDER: full lesson writing, Scripture review, illustration, reusable leadership exercise and pilot. |
 | L-301-02 | TODO | - | placeholder | pending | pending | pending | unrecorded | pending | PLACEHOLDER: full lesson writing, Scripture review, illustration, reusable leadership exercise and pilot. |
 | L-301-03 | TODO | - | placeholder | pending | pending | pending | unrecorded | pending | PLACEHOLDER: full lesson writing, Scripture review, illustration, reusable leadership exercise and pilot. |
