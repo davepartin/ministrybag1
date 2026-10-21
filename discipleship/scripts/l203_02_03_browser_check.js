@@ -17,6 +17,7 @@ var LESSONS = [
         hash: '#203-2',
         story: 'A Prayer Before the Answer',
         tool: 'Their Life, Their Heart, My Part',
+        link: 'ministrybag.com/dailyprayers',
         ids: ['203-02-story', '203-02-1', '203-02-rhythm', '203-02-7', '203-02-key', '203-02-step', '203-02-prayer'],
         retired: ['203-02-2', '203-02-3', '203-02-4', '203-02-5', '203-02-6', '203-02-devos']
     },
@@ -60,6 +61,7 @@ function assert(name, condition, detail) {
                     story: text.indexOf(l.story) !== -1,
                     tool: text.indexOf(l.tool) !== -1,
                     review: /Lesson \d Review/.test(text),
+                    link: !l.link || !!document.querySelector('a.block-tool-btn[href*="' + l.link + '"]'),
                     brokenImages: images.filter(function (img) { return img.complete && img.naturalWidth === 0; }).map(function (img) { return img.src; }),
                     scrollWidth: document.documentElement.scrollWidth,
                     viewport: window.innerWidth
@@ -69,6 +71,7 @@ function assert(name, condition, detail) {
             assert(label + 'all seven questions render', info.present.every(Boolean), JSON.stringify(info.present));
             assert(label + 'retired questions are gone', info.retired.length === 0, info.retired.join(','));
             assert(label + 'story, tool and review render', info.story && info.tool && info.review);
+            assert(label + 'linked tool button renders when expected', info.link);
             assert(label + 'no broken images', info.brokenImages.length === 0, info.brokenImages.join(','));
             assert(label + 'page does not scroll sideways', info.scrollWidth <= info.viewport, info.scrollWidth + ' > ' + info.viewport);
 
