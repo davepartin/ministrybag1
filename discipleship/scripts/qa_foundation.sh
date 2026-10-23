@@ -111,7 +111,11 @@ echo "PASS: backup validation, preview counts, conflicts, and rejection checks."
 node scripts/test_backup_restore.js || fail "Backup restore checks failed."
 echo "PASS: confirmed restore, safety download, rollback, and stale-preview checks."
 
-# 15) Bundled John text and removal of the Bible API credential.
+# 15) Plain-language backup labels and answer index sync.
+node scripts/test_backup_labels.js || fail "Backup label or answer index checks failed."
+echo "PASS: backup labels are plain language and the answer index matches the lessons."
+
+# 16) Bundled John text and removal of the Bible API credential.
 node scripts/test_bible_text.js || fail "Bundled Bible text or credential removal checks failed."
 echo "PASS: bundled John text is complete and no Bible API credential remains."
 

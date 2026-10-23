@@ -149,9 +149,9 @@ assert('preview shows retained ambiguity without assigning a lesson', fullPrevie
     fullPreview.ambiguousAnswers.items['question-202-201-09-prayer'].candidateLessons[0] === '202-05');
 assert('selection semantics require an explicit conflict choice', fullPreview.selection.indexOf('nothing is preselected') !== -1 &&
     fullPreview.selection.indexOf('default keep') === -1);
-assert('selection semantics mention unknown keys and unassigned ambiguity', fullPreview.selection.indexOf('Unknown keys stay stored') !== -1 &&
-    fullPreview.selection.indexOf('Ambiguous answers stay unassigned') !== -1);
-assert('apply note says only a complete reviewed backup can be restored', fullPreview.applyNote.indexOf('Only a complete version 1 backup can be restored') !== -1 &&
+assert('selection semantics mention unknown keys and unassigned ambiguity', fullPreview.selection.indexOf('Other saved items stay as they are') !== -1 &&
+    fullPreview.selection.indexOf('Older shared answers stay unassigned') !== -1);
+assert('apply note says only a complete reviewed backup can be restored', fullPreview.applyNote.indexOf('Only a complete backup file can be restored') !== -1 &&
     fullPreview.applyNote.indexOf('not available yet') === -1);
 assert('could-not-restore rules out an automatic restore', fullPreview.couldNotRestore.join(' ').indexOf('An automatic restore.') !== -1);
 
@@ -412,7 +412,7 @@ assert('unreadable destination does not claim known answers conflicts are absent
 assert('unreadable destination preserves write-guard evidence', destUnknown.stores.answers.destinationWritable === false &&
     destUnknown.stores.answers.destinationOriginalRawAvailable === true);
 assert('unreadable destination explains the comparison limit', destUnknown.selection.indexOf('cannot be confirmed') !== -1 &&
-    destUnknown.couldNotRestore.join(' ').indexOf('destination storage is unreadable') !== -1);
+    destUnknown.couldNotRestore.join(' ').indexOf('saved data on this device is unreadable') !== -1);
 assert('in-memory destination values remain available as limited evidence', destUnknown.stores.answers.inMemoryComparison.backupOnly.indexOf('question-101-5-key') !== -1);
 
 var destAllUnknown = preview.previewFromText(fullText, meta('growing-together-backup.json', fullText), {
