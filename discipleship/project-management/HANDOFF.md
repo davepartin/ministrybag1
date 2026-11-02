@@ -1,8 +1,8 @@
 # Resume here
 
-## Seven-week finish tracker, November 2, 2026
+## Finish tracker, November 2, 2026
 
-[SEVEN-WEEK-PLAN.md](SEVEN-WEEK-PLAN.md) is the multi-week finish tracker from November 2 to December 19. TASKS.md remains the status board. DAVE.md remains the approval record. Being on main is not approval. This packet stops at REVIEW for Dave.
+[FINISH-PLAN.md](FINISH-PLAN.md) is the undated finish backlog. TASKS.md remains the status board. DAVE.md remains the approval record. [LESSON-GRADES-SUMMARY.md](LESSON-GRADES-SUMMARY.md) is the grades view. The 301 series is out of scope (DAVE-004 decided November 2, 2026: later / not this release). Being on main is not approval. This packet stops at REVIEW for Dave.
 
 ## 203 organization checkpoint, October 12, 2026
 

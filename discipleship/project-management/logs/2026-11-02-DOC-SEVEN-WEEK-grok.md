@@ -46,13 +46,13 @@ Changed files:
 - discipleship/project-management/logs/2026-11-02-DOC-SEVEN-WEEK-grok.md
 
 Remaining work / next command:
-Dave reviews this PR. Record 203-08 and 203-10 approvals in DAVE.md if he confirms those versions. Week 1 of the tracker still needs DAVE-004 (301 scope) and DAVE-003 (pilot pairs).
+Superseded later on 2026-11-02 by Dave's revised undated finish plan. See logs/2026-11-02-DOC-FINISH-PLAN-grok.md and PR #68. SEVEN-WEEK-PLAN.md was deleted. DAVE-004 is decided: 301 later / out of this release.
 
 Blocker and unblock action, if any:
 None for this documentation packet. Stops at REVIEW. Do not merge without Dave.
 
 Commit / PR / GitHub sync state:
-Recorded after push.
+PR #68. First-pass commit `cfc4693`; revision follows.
 
 Pastoral approval evidence, if applicable:
 None claimed. Dave authored the Oct 29-30 203-08/10 rewrites; this packet only corrects the board pointers.
