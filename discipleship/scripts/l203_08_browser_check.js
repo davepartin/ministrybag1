@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 /**
- * L-203-08 browser check. How to Disciple Others renders, the SPACE loop
- * widget starts on Invite and walks Study / Practice / Appropriate Challenge /
- * Encourage, answers survive navigation and reload, and the page fits phone
- * and laptop widths. Synthetic answers only.
+ * L-203-08 browser check. How to Disciple Others renders, the SPACES
+ * process widget starts on Sit Down and walks Study / Practice /
+ * Appropriate Challenge / Encourage / Send, answers survive navigation
+ * and reload, and the page fits phone and laptop widths. Synthetic
+ * answers only.
  */
 'use strict';
 
@@ -12,16 +13,16 @@ var { chromium } = require('playwright');
 var BASE = process.env.L20308_BASE_URL || 'http://127.0.0.1:8765/index.html';
 var IDS = ['203-08-invested', '203-08-spoke', '203-08-who', '203-08-start', '203-08-key', '203-08-step', '203-08-prayer'];
 var SLIDE_TITLES = [
-    'Invite',
+    'Sit Down',
     'Study',
     'Practice',
     'Practice Leading',
     'Appropriate Challenge',
     'Encourage',
-    'Go',
-    'Invite Again',
-    'Study Again',
-    'The Cycle Continues'
+    'Send',
+    'New Spaces',
+    'A New Study',
+    'More Spaces Open'
 ];
 var failed = 0;
 var passed = 0;
@@ -50,17 +51,22 @@ function assert(name, condition, detail) {
             var frame = document.querySelector('iframe[src*="space-loop"]');
             var doc = frame && frame.contentDocument;
             var bodyText = document.body.textContent;
+            var foot = doc && doc.querySelector('.foot') ? doc.querySelector('.foot').textContent : '';
+            var widgetText = doc ? doc.body.textContent : '';
             return {
                 present: ids.map(function (id) { return !!document.getElementById('question-203-' + id); }),
                 parable: bodyText.indexOf('Four Generations') !== -1,
-                spaceLine: bodyText.indexOf('Study, Practice, Appropriate Challenge, Encourage') !== -1,
+                spacesLine: bodyText.indexOf('Study, Practice, Appropriate Challenge, Encourage, Send') !== -1,
                 review: bodyText.indexOf('Lesson 8 Review') !== -1,
                 closing: bodyText.indexOf('Closing Reflections') !== -1,
-                staleHeadings: bodyText.indexOf('S: Study') !== -1 || bodyText.indexOf('AC: Appropriate Challenge') !== -1,
+                sendHeading: bodyText.indexOf('Send') !== -1,
+                staleAcronym: /\bSPACE\b/.test(bodyText.replace(/SPACES/g, '')),
+                staleWheel: /wheel/i.test(bodyText) && bodyText.indexOf('The Wheel') !== -1,
+                staleLoop: foot.indexOf('loop') !== -1 || widgetText.indexOf('Cycle Continues') !== -1,
                 widgetLoaded: !!(doc && doc.querySelector('#next') && doc.querySelector('#title')),
                 widgetTitle: doc ? doc.title : '',
                 firstSlide: doc && doc.getElementById('title') ? doc.getElementById('title').textContent : '',
-                footer: doc && doc.querySelector('.foot') ? doc.querySelector('.foot').textContent : '',
+                footer: foot,
                 widgetFits: !!frame && frame.getBoundingClientRect().width <= window.innerWidth,
                 iframeOverflowX: !!(doc && doc.documentElement.scrollWidth > doc.documentElement.clientWidth + 1),
                 scrollWidth: document.documentElement.scrollWidth,
@@ -69,11 +75,11 @@ function assert(name, condition, detail) {
         }, IDS);
         assert(width + ': all seven 203-08 questions render', info.present.every(Boolean), JSON.stringify(info.present));
         assert(width + ': Four Generations parable renders', info.parable);
-        assert(width + ': SPACE line and Lesson Review render', info.spaceLine && info.review && info.closing);
-        assert(width + ': stale S:/AC: headings are gone', info.staleHeadings === false);
-        assert(width + ': SPACE widget loads within page width', info.widgetLoaded && info.widgetTitle === 'Make SPACE to Disciple Someone' && info.widgetFits);
-        assert(width + ': widget opens on Invite', info.firstSlide === 'Invite', info.firstSlide);
-        assert(width + ': widget footer names SPACE', info.footer.indexOf('Study, Practice, Appropriate Challenge, Encourage') !== -1, info.footer);
+        assert(width + ': SPACES line, Send, Review, and closing render', info.spacesLine && info.sendHeading && info.review && info.closing);
+        assert(width + ': stale SPACE-only / Wheel wording is gone', info.staleAcronym === false && info.staleWheel === false, JSON.stringify({ staleAcronym: info.staleAcronym, staleWheel: info.staleWheel }));
+        assert(width + ': SPACES widget loads within page width', info.widgetLoaded && info.widgetTitle === 'Make SPACES to Disciple Someone' && info.widgetFits);
+        assert(width + ': widget opens on Sit Down', info.firstSlide === 'Sit Down', info.firstSlide);
+        assert(width + ': widget footer names SPACES process, not a loop', info.footer.indexOf('Walk SPACES') !== -1 && info.staleLoop === false, info.footer);
         assert(width + ': page does not scroll sideways', info.scrollWidth <= info.viewport, info.scrollWidth + ' > ' + info.viewport);
         assert(width + ': widget does not scroll sideways', info.iframeOverflowX === false);
 
@@ -88,15 +94,18 @@ function assert(name, condition, detail) {
                     await page.waitForTimeout(150);
                 }
             }
-            assert('390: SPACE storyboard titles stay in order', JSON.stringify(seen) === JSON.stringify(SLIDE_TITLES), JSON.stringify(seen));
+            assert('390: SPACES storyboard titles stay in order', JSON.stringify(seen) === JSON.stringify(SLIDE_TITLES), JSON.stringify(seen));
+            var sendIndex = seen.indexOf('Send');
+            var encourageIndex = seen.indexOf('Encourage');
+            assert('390: Send comes after Encourage', sendIndex === encourageIndex + 1, JSON.stringify({ encourageIndex: encourageIndex, sendIndex: sendIndex }));
             var nextLabel = await iframe.locator('#next').textContent();
-            assert('390: last frame offers Begin Again', nextLabel.indexOf('Begin Again') !== -1, nextLabel);
+            assert('390: last frame offers See it again', nextLabel.indexOf('See it again') !== -1, nextLabel);
             await iframe.locator('#next').click();
             await page.waitForTimeout(200);
             var restarted = await iframe.locator('#title').textContent();
-            assert('390: Begin Again returns to Invite', restarted === 'Invite', restarted);
+            assert('390: See it again returns to Sit Down', restarted === 'Sit Down', restarted);
 
-            await page.fill('#question-203-203-08-spoke', 'SYN SPACE plan\nsecond line');
+            await page.fill('#question-203-203-08-spoke', 'SYN SPACES plan\nsecond line');
             await page.fill('#question-203-203-08-step', 'SYN step');
             await page.goto(BASE + '#203-7', { waitUntil: 'domcontentloaded' });
             await page.waitForTimeout(500);
@@ -104,7 +113,7 @@ function assert(name, condition, detail) {
             await page.reload({ waitUntil: 'domcontentloaded' });
             await page.waitForSelector('#question-203-203-08-spoke', { timeout: 20000 });
             assert('203-08 answers survive navigation and reload',
-                (await page.inputValue('#question-203-203-08-spoke')) === 'SYN SPACE plan\nsecond line' &&
+                (await page.inputValue('#question-203-203-08-spoke')) === 'SYN SPACES plan\nsecond line' &&
                 (await page.inputValue('#question-203-203-08-step')) === 'SYN step');
         }
         await page.close();
