@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 /**
  * L-203-08 browser check. How to Disciple Others renders, the SPACES
- * process widget starts on Sit Down and walks Study / Practice /
- * Appropriate Challenge / Encourage / Send, answers survive navigation
+ * tables widget starts on Make Space, walks Study / Practice /
+ * Appropriate Challenge / Encourage / Send, and spells SPACES, answers survive navigation
  * and reload, and the page fits phone and laptop widths. Synthetic
  * answers only.
  */
@@ -13,16 +13,14 @@ var { chromium } = require('playwright');
 var BASE = process.env.L20308_BASE_URL || 'http://127.0.0.1:8765/index.html';
 var IDS = ['203-08-invested', '203-08-spoke', '203-08-who', '203-08-start', '203-08-key', '203-08-step', '203-08-prayer'];
 var SLIDE_TITLES = [
-    'Sit Down',
+    'Make Space',
     'Study',
     'Practice',
-    'Practice Leading',
     'Appropriate Challenge',
     'Encourage',
     'Send',
-    'New Spaces',
-    'A New Study',
-    'More Spaces Open'
+    'Two Become Four',
+    'A Room Full of Tables'
 ];
 var failed = 0;
 var passed = 0;
@@ -45,10 +43,10 @@ function assert(name, condition, detail) {
         page.on('pageerror', function (err) { errors.push(String(err)); });
         await page.goto(BASE + '#203-8', { waitUntil: 'domcontentloaded' });
         await page.waitForSelector('#question-203-203-08-invested', { timeout: 20000 });
-        await page.locator('iframe[src*="space-loop"]').scrollIntoViewIfNeeded();
+        await page.locator('iframe[src*="spaces-tables"]').scrollIntoViewIfNeeded();
         await page.waitForTimeout(600);
         var info = await page.evaluate(function (ids) {
-            var frame = document.querySelector('iframe[src*="space-loop"]');
+            var frame = document.querySelector('iframe[src*="spaces-tables"]');
             var doc = frame && frame.contentDocument;
             var bodyText = document.body.textContent;
             var foot = doc && doc.querySelector('.foot') ? doc.querySelector('.foot').textContent : '';
@@ -77,14 +75,14 @@ function assert(name, condition, detail) {
         assert(width + ': Four Generations parable renders', info.parable);
         assert(width + ': SPACES line, Send, Review, and closing render', info.spacesLine && info.sendHeading && info.review && info.closing);
         assert(width + ': stale SPACE-only / Wheel wording is gone', info.staleAcronym === false && info.staleWheel === false, JSON.stringify({ staleAcronym: info.staleAcronym, staleWheel: info.staleWheel }));
-        assert(width + ': SPACES widget loads within page width', info.widgetLoaded && info.widgetTitle === 'Make SPACES to Disciple Someone' && info.widgetFits);
-        assert(width + ': widget opens on Sit Down', info.firstSlide === 'Sit Down', info.firstSlide);
-        assert(width + ': widget footer names SPACES process, not a loop', info.footer.indexOf('Walk SPACES') !== -1 && info.staleLoop === false, info.footer);
+        assert(width + ': SPACES widget loads within page width', info.widgetLoaded && info.widgetTitle === 'Make Space' && info.widgetFits);
+        assert(width + ': widget opens on Make Space', info.firstSlide === 'Make Space', info.firstSlide);
+        assert(width + ': widget footer keeps the SPACES reveal and is not a loop', info.footer.indexOf('Watch it multiply') !== -1 && info.footer.indexOf('SPACES') === -1 && info.staleLoop === false, info.footer);
         assert(width + ': page does not scroll sideways', info.scrollWidth <= info.viewport, info.scrollWidth + ' > ' + info.viewport);
         assert(width + ': widget does not scroll sideways', info.iframeOverflowX === false);
 
         if (width === 390) {
-            var iframe = page.frameLocator('iframe[src*="space-loop"]');
+            var iframe = page.frameLocator('iframe[src*="spaces-tables"]');
             var seen = [];
             for (var i = 0; i < SLIDE_TITLES.length; i++) {
                 var title = await iframe.locator('#title').textContent();
@@ -92,6 +90,10 @@ function assert(name, condition, detail) {
                 if (i < SLIDE_TITLES.length - 1) {
                     await iframe.locator('#next').click();
                     await page.waitForTimeout(150);
+                    if (i === 4) {
+                        var letters = await iframe.locator('.letter.on').count();
+                        assert('390: SPACES is fully spelled on Send', letters === 6, String(letters));
+                    }
                 }
             }
             assert('390: SPACES storyboard titles stay in order', JSON.stringify(seen) === JSON.stringify(SLIDE_TITLES), JSON.stringify(seen));
@@ -103,7 +105,7 @@ function assert(name, condition, detail) {
             await iframe.locator('#next').click();
             await page.waitForTimeout(200);
             var restarted = await iframe.locator('#title').textContent();
-            assert('390: See it again returns to Sit Down', restarted === 'Sit Down', restarted);
+            assert('390: See it again returns to Make Space', restarted === 'Make Space', restarted);
 
             await page.fill('#question-203-203-08-spoke', 'SYN SPACES plan\nsecond line');
             await page.fill('#question-203-203-08-step', 'SYN step');
