@@ -28,7 +28,7 @@ DAVE-001's former request to review the initial 202-08/09 drafts is superseded b
 | DAVE-001 | DONE: recorded lesson approvals | 202-08 and 202-09 approved, latest recorded versions September 26 (PRs #44/#45). Current lesson text matches those versions. No repeat initial-draft review needed. | Lesson wording approval; pilot/release gates remain separate |
 | DAVE-002 | TODO | Review the [201-08 wording proposal](reviews/201-08-benchmark-proposal.md), especially justification and the parable warning; then review the implemented benchmark. 201-01 revision remains pending. Your broad agreement is already recorded; no need to repeat it. | Benchmark approval and wider rollout |
 | DAVE-003 | TODO | Introduce willing pilot pairs and a pastor from another church. Keep names/contact details outside the public repo. | PILOT-001 |
-| DAVE-004 | TODO | At week six, choose whether all 47 can pass the gates by December or whether 301 gets a later release. Set the intended 301 closing rhythm before its drafting batch. | Final release scope |
+| DAVE-004 | DONE: 301 later / out of this release | Decided November 2, 2026: no 301 series in this release. Placeholders stay as they are. A later 301 release remains possible; it is not this finish plan. | Release scope is the 37 lessons in 101, 201, 202 and 203 |
 | DAVE-005 | DEFERRED | Choose account/device-handoff approach after the Read/Discuss prototype and cost/privacy options are concrete. | DATA-001 |
 | DAVE-006 | TODO | Review the Last Supper pair in 202-10 and foot-washing pair in 203-04 on your phone. Confirm that the teaching action is clear and the charcoal/color treatment fits. Both are now on main; technical asset checks pass. | ENG-002 artwork acceptance |
 
@@ -36,6 +36,7 @@ DAVE-001's former request to review the initial 202-08/09 drafts is superseded b
 
 | Date | Decision | Evidence |
 |---|---|---|
+| 2026-11-02 | No 301 series in this release. Scope is the 37 lessons in 101, 201, 202 and 203. Placeholders stay. DAVE-004 closed as later / out of this release. | Dave's revised finish plan on PR #68. |
 | 2026-09-11 | Proceed with the baseline review's recommended direction; preserve story/Scripture/image/widget/practice balance; repair data risks; develop Read/Discuss; pursue AAA quality across the curriculum. | Dave: "I agree with everything you are proposing." |
 | 2026-09-11 | Keep the plan/checklist/log in the repository and sync via GitHub; make handoffs usable by other agents; use Astra for focused daily review when available. | Dave's follow-up request in the project conversation. |
 | 2026-09-16 | Publish PR #17 (202-08 Marriage, 202-09 Purity) to the live alpha site so Dave and others can read them in place and suggest edits. The site is alpha with no learners yet. This is publication for review, not lesson approval; DAVE-001 stays open. | Dave: "just put it on the web and then me and others can look at these and then consider edits". Merged as `7210c2f`. |

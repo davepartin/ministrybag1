@@ -1,5 +1,9 @@
 # Resume here
 
+## Finish tracker, November 2, 2026
+
+[FINISH-PLAN.md](FINISH-PLAN.md) is the undated finish backlog. TASKS.md remains the status board. DAVE.md remains the approval record. [LESSON-GRADES-SUMMARY.md](LESSON-GRADES-SUMMARY.md) is the grades view. The 301 series is out of scope (DAVE-004 decided November 2, 2026: later / not this release). Being on main is not approval. This packet stops at REVIEW for Dave.
+
 ## 203 organization checkpoint, October 12, 2026
 
 ORG-203 is ready for review on `codex/203-curriculum-organization`, not integrated. Ten active files stay in their numbered positions; five JSON title fields now match curriculum-toc.csv. Existing 06 work/school and 09 missions drafts are integrated with September 26 approvals recorded on the board. Chapters 02 and 03 need scope revision, 08 still teaches Belonging, and 10 is a brief stub. Original 08 material is preserved in data/standby. No lesson prose, saved-answer IDs or pastoral approval records changed. See [the placement checkpoint](reviews/2026-10-12-203-placement.md).
