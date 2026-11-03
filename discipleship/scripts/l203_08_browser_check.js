@@ -20,7 +20,7 @@ var SLIDE_TITLES = [
     'Encourage',
     'Send',
     'Teach Others about Growing Together',
-    'A Room Full of Tables'
+    'Growing Worship'
 ];
 var failed = 0;
 var passed = 0;
