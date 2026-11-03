@@ -28,7 +28,7 @@ DAVE-001's former request to review the initial 202-08/09 drafts is superseded b
 | DAVE-001 | DONE: recorded lesson approvals | 202-08 and 202-09 approved, latest recorded versions September 26 (PRs #44/#45). Current lesson text matches those versions. No repeat initial-draft review needed. | Lesson wording approval; pilot/release gates remain separate |
 | DAVE-002 | TODO | Review the [201-08 wording proposal](reviews/201-08-benchmark-proposal.md), especially justification and the parable warning; then review the implemented benchmark. 201-01 revision remains pending. Your broad agreement is already recorded; no need to repeat it. | Benchmark approval and wider rollout |
 | DAVE-003 | TODO | Introduce willing pilot pairs and a pastor from another church. Keep names/contact details outside the public repo. | PILOT-001 |
-| DAVE-004 | TODO | At week six, choose whether all 47 can pass the gates by December or whether 301 gets a later release. Set the intended 301 closing rhythm before its drafting batch. | Final release scope |
+| DAVE-004 | DONE: decided 2026-11-02 | 301 gets a later release. It stays "Coming Soon" on the home page until March 2027, and no 301 lessons are drafted now. This release is the 37 lessons in 101, 201, 202 and 203. | Final release scope |
 | DAVE-005 | DEFERRED | Choose account/device-handoff approach after the Read/Discuss prototype and cost/privacy options are concrete. | DATA-001 |
 | DAVE-006 | TODO | Review the Last Supper pair in 202-10 and foot-washing pair in 203-04 on your phone. Confirm that the teaching action is clear and the charcoal/color treatment fits. Both are now on main; technical asset checks pass. | ENG-002 artwork acceptance |
 
