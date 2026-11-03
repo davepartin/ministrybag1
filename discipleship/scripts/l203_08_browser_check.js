@@ -13,7 +13,7 @@ var { chromium } = require('playwright');
 var BASE = process.env.L20308_BASE_URL || 'http://127.0.0.1:8765/index.html';
 var IDS = ['203-08-invested', '203-08-spoke', '203-08-who', '203-08-start', '203-08-key', '203-08-step', '203-08-prayer'];
 var SLIDE_TITLES = [
-    'Make Space',
+    'Making Space',
     'Study',
     'Practice',
     'Appropriate Challenge',
@@ -76,7 +76,7 @@ function assert(name, condition, detail) {
         assert(width + ': SPACES line, Send, Review, and closing render', info.spacesLine && info.sendHeading && info.review && info.closing);
         assert(width + ': stale SPACE-only / Wheel wording is gone', info.staleAcronym === false && info.staleWheel === false, JSON.stringify({ staleAcronym: info.staleAcronym, staleWheel: info.staleWheel }));
         assert(width + ': SPACES widget loads within page width', info.widgetLoaded && info.widgetTitle === 'Make Space' && info.widgetFits);
-        assert(width + ': widget opens on Make Space', info.firstSlide === 'Make Space', info.firstSlide);
+        assert(width + ': widget opens on Making Space', info.firstSlide === 'Making Space', info.firstSlide);
         assert(width + ': widget has no footer line and is not a loop', info.footer === '' && info.staleLoop === false, info.footer);
         assert(width + ': page does not scroll sideways', info.scrollWidth <= info.viewport, info.scrollWidth + ' > ' + info.viewport);
         assert(width + ': widget does not scroll sideways', info.iframeOverflowX === false);
@@ -105,7 +105,7 @@ function assert(name, condition, detail) {
             await iframe.locator('#next').click();
             await page.waitForTimeout(200);
             var restarted = await iframe.locator('#title').textContent();
-            assert('390: See it again returns to Make Space', restarted === 'Make Space', restarted);
+            assert('390: See it again returns to Making Space', restarted === 'Making Space', restarted);
 
             await page.fill('#question-203-203-08-spoke', 'SYN SPACES plan\nsecond line');
             await page.fill('#question-203-203-08-step', 'SYN step');
