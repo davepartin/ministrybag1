@@ -19,7 +19,7 @@ var SLIDE_TITLES = [
     'Appropriate Challenge',
     'Encourage',
     'Send',
-    'Two Become Four',
+    'Teach Others about Growing Together',
     'A Room Full of Tables'
 ];
 var failed = 0;
