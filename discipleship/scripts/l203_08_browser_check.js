@@ -77,7 +77,7 @@ function assert(name, condition, detail) {
         assert(width + ': stale SPACE-only / Wheel wording is gone', info.staleAcronym === false && info.staleWheel === false, JSON.stringify({ staleAcronym: info.staleAcronym, staleWheel: info.staleWheel }));
         assert(width + ': SPACES widget loads within page width', info.widgetLoaded && info.widgetTitle === 'Make Space' && info.widgetFits);
         assert(width + ': widget opens on Make Space', info.firstSlide === 'Make Space', info.firstSlide);
-        assert(width + ': widget footer keeps the SPACES reveal and is not a loop', info.footer.indexOf('Watch it multiply') !== -1 && info.footer.indexOf('SPACES') === -1 && info.staleLoop === false, info.footer);
+        assert(width + ': widget has no footer line and is not a loop', info.footer === '' && info.staleLoop === false, info.footer);
         assert(width + ': page does not scroll sideways', info.scrollWidth <= info.viewport, info.scrollWidth + ' > ' + info.viewport);
         assert(width + ': widget does not scroll sideways', info.iframeOverflowX === false);
 
