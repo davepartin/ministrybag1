@@ -1,5 +1,30 @@
 # Resume here
 
+## Start here, November 3, 2026: 203-08 How to Disciple Others
+
+Dave is working on lesson 203-08 with an agent, section by section. Main is the reading environment: when Dave asks for a change, make it, run the checks below, and merge it to main so he can see it on the live site. Being on main is not approval; his approval for 203-08 is still unrecorded on [TASKS.md](TASKS.md). Full history and evidence: [the 203-08 log](logs/2026-11-02-L-203-08-SEND-claude.md).
+
+**Why this lesson matters.** Dave calls it the calling behind the whole series: we disciple others so they can disciple others (multiplication, not just addition). Paul and Timothy (2 Timothy 3:10 and 2:2) and life-on-life ministry (1 Thessalonians 2:8) carry it, along with Jesus' command to go and make disciples who make disciples.
+
+**How Dave wants to work.** Keep his wording and the sound of a real conversation. Fix grammar lightly without asking, and say what you fixed. Do not trim, rewrite or "tighten" his content unless he asks; an earlier pass cut too much and had to be reverted. When he asks for options, give two or three short ones with a recommendation. "Personal ministry" is his term for having a disciple; keep it. Some small groups will use the series as their Bible study, so welcome one-on-one and group settings. No em dashes, no bullets in lesson prose.
+
+**Current lesson shape (data/203-08.json).** Recap; Paul and Timothy story image (black and white only, see ART-008); Four Generations story; 2 Timothy 2:2; Dave's reflection with "his own personal ministry"; 8.1; Jesus Calls Ordinary People to Make Disciples (Mark 3:14 with bold "with him" and "send them", quietly echoing study, practice, appropriate challenge, encourage, sent; Matthew 28:19-20; "you will not do it alone"); Sit Down Together (one friend or a small group); the widget; Make SPACES with key words; Study: Learn; Practice: Talk; Appropriate Challenge: Do; Encourage: Keep Going; Send: Go; 8.2; Addition or Multiplication (ten-year doubling picture); Life on Life (1 Thessalonians 2:8 and Dave's tasting versus "chewing it up and consuming it" picture); Your Appropriate Challenge (use Growing Together with one person or a few; the learner who has been receiving is now sent; "I will be here to help and encourage you all along the way"); 8.3; God Gives the Growth; 8.4 (dream question); Review; closing trio. All seven saved-answer IDs are unchanged. About 1,730 words, above the 1,500 target; trim only after Dave reads it.
+
+**The widget (widgets/spaces-tables.html, title "Make Space").** A whiteboard drawing. Black marker for everyone; green marker and a backpack mark people who have been discipled. Letter boxes spell SPACES as the steps happen, and the camera widens until Send, then the tables multiply. All eight captions are Dave's words: Making Space; Study (bold **learn**); Practice (**talk**); Appropriate Challenge (**do**, the open Bible slides across to the friend); Encourage (**keep**, mentor thumbs-up and a plain speech bubble, both nod); Send ("Making Space to Multiply Spaces. As we have been sent, so we send." plus Jesus' "**Go** therefore and make disciples..."); Teach Others about Growing Together (2 Timothy 2:2); Growing Worship (Mark 4:20, the series key verse on the home page). Do not reintroduce the heart, the staircase, the pointing gesture or the header hint line; Dave removed them.
+
+**Where Dave left off.** He finished the widget and the text before it, and asked for the full draft after the widget (PR #98). His section-by-section read of that draft is next, starting with Make SPACES and the five step sections.
+
+**Open questions for Dave, only if they come up.**
+1. Should the Encourage speech bubble be completely empty (it now has two short lines like Practice)?
+2. Should the thumbs-up hand be a little bigger on that zoomed-out frame?
+3. Optional idea he has not answered: the widget header could change from "Make Space" to "Make SPACES" on the Send frame.
+4. Should the step sections and Review pair each letter with its key word more explicitly? (The Make SPACES paragraph already does.)
+
+**Checks to run from discipleship/** (serve with `python3 -m http.server 8765 --bind 127.0.0.1`): `bash scripts/qa_foundation.sh` (415), `node scripts/test_answer_storage.js` (64), `node scripts/test_lesson_assets.js` (8), `node scripts/test_widget_iframe.js` (32), and `node scripts/l203_08_browser_check.js` (34; set `NODE_PATH` to the global node_modules for Playwright). For widget drawing changes, also screenshot the affected frame at 390 px and look at it before merging.
+
+**Also open.** PR #68 (FINISH-PLAN.md and LESSON-GRADES-SUMMARY.md) is still unmerged; read it from branch `cursor/seven-week-plan-tracker-94c4`. 301 stays deferred until March 2027 (DAVE-004 done). New board rows: ENG-007 done (widget scroll-jump fix for every lesson), QA-002 (flaky ENG-003 browser check), ART-008 (color version of the 203-08 story image).
+
+
 ## 203 organization checkpoint, October 12, 2026
 
 ORG-203 is ready for review on `codex/203-curriculum-organization`, not integrated. Ten active files stay in their numbered positions; five JSON title fields now match curriculum-toc.csv. Existing 06 work/school and 09 missions drafts are integrated with September 26 approvals recorded on the board. Chapters 02 and 03 need scope revision, 08 still teaches Belonging, and 10 is a brief stub. Original 08 material is preserved in data/standby. No lesson prose, saved-answer IDs or pastoral approval records changed. See [the placement checkpoint](reviews/2026-10-12-203-placement.md).
