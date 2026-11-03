@@ -119,6 +119,24 @@
         return max;
     }
 
+    var anchorPauses = typeof WeakMap === 'function' ? new WeakMap() : null;
+    function pauseScrollAnchoring(hostDoc) {
+        if (!anchorPauses || !hostDoc || !hostDoc.documentElement) return;
+        var win = hostDoc.defaultView;
+        if (!win || typeof win.requestAnimationFrame !== 'function') return;
+        if (anchorPauses.has(hostDoc)) return;
+        var els = [hostDoc.documentElement, hostDoc.body].filter(function (el) { return el && el.style; });
+        var previous = els.map(function (el) { return el.style.overflowAnchor; });
+        els.forEach(function (el) { el.style.overflowAnchor = 'none'; });
+        anchorPauses.set(hostDoc, true);
+        win.requestAnimationFrame(function () {
+            win.requestAnimationFrame(function () {
+                els.forEach(function (el, i) { el.style.overflowAnchor = previous[i]; });
+                anchorPauses.delete(hostDoc);
+            });
+        });
+    }
+
     function applyHeight(iframe) {
         if (!iframe || !iframe.style || !getIframeDocument(iframe)) {
             return measureContentHeight(iframe);
@@ -128,6 +146,12 @@
         // Restore tiny/hidden measurements; do not collapse an inactive lesson.
         var previousHeight = iframe.style.height;
         var measured;
+        // The brief 0px collapse must not move the page. Browser scroll anchoring
+        // otherwise shifts the page by about the widget's height whenever the
+        // widget's top is above the screen. Pause anchoring on the host page and
+        // resume it after the next frame, without touching the scroll position,
+        // so smooth scrolls already underway are never interrupted (L-203-08).
+        pauseScrollAnchoring(iframe.ownerDocument);
         iframe.style.height = '0px';
         try {
             measured = measureContentHeight(iframe);
