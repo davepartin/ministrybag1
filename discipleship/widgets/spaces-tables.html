@@ -47,6 +47,9 @@ svg .prop{opacity:0;transition:opacity .6s ease}
 svg .prop.show{opacity:1}
 svg .head{transform-box:fill-box;transform-origin:50% 100%}
 svg .nod .head{animation:nod 1.1s ease-in-out .3s 3}
+svg .person .arm-thumb,svg .person .arm-self{display:none}
+svg .person.thumb .arm-thumb,svg .person.self .arm-self{display:inline}
+svg .person.thumb .arm-rest,svg .person.self .arm-rest{display:none}
 @keyframes nod{0%,100%{transform:rotate(0)}40%{transform:rotate(9deg)}}
 @media(prefers-reduced-motion:reduce){
   svg .person,svg .person .body,svg .prop,svg .person .pack,.letter{transition:none}
@@ -87,8 +90,8 @@ svg .nod .head{animation:nod 1.1s ease-in-out .3s 3}
       'Two people sit at the table with an open Bible between them.'],
     ['Practice', 'Often the best way to grow is in a safe and loving environment. Practice talking about spiritual topics, praying, and sharing your faith journey.', 2, [1], [0, -26, 320],
       'The new friend is talking while the first person listens. The view is a little wider.'],
-    ['Appropriate Challenge', 'One next step that fits where they are. Not too big, not too small: "Would you share your story with one friend this week?"', 4, [2, 3], [0, -18, 365],
-      'A small staircase is drawn above the table: one next step. The view keeps widening.'],
+    ['Appropriate Challenge', 'Challenge them with hopeful eyes and say, "I see in you _______." And give them a step that will help them grow in faith, dependence, and personal development.', 4, [2, 3], [0, -18, 365],
+      'The mentor gives a thumbs-up. The friend points to himself as if to say, "Me?" The view keeps widening.'],
     ['Encourage', '"How did it go?" They listen, nod, pray, and celebrate. Something has grown in the new friend. They are drawn in green now too.', 5, [4], [0, -16, 440],
       'Both people nod. A heart is drawn above the table. The new friend is now drawn in green. At the edges of the view, other empty tables appear.'],
     ['Send', 'Now send them. The one who was discipled carries it to a new table, and the first person pulls out a chair for someone new.', 6, [5], [150, -4, 650],
@@ -145,9 +148,9 @@ svg .nod .head{animation:nod 1.1s ease-in-out .3s 3}
   props.bubble = el('g', { class: 'prop' }, propLayer);
   el('path', { class: 'solid', 'stroke-width': 2.4, d: 'M16,-112 h58 q8,0 8,8 v16 q0,8 -8,8 h-12 l4,10 l-14,-10 h-36 q-8,0 -8,-8 v-16 q0,-8 8,-8 Z' }, props.bubble);
   el('path', { class: 'line', 'stroke-width': 2, d: 'M20,-103 h46 M20,-94 h30' }, props.bubble);
-  props.step = el('g', { class: 'prop' }, propLayer);
-  el('path', { class: 'line', 'stroke-width': 2.8, stroke: 'var(--green)', style: 'stroke:var(--green)', d: 'M-28,-30 h14 v-13 h14 v-13 h14 v-13 h12' }, props.step);
-  el('path', { class: 'line', 'stroke-width': 2.8, style: 'stroke:var(--green)', d: 'M22,-75 l8,-6 l-8,-6' }, props.step);
+  props.ask = el('g', { class: 'prop' }, propLayer);
+  var q = el('text', { x: 118, y: -70, 'font-size': 22, 'font-family': 'system-ui, sans-serif', 'font-weight': 700, fill: '#26231f' }, props.ask);
+  q.textContent = '?';
   props.heart = el('g', { class: 'prop' }, propLayer);
   el('path', { class: 'line', 'stroke-width': 3, style: 'stroke:var(--green)', d: 'M0,-34 C-22,-48 -16,-72 0,-60 C16,-72 22,-48 0,-34 Z' }, props.heart);
   var books = tables.map(function (t, ti) { if (ti === 0) { return null; } var g = el('g', { class: 'prop' }, propLayer); book(t[0], t[1], g); return g; });
@@ -159,7 +162,15 @@ svg .nod .head{animation:nod 1.1s ease-in-out .3s 3}
     el('rect', { class: 'pack solid', 'stroke-width': 2.2, x: -31, y: -58, width: 17, height: 30, rx: 5 }, body);
     el('path', { class: 'solid', 'stroke-width': 2.6, d: 'M-12,0 L-12,-44 Q-12,-60 2,-60 Q16,-60 15,-44 L13,0 Z' }, body);
     el('path', { class: 'line', 'stroke-width': 2.6, d: 'M0,0 L30,0 L30,42 L38,42' }, body);
-    el('path', { class: 'line', 'stroke-width': 2.6, d: 'M4,-50 Q20,-36 40,-24' }, body);
+    el('path', { class: 'line arm-rest', 'stroke-width': 2.6, d: 'M4,-50 Q20,-36 40,-24' }, body);
+    var thumb = el('g', { class: 'arm-thumb' }, body);
+    el('path', { class: 'line', 'stroke-width': 2.6, d: 'M4,-50 L24,-36 L32,-58' }, thumb);
+    el('rect', { class: 'solid', 'stroke-width': 2.4, x: 27, y: -67, width: 11, height: 10, rx: 3 }, thumb);
+    el('path', { class: 'line', 'stroke-width': 2.6, d: 'M29,-67 L29,-77' }, thumb);
+    var self = el('g', { class: 'arm-self' }, body);
+    el('path', { class: 'line', 'stroke-width': 2.6, d: 'M4,-50 L34,-30 L22,-44' }, self);
+    el('circle', { class: 'solid', 'stroke-width': 2.2, cx: 21, cy: -45, r: 4 }, self);
+    el('path', { class: 'line', 'stroke-width': 2.4, d: 'M18,-46 L7,-48' }, self);
     var head = el('g', { class: 'head' }, body);
     el('circle', { class: 'solid', 'stroke-width': 2.6, cx: 3, cy: -76, r: 14 }, head);
     return g;
@@ -266,10 +277,12 @@ svg .nod .head{animation:nod 1.1s ease-in-out .3s 3}
     });
     props.book.classList.toggle('show', current >= 1);
     props.bubble.classList.toggle('show', current === 2);
-    props.step.classList.toggle('show', current === 3);
     props.heart.classList.toggle('show', current === 4);
     tableGroups.forEach(function (g, ti) { if (ti > 0) { g.classList.toggle('show', current >= 4); } });
     books.forEach(function (g, ti) { if (g) { g.classList.toggle('show', (ti === 1 && current >= 5) || (ti <= 3 && current >= 6) || current === 7); } });
+    people.M.classList.toggle('thumb', current === 3);
+    props.ask.classList.toggle('show', current === 3);
+    people.D.classList.toggle('self', current === 3);
     people.M.classList.toggle('nod', current === 4);
     people.D.classList.toggle('nod', current === 4);
     moveCamera(s[4]);
