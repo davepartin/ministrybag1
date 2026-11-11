@@ -177,8 +177,8 @@ Plan and standard: [reviews/2026-11-11-series-review.md](reviews/2026-11-11-seri
 
 | Check | ID | Status | Owner | Depends on | Scope and acceptance evidence |
 |---|---|---|---|---|---|
-| [ ] | REWORK-203-07 | REVIEW | Claude / claude/l-203-07-rework / 2026-11-11 | SWEEP-001..003 merged (done) | Armor of God rewrite per plan section A, order 1. Widget carries the six pieces; "A Sword for the Lie" as the handle; teach-it question; about 1,400 words. Draft at about 1,310 words, PR open, preview link in PR. Evidence: logs/2026-11-11-L-203-07-claude.md. |
-| [ ] | REWORK-203-04 | REVIEW | Claude / claude/l-203-04-rework / 2026-11-11 | REWORK-203-07 | Serve rewrite per plan, order 2. Draft at about 1,280 words, PR open, preview link in PR. Evidence: logs/2026-11-11-L-203-04-claude.md. |
+| [x] | REWORK-203-07 | DONE | Claude / claude/l-203-07-rework / 2026-11-11 | SWEEP-001..003 merged (done) | Armor of God rewrite per plan section A, order 1. Widget carries the six pieces; "A Sword for the Lie" as the handle; teach-it question; about 1,310 words. Dave's four widget wording changes applied; PR #123 merged 2026-11-11 as 55ab6a9, deployed. Evidence: logs/2026-11-11-L-203-07-claude.md. |
+| [x] | REWORK-203-04 | DONE | Claude / claude/l-203-04-rework / 2026-11-11 | REWORK-203-07 | Serve rewrite per plan, order 2. About 1,290 words. Dave's thirteen revisions applied; PR #124 merged 2026-11-11 as 2d04846, deployed. Evidence: logs/2026-11-11-L-203-04-claude.md. |
 | [ ] | REWORK-202-02 | TODO | - | REWORK-203-04 | Family rewrite per plan, order 3. Forgiveness Loop as the handle. |
 | [ ] | REWORK-202-04 | TODO | - | REWORK-202-02 | Gifts rewrite per plan, order 4. Five farmers carry APEST. |
 | [ ] | REWORK-201-03 | TODO | - | REWORK-202-04 | Holy Spirit rewrite per plan, order 5. GUIDE as the handle. |

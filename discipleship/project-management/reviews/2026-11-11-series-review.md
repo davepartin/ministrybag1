@@ -112,6 +112,23 @@ Score each line yes or no and quote the evidence. A lesson passes when every lin
 - Closing trio present (101: trio plus Daily Devotions).
 - Checks in step 4 above pass.
 
+## How Dave edits (learned from his revisions)
+
+Dave reviewed 203-07 and 203-04 on his phone and sent line-by-line changes. The pattern in those changes is the editing standard for every later draft. Apply it before he sees a lesson, so his rounds get shorter.
+
+- **Name the positive action, not the cost.** He replaced "be inconvenienced for someone else's good" with "care with action for someone else's good" and "start being inconvenienced" with "start to sacrifice". Serving is love in motion, not a burden.
+- **No guilt in the setup.** "one more thing to do to keep God happy" became "one more thing they have to do." Describe the misunderstanding without caricaturing God.
+- **"Acceptance with God," not "standing with God."** Warmer and relational, not legal.
+- **God as the subject of every short line.** "Peace is not just comfort. It moves you on mission" became "Peace is the presence of God that moves you on mission." "Jesus has already triumphed" became "Jesus stands with you, before you, and has won." Keep Christ present tense, not only past.
+- **One sentence where fragments pile up.** "Not power, not status. A towel and a basin." became one sentence with a colon. Join a contrast with "but" ("He had every right to be served, but He chose to serve") instead of two clipped sentences.
+- **Bold the one line to remember in a section.** The world/Jesus greatness contrast was set in bold. At most one bold line per section, the line a reader would quote.
+- **Homely, exact images.** "Watering bucket," not "watering trough." Pick the object people actually own.
+- **Credit a quoted author inline.** When a sentence is really Piper's, write "John Piper says," and quote it, and keep the credit line at the bottom.
+- **Questions must stand on their own.** He called 4.2 "too obscure" because it leaned on the lesson's metaphor (spring and trough). A question should make sense to someone who did not read the paragraph above it. Ask about feeling, growth, or a concrete next step; avoid clever callbacks.
+- **Growth questions over confession questions.** "Which is hardest for you to give" became "which is your biggest growth area, and what is one way you could develop it?" Pair the diagnosis with a forward step.
+- **Do not assume a prior artifact.** "Pick one name from your prayer card" was cut. A practice should work even if the learner skipped an earlier tool.
+- **Short, concrete, warm.** Every change shortened or clarified; none added length.
+
 ## Documents to update once the sweeps merge
 
 - `LESSON-TEMPLATE.md`: the 101 closing is now key, step, devotions, prayer (four questions), not the older combined key-and-step question.
