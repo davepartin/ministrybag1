@@ -77,4 +77,5 @@ When Dave approves a lesson, add one row with its task ID, date, reviewed commit
 | SERIES-REVIEW | 2026-11-11 | PR #121, merged as `80b951c` | Dave in chat: "i agree with your proposals ... put that plan in writing in the repo", then "merge them". Standing plan at reviews/2026-11-11-series-review.md; Claude is producer/director for the rework; next lesson 203-07. |
 | REWORK-203-07 | 2026-11-11 | PR #123, merged as `55ab6a9` | Dave in chat: "ok this lesson is good", then "merge it". Four widget wording changes applied before merge. data/203-07.json sha256 219830426dc6; widgets/armor-of-god.html sha256 72d78c43914a. |
 | REWORK-203-04 | 2026-11-11 | PR #124, merged as `2d04846` | Dave in chat: thirteen wording changes from the preview, then "merge it". data/203-04.json sha256 579963d02c61. |
+| AUTO-DEPLOY | 2026-11-11 | PR #127, merged as the first auto-deploy | Dave in chat: "set up auto-deploy" after Claude recommended it over hand deploys. Dave ran the GitHub authorization himself. From now on a merge to main publishes both sites; no bot deploys by hand. First Action run 43079775227 succeeded and the live site was verified. |
 

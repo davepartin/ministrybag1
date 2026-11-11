@@ -187,4 +187,5 @@ Plan and standard: [reviews/2026-11-11-series-review.md](reviews/2026-11-11-seri
 | [ ] | TRIM-SERIES | TODO | - | REWORK-203-08 | The 13 trims in plan section B, light touch, two or three lessons per PR if Dave prefers. |
 | [ ] | TEACH-IT | TODO | - | TRIM-SERIES | One teach-it question per lesson, plan section C; add in whichever pass touches the lesson last. |
 | [ ] | DOCS-STANDARD | TODO | - | - (SWEEP-002 merged 2026-11-11) | Update LESSON-TEMPLATE.md (101 closing is four questions), AI-LESSON-CHECKLIST.md (new exemplars, teach-it question, no widget naming), DISCIPLESHIP-COMPASS.md (seven-point standard). Plan section "Documents to update". |
+| [x] | AUTO-DEPLOY | DONE | Claude / claude/auto-deploy / 2026-11-11 | - | GitHub Actions deploy discipleship/ to Firebase Hosting on merge to main and post a preview link on every PR. PR #127 merged 2026-11-11. Rule in HANDOFF and the series plan: no bot deploys by hand. |
 
