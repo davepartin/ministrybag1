@@ -1,5 +1,25 @@
 # Resume here
 
+## Firebase move (DATA-002), November 10, 2026
+
+Dave chose Firebase for sign-in and saved answers (DATA-001 is decided) and owns **growingtogetherdiscipleship.com**. Stay on the free Spark plan. The work runs in four steps: DATA-002a Hosting and preview links, then DATA-002b to d for sign-in and private per-person answers.
+
+**Status (2026-11-10):** Firebase project `growing-together-discipleship` exists under davepartin@gmail.com (Dave's own account; Growing Together is his work) on the Spark plan. `discipleship/.firebaserc` points at it. The deny-all Firestore rules are deployed. The app is live, unchanged, at https://growing-together-discipleship.web.app. https://growingtogetherdiscipleship.com is connected with its own certificate, and www redirects to it. Authorized domains for sign-in: growingtogetherdiscipleship.com, www.growingtogetherdiscipleship.com, ministrybag.com (plus Firebase's defaults). DATA-002a is complete; next is DATA-002b, sign-in.
+
+**Do not touch ministrybag.com/discipleship.** It stays on GitHub Pages, with no redirect and no change, until sign-in exists. Saved answers live in each browser per web address, so learners must keep using the old address until DATA-002b to d. Do not announce the new address yet.
+
+**Sign-in:** the command-line tools are already signed in as davepartin@gmail.com, the owning account. If they ever need signing in again, Dave runs `firebase login` himself. Never ask for his password.
+
+**Commands, always run from `discipleship/`:**
+- Private preview link for a lesson change, which expires after a week: `firebase hosting:channel:deploy <short-name> --expires 7d`. Firebase prints a URL like `https://<project-id>--<short-name>-<hash>.web.app`. Use a short name for the change, such as `l-203-08`.
+- Go live: `firebase deploy --only hosting`
+- Update the database rules: `firebase deploy --only firestore:rules`
+- Test offline before any project exists: copy `firebase.json` to a temporary config with an `emulators` block, then run `firebase emulators:exec --only hosting --project demo-growing-together "<command>"`. The emulator ignores the upload leave-out list, so test that list with a real preview deploy.
+
+**What gets uploaded:** everything in `discipleship/` except planning and research folders (`project-management`, `Lesson_research`, `leadership-archive`, `cru_followup_material`), Markdown, spreadsheets, temp files and the test and build scripts. Runtime scripts in `scripts/` (answer storage, backups, export, widget loader, save feedback) must stay uploaded. HTML, JSON, JS and CSS are served with `Cache-Control: no-cache`, so lesson edits show right away.
+
+**The Firebase web key is not a secret.** When sign-in begins, the web config (including `apiKey`) goes into the app. Google designs it to be public: it only identifies the project. The real protection is the Firestore security rules (DATA-002c) and the list of authorized domains in Authentication. This is different from the old ESV key (SEC-001), which unlocked a paid-style service account.
+
 ## Start here, November 3, 2026: 203-08 How to Disciple Others
 
 Dave is working on lesson 203-08 with an agent, section by section. Main is the reading environment: when Dave asks for a change, make it, run the checks below, and merge it to main so he can see it on the live site. Being on main is not approval; his approval for 203-08 is still unrecorded on [TASKS.md](TASKS.md). Full history and evidence: [the 203-08 log](logs/2026-11-02-L-203-08-SEND-claude.md).

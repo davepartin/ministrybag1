@@ -3,3 +3,6 @@
 # macOS clutter
 .DS_Store
 **/.DS_Store
+
+# Firebase deploy cache (DATA-002a)
+discipleship/.firebase/
