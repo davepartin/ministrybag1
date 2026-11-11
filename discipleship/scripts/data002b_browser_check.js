@@ -183,8 +183,16 @@ async function statusText(page) {
     await page.click('#account-google');
     var popup = await popupPromise;
     try {
-        await popup.waitForLoadState('domcontentloaded');
-        await popup.getByText('Add new account').click();
+        await popup.waitForLoadState('load');
+        // The emulator's chooser sometimes ignores a click made before its
+        // script is ready, so click again until the account form shows.
+        for (var tries = 0; tries < 5; tries += 1) {
+            await popup.getByText('Add new account').click();
+            try {
+                await popup.locator('#email-input').waitFor({ state: 'visible', timeout: 2000 });
+                break;
+            } catch (notYet) {}
+        }
         await popup.locator('#email-input').fill('google.learner@example.com');
         await popup.locator('#display-name-input').fill('Google Learner');
         await popup.getByText('Sign in with Google.com').click();
