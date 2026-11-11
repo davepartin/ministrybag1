@@ -4,7 +4,7 @@
 
 Dave chose Firebase for sign-in and saved answers (DATA-001 is decided) and owns **growingtogetherdiscipleship.com**. Stay on the free Spark plan. The work runs in four steps: DATA-002a Hosting and preview links, then DATA-002b to d for sign-in and private per-person answers.
 
-**Status:** DATA-002a is in progress on branch `claude/data-002a-firebase-hosting`. `discipleship/firebase.json` and a deny-all `discipleship/firestore.rules` are ready. Nothing is deployed yet. The Firebase project does not exist yet; Dave creates it in the console under his personal Google account, davepartin@gmail.com (not the church account; Growing Together is his own work). See his checklist in the DATA-002a log. When it exists, add `discipleship/.firebaserc` with its project ID.
+**Status (2026-11-10):** Firebase project `growing-together-discipleship` exists under davepartin@gmail.com (Dave's own account; Growing Together is his work) on the Spark plan. `discipleship/.firebaserc` points at it. The deny-all Firestore rules are deployed. The app is live, unchanged, at https://growing-together-discipleship.web.app. Next: Dave connects growingtogetherdiscipleship.com (GoDaddy DNS) in Hosting and adds the authorized domains in Authentication.
 
 **Do not touch ministrybag.com/discipleship.** It stays on GitHub Pages, with no redirect and no change, until sign-in exists. Saved answers live in each browser per web address, so learners must keep using the old address until DATA-002b to d. Do not announce the new address yet.
 
