@@ -1,9 +1,15 @@
 /**
- * Growing Together sign-in for DATA-002b: Google, and email and password with
- * password reset, through Firebase Authentication.
+ * Growing Together sign-in (DATA-002b) and answer sync (DATA-002d).
  *
- * Sign-in only. Answers still save in this browser, and nothing here reads or
- * writes them; private per-person answers come in DATA-002c and 002d.
+ * Sign-in: Google, and email and password with password reset, through
+ * Firebase Authentication.
+ *
+ * Sync: while someone is signed in, answers, lesson check marks and reading
+ * notes also save to their own Firestore documents
+ * (users/{uid}/stores/{storeId}), and edits from their other devices arrive
+ * as they happen. The browser copy stays the first place everything saves.
+ * scripts/answer-sync.js decides what moves; firestore.rules (DATA-002c)
+ * keeps each person's documents private to them.
  *
  * The Firebase web config below is public by design: it only names the project.
  * People's data is protected by the Firestore rules and by the authorized
@@ -24,6 +30,21 @@ const FIREBASE_CONFIG = {
 };
 
 const EMULATOR_URL = 'http://127.0.0.1:9099';
+const FIRESTORE_EMULATOR = { host: '127.0.0.1', port: 8080 };
+
+// Typing saves on every keystroke, so pushes wait for a short pause.
+const PUSH_DELAY_MS = 1500;
+
+const SCOPE_TEXT = {
+    signedOut: 'Sign in to keep your answers on all your devices.',
+    connecting: 'Connecting to your account.',
+    synced: 'Your answers save to your account and show on every device where you sign in.',
+    deviceOnly: 'Your answers save on this device.',
+    problem: 'Could not reach your account just now. Your answers are still saved on this device.'
+};
+
+const sync = window.GrowingTogetherAnswerSync;
+const appHost = window.GrowingTogetherApp;
 
 const el = (id) => document.getElementById(id);
 
@@ -31,7 +52,8 @@ const home = {
     wrap: el('home-account'),
     status: el('home-account-status'),
     signIn: el('home-account-signin'),
-    signOut: el('home-account-signout')
+    signOut: el('home-account-signout'),
+    scope: el('home-account-scope')
 };
 
 const dialog = {
@@ -56,6 +78,13 @@ let creating = false;
 let busy = false;
 let lastFocus = null;
 
+let fs = null;
+let db = null;
+let syncUid = null;
+let unsubscribers = [];
+let pending = {};
+let pushTimer = null;
+
 if (mode && home.wrap && dialog.overlay) {
     start().catch((error) => {
         console.warn('Sign-in could not start.', error);
@@ -64,15 +93,19 @@ if (mode && home.wrap && dialog.overlay) {
 }
 
 async function start() {
-    const [appModule, authModule] = await Promise.all([
+    const [appModule, authModule, firestoreModule] = await Promise.all([
         import(FIREBASE_SDK + 'firebase-app.js'),
-        import(FIREBASE_SDK + 'firebase-auth.js')
+        import(FIREBASE_SDK + 'firebase-auth.js'),
+        import(FIREBASE_SDK + 'firebase-firestore.js')
     ]);
     api = authModule;
+    fs = firestoreModule;
     const app = appModule.initializeApp(FIREBASE_CONFIG);
     auth = api.getAuth(app);
+    db = fs.getFirestore(app);
     if (mode === 'emulator') {
         api.connectAuthEmulator(auth, EMULATOR_URL, { disableWarnings: true });
+        fs.connectFirestoreEmulator(db, FIRESTORE_EMULATOR.host, FIRESTORE_EMULATOR.port);
     }
     wireUp();
     home.wrap.hidden = false;
@@ -94,6 +127,10 @@ function wireUp() {
         if (event.target === dialog.overlay) closeDialog();
     });
     document.addEventListener('keydown', onKeydown);
+    window.addEventListener('pagehide', flushPushes);
+    document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'hidden') flushPushes();
+    });
 }
 
 function renderSignedIn(user) {
@@ -102,10 +139,120 @@ function renderSignedIn(user) {
         showHomeStatus('Signed in as ' + who);
         home.signIn.hidden = true;
         home.signOut.hidden = false;
+        startSync(user.uid);
     } else {
+        stopSync();
         showHomeStatus('');
+        showScope(SCOPE_TEXT.signedOut);
         home.signIn.hidden = false;
         home.signOut.hidden = true;
+    }
+}
+
+function showScope(text) {
+    if (home.scope) home.scope.textContent = text;
+}
+
+function canSync() {
+    return !!(fs && db && sync && appHost && appHost.syncTracker);
+}
+
+function storeRef(uid, storeId) {
+    return fs.doc(db, 'users', uid, 'stores', storeId);
+}
+
+function startSync(uid) {
+    stopSync();
+    if (!canSync()) {
+        showScope(SCOPE_TEXT.deviceOnly);
+        return;
+    }
+    const tracker = appHost.syncTracker;
+    const storeIds = sync.STORE_IDS.filter((id) => appHost.storeWritable(id));
+    if (!storeIds.length) {
+        showScope(SCOPE_TEXT.deviceOnly);
+        return;
+    }
+    showScope(SCOPE_TEXT.connecting);
+    // A device that last synced with someone else shows this account's
+    // answers instead, after keeping a copy of what was here.
+    const firstMode = sync.modeForAccount(tracker.lastUid(), uid);
+    if (firstMode === 'replace') keepCopyBeforeSwitch(tracker.lastUid());
+    syncUid = uid;
+    tracker.onLocalChange(queuePush);
+    const seen = new Set();
+    storeIds.forEach((storeId) => {
+        let first = true;
+        const unsubscribe = fs.onSnapshot(storeRef(uid, storeId), (snap) => {
+            if (syncUid !== uid) return;
+            const data = snap.exists() ? snap.data() : {};
+            const plan = sync.reconcile(
+                appHost.storeMemory(storeId),
+                tracker.times(storeId),
+                data.entries,
+                first ? firstMode : 'merge'
+            );
+            first = false;
+            if (Object.keys(plan.toLocal).length || plan.removeLocal.length) {
+                appHost.applySyncedValues(storeId, plan.toLocal, plan.removeLocal);
+            }
+            if (Object.keys(plan.toRemote).length) queuePush(storeId, plan.toRemote);
+            seen.add(storeId);
+            if (seen.size === storeIds.length) {
+                tracker.setLastUid(uid);
+                showScope(SCOPE_TEXT.synced);
+            }
+        }, onSyncProblem);
+        unsubscribers.push(unsubscribe);
+    });
+}
+
+function stopSync() {
+    unsubscribers.forEach((unsubscribe) => unsubscribe());
+    unsubscribers = [];
+    if (appHost && appHost.syncTracker) appHost.syncTracker.onLocalChange(null);
+    clearTimeout(pushTimer);
+    pending = {};
+    syncUid = null;
+}
+
+function queuePush(storeId, entries) {
+    if (!syncUid) return;
+    pending[storeId] = Object.assign(pending[storeId] || {}, entries);
+    clearTimeout(pushTimer);
+    pushTimer = setTimeout(flushPushes, PUSH_DELAY_MS);
+}
+
+function flushPushes() {
+    clearTimeout(pushTimer);
+    if (!syncUid) return Promise.resolve();
+    const uid = syncUid;
+    const batch = pending;
+    pending = {};
+    return Promise.all(Object.keys(batch).map((storeId) =>
+        fs.setDoc(storeRef(uid, storeId), {
+            entries: batch[storeId],
+            updatedAt: fs.serverTimestamp()
+        }, { merge: true }).catch(onSyncProblem)
+    ));
+}
+
+function onSyncProblem(error) {
+    console.warn('Answer sync problem.', error && error.code);
+    showScope(SCOPE_TEXT.problem);
+}
+
+function keepCopyBeforeSwitch(fromUid) {
+    try {
+        const stores = {};
+        sync.STORE_IDS.forEach((id) => { stores[id] = appHost.storeMemory(id); });
+        localStorage.setItem(sync.SWITCH_BACKUP_KEY, JSON.stringify({
+            savedAt: new Date().toISOString(),
+            fromAccount: fromUid,
+            stores: stores
+        }));
+    } catch (error) {
+        console.warn('Could not keep a copy before switching accounts.', error);
     }
 }
 
@@ -220,6 +367,8 @@ function onForgot() {
 
 async function onSignOut() {
     try {
+        await flushPushes();
+        stopSync();
         await api.signOut(auth);
         home.signIn.focus();
     } catch (error) {

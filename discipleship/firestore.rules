@@ -1,12 +1,25 @@
 rules_version = '2';
 
-// DATA-002a: nothing is open yet. Every read and write is denied until the
-// sign-in work (DATA-002b to d) adds rules that let each signed-in person
-// reach only their own answers.
+// DATA-002c: each signed-in person can read and write only their own saved
+// work, in three documents: users/{their uid}/stores/answers, completion and
+// reading. Everything else is denied, including deletes and reading anyone
+// else's documents. scripts/answer-sync.js describes the document shape.
 service cloud.firestore {
   match /databases/{database}/documents {
-    match /{document=**} {
-      allow read, write: if false;
+    match /users/{uid}/stores/{storeId} {
+      function isOwner() {
+        return request.auth != null && request.auth.uid == uid;
+      }
+
+      function isKnownStore() {
+        return storeId in ['answers', 'completion', 'reading'];
+      }
+
+      allow read: if isOwner() && isKnownStore();
+
+      allow create, update: if isOwner() && isKnownStore()
+        && request.resource.data.keys().hasOnly(['entries', 'updatedAt'])
+        && request.resource.data.entries is map;
     }
   }
 }
