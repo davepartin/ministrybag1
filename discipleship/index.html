@@ -133,6 +133,17 @@
             display: none;
         }
 
+        /* On phones the title fills the width, so the pill gets its own row above it. */
+        @media (max-width: 600px) {
+            .home-header {
+                padding-top: 40px;
+            }
+
+            .home-signin-top {
+                top: 4px;
+            }
+        }
+
         .home-title {
             font-family: 'Forum', Georgia, serif;
             font-size: 1.85rem;
