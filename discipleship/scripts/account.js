@@ -115,7 +115,12 @@ async function start() {
 
 function wireUp() {
     home.signIn.addEventListener('click', openDialog);
-    if (home.signInTop) home.signInTop.addEventListener('click', openDialog);
+    if (home.signInTop) {
+        home.signInTop.addEventListener('click', () => {
+            if (home.signInTop.dataset.state === 'in') onSignOut();
+            else openDialog();
+        });
+    }
     home.signOut.addEventListener('click', onSignOut);
     dialog.cancel.addEventListener('click', closeDialog);
     dialog.google.addEventListener('click', onGoogle);
@@ -141,8 +146,13 @@ function renderSignedIn(user) {
         showHomeStatus('Signed in as ' + who);
         home.wrap.hidden = false;
         home.signIn.hidden = true;
-        home.signOut.hidden = false;
-        if (home.signInTop) home.signInTop.hidden = true;
+        // Signed in: the top pill becomes Sign out, so the bottom Sign out button is not needed.
+        home.signOut.hidden = !!home.signInTop;
+        if (home.signInTop) {
+            home.signInTop.textContent = 'Sign out';
+            home.signInTop.dataset.state = 'in';
+            home.signInTop.hidden = false;
+        }
         startSync(user.uid);
     } else {
         stopSync();
@@ -152,7 +162,11 @@ function renderSignedIn(user) {
         home.signIn.hidden = true;
         home.signOut.hidden = true;
         home.wrap.hidden = !!home.signInTop;
-        if (home.signInTop) home.signInTop.hidden = false;
+        if (home.signInTop) {
+            home.signInTop.textContent = 'Sign in';
+            home.signInTop.dataset.state = 'out';
+            home.signInTop.hidden = false;
+        }
     }
 }
 
