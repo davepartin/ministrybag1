@@ -2,7 +2,7 @@
 
 ## Series review and rework, November 11, 2026
 
-Dave reviewed the whole 101 to 203 series with Claude and approved the direction. The standard, the lesson-by-lesson calls, the seven rewrites in order, the trims, and the review checklist are in [reviews/2026-11-11-series-review.md](reviews/2026-11-11-series-review.md). Read it before any lesson review or revision. Three sweeps are open (PRs #118, #119, #120); merge them in order first. Next lesson after that: 203-07 (REWORK-203-07 in TASKS.md). Claude is producer/director for this rework; Dave's "merge it" is the only approval.
+Dave reviewed the whole 101 to 203 series with Claude and approved the direction. The standard, the lesson-by-lesson calls, the seven rewrites in order, the trims, and the review checklist are in [reviews/2026-11-11-series-review.md](reviews/2026-11-11-series-review.md). Read it before any lesson review or revision. The three sweeps (#118, #119, #120) and the plan (#121) merged on 2026-11-11. Next lesson: 203-07 (REWORK-203-07 in TASKS.md). Claude is producer/director for this rework; Dave's "merge it" is the only approval.
 
 ## Firebase move (DATA-002), November 10, 2026
 
