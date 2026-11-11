@@ -36,6 +36,7 @@ DAVE-001's former request to review the initial 202-08/09 drafts is superseded b
 
 | Date | Decision | Evidence |
 |---|---|---|
+| 2026-11-10 | DATA-001 decided: use Firebase (Google and Email/Password sign-in, Firestore for answers) on the free Spark plan, under the ministry Google account, at growingtogetherdiscipleship.com (print it as GrowingTogetherDiscipleship.com). ministrybag.com/discipleship stays unchanged, with no redirect, until sign-in exists; the new address is not announced yet. | Dave's planning chat, pasted to Claude Code on 2026-11-10 with "help me". |
 | 2026-09-11 | Proceed with the baseline review's recommended direction; preserve story/Scripture/image/widget/practice balance; repair data risks; develop Read/Discuss; pursue AAA quality across the curriculum. | Dave: "I agree with everything you are proposing." |
 | 2026-09-11 | Keep the plan/checklist/log in the repository and sync via GitHub; make handoffs usable by other agents; use Astra for focused daily review when available. | Dave's follow-up request in the project conversation. |
 | 2026-09-16 | Publish PR #17 (202-08 Marriage, 202-09 Purity) to the live alpha site so Dave and others can read them in place and suggest edits. The site is alpha with no learners yet. This is publication for review, not lesson approval; DAVE-001 stays open. | Dave: "just put it on the web and then me and others can look at these and then consider edits". Merged as `7210c2f`. |

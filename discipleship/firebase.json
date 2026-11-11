@@ -1,0 +1,32 @@
+{
+  "hosting": {
+    "public": ".",
+    "ignore": [
+      "firebase.json",
+      "firestore.rules",
+      "**/.*",
+      "**/node_modules/**",
+      "**/*.md",
+      "**/*.xlsx",
+      "**/*.tmp",
+      "project-management/**",
+      "Lesson_research/**",
+      "leadership-archive/**",
+      "cru_followup_material/**",
+      "scripts/test_*.js",
+      "scripts/*_check.js",
+      "scripts/build_*.js",
+      "scripts/check_*.js",
+      "scripts/*.sh"
+    ],
+    "headers": [
+      {
+        "source": "**/*.@(html|json|js|css)",
+        "headers": [{ "key": "Cache-Control", "value": "no-cache" }]
+      }
+    ]
+  },
+  "firestore": {
+    "rules": "firestore.rules"
+  }
+}
