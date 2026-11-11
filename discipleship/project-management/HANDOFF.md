@@ -2,7 +2,7 @@
 
 ## Series review and rework, November 11, 2026
 
-Dave reviewed the whole 101 to 203 series with Claude and approved the direction. The standard, the lesson-by-lesson calls, the seven rewrites in order, the trims, and the review checklist are in [reviews/2026-11-11-series-review.md](reviews/2026-11-11-series-review.md). Read it before any lesson review or revision. The three sweeps (#118, #119, #120) and the plan (#121) merged on 2026-11-11, and so did the first two rewrites, 203-07 (#123) and 203-04 (#124). 202-02 (#129) merged too. Next lesson: 202-04 Gifts (REWORK-202-04 in TASKS.md). Read the "How Dave edits" section of the plan before drafting. Claude is producer/director for this rework; Dave's "merge it" is the only approval.
+Dave reviewed the whole 101 to 203 series with Claude and approved the direction. The standard, the lesson-by-lesson calls, the seven rewrites in order, the trims, and the review checklist are in [reviews/2026-11-11-series-review.md](reviews/2026-11-11-series-review.md). Read it before any lesson review or revision. The three sweeps (#118, #119, #120) and the plan (#121) merged on 2026-11-11, and so did the first two rewrites, 203-07 (#123) and 203-04 (#124). 202-02 (#129, then Dave's three R's in #134) and 202-04 (#132) merged too. Next lesson: 201-03 Holy Spirit (REWORK-201-03 in TASKS.md). Note: on 2026-11-11 afternoon GitHub's hosted runners stalled for over 30 minutes; Dave said "deploy" and Claude ran the manual Firebase deploy as the written fallback. Read the "How Dave edits" section of the plan before drafting. Claude is producer/director for this rework; Dave's "merge it" is the only approval.
 
 ## Firebase move (DATA-002), November 10, 2026
 
