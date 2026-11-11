@@ -13,15 +13,17 @@
         "images/running-father-seq-1.jpg",
         "images/running-father-seq-2.jpg",
         "images/running-father-seq-3.jpg",
-        "images/running-father-seq-4.jpg"
+        "images/running-father-seq-4.jpg",
+        "images/running-father-seq-5.jpg"
       ],
       "imageSequenceStops": [
         0,
-        0.18,
-        0.34,
-        0.5
+        0.16,
+        0.3,
+        0.44,
+        0.58
       ],
-      "alt": "A father running down the road toward his returning son, getting closer with each step",
+      "alt": "A father running down the road toward his returning son until he reaches him",
       "touchNext": true
     },
     {

@@ -10,18 +10,22 @@
     {
       "type": "image",
       "imageSequence": [
-        "images/house-rock-1.png",
-        "images/house-rock-2.jpg",
-        "images/house-rock-2.jpg",
-        "images/house-rock-3.jpg"
+        "images/house-rock-seq-1.jpg",
+        "images/house-rock-seq-2.jpg",
+        "images/house-rock-seq-2.jpg",
+        "images/house-rock-seq-3.jpg",
+        "images/house-rock-seq-4.jpg",
+        "images/house-rock-seq-5.jpg"
       ],
       "imageSequenceStops": [
         0.1,
-        0.35,
-        0.4,
+        0.3,
+        0.38,
+        0.46,
+        0.55,
         0.65
       ],
-      "alt": "Two houses built on different ground as a storm gathers, then a great wave destroys the sand house while the rock house stands, and finally calm reveals only the house on the rock still standing",
+      "alt": "Two houses built on different ground as a storm gathers, then the sand house tipping and falling into the water while the rock house stands, and finally calm reveals the rock house still standing",
       "touchNext": true
     },
     {
@@ -81,7 +85,7 @@
     },
     {
       "type": "text",
-      "text": "The people closest to you can hurt you most, and you can hurt them most easily, so home is where forgiveness is most needed. Paul wrote these words to a church, but they fit every kitchen table."
+      "text": "The people closest to you can hurt you most, and you can hurt them most easily, so home is where forgiveness is most needed. That is not an accident. <strong>Home is the sacred space God designed for you to practice His mercy first.</strong> Paul wrote these words to a church, but they fit every kitchen table."
     },
     {
       "type": "verse",
@@ -90,26 +94,25 @@
     },
     {
       "type": "text",
-      "text": "Notice the order. Before Paul says <em>forgive</em>, he tells you who you are: chosen, holy, and beloved. The reason you forgive is not that they deserve it, but that the Lord has forgiven you. <strong>You forgive out of the full account of His mercy, not the empty account of their apology.</strong> When a home gets stuck, walk the Forgiveness Loop."
+      "text": "Notice the order. Before Paul says <em>forgive</em>, he tells you who you are: chosen, holy, and beloved. The reason you forgive is not that they deserve it, but that the Lord has forgiven you. You forgive out of the full account of His mercy, not the empty account of their apology. You already know this rhythm. In Growing Deep you walked the Grace and Mercy Cycle, where the arrow never stops at you but points back toward mercy, and the Learning Circle, which carries you home when you drift. Forgiveness at home is the same movement in three R's."
     },
     {
       "type": "box",
-      "title": "The Forgiveness Loop",
+      "title": "The Three R's of Forgiveness at Home",
       "content": [
-        "<strong>Examine.</strong> Ask the Lord to show you your part before you rehearse theirs (Matthew 7:3-5).",
-        "<strong>Confess.</strong> Own your part plainly, with no excuses and no \"but.\" Say, \"I was wrong. Will you forgive me?\"",
-        "<strong>Forgive.</strong> Release the debt to God. Forgiving does not say the hurt did not matter; it says you will not make them pay for it.",
-        "<strong>Rebuild.</strong> Take one small step to restore what was broken. Trust grows back slowly, and that is okay."
+        "<strong>Remember God's mercy.</strong> Before you look at their debt, look at yours. The King canceled what you could never repay (Matthew 18:27). Mercy means He spared you the judgment you deserved, and that mercy is now larger in your heart than anything they owe you.",
+        "<strong>Relay grace.</strong> The arrow does not stop with you. Say it out loud: \"I forgive you,\" or \"I was wrong. Will you forgive me?\" Grace is a gift they did not earn, given because you were given one first (Ephesians 4:32).",
+        "<strong>Repair the relationship.</strong> Forgiveness releases the debt; repair rebuilds what it broke. Take one small step toward each other, confess plainly, make a plan, and let trust grow back at its own pace."
       ]
     },
     {
       "type": "text",
-      "text": "A family that keeps walking the loop is telling the gospel out loud, one apology at a time."
+      "text": "A family that keeps walking the three R's is telling the gospel out loud, one apology at a time."
     },
     {
       "type": "question",
       "id": "202-02-forgive",
-      "text": "2.3 - Which step of the Forgiveness Loop is hardest for you right now, and what is one way you could grow in it?",
+      "text": "2.3 - Which of the three R's is hardest for you right now, and what is one way you could grow in it?",
       "height": "tall"
     },
     {
@@ -139,12 +142,12 @@
     },
     {
       "type": "text",
-      "text": "Choose one family relationship and one practice this week. A parent might bless a child with unhurried attention or a needed apology. A child or adult child might show honor through gratitude, care, or a wise boundary. A single adult might ask the person who is family to them how to serve them. If something is broken at home, walk one step of the Forgiveness Loop, even if it is only the first. Then thank the Lord who forgave you first."
+      "text": "Choose one family relationship and one practice this week. A parent might bless a child with unhurried attention or a needed apology. A child or adult child might show honor through gratitude, care, or a wise boundary. A single adult might ask the person who is family to them how to serve them. If something is broken at home, take one of the three R's, even if it is only remembering. Then thank the Lord who forgave you first."
     },
     {
       "type": "question",
       "id": "202-02-hand",
-      "text": "2.4 - How would you explain the Forgiveness Loop to someone in your family in one minute?",
+      "text": "2.4 - How would you explain the three R's to someone in your family in one minute?",
       "height": "tall"
     },
     {
@@ -153,7 +156,7 @@
     },
     {
       "type": "text",
-      "text": "Your family is your first neighbors, and Jesus is the cornerstone that sets the line for how you love them. In every role and every season, He realigns your love toward service, honor, and forgiveness. Home is where forgiveness is most tested, so walk the loop: examine, confess, forgive, rebuild. If your family story is cracked, Jesus is strong enough to reset the lean. <strong>Build your home on Jesus, and forgive the people closest to you the way He has forgiven you.</strong>"
+      "text": "Your family is your first neighbors, and Jesus is the cornerstone that sets the line for how you love them. In every role and every season, He realigns your love toward service, honor, and forgiveness. Home is the sacred space where forgiveness is most tested, so walk the three R's: remember God's mercy, relay grace, repair the relationship. If your family story is cracked, Jesus is strong enough to reset the lean. <strong>Build your home on Jesus, and forgive the people closest to you the way He has forgiven you.</strong>"
     },
     {
       "type": "text",

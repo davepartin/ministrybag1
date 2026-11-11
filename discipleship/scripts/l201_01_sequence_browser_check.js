@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * 201-01 running-father sequence browser check.
- * Confirms the four scroll frames load, advance in order, keep
+ * Confirms the five scroll frames load, advance in order, keep
  * saved-answer IDs, and do not shift the page at phone and laptop
  * widths. Synthetic navigation only.
  */
@@ -14,7 +14,8 @@ var FRAMES = [
     'images/running-father-seq-1.jpg',
     'images/running-father-seq-2.jpg',
     'images/running-father-seq-3.jpg',
-    'images/running-father-seq-4.jpg'
+    'images/running-father-seq-4.jpg',
+    'images/running-father-seq-5.jpg'
 ];
 var QUESTION_IDS = [
     '201-01-1',
@@ -24,8 +25,10 @@ var QUESTION_IDS = [
     '201-01-step',
     '201-01-prayer'
 ];
-var STOPS = [0, 0.18, 0.34, 0.5];
-var SAMPLE_PROGRESS = [0, 0.09, 0.18, 0.26, 0.34, 0.42, 0.5, 0.55, 0.7];
+var STOPS = [0, 0.16, 0.3, 0.44, 0.58];
+var LAST_STOP = STOPS[STOPS.length - 1];
+var AFTER_LAST = 0.63;
+var SAMPLE_PROGRESS = [0, 0.08, 0.16, 0.23, 0.3, 0.37, 0.44, 0.51, 0.58, 0.63, 0.75];
 var failed = 0;
 var passed = 0;
 
@@ -45,7 +48,7 @@ async function waitForSequence(page) {
         var root = document.querySelector('#session-1.active [data-parable-sequence]');
         if (!root) return false;
         var frames = Array.prototype.slice.call(root.querySelectorAll('.parable-sequence-frame'));
-        return frames.length === 4 && frames.every(function (img) {
+        return frames.length === 5 && frames.every(function (img) {
             return img.complete && img.naturalWidth > 0 && img.naturalHeight > 0;
         });
     }, { timeout: 20000 });
@@ -75,6 +78,9 @@ async function readSequenceState(page) {
         var frames = el ? Array.prototype.slice.call(el.querySelectorAll('.parable-sequence-frame')) : [];
         var parable = session && session.querySelector('.block-parable');
         var imageWrap = session && session.querySelector('.block-image');
+        var topbar = document.querySelector('.lesson-topbar');
+        var viewportHeight = window.innerHeight || document.documentElement.clientHeight || 1;
+        var contentTop = topbar ? topbar.getBoundingClientRect().bottom : 0;
         var frameBoxes = frames.map(function (img) {
             var r = img.getBoundingClientRect();
             return {
@@ -104,8 +110,11 @@ async function readSequenceState(page) {
             dominant: dominant,
             wrapHeight: wrapBox ? wrapBox.height : 0,
             wrapWidth: wrapBox ? wrapBox.width : 0,
-            parableTop: parableBox ? parableBox.top : null,
+            wrapTop: wrapBox ? wrapBox.top : null,
             wrapBottom: wrapBox ? wrapBox.bottom : null,
+            contentTop: contentTop,
+            viewportHeight: viewportHeight,
+            parableTop: parableBox ? parableBox.top : null,
             questions: questionIds.map(function (id) {
                 return !!document.getElementById('question-201-' + id);
             }),
@@ -135,8 +144,8 @@ function srcMatches(src, expected) {
         await waitForSequence(page);
 
         var rest = await readSequenceState(page);
-        assert(width + ': four sequence frames render', rest.frameCount === 4, String(rest.frameCount));
-        assert(width + ': sequence stops are 0,0.18,0.34,0.5', rest.stops === STOPS.join(','), rest.stops);
+        assert(width + ': five sequence frames render', rest.frameCount === 5, String(rest.frameCount));
+        assert(width + ': sequence stops are 0,0.16,0.3,0.44,0.58', rest.stops === STOPS.join(','), rest.stops);
         assert(width + ': image keeps touchNext', rest.touchNext);
         assert(width + ': old bw/color pair is not rendered', rest.hasBwPair === false);
         FRAMES.forEach(function (expected, idx) {
@@ -146,10 +155,11 @@ function srcMatches(src, expected) {
                 rest.frames[idx] && rest.frames[idx].src
             );
         });
+        var alt = rest.frames[0] && rest.frames[0].alt || '';
         assert(
-            width + ': first frame alt describes the run',
-            rest.frames[0] && rest.frames[0].alt.indexOf('father running') !== -1,
-            rest.frames[0] && rest.frames[0].alt
+            width + ': first frame alt describes the run and arrival',
+            alt.indexOf('father running') !== -1 && alt.indexOf('reaches him') !== -1,
+            alt
         );
         var sizesMatch = rest.frames.every(function (frame) {
             return frame.naturalWidth === 1248 && frame.naturalHeight === 832;
@@ -163,6 +173,8 @@ function srcMatches(src, expected) {
         var heightAtStart = rest.wrapHeight;
         var order = [];
         var overlapShift = false;
+        var lastStopVisible = false;
+        var lastStopNote = '';
         for (var i = 0; i < SAMPLE_PROGRESS.length; i++) {
             await setSequenceProgress(page, SAMPLE_PROGRESS[i]);
             var sample = await readSequenceState(page);
@@ -182,15 +194,27 @@ function srcMatches(src, expected) {
                     Math.abs(frame.height - firstBox.height) < 1.5;
             });
             if (!stackedOk) overlapShift = true;
+            if (SAMPLE_PROGRESS[i] === LAST_STOP) {
+                var stillOnScreen = sample.wrapBottom !== null &&
+                    sample.wrapBottom > sample.contentTop + 40 &&
+                    sample.wrapTop !== null &&
+                    sample.wrapTop < sample.viewportHeight;
+                lastStopVisible = stillOnScreen;
+                lastStopNote = 'wrapTop=' + sample.wrapTop +
+                    ' wrapBottom=' + sample.wrapBottom +
+                    ' contentTop=' + sample.contentTop +
+                    ' viewportHeight=' + sample.viewportHeight;
+            }
         }
         if (width === 390) {
             console.log('390 sequence samples: ' + JSON.stringify(order));
         }
-        var atLastStop = order.find(function (row) { return row.progress === 0.5; });
-        var afterLastStop = order.find(function (row) { return row.progress === 0.55; });
+        var atLastStop = order.find(function (row) { return row.progress === LAST_STOP; });
+        var afterLastStop = order.find(function (row) { return row.progress === AFTER_LAST; });
         lastFrameNotes.push(
-            width + '@0.5 opacities=' + JSON.stringify(atLastStop && atLastStop.opacities) +
-            ' @0.55 dominant=' + (afterLastStop && afterLastStop.dominant)
+            width + '@' + LAST_STOP + ' opacities=' + JSON.stringify(atLastStop && atLastStop.opacities) +
+            ' @' + AFTER_LAST + ' dominant=' + (afterLastStop && afterLastStop.dominant) +
+            ' ' + lastStopNote
         );
         var monotonic = true;
         for (var j = 1; j < order.length; j++) {
@@ -198,11 +222,12 @@ function srcMatches(src, expected) {
         }
         var used = {};
         order.forEach(function (row) { used[row.dominant] = true; });
-        var lastFrameInAtStop = atLastStop && atLastStop.opacities && atLastStop.opacities[3] >= 0.85;
+        var lastFrameInAtStop = atLastStop && atLastStop.opacities && atLastStop.opacities[4] >= 0.85;
         assert(width + ': frames advance in order as you scroll', monotonic, JSON.stringify(order));
-        assert(width + ': all four frames become dominant', Object.keys(used).length === 4, JSON.stringify(order));
-        assert(width + ': last frame is nearly opaque at stop 0.5', lastFrameInAtStop, JSON.stringify(atLastStop));
-        assert(width + ': last frame is exclusive just after stop 0.5', afterLastStop && afterLastStop.dominant === 3, JSON.stringify(afterLastStop));
+        assert(width + ': all five frames become dominant', Object.keys(used).length === 5, JSON.stringify(order));
+        assert(width + ': last frame is nearly opaque at stop ' + LAST_STOP, lastFrameInAtStop, JSON.stringify(atLastStop));
+        assert(width + ': last frame is exclusive just after stop ' + LAST_STOP, afterLastStop && afterLastStop.dominant === 4, JSON.stringify(afterLastStop));
+        assert(width + ': last frame is still on screen at the final stop', lastStopVisible, lastStopNote);
         assert(width + ': sequence does not shift or overlap surrounding content', overlapShift === false);
 
         await page.close();
