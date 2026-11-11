@@ -178,7 +178,7 @@ Plan and standard: [reviews/2026-11-11-series-review.md](reviews/2026-11-11-seri
 | Check | ID | Status | Owner | Depends on | Scope and acceptance evidence |
 |---|---|---|---|---|---|
 | [ ] | REWORK-203-07 | TODO | - | SWEEP-001..003 merged | Armor of God rewrite per plan section A, order 1. Widget carries the six pieces; "A Sword for the Lie" as the handle; teach-it question; about 1,400 words. |
-| [ ] | REWORK-203-04 | TODO | - | REWORK-203-07 | Serve rewrite per plan, order 2. |
+| [ ] | REWORK-203-04 | REVIEW | Claude / claude/l-203-04-rework / 2026-11-11 | REWORK-203-07 | Serve rewrite per plan, order 2. Draft at about 1,330 words, PR open, preview link in PR. Evidence: logs/2026-11-11-L-203-04-claude.md. |
 | [ ] | REWORK-202-02 | TODO | - | REWORK-203-04 | Family rewrite per plan, order 3. Forgiveness Loop as the handle. |
 | [ ] | REWORK-202-04 | TODO | - | REWORK-202-02 | Gifts rewrite per plan, order 4. Five farmers carry APEST. |
 | [ ] | REWORK-201-03 | TODO | - | REWORK-202-04 | Holy Spirit rewrite per plan, order 5. GUIDE as the handle. |
