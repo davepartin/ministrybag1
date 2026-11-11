@@ -99,16 +99,16 @@
         /* Top-right sign-in pill (home page only; shown by scripts/account.js when signed out) */
         .home-signin-top {
             position: absolute;
-            top: 14px;
+            top: 22px;
             right: 0;
             background: var(--accent);
             color: #fff;
             border: none;
             border-radius: 999px;
-            padding: 9px 20px;
-            min-height: 40px;
+            padding: 7px 16px;
+            min-height: 32px;
             font-family: var(--font);
-            font-size: 0.9rem;
+            font-size: 0.72rem;
             font-weight: 600;
             letter-spacing: 0.02em;
             cursor: pointer;
@@ -133,14 +133,10 @@
             display: none;
         }
 
-        /* On phones the title fills the width, so the pill gets its own row above it. */
+        /* On phones the title fills the width, so the pill sits lower, beside the series line. */
         @media (max-width: 600px) {
-            .home-header {
-                padding-top: 40px;
-            }
-
             .home-signin-top {
-                top: 4px;
+                top: 54px;
             }
         }
 
