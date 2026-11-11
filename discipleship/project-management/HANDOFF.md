@@ -4,11 +4,11 @@
 
 Dave chose Firebase for sign-in and saved answers (DATA-001 is decided) and owns **growingtogetherdiscipleship.com**. Stay on the free Spark plan. The work runs in four steps: DATA-002a Hosting and preview links, then DATA-002b to d for sign-in and private per-person answers.
 
-**Status:** DATA-002a is in progress on branch `claude/data-002a-firebase-hosting`. `discipleship/firebase.json` and a deny-all `discipleship/firestore.rules` are ready. Nothing is deployed yet. The Firebase project does not exist yet; Dave creates it in the console under the ministry Google account (see his checklist in the DATA-002a log). When it exists, add `discipleship/.firebaserc` with its project ID.
+**Status:** DATA-002a is in progress on branch `claude/data-002a-firebase-hosting`. `discipleship/firebase.json` and a deny-all `discipleship/firestore.rules` are ready. Nothing is deployed yet. The Firebase project does not exist yet; Dave creates it in the console under his personal Google account, davepartin@gmail.com (not the church account; Growing Together is his own work). See his checklist in the DATA-002a log. When it exists, add `discipleship/.firebaserc` with its project ID.
 
 **Do not touch ministrybag.com/discipleship.** It stays on GitHub Pages, with no redirect and no change, until sign-in exists. Saved answers live in each browser per web address, so learners must keep using the old address until DATA-002b to d. Do not announce the new address yet.
 
-**Sign-in:** Dave runs `firebase login` himself (or `firebase login:add` for the ministry account). Never ask for his password. On 2026-11-10 the command-line tools were signed in as davepartin@gmail.com, which owns only QuestDice and Fleet Dice.
+**Sign-in:** the command-line tools are already signed in as davepartin@gmail.com, the owning account. If they ever need signing in again, Dave runs `firebase login` himself. Never ask for his password.
 
 **Commands, always run from `discipleship/`:**
 - Private preview link for a lesson change, which expires after a week: `firebase hosting:channel:deploy <short-name> --expires 7d`. Firebase prints a URL like `https://<project-id>--<short-name>-<hash>.web.app`. Use a short name for the change, such as `l-203-08`.
