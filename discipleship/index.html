@@ -436,6 +436,136 @@
         }
 
         /* ============================================
+           SIGN-IN (DATA-002b)
+           ============================================ */
+        .home-account {
+            display: grid;
+            gap: 10px;
+        }
+
+        .home-account[hidden],
+        .home-account [hidden],
+        .account-dialog [hidden] {
+            display: none;
+        }
+
+        .home-account-status {
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--accent);
+            line-height: 1.4;
+            text-align: center;
+            overflow-wrap: anywhere;
+        }
+
+        body.account-open {
+            overflow: hidden;
+        }
+
+        .account-body {
+            padding: 4px 16px 12px;
+            overflow-y: auto;
+        }
+
+        .account-google {
+            width: 100%;
+            min-height: 44px;
+            border: 1.5px solid var(--border);
+            border-radius: 20px;
+            background: var(--surface);
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .account-or {
+            margin: 14px 0 6px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            text-align: center;
+        }
+
+        .account-form {
+            display: grid;
+            gap: 6px;
+        }
+
+        .account-label {
+            margin-top: 6px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        .account-input {
+            width: 100%;
+            min-height: 44px;
+            padding: 10px 14px;
+            border: 1.5px solid var(--border);
+            border-radius: var(--radius-sm);
+            font-family: var(--font);
+            font-size: 1rem;
+            color: var(--text-primary);
+            background: var(--surface);
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        .account-input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(45, 106, 79, 0.1);
+        }
+
+        .account-link {
+            justify-self: start;
+            min-height: 44px;
+            padding: 0;
+            border: none;
+            background: none;
+            color: var(--accent);
+            font-family: inherit;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .account-switch {
+            justify-self: center;
+        }
+
+        .account-status {
+            margin: 4px 0 0;
+            font-size: 0.88rem;
+            line-height: 1.45;
+            color: #9B2C2C;
+        }
+
+        .account-status[data-kind="info"] {
+            color: var(--accent);
+        }
+
+        .account-dialog .export-preview-actions {
+            padding: 10px 0 0;
+        }
+
+        .account-google:focus,
+        .account-link:focus {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+        }
+
+        .account-dialog button:disabled {
+            opacity: 0.55;
+            cursor: default;
+        }
+
+        /* ============================================
            TREE VIEW (full-screen takeover)
            ============================================ */
         .tree-view {
@@ -2708,6 +2838,12 @@
 
             <div class="home-tree-btn-wrap">
                 <button class="home-tree-btn" onclick="openTree()">Browse All Courses and Lessons</button>
+                <div class="home-account" id="home-account" hidden>
+                    <p class="home-account-status" id="home-account-status" aria-live="polite" hidden></p>
+                    <button type="button" class="home-backup-btn" id="home-account-signin">Sign in</button>
+                    <button type="button" class="home-backup-btn" id="home-account-signout" hidden>Sign out</button>
+                    <p class="home-backup-scope">For now, your answers still save on this device only.</p>
+                </div>
                 <button type="button" class="home-backup-btn" id="home-download-backup"
                     onclick="downloadVersionedBackup('home')">Download backup</button>
                 <button type="button" class="home-backup-btn" id="home-preview-backup"
@@ -2830,6 +2966,33 @@
         </div>
     </div>
 
+    <div id="account-overlay" class="export-preview-overlay" hidden>
+        <div class="export-preview-dialog account-dialog" role="dialog" aria-modal="true" aria-labelledby="account-title"
+            id="account-dialog">
+            <div class="export-preview-header">
+                <h2 class="export-preview-title" id="account-title">Sign in</h2>
+            </div>
+            <div class="account-body">
+                <button type="button" class="account-google" id="account-google">Continue with Google</button>
+                <p class="account-or">or use your email</p>
+                <form id="account-form" class="account-form" novalidate>
+                    <label class="account-label" for="account-email">Email</label>
+                    <input class="account-input" id="account-email" type="email" autocomplete="email"
+                        autocapitalize="off" spellcheck="false">
+                    <label class="account-label" for="account-password">Password</label>
+                    <input class="account-input" id="account-password" type="password" autocomplete="current-password">
+                    <button type="button" class="account-link" id="account-forgot">Forgot password?</button>
+                    <p class="account-status" id="account-status" role="status" hidden></p>
+                    <div class="export-preview-actions">
+                        <button type="button" class="export-preview-cancel" id="account-cancel">Cancel</button>
+                        <button type="submit" class="export-preview-mail" id="account-submit">Sign in</button>
+                    </div>
+                    <button type="button" class="account-link account-switch" id="account-switch">New here? Create an account</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <input type="file" id="backup-preview-file" accept=".json,application/json" hidden>
 
     <div id="backup-preview-overlay" class="export-preview-overlay backup-preview-overlay" hidden>
@@ -2860,6 +3023,8 @@
     <script src="scripts/backup-restore.js"></script>
     <script src="scripts/lesson-export.js"></script>
     <script src="scripts/widget-iframe.js"></script>
+    <script src="scripts/account-helpers.js"></script>
+    <script type="module" src="scripts/account.js"></script>
     <script>
         // ============================================
         // VERSION - bump this when JSON content changes
