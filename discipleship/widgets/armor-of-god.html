@@ -307,7 +307,7 @@ var steps = [
         title: "The Shoes of the Gospel of Peace",
         color: "#A47A3C",
         ref: "Ephesians 6:15",
-        text: "Because you have peace with God, you can stand steady when the ground shifts. <b>Peace is not just comfort. It moves you on mission.</b>"
+        text: "Because you have peace with God, you can stand steady when the ground shifts. <b>Peace is the presence of God that moves you on mission.</b>"
     },
     {
         id: "shield",
@@ -315,7 +315,7 @@ var steps = [
         title: "The Shield of Faith",
         color: "#55697B",
         ref: "Ephesians 6:16",
-        text: "The enemy fires doubt, fear, shame, and temptation. <b>Lift the shield and let faith in God's promises put the fire out.</b>"
+        text: "The enemy fires doubt, fear, shame, and temptation. <b>Hold up the shield of faith in God's promises to hold back the enemy's fire.</b>"
     },
     {
         id: "helmet",
@@ -323,7 +323,7 @@ var steps = [
         title: "The Helmet of Salvation",
         color: "#596B56",
         ref: "Ephesians 6:17",
-        text: "The battle for your day is shaped by what you believe about Christ. <b>Nothing can separate you from His love. Your mind is protected.</b>"
+        text: "The battle for your day is shaped by what you believe about Christ. <b>Remember, nothing can separate you from His love. He protects you.</b>"
     },
     {
         id: "sword",
@@ -580,7 +580,7 @@ function renderCard() {
 
         var doneText = document.createElement('p');
         doneText.className = 'verse-card-text';
-        doneText.innerHTML = 'You are not fighting alone, and you are not fighting for an uncertain outcome. Jesus has already triumphed. <b>Your call is simply to stand.</b>';
+        doneText.innerHTML = 'Jesus stands with you, before you, and has won. <b>Your call is simply to stand.</b>';
         content.appendChild(doneText);
 
         var doneRef = document.createElement('p');
@@ -714,7 +714,7 @@ function gtWatchWidth(fn) {
     });
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(fn);
 }
-function gtFit() { gtFitCards([{ title: 'Put on the Armor of God', text: 'God does not send you into battle empty-handed. This armor is not something you manufacture. It is something God supplies. Your job is to put it on.' }, { title: 'Stand Firm', text: 'You are not fighting alone, and you are not fighting for an uncertain outcome. Jesus has already triumphed. <b>Your call is simply to stand.</b>', ref: 'Ephesians 6:13' }].concat(steps.map(function (s) { return { title: s.title, text: s.text, ref: s.ref }; }))); }
+function gtFit() { gtFitCards([{ title: 'Put on the Armor of God', text: 'God does not send you into battle empty-handed. This armor is not something you manufacture. It is something God supplies. Your job is to put it on.' }, { title: 'Stand Firm', text: 'Jesus stands with you, before you, and has won. <b>Your call is simply to stand.</b>', ref: 'Ephesians 6:13' }].concat(steps.map(function (s) { return { title: s.title, text: s.text, ref: s.ref }; }))); }
 gtFit(); gtWatchWidth(gtFit);
 </script>
 
