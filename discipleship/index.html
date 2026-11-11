@@ -99,25 +99,26 @@
         /* Top-right sign-in pill (home page only; shown by scripts/account.js when signed out) */
         .home-signin-top {
             position: absolute;
-            top: 22px;
+            top: -2px;
             right: 0;
-            background: var(--accent);
+            background: #449828; /* the "Growing Out" green at the top of the logo's middle circle */
             color: #fff;
             border: none;
             border-radius: 999px;
-            padding: 7px 16px;
-            min-height: 32px;
+            padding: 4px 14px;
+            min-height: 26px;
+            line-height: 1.2;
             font-family: var(--font);
-            font-size: 0.72rem;
+            font-size: 0.74rem;
             font-weight: 600;
             letter-spacing: 0.02em;
             cursor: pointer;
-            box-shadow: 0 2px 8px rgba(27, 67, 50, 0.22);
+            box-shadow: 0 1px 5px rgba(40, 90, 30, 0.22);
             transition: background var(--transition), transform var(--transition);
         }
 
         .home-signin-top:hover {
-            background: var(--accent-hover);
+            background: #3a8322;
         }
 
         .home-signin-top:active {
@@ -125,19 +126,12 @@
         }
 
         .home-signin-top:focus-visible {
-            outline: 2px solid var(--accent);
+            outline: 2px solid #449828;
             outline-offset: 3px;
         }
 
         .home-signin-top[hidden] {
             display: none;
-        }
-
-        /* On phones the title fills the width, so the pill sits lower, beside the series line. */
-        @media (max-width: 600px) {
-            .home-signin-top {
-                top: 54px;
-            }
         }
 
         .home-title {
