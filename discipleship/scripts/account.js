@@ -52,6 +52,7 @@ const home = {
     wrap: el('home-account'),
     status: el('home-account-status'),
     signIn: el('home-account-signin'),
+    signInTop: el('home-signin-top'),
     signOut: el('home-account-signout'),
     scope: el('home-account-scope')
 };
@@ -114,6 +115,7 @@ async function start() {
 
 function wireUp() {
     home.signIn.addEventListener('click', openDialog);
+    if (home.signInTop) home.signInTop.addEventListener('click', openDialog);
     home.signOut.addEventListener('click', onSignOut);
     dialog.cancel.addEventListener('click', closeDialog);
     dialog.google.addEventListener('click', onGoogle);
@@ -137,15 +139,20 @@ function renderSignedIn(user) {
     if (user) {
         const who = user.email || user.displayName || 'your account';
         showHomeStatus('Signed in as ' + who);
+        home.wrap.hidden = false;
         home.signIn.hidden = true;
         home.signOut.hidden = false;
+        if (home.signInTop) home.signInTop.hidden = true;
         startSync(user.uid);
     } else {
         stopSync();
         showHomeStatus('');
         showScope(SCOPE_TEXT.signedOut);
-        home.signIn.hidden = false;
+        // Signed out: the top-right pill is the only sign-in control; the bottom block stays hidden.
+        home.signIn.hidden = true;
         home.signOut.hidden = true;
+        home.wrap.hidden = !!home.signInTop;
+        if (home.signInTop) home.signInTop.hidden = false;
     }
 }
 
@@ -370,7 +377,7 @@ async function onSignOut() {
         await flushPushes();
         stopSync();
         await api.signOut(auth);
-        home.signIn.focus();
+        (home.signInTop || home.signIn).focus();
     } catch (error) {
         showHomeStatus(helpers.messageFor(error && error.code));
     }

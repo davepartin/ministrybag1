@@ -93,6 +93,44 @@
         .home-header {
             text-align: center;
             margin-bottom: 12px;
+            position: relative;
+        }
+
+        /* Top-right sign-in pill (home page only; shown by scripts/account.js when signed out) */
+        .home-signin-top {
+            position: absolute;
+            top: 14px;
+            right: 0;
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            border-radius: 999px;
+            padding: 9px 20px;
+            min-height: 40px;
+            font-family: var(--font);
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(27, 67, 50, 0.22);
+            transition: background var(--transition), transform var(--transition);
+        }
+
+        .home-signin-top:hover {
+            background: var(--accent-hover);
+        }
+
+        .home-signin-top:active {
+            transform: translateY(1px);
+        }
+
+        .home-signin-top:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 3px;
+        }
+
+        .home-signin-top[hidden] {
+            display: none;
         }
 
         .home-title {
@@ -2792,6 +2830,7 @@
              ============================ -->
         <div class="home-view" id="home-view">
             <div class="home-header">
+                <button type="button" class="home-signin-top" id="home-signin-top" hidden>Sign in</button>
                 <h1 class="home-title">Growing Together</h1>
                 <p class="home-title-series">Discipleship Series</p>
                 <img src="images/3-circles-coral.png" alt="Growing Together Discipleship Series" class="home-logo"
