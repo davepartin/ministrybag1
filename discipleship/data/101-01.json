@@ -160,7 +160,13 @@
     {
       "type": "question",
       "id": "1-key",
-      "text": "What is one key thing you learned from this lesson, and what next step can you take this week?",
+      "text": "What is one key thing you learned from this lesson?",
+      "height": "short"
+    },
+    {
+      "type": "question",
+      "id": "1-step",
+      "text": "What is one step you are going to take this week?",
       "height": "short"
     },
     {
