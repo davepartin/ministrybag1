@@ -92,3 +92,13 @@ Dave said "deploy the rules and make the preview".
 - The preview loads with the sign-in block, starts the sync tracker, loads Firestore, and shows no console errors.
 - The live site is unchanged: `scripts/answer-sync.js` returns 404 there.
 - Each web address has its own browser storage. Answers typed earlier on growingtogetherdiscipleship.com are not visible on the preview address. They move into the account the first time the person signs in on growingtogetherdiscipleship.com after this goes live.
+
+## Dave's test on real devices, 2026-11-10
+
+Dave opened the preview on his laptop (Chrome) and his iPhone, and at first nothing synced.
+
+The home line read "Sign in to keep your answers on all your devices." Sign-in belongs to each web address, so his sign-in on growingtogetherdiscipleship.com did not carry over to the preview address.
+
+After he signed in on the preview on both devices, he reported: "it works now, both are syncing". This is the first real-device check of DATA-002d.
+
+A debugging attempt through the Mac connector (screenshots, then one keystroke) set off macOS Accessibility and Privacy & Security prompts on Dave's screen. Dave was asked to cancel them, and the connector was not used further.
