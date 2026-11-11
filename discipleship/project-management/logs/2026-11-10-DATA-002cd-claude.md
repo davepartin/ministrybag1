@@ -83,3 +83,12 @@ All against the local Auth and Firestore emulators, with synthetic accounts only
 - **Known limits:**
   - If someone restores a backup that is missing some answers, those answers come back from the account. Merge never deletes.
   - Firestore's free plan allows 20,000 writes and 50,000 reads a day. The 1.5 second pause keeps writes low, and that is ample before launch.
+
+## Rules deployed and preview made, 2026-11-10
+
+Dave said "deploy the rules and make the preview".
+- `firebase deploy --only firestore:rules` released the per-person rules. A signed-out request for any user's answers now returns 403.
+- `firebase hosting:channel:deploy data-002d --expires 7d` gave https://growing-together-discipleship--data-002d-uuf93prl.web.app (expires 2026-11-17).
+- The preview loads with the sign-in block, starts the sync tracker, loads Firestore, and shows no console errors.
+- The live site is unchanged: `scripts/answer-sync.js` returns 404 there.
+- Each web address has its own browser storage. Answers typed earlier on growingtogetherdiscipleship.com are not visible on the preview address. They move into the account the first time the person signs in on growingtogetherdiscipleship.com after this goes live.
