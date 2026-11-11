@@ -169,3 +169,21 @@ Add new rows to the appropriate table before working beyond scope. Keep task IDs
 ## ART-003: 202-08/09 story image pairs
 
 Status: REVIEW. Owner: Codex coordinator. Branch: `codex/art-202-08-09`. Claimed September 12, 2026 from PR #17 at `2dad678`. Completed Genesis 15 and David rooftop charcoal/color pairs, image integration and phone checks on PR #17 at `6d3019b`. Evidence: logs/2026-09-12-ART-003-codex.md. Only these new story assets, their lesson image blocks, research provenance and coordinator records are in scope. Dave retains final art/lesson approval; PR #17 remains unmerged. Claude's text and dedicated diagrams remain in review.
+
+## Series review and rework, November 11, 2026
+
+Plan and standard: [reviews/2026-11-11-series-review.md](reviews/2026-11-11-series-review.md). Dave approved the direction in chat on 2026-11-11. Claude (Fable 5.1) is producer/director: assigns the next lesson, reviews every PR against the standard, keeps the plan current. One lesson per PR for rewrites. Dave's "merge it" is the only approval.
+
+| Check | ID | Status | Owner | Depends on | Scope and acceptance evidence |
+|---|---|---|---|---|---|
+| [ ] | REWORK-203-07 | TODO | - | SWEEP-001..003 merged | Armor of God rewrite per plan section A, order 1. Widget carries the six pieces; "A Sword for the Lie" as the handle; teach-it question; about 1,400 words. |
+| [ ] | REWORK-203-04 | TODO | - | REWORK-203-07 | Serve rewrite per plan, order 2. |
+| [ ] | REWORK-202-02 | TODO | - | REWORK-203-04 | Family rewrite per plan, order 3. Forgiveness Loop as the handle. |
+| [ ] | REWORK-202-04 | TODO | - | REWORK-202-02 | Gifts rewrite per plan, order 4. Five farmers carry APEST. |
+| [ ] | REWORK-201-03 | TODO | - | REWORK-202-04 | Holy Spirit rewrite per plan, order 5. GUIDE as the handle. |
+| [ ] | REWORK-101-06 | TODO | - | REWORK-201-03 | Sharing Jesus rewrite per plan, order 6. One tool, remove the gospel-app line. |
+| [ ] | REWORK-203-08 | TODO | - | REWORK-101-06 | Disciple Others trim per plan, order 7. Propose one-line 8.2 and 8.3 to Dave; change only on his revision file. |
+| [ ] | TRIM-SERIES | TODO | - | REWORK-203-08 | The 13 trims in plan section B, light touch, two or three lessons per PR if Dave prefers. |
+| [ ] | TEACH-IT | TODO | - | TRIM-SERIES | One teach-it question per lesson, plan section C; add in whichever pass touches the lesson last. |
+| [ ] | DOCS-STANDARD | TODO | - | SWEEP-002 merged | Update LESSON-TEMPLATE.md (101 closing is four questions), AI-LESSON-CHECKLIST.md (new exemplars, teach-it question, no widget naming), DISCIPLESHIP-COMPASS.md (seven-point standard). Plan section "Documents to update". |
+
