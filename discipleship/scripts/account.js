@@ -39,6 +39,7 @@ const dialog = {
     box: el('account-dialog'),
     title: el('account-title'),
     google: el('account-google'),
+    googleText: el('account-google-text'),
     form: el('account-form'),
     email: el('account-email'),
     password: el('account-password'),
@@ -146,6 +147,7 @@ function setCreating(value) {
     creating = value;
     dialog.title.textContent = creating ? 'Create an account' : 'Sign in';
     dialog.submit.textContent = creating ? 'Create account' : 'Sign in';
+    dialog.googleText.textContent = creating ? 'Sign up with Google' : 'Sign in with Google';
     dialog.switchMode.textContent = creating
         ? 'Already have an account? Sign in'
         : 'New here? Create an account';
