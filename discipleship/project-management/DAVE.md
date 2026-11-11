@@ -79,4 +79,7 @@ When Dave approves a lesson, add one row with its task ID, date, reviewed commit
 | REWORK-203-04 | 2026-11-11 | PR #124, merged as `2d04846` | Dave in chat: thirteen wording changes from the preview, then "merge it". data/203-04.json sha256 579963d02c61. |
 | AUTO-DEPLOY | 2026-11-11 | PR #127, merged as the first auto-deploy | Dave in chat: "set up auto-deploy" after Claude recommended it over hand deploys. Dave ran the GitHub authorization himself. From now on a merge to main publishes both sites; no bot deploys by hand. First Action run 43079775227 succeeded and the live site was verified. |
 | REWORK-202-02 | 2026-11-11 | PR #129, merged as `a88364e` | Dave in chat: "merge it" after reading the auto-preview. First lesson published through the GitHub Action. data/202-02.json sha256 63800e85ec4d. |
+| UI-SIGNIN-TOP | 2026-11-11 | PR #133, merged as `fa745f9` | Dave in chat: asked for a rounded Sign in button at the top right of the home page, then shorter, in the logo's green, in the top margin; "merge it". index.html and scripts/account.js. |
+| REWORK-202-02-R | 2026-11-11 | PR #134, merged as `ccebdac` | Dave by voice note: three R's (Remember God's mercy, Relay grace, Repair the relationship) replace the Forgiveness Loop, as a reminder of 201-08 and 201-10; "merge it". data/202-02.json sha256 613c853cfff5. |
+| REWORK-202-04 | 2026-11-11 | PR #132, merged as `b5cd754` | Dave in chat: "merge it". data/202-04.json sha256 bcaa9ff51cef. |
 
