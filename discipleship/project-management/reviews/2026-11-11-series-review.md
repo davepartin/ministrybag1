@@ -88,6 +88,10 @@ After A and B, walk every lesson and confirm one question asks the learner to sa
 - Question IDs that do not match their lesson: 202-05 uses `201-09-*`, 202-06 uses `201-05-*`, 202-09 9.3 is `201-9-1`. The app is in slow beta with no saved answers that matter, so these are cosmetic. Fix them only when that lesson is rewritten anyway, and do not raise them with Dave as a risk.
 - The "Tap each question to compare" line inside `widgets/two-ordinances.html` is widget UI, not prose; leave it unless Dave asks.
 
+## Publishing rule for every bot
+
+Since 2026-11-11, GitHub Actions deploy the site. Opening a pull request posts a preview link on the PR within a few minutes; merging to main publishes to growingtogetherdiscipleship.com and ministrybag.com. So the rule for Claude, Grok, Cursor, ChatGPT and anyone else is the same: open a PR, wait for the preview comment, send Dave the link, wait for his "merge it", then merge. Never run a Firebase deploy by hand and never ask Dave for Firebase credentials.
+
 ## How to work a lesson under this plan
 
 1. Claim the row in `TASKS.md` (owner, branch, date). One lesson per branch: `claude/l-203-07-rework` or `codex/l-203-07-rework`.
