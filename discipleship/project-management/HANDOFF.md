@@ -14,9 +14,10 @@ Dave chose Firebase for sign-in and saved answers (DATA-001 is decided) and owns
 
 **Sign-in:** the command-line tools are already signed in as davepartin@gmail.com, the owning account. If they ever need signing in again, Dave runs `firebase login` himself. Never ask for his password.
 
+**Publishing is automatic (since 2026-11-11).** Two GitHub Actions workflows in `.github/workflows/` do all deploying. `firebase-hosting-merge.yml` deploys `discipleship/` to the live site every time main changes, so a merge to main is a publish on both growingtogetherdiscipleship.com and ministrybag.com. `firebase-hosting-pull-request.yml` builds a preview link for every pull request and posts it as a comment on the PR. No agent should run `firebase deploy` or `firebase hosting:channel:deploy` by hand, and no agent other than the GitHub Action needs Firebase credentials. The key lives in the repo secret `FIREBASE_SERVICE_ACCOUNT_GROWING_TOGETHER_DISCIPLESHIP`; the service account has Hosting admin only. Because merge is publish, Dave's "merge it" is the only approval that merges lesson content, for every bot.
+
 **Commands, always run from `discipleship/`:**
-- Private preview link for a lesson change, which expires after a week: `firebase hosting:channel:deploy <short-name> --expires 7d`. Firebase prints a URL like `https://<project-id>--<short-name>-<hash>.web.app`. Use a short name for the change, such as `l-203-08`.
-- Go live: `firebase deploy --only hosting`
+- Preview links and live deploys are automatic; see above. Manual fallback only if the Action is broken: `firebase hosting:channel:deploy <short-name> --expires 7d` for a preview, `firebase deploy --only hosting` to go live.
 - Update the database rules: `firebase deploy --only firestore:rules`
 - Test offline before any project exists: copy `firebase.json` to a temporary config with an `emulators` block, then run `firebase emulators:exec --only hosting --project demo-growing-together "<command>"`. The emulator ignores the upload leave-out list, so test that list with a real preview deploy.
 
