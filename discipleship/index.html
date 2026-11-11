@@ -2869,7 +2869,7 @@
                     <p class="home-account-status" id="home-account-status" aria-live="polite" hidden></p>
                     <button type="button" class="home-backup-btn" id="home-account-signin">Sign in</button>
                     <button type="button" class="home-backup-btn" id="home-account-signout" hidden>Sign out</button>
-                    <p class="home-backup-scope">For now, your answers still save on this device only.</p>
+                    <p class="home-backup-scope" id="home-account-scope">Sign in to keep your answers on all your devices.</p>
                 </div>
                 <button type="button" class="home-backup-btn" id="home-download-backup"
                     onclick="downloadVersionedBackup('home')">Download backup</button>
@@ -3059,6 +3059,7 @@
     <script src="scripts/lesson-export.js"></script>
     <script src="scripts/widget-iframe.js"></script>
     <script src="scripts/account-helpers.js"></script>
+    <script src="scripts/answer-sync.js"></script>
     <script type="module" src="scripts/account.js"></script>
     <script>
         // ============================================
@@ -3201,6 +3202,24 @@
 
         announceInitialSaveState();
         refreshBackupScopeLabels();
+
+        // DATA-002d: where sign-in runs, note when each saved value changes so
+        // a signed-in person's devices can agree on the most recent edit.
+        // scripts/account.js does the syncing; ministrybag.com skips all of it.
+        const answerSync = window.GrowingTogetherAnswerSync;
+        const accountHelpers = window.GrowingTogetherAccountHelpers;
+        let syncTracker = null;
+        try {
+            if (answerSync && accountHelpers && accountHelpers.modeFor(location.hostname, location.search)) {
+                syncTracker = answerSync.createTracker(window.localStorage, {
+                    answers: responses,
+                    completion: completionData,
+                    reading: readingData
+                });
+            }
+        } catch (e) {
+            syncTracker = null;
+        }
 
         const seriesTitles = {
             '101': 'Starting in Discipleship',
@@ -4496,9 +4515,52 @@
                     writeError: writeError
                 }));
             }
+            if (ok && syncTracker) syncTracker.noteSaved(storeId, memoryValue);
             noteRestoreRelevantChange('storage');
             return ok;
         }
+
+        function storeMemory(storeId) {
+            if (storeId === 'completion') return completionData;
+            if (storeId === 'reading') return readingData;
+            return responses;
+        }
+
+        // Called by scripts/account.js with values that came from the account.
+        function applySyncedValues(storeId, toLocal, removeLocal) {
+            if (!syncTracker || !storeWritable(storeId)) return false;
+            const store = storeMemory(storeId);
+            Object.keys(toLocal).forEach(function (key) { store[key] = toLocal[key].v; });
+            removeLocal.forEach(function (key) { delete store[key]; });
+            syncTracker.acceptRemote(storeId, toLocal, removeLocal);
+            persistNamedStore(storeId, store);
+            // Someone typing right now keeps their text, and it saves again as
+            // the newest edit so every device ends up showing the same thing.
+            const active = document.activeElement;
+            const typingNow = active && active.tagName === 'TEXTAREA' &&
+                Date.now() - lastTypingAt < TYPING_WINDOW_MS;
+            const typing = typingNow ? active.value : null;
+            reloadLearnerFieldsFromMemory();
+            if (typing !== null && active.value !== typing) {
+                active.value = typing;
+                active.dispatchEvent(new Event('input', { bubbles: true }));
+            }
+            refreshBackupScopeLabels();
+            return true;
+        }
+
+        const TYPING_WINDOW_MS = 5000;
+        let lastTypingAt = 0;
+        document.addEventListener('input', function (event) {
+            if (event.target && event.target.tagName === 'TEXTAREA') lastTypingAt = Date.now();
+        }, true);
+
+        window.GrowingTogetherApp = {
+            syncTracker: syncTracker,
+            storeMemory: storeMemory,
+            storeWritable: storeWritable,
+            applySyncedValues: applySyncedValues
+        };
 
         function persistResponses() {
             // Never replace an unreadable stored copy with the empty fallback
@@ -5209,6 +5271,12 @@
                 }
             });
             rereadStoresFromStorage();
+            if (syncTracker) {
+                // A restore is a new edit: the restored values win on other devices.
+                syncTracker.noteSaved('answers', responses);
+                syncTracker.noteSaved('completion', completionData);
+                syncTracker.noteSaved('reading', readingData);
+            }
             reloadLearnerFieldsFromMemory();
             clearRecoveredSaveErrors(result.recoveredGuards);
             refreshBackupScopeLabels();

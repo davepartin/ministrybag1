@@ -7,7 +7,7 @@
  * emulator flag (as on ministrybag.com) and that answers still save locally.
  *
  * Run from discipleship/ with the static server on 127.0.0.1:8765:
- *   firebase emulators:exec --only auth "node scripts/data002b_browser_check.js"
+ *   firebase emulators:exec --only auth,firestore "node scripts/data002b_browser_check.js"
  */
 'use strict';
 
@@ -91,8 +91,8 @@ async function statusText(page) {
     await waitSignedOut(page);
     assert('signed out: Sign in shows and Sign out is hidden',
         (await visible(page, '#home-account-signin')) && !(await visible(page, '#home-account-signout')));
-    assert('home says answers still save on this device',
-        (await text(page, '#home-account')).indexOf('still save on this device only') !== -1);
+    assert('home invites sign-in to keep answers on every device',
+        (await text(page, '#home-account')).indexOf('Sign in to keep your answers on all your devices') !== -1);
     if (SHOTS) await page.screenshot({ path: SHOTS + '/home-signed-out-390.png', fullPage: true });
 
     // Dialog: focus, Escape, and focus returning to the button.
@@ -126,6 +126,10 @@ async function statusText(page) {
     await waitSignedIn(page);
     assert('creating an account signs in and closes the dialog', !(await visible(page, '#account-overlay')));
     assert('home shows who is signed in', (await text(page, '#home-account-status')) === 'Signed in as ' + EMAIL);
+    await page.waitForFunction(function () {
+        return document.getElementById('home-account-scope').textContent.indexOf('save to your account') !== -1;
+    }, null, { timeout: 10000 });
+    assert('home says answers save to the account once connected', true);
     if (SHOTS) await page.screenshot({ path: SHOTS + '/home-signed-in-390.png', fullPage: true });
 
     // Stays signed in after reload.
@@ -210,7 +214,7 @@ async function statusText(page) {
     await page.fill('#question-203-203-08-invested', 'Synthetic answer for DATA-002b');
     await page.waitForTimeout(1500);
     var stored = await page.evaluate(function () { return localStorage.getItem('christianFoundationsResponses') || ''; });
-    assert('answers still save in this browser while signed in', stored.indexOf('Synthetic answer for DATA-002b') !== -1);
+    assert('answers still save in this browser too while signed in', stored.indexOf('Synthetic answer for DATA-002b') !== -1);
 
     assert('no page errors', errors.length === 0, errors.join(' | '));
 
