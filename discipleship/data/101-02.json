@@ -41,7 +41,7 @@
     },
     {
       "type": "text",
-      "text": "Paul's letter to the Romans explains the gospel so clearly that people call the path through it \"The Romans Road.\" You can remember it with three letters, the ABCs of salvation: <strong>Admit</strong>, <strong>Believe</strong>, and <strong>Confess</strong>. Walk through each stop below."
+      "text": "Paul's letter to the Romans explains the gospel so clearly that people call the path through it \"The Romans Road.\" You can remember it with three letters, the ABCs of salvation: <strong>Admit</strong>, <strong>Believe</strong>, and <strong>Confess</strong>. Each stop is one verse from Romans."
     },
     {
       "type": "widget",
@@ -155,7 +155,13 @@
     {
       "type": "question",
       "id": "2-key",
-      "text": "What is one key thing you learned from this lesson, and what next step can you take this week?",
+      "text": "What is one key thing you learned from this lesson?",
+      "height": "short"
+    },
+    {
+      "type": "question",
+      "id": "2-step",
+      "text": "What is one step you are going to take this week?",
       "height": "short"
     },
     {

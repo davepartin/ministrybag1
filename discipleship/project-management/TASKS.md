@@ -160,7 +160,9 @@ Each row is a stable task ID `L-<lesson>`. Initial `present` means substantive t
 | [ ] | ART-004 | TODO | - | L-203-06 | Charcoal and color-reveal image pair for the 203-06 parable "Faithful in Babylon" (Daniel at his open window, or in the royal court). Needs an image generation tool; Grok and ChatGPT usage is exhausted as of September 16. Add as an `image` block before the parable once approved. |
 | [x] | ENG-007 | DONE | Claude / claude/laughing-carson-l1zh8x / 2026-11-03 | ENG-003 | Page jumped by about one widget height when tapping a widget control with the widget's top above the screen. Cause: `applyHeight` in scripts/widget-iframe.js collapses the iframe to 0px to measure, and browser scroll anchoring shifted the page. Fix pauses `overflow-anchor` on the host html/body during measurement and resumes it two animation frames later; scroll position untouched. Verified 0 px movement with real clicks at 1280x800, 1280x600, 390x844. Merged in PR #108. Evidence: logs/2026-11-02-L-203-08-SEND-claude.md. Applies to every lesson widget. |
 | [ ] | QA-002 | TODO | - | ENG-007 | scripts/eng003_browser_check.js fails "201-08 phone start primary control is inside the iframe" 3 of 3 runs on code from before and after ENG-007: `controlReachable` reads the iframe and button boxes while the page is still smooth-scrolling after load. Make the check measure a settled page (wait for stable scrollY, or measure both boxes in one evaluate) without weakening the assertion or changing product code. |
+| [ ] | SWEEP-001 | REVIEW | Claude / claude/sweep-widget-language / 2026-11-11 | - | Series review sweep 1 of 3: remove tap, click, "tool below" and "diagram below" language from lesson prose so every lesson leads into its widget the way 202-08, 202-09, 203-06 and 203-09 do. 22 lessons, 24 lines, prose only; no question text, IDs, widgets or verses changed. Evidence: logs/2026-11-11-SWEEP-001-claude.md. Next sweeps: outside-author quotes to credit lines plus the 101 closing trio (SWEEP-002), long and two-part questions (SWEEP-003). |
 | [ ] | ART-008 | TODO | - | L-203-08 | Color version of Dave's black-and-white Paul and Timothy sketch (images/203.08-paul-timothy-bw.jpg, Paul working tent cloth with young Timothy beside him). When it exists, switch the 203-08 image block from `src` to `imageBw` / `imageColor` with `frame: true` for the scroll-reveal dissolve used in other lessons. |
+| [ ] | SWEEP-002 | REVIEW | Claude / claude/sweep-author-credits / 2026-11-11 | - | Series review sweep 2 of 3: outside authors retold in the body and credited at the bottom (101-06 Niles, 201-10 Luther, 202-06 and 202-07 and 203-04 Piper); 101-01 to 101-07 closing trio split into the 200-series key and step questions (new `N-step` IDs), Daily Devotions question kept. Evidence: logs/2026-11-11-SWEEP-002-claude.md. |
 | [ ] | SWEEP-003 | REVIEW | Claude / claude/sweep-questions / 2026-11-11 | - | Series review sweep 3 of 3: 32 long or two-part mid-lesson questions in 17 lessons rewritten as one line each (101-04/05/06/07, 201-01/02/03/06/09/10, 202-01/02/03/04, 203-02/03/10). IDs, numbering, heights and positions unchanged. 202-09 and 203-08 left alone on purpose. Evidence: logs/2026-11-11-SWEEP-003-claude.md. |
 
 Add new rows to the appropriate table before working beyond scope. Keep task IDs stable, such as `ENG-001a` for a separately assigned child. Include a parent ID, file scope, dependencies, and acceptance evidence. Parent tasks become DONE only when their children and original criteria are satisfied. Do not delete completed rows; the history is useful.
@@ -168,3 +170,21 @@ Add new rows to the appropriate table before working beyond scope. Keep task IDs
 ## ART-003: 202-08/09 story image pairs
 
 Status: REVIEW. Owner: Codex coordinator. Branch: `codex/art-202-08-09`. Claimed September 12, 2026 from PR #17 at `2dad678`. Completed Genesis 15 and David rooftop charcoal/color pairs, image integration and phone checks on PR #17 at `6d3019b`. Evidence: logs/2026-09-12-ART-003-codex.md. Only these new story assets, their lesson image blocks, research provenance and coordinator records are in scope. Dave retains final art/lesson approval; PR #17 remains unmerged. Claude's text and dedicated diagrams remain in review.
+
+## Series review and rework, November 11, 2026
+
+Plan and standard: [reviews/2026-11-11-series-review.md](reviews/2026-11-11-series-review.md). Dave approved the direction in chat on 2026-11-11. Claude (Fable 5.1) is producer/director: assigns the next lesson, reviews every PR against the standard, keeps the plan current. One lesson per PR for rewrites. Dave's "merge it" is the only approval.
+
+| Check | ID | Status | Owner | Depends on | Scope and acceptance evidence |
+|---|---|---|---|---|---|
+| [ ] | REWORK-203-07 | TODO | - | SWEEP-001..003 merged | Armor of God rewrite per plan section A, order 1. Widget carries the six pieces; "A Sword for the Lie" as the handle; teach-it question; about 1,400 words. |
+| [ ] | REWORK-203-04 | TODO | - | REWORK-203-07 | Serve rewrite per plan, order 2. |
+| [ ] | REWORK-202-02 | TODO | - | REWORK-203-04 | Family rewrite per plan, order 3. Forgiveness Loop as the handle. |
+| [ ] | REWORK-202-04 | TODO | - | REWORK-202-02 | Gifts rewrite per plan, order 4. Five farmers carry APEST. |
+| [ ] | REWORK-201-03 | TODO | - | REWORK-202-04 | Holy Spirit rewrite per plan, order 5. GUIDE as the handle. |
+| [ ] | REWORK-101-06 | TODO | - | REWORK-201-03 | Sharing Jesus rewrite per plan, order 6. One tool, remove the gospel-app line. |
+| [ ] | REWORK-203-08 | TODO | - | REWORK-101-06 | Disciple Others trim per plan, order 7. Propose one-line 8.2 and 8.3 to Dave; change only on his revision file. |
+| [ ] | TRIM-SERIES | TODO | - | REWORK-203-08 | The 13 trims in plan section B, light touch, two or three lessons per PR if Dave prefers. |
+| [ ] | TEACH-IT | TODO | - | TRIM-SERIES | One teach-it question per lesson, plan section C; add in whichever pass touches the lesson last. |
+| [ ] | DOCS-STANDARD | TODO | - | SWEEP-002 merged | Update LESSON-TEMPLATE.md (101 closing is four questions), AI-LESSON-CHECKLIST.md (new exemplars, teach-it question, no widget naming), DISCIPLESHIP-COMPASS.md (seven-point standard). Plan section "Documents to update". |
+

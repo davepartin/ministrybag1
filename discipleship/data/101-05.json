@@ -95,7 +95,7 @@
     {
       "type": "checklist",
       "id": "service-interests",
-      "prompt": "If the church is a potluck, what dish are you bringing? Tap the areas where you could see yourself serving, helping, or leading.",
+      "prompt": "If the church is a potluck, what dish are you bringing? Check the areas where you could see yourself serving, helping, or leading.",
       "items": [
         "Greeting / Welcome",
         "Kids Ministry",
@@ -177,7 +177,13 @@
     {
       "type": "question",
       "id": "5-key",
-      "text": "What is one key thing you learned from this lesson, and what next step can you take this week?",
+      "text": "What is one key thing you learned from this lesson?",
+      "height": "short"
+    },
+    {
+      "type": "question",
+      "id": "5-step",
+      "text": "What is one step you are going to take this week?",
       "height": "short"
     },
     {
