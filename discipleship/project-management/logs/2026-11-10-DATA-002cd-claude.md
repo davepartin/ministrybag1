@@ -102,3 +102,15 @@ The home line read "Sign in to keep your answers on all your devices." Sign-in b
 After he signed in on the preview on both devices, he reported: "it works now, both are syncing". This is the first real-device check of DATA-002d.
 
 A debugging attempt through the Mac connector (screenshots, then one keystroke) set off macOS Accessibility and Privacy & Security prompts on Dave's screen. Dave was asked to cancel them, and the connector was not used further.
+
+## Live, 2026-11-10
+
+Dave said "go live". PR #116 was merged to main (`f109d6b`), and `firebase deploy --only hosting` was run from that commit.
+
+On https://growingtogetherdiscipleship.com:
+- `scripts/answer-sync.js` and `scripts/account.js` return 200.
+- The test scripts, `TASKS.md` and the emulator debug log return 404.
+
+GitHub Pages published the same commit to ministrybag.com. Sync stays off there because `modeFor` returns nothing for that host; the browser checks cover this on a host without the flag. A live browser check of either site was not possible afterward, because a Google sign-in window left open in the in-app browser paused it.
+
+When Dave next opens growingtogetherdiscipleship.com on the laptop where he is signed in, that device's earlier answers (201-01) move into his account.
