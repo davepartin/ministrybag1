@@ -9,9 +9,19 @@
     },
     {
       "type": "image",
-      "imageBw": "images/running-father-bw3.jpeg",
-      "imageColor": "images/running-father-color3.jpeg",
-      "alt": "A father lifting his robe and running down the road to embrace his returning son",
+      "imageSequence": [
+        "images/running-father-seq-1.jpg",
+        "images/running-father-seq-2.jpg",
+        "images/running-father-seq-3.jpg",
+        "images/running-father-seq-4.jpg"
+      ],
+      "imageSequenceStops": [
+        0,
+        0.18,
+        0.34,
+        0.5
+      ],
+      "alt": "A father running down the road toward his returning son, getting closer with each step",
       "touchNext": true
     },
     {
