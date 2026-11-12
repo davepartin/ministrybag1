@@ -1,5 +1,25 @@
 # Growing Together Team Board
 
+## Current publishing checkpoint: working drafts assembled, November 12, 2026
+
+Dave's latest instruction is to integrate the working pieces now so he can edit one lesson at a time later: "do all this, i can edit the lessons later ... add them to the main". This supersedes earlier per-packet publishing holds for the items below. Integration is not final pastoral, wording, personal artwork or release approval. Preserve Dave's artwork and saved-answer contracts. Firebase configuration, billing, retention and workflows remain unchanged.
+
+| Piece | Integrated work | Later editorial/visual gate |
+|---|---|---|
+| 101-02 Salvation | New forward-perspective Romans Road, #194. Required suites and 39 independent phone/desktop browser checks pass. | Dave's final widget and wording pass. |
+| 101-04 The Bible | Shorter Nicodemus/Discovery Questions lesson, #191; all original question and reading objects preserved. | Nicodemus lamplight artwork/Psalm 119:105 connection remains a separate future packet, not already built. |
+| 202-01 Loving neighbors | Grok's four Samaritan frames wired with holds and slow last dissolve, #190; 92 sequence checks pass. | Dave's final art/lesson pass. |
+| 202-02 Family | Grok's house sequence timing/rain correction, #188; 77 sequence checks pass. | Final visual/lesson pass; preserve Dave's existing wording. |
+| 202-05 Suffering | Claude's Trust the Artist working draft, #195. Codex restored original question 5.5 so saved answers remain visible and exportable; 18 hosted render/data checks pass. | Dave edits wording, length and sources. Mosaic remains prose; no mosaic widget was created. Valley Road retained. |
+| 202-06 Worship widget | Gemini's newer side-view mirror, #189; 42 browser checks pass. Corrected its teaching summary so it is not presented as a direct Bible quotation. | Dave's final visual/copy pass. Older #182 closed as superseded. |
+| 202-06 Worship artwork | Grok's five prison-chain frames wired in #197; 55 sequence checks pass on the combined tree. | Action-preview integration checkpoint to be confirmed below before this entry is called complete. Old artwork retained. |
+| 202-07 Stewardship | Widow's four-frame sequence #181, three-T stool #193, source manuscript/brief #192, and assembled whole-life lesson #196. All seven original question objects preserved; Matthew 6:24 and the financial Generosity Ladder retained for Dave's later decision. Widow sequence 69 checks and stool 64 checks pass. | Dave's lesson-by-lesson edit, including final question wording, ladder length, visuals and final approval. |
+| 203-03 Emmaus | Grok's four bread-breaking frames, #186; 70 sequence checks pass. Earlier image files retained. | Dave's final art/wording pass. |
+
+Queue cleanup: #179 superseded by #195; #183 duplicate of integrated #185; #187 competing style-guide packet superseded by #184; #182 superseded by #189. Closed without deleting branches or history. The unrelated older #28/#68 and denomination PR #2 remain outside this integration batch.
+
+Required foundation/export/storage/assets/image checks passed throughout the isolated integrations. Final combined source checked at 126 asset references and 1,360 image checks, export 167 and storage 64, all actual exits 0. Saved answers, WEB readings, question IDs and Dave's original artwork files remain protected. See the integration log for exact commands, PR heads and deployment evidence. No physical iPhone/Safari or learner pilot is claimed by desktop automation.
+
 ## Current standing roles: Dave's instruction, November 12, 2026
 
 This is the current operating setup until Dave changes it. Dave finalized these roles in conversation and explicitly asked Codex to post them here so every agent can read the same instructions. This section supersedes conflicting temporary-director, night-shift, lane and merge-authority passages below and in older handoffs. Historical task evidence and completed work remain valid.
