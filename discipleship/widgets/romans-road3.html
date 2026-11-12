@@ -6,16 +6,49 @@
 <title>The Romans Road</title>
 <style>
 :root {
-  --ink: #26231f;
+  --ink: #2C2416;
   --muted: #655f55;
   --ghost: #c5bdb0;
   --line-soft: #e3ddd1;
   --paper: #fdfdfb;
-  --sunset: #c2551b;
-  --sunset-dark: #9c4213;
-  --sunset-soft: #fae5d6;
-  --sunset-glow: #fdf3eb;
+  --sun-orb: #FFE79A;
+  --sun-orb-warm: #FAD866;
+  --sun-halo: #FFF7DA;
+  --sun-stroke: #B8892B;
+  --blue: #1E6FA0;
+  --blue-dark: #16557B;
+  --blue-soft: #DFEEF7;
+  --blue-glow: #F2F8FC;
+  --red: #A63A32;
+  --red-dark: #842B24;
+  --red-soft: #F7DEDC;
+  --red-glow: #FDF4F3;
+  --green: #1D6B3F;
+  --green-dark: #155030;
+  --green-soft: #DCEEE3;
+  --green-glow: #F2F9F5;
+  --step-color: #2C2416;
+  --step-dark: #2C2416;
+  --step-soft: #F2EFE9;
   --card-h: 108px;
+}
+
+.widget-outer[data-step="1"] {
+  --step-color: var(--blue);
+  --step-dark: var(--blue-dark);
+  --step-soft: var(--blue-soft);
+}
+
+.widget-outer[data-step="2"] {
+  --step-color: var(--red);
+  --step-dark: var(--red-dark);
+  --step-soft: var(--red-soft);
+}
+
+.widget-outer[data-step="3"] {
+  --step-color: var(--green);
+  --step-dark: var(--green-dark);
+  --step-soft: var(--green-soft);
 }
 
 *, *::before, *::after {
@@ -58,14 +91,10 @@ body {
 }
 
 .title-bar {
-  background: var(--ink);
+  background: var(--step-color);
   padding: 8px 14px;
   text-align: center;
   transition: background-color 0.35s ease;
-}
-
-.widget-outer.is-complete .title-bar {
-  background: var(--sunset-dark);
 }
 
 .title-bar h1 {
@@ -104,31 +133,31 @@ svg .horizon-ridge {
 }
 
 svg .sun-halo {
-  fill: var(--sunset-glow);
-  opacity: 0.9;
+  fill: var(--sun-halo);
+  opacity: 0.95;
   transition: fill 0.35s ease, opacity 0.35s ease;
 }
 
 .widget-outer.is-complete svg .sun-halo {
-  fill: var(--sunset-soft);
-  opacity: 1;
+  fill: var(--sun-orb);
+  opacity: 0.45;
 }
 
 svg .sun-orb {
-  fill: var(--sunset-soft);
-  stroke: var(--sunset);
-  stroke-width: 2.1;
+  fill: var(--sun-orb);
+  stroke: var(--sun-stroke);
+  stroke-width: 2;
   transition: fill 0.35s ease;
 }
 
 .widget-outer.is-complete svg .sun-orb {
-  fill: #f3b893;
+  fill: var(--sun-orb-warm);
 }
 
 svg .sun-ray {
-  stroke: var(--sunset);
+  stroke: var(--sun-stroke);
   stroke-linecap: round;
-  opacity: 0.65;
+  opacity: 0.78;
   transition: opacity 0.35s ease;
 }
 
@@ -144,13 +173,16 @@ svg .road-base {
 }
 
 svg .road-lit {
-  fill: var(--sunset-soft);
   opacity: 0;
   transition: opacity 0.35s ease;
 }
 
+svg .road-lit.lit-a { fill: var(--blue-soft); }
+svg .road-lit.lit-b { fill: var(--red-soft); }
+svg .road-lit.lit-c { fill: var(--green-soft); }
+
 svg .road-lit.on {
-  opacity: 0.9;
+  opacity: 0.92;
 }
 
 svg .pebble {
@@ -165,9 +197,27 @@ svg .shrub {
   stroke-linecap: round;
 }
 
-/* Road Signs (A, B, C) */
+/* Road Signs (A, B, C) with per-step natural color theme */
 svg .sign-group {
   cursor: pointer;
+}
+
+svg .sign-group[data-step="1"] {
+  --sign-color: var(--blue);
+  --sign-dark: var(--blue-dark);
+  --sign-glow: var(--blue-glow);
+}
+
+svg .sign-group[data-step="2"] {
+  --sign-color: var(--red);
+  --sign-dark: var(--red-dark);
+  --sign-glow: var(--red-glow);
+}
+
+svg .sign-group[data-step="3"] {
+  --sign-color: var(--green);
+  --sign-dark: var(--green-dark);
+  --sign-glow: var(--green-glow);
 }
 
 svg .sign-shadow {
@@ -182,13 +232,13 @@ svg .sign-post {
 
 svg .sign-board {
   fill: #ffffff;
-  stroke: var(--ink);
-  stroke-width: 2;
+  stroke: var(--sign-color, var(--ink));
+  stroke-width: 1.9;
   transition: fill 0.25s ease, stroke 0.25s ease, stroke-width 0.25s ease;
 }
 
 svg .sign-badge {
-  fill: var(--ink);
+  fill: var(--sign-color, var(--ink));
   transition: fill 0.25s ease;
 }
 
@@ -215,7 +265,7 @@ svg .sign-sub {
 
 svg .sign-icon {
   fill: none;
-  stroke: var(--ink);
+  stroke: var(--sign-color, var(--ink));
   stroke-width: 1.9;
   stroke-linecap: round;
   stroke-linejoin: round;
@@ -223,34 +273,26 @@ svg .sign-icon {
 }
 
 svg .sign-icon.filled {
-  fill: var(--ink);
+  fill: var(--sign-color, var(--ink));
 }
 
 /* Passed vs Active road sign state */
 svg .sign-group.passed .sign-badge {
-  fill: var(--sunset-dark);
+  fill: var(--sign-dark);
 }
 
 svg .sign-group.passed .sign-board {
-  stroke: var(--sunset-dark);
+  stroke: var(--sign-dark);
 }
 
 svg .sign-group.active .sign-board {
-  fill: var(--sunset-glow);
-  stroke: var(--sunset);
-  stroke-width: 2.6;
+  fill: var(--sign-glow);
+  stroke: var(--sign-color);
+  stroke-width: 2.8;
 }
 
-svg .sign-group.active .sign-badge {
-  fill: var(--sunset);
-}
-
-svg .sign-group.active .sign-icon {
-  stroke: var(--sunset);
-}
-
-svg .sign-group.active .sign-icon.filled {
-  fill: var(--sunset);
+svg .sign-group.active .sign-title {
+  fill: var(--sign-dark);
 }
 
 /* Step pills bar */
@@ -264,6 +306,8 @@ svg .sign-group.active .sign-icon.filled {
 }
 
 .step-pill {
+  --pill-color: var(--ink);
+  --pill-soft: #f2efe9;
   min-height: 32px;
   padding: 4px 4px;
   border-radius: 8px;
@@ -276,20 +320,35 @@ svg .sign-group.active .sign-icon.filled {
   transition: background-color 0.2s, border-color 0.2s, color 0.2s;
 }
 
+.step-pill[data-step="1"] {
+  --pill-color: var(--blue);
+  --pill-soft: var(--blue-glow);
+  border-color: rgba(30, 111, 160, 0.45);
+  color: var(--blue-dark);
+}
+
+.step-pill[data-step="2"] {
+  --pill-color: var(--red);
+  --pill-soft: var(--red-glow);
+  border-color: rgba(166, 58, 50, 0.45);
+  color: var(--red-dark);
+}
+
+.step-pill[data-step="3"] {
+  --pill-color: var(--green);
+  --pill-soft: var(--green-glow);
+  border-color: rgba(29, 107, 63, 0.45);
+  color: var(--green-dark);
+}
+
 .step-pill.passed {
-  border-color: var(--sunset);
-  color: var(--sunset-dark);
+  background: var(--pill-soft);
+  border-color: var(--pill-color);
 }
 
 .step-pill.active {
-  background: var(--ink);
-  border-color: var(--ink);
-  color: #ffffff;
-}
-
-.step-pill.active.is-abc {
-  background: var(--sunset);
-  border-color: var(--sunset);
+  background: var(--pill-color);
+  border-color: var(--pill-color);
   color: #ffffff;
 }
 
@@ -309,12 +368,8 @@ svg .sign-group.active .sign-icon.filled {
 
 .verse-card-bar {
   height: 4px;
-  background: var(--ink);
+  background: var(--step-color);
   transition: background-color 0.3s ease;
-}
-
-.widget-outer.has-step .verse-card-bar {
-  background: var(--sunset);
 }
 
 .verse-card-content {
@@ -327,12 +382,9 @@ svg .sign-group.active .sign-icon.filled {
 
 .card-heading {
   font: 700 15px/1.22 system-ui, -apple-system, sans-serif;
-  color: var(--ink);
+  color: var(--step-dark);
   margin: 0 0 3px;
-}
-
-.widget-outer.has-step .card-heading {
-  color: var(--sunset-dark);
+  transition: color 0.25s ease;
 }
 
 .card-verse {
@@ -342,7 +394,7 @@ svg .sign-group.active .sign-icon.filled {
 }
 
 .card-verse b {
-  color: var(--ink);
+  color: var(--step-dark);
 }
 
 .card-note {
@@ -353,7 +405,7 @@ svg .sign-group.active .sign-icon.filled {
 }
 
 .card-note b {
-  color: var(--sunset-dark);
+  color: var(--step-dark);
 }
 
 .card-ref {
@@ -383,14 +435,10 @@ svg .sign-group.active .sign-icon.filled {
 }
 
 .nav-btn.primary {
-  background: var(--ink);
-  border-color: var(--ink);
+  background: var(--step-color);
+  border-color: var(--step-color);
   color: #ffffff;
-}
-
-.widget-outer.has-step .nav-btn.primary {
-  background: var(--sunset);
-  border-color: var(--sunset);
+  transition: background-color 0.25s ease, border-color 0.25s ease;
 }
 
 .nav-btn:disabled {
@@ -567,11 +615,11 @@ button:focus-visible {
   var roadPoly = '184,' + HY + ' 196,' + HY + ' 276,' + VH + ' 104,' + VH;
   el('polygon', { points: roadPoly, class: 'road-base' }, svg);
 
-  // Illuminated road progression layers (clipped cleanly to A, B, C depths)
+  // Illuminated road progression layers (blue A, red B, green C)
   var roadLits = [
-    el('polygon', { points: roadPoly, class: 'road-lit', 'clip-path': 'url(#lit-a)' }, svg),
-    el('polygon', { points: roadPoly, class: 'road-lit', 'clip-path': 'url(#lit-b)' }, svg),
-    el('polygon', { points: roadPoly, class: 'road-lit', 'clip-path': 'url(#lit-c)' }, svg)
+    el('polygon', { points: roadPoly, class: 'road-lit lit-a', 'clip-path': 'url(#lit-a)' }, svg),
+    el('polygon', { points: roadPoly, class: 'road-lit lit-b', 'clip-path': 'url(#lit-b)' }, svg),
+    el('polygon', { points: roadPoly, class: 'road-lit lit-c', 'clip-path': 'url(#lit-c)' }, svg)
   ];
 
   // Re-stroke crisp road edges on top of fills (no center or outer gray lines)
@@ -604,26 +652,26 @@ button:focus-visible {
   // 3. Progressive Two-Legged Roadside Signs (big left letter badge + right text + icon)
   var signGroups = [];
 
-  // Sign C: Farther down toward horizon on Left (Smallest in perspective) - C | Confess / Jesus as / Lord + Crown
+  // Sign C: Pulled closer to Sign A on Left so horizon line HY=78 stays unobstructed - C | Confess / Jesus as / Lord + Crown
   (function () {
     var g = el('g', { class: 'sign-group', 'data-step': '3' }, svg);
-    // Two legs + subtle ground shadows cleanly above Sign A
-    el('ellipse', { cx: 63, cy: 131, rx: 6.5, ry: 1.8, class: 'sign-shadow' }, g);
-    el('ellipse', { cx: 129, cy: 131, rx: 6.5, ry: 1.8, class: 'sign-shadow' }, g);
-    el('line', { x1: 63, y1: 118, x2: 63, y2: 131, class: 'sign-post', 'stroke-width': 2 }, g);
-    el('line', { x1: 129, y1: 118, x2: 129, y2: 131, class: 'sign-post', 'stroke-width': 2 }, g);
-    // Compact distant board: x=44..148, y=79..118 (104x39)
-    el('rect', { x: 44, y: 79, width: 104, height: 39, rx: 5.5, class: 'sign-board' }, g);
+    // Two legs + subtle ground shadows cleanly between horizon and Sign A
+    el('ellipse', { cx: 63, cy: 136, rx: 6.5, ry: 1.8, class: 'sign-shadow' }, g);
+    el('ellipse', { cx: 129, cy: 136, rx: 6.5, ry: 1.8, class: 'sign-shadow' }, g);
+    el('line', { x1: 63, y1: 125, x2: 63, y2: 136, class: 'sign-post', 'stroke-width': 2 }, g);
+    el('line', { x1: 129, y1: 125, x2: 129, y2: 136, class: 'sign-post', 'stroke-width': 2 }, g);
+    // Compact distant board: x=44..148, y=88..126 (104x38), 10px below horizon HY=78
+    el('rect', { x: 44, y: 88, width: 104, height: 38, rx: 5.5, class: 'sign-board' }, g);
     // Tall left badge box with big C
-    el('rect', { x: 48, y: 83, width: 26, height: 31, rx: 4.5, class: 'sign-badge' }, g);
-    el('text', { x: 61, y: 98.5, class: 'sign-letter', style: 'font-size:20px' }, g).textContent = 'C';
+    el('rect', { x: 48, y: 92, width: 26, height: 30, rx: 4.5, class: 'sign-badge' }, g);
+    el('text', { x: 61, y: 107, class: 'sign-letter', style: 'font-size:20px' }, g).textContent = 'C';
     // Right text column
-    el('text', { x: 80, y: 88, class: 'sign-title', style: 'font-size:9.6px;text-anchor:start' }, g).textContent = 'Confess';
-    el('text', { x: 80, y: 97.5, class: 'sign-sub', style: 'font-size:9.2px;text-anchor:start' }, g).textContent = 'Jesus as';
-    el('text', { x: 80, y: 109.5, class: 'sign-title', style: 'font-size:9.8px;text-anchor:start' }, g).textContent = 'Lord';
+    el('text', { x: 80, y: 97, class: 'sign-title', style: 'font-size:9.6px;text-anchor:start' }, g).textContent = 'Confess';
+    el('text', { x: 80, y: 106.5, class: 'sign-sub', style: 'font-size:9.2px;text-anchor:start' }, g).textContent = 'Jesus as';
+    el('text', { x: 80, y: 118, class: 'sign-title', style: 'font-size:9.8px;text-anchor:start' }, g).textContent = 'Lord';
     // Crown right beside "Lord" with clear gap from "Jesus as"
     el('path', {
-      d: 'M 114 112.5 L 112.5 106.5 L 117 109 L 121 104.5 L 125 109 L 129.5 106.5 L 128 112.5 Z',
+      d: 'M 114 121 L 112.5 115 L 117 117.5 L 121 113 L 125 117.5 L 129.5 115 L 128 121 Z',
       class: 'sign-icon',
       'stroke-width': 1.4
     }, g);
@@ -660,18 +708,18 @@ button:focus-visible {
   (function () {
     var g = el('g', { class: 'sign-group', 'data-step': '1' }, svg);
     // Two legs + subtle ground shadows
-    el('ellipse', { cx: 26, cy: 220, rx: 9, ry: 2.5, class: 'sign-shadow' }, g);
-    el('ellipse', { cx: 100, cy: 220, rx: 9, ry: 2.5, class: 'sign-shadow' }, g);
-    el('line', { x1: 26, y1: 196, x2: 26, y2: 220, class: 'sign-post', 'stroke-width': 3.2 }, g);
-    el('line', { x1: 100, y1: 196, x2: 100, y2: 220, class: 'sign-post', 'stroke-width': 3.2 }, g);
-    // Largest foreground board: x=8..118, y=142..196 (110x54)
-    el('rect', { x: 8, y: 142, width: 110, height: 54, rx: 8, class: 'sign-board' }, g);
+    el('ellipse', { cx: 26, cy: 222, rx: 9, ry: 2.4, class: 'sign-shadow' }, g);
+    el('ellipse', { cx: 98, cy: 222, rx: 9, ry: 2.4, class: 'sign-shadow' }, g);
+    el('line', { x1: 26, y1: 199, x2: 26, y2: 222, class: 'sign-post', 'stroke-width': 3.2 }, g);
+    el('line', { x1: 98, y1: 199, x2: 98, y2: 222, class: 'sign-post', 'stroke-width': 3.2 }, g);
+    // Largest foreground board: x=8..116, y=145..199 (108x54)
+    el('rect', { x: 8, y: 145, width: 108, height: 54, rx: 8, class: 'sign-board' }, g);
     // Tall left badge box with big A
-    el('rect', { x: 14, y: 148, width: 38, height: 42, rx: 6, class: 'sign-badge' }, g);
-    el('text', { x: 33, y: 169, class: 'sign-letter', style: 'font-size:27px' }, g).textContent = 'A';
+    el('rect', { x: 14, y: 151, width: 38, height: 42, rx: 6, class: 'sign-badge' }, g);
+    el('text', { x: 33, y: 172, class: 'sign-letter', style: 'font-size:27px' }, g).textContent = 'A';
     // Right text column
-    el('text', { x: 84, y: 161, class: 'sign-title', style: 'font-size:14px' }, g).textContent = 'Admit';
-    el('text', { x: 84, y: 178, class: 'sign-title', style: 'font-size:14px' }, g).textContent = 'SIN';
+    el('text', { x: 83, y: 164, class: 'sign-title', style: 'font-size:14px' }, g).textContent = 'Admit';
+    el('text', { x: 83, y: 181, class: 'sign-title', style: 'font-size:14px' }, g).textContent = 'SIN';
     signGroups[1] = g;
   })();
 
@@ -690,6 +738,7 @@ button:focus-visible {
     var btn = document.createElement('button');
     btn.type = 'button';
     btn.className = 'step-pill' + (idx > 0 ? ' is-abc' : '');
+    btn.setAttribute('data-step', String(idx));
     btn.textContent = st.pill;
     btn.addEventListener('click', function () {
       goTo(idx);
@@ -714,6 +763,7 @@ button:focus-visible {
     step = Math.max(0, Math.min(steps.length - 1, nextStep));
     var st = steps[step];
 
+    widgetEl.setAttribute('data-step', String(step));
     widgetEl.classList.toggle('has-step', step >= 1);
     widgetEl.classList.toggle('is-complete', step === 3);
 
