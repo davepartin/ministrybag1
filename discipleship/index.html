@@ -2834,7 +2834,10 @@
                 <button type="button" class="home-signin-top" id="home-signin-top" hidden>Sign in</button>
                 <h1 class="home-title">Growing Together</h1>
                 <p class="home-title-series">Discipleship Series</p>
-                <img src="images/3-circles-coral.png" alt="Growing Together Discipleship Series" class="home-logo"
+                <img src="images/optimized/3-circles-coral-640.webp"
+                    srcset="images/optimized/3-circles-coral-640.webp 640w, images/optimized/3-circles-coral-1216.webp 1216w"
+                    sizes="(max-width: 640px) 88vw, 564px" width="1216" height="454" decoding="async"
+                    alt="Growing Together Discipleship Series" class="home-logo"
                     onerror="this.style.display='none'">
                 <div class="home-tagline">
                     <p class="home-tagline-verse"><strong>&ldquo;Hear the Word, Accept it, Bear Fruit, and Multiply&rdquo;</strong> - <span class="home-tagline-ref">Mark 4:20</span></p>
@@ -3098,6 +3101,8 @@
     <script src="scripts/backup-restore.js"></script>
     <script src="scripts/lesson-export.js"></script>
     <script src="scripts/widget-iframe.js"></script>
+    <script src="scripts/lesson-image-assets.js"></script>
+    <script src="scripts/lesson-images.js"></script>
     <script src="scripts/account-helpers.js"></script>
     <script src="scripts/answer-sync.js"></script>
     <script type="module" src="scripts/account.js"></script>
@@ -3755,7 +3760,7 @@
                 const meta = COURSE_META[currentSeries];
                 const showLogo = meta && meta.logo && idx > 0;
                 if (showLogo) {
-                    html += `<img class="session-course-logo" src="${meta.logo}?v=${BUILD_VERSION}" alt="${meta.name}">`;
+                    html += `<img class="session-course-logo" ${GrowingTogetherLessonImages.attributes(meta.logo, BUILD_VERSION, '168px')} alt="${meta.name}">`;
                 }
                 const lessonMeta = currentSeriesLessonMeta[sessionNum] || {};
                 const topicTitle = lessonMeta.title || data.title.replace(/^Lesson\s+\d+:\s*/i, '');
@@ -3775,7 +3780,7 @@
                             case 'heading':
                                 let iconHTML = '';
                                 if (b.icon) {
-                                    iconHTML = `<img src="${b.icon}?v=${BUILD_VERSION}" class="heading-float-icon" alt="">`;
+                                    iconHTML = `<img ${GrowingTogetherLessonImages.attributes(b.icon, BUILD_VERSION, '105px')} class="heading-float-icon" alt="">`;
                                 }
                                 if (b.subheading) {
                                     html += `${iconHTML}<h4 class="block-subheading">${b.text}</h4>`;
@@ -3805,7 +3810,7 @@
                                     html += `<div class="${imageClasses}">
                                         <div class="${dissolveClasses}" data-parable-dissolve data-parable-sequence${sequenceStops}>`;
                                     b.imageSequence.forEach((src, frameIdx) => {
-                                        html += `<img class="parable-sequence-frame" src="${src}?v=${BUILD_VERSION}" alt="${frameIdx === 0 ? (b.alt || '') : ''}" aria-hidden="${frameIdx === 0 ? 'false' : 'true'}">`;
+                                        html += `<img class="parable-sequence-frame" ${GrowingTogetherLessonImages.attributes(src, BUILD_VERSION)} alt="${frameIdx === 0 ? (b.alt || '') : ''}" aria-hidden="${frameIdx === 0 ? 'false' : 'true'}">`;
                                     });
                                     html += `</div>
                                     </div>`;
@@ -3813,12 +3818,12 @@
                                     const dissolveClasses = `block-image-dissolve${b.frame ? ' block-image-dissolve-framed' : ''}`;
                                     html += `<div class="${imageClasses}">
                                         <div class="${dissolveClasses}" data-parable-dissolve>
-                                            <img class="parable-img-color" src="${b.imageColor}?v=${BUILD_VERSION}" alt="${b.alt || ''}">
-                                            <img class="parable-img-bw" src="${b.imageBw}?v=${BUILD_VERSION}" alt="" aria-hidden="true" style="opacity:1;">
+                                            <img class="parable-img-color" ${GrowingTogetherLessonImages.attributes(b.imageColor, BUILD_VERSION)} alt="${b.alt || ''}">
+                                            <img class="parable-img-bw" ${GrowingTogetherLessonImages.attributes(b.imageBw, BUILD_VERSION)} alt="" aria-hidden="true" style="opacity:1;">
                                         </div>
                                     </div>`;
                                 } else {
-                                    html += `<div class="${imageClasses}"><img src="${b.src}?v=${BUILD_VERSION}" alt="${b.alt || ''}" ${imgStyle} onerror="this.style.display='none'"></div>`;
+                                    html += `<div class="${imageClasses}"><img ${GrowingTogetherLessonImages.attributes(b.src, BUILD_VERSION)} alt="${b.alt || ''}" ${imgStyle} onerror="this.style.display='none'"></div>`;
                                 }
                                 break;
 
@@ -3973,7 +3978,7 @@
                             case 'parable':
                                 html += `<div class="block-parable">`;
                                 if (b.image) {
-                                    html += `<img src="${b.image}?v=${BUILD_VERSION}" alt="${b.alt || b.title}">`;
+                                    html += `<img ${GrowingTogetherLessonImages.attributes(b.image, BUILD_VERSION)} alt="${b.alt || b.title}">`;
                                 }
                                 html += `
                                     <div class="block-parable-body">
@@ -4293,6 +4298,7 @@
 
             const sess = document.getElementById(`session-${targetNum}`);
             if (sess) sess.classList.add('active');
+            GrowingTogetherLessonImages.activate(sess);
 
             currentSession = targetNum;
             if (isExportPreviewOpen()) closeExportPreview();
@@ -5830,7 +5836,11 @@
         // ============================================
         // EXPORT
         // ============================================
-        function printLesson() {
+        async function printLesson() {
+            const printSeries = currentSeries;
+            const printSession = currentSession;
+            await GrowingTogetherLessonImages.preparePrint(document.getElementById(`session-${printSession}`));
+            if (printSeries !== currentSeries || printSession !== currentSession) return;
             // Hide all sessions except the current one
             const sessions = document.querySelectorAll('#lessons-list .session');
             sessions.forEach(s => {

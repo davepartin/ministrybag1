@@ -69,7 +69,7 @@ async function setSequenceProgress(page, targetProgress) {
         var fadeRange = Math.max(fadeStartY - fadeEndY, 1);
         var rect = el.getBoundingClientRect();
         var desiredTop = fadeStartY - progress * fadeRange;
-        window.scrollBy(0, rect.top - desiredTop);
+        window.scrollBy({ top: rect.top - desiredTop, behavior: 'instant' });
     }, targetProgress);
     await page.waitForTimeout(80);
 }

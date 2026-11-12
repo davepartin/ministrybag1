@@ -115,4 +115,8 @@ echo "PASS: confirmed restore, safety download, rollback, and stale-preview chec
 node scripts/test_bible_text.js || fail "Bundled Bible text or credential removal checks failed."
 echo "PASS: bundled John text is complete and no Bible API credential remains."
 
+# 16) Responsive image copies must match the original artwork and stay deferred.
+node scripts/test_lesson_images.js || fail "Lesson image delivery checks failed."
+echo "PASS: optimized image assets, deferred sources, and print readiness checks."
+
 echo "All foundation QA checks passed."
