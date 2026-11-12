@@ -27,6 +27,8 @@ function hash(file) {
     fs.mkdirSync(path.join(root, 'scripts'));
     fs.mkdirSync(path.join(root, 'images'));
     fs.copyFileSync(path.join(__dirname, 'build_lesson_images.js'), script);
+    // Let the isolated fixture use the worktree's installed dependencies.
+    fs.symlinkSync(path.resolve(__dirname, '../node_modules'), path.join(root, 'node_modules'), 'junction');
 
     function build() {
         return childProcess.execFileSync(process.execPath, [script], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] });

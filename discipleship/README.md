@@ -1,5 +1,11 @@
 # Growing Together discipleship
 
+## Development setup
+
+With Node.js 20.9 or newer, run `npm install` from `discipleship/` in a fresh worktree (`npm ci` uses the exact committed lockfile). This installs the pinned sharp and Playwright development tools, so `node scripts/build_lesson_images.js` and the browser checks do not need a custom `NODE_PATH`. Keep `node_modules/` out of Git.
+
+Browser checks normally use installed Google Chrome. For checks with `GT_BROWSER_CHANNEL` support, `npx playwright install chromium` and `GT_BROWSER_CHANNEL=chromium` use Playwright's bundled browser instead. See [Playwright's browser setup](https://playwright.dev/docs/browsers) for other platforms. Serve this folder locally before running a browser check, and use that check's base-URL setting.
+
 ## Find the current work
 
 Start with [AI-START-HERE.md](AI-START-HERE.md) and [AGENTS.md](AGENTS.md). The current curriculum order and chapter titles live in [curriculum-toc.csv](curriculum-toc.csv). The website reads that file for navigation and lesson headings. Active lesson bodies live in `data/COURSE-NUMBER.json`; keep their title fields aligned with the TOC.

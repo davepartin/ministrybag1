@@ -1,4 +1,5 @@
-# Firebase CLI local files only. Do not add a broad pattern here: project-management/logs/ is tracked.
+# Local development and Firebase files. Keep project-management/logs/ tracked.
+node_modules/
 .firebase/
 firebase-debug.log*
 firebase-debug.*.log*
