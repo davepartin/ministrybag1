@@ -311,6 +311,36 @@
             }
         ]
     },
+    "images/203-06-daniel-window-bw.jpg": {
+        "width": 1248,
+        "height": 832,
+        "sourceHash": "8e21f2cdf410613d161d42f9b983752fae44d2188f8fe0317c3439d8ab275cb6",
+        "variants": [
+            {
+                "src": "images/optimized/203-06-daniel-window-bw-640.webp",
+                "width": 640
+            },
+            {
+                "src": "images/optimized/203-06-daniel-window-bw-1248.webp",
+                "width": 1248
+            }
+        ]
+    },
+    "images/203-06-daniel-window-color.jpg": {
+        "width": 1248,
+        "height": 832,
+        "sourceHash": "2916164150869fecba05deff3d6707fc61a0c83a96bfc8e01e954178e1dd6210",
+        "variants": [
+            {
+                "src": "images/optimized/203-06-daniel-window-color-640.webp",
+                "width": 640
+            },
+            {
+                "src": "images/optimized/203-06-daniel-window-color-1248.webp",
+                "width": 1248
+            }
+        ]
+    },
     "images/203-3circle-logo.png": {
         "width": 1218,
         "height": 456,
