@@ -180,6 +180,36 @@
             }
         ]
     },
+    "images/202-07-two-coins-bw.jpg": {
+        "width": 1248,
+        "height": 832,
+        "sourceHash": "6520a458ef4e37fe1c56602b9b31870627fa3e64354a2041c75fe8863af982ba",
+        "variants": [
+            {
+                "src": "images/optimized/202-07-two-coins-bw-640.webp",
+                "width": 640
+            },
+            {
+                "src": "images/optimized/202-07-two-coins-bw-1248.webp",
+                "width": 1248
+            }
+        ]
+    },
+    "images/202-07-two-coins-color.jpg": {
+        "width": 1248,
+        "height": 832,
+        "sourceHash": "d870bdd951357a5e1aafeedb72cd69040006a21785cb15796390bb01177fee2f",
+        "variants": [
+            {
+                "src": "images/optimized/202-07-two-coins-color-640.webp",
+                "width": 640
+            },
+            {
+                "src": "images/optimized/202-07-two-coins-color-1248.webp",
+                "width": 1248
+            }
+        ]
+    },
     "images/202-3circles-logo.png": {
         "width": 1216,
         "height": 458,
