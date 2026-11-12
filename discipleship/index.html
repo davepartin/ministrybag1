@@ -2663,6 +2663,10 @@
 
         .chapter-card-header {
             display: flex;
+            width: 100%;
+            border: 0;
+            font: inherit;
+            text-align: left;
             align-items: center;
             gap: 12px;
             padding: 14px 16px;
@@ -2672,6 +2676,11 @@
             background: var(--accent);
             border-radius: var(--radius);
             transition: background var(--transition), border-radius var(--transition);
+        }
+
+        .chapter-card-header:focus-visible {
+            outline: 3px solid white;
+            outline-offset: -5px;
         }
 
         .chapter-card.open .chapter-card-header {
@@ -2774,6 +2783,11 @@
             font-weight: 700;
             color: var(--accent);
             margin: 0 0 12px;
+        }
+
+        .esv-text:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: -2px;
         }
 
         .esv-text .verse-num {
@@ -4240,16 +4254,19 @@
                                     html += `
                                     <div class="chapter-group">
                                         <div class="chapter-card" id="card-${currentSeries}-${chId}">
-                                            <div class="chapter-card-header" onclick="toggleChapter('${currentSeries}-${chId}')">
-                                                <div class="chapter-card-title-wrap">
-                                                    <div class="chapter-card-title">Open ${ch.ref}</div>
-                                                </div>
-                                                <div class="chapter-done-badge" id="badge-${currentSeries}-${chId}">&#10003;</div>
-                                                <div class="chapter-card-toggle" id="toggle-${currentSeries}-${chId}">&#9662;</div>
-                                            </div>
-                                            <div class="chapter-card-body" id="body-${currentSeries}-${chId}">
+                                            <button type="button" class="chapter-card-header" id="chapter-header-${currentSeries}-${chId}"
+                                                aria-expanded="false" aria-controls="body-${currentSeries}-${chId}"
+                                                onfocus="revealChapterHeader(this)"
+                                                onclick="toggleChapter('${currentSeries}-${chId}')">
+                                                <span class="chapter-card-title-wrap">
+                                                    <span class="chapter-card-title">Open ${ch.ref}</span>
+                                                </span>
+                                                <span class="chapter-done-badge" id="badge-${currentSeries}-${chId}" aria-hidden="true">&#10003;</span>
+                                                <span class="chapter-card-toggle" id="toggle-${currentSeries}-${chId}" aria-hidden="true">&#9662;</span>
+                                            </button>
+                                            <div class="chapter-card-body" id="body-${currentSeries}-${chId}" hidden>
                                                 <div class="chapter-card-content">
-                                                    <div class="esv-text" id="esv-${currentSeries}-${chId}">
+                                                    <div class="esv-text" id="esv-${currentSeries}-${chId}" tabindex="0" role="region" aria-label="${ch.ref}">
                                                         <div class="esv-loading">Loading ${ch.ref}...</div>
                                                     </div>
                                                 </div>
@@ -4262,7 +4279,7 @@
                                             </div>
                                         </div>
                                         <div class="chapter-notes-outer">
-                                            <label class="chapter-notes-label">Notes from ${ch.ref}</label>
+                                            <label class="chapter-notes-label" for="${notesId}">Notes from ${ch.ref}</label>
                                             <textarea class="chapter-notes-textarea" id="${notesId}"
                                                 oninput="autoGrow(this); saveReadingNotes(this, '${currentSeries}-${chId}');"
                                             ></textarea>
@@ -5952,13 +5969,28 @@
                 .replace(/"/g, '&quot;');
         }
 
+        function revealChapterHeader(header, alignTop = false) {
+            requestAnimationFrame(() => {
+                if (!header || !header.isConnected) return;
+                const topbar = document.querySelector('.lesson-topbar');
+                const inset = (topbar ? topbar.getBoundingClientRect().bottom : 0) + 8;
+                const box = header.getBoundingClientRect();
+                if (alignTop || box.top < inset || box.bottom > window.innerHeight) {
+                    window.scrollBy({ top: box.top - inset, behavior: 'instant' });
+                }
+            });
+        }
+
         function toggleChapter(chId) {
             const body = document.getElementById('body-' + chId);
+            const header = document.getElementById('chapter-header-' + chId);
             const toggle = document.getElementById('toggle-' + chId);
             const card = document.getElementById('card-' + chId);
             if (!body) return;
 
             const isOpen = body.classList.contains('open');
+            body.hidden = isOpen;
+            if (header) header.setAttribute('aria-expanded', String(!isOpen));
 
             if (!isOpen) {
                 body.classList.add('open');
@@ -5967,7 +5999,7 @@
 
                 // Scroll the card header to the top of the screen so the Bible text is visible
                 setTimeout(() => {
-                    card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    if (body.classList.contains('open')) revealChapterHeader(header, true);
                 }, 150);
 
                 // Load the chapter text if not loaded yet
@@ -6020,7 +6052,6 @@
                     (retryHadFocus && document.activeElement === document.body));
                 textEl.innerHTML = html;
                 if (returnFocus) {
-                    textEl.tabIndex = -1;
                     textEl.focus({ preventScroll: true });
                 }
             } catch (e) {
