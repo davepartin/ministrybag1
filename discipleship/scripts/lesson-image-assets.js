@@ -181,32 +181,32 @@
         ]
     },
     "images/202-07-two-coins-bw.jpg": {
-        "width": 1248,
-        "height": 832,
-        "sourceHash": "6520a458ef4e37fe1c56602b9b31870627fa3e64354a2041c75fe8863af982ba",
+        "width": 1280,
+        "height": 720,
+        "sourceHash": "8bad34af4a504fb026a601bf3412bf7c4aedb09d97cff7233a9d12b2b0021b77",
         "variants": [
             {
                 "src": "images/optimized/202-07-two-coins-bw-640.webp",
                 "width": 640
             },
             {
-                "src": "images/optimized/202-07-two-coins-bw-1248.webp",
-                "width": 1248
+                "src": "images/optimized/202-07-two-coins-bw-1280.webp",
+                "width": 1280
             }
         ]
     },
     "images/202-07-two-coins-color.jpg": {
-        "width": 1248,
-        "height": 832,
-        "sourceHash": "d870bdd951357a5e1aafeedb72cd69040006a21785cb15796390bb01177fee2f",
+        "width": 1280,
+        "height": 720,
+        "sourceHash": "4281847e45acafaa4c1ea73e5c2690c3e314e2f5937e46ad957f968bc8462532",
         "variants": [
             {
                 "src": "images/optimized/202-07-two-coins-color-640.webp",
                 "width": 640
             },
             {
-                "src": "images/optimized/202-07-two-coins-color-1248.webp",
-                "width": 1248
+                "src": "images/optimized/202-07-two-coins-color-1280.webp",
+                "width": 1280
             }
         ]
     },

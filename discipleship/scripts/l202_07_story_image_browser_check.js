@@ -192,14 +192,14 @@ function layersAligned(sample) {
             alt
         );
         assert(
-            width + ': both layers load with reserved 1248x832 size',
+            width + ': both layers load with reserved 1280x720 size',
             rest.color && rest.bw &&
-                rest.color.widthAttr === '1248' && rest.color.heightAttr === '832' &&
-                rest.bw.widthAttr === '1248' && rest.bw.heightAttr === '832' &&
+                rest.color.widthAttr === '1280' && rest.color.heightAttr === '720' &&
+                rest.bw.widthAttr === '1280' && rest.bw.heightAttr === '720' &&
                 rest.color.naturalWidth > 0 && rest.bw.naturalWidth > 0 &&
                 rest.color.naturalWidth === rest.bw.naturalWidth &&
                 rest.color.naturalHeight === rest.bw.naturalHeight &&
-                Math.abs((rest.color.naturalWidth / rest.color.naturalHeight) - (1248 / 832)) < 0.02,
+                Math.abs((rest.color.naturalWidth / rest.color.naturalHeight) - (1280 / 720)) < 0.02,
             JSON.stringify({
                 color: rest.color && [rest.color.naturalWidth, rest.color.naturalHeight, rest.color.widthAttr, rest.color.heightAttr, rest.color.currentSrc],
                 bw: rest.bw && [rest.bw.naturalWidth, rest.bw.naturalHeight, rest.bw.widthAttr, rest.bw.heightAttr, rest.bw.currentSrc]
