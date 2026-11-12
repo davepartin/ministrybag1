@@ -2,16 +2,28 @@
 title: Series review and rework plan
 date: 2026-11-11
 status: active, approved direction
-owner: Claude (Fable 5.1) as producer/director; Dave approves every lesson change
+owner: Claude as usual director; Codex as temporary coordinator; Dave approves lesson wording
 ---
 
 # Growing Together series review and rework plan
 
-Dave asked for a review of all 40 written lessons (101, 201, 202, 203) on 2026-11-11 and approved the proposals below. This file is the standing plan for that rework. Any agent (Claude, Codex, Grok, or another) doing lesson review or revision on this project reads this file first, works inside it, and does not reopen the decisions in it. Claude holds the producer/director role: it assigns the next lesson, reviews every PR against the standard below, and keeps this file current. Dave's "merge it" in chat is the only approval that moves a lesson to main.
+Dave asked for a review of the 37 written lessons (101, 201, 202, 203) on 2026-11-11 and approved the direction below. This file is the standing plan for that rework. Any agent doing lesson review or revision reads it alongside the current TEAM-BOARD. Claude is the usual director. While Claude is unavailable, Dave has explicitly authorized Codex to lead and merge reviewed, passing PRs; other workers still stop at REVIEW. That temporary integration authority does not approve new lesson wording, theology or personal art on Dave's behalf.
 
 Read with: `DISCIPLESHIP-COMPASS.md` (tone and editorial direction), `LESSON-TEMPLATE.md` (slot order), `AI-LESSON-CHECKLIST.md`, `widgets/widget.md`. Where an older document and this file disagree about what a finished lesson looks like, this file wins until those documents are updated (see "Documents to update" at the end).
 
-## What the series is for
+## Current Checkpoint: November 12, 2026
+
+The authoritative current inventory and remaining-work table is [The 37 Lessons: Road to AAA](2026-11-12-aaa-37-scorecard.md), checked against merged main `d9065c7`. The original proposed word counts and directions below are historical inputs, not the current scorecard.
+
+All 37 lessons have substantive drafts. The current production-completeness rubric averages 86.8%: three AAA (A+) lessons and seven at 95%. This is an editorial/production estimate, not hours remaining, a new theological audit, pastoral/art approval or pilot/release readiness.
+
+All three sweeps and all seven section-A rewrites are integrated. Also complete: 101 image loading #143, all-course optimized images, pinned tooling #161, early-church art #162, Daniel art #155 and the scoped Daniel age clarification #164. Do not redo those or attempt to deliver new changes through a closed PR. The shared current checks and public-site 387-check browser suite pass.
+
+Remaining in order: the three shared 101 reader fixes (chapter notes in Email Lesson, failed-download retry, reader accessibility), the existing one-lesson-per-PR trim queue with teach-it proposals, 16 new/upgraded art sets (nine Gemini, seven Grok), older-widget review, DOCS-STANDARD/TOC alignment, and exact-version pastoral/visual/pilot gates. Keep Dave's accepted longer 203-08; propose rather than silently rewrite his questions. No course PDFs are generated yet.
+
+The current report corrects stale assumptions: 101-02 already has teach-it in 2.3 but has five questions; 202-06 already asks for worship in the learner's own words; 101-04's Nicodemus practice is not an opening story; 203-07 has no story image; 203-10 currently uses the body-of-Christ picture, not Bezalel. Six lessons need five-question load reduced. 101-01 still claims the bundled chapters can be listened to; remove that sentence in its planned trim.
+
+## What the Series Is For
 
 People learn to help other people learn to love and follow the teachings of Jesus. Each lesson covers one essential of the Christian walk, can be talked through over a lunch, and can then be turned around so the learner becomes the teacher. 203-08 (Make SPACES) is the model for that turn.
 
@@ -37,19 +49,21 @@ Study these before touching anything: **202-08, 202-09, 202-10, 203-06, 203-09**
 
 | Sweep | PR | Scope | Status |
 |---|---|---|---|
-| SWEEP-001 | #118 | Removed tap/click/"tool below"/"diagram below" language from 22 lessons (24 lines). | Open, awaiting Dave's merge |
-| SWEEP-002 | #119 | Niles (101-06), Luther (201-10), Piper (202-06, 202-07, 203-04) retold in body and credited at bottom. 101-01 to 101-07 closing question split into key and step (new `N-step` IDs). | Open, awaiting Dave's merge |
-| SWEEP-003 | #120 | 32 long or two-part questions in 17 lessons rewritten as one line each. 202-09 and 203-08 left as Dave wrote them. | Open, awaiting Dave's merge |
+| SWEEP-001 | #118 | Removed tap/click/"tool below"/"diagram below" language from 22 lessons (24 lines). | Merged 2026-11-11 |
+| SWEEP-002 | #119 | Niles (101-06), Luther (201-10), Piper (202-06, 202-07, 203-04) retold in body and credited at bottom. 101-01 to 101-07 closing question split into key and step (new `N-step` IDs). | Merged 2026-11-11 |
+| SWEEP-003 | #120 | 32 long or two-part questions in 17 lessons rewritten as one line each. 202-09 and 203-08 left as Dave wrote them. | Merged 2026-11-11 |
 
-Logs with before/after tables: `logs/2026-11-11-SWEEP-00{1,2,3}-claude.md`. All three add a TASKS.md row beside ART-008; merge in order and rebase if GitHub flags it. Lesson files do not overlap on any line.
+Logs with before/after tables: `logs/2026-11-11-SWEEP-00{1,2,3}-claude.md`. All three are integrated; do not merge them again. Later reviews still need to check current wording rather than assume a sweep finished every checkpoint.
 
 ## Work remaining
 
-### A. Seven rewrites, one lesson at a time, in this order
+### A. Seven Rewrites: Complete
+
+All seven are integrated: #123, #124, #129/#134, #132, #140, #142 and #144. Keep the original direction table as history; its word counts describe planning time, not current main.
 
 Each rewrite is its own branch and PR. The loop that worked for 203-06 and 203-09: the agent drafts to the standard, Dave reads it on his phone, Dave sends a revision `.md` file, the agent applies it exactly, Dave says "merge it". Do not batch two rewrites in one PR.
 
-| Order | Lesson | Words now | Direction |
+| Order | Lesson | Words When Planned | Original Direction |
 |---|---|---|---|
 | 1 | **203-07 Armor of God** | 1,683 | Let the widget carry the six pieces; keep one line each in prose. "A Sword for the Lie" is the best thing in it; make it the handle. Two questions are buried inside the armor list; pull them out or drop them. Target three questions plus a teach-it question ("Which piece would you explain first to a friend who is under attack, and how?"). |
 | 2 | **203-04 Serve** | 1,643 | Keep the towel and basin, the mountain spring (now credited), and time, talents, treasure. Cut "The Joy of the Towel" or fold it into the review. Add a teach-it question. |
@@ -59,7 +73,9 @@ Each rewrite is its own branch and PR. The loop that worked for 203-06 and 203-0
 | 6 | **101-06 Sharing Jesus** | 1,168 | Too many tools: BLESS taste, ABCs, "Offer" steps with a salvation prayer, a prayer box, and a stray line linking to a gospel app ("Here is a simple app that walks you through the gospel: The Gospel Diagram"). Keep the woman at the well and the BLESS taste; point to 203-05 for the full gospel picture; remove the app line. Keep 6.2 (list three people) as the teach-it step. |
 | 7 | **203-08 Disciple Others (trim)** | 1,935 | The model for the pattern but the longest lesson. "Addition or Multiplication" and "Life on Life" can each lose a paragraph. 8.2 and 8.3 are two-part; propose one-line versions to Dave but do not change them without his revision file, since these are his questions. |
 
-### B. Trims (one pass each, light touch, can be two or three per PR if Dave prefers)
+### B. Trims (Light Touch, One Lesson per PR)
+
+Use TEAM-BOARD's current order, which also includes the light 101-07, 201-04, 201-07 and 201-10 passes. These are not a request to reopen completed section-A rewrites. Add any needed teach-it proposal in the same pass, without changing an approved question.
 
 | Lesson | The one change |
 |---|---|
@@ -79,18 +95,19 @@ Each rewrite is its own branch and PR. The loop that worked for 203-06 and 203-0
 
 ### C. One teach-it question per lesson
 
-After A and B, walk every lesson and confirm one question asks the learner to say the idea to someone else or name who they will take it to. Already present: 101-04 4.5, 101-06 6.2, 201-01 1.3, 201-02 2.2, 201-06 6.4, 201-07 (the Ethiopian makes the point itself), 202-10 10.4, 203-02 2.4, 203-03 3.4, 203-05 5.4, 203-06 6.4, 203-08, 203-09 9.3. Missing or weak: 101-01, 101-02 (2.2 could become it), 101-03, 101-05, 101-07, 201-03, 201-04, 201-05, 201-08, 201-09, 201-10, 202-01, 202-02, 202-03, 202-04, 202-05, 202-06, 202-07, 202-08, 202-09, 203-01, 203-04, 203-07, 203-10. Add it in whichever pass touches the lesson last so each lesson's questions get set once. For 202-08 and 202-09, propose to Dave; do not change his approved questions without a revision file.
+Use the current scorecard's classification: strong/present in 16 lessons, weak/implicit in four and missing in 17. Do not rely on the original pre-rewrite list. In particular, 101-02 2.3, 201-03 3.4, 202-02 2.4, 202-04 4.4, 202-06 6.2 and 203-07 7.4 already supply transfer. The story in 201-07 is not itself a learner teach-it question; 202-10's observer, 203-06's prayer names and 203-09's mission choice need clearer transfer proposals. Add or clarify it in the pass that already touches the lesson so questions get set once. Propose all changes to Dave, especially his approved 202-08/09, 101-06, 203-04 and 203-08 wording.
 
 ### D. Missing pieces (track, do not block)
 
 - No widget: 101-03 to 101-07 (101-03 has the Daily Prayers tool, 101-05 a checklist), 203-02, 203-03, 203-04. A widget is not required where the lesson has a tool or a clear exercise; note it, do not invent one without Dave.
-- No story art: 201-09, 202-03, 202-05, 202-06, 202-07, 203-03, 203-06, 203-07, 203-09, 203-10. Existing ART tasks cover 203-06 (ART-004) and 203-08 (ART-008). Needs an image tool; out of scope for lesson text work.
-- Question IDs that do not match their lesson: 202-05 uses `201-09-*`, 202-06 uses `201-05-*`, 202-09 9.3 is `201-9-1`. The app is in slow beta with no saved answers that matter, so these are cosmetic. Fix them only when that lesson is rewritten anyway, and do not raise them with Dave as a risk.
+- Current art: 21 sequence/dissolve lessons, six plain-picture upgrades and ten without story art. 201-09, 202-03 and 203-06 art is integrated. The 16 remaining assignments are listed on TEAM-BOARD and in the current scorecard; art work is separate from lesson prose.
+- Stable saved-answer IDs are learner-data contracts, even when their spelling looks old. Preserve them. Any real identity change needs a separately scoped migration and regression evidence; a prose rewrite or grade improvement is not permission to rename them.
+- Reconcile stale TOC labels for 101-06, 202-02, 202-04, 203-05 and 203-10 with actual integrated lessons during documentation alignment. Do not restore an older story just because the TOC is behind.
 - The "Tap each question to compare" line inside `widgets/two-ordinances.html` is widget UI, not prose; leave it unless Dave asks.
 
 ## Publishing rule for every bot
 
-Since 2026-11-11, GitHub Actions deploy the site. Opening a pull request posts a preview link on the PR within a few minutes; merging to main publishes to growingtogetherdiscipleship.com and ministrybag.com. So the rule for Claude, Grok, Cursor, ChatGPT and anyone else is the same: open a PR, wait for the preview comment, send Dave the link, wait for his "merge it", then merge. Never run a Firebase deploy by hand and never ask Dave for Firebase credentials.
+GitHub Actions post PR previews and publish both sites on merge. Workers use their own worktrees, one job per PR, verified process exit codes, logs/task rows and the Action preview, then stop at REVIEW. Only Codex as acting coordinator may merge reviewed, passing PRs under Dave's temporary delegation. Dave still approves new lesson wording and personal art; other agents do not inherit merge authority. No manual deploy or force push. Never ask Dave for Firebase credentials.
 
 ## How to work a lesson under this plan
 
@@ -99,8 +116,8 @@ Since 2026-11-11, GitHub Actions deploy the site. Opening a pull request posts a
 3. Draft to the standard. Keep the lesson's story, widget, verses and key phrase unless the direction above says otherwise. Keep question IDs where the question survives.
 4. Run from `discipleship/`: `bash scripts/qa_foundation.sh`, `node scripts/test_lesson_export.js`, `node scripts/test_answer_storage.js`, `node scripts/check_lesson_assets.js`. If a widget changed, also `node scripts/test_widget_iframe.js` and a phone-width browser check per `widgets/widget.md`.
 5. Write `logs/YYYY-MM-DD-L-<lesson>-<agent>.md`: what changed and why, word count before and after, question list before and after, checks run.
-6. Open the PR with the same summary. Never merge. Never force-push. Do not touch lesson prose outside the assigned lesson.
-7. Dave reads on his phone and sends a revision file; apply it exactly, including wording you would not have chosen. When he says "merge it", merge, record the approval in `DAVE.md` with the PR, merge sha and file sha256, and keep Dave's main folder pulled.
+6. Open the PR with the same summary and wait for the Action preview. Workers stop for review; only the temporarily delegated coordinator may merge reviewed, passing work. Never force-push. Do not touch lesson prose outside the assigned lesson.
+7. Dave reads on his phone and sends revisions; apply them exactly, including wording you would not have chosen. Keep exact-version approval evidence in DAVE.md and the log, separately from integration/deployment evidence. Do not pull into or edit the shared main checkout; fetch and verify in your own worktree.
 
 ## Review checklist for any agent reviewing a lesson
 

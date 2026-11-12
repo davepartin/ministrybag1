@@ -2,11 +2,13 @@
 
 ## Temporary coordinator, November 12, 2026
 
+Current 37-lesson production scorecard: [Road to AAA](reviews/2026-11-12-aaa-37-scorecard.md), audited at main `d9065c7`. Overall 86.8% toward the explicitly scored standard; three AAA (A+) and seven at 95%. All 37 are substantive drafts, not partly unwritten lessons. TEAM-BOARD and the series plan now use the current gap list. Grades are not new pastoral/art approval or pilot/release readiness.
+
 Dave asked Codex to cover Claude while Claude is unavailable and confirmed: "Merge reviewed, passing PRs." This supersedes the older per-PR "merge it" restriction only for Codex as acting coordinator. Other workers still use separate worktrees, one job per PR, real exit-code checks and Firebase previews, then stop. Dave's theology, wording and personal art approval remain separate; never infer them from a technical merge. No manual deploys or force pushes.
 
 Reviewed and merged #161 tooling (`4c255cd`), #155 Daniel art (`a6cb9d5`) and #162 early-church art (`6cab588`). Checks and automatic Firebase deployments pass. The combined tree exactly matches the tested integration. Evidence: logs/2026-11-12-COORD-003-codex.md.
 
-Dave separately requested Grok's one-sentence Daniel age clarification after #155 closed. L-203-06-AGE applies only that wording from Grok's later commit `5fbf14d` on a fresh current-main branch, not a merge of Grok's stale branch. Its PR carries preview, check and delegated-integration evidence. Questions, Scripture quotations and art stay unchanged; the implementation lane below is unchanged. See logs/2026-11-12-L-203-06-AGE-codex.md.
+Dave's separately requested one-sentence Daniel age clarification is integrated in #164 as `d9065c7`, with successful automatic deployment and 28 public-site checks. L-203-06-AGE is done; #165 is a later duplicate and is not another pending lesson change. Questions, Scripture quotations and art stayed unchanged. See logs/2026-11-12-L-203-06-AGE-codex.md and #164's final evidence comment.
 
 Next: ChatGPT chapter notes in Email Lesson; Gemini 202-05 art; Grok 203-07 art. Keep approved questions untouched. Do not merge old #28 or #68 without a fresh current-state review; #2 is outside this assignment. TEAM-BOARD.md contains the current lanes and temporary authority. The older Claude-only instructions below are historical while this handoff is active.
 
