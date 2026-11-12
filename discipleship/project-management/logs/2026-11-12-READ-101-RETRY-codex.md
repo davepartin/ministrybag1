@@ -20,3 +20,9 @@ Initial retry test caught focus loss when the active native button became disabl
 Predecessor #168 integrated verification: tree identical to reviewed head; all four required checks rerun exit 0; Firebase 43176161319 and Pages 43176161210 succeeded; public notes browser 36 pass. TASKS/HANDOFF updated from this evidence, not inferred completion.
 
 Action preview and exact-head review/integration evidence will follow in this PR. REVIEW is the pre-integration checkpoint, not deployment or human content approval.
+
+## Combined-Tree Refresh
+
+While #170 waited for its preview, reviewed and integrated Grok's #169 from a separate `codex/review-169` worktree. Tested GitHub merge tree `029d729`; actual main `487fc3d` has the identical tree. All non-image lesson values and IDs are equal; image-map regeneration produced no diff; both originals and phone preview inspected. Required foundation/export 167/storage 64/assets 103, image 1094 and Action image browser 61 each exit 0. Firebase 43176902578 and Pages 43176902298 succeeded. Personal art approval remains pending; task status describes technical integration only.
+
+Merged current main into this retry branch, preserving all #169 assets. Reran foundation QA, export 167, storage 64, assets 103, image 1094, local retry browser 33 and art browser 61: every exit 0. An updated Action preview is required before this retry PR merges. No generated map edited by hand.
