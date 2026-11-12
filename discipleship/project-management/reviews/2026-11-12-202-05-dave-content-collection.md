@@ -188,6 +188,58 @@ The following examples are Codex's suggested applications of Dave's request for 
 
 Additional research leads: Romans 12:15 for mourning with those who mourn; 2 Corinthians 1:3-7 for receiving and sharing comfort; Galatians 6:2 for bearing burdens. Choose sparingly in keeping with Dave's request for fewer proof texts.
 
+## Dave's own words: excerpts from the spoken transcript
+
+Added at Dave's explicit request to preserve his voice for Claude. These are selected contiguous excerpts from the supplied speech transcript, not a complete transcript or polished lesson copy. Speech recognition may contain errors. Quotation marks here identify Dave's spoken words; they do not establish a published quotation or final wording approval. The organized summaries and Codex suggestions elsewhere should be read alongside these excerpts.
+
+### Why study the categories
+
+> sometimes if you can hammer down into what the theological word is, you can study that realm of suffering, take the best two paragraphs from that and give some um, awareness slash, you know, comfort.
+
+### Peace and unanswered questions
+
+> peace is not the absence of conflict, peace is not the absence of suffering, but peace is the presence with God.
+
+> Job never got to read the Job story. He just got to live it out.
+
+### The larger purpose and the mosaic
+
+> there's a plan all along. And I think that's really helped me understand some of the hard parts of life that look jaggedy and shaky.
+
+> you're zoomed in on one cracked piece but then you zoom out and that could be like a good widget to help somebody process.
+
+> I would like for this this one to have a good rich theological stance on the on the sovereignty of God, the he has his providence like you said, he has a plan, and these mosaics can actually, you know, allow us as humans to realize we can't see the whole picture.
+
+### Joseph as the central story, with fewer proof texts
+
+> I think the Joseph story and the mosaic but man meant for evil, God intended for good, all of that is a beautiful just clear picture of what suffering is and not have too many proof texts.
+
+> I want to rightfully not belittle a person's suffering, that people's suffering is real, it's felt, it's uh, hard
+
+### Formation and empathy
+
+> The mountaintops encourage us, but the valley refines us.
+
+> there's a beauty of of sacrifice that shapes you into a humble, caring, empathetic person.
+
+### The experience Dave wants the lesson to offer
+
+> I'm a human and I feel suffering, and I want to be kind and generous with my those that I'm discipling
+
+> I want this to be a lesson that other people who have gone through suffering um, would would feel connected enough that they want to then take somebody else through this lesson on suffering
+
+> a lesson on suffering shouldn't just bring up trauma, it should actually be a salve, it should soothe, it should bring some uh, care and and comfort, knowing that they're not alone, knowing that God loves them
+
+> different people have different um, lives, they've been born into different environments. Um, but each person feels their own pain.
+
+### Trust and practical presence
+
+> even though you can't see the full mosaic, you trust that there's an there's an artist that's designing it and there's a purpose and that helps a little bit
+
+> Sometimes the silent person next to you is more helpful than a book on suffering.
+
+> it's these sort of like pastoral caring components of suffering that I want to make sure there's some components of this of pragmatic help.
+
 ## Capture verification
 
 Documentation-only source capture by Codex at Dave's request. Reviewed against the spoken conversation for the categories, Christ's sufferings, future glory, peace, punishment distinction, Job line, God's glory, mosaic alternatives, refining and empathy/resilience. No runtime tests were run because no application behavior changed. The team board links this note for discovery.
