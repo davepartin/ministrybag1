@@ -76,7 +76,7 @@
 <script>
 (function () {
     var NS = 'http://www.w3.org/2000/svg';
-    var road = 'M 28 196 C 90 196, 120 150, 170 150 C 220 150, 240 108, 290 100 C 330 94, 342 76, 350 60';
+    var road = 'M 28 196 C 90 196, 120 150, 170 150 C 220 150, 240 108, 290 100 C 330 94, 340 84, 346 72';
     var stops = [
         { letter: 'A', word: 'Admit', color: '#8A4A3F', at: 0.17, x: 94, y: 180,
           title: 'A. Admit you need a Savior',
@@ -93,7 +93,7 @@
           verse: '"If you <b>confess with your mouth</b> that Jesus is Lord and <b>believe in your heart</b> that God raised him from the dead, you will be saved."',
           note: '<b>Your part:</b> say it out loud. <b>God\'s part:</b> He raised Jesus and He keeps His promise.',
           ref: 'Romans 10:9' },
-        { letter: '✓', word: 'Saved', color: '#2F7A63', at: 1, x: 350, y: 46, final: true,
+        { letter: '✓', word: 'Saved', color: '#2F7A63', at: 1, x: 346, y: 58, final: true,
           title: 'Saved: new life begins',
           verse: '"<b>Everyone</b> who calls on the name of the Lord <b>will be saved</b>." "There is therefore now <b>no condemnation</b> for those who are in Christ Jesus."',
           note: 'Admit, believe, confess: none of it earns anything. <b>They are empty hands receiving a gift Jesus already paid for.</b>',
@@ -118,7 +118,7 @@
         el('path', { d: 'M 0 230 L 0 170 C 60 150, 110 160, 160 140 C 220 118, 260 128, 310 98 C 340 80, 365 62, 390 50 L 390 230 Z', fill: '#E3DCC5' }, svg);
         el('path', { d: 'M 0 230 L 0 205 C 80 190, 150 200, 220 176 C 280 156, 330 150, 390 128 L 390 230 Z', fill: '#D6CDAE' }, svg);
         // sun at the top right
-        el('circle', { cx: 338, cy: 40, r: 34, fill: '#FFF3C4', opacity: 0.9 }, svg);
+        el('circle', { cx: 334, cy: 44, r: 34, fill: '#FFF3C4', opacity: 0.9 }, svg);
         // road
         el('path', { d: road, 'class': 'road-base' }, svg);
         roadLit = el('path', { d: road, 'class': 'road-lit' }, svg);
