@@ -6,6 +6,10 @@ Dave directly asked Codex to work now on a full rewrite centered on stewardship 
 
 These are review documents. No current lesson JSON, questions/IDs, artwork, widget or Firebase files changed. Claude/Dave review prose; Gemini claims the widget implementation; Codex checks final integration. Preserve Grok's open widow-art #181. Required baseline suites pass, exit 0. Action preview evidence will be posted on the PR; the preview does not contain the Markdown manuscript. See `logs/2026-11-12-REWRITE-202-07-codex.md`.
 
+## 202-05 suffering redraft waiting for Dave, November 12, 2026
+
+Claude redrafted 202-05 from Dave's collected direction on branch `claude/dazzling-brown-x7g9um` (not merged, no PR yet). Next action: Dave reads it and sends changes. Open decisions: the mosaic widget, the Piper credit line, and length. See logs/2026-11-12-L-202-05-REWORK-claude.md.
+
 
 ## 101-04 focused revision: REVIEW, November 12, 2026
 
