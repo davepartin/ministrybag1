@@ -431,6 +431,36 @@
             }
         ]
     },
+    "images/203-09-tentmakers-bw.jpg": {
+        "width": 1248,
+        "height": 832,
+        "sourceHash": "55422b144e746c975b21ed6f028edc7a0223fd27fcc84e4e720d4513183ba1bc",
+        "variants": [
+            {
+                "src": "images/optimized/203-09-tentmakers-bw-640.webp",
+                "width": 640
+            },
+            {
+                "src": "images/optimized/203-09-tentmakers-bw-1248.webp",
+                "width": 1248
+            }
+        ]
+    },
+    "images/203-09-tentmakers-color.jpg": {
+        "width": 1248,
+        "height": 832,
+        "sourceHash": "fd3426f298df6fa36836ff0de0ab051d67e87a0eef09b4ce882c7aa046de40e9",
+        "variants": [
+            {
+                "src": "images/optimized/203-09-tentmakers-color-640.webp",
+                "width": 640
+            },
+            {
+                "src": "images/optimized/203-09-tentmakers-color-1248.webp",
+                "width": 1248
+            }
+        ]
+    },
     "images/203-3circle-logo.png": {
         "width": 1218,
         "height": 456,
