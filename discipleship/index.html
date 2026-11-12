@@ -2826,6 +2826,20 @@
             font-size: 0.9rem;
         }
 
+        .chapter-retry {
+            min-height: 44px;
+            padding: 8px 16px;
+            border: 1px solid var(--accent);
+            border-radius: 6px;
+            background: var(--surface);
+            color: var(--accent);
+            font: inherit;
+            cursor: pointer;
+        }
+
+        .chapter-retry:disabled { opacity: 0.6; cursor: wait; }
+        .chapter-retry:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
         /* Chapter completion row */
         .chapter-card-footer {
             padding: 12px 16px;
@@ -5971,6 +5985,7 @@
 
         async function fetchChapterText(chId, ref) {
             const textEl = document.getElementById('esv-' + chId);
+            if (!textEl || textEl.getAttribute('aria-busy') === 'true') return;
             const match = /^(.+?)\s+(\d+)$/.exec(ref.trim());
             const bookName = match ? match[1] : '';
             if (!BIBLE_BOOK_FILES[bookName]) {
@@ -5978,6 +5993,13 @@
                 return;
             }
 
+            const retryButton = textEl.querySelector('.chapter-retry');
+            const retryHadFocus = retryButton && document.activeElement === retryButton;
+            textEl.setAttribute('aria-busy', 'true');
+            if (retryButton) {
+                retryButton.disabled = true;
+                textEl.querySelector('[role="status"]').textContent = 'Loading ' + ref + '...';
+            }
             try {
                 const book = await loadBibleBook(bookName);
                 const chapter = book.chapters.find(ch => ch.chapter === Number(match[2]));
@@ -5994,10 +6016,30 @@
                     html += `<p${para.type === 'q' ? ' class="poetry"' : ''}>${verses}</p>`;
                 });
                 html += `<p class="bible-attribution">${escapeBibleText(book.translation)} (${escapeBibleText(book.abbreviation)}), public domain</p>`;
+                const returnFocus = retryButton && (document.activeElement === retryButton ||
+                    (retryHadFocus && document.activeElement === document.body));
                 textEl.innerHTML = html;
+                if (returnFocus) {
+                    textEl.tabIndex = -1;
+                    textEl.focus({ preventScroll: true });
+                }
             } catch (e) {
                 console.error('Bible text load error:', e);
-                textEl.innerHTML = '<p style="color: var(--text-tertiary);">Could not load text. Check your connection.</p>';
+                if (retryButton) {
+                    textEl.querySelector('[role="status"]').textContent = 'Could not load text. Check your connection.';
+                    retryButton.disabled = false;
+                    if (retryHadFocus && document.activeElement === document.body) retryButton.focus({ preventScroll: true });
+                } else {
+                    textEl.innerHTML = '<p role="status">Could not load text. Check your connection.</p>';
+                    const retry = document.createElement('button');
+                    retry.type = 'button';
+                    retry.className = 'chapter-retry';
+                    retry.textContent = 'Retry';
+                    retry.addEventListener('click', () => fetchChapterText(chId, ref));
+                    textEl.appendChild(retry);
+                }
+            } finally {
+                textEl.removeAttribute('aria-busy');
             }
         }
 
