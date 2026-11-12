@@ -1472,6 +1472,66 @@
             }
         ]
     },
+    "images/vine-branches-seq-1.jpg": {
+        "width": 1264,
+        "height": 848,
+        "sourceHash": "aa76158b418454a3c9779e85f56195c85bf1c29a8b7435d3baf991790ea3d457",
+        "variants": [
+            {
+                "src": "images/optimized/vine-branches-seq-1-640.webp",
+                "width": 640
+            },
+            {
+                "src": "images/optimized/vine-branches-seq-1-1264.webp",
+                "width": 1264
+            }
+        ]
+    },
+    "images/vine-branches-seq-2.jpg": {
+        "width": 1264,
+        "height": 848,
+        "sourceHash": "aa94c1d0e2906c8717e3b7705939b1c117a14fabb610e91931be00a5218e587a",
+        "variants": [
+            {
+                "src": "images/optimized/vine-branches-seq-2-640.webp",
+                "width": 640
+            },
+            {
+                "src": "images/optimized/vine-branches-seq-2-1264.webp",
+                "width": 1264
+            }
+        ]
+    },
+    "images/vine-branches-seq-3.jpg": {
+        "width": 1264,
+        "height": 848,
+        "sourceHash": "f1d57f95a9465bef68a6d0d5ecde78a9d6930522be08658abc0df7f636954c10",
+        "variants": [
+            {
+                "src": "images/optimized/vine-branches-seq-3-640.webp",
+                "width": 640
+            },
+            {
+                "src": "images/optimized/vine-branches-seq-3-1264.webp",
+                "width": 1264
+            }
+        ]
+    },
+    "images/vine-branches-seq-4.jpg": {
+        "width": 1264,
+        "height": 848,
+        "sourceHash": "5d884ccc78aeeda32e9a446496f83ba5ce3471b2eb62bc7982ed59f356812eee",
+        "variants": [
+            {
+                "src": "images/optimized/vine-branches-seq-4-640.webp",
+                "width": 640
+            },
+            {
+                "src": "images/optimized/vine-branches-seq-4-1264.webp",
+                "width": 1264
+            }
+        ]
+    },
     "images/woman-well-bw.png": {
         "width": 1400,
         "height": 610,
