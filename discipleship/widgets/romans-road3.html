@@ -160,14 +160,6 @@ svg .road-shoulder {
   stroke-linecap: round;
 }
 
-svg .road-rut {
-  fill: none;
-  stroke: #cfc6b6;
-  stroke-width: 1.1;
-  stroke-linecap: round;
-  opacity: 0.85;
-}
-
 svg .pebble {
   fill: #9b9283;
   opacity: 0.65;
@@ -598,12 +590,6 @@ button:focus-visible {
   el('path', {
     d: 'M 92 ' + VH + ' L 181 ' + (HY + 2) + ' M 288 ' + VH + ' L 199 ' + (HY + 2),
     class: 'road-shoulder'
-  }, svg);
-
-  // Subtle unpaved wheel-track ruts (NO dotted center line!)
-  el('path', {
-    d: 'M 146 ' + VH + ' L 187 ' + (HY + 4) + ' M 234 ' + VH + ' L 193 ' + (HY + 4),
-    class: 'road-rut'
   }, svg);
 
   // Perspective gravel stones/pebbles across the road (bigger in foreground, tiny in distance)
