@@ -75,8 +75,9 @@
     },
     {
       "type": "widget",
-      "src": "widgets/stewardship-flip.html",
-      "height": "540px"
+      "src": "widgets/stewardship-three-ts.html",
+      "height": "540px",
+      "title": "Time, Talents, Treasure"
     },
     {
       "type": "question",
