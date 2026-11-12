@@ -19,7 +19,11 @@ var SOURCES = [
     'images/woman-well-bw.png',
     'images/woman-well-color.png',
     'images/203-02-bless-logo.png',
-    'images/101-starting-logo-v3.png'
+    'images/101-starting-logo-v3.png',
+    'images/vine-branches-seq-1.jpg',
+    'images/vine-branches-seq-2.jpg',
+    'images/vine-branches-seq-3.jpg',
+    'images/vine-branches-seq-4.jpg'
 ];
 
 (async function () {
