@@ -35,6 +35,8 @@ Companion documents: `HANDOFF.md` (how the system works), `TASKS.md` (the task r
 
 ## Lessons learned (read these, they cost us time)
 
+- **The art is one look, Dave's marker-sketch look, and it drifted on 2026-11-12.** Read "The look" and "Already made: check before you generate" at the top of `story-image.md` before any art job. Attach `images/good-samaritan-story.jpg` as the style reference when generating. Black ink, grey marker, white paper, at most one or two small color accents. No full-color paintings, no sunsets, no storybook faces. Never replace a file Dave drew without his word; several of his finished pieces were replaced by generated scenes this week.
+
 - **Firebase hosting storage is finite (10 GB on the free plan) and every preview is a full copy of the site.** On 2026-11-12 fifty preview channels filled it and new previews were refused with HTTP 429. Claude deleted the 48 channels of merged PRs with Dave's approval; previews now expire after 3 days; original JPG and PNG files are no longer uploaded to hosting because every lesson serves the WebP copies (the originals stay in the repo and on ministrybag.com). If a 429 appears again: do not delete anything yourself; tell Dave and Claude. Dave can also lower "release storage settings" in the Firebase console (Hosting, Usage) so old live versions are pruned automatically.
 - **Claim before you start.** Put your name on the TASKS row (owner column) and push that row in your first commit before generating art or code. On 2026-11-12 Grokbot worked Gemini's queue under a gemini/ branch name; the work was good but two bots could easily have done the same lesson.
 
