@@ -25,10 +25,18 @@ Companion documents: `HANDOFF.md` (how the system works), `TASKS.md` (the task r
 7. Never store Dave's email, keys or passwords in the repo. Never touch Firebase configuration, workflows or the sign-in code without a task from Claude.
 8. If you are blocked or the task changes shape, stop and write it in the PR instead of guessing.
 
+## Lessons learned (read these, they cost us time)
+
+- **Run the image build where `sharp` works.** `node scripts/build_lesson_images.js` needs the sharp library. ChatGPT runs it with `NODE_PATH=/Applications/ChatGPT.app/Contents/Resources/cua_node/lib/node_modules`; Claude used `NODE_PATH=/Users/dpartin/github/fleetdice/node_modules/.pnpm/sharp@0.34.5/node_modules`. If the build prints only a Node version line, it crashed and wrote nothing. Until a `package.json` pins sharp (ChatGPT, top of lane), check the output before you commit.
+- **Check exit codes, not the last line.** `bash scripts/qa_foundation.sh | tail -1` always exits 0. Run the script, then `echo $?`, or use `set -o pipefail`. Claude merged a red asset map on 2026-11-12 because of this.
+- **Do not edit the image list by hand.** Since #154 the build script finds every file in `images/` on its own. Art PRs add the image files, run the build, and commit the regenerated `scripts/lesson-image-assets.js`. Two art PRs editing the list at once caused a conflict on 2026-11-12.
+- **Parse-check widget scripts.** An apostrophe inside a single-quoted string took a widget down for one preview build. Run `node --check` on each inline script, or write text with double quotes.
+
 ## Lanes and queues (take the top item of your lane)
 
 ### ChatGPT (GPT 6.1)
-1. PERF-001b: run the image optimizer over every remaining JPG and PNG in `images/` so all lesson art ships as WebP; originals stay.
+1. TOOLING-001: add a `package.json` in `discipleship/` that pins `sharp` (and Playwright for the browser checks) as dev dependencies, with a short README line, so any agent can `npm install` in a fresh worktree and run `build_lesson_images.js` and the browser checks. Do not commit `node_modules`; add it to `.gitignore`.
+1b. PERF-001b: done (#154).
 2. 101 fix 2: include chapter notes in Email Lesson (per Dave's choice; Save PDF is the blank-course placeholder now).
 3. 101 fix 3: retry when a chapter of John fails to download.
 4. 101 fix 4: keyboard-accessible chapter headers and labeled notes fields in the reader.
