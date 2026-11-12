@@ -1,0 +1,910 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Reflecting God's Worth</title>
+<style>
+:root {
+  --ink: #26231f;
+  --muted: #655f55;
+  --ghost: #b9b1a3;
+  --line-soft: #ddd8ce;
+  --paper: #fdfdfb;
+  --pop: #1d7a46;
+  --pop-dark: #1a5c38;
+  --pop-soft: #dcefe3;
+  --brand-color: #26231f;
+}
+*, *::before, *::after { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: #f8f6f1;
+  color: var(--ink);
+  font-family: Georgia, serif;
+  accent-color: var(--brand-color);
+  color-scheme: light;
+}
+.app {
+  max-width: 560px;
+  margin: auto;
+  background: #fff;
+  overflow: hidden;
+}
+@media (min-width: 580px) {
+  body { padding: 16px; }
+  .app { border: 1px solid var(--line-soft); border-radius: 12px; }
+}
+header {
+  background: var(--ink);
+  color: #fff;
+  text-align: center;
+  padding: 11px 12px;
+  transition: background 0.35s ease;
+}
+.app.is-45 header {
+  background: var(--pop-dark);
+}
+h1 {
+  font: 700 18px/1.25 system-ui, -apple-system, sans-serif;
+  margin: 0;
+}
+.hint {
+  font: 12px/1.3 system-ui, -apple-system, sans-serif;
+  opacity: 0.88;
+  margin: 3px 0 0;
+}
+
+.stage {
+  position: relative;
+  aspect-ratio: 460 / 272;
+  background: var(--paper);
+  border-bottom: 1px solid #eee9df;
+}
+.stage svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Whiteboard SVG styling */
+svg .line {
+  fill: none;
+  stroke: var(--ink);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+svg .solid {
+  fill: #fff;
+  stroke: var(--ink);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+svg .dashed-ref {
+  fill: none;
+  stroke: var(--ghost);
+  stroke-width: 1.5;
+  stroke-dasharray: 3 4;
+}
+svg .ray-down {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 2.1;
+  stroke-dasharray: 5 5;
+  stroke-linecap: round;
+  transition: stroke 0.3s ease;
+}
+svg .ray-bounce {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 2.2;
+  stroke-dasharray: 5 5;
+  stroke-linecap: round;
+  transition: stroke 0.3s ease, opacity 0.25s ease;
+}
+svg .ray-sight {
+  fill: none;
+  stroke: #8c8579;
+  stroke-width: 1.7;
+  stroke-dasharray: 2 5;
+  stroke-linecap: round;
+  transition: opacity 0.25s ease;
+}
+.app.is-45 svg .ray-down,
+.app.is-45 svg .ray-bounce {
+  stroke: var(--pop);
+  stroke-width: 2.6;
+}
+.app.is-45 svg .sun-core {
+  fill: var(--pop-soft);
+  stroke: var(--pop);
+}
+.app.is-45 svg .sun-ray {
+  stroke: var(--pop);
+}
+.app.is-45 svg .mirror-front {
+  stroke: var(--pop);
+}
+.app.is-45 svg .mirror-body {
+  fill: var(--pop-soft);
+  stroke: var(--pop);
+}
+.app.is-45 svg .person-crowd .body-part {
+  stroke: var(--pop);
+}
+.app.is-45 svg .person-crowd .body-fill {
+  fill: var(--pop-soft);
+  stroke: var(--pop);
+}
+.app.is-45 svg .angle-arc {
+  stroke: var(--pop);
+}
+.app.is-45 svg .angle-readout-bg {
+  fill: var(--pop);
+  stroke: var(--pop);
+}
+
+svg .scene-label {
+  font: 700 11.5px system-ui, -apple-system, sans-serif;
+  fill: var(--ink);
+  letter-spacing: 0.1px;
+}
+svg .scene-sublabel {
+  font: 600 10.5px system-ui, -apple-system, sans-serif;
+  fill: var(--muted);
+}
+
+/* Pop-up word badges inside the SVG scene */
+svg .popup-group {
+  opacity: 0;
+  transform: translateY(4px) scale(0.96);
+  transform-box: fill-box;
+  transform-origin: center;
+  transition: opacity 0.28s ease, transform 0.28s ease;
+  pointer-events: none;
+}
+svg .popup-group.active {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+svg .pill-box {
+  fill: #fff;
+  stroke: var(--ink);
+  stroke-width: 1.8;
+  rx: 7;
+}
+svg .pill-box.main {
+  fill: var(--ink);
+  stroke: var(--ink);
+}
+svg .pill-text {
+  font: 700 11px system-ui, -apple-system, sans-serif;
+  fill: var(--ink);
+  text-anchor: middle;
+  dominant-baseline: central;
+}
+svg .pill-text.main {
+  font-size: 12px;
+  fill: #fff;
+}
+svg .pill-box.god-main {
+  fill: var(--pop);
+  stroke: var(--pop);
+}
+svg .pill-box.god-sub {
+  fill: var(--pop-soft);
+  stroke: var(--pop);
+  stroke-width: 1.8;
+}
+svg .pill-text.god-sub {
+  fill: var(--pop-dark);
+  font-weight: 700;
+}
+
+/* Slider and angle buttons area */
+.dial-bar {
+  padding: 10px 16px 6px;
+  background: #f8f6f1;
+  border-bottom: 1px solid #eee9df;
+}
+.slider-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2px;
+}
+.slider-label {
+  font: 700 12.5px system-ui, -apple-system, sans-serif;
+  color: var(--ink);
+}
+.slider-value {
+  font: 700 12.5px system-ui, -apple-system, sans-serif;
+  color: var(--ink);
+  background: #fff;
+  border: 1.5px solid #cfc8bb;
+  border-radius: 999px;
+  padding: 2px 9px;
+}
+.app.is-45 .slider-value {
+  background: var(--pop-soft);
+  border-color: var(--pop);
+  color: var(--pop-dark);
+}
+
+/* Native range slider following modern-web-guidance slider pattern */
+input[type="range"] {
+  --slider-track-size: 0.45rem;
+  --slider-thumb-size: 1.35rem;
+  --slider-track-radius: 999px;
+  --slider-thumb-radius: 50%;
+  --slider-track-color: #d8d2c5;
+  --slider-fill-color: var(--ink);
+  --slider-thumb-color: var(--slider-fill-color);
+  --slider-direction: to right;
+  --attr-min: attr(min type(<number>), 0);
+  --attr-max: attr(max type(<number>), 45);
+  --control-value: attr(value type(<number>), 0);
+  --slider-progress: calc(
+    progress(var(--control-value), var(--attr-min), var(--attr-max)) * 100%
+  );
+
+  appearance: none;
+  -webkit-appearance: none;
+  inline-size: 100%;
+  block-size: 2.1rem;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  cursor: pointer;
+}
+.app.is-45 input[type="range"] {
+  --slider-fill-color: var(--pop);
+}
+@supports not (opacity: progress(1, 0, 100)) {
+  input[type="range"] {
+    --slider-progress: calc(
+      (var(--control-value) - var(--attr-min)) /
+      (var(--attr-max) - var(--attr-min)) * 100%
+    );
+  }
+}
+input[type="range"]::-webkit-slider-runnable-track {
+  block-size: var(--slider-track-size);
+  border: 0;
+  border-radius: var(--slider-track-radius);
+  background: linear-gradient(
+    var(--slider-direction),
+    var(--slider-fill-color) var(--slider-progress),
+    var(--slider-track-color) var(--slider-progress)
+  );
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  inline-size: var(--slider-thumb-size);
+  block-size: var(--slider-thumb-size);
+  margin-block-start: calc(
+    (var(--slider-track-size) - var(--slider-thumb-size)) / 2
+  );
+  border: 2.5px solid #fff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.28);
+  border-radius: var(--slider-thumb-radius);
+  background: var(--slider-thumb-color);
+}
+input[type="range"]::-moz-range-track {
+  block-size: var(--slider-track-size);
+  border: 0;
+  border-radius: var(--slider-track-radius);
+  background: var(--slider-track-color);
+}
+input[type="range"]::-moz-range-progress {
+  block-size: var(--slider-track-size);
+  border-radius: var(--slider-track-radius);
+  background: var(--slider-fill-color);
+}
+input[type="range"]::-moz-range-thumb {
+  inline-size: var(--slider-thumb-size);
+  block-size: var(--slider-thumb-size);
+  border: 2.5px solid #fff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.28);
+  border-radius: var(--slider-thumb-radius);
+  background: var(--slider-thumb-color);
+}
+input[type="range"]:focus-visible {
+  outline: 2px solid var(--slider-fill-color);
+  outline-offset: 4px;
+}
+
+.angle-buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  margin-top: 4px;
+}
+.angle-btn {
+  min-height: 42px;
+  padding: 5px 4px;
+  border-radius: 8px;
+  border: 1.5px solid #cfc8bb;
+  background: #fff;
+  color: var(--ink);
+  font: 600 12px/1.15 system-ui, -apple-system, sans-serif;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+.angle-btn .deg {
+  display: block;
+  font-weight: 800;
+  font-size: 13px;
+}
+.angle-btn .lbl {
+  display: block;
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+.angle-btn.active {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: #fff;
+}
+.angle-btn.active .lbl {
+  color: #e8e4dc;
+}
+.angle-btn.active.god-btn {
+  background: var(--pop);
+  border-color: var(--pop);
+  color: #fff;
+}
+.angle-btn.active.god-btn .lbl {
+  color: #fff;
+}
+
+.caption {
+  min-height: 108px;
+  padding: 11px 17px 6px;
+  text-align: center;
+}
+.caption h2 {
+  font: 700 16.5px/1.25 system-ui, -apple-system, sans-serif;
+  color: var(--ink);
+  margin: 0 0 5px;
+}
+.app.is-45 .caption h2 {
+  color: var(--pop-dark);
+}
+.caption p {
+  font: 14.5px/1.45 Georgia, serif;
+  margin: 0;
+  color: var(--ink);
+}
+.caption .scripture {
+  display: block;
+  margin-top: 5px;
+  font: 600 12.5px/1.35 system-ui, -apple-system, sans-serif;
+  color: var(--muted);
+}
+.caption strong {
+  color: var(--ink);
+}
+.app.is-45 .caption strong {
+  color: var(--pop-dark);
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 6px 14px 14px;
+}
+button.nav-btn {
+  min-height: 44px;
+  border-radius: 9px;
+  border: 1px solid #cfc8bb;
+  background: #fff;
+  color: var(--ink);
+  padding: 10px 16px;
+  font: 700 14px system-ui, -apple-system, sans-serif;
+  cursor: pointer;
+}
+button.nav-btn.primary {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: #fff;
+}
+.app.is-45 button.nav-btn.primary {
+  background: var(--pop-dark);
+  border-color: var(--pop-dark);
+}
+button.nav-btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+button:focus-visible {
+  outline: 3px solid #e0a526;
+  outline-offset: 2px;
+}
+.count {
+  font: 600 12px system-ui, -apple-system, sans-serif;
+  color: var(--muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  header, svg .ray-down, svg .ray-bounce, svg .popup-group, .angle-btn {
+    transition: none;
+  }
+}
+</style>
+</head>
+<body>
+<main class="app" id="app">
+  <header>
+    <h1>God Is the Sun. You Are the Mirror.</h1>
+    <p class="hint">Slide or tap an angle to tilt the mirror and see where the light goes</p>
+  </header>
+
+  <div class="stage" id="stage" role="img" aria-label=""></div>
+
+  <div class="dial-bar">
+    <div class="slider-header">
+      <label class="slider-label" for="angle-slider">Mirror Angle (Side View)</label>
+      <span class="slider-value" id="slider-readout">0&deg; &middot; Look at Me</span>
+    </div>
+    <input
+      type="range"
+      id="angle-slider"
+      min="0"
+      max="45"
+      step="1"
+      value="0"
+      aria-valuetext="0 degrees: Look at Me"
+    >
+    <div class="angle-buttons" id="angle-buttons" role="group" aria-label="Preset mirror angles"></div>
+  </div>
+
+  <section class="caption" id="caption" aria-live="polite">
+    <h2 id="title"></h2>
+    <p id="description"></p>
+    <span class="scripture" id="scripture"></span>
+  </section>
+
+  <div class="controls">
+    <button id="prev" class="nav-btn" type="button">&larr; Back</button>
+    <span class="count" id="count"></span>
+    <button id="next" class="nav-btn primary" type="button">Next Angle &rarr;</button>
+  </div>
+</main>
+
+<script>
+(function () {
+  'use strict';
+  var NS = 'http://www.w3.org/2000/svg';
+
+  var stops = [
+    {
+      deg: 0,
+      short: 'Look at Me',
+      title: '0° (Flat): Pointing to Yourself',
+      desc: 'When the mirror lies flat, God\'s light bounces straight back up into the sky and never reaches anyone. People looking your way only see <strong>you, your comfort, and your desire for approval</strong>.',
+      ref: '"They exchanged the truth about God for a lie and worshiped and served the creature rather than the Creator." (Romans 1:25)',
+      aria: 'Side view at 0 degrees: the mirror is flat horizontal. Dotted rays from the sun above bounce straight back up, and labels for Look at Me, My Comfort, and My Approval appear.'
+    },
+    {
+      deg: 15,
+      short: 'Chasing Things',
+      title: '15° (Tilted Low): Pointing to Created Things',
+      desc: 'Tilted slightly, your life reflects what you chase instead of who made you. When people look at how you spend your time and energy, their eyes are pointed toward <strong>money, screens, status, and stuff</strong>.',
+      ref: '"Where your treasure is, there your heart will be also." (Matthew 6:21)',
+      aria: 'Side view at 15 degrees: the mirror tilts slightly and reflects the dotted rays up toward Created Things: Money and Stuff, Screens, and Status.'
+    },
+    {
+      deg: 30,
+      short: 'Sunday Only',
+      title: '30° (Half-Turned): Part-Time Religion',
+      desc: 'A half-tilted mirror catches the sun for an hour on Sunday morning, but the beam shoots right over the people around you in everyday life. Worship stays <strong>an event in a building instead of a daily posture</strong>.',
+      ref: '"This people honors me with their lips, but their heart is far from me." (Matthew 15:8)',
+      aria: 'Side view at 30 degrees: the mirror is half-turned so the reflected dotted rays shoot high over the people\'s heads, labeled Sunday Morning Only, Part-Time Faith, and Religious Routine.'
+    },
+    {
+      deg: 45,
+      short: 'Reflecting God',
+      title: '45° (Held Rightly): Reflecting God\'s Worth!',
+      desc: 'At <strong>45 degrees</strong>, the vertical rays from God above hit your life and bounce <strong>straight toward the people around you</strong>. When they look at you, they catch a glimpse of His love, mercy, and worth.',
+      ref: 'Summary: worship reflects God\'s worth (see Matthew 5:16; Romans 12:1).',
+      aria: 'Side view at 45 degrees: the mirror sits at a 45 degree angle. Dotted rays from the sun above hit the mirror and bounce horizontally straight to the people around you, popping up Reflecting God\'s Worth, His Love, His Grace, His Mercy, and His Goodness.'
+    }
+  ];
+
+  function el(name, attrs, parent) {
+    var node = document.createElementNS(NS, name);
+    Object.keys(attrs || {}).forEach(function (k) {
+      node.setAttribute(k, attrs[k]);
+    });
+    if (parent) parent.appendChild(node);
+    return node;
+  }
+
+  // Geometry constants in 460x272 stage
+  var MX = 122;
+  var MY = 148;
+  var SUN_Y = 38;
+  var GROUND_Y = 234;
+  var PEOPLE_X = 352;
+
+  var svg = el('svg', {
+    xmlns: NS,
+    'aria-hidden': 'true',
+    preserveAspectRatio: 'xMidYMid meet',
+    viewBox: '0 0 460 272'
+  });
+
+  // Paper background & ground line
+  el('rect', { x: 0, y: 0, width: 460, height: 272, fill: '#fdfdfb' }, svg);
+  el('line', { x1: 18, y1: GROUND_Y, x2: 442, y2: GROUND_Y, class: 'line', 'stroke-width': 2 }, svg);
+
+  // Horizontal 0-degree reference dashed line at mirror pivot
+  el('line', { x1: MX - 8, y1: MY, x2: MX + 54, y2: MY, class: 'dashed-ref' }, svg);
+
+  // Angle arc & live degree badge below the horizontal reference line
+  var angleArc = el('path', { class: 'line angle-arc', 'stroke-width': 1.8, d: '' }, svg);
+  var angleBadgeG = el('g', {}, svg);
+  var angleBadgeBg = el('rect', {
+    x: MX - 17,
+    y: MY + 36,
+    width: 34,
+    height: 18,
+    rx: 5,
+    fill: '#26231f',
+    stroke: '#26231f',
+    class: 'angle-readout-bg'
+  }, angleBadgeG);
+  var angleBadgeText = el('text', {
+    x: MX,
+    y: MY + 45,
+    fill: '#fff',
+    'text-anchor': 'middle',
+    'dominant-baseline': 'central',
+    font: '700 10.5px system-ui, sans-serif'
+  }, angleBadgeG);
+
+  // The Sun ("God's Worth") directly above the mirror at (MX, SUN_Y), label to the left so right sky stays clear
+  var sunG = el('g', {}, svg);
+  for (var a = 0; a < 360; a += 30) {
+    var rad = (a * Math.PI) / 180;
+    var r1 = 21;
+    var r2 = a % 60 === 0 ? 29 : 25;
+    el('line', {
+      x1: (MX + Math.cos(rad) * r1).toFixed(1),
+      y1: (SUN_Y + Math.sin(rad) * r1).toFixed(1),
+      x2: (MX + Math.cos(rad) * r2).toFixed(1),
+      y2: (SUN_Y + Math.sin(rad) * r2).toFixed(1),
+      class: 'line sun-ray',
+      'stroke-width': 2
+    }, sunG);
+  }
+  el('circle', { cx: MX, cy: SUN_Y, r: 16, class: 'solid sun-core', 'stroke-width': 2.5 }, sunG);
+  el('text', { x: 48, y: SUN_Y - 3, 'text-anchor': 'middle', class: 'scene-label' }, sunG).textContent = "GOD'S WORTH";
+  el('text', { x: 48, y: SUN_Y + 11, 'text-anchor': 'middle', class: 'scene-sublabel' }, sunG).textContent = '(The Sun)';
+
+  // 3 Vertical dotted rays going straight down from the Sun to the side-view mirror
+  var rayOffsets = [-11, 0, 11];
+  var downRays = [];
+  var downArrows = [];
+  var bounceRays = [];
+  var bounceArrows = [];
+
+  var raysLayer = el('g', {}, svg);
+  rayOffsets.forEach(function () {
+    downRays.push(el('line', { class: 'ray-down' }, raysLayer));
+    downArrows.push(el('path', { class: 'line sun-ray', 'stroke-width': 1.8 }, raysLayer));
+    bounceRays.push(el('line', { class: 'ray-bounce' }, raysLayer));
+    bounceArrows.push(el('path', { class: 'line sun-ray', 'stroke-width': 1.8 }, raysLayer));
+  });
+
+  // Sightline at 0 deg (people only see you)
+  var sightLine0 = el('path', {
+    d: 'M 334 176 L 106 168',
+    class: 'ray-sight'
+  }, raysLayer);
+
+  // Main character (stick man / whiteboard person on left holding the mirror)
+  var heroG = el('g', {}, svg);
+  var hx = 68;
+  // Legs
+  el('path', { d: 'M ' + hx + ' 188 L ' + (hx - 12) + ' ' + GROUND_Y + ' M ' + hx + ' 188 L ' + (hx + 14) + ' ' + GROUND_Y, class: 'line', 'stroke-width': 2.6 }, heroG);
+  // Torso (clean Making Space whiteboard style)
+  el('path', { d: 'M ' + (hx - 11) + ' 188 L ' + (hx - 10) + ' 144 Q ' + (hx - 10) + ' 132 ' + hx + ' 132 Q ' + (hx + 10) + ' 132 ' + (hx + 10) + ' 144 L ' + (hx + 11) + ' 188 Z', class: 'solid', 'stroke-width': 2.5 }, heroG);
+  // Head
+  el('circle', { cx: hx, cy: 114, r: 13.5, class: 'solid', 'stroke-width': 2.5 }, heroG);
+  // Arms reaching forward to hold the mirror handle at (MX, MY)
+  var heroArmTop = el('path', { class: 'line', 'stroke-width': 2.5 }, heroG);
+  var heroArmBot = el('path', { class: 'line', 'stroke-width': 2.5 }, heroG);
+
+  el('text', { x: hx + 18, y: GROUND_Y + 17, 'text-anchor': 'middle', class: 'scene-label' }, svg).textContent = 'You (holding the mirror)';
+
+  // Side-profile Mirror group pivoted at (MX, MY)
+  // At 0 deg, the mirror is horizontal (from x = -30 to +30), reflective face on top (y = -3), backing below (y = -3..+3)
+  var mirrorPivot = el('g', { transform: 'translate(' + MX + ',' + MY + ')' }, svg);
+  var mirrorRot = el('g', {}, mirrorPivot);
+  // Mirror backing slab (side view)
+  el('rect', { x: -30, y: -2, width: 60, height: 6, rx: 2, class: 'solid mirror-body', 'stroke-width': 2 }, mirrorRot);
+  // Back-side hatch marks (classic side-view mirror symbol)
+  [-22, -12, -2, 8, 18].forEach(function (hxOffset) {
+    el('line', { x1: hxOffset, y1: 4, x2: hxOffset - 5, y2: 9, class: 'line', 'stroke-width': 1.4 }, mirrorRot);
+  });
+  // Handle underneath/behind mirror
+  el('path', { d: 'M -4 4 L -10 17', class: 'line', 'stroke-width': 2.8 }, mirrorRot);
+  // Bright reflective top edge
+  el('line', { x1: -31, y1: -2.5, x2: 31, y2: -2.5, class: 'line mirror-front', 'stroke-width': 3.4 }, mirrorRot);
+
+  // The People Around You (right side, standing on ground)
+  var crowdG = el('g', { class: 'person-crowd' }, svg);
+  [
+    { x: 348, scale: 0.94 },
+    { x: 382, scale: 1.0 },
+    { x: 416, scale: 0.92 }
+  ].forEach(function (p) {
+    var pg = el('g', { transform: 'translate(' + p.x + ',' + GROUND_Y + ') scale(' + p.scale + ')' }, crowdG);
+    // Legs
+    el('path', { d: 'M 0 -44 L -9 0 M 0 -44 L 9 0', class: 'line body-part', 'stroke-width': 2.4 }, pg);
+    // Torso
+    el('path', { d: 'M -10 -44 L -9 -84 Q -9 -95 0 -95 Q 9 -95 9 -84 L 10 -44 Z', class: 'solid body-fill', 'stroke-width': 2.4 }, pg);
+    // Arms relaxed
+    el('path', { d: 'M -6 -84 L -14 -58 M 6 -84 L 13 -58', class: 'line body-part', 'stroke-width': 2.2 }, pg);
+    // Head
+    el('circle', { cx: 0, cy: -111, r: 12.5, class: 'solid body-fill', 'stroke-width': 2.4 }, pg);
+  });
+  el('text', { x: 382, y: GROUND_Y + 17, 'text-anchor': 'middle', class: 'scene-label' }, svg).textContent = 'The people around you';
+
+  // Helper to build a clean whiteboard word pill inside SVG
+  function makePill(parent, x, y, w, h, text, variant) {
+    var g = el('g', { transform: 'translate(' + x + ',' + y + ')' }, parent);
+    var boxClass = 'pill-box' + (variant ? ' ' + variant : '');
+    var txtClass = 'pill-text' + (variant ? ' ' + variant : '');
+    el('rect', { x: -w / 2, y: -h / 2, width: w, height: h, class: boxClass }, g);
+    el('text', { x: 0, y: 0, class: txtClass }, g).textContent = text;
+    return g;
+  }
+
+  // Pop-up word groups for the 4 angle zones
+  var popups = {};
+
+  // 0 deg: Look at Me / Self
+  popups[0] = el('g', { class: 'popup-group' }, svg);
+  makePill(popups[0], 238, 94, 134, 24, '"Look at Me"', 'main');
+  makePill(popups[0], 190, 124, 90, 21, 'My Comfort', '');
+  makePill(popups[0], 286, 124, 92, 21, 'My Approval', '');
+  makePill(popups[0], 238, 152, 132, 21, 'People only see you', '');
+
+  // 15 deg: Chasing Created Things
+  popups[1] = el('g', { class: 'popup-group' }, svg);
+  makePill(popups[1], 254, 28, 156, 24, 'Chasing Created Things', 'main');
+  makePill(popups[1], 204, 56, 96, 21, 'Money & Stuff', '');
+  makePill(popups[1], 304, 56, 92, 21, 'Status & Ego', '');
+  makePill(popups[1], 254, 83, 126, 21, 'Screens & Busyness', '');
+
+  // 30 deg: Sunday Only / Part-time
+  popups[2] = el('g', { class: 'popup-group' }, svg);
+  makePill(popups[2], 278, 34, 150, 24, 'Sunday Morning Only', 'main');
+  makePill(popups[2], 228, 62, 98, 21, 'Part-Time Faith', '');
+  makePill(popups[2], 330, 62, 98, 21, 'Empty Routine', '');
+  makePill(popups[2], 278, 89, 136, 21, 'Shoots over daily life', '');
+
+  // 45 deg: Reflecting God's Worth! (Framed cleanly above and below the horizontal dotted beam)
+  popups[3] = el('g', { class: 'popup-group' }, svg);
+  makePill(popups[3], 242, 76, 164, 25, "Reflecting God's Worth", 'god-main main');
+  makePill(popups[3], 198, 106, 82, 21, 'His Love', 'god-sub');
+  makePill(popups[3], 286, 106, 86, 21, 'His Grace', 'god-sub');
+  makePill(popups[3], 198, 184, 84, 21, 'His Mercy', 'god-sub');
+  makePill(popups[3], 288, 184, 94, 21, 'His Goodness', 'god-sub');
+
+  document.getElementById('stage').appendChild(svg);
+
+  // Build preset angle buttons
+  var btnWrap = document.getElementById('angle-buttons');
+  var angleBtns = stops.map(function (st) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'angle-btn' + (st.deg === 45 ? ' god-btn' : '');
+    b.innerHTML = '<span class="deg">' + st.deg + '&deg;</span><span class="lbl">' + st.short + '</span>';
+    b.addEventListener('click', function () {
+      setAngle(st.deg);
+    });
+    btnWrap.appendChild(b);
+    return b;
+  });
+
+  var slider = document.getElementById('angle-slider');
+  var appEl = document.getElementById('app');
+
+  function zoneForAngle(deg) {
+    if (deg >= 39) return 3;
+    if (deg >= 23) return 2;
+    if (deg >= 8) return 1;
+    return 0;
+  }
+
+  function arrowPath(x, y, ux, uy, size) {
+    var px = -uy;
+    var py = ux;
+    var bx = x - ux * size;
+    var by = y - uy * size;
+    var w = size * 0.55;
+    return 'M ' + (bx + px * w).toFixed(1) + ' ' + (by + py * w).toFixed(1) +
+           ' L ' + x.toFixed(1) + ' ' + y.toFixed(1) +
+           ' L ' + (bx - px * w).toFixed(1) + ' ' + (by - py * w).toFixed(1);
+  }
+
+  var currentDeg = 0;
+
+  function syncSliderCssVars(deg) {
+    slider.style.setProperty('--attr-min', slider.min || 0);
+    slider.style.setProperty('--attr-max', slider.max || 45);
+    slider.style.setProperty('--control-value', deg);
+  }
+
+  function updateScene(deg) {
+    currentDeg = deg;
+    var z = zoneForAngle(deg);
+    var st = stops[z];
+    var is45 = deg >= 42;
+
+    appEl.classList.toggle('is-45', is45);
+    slider.value = String(deg);
+    slider.setAttribute('aria-valuetext', deg + ' degrees: ' + st.short);
+    syncSliderCssVars(deg);
+
+    document.getElementById('slider-readout').innerHTML = deg + '&deg; &middot; ' + st.short;
+
+    // Rotate side-view mirror clockwise by deg
+    mirrorRot.setAttribute('transform', 'rotate(' + deg + ')');
+
+    // Update hero arms to hold the mirror handle cleanly as it tilts
+    var rad = (deg * Math.PI) / 180;
+    var cos = Math.cos(rad);
+    var sin = Math.sin(rad);
+    // Handle tip in local mirror coords is (-10, 17)
+    var handleX = MX + (-10 * cos - 17 * sin);
+    var handleY = MY + (-10 * sin + 17 * cos);
+    heroArmTop.setAttribute('d', 'M ' + (hx + 6) + ' 142 Q ' + (hx + 24) + ' 150 ' + handleX.toFixed(1) + ' ' + handleY.toFixed(1));
+    heroArmBot.setAttribute('d', 'M ' + (hx + 4) + ' 150 Q ' + (hx + 22) + ' 162 ' + (handleX - 3).toFixed(1) + ' ' + (handleY + 3).toFixed(1));
+
+    // Update angle arc between 0 deg (horizontal right) and deg
+    if (deg > 2) {
+      var arcR = 28;
+      var ax = MX + arcR * Math.cos(rad);
+      var ay = MY + arcR * Math.sin(rad);
+      angleArc.setAttribute('d', 'M ' + (MX + arcR) + ' ' + MY + ' A ' + arcR + ' ' + arcR + ' 0 0 1 ' + ax.toFixed(1) + ' ' + ay.toFixed(1));
+      angleArc.style.opacity = '1';
+    } else {
+      angleArc.setAttribute('d', '');
+      angleArc.style.opacity = '0';
+    }
+    angleBadgeText.textContent = deg + '°';
+
+    // Reflected ray direction: incoming ray is (0, +1) straight down.
+    // Mirror normal points up-and-right at angle deg from vertical: (sin(deg), -cos(deg)).
+    // Reflected vector is (sin(2*deg), -cos(2*deg)).
+    var bounceRad = (2 * deg * Math.PI) / 180;
+    var rvx = Math.sin(bounceRad);
+    var rvy = -Math.cos(bounceRad);
+
+    rayOffsets.forEach(function (offset, idx) {
+      var rx = MX + offset * cos;
+      var ry = MY + offset * sin;
+      var startY = SUN_Y + 24;
+
+      downRays[idx].setAttribute('x1', rx.toFixed(1));
+      downRays[idx].setAttribute('y1', startY.toFixed(1));
+      downRays[idx].setAttribute('x2', rx.toFixed(1));
+      downRays[idx].setAttribute('y2', (ry - 4).toFixed(1));
+      downArrows[idx].setAttribute('d', arrowPath(rx, ry - 4, 0, 1, 6));
+
+      // Length of reflected ray depends on angle
+      var rayLen = deg < 5 ? 64 : (is45 ? (PEOPLE_X - 18 - rx) : 185);
+      var ex = rx + rvx * rayLen;
+      var ey = ry + rvy * rayLen;
+
+      // Clamp to stage bounds
+      if (ey < 18) {
+        var scaleY = (18 - ry) / rvy;
+        ex = rx + rvx * scaleY;
+        ey = 18;
+      }
+      if (ex > 336) {
+        var scaleX = (336 - rx) / rvx;
+        ex = 336;
+        ey = ry + rvy * scaleX;
+      }
+
+      bounceRays[idx].setAttribute('x1', rx.toFixed(1));
+      bounceRays[idx].setAttribute('y1', ry.toFixed(1));
+      bounceRays[idx].setAttribute('x2', ex.toFixed(1));
+      bounceRays[idx].setAttribute('y2', ey.toFixed(1));
+      bounceArrows[idx].setAttribute('d', arrowPath(ex, ey, rvx, rvy, 6.5));
+    });
+
+    sightLine0.style.opacity = z === 0 ? '1' : '0';
+
+    // Toggle active pop-up words in the scene
+    [0, 1, 2, 3].forEach(function (k) {
+      popups[k].classList.toggle('active', k === z);
+    });
+
+    // Update angle buttons
+    angleBtns.forEach(function (b, idx) {
+      b.classList.toggle('active', idx === z);
+      b.setAttribute('aria-pressed', idx === z ? 'true' : 'false');
+    });
+
+    // Update caption & controls
+    document.getElementById('stage').setAttribute('aria-label', st.aria);
+    document.getElementById('title').textContent = st.title;
+    document.getElementById('description').innerHTML = st.desc;
+    document.getElementById('scripture').textContent = st.ref;
+    document.getElementById('count').textContent = (z + 1) + ' / ' + stops.length;
+    document.getElementById('prev').disabled = z === 0 && deg === 0;
+    document.getElementById('next').innerHTML = z === stops.length - 1 ? 'Start Over &#8635;' : 'Next Angle &rarr;';
+  }
+
+  function setAngle(deg) {
+    var clamped = Math.max(0, Math.min(45, Math.round(Number(deg) || 0)));
+    updateScene(clamped);
+  }
+
+  slider.addEventListener('input', function () {
+    var v = Number(slider.value);
+    if (v >= 43) v = 45;
+    setAngle(v);
+  });
+
+  document.getElementById('prev').addEventListener('click', function () {
+    var z = zoneForAngle(currentDeg);
+    var prevIdx = z > 0 ? z - 1 : 0;
+    setAngle(stops[prevIdx].deg);
+  });
+
+  document.getElementById('next').addEventListener('click', function () {
+    var z = zoneForAngle(currentDeg);
+    var nextIdx = z < stops.length - 1 ? z + 1 : 0;
+    setAngle(stops[nextIdx].deg);
+  });
+
+  // Pre-measure tallest caption so the widget height stays rock-solid across all angles
+  var captionEl = document.getElementById('caption');
+  var titleEl = document.getElementById('title');
+  var descEl = document.getElementById('description');
+  var refEl = document.getElementById('scripture');
+  var sizedWidth = 0;
+
+  function steadyCaption() {
+    if (captionEl.clientWidth === sizedWidth) return;
+    sizedWidth = captionEl.clientWidth;
+    var keepT = titleEl.textContent;
+    var keepD = descEl.innerHTML;
+    var keepR = refEl.textContent;
+    var tallest = 0;
+    captionEl.style.minHeight = '0px';
+    stops.forEach(function (st) {
+      titleEl.textContent = st.title;
+      descEl.innerHTML = st.desc;
+      refEl.textContent = st.ref;
+      tallest = Math.max(tallest, captionEl.offsetHeight);
+    });
+    titleEl.textContent = keepT;
+    descEl.innerHTML = keepD;
+    refEl.textContent = keepR;
+    captionEl.style.minHeight = tallest + 'px';
+  }
+
+  window.addEventListener('resize', steadyCaption);
+  setAngle(0);
+  steadyCaption();
+})();
+</script>
+</body>
+</html>
