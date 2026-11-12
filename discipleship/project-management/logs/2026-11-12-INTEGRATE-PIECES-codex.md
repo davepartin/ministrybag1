@@ -24,7 +24,7 @@ Dave explicitly instructed: "do all this, i can edit the lessons later, we are t
 | 186 | Emmaus four-frame bread-breaking sequence | Regenerated map, required checks/images, 70 sequence checks |
 | 189 | Newer side-view mirror | Required checks/iframe 32, 42 browser checks; fixed summary incorrectly presented as a Bible quotation |
 | 194 | Forward-view Romans Road | Required checks/iframe 32, 39 browser checks, phone screenshot inspected |
-| 197 | Grok's five worship-chain frames | New wiring/optimized copies and generated map; 55 local sequence checks, hosted verification tracked in final PR evidence |
+| 197 | Grok's five worship-chain frames | New wiring/optimized copies and generated map; 55 local and 55 exact-preview sequence checks; preview Action 43321746289 succeeded; merged as e22dac7 |
 
 All listed browser processes exited 0. Phone widths 375/390 and desktop 1280 were checked, with reduced motion in the relevant suites. Keyboard and host scroll/idle/toolbar behavior were checked for the widget packets. Physical iPhone/Safari and a human learner pilot are not claimed.
 

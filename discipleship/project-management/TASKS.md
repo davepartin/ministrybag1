@@ -1,5 +1,9 @@
 # Running task board
 
+## November 12 integration checkpoint
+
+Dave authorized assembling working drafts on main before later individual lesson editing. Main now includes #181, #186, #188, #189, #190, #191, #192, #193, #194, #195, #196 and #197. The current publishing table in TEAM-BOARD and logs/2026-11-12-INTEGRATE-PIECES-codex.md own the integration evidence. Older REVIEW rows below still require Dave's editorial/visual gates; they do not mean these technical pieces are waiting to be merged. No grade or final pastoral approval is implied.
+
 203 organization refreshed October 12, 2026; other rows retain their checkpoint dates. This file is the only current work-status board. Titles/order remain in [curriculum-toc.csv](../curriculum-toc.csv). Process and DONE gates are in [PLAN.md](PLAN.md). Evidence belongs in [logs/](logs/).
 
 Status: TODO, ACTIVE, PAUSED, REVIEW, BLOCKED, DEFERRED, DONE. DEFERRED means Dave has scheduled it for later (301 until March 2027). Owner cell format: `agent / branch / date`; `-` means unclaimed. Check `[x]` only for DONE. A dependency must be DONE before claiming a dependent task; independent writing/research can proceed alongside software work in a separate assigned scope.
