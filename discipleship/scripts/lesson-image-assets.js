@@ -120,6 +120,36 @@
             }
         ]
     },
+    "images/202-01-good-samaritan-bw.jpg": {
+        "width": 1264,
+        "height": 848,
+        "sourceHash": "cd5b2feddf848bb8b60f5f706eb50332556d17a82e8d474b30cbc518e52902a0",
+        "variants": [
+            {
+                "src": "images/optimized/202-01-good-samaritan-bw-640.webp",
+                "width": 640
+            },
+            {
+                "src": "images/optimized/202-01-good-samaritan-bw-1264.webp",
+                "width": 1264
+            }
+        ]
+    },
+    "images/202-01-good-samaritan-color.jpg": {
+        "width": 1264,
+        "height": 848,
+        "sourceHash": "be09ae7d0e732e2ddf4adcc6d5e88a6db152fc9bf9a1f4a362c2e3b7597c6e32",
+        "variants": [
+            {
+                "src": "images/optimized/202-01-good-samaritan-color-640.webp",
+                "width": 640
+            },
+            {
+                "src": "images/optimized/202-01-good-samaritan-color-1264.webp",
+                "width": 1264
+            }
+        ]
+    },
     "images/202-05-joseph-pit-palace-bw.jpg": {
         "width": 1264,
         "height": 848,

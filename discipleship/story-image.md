@@ -145,7 +145,7 @@ Optional field: `"frame": true` adds a 1px border (`.block-image-dissolve-framed
 | 201-08 | The Unmerciful Servant | B&W -> Color | `kings-mercy.jpg` -> `kings-mercy-color.jpg` | Live (`touchNext: true`, `frame: true`) |
 | 201-09 | The Vine and the Branches | **4-Frame Sequence** | `vine-branches-seq-1.jpg` .. `4.jpg` (stops `[0, 0.18, 0.34, 0.5]`) | Live (`touchNext: true`) |
 | 201-10 | Coming to His Senses | B&W -> Color | `prodigal-son-two-brothers-bw.jpg` -> `prodigal-son-two-brothers-color.jpg` | Live (`touchNext: true`) |
-| 202-01 | The Good Samaritan | Single static | `good-samaritan-story.jpg` | Upgrade to sequence or dissolve (`touchNext: true`) |
+| 202-01 | The Good Samaritan | B&W -> Color | `202-01-good-samaritan-bw.jpg` -> `202-01-good-samaritan-color.jpg` | Live (`touchNext: true`) |
 | 202-02 | The Wise and Foolish Builders | **6-Stop Sequence** | `house-rock-seq-1.jpg` .. `5.jpg` (stops `[0.1, 0.3, 0.38, 0.46, 0.55, 0.65]`) | Live sequence |
 | 202-03 | The Early Church | **4-Frame Sequence** | `early-church-seq-1.jpg` .. `4.jpg` (stops `[0, 0.18, 0.34, 0.5]`) | Live (`touchNext: true`) |
 | 202-04 | The Five Farmers in the Field | B&W -> Color | `Farmer-bw.jpeg` -> `Farmer-color.jpg` | Live (`touchNext: true`) |

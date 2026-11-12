@@ -16,10 +16,10 @@
     },
     {
       "type": "image",
-      "src": "images/good-samaritan-story.jpg",
-      "alt": "A Samaritan kneeling in the dirt beside a wounded stranger on a desolate road",
-      "width": "100%",
-      "align": "center"
+      "imageBw": "images/202-01-good-samaritan-bw.jpg",
+      "imageColor": "images/202-01-good-samaritan-color.jpg",
+      "alt": "A compassionate Samaritan kneeling beside a wounded traveler on a rocky wilderness road to pour oil and bind his wounds while two figures walk away in the distance",
+      "touchNext": true
     },
     {
       "type": "parable",
