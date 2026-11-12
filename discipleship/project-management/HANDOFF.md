@@ -1,5 +1,11 @@
 # Resume here
 
+## Current checkpoint: integrated working pieces, November 12, 2026
+
+Dave authorized assembling the pieces into main before his later lesson-by-lesson edit. The current publishing table at the top of TEAM-BOARD supersedes older REVIEW/publishing-hold passages below for this batch. Integrated: #191 Bible, #195 suffering with question 5.5 restored, #192 source manuscript, #193 stool, #196 whole-life stewardship draft, #190 Samaritan sequence, #181 widow sequence, #188 house timing, #186 Emmaus sequence, #189 mirror and #194 Romans Road. Grok's worship-chain wiring #197 is also integrated after 55 local and 55 exact-preview checks. The integration log records the final combined verification.
+
+Next work is Dave's one-lesson-at-a-time wording and visual pass. Keep the 201-10 Learning Circle depth as he requested; no new rewrite of it was started. Mosaic and Nicodemus lamp art remain future design packets. Do not restart completed reader repairs or re-open the superseded PRs. Final pastoral/art/release approval remains pending. No Firebase settings or workflow changes and no manual deploy.
+
 ## 202-07 whole-self stewardship proposal: REVIEW, November 12, 2026
 
 Dave directly asked Codex to work now on a full rewrite centered on stewardship of time, talents and treasure, with a three-T stool replacing the draft bills concept. Review `reviews/2026-11-12-202-07-whole-self-draft.md` and `reviews/2026-11-12-202-07-stool-widget-brief.md` on branch `codex/rewrite-202-07-proposal`. The complete manuscript is 1,210 words including headings/questions/closing. Dave explicitly rejected prosperity teaching; the draft honors that distinction.
