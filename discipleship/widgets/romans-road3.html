@@ -608,22 +608,22 @@ button:focus-visible {
   (function () {
     var g = el('g', { class: 'sign-group', 'data-step': '3' }, svg);
     // Two legs + subtle ground shadows cleanly above Sign A
-    el('ellipse', { cx: 64, cy: 131, rx: 6.5, ry: 1.8, class: 'sign-shadow' }, g);
-    el('ellipse', { cx: 128, cy: 131, rx: 6.5, ry: 1.8, class: 'sign-shadow' }, g);
-    el('line', { x1: 64, y1: 118, x2: 64, y2: 131, class: 'sign-post', 'stroke-width': 2 }, g);
-    el('line', { x1: 128, y1: 118, x2: 128, y2: 131, class: 'sign-post', 'stroke-width': 2 }, g);
-    // Compact distant board: x=46..146, y=79..118 (100x39)
-    el('rect', { x: 46, y: 79, width: 100, height: 39, rx: 5.5, class: 'sign-board' }, g);
+    el('ellipse', { cx: 63, cy: 131, rx: 6.5, ry: 1.8, class: 'sign-shadow' }, g);
+    el('ellipse', { cx: 129, cy: 131, rx: 6.5, ry: 1.8, class: 'sign-shadow' }, g);
+    el('line', { x1: 63, y1: 118, x2: 63, y2: 131, class: 'sign-post', 'stroke-width': 2 }, g);
+    el('line', { x1: 129, y1: 118, x2: 129, y2: 131, class: 'sign-post', 'stroke-width': 2 }, g);
+    // Compact distant board: x=44..148, y=79..118 (104x39)
+    el('rect', { x: 44, y: 79, width: 104, height: 39, rx: 5.5, class: 'sign-board' }, g);
     // Tall left badge box with big C
-    el('rect', { x: 50, y: 83, width: 26, height: 31, rx: 4.5, class: 'sign-badge' }, g);
-    el('text', { x: 63, y: 98.5, class: 'sign-letter', style: 'font-size:20px' }, g).textContent = 'C';
+    el('rect', { x: 48, y: 83, width: 26, height: 31, rx: 4.5, class: 'sign-badge' }, g);
+    el('text', { x: 61, y: 98.5, class: 'sign-letter', style: 'font-size:20px' }, g).textContent = 'C';
     // Right text column
-    el('text', { x: 82, y: 89, class: 'sign-title', style: 'font-size:9.8px;text-anchor:start' }, g).textContent = 'Confess';
-    el('text', { x: 82, y: 99.5, class: 'sign-sub', style: 'font-size:9.4px;text-anchor:start' }, g).textContent = 'Jesus as';
-    el('text', { x: 82, y: 110, class: 'sign-title', style: 'font-size:9.8px;text-anchor:start' }, g).textContent = 'Lord';
-    // Crown right beside "Lord"
+    el('text', { x: 80, y: 88, class: 'sign-title', style: 'font-size:9.6px;text-anchor:start' }, g).textContent = 'Confess';
+    el('text', { x: 80, y: 97.5, class: 'sign-sub', style: 'font-size:9.2px;text-anchor:start' }, g).textContent = 'Jesus as';
+    el('text', { x: 80, y: 109.5, class: 'sign-title', style: 'font-size:9.8px;text-anchor:start' }, g).textContent = 'Lord';
+    // Crown right beside "Lord" with clear gap from "Jesus as"
     el('path', {
-      d: 'M 111 112.5 L 109.5 105.5 L 114.5 108.5 L 118.5 103.5 L 122.5 108.5 L 127.5 105.5 L 126 112.5 Z',
+      d: 'M 114 112.5 L 112.5 106.5 L 117 109 L 121 104.5 L 125 109 L 129.5 106.5 L 128 112.5 Z',
       class: 'sign-icon',
       'stroke-width': 1.4
     }, g);
