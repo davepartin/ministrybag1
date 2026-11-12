@@ -6061,7 +6061,7 @@
 
         function collectLiveExportValues() {
             const live = {};
-            document.querySelectorAll('.question-textarea').forEach(ta => {
+            document.querySelectorAll('.question-textarea, .chapter-notes-textarea').forEach(ta => {
                 live[ta.id] = ta.value;
             });
             document.querySelectorAll('.block-checklist').forEach(container => {
@@ -6101,6 +6101,7 @@
                 currentLessonNum: currentSession,
                 lessons: collectLoadedLessonsForExport(),
                 responses: responses,
+                reading: readingData,
                 liveValues: collectLiveExportValues()
             });
         }

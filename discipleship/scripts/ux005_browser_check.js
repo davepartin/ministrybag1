@@ -112,10 +112,10 @@ async function isolatedPage(browser, width) {
             await page.fill('#question-203-203-01-key', 'SYN-before-backup');
             await page.click('.back-btn');
             check(width + ': home links to the About page, not a lesson acknowledgment', await page.locator('#home-about-link').isVisible() &&
-                await page.locator('.esv-footnote').count() === 1);
+                await page.locator('#about-view .esv-footnote').count() === 1);
             await page.click('#home-about-link');
             await page.locator('#about-acknowledgments summary').click();
-            var acknowledgment = (await page.locator('.esv-footnote').textContent()).replace(/\s+/g, ' ');
+            var acknowledgment = (await page.locator('#about-view .esv-footnote').textContent()).replace(/\s+/g, ' ');
             check(width + ': ESV and WEB acknowledgment text is preserved', acknowledgment.includes('Used by permission. All rights reserved.') &&
                 acknowledgment.includes('World English Bible, which is in the public domain.'));
             check(width + ': private Gmail is not published on the page', !(await page.locator('body').textContent()).includes('davepartin@gmail.com') &&
@@ -186,7 +186,7 @@ async function isolatedPage(browser, width) {
             JSON.parse(recovery.text).stores.answers.data['question-201-201-08-1'] === 'SYN-quota-unsaved');
         await failure.page.click('#email-lesson-btn');
         check('email also preserves an answer that could not save',
-            (await failure.page.locator('#export-preview-text').textContent()).includes('8.1\nSYN-quota-unsaved'));
+            /^8\.1 .+\nSYN-quota-unsaved/m.test(await failure.page.locator('#export-preview-text').textContent()));
         await failure.context.close();
     } finally {
         await browser.close();

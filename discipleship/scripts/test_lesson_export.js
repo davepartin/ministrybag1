@@ -284,6 +284,46 @@ lessonFiles.forEach(function (name) {
 assert('description summaries strip markup',
     exporter.lessonSummary('202', 99, { description: '<strong>Synthetic fallback.</strong>' }) === 'Synthetic fallback.');
 
+var allJohnNotes = {};
+for (var chapter = 1; chapter <= 21; chapter++) allJohnNotes['notes-101-John-' + chapter] = 'SYN-chapter-' + chapter + '-end';
+allJohnNotes['notes-201-John-1'] = 'SYN-wrong-course';
+allJohnNotes['notes-101-John-99'] = 'SYN-orphan';
+var readingSnapshot = JSON.stringify(allJohnNotes);
+for (var lessonNum = 1; lessonNum <= 7; lessonNum++) {
+    var readingLesson = readLesson('101-0' + lessonNum + '.json');
+    var expectedRefs = readingLesson.blocks.filter(function (b) { return b.type === 'bible_reading'; })
+        .flatMap(function (b) { return b.chapters.map(function (ch) { return ch.ref; }); });
+    var noteExport = exporter.buildExport({ courseId: '101', currentLessonNum: lessonNum,
+        lessons: [{ num: lessonNum, data: readingLesson }], reading: allJohnNotes });
+    assert('101-0' + lessonNum + ' includes exactly its assigned chapter notes',
+        noteExport.includedIds.filter(function (id) { return id.startsWith('reading-notes-'); }).length === expectedRefs.length &&
+        expectedRefs.every(function (ref) { return noteExport.body.includes(ref + '\nSYN-chapter-' + ref.split(' ')[1] + '-end'); }));
+    assert('101-0' + lessonNum + ' excludes every unassigned chapter and course',
+        Object.keys(allJohnNotes).filter(function (key) { return !expectedRefs.some(function (ref) {
+            return key === 'notes-101-' + ref.replace(/\s+/g, '-');
+        }); }).every(function (key) { return !noteExport.body.includes(allJohnNotes[key]); }));
+}
+var notesOnly = { blocks: [{ type: 'bible_reading', chapters: [
+    { ref: 'John 1' }, { ref: 'John 2' }, { ref: 'John 3' }, { ref: 'John 1' }, null, { ref: 4 }, { ref: '' }
+] }] };
+var noteOpts = { courseId: '101', currentLessonNum: 1, lessons: [{ num: 1, data: notesOnly }], reading: allJohnNotes,
+    liveValues: { 'reading-notes-101-John-1': 'SYN-live\n<not markup> & "quoted"', 'reading-notes-101-John-2': '' } };
+var liveNotes = exporter.buildExport(noteOpts);
+assert('live notes preserve exact multiline text and symbols', liveNotes.body.includes('John 1\nSYN-live\n<not markup> & "quoted"'));
+assert('clearing live notes suppresses old saved notes', !liveNotes.body.includes('SYN-chapter-2-end') && !liveNotes.body.includes('John 2\n'));
+assert('notes-only lessons do not falsely report no written responses', !liveNotes.body.includes('No written responses'));
+assert('duplicate and malformed chapter references do not duplicate notes', liveNotes.includedIds.length === 2);
+assert('export does not mutate reading data', JSON.stringify(allJohnNotes) === readingSnapshot);
+var blankNotes = exporter.buildExport({ ...noteOpts, reading: { 'notes-101-John-1': '   ', 'notes-101-John-2': {}, 'notes-101-John-3': [] }, liveValues: {} });
+assert('blank and malformed notes produce no empty Reading Notes section', !blankNotes.body.includes('Reading Notes') && blankNotes.includedIds.length === 0);
+var wrongLessonNotes = exporter.buildExport({ ...noteOpts, currentLessonNum: 99 });
+assert('unknown lesson cannot export reading store', !wrongLessonNotes.body.includes('SYN-'));
+var noReadingLesson = exporter.buildExport({ ...noteOpts, lessons: [{ num: 1, data: lesson20101 }] });
+assert('a lesson without reading blocks exports no notes', !noReadingLesson.body.includes('Reading Notes') && !noReadingLesson.body.includes('SYN-chapter'));
+var legacyNotes = exporter.buildExport({ ...noteOpts, scope: 'course' });
+assert('legacy course scope limits notes to explicitly supplied lessons too', legacyNotes.body.includes('SYN-live') && !legacyNotes.body.includes('SYN-chapter-4-end'));
+assert('malformed reading store is ignored safely', !exporter.buildExport({ ...noteOpts, reading: [], liveValues: {} }).body.includes('Reading Notes'));
+
 if (failed) {
     console.error('\n' + failed + ' check(s) failed, ' + passed + ' passed.');
     process.exit(1);
