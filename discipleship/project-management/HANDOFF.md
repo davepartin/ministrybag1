@@ -1,5 +1,10 @@
 # Resume here
 
+## 202-05 suffering redraft waiting for Dave, November 12, 2026
+
+Claude redrafted 202-05 from Dave's collected direction on branch `claude/dazzling-brown-x7g9um` (not merged, no PR yet). Next action: Dave reads it and sends changes. Open decisions: the mosaic widget, the Piper credit line, and length. See logs/2026-11-12-L-202-05-REWORK-claude.md.
+
+
 ## 101-04 focused revision: REVIEW, November 12, 2026
 
 Dave directly assigned Codex to revamp 101-04 in voice, an exception to the default editorial lane established at the top of TEAM-BOARD. Branch: `codex/revamp-101-04`. Nicodemus now opens the lesson, repeated setup is shorter, and the Three Discovery Questions lead into practice sooner. All nine question objects, three verse blocks and the John 10-12 reading block are unchanged. The lesson remains introductory and complements the map/story/OIA sequence in 201-05/06/07; those lessons are unchanged.
