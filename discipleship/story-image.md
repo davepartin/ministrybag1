@@ -102,7 +102,7 @@ The scroll engine measures `progress` from `0` to `1` as the top of the image bl
 - **`progress = 0` (`fadeStartY`):** Image top is at **40% down** the visible content area (`contentTop + visibleHeight * 0.40`).
 - **`progress = 1` (`fadeEndY`):** Image top has scrolled to **22% above** the top bar (`contentTop + visibleHeight * -0.22`).
 
-Standard scroll timing: each crossfade spans 0.08 of scroll progress, each frame holds 0.08 by listing it twice, key story frames hold 0.16, and the last frame should arrive by about 0.8 so it is reached while the image is still on a phone screen.
+Standard scroll timing: each crossfade spans 0.08 of scroll progress, each frame holds 0.08 by listing it twice, key story frames hold 0.16, a final resolving dissolve may run 0.24 (three times the standard crossfade) when Dave wants a slow ending, and the last frame should arrive by about 0.8 so it is reached while the image is still on a phone screen.
 
 Important rule for stops: **Finish the final stop by about `0.8`, not at `1.0`.** At `progress = 1.0`, the top of the image is already 22% above the top bar. Ending the last stop around `0.8` keeps the final frame on a phone screen with the parable card still visible beneath it.
 
@@ -112,7 +112,7 @@ Important rule for stops: **Finish the final stop by about `0.8`, not at `1.0`.*
 - **3 frames (`201-02` The Family Robe):** `[0, 0.25, 0.45]`
 - **4 frames (`201-06` Creation):** `[0, 0.25, 0.4, 0.65]` (or `[0, 0.18, 0.34, 0.5]`)
 - **5 frames (`201-01` Running Father):** `[0, 0.16, 0.3, 0.44, 0.58]`
-- **9 entries with standard holds (`202-02` Wise Builder):** `[0, 0.08, 0.16, 0.24, 0.32, 0.48, 0.56, 0.72, 0.8]`
+- **7 entries with a slow last dissolve (`202-02` Wise Builder):** `[0, 0.08, 0.16, 0.24, 0.32, 0.48, 0.72]`
 
 ### How the Renderer Animates the Sequence
 
@@ -181,7 +181,7 @@ Optional field: `"frame": true` adds a 1px border (`.block-image-dissolve-framed
 | 201-09 | The Vine and the Branches | **4-Frame Sequence** | `vine-branches-seq-1.jpg` .. `4.jpg` (stops `[0, 0.18, 0.34, 0.5]`) | Live (`touchNext: true`) |
 | 201-10 | Coming to His Senses | B&W -> Color | `prodigal-son-two-brothers-bw.jpg` -> `prodigal-son-two-brothers-color.jpg` | Live (`touchNext: true`) |
 | 202-01 | The Good Samaritan | Single static | `good-samaritan-story.jpg` | Upgrade to sequence or dissolve (`touchNext: true`) |
-| 202-02 | The Wise and Foolish Builders | **9-Stop Sequence** | `house-rock-seq-1.jpg` .. `5.jpg` (stops `[0, 0.08, 0.16, 0.24, 0.32, 0.48, 0.56, 0.72, 0.8]`) | Live sequence |
+| 202-02 | The Wise and Foolish Builders | **7-Stop Sequence** | `house-rock-seq-1.jpg` .. `3.jpg`, `5.jpg` (stops `[0, 0.08, 0.16, 0.24, 0.32, 0.48, 0.72]`; seq-4 unused) | Live sequence |
 | 202-03 | The Early Church | **4-Frame Sequence** | `early-church-seq-1.jpg` .. `4.jpg` (stops `[0, 0.18, 0.34, 0.5]`) | Live (`touchNext: true`) |
 | 202-04 | The Five Farmers in the Field | B&W -> Color | `Farmer-bw.jpeg` -> `Farmer-color.jpg` | Live (`touchNext: true`) |
 | 202-05 | The Pit, the Prison, and the Palace | B&W -> Color | `202-05-joseph-pit-palace-bw.jpg` -> `202-05-joseph-pit-palace-color.jpg` | Live (`touchNext: true`) |

@@ -1190,7 +1190,7 @@
     "images/house-rock-seq-4.jpg": {
         "width": 1712,
         "height": 1152,
-        "sourceHash": "47edc65980b2531e3ce11279ec0d0b1f564a319244703d288954e9bd66a318cd",
+        "sourceHash": "242750a62ecb9fa4e5b8f0eb6a508164998c92d789dccc77790b32264238c100",
         "variants": [
             {
                 "src": "images/optimized/house-rock-seq-4-640.webp",
