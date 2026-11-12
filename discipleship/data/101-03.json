@@ -93,7 +93,7 @@
     {
       "type": "question",
       "id": "3-4",
-      "text": "3.3 - What are some things that God cares about that you could pray about?",
+      "text": "3.3 - What is one thing God cares about and one need of your own you will pray for this week?",
       "data_question": "3.3 - God's agenda"
     },
     {
@@ -110,9 +110,9 @@
     },
     {
       "type": "question",
-      "id": "3-5",
-      "text": "3.4 - What are some of your current needs that you want God to provide for?",
-      "data_question": "3.4 - Current needs"
+      "id": "3-hand",
+      "text": "3.4 - How would you explain the pattern Jesus gave to a friend who has never prayed?",
+      "height": "tall"
     },
     {
       "type": "subheading",
@@ -137,12 +137,6 @@
     {
       "type": "text",
       "text": "We have an enemy trying to steal, kill, and destroy. As we pray, we take our stand against the enemy and fight from victory through Jesus."
-    },
-    {
-      "type": "question",
-      "id": "3-7",
-      "text": "3.5 - What temptation or spiritual battle do you need God's help with right now?",
-      "data_question": "3.5 - Spiritual battles"
     },
     {
       "type": "heading",
