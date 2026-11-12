@@ -8,7 +8,6 @@
 var fs = require('fs');
 var path = require('path');
 var exporter = require('./lesson-export.js');
-var summaries = require('./lesson-email-summaries.js');
 
 var ROOT = path.resolve(__dirname, '..');
 var DATA_DIR = path.join(ROOT, 'data');
@@ -254,38 +253,35 @@ assert('email subject names both course and lesson',
     lessonExport.subject === 'My 202 Growing Up Course - Lesson 5: Suffering and Trials');
 assert('email does not repeat the lesson title',
     lessonExport.body.split('Lesson 5: Suffering and Trials').length === 2);
-assert('email includes the selected lesson summary before its answers',
-    lessonExport.body.indexOf(summaries['202-05'].join(' ')) > -1 &&
-    lessonExport.body.indexOf(summaries['202-05'][0]) < lessonExport.body.indexOf('SYN-202-05-mid'));
-assert('numbered responses keep the visible lesson question number',
-    lessonExport.body.includes('5.1\nSYN-202-05-mid'));
-assert('email uses question numbers rather than repeating question prompts',
-    !lessonExport.body.includes('5.1 -'));
-assert('unnumbered closing questions continue the lesson question order',
-    lessonExport.body.includes('5.8\nSYN-202-05-prayer'));
+var description20205 = exporter.lessonSummary('202', 5, lesson20205);
+assert('email includes the lesson description as its summary before the answers',
+    description20205.length > 0 && lessonExport.body.indexOf(description20205) > -1 &&
+    lessonExport.body.indexOf(description20205) < lessonExport.body.indexOf('SYN-202-05-mid'));
+assert('numbered responses keep the lesson question number and a short form of the question',
+    /^5\.1 [A-Z].+\nSYN-202-05-mid/m.test(lessonExport.body) && !lessonExport.body.includes('5.1 -'));
+assert('closing questions carry plain labels instead of made-up numbers',
+    lessonExport.body.includes("Key thing\n") && lessonExport.body.includes("This week's step\n") &&
+    lessonExport.body.includes('Prayer request\nSYN-202-05-prayer') && !lessonExport.body.includes('5.8\n'));
+assert('long questions are shortened with an ellipsis',
+    exporter.emailQuestionLabel({ kind: 'question', jsonId: 'x-1', label: '1.1 - ' + new Array(30).join('word ') + 'end' }, 1).endsWith('...'));
 assert('course heading uses Dave\'s requested format',
     exporter.courseLabel('201', 'Growing Deep') === '201 Growing Deep Course');
-assert('exactly the 37 current lessons have email summaries', Object.keys(summaries).length === 37);
-var segmenter = new Intl.Segmenter('en', { granularity: 'sentence' });
-Object.keys(summaries).forEach(function (id) {
-    assert(id + ' email summary is exactly three plain-text sentences',
-        summaries[id].length === 3 && Array.from(segmenter.segment(summaries[id].join(' '))).length === 3 &&
-        !/[<>]/.test(summaries[id].join(' ')));
-    assert(id + ' summary belongs to an existing lesson with questions',
-        readLesson(id + '.json').blocks.some(function (block) { return block.type === 'question'; }));
+var lessonFiles = fs.readdirSync(DATA_DIR).filter(function (name) { return /^\d{3}-\d{2}\.json$/.test(name); });
+lessonFiles.forEach(function (name) {
+    var id = name.replace('.json', '');
+    var data = readLesson(name);
     var course = id.split('-')[0];
     var num = Number(id.split('-')[1]);
-    var data = readLesson(id + '.json');
-    var numbered = exporter.buildExport({
-        courseId: course,
-        currentLessonNum: num,
-        lessons: [{ num: num, data: data }]
-    }).body.match(/^\d+\.\d+$/gm) || [];
-    assert(id + ' exported question numbers are unique and cover every question',
-        numbered.length === data.blocks.filter(function (block) { return block.type === 'question'; }).length &&
-        new Set(numbered).size === numbered.length);
+    assert(id + ' has a plain-text description to use as the email summary',
+        typeof data.description === 'string' && data.description.trim().length > 0 &&
+        !/[<>]/.test(exporter.lessonSummary(course, num, data)));
+    var body = exporter.buildExport({ courseId: course, currentLessonNum: num, lessons: [{ num: num, data: data }] }).body;
+    var labels = body.split('\n').filter(function (line, i, all) { return all[i + 1] === '[No response]'; });
+    var answerBlocks = data.blocks.filter(function (block) { return block.type === 'question' || block.type === 'checklist'; });
+    assert(id + ' email labels every question and checklist once and never with a bare number',
+        labels.length === answerBlocks.length && labels.every(function (l) { return !/^\d+\.\d+$/.test(l); }));
 });
-assert('unknown lessons do not acquire another lesson\'s summary',
+assert('description summaries strip markup',
     exporter.lessonSummary('202', 99, { description: '<strong>Synthetic fallback.</strong>' }) === 'Synthetic fallback.');
 
 if (failed) {

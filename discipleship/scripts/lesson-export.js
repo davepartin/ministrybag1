@@ -8,13 +8,12 @@
  * from a stored key shape.
  */
 (function (root, factory) {
-    var api = factory(typeof module === 'object' && module.exports
-        ? require('./lesson-email-summaries.js') : root.GrowingTogetherLessonEmailSummaries || {});
+    var api = factory();
     if (typeof module === 'object' && module.exports) {
         module.exports = api;
     }
     root.GrowingTogetherLessonExport = api;
-}(typeof globalThis !== 'undefined' ? globalThis : this, function (summaries) {
+}(typeof globalThis !== 'undefined' ? globalThis : this, function () {
     var RECOVERY_KEY = '__gtAmbiguousSharedAnswers';
     var MIGRATION_FLAG = '__gtSharedKeyMigrationV1';
     var EMPTY_RESPONSE = '[No response]';
@@ -148,10 +147,30 @@
         return [courseId, stripHtml(title), 'Course'].filter(Boolean).join(' ');
     }
 
+    // The summary is the lesson's own description, so there is one source of truth.
     function lessonSummary(courseId, lessonNum, lessonData) {
-        var id = courseId + '-' + String(lessonNum).padStart(2, '0');
-        if (Array.isArray(summaries[id])) return summaries[id].join(' ');
         return stripHtml(lessonData && lessonData.description || '');
+    }
+
+    var CLOSING_LABELS = { key: 'Key thing', step: "This week's step", devos: 'Daily devotions', prayer: 'Prayer request' };
+
+    // Numbered questions keep their number plus a short form of the question.
+    // Closing questions carry a plain label instead of a made-up number.
+    function emailQuestionLabel(field, lessonNum) {
+        var text = field.label || '';
+        var number = text.match(/^(\d+\.\d+)\s*-\s*(.*)$/);
+        if (number) return number[1] + ' ' + shortQuestion(number[2]);
+        var suffix = String(field.jsonId || '').split('-').pop();
+        if (CLOSING_LABELS[suffix]) return CLOSING_LABELS[suffix];
+        return shortQuestion(text);
+    }
+
+    function shortQuestion(text) {
+        var t = String(text || '').replace(/\s+/g, ' ').trim();
+        if (t.length <= 90) return t;
+        var cut = t.slice(0, 90);
+        var space = cut.lastIndexOf(' ');
+        return (space > 40 ? cut.slice(0, space) : cut) + '...';
     }
 
     function formatLessonSection(courseId, lessonNum, lessonData, metaTitle, responses, liveValues, summary) {
@@ -165,16 +184,10 @@
             text += 'No written responses in this lesson.\n\n';
             return { text: text, includedIds: includedIds, title: heading, fields: fields };
         }
-        var questionIndex = 0;
         for (var i = 0; i < fields.length; i++) {
             var field = fields[i];
             includedIds.push(field.runtimeId);
-            var label = field.label;
-            if (field.kind === 'question') {
-                questionIndex += 1;
-                var number = field.label.match(/^(\d+\.\d+)\b/);
-                label = number ? number[1] : lessonNum + '.' + questionIndex;
-            }
+            var label = field.kind === 'question' ? emailQuestionLabel(field, lessonNum) : field.label;
             text += label + '\n';
             text += formatStoredValue(field, readFieldValue(field, responses, liveValues)) + '\n\n';
         }
@@ -312,6 +325,7 @@
         formatStoredValue: formatStoredValue,
         courseLabel: courseLabel,
         lessonSummary: lessonSummary,
+        emailQuestionLabel: emailQuestionLabel,
         buildExport: buildExport,
         buildMailtoHref: buildMailtoHref,
         mailtoAdvisory: mailtoAdvisory,

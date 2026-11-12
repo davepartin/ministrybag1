@@ -87,8 +87,9 @@ async function onlyView(page, name) {
                 (await page.locator('#about-view a[target="_blank"]').getAttribute('rel')).includes('noopener'));
             check(width + ': no personal inbox, payment ask or form placeholder', !copy.includes('davepartin@gmail.com') &&
                 !/donat|100 users|tax.deduct|subscribe/i.test(copy) && await page.locator('#about-view form').count() === 0);
-            check(width + ': Scripture acknowledgment is in About only',
-                await page.locator('#about-view .esv-footnote').count() === 1 && await page.locator('#home-view .esv-footnote, #lesson-view .esv-footnote').count() === 0);
+            check(width + ': full Scripture acknowledgment is in About, with one short line kept on lessons',
+                await page.locator('#about-view .esv-footnote').count() === 1 && await page.locator('#home-view .esv-footnote').count() === 0 &&
+                await page.locator('#lesson-view .lesson-esv-footnote').count() === 1);
             await page.click('#about-acknowledgments summary');
             check(width + ': acknowledgment opens accessibly and retains ESV/WEB text', await page.locator('.esv-footnote').isVisible() &&
                 (await page.locator('.esv-footnote').innerText()).includes('World English Bible'));

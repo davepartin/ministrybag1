@@ -62,8 +62,9 @@ async function isolatedPage(browser, width) {
             check(width + ': blank PDF is a disabled whole-course placeholder', await page.locator('#course-pdf-btn').isDisabled() &&
                 (await page.locator('#course-pdf-btn').getAttribute('aria-label')).includes('201 Growing Deep Course, coming soon') &&
                 await page.locator('#course-pdf-btn').getAttribute('onclick') === null);
-            check(width + ': no acknowledgment, backup counts or restore instructions in lessons',
-                await page.locator('#lesson-view .esv-footnote, #lesson-view .export-hint, #lesson-view .backup-download-scope, #lesson-view #lesson-download-backup').count() === 0);
+            check(width + ': no backup counts or restore instructions in lessons, one short ESV line',
+                await page.locator('#lesson-view .export-hint, #lesson-view .backup-download-scope, #lesson-view #lesson-download-backup').count() === 0 &&
+                await page.locator('#lesson-view .lesson-esv-footnote').count() === 1);
             var controls = await page.locator('#bottom-nav').boundingBox();
             check(width + ': utility controls and lesson navigation fit on screen', controls.width <= width &&
                 await page.locator('#prev-btn').isVisible() && await page.locator('#next-btn').isVisible());
@@ -81,11 +82,12 @@ async function isolatedPage(browser, width) {
             await page.keyboard.press('Enter');
             await page.waitForSelector('#export-preview-overlay.open');
             var body = await page.locator('#export-preview-text').textContent();
-            var summary = await page.evaluate(function () { return GrowingTogetherLessonEmailSummaries['201-08'].join(' '); });
-            check(width + ': email contains course, lesson title and three-sentence summary',
-                body.startsWith('201 Growing Deep Course\n\nLesson 8: The Grace and Mercy Cycle\n\n' + summary));
-            check(width + ': email contains numbered answers, not repeated prompts', body.includes('8.1\nSYN-mercy') &&
-                body.includes('8.6\nSYN-prayer') && !body.includes('8.1 -'));
+            check(width + ': email contains course, lesson title and the lesson description as summary',
+                body.startsWith('201 Growing Deep Course\n\nLesson 8: The Grace and Mercy Cycle\n\n') &&
+                body.indexOf('Four words explain what God did for you at the cross') > -1);
+            check(width + ': email labels answers with number plus short question, and plain closing labels',
+                /^8\.1 [A-Z].*\nSYN-mercy/m.test(body) && body.includes('Prayer request\nSYN-prayer') &&
+                !body.includes('8.1 -') && !body.includes('8.6\n'));
             check(width + ': email excludes every other lesson and internal identifiers', !body.includes('SYN-private') &&
                 !body.includes('question-201-') && !body.includes('__gt'));
             check(width + ': email opens preview without opening or sending mail', await page.evaluate(function () {
