@@ -9,6 +9,7 @@
 'use strict';
 
 var { chromium } = require('playwright');
+var assets = require('./lesson-image-assets.js');
 
 var BASE = process.env.L20202_BASE_URL || 'http://127.0.0.1:8765/index.html';
 var FRAMES = [
@@ -92,6 +93,8 @@ async function readSequenceState(page) {
                 opacity: Number(img.style.opacity === '' ? window.getComputedStyle(img).opacity : img.style.opacity),
                 naturalWidth: img.naturalWidth,
                 naturalHeight: img.naturalHeight,
+                originalWidth: Number(img.getAttribute('width')),
+                originalHeight: Number(img.getAttribute('height')),
                 top: r.top,
                 left: r.left,
                 width: r.width,
@@ -129,7 +132,9 @@ async function readSequenceState(page) {
 }
 
 function srcMatches(src, expected) {
-    return typeof src === 'string' && src.indexOf(expected) !== -1;
+    return typeof src === 'string' && assets[expected].variants.some(function (variant) {
+        return src.indexOf(variant.src) !== -1;
+    });
 }
 
 (async function () {
@@ -153,7 +158,7 @@ function srcMatches(src, expected) {
         assert(width + ': old bw/color pair is not rendered', rest.hasBwPair === false);
         FRAMES.forEach(function (expected, idx) {
             assert(
-                width + ': frame ' + (idx + 1) + ' src is ' + expected,
+                width + ': frame ' + (idx + 1) + ' delivery copy matches ' + expected,
                 rest.frames[idx] && srcMatches(rest.frames[idx].src, expected),
                 rest.frames[idx] && rest.frames[idx].src
             );
@@ -165,9 +170,10 @@ function srcMatches(src, expected) {
             alt
         );
         var sizesMatch = rest.frames.every(function (frame) {
-            return frame.naturalWidth === 1712 && frame.naturalHeight === 1152;
+            return frame.originalWidth === 1712 && frame.originalHeight === 1152 &&
+                Math.abs(frame.naturalWidth / frame.naturalHeight - 1712 / 1152) < 0.01;
         });
-        assert(width + ': all frames are 1712x1152', sizesMatch, JSON.stringify(rest.frames.map(function (f) {
+        assert(width + ': all frames reserve 1712x1152 with matching proportions', sizesMatch, JSON.stringify(rest.frames.map(function (f) {
             return [f.naturalWidth, f.naturalHeight];
         })));
         assert(width + ': all seven saved-answer IDs render', rest.questions.every(Boolean), JSON.stringify(rest.questions));
