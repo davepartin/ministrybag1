@@ -8,12 +8,13 @@
  * from a stored key shape.
  */
 (function (root, factory) {
-    var api = factory();
+    var api = factory(typeof module === 'object' && module.exports
+        ? require('./lesson-email-summaries.js') : root.GrowingTogetherLessonEmailSummaries || {});
     if (typeof module === 'object' && module.exports) {
         module.exports = api;
     }
     root.GrowingTogetherLessonExport = api;
-}(typeof globalThis !== 'undefined' ? globalThis : this, function () {
+}(typeof globalThis !== 'undefined' ? globalThis : this, function (summaries) {
     var RECOVERY_KEY = '__gtAmbiguousSharedAnswers';
     var MIGRATION_FLAG = '__gtSharedKeyMigrationV1';
     var EMPTY_RESPONSE = '[No response]';
@@ -60,7 +61,7 @@
     function fieldLabel(block) {
         if (!block) return '';
         if (block.type === 'question') {
-            return stripHtml(block.data_question || block.text || block.id || '');
+            return stripHtml(block.text || block.data_question || block.id || '');
         }
         if (block.type === 'checklist') {
             return stripHtml(block.prompt || block.text || block.id || '');
@@ -143,20 +144,38 @@
         return 'Lesson ' + lessonNum;
     }
 
-    function formatLessonSection(courseId, lessonNum, lessonData, metaTitle, responses, liveValues) {
+    function courseLabel(courseId, title) {
+        return [courseId, stripHtml(title), 'Course'].filter(Boolean).join(' ');
+    }
+
+    function lessonSummary(courseId, lessonNum, lessonData) {
+        var id = courseId + '-' + String(lessonNum).padStart(2, '0');
+        if (Array.isArray(summaries[id])) return summaries[id].join(' ');
+        return stripHtml(lessonData && lessonData.description || '');
+    }
+
+    function formatLessonSection(courseId, lessonNum, lessonData, metaTitle, responses, liveValues, summary) {
         var title = lessonDisplayTitle(lessonNum, lessonData, metaTitle);
         var heading = 'Lesson ' + lessonNum + ': ' + title;
         var fields = collectLessonExportFields(courseId, lessonData);
         var includedIds = [];
-        var text = heading + '\n' + '-'.repeat(heading.length) + '\n\n';
+        var text = heading + '\n\n';
+        if (summary) text += summary + '\n\n';
         if (!fields.length) {
             text += 'No written responses in this lesson.\n\n';
             return { text: text, includedIds: includedIds, title: heading, fields: fields };
         }
+        var questionIndex = 0;
         for (var i = 0; i < fields.length; i++) {
             var field = fields[i];
             includedIds.push(field.runtimeId);
-            text += field.label + '\n';
+            var label = field.label;
+            if (field.kind === 'question') {
+                questionIndex += 1;
+                var number = field.label.match(/^(\d+\.\d+)\b/);
+                label = number ? number[1] : lessonNum + '.' + questionIndex;
+            }
+            text += label + '\n';
             text += formatStoredValue(field, readFieldValue(field, responses, liveValues)) + '\n\n';
         }
         return { text: text, includedIds: includedIds, title: heading, fields: fields };
@@ -207,7 +226,7 @@
             }
             if (!current) {
                 selectedTitle = 'Lesson ' + currentLessonNum;
-                body = courseTitle + ' - ' + selectedTitle + '\n' + DIVIDER + '\n\nNo written responses in this lesson.\n';
+                body = courseLabel(courseId, courseTitle) + '\n\n' + selectedTitle + '\n\nNo written responses in this lesson.\n';
             } else {
                 var lessonPart = formatLessonSection(
                     courseId,
@@ -215,11 +234,12 @@
                     current.data,
                     current.metaTitle,
                     responses,
-                    liveValues
+                    liveValues,
+                    lessonSummary(courseId, current.num, current.data)
                 );
                 selectedTitle = lessonPart.title;
                 includedIds = includedIds.concat(lessonPart.includedIds);
-                body = courseTitle + ' - ' + selectedTitle + '\n' + DIVIDER + '\n\n' + lessonPart.text;
+                body = courseLabel(courseId, courseTitle) + '\n\n' + lessonPart.text;
             }
         } else {
             selectedTitle = courseTitle;
@@ -246,7 +266,7 @@
 
         var subject = scope === 'course'
             ? ('My ' + courseTitle + ' Journey')
-            : ('My ' + selectedTitle);
+            : ('My ' + courseLabel(courseId, courseTitle) + ' - ' + selectedTitle);
 
         return {
             scope: scope,
@@ -290,6 +310,8 @@
         isInternalResponseKey: isInternalResponseKey,
         collectLessonExportFields: collectLessonExportFields,
         formatStoredValue: formatStoredValue,
+        courseLabel: courseLabel,
+        lessonSummary: lessonSummary,
         buildExport: buildExport,
         buildMailtoHref: buildMailtoHref,
         mailtoAdvisory: mailtoAdvisory,

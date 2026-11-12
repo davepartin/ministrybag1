@@ -8,6 +8,7 @@
 var fs = require('fs');
 var path = require('path');
 var exporter = require('./lesson-export.js');
+var summaries = require('./lesson-email-summaries.js');
 
 var ROOT = path.resolve(__dirname, '..');
 var DATA_DIR = path.join(ROOT, 'data');
@@ -246,6 +247,46 @@ var checklistExport = exporter.buildExport({
     responses: { 'checklist-101-service-interests': [0, 2] }
 });
 assert('checklist selections use the lesson item labels', checklistExport.body.indexOf('Greeting, Prayer') !== -1);
+
+assert('email heading includes the course number and course label',
+    lessonExport.body.startsWith('202 Growing Up Course\n\nLesson 5: Suffering and Trials\n\n'));
+assert('email subject names both course and lesson',
+    lessonExport.subject === 'My 202 Growing Up Course - Lesson 5: Suffering and Trials');
+assert('email does not repeat the lesson title',
+    lessonExport.body.split('Lesson 5: Suffering and Trials').length === 2);
+assert('email includes the selected lesson summary before its answers',
+    lessonExport.body.indexOf(summaries['202-05'].join(' ')) > -1 &&
+    lessonExport.body.indexOf(summaries['202-05'][0]) < lessonExport.body.indexOf('SYN-202-05-mid'));
+assert('numbered responses keep the visible lesson question number',
+    lessonExport.body.includes('5.1\nSYN-202-05-mid'));
+assert('email uses question numbers rather than repeating question prompts',
+    !lessonExport.body.includes('5.1 -'));
+assert('unnumbered closing questions continue the lesson question order',
+    lessonExport.body.includes('5.8\nSYN-202-05-prayer'));
+assert('course heading uses Dave\'s requested format',
+    exporter.courseLabel('201', 'Growing Deep') === '201 Growing Deep Course');
+assert('exactly the 37 current lessons have email summaries', Object.keys(summaries).length === 37);
+var segmenter = new Intl.Segmenter('en', { granularity: 'sentence' });
+Object.keys(summaries).forEach(function (id) {
+    assert(id + ' email summary is exactly three plain-text sentences',
+        summaries[id].length === 3 && Array.from(segmenter.segment(summaries[id].join(' '))).length === 3 &&
+        !/[<>]/.test(summaries[id].join(' ')));
+    assert(id + ' summary belongs to an existing lesson with questions',
+        readLesson(id + '.json').blocks.some(function (block) { return block.type === 'question'; }));
+    var course = id.split('-')[0];
+    var num = Number(id.split('-')[1]);
+    var data = readLesson(id + '.json');
+    var numbered = exporter.buildExport({
+        courseId: course,
+        currentLessonNum: num,
+        lessons: [{ num: num, data: data }]
+    }).body.match(/^\d+\.\d+$/gm) || [];
+    assert(id + ' exported question numbers are unique and cover every question',
+        numbered.length === data.blocks.filter(function (block) { return block.type === 'question'; }).length &&
+        new Set(numbered).size === numbered.length);
+});
+assert('unknown lessons do not acquire another lesson\'s summary',
+    exporter.lessonSummary('202', 99, { description: '<strong>Synthetic fallback.</strong>' }) === 'Synthetic fallback.');
 
 if (failed) {
     console.error('\n' + failed + ' check(s) failed, ' + passed + ' passed.');

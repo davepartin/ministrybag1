@@ -137,7 +137,9 @@ discipleship/
 - Sticky bottom bar with Previous/Next navigation and lesson number
 - Textareas auto-grow as the user types (no placeholder text)
 - All responses auto-save to localStorage silently
-- Email export sends only the current course
+- Email previews only the current lesson: course name, title, a three-sentence summary, question numbers and answers. Email-only summaries live in `scripts/lesson-email-summaries.js`; update the matching summary when a lesson's teaching changes. The UI has no course-email option.
+- Lesson navigation has two compact actions: Email and a disabled Download Blank PDF placeholder for the current course. Whole-course blank PDFs will be produced only when the course is ready; the placeholder does not print or download anything.
+- Scripture acknowledgments and collapsible backup/recovery tools live on home, not in every lesson footer. Save-error recovery controls stay available.
 - Lesson count is auto-detected: drop a new JSON file and it appears
 
 ## JSON Block Types
