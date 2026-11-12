@@ -12,9 +12,13 @@ Dave's separately requested one-sentence Daniel age clarification is integrated 
 
 Dave assigned a three-project batch per agent on November 12. Gemini: ART-202-05 Joseph, ART-202-06 Paul/Silas, ART-202-07 widow. Grok: ART-203-07 Jesus sends the 72, ART-203-03 Emmaus, ART-203-09 tentmakers. Codex: READ-101-NOTES, READ-101-RETRY, READ-101-A11Y, in that order. Each is a separate project/PR; jobs 2 and 3 wait for the owner's prior integration. These are assigned TODOs, not proof an agent has launched. TEAM-BOARD.md contains the bounded briefs and generated-map integration rules.
 
-READ-101-NOTES is integrated in #168 (`4798597`), with successful automatic Firebase/Pages deployments and 36 public-site notes checks. Codex continues sequentially through READ-101-RETRY, then READ-101-A11Y, under Dave's instruction to keep going through the queue while he is away. No new lesson wording, course PDF or artwork approval is implied.
+READ-101-NOTES is integrated in #168 (`4798597`), with successful automatic Firebase/Pages deployments and 36 public-site notes checks. READ-101-RETRY is integrated in #170 (`857bbd6`), automatic deployments succeeded and public retry browser 33 passes. READ-101-A11Y is at REVIEW, with 57 local keyboard/label/focus checks plus retry/notes regressions green. Codex continues under Dave's instruction to keep going through the queue while he is away. No new lesson wording, course PDF or artwork approval is implied.
+
+Grok's ART-203-07 is technically integrated in #169 (`487fc3d`): all non-image lesson values/IDs unchanged, image map reproducible, required/image checks and 61 Action/public browser checks pass; automatic deployments succeeded. Dave's personal art approval remains pending. Grok may take ART-203-03 next from fresh main.
 
 Keep approved questions untouched. Do not merge old #28 or #68 without a fresh current-state review; #165 is a duplicate of the integrated Daniel wording; #2 is outside this assignment. The older Claude-only instructions below are historical while the temporary delegation is active.
+
+**Hosting storage (2026-11-12):** previews expire after 3 days and originals in `images/*.jpg|jpeg|png` are not uploaded to Firebase (WebP copies serve every lesson). See Lessons learned on the board before touching previews.
 
 **Image build needs sharp:** see Lessons learned in TEAM-BOARD.md before running `build_lesson_images.js`.
 

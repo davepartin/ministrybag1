@@ -341,6 +341,36 @@
             }
         ]
     },
+    "images/203-03-emmaus-table-bw.jpg": {
+        "width": 1248,
+        "height": 832,
+        "sourceHash": "129b51c9c2dfdcb432c834d68442aa14946034559c5477766d897afcb8f2f399",
+        "variants": [
+            {
+                "src": "images/optimized/203-03-emmaus-table-bw-640.webp",
+                "width": 640
+            },
+            {
+                "src": "images/optimized/203-03-emmaus-table-bw-1248.webp",
+                "width": 1248
+            }
+        ]
+    },
+    "images/203-03-emmaus-table-color.jpg": {
+        "width": 1248,
+        "height": 832,
+        "sourceHash": "1473608c4316d906e728bd5984da58371cc6aa94cf5efb58c00e6aec208d9eac",
+        "variants": [
+            {
+                "src": "images/optimized/203-03-emmaus-table-color-640.webp",
+                "width": 640
+            },
+            {
+                "src": "images/optimized/203-03-emmaus-table-color-1248.webp",
+                "width": 1248
+            }
+        ]
+    },
     "images/203-06-daniel-window-bw.jpg": {
         "width": 1248,
         "height": 832,
