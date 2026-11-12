@@ -180,7 +180,7 @@
     "images/203-06-daniel-window-bw.jpg": {
         "width": 1248,
         "height": 832,
-        "sourceHash": "c561ba20592bce19115161c0e8d2e17ba8130aa8deb5427a624dadefae3b2e8f",
+        "sourceHash": "8e21f2cdf410613d161d42f9b983752fae44d2188f8fe0317c3439d8ab275cb6",
         "variants": [
             {
                 "src": "images/optimized/203-06-daniel-window-bw-640.webp",
@@ -195,7 +195,7 @@
     "images/203-06-daniel-window-color.jpg": {
         "width": 1248,
         "height": 832,
-        "sourceHash": "356acf2cb51661682b257a7dad5403efc388b15fc00d0c88fcecd9d6f4cd3f04",
+        "sourceHash": "2916164150869fecba05deff3d6707fc61a0c83a96bfc8e01e954178e1dd6210",
         "variants": [
             {
                 "src": "images/optimized/203-06-daniel-window-color-640.webp",
