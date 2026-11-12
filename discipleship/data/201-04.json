@@ -9,9 +9,23 @@
     },
     {
       "type": "image",
-      "imageBw": "images/soils-bw.jpeg",
-      "imageColor": "images/soils-color.jpg",
-      "alt": "A close up view of the four different soils: hard path, rocky ground, thorny ground, and good soil with deep roots",
+      "imageSequence": [
+        "images/soils-seq-1.jpg",
+        "images/soils-seq-2.jpg",
+        "images/soils-seq-3.jpg",
+        "images/soils-seq-4.jpg",
+        "images/soils-seq-5.jpg",
+        "images/soils-seq-6.jpg"
+      ],
+      "imageSequenceStops": [
+        0,
+        0.14,
+        0.27,
+        0.4,
+        0.53,
+        0.66
+      ],
+      "alt": "Four side-by-side windows of hard path, rocky ground, thorny ground, and good soil progressing together: birds take the seed, the sun scorches the shallow sprouts, thorns wrap and choke the plant, and good soil grows grain that multiplies",
       "touchNext": true
     },
     {

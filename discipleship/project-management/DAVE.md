@@ -85,4 +85,6 @@ When Dave approves a lesson, add one row with its task ID, date, reviewed commit
 | UI-SIGNIN-PILL | 2026-11-11 | PRs #138 and #139, merged as `e19e77c` and `ff64d98` | Dave in chat: pill shows Sign out when signed in ("merge it"); pill in the Starting blue with black text ("merge and deploy all"). Also #137 root no-cache, merged with "merge all three". |
 | REWORK-201-03 | 2026-11-11 | PR #140, merged as `3745b0b` | Dave in chat: eight wording changes from the preview, then "merge and deploy all". data/201-03.json sha256 cc798d2ca1b8; widgets/guide-spirit2.html sha256 74a70a0fa939. |
 | REWORK-101-06 | 2026-11-11 | PR #142, merged as `4bc27e6` | Dave in chat: six wording changes from the preview, then "merge it". data/101-06.json sha256 2a2b5f2bcc5f. |
+| PERF-001a | 2026-11-11 | PR #143 (Codex/ChatGPT), merged as `1ff9ba9` | Dave in chat: "merge both" after Claude's review (checks pass, preview verified at phone size, originals kept, test scripts excluded from upload). First of ChatGPT's four 101 fixes. |
+| REWORK-203-08 | 2026-11-11 | PR #144, merged as `4311378` | Dave in chat: light trim only, questions untouched; "merge both". data/203-08.json sha256 897f1428f1d9. Section A of the series plan is complete. |
 
