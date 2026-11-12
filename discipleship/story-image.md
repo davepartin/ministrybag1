@@ -160,7 +160,7 @@ Optional field: `"frame": true` adds a 1px border (`.block-image-dissolve-framed
 | 203-03 | Stay with Us | None | - | Needs story art |
 | 203-04 | The Towel and the Basin | B&W -> Color | `jesus-washing-feet-bw.png` -> `jesus-washing-feet-color.png` | Live (`touchNext: true`) |
 | 203-05 | I Was Blind, Now I See | **2-Frame Sequence** | `blind-1-closedeyes.jpg`, `blind-2-openeyes.jpg` (stops `[0, 0.4]`) | Live sequence |
-| 203-06 | Faithful in Babylon | None | - | Tracked as `ART-004` (Daniel) |
+| 203-06 | Faithful in Babylon | B&W -> Color | `203-06-daniel-window-bw.jpg` -> `203-06-daniel-window-color.jpg` | Live (`touchNext: true`) |
 | 203-07 | Jesus Sends the 72 | Single in parable | `jesus-sends-72.jpg` (inside `parable` block) | Move to standalone `image` block + dissolve/sequence |
 | 203-08 | Four Generations | Single B&W | `203.08-paul-timothy-bw.jpg` (`touchNext: true`) | Tracked as `ART-008` (add color or sequence) |
 | 203-09 | The Tentmakers | None | - | Needs Priscilla/Aquila tentmaking art |

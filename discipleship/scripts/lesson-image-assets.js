@@ -176,6 +176,36 @@
                 "width": 450
             }
         ]
+    },
+    "images/203-06-daniel-window-bw.jpg": {
+        "width": 1248,
+        "height": 832,
+        "sourceHash": "c561ba20592bce19115161c0e8d2e17ba8130aa8deb5427a624dadefae3b2e8f",
+        "variants": [
+            {
+                "src": "images/optimized/203-06-daniel-window-bw-640.webp",
+                "width": 640
+            },
+            {
+                "src": "images/optimized/203-06-daniel-window-bw-1248.webp",
+                "width": 1248
+            }
+        ]
+    },
+    "images/203-06-daniel-window-color.jpg": {
+        "width": 1248,
+        "height": 832,
+        "sourceHash": "356acf2cb51661682b257a7dad5403efc388b15fc00d0c88fcecd9d6f4cd3f04",
+        "variants": [
+            {
+                "src": "images/optimized/203-06-daniel-window-color-640.webp",
+                "width": 640
+            },
+            {
+                "src": "images/optimized/203-06-daniel-window-color-1248.webp",
+                "width": 1248
+            }
+        ]
     }
 };
     if (typeof module === "object" && module.exports) module.exports = assets;

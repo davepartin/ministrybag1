@@ -19,7 +19,9 @@ var SOURCES = [
     'images/woman-well-bw.png',
     'images/woman-well-color.png',
     'images/203-02-bless-logo.png',
-    'images/101-starting-logo-v3.png'
+    'images/101-starting-logo-v3.png',
+    'images/203-06-daniel-window-bw.jpg',
+    'images/203-06-daniel-window-color.jpg'
 ];
 
 (async function () {
