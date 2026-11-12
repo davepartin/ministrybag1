@@ -16,6 +16,8 @@ READ-101-NOTES is integrated in #168 (`4798597`), with successful automatic Fire
 
 Keep approved questions untouched. Do not merge old #28 or #68 without a fresh current-state review; #165 is a duplicate of the integrated Daniel wording; #2 is outside this assignment. The older Claude-only instructions below are historical while the temporary delegation is active.
 
+**Hosting storage (2026-11-12):** previews expire after 3 days and originals in `images/*.jpg|jpeg|png` are not uploaded to Firebase (WebP copies serve every lesson). See Lessons learned on the board before touching previews.
+
 **Image build needs sharp:** see Lessons learned in TEAM-BOARD.md before running `build_lesson_images.js`.
 
 **Team board (2026-11-12):** every agent starts at `TEAM-BOARD.md`; Codex temporarily coordinates and merges reviewed, passing work under Dave's delegation above.
