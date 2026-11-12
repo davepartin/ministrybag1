@@ -1187,6 +1187,66 @@
             }
         ]
     },
+    "images/emmaus-bread-seq-1.jpg": {
+        "width": 1248,
+        "height": 832,
+        "sourceHash": "f9b0eb9bd03eb3c7d2d0b24f1228ed792b9f4ad8c8e2e010fda514637b601437",
+        "variants": [
+            {
+                "src": "images/optimized/emmaus-bread-seq-1-640.webp",
+                "width": 640
+            },
+            {
+                "src": "images/optimized/emmaus-bread-seq-1-1248.webp",
+                "width": 1248
+            }
+        ]
+    },
+    "images/emmaus-bread-seq-2.jpg": {
+        "width": 1248,
+        "height": 832,
+        "sourceHash": "02f8b524df17f8364ab01637f45dabbb5370f0b0e299231dd2461a5fa7382f47",
+        "variants": [
+            {
+                "src": "images/optimized/emmaus-bread-seq-2-640.webp",
+                "width": 640
+            },
+            {
+                "src": "images/optimized/emmaus-bread-seq-2-1248.webp",
+                "width": 1248
+            }
+        ]
+    },
+    "images/emmaus-bread-seq-3.jpg": {
+        "width": 1248,
+        "height": 832,
+        "sourceHash": "37c7374f85651a882332624507c2cf714e42efa7c57646945615e2e280ede37d",
+        "variants": [
+            {
+                "src": "images/optimized/emmaus-bread-seq-3-640.webp",
+                "width": 640
+            },
+            {
+                "src": "images/optimized/emmaus-bread-seq-3-1248.webp",
+                "width": 1248
+            }
+        ]
+    },
+    "images/emmaus-bread-seq-4.jpg": {
+        "width": 1248,
+        "height": 832,
+        "sourceHash": "b0604b37e503a12699bce9873e1101753d1337fad32f0e91affba10969144980",
+        "variants": [
+            {
+                "src": "images/optimized/emmaus-bread-seq-4-640.webp",
+                "width": 640
+            },
+            {
+                "src": "images/optimized/emmaus-bread-seq-4-1248.webp",
+                "width": 1248
+            }
+        ]
+    },
     "images/fruit-tree-story-color.jpg": {
         "width": 1280,
         "height": 720,

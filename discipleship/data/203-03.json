@@ -9,9 +9,19 @@
     },
     {
       "type": "image",
-      "imageBw": "images/203-03-emmaus-table-bw.jpg",
-      "imageColor": "images/203-03-emmaus-table-color.jpg",
-      "alt": "Jesus breaks bread at a low table in a village house as two followers recognize Him, lamp light against a dusk doorway",
+      "imageSequence": [
+        "images/emmaus-bread-seq-1.jpg",
+        "images/emmaus-bread-seq-2.jpg",
+        "images/emmaus-bread-seq-3.jpg",
+        "images/emmaus-bread-seq-4.jpg"
+      ],
+      "imageSequenceStops": [
+        0,
+        0.18,
+        0.34,
+        0.5
+      ],
+      "alt": "Jesus sits at a low table with two travelers at Emmaus and breaks a round loaf of bread in his hands",
       "touchNext": true
     },
     {
