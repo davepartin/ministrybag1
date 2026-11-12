@@ -16,10 +16,26 @@
     },
     {
       "type": "image",
-      "src": "images/good-samaritan-story.jpg",
-      "alt": "A Samaritan kneeling in the dirt beside a wounded stranger on a desolate road",
-      "width": "100%",
-      "align": "center"
+      "imageSequence": [
+        "images/202-01-good-samaritan-seq-1.jpg",
+        "images/202-01-good-samaritan-seq-1.jpg",
+        "images/202-01-good-samaritan-seq-2.jpg",
+        "images/202-01-good-samaritan-seq-2.jpg",
+        "images/202-01-good-samaritan-seq-3.jpg",
+        "images/202-01-good-samaritan-seq-3.jpg",
+        "images/202-01-good-samaritan-seq-4.jpg"
+      ],
+      "imageSequenceStops": [
+        0,
+        0.08,
+        0.16,
+        0.24,
+        0.32,
+        0.40,
+        0.64
+      ],
+      "alt": "A Samaritan kneeling beside a wounded stranger while a priest and a Levite walk away up the road",
+      "touchNext": true
     },
     {
       "type": "parable",
