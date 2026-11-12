@@ -28,6 +28,7 @@ Dave drew much of the art himself before the bots arrived. **Before generating a
 | `jesus-light-bw.jpg`, `jesus-light-color.jpg` | Jesus as light | Finished pair, unused. Ask Dave which lesson. |
 | `soils-bw.jpeg`, `soils-color.jpg` | Four soils (201-04) | Finished pair. Replaced by the six-frame sequence in #147. |
 | `running-father-bw3.jpeg`, `running-father-color3.jpeg` | Running father (201-01) | Finished pair. Replaced by the five-frame sequence. |
+| `203-03-emmaus-table-bw.jpg`, `203-03-emmaus-table-color.jpg` | Stay with Us (203-03) | Heavy charcoal pair from #171. Replaced by the four-frame bread sequence. Files stay in the folder unused. |
 | `house-rock-1.png`, `house-rock-2.jpg`, `house-rock-3.jpg` | Two builders (202-02) | Earlier frames. Replaced by the storm sequence in #135. |
 | `202.08-abram-covenant-bw.png`, `202.08-abram-covenant-color.png` | Abram's covenant (202-08) | Finished pair, unused; 202-08 uses the marble and chisel pair. |
 | `boy-and-tree.png` (+ bw, color) | Boy and tree | Unused. Ask Dave. |
@@ -191,7 +192,7 @@ Optional field: `"frame": true` adds a 1px border (`.block-image-dissolve-framed
 | 202-10 | The Table He Longed For | B&W -> Color | `last-supper-bw.jpg` -> `last-supper-color.jpg` | Live (`touchNext: true`, `frame: true`) |
 | 203-01 | On the Mountain | Logo only | `203-3circle-logo.png` | Needs story art if parable kept |
 | 203-02 | A Prayer Before the Answer | Logo only | `203-02-bless-logo.png` | Needs Nehemiah story art |
-| 203-03 | Stay with Us | B&W -> Color | `203-03-emmaus-table-bw.jpg` -> `203-03-emmaus-table-color.jpg` | Live (`touchNext: true`) |
+| 203-03 | Stay with Us | **4-Frame Sequence** | `emmaus-bread-seq-1.jpg` .. `4.jpg` (stops `[0, 0.18, 0.34, 0.5]`) | Live (`touchNext: true`); old dissolve pair stays unused |
 | 203-04 | The Towel and the Basin | B&W -> Color | `jesus-washing-feet-bw.png` -> `jesus-washing-feet-color.png` | Live (`touchNext: true`) |
 | 203-05 | I Was Blind, Now I See | **2-Frame Sequence** | `blind-1-closedeyes.jpg`, `blind-2-openeyes.jpg` (stops `[0, 0.4]`) | Live sequence |
 | 203-06 | Faithful in Babylon | B&W -> Color | `203-06-daniel-window-bw.jpg` -> `203-06-daniel-window-color.jpg` | Live (`touchNext: true`) |
