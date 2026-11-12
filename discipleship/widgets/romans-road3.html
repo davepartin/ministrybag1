@@ -91,10 +91,9 @@ body {
 }
 
 .title-bar {
-  background: var(--step-color);
+  background: var(--ink);
   padding: 8px 14px;
   text-align: center;
-  transition: background-color 0.35s ease;
 }
 
 .title-bar h1 {
@@ -104,12 +103,13 @@ body {
   letter-spacing: 0.2px;
 }
 
-/* Perspective Gravel Road & Nevada Sunset Stage */
+/* Perspective Gravel Road & Sunset Stage */
 .stage {
   position: relative;
   aspect-ratio: 380 / 226;
   background: var(--paper);
   border-bottom: 1px solid #eee9df;
+  overflow: hidden;
 }
 
 .stage svg {
@@ -172,19 +172,6 @@ svg .road-base {
   stroke-linejoin: round;
 }
 
-svg .road-lit {
-  opacity: 0;
-  transition: opacity 0.35s ease;
-}
-
-svg .road-lit.lit-a { fill: var(--blue-soft); }
-svg .road-lit.lit-b { fill: var(--red-soft); }
-svg .road-lit.lit-c { fill: var(--green-soft); }
-
-svg .road-lit.on {
-  opacity: 0.92;
-}
-
 svg .pebble {
   fill: #9b9283;
   opacity: 0.65;
@@ -197,9 +184,34 @@ svg .shrub {
   stroke-linecap: round;
 }
 
-/* Road Signs (A, B, C) with per-step natural color theme */
+/* Road Signs (A, B, C) with per-step natural color theme & sky-drop entry */
+@keyframes signFallStick {
+  0% { transform: translateY(-230px); }
+  76% { transform: translateY(4px); }
+  90% { transform: translateY(-1.5px); }
+  100% { transform: translateY(0); }
+}
+
 svg .sign-group {
   cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 280ms ease;
+}
+
+svg .sign-group.planted {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+svg .sign-drop {
+  transform: translateY(-56px);
+  transition: transform 280ms ease-in;
+}
+
+svg .sign-group.planted .sign-drop {
+  transform: translateY(0);
+  animation: signFallStick 460ms cubic-bezier(0.22, 1, 0.36, 1) var(--drop-delay, 0ms) both;
 }
 
 svg .sign-group[data-step="1"] {
@@ -222,6 +234,17 @@ svg .sign-group[data-step="3"] {
 
 svg .sign-shadow {
   fill: #e0d9cb;
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: scale(0.35);
+  transition: opacity 180ms ease, transform 220ms ease;
+}
+
+svg .sign-group.planted .sign-shadow {
+  opacity: 1;
+  transform: scale(1);
+  transition-delay: calc(var(--drop-delay, 0ms) + 270ms);
 }
 
 svg .sign-post {
@@ -368,8 +391,7 @@ svg .sign-group.active .sign-title {
 
 .verse-card-bar {
   height: 4px;
-  background: var(--step-color);
-  transition: background-color 0.3s ease;
+  background: var(--ink);
 }
 
 .verse-card-content {
@@ -457,17 +479,20 @@ button:focus-visible {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .title-bar,
   svg .sun-halo,
   svg .sun-orb,
   svg .sun-ray,
-  svg .road-lit,
+  svg .sign-group,
+  svg .sign-drop,
+  svg .sign-shadow,
   svg .sign-board,
   svg .sign-badge,
   svg .sign-icon,
   .step-pill,
-  .verse-card-bar {
+  .card-heading,
+  .nav-btn.primary {
     transition: none !important;
+    animation: none !important;
   }
 }
 </style>
@@ -510,9 +535,9 @@ button:focus-visible {
       pill: 'Start',
       heading: 'The ABCs of Salvation',
       verse: 'Paul\'s letter to the Romans lays out the road back to God across three simple road signs: <b>Admit</b>, <b>Believe</b>, and <b>Confess</b>.',
-      note: 'Tap <b>Begin</b> or choose any sign ahead to follow the road.',
+      note: 'Tap <b>Begin</b> or choose any stop below to walk the Romans Road.',
       ref: 'Romans 3:23; 5:8; 6:23; 10:9',
-      aria: 'A straight gravel desert road stretches forward to a Nevada sunset on the center horizon, lined with three progressive roadside signs: A Admit Sin near the bottom-left, B Believe in Jesus as Savior mid-right, and C Confess Jesus as Lord farther down on the left.'
+      aria: 'An open desert gravel road stretches forward to a golden sun rising at the center horizon, ready for three roadside signs.'
     },
     {
       pill: 'A · Admit',
@@ -520,7 +545,7 @@ button:focus-visible {
       verse: '"For <b>all have sinned</b> and fall short of the glory of God." "The wages of sin is death, but the <b>free gift of God</b> is eternal life in Christ Jesus our Lord."',
       note: '<b>Your part:</b> admit your need honestly. <b>God\'s part:</b> He already put a free gift on the table.',
       ref: 'Romans 3:23; 6:23',
-      aria: 'Roadside sign A in the foreground left lights up: Admit Sin, highlighting the start of the gravel road.'
+      aria: 'Blue roadside sign A drops into the left foreground: Admit SIN.'
     },
     {
       pill: 'B · Believe',
@@ -528,7 +553,7 @@ button:focus-visible {
       verse: '"God shows his love for us in that <b>while we were still sinners</b>, Christ died for us."',
       note: '<b>Your part:</b> trust Jesus and His cross. <b>God\'s part:</b> He loved you first and paid the whole cost.',
       ref: 'Romans 5:8',
-      aria: 'The gravel road lights up farther ahead to Sign B with the cross on the right shoulder: Believe in Jesus as Savior.'
+      aria: 'Red roadside sign B with the cross drops into the right shoulder: Believe in Jesus as Savior.'
     },
     {
       pill: 'C · Confess',
@@ -536,7 +561,7 @@ button:focus-visible {
       verse: '"If you <b>confess with your mouth</b> that Jesus is Lord and <b>believe in your heart</b> that God raised him from the dead, you will be saved... Everyone who calls on the name of the Lord will be saved."',
       note: '<b>Your part:</b> bow to King Jesus and call on Him. <b>God\'s part:</b> He raised Jesus and keeps His promise.',
       ref: 'Romans 10:9, 13',
-      aria: 'The entire gravel road glows all the way to the Nevada sunset at the horizon as Sign C with the crown on the far left lights up: Confess Jesus as Lord.'
+      aria: 'Green roadside sign C with the crown drops onto the left roadside ahead of A: Confess Jesus as Lord.'
     }
   ];
 
@@ -565,14 +590,6 @@ button:focus-visible {
   var defs = el('defs', {}, svg);
   var skyClip = el('clipPath', { id: 'above-horizon' }, defs);
   el('rect', { x: 0, y: 0, width: 380, height: HY }, skyClip);
-
-  // Clip sections of the gravel road as progress advances (bottom y=226 up toward HY=78)
-  var litClip1 = el('clipPath', { id: 'lit-a' }, defs);
-  el('rect', { x: 0, y: 158, width: 380, height: VH - 158 }, litClip1);
-  var litClip2 = el('clipPath', { id: 'lit-b' }, defs);
-  el('rect', { x: 0, y: 112, width: 380, height: VH - 112 }, litClip2);
-  var litClip3 = el('clipPath', { id: 'lit-c' }, defs);
-  el('rect', { x: 0, y: HY, width: 380, height: VH - HY }, litClip3);
 
   el('rect', { x: 0, y: 0, width: 380, height: VH, fill: '#fdfdfb' }, svg);
 
@@ -615,13 +632,6 @@ button:focus-visible {
   var roadPoly = '184,' + HY + ' 196,' + HY + ' 276,' + VH + ' 104,' + VH;
   el('polygon', { points: roadPoly, class: 'road-base' }, svg);
 
-  // Illuminated road progression layers (blue A, red B, green C)
-  var roadLits = [
-    el('polygon', { points: roadPoly, class: 'road-lit lit-a', 'clip-path': 'url(#lit-a)' }, svg),
-    el('polygon', { points: roadPoly, class: 'road-lit lit-b', 'clip-path': 'url(#lit-b)' }, svg),
-    el('polygon', { points: roadPoly, class: 'road-lit lit-c', 'clip-path': 'url(#lit-c)' }, svg)
-  ];
-
   // Re-stroke crisp road edges on top of fills (no center or outer gray lines)
   el('path', {
     d: 'M 104 ' + VH + ' L 184 ' + HY + ' M 276 ' + VH + ' L 196 ' + HY,
@@ -655,71 +665,60 @@ button:focus-visible {
   // Sign C: Pulled closer to Sign A on Left so horizon line HY=78 stays unobstructed - C | Confess / Jesus as / Lord + Crown
   (function () {
     var g = el('g', { class: 'sign-group', 'data-step': '3' }, svg);
-    // Two legs + subtle ground shadows cleanly between horizon and Sign A
     el('ellipse', { cx: 63, cy: 136, rx: 6.5, ry: 1.8, class: 'sign-shadow' }, g);
     el('ellipse', { cx: 129, cy: 136, rx: 6.5, ry: 1.8, class: 'sign-shadow' }, g);
-    el('line', { x1: 63, y1: 125, x2: 63, y2: 136, class: 'sign-post', 'stroke-width': 2 }, g);
-    el('line', { x1: 129, y1: 125, x2: 129, y2: 136, class: 'sign-post', 'stroke-width': 2 }, g);
-    // Compact distant board: x=44..148, y=88..126 (104x38), 10px below horizon HY=78
-    el('rect', { x: 44, y: 88, width: 104, height: 38, rx: 5.5, class: 'sign-board' }, g);
-    // Tall left badge box with big C
-    el('rect', { x: 48, y: 92, width: 26, height: 30, rx: 4.5, class: 'sign-badge' }, g);
-    el('text', { x: 61, y: 107, class: 'sign-letter', style: 'font-size:20px' }, g).textContent = 'C';
-    // Right text column
-    el('text', { x: 80, y: 97, class: 'sign-title', style: 'font-size:9.6px;text-anchor:start' }, g).textContent = 'Confess';
-    el('text', { x: 80, y: 106.5, class: 'sign-sub', style: 'font-size:9.2px;text-anchor:start' }, g).textContent = 'Jesus as';
-    el('text', { x: 80, y: 118, class: 'sign-title', style: 'font-size:9.8px;text-anchor:start' }, g).textContent = 'Lord';
-    // Crown right beside "Lord" with clear gap from "Jesus as"
+    var d = el('g', { class: 'sign-drop' }, g);
+    el('line', { x1: 63, y1: 125, x2: 63, y2: 136, class: 'sign-post', 'stroke-width': 2 }, d);
+    el('line', { x1: 129, y1: 125, x2: 129, y2: 136, class: 'sign-post', 'stroke-width': 2 }, d);
+    el('rect', { x: 44, y: 88, width: 104, height: 38, rx: 5.5, class: 'sign-board' }, d);
+    el('rect', { x: 48, y: 92, width: 26, height: 30, rx: 4.5, class: 'sign-badge' }, d);
+    el('text', { x: 61, y: 107, class: 'sign-letter', style: 'font-size:20px' }, d).textContent = 'C';
+    el('text', { x: 80, y: 97, class: 'sign-title', style: 'font-size:9.6px;text-anchor:start' }, d).textContent = 'Confess';
+    el('text', { x: 80, y: 106.5, class: 'sign-sub', style: 'font-size:9.2px;text-anchor:start' }, d).textContent = 'Jesus as';
+    el('text', { x: 80, y: 118, class: 'sign-title', style: 'font-size:9.8px;text-anchor:start' }, d).textContent = 'Lord';
     el('path', {
       d: 'M 114 121 L 112.5 115 L 117 117.5 L 121 113 L 125 117.5 L 129.5 115 L 128 121 Z',
       class: 'sign-icon',
       'stroke-width': 1.4
-    }, g);
+    }, d);
     signGroups[3] = g;
   })();
 
   // Sign B: ~40% up from bottom on Right (Medium perspective) - B | Believe / in Jesus / as Savior + Cross
   (function () {
     var g = el('g', { class: 'sign-group', 'data-step': '2' }, svg);
-    // Two legs + subtle ground shadows
     el('ellipse', { cx: 264, cy: 172, rx: 8, ry: 2.3, class: 'sign-shadow' }, g);
     el('ellipse', { cx: 348, cy: 172, rx: 8, ry: 2.3, class: 'sign-shadow' }, g);
-    el('line', { x1: 264, y1: 152, x2: 264, y2: 172, class: 'sign-post', 'stroke-width': 2.6 }, g);
-    el('line', { x1: 348, y1: 152, x2: 348, y2: 172, class: 'sign-post', 'stroke-width': 2.6 }, g);
-    // Medium board: x=242..370, y=102..152 (128x50)
-    el('rect', { x: 242, y: 102, width: 128, height: 50, rx: 7, class: 'sign-board' }, g);
-    // Tall left badge box with big B
-    el('rect', { x: 247, y: 107, width: 34, height: 40, rx: 5.5, class: 'sign-badge' }, g);
-    el('text', { x: 264, y: 127, class: 'sign-letter', style: 'font-size:25px' }, g).textContent = 'B';
-    // Right text column
-    el('text', { x: 289, y: 115, class: 'sign-title', style: 'font-size:11.5px;text-anchor:start' }, g).textContent = 'Believe';
-    el('text', { x: 289, y: 128, class: 'sign-sub', style: 'font-size:10.8px;text-anchor:start' }, g).textContent = 'in Jesus';
-    el('text', { x: 289, y: 141, class: 'sign-title', style: 'font-size:10.8px;text-anchor:start' }, g).textContent = 'as Savior';
-    // Cross right beside "as Savior"
+    var d = el('g', { class: 'sign-drop' }, g);
+    el('line', { x1: 264, y1: 152, x2: 264, y2: 172, class: 'sign-post', 'stroke-width': 2.6 }, d);
+    el('line', { x1: 348, y1: 152, x2: 348, y2: 172, class: 'sign-post', 'stroke-width': 2.6 }, d);
+    el('rect', { x: 242, y: 102, width: 128, height: 50, rx: 7, class: 'sign-board' }, d);
+    el('rect', { x: 247, y: 107, width: 34, height: 40, rx: 5.5, class: 'sign-badge' }, d);
+    el('text', { x: 264, y: 127, class: 'sign-letter', style: 'font-size:25px' }, d).textContent = 'B';
+    el('text', { x: 289, y: 115, class: 'sign-title', style: 'font-size:11.5px;text-anchor:start' }, d).textContent = 'Believe';
+    el('text', { x: 289, y: 128, class: 'sign-sub', style: 'font-size:10.8px;text-anchor:start' }, d).textContent = 'in Jesus';
+    el('text', { x: 289, y: 141, class: 'sign-title', style: 'font-size:10.8px;text-anchor:start' }, d).textContent = 'as Savior';
     el('path', {
       d: 'M 350 133 V 146 M 345 137.5 H 355',
       class: 'sign-icon',
       'stroke-width': 2.1
-    }, g);
+    }, d);
     signGroups[2] = g;
   })();
 
   // Sign A: Bottom-Left Foreground (Largest perspective) - A | Admit / SIN
   (function () {
     var g = el('g', { class: 'sign-group', 'data-step': '1' }, svg);
-    // Two legs + subtle ground shadows
     el('ellipse', { cx: 26, cy: 222, rx: 9, ry: 2.4, class: 'sign-shadow' }, g);
     el('ellipse', { cx: 98, cy: 222, rx: 9, ry: 2.4, class: 'sign-shadow' }, g);
-    el('line', { x1: 26, y1: 199, x2: 26, y2: 222, class: 'sign-post', 'stroke-width': 3.2 }, g);
-    el('line', { x1: 98, y1: 199, x2: 98, y2: 222, class: 'sign-post', 'stroke-width': 3.2 }, g);
-    // Largest foreground board: x=8..116, y=145..199 (108x54)
-    el('rect', { x: 8, y: 145, width: 108, height: 54, rx: 8, class: 'sign-board' }, g);
-    // Tall left badge box with big A
-    el('rect', { x: 14, y: 151, width: 38, height: 42, rx: 6, class: 'sign-badge' }, g);
-    el('text', { x: 33, y: 172, class: 'sign-letter', style: 'font-size:27px' }, g).textContent = 'A';
-    // Right text column
-    el('text', { x: 83, y: 164, class: 'sign-title', style: 'font-size:14px' }, g).textContent = 'Admit';
-    el('text', { x: 83, y: 181, class: 'sign-title', style: 'font-size:14px' }, g).textContent = 'SIN';
+    var d = el('g', { class: 'sign-drop' }, g);
+    el('line', { x1: 26, y1: 199, x2: 26, y2: 222, class: 'sign-post', 'stroke-width': 3.2 }, d);
+    el('line', { x1: 98, y1: 199, x2: 98, y2: 222, class: 'sign-post', 'stroke-width': 3.2 }, d);
+    el('rect', { x: 8, y: 145, width: 108, height: 54, rx: 8, class: 'sign-board' }, d);
+    el('rect', { x: 14, y: 151, width: 38, height: 42, rx: 6, class: 'sign-badge' }, d);
+    el('text', { x: 33, y: 172, class: 'sign-letter', style: 'font-size:27px' }, d).textContent = 'A';
+    el('text', { x: 83, y: 164, class: 'sign-title', style: 'font-size:14px' }, d).textContent = 'Admit';
+    el('text', { x: 83, y: 181, class: 'sign-title', style: 'font-size:14px' }, d).textContent = 'SIN';
     signGroups[1] = g;
   })();
 
@@ -767,14 +766,21 @@ button:focus-visible {
     widgetEl.classList.toggle('has-step', step >= 1);
     widgetEl.classList.toggle('is-complete', step === 3);
 
-    // Road glow progresses to step A (0), B (1), C (2)
-    roadLits.forEach(function (layer, idx) {
-      layer.classList.toggle('on', step === idx + 1);
-    });
-
+    // Signs fall from the sky & stick when step >= idx; dissolve upward when going back/starting over
+    var dropIdx = 0;
     [1, 2, 3].forEach(function (idx) {
-      signGroups[idx].classList.toggle('active', step === idx);
-      signGroups[idx].classList.toggle('passed', step > idx);
+      var sg = signGroups[idx];
+      var shouldPlant = step >= idx;
+      var wasPlanted = sg.classList.contains('planted');
+      if (shouldPlant && !wasPlanted) {
+        sg.style.setProperty('--drop-delay', (dropIdx * 90) + 'ms');
+        dropIdx++;
+      } else if (!shouldPlant) {
+        sg.style.setProperty('--drop-delay', '0ms');
+      }
+      sg.classList.toggle('planted', shouldPlant);
+      sg.classList.toggle('active', step === idx);
+      sg.classList.toggle('passed', step > idx);
     });
 
     pillButtons.forEach(function (btn, idx) {
