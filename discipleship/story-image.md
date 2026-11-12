@@ -22,7 +22,7 @@ Dave drew much of the art himself before the bots arrived. **Before generating a
 
 | File | Story | Status |
 |---|---|---|
-| `good-samaritan-story.jpg` | Good Samaritan (202-01) | Finished, Dave's look. Was in use until PR #180 proposed replacing it. |
+| `good-samaritan-story.jpg` | Good Samaritan (202-01) | Finished, Dave's look. Kept in the folder unused after the walking-away sequence in ART-202-01b. |
 | `fruit-tree-story.jpg`, `fruit-tree-story-color.jpg` | Two people under a fruit tree (201-09 Fruit of the Spirit) | Finished pair in Dave's look. Replaced by the vine sequence in #153. |
 | `jesus-sends-72.jpg` | Jesus sending the 72 (203-07) | Finished, Dave's look. Restored to 203-07 on 2026-11-12 at Dave's direction; the generated dissolve files from #169 stay in the folder unused. |
 | `jesus-light-bw.jpg`, `jesus-light-color.jpg` | Jesus as light | Finished pair, unused. Ask Dave which lesson. |
@@ -111,6 +111,7 @@ Important rule for stops: **Finish the final stop around `0.40` to `0.65`, not a
 - **4 frames (`201-06` Creation):** `[0, 0.25, 0.4, 0.65]` (or `[0, 0.18, 0.34, 0.5]`)
 - **5 frames (`201-01` Running Father):** `[0, 0.16, 0.3, 0.44, 0.58]`
 - **6 entries with a hold (`202-02` Wise Builder):** `[0.1, 0.3, 0.38, 0.46, 0.55, 0.65]`
+- **7 entries with 0.08 holds and a 0.24 last dissolve (`202-01` Good Samaritan):** `[0, 0.08, 0.16, 0.24, 0.32, 0.40, 0.64]`
 
 ### How the Renderer Animates the Sequence
 
@@ -178,7 +179,7 @@ Optional field: `"frame": true` adds a 1px border (`.block-image-dissolve-framed
 | 201-08 | The Unmerciful Servant | B&W -> Color | `kings-mercy.jpg` -> `kings-mercy-color.jpg` | Live (`touchNext: true`, `frame: true`) |
 | 201-09 | The Vine and the Branches | **4-Frame Sequence** | `vine-branches-seq-1.jpg` .. `4.jpg` (stops `[0, 0.18, 0.34, 0.5]`) | Live (`touchNext: true`) |
 | 201-10 | Coming to His Senses | B&W -> Color | `prodigal-son-two-brothers-bw.jpg` -> `prodigal-son-two-brothers-color.jpg` | Live (`touchNext: true`) |
-| 202-01 | The Good Samaritan | Single static | `good-samaritan-story.jpg` | Upgrade to sequence or dissolve (`touchNext: true`) |
+| 202-01 | The Good Samaritan | **7-Stop Sequence** | `202-01-good-samaritan-seq-1.jpg` .. `4.jpg` (stops `[0, 0.08, 0.16, 0.24, 0.32, 0.40, 0.64]`; `good-samaritan-story.jpg` kept unused) | Live (`touchNext: true`) |
 | 202-02 | The Wise and Foolish Builders | **6-Stop Sequence** | `house-rock-seq-1.jpg` .. `5.jpg` (stops `[0.1, 0.3, 0.38, 0.46, 0.55, 0.65]`) | Live sequence |
 | 202-03 | The Early Church | **4-Frame Sequence** | `early-church-seq-1.jpg` .. `4.jpg` (stops `[0, 0.18, 0.34, 0.5]`) | Live (`touchNext: true`) |
 | 202-04 | The Five Farmers in the Field | B&W -> Color | `Farmer-bw.jpeg` -> `Farmer-color.jpg` | Live (`touchNext: true`) |

@@ -120,6 +120,66 @@
             }
         ]
     },
+    "images/202-01-good-samaritan-seq-1.jpg": {
+        "width": 1280,
+        "height": 720,
+        "sourceHash": "86b693d6ffaa0f4cee03e5974a31febcb714f782e2becfe3f499be5832602be0",
+        "variants": [
+            {
+                "src": "images/optimized/202-01-good-samaritan-seq-1-640.webp",
+                "width": 640
+            },
+            {
+                "src": "images/optimized/202-01-good-samaritan-seq-1-1280.webp",
+                "width": 1280
+            }
+        ]
+    },
+    "images/202-01-good-samaritan-seq-2.jpg": {
+        "width": 1280,
+        "height": 720,
+        "sourceHash": "005710c0d3868f298fca985ac4ce5b0982d96fdc4fb7192ef9780d9004c45099",
+        "variants": [
+            {
+                "src": "images/optimized/202-01-good-samaritan-seq-2-640.webp",
+                "width": 640
+            },
+            {
+                "src": "images/optimized/202-01-good-samaritan-seq-2-1280.webp",
+                "width": 1280
+            }
+        ]
+    },
+    "images/202-01-good-samaritan-seq-3.jpg": {
+        "width": 1280,
+        "height": 720,
+        "sourceHash": "87776b89d61478a19257e427da8a835db7987faa305f676047fbf325a3b5fcf0",
+        "variants": [
+            {
+                "src": "images/optimized/202-01-good-samaritan-seq-3-640.webp",
+                "width": 640
+            },
+            {
+                "src": "images/optimized/202-01-good-samaritan-seq-3-1280.webp",
+                "width": 1280
+            }
+        ]
+    },
+    "images/202-01-good-samaritan-seq-4.jpg": {
+        "width": 1280,
+        "height": 720,
+        "sourceHash": "0c0169f2c70fdf8dd7a6617bde74388da0294792a6e96693f0d7e3efe4e77c5e",
+        "variants": [
+            {
+                "src": "images/optimized/202-01-good-samaritan-seq-4-640.webp",
+                "width": 640
+            },
+            {
+                "src": "images/optimized/202-01-good-samaritan-seq-4-1280.webp",
+                "width": 1280
+            }
+        ]
+    },
     "images/202-05-joseph-pit-palace-bw.jpg": {
         "width": 1264,
         "height": 848,
