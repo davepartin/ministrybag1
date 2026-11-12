@@ -87,4 +87,7 @@ When Dave approves a lesson, add one row with its task ID, date, reviewed commit
 | REWORK-101-06 | 2026-11-11 | PR #142, merged as `4bc27e6` | Dave in chat: six wording changes from the preview, then "merge it". data/101-06.json sha256 2a2b5f2bcc5f. |
 | PERF-001a | 2026-11-11 | PR #143 (Codex/ChatGPT), merged as `1ff9ba9` | Dave in chat: "merge both" after Claude's review (checks pass, preview verified at phone size, originals kept, test scripts excluded from upload). First of ChatGPT's four 101 fixes. |
 | REWORK-203-08 | 2026-11-11 | PR #144, merged as `4311378` | Dave in chat: light trim only, questions untouched; "merge both". data/203-08.json sha256 897f1428f1d9. Section A of the series plan is complete. |
+| ART-201-04 | 2026-11-12 | PR #147 (Cursor/Grok), merged as `8787214` | Dave in chat: "merge 147" after Claude's review (six frames load, checks pass, text untouched). |
+| NAV-001 | 2026-11-12 | PR #148 (Codex/ChatGPT), merged as `6c5d20b` | Dave in chat: "yes on 148" after Claude flagged that the MinistryBag button now sends people to the new site; old page unchanged, no redirect. |
+| UX-005/UX-006 | 2026-11-12 | PR #149 (Claude cleanup of ChatGPT's #145), merged | Dave in chat: "will you clean this up and make it look good", then "merge it" after reading the About preview. Email labels, description summaries, lesson ESV line, bio 25 years. #145 closed as superseded. |
 
