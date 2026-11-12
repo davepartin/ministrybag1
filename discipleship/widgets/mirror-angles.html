@@ -123,11 +123,11 @@
         }
         el('text', { x: 330, y: 118, 'text-anchor': 'middle', 'class': 'angle-label' }, svg).textContent = "God's worth";
         // onlookers, bottom left: three small figures
-        [[40, 190], [66, 196], [92, 190]].forEach(function (p) {
+        [[56, 190], [82, 196], [108, 190]].forEach(function (p) {
             el('circle', { cx: p[0], cy: p[1], r: 8, 'class': 'paper' }, svg);
             el('path', { d: 'M ' + (p[0] - 11) + ' 226 C ' + (p[0] - 11) + ' 206, ' + (p[0] + 11) + ' 206, ' + (p[0] + 11) + ' 226', 'class': 'paper' }, svg);
         });
-        el('text', { x: 66, y: 243, 'text-anchor': 'middle', 'class': 'angle-label' }, svg).textContent = 'the people around you';
+        el('text', { x: 84, y: 243, 'text-anchor': 'middle', 'class': 'angle-label', 'font-size': '12' }, svg).textContent = 'the people around you';
         // created things, mid-left, shown only at 15 degrees
         var tg = el('g', { 'class': 'thing' }, svg); things.world = tg;
         el('rect', { x: 150, y: 70, width: 30, height: 20, rx: 3, 'class': 'paper' }, tg); // phone/screen
@@ -148,13 +148,13 @@
         el('line', { x1: 262, y1: 110, x2: 262, y2: 138, 'class': 'ink-thin', opacity: '0.5' }, mirrorG);
         // rays: dotted lines from the sun to the mirror, and from the mirror onward
         rays.sunToMirror = el('path', { d: 'M 308 70 L 276 118', 'class': 'ray' }, svg);
-        rays.toPeople = el('path', { d: 'M 262 126 C 220 150, 150 176, 100 190', 'class': 'ray strong' }, svg);
+        rays.toPeople = el('path', { d: 'M 262 126 C 220 150, 160 176, 116 190', 'class': 'ray strong' }, svg);
         rays.toThings = el('path', { d: 'M 262 120 C 240 104, 220 92, 200 84', 'class': 'ray' }, svg);
         rays.flicker = el('path', { d: 'M 262 126 C 236 136, 220 150, 236 170', 'class': 'ray' }, svg);
         // gazes: where onlookers look
-        gazes.person = el('path', { d: 'M 100 184 C 150 160, 190 140, 222 132', 'class': 'gaze' }, svg);
-        gazes.things = el('path', { d: 'M 100 184 C 130 150, 160 110, 190 92', 'class': 'gaze' }, svg);
-        gazes.god = el('path', { d: 'M 100 184 C 170 150, 250 100, 304 72', 'class': 'gaze' }, svg);
+        gazes.person = el('path', { d: 'M 116 184 C 160 160, 195 140, 222 132', 'class': 'gaze' }, svg);
+        gazes.things = el('path', { d: 'M 116 184 C 140 150, 165 110, 190 92', 'class': 'gaze' }, svg);
+        gazes.god = el('path', { d: 'M 116 184 C 180 150, 250 100, 304 72', 'class': 'gaze' }, svg);
         el('text', { x: 230, y: 243, 'text-anchor': 'middle', 'class': 'angle-label' }, svg).textContent = 'you, an image bearer';
     }
 
