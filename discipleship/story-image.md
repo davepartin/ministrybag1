@@ -24,7 +24,7 @@ Dave drew much of the art himself before the bots arrived. **Before generating a
 |---|---|---|
 | `good-samaritan-story.jpg` | Good Samaritan (202-01) | Finished, Dave's look. Was in use until PR #180 proposed replacing it. |
 | `fruit-tree-story.jpg`, `fruit-tree-story-color.jpg` | Two people under a fruit tree (201-09 Fruit of the Spirit) | Finished pair in Dave's look. Replaced by the vine sequence in #153. |
-| `jesus-sends-72.jpg` | Jesus sending the 72 (203-07) | Finished, Dave's look. Replaced by a generated dissolve in #169. |
+| `jesus-sends-72.jpg` | Jesus sending the 72 (203-07) | Finished, Dave's look. Restored to 203-07 on 2026-11-12 at Dave's direction; the generated dissolve files from #169 stay in the folder unused. |
 | `jesus-light-bw.jpg`, `jesus-light-color.jpg` | Jesus as light | Finished pair, unused. Ask Dave which lesson. |
 | `soils-bw.jpeg`, `soils-color.jpg` | Four soils (201-04) | Finished pair. Replaced by the six-frame sequence in #147. |
 | `running-father-bw3.jpeg`, `running-father-color3.jpeg` | Running father (201-01) | Finished pair. Replaced by the five-frame sequence. |
