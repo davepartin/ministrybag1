@@ -35,7 +35,7 @@ var QUESTION_IDS = [
 var STOPS = [0, 0.08, 0.16, 0.24, 0.32, 0.48, 0.56, 0.72, 0.8];
 var LAST_STOP = STOPS[STOPS.length - 1];
 var AFTER_LAST = 0.85;
-var SAMPLE_PROGRESS = [0, 0.08, 0.12, 0.16, 0.24, 0.28, 0.32, 0.4, 0.48, 0.52, 0.56, 0.64, 0.72, 0.76, 0.8, 0.85];
+var SAMPLE_PROGRESS = [0, 0.04, 0.08, 0.12, 0.16, 0.2, 0.24, 0.28, 0.32, 0.4, 0.48, 0.52, 0.56, 0.64, 0.72, 0.76, 0.8, 0.85];
 var failed = 0;
 var passed = 0;
 
@@ -62,19 +62,24 @@ async function waitForSequence(page) {
 }
 
 async function setSequenceProgress(page, targetProgress) {
-    await page.evaluate(function (progress) {
-        var el = document.querySelector('#session-2.active [data-parable-sequence]');
-        var topbar = document.querySelector('.lesson-topbar');
-        var viewportHeight = window.innerHeight || document.documentElement.clientHeight || 1;
-        var contentTop = topbar ? topbar.getBoundingClientRect().bottom : 0;
-        var visibleHeight = Math.max(viewportHeight - contentTop, 1);
-        var fadeStartY = contentTop + (visibleHeight * 0.40);
-        var fadeEndY = contentTop + (visibleHeight * -0.22);
-        var fadeRange = Math.max(fadeStartY - fadeEndY, 1);
-        var rect = el.getBoundingClientRect();
-        var desiredTop = fadeStartY - progress * fadeRange;
-        window.scrollBy({ top: rect.top - desiredTop, behavior: 'instant' });
-    }, targetProgress);
+    async function nudge() {
+        await page.evaluate(function (progress) {
+            var el = document.querySelector('#session-2.active [data-parable-sequence]');
+            var topbar = document.querySelector('.lesson-topbar');
+            var viewportHeight = window.innerHeight || document.documentElement.clientHeight || 1;
+            var contentTop = topbar ? topbar.getBoundingClientRect().bottom : 0;
+            var visibleHeight = Math.max(viewportHeight - contentTop, 1);
+            var fadeStartY = contentTop + (visibleHeight * 0.40);
+            var fadeEndY = contentTop + (visibleHeight * -0.22);
+            var fadeRange = Math.max(fadeStartY - fadeEndY, 1);
+            var rect = el.getBoundingClientRect();
+            var desiredTop = fadeStartY - progress * fadeRange;
+            window.scrollBy({ top: rect.top - desiredTop, behavior: 'instant' });
+        }, targetProgress);
+    }
+    await nudge();
+    await page.waitForTimeout(40);
+    await nudge();
     await page.waitForTimeout(80);
 }
 
