@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hold the Mirror Up Rightly</title>
+    <style>
+        :root { --ink: #2F2A21; --muted: #6B6358; --accent: #2D6A4F; --card-color: #2F2A21; --card-h: 112px; }
+        *, *::before, *::after { box-sizing: border-box; }
+        html, body { margin: 0; padding: 0; }
+        body { background: transparent; color: var(--ink); font-family: 'Inter', 'Trebuchet MS', sans-serif; -webkit-font-smoothing: antialiased; }
+        button { font: inherit; font-family: 'Trebuchet MS', sans-serif; -webkit-tap-highlight-color: transparent; cursor: pointer; }
+        .widget { width: 100%; max-width: 460px; margin: 0 auto; overflow: hidden; background: #FAF8F1; }
+        @media (min-width: 560px) {
+            body { padding: 16px; }
+            .widget { border: 1px solid #E8DFD0; border-radius: 18px; box-shadow: 0 10px 26px rgba(44, 36, 22, 0.10); }
+        }
+        .title-bar { background: #2F2A21; padding: 10px 16px; text-align: center; }
+        .title-bar h1 { font-size: 19px; font-weight: 700; color: #FFFFFF; margin: 0; line-height: 1.2; font-family: 'Trebuchet MS', 'Inter', sans-serif; }
+
+        .scene-wrap { position: relative; background: #FFFFFF; border-bottom: 1px solid #E7DECE; }
+        .scene { display: block; width: 100%; height: auto; }
+        .ink { fill: none; stroke: #2F2A21; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+        .ink-thin { fill: none; stroke: #2F2A21; stroke-width: 1.4; stroke-linecap: round; }
+        .paper { fill: #FFFFFF; stroke: #2F2A21; stroke-width: 2.2; }
+        .shade { fill: #2F2A21; opacity: 0.12; }
+        .ray { fill: none; stroke: #2F2A21; stroke-width: 1.8; stroke-dasharray: 5 6; stroke-linecap: round; opacity: 0; transition: opacity 350ms ease; }
+        .ray.on { opacity: 1; }
+        .ray.strong { stroke-width: 2.6; stroke-dasharray: 7 6; }
+        .gaze { fill: none; stroke: #2F2A21; stroke-width: 1.4; stroke-dasharray: 2 5; stroke-linecap: round; opacity: 0; transition: opacity 350ms ease; }
+        .gaze.on { opacity: 0.9; }
+        .mirror-group { transform-box: fill-box; transform-origin: 50% 85%; transition: transform 600ms cubic-bezier(.4,0,.2,1), opacity 300ms ease; }
+        .thing { opacity: 0; transition: opacity 350ms ease; }
+        .thing.on { opacity: 1; }
+        .glow { fill: #2F2A21; opacity: 0; transition: opacity 400ms ease; }
+        .glow.on { opacity: 0.08; }
+        .scene-caption { position: absolute; left: 12px; right: 12px; top: 8px; text-align: center; font-family: 'Trebuchet MS', sans-serif; font-size: 13px; font-weight: 700; color: #2F2A21; pointer-events: none; }
+        .scene-caption b { color: var(--accent); }
+        .angle-label { font-family: 'Trebuchet MS', sans-serif; font-weight: 700; font-size: 13px; fill: #2F2A21; }
+
+        .angles { display: flex; justify-content: space-between; gap: 6px; padding: 10px 12px 0; background: #F6F4EE; }
+        .angle { flex: 1; border: 1.5px solid #D4CFC4; border-radius: 10px; background: #FFFFFF; padding: 7px 4px 6px; text-align: center; color: #5A4E3C; line-height: 1.15; }
+        .angle .deg { display: block; font-size: 15px; font-weight: 700; color: #2F2A21; }
+        .angle .word { display: block; font-size: 11.5px; letter-spacing: 0.2px; margin-top: 2px; }
+        .angle.current { border-color: #2F2A21; background: #2F2A21; color: #FFFFFF; }
+        .angle.current .deg { color: #FFFFFF; }
+
+        .card-area { background-color: #F6F4EE; padding: 8px 12px 10px; }
+        .verse-card { border-radius: 12px; background: #FFFFFF; box-shadow: 0 2px 14px rgba(44,36,22,0.06); overflow: hidden; border-top: 4px solid var(--card-color); }
+        .verse-content { min-height: var(--card-h, 112px); padding: 10px 16px; }
+        .verse-title { font-family: 'Trebuchet MS', sans-serif; font-size: 16px; font-weight: 700; line-height: 1.3; margin: 0 0 4px; color: #2F2A21; }
+        .verse-text { font-family: Georgia, Cambria, serif; font-size: 15px; line-height: 1.4; color: #3D3426; margin: 0; }
+        .card-note { display: block; margin-top: 6px; font-family: 'Trebuchet MS', sans-serif; font-size: 13px; line-height: 1.35; color: #4A4238; }
+        .card-note b { color: var(--accent); }
+        .verse-ref { font-family: 'Trebuchet MS', sans-serif; font-size: 13px; color: var(--muted); margin: 4px 0 0; }
+        .nav { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-top: 10px; }
+        .nav-btn { min-width: 108px; min-height: 44px; padding: 10px 12px; border: 1.5px solid #D4CFC4; border-radius: 10px; background: transparent; color: #5A4E3C; font-size: 14px; font-weight: 600; }
+        .nav-btn.primary { background: #2F2A21; color: #FFFFFF; border: none; }
+        .nav-btn.hidden { visibility: hidden; }
+        @media (prefers-reduced-motion: reduce) { .ray, .gaze, .mirror-group, .thing, .glow { transition: none; } }
+    </style>
+</head>
+<body>
+<main class="widget" aria-label="A person holding a mirror at four angles: pointing people to themselves, to created things, to a Sunday-only God, and rightly to God's glory">
+    <header class="title-bar"><h1>Hold the Mirror Up Rightly</h1></header>
+    <section class="scene-wrap" aria-hidden="true">
+        <div class="scene-caption" id="caption"></div>
+        <svg class="scene" id="scene" viewBox="0 0 390 250" width="100%" preserveAspectRatio="xMidYMid meet"></svg>
+    </section>
+    <div class="angles" id="angles" role="tablist" aria-label="Mirror angles"></div>
+    <section class="card-area" id="card-area" aria-live="polite"></section>
+</main>
+<script>
+(function () {
+    var NS = 'http://www.w3.org/2000/svg';
+    var stops = [
+        { deg: 0, word: 'Me', mirror: false, rotate: 0,
+          title: 'No mirror: look at me',
+          verse: '"They exchanged the truth about God for a lie and worshiped and served the creature rather than the Creator."',
+          note: '<b>Where their eyes land:</b> on you. A life with no mirror wants to be seen and keeps the glory. It was never built to carry that weight.',
+          ref: 'Romans 1:25',
+          caption: 'The onlookers see <b>only you</b>.' },
+        { deg: 15, word: 'Things', mirror: true, rotate: -70,
+          title: 'Tilted toward created things',
+          verse: '"Do not love the world or the things in the world. If anyone loves the world, the love of the Father is not in him."',
+          note: '<b>Where their eyes land:</b> on what you chase. The mirror still works, but it shows money, screens, and applause: the created, not the Creator.',
+          ref: '1 John 2:15',
+          caption: 'The mirror shows <b>what you love</b>.' },
+        { deg: 30, word: 'Sunday', mirror: true, rotate: -35,
+          title: 'Half-turned: Sunday only',
+          verse: '"This people honors me with their lips, but their heart is far from me."',
+          note: '<b>Where their eyes land:</b> on a flicker. The mirror catches the sun for an hour a week, then swings back to you. Worship becomes an event, not a posture.',
+          ref: 'Matthew 15:8',
+          caption: 'A flicker of glory, <b>then back to you</b>.' },
+        { deg: 45, word: 'God', mirror: true, rotate: 0, right: true,
+          title: 'Held rightly: they see Him',
+          verse: '"Let your light shine before others, so that they may see your good works and give glory to your Father who is in heaven."',
+          note: '<b>Where their eyes land:</b> through you to God. You were made in His image to bear it. <b>Worship is gladly reflecting back to God the radiance of His worth.</b>',
+          ref: 'Matthew 5:16; Genesis 1:27',
+          caption: 'When they see you, <b>they see Him</b>.' }
+    ];
+    var step = -1;
+
+    function el(tag, attrs, parent) {
+        var e = document.createElementNS(NS, tag);
+        Object.keys(attrs || {}).forEach(function (k) { e.setAttribute(k, attrs[k]); });
+        if (parent) parent.appendChild(e);
+        return e;
+    }
+
+    var mirrorG, rays = {}, gazes = {}, things = {}, glow, armUp, armMirror;
+
+    function buildSceneOnce() {
+        var svg = document.getElementById('scene');
+        // ground line
+        el('path', { d: 'M 12 226 L 378 226', 'class': 'ink-thin' }, svg);
+        // the sun: God's worth, top right
+        glow = el('circle', { cx: 330, cy: 52, r: 54, 'class': 'glow' }, svg);
+        el('circle', { cx: 330, cy: 52, r: 24, 'class': 'paper' }, svg);
+        for (var a = 0; a < 360; a += 30) {
+            var r1 = 30, r2 = a % 60 === 0 ? 44 : 38, rad = a * Math.PI / 180;
+            el('line', { x1: 330 + r1 * Math.cos(rad), y1: 52 + r1 * Math.sin(rad), x2: 330 + r2 * Math.cos(rad), y2: 52 + r2 * Math.sin(rad), 'class': 'ink-thin' }, svg);
+        }
+        el('text', { x: 330, y: 118, 'text-anchor': 'middle', 'class': 'angle-label' }, svg).textContent = "God's worth";
+        // onlookers, bottom left: three small figures
+        [[40, 190], [66, 196], [92, 190]].forEach(function (p) {
+            el('circle', { cx: p[0], cy: p[1], r: 8, 'class': 'paper' }, svg);
+            el('path', { d: 'M ' + (p[0] - 11) + ' 226 C ' + (p[0] - 11) + ' 206, ' + (p[0] + 11) + ' 206, ' + (p[0] + 11) + ' 226', 'class': 'paper' }, svg);
+        });
+        el('text', { x: 66, y: 243, 'text-anchor': 'middle', 'class': 'angle-label' }, svg).textContent = 'the people around you';
+        // created things, mid-left, shown only at 15 degrees
+        var tg = el('g', { 'class': 'thing' }, svg); things.world = tg;
+        el('rect', { x: 150, y: 70, width: 30, height: 20, rx: 3, 'class': 'paper' }, tg); // phone/screen
+        el('circle', { cx: 165, cy: 80, r: 4, 'class': 'ink-thin' }, tg);
+        el('text', { x: 200, y: 86, 'class': 'angle-label', 'font-size': '18' }, tg).textContent = '$';
+        el('path', { d: 'M 222 70 L 238 70 L 234 84 L 226 84 Z M 230 84 L 230 90 M 224 90 L 236 90', 'class': 'ink' }, tg); // trophy
+        el('text', { x: 194, y: 104, 'text-anchor': 'middle', 'class': 'angle-label' }, tg).textContent = 'created things';
+        // the person, center
+        el('circle', { cx: 230, cy: 128, r: 13, 'class': 'paper' }, svg);
+        el('path', { d: 'M 230 141 L 230 196 M 230 196 L 216 226 M 230 196 L 244 226', 'class': 'ink' }, svg); // body and legs
+        el('path', { d: 'M 230 152 L 210 176', 'class': 'ink' }, svg); // left arm down
+        armUp = el('path', { d: 'M 230 152 L 252 134 M 230 152 L 208 134', 'class': 'ink' }, svg); // both arms up (look at me)
+        armMirror = el('path', { d: 'M 230 152 L 258 146', 'class': 'ink' }, svg); // right arm holding mirror
+        // the mirror, held at the right hand, rotates
+        mirrorG = el('g', { 'class': 'mirror-group' }, svg);
+        el('line', { x1: 268, y1: 160, x2: 268, y2: 146, 'class': 'ink' }, mirrorG); // handle
+        el('rect', { x: 256, y: 102, width: 24, height: 46, rx: 6, 'class': 'paper' }, mirrorG);
+        el('line', { x1: 262, y1: 110, x2: 262, y2: 138, 'class': 'ink-thin', opacity: '0.5' }, mirrorG);
+        // rays: dotted lines from the sun to the mirror, and from the mirror onward
+        rays.sunToMirror = el('path', { d: 'M 308 70 L 276 118', 'class': 'ray' }, svg);
+        rays.toPeople = el('path', { d: 'M 262 126 C 220 150, 150 176, 100 190', 'class': 'ray strong' }, svg);
+        rays.toThings = el('path', { d: 'M 262 120 C 240 104, 220 92, 200 84', 'class': 'ray' }, svg);
+        rays.flicker = el('path', { d: 'M 262 126 C 236 136, 220 150, 236 170', 'class': 'ray' }, svg);
+        // gazes: where onlookers look
+        gazes.person = el('path', { d: 'M 100 184 C 150 160, 190 140, 222 132', 'class': 'gaze' }, svg);
+        gazes.things = el('path', { d: 'M 100 184 C 130 150, 160 110, 190 92', 'class': 'gaze' }, svg);
+        gazes.god = el('path', { d: 'M 100 184 C 170 150, 250 100, 304 72', 'class': 'gaze' }, svg);
+        el('text', { x: 230, y: 243, 'text-anchor': 'middle', 'class': 'angle-label' }, svg).textContent = 'you, an image bearer';
+    }
+
+    function setOn(node, on) { node.setAttribute('class', node.getAttribute('class').replace(/ on$/, '') + (on ? ' on' : '')); }
+
+    function updateScene() {
+        var s = step < 0 ? null : stops[step];
+        var showMirror = s ? s.mirror : true;
+        mirrorG.style.opacity = showMirror ? 1 : 0;
+        armMirror.style.opacity = showMirror ? 1 : 0;
+        armUp.style.opacity = (s && !s.mirror) ? 1 : 0;
+        mirrorG.style.transform = 'rotate(' + (s ? s.rotate : -20) + 'deg)';
+        setOn(rays.sunToMirror, !!s && s.mirror);
+        setOn(rays.toPeople, !!s && s.right);
+        setOn(rays.toThings, !!s && s.deg === 15);
+        setOn(rays.flicker, !!s && s.deg === 30);
+        setOn(gazes.person, !!s && (s.deg === 0 || s.deg === 30));
+        setOn(gazes.things, !!s && s.deg === 15);
+        setOn(gazes.god, !!s && s.right);
+        setOn(things.world, !!s && s.deg === 15);
+        setOn(glow, !!s && s.right);
+        document.getElementById('caption').innerHTML = s ? s.caption : 'God is the sun. <b>You are the mirror.</b>';
+        Array.from(document.querySelectorAll('.angle')).forEach(function (b, i) {
+            b.className = 'angle' + (i === step ? ' current' : '');
+            b.setAttribute('aria-selected', i === step ? 'true' : 'false');
+        });
+    }
+
+    function buildAnglesOnce() {
+        var wrap = document.getElementById('angles');
+        stops.forEach(function (s, i) {
+            var b = document.createElement('button');
+            b.type = 'button'; b.className = 'angle'; b.setAttribute('role', 'tab');
+            b.innerHTML = '<span class="deg">' + s.deg + '&deg;</span><span class="word">' + s.word + '</span>';
+            b.addEventListener('click', function () { step = i; render(); });
+            wrap.appendChild(b);
+        });
+    }
+
+    function buildCard() {
+        var area = document.getElementById('card-area');
+        area.innerHTML = '';
+        var card = document.createElement('div'); card.className = 'verse-card';
+        var c = document.createElement('div'); c.className = 'verse-content';
+        if (step < 0) {
+            c.innerHTML = '<h2 class="verse-title">God Is the Sun. You Are the Mirror.</h2>' +
+                '<p class="verse-text">You were made in God\'s image to reflect Him. Every life holds the mirror at some angle, and the angle decides what people see when they look at you. Tap the four angles and watch where the eyes land.</p>';
+        } else {
+            var s = stops[step];
+            c.innerHTML = '<h2 class="verse-title">' + s.deg + '&deg;: ' + s.title + '</h2>' +
+                '<p class="verse-text">' + s.verse + '</p>' +
+                '<span class="card-note">' + s.note + '</span>' +
+                '<p class="verse-ref">' + s.ref + '</p>';
+        }
+        card.appendChild(c); area.appendChild(card); area.appendChild(buildNav());
+    }
+
+    function buildNav() {
+        var nav = document.createElement('div'); nav.className = 'nav';
+        var back = document.createElement('button'); back.type = 'button';
+        back.className = 'nav-btn' + (step === -1 ? ' hidden' : ''); back.innerHTML = '&larr; Back';
+        back.addEventListener('click', function () { if (step > -1) { step -= 1; render(); } });
+        nav.appendChild(back);
+        var next = document.createElement('button'); next.type = 'button'; next.className = 'nav-btn primary';
+        next.innerHTML = step === -1 ? 'Begin &rarr;' : (step === stops.length - 1 ? '&#8635; Start over' : 'Next angle &rarr;');
+        next.addEventListener('click', function () { step = step === -1 ? 0 : (step === stops.length - 1 ? -1 : step + 1); render(); });
+        nav.appendChild(next);
+        return nav;
+    }
+
+    function render() { updateScene(); buildCard(); }
+
+    buildSceneOnce(); buildAnglesOnce(); render();
+    window.gtCards = [{ title: 'God Is the Sun. You Are the Mirror.', text: "You were made in God's image to reflect Him. Every life holds the mirror at some angle, and the angle decides what people see when they look at you. Tap the four angles and watch where the eyes land." }]
+        .concat(stops.map(function (s) { return { title: s.deg + '°: ' + s.title, text: s.verse + '<span class="card-note">' + s.note + '</span>', ref: s.ref }; }));
+}());
+
+// Size every card to the tallest step so the buttons never move (A-standard pattern).
+function gtFitCards(items) {
+    var area = document.querySelector('.card-area');
+    if (!area || !area.clientWidth) return;
+    var cs = getComputedStyle(area);
+    var w = area.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+    var m = document.createElement('div'), max = 0;
+    m.id = 'measure'; m.style.width = w + 'px';
+    document.documentElement.style.setProperty('--card-h', '0px');
+    items.forEach(function (it) {
+        m.insertAdjacentHTML('beforeend', '<div class="verse-card"><div class="verse-content">' +
+            '<h2 class="verse-title">' + (it.title || '') + '</h2>' +
+            '<p class="verse-text">' + (it.text || '') + '</p>' +
+            (it.ref ? '<p class="verse-ref">' + it.ref + '</p>' : '') + '</div></div>');
+    });
+    document.body.appendChild(m);
+    m.querySelectorAll('.verse-content').forEach(function (c) { max = Math.max(max, c.offsetHeight); });
+    document.body.removeChild(m);
+    document.documentElement.style.setProperty('--card-h', Math.max(max, 112) + 'px');
+}
+// Refit only when the width changes. The page briefly resizes this frame's height to measure it,
+// and refitting on that would start a measure-resize loop that jolts the page while scrolling.
+function gtWatchWidth(fn) {
+    var rt = null, lastWidth = window.innerWidth;
+    window.addEventListener('resize', function () {
+        if (window.innerWidth === lastWidth) return;
+        lastWidth = window.innerWidth;
+        clearTimeout(rt); rt = setTimeout(fn, 150);
+    });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fn);
+}
+function gtFit() { gtFitCards(window.gtCards || []); }
+gtFit(); gtWatchWidth(gtFit);
+</script>
+</body>
+</html>
