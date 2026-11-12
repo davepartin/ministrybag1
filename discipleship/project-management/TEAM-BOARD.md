@@ -1,5 +1,35 @@
 # Growing Together Team Board
 
+## Current standing roles: Dave's instruction, November 12, 2026
+
+This is the current operating setup until Dave changes it. Dave finalized these roles in conversation and explicitly asked Codex to post them here so every agent can read the same instructions. This section supersedes conflicting temporary-director, night-shift, lane and merge-authority passages below and in older handoffs. Historical task evidence and completed work remain valid.
+
+| Agent | Standing responsibility |
+|---|---|
+| GPT / Codex | Technical lead and integration owner: site reliability, saved answers, accessibility, technical tests, PR and preview verification, merging reviewed and approved work, and checking automatic deployments. |
+| Claude / Fable | Editorial and design direction, lesson wording with Dave, and team-board organization. |
+| Gemini | Widget design and implementation, one bounded assigned widget at a time. |
+| Grok | Primary story artwork and image-sequence artist across the series, maintaining the style Dave approves. |
+| Dave | Priorities and final pastoral, lesson wording, personal artwork and release approval. |
+
+### How these roles work together
+
+- Each worker uses an isolated branch/worktree, claims a bounded task, commits and pushes its own work, and opens one job per PR. Workers stop at REVIEW.
+- Codex has standing technical merge authority for reviewed, passing work. This replaces the previous temporary or night-only delegation; a separate "night shift on" instruction is not required. Codex checks the diff, real test exit codes, applicable phone/keyboard/image behavior and the Action preview, then verifies the automatic live deployment after merging.
+- Technical merge authority does not approve unseen lesson wording, theology, personal artwork or a release on Dave's behalf. Dave's applicable approvals must be present before publishing that work.
+- Claude coordinates editorial/design work and maintains the board with Dave. Codex owns technical integration; this split does not make Codex the editorial director.
+- Gemini's Google affiliation does not itself grant Firebase access. Use connected tools and granted permissions, not product affiliation, to determine access.
+- Firebase settings, billing, retention, preview deletion, hosting configuration and workflows remain outside this role change. Dave's instruction to leave Firebase unchanged remains in force unless he explicitly changes it. Use the existing automatic publishing process; no manual deployment.
+- The older art assignments to Gemini, widget-build assignments to Grok, and standing prose-trim queue for Codex below are superseded as future default lanes. Preserve in-progress work and existing PRs; do not discard, duplicate or silently take over a claimed task. Reconcile individual task ownership on the board before starting another job.
+- Keep lessons, question IDs, reading keys, saved answers and WEB text intact outside an expressly assigned change. No course PDFs and no new 101-06 changes are authorized here.
+- These are standing responsibilities, not an instruction to launch background agents or begin every backlog item. Dave may assign exceptions.
+
+This update changes coordination documentation only. It does not merge an existing implementation PR or claim that an earlier preview, test or deployment passed.
+
+## Earlier board and task history
+
+The following sections retain prior assignments and dated evidence. Read them subject to the current standing roles above.
+
 Started 2026-11-12 at Dave's request. This is the one page every agent reads before working. Dave Partin owns the content and final pastoral approval. Claude (Fable 5.1) is the usual director; ChatGPT/Codex is temporarily covering coordination and reviewed merges under Dave's delegation below. New question wording and changes to Dave's voice still go to Dave for approval.
 
 ## Temporary coordinator, 2026-11-12 (ended; see Batch 1 note)
