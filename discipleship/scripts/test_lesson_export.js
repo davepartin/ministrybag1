@@ -247,6 +247,43 @@ var checklistExport = exporter.buildExport({
 });
 assert('checklist selections use the lesson item labels', checklistExport.body.indexOf('Greeting, Prayer') !== -1);
 
+assert('email heading includes the course number and course label',
+    lessonExport.body.startsWith('202 Growing Up Course\n\nLesson 5: Suffering and Trials\n\n'));
+assert('email subject names both course and lesson',
+    lessonExport.subject === 'My 202 Growing Up Course - Lesson 5: Suffering and Trials');
+assert('email does not repeat the lesson title',
+    lessonExport.body.split('Lesson 5: Suffering and Trials').length === 2);
+var description20205 = exporter.lessonSummary('202', 5, lesson20205);
+assert('email includes the lesson description as its summary before the answers',
+    description20205.length > 0 && lessonExport.body.indexOf(description20205) > -1 &&
+    lessonExport.body.indexOf(description20205) < lessonExport.body.indexOf('SYN-202-05-mid'));
+assert('numbered responses keep the lesson question number and a short form of the question',
+    /^5\.1 [A-Z].+\nSYN-202-05-mid/m.test(lessonExport.body) && !lessonExport.body.includes('5.1 -'));
+assert('closing questions carry plain labels instead of made-up numbers',
+    lessonExport.body.includes("Key thing\n") && lessonExport.body.includes("This week's step\n") &&
+    lessonExport.body.includes('Prayer request\nSYN-202-05-prayer') && !lessonExport.body.includes('5.8\n'));
+assert('long questions are shortened with an ellipsis',
+    exporter.emailQuestionLabel({ kind: 'question', jsonId: 'x-1', label: '1.1 - ' + new Array(30).join('word ') + 'end' }, 1).endsWith('...'));
+assert('course heading uses Dave\'s requested format',
+    exporter.courseLabel('201', 'Growing Deep') === '201 Growing Deep Course');
+var lessonFiles = fs.readdirSync(DATA_DIR).filter(function (name) { return /^\d{3}-\d{2}\.json$/.test(name); });
+lessonFiles.forEach(function (name) {
+    var id = name.replace('.json', '');
+    var data = readLesson(name);
+    var course = id.split('-')[0];
+    var num = Number(id.split('-')[1]);
+    assert(id + ' has a plain-text description to use as the email summary',
+        typeof data.description === 'string' && data.description.trim().length > 0 &&
+        !/[<>]/.test(exporter.lessonSummary(course, num, data)));
+    var body = exporter.buildExport({ courseId: course, currentLessonNum: num, lessons: [{ num: num, data: data }] }).body;
+    var labels = body.split('\n').filter(function (line, i, all) { return all[i + 1] === '[No response]'; });
+    var answerBlocks = data.blocks.filter(function (block) { return block.type === 'question' || block.type === 'checklist'; });
+    assert(id + ' email labels every question and checklist once and never with a bare number',
+        labels.length === answerBlocks.length && labels.every(function (l) { return !/^\d+\.\d+$/.test(l); }));
+});
+assert('description summaries strip markup',
+    exporter.lessonSummary('202', 99, { description: '<strong>Synthetic fallback.</strong>' }) === 'Synthetic fallback.');
+
 if (failed) {
     console.error('\n' + failed + ' check(s) failed, ' + passed + ' passed.');
     process.exit(1);

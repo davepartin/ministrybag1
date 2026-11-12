@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * ENG-004 browser check. Synthetic answers only.
- * Confirms current-lesson default, optional course scope, visible preview,
+ * Confirms current-lesson-only scope, visible preview,
  * cancel without mail, encoding, and phone/laptop preview layout.
  * Does not read real learner answers or credentials.
  */
@@ -11,9 +11,11 @@ var { chromium } = require('playwright');
 
 var BASE = process.env.ENG004_BASE_URL || 'http://127.0.0.1:8765/index.html';
 var failed = 0;
+var passed = 0;
 
 function assert(name, condition, detail) {
     if (condition) {
+        passed += 1;
         console.log('PASS: ' + name);
         return;
     }
@@ -68,7 +70,7 @@ function launchBrowser() {
             open: document.getElementById('export-preview-overlay').classList.contains('open'),
             title: document.getElementById('export-preview-selected').textContent,
             body: document.getElementById('export-preview-text').textContent,
-            lessonChecked: document.getElementById('export-scope-lesson').checked,
+            scopeControls: document.querySelectorAll('input[name="export-scope"]').length,
             href: window.location.href,
             mailto: window.__gtLastMailtoHref || null,
             focus: document.activeElement ? document.activeElement.id : ''
@@ -76,7 +78,7 @@ function launchBrowser() {
     });
 
     assert('preview opens from Email Lesson', firstPreview.open === true);
-    assert('default scope is this lesson', firstPreview.lessonChecked === true);
+    assert('email has no whole-course scope control', firstPreview.scopeControls === 0);
     assert('preview title names the current lesson', /Suffering/i.test(firstPreview.title));
     assert('preview shows the current lesson prayer', firstPreview.body.indexOf('SYN-202-05-prayer') !== -1);
     assert('preview shows the copied-ID mid-lesson answer', firstPreview.body.indexOf('SYN-202-05-mid') !== -1);
@@ -139,23 +141,11 @@ function launchBrowser() {
 
     await page.click('#email-lesson-btn');
     await page.waitForSelector('#export-preview-overlay.open');
-    await page.check('#export-scope-course');
-    var coursePreview = await page.evaluate(function () {
-        return {
-            title: document.getElementById('export-preview-selected').textContent,
-            body: document.getElementById('export-preview-text').textContent
-        };
-    });
-    assert('course scope title names the course', /Growing Up/i.test(coursePreview.title));
-    assert('course scope shows the other lesson prayer', coursePreview.body.indexOf('SYN-202-06-prayer') !== -1);
-    assert('course scope shows course commitment', coursePreview.body.indexOf('Course Commitment') !== -1 && coursePreview.body.indexOf('Yes') !== -1);
-    assert('course scope still hides recovery metadata', coursePreview.body.indexOf('SYN-ambiguous-legacy-prayer') === -1);
-
-    await page.click('#export-scope-lesson');
     var backToLesson = await page.evaluate(function () {
         return document.getElementById('export-preview-text').textContent;
     });
-    assert('returning to lesson scope removes the other prayer again', backToLesson.indexOf('SYN-202-06-prayer') === -1);
+    assert('reopening email remains limited to the current lesson', backToLesson.indexOf('SYN-202-06-prayer') === -1);
+    assert('email names the course explicitly', backToLesson.startsWith('202 Growing Up Course'));
 
     await page.keyboard.press('Escape');
 
@@ -277,29 +267,24 @@ function launchBrowser() {
     });
     assert(
         'Tab stays inside the preview controls',
-        ['export-preview-cancel', 'export-scope-lesson', 'export-scope-course', 'export-preview-text', 'export-preview-copy', 'export-preview-mail'].indexOf(tabTarget) !== -1,
+        ['export-preview-cancel', 'export-preview-text', 'export-preview-copy', 'export-preview-mail'].indexOf(tabTarget) !== -1,
         tabTarget
     );
 
-    // A radio group has one Tab stop: its selected radio, not always the first.
-    // Both directions must wrap correctly after changing export scope.
-    for (var scope of ['course', 'lesson']) {
-        await page.check('#export-scope-' + scope);
-        await page.focus('#export-scope-' + scope);
-        await page.keyboard.press('Shift+Tab');
-        assert(scope + ': Shift+Tab wraps to the last dialog action',
-            await page.evaluate(function () { return document.activeElement.id; }) === 'export-preview-mail');
-        await page.keyboard.press('Tab');
-        assert(scope + ': Tab wraps to the selected scope radio',
-            await page.evaluate(function () { return document.activeElement.id; }) === 'export-scope-' + scope);
-    }
+    await page.focus('#export-preview-text');
+    await page.keyboard.press('Shift+Tab');
+    assert('Shift+Tab wraps to the last dialog action',
+        await page.evaluate(function () { return document.activeElement.id; }) === 'export-preview-mail');
+    await page.keyboard.press('Tab');
+    assert('Tab wraps to the first dialog control',
+        await page.evaluate(function () { return document.activeElement.id; }) === 'export-preview-text');
 
     await browser.close();
     if (failed) {
         console.error('\n' + failed + ' browser check(s) failed.');
         process.exit(1);
     }
-    console.log('\nBrowser ENG-004 checks passed.');
+    console.log('\n' + passed + ' browser ENG-004 checks passed.');
 })().catch(function (err) {
     console.error(err && err.stack ? err.stack : err);
     process.exit(1);
