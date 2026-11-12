@@ -150,6 +150,36 @@
             }
         ]
     },
+    "images/202-06-midnight-songs-bw.jpg": {
+        "width": 1248,
+        "height": 832,
+        "sourceHash": "a8a8b2402c13f5140ef97875c55ba229cb30024210f2753c510ebe589b09cc73",
+        "variants": [
+            {
+                "src": "images/optimized/202-06-midnight-songs-bw-640.webp",
+                "width": 640
+            },
+            {
+                "src": "images/optimized/202-06-midnight-songs-bw-1248.webp",
+                "width": 1248
+            }
+        ]
+    },
+    "images/202-06-midnight-songs-color.jpg": {
+        "width": 1248,
+        "height": 832,
+        "sourceHash": "4932f89d39f060ea7b28c8e6b6b3f5324981f6eacef1f6e4c2acbaec26664bc2",
+        "variants": [
+            {
+                "src": "images/optimized/202-06-midnight-songs-color-640.webp",
+                "width": 640
+            },
+            {
+                "src": "images/optimized/202-06-midnight-songs-color-1248.webp",
+                "width": 1248
+            }
+        ]
+    },
     "images/202-3circles-logo.png": {
         "width": 1216,
         "height": 458,
