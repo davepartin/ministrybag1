@@ -9,9 +9,21 @@
     },
     {
       "type": "image",
-      "imageBw": "images/202-06-midnight-songs-bw.jpg",
-      "imageColor": "images/202-06-midnight-songs-color.jpg",
-      "alt": "Paul and Silas sit with their feet in the stocks in a dark Philippi prison, faces lifted in song at midnight while other prisoners listen",
+      "imageSequence": [
+        "images/202-06-paul-silas-seq-1.jpg",
+        "images/202-06-paul-silas-seq-2.jpg",
+        "images/202-06-paul-silas-seq-3.jpg",
+        "images/202-06-paul-silas-seq-4.jpg",
+        "images/202-06-paul-silas-seq-5.jpg"
+      ],
+      "imageSequenceStops": [
+        0,
+        0.16,
+        0.3,
+        0.44,
+        0.58
+      ],
+      "alt": "Paul and Silas pray and sing in a prison as their chains loosen and fall to the floor",
       "touchNext": true
     },
     {
