@@ -6,6 +6,8 @@ Dave asked Codex to cover Claude while Claude is unavailable and confirmed: "Mer
 
 Reviewed and merged #161 tooling (`4c255cd`), #155 Daniel art (`a6cb9d5`) and #162 early-church art (`6cab588`). Checks and automatic Firebase deployments pass. The combined tree exactly matches the tested integration. Evidence: logs/2026-11-12-COORD-003-codex.md.
 
+Dave separately requested Grok's one-sentence Daniel age clarification after #155 closed. L-203-06-AGE applies only that wording from Grok's later commit `5fbf14d` on a fresh current-main branch, not a merge of Grok's stale branch. Its PR carries preview, check and delegated-integration evidence. Questions, Scripture quotations and art stay unchanged; the implementation lane below is unchanged. See logs/2026-11-12-L-203-06-AGE-codex.md.
+
 Next: ChatGPT chapter notes in Email Lesson; Gemini 202-05 art; Grok 203-07 art. Keep approved questions untouched. Do not merge old #28 or #68 without a fresh current-state review; #2 is outside this assignment. TEAM-BOARD.md contains the current lanes and temporary authority. The older Claude-only instructions below are historical while this handoff is active.
 
 **Image build needs sharp:** see Lessons learned in TEAM-BOARD.md before running `build_lesson_images.js`.
