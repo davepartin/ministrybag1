@@ -109,14 +109,16 @@ async function isolatedPage(browser, width) {
             }
             await page.fill('#question-203-203-01-key', 'SYN-before-backup');
             await page.click('.back-btn');
-            check(width + ': acknowledgments are on home only', await page.locator('#home-acknowledgments').isVisible() &&
+            check(width + ': home links to the About page, not a lesson acknowledgment', await page.locator('#home-about-link').isVisible() &&
                 await page.locator('.esv-footnote').count() === 1);
-            await page.locator('#home-acknowledgments summary').click();
+            await page.click('#home-about-link');
+            await page.locator('#about-acknowledgments summary').click();
             var acknowledgment = (await page.locator('.esv-footnote').textContent()).replace(/\s+/g, ' ');
             check(width + ': ESV and WEB acknowledgment text is preserved', acknowledgment.includes('Used by permission. All rights reserved.') &&
                 acknowledgment.includes('World English Bible, which is in the public domain.'));
             check(width + ': private Gmail is not published on the page', !(await page.locator('body').textContent()).includes('davepartin@gmail.com') &&
                 await page.locator('a[href*="davepartin@gmail.com"]').count() === 0);
+            await page.click('#about-back-btn');
             await page.locator('#home-backup-tools summary').click();
             var file = await download(page, '#home-download-backup');
             var envelope = JSON.parse(file.text);

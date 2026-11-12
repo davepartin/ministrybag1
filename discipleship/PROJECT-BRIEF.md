@@ -139,7 +139,7 @@ discipleship/
 - All responses auto-save to localStorage silently
 - Email previews only the current lesson: course name, title, a three-sentence summary, question numbers and answers. Email-only summaries live in `scripts/lesson-email-summaries.js`; update the matching summary when a lesson's teaching changes. The UI has no course-email option.
 - Lesson navigation has two compact actions: Email and a disabled Download Blank PDF placeholder for the current course. Whole-course blank PDFs will be produced only when the course is ready; the placeholder does not print or download anything.
-- Scripture acknowledgments and collapsible backup/recovery tools live on home, not in every lesson footer. Save-error recovery controls stay available.
+- Home links to an About Growing Together view (`#about`) with Dave Partin's bio, the study's purpose and Scripture acknowledgments. Its portrait loads only when opened. About stays in the app to preserve unsaved answers in memory. Collapsible backup/recovery tools remain on home; save-error recovery controls stay available.
 - Lesson count is auto-detected: drop a new JSON file and it appears
 
 ## JSON Block Types

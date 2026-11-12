@@ -1906,7 +1906,6 @@
             font-size: 0.8rem;
         }
 
-        .home-footer summary,
         .home-backup-tools summary {
             cursor: pointer;
             padding: 10px 0;
@@ -1920,6 +1919,136 @@
 
         .home-backup-tools .home-backup-btn {
             margin: 6px;
+        }
+
+        .home-about-link {
+            display: block;
+            width: fit-content;
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 10px 16px;
+            min-height: 44px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            color: #1E6FA0;
+            font-weight: 600;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .home-about-link:focus-visible,
+        .about-view a:focus-visible,
+        .about-view button:focus-visible,
+        .about-view summary:focus-visible {
+            outline: 2px solid #1E6FA0;
+            outline-offset: 3px;
+        }
+
+        .about-view {
+            display: none;
+        }
+
+        .about-view.active {
+            display: block;
+        }
+
+        .about-topbar {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 20px;
+            border-bottom: 1px solid var(--border-light);
+            background: var(--surface);
+        }
+
+        .about-back-btn {
+            display: grid;
+            place-items: center;
+            flex: 0 0 44px;
+            width: 44px;
+            height: 44px;
+            border: none;
+            border-radius: 50%;
+            background: var(--border-light);
+            color: #1E6FA0;
+            font: inherit;
+            font-size: 28px;
+            line-height: 1;
+            cursor: pointer;
+        }
+
+        .about-topbar-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .about-content {
+            padding: 28px 20px 40px;
+            overflow-wrap: anywhere;
+        }
+
+        .about-content h1 {
+            font-size: 2rem;
+            line-height: 1.2;
+            margin: 0 0 8px;
+        }
+
+        .about-content h1:focus {
+            outline: none;
+        }
+
+        .about-content h2 {
+            color: var(--blue-heading);
+            font-size: 1.2rem;
+            line-height: 1.35;
+            margin: 28px 0 12px;
+        }
+
+        .about-content p {
+            margin: 0 0 16px;
+        }
+
+        .about-content a {
+            color: #1E6FA0;
+            text-underline-offset: 3px;
+        }
+
+        .about-lede {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+        }
+
+        .about-portrait {
+            display: block;
+            width: 176px;
+            max-width: 100%;
+            height: auto;
+            margin: 24px 0 0;
+            border-radius: 8px;
+        }
+
+        .about-content .about-small {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .about-acknowledgments {
+            border-top: 1px solid var(--border-light);
+            margin-top: 28px;
+            padding-top: 8px;
+        }
+
+        .about-acknowledgments summary {
+            padding: 12px 0;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .about-return-link {
+            display: inline-block;
+            min-height: 44px;
+            margin-top: 20px;
+            padding: 10px 0;
         }
 
         /* ============================================
@@ -2934,15 +3063,62 @@
                 </details>
             </div>
             <footer class="home-footer">
-                <details id="home-acknowledgments">
+                <a class="home-about-link" id="home-about-link" href="#about"
+                    onclick="event.preventDefault(); openAbout()">About Growing Together</a>
+            </footer>
+        </div>
+
+        <section class="about-view" id="about-view" aria-labelledby="about-heading">
+            <header class="about-topbar">
+                <button type="button" class="about-back-btn" id="about-back-btn" onclick="closeAbout()"
+                    aria-label="Back to courses">&#8249;</button>
+                <span class="about-topbar-title">About</span>
+            </header>
+            <div class="about-content">
+                <h1 id="about-heading" tabindex="-1">Growing Together</h1>
+                <p class="about-lede">A pastor's heart for making disciples.</p>
+                <img class="about-portrait" id="about-portrait" data-lesson-src="images/dave-partin.webp"
+                    width="480" height="480" loading="lazy" decoding="async" alt="Dave Partin">
+
+                <h2>Meet Dave Partin</h2>
+                <p>I'm Dave, a pastor and church planter at <a href="https://neighborhoodchurchop.com/about"
+                    target="_blank" rel="noopener noreferrer"
+                    aria-label="Neighborhood Church in Overland Park, Kansas (opens in a new tab)">Neighborhood Church</a>
+                    in Overland Park, Kansas. My 30 years in ministry have included student ministry with Young Life,
+                    mission work with Cru, and church planting with Send Network. Those experiences have deepened my
+                    love for helping people follow Jesus in everyday life.</p>
+                <p><strong>My heart is to make disciples who make disciples, so that more people will know, love,
+                    and worship our wonderful Jesus.</strong></p>
+
+                <h2>Why I Put This Together</h2>
+                <p>Growing Together grew out of a simple desire: to give people a clear, biblical path for following
+                    Jesus and helping someone else follow Him. Whether you are taking your first steps in faith or
+                    walking alongside another person, I hope this study helps you receive God's grace, grow in His
+                    Word, and love the people He has placed around you.</p>
+                <p>My hope is that what you receive here will take root in your life and bear fruit in someone else's.
+                    We learn to follow Jesus, and then we get to help another person do the same.</p>
+
+                <h2>A Gift to Share</h2>
+                <p>Growing Together is free. This is my own work as a pastor, shared with the hope that it will serve
+                    you, your friends, and your church. You are welcome to work through it on your own, with a friend,
+                    or in a small group. May it help you know Jesus more deeply and pass on what He has given you.</p>
+                <p class="about-small">My ministry background has helped shape this study. Growing Together is my
+                    personal project, not an official publication of Send Network, Cru, or Young Life.</p>
+
+                <details class="about-acknowledgments" id="about-acknowledgments">
                     <summary>Acknowledgments</summary>
+                    <p class="about-small">I'm grateful for the pastors, friends, and fellow believers who have helped
+                        me follow Jesus and taught me to walk alongside others. This study carries the influence of
+                        many faithful people, and I thank God for them.</p>
                     <p class="esv-footnote">Unless otherwise noted, Scripture quotations are from the ESV&reg; Bible (The Holy Bible, English Standard
                         Version&reg;), copyright &copy; 2001 by Crossway, a publishing ministry of Good News Publishers. Used by
                         permission. All rights reserved. Weekly Gospel of John readings are from the World English Bible, which is in the public
                         domain.</p>
                 </details>
-            </footer>
-        </div>
+                <a class="about-return-link" id="about-return-link" href="#"
+                    onclick="event.preventDefault(); closeAbout()">Back to Courses</a>
+            </div>
+        </section>
 
         <!-- ============================
              TREE VIEW
@@ -3346,6 +3522,7 @@
         }
 
         function openSeries(seriesId) {
+            document.getElementById('about-view').classList.remove('active');
             document.getElementById('home-view').classList.add('hidden');
             document.getElementById('lesson-view').classList.add('active');
             const meta = COURSE_META[seriesId];
@@ -3362,10 +3539,32 @@
             if (isBackupPreviewOpen()) closeBackupPreview();
             else invalidateBackupPreviewReads();
             document.getElementById('lesson-view').classList.remove('active');
+            document.getElementById('about-view').classList.remove('active');
             document.getElementById('home-view').classList.remove('hidden');
             document.getElementById('toc-panel').classList.remove('open');
             window.scrollTo({ top: 0 });
             pushHash('');
+        }
+
+        function openAbout() {
+            if (isExportPreviewOpen()) closeExportPreview();
+            if (isBackupPreviewOpen()) closeBackupPreview();
+            else invalidateBackupPreviewReads();
+            document.getElementById('home-view').classList.add('hidden');
+            document.getElementById('lesson-view').classList.remove('active');
+            document.getElementById('tree-view').classList.remove('active');
+            document.getElementById('toc-panel').classList.remove('open');
+            const about = document.getElementById('about-view');
+            about.classList.add('active');
+            GrowingTogetherLessonImages.activate(about);
+            window.scrollTo({ top: 0, behavior: 'instant' });
+            if (!_suppressHashNav) pushHash('about');
+            document.getElementById('about-heading').focus({ preventScroll: true });
+        }
+
+        function closeAbout() {
+            goHome();
+            document.getElementById('home-about-link').focus();
         }
 
         // ============================================
@@ -3478,6 +3677,7 @@
         }
 
         async function openTree() {
+            document.getElementById('about-view').classList.remove('active');
             document.getElementById('home-view').classList.add('hidden');
             document.getElementById('tree-view').classList.add('active');
             document.getElementById('tree-content').innerHTML =
@@ -6030,7 +6230,7 @@
 
         // ============================================
         // HASH ROUTING - Browser back/forward support
-        // Handles: #101-4 (course-lesson), #tree, # (home)
+        // Handles: #101-4 (course-lesson), #tree, #about, # (home)
         // ============================================
         window.addEventListener('hashchange', async () => {
             if (_suppressHashNav) return;
@@ -6039,11 +6239,21 @@
 
             // Home
             if (!hash) {
+                const returningFromAbout = document.getElementById('about-view').classList.contains('active');
+                document.getElementById('about-view').classList.remove('active');
                 document.getElementById('tree-view').classList.remove('active');
                 document.getElementById('lesson-view').classList.remove('active');
                 document.getElementById('home-view').classList.remove('hidden');
                 document.getElementById('toc-panel').classList.remove('open');
                 window.scrollTo({ top: 0 });
+                if (returningFromAbout) document.getElementById('home-about-link').focus();
+                return;
+            }
+
+            if (hash === 'about') {
+                _suppressHashNav = true;
+                openAbout();
+                _suppressHashNav = false;
                 return;
             }
 
@@ -6067,6 +6277,10 @@
 
                 if (!COURSE_META[sid]) return;
 
+                document.getElementById('about-view').classList.remove('active');
+                document.getElementById('home-view').classList.add('hidden');
+                document.getElementById('lesson-view').classList.add('active');
+
                 _suppressHashNav = true;
 
                 if (currentSeries !== sid) {
@@ -6086,6 +6300,13 @@
         (async function handleInitialHash() {
             const hash = location.hash.slice(1);
             if (!hash) return;
+
+            if (hash === 'about') {
+                _suppressHashNav = true;
+                openAbout();
+                _suppressHashNav = false;
+                return;
+            }
 
             if (hash === 'tree') {
                 _suppressHashNav = true;
