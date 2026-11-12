@@ -101,6 +101,8 @@ Dave asked for a few projects for Gemini, Grok and Codex. These are the next thr
 
 If you already have that exact first job underway in your own isolated worktree, continue it and link the task ID; do not restart or duplicate it. Never switch or edit another worker's checkout.
 
+Integration checkpoint: READ-101-NOTES (#168), READ-101-RETRY (#170) and ART-203-07 (#169) are merged and publicly verified. READ-101-A11Y is at REVIEW. Personal art approval remains Dave's; these technical completions do not change the lesson grades. ART-203-03 and ART-202-05 have arrived for coordinator review. TASKS and PR comments contain the exact checks/deployment evidence.
+
 | Agent | Order | Task ID | Project | Scope / Acceptance |
 |---|---:|---|---|---|
 | Gemini | 1 | ART-202-05 | Joseph: The Pit, the Prison, and the Palace | Add charcoal story art and matching color reveal for 202-05's existing story. New art and image block only; no suffering prose or question edits. |
