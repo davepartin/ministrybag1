@@ -341,6 +341,36 @@
             }
         ]
     },
+    "images/203-07-sends-72-bw.jpg": {
+        "width": 1248,
+        "height": 832,
+        "sourceHash": "1318cd2f29bed87f2e3ff2ede388c0fc20cebe1792c6367c0e116e17ff086915",
+        "variants": [
+            {
+                "src": "images/optimized/203-07-sends-72-bw-640.webp",
+                "width": 640
+            },
+            {
+                "src": "images/optimized/203-07-sends-72-bw-1248.webp",
+                "width": 1248
+            }
+        ]
+    },
+    "images/203-07-sends-72-color.jpg": {
+        "width": 1248,
+        "height": 832,
+        "sourceHash": "507d899e768e611c67c8376df8c41d20ec40d1e86fb93815cc99f8edb10deaa2",
+        "variants": [
+            {
+                "src": "images/optimized/203-07-sends-72-color-640.webp",
+                "width": 640
+            },
+            {
+                "src": "images/optimized/203-07-sends-72-color-1248.webp",
+                "width": 1248
+            }
+        ]
+    },
     "images/203-3circle-logo.png": {
         "width": 1218,
         "height": 456,
