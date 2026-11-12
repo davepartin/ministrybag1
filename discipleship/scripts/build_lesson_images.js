@@ -7,35 +7,42 @@ var path = require('path');
 var crypto = require('crypto');
 var sharp = require('sharp');
 var ROOT = path.resolve(__dirname, '..');
-var SOURCES = [
-    'images/3-circles-coral.png',
-    'images/201.01-peaks-and-valleys.png',
-    'images/greenhouse-seq-1.jpg',
-    'images/greenhouse-seq-2.jpg',
-    'images/greenhouse-seq-3.jpg',
-    'images/greenhouse-seq-4.jpg',
-    'images/aspen-bw.png',
-    'images/aspen-color.png',
-    'images/woman-well-bw.png',
-    'images/woman-well-color.png',
-    'images/203-02-bless-logo.png',
-    'images/101-starting-logo-v3.png',
-    'images/203-06-daniel-window-bw.jpg',
-    'images/203-06-daniel-window-color.jpg'
-];
+var SOURCES = fs.readdirSync(path.join(ROOT, 'images')).filter(function (file) {
+    return /\.(jpe?g|png)$/i.test(file);
+}).sort().map(function (file) { return 'images/' + file; });
+var MANIFEST = path.join(ROOT, 'scripts/lesson-image-assets.js');
+var existing = fs.existsSync(MANIFEST) ? require(MANIFEST) : {};
 
 (async function () {
     var pilot = process.argv.includes('--pilot');
     var sources = pilot ? SOURCES.filter(function (src) { return src.includes('aspen-'); }) : SOURCES;
     var assets = {};
+    var outputs = new Set();
     fs.mkdirSync(path.join(ROOT, 'images/optimized'), { recursive: true });
     for (var src of sources) {
         var input = fs.readFileSync(path.join(ROOT, src));
+        var sourceHash = crypto.createHash('sha256').update(input).digest('hex');
+        var outputBase = 'images/optimized/' + path.basename(src, path.extname(src)).replace(/\s+/g, '-');
+        var cached = existing[src];
+        if (!pilot && cached && cached.sourceHash === sourceHash && cached.variants.length &&
+            cached.variants.every(function (variant) {
+                return variant.src === outputBase + '-' + variant.width + '.webp' && fs.existsSync(path.join(ROOT, variant.src));
+            })) {
+            cached.variants.forEach(function (variant) {
+                if (outputs.has(variant.src)) throw new Error('Image output name collision: ' + variant.src);
+                outputs.add(variant.src);
+            });
+            assets[src] = cached;
+            console.log(src + ': delivery copies unchanged');
+            continue;
+        }
         var meta = await sharp(input).metadata();
         var widths = Array.from(new Set([Math.min(640, meta.width), Math.min(1280, meta.width)]));
         var variants = [];
         for (var width of widths) {
-            var output = 'images/optimized/' + path.basename(src, path.extname(src)) + '-' + width + '.webp';
+            var output = outputBase + '-' + width + '.webp';
+            if (outputs.has(output)) throw new Error('Image output name collision: ' + output);
+            outputs.add(output);
             var result = await sharp(input).resize({ width: width, withoutEnlargement: true })
                 .webp({ quality: 85, effort: 6 }).toFile(path.join(ROOT, output));
             variants.push({ src: output, width: result.width });
@@ -44,7 +51,7 @@ var SOURCES = [
         assets[src] = {
             width: meta.width,
             height: meta.height,
-            sourceHash: crypto.createHash('sha256').update(input).digest('hex'),
+            sourceHash: sourceHash,
             variants: variants
         };
     }
@@ -54,7 +61,7 @@ var SOURCES = [
             '    if (typeof module === "object" && module.exports) module.exports = assets;\n' +
             '    else root.GrowingTogetherImageAssets = assets;\n' +
             '})(typeof window !== "undefined" ? window : globalThis);\n';
-        fs.writeFileSync(path.join(ROOT, 'scripts/lesson-image-assets.js'), content);
+        fs.writeFileSync(MANIFEST, content);
     }
 })().catch(function (error) {
     console.error(error.message);

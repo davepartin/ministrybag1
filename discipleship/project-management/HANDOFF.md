@@ -1,5 +1,9 @@
 # Resume here
 
+**Image build needs sharp:** see Lessons learned in TEAM-BOARD.md before running `build_lesson_images.js`.
+
+**Team board (2026-11-12):** every agent starts at `TEAM-BOARD.md` for its lane and queue. Claude directs and reviews; Dave merges.
+
 ## Series review and rework, November 11, 2026
 
 Dave reviewed the whole 101 to 203 series with Claude and approved the direction. The standard, the lesson-by-lesson calls, the seven rewrites in order, the trims, and the review checklist are in [reviews/2026-11-11-series-review.md](reviews/2026-11-11-series-review.md). Read it before any lesson review or revision. The three sweeps (#118, #119, #120) and the plan (#121) merged on 2026-11-11, and so did the first two rewrites, 203-07 (#123) and 203-04 (#124). 202-02 (#129, then Dave's three R's in #134) and 202-04 (#132) merged too. 201-03 (#140) merged too. 101-06 (#142) merged too. The 203-08 light trim (#144) merged too, so section A of the plan, all seven rewrites, is complete as of 2026-11-11. ChatGPT's first 101 fix, image lazy-loading (#143, PERF-001a), merged the same day after Claude's review. Remaining: ChatGPT's fixes 2 to 4 (chapter notes in export, retry on failed chapter download, reader accessibility), then TRIM-SERIES (plan section B) and TEACH-IT (section C); Claude reviews each PR against the plan's checklist before Dave's "merge it". A later PR should run scripts/build_lesson_images.js over the remaining large JPGs.

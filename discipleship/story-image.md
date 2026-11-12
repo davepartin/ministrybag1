@@ -143,7 +143,7 @@ Optional field: `"frame": true` adds a 1px border (`.block-image-dissolve-framed
 | 201-06 | The Road to Emmaus | **4-Frame Sequence** | `creation1.jpg` .. `creation4.jpg` (stops `[0, 0.25, 0.4, 0.65]`) | Live sequence |
 | 201-07 | Philip and the Ethiopian | B&W -> Color | `philip-eunich-bw2.png` -> `philip-eunich-color2.png` | Live (`touchNext: true`) |
 | 201-08 | The Unmerciful Servant | B&W -> Color | `kings-mercy.jpg` -> `kings-mercy-color.jpg` | Live (`touchNext: true`, `frame: true`) |
-| 201-09 | The Vine and the Branches | None | - | Needs story art |
+| 201-09 | The Vine and the Branches | **4-Frame Sequence** | `vine-branches-seq-1.jpg` .. `4.jpg` (stops `[0, 0.18, 0.34, 0.5]`) | Live (`touchNext: true`) |
 | 201-10 | Coming to His Senses | B&W -> Color | `prodigal-son-two-brothers-bw.jpg` -> `prodigal-son-two-brothers-color.jpg` | Live (`touchNext: true`) |
 | 202-01 | The Good Samaritan | Single static | `good-samaritan-story.jpg` | Upgrade to sequence or dissolve (`touchNext: true`) |
 | 202-02 | The Wise and Foolish Builders | **6-Stop Sequence** | `house-rock-seq-1.jpg` .. `5.jpg` (stops `[0.1, 0.3, 0.38, 0.46, 0.55, 0.65]`) | Live sequence |

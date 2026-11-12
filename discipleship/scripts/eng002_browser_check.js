@@ -6,6 +6,7 @@
 'use strict';
 
 var { chromium } = require('playwright');
+var assets = require('./lesson-image-assets.js');
 
 var BASE = process.env.ENG002_BASE_URL || 'http://127.0.0.1:8765/index.html';
 var failed = 0;
@@ -17,6 +18,12 @@ function assert(name, condition, detail) {
     }
     failed += 1;
     console.error('FAIL: ' + name + (detail ? ' | ' + detail : ''));
+}
+
+function srcMatches(src, expected) {
+    return typeof src === 'string' && assets[expected].variants.some(function (variant) {
+        return src.indexOf(variant.src) !== -1;
+    });
 }
 
 async function checkLessonPair(page, hash, sessionId, expected, label) {
@@ -44,16 +51,19 @@ async function checkLessonPair(page, hash, sessionId, expected, label) {
             bwComplete: bw ? bw.complete : false
         };
     }, sessionId);
-    assert(label + ' color src points at expected file', info.colorSrc && info.colorSrc.indexOf(expected.color) !== -1, info.colorSrc);
-    assert(label + ' B&W src points at expected file', info.bwSrc && info.bwSrc.indexOf(expected.bw) !== -1, info.bwSrc);
+    assert(label + ' color delivery copy matches expected file', srcMatches(info.colorSrc, expected.color), info.colorSrc);
+    assert(label + ' B&W delivery copy matches expected file', srcMatches(info.bwSrc, expected.bw), info.bwSrc);
     assert(label + ' color image loaded', info.colorComplete && info.colorW > 0, JSON.stringify(info));
     assert(label + ' B&W image loaded', info.bwComplete && info.bwW > 0, JSON.stringify(info));
     return info;
 }
 
 (async function () {
-    var browser = await chromium.launch({ headless: true });
+    var browser = await chromium.launch({ headless: true, channel: process.env.GT_BROWSER_CHANNEL || 'chrome' });
     var page = await browser.newPage();
+    await page.route('**/scripts/account.js', function (route) {
+        return route.fulfill({ contentType: 'text/javascript', body: '' });
+    });
 
     await page.setViewportSize({ width: 390, height: 844 });
     var supper = await checkLessonPair(page, '#202-10', '#session-10', {
