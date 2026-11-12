@@ -36,6 +36,19 @@ Update, November 12: Claude redrafted `data/202-05.json` from this collection on
 
 Dave wants time, talents and treasure to become the memorable center of 202-07, with whole-self stewardship rather than money alone. He proposed replacing the upside-down bills treatment with a stool drawn from three Ts: the upper strokes form a triangular seat and the stems become three legs. Read [Dave's stewardship and three-T stool direction](reviews/2026-11-12-202-07-dave-stewardship-stool.md) before drafting or building. The note includes Dave's actual words and candidate design steps. Claude develops wording with Dave; Gemini handles a separately claimed widget packet; Codex verifies integration. 203-04 already applies the three Ts to serving and remains unchanged. This is collected direction, not a completed widget assignment or approval of unseen copy.
 
+## Current worker checkpoint from Dave: November 12, 2026
+
+This newer checkpoint updates the session-summary next actions below. Distinguish Dave-reported work from GitHub-verified state.
+
+| Work | Current owner and checkpoint | Next technical step |
+|---|---|---|
+| 202-05 suffering rewrite | Located Claude's complete draft and exact log on claude/dazzling-brown-x7g9um, head 5eb9867. Codex opened [PR #195](https://github.com/davepartin/ministrybag1/pull/195) without changing Claude's prose. The earlier missing-location concern is resolved. | Required suites pass; Firebase Action 43316715906 succeeds; 18 local and 18 preview render/data checks pass. REVIEW HOLD: removing 5.5 hides existing responses from page/Email, although storage remains intact. Resolve access and Dave's wording/source/widget decisions before publishing. |
+| 202-07 stewardship widget | Gemini's [PR #193](https://github.com/davepartin/ministrybag1/pull/193), head 0334043, independently reviewed by Codex: required suites and iframe 32 pass; 64 hosted browser checks pass across 375/390/1280, keyboard/reduced motion/scroll safety included. Non-widget lesson data exactly unchanged. | Technical review passes within tested scope. Dave visual/copy approval remains pending; coordinate whole-self prose before calling the lesson complete. No merge performed. |
+| 202-07 lesson wording | Dave identifies Claude / Fable 5.2 as the writer. The Codex [proposal in #192](https://github.com/davepartin/ministrybag1/pull/192) remains source/review material, not the approved replacement. Claude's current token limitation must be accounted for; no newly completed 202-07 rewrite is claimed. | Preserve the existing manuscript and Dave's notes until Claude resumes or Dave assigns a bounded continuation to another worker. Do not duplicate the lesson rewrite silently. |
+| 202-06 worship story art | Dave reports Grok is producing two first drafts of the base frame. This is the current image assignment. | Wait for Dave's visual direction and the published art packet before technical integration. Do not confuse these drafts with the separate worship mirror-widget PR or reopen old art as a second job. |
+
+Review links: [202-07 stool](https://growing-together-discipleship--pr193-gemini-widget-202-zjcqohhq.web.app#202-7) and [202-05 suffering](https://growing-together-discipleship--pr195-claude-dazzling-b-7qlvh9r9.web.app#202-5). Independent evidence: [Codex review log](logs/2026-11-12-REVIEW-193-195-codex.md). Both Action previews succeeded. Source code was unchanged during review; no merges or Firebase settings changes.
+
 ## Dave and Codex working session: November 12, 2026
 
 Dave asked for this summary so every agent can pick up the same decisions. Four lessons received substantive discussion; two have review drafts, one has a collected content source, and one received direction to preserve its depth. None of these conversations alone approves final lesson wording or artwork.
