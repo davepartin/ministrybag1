@@ -11,19 +11,25 @@
       "type": "image",
       "imageSequence": [
         "images/house-rock-seq-1.jpg",
+        "images/house-rock-seq-1.jpg",
         "images/house-rock-seq-2.jpg",
         "images/house-rock-seq-2.jpg",
         "images/house-rock-seq-3.jpg",
+        "images/house-rock-seq-3.jpg",
+        "images/house-rock-seq-4.jpg",
         "images/house-rock-seq-4.jpg",
         "images/house-rock-seq-5.jpg"
       ],
       "imageSequenceStops": [
-        0.1,
-        0.3,
-        0.38,
-        0.46,
-        0.55,
-        0.65
+        0,
+        0.08,
+        0.16,
+        0.24,
+        0.32,
+        0.48,
+        0.56,
+        0.72,
+        0.8
       ],
       "alt": "Two houses built on different ground as a storm gathers, then the sand house tipping and falling into the water while the rock house stands, and finally calm reveals the rock house still standing",
       "touchNext": true

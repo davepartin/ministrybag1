@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 /**
  * 202-02 wise and foolish builders sequence browser check.
- * Confirms the five scroll frames load (storm held by repeating
- * frame 2), advance in order, keep saved-answer IDs, and do not
- * shift the page at phone and laptop widths. Synthetic navigation
- * only.
+ * Confirms the five scroll frames load with standard holds
+ * (frames 3 and 4 held longer), advance in order, keep
+ * saved-answer IDs, and do not shift the page at phone and
+ * laptop widths. Synthetic navigation only.
  */
 'use strict';
 
@@ -14,9 +14,12 @@ var assets = require('./lesson-image-assets.js');
 var BASE = process.env.L20202_BASE_URL || 'http://127.0.0.1:8765/index.html';
 var FRAMES = [
     'images/house-rock-seq-1.jpg',
+    'images/house-rock-seq-1.jpg',
     'images/house-rock-seq-2.jpg',
     'images/house-rock-seq-2.jpg',
     'images/house-rock-seq-3.jpg',
+    'images/house-rock-seq-3.jpg',
+    'images/house-rock-seq-4.jpg',
     'images/house-rock-seq-4.jpg',
     'images/house-rock-seq-5.jpg'
 ];
@@ -29,10 +32,10 @@ var QUESTION_IDS = [
     '202-02-step',
     '202-02-prayer'
 ];
-var STOPS = [0.1, 0.3, 0.38, 0.46, 0.55, 0.65];
+var STOPS = [0, 0.08, 0.16, 0.24, 0.32, 0.48, 0.56, 0.72, 0.8];
 var LAST_STOP = STOPS[STOPS.length - 1];
-var AFTER_LAST = 0.7;
-var SAMPLE_PROGRESS = [0, 0.1, 0.2, 0.3, 0.34, 0.38, 0.42, 0.46, 0.505, 0.55, 0.6, 0.65, 0.7];
+var AFTER_LAST = 0.85;
+var SAMPLE_PROGRESS = [0, 0.08, 0.12, 0.16, 0.24, 0.28, 0.32, 0.4, 0.48, 0.52, 0.56, 0.64, 0.72, 0.76, 0.8, 0.85];
 var failed = 0;
 var passed = 0;
 
@@ -52,7 +55,7 @@ async function waitForSequence(page) {
         var root = document.querySelector('#session-2.active [data-parable-sequence]');
         if (!root) return false;
         var frames = Array.prototype.slice.call(root.querySelectorAll('.parable-sequence-frame'));
-        return frames.length === 6 && frames.every(function (img) {
+        return frames.length === 9 && frames.every(function (img) {
             return img.complete && img.naturalWidth > 0 && img.naturalHeight > 0;
         });
     }, { timeout: 20000 });
@@ -152,8 +155,8 @@ function srcMatches(src, expected) {
         await waitForSequence(page);
 
         var rest = await readSequenceState(page);
-        assert(width + ': six sequence frames render', rest.frameCount === 6, String(rest.frameCount));
-        assert(width + ': sequence stops are 0.1,0.3,0.38,0.46,0.55,0.65', rest.stops === STOPS.join(','), rest.stops);
+        assert(width + ': nine sequence frames render', rest.frameCount === 9, String(rest.frameCount));
+        assert(width + ': sequence stops are 0,0.08,0.16,0.24,0.32,0.48,0.56,0.72,0.8', rest.stops === STOPS.join(','), rest.stops);
         assert(width + ': image keeps touchNext', rest.touchNext);
         assert(width + ': old bw/color pair is not rendered', rest.hasBwPair === false);
         FRAMES.forEach(function (expected, idx) {
@@ -231,11 +234,11 @@ function srcMatches(src, expected) {
         }
         var used = {};
         order.forEach(function (row) { used[row.dominant] = true; });
-        var lastFrameInAtStop = atLastStop && atLastStop.opacities && atLastStop.opacities[5] >= 0.85;
+        var lastFrameInAtStop = atLastStop && atLastStop.opacities && atLastStop.opacities[8] >= 0.85;
         assert(width + ': frames advance in order as you scroll', monotonic, JSON.stringify(order));
-        assert(width + ': all six frames become dominant', Object.keys(used).length === 6, JSON.stringify(order));
+        assert(width + ': all nine frames become dominant', Object.keys(used).length === 9, JSON.stringify(order));
         assert(width + ': last frame is nearly opaque at stop ' + LAST_STOP, lastFrameInAtStop, JSON.stringify(atLastStop));
-        assert(width + ': last frame is exclusive just after stop ' + LAST_STOP, afterLastStop && afterLastStop.dominant === 5, JSON.stringify(afterLastStop));
+        assert(width + ': last frame is exclusive just after stop ' + LAST_STOP, afterLastStop && afterLastStop.dominant === 8, JSON.stringify(afterLastStop));
         assert(width + ': last frame is still on screen at the final stop', lastStopVisible, lastStopNote);
         assert(width + ': sequence does not shift or overlap surrounding content', overlapShift === false);
 
