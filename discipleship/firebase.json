@@ -18,7 +18,10 @@
       "scripts/*_check.js",
       "scripts/build_*.js",
       "scripts/check_*.js",
-      "scripts/*.sh"
+      "scripts/*.sh",
+      "images/*.jpg",
+      "images/*.jpeg",
+      "images/*.png"
     ],
     "headers": [
       {

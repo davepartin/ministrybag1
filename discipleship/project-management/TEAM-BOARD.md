@@ -4,6 +4,8 @@ Started 2026-11-12 at Dave's request. This is the one page every agent reads bef
 
 ## Temporary coordinator, 2026-11-12
 
+**Update, 2026-11-12 morning:** Claude is back and reviewing again. The night-shift delegation (ChatGPT merges reviewed, passing art and reader fixes while Dave sleeps, never lesson wording) continues only if Dave says so; until he does, PRs stop at REVIEW for Claude and Dave.
+
 Claude is unavailable. Dave asked ChatGPT/Codex to lead and confirmed: "Merge reviewed, passing PRs." Only the acting coordinator has this merge delegation. Other agents still push one job per PR and stop for review. Use separate worktrees, verify process exit codes and previews, and let the automatic Actions deploy. No manual deployment or force push. This temporary arrangement ends when Dave restores Claude or changes the instruction; it does not confer lesson, theology, or personal art approval.
 
 Integrated after coordinator review: #161 tooling, #155 Daniel story art for 203-06, and #162 early-church art for 202-03. Checks and automatic deployments pass. Evidence: logs/2026-11-12-COORD-003-codex.md. Older #28 and #68 need a fresh current-state review; #2 is outside this discipleship assignment.
@@ -32,6 +34,9 @@ Companion documents: `HANDOFF.md` (how the system works), `TASKS.md` (the task r
 8. If you are blocked or the task changes shape, stop and write it in the PR instead of guessing.
 
 ## Lessons learned (read these, they cost us time)
+
+- **Firebase hosting storage is finite (10 GB on the free plan) and every preview is a full copy of the site.** On 2026-11-12 fifty preview channels filled it and new previews were refused with HTTP 429. Claude deleted the 48 channels of merged PRs with Dave's approval; previews now expire after 3 days; original JPG and PNG files are no longer uploaded to hosting because every lesson serves the WebP copies (the originals stay in the repo and on ministrybag.com). If a 429 appears again: do not delete anything yourself; tell Dave and Claude. Dave can also lower "release storage settings" in the Firebase console (Hosting, Usage) so old live versions are pruned automatically.
+- **Claim before you start.** Put your name on the TASKS row (owner column) and push that row in your first commit before generating art or code. On 2026-11-12 Grokbot worked Gemini's queue under a gemini/ branch name; the work was good but two bots could easily have done the same lesson.
 
 - **Install the pinned tools in each worktree.** TOOLING-001 merged as #161. From `discipleship/`, run `npm ci` for sharp and Playwright; no desktop-specific NODE_PATH is needed. See README.md for Node and browser prerequisites. If a build prints only a Node version line, it crashed and wrote nothing. Check the process exit code and generated outputs before committing.
 - **Check exit codes, not the last line.** `bash scripts/qa_foundation.sh | tail -1` always exits 0. Run the script, then `echo $?`, or use `set -o pipefail`. Claude merged a red asset map on 2026-11-12 because of this.
