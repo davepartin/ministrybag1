@@ -1,39 +1,102 @@
-# Story Image Pattern
+# Story Image and Scroll-Animation Guide
 
-This file explains the reusable **story-image dissolve pattern** used in Lesson `201-03`.
+This file is the single source of truth for **scroll-animated story images** in the Growing Together Discipleship Series. Any AI or human adding, upgrading, or testing lesson story images should read this file first.
 
-Use this when a lesson has:
+## Two Scroll-Animation Patterns
 
-- a story or parable near the top
-- a black-and-white sketch
-- a matching color version of the same image
-- a desire to reveal the color version gradually as the learner scrolls
+Every lesson opens with a story or parable near the top. Above that `parable` block sits a standalone `image` block with `"touchNext": true` so the artwork and story card fuse into one card without a gap.
 
-The goal is simple:
+The app engine (`index.html`, in `initParableDissolves()`) supports **two scroll-driven patterns**:
 
-- the learner first sees the image in **black and white**
-- as the image moves upward on the page, the **black-and-white layer dissolves away**
-- the **color image underneath** is slowly revealed
-- if motion should not run, the **color image is shown by default**
+1. **Pattern A: Multi-Frame Scroll Sequence (`imageSequence` + `imageSequenceStops`)** - A flipbook/stop-motion sequence of 2 to 6 frames (like `201-01` The Running Father) that cross-fades from frame to frame as the learner scrolls.
+2. **Pattern B: Two-Layer B&W-to-Color Dissolve (`imageBw` + `imageColor`)** - A black-and-white charcoal sketch that dissolves away on scroll to reveal a matching color version underneath (like `201-03` The Pillar in the Wilderness).
 
-This pattern is especially good for parables, story hooks, Bible scenes, and visual anchors early in a lesson.
+In both patterns, if the user prefers reduced motion (`prefers-reduced-motion: reduce`), the app skips scroll animation and statically displays the final state (the last frame in a sequence, or the color image in a dissolve).
 
-## Best Structure
+---
 
-Do **not** put the dissolve image inside the parable card itself.
+## Pattern A: Multi-Frame Scroll Sequence (`imageSequence`)
 
-The cleaner pattern is:
+### How the Artwork Works (Exemplar: `201-01` Running Father)
 
-1. A dedicated `image` block for the dissolve image
-2. A `parable` block directly underneath for the story text
+Look at `data/201-01.json` and `images/running-father-seq-1.jpg` through `images/running-father-seq-5.jpg`:
 
-This gives better control over layout and scroll behavior.
+- **Identical dimensions across all frames:** Every frame in a sequence must have the exact same pixel width and height (for example, `1248x832` in `201-01`) so the container height never shifts during scroll.
+- **Locked background plate:** Keep the background environment, horizon, road, lighting, and stationary figures locked in the exact same pixel positions across every frame.
+- **Progressive subject motion:** Only the moving subject changes from frame to frame. In `201-01`, the returning son stands at the same spot down the road in all 5 frames while the father progresses from large in the foreground (`seq-1`), down the road (`seq-2`, `seq-3`, `seq-4`), to standing right beside his son with his arm reaching out (`seq-5`).
+- **Hold a beat by repeating a frame:** If a frame needs to pause on screen longer during scroll, list the same image path twice in `imageSequence` across two adjacent stops (as `202-02` does with `house-rock-seq-2.jpg`).
 
-It also lets the image and story card visually touch without awkward spacing.
+### JSON Shape (`imageSequence`)
 
-## JSON Shape
+Place a standalone `image` block immediately above the `parable` block:
 
-For a dissolve image, use an `image` block with these fields:
+```json
+{
+  "type": "image",
+  "imageSequence": [
+    "images/running-father-seq-1.jpg",
+    "images/running-father-seq-2.jpg",
+    "images/running-father-seq-3.jpg",
+    "images/running-father-seq-4.jpg",
+    "images/running-father-seq-5.jpg"
+  ],
+  "imageSequenceStops": [
+    0,
+    0.16,
+    0.3,
+    0.44,
+    0.58
+  ],
+  "alt": "A father running down the road toward his returning son until he reaches him",
+  "touchNext": true
+}
+```
+
+Followed immediately by the `parable` block (with no `image` field inside the `parable` block itself):
+
+```json
+{
+  "type": "parable",
+  "title": "The Running Father",
+  "text": "Story text here..."
+}
+```
+
+### How `imageSequenceStops` Works
+
+The scroll engine measures `progress` from `0` to `1` as the top of the image block moves through the visible lesson area (below `.lesson-topbar`):
+
+- **`progress = 0` (`fadeStartY`):** Image top is at **40% down** the visible content area (`contentTop + visibleHeight * 0.40`).
+- **`progress = 1` (`fadeEndY`):** Image top has scrolled to **22% above** the top bar (`contentTop + visibleHeight * -0.22`).
+
+Important rule for stops: **Finish the final stop around `0.40` to `0.65`, not at `1.0`.** At `progress = 1.0`, the top of the image is already 22% above the top bar. Ending the last stop around `0.50` to `0.60` ensures the learner sees the final arrival frame while the whole picture is still on screen with the parable card visible beneath it.
+
+### Proven Stop Presets by Frame Count
+
+- **2 frames (`203-05` Blind Man):** `[0, 0.4]`
+- **3 frames (`201-02` The Family Robe):** `[0, 0.25, 0.45]`
+- **4 frames (`201-06` Creation):** `[0, 0.25, 0.4, 0.65]` (or `[0, 0.18, 0.34, 0.5]`)
+- **5 frames (`201-01` Running Father):** `[0, 0.16, 0.3, 0.44, 0.58]`
+- **6 entries with a hold (`202-02` Wise Builder):** `[0.1, 0.3, 0.38, 0.46, 0.55, 0.65]`
+
+### How the Renderer Animates the Sequence
+
+In `index.html`:
+
+1. Frame 1 (`:first-child`) sits in normal flow and sets the box dimensions.
+2. Frames 2 through N (`:not(:first-child)`) are stacked on top with `position: absolute; inset: 0; opacity: 0; pointer-events: none`.
+3. As `progress` moves between `stops[segment]` and `stops[segment + 1]`:
+   - Frame `segment` stays at `opacity: 1`.
+   - Frame `segment + 1` cross-fades from `0` to `1` (`segmentProgress`).
+   - Once `progress >= stops[last]`, the final frame stays at `opacity: 1`.
+
+---
+
+## Pattern B: Two-Layer B&W-to-Color Dissolve (`imageBw` + `imageColor`)
+
+Use this when a lesson has a black-and-white charcoal sketch and an identically framed color version.
+
+### JSON Shape (`imageBw` + `imageColor`)
 
 ```json
 {
@@ -45,190 +108,74 @@ For a dissolve image, use an `image` block with these fields:
 }
 ```
 
-Then place the story card immediately after it:
+Optional field: `"frame": true` adds a 1px border (`.block-image-dissolve-framed`) when the artwork has a light edge that benefits from a subtle border.
 
-```json
-{
-  "type": "parable",
-  "title": "The Pillar in the Wilderness",
-  "text": "Story text here..."
-}
-```
+### Rendering Logic
 
-### Field meanings
+- The **color image** (`parable-img-color`, `z-index: 1`) sits at the base.
+- The **black-and-white image** (`parable-img-bw`, `z-index: 2`, `position: absolute; inset: 0`) sits on top at `opacity: 1`.
+- Scrolling from `40%` down the visible area to `-22%` above the top bar reduces `bwImg.style.opacity` from `1` to `0`, revealing the color image underneath.
 
-- `imageBw`: the black-and-white image shown first
-- `imageColor`: the matching color image underneath
-- `alt`: the accessible description
-- `touchNext`: removes the gap between the image block and the next parable card
+### Art Prompts for Charcoal Pairs or Sequences
 
-## Rendering Logic
+- **B&W Base / Sequence Frame Prompt:** `[Describe scene] in a 3:2 or 16:9 wide aspect ratio. A rough black and white charcoal sketch, dynamic and expressive linework, loose and energetic pencil strokes, high contrast lighting with deep shadows, storyboard concept art style, emotional and evocative body language, heavy cross-hatching, warm grayscale monochromatic palette.`
+- **Color Reveal Prompt:** `[Describe scene] in the exact same composition and dimensions. A rough charcoal sketch with a warm color-splash/color-highlight treatment on the key focal elements [specify elements], dynamic and expressive linework, loose and energetic pencil strokes, high contrast lighting with deep shadows, storyboard concept art style.`
+- **Sequence Frame Edit Prompt:** Keep the background plate fixed and move only the key figure or gesture step by step across frames 1 to N so cross-fades do not ghost the background.
 
-The working pattern is:
+---
 
-- the **color image is the base layer**
-- the **black-and-white image sits on top**
-- scrolling reduces the opacity of the black-and-white layer
+## Current Story Image Plan & Inventory (Courses 101 to 203)
 
-This is more reliable than trying to fade the color image in.
+| Lesson | Story / Parable | Current Pattern | Current Asset(s) | Status / Next Upgrade |
+|--------|-----------------|-----------------|------------------|-----------------------|
+| 101-01 | Course Opener | Static diagram | `images/3-circles-coral.png`, `images/201.01-peaks-and-valleys.png` | Course opener (exception) |
+| 101-02 | The Greenhouse | **4-Frame Sequence** | `greenhouse-seq-1.jpg` .. `4.jpg` (stops `[0, 0.18, 0.34, 0.5]`) | Live (`touchNext: true`) |
+| 101-03 | Teach Us to Pray | None | - | Needs story art |
+| 101-04 | The Bible | None | - | Needs parable + story art |
+| 101-05 | The Aspen Grove | B&W -> Color | `aspen-bw.png` -> `aspen-color.png` | Live (`touchNext: true`) |
+| 101-06 | The Woman at the Well | B&W -> Color | `woman-well-bw.png` -> `woman-well-color.png` | Live (`touchNext: true`) |
+| 101-07 | The Shepherd Who Comes Looking | None | - | Needs story art |
+| 201-01 | The Running Father | **5-Frame Sequence** | `running-father-seq-1.jpg` .. `5.jpg` (stops `[0, 0.16, 0.3, 0.44, 0.58]`) | **Benchmark sequence** |
+| 201-02 | The Family Robe | **3-Frame Sequence** | `robe-down.jpg`, `robe-mid.jpg`, `robe-up.jpg` (stops `[0, 0.25, 0.45]`) | Live sequence |
+| 201-03 | The Pillar in the Wilderness | B&W -> Color | `pillar-fire-bw.png` -> `pillar-fire-color.png` | Live (`touchNext: true`) |
+| 201-04 | The Sower and the Soil | B&W -> Color | `soils-bw.jpeg` -> `soils-color.jpg` | Live (`touchNext: true`) |
+| 201-05 | The Book Found in the Temple | Single static | `bible-journal.jpg` (not attached to parable) | Needs Temple scroll story art |
+| 201-06 | The Road to Emmaus | **4-Frame Sequence** | `creation1.jpg` .. `creation4.jpg` (stops `[0, 0.25, 0.4, 0.65]`) | Live sequence |
+| 201-07 | Philip and the Ethiopian | B&W -> Color | `philip-eunich-bw2.png` -> `philip-eunich-color2.png` | Live (`touchNext: true`) |
+| 201-08 | The Unmerciful Servant | B&W -> Color | `kings-mercy.jpg` -> `kings-mercy-color.jpg` | Live (`touchNext: true`, `frame: true`) |
+| 201-09 | The Vine and the Branches | None | - | Needs story art |
+| 201-10 | Coming to His Senses | B&W -> Color | `prodigal-son-two-brothers-bw.jpg` -> `prodigal-son-two-brothers-color.jpg` | Live (`touchNext: true`) |
+| 202-01 | The Good Samaritan | Single static | `good-samaritan-story.jpg` | Upgrade to sequence or dissolve (`touchNext: true`) |
+| 202-02 | The Wise and Foolish Builders | **6-Stop Sequence** | `house-rock-seq-1.jpg` .. `5.jpg` (stops `[0.1, 0.3, 0.38, 0.46, 0.55, 0.65]`) | Live sequence |
+| 202-03 | The Early Church | None | - | Needs story art |
+| 202-04 | The Five Farmers in the Field | B&W -> Color | `Farmer-bw.jpeg` -> `Farmer-color.jpg` | Live (`touchNext: true`) |
+| 202-05 | The Pit, the Prison, and the Palace | None | - | Needs story art |
+| 202-06 | Songs at Midnight | None | - | Needs story art |
+| 202-07 | Two Small Coins | None | - | Needs story art |
+| 202-08 | The Marble and the Chisel | B&W -> Color | `202.08-marble-chisel-bw.jpg` -> `202.08-marble-chisel-color.jpg` | Live (`touchNext: true`, `frame: true`) |
+| 202-09 | The View from the Roof | B&W -> Color | `202.09-david-roof-bw.png` -> `202.09-david-roof-color.png` | Live (`touchNext: true`, `frame: true`) |
+| 202-10 | The Table He Longed For | B&W -> Color | `last-supper-bw.jpg` -> `last-supper-color.jpg` | Live (`touchNext: true`, `frame: true`) |
+| 203-01 | On the Mountain | Logo only | `203-3circle-logo.png` | Needs story art if parable kept |
+| 203-02 | A Prayer Before the Answer | Logo only | `203-02-bless-logo.png` | Needs Nehemiah story art |
+| 203-03 | Stay with Us | None | - | Needs story art |
+| 203-04 | The Towel and the Basin | B&W -> Color | `jesus-washing-feet-bw.png` -> `jesus-washing-feet-color.png` | Live (`touchNext: true`) |
+| 203-05 | I Was Blind, Now I See | **2-Frame Sequence** | `blind-1-closedeyes.jpg`, `blind-2-openeyes.jpg` (stops `[0, 0.4]`) | Live sequence |
+| 203-06 | Faithful in Babylon | None | - | Tracked as `ART-004` (Daniel) |
+| 203-07 | Jesus Sends the 72 | Single in parable | `jesus-sends-72.jpg` (inside `parable` block) | Move to standalone `image` block + dissolve/sequence |
+| 203-08 | Four Generations | Single B&W | `203.08-paul-timothy-bw.jpg` (`touchNext: true`) | Tracked as `ART-008` (add color or sequence) |
+| 203-09 | The Tentmakers | None | - | Needs Priscilla/Aquila tentmaking art |
+| 203-10 | A Place for Every Part | None | - | Needs body/parts story art |
 
-Why:
+---
 
-- the learner begins with a true black-and-white view
-- the color is always already present underneath
-- the effect is just "erase the sketch layer"
+## Checklist When Adding or Updating Story Images
 
-## Validation Rule
-
-If you add this pattern to another lesson, the renderer must treat an `image` block as valid when it has either:
-
-- `src`
-- or both `imageBw` and `imageColor`
-
-In `index.html`, the validation logic was updated to allow:
-
-```js
-case 'image':
-    return requireString(block.src) || (requireString(block.imageBw) && requireString(block.imageColor));
-```
-
-## CSS Pattern
-
-The dissolve image block uses:
-
-- a wrapper for layout and spacing
-- a dissolve container with `position: relative`
-- a color image underneath
-- a black-and-white image absolutely positioned on top
-
-Conceptually:
-
-```css
-.block-image-dissolve {
-    position: relative;
-    overflow: hidden;
-}
-
-.block-image-dissolve .parable-img-color {
-    position: relative;
-    z-index: 1;
-}
-
-.block-image-dissolve .parable-img-bw {
-    position: absolute;
-    inset: 0;
-    z-index: 2;
-    opacity: 1;
-    pointer-events: none;
-}
-
-.block-image-dissolve.parable-dissolve-static .parable-img-bw {
-    opacity: 0 !important;
-}
-```
-
-## Touching Layout
-
-If the image should visually connect to the story card below it:
-
-- add `touchNext: true` to the `image` block
-- remove the bottom radius from the image block
-- remove the top radius from the following parable card
-- remove the gap between them
-
-This creates one visual unit while keeping the content blocks separate.
-
-## Reduced Motion Rule
-
-If the user prefers reduced motion, or if the scroll-based effect should not run, the black-and-white overlay should be removed immediately so the learner sees the color image statically.
-
-Conceptually:
-
-```js
-if (prefersReducedMotion || !canAnimateOnScroll) {
-    el.classList.add('parable-dissolve-static');
-    bwImg.style.opacity = '0';
-}
-```
-
-## Scroll Timing We Landed On
-
-The current `201-03` dissolve uses these two timing numbers:
-
-```js
-const fadeStartY = contentTop + (visibleHeight * 0.40);
-const fadeEndY = contentTop + (visibleHeight * -0.22);
-```
-
-### Meaning
-
-- `0.40` means the dissolve begins when the image reaches about **40% down the visible lesson area**
-- `-0.22` means the dissolve does not fully finish until the image has moved **22% above** the visible lesson area
-
-This gives the effect we liked:
-
-- black-and-white at first
-- the sketch lingers a good while
-- the color slowly emerges
-- the sketch is still hanging on as the image nears the top
-
-### Memory phrase
-
-Use:
-
-- `start at 40`
-- `finish at -22`
-
-## Update Formula
-
-The current dissolve is driven by the image's position in the visible lesson area, taking the sticky top bar into account.
-
-Conceptually:
-
-```js
-const viewportHeight = window.innerHeight || document.documentElement.clientHeight || 1;
-const topbar = document.querySelector('.lesson-topbar');
-const contentTop = topbar ? topbar.getBoundingClientRect().bottom : 0;
-const visibleHeight = Math.max(viewportHeight - contentTop, 1);
-
-const fadeStartY = contentTop + (visibleHeight * 0.40);
-const fadeEndY = contentTop + (visibleHeight * -0.22);
-const fadeRange = Math.max(fadeStartY - fadeEndY, 1);
-
-const progress = clamp((fadeStartY - rect.top) / fadeRange, 0, 1);
-bwImg.style.opacity = (1 - progress).toFixed(3);
-```
-
-The important idea is:
-
-- compare the image's top edge to the **visible content area**
-- do **not** key this off a naive full-window top edge if a sticky topbar exists
-
-## AI Instructions Template
-
-If you want to hand this to an AI for another lesson, use something like this:
-
-> Add a standalone story image block before the parable text. Use a black-and-white image and a matching color image. The color image should sit underneath and the black-and-white image should sit on top and dissolve away as the learner scrolls. The image should start fully black and white. The dissolve should begin when the image reaches about 40% down the visible lesson area and finish after the image has moved a bit above the visible area, using the current `201-03` timing pattern. If reduced motion is preferred, show the color image statically. The image block should visually touch the parable card below it with no gap.
-
-## When To Use This Pattern
-
-Use it when:
-
-- the image is a key emotional hook
-- the lesson opens with a strong Bible scene
-- a subtle reveal helps the learner feel the transition from sketch to living scene
-
-Do not use it when:
-
-- the image is unrelated decoration
-- the two versions are not precisely matched
-- the lesson does not benefit from scroll interaction
-
-## Files Touched In 201-03
-
-For the current implementation, the pattern lives in:
-
-- [index.html](/Users/dpartin/Library/Mobile%20Documents/com~apple~CloudDocs/Documents/GitHub/ministrybag1/discipleship/index.html)
-- [data/201-03.json](/Users/dpartin/Library/Mobile%20Documents/com~apple~CloudDocs/Documents/GitHub/ministrybag1/discipleship/data/201-03.json)
-
-If you reuse it in another lesson, those are the first places to study.
+1. **Verify dimensions:** Confirm every frame in an `imageSequence` (or both files in an `imageBw`/`imageColor` pair) has the exact same pixel width and height (`sips -g pixelWidth -g pixelHeight images/your-file.jpg`).
+2. **Wire the JSON block:** Place the `image` block immediately before the `parable` block with `"touchNext": true` and a clear `"alt"` description. Remove any legacy `"image"` property from inside the `parable` block.
+3. **If changing a 101 image:** Run `node scripts/build_lesson_images.js` (and add any new `101-*` image paths to `SOURCES` in `scripts/build_lesson_images.js`) because `scripts/test_lesson_images.js` requires every `101-*.json` image to have an optimized WebP entry in `scripts/lesson-image-assets.js`.
+4. **Run the QA suites from `discipleship/`:**
+   - `bash scripts/qa_foundation.sh`
+   - `node scripts/test_lesson_assets.js`
+   - `node scripts/test_lesson_images.js`
+   - `node scripts/test_answer_storage.js`
+5. **Browser check at 375px, 390px, and 1280px:** Serve `discipleship/` (`python3 -m http.server 8765 --bind 127.0.0.1`) and verify the frames advance in order, the final frame is near full opacity and still on screen at the final stop, `touchNext` connects cleanly to the parable card, and there is no layout shift (`scripts/l201_01_sequence_browser_check.js` is the reference test script).

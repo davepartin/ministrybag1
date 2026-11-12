@@ -31,6 +31,66 @@
             }
         ]
     },
+    "images/greenhouse-seq-1.jpg": {
+        "width": 1264,
+        "height": 848,
+        "sourceHash": "59668c8ab306f55a88aa135323f053692e711df432ca8f386486378f0fd63f80",
+        "variants": [
+            {
+                "src": "images/optimized/greenhouse-seq-1-640.webp",
+                "width": 640
+            },
+            {
+                "src": "images/optimized/greenhouse-seq-1-1264.webp",
+                "width": 1264
+            }
+        ]
+    },
+    "images/greenhouse-seq-2.jpg": {
+        "width": 1264,
+        "height": 848,
+        "sourceHash": "8f89724654422e6716d1dfe711206ea1a971e589a04c3552abca7b4d726a8aaf",
+        "variants": [
+            {
+                "src": "images/optimized/greenhouse-seq-2-640.webp",
+                "width": 640
+            },
+            {
+                "src": "images/optimized/greenhouse-seq-2-1264.webp",
+                "width": 1264
+            }
+        ]
+    },
+    "images/greenhouse-seq-3.jpg": {
+        "width": 1264,
+        "height": 848,
+        "sourceHash": "ea807389a92da7914584e09efc76ae20170d8a382c1eff4d797920c6e3416a46",
+        "variants": [
+            {
+                "src": "images/optimized/greenhouse-seq-3-640.webp",
+                "width": 640
+            },
+            {
+                "src": "images/optimized/greenhouse-seq-3-1264.webp",
+                "width": 1264
+            }
+        ]
+    },
+    "images/greenhouse-seq-4.jpg": {
+        "width": 1264,
+        "height": 848,
+        "sourceHash": "1c308e3282bf7db6e20a110cbe46ab2834b3924bc31c40a98703e5f858d0d6ac",
+        "variants": [
+            {
+                "src": "images/optimized/greenhouse-seq-4-640.webp",
+                "width": 640
+            },
+            {
+                "src": "images/optimized/greenhouse-seq-4-1264.webp",
+                "width": 1264
+            }
+        ]
+    },
     "images/aspen-bw.png": {
         "width": 1400,
         "height": 788,

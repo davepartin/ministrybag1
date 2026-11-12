@@ -153,14 +153,14 @@ Each lesson JSON has a `title`, optional `description`, and a `blocks` array. Av
 - `list` - ordered items with left accent border
 - `box` - warm-toned reflection/activity box with `title` and `content` array
 - `question` - textarea with auto-save (`id`, `text`, optional `height`: "short" or "tall")
-- `image` - in-lesson image with `src` and `alt`
+- `image` - in-lesson image block: supports static `src`, B&W-to-color scroll dissolve (`imageBw` + `imageColor`), or multi-frame scroll animation (`imageSequence` + `imageSequenceStops`), with `alt` and optional `touchNext: true` (fuses the bottom of the image onto a following `parable` card) and `frame: true`. See `story-image.md` for full details and live exemplars (`data/201-01.json` and `data/201-03.json`).
 - `commitment` - yes/no radio buttons
 - `bible_reading` - expandable chapter cards with bundled World English Bible text, completion checkbox, notes
 - `stepper` - step-by-step interactive element
 - `tool` - special tool/framework display
 - `checklist` - tappable tile grid with `id`, `prompt`, and `items` array (selections auto-save)
 - `widget` - embedded interactive HTML tool loaded via iframe with `src` pointing to a file in `widgets/` folder (auto-resizes to content height, optional `height` property for initial min-height)
-- `parable` - illustrated teaching story rendered as a framed card: image at the top edge-to-edge, bold title below, story text beneath. Use whenever a lesson includes a short narrative illustration with an accompanying image. Required fields: `title`, `text`. Optional: `image` (relative path, e.g. `images/filename.png`), `alt`. Do not use separate `heading` + `image` + `text` blocks for a parable - combine into one `parable` block. Live example: `data/201-08.json`.
+- `parable` - teaching story rendered as a framed card (`title`, `text`). For scroll-animated story artwork (`imageSequence` or `imageBw`/`imageColor`), place a standalone `image` block with `"touchNext": true` immediately before the `parable` block (see `story-image.md`, live exemplars `data/201-01.json` and `data/201-08.json`).
 
 Note: `agenda` and `homework` block types still render for backward compatibility but are no longer used.
 

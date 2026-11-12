@@ -10,6 +10,10 @@ var ROOT = path.resolve(__dirname, '..');
 var SOURCES = [
     'images/3-circles-coral.png',
     'images/201.01-peaks-and-valleys.png',
+    'images/greenhouse-seq-1.jpg',
+    'images/greenhouse-seq-2.jpg',
+    'images/greenhouse-seq-3.jpg',
+    'images/greenhouse-seq-4.jpg',
     'images/aspen-bw.png',
     'images/aspen-color.png',
     'images/woman-well-bw.png',
