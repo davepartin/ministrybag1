@@ -1,5 +1,9 @@
 # Resume here
 
+## 202-05 suffering redraft waiting for Dave, November 12, 2026
+
+Claude redrafted 202-05 from Dave's collected direction on branch `claude/dazzling-brown-x7g9um` (not merged, no PR yet). Next action: Dave reads it and sends changes. Open decisions: the mosaic widget, the Piper credit line, and length. See logs/2026-11-12-L-202-05-REWORK-claude.md.
+
 ## Temporary coordinator, November 12, 2026
 
 Current 37-lesson production scorecard: [Road to AAA](reviews/2026-11-12-aaa-37-scorecard.md), audited at main `d9065c7`. Overall 86.8% toward the explicitly scored standard; three AAA (A+) and seven at 95%. All 37 are substantive drafts, not partly unwritten lessons. TEAM-BOARD and the series plan now use the current gap list. Grades are not new pastoral/art approval or pilot/release readiness.

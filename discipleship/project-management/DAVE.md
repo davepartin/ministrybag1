@@ -12,7 +12,7 @@ All ten 202 lessons are written. No lesson is empty or a brief placeholder. This
 | 202-02 | substantive draft | unrecorded | [ ] Record Dave's review of the exact version; remaining gates in TASKS.md |
 | 202-03 | substantive draft | unrecorded | [ ] Record Dave's review of the exact version; remaining gates in TASKS.md |
 | 202-04 | substantive draft | unrecorded | [ ] Record Dave's review of the exact version; remaining gates in TASKS.md |
-| 202-05 | substantive draft | unrecorded | [ ] Record Dave's review of the exact version; remaining gates in TASKS.md |
+| 202-05 | redrafted 2026-11-12 from Dave's collected direction, on branch claude/dazzling-brown-x7g9um | unrecorded | [ ] Dave reads the redraft; decide the mosaic widget; confirm the Piper credit. See logs/2026-11-12-L-202-05-REWORK-claude.md |
 | 202-06 | substantive draft | unrecorded | [ ] Record Dave's review of the exact version; remaining gates in TASKS.md |
 | 202-07 | substantive draft | unrecorded | [ ] Record Dave's review of the exact version; remaining gates in TASKS.md |
 | 202-08 | substantive draft | approved 2026-09-26 | 6d6e7c9 (PR #44), current text matches; pilot pending |

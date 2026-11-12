@@ -30,6 +30,8 @@ This update changes coordination documentation only. It does not merge an existi
 
 Dave asked Codex to preserve his spoken thoughts for future writing in [202-05: Dave's collected thoughts on suffering](reviews/2026-11-12-202-05-dave-content-collection.md). Read this before drafting 202-05. It captures three possible suffering categories, sharing Christ's sufferings, future glory, peace in God's presence, suffering versus punishment, Job's limited perspective, the stained-glass idea, refining, empathy and resilience. Dave's ideas are distinguished from Codex's research suggestions. This is source material, not final wording approval or an instruction to build a widget. Claude owns the editorial follow-up under the standing roles.
 
+Update, November 12: Claude redrafted `data/202-05.json` from this collection on branch `claude/dazzling-brown-x7g9um`. The phrase is "Trust the Artist"; the mosaic is taught in prose and the Valley Road widget is unchanged. It waits for Dave's read and is not merged. TRIM-202-05 is superseded; do not trim this lesson separately. The mosaic widget is still unassigned. Details and the candidate widget brief: [rework log](logs/2026-11-12-L-202-05-REWORK-claude.md).
+
 ## Content source for Claude and Gemini: 202-07 stewardship
 
 Dave wants time, talents and treasure to become the memorable center of 202-07, with whole-self stewardship rather than money alone. He proposed replacing the upside-down bills treatment with a stool drawn from three Ts: the upper strokes form a triangular seat and the stems become three legs. Read [Dave's stewardship and three-T stool direction](reviews/2026-11-12-202-07-dave-stewardship-stool.md) before drafting or building. The note includes Dave's actual words and candidate design steps. Claude develops wording with Dave; Gemini handles a separately claimed widget packet; Codex verifies integration. 203-04 already applies the three Ts to serving and remains unchanged. This is collected direction, not a completed widget assignment or approval of unseen copy.
@@ -164,7 +166,7 @@ Goal from Dave: every one of the 37 lessons at an A on ChatGPT's audit (`reviews
 
 | Agent | Order | Task ID | Lesson (grade) | Job and acceptance |
 |---|---:|---|---|---|
-| ChatGPT | 1 | TRIM-202-05 | 202-05 Suffering (C+) | Joseph art is in. Combine the repeated suffering sections and the widget set-up, bring the lesson under 1,400 words, and in the PR body propose which of the five questions to drop and one teach-it question. Text only; no art, no widget edits. |
+| ChatGPT | 1 | TRIM-202-05 | 202-05 Suffering (C+) | SUPERSEDED 2026-11-12 by Claude's redraft from Dave's direction (see top of board); skip to TRIM-101-04. Original brief: Joseph art is in. Combine the repeated suffering sections and the widget set-up, bring the lesson under 1,400 words, and in the PR body propose which of the five questions to drop and one teach-it question. Text only; no art, no widget edits. |
 | ChatGPT | 2 | TRIM-101-04 | 101-04 The Bible (B-) | Center the lesson on the Three Discovery Questions and the practice; cut repeated framing; under 1,400 words; propose which of five questions to drop (keep 4.5). Leave room for the Nicodemus opening story that Gemini's art will illustrate. |
 | ChatGPT | 3 | TRIM-201-10 | 201-10 Repentance (B-) | Move the prodigal story earlier, trim the opening and repeats, under 1,400 words, propose a teach-it question. Keep the Learning Circle steps and credits. |
 | Gemini | 1 | ART-202-01 | 202-01 Neighbors (B-) | Replace the plain picture with one charcoal treatment (dissolve or sequence) for the lesson's actual story. New art and image block only. |
@@ -180,7 +182,7 @@ Goal from Dave: every one of the 37 lessons at an A on ChatGPT's audit (`reviews
 After this batch, the next grades to lift are 101-03, 101-07, 203-10, 201-09, 101-01, 203-02 and 203-08 art, then the A- lessons' light trims (201-06, 201-07, 202-03, 203-02, 203-05). Those are the lane backlogs below.
 
 ### ChatGPT (GPT 6.1)
-1. Batch 2: TRIM-202-05, TRIM-101-04, TRIM-201-10, in that order.
+1. Batch 2: TRIM-101-04, TRIM-201-10, in that order (TRIM-202-05 superseded by Claude's redraft).
 2. Backlog, one lesson per PR, light touch: 201-05, 202-01, 101-07, 101-01 (also remove the sentence promising audio), 101-05, 201-09, 201-06, 201-07, 202-03, 203-02, 203-05, 202-06, 203-03. In each PR, propose question changes and a teach-it question in the body; never change an approved question.
 3. After the trims: run the scorecard script and report which lessons are A and AAA.
 
