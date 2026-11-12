@@ -1,5 +1,7 @@
 # Resume here
 
+**Image build needs sharp:** see Lessons learned in TEAM-BOARD.md before running `build_lesson_images.js`.
+
 **Team board (2026-11-12):** every agent starts at `TEAM-BOARD.md` for its lane and queue. Claude directs and reviews; Dave merges.
 
 ## Series review and rework, November 11, 2026

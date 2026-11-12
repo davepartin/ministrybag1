@@ -90,4 +90,9 @@ When Dave approves a lesson, add one row with its task ID, date, reviewed commit
 | ART-201-04 | 2026-11-12 | PR #147 (Cursor/Grok), merged as `8787214` | Dave in chat: "merge 147" after Claude's review (six frames load, checks pass, text untouched). |
 | NAV-001 | 2026-11-12 | PR #148 (Codex/ChatGPT), merged as `6c5d20b` | Dave in chat: "yes on 148" after Claude flagged that the MinistryBag button now sends people to the new site; old page unchanged, no redirect. |
 | UX-005/UX-006 | 2026-11-12 | PR #149 (Claude cleanup of ChatGPT's #145), merged | Dave in chat: "will you clean this up and make it look good", then "merge it" after reading the About preview. Email labels, description summaries, lesson ESV line, bio 25 years. #145 closed as superseded. |
+| TEAM-BOARD | 2026-11-12 | PR #152, merged as `5a1a104` | Dave in chat: "start a team board and you are the director"; "merge all four". TEAM-BOARD.md with lanes for ChatGPT, Gemini, Grok, Claude. |
+| PERF-001b | 2026-11-12 | PR #154 (Codex/ChatGPT), merged as `4d4ab6d` | "merge all four" after Claude's review: all 103 originals get WebP copies, no lesson files touched, previews verified. |
+| WIDGET-101-02 | 2026-11-12 | PR #156, merged as `e2ade31` | Dave: "work on the widget for 101-02 ... it can be much better"; "merge all four". widgets/romans-road2.html sha256 5b0d7a4cc53a. |
+| ART-201-09 | 2026-11-12 | PR #153 (Gemini), merged as `8ba600a`; fix #158 merged as `a5791ed` | "merge all four". Claude's conflict merge left the asset map stale (sharp unavailable in that worktree); #158 regenerated it, "merge both". |
+| GOSPEL-HEART-201-04 | 2026-11-12 | PR #157 (Gemini, edited by Claude), merged as `139f3f6` | Dave: "i did tell gemini to do this you can make it better"; "merge both". Gospel heart kept; Christ-centered wording and Colossians 2:7 restored by Claude. data/201-04.json sha256 ff65ab30c995. |
 
