@@ -125,6 +125,24 @@
         return String(raw);
     }
 
+    function collectLessonReadingNotes(courseId, lessonData) {
+        var notes = [];
+        var seen = new Set();
+        var blocks = isPlainObject(lessonData) && Array.isArray(lessonData.blocks) ? lessonData.blocks : [];
+        blocks.forEach(function (block) {
+            if (!block || block.type !== 'bible_reading' || !Array.isArray(block.chapters)) return;
+            block.chapters.forEach(function (chapter) {
+                if (!chapter || typeof chapter.ref !== 'string' || !chapter.ref.trim()) return;
+                var chapterId = courseId + '-' + chapter.ref.replace(/\s+/g, '-');
+                var runtimeId = 'reading-notes-' + chapterId;
+                if (seen.has(runtimeId)) return;
+                seen.add(runtimeId);
+                notes.push({ runtimeId: runtimeId, storageKey: 'notes-' + chapterId, label: chapter.ref });
+            });
+        });
+        return notes;
+    }
+
     function readFieldValue(field, responses, liveValues) {
         if (liveValues && hasOwn(liveValues, field.runtimeId)) {
             return liveValues[field.runtimeId];
@@ -173,17 +191,13 @@
         return (space > 40 ? cut.slice(0, space) : cut) + '...';
     }
 
-    function formatLessonSection(courseId, lessonNum, lessonData, metaTitle, responses, liveValues, summary) {
+    function formatLessonSection(courseId, lessonNum, lessonData, metaTitle, responses, liveValues, summary, reading) {
         var title = lessonDisplayTitle(lessonNum, lessonData, metaTitle);
         var heading = 'Lesson ' + lessonNum + ': ' + title;
         var fields = collectLessonExportFields(courseId, lessonData);
         var includedIds = [];
         var text = heading + '\n\n';
         if (summary) text += summary + '\n\n';
-        if (!fields.length) {
-            text += 'No written responses in this lesson.\n\n';
-            return { text: text, includedIds: includedIds, title: heading, fields: fields };
-        }
         for (var i = 0; i < fields.length; i++) {
             var field = fields[i];
             includedIds.push(field.runtimeId);
@@ -191,6 +205,17 @@
             text += label + '\n';
             text += formatStoredValue(field, readFieldValue(field, responses, liveValues)) + '\n\n';
         }
+        var notesText = '';
+        collectLessonReadingNotes(courseId, lessonData).forEach(function (note) {
+            // A cleared live field must suppress its older stored value, too.
+            var value = hasOwn(liveValues, note.runtimeId) ? liveValues[note.runtimeId]
+                : hasOwn(reading, note.storageKey) ? reading[note.storageKey] : undefined;
+            if (typeof value !== 'string' || !value.trim()) return;
+            includedIds.push(note.runtimeId);
+            notesText += note.label + '\n' + value + '\n\n';
+        });
+        if (notesText) text += 'Reading Notes\n\n' + notesText;
+        if (!fields.length && !notesText) text += 'No written responses in this lesson.\n\n';
         return { text: text, includedIds: includedIds, title: heading, fields: fields };
     }
 
@@ -223,6 +248,7 @@
         var courseTitle = opts.courseTitle || 'Growing Together';
         var responses = isPlainObject(opts.responses) ? opts.responses : {};
         var liveValues = isPlainObject(opts.liveValues) ? opts.liveValues : {};
+        var reading = isPlainObject(opts.reading) ? opts.reading : {};
         var lessons = Array.isArray(opts.lessons) ? opts.lessons : [];
         var currentLessonNum = opts.currentLessonNum;
         var includedIds = [];
@@ -248,7 +274,8 @@
                     current.metaTitle,
                     responses,
                     liveValues,
-                    lessonSummary(courseId, current.num, current.data)
+                    lessonSummary(courseId, current.num, current.data),
+                    reading
                 );
                 selectedTitle = lessonPart.title;
                 includedIds = includedIds.concat(lessonPart.includedIds);
@@ -265,7 +292,9 @@
                     entry.data,
                     entry.metaTitle,
                     responses,
-                    liveValues
+                    liveValues,
+                    undefined,
+                    reading
                 );
                 includedIds = includedIds.concat(part.includedIds);
                 body += part.text + '\n';
