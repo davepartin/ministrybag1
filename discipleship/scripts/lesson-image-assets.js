@@ -240,6 +240,81 @@
             }
         ]
     },
+    "images/202-06-paul-silas-seq-1.jpg": {
+        "width": 1280,
+        "height": 720,
+        "sourceHash": "e23f73a7b4c2a4d7fb649cf0ced0c6c6b019f44937f21bc85d474b02d12dec1b",
+        "variants": [
+            {
+                "src": "images/optimized/202-06-paul-silas-seq-1-640.webp",
+                "width": 640
+            },
+            {
+                "src": "images/optimized/202-06-paul-silas-seq-1-1280.webp",
+                "width": 1280
+            }
+        ]
+    },
+    "images/202-06-paul-silas-seq-2.jpg": {
+        "width": 1280,
+        "height": 720,
+        "sourceHash": "ea66ae4aeab4f9108b61fac0d9e5465dc55039f378ae601ed358cdd58e01dacd",
+        "variants": [
+            {
+                "src": "images/optimized/202-06-paul-silas-seq-2-640.webp",
+                "width": 640
+            },
+            {
+                "src": "images/optimized/202-06-paul-silas-seq-2-1280.webp",
+                "width": 1280
+            }
+        ]
+    },
+    "images/202-06-paul-silas-seq-3.jpg": {
+        "width": 1280,
+        "height": 720,
+        "sourceHash": "93495118f4b12b71afda4a67c60cae38d575bb8246284a64fa7bba97bae04afa",
+        "variants": [
+            {
+                "src": "images/optimized/202-06-paul-silas-seq-3-640.webp",
+                "width": 640
+            },
+            {
+                "src": "images/optimized/202-06-paul-silas-seq-3-1280.webp",
+                "width": 1280
+            }
+        ]
+    },
+    "images/202-06-paul-silas-seq-4.jpg": {
+        "width": 1280,
+        "height": 720,
+        "sourceHash": "816a147cb67b90050997943aef36203ed03b02e60e1b8271c6b2d1881214f06f",
+        "variants": [
+            {
+                "src": "images/optimized/202-06-paul-silas-seq-4-640.webp",
+                "width": 640
+            },
+            {
+                "src": "images/optimized/202-06-paul-silas-seq-4-1280.webp",
+                "width": 1280
+            }
+        ]
+    },
+    "images/202-06-paul-silas-seq-5.jpg": {
+        "width": 1280,
+        "height": 720,
+        "sourceHash": "8863ecf4b8eb400f0713780312edf3b24fa1c73db2734daa3124e7dead001dda",
+        "variants": [
+            {
+                "src": "images/optimized/202-06-paul-silas-seq-5-640.webp",
+                "width": 640
+            },
+            {
+                "src": "images/optimized/202-06-paul-silas-seq-5-1280.webp",
+                "width": 1280
+            }
+        ]
+    },
     "images/202-07-two-coins-bw.jpg": {
         "width": 1280,
         "height": 720,
