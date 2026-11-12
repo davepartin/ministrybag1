@@ -10,7 +10,7 @@ Start with **AGENTS.md**, **project-management/HANDOFF.md**, and your assigned r
 
 - **Lesson writing or review:** read DISCIPLESHIP-COMPASS.md, LESSON-TEMPLATE.md, AI-LESSON-CHECKLIST.md, the assigned JSON, and relevant research. Read PROJECT-BRIEF.md for block/schema changes. The template exemplars remain 201-08 and 201-10; 201-01 is also the production voice benchmark. Exemplars still need the corrections tracked on the board.
 - **Software repair:** read the applicable architecture sections of PROJECT-BRIEF.md, the assigned code and affected data. Consult the Compass/template if a change affects teaching, order or learner-facing behavior. The technical brief contains a legacy credential: do not print or copy credential values into logs/prompts.
-- **Image/widget work:** read the assigned lesson, Compass/template, relevant PROJECT-BRIEF sections and widgets/widget.md. Resolve documented guide conflicts in the assigned task rather than following stale examples blindly.
+- **Image/widget work:** read the assigned lesson, Compass/template, relevant PROJECT-BRIEF sections, **story-image.md** (for scroll sequences and B&W-to-color dissolves), and **widgets/widget.md**. Resolve documented guide conflicts in the assigned task rather than following stale examples blindly.
 - **Daily review:** read the checkpoint, changed files and task logs; follow PLAN.md's review checklist. Do not re-audit every lesson or reread the whole historical report without a reason.
 
 In an ongoing conversation, reuse standards already read unless they changed. The Compass remains the master editorial direction. Task files govern coordination and readiness, not a competing curriculum.
@@ -29,6 +29,7 @@ When working on lesson content, also read the relevant lesson JSON and any resea
 | PROJECT-BRIEF.md | App architecture, JSON format, course colors, numbering, typography, file structure, how the app works | Tone, editorial philosophy, audience definition, lesson spine |
 | PROJECT-STATE.md | Current focus, build assumptions, open risks, and folder responsibilities | Stable direction (that belongs in the Compass) |
 | AI-LESSON-CHECKLIST.md | Hands-on checklist for lesson work: before writing, during writing, readability test, reproducibility test. Uses LESSON-TEMPLATE.md as its spine | Project-level direction, template structure itself, or technical specs |
+| story-image.md | Scroll-animated story images: multi-frame `imageSequence` (`201-01`), `imageBw`/`imageColor` dissolves (`201-03`), stop presets, art rules, and 101-203 story image inventory | Lesson prose or editorial tone |
 | curriculum-toc.csv | Single source of truth for lesson order, browse title, browse subtitle, tool, story, key verse, and short summary | Editorial direction, technical specs |
 
 ## AI behavior rules
