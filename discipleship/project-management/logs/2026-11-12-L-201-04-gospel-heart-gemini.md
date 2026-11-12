@@ -25,3 +25,7 @@ Dave requested changing the `201-04` widget (`widgets/deep-roots.html`) so the s
 - `node scripts/test_lesson_assets.js`: 8 asset check tests passed.
 - `node scripts/test_lesson_images.js`: 72 lesson image checks passed.
 - `node scripts/test_widget_iframe.js`: 32 widget iframe checks passed.
+
+## Claude's edit, November 12, 2026
+
+Dave confirmed he asked for the gospel-heart direction. Claude kept it and tightened the wording so Christ stays the center: a gospel heart is "a heart that has received Jesus and keeps receiving His Word," good soil "because Jesus is in it," and the roots "find Christ there." Paul's three words from Colossians 2:7 (rooted, built up, established in Him) are back in the prose and the review. The word "nutrients," which appeared seven times, is gone. Widget card text updated to match. Checks pass: foundation QA, export 143, widget iframe 32.
