@@ -1,0 +1,814 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Romans Road</title>
+<style>
+:root {
+  --ink: #26231f;
+  --muted: #655f55;
+  --ghost: #c5bdb0;
+  --line-soft: #e3ddd1;
+  --paper: #fdfdfb;
+  --sunset: #c2551b;
+  --sunset-dark: #9c4213;
+  --sunset-soft: #fae5d6;
+  --sunset-glow: #fdf3eb;
+  --card-h: 108px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: Georgia, Cambria, serif;
+  background: #f8f6f1;
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+.widget-outer {
+  background: #ffffff;
+  border-radius: 0;
+  overflow: hidden;
+  box-shadow: none;
+  border: none;
+  max-width: 100%;
+  width: 100%;
+  margin: 0;
+  position: relative;
+}
+
+@media (min-width: 560px) {
+  body {
+    padding: 16px;
+    background: #f8f6f1;
+  }
+  .widget-outer {
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(44, 36, 22, 0.08);
+    border: 1px solid #ebe5d9;
+    max-width: 460px;
+    margin: 0 auto;
+  }
+}
+
+.title-bar {
+  background: var(--ink);
+  padding: 8px 14px;
+  text-align: center;
+  transition: background-color 0.35s ease;
+}
+
+.widget-outer.is-complete .title-bar {
+  background: var(--sunset-dark);
+}
+
+.title-bar h1 {
+  font: 700 17px/1.2 system-ui, -apple-system, sans-serif;
+  color: #faf8f3;
+  margin: 0;
+  letter-spacing: 0.2px;
+}
+
+/* Perspective Gravel Road & Nevada Sunset Stage */
+.stage {
+  position: relative;
+  aspect-ratio: 380 / 226;
+  background: var(--paper);
+  border-bottom: 1px solid #eee9df;
+}
+
+.stage svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+svg .ink-line {
+  fill: none;
+  stroke: var(--ink);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+svg .horizon-ridge {
+  fill: #f6f3ec;
+  stroke: var(--ink);
+  stroke-width: 1.5;
+  stroke-linejoin: round;
+}
+
+svg .sun-halo {
+  fill: var(--sunset-glow);
+  opacity: 0.9;
+  transition: fill 0.35s ease, opacity 0.35s ease;
+}
+
+.widget-outer.is-complete svg .sun-halo {
+  fill: var(--sunset-soft);
+  opacity: 1;
+}
+
+svg .sun-orb {
+  fill: var(--sunset-soft);
+  stroke: var(--sunset);
+  stroke-width: 2.1;
+  transition: fill 0.35s ease;
+}
+
+.widget-outer.is-complete svg .sun-orb {
+  fill: #f3b893;
+}
+
+svg .sun-ray {
+  stroke: var(--sunset);
+  stroke-linecap: round;
+  opacity: 0.65;
+  transition: opacity 0.35s ease;
+}
+
+.widget-outer.is-complete svg .sun-ray {
+  opacity: 1;
+}
+
+svg .road-base {
+  fill: #f4efe6;
+  stroke: var(--ink);
+  stroke-width: 2;
+  stroke-linejoin: round;
+}
+
+svg .road-lit {
+  fill: var(--sunset-soft);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+svg .road-lit.on {
+  opacity: 0.9;
+}
+
+svg .road-shoulder {
+  fill: none;
+  stroke: #b5ad9e;
+  stroke-width: 1.3;
+  stroke-linecap: round;
+}
+
+svg .road-rut {
+  fill: none;
+  stroke: #cfc6b6;
+  stroke-width: 1.1;
+  stroke-linecap: round;
+  opacity: 0.85;
+}
+
+svg .pebble {
+  fill: #9b9283;
+  opacity: 0.65;
+}
+
+svg .shrub {
+  fill: none;
+  stroke: #7a7265;
+  stroke-width: 1.4;
+  stroke-linecap: round;
+}
+
+/* Road Signs (A, B, C) */
+svg .sign-group {
+  cursor: pointer;
+}
+
+svg .sign-shadow {
+  fill: #e0d9cb;
+}
+
+svg .sign-post {
+  stroke: var(--ink);
+  stroke-width: 3.4;
+  stroke-linecap: round;
+}
+
+svg .sign-board {
+  fill: #ffffff;
+  stroke: var(--ink);
+  stroke-width: 2;
+  transition: fill 0.25s ease, stroke 0.25s ease, stroke-width 0.25s ease;
+}
+
+svg .sign-badge {
+  fill: var(--ink);
+  transition: fill 0.25s ease;
+}
+
+svg .sign-letter {
+  font: 800 13px system-ui, -apple-system, sans-serif;
+  fill: #ffffff;
+  text-anchor: middle;
+  dominant-baseline: central;
+}
+
+svg .sign-title {
+  font: 700 12px system-ui, -apple-system, sans-serif;
+  fill: var(--ink);
+  text-anchor: middle;
+  dominant-baseline: central;
+}
+
+svg .sign-sub {
+  font: 600 10.5px system-ui, -apple-system, sans-serif;
+  fill: var(--muted);
+  text-anchor: middle;
+  dominant-baseline: central;
+}
+
+svg .sign-icon {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 1.9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: stroke 0.25s ease, fill 0.25s ease;
+}
+
+svg .sign-icon.filled {
+  fill: var(--ink);
+}
+
+/* Passed vs Active road sign state */
+svg .sign-group.passed .sign-badge {
+  fill: var(--sunset-dark);
+}
+
+svg .sign-group.passed .sign-board {
+  stroke: var(--sunset-dark);
+}
+
+svg .sign-group.active .sign-board {
+  fill: var(--sunset-glow);
+  stroke: var(--sunset);
+  stroke-width: 2.6;
+}
+
+svg .sign-group.active .sign-badge {
+  fill: var(--sunset);
+}
+
+svg .sign-group.active .sign-icon {
+  stroke: var(--sunset);
+}
+
+svg .sign-group.active .sign-icon.filled {
+  fill: var(--sunset);
+}
+
+/* Step pills bar */
+.step-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 5px;
+  padding: 5px 10px;
+  background: #f8f6f1;
+  border-bottom: 1px solid #eee9df;
+}
+
+.step-pill {
+  min-height: 32px;
+  padding: 4px 4px;
+  border-radius: 8px;
+  border: 1.5px solid #d4cfc4;
+  background: #ffffff;
+  color: var(--ink);
+  font: 700 11.5px/1.1 system-ui, -apple-system, sans-serif;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.step-pill.passed {
+  border-color: var(--sunset);
+  color: var(--sunset-dark);
+}
+
+.step-pill.active {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: #ffffff;
+}
+
+.step-pill.active.is-abc {
+  background: var(--sunset);
+  border-color: var(--sunset);
+  color: #ffffff;
+}
+
+/* Verse card + Navigation */
+.card-area {
+  background: #f6f4ee;
+  padding: 7px 12px 8px;
+}
+
+.verse-card {
+  background: #ffffff;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #ebe5d9;
+  box-shadow: 0 2px 12px rgba(44, 36, 22, 0.06);
+}
+
+.verse-card-bar {
+  height: 4px;
+  background: var(--ink);
+  transition: background-color 0.3s ease;
+}
+
+.widget-outer.has-step .verse-card-bar {
+  background: var(--sunset);
+}
+
+.verse-card-content {
+  padding: 8px 13px;
+  min-height: var(--card-h, 100px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card-heading {
+  font: 700 15px/1.22 system-ui, -apple-system, sans-serif;
+  color: var(--ink);
+  margin: 0 0 3px;
+}
+
+.widget-outer.has-step .card-heading {
+  color: var(--sunset-dark);
+}
+
+.card-verse {
+  font: 13.5px/1.36 Georgia, Cambria, serif;
+  color: #3d3426;
+  margin: 0;
+}
+
+.card-verse b {
+  color: var(--ink);
+}
+
+.card-note {
+  display: block;
+  margin-top: 4px;
+  font: 12px/1.32 system-ui, -apple-system, sans-serif;
+  color: #4a4238;
+}
+
+.card-note b {
+  color: var(--sunset-dark);
+}
+
+.card-ref {
+  font: 600 11.5px/1.2 system-ui, -apple-system, sans-serif;
+  color: var(--muted);
+  margin: 3px 0 0;
+}
+
+.nav-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.nav-btn {
+  min-height: 44px;
+  min-width: 96px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1.5px solid #d4cfc4;
+  background: #ffffff;
+  color: var(--ink);
+  font: 700 13.5px/1 system-ui, -apple-system, sans-serif;
+  cursor: pointer;
+}
+
+.nav-btn.primary {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: #ffffff;
+}
+
+.widget-outer.has-step .nav-btn.primary {
+  background: var(--sunset);
+  border-color: var(--sunset);
+}
+
+.nav-btn:disabled {
+  opacity: 0.36;
+  cursor: default;
+}
+
+.step-count {
+  font: 600 12px system-ui, -apple-system, sans-serif;
+  color: var(--muted);
+}
+
+button:focus-visible {
+  outline: 3px solid #e0a526;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .title-bar,
+  svg .sun-halo,
+  svg .sun-orb,
+  svg .sun-ray,
+  svg .road-lit,
+  svg .sign-board,
+  svg .sign-badge,
+  svg .sign-icon,
+  .step-pill,
+  .verse-card-bar {
+    transition: none !important;
+  }
+}
+</style>
+</head>
+<body>
+<main class="widget-outer" id="widget" aria-label="The Romans Road: forward gravel road into a Nevada sunset with three signs, A Admit Sin, B Believe in Jesus as Savior, and C Confess Jesus as Lord">
+  <header class="title-bar">
+    <h1>The Romans Road</h1>
+  </header>
+
+  <div class="stage" id="stage" role="img" aria-label=""></div>
+
+  <div class="step-strip" id="step-strip" role="group" aria-label="Romans Road stops"></div>
+
+  <section class="card-area" id="card-area" aria-live="polite">
+    <div class="verse-card">
+      <div class="verse-card-bar" aria-hidden="true"></div>
+      <div class="verse-card-content" id="card-content">
+        <h2 class="card-heading" id="card-heading"></h2>
+        <p class="card-verse" id="card-verse"></p>
+        <span class="card-note" id="card-note"></span>
+        <p class="card-ref" id="card-ref"></p>
+      </div>
+    </div>
+    <div class="nav-bar">
+      <button class="nav-btn" id="prev-btn" type="button">&larr; Back</button>
+      <span class="step-count" id="step-count"></span>
+      <button class="nav-btn primary" id="next-btn" type="button">Begin &rarr;</button>
+    </div>
+  </section>
+</main>
+
+<script>
+(function () {
+  'use strict';
+  var NS = 'http://www.w3.org/2000/svg';
+
+  var steps = [
+    {
+      pill: 'Start',
+      heading: 'The ABCs of Salvation',
+      verse: 'Paul\'s letter to the Romans lays out the road back to God across three simple road signs: <b>Admit</b>, <b>Believe</b>, and <b>Confess</b>.',
+      note: 'Tap <b>Begin</b> or choose any sign ahead to follow the road.',
+      ref: 'Romans 3:23; 5:8; 6:23; 10:9',
+      aria: 'A straight gravel desert road stretches forward to a Nevada sunset on the center horizon, lined with three progressive roadside signs: A Admit Sin near the bottom-left, B Believe in Jesus as Savior mid-right, and C Confess Jesus as Lord farther down on the left.'
+    },
+    {
+      pill: 'A · Admit',
+      heading: 'A. Admit Sin',
+      verse: '"For <b>all have sinned</b> and fall short of the glory of God." "The wages of sin is death, but the <b>free gift of God</b> is eternal life in Christ Jesus our Lord."',
+      note: '<b>Your part:</b> admit your need honestly. <b>God\'s part:</b> He already put a free gift on the table.',
+      ref: 'Romans 3:23; 6:23',
+      aria: 'Roadside sign A in the foreground left lights up: Admit Sin, highlighting the start of the gravel road.'
+    },
+    {
+      pill: 'B · Believe',
+      heading: 'B. Believe in Jesus as Savior',
+      verse: '"God shows his love for us in that <b>while we were still sinners</b>, Christ died for us."',
+      note: '<b>Your part:</b> trust Jesus and His cross. <b>God\'s part:</b> He loved you first and paid the whole cost.',
+      ref: 'Romans 5:8',
+      aria: 'The gravel road lights up farther ahead to Sign B with the cross on the right shoulder: Believe in Jesus as Savior.'
+    },
+    {
+      pill: 'C · Confess',
+      heading: 'C. Confess Jesus as Lord',
+      verse: '"If you <b>confess with your mouth</b> that Jesus is Lord and <b>believe in your heart</b> that God raised him from the dead, you will be saved... Everyone who calls on the name of the Lord will be saved."',
+      note: '<b>Your part:</b> bow to King Jesus and call on Him. <b>God\'s part:</b> He raised Jesus and keeps His promise.',
+      ref: 'Romans 10:9, 13',
+      aria: 'The entire gravel road glows all the way to the Nevada sunset at the horizon as Sign C with the crown on the far left lights up: Confess Jesus as Lord.'
+    }
+  ];
+
+  function el(name, attrs, parent) {
+    var node = document.createElementNS(NS, name);
+    Object.keys(attrs || {}).forEach(function (k) {
+      node.setAttribute(k, attrs[k]);
+    });
+    if (parent) parent.appendChild(node);
+    return node;
+  }
+
+  // Horizon at y = 78, vanishing center at x = 190
+  var HY = 78;
+  var VH = 226;
+  var VX = 190;
+
+  var svg = el('svg', {
+    xmlns: NS,
+    'aria-hidden': 'true',
+    viewBox: '0 0 380 ' + VH,
+    preserveAspectRatio: 'xMidYMid meet'
+  });
+
+  // 1. Desert paper sky + setting sun glow at vanishing horizon
+  var defs = el('defs', {}, svg);
+  var skyClip = el('clipPath', { id: 'above-horizon' }, defs);
+  el('rect', { x: 0, y: 0, width: 380, height: HY }, skyClip);
+
+  // Clip sections of the gravel road as progress advances (bottom y=226 up toward HY=78)
+  var litClip1 = el('clipPath', { id: 'lit-a' }, defs);
+  el('rect', { x: 0, y: 158, width: 380, height: VH - 158 }, litClip1);
+  var litClip2 = el('clipPath', { id: 'lit-b' }, defs);
+  el('rect', { x: 0, y: 112, width: 380, height: VH - 112 }, litClip2);
+  var litClip3 = el('clipPath', { id: 'lit-c' }, defs);
+  el('rect', { x: 0, y: HY, width: 380, height: VH - HY }, litClip3);
+
+  el('rect', { x: 0, y: 0, width: 380, height: VH, fill: '#fdfdfb' }, svg);
+
+  // Setting sun + rays clipped strictly above horizon HY=78
+  var sunLayer = el('g', { 'clip-path': 'url(#above-horizon)' }, svg);
+  el('circle', { cx: VX, cy: HY + 2, r: 54, class: 'sun-halo' }, sunLayer);
+  // Subtle Nevada sun rays radiating from center horizon
+  [-72, -52, -34, -18, 0, 18, 34, 52, 72].forEach(function (deg) {
+    var rad = ((deg - 90) * Math.PI) / 180;
+    var r1 = 25;
+    var r2 = deg % 36 === 0 ? 45 : 37;
+    el('line', {
+      x1: (VX + Math.cos(rad) * r1).toFixed(1),
+      y1: (HY + Math.sin(rad) * r1).toFixed(1),
+      x2: (VX + Math.cos(rad) * r2).toFixed(1),
+      y2: (HY + Math.sin(rad) * r2).toFixed(1),
+      class: 'sun-ray',
+      'stroke-width': deg % 36 === 0 ? 1.8 : 1.3
+    }, sunLayer);
+  });
+  el('circle', { cx: VX, cy: HY + 2, r: 20, class: 'sun-orb' }, sunLayer);
+  // Crisp minimalist desert cloud streaks flanking the sunset
+  el('path', { d: 'M 42 40 H 96 M 60 48 H 106', stroke: '#d6cfc2', 'stroke-width': 1.5, 'stroke-linecap': 'round' }, sunLayer);
+  el('path', { d: 'M 276 38 H 338 M 288 46 H 326', stroke: '#d6cfc2', 'stroke-width': 1.5, 'stroke-linecap': 'round' }, sunLayer);
+
+  // Distant Nevada desert mesas left & right leaving center sun unobstructed
+  el('path', {
+    d: 'M 0 70 L 42 64 L 78 64 L 106 72 L 138 76 L 154 ' + HY + ' L 0 ' + HY + ' Z',
+    class: 'horizon-ridge'
+  }, svg);
+  el('path', {
+    d: 'M 226 ' + HY + ' L 252 74 L 278 66 L 320 64 L 354 69 L 380 68 L 380 ' + HY + ' Z',
+    class: 'horizon-ridge'
+  }, svg);
+
+  // Horizon line across the open valley
+  el('line', { x1: 0, y1: HY, x2: 380, y2: HY, class: 'ink-line', 'stroke-width': 1.8 }, svg);
+
+  // 2. Gravel road trapezoid: wide foreground (104..276 at y=226) -> vanishing center (184..196 at y=78)
+  var roadPoly = '184,' + HY + ' 196,' + HY + ' 276,' + VH + ' 104,' + VH;
+  el('polygon', { points: roadPoly, class: 'road-base' }, svg);
+
+  // Illuminated road progression layers (clipped cleanly to A, B, C depths)
+  var roadLits = [
+    el('polygon', { points: roadPoly, class: 'road-lit', 'clip-path': 'url(#lit-a)' }, svg),
+    el('polygon', { points: roadPoly, class: 'road-lit', 'clip-path': 'url(#lit-b)' }, svg),
+    el('polygon', { points: roadPoly, class: 'road-lit', 'clip-path': 'url(#lit-c)' }, svg)
+  ];
+
+  // Re-stroke road edges on top of fills + subtle gravel outer shoulders
+  el('path', {
+    d: 'M 104 ' + VH + ' L 184 ' + HY + ' M 276 ' + VH + ' L 196 ' + HY,
+    class: 'ink-line',
+    'stroke-width': 2.2
+  }, svg);
+  el('path', {
+    d: 'M 92 ' + VH + ' L 181 ' + (HY + 2) + ' M 288 ' + VH + ' L 199 ' + (HY + 2),
+    class: 'road-shoulder'
+  }, svg);
+
+  // Subtle unpaved wheel-track ruts (NO dotted center line!)
+  el('path', {
+    d: 'M 146 ' + VH + ' L 187 ' + (HY + 4) + ' M 234 ' + VH + ' L 193 ' + (HY + 4),
+    class: 'road-rut'
+  }, svg);
+
+  // Perspective gravel stones/pebbles across the road (bigger in foreground, tiny in distance)
+  var pebbles = [
+    [136, 218, 2.2, 1.1], [176, 212, 1.8, 1.0], [218, 220, 2.3, 1.1], [248, 210, 1.9, 1.0],
+    [154, 198, 1.8, 0.9], [198, 200, 1.7, 0.9], [234, 194, 1.7, 0.9], [136, 186, 1.6, 0.8],
+    [168, 174, 1.5, 0.8], [212, 176, 1.6, 0.8], [188, 162, 1.4, 0.7], [156, 154, 1.3, 0.7],
+    [214, 150, 1.3, 0.7], [178, 138, 1.2, 0.6], [202, 134, 1.2, 0.6], [186, 122, 1.0, 0.55],
+    [196, 114, 1.0, 0.5], [188, 102, 0.85, 0.45]
+  ];
+  pebbles.forEach(function (p) {
+    el('ellipse', { cx: p[0], cy: p[1], rx: p[2], ry: p[3], class: 'pebble' }, svg);
+  });
+
+  // Minimal desert sage tufts on open ground
+  [
+    [156, 92, 0.55], [228, 96, 0.6], [312, 196, 0.95], [28, 138, 0.75], [344, 98, 0.6]
+  ].forEach(function (t) {
+    var sg = el('g', { transform: 'translate(' + t[0] + ',' + t[1] + ') scale(' + t[2] + ')' }, svg);
+    el('path', { d: 'M -7 0 L -11 -7 M 0 0 L -1 -9 M 6 0 L 10 -6 M -9 0 H 9', class: 'shrub' }, sg);
+  });
+
+  // 3. Progressive Roadside Signs (A large foreground bottom-left -> B medium ~40% up right -> C small far left)
+  var signGroups = [];
+
+  // Sign C: Farther down toward horizon on Left (Smallest in perspective) - C + Crown + Confess Jesus as Lord
+  (function () {
+    var g = el('g', { class: 'sign-group', 'data-step': '3' }, svg);
+    el('ellipse', { cx: 132, cy: 134, rx: 7.5, ry: 2.2, class: 'sign-shadow' }, g);
+    el('line', { x1: 132, y1: 118, x2: 132, y2: 134, class: 'sign-post', 'stroke-width': 2.2 }, g);
+    // Compact distant board: x=54..144, y=80..118 (90x38)
+    el('rect', { x: 54, y: 80, width: 90, height: 38, rx: 5, class: 'sign-board' }, g);
+    // Header badge C + Crown icon
+    el('rect', { x: 59, y: 84, width: 18, height: 12.5, rx: 3.5, class: 'sign-badge' }, g);
+    el('text', { x: 68, y: 90.5, class: 'sign-letter', style: 'font-size:9.5px' }, g).textContent = 'C';
+    el('path', {
+      d: 'M 83 94.5 L 81.5 87 L 86.5 90.5 L 90.5 85 L 94.5 90.5 L 99.5 87 L 98 94.5 Z',
+      class: 'sign-icon',
+      'stroke-width': 1.4
+    }, g);
+    el('text', { x: 99, y: 103.5, class: 'sign-title', style: 'font-size:9.5px' }, g).textContent = 'Confess Jesus';
+    el('text', { x: 99, y: 112.5, class: 'sign-sub', style: 'font-size:8.6px' }, g).textContent = 'as Lord';
+    signGroups[3] = g;
+  })();
+
+  // Sign B: ~40% up from bottom on Right (Medium perspective) - B + Cross + Believe in Jesus as Savior
+  (function () {
+    var g = el('g', { class: 'sign-group', 'data-step': '2' }, svg);
+    el('ellipse', { cx: 280, cy: 172, rx: 10, ry: 2.8, class: 'sign-shadow' }, g);
+    el('line', { x1: 280, y1: 150, x2: 280, y2: 172, class: 'sign-post', 'stroke-width': 2.8 }, g);
+    // Medium board: x=246..362, y=104..150 (116x46)
+    el('rect', { x: 246, y: 104, width: 116, height: 46, rx: 6.5, class: 'sign-board' }, g);
+    // Header badge B + Cross icon
+    el('rect', { x: 252, y: 108.5, width: 22, height: 15.5, rx: 4, class: 'sign-badge' }, g);
+    el('text', { x: 263, y: 116.5, class: 'sign-letter', style: 'font-size:11.5px' }, g).textContent = 'B';
+    el('path', {
+      d: 'M 289 108.5 V 123 M 283.5 113 H 294.5',
+      class: 'sign-icon',
+      'stroke-width': 2.1
+    }, g);
+    el('text', { x: 304, y: 131.5, class: 'sign-title', style: 'font-size:11px' }, g).textContent = 'Believe in Jesus';
+    el('text', { x: 304, y: 142, class: 'sign-sub', style: 'font-size:10px' }, g).textContent = 'as Savior';
+    signGroups[2] = g;
+  })();
+
+  // Sign A: Bottom-Left Foreground (Largest perspective) - A + Admit Sin
+  (function () {
+    var g = el('g', { class: 'sign-group', 'data-step': '1' }, svg);
+    el('ellipse', { cx: 68, cy: 222, rx: 13, ry: 3.3, class: 'sign-shadow' }, g);
+    el('line', { x1: 68, y1: 196, x2: 68, y2: 222, class: 'sign-post', 'stroke-width': 3.5 }, g);
+    // Largest foreground board: x=8..128, y=144..197 (120x53)
+    el('rect', { x: 8, y: 144, width: 120, height: 53, rx: 8, class: 'sign-board' }, g);
+    // Bold A top badge
+    el('rect', { x: 50, y: 150, width: 36, height: 20, rx: 5, class: 'sign-badge' }, g);
+    el('text', { x: 68, y: 160, class: 'sign-letter', style: 'font-size:13.5px' }, g).textContent = 'A';
+    el('text', { x: 68, y: 183, class: 'sign-title', style: 'font-size:13.5px' }, g).textContent = 'Admit Sin';
+    signGroups[1] = g;
+  })();
+
+  // Allow clicking road signs directly on the whiteboard stage
+  [1, 2, 3].forEach(function (idx) {
+    signGroups[idx].addEventListener('click', function () {
+      goTo(idx);
+    });
+  });
+
+  document.getElementById('stage').appendChild(svg);
+
+  // Build step pills bar
+  var stripEl = document.getElementById('step-strip');
+  var pillButtons = steps.map(function (st, idx) {
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'step-pill' + (idx > 0 ? ' is-abc' : '');
+    btn.textContent = st.pill;
+    btn.addEventListener('click', function () {
+      goTo(idx);
+    });
+    stripEl.appendChild(btn);
+    return btn;
+  });
+
+  var widgetEl = document.getElementById('widget');
+  var stageEl = document.getElementById('stage');
+  var headingEl = document.getElementById('card-heading');
+  var verseEl = document.getElementById('card-verse');
+  var noteEl = document.getElementById('card-note');
+  var refEl = document.getElementById('card-ref');
+  var countEl = document.getElementById('step-count');
+  var prevBtn = document.getElementById('prev-btn');
+  var nextBtn = document.getElementById('next-btn');
+
+  var step = 0;
+
+  function goTo(nextStep) {
+    step = Math.max(0, Math.min(steps.length - 1, nextStep));
+    var st = steps[step];
+
+    widgetEl.classList.toggle('has-step', step >= 1);
+    widgetEl.classList.toggle('is-complete', step === 3);
+
+    // Road glow progresses to step A (0), B (1), C (2)
+    roadLits.forEach(function (layer, idx) {
+      layer.classList.toggle('on', step === idx + 1);
+    });
+
+    [1, 2, 3].forEach(function (idx) {
+      signGroups[idx].classList.toggle('active', step === idx);
+      signGroups[idx].classList.toggle('passed', step > idx);
+    });
+
+    pillButtons.forEach(function (btn, idx) {
+      btn.classList.toggle('active', idx === step);
+      btn.classList.toggle('passed', idx > 0 && idx < step);
+      btn.setAttribute('aria-pressed', idx === step ? 'true' : 'false');
+    });
+
+    stageEl.setAttribute('aria-label', st.aria);
+    headingEl.textContent = st.heading;
+    verseEl.innerHTML = st.verse;
+    noteEl.innerHTML = st.note;
+    refEl.textContent = st.ref;
+    countEl.textContent = step === 0 ? 'Ready' : ('Step ' + step + ' of 3');
+
+    prevBtn.disabled = step === 0;
+    if (step === 0) {
+      nextBtn.innerHTML = 'Begin &rarr;';
+    } else if (step === steps.length - 1) {
+      nextBtn.innerHTML = '&#8635; Start Over';
+    } else {
+      nextBtn.innerHTML = 'Next &rarr;';
+    }
+  }
+
+  prevBtn.addEventListener('click', function () {
+    if (step > 0) goTo(step - 1);
+  });
+
+  nextBtn.addEventListener('click', function () {
+    if (step === steps.length - 1) {
+      goTo(0);
+    } else {
+      goTo(step + 1);
+    }
+  });
+
+  // Measure tallest card text once at load and only on width changes (never on height-only resize)
+  var contentEl = document.getElementById('card-content');
+  var lastWidth = window.innerWidth;
+  var measuredAtWidth = 0;
+
+  function fitCardHeight() {
+    if (!contentEl || contentEl.clientWidth === measuredAtWidth) return;
+    measuredAtWidth = contentEl.clientWidth;
+    var keepH = headingEl.textContent;
+    var keepV = verseEl.innerHTML;
+    var keepN = noteEl.innerHTML;
+    var keepR = refEl.textContent;
+    var tallest = 0;
+    document.documentElement.style.setProperty('--card-h', '0px');
+    steps.forEach(function (st) {
+      headingEl.textContent = st.heading;
+      verseEl.innerHTML = st.verse;
+      noteEl.innerHTML = st.note;
+      refEl.textContent = st.ref;
+      tallest = Math.max(tallest, contentEl.offsetHeight);
+    });
+    headingEl.textContent = keepH;
+    verseEl.innerHTML = keepV;
+    noteEl.innerHTML = keepN;
+    refEl.textContent = keepR;
+    document.documentElement.style.setProperty('--card-h', Math.max(100, tallest) + 'px');
+  }
+
+  var resizeTimer = null;
+  window.addEventListener('resize', function () {
+    if (window.innerWidth === lastWidth) return;
+    lastWidth = window.innerWidth;
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(fitCardHeight, 120);
+  });
+
+  goTo(0);
+  fitCardHeight();
+})();
+</script>
+</body>
+</html>
