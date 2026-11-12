@@ -34,6 +34,19 @@ Dave asked Codex to preserve his spoken thoughts for future writing in [202-05: 
 
 Dave wants time, talents and treasure to become the memorable center of 202-07, with whole-self stewardship rather than money alone. He proposed replacing the upside-down bills treatment with a stool drawn from three Ts: the upper strokes form a triangular seat and the stems become three legs. Read [Dave's stewardship and three-T stool direction](reviews/2026-11-12-202-07-dave-stewardship-stool.md) before drafting or building. The note includes Dave's actual words and candidate design steps. Claude develops wording with Dave; Gemini handles a separately claimed widget packet; Codex verifies integration. 203-04 already applies the three Ts to serving and remains unchanged. This is collected direction, not a completed widget assignment or approval of unseen copy.
 
+## Current worker checkpoint from Dave: November 12, 2026
+
+This newer checkpoint updates the session-summary next actions below. Distinguish Dave-reported work from GitHub-verified state.
+
+| Work | Current owner and checkpoint | Next technical step |
+|---|---|---|
+| 202-05 suffering rewrite | Dave reports Claude completed the lesson in data/202-05.json and documented it in project-management/logs/2026-11-12-L-202-05-REWORK-claude.md, without opening a PR. Claude's token allocation is exhausted. Codex did not find that log on GitHub main or a matching Claude 202-05 branch in the branch search. Do not start a competing rewrite or assume the completed draft is lost. | Obtain the existing draft's pushed branch/commit or the two files, preserve its work and log, then Codex can run checks and open the review PR for the automatic preview. No final wording approval or usable draft preview is established yet. |
+| 202-07 stewardship widget | Gemini owns implementation and replacement of the old widget in the lesson, explicitly assigned by Dave. GitHub now has [PR #193](https://github.com/davepartin/ministrybag1/pull/193), head 0334043: three-T stool added and wired; old widget file retained. The PR reports prose, Scripture and saved-answer IDs unchanged. Firebase Action 43310319974 succeeded and posted a preview. | Codex reviews actual diff and phone/keyboard/scroll behavior before integration. Passing Action is deployment evidence, not Dave's visual approval. Coordinate wiring with the separately reviewed whole-self lesson rewrite. |
+| 202-07 lesson wording | Dave identifies Claude / Fable 5.2 as the writer. The Codex [proposal in #192](https://github.com/davepartin/ministrybag1/pull/192) remains source/review material, not the approved replacement. Claude's current token limitation must be accounted for; no newly completed 202-07 rewrite is claimed. | Preserve the existing manuscript and Dave's notes until Claude resumes or Dave assigns a bounded continuation to another worker. Do not duplicate the lesson rewrite silently. |
+| 202-06 worship story art | Dave reports Grok is producing two first drafts of the base frame. This is the current image assignment. | Wait for Dave's visual direction and the published art packet before technical integration. Do not confuse these drafts with the separate worship mirror-widget PR or reopen old art as a second job. |
+
+Gemini's current [202-07 preview](https://growing-together-discipleship--pr193-gemini-widget-202-zjcqohhq.web.app#202-7) is available for Dave's visual review. Codex has verified the Action result and preview comment only at this checkpoint; independent widget review is still pending. No merge or Firebase setting change was made for this update.
+
 ## Dave and Codex working session: November 12, 2026
 
 Dave asked for this summary so every agent can pick up the same decisions. Four lessons received substantive discussion; two have review drafts, one has a collected content source, and one received direction to preserve its depth. None of these conversations alone approves final lesson wording or artwork.
