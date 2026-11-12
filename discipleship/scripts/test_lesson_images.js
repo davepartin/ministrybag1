@@ -15,6 +15,13 @@ function check(name, condition) {
     passed += 1;
 }
 
+fs.readdirSync(path.join(ROOT, 'images')).filter(function (file) {
+    return /\.(jpe?g|png)$/i.test(file);
+}).forEach(function (file) {
+    check(file + ' has optimized delivery copies', !!assets['images/' + file]);
+});
+
+var outputs = new Set();
 Object.keys(assets).forEach(function (src) {
     var asset = assets[src];
     var original = fs.readFileSync(path.join(ROOT, src));
@@ -22,6 +29,9 @@ Object.keys(assets).forEach(function (src) {
         crypto.createHash('sha256').update(original).digest('hex') === asset.sourceHash);
     check(src + ' has reserved dimensions', asset.width > 0 && asset.height > 0);
     asset.variants.forEach(function (variant) {
+        check(variant.src + ' is safe in responsive source lists', !/\s/.test(variant.src));
+        check(variant.src + ' belongs to only one original', !outputs.has(variant.src));
+        outputs.add(variant.src);
         var file = fs.readFileSync(path.join(ROOT, variant.src));
         check(variant.src + ' is a smaller WebP copy',
             file.toString('ascii', 0, 4) === 'RIFF' && file.toString('ascii', 8, 12) === 'WEBP' &&
@@ -30,12 +40,12 @@ Object.keys(assets).forEach(function (src) {
 });
 
 fs.readdirSync(path.join(ROOT, 'data')).filter(function (file) {
-    return /^101-\d+\.json$/.test(file);
+    return /^\d{3}-\d+\.json$/.test(file);
 }).forEach(function (file) {
     var lesson = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', file), 'utf8'));
     lesson.blocks.forEach(function (block) {
         [block.src, block.image, block.icon, block.imageBw, block.imageColor].concat(block.imageSequence || [])
-            .filter(function (src) { return src && src.startsWith('images/'); })
+            .filter(function (src) { return src && src.startsWith('images/') && /\.(jpe?g|png)$/i.test(src); })
             .forEach(function (src) { check(file + ' uses an optimized delivery copy for ' + src, !!assets[src]); });
     });
 });
