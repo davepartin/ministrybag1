@@ -120,6 +120,36 @@
             }
         ]
     },
+    "images/202-05-joseph-pit-palace-bw.jpg": {
+        "width": 1264,
+        "height": 848,
+        "sourceHash": "cfc67c0572e506970c6e9cf23c4d797c641042e682b11ae7df8988aacc1def9f",
+        "variants": [
+            {
+                "src": "images/optimized/202-05-joseph-pit-palace-bw-640.webp",
+                "width": 640
+            },
+            {
+                "src": "images/optimized/202-05-joseph-pit-palace-bw-1264.webp",
+                "width": 1264
+            }
+        ]
+    },
+    "images/202-05-joseph-pit-palace-color.jpg": {
+        "width": 1264,
+        "height": 848,
+        "sourceHash": "e0480206d9cb365eb84168781109f3246996198d4063c449b9662a7f56c51643",
+        "variants": [
+            {
+                "src": "images/optimized/202-05-joseph-pit-palace-color-640.webp",
+                "width": 640
+            },
+            {
+                "src": "images/optimized/202-05-joseph-pit-palace-color-1264.webp",
+                "width": 1264
+            }
+        ]
+    },
     "images/202-3circles-logo.png": {
         "width": 1216,
         "height": 458,
