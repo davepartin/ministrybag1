@@ -1,5 +1,11 @@
 # Resume here
 
+## 202-07 whole-self stewardship proposal: REVIEW, November 12, 2026
+
+Dave directly asked Codex to work now on a full rewrite centered on stewardship of time, talents and treasure, with a three-T stool replacing the draft bills concept. Review `reviews/2026-11-12-202-07-whole-self-draft.md` and `reviews/2026-11-12-202-07-stool-widget-brief.md` on branch `codex/rewrite-202-07-proposal`. The complete manuscript is 1,210 words including headings/questions/closing. Dave explicitly rejected prosperity teaching; the draft honors that distinction.
+
+These are review documents. No current lesson JSON, questions/IDs, artwork, widget or Firebase files changed. Claude/Dave review prose; Gemini claims the widget implementation; Codex checks final integration. Preserve Grok's open widow-art #181. Required baseline suites pass, exit 0. Action preview evidence will be posted on the PR; the preview does not contain the Markdown manuscript. See `logs/2026-11-12-REWRITE-202-07-codex.md`.
+
 ## Temporary coordinator, November 12, 2026
 
 Current 37-lesson production scorecard: [Road to AAA](reviews/2026-11-12-aaa-37-scorecard.md), audited at main `d9065c7`. Overall 86.8% toward the explicitly scored standard; three AAA (A+) and seven at 95%. All 37 are substantive drafts, not partly unwritten lessons. TEAM-BOARD and the series plan now use the current gap list. Grades are not new pastoral/art approval or pilot/release readiness.
