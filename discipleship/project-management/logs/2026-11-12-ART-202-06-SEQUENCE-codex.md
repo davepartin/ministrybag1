@@ -10,3 +10,5 @@ Dave explicitly asked to integrate Grok's published sequences on main as working
 ## Verification
 
 Generator exit 0; foundation QA/export 167/storage 64/assets 124/image 1322 all pass, exit 0. New sequence browser passes 55 checks at 375/390/1280 plus reduced motion, exit 0: five matching frames, stops, all question fields, stable reserved height, ordered advancement, final reduced-motion frame and no overflow/page errors. Non-image lesson values remain unchanged. Old artwork remains in the repo. Refreshed map is generated, never manually combined.
+
+Final combined-tree verification after all queued main integrations: foundation/export 167/storage 64/assets 126/image 1360 pass, exit 0, and sequence browser 55 passes, exit 0. Compared current main to candidate after excluding image blocks: every other worship lesson value is identical. Existing l202_06_story_image_browser_check.js now delegates to the new sequence check with its previous base-URL environment variable supported.
