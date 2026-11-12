@@ -30,6 +30,10 @@ This update changes coordination documentation only. It does not merge an existi
 
 Dave asked Codex to preserve his spoken thoughts for future writing in [202-05: Dave's collected thoughts on suffering](reviews/2026-11-12-202-05-dave-content-collection.md). Read this before drafting 202-05. It captures three possible suffering categories, sharing Christ's sufferings, future glory, peace in God's presence, suffering versus punishment, Job's limited perspective, the stained-glass idea, refining, empathy and resilience. Dave's ideas are distinguished from Codex's research suggestions. This is source material, not final wording approval or an instruction to build a widget. Claude owns the editorial follow-up under the standing roles.
 
+## Content source for Claude and Gemini: 202-07 stewardship
+
+Dave wants time, talents and treasure to become the memorable center of 202-07, with whole-self stewardship rather than money alone. He proposed replacing the upside-down bills treatment with a stool drawn from three Ts: the upper strokes form a triangular seat and the stems become three legs. Read [Dave's stewardship and three-T stool direction](reviews/2026-11-12-202-07-dave-stewardship-stool.md) before drafting or building. The note includes Dave's actual words and candidate design steps. Claude develops wording with Dave; Gemini handles a separately claimed widget packet; Codex verifies integration. 203-04 already applies the three Ts to serving and remains unchanged. This is collected direction, not a completed widget assignment or approval of unseen copy.
+
 ## Earlier board and task history
 
 The following sections retain prior assignments and dated evidence. Read them subject to the current standing roles above.
