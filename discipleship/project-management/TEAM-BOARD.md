@@ -38,51 +38,55 @@ Companion documents: `HANDOFF.md` (how the system works), `TASKS.md` (the task r
 - **Do not edit the image list by hand.** Since #154 the build script finds every file in `images/` on its own. Art PRs add the image files, run the build, and commit the regenerated `scripts/lesson-image-assets.js`. Two art PRs editing the list at once caused a conflict on 2026-11-12.
 - **Parse-check widget scripts.** An apostrophe inside a single-quoted string took a widget down for one preview build. Run `node --check` on each inline script, or write text with double quotes.
 
-## AAA scorecard (goal: all 37 lessons AAA)
+## AAA scorecard (37-lesson production audit)
 
-A lesson is **AAA** when it meets the seven-point standard in the review plan (one story, one phrase, one widget never named in prose, three or four one-line questions, one teach-it question, review hands the phrase back, about 1,400 words or less, authors credited) **and** has story art in the charcoal style (a scroll sequence or a charcoal-to-color dissolve) **and** passes every check. Scored 2026-11-12 by script and by hand. "Art" means sequence or dissolve; a plain picture does not count. Owners follow the lanes below.
+Refreshed November 12, 2026 against main `d9065c7`, including #155, #162 and #164. Full [scorecard, rubric and measured inventory](reviews/2026-11-12-aaa-37-scorecard.md). All 37 lessons are substantive drafts. **Overall: 86.8%, about 87%, toward the scored production standard; three AAA (A+) lessons and seven at 95%.**
 
-| Lesson | Words | Art | Widget | Gaps to AAA | Owner |
-|---|---|---|---|---|---|
-| 101-01 | 1,102 | plain | none | trim (plan B), art, teach-it | ChatGPT trim, Gemini art |
-| 101-02 | 1,196 | seq | romans-road2 | teach-it | Claude |
-| 101-03 | 973 | none | Daily Prayers tool | art, teach-it | Gemini art |
-| 101-04 | 1,551 | none | none | trim (plan B, main priority), art, widget candidate | ChatGPT trim, Gemini art |
-| 101-05 | 1,218 | dissolve | checklist | trim (plan B), teach-it | ChatGPT |
-| 101-06 | 1,065 | dissolve | none | done 2026-11-11 | AAA |
-| 101-07 | 1,470 | none | none | trim, art, widget candidate, teach-it | ChatGPT trim, Gemini art |
-| 201-01 | 1,223 | seq | great-command | old widget review | Claude |
-| 201-02 | 1,261 | seq | great-exchange3 | old widget review | Claude |
-| 201-03 | 1,188 | dissolve | guide-spirit2 | done 2026-11-11 | AAA |
-| 201-04 | 1,490 | seq | deep-roots | light trim, teach-it | ChatGPT |
-| 201-05 | 1,521 | plain | bible-bookshelf | trim (plan B), art, teach-it, old widget | ChatGPT trim, Gemini art |
-| 201-06 | 1,489 | seq | biblical-storyline | trim (plan B), old widget review | ChatGPT |
-| 201-07 | 1,410 | dissolve | oia-method | five questions, light trim | ChatGPT |
-| 201-08 | 1,168 | dissolve | grace-diagram | teach-it, old widget review | Claude |
-| 201-09 | 1,397 | seq | fruit-of-spirit | trim (plan B), one long question, teach-it | ChatGPT |
-| 201-10 | 1,578 | dissolve | learning-circle2 | trim, teach-it, old widget review | ChatGPT |
-| 202-01 | 1,463 | plain | cross-the-road | trim (plan B), art, long question, teach-it | ChatGPT trim, Gemini art |
-| 202-02 | 1,402 | seq | cornerstone | done 2026-11-11 | AAA |
-| 202-03 | 1,238 | seq | one-another | trim (plan B), teach-it; Dave visual review pending | ChatGPT trim |
-| 202-04 | 1,005 | dissolve | five-gardeners | done 2026-11-11 | AAA |
-| 202-05 | 1,633 | none | valley-road | trim (plan B), art, five questions, teach-it | ChatGPT trim, Gemini art |
-| 202-06 | 1,427 | none | worship-is | trim (plan B), art, five questions, teach-it | ChatGPT trim, Gemini art |
-| 202-07 | 1,364 | none | stewardship-flip | art, teach-it, old widget review | Gemini art |
-| 202-08 | 1,267 | dissolve | covenant-triangle | teach-it (propose to Dave) | Claude |
-| 202-09 | 1,218 | dissolve | starting-gun | one long question, teach-it (propose to Dave) | Claude |
-| 202-10 | 1,184 | dissolve | two-ordinances | none | AAA |
-| 203-01 | 1,319 | plain | personal-ministry-map | art, teach-it | Grok art |
-| 203-02 | 1,443 | plain | none | trim (plan B), art, widget candidate | ChatGPT trim, Grok art |
-| 203-03 | 1,383 | none | none | trim (plan B), art, widget candidate | ChatGPT trim, Grok art |
-| 203-04 | 1,287 | dissolve | none | done 2026-11-11 | AAA |
-| 203-05 | 1,668 | seq | three-circles | trim (plan B), old widget review | ChatGPT |
-| 203-06 | 1,243 | dissolve | three-spaces | art integrated #155; Dave visual review pending | Dave visual |
-| 203-07 | 1,314 | plain | armor-of-god | art | Grok art |
-| 203-08 | 1,828 | plain | spaces-tables | art; Dave accepts the length | Grok art |
-| 203-09 | 1,193 | none | mission-map | art | Grok art |
-| 203-10 | 968 | none | shape | art, teach-it | Grok art |
+Ten production checkpoints score 0/5/10 each. **100 = AAA (A+), 95 = A, 90 = A-, 85 = B+, 80 = B, 75 = B-, 70 = C+.** These are current production-completeness estimates, not hours-left, new pastoral/art approval, or release/pilot readiness. The previous "7 AAA" summary was inconsistent with its own six marked rows; the current count below uses one explicit rubric. No approved lesson wording is changed by a grade.
 
-The original scorecard checkpoint marked 7 lessons AAA. After #155 and #162, 16 still need new story art (9 Gemini, 7 Grok); the two integrated sets await Dave's visual review. No additional lesson is declared AAA by these integrations. The earlier trim and teach-it totals have not been re-audited. New question proposals still go to Dave. The old-widget review remains queued; Dave chooses any rebuilds. Widget candidates for lessons with none: 101-04 Three Discovery Questions, 101-07 Stop Turn Tell Receive, 203-02 prayer card, 203-03 listening.
+| Lesson | Toward AAA | Grade | Remaining Work / Next Action |
+|---|---:|---|---|
+| 101-01 | 85% | B+ | Trim repeated introduction and mentor material; remove promised audio; add a pass-it-on question; settle opener art. |
+| 101-02 | 95% | A | Reduce five questions to three or four. The explain-to-a-friend question already exists (2.3). |
+| 101-03 | 75% | B- | Add story art and a teach-it question; reduce five questions. Daily Prayers already supplies the reusable tool. |
+| 101-04 | 75% | B- | Move Nicodemus into an opening story; add art; trim repeated framing; reduce five questions. Keep Discovery Questions and 4.5. |
+| 101-05 | 85% | B+ | Let the potluck carry the lesson; add a teach-it question. The service checklist counts as its tool. |
+| 101-06 | 95% | A | Propose shorter versions of 6.2/6.4; preserve Dave's wording until he approves. No new widget is required. |
+| 101-07 | 75% | B- | Add story art and a teach-it question; light trim. Stop, Turn, Tell, Receive is already a usable exercise. |
+| 201-01 | 95% | A | Finish the queued great-command widget review; keep the existing explain-it question. |
+| 201-02 | 95% | A | Finish the queued great-exchange3 widget review; existing 2.2 already teaches the idea back. |
+| 201-03 | 100% | AAA (A+) | No known production gap in this rubric; retain GUIDE and the existing explain-it question. |
+| 201-04 | 85% | B+ | Light trim and add a teach-it question; keep Gospel Heart and the completed root sequence. |
+| 201-05 | 75% | B- | Replace plain story art; trim reliability/translations material; add teach-it; review bookshelf widget. |
+| 201-06 | 90% | A- | Trim the extra resource and repeat framing; review storyline widget. Existing 6.4 is already teach-it. |
+| 201-07 | 90% | A- | Reduce five questions; turn the strong practice/sharing section into an explicit teach-it question. |
+| 201-08 | 85% | B+ | Add teach-it and complete grace-diagram review; keep any remaining theology/wording decisions with Dave. |
+| 201-09 | 80% | B | Trim the pruning detour; simplify the long question by proposal; add teach-it; review fruit widget. |
+| 201-10 | 75% | B- | Move the story earlier; trim the opening/repeats; add teach-it; review circle widget/setup and translation labels. |
+| 202-01 | 75% | B- | Use one story-art treatment; trim stacked teaching and widget setup; propose simpler questions plus teach-it. |
+| 202-02 | 100% | AAA (A+) | No known production gap in this rubric; preserve the three R's, family roles and teach-it question. |
+| 202-03 | 90% | A- | Retell the formal church-definition paragraph plainly; add teach-it. New early-church art is integrated. |
+| 202-04 | 100% | AAA (A+) | No required production gap in this rubric; optional shorter lead-in/4.4 can be proposed without replacing Dave's wording. |
+| 202-05 | 70% | C+ | Add Joseph art; combine repeated suffering sections and widget setup; reduce five questions and add teach-it. |
+| 202-06 | 85% | B+ | Add midnight-prison story art; reduce five questions. 6.2 already asks for worship in the learner's own words. |
+| 202-07 | 75% | B- | Add widow story art and teach-it; review stewardship widget. The Generosity Ladder is already present. |
+| 202-08 | 90% | A- | Propose one teach-it question for Dave; keep his approved covenant/chisel wording. |
+| 202-09 | 85% | B+ | Propose shorter 9.1/9.2 and a teach-it question; do not replace approved questions without Dave. |
+| 202-10 | 95% | A | 10.4 names an observer but not what the learner would explain; propose an explicit teach-it version for Dave. |
+| 203-01 | 85% | B+ | Upgrade plain mountain art; add a teach-it question tied to the ministry map. |
+| 203-02 | 90% | A- | Upgrade plain Nehemiah art and trim the performance section; make the prayer-card step stand alone without an earlier map. |
+| 203-03 | 90% | A- | Add Emmaus/table story art; keep the two practical tools; make the prayer-card reference self-contained. |
+| 203-04 | 95% | A | Propose shorter 4.2/4.3 without losing Dave's wording. The time/talents/treasure exercise is sufficient; no widget is required. |
+| 203-05 | 90% | A- | Trim bridge/faithfulness repetition and the lengthy walkthrough; review three-circles setup/widget. Existing draw-it step is strong. |
+| 203-06 | 95% | A | Make the prayer-name application an explicit pass-it-on step by proposal. Daniel art and age clarification are live; art approval remains separate. |
+| 203-07 | 90% | A- | Add story art for Jesus sending the 72. Verse-sharing in 7.4 already passes the transfer test. |
+| 203-08 | 90% | A- | Finish Paul/Timothy color art; propose shorter questions for Dave. Keep his accepted longer lesson and SPACES. |
+| 203-09 | 85% | B+ | Add Priscilla/Aquila art; strengthen the mission-choice question into an explicit teach-it step by proposal. |
+| 203-10 | 80% | B | Add art for the current body-of-Christ story and teach-it; reconcile older Bezalel metadata without changing lesson scope. |
+
+Current inventory: 21 lessons have sequence/dissolve art, six have plain pictures needing an upgrade, ten have no story art. The 16 art assignments remain nine Gemini and seven Grok. Six lessons have five mid-lesson questions: 101-02, 101-03, 101-04, 201-07, 202-05, 202-06. Transfer is strong/present in 16, implicit/weak in four, missing in 17; use the linked report instead of the older teach-it list. In particular, 101-02 2.3 and 202-06 6.2 already provide transfer; 202-10, 203-06 and 203-09 need clearer transfer proposals.
+
+Shared checks currently pass: foundation QA, export 143, storage 64, assets 102, lesson images 1075, widget iframe 32, public-site browser 387; each process exited 0. This does not finish the older-widget review or physical-device/pilot gates. The older-widget review remains queued; no new widget is mandatory where an exercise works. Optional candidates remain 101-04 Three Discovery Questions, 101-07 Stop Turn Tell Receive, 203-02 prayer card and 203-03 listening; Dave decides.
 
 ## Lanes and queues (take the top item of your lane)
 
