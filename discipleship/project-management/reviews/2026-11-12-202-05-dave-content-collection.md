@@ -143,6 +143,51 @@ Codex research leads for this addition: Philippians 4:4 and Hebrews 12:1-3; Gene
 
 Editorial center from Dave's latest clarification: Joseph plus the mosaic should carry the explanation; use a small number of well-developed Scriptures, honor the sufferer's pain, and explain how trust and future hope can coexist with present grief.
 
+## Organizing map for Claude: seven themes, not seven lesson sections
+
+Dave asked for help synthesizing his spoken ideas into appropriate categories. He clarified that the collected ideas could have seven categories; the earlier limit of three applies to kinds of suffering, not to the number of themes in these preparation notes.
+
+The following is Codex's organizing map of Dave's material, not an approved final lesson outline:
+
+| Theme | Material to draw together | Intended contribution |
+|---|---|---|
+| 1. The reality and kinds of suffering | Pain is personal and real; different lives and environments; broken-world suffering, sin's harm and the cost of following Jesus | Help a learner feel understood without comparing pain or diagnosing every cause |
+| 2. God's character and care | God loves His children; suffering is not automatically punishment; His presence makes peace possible | Reassurance that the sufferer is loved and not abandoned |
+| 3. God's providence and our limited view | Joseph, Genesis 50:20, the mosaic and its Artist; Job; the disciples' limited understanding | Trust in God's purpose without pretending to see the complete explanation |
+| 4. Christ's suffering and future hope | The cross and resurrection; sharing Christ's sufferings; persecution; future glory; joy set before Jesus | Gospel-grounded hope that can coexist with grief |
+| 5. Formation through hardship | Refining, endurance, humility, empathy and resilience | Explain what God can grow without requiring an immediate growth report |
+| 6. The family's practical presence | Mourn with those who mourn; listen, sit quietly, offer concrete help and care | Make comfort something the church does, not only something a lesson says |
+| 7. Comfort that can be passed on | Receive care and, in time, walk alongside another hurting person | Make the lesson reproducible through compassionate discipleship |
+
+These themes overlap and should be woven into a focused lesson, not expanded into seven separate sermons or seven additional discussion questions. Joseph and the mosaic remain the central picture Dave favors.
+
+## Dave's pastoral goal: a salve, with pragmatic help
+
+Dave said he is human and feels suffering himself. He wants to disciple with kindness and generosity. He wants people who have suffered to feel connected to the lesson enough that they would want to take someone else through it.
+
+The lesson should not merely stir up painful memories. His desired experience is a salve: care, comfort and reassurance that the learner is not alone and that God loves them. This is a pastoral intention, not a promise that reading a lesson will resolve trauma.
+
+People are born into different environments and live different lives, but each person feels their own pain. Avoid ranking suffering, implying someone else's hardship invalidates theirs, or prescribing one emotional timetable.
+
+Dave wants the mosaic to communicate belonging as well as purpose: even a life that feels jagged is held within God's greater purpose and the family of God. We cannot see the whole composition, but we can trust the Artist. That perspective can help without removing all the hurt.
+
+He emphasized the biblical practice of mourning with those who mourn. Brothers and sisters in God's family show up for one another. His memorable thought, lightly cleaned of spoken repetition:
+
+> Sometimes the silent person next to you is more helpful than a book on suffering.
+
+Preserve that pastoral insight: a faithful presence can matter more than a complete explanation. Do not make the lesson's theology an excuse to rush someone through grief.
+
+### Practical possibilities for Claude to develop
+
+The following examples are Codex's suggested applications of Dave's request for pragmatic help, not wording Dave has approved:
+
+- For the hurting learner: name one trusted person who can sit with you or help with one concrete need; permission to ask for care and to share only what you choose.
+- For the discipler or friend: listen without demanding details, acknowledge the pain, allow silence, ask what would help, and offer a specific act of care such as a meal, a ride or company.
+- Pray with the person's permission and follow up. Seeking appropriate pastoral, medical or professional support can be part of receiving care.
+- Let the pass-it-on step be compassionate presence rather than requiring someone to explain God's hidden purpose for another person's suffering.
+
+Additional research leads: Romans 12:15 for mourning with those who mourn; 2 Corinthians 1:3-7 for receiving and sharing comfort; Galatians 6:2 for bearing burdens. Choose sparingly in keeping with Dave's request for fewer proof texts.
+
 ## Capture verification
 
 Documentation-only source capture by Codex at Dave's request. Reviewed against the spoken conversation for the categories, Christ's sufferings, future glory, peace, punishment distinction, Job line, God's glory, mosaic alternatives, refining and empathy/resilience. No runtime tests were run because no application behavior changed. The team board links this note for discovery.
