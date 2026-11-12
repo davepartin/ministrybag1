@@ -268,7 +268,7 @@ function srcMatches(src, expected) {
         var atHoldEnd = order.find(function (row) { return row.progress === 0.4; });
         var midDissolve = order.find(function (row) { return row.progress === 0.48; });
         var lateDissolve = order.find(function (row) { return row.progress === 0.56; });
-        var seq3AtHold = atHoldEnd && atHoldEnd.opacities && atHoldEnd.opacities[4] >= 0.85 && atHoldEnd.opacities[6] < 0.15;
+        var seq3AtHold = atHoldEnd && atHoldEnd.opacities && atHoldEnd.opacities[5] >= 0.85 && atHoldEnd.opacities[6] < 0.15;
         var seq4Mid = midDissolve && midDissolve.opacities && midDissolve.opacities[6];
         var seq4Late = lateDissolve && lateDissolve.opacities && lateDissolve.opacities[6];
         assert(width + ': seq-3 still holds at 0.4 before the last dissolve', seq3AtHold, JSON.stringify(atHoldEnd));
