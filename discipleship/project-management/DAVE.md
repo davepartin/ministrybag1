@@ -82,4 +82,6 @@ When Dave approves a lesson, add one row with its task ID, date, reviewed commit
 | UI-SIGNIN-TOP | 2026-11-11 | PR #133, merged as `fa745f9` | Dave in chat: asked for a rounded Sign in button at the top right of the home page, then shorter, in the logo's green, in the top margin; "merge it". index.html and scripts/account.js. |
 | REWORK-202-02-R | 2026-11-11 | PR #134, merged as `ccebdac` | Dave by voice note: three R's (Remember God's mercy, Relay grace, Repair the relationship) replace the Forgiveness Loop, as a reminder of 201-08 and 201-10; "merge it". data/202-02.json sha256 613c853cfff5. |
 | REWORK-202-04 | 2026-11-11 | PR #132, merged as `b5cd754` | Dave in chat: "merge it". data/202-04.json sha256 bcaa9ff51cef. |
+| UI-SIGNIN-PILL | 2026-11-11 | PRs #138 and #139, merged as `e19e77c` and `ff64d98` | Dave in chat: pill shows Sign out when signed in ("merge it"); pill in the Starting blue with black text ("merge and deploy all"). Also #137 root no-cache, merged with "merge all three". |
+| REWORK-201-03 | 2026-11-11 | PR #140, merged as `3745b0b` | Dave in chat: eight wording changes from the preview, then "merge and deploy all". data/201-03.json sha256 cc798d2ca1b8; widgets/guide-spirit2.html sha256 74a70a0fa939. |
 
