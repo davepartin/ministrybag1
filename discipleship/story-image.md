@@ -163,7 +163,7 @@ Optional field: `"frame": true` adds a 1px border (`.block-image-dissolve-framed
 | 203-06 | Faithful in Babylon | B&W -> Color | `203-06-daniel-window-bw.jpg` -> `203-06-daniel-window-color.jpg` | Live (`touchNext: true`) |
 | 203-07 | Jesus Sends the 72 | B&W -> Color | `203-07-sends-72-bw.jpg` -> `203-07-sends-72-color.jpg` | Live (`touchNext: true`) |
 | 203-08 | Four Generations | Single B&W | `203.08-paul-timothy-bw.jpg` (`touchNext: true`) | Tracked as `ART-008` (add color or sequence) |
-| 203-09 | The Tentmakers | None | - | Needs Priscilla/Aquila tentmaking art |
+| 203-09 | The Tentmakers | B&W -> Color | `203-09-tentmakers-bw.jpg` -> `203-09-tentmakers-color.jpg` | Live (`touchNext: true`) |
 | 203-10 | A Place for Every Part | None | - | Needs body/parts story art |
 
 ---
