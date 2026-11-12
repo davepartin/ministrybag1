@@ -26,6 +26,10 @@ This is the current operating setup until Dave changes it. Dave finalized these 
 
 This update changes coordination documentation only. It does not merge an existing implementation PR or claim that an earlier preview, test or deployment passed.
 
+## Content source for Claude: 202-05 suffering
+
+Dave asked Codex to preserve his spoken thoughts for future writing in [202-05: Dave's collected thoughts on suffering](reviews/2026-11-12-202-05-dave-content-collection.md). Read this before drafting 202-05. It captures three possible suffering categories, sharing Christ's sufferings, future glory, peace in God's presence, suffering versus punishment, Job's limited perspective, the stained-glass idea, refining, empathy and resilience. Dave's ideas are distinguished from Codex's research suggestions. This is source material, not final wording approval or an instruction to build a widget. Claude owns the editorial follow-up under the standing roles.
+
 ## Earlier board and task history
 
 The following sections retain prior assignments and dated evidence. Read them subject to the current standing roles above.
