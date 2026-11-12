@@ -157,7 +157,7 @@ Optional field: `"frame": true` adds a 1px border (`.block-image-dissolve-framed
 | 202-10 | The Table He Longed For | B&W -> Color | `last-supper-bw.jpg` -> `last-supper-color.jpg` | Live (`touchNext: true`, `frame: true`) |
 | 203-01 | On the Mountain | Logo only | `203-3circle-logo.png` | Needs story art if parable kept |
 | 203-02 | A Prayer Before the Answer | Logo only | `203-02-bless-logo.png` | Needs Nehemiah story art |
-| 203-03 | Stay with Us | None | - | Needs story art |
+| 203-03 | Stay with Us | B&W -> Color | `203-03-emmaus-table-bw.jpg` -> `203-03-emmaus-table-color.jpg` | Live (`touchNext: true`) |
 | 203-04 | The Towel and the Basin | B&W -> Color | `jesus-washing-feet-bw.png` -> `jesus-washing-feet-color.png` | Live (`touchNext: true`) |
 | 203-05 | I Was Blind, Now I See | **2-Frame Sequence** | `blind-1-closedeyes.jpg`, `blind-2-openeyes.jpg` (stops `[0, 0.4]`) | Live sequence |
 | 203-06 | Faithful in Babylon | B&W -> Color | `203-06-daniel-window-bw.jpg` -> `203-06-daniel-window-color.jpg` | Live (`touchNext: true`) |
