@@ -18,7 +18,20 @@ Dave's latest instruction is to integrate the working pieces now so he can edit 
 
 Queue cleanup: #179 superseded by #195; #183 duplicate of integrated #185; #187 competing style-guide packet superseded by #184; #182 superseded by #189. Closed without deleting branches or history. The unrelated older #28/#68 and denomination PR #2 remain outside this integration batch.
 
-Required foundation/export/storage/assets/image checks passed throughout the isolated integrations. Final combined source checked at 126 asset references and 1,360 image checks, export 167 and storage 64, all actual exits 0. Saved answers, WEB readings, question IDs and Dave's original artwork files remain protected. See the integration log for exact commands, PR heads and deployment evidence. No physical iPhone/Safari or learner pilot is claimed by desktop automation.
+Required foundation/export/storage/assets/image checks passed throughout the isolated integrations. Final combined source checked at 126 asset references and 1,360 image checks, export 167 and storage 64, all actual exits 0. Saved answers, WEB readings, question IDs and Dave's original artwork files remain protected. See the [integration log](logs/2026-11-12-INTEGRATE-PIECES-codex.md) for exact commands, PR heads and deployment evidence. No physical iPhone/Safari or learner pilot is claimed by desktop automation.
+
+## What the team does next
+
+- **Dave:** edit and approve one lesson at a time on the live site. The integrated pieces are working drafts, not final pastoral/art/release approvals.
+- **Codex:** maintain technical integration and address concrete issues Dave finds. This integration batch is complete; no background monitor or unfinished merge job is running.
+- **Claude / Fable:** resume editorial work with Dave when tokens are available. Do not restart suffering or stewardship from scratch; read the current main lesson and source notes.
+- **Gemini:** the stool, newer mirror and forward-view Romans Road are integrated. Take a new bounded widget assignment or Dave's specific corrections, not another competing implementation.
+- **Grok:** Samaritan, house timing, widow, Emmaus and five-frame worship sequences are integrated. Take Dave's next art assignment; do not recreate or rewire these as new jobs.
+- **Future design needs, not launched jobs:** 101-04 Nicodemus lamplight art and Psalm 119:105 connection; a possible 202-05 mosaic widget. Keep the 201-10 Learning Circle's depth as Dave requested.
+
+**Verified publishing:** checkpoint main `972c26de`; Firebase Action [43322478865](https://github.com/davepartin/ministrybag1/actions/runs/43322478865) and Pages Action [43322476847](https://github.com/davepartin/ministrybag1/actions/runs/43322476847) both succeeded. All eight affected live lesson JSON files, three widgets and the generated image map matched the tested combined version. Evidence: [integration log](logs/2026-11-12-INTEGRATE-PIECES-codex.md) and [checkpoint #198](https://github.com/davepartin/ministrybag1/pull/198). This board-only refresh makes no runtime change.
+
+**Open PRs rechecked:** only older #28 (restore labels), #68 (finish-plan documents), and #2 (denomination guide, outside this project packet) remain open. None is part of this completed batch. Closed as superseded: #179, #182, #183 and #187. Branches/history retained.
 
 ## Current standing roles: Dave's instruction, November 12, 2026
 
@@ -50,28 +63,25 @@ This update changes coordination documentation only. It does not merge an existi
 
 Dave asked Codex to preserve his spoken thoughts for future writing in [202-05: Dave's collected thoughts on suffering](reviews/2026-11-12-202-05-dave-content-collection.md). Read this before drafting 202-05. It captures three possible suffering categories, sharing Christ's sufferings, future glory, peace in God's presence, suffering versus punishment, Job's limited perspective, the stained-glass idea, refining, empathy and resilience. Dave's ideas are distinguished from Codex's research suggestions. This is source material, not final wording approval or an instruction to build a widget. Claude owns the editorial follow-up under the standing roles.
 
-Update, November 12: Claude redrafted `data/202-05.json` from this collection on branch `claude/dazzling-brown-x7g9um`. The phrase is "Trust the Artist"; the mosaic is taught in prose and the Valley Road widget is unchanged. It waits for Dave's read and is not merged. TRIM-202-05 is superseded; do not trim this lesson separately. The mosaic widget is still unassigned. Details and the candidate widget brief: [rework log](logs/2026-11-12-L-202-05-REWORK-claude.md).
+Update, November 12: Claude's redraft is integrated through #195, with original question 5.5 restored so existing responses stay visible and exportable. The phrase is "Trust the Artist"; the mosaic is taught in prose and Valley Road remains. Dave's final edit/source review is pending. #179 is closed as superseded; do not restart that trim. The mosaic widget is still unassigned. Details: [rework log](logs/2026-11-12-L-202-05-REWORK-claude.md).
 
 ## Content source for Claude and Gemini: 202-07 stewardship
 
-Dave wants time, talents and treasure to become the memorable center of 202-07, with whole-self stewardship rather than money alone. He proposed replacing the upside-down bills treatment with a stool drawn from three Ts: the upper strokes form a triangular seat and the stems become three legs. Read [Dave's stewardship and three-T stool direction](reviews/2026-11-12-202-07-dave-stewardship-stool.md) before drafting or building. The note includes Dave's actual words and candidate design steps. Claude develops wording with Dave; Gemini handles a separately claimed widget packet; Codex verifies integration. 203-04 already applies the three Ts to serving and remains unchanged. This is collected direction, not a completed widget assignment or approval of unseen copy.
+Dave wants time, talents and treasure to become the memorable center of 202-07, with whole-self stewardship rather than money alone. He proposed replacing the upside-down bills treatment with a stool drawn from three Ts: the upper strokes form a triangular seat and the stems become three legs. Read [Dave's stewardship and three-T stool direction](reviews/2026-11-12-202-07-dave-stewardship-stool.md) before drafting or building. The note includes Dave's actual words and candidate design steps. Claude develops wording with Dave; Gemini handles a separately claimed widget packet; Codex verifies integration. 203-04 already applies the three Ts to serving and remains unchanged. This collection remains the source direction. The manuscript/brief #192, stool #193, widow sequence #181 and assembled whole-life lesson #196 are now integrated. All seven original question objects, Matthew 6:24 and the financial ladder remain for Dave's later edit. No final wording or visual approval is implied.
 
-## Current worker checkpoint from Dave: November 12, 2026
+## Worker handoff: completed integration batch
 
-This newer checkpoint updates the session-summary next actions below. Distinguish Dave-reported work from GitHub-verified state.
-
-| Work | Current owner and checkpoint | Next technical step |
+| Work | Current main state | Next action |
 |---|---|---|
-| 202-05 suffering rewrite | Located Claude's complete draft and exact log on claude/dazzling-brown-x7g9um, head 5eb9867. Codex opened [PR #195](https://github.com/davepartin/ministrybag1/pull/195) without changing Claude's prose. The earlier missing-location concern is resolved. | Required suites pass; Firebase Action 43316715906 succeeds; 18 local and 18 preview render/data checks pass. REVIEW HOLD: removing 5.5 hides existing responses from page/Email, although storage remains intact. Resolve access and Dave's wording/source/widget decisions before publishing. |
-| 202-07 stewardship widget | Gemini's [PR #193](https://github.com/davepartin/ministrybag1/pull/193), head 0334043, independently reviewed by Codex: required suites and iframe 32 pass; 64 hosted browser checks pass across 375/390/1280, keyboard/reduced motion/scroll safety included. Non-widget lesson data exactly unchanged. | Technical review passes within tested scope. Dave visual/copy approval remains pending; coordinate whole-self prose before calling the lesson complete. No merge performed. |
-| 202-07 lesson wording | Dave identifies Claude / Fable 5.2 as the writer. The Codex [proposal in #192](https://github.com/davepartin/ministrybag1/pull/192) remains source/review material, not the approved replacement. Claude's current token limitation must be accounted for; no newly completed 202-07 rewrite is claimed. | Preserve the existing manuscript and Dave's notes until Claude resumes or Dave assigns a bounded continuation to another worker. Do not duplicate the lesson rewrite silently. |
-| 202-06 worship story art | Dave reports Grok is producing two first drafts of the base frame. This is the current image assignment. | Wait for Dave's visual direction and the published art packet before technical integration. Do not confuse these drafts with the separate worship mirror-widget PR or reopen old art as a second job. |
+| 202-05 suffering | #195 integrated. Question 5.5 restored, with existing responses visible and included in Email. Former data-access hold resolved. | Dave's wording/source/length review. No competing rewrite. |
+| 202-07 widget and lesson | #181/#192/#193/#196 integrated: widow sequence, source manuscript, stool, whole-life teaching. Original question objects preserved. | Dave edits the complete lesson; Claude assists when available. |
+| 202-06 worship | Newer mirror #189, Grok's five-frame chain sequence #197 integrated. Older mirror #182 closed. | Dave's visual/wording pass; no pending sequence wiring. |
 
-Review links: [202-07 stool](https://growing-together-discipleship--pr193-gemini-widget-202-zjcqohhq.web.app#202-7) and [202-05 suffering](https://growing-together-discipleship--pr195-claude-dazzling-b-7qlvh9r9.web.app#202-5). Independent evidence: [Codex review log](logs/2026-11-12-REVIEW-193-195-codex.md). Both Action previews succeeded. Source code was unchanged during review; no merges or Firebase settings changes.
+Use the live site for review: [Suffering](https://growingtogetherdiscipleship.com/#202-5), [Stewardship](https://growingtogetherdiscipleship.com/#202-7), [Worship](https://growingtogetherdiscipleship.com/#202-6). Prior temporary preview links and pre-integration findings are historical evidence in the logs.
 
-## Dave and Codex working session: November 12, 2026
+## Earlier discussion record: November 12, 2026
 
-Dave asked for this summary so every agent can pick up the same decisions. Four lessons received substantive discussion; two have review drafts, one has a collected content source, and one received direction to preserve its depth. None of these conversations alone approves final lesson wording or artwork.
+This records the earlier conversation and its decisions. Status and next-action statements in this dated record are superseded by the current publishing and worker-handoff sections above. Four lessons received substantive discussion; final wording and artwork approval remain Dave's.
 
 | Lesson | What Dave clarified or requested | Material / current status | Next owner and action |
 |---|---|---|---|
