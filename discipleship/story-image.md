@@ -151,7 +151,7 @@ Optional field: `"frame": true` adds a 1px border (`.block-image-dissolve-framed
 | 202-04 | The Five Farmers in the Field | B&W -> Color | `Farmer-bw.jpeg` -> `Farmer-color.jpg` | Live (`touchNext: true`) |
 | 202-05 | The Pit, the Prison, and the Palace | B&W -> Color | `202-05-joseph-pit-palace-bw.jpg` -> `202-05-joseph-pit-palace-color.jpg` | Live (`touchNext: true`) |
 | 202-06 | Songs at Midnight | B&W -> Color | `202-06-midnight-songs-bw.jpg` -> `202-06-midnight-songs-color.jpg` | Live (`touchNext: true`) |
-| 202-07 | Two Small Coins | B&W -> Color | `202-07-two-coins-bw.jpg` -> `202-07-two-coins-color.jpg` | Live (`touchNext: true`) |
+| 202-07 | Two Small Coins | **4-Frame Sequence** | `202-07-two-coins-seq-1.jpg` .. `4.jpg` (stops `[0, 0.18, 0.34, 0.5]`) | Live (`touchNext: true`) |
 | 202-08 | The Marble and the Chisel | B&W -> Color | `202.08-marble-chisel-bw.jpg` -> `202.08-marble-chisel-color.jpg` | Live (`touchNext: true`, `frame: true`) |
 | 202-09 | The View from the Roof | B&W -> Color | `202.09-david-roof-bw.png` -> `202.09-david-roof-color.png` | Live (`touchNext: true`, `frame: true`) |
 | 202-10 | The Table He Longed For | B&W -> Color | `last-supper-bw.jpg` -> `last-supper-color.jpg` | Live (`touchNext: true`, `frame: true`) |

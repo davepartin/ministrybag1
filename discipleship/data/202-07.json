@@ -9,8 +9,18 @@
     },
     {
       "type": "image",
-      "imageBw": "images/202-07-two-coins-bw.jpg",
-      "imageColor": "images/202-07-two-coins-color.jpg",
+      "imageSequence": [
+        "images/202-07-two-coins-seq-1.jpg",
+        "images/202-07-two-coins-seq-2.jpg",
+        "images/202-07-two-coins-seq-3.jpg",
+        "images/202-07-two-coins-seq-4.jpg"
+      ],
+      "imageSequenceStops": [
+        0,
+        0.18,
+        0.34,
+        0.5
+      ],
       "alt": "A poor widow drops two small coins into the temple offering chest while Jesus and His disciples watch from the steps and rich men carry heavy bags of money",
       "touchNext": true
     },
