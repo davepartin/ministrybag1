@@ -752,6 +752,66 @@
             }
         ]
     },
+    "images/early-church-seq-1.jpg": {
+        "width": 1264,
+        "height": 848,
+        "sourceHash": "201f995886f3eb01e919e7a0e17a391e79b6e1157d483cdfdddb8ca3c727245e",
+        "variants": [
+            {
+                "src": "images/optimized/early-church-seq-1-640.webp",
+                "width": 640
+            },
+            {
+                "src": "images/optimized/early-church-seq-1-1264.webp",
+                "width": 1264
+            }
+        ]
+    },
+    "images/early-church-seq-2.jpg": {
+        "width": 1264,
+        "height": 848,
+        "sourceHash": "98647bcaef1b3f730ca7b944c6ab0a2112e51979450149036ff6132db346ec30",
+        "variants": [
+            {
+                "src": "images/optimized/early-church-seq-2-640.webp",
+                "width": 640
+            },
+            {
+                "src": "images/optimized/early-church-seq-2-1264.webp",
+                "width": 1264
+            }
+        ]
+    },
+    "images/early-church-seq-3.jpg": {
+        "width": 1264,
+        "height": 848,
+        "sourceHash": "a32c49fc610c8d647191940985fec47b0f282ecb26bf43fefa20c2bb8c254be5",
+        "variants": [
+            {
+                "src": "images/optimized/early-church-seq-3-640.webp",
+                "width": 640
+            },
+            {
+                "src": "images/optimized/early-church-seq-3-1264.webp",
+                "width": 1264
+            }
+        ]
+    },
+    "images/early-church-seq-4.jpg": {
+        "width": 1264,
+        "height": 848,
+        "sourceHash": "8475b904153b41a758683cf86b968bef6b7fdd1aeeb06b94fdb3fae8f722af07",
+        "variants": [
+            {
+                "src": "images/optimized/early-church-seq-4-640.webp",
+                "width": 640
+            },
+            {
+                "src": "images/optimized/early-church-seq-4-1264.webp",
+                "width": 1264
+            }
+        ]
+    },
     "images/fruit-tree-story-color.jpg": {
         "width": 1280,
         "height": 720,
