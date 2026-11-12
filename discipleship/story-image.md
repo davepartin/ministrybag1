@@ -2,6 +2,8 @@
 
 This file is the single source of truth for **scroll-animated story images** in the Growing Together Discipleship Series. Any AI or human adding, upgrading, or testing lesson story images should read this file first.
 
+All new story art follows SKETCH-STYLE.md, Dave's loose marker sketch style.
+
 ## The look: read this before generating anything
 
 Dave's reference is `images/good-samaritan-story.jpg`, with `fruit-tree-story.jpg`, `jesus-sends-72.jpg` and `jesus-light-bw.jpg` as further examples. Study them before you prompt an image model. The look is a **storyboard marker sketch**, not a painting and not a children's Bible illustration:
