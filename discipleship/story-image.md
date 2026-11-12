@@ -2,6 +2,39 @@
 
 This file is the single source of truth for **scroll-animated story images** in the Growing Together Discipleship Series. Any AI or human adding, upgrading, or testing lesson story images should read this file first.
 
+## The look: read this before generating anything
+
+Dave's reference is `images/good-samaritan-story.jpg`, with `fruit-tree-story.jpg`, `jesus-sends-72.jpg` and `jesus-light-bw.jpg` as further examples. Study them before you prompt an image model. The look is a **storyboard marker sketch**, not a painting and not a children's Bible illustration:
+
+- Black felt-tip ink on white paper. Fast, confident, visible strokes. Hatching and scribbled marker fills for shadow, with the white of the paper left as the light.
+- Mid-grey marker blocks for the ground and sky, laid in quickly, edges rough.
+- Figures are gestural and slightly rough, not polished faces. No soft shading, no painterly blending, no sepia wash, no warm glow.
+- Wide cinematic framing (16:9 or close), one clear focal action.
+- **Color, when there is a color layer, is one or two small accents only**: the orange fruit on the tree, the red on the Samaritan's hands. The picture stays black, white and grey. A full-color version of the scene is wrong for this series.
+
+Drift to avoid (seen on 2026-11-12): full-color painterly renderings, golden-hour sunsets, soft blended skin tones, sepia paper textures, children's-storybook faces. If your generated frame has any of these, do not wire it; regenerate with the reference image attached.
+
+A prompt that works: "black felt-tip marker storyboard sketch on white paper, rough confident strokes, grey marker fills, hatching for shadow, no color, wide 16:9 scene of [the story moment], in the style of the attached reference."
+
+## Already made: check before you generate
+
+Dave drew much of the art himself before the bots arrived. **Before generating anything, list `images/` and look for the lesson's story.** If a finished piece exists, use it, and if you need a color layer, add only small accents to a copy of it. Never replace a Dave original with a generated scene without his word. Pieces of his that are finished but currently unused, as of 2026-11-12:
+
+| File | Story | Status |
+|---|---|---|
+| `good-samaritan-story.jpg` | Good Samaritan (202-01) | Finished, Dave's look. Was in use until PR #180 proposed replacing it. |
+| `fruit-tree-story.jpg`, `fruit-tree-story-color.jpg` | Two people under a fruit tree (201-09 Fruit of the Spirit) | Finished pair in Dave's look. Replaced by the vine sequence in #153. |
+| `jesus-sends-72.jpg` | Jesus sending the 72 (203-07) | Finished, Dave's look. Restored to 203-07 on 2026-11-12 at Dave's direction; the generated dissolve files from #169 stay in the folder unused. |
+| `jesus-light-bw.jpg`, `jesus-light-color.jpg` | Jesus as light | Finished pair, unused. Ask Dave which lesson. |
+| `soils-bw.jpeg`, `soils-color.jpg` | Four soils (201-04) | Finished pair. Replaced by the six-frame sequence in #147. |
+| `running-father-bw3.jpeg`, `running-father-color3.jpeg` | Running father (201-01) | Finished pair. Replaced by the five-frame sequence. |
+| `house-rock-1.png`, `house-rock-2.jpg`, `house-rock-3.jpg` | Two builders (202-02) | Earlier frames. Replaced by the storm sequence in #135. |
+| `202.08-abram-covenant-bw.png`, `202.08-abram-covenant-color.png` | Abram's covenant (202-08) | Finished pair, unused; 202-08 uses the marble and chisel pair. |
+| `boy-and-tree.png` (+ bw, color) | Boy and tree | Unused. Ask Dave. |
+| `201.06-country-road.jpg`, `201.06-golden-sunrise.jpg`, `202.04-library-bookshelf.jpg`, `202.04-open-bible.jpg`, `aspen-grove.jpg`, `Farmer-color3.jpg` | Photos and earlier variants | Unused. Not the sketch look; keep as references only. |
+
+Naming for new files so they can be found: `LLL-NN-story-bw.jpg` and `LLL-NN-story-color.jpg` for a dissolve, `LLL-NN-story-seq-1.jpg` and so on for a sequence, where LLL-NN is the lesson. When you adopt one of Dave's older files, keep the original and add a copy under the lesson-numbered name so both can be found.
+
 ## Two Scroll-Animation Patterns
 
 Every lesson opens with a story or parable near the top. Above that `parable` block sits a standalone `image` block with `"touchNext": true` so the artwork and story card fuse into one card without a gap.
