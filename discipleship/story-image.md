@@ -161,7 +161,7 @@ Optional field: `"frame": true` adds a 1px border (`.block-image-dissolve-framed
 | 203-04 | The Towel and the Basin | B&W -> Color | `jesus-washing-feet-bw.png` -> `jesus-washing-feet-color.png` | Live (`touchNext: true`) |
 | 203-05 | I Was Blind, Now I See | **2-Frame Sequence** | `blind-1-closedeyes.jpg`, `blind-2-openeyes.jpg` (stops `[0, 0.4]`) | Live sequence |
 | 203-06 | Faithful in Babylon | B&W -> Color | `203-06-daniel-window-bw.jpg` -> `203-06-daniel-window-color.jpg` | Live (`touchNext: true`) |
-| 203-07 | Jesus Sends the 72 | B&W -> Color | `203-07-sends-72-bw.jpg` -> `203-07-sends-72-color.jpg` | Live (`touchNext: true`) |
+| 203-07 | Jesus Sends the 72 | Plain original sketch | `jesus-sends-72.jpg` on the parable | Dave's choice; charcoal pair from #169 kept in repo, not wired |
 | 203-08 | Four Generations | Single B&W | `203.08-paul-timothy-bw.jpg` (`touchNext: true`) | Tracked as `ART-008` (add color or sequence) |
 | 203-09 | The Tentmakers | B&W -> Color | `203-09-tentmakers-bw.jpg` -> `203-09-tentmakers-color.jpg` | Live (`touchNext: true`) |
 | 203-10 | A Place for Every Part | None | - | Needs body/parts story art |
