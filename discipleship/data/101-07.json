@@ -81,7 +81,7 @@
     {
       "type": "question",
       "id": "7-3",
-      "text": "7.2 - Is there something you have been carrying that you need to confess to God today?",
+      "text": "7.2 - What do you need to tell God today, and does guilt push you from Him or draw you toward Him?",
       "data_question": "7.2 - Practicing confession"
     },
     {
@@ -103,9 +103,9 @@
     },
     {
       "type": "question",
-      "id": "7-4",
-      "text": "7.3 - When you feel guilty, does it push you away from God or draw you toward Him?",
-      "data_question": "7.3 - Conviction vs condemnation"
+      "id": "7-hand",
+      "text": "7.3 - How would you explain Stop, Turn, Tell, Receive to a friend who feels too far gone?",
+      "height": "tall"
     },
     {
       "type": "heading",
