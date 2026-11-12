@@ -1,8 +1,16 @@
 # Resume here
 
+## Temporary coordinator, November 12, 2026
+
+Dave asked Codex to cover Claude while Claude is unavailable and confirmed: "Merge reviewed, passing PRs." This supersedes the older per-PR "merge it" restriction only for Codex as acting coordinator. Other workers still use separate worktrees, one job per PR, real exit-code checks and Firebase previews, then stop. Dave's theology, wording and personal art approval remain separate; never infer them from a technical merge. No manual deploys or force pushes.
+
+Reviewed and merged #161 tooling (`4c255cd`), #155 Daniel art (`a6cb9d5`) and #162 early-church art (`6cab588`). Checks and automatic Firebase deployments pass. The combined tree exactly matches the tested integration. Evidence: logs/2026-11-12-COORD-003-codex.md.
+
+Next: ChatGPT chapter notes in Email Lesson; Gemini 202-05 art; Grok 203-07 art. Keep approved questions untouched. Do not merge old #28 or #68 without a fresh current-state review; #2 is outside this assignment. TEAM-BOARD.md contains the current lanes and temporary authority. The older Claude-only instructions below are historical while this handoff is active.
+
 **Image build needs sharp:** see Lessons learned in TEAM-BOARD.md before running `build_lesson_images.js`.
 
-**Team board (2026-11-12):** every agent starts at `TEAM-BOARD.md` for its lane and queue. Claude directs and reviews; Dave merges.
+**Team board (2026-11-12):** every agent starts at `TEAM-BOARD.md`; Codex temporarily coordinates and merges reviewed, passing work under Dave's delegation above.
 
 ## Series review and rework, November 11, 2026
 
