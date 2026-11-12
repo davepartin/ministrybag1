@@ -326,12 +326,12 @@
     </style>
 </head>
 <body>
-<main class="widget" aria-label="Five spiritual disciplines as roots growing deep into Christ">
+<main class="widget" aria-label="Five spiritual disciplines as roots growing deep into a gospel heart">
     <header class="title-bar">
         <h1>Roots of Discipline</h1>
     </header>
 
-    <section class="scene-wrap" aria-label="A wide tree trunk with five wavy roots growing down through soil marked JESUS">
+    <section class="scene-wrap" aria-label="A wide tree trunk with five wavy roots growing down through soil marked Gospel Heart">
         <div id="scene"></div>
     </section>
 
@@ -464,19 +464,33 @@
             opacity: '0.68'
         }));
 
-        var watermark = svgEl('text', {
+        var watermarkTop = svgEl('text', {
             x: 230,
-            y: 202,
+            y: 164,
             'text-anchor': 'middle',
             'font-family': 'Inter, Trebuchet MS, sans-serif',
-            'font-size': 92,
+            'font-size': 66,
             'font-weight': 900,
             fill: '#F8F0DD',
-            opacity: '0.11',
-            'letter-spacing': '0.04em'
+            opacity: '0.18',
+            'letter-spacing': '0.03em'
         });
-        watermark.textContent = 'JESUS';
-        svg.appendChild(watermark);
+        watermarkTop.textContent = 'Gospel';
+        svg.appendChild(watermarkTop);
+
+        var watermarkBottom = svgEl('text', {
+            x: 230,
+            y: 232,
+            'text-anchor': 'middle',
+            'font-family': 'Inter, Trebuchet MS, sans-serif',
+            'font-size': 66,
+            'font-weight': 900,
+            fill: '#F8F0DD',
+            opacity: '0.18',
+            'letter-spacing': '0.03em'
+        });
+        watermarkBottom.textContent = 'Heart';
+        svg.appendChild(watermarkBottom);
 
         svg.appendChild(svgEl('path', { d: 'M 0 138 C 92 132, 198 142, 282 136 C 358 131, 416 137, 460 134', stroke: '#3F2814', 'stroke-width': 1, fill: 'none', opacity: '0.28' }));
         svg.appendChild(svgEl('path', { d: 'M 0 238 C 110 232, 208 243, 312 236 C 380 232, 424 237, 460 235', stroke: '#25170B', 'stroke-width': 1, fill: 'none', opacity: '0.34' }));
@@ -619,7 +633,7 @@
             class: 'scene-svg',
             viewBox: '0 0 ' + W + ' ' + H,
             role: 'img',
-            'aria-label': 'A white line-drawn trunk with five white roots forming one at a time into soil marked JESUS'
+            'aria-label': 'A white line-drawn trunk with five white roots forming one at a time into soil marked Gospel Heart'
         });
 
         buildBackdrop(svg);
@@ -648,8 +662,8 @@
         text.className = 'verse-text';
 
         if (step === -1) {
-            title.textContent = 'Rooted in Jesus';
-            text.innerHTML = 'A tree stands or falls by what its roots are doing. Paul says you are rooted in Jesus. The deeper your roots run in Him, the more steady and fruitful you become.';
+            title.textContent = 'A Gospel Heart';
+            text.innerHTML = 'In the parable of the sower, the good soil is a heart the gospel has softened and fed. Paul says you are rooted in Him. Roots that go down into a gospel heart find Jesus there, and the deeper they run, the steadier and more fruitful you become.';
             content.appendChild(title);
             content.appendChild(text);
         } else {
@@ -739,7 +753,7 @@
     }
 
     render();
-    window.gtCards = [{ title: 'Rooted in Jesus', text: 'A tree stands or falls by what its roots are doing. Paul says you are rooted in Jesus. The deeper your roots run in Him, the more steady and fruitful you become.' }].concat(roots.map(function (s) { return { title: s.title, text: s.verse + '<span class="card-note">' + s.note + '</span>', ref: s.ref }; }));
+    window.gtCards = [{ title: 'A Gospel Heart', text: 'In the parable of the sower, the good soil is a heart the gospel has softened and fed. Paul says you are rooted in Him. Roots that go down into a gospel heart find Jesus there, and the deeper they run, the steadier and more fruitful you become.' }].concat(roots.map(function (s) { return { title: s.title, text: s.verse + '<span class="card-note">' + s.note + '</span>', ref: s.ref }; }));
 }());
 
 // Size every card to the tallest step so the buttons never move (A-standard pattern).
