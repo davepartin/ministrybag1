@@ -10,7 +10,9 @@ Reviewed and merged #161 tooling (`4c255cd`), #155 Daniel art (`a6cb9d5`) and #1
 
 Dave's separately requested one-sentence Daniel age clarification is integrated in #164 as `d9065c7`, with successful automatic deployment and 28 public-site checks. L-203-06-AGE is done; #165 is a later duplicate and is not another pending lesson change. Questions, Scripture quotations and art stayed unchanged. See logs/2026-11-12-L-203-06-AGE-codex.md and #164's final evidence comment.
 
-Next: ChatGPT chapter notes in Email Lesson; Gemini 202-05 art; Grok 203-07 art. Keep approved questions untouched. Do not merge old #28 or #68 without a fresh current-state review; #2 is outside this assignment. TEAM-BOARD.md contains the current lanes and temporary authority. The older Claude-only instructions below are historical while this handoff is active.
+Dave assigned a three-project batch per agent on November 12. Gemini: ART-202-05 Joseph, ART-202-06 Paul/Silas, ART-202-07 widow. Grok: ART-203-07 Jesus sends the 72, ART-203-03 Emmaus, ART-203-09 tentmakers. Codex: READ-101-NOTES, READ-101-RETRY, READ-101-A11Y, in that order. Each is a separate project/PR; jobs 2 and 3 wait for the owner's prior integration. These are assigned TODOs, not proof an agent has launched. TEAM-BOARD.md contains the bounded briefs and generated-map integration rules.
+
+Keep approved questions untouched. Do not merge old #28 or #68 without a fresh current-state review; #165 is a duplicate of the integrated Daniel wording; #2 is outside this assignment. The older Claude-only instructions below are historical while the temporary delegation is active.
 
 **Image build needs sharp:** see Lessons learned in TEAM-BOARD.md before running `build_lesson_images.js`.
 

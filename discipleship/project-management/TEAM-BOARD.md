@@ -90,20 +90,50 @@ Shared checks currently pass: foundation QA, export 143, storage 64, assets 102,
 
 ## Lanes and queues (take the top item of your lane)
 
+## Current Three-Project Batch: November 12, 2026
+
+Dave asked for a few projects for Gemini, Grok and Codex. These are the next three already-prioritized jobs in each lane, not nine simultaneous implementations. All are assigned and TODO until the owner claims a fresh worktree/branch. Work one at a time within each lane. Jobs 2 and 3 start from current main after that owner's previous job is reviewed and merged. Different lanes may run in parallel. Assignment alone does not increase any completion percentage.
+
+If you already have that exact first job underway in your own isolated worktree, continue it and link the task ID; do not restart or duplicate it. Never switch or edit another worker's checkout.
+
+| Agent | Order | Task ID | Project | Scope / Acceptance |
+|---|---:|---|---|---|
+| Gemini | 1 | ART-202-05 | Joseph: The Pit, the Prison, and the Palace | Add charcoal story art and matching color reveal for 202-05's existing story. New art and image block only; no suffering prose or question edits. |
+| Gemini | 2 | ART-202-06 | Paul and Silas: Songs at Midnight | Add charcoal/color prison story art for 202-06. Keep the worship teaching, existing 6.2 and all IDs untouched. |
+| Gemini | 3 | ART-202-07 | The Widow: Two Small Coins | Add charcoal/color offering scene for 202-07. Keep the Generosity Ladder, stewardship widget and all wording unchanged. |
+| Grok | 1 | ART-203-07 | Jesus Sends the 72 | Add charcoal/color commissioning story art for 203-07's actual Luke 10 opening. Do not recast the story as people literally wearing Paul's armor. No widget edits. |
+| Grok | 2 | ART-203-03 | Emmaus: Stay with Us | Add charcoal/color story art joining the Emmaus listening/table story in 203-03. Keep both practical tools and all questions unchanged. |
+| Grok | 3 | ART-203-09 | Priscilla and Aquila: The Tentmakers | Add charcoal/color tentmaking story art for 203-09. Keep the mission map, partnerships and wording unchanged. |
+| Codex | 1 | READ-101-NOTES | Include Chapter Notes in Email Lesson | Current lesson's assigned John chapters and their notes only, including current unsaved in-memory edits. Preserve the existing title, summary, numbered answers and privacy boundaries. No PDF implementation. |
+| Codex | 2 | READ-101-RETRY | Retry a Failed Bible Chapter Load | Recover after a temporary network failure with a clear Retry control. Test failure then success without reload, duplicate requests or lost notes/checks. Keep bundled WEB text unchanged. |
+| Codex | 3 | READ-101-A11Y | Accessible Chapter Headers and Notes | Native keyboard-operable chapter toggles, correct expanded/control relationships and explicitly associated notes labels. Verify Enter/Space, focus and existing saved data at phone/desktop widths. |
+
+### Batch Boundaries and Integration
+
+- Art owners read the current lesson, `story-image.md` and image guidance before creating anything. Prefer the proven charcoal-to-color dissolve; use a locked-scene sequence only when motion teaches the actual story. Match composition and dimensions, add meaningful alt text and keep the image joined to the existing parable.
+- Art scope: new original/optimized image files for the assigned lesson, that lesson's image block only, generated image map, its own inventory row/log/task evidence and targeted checks. Preserve every non-image lesson block, question and saved-answer ID. Do not edit `index.html`, export/reader code, widget files, Firebase or workflows.
+- Run `npm ci` in each fresh worktree, regenerate delivery assets with `node scripts/build_lesson_images.js`, and run all standing checks plus image checks. Preview at 375/390/1280, verify both layers/final frame and reduced motion, and paste actual exit codes and the Action preview in the PR.
+- Art PRs share the generated image map and inventory, so the coordinator merges them one at a time. If main advances, update only your own branch/worktree, rerun the image generator and checks against the combined tree, and wait for the updated preview. Never hand-merge the generated map or drop another lesson's images.
+- Codex alone owns shared reader/export implementation in this batch. The three fixes are separate sequential PRs, not a combined refactor. Preserve answer/reading keys, save-error recovery, sign-in code and WEB source/attribution. Use synthetic signed-out test data, not real learner notes.
+- Each worker updates only its own task/log evidence; the coordinator maintains assignments and integration status. Gemini and Grok stop at REVIEW. Codex reviews, checks previews and merges passing authorized work under Dave's temporary delegation. Personal art approval and new lesson wording remain Dave's.
+- These assignments do not redo #155/#162/#164 or start another Daniel branch. #165 duplicates the already-live Daniel wording; older #28/#68 still need fresh review. No new widget, lesson rewrite, course PDF or automatic/background agent is started by publishing this board.
+
+The longer queues below remain the backlog. Finish this batch before taking a later item. DOCS-STANDARD stays with Gemini after its assigned art batch; Codex's trims follow the three reader fixes.
+
 ### ChatGPT (GPT 6.1)
-1. 101 fix 2: include chapter notes in Email Lesson. TOOLING-001 is done in #161.
-2. 101 fix 3: retry when a chapter of John fails to download.
-3. 101 fix 4: keyboard-accessible chapter headers and labeled notes fields in the reader.
+1. READ-101-NOTES: include chapter notes in Email Lesson, as scoped in the batch above. TOOLING-001 is done in #161.
+2. READ-101-RETRY: retry when a chapter of John fails to download; start after READ-101-NOTES is integrated.
+3. READ-101-A11Y: keyboard-accessible chapter headers and labeled notes fields; start after READ-101-RETRY is integrated.
 4. TRIM-SERIES, one lesson per PR, light touch, in this order (longest and most-read first): 101-04, 202-05, 201-10, 203-05, 101-07, 101-01, 101-05, 201-05, 201-06, 201-09, 202-01, 202-03, 202-06, 203-02, 203-03, 201-04 (light), 201-07 (light). In each PR: bring the lesson under about 1,400 words, apply "How Dave edits," and **propose** in the PR body (do not change) a one-line version of any question over about 20 words and one teach-it question. Dave approves any new wording.
 5. After the trims: rerun the scorecard script once available and report which lessons are AAA.
 
 ### Gemini (Gemini 4)
-1. Story art, one lesson per PR, in this order: 202-05, 202-06, 202-07, 202-01, 201-05, 101-04, 101-07, 101-03, 101-01. 202-03 art is integrated in #162. Charcoal style, sequence or dissolve per `story-image.md`, optimizer run, lesson text untouched. For 101-01 and 201-05 the existing plain picture may be replaced.
+1. Current batch: ART-202-05, ART-202-06, ART-202-07, one lesson per PR in that order. Then the backlog: 202-01, 201-05, 101-04, 101-07, 101-03, 101-01. 202-03 art is integrated in #162. Charcoal style, sequence or dissolve per `story-image.md`, optimizer run, lesson text untouched. For 101-01 and 201-05 the existing plain picture may be replaced.
 2. DOCS-STANDARD: update `LESSON-TEMPLATE.md` (101 closing is four questions), `AI-LESSON-CHECKLIST.md` (new exemplars 202-08, 202-09, 202-10, 203-06, 203-09, 203-08; teach-it question; never name a widget in prose), and `DISCIPLESHIP-COMPASS.md` (the seven-point standard). Source: plan section "Documents to update".
 3. Keep the inventory in `story-image.md` current as art lands.
 
 ### Grok
-1. Story art for 203, one lesson per PR: 203-07, 203-03, 203-09, 203-10, 203-01, 203-02, 203-08. 203-06 art is integrated in #155. Same rules as Gemini's lane: charcoal style, sequence or dissolve, optimizer run, lesson text untouched.
+1. Current batch: ART-203-07, ART-203-03, ART-203-09, one lesson per PR in that order. Then the backlog: 203-10, 203-01, 203-02, 203-08. 203-06 art is integrated in #155. Same rules as Gemini's lane: charcoal style, sequence or dissolve, optimizer run, lesson text untouched.
 2. Widget builds only from a spec Claude posts here, after Dave picks from the widget candidates in the scorecard.
 
 ### Coordinator (Codex temporarily)
