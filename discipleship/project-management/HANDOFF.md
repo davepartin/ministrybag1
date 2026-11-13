@@ -2,7 +2,7 @@
 
 ## Latest review aid: 37-lesson approval chart
 
-Dave requested a lesson-by-lesson chart of words and separate approvals for length, questions, text, widgets and images. Start at [the review chart](reviews/2026-11-12-lesson-review-chart.md), with its Excel/CSV downloads and all 263 current questions. It is a snapshot of main be039c7 and distinguishes matching recorded approvals, scoped/partial approvals, changed components and unrecorded gates. No lesson content or approval record was changed by creating it. Use it for Dave's one-lesson-at-a-time review and put new actual approvals in DAVE.md against the reviewed version.
+Dave requested a lesson-by-lesson chart with grades, words and separate approvals for length, questions, text, widgets and images. Start at [the review chart](reviews/2026-11-12-lesson-review-chart.md), with its Excel/CSV downloads and all 263 current questions. It is a snapshot of main be039c7 and distinguishes matching recorded approvals, scoped/partial approvals, changed components and unrecorded gates. The five-sheet workbook includes the ten grading checkpoints, earlier/current scores, reasons and next improvements. Refreshed production average is 90.3/100; five AAA (A+). These grades supersede the older pre-integration scorecard for this snapshot and remain separate from Dave approval. No lesson content or approval record was changed by creating it. Use it for Dave's one-lesson-at-a-time review and put new actual approvals in DAVE.md against the reviewed version.
 
 ## Current checkpoint: integrated working pieces, November 12, 2026
 
