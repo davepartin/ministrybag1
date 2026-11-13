@@ -10,7 +10,7 @@
   var COLORS = {
     ink: '#2C2416',
     inkSoft: '#5B5347',
-    guide: '#C8C2B6',
+    muted: '#6E6559',
     paper: '#FFFFFF',
     tray: '#F6F4EE',
     gold: '#B8860B',
@@ -71,7 +71,7 @@
           accent: COLORS.ink,
           accentDark: COLORS.ink,
           draw: {},
-          desc: 'A faint dashed outline of the full cross on white paper, ready to be drawn step by step.'
+          desc: 'Blank white sketch paper ready for the cross to be drawn step by step.'
         },
         {
           id: 'down',
@@ -85,9 +85,9 @@
           accentDark: '#8B6508',
           draw: {
             uprightLeft: 'ink',
-            downArrow: 'gold'
+            labelGodLoves: true
           },
-          desc: "The left edge of the upright beam is drawn from top to bottom with a gold downward arrow for God's love coming down first. The remaining beams stay in faint dashed grey."
+          desc: 'A marker line starts at the top right, crosses left, and moves down with a gold downward arrow labeled God loves us.'
         },
         {
           id: 'up',
@@ -102,11 +102,11 @@
           draw: {
             uprightLeft: 'ink',
             uprightRight: 'ink',
-            downArrow: 'gold',
-            upArrow: 'green',
+            labelGodLoves: true,
+            labelWeLove: true,
             uprightWash: 'goldGreen'
           },
-          desc: 'The right edge of the upright beam draws from bottom to top with a green upward arrow, closing the upright beam with a light gold and green wash. Both side arms remain faint dashed grey.'
+          desc: 'Starting at the bottom left, the line goes right across the base and upward with a green arrow labeled We love God, closing the vertical beam.'
         },
         {
           id: 'neighbor',
@@ -121,16 +121,17 @@
           draw: {
             uprightLeft: 'ink',
             uprightRight: 'ink',
-            downArrow: 'gold',
-            upArrow: 'green',
+            labelGodLoves: true,
+            labelWeLove: true,
             uprightWash: 'goldGreen',
-            armLeft: 'lightInk',
-            armRight: 'lightInk',
-            armLeftWash: 'stone',
-            armRightWash: 'stone',
-            labelOthers: true
+            armLeft: 'belongMuted',
+            armRight: 'goMuted',
+            armLeftWash: 'stoneBlue',
+            armRightWash: 'stoneRust',
+            armArrowsOut: true,
+            labelHorizontalRoles: true
           },
-          desc: 'Both horizontal arms draw outward from the center in lighter ink with a soft wash and the word others on each arm, showing love to neighbor flowing out from the upright beam.'
+          desc: 'One-third down from the top, both horizontal arms draw outward with arrows toward Our Family and Family of God on the left and Not Yet in the Family on the right.'
         },
         {
           id: 'final',
@@ -139,24 +140,24 @@
           heading: 'The Cross Holds It All',
           verse: '"And walk in love, as Christ loved us and gave himself up for us, a fragrant offering and sacrifice to God."',
           ref: 'Ephesians 5:2',
-          note: 'Receive and respond. Love comes down, goes up, and reaches out.',
+          note: "Christ's cross is the power that makes all this possible. Love comes down, goes up, and reaches out.",
           accent: COLORS.deepRed,
           accentDark: '#6D1422',
           draw: {
             uprightLeft: 'ink',
             uprightRight: 'ink',
-            downArrow: 'gold',
-            upArrow: 'green',
+            labelGodLoves: true,
+            labelWeLove: true,
             uprightWash: 'goldGreen',
-            armLeft: 'lightInk',
-            armRight: 'lightInk',
-            armLeftWash: 'stone',
-            armRightWash: 'stone',
-            labelOthers: true,
-            finishedCross: 'full',
-            previewCaptions: true
+            armLeft: 'belongMuted',
+            armRight: 'goMuted',
+            armLeftWash: 'stoneBlue',
+            armRightWash: 'stoneRust',
+            armArrowsOut: true,
+            labelHorizontalRoles: true,
+            finishedCross: 'full'
           },
-          desc: 'The finished cross carries a deep red highlight around the completed shape with three quiet grey captions: Growing Deep on the upright, Growing Up under the left arm, and Growing Out under the right arm.'
+          desc: 'A pronounced deep red sketch line draws around the outside of the entire cross, holding God loves us, We love God, and love reaching outward together.'
         }
       ]
     },
@@ -176,7 +177,7 @@
           accent: COLORS.ink,
           accentDark: COLORS.ink,
           draw: {},
-          desc: 'A faint dashed outline of the full cross on white paper.'
+          desc: 'Blank white sketch paper ready to redraw the cross.'
         },
         {
           id: 'review',
@@ -188,15 +189,15 @@
           note: "God's love came down to you, and your love goes back up to Him.",
           accent: COLORS.green,
           accentDark: '#236146',
-          quickUpright: true,
+          quickReview: true,
           draw: {
             uprightLeft: 'ink',
             uprightRight: 'ink',
-            downArrow: 'gold',
-            upArrow: 'green',
+            labelGodLoves: true,
+            labelWeLove: true,
             uprightWash: 'goldGreen'
           },
-          desc: 'The full upright beam redraws quickly in black marker with its downward gold arrow, upward green arrow, and soft wash, while both arms wait in faint dashed grey.'
+          desc: 'The vertical beam draws cleanly with downward gold God loves us and upward green We love God arrows.'
         },
         {
           id: 'neighbor',
@@ -211,15 +212,17 @@
           draw: {
             uprightLeft: 'ink',
             uprightRight: 'ink',
-            downArrow: 'gold',
-            upArrow: 'green',
+            labelGodLoves: true,
+            labelWeLove: true,
             uprightWash: 'goldGreen',
             armLeft: 'blueGrey',
             armRight: 'blueGrey',
             armLeftWash: 'blueGrey',
-            armRightWash: 'blueGrey'
+            armRightWash: 'blueGrey',
+            armArrowsOut: true,
+            labelHorizontalRoles: true
           },
-          desc: 'Both horizontal arms draw outward from the center in blue-grey ink with a light blue-grey wash, stretching out in both directions.'
+          desc: 'Both horizontal arms draw outward from one-third below the top in blue-grey with outward arrows.'
         },
         {
           id: 'belong',
@@ -235,16 +238,17 @@
           draw: {
             uprightLeft: 'ink',
             uprightRight: 'ink',
-            downArrow: 'gold',
-            upArrow: 'green',
+            labelGodLoves: true,
+            labelWeLove: true,
             uprightWash: 'goldGreen',
             armLeft: 'belongBold',
             armLeftWash: 'belong',
-            labelBelong: 'bold',
+            armRight: 'quietSolid',
+            labelBelongInside: 'bold',
             belongIcons: 'bold',
             goPreviewCaption: true
           },
-          desc: 'The left arm redraws in bold Belong blue with a house and table of people at its end, while the right arm fades to faint dashed grey with the quiet caption Go: Growing Out.'
+          desc: 'The left arm redraws in bold Belong blue with house and fellowship table icons at its end, while the right arm dims quietly.'
         },
         {
           id: 'final',
@@ -259,17 +263,18 @@
           draw: {
             uprightLeft: 'ink',
             uprightRight: 'ink',
-            downArrow: 'gold',
-            upArrow: 'green',
+            labelGodLoves: true,
+            labelWeLove: true,
             uprightWash: 'goldGreen',
             armLeft: 'belongBold',
             armLeftWash: 'belong',
-            labelBelong: 'bold',
+            armRight: 'quietSolid',
+            labelBelongInside: 'bold',
             belongIcons: 'bold',
             goPreviewCaption: true,
             finishedCross: 'belongFocus'
           },
-          desc: 'A deep red finished highlight binds the upright beam and bold Belong arm with its house and table icons, while the right arm remains faint dashed grey labeled Go: Growing Out.'
+          desc: 'A pronounced deep red outer sketch line encompasses the upright beam and bold Belong arm with house and table icons.'
         }
       ]
     },
@@ -289,7 +294,7 @@
           accent: COLORS.ink,
           accentDark: COLORS.ink,
           draw: {},
-          desc: 'A faint dashed outline of the full cross on white paper.'
+          desc: 'Blank white sketch paper ready to redraw the cross.'
         },
         {
           id: 'review',
@@ -301,19 +306,19 @@
           note: 'God loved you first, and He placed you in His family.',
           accent: COLORS.belong,
           accentDark: '#36556B',
-          quickReview203: true,
+          quickReview: true,
           draw: {
             uprightLeft: 'ink',
             uprightRight: 'ink',
-            downArrow: 'gold',
-            upArrow: 'green',
+            labelGodLoves: true,
+            labelWeLove: true,
             uprightWash: 'goldGreen',
             armLeft: 'belongQuiet',
             armLeftWash: 'belongSoft',
-            labelBelong: 'soft',
+            labelBelongInside: 'soft',
             belongIcons: 'soft'
           },
-          desc: 'The upright beam and the Belong arm with its house and table icons redraw quickly together, leaving the right arm in faint dashed grey.'
+          desc: 'The vertical beam and the Belong arm with its house and fellowship table icons draw together cleanly.'
         },
         {
           id: 'go',
@@ -328,16 +333,16 @@
           draw: {
             uprightLeft: 'ink',
             uprightRight: 'ink',
-            downArrow: 'gold',
-            upArrow: 'green',
+            labelGodLoves: true,
+            labelWeLove: true,
             uprightWash: 'goldGreen',
             armLeft: 'belongQuiet',
             armLeftWash: 'belongSoft',
-            labelBelong: 'soft',
+            labelBelongInside: 'soft',
             belongIcons: 'soft',
             armRight: 'goBold',
             armRightWash: 'go',
-            labelGo: true,
+            labelGoInside: true,
             goRings: true
           },
           desc: 'The right arm draws outward in bold rust labeled Go, ending in four widening rings labeled home, work and school, neighborhood, and nations.'
@@ -355,20 +360,20 @@
           draw: {
             uprightLeft: 'ink',
             uprightRight: 'ink',
-            downArrow: 'gold',
-            upArrow: 'green',
+            labelGodLoves: true,
+            labelWeLove: true,
             uprightWash: 'goldGreen',
             armLeft: 'belongQuiet',
             armLeftWash: 'belongSoft',
-            labelBelong: 'soft',
+            labelBelongInside: 'soft',
             belongIcons: 'soft',
             armRight: 'goBold',
             armRightWash: 'go',
-            labelGo: true,
+            labelGoInside: true,
             goRings: true,
             finishedCross: 'full'
           },
-          desc: 'The finished cross shines with a deep red accent uniting the upright beam, Belong on the left, and the bold Go arm with widening rings to the nations on the right.'
+          desc: 'A pronounced deep red outer line draws around the whole cross, uniting God loves us, We love God, Belong, and Go into all the world.'
         }
       ]
     }
@@ -463,15 +468,28 @@
     '.svg-stroke.is-visible {',
     '  opacity: 1;',
     '}',
+    '.svg-stroke.is-quiet {',
+    '  opacity: 0.28;',
+    '}',
     '.svg-stroke-tex.is-visible {',
     '  opacity: 0.42;',
     '}',
+    '.svg-stroke-tex.is-quiet {',
+    '  opacity: 0.14;',
+    '}',
+    '.pen-tip {',
+    '  opacity: 0;',
+    '  pointer-events: none;',
+    '}',
+    '.pen-tip.is-active {',
+    '  opacity: 1;',
+    '}',
     '@media (prefers-reduced-motion: no-preference) {',
     '  .widget-outer:not(.is-instant) .svg-stroke {',
-    '    transition: stroke-dashoffset var(--stroke-dur, 720ms) cubic-bezier(0.22, 0.82, 0.32, 1), opacity 220ms ease, stroke 280ms ease;',
+    '    transition: opacity 280ms ease, stroke 280ms ease;',
     '  }',
     '  .widget-outer:not(.is-instant) .svg-fade {',
-    '    transition: opacity var(--fade-dur, 360ms) ease var(--fade-delay, 0ms);',
+    '    transition: opacity var(--fade-dur, 420ms) ease var(--fade-delay, 0ms);',
     '  }',
     '  .widget-outer .step-pill {',
     '    transition: background-color 0.22s ease, border-color 0.22s ease, color 0.22s ease;',
@@ -640,9 +658,12 @@
   }
 
   function buildCrossSvg(cfg) {
+    // 440 x 268 canvas: Upright x=[190..250] (width 60), y=[12..254] (height 242).
+    // Crossbar sits 1/3 down from top: y=[68..112] (center 90, which is 32.2% down).
+    // Left arm x=[96..190] (94w), Right arm x=[250..344] (94w).
     var svg = svgEl('svg', {
       'class': 'cross-svg',
-      'viewBox': '0 0 440 264',
+      'viewBox': '0 0 440 268',
       'width': '100%',
       'role': 'img',
       'aria-labelledby': 'svg-title svg-desc'
@@ -661,85 +682,46 @@
       x2: '100%',
       y2: '0%'
     });
-    uprightGrad.appendChild(svgEl('stop', { offset: '0%', 'stop-color': COLORS.gold, 'stop-opacity': '0.17' }));
-    uprightGrad.appendChild(svgEl('stop', { offset: '48%', 'stop-color': COLORS.gold, 'stop-opacity': '0.10' }));
-    uprightGrad.appendChild(svgEl('stop', { offset: '52%', 'stop-color': COLORS.green, 'stop-opacity': '0.10' }));
-    uprightGrad.appendChild(svgEl('stop', { offset: '100%', 'stop-color': COLORS.green, 'stop-opacity': '0.17' }));
+    uprightGrad.appendChild(svgEl('stop', { offset: '0%', 'stop-color': COLORS.gold, 'stop-opacity': '0.16' }));
+    uprightGrad.appendChild(svgEl('stop', { offset: '48%', 'stop-color': COLORS.gold, 'stop-opacity': '0.09' }));
+    uprightGrad.appendChild(svgEl('stop', { offset: '52%', 'stop-color': COLORS.green, 'stop-opacity': '0.09' }));
+    uprightGrad.appendChild(svgEl('stop', { offset: '100%', 'stop-color': COLORS.green, 'stop-opacity': '0.16' }));
     defs.appendChild(uprightGrad);
     svg.appendChild(defs);
 
-    // Subtle paper grain / corner sketch ticks
+    // Clean white sketch paper (zero dotted spoiler lines)
     var paperG = svgEl('g', { 'aria-hidden': 'true' });
-    paperG.appendChild(svgEl('rect', { x: 0, y: 0, width: 440, height: 264, fill: '#FFFFFF' }));
+    paperG.appendChild(svgEl('rect', { x: 0, y: 0, width: 440, height: 268, fill: '#FFFFFF' }));
     svg.appendChild(paperG);
 
-    // Persistent faint dashed silhouette so non-focus beams are never hidden
-    var guideStyle = {
-      fill: 'none',
-      stroke: COLORS.guide,
-      'stroke-width': '2',
-      'stroke-linecap': 'round',
-      'stroke-linejoin': 'round',
-      'stroke-dasharray': '5 5'
-    };
-    var guideG = svgEl('g', { id: 'guide-cross', 'aria-hidden': 'true' });
-    guideG.appendChild(svgEl('path', {
-      d: 'M 201 26 Q 199 130 201 238 Q 220 240 239 238 Q 241 130 239 26 Q 220 24 201 26',
-      fill: 'none',
-      stroke: guideStyle.stroke,
-      'stroke-width': guideStyle['stroke-width'],
-      'stroke-linecap': 'round',
-      'stroke-linejoin': 'round',
-      'stroke-dasharray': guideStyle['stroke-dasharray']
-    }));
-    guideG.appendChild(svgEl('path', {
-      d: 'M 201 102 Q 156 100 112 103 Q 110 118 112 134 Q 157 136 201 134',
-      fill: 'none',
-      stroke: guideStyle.stroke,
-      'stroke-width': guideStyle['stroke-width'],
-      'stroke-linecap': 'round',
-      'stroke-linejoin': 'round',
-      'stroke-dasharray': guideStyle['stroke-dasharray']
-    }));
-    guideG.appendChild(svgEl('path', {
-      d: 'M 239 102 Q 284 100 328 103 Q 330 118 328 134 Q 283 136 239 134',
-      fill: 'none',
-      stroke: guideStyle.stroke,
-      'stroke-width': guideStyle['stroke-width'],
-      'stroke-linecap': 'round',
-      'stroke-linejoin': 'round',
-      'stroke-dasharray': guideStyle['stroke-dasharray']
-    }));
-    svg.appendChild(guideG);
-
-    // Washes layer (under marker ink)
+    // Subtle interior washes
     var washG = svgEl('g', { id: 'wash-layer', 'aria-hidden': 'true' });
     var uprightWash = svgEl('path', {
       id: 'wash-upright',
       'class': 'svg-fade',
-      d: 'M 202 27 Q 200 130 202 237 Q 220 239 238 237 Q 240 130 238 27 Q 220 25 202 27 Z',
+      d: 'M 191 13 Q 189 130 191 253 Q 220 255 249 253 Q 251 130 249 13 Q 220 11 191 13 Z',
       fill: 'url(#upright-wash-grad)'
     });
     var armLeftWash = svgEl('path', {
       id: 'wash-arm-left',
       'class': 'svg-fade',
-      d: 'M 201 103 Q 156 101 113 104 Q 111 118 113 133 Q 158 135 201 133 Z',
+      d: 'M 190 69 Q 143 67 97 70 Q 95 90 97 111 Q 144 113 190 111 Z',
       fill: COLORS.belong,
       'fill-opacity': '0.12'
     });
     var armRightWash = svgEl('path', {
       id: 'wash-arm-right',
       'class': 'svg-fade',
-      d: 'M 239 103 Q 284 101 327 104 Q 329 118 327 133 Q 282 135 239 133 Z',
+      d: 'M 250 69 Q 297 67 343 70 Q 345 90 343 111 Q 296 113 250 111 Z',
       fill: COLORS.go,
       'fill-opacity': '0.12'
     });
     var finishedGlow = svgEl('path', {
       id: 'wash-finished',
       'class': 'svg-fade',
-      d: 'M 202 27 L 238 27 L 239 102 L 328 103 L 328 134 L 239 134 L 238 238 L 202 238 L 201 134 L 112 134 L 112 103 L 201 102 Z',
+      d: 'M 183 6 L 257 6 L 257 62 L 351 62 L 351 119 L 257 119 L 257 261 L 183 261 L 183 119 L 89 119 L 89 62 L 183 62 Z',
       fill: COLORS.deepRed,
-      'fill-opacity': '0.07'
+      'fill-opacity': '0.06'
     });
     washG.appendChild(uprightWash);
     washG.appendChild(armLeftWash);
@@ -747,7 +729,7 @@
     washG.appendChild(finishedGlow);
     svg.appendChild(washG);
 
-    // Marker outline strokes layer
+    // Hand-drawn double-pass marker strokes
     var strokes = [];
     function addStrokePair(id, dMain, dTex, strokeColor, widthMain, widthTex) {
       var mainPath = svgEl('path', {
@@ -756,7 +738,7 @@
         d: dMain,
         fill: 'none',
         stroke: strokeColor,
-        'stroke-width': String(widthMain || 3.1),
+        'stroke-width': String(widthMain || 3.0),
         'stroke-linecap': 'round',
         'stroke-linejoin': 'round'
       });
@@ -766,7 +748,7 @@
         d: dTex,
         fill: 'none',
         stroke: strokeColor,
-        'stroke-width': String(widthTex || 1.3),
+        'stroke-width': String(widthTex || 1.25),
         'stroke-linecap': 'round',
         'stroke-linejoin': 'round'
       });
@@ -776,180 +758,246 @@
       return { main: mainPath, tex: texPath };
     }
 
-    // Upright LEFT edge: top -> bottom (closes bottom base)
-    var uprightLeft = addStrokePair(
+    // Step 1 Upright: Top-Right (249, 13) -> Left to Top-Left (191, 13) -> Down to Bottom-Left (191, 253)
+    addStrokePair(
       'stroke-upright-left',
-      'M 202 26 Q 199 78 201 130 Q 202 184 201 238 Q 220 241 239 238',
-      'M 203.2 27.5 Q 200.4 79 202.2 130 Q 203 185 202.1 237.2 Q 220 239.8 238 237',
+      'M 249 13 Q 220 11 191 13 Q 189 80 190 140 Q 192 198 191 253',
+      'M 248 14.3 Q 220 12.2 192.2 14.3 Q 190.2 81 191.2 140 Q 193 198 192.1 252',
       COLORS.ink,
-      3.2,
+      3.0,
       1.25
     );
 
-    // Upright RIGHT edge: bottom -> top (closes top cap)
-    var uprightRight = addStrokePair(
+    // Step 2 Upright: Bottom-Left (191, 253) -> Right to Bottom-Right (249, 253) -> Up to Top-Right (249, 13)
+    addStrokePair(
       'stroke-upright-right',
-      'M 239 238 Q 241 182 238 130 Q 237 76 239 26 Q 220 24 202 26',
-      'M 237.8 236.8 Q 239.7 181 236.9 130 Q 236 77 237.8 27 Q 220 25.3 203 27',
+      'M 191 253 Q 220 255 249 253 Q 251 196 250 135 Q 248 75 249 13',
+      'M 192 251.8 Q 220 253.8 248 251.8 Q 249.8 196 248.8 135 Q 247 75 247.9 14.3',
       COLORS.ink,
-      3.2,
+      3.0,
       1.25
     );
 
-    // Down gold arrow along left side of upper upright (top -> bottom)
-    var downArrow = {
-      shaft: svgEl('path', {
-        id: 'arrow-down-shaft',
-        'class': 'svg-stroke',
-        d: 'M 185 36 Q 183 63 185 90',
-        fill: 'none',
-        stroke: COLORS.gold,
-        'stroke-width': '2.4',
-        'stroke-linecap': 'round'
-      }),
-      head: svgEl('path', {
-        id: 'arrow-down-head',
-        'class': 'svg-stroke',
-        d: 'M 179.5 81 L 185 92 L 191 81',
-        fill: 'none',
-        stroke: COLORS.gold,
-        'stroke-width': '2.5',
-        'stroke-linecap': 'round',
-        'stroke-linejoin': 'round'
-      })
-    };
-    svg.appendChild(downArrow.shaft);
-    svg.appendChild(downArrow.head);
-    strokes.push(downArrow.shaft, downArrow.head);
-
-    // Up green arrow along right side of upper upright (bottom -> top)
-    var upArrow = {
-      shaft: svgEl('path', {
-        id: 'arrow-up-shaft',
-        'class': 'svg-stroke',
-        d: 'M 255 92 Q 257 63 255 36',
-        fill: 'none',
-        stroke: COLORS.green,
-        'stroke-width': '2.4',
-        'stroke-linecap': 'round'
-      }),
-      head: svgEl('path', {
-        id: 'arrow-up-head',
-        'class': 'svg-stroke',
-        d: 'M 249.5 46 L 255 35 L 261 46',
-        fill: 'none',
-        stroke: COLORS.green,
-        'stroke-width': '2.5',
-        'stroke-linecap': 'round',
-        'stroke-linejoin': 'round'
-      })
-    };
-    svg.appendChild(upArrow.shaft);
-    svg.appendChild(upArrow.head);
-    strokes.push(upArrow.shaft, upArrow.head);
-
-    // Left arm outward from center (x: 201 -> 112 -> return)
-    var armLeft = addStrokePair(
+    // Left arm outward from center (x: 190 -> 96 -> return)
+    addStrokePair(
       'stroke-arm-left',
-      'M 201 102 Q 156 100 112 103 Q 110 119 112 134 Q 157 136 201 134',
-      'M 200 103.3 Q 156 101.2 113.2 104.2 Q 111.3 119 113.2 132.9 Q 157 134.8 200 132.8',
+      'M 190 69 Q 143 67 96 70 Q 94 90 96 111 Q 144 113 190 111',
+      'M 189.2 70.2 Q 143 68.2 97.2 71.1 Q 95.4 90 97.2 109.9 Q 144 111.8 189.2 109.8',
       COLORS.ink,
       2.8,
       1.2
     );
 
-    // Right arm outward from center (x: 239 -> 328 -> return)
-    var armRight = addStrokePair(
+    // Right arm outward from center (x: 250 -> 344 -> return)
+    addStrokePair(
       'stroke-arm-right',
-      'M 239 102 Q 284 100 328 103 Q 330 119 328 134 Q 283 136 239 134',
-      'M 240 103.3 Q 284 101.2 326.8 104.2 Q 328.7 119 326.8 132.9 Q 283 134.8 240 132.8',
+      'M 250 69 Q 297 67 344 70 Q 346 90 344 111 Q 296 113 250 111',
+      'M 250.8 70.2 Q 297 68.2 342.8 71.1 Q 344.6 90 342.8 109.9 Q 296 111.8 250.8 109.8',
       COLORS.ink,
       2.8,
       1.2
     );
 
-    // Deep red finished cross outline accent (two variants: full cross vs upright + Belong)
-    var finishFull = svgEl('path', {
-      id: 'stroke-finish-full',
-      'class': 'svg-stroke',
-      d: 'M 204 29 L 236 29 Q 237 66 236 105 L 325 106 L 325 131 L 236 131 Q 237 183 236 235 L 204 235 Q 203 183 204 131 L 115 131 L 115 106 L 204 105 Z',
+    // Pronounced outer encompassing deep-red sketch contour around the WHOLE cross (full vs 202 Belong focus)
+    addStrokePair(
+      'stroke-finish-full',
+      'M 220 5 Q 240 4 256 6 Q 258 35 257 62 Q 304 61 350 63 Q 353 90 350 118 Q 303 120 257 118 Q 258 190 256 260 Q 220 262 184 260 Q 182 190 183 118 Q 137 120 90 118 Q 87 90 90 63 Q 136 61 183 62 Q 182 35 184 6 Q 202 5 220 5',
+      'M 220 6.8 Q 239 5.5 254.5 7.5 Q 256.5 35 255.6 63.5 Q 303 62.6 348.5 64.5 Q 351 90 348.5 116.5 Q 303 118.4 255.6 116.5 Q 256.5 190 254.5 258.5 Q 220 260.4 185.5 258.5 Q 183.6 190 184.5 116.5 Q 137 118.4 91.5 116.5 Q 89 90 91.5 64.5 Q 137 62.6 184.5 63.5 Q 183.6 35 185.5 7.5 Q 202 6.6 220 6.8',
+      COLORS.deepRed,
+      3.5,
+      1.5
+    );
+
+    addStrokePair(
+      'stroke-finish-belong',
+      'M 220 5 Q 240 4 256 6 Q 258 130 256 260 Q 220 262 184 260 Q 182 190 183 118 Q 137 120 90 118 Q 87 90 90 63 Q 136 61 183 62 Q 182 35 184 6 Q 202 5 220 5',
+      'M 220 6.8 Q 239 5.5 254.5 7.5 Q 256.5 130 254.5 258.5 Q 220 260.4 185.5 258.5 Q 183.6 190 184.5 116.5 Q 137 118.4 91.5 116.5 Q 89 90 91.5 64.5 Q 137 62.6 184.5 63.5 Q 183.6 35 185.5 7.5 Q 202 6.6 220 6.8',
+      COLORS.deepRed,
+      3.5,
+      1.5
+    );
+
+    // Interior upright directional arrows + wording ("God loves us" down on left, "We love God" up on right)
+    var lblGodLoves = svgEl('g', { id: 'lbl-god-loves', 'class': 'svg-fade', 'aria-hidden': 'true' });
+    lblGodLoves.appendChild(svgEl('path', {
+      d: 'M 200 124 Q 199 180 200 236 M 195.5 228 L 200 238 L 204.5 228',
       fill: 'none',
-      stroke: COLORS.deepRed,
-      'stroke-width': '1.9',
-      'stroke-linecap': 'round',
-      'stroke-linejoin': 'round'
-    });
-    var finishBelong = svgEl('path', {
-      id: 'stroke-finish-belong',
-      'class': 'svg-stroke',
-      d: 'M 204 29 L 236 29 Q 237 66 236 105 L 236 131 Q 237 183 236 235 L 204 235 Q 203 183 204 131 L 115 131 L 115 106 L 204 105 Z',
-      fill: 'none',
-      stroke: COLORS.deepRed,
+      stroke: COLORS.gold,
       'stroke-width': '2.1',
       'stroke-linecap': 'round',
       'stroke-linejoin': 'round'
-    });
-    svg.appendChild(finishFull);
-    svg.appendChild(finishBelong);
-    strokes.push(finishFull, finishBelong);
+    }));
+    lblGodLoves.appendChild(svgEl('text', {
+      x: 213,
+      y: 180,
+      transform: 'rotate(90 213 180)',
+      'text-anchor': 'middle',
+      fill: '#8E6707',
+      'font-size': '11.5',
+      'class': 'hand-label'
+    }, 'God loves us'));
+    svg.appendChild(lblGodLoves);
 
-    // Marker icon group for BELONG (house + table of people on left side, x: 16..102)
+    var lblWeLove = svgEl('g', { id: 'lbl-we-love', 'class': 'svg-fade', 'aria-hidden': 'true' });
+    lblWeLove.appendChild(svgEl('path', {
+      d: 'M 240 238 Q 241 180 240 124 M 235.5 132 L 240 122 L 244.5 132',
+      fill: 'none',
+      stroke: COLORS.green,
+      'stroke-width': '2.1',
+      'stroke-linecap': 'round',
+      'stroke-linejoin': 'round'
+    }));
+    lblWeLove.appendChild(svgEl('text', {
+      x: 229,
+      y: 180,
+      transform: 'rotate(-90 229 180)',
+      'text-anchor': 'middle',
+      fill: '#236146',
+      'font-size': '11.5',
+      'class': 'hand-label'
+    }, 'We love God'));
+    svg.appendChild(lblWeLove);
+
+    // Horizontal arm outward arrows & labels INSIDE arms (zero words on outer white space in 201)
+    var armArrowsOutG = svgEl('g', { id: 'arm-arrows-out', 'class': 'svg-fade', 'aria-hidden': 'true' });
+    // Leftward arrow along bottom of left arm
+    armArrowsOutG.appendChild(svgEl('path', {
+      d: 'M 183 103 Q 142 104 104 103 M 112 99 L 103 103 L 112 107',
+      fill: 'none',
+      stroke: COLORS.belong,
+      'stroke-width': '1.9',
+      'stroke-linecap': 'round',
+      'stroke-linejoin': 'round'
+    }));
+    // Rightward arrow along bottom of right arm
+    armArrowsOutG.appendChild(svgEl('path', {
+      d: 'M 257 103 Q 298 104 336 103 M 328 99 L 337 103 L 328 107',
+      fill: 'none',
+      stroke: COLORS.go,
+      'stroke-width': '1.9',
+      'stroke-linecap': 'round',
+      'stroke-linejoin': 'round'
+    }));
+    svg.appendChild(armArrowsOutG);
+
+    var lblHorizontalRoles = svgEl('g', { id: 'lbl-horizontal-roles', 'class': 'svg-fade', 'aria-hidden': 'true' });
+    var leftRoleTxt = svgEl('text', {
+      x: 144,
+      y: 80,
+      'text-anchor': 'middle',
+      fill: '#334F63',
+      'font-size': '9.2',
+      'font-weight': '700',
+      'class': 'clean-label'
+    });
+    leftRoleTxt.appendChild(svgEl('tspan', { x: 144, dy: '0' }, 'Our Family &'));
+    leftRoleTxt.appendChild(svgEl('tspan', { x: 144, dy: '10.2' }, 'Family of God'));
+    lblHorizontalRoles.appendChild(leftRoleTxt);
+
+    var rightRoleTxt = svgEl('text', {
+      x: 296,
+      y: 80,
+      'text-anchor': 'middle',
+      fill: '#8E411E',
+      'font-size': '9.2',
+      'font-weight': '700',
+      'class': 'clean-label'
+    });
+    rightRoleTxt.appendChild(svgEl('tspan', { x: 296, dy: '0' }, 'Those Not Yet'));
+    rightRoleTxt.appendChild(svgEl('tspan', { x: 296, dy: '10.2' }, 'in the Family'));
+    lblHorizontalRoles.appendChild(rightRoleTxt);
+    svg.appendChild(lblHorizontalRoles);
+
+    // 202 / 203 Belong & Go labels positioned neatly INSIDE arms
+    var lblBelongInside = svgEl('text', {
+      id: 'lbl-belong-inside',
+      'class': 'svg-fade hand-label',
+      x: 144,
+      y: 95,
+      'text-anchor': 'middle',
+      fill: COLORS.belong,
+      'font-size': '17'
+    }, 'Belong');
+    svg.appendChild(lblBelongInside);
+
+    var lblGoInside = svgEl('text', {
+      id: 'lbl-go-inside',
+      'class': 'svg-fade hand-label',
+      x: 296,
+      y: 95,
+      'text-anchor': 'middle',
+      fill: COLORS.go,
+      'font-size': '17'
+    }, 'Go');
+    svg.appendChild(lblGoInside);
+
+    // 202 quiet Go arm caption below dimmed right arm
+    var lbl202GoCaption = svgEl('text', {
+      id: 'lbl-202-go-preview',
+      'class': 'svg-fade clean-label',
+      x: 303,
+      y: 129,
+      'text-anchor': 'middle',
+      fill: '#7A7165',
+      'font-size': '10',
+      'font-weight': '600'
+    }, 'Go: Growing Out');
+    svg.appendChild(lbl202GoCaption);
+
+    // 202 / 203 Belong icons (house + fellowship table centered vertically around y=90, left side x=16..82)
     var belongIconsG = svgEl('g', { id: 'belong-icons', 'class': 'svg-fade', 'aria-hidden': 'true' });
-    // Roof tint & table wash
     belongIconsG.appendChild(svgEl('polygon', {
-      points: '32,78 55,58 78,78',
+      points: '27,54 49,35 71,54',
       fill: COLORS.belong,
       'fill-opacity': '0.16'
     }));
     belongIconsG.appendChild(svgEl('rect', {
-      x: 34, y: 158, width: 42, height: 11, rx: 4,
+      x: 29, y: 122, width: 40, height: 10, rx: 3.5,
       fill: COLORS.belong,
       'fill-opacity': '0.18'
     }));
-    // House marker strokes
     belongIconsG.appendChild(svgEl('path', {
-      d: 'M 30 79 L 55 57 L 80 79 M 36 76 L 36 104 L 74 104 L 74 76',
-      fill: 'none',
-      stroke: COLORS.ink,
-      'stroke-width': '2.1',
-      'stroke-linecap': 'round',
-      'stroke-linejoin': 'round'
-    }));
-    belongIconsG.appendChild(svgEl('path', {
-      d: 'M 49 104 L 49 88 Q 55 86 61 88 L 61 104',
-      fill: 'none',
-      stroke: COLORS.belong,
-      'stroke-width': '1.8',
-      'stroke-linecap': 'round'
-    }));
-    // Table + 3 people seated around it
-    belongIconsG.appendChild(svgEl('circle', {
-      cx: 41, cy: 147, r: 4.2, fill: '#FFFFFF', stroke: COLORS.ink, 'stroke-width': '1.8'
-    }));
-    belongIconsG.appendChild(svgEl('circle', {
-      cx: 55, cy: 145, r: 4.5, fill: '#FFFFFF', stroke: COLORS.belong, 'stroke-width': '1.9'
-    }));
-    belongIconsG.appendChild(svgEl('circle', {
-      cx: 69, cy: 147, r: 4.2, fill: '#FFFFFF', stroke: COLORS.ink, 'stroke-width': '1.8'
-    }));
-    belongIconsG.appendChild(svgEl('path', {
-      d: 'M 35 157 Q 41 152 47 157 M 48 156 Q 55 151 62 156 M 63 157 Q 69 152 75 157',
-      fill: 'none',
-      stroke: COLORS.ink,
-      'stroke-width': '1.7',
-      'stroke-linecap': 'round'
-    }));
-    belongIconsG.appendChild(svgEl('path', {
-      d: 'M 32 159 Q 55 156 78 159 L 76 170 Q 55 172 34 170 Z M 38 170 L 38 182 M 72 170 L 72 182',
+      d: 'M 25 55 L 49 34 L 73 55 M 31 52 L 31 78 L 67 78 L 67 52',
       fill: 'none',
       stroke: COLORS.ink,
       'stroke-width': '2',
       'stroke-linecap': 'round',
       'stroke-linejoin': 'round'
     }));
+    belongIconsG.appendChild(svgEl('path', {
+      d: 'M 43 78 L 43 63 Q 49 61 55 63 L 55 78',
+      fill: 'none',
+      stroke: COLORS.belong,
+      'stroke-width': '1.8',
+      'stroke-linecap': 'round'
+    }));
+    belongIconsG.appendChild(svgEl('circle', {
+      cx: 36, cy: 112, r: 4, fill: '#FFFFFF', stroke: COLORS.ink, 'stroke-width': '1.7'
+    }));
+    belongIconsG.appendChild(svgEl('circle', {
+      cx: 49, cy: 110, r: 4.2, fill: '#FFFFFF', stroke: COLORS.belong, 'stroke-width': '1.8'
+    }));
+    belongIconsG.appendChild(svgEl('circle', {
+      cx: 62, cy: 112, r: 4, fill: '#FFFFFF', stroke: COLORS.ink, 'stroke-width': '1.7'
+    }));
+    belongIconsG.appendChild(svgEl('path', {
+      d: 'M 30 121 Q 36 116 42 121 M 43 120 Q 49 115 55 120 M 56 121 Q 62 116 68 121',
+      fill: 'none',
+      stroke: COLORS.ink,
+      'stroke-width': '1.6',
+      'stroke-linecap': 'round'
+    }));
+    belongIconsG.appendChild(svgEl('path', {
+      d: 'M 27 123 Q 49 120 71 123 L 69 133 Q 49 135 29 133 Z M 33 133 L 33 144 M 65 133 L 65 144',
+      fill: 'none',
+      stroke: COLORS.ink,
+      'stroke-width': '1.9',
+      'stroke-linecap': 'round',
+      'stroke-linejoin': 'round'
+    }));
     belongIconsG.appendChild(svgEl('text', {
-      x: 55,
-      y: 196,
+      x: 49,
+      y: 157,
       'text-anchor': 'middle',
       fill: COLORS.inkSoft,
       'font-size': '9.5',
@@ -957,15 +1005,14 @@
     }, 'home & table'));
     svg.appendChild(belongIconsG);
 
-    // Go widening rings & Acts 1:8 labels (right side, centered around 328, 118)
+    // 203 Go widening rings centered clearly right of red halo (right border x=350, y=90)
     var goRingsG = svgEl('g', { id: 'go-rings', 'aria-hidden': 'true' });
     var ringPaths = [
-      { id: 'go-ring-1', d: 'M 339 101 Q 350 118 339 135', w: 2.2 },
-      { id: 'go-ring-2', d: 'M 353 87 Q 373 118 353 150', w: 2.0 },
-      { id: 'go-ring-3', d: 'M 369 72 Q 400 118 369 166', w: 1.85 },
-      { id: 'go-ring-4', d: 'M 386 56 Q 427 118 386 182', w: 1.7 }
+      { id: 'go-ring-1', d: 'M 361 74 Q 371 90 361 107', w: 2.2 },
+      { id: 'go-ring-2', d: 'M 374 60 Q 391 90 374 121', w: 2.0 },
+      { id: 'go-ring-3', d: 'M 388 45 Q 413 90 388 136', w: 1.85 },
+      { id: 'go-ring-4', d: 'M 402 31 Q 434 90 402 150', w: 1.7 }
     ];
-    var ringNodes = [];
     ringPaths.forEach(function (rp) {
       var p = svgEl('path', {
         id: rp.id,
@@ -977,121 +1024,70 @@
         'stroke-linecap': 'round'
       });
       goRingsG.appendChild(p);
-      ringNodes.push(p);
       strokes.push(p);
     });
     var goRingLabels = svgEl('g', { id: 'go-ring-labels', 'class': 'svg-fade' });
     goRingLabels.appendChild(svgEl('text', {
-      x: 340, y: 91, 'text-anchor': 'end', fill: COLORS.go, 'font-size': '10', 'font-weight': '700', 'class': 'clean-label'
+      x: 360, y: 54, 'text-anchor': 'end', fill: COLORS.go, 'font-size': '9.8', 'font-weight': '700', 'class': 'clean-label'
     }, 'home'));
     var workTxt = svgEl('text', {
-      x: 353, y: 165, 'text-anchor': 'end', fill: COLORS.ink, 'font-size': '9.5', 'font-weight': '600', 'class': 'clean-label'
+      x: 372, y: 135, 'text-anchor': 'end', fill: COLORS.ink, 'font-size': '9.3', 'font-weight': '600', 'class': 'clean-label'
     });
-    workTxt.appendChild(svgEl('tspan', { x: 353, dy: '0' }, 'work and'));
-    workTxt.appendChild(svgEl('tspan', { x: 353, dy: '10.5' }, 'school'));
+    workTxt.appendChild(svgEl('tspan', { x: 372, dy: '0' }, 'work and'));
+    workTxt.appendChild(svgEl('tspan', { x: 372, dy: '10' }, 'school'));
     goRingLabels.appendChild(workTxt);
     goRingLabels.appendChild(svgEl('text', {
-      x: 382, y: 42, 'text-anchor': 'middle', fill: COLORS.ink, 'font-size': '9.5', 'font-weight': '600', 'class': 'clean-label'
+      x: 396, y: 20, 'text-anchor': 'middle', fill: COLORS.ink, 'font-size': '9.3', 'font-weight': '600', 'class': 'clean-label'
     }, 'neighborhood'));
     goRingLabels.appendChild(svgEl('text', {
-      x: 392, y: 198, 'text-anchor': 'middle', fill: COLORS.go, 'font-size': '10.5', 'font-weight': '700', 'class': 'clean-label'
+      x: 405, y: 165, 'text-anchor': 'middle', fill: COLORS.go, 'font-size': '10.2', 'font-weight': '700', 'class': 'clean-label'
     }, 'nations'));
     goRingsG.appendChild(goRingLabels);
     svg.appendChild(goRingsG);
 
-    // Labels layer
-    var labelsG = svgEl('g', { id: 'labels-layer', 'aria-hidden': 'true' });
+    // Live travelling arrowhead tips synchronized with forward stroke paths
+    function buildPenTip(id, fill) {
+      var g = svgEl('g', { id: id, 'class': 'pen-tip', 'aria-hidden': 'true' });
+      g.appendChild(svgEl('path', {
+        d: 'M -8 -5 L 2 0 L -8 5 L -5.5 0 Z',
+        fill: fill,
+        stroke: fill,
+        'stroke-width': '1',
+        'stroke-linejoin': 'round'
+      }));
+      svg.appendChild(g);
+      return g;
+    }
 
-    var lblOthers = svgEl('g', { id: 'lbl-others', 'class': 'svg-fade' });
-    lblOthers.appendChild(svgEl('text', {
-      x: 156, y: 123, 'text-anchor': 'middle', fill: '#4B555D', 'font-size': '14', 'class': 'hand-label'
-    }, 'others'));
-    lblOthers.appendChild(svgEl('text', {
-      x: 284, y: 123, 'text-anchor': 'middle', fill: '#4B555D', 'font-size': '14', 'class': 'hand-label'
-    }, 'others'));
-    labelsG.appendChild(lblOthers);
-
-    var lblBelong = svgEl('text', {
-      id: 'lbl-belong',
-      'class': 'svg-fade hand-label',
-      x: 156,
-      y: 94,
-      'text-anchor': 'middle',
-      fill: COLORS.belong,
-      'font-size': '17'
-    }, 'Belong');
-    labelsG.appendChild(lblBelong);
-
-    var lblGo = svgEl('text', {
-      id: 'lbl-go',
-      'class': 'svg-fade hand-label',
-      x: 284,
-      y: 94,
-      'text-anchor': 'middle',
-      fill: COLORS.go,
-      'font-size': '17'
-    }, 'Go');
-    labelsG.appendChild(lblGo);
-
-    var lbl201Captions = svgEl('g', { id: 'lbl-201-captions', 'class': 'svg-fade' });
-    lbl201Captions.appendChild(svgEl('text', {
-      x: 220,
-      y: 186,
-      transform: 'rotate(-90 220 186)',
-      'text-anchor': 'middle',
-      fill: COLORS.inkSoft,
-      'font-size': '11',
-      'font-weight': '600',
-      'class': 'clean-label'
-    }, 'Growing Deep'));
-    lbl201Captions.appendChild(svgEl('text', {
-      x: 156, y: 152, 'text-anchor': 'middle', fill: COLORS.muted || '#6E6559', 'font-size': '11', 'font-weight': '600', 'class': 'clean-label'
-    }, 'Growing Up'));
-    lbl201Captions.appendChild(svgEl('text', {
-      x: 284, y: 152, 'text-anchor': 'middle', fill: COLORS.muted || '#6E6559', 'font-size': '11', 'font-weight': '600', 'class': 'clean-label'
-    }, 'Growing Out'));
-    labelsG.appendChild(lbl201Captions);
-
-    var lbl202GoCaption = svgEl('text', {
-      id: 'lbl-202-go-preview',
-      'class': 'svg-fade clean-label',
-      x: 287,
-      y: 152,
-      'text-anchor': 'middle',
-      fill: '#7A7165',
-      'font-size': '10',
-      'font-weight': '600'
-    }, 'Go: Growing Out');
-    labelsG.appendChild(lbl202GoCaption);
-
-    svg.appendChild(labelsG);
+    var penTips = {
+      'stroke-upright-left': buildPenTip('pen-tip-down', COLORS.gold),
+      'stroke-upright-right': buildPenTip('pen-tip-up', COLORS.green),
+      'stroke-arm-left': buildPenTip('pen-tip-left', COLORS.belong),
+      'stroke-arm-right': buildPenTip('pen-tip-right', COLORS.go),
+      'stroke-finish-full': buildPenTip('pen-tip-red-full', COLORS.deepRed),
+      'stroke-finish-belong': buildPenTip('pen-tip-red-belong', COLORS.deepRed)
+    };
 
     return {
       svg: svg,
       svgTitle: svgTitle,
       svgDesc: svgDesc,
       strokes: strokes,
+      penTips: penTips,
       parts: {
-        uprightLeft: uprightLeft,
-        uprightRight: uprightRight,
-        downArrow: downArrow,
-        upArrow: upArrow,
-        armLeft: armLeft,
-        armRight: armRight,
-        finishFull: finishFull,
-        finishBelong: finishBelong,
         uprightWash: uprightWash,
         armLeftWash: armLeftWash,
         armRightWash: armRightWash,
         finishedGlow: finishedGlow,
+        lblGodLoves: lblGodLoves,
+        lblWeLove: lblWeLove,
+        armArrowsOutG: armArrowsOutG,
+        lblHorizontalRoles: lblHorizontalRoles,
+        lblBelongInside: lblBelongInside,
+        lblGoInside: lblGoInside,
+        lbl202GoCaption: lbl202GoCaption,
         belongIconsG: belongIconsG,
-        ringNodes: ringNodes,
-        goRingLabels: goRingLabels,
-        lblOthers: lblOthers,
-        lblBelong: lblBelong,
-        lblGo: lblGo,
-        lbl201Captions: lbl201Captions,
-        lbl202GoCaption: lbl202GoCaption
+        goRingLabels: goRingLabels
       }
     };
   }
@@ -1114,35 +1110,34 @@
 
   function getStrokeColorForArm(mode) {
     if (mode === 'ink') return COLORS.ink;
-    if (mode === 'lightInk') return '#6E665B';
+    if (mode === 'belongMuted') return '#5B7080';
+    if (mode === 'goMuted') return '#8E5A42';
     if (mode === 'blueGrey') return COLORS.neighbor;
-    if (mode === 'belongBold') return COLORS.belong;
-    if (mode === 'belongQuiet') return COLORS.belong;
+    if (mode === 'belongBold' || mode === 'belongQuiet') return COLORS.belong;
     if (mode === 'goBold') return COLORS.go;
+    if (mode === 'quietSolid') return '#C4BEB2';
     return COLORS.ink;
   }
 
   function buildStrokeTargetMap(stepObj) {
     var d = stepObj.draw || {};
     var map = {};
-    map['stroke-upright-left'] = { on: !!d.uprightLeft, color: COLORS.ink, w: 3.2 };
-    map['stroke-upright-right'] = { on: !!d.uprightRight, color: COLORS.ink, w: 3.2 };
-    map['arrow-down-shaft'] = { on: !!d.downArrow, color: COLORS.gold, w: 2.4 };
-    map['arrow-down-head'] = { on: !!d.downArrow, color: COLORS.gold, w: 2.5 };
-    map['arrow-up-shaft'] = { on: !!d.upArrow, color: COLORS.green, w: 2.4 };
-    map['arrow-up-head'] = { on: !!d.upArrow, color: COLORS.green, w: 2.5 };
+    map['stroke-upright-left'] = { on: !!d.uprightLeft, color: COLORS.ink, w: 3.0 };
+    map['stroke-upright-right'] = { on: !!d.uprightRight, color: COLORS.ink, w: 3.0 };
     map['stroke-arm-left'] = {
       on: !!d.armLeft,
       color: getStrokeColorForArm(d.armLeft),
-      w: d.armLeft === 'belongBold' ? 3.4 : 2.7
+      w: d.armLeft === 'belongBold' ? 3.3 : (d.armLeft === 'quietSolid' ? 2.0 : 2.8),
+      quiet: d.armLeft === 'quietSolid'
     };
     map['stroke-arm-right'] = {
       on: !!d.armRight,
       color: getStrokeColorForArm(d.armRight),
-      w: d.armRight === 'goBold' ? 3.4 : 2.7
+      w: d.armRight === 'goBold' ? 3.3 : (d.armRight === 'quietSolid' ? 2.0 : 2.8),
+      quiet: d.armRight === 'quietSolid'
     };
-    map['stroke-finish-full'] = { on: d.finishedCross === 'full', color: COLORS.deepRed, w: 2.0 };
-    map['stroke-finish-belong'] = { on: d.finishedCross === 'belongFocus', color: COLORS.deepRed, w: 2.1 };
+    map['stroke-finish-full'] = { on: d.finishedCross === 'full', color: COLORS.deepRed, w: 3.5 };
+    map['stroke-finish-belong'] = { on: d.finishedCross === 'belongFocus', color: COLORS.deepRed, w: 3.5 };
     for (var i = 1; i <= 4; i++) {
       map['go-ring-' + i] = { on: !!d.goRings, color: COLORS.go, w: 2.3 - i * 0.15 };
     }
@@ -1219,11 +1214,27 @@
     var reducedMotionQuery = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : { matches: false };
     var currentStep = 0;
     var prevStrokeMap = buildStrokeTargetMap(cfg.steps[0]);
+    var activeRaf = null;
+
+    function clearAllPenTips() {
+      Object.keys(svgBundle.penTips).forEach(function (k) {
+        svgBundle.penTips[k].classList.remove('is-active');
+      });
+    }
+
+    function stopActiveStrokeAnimation() {
+      if (activeRaf) {
+        cancelAnimationFrame(activeRaf);
+        activeRaf = null;
+      }
+      clearAllPenTips();
+    }
 
     function applyWashAndLabelState(stepObj, animate) {
       var d = stepObj.draw || {};
       var p = svgBundle.parts;
-      var washDelay = animate ? (stepObj.quickUpright || stepObj.quickReview203 ? '240ms' : '420ms') : '0ms';
+      var washDelay = animate ? (stepObj.quickReview ? '280ms' : '540ms') : '0ms';
+      var arrowLabelDelay = animate ? (stepObj.quickReview ? '180ms' : '340ms') : '0ms';
 
       p.uprightWash.style.setProperty('--fade-delay', washDelay);
       p.uprightWash.classList.toggle('is-visible', !!d.uprightWash);
@@ -1235,12 +1246,12 @@
       } else if (d.armLeftWash === 'belongSoft') {
         p.armLeftWash.setAttribute('fill', COLORS.belong);
         p.armLeftWash.setAttribute('fill-opacity', '0.10');
-      } else if (d.armLeftWash === 'blueGrey') {
-        p.armLeftWash.setAttribute('fill', COLORS.neighbor);
-        p.armLeftWash.setAttribute('fill-opacity', '0.11');
+      } else if (d.armLeftWash === 'stoneBlue') {
+        p.armLeftWash.setAttribute('fill', COLORS.belong);
+        p.armLeftWash.setAttribute('fill-opacity', '0.10');
       } else {
-        p.armLeftWash.setAttribute('fill', '#7A7267');
-        p.armLeftWash.setAttribute('fill-opacity', '0.09');
+        p.armLeftWash.setAttribute('fill', COLORS.neighbor);
+        p.armLeftWash.setAttribute('fill-opacity', '0.10');
       }
       p.armLeftWash.classList.toggle('is-visible', !!d.armLeftWash);
 
@@ -1248,91 +1259,145 @@
       if (d.armRightWash === 'go') {
         p.armRightWash.setAttribute('fill', COLORS.go);
         p.armRightWash.setAttribute('fill-opacity', '0.16');
-      } else if (d.armRightWash === 'blueGrey') {
-        p.armRightWash.setAttribute('fill', COLORS.neighbor);
-        p.armRightWash.setAttribute('fill-opacity', '0.11');
+      } else if (d.armRightWash === 'stoneRust') {
+        p.armRightWash.setAttribute('fill', COLORS.go);
+        p.armRightWash.setAttribute('fill-opacity', '0.10');
       } else {
-        p.armRightWash.setAttribute('fill', '#7A7267');
-        p.armRightWash.setAttribute('fill-opacity', '0.09');
+        p.armRightWash.setAttribute('fill', COLORS.neighbor);
+        p.armRightWash.setAttribute('fill-opacity', '0.10');
       }
       p.armRightWash.classList.toggle('is-visible', !!d.armRightWash);
 
       p.finishedGlow.setAttribute(
         'd',
         d.finishedCross === 'belongFocus'
-          ? 'M 202 27 L 238 27 L 239 238 L 202 238 L 201 134 L 112 134 L 112 103 L 201 102 Z'
-          : 'M 202 27 L 238 27 L 239 102 L 328 103 L 328 134 L 239 134 L 238 238 L 202 238 L 201 134 L 112 134 L 112 103 L 201 102 Z'
+          ? 'M 183 6 L 257 6 L 257 261 L 183 261 L 183 119 L 89 119 L 89 62 L 183 62 Z'
+          : 'M 183 6 L 257 6 L 257 62 L 351 62 L 351 119 L 257 119 L 257 261 L 183 261 L 183 119 L 89 119 L 89 62 L 183 62 Z'
       );
-      p.finishedGlow.style.setProperty('--fade-delay', animate ? '260ms' : '0ms');
+      p.finishedGlow.style.setProperty('--fade-delay', animate ? '460ms' : '0ms');
       p.finishedGlow.classList.toggle('is-visible', !!d.finishedCross);
 
-      p.lblOthers.style.setProperty('--fade-delay', washDelay);
-      p.lblOthers.classList.toggle('is-visible', !!d.labelOthers);
+      p.lblGodLoves.style.setProperty('--fade-delay', arrowLabelDelay);
+      p.lblGodLoves.classList.toggle('is-visible', !!d.labelGodLoves);
 
-      p.lblBelong.style.setProperty('--fade-delay', washDelay);
-      p.lblBelong.classList.toggle('is-visible', d.labelBelong === 'bold');
-      p.lblBelong.classList.toggle('is-soft', d.labelBelong === 'soft');
+      p.lblWeLove.style.setProperty('--fade-delay', arrowLabelDelay);
+      p.lblWeLove.classList.toggle('is-visible', !!d.labelWeLove);
 
-      p.lblGo.style.setProperty('--fade-delay', washDelay);
-      p.lblGo.classList.toggle('is-visible', !!d.labelGo);
+      p.armArrowsOutG.style.setProperty('--fade-delay', washDelay);
+      p.armArrowsOutG.classList.toggle('is-visible', !!d.armArrowsOut);
+
+      p.lblHorizontalRoles.style.setProperty('--fade-delay', washDelay);
+      p.lblHorizontalRoles.classList.toggle('is-visible', !!d.labelHorizontalRoles);
+
+      p.lblBelongInside.style.setProperty('--fade-delay', washDelay);
+      p.lblBelongInside.classList.toggle('is-visible', d.labelBelongInside === 'bold');
+      p.lblBelongInside.classList.toggle('is-soft', d.labelBelongInside === 'soft');
+
+      p.lblGoInside.style.setProperty('--fade-delay', washDelay);
+      p.lblGoInside.classList.toggle('is-visible', !!d.labelGoInside);
 
       p.belongIconsG.style.setProperty('--fade-delay', washDelay);
       p.belongIconsG.classList.toggle('is-visible', d.belongIcons === 'bold');
       p.belongIconsG.classList.toggle('is-soft', d.belongIcons === 'soft');
 
-      p.goRingLabels.style.setProperty('--fade-delay', animate ? '460ms' : '0ms');
+      p.goRingLabels.style.setProperty('--fade-delay', animate ? '560ms' : '0ms');
       p.goRingLabels.classList.toggle('is-visible', !!d.goRings);
 
-      p.lbl201Captions.style.setProperty('--fade-delay', animate ? '320ms' : '0ms');
-      p.lbl201Captions.classList.toggle('is-visible', !!d.previewCaptions);
-
-      p.lbl202GoCaption.style.setProperty('--fade-delay', animate ? '220ms' : '0ms');
+      p.lbl202GoCaption.style.setProperty('--fade-delay', animate ? '260ms' : '0ms');
       p.lbl202GoCaption.classList.toggle('is-visible', !!d.goPreviewCaption);
     }
 
-    function applyStrokePair(mainId, target, treatAsAlreadyOn, animate, fadeOutIds, durMs) {
+    function applyStrokePair(mainId, target, treatAsOn, animate, animItems) {
       var pairs = [document.getElementById(mainId), document.getElementById(mainId + '-tex')];
       pairs.forEach(function (node) {
         if (!node) return;
-        var len = node.dataset.len || '400';
+        var len = parseFloat(node.dataset.len || '400');
         var isTex = node.id.indexOf('-tex') !== -1;
-        node.style.setProperty('--stroke-dur', durMs + 'ms');
         node.setAttribute('stroke', target.color);
         if (!isTex && target.w) {
           node.setAttribute('stroke-width', String(target.w));
         }
+        node.classList.toggle('is-quiet', !!target.quiet);
         if (target.on) {
-          if (animate && !treatAsAlreadyOn) {
-            node.style.strokeDashoffset = len;
+          if (animate && !treatAsOn) {
+            node.style.strokeDashoffset = String(len);
             node.classList.add('is-visible');
+            animItems.push({
+              node: node,
+              len: len,
+              tip: isTex ? null : (svgBundle.penTips[mainId] || null),
+              isArm: mainId === 'stroke-arm-left' || mainId === 'stroke-arm-right'
+            });
           } else {
             node.style.strokeDashoffset = '0';
             node.classList.add('is-visible');
           }
-        } else if (animate && treatAsAlreadyOn) {
-          node.style.strokeDashoffset = '0';
-          node.classList.add('is-visible');
-          fadeOutIds.push(node.id);
         } else {
           node.classList.remove('is-visible');
-          node.style.strokeDashoffset = len;
+          node.style.strokeDashoffset = String(len);
         }
       });
     }
 
+    function positionPenTip(item, dist) {
+      if (!item.tip || typeof item.node.getPointAtLength !== 'function') return;
+      var clamped = Math.max(0.5, Math.min(item.len - 2, dist));
+      var pt = item.node.getPointAtLength(clamped);
+      var ptBack = item.node.getPointAtLength(Math.max(0, clamped - 3));
+      var dx = pt.x - ptBack.x;
+      var dy = pt.y - ptBack.y;
+      if (Math.abs(dx) < 0.01 && Math.abs(dy) < 0.01) return;
+      var angle = Math.atan2(dy, dx) * (180 / Math.PI);
+      item.tip.setAttribute('transform', 'translate(' + pt.x.toFixed(1) + ' ' + pt.y.toFixed(1) + ') rotate(' + angle.toFixed(1) + ')');
+      item.tip.classList.add('is-active');
+    }
+
+    function runFrameLockedStrokeDraw(animItems, durMs) {
+      if (!animItems.length) return;
+      var startTs = null;
+      function frame(ts) {
+        if (!startTs) startTs = ts;
+        var raw = Math.min(1, (ts - startTs) / durMs);
+        var eased = 1 - Math.pow(1 - raw, 2.2);
+        animItems.forEach(function (item) {
+          var drawn = item.len * eased;
+          item.node.style.strokeDashoffset = (item.len - drawn).toFixed(1);
+          // For horizontal arms, show outward arrow only during the outward top half (first ~45% of path)
+          if (item.tip) {
+            if (item.isArm && eased > 0.45) {
+              item.tip.classList.remove('is-active');
+            } else {
+              positionPenTip(item, drawn);
+            }
+          }
+        });
+        if (raw < 1) {
+          activeRaf = requestAnimationFrame(frame);
+        } else {
+          animItems.forEach(function (item) {
+            item.node.style.strokeDashoffset = '0';
+          });
+          clearAllPenTips();
+          activeRaf = null;
+        }
+      }
+      activeRaf = requestAnimationFrame(frame);
+    }
+
     function goTo(targetIdx) {
+      stopActiveStrokeAnimation();
+
       var nextIdx = Math.max(0, Math.min(cfg.steps.length - 1, targetIdx));
       var st = cfg.steps[nextIdx];
       var isForward = nextIdx === currentStep + 1;
       var animate = isForward && !reducedMotionQuery.matches;
       var nextStrokeMap = buildStrokeTargetMap(st);
-      var strokeDur = (st.quickUpright || st.quickReview203) ? 460 : 720;
+      // 30% slower than 720ms (~980ms for normal steps, 640ms for quick review)
+      var strokeDur = st.quickReview ? 640 : 980;
 
-      // Instant baseline setup (zero transition during reset/Back/jump)
       host.classList.add('is-instant');
 
-      var newlyDrawnIds = [];
-      var fadeOutIds = [];
+      var animItems = [];
       Object.keys(nextStrokeMap).forEach(function (id) {
         var nextT = nextStrokeMap[id];
         var wasT = prevStrokeMap[id] || { on: false };
@@ -1341,51 +1406,35 @@
         var singleNode = document.getElementById(id);
         var hasTex = !!document.getElementById(id + '-tex');
 
-        if (animate && nextT.on && !treatAsOn) {
-          newlyDrawnIds.push(id);
-        }
-
         if (hasTex) {
-          applyStrokePair(id, nextT, treatAsOn, animate, fadeOutIds, strokeDur);
+          applyStrokePair(id, nextT, treatAsOn, animate, animItems);
         } else if (singleNode) {
-          var len = singleNode.dataset.len || '300';
-          singleNode.style.setProperty('--stroke-dur', strokeDur + 'ms');
+          var len = parseFloat(singleNode.dataset.len || '300');
           if (nextT.color) singleNode.setAttribute('stroke', nextT.color);
           if (nextT.on) {
             if (animate && !treatAsOn) {
-              singleNode.style.strokeDashoffset = len;
+              singleNode.style.strokeDashoffset = String(len);
               singleNode.classList.add('is-visible');
+              animItems.push({ node: singleNode, len: len, tip: null, isArm: false });
             } else {
               singleNode.style.strokeDashoffset = '0';
               singleNode.classList.add('is-visible');
             }
           } else {
             singleNode.classList.remove('is-visible');
-            singleNode.style.strokeDashoffset = len;
+            singleNode.style.strokeDashoffset = String(len);
           }
         }
       });
 
       applyWashAndLabelState(st, animate);
+      void svgBundle.svg.getBoundingClientRect();
 
       if (animate) {
-        void svgBundle.svg.getBoundingClientRect();
         host.classList.remove('is-instant');
-        newlyDrawnIds.forEach(function (id) {
-          var mainNode = document.getElementById(id);
-          var texNode = document.getElementById(id + '-tex');
-          if (mainNode) mainNode.style.strokeDashoffset = '0';
-          if (texNode) texNode.style.strokeDashoffset = '0';
-        });
-        fadeOutIds.forEach(function (id) {
-          var fadeNode = document.getElementById(id);
-          if (fadeNode) fadeNode.classList.remove('is-visible');
-        });
-      } else {
-        void svgBundle.svg.getBoundingClientRect();
-        if (!reducedMotionQuery.matches) {
-          host.classList.remove('is-instant');
-        }
+        runFrameLockedStrokeDraw(animItems, strokeDur);
+      } else if (!reducedMotionQuery.matches) {
+        host.classList.remove('is-instant');
       }
 
       prevStrokeMap = nextStrokeMap;
