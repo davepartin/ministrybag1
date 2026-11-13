@@ -1,5 +1,15 @@
 # Resume here
 
+## Claude overnight editorial batch, November 13, 2026
+
+Dave assigned Claude three bounded editorial jobs on the night of November 12, from the [review chart](reviews/2026-11-12-lesson-review-chart.md): focused improvements to existing drafts, not rewrites. One lesson per branch and PR, stopped at REVIEW. Prose only: question objects, IDs, Scripture quotations, readings, widgets, images and sequences unchanged. Question proposals are in each PR body for Dave. Codex handles technical integration; Dave approves wording.
+
+| Task | Lesson | Branch | Status |
+|---|---|---|---|
+| TRIM-201-05 | 201-05 Overview of the Bible | claude/trim-201-05 | REVIEW. 1,508 to 1,430 words. [Log](logs/2026-11-13-TRIM-201-05-claude.md) |
+| FLOW-201-10 | 201-10 Repentance and the Learning Circle | claude/flow-201-10 | Queued, Claude, next |
+| TRIM-202-01 | 202-01 Loving Your Neighbors | claude/trim-202-01 | Queued, Claude, after 201-10 |
+
 ## Latest review aid: 37-lesson approval chart
 
 Dave requested a lesson-by-lesson chart with grades, words and separate approvals for length, questions, text, widgets and images. Start at [the review chart](reviews/2026-11-12-lesson-review-chart.md), with its Excel/CSV downloads and all 263 current questions. It is a snapshot of main be039c7 and distinguishes matching recorded approvals, scoped/partial approvals, changed components and unrecorded gates. The five-sheet workbook includes the ten grading checkpoints, earlier/current scores, reasons and next improvements. Refreshed production average is 90.3/100; five AAA (A+). These grades supersede the older pre-integration scorecard for this snapshot and remain separate from Dave approval. No lesson content or approval record was changed by creating it. Use it for Dave's one-lesson-at-a-time review and put new actual approvals in DAVE.md against the reviewed version.
