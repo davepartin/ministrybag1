@@ -1,5 +1,12 @@
 # Growing Together Team Board
 
+## 201-10 newest editing draft: November13
+
+Dave asked to stop reviewing outdated lesson versions. Integration of Claude PR201 now combines his full flow revision, teach-it question and course handoff with Dave's approved two-sentence opening. All6original questions, Scripture and Learning Circle steps are preserved. See [integration log](logs/2026-11-13-INTEGRATE-201-10-codex.md). Previous notes that PR201 is waiting or the live lesson lacks its teach-it question are historical after this integration. The November12 B-minus is a score for the older package, not a fresh grade for this draft.
+
+**Review freshness:** before giving Dave an editing link or current grade, check main AND pending lesson PRs. Name the newest version and whether it is live or preview-only. Do not direct him to older live wording without explaining the pending changes. This does not authorize merging unrelated work.
+
+
 ## 201-10 story callback: November13
 
 Dave approved a two-sentence return to the prodigal story:201-01 Father welcome,201-02 new identity, now the son coming to his senses. Replaced only the old Jesus-once-told opening; the rest of the story and Learning Circle are untouched. [Log](logs/2026-11-13-INTRO-201-10-codex.md). Claude PR201 remains open as a separate larger flow revision: **preserve this approved opening when integrating it**. This packet does not replace Claude's other work.
