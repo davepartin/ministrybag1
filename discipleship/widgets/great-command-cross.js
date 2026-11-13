@@ -18,7 +18,8 @@
     belong: '#4A708B',
     neighbor: '#5E7282',
     go: '#B5562B',
-    deepRed: '#8B1A2B'
+    deepRed: '#8B1A2B',
+    quietGrey: '#C2BCB0'
   };
 
   var CARDS = {
@@ -62,7 +63,6 @@
       steps: [
         {
           id: 'start',
-          pill: 'Start',
           pillLabel: 'Start: The Greatest Commandment',
           heading: 'The Greatest Commandment',
           verse: '"Which commandment is the most important of all?"',
@@ -75,7 +75,6 @@
         },
         {
           id: 'down',
-          pill: '1. Down',
           pillLabel: "Step 1: God's Love Comes Down",
           heading: CARDS.DOWN.heading,
           verse: CARDS.DOWN.verse,
@@ -84,14 +83,14 @@
           accent: COLORS.gold,
           accentDark: '#8B6508',
           draw: {
-            uprightLeft: 'ink',
+            uprightLeft: 'gold',
+            downTip: 'gold',
             labelGodLoves: true
           },
-          desc: 'A marker line starts at the top right, crosses left, and moves down with a gold downward arrow labeled God loves us.'
+          desc: 'A gold line starts at the top right, goes left, and moves down with an arrowhead staying on the bottom-left tip labeled God loves us.'
         },
         {
           id: 'up',
-          pill: '2. Up',
           pillLabel: 'Step 2: Love God With All You Are',
           heading: CARDS.UP.heading,
           verse: CARDS.UP.verse,
@@ -100,42 +99,44 @@
           accent: COLORS.green,
           accentDark: '#236146',
           draw: {
-            uprightLeft: 'ink',
-            uprightRight: 'ink',
+            uprightLeft: 'gold',
+            downTip: 'gold',
             labelGodLoves: true,
+            uprightRight: 'green',
+            upTip: 'green',
             labelWeLove: true,
             uprightWash: 'goldGreen'
           },
-          desc: 'Starting at the bottom left, the line goes right across the base and upward with a green arrow labeled We love God, closing the vertical beam.'
+          desc: 'A green line starts at the bottom left, crosses right, and moves up with an arrowhead staying on the top-right tip labeled We love God, forming the vertical beam.'
         },
         {
           id: 'neighbor',
-          pill: '3. Out',
           pillLabel: 'Step 3: Love Your Neighbor as Yourself',
           heading: CARDS.NEIGHBOR.heading,
           verse: CARDS.NEIGHBOR.verse,
           ref: CARDS.NEIGHBOR.ref,
           note: CARDS.NEIGHBOR.note,
-          accent: '#54626D',
-          accentDark: '#3E4952',
+          accent: COLORS.belong,
+          accentDark: '#36556B',
           draw: {
-            uprightLeft: 'ink',
-            uprightRight: 'ink',
+            uprightLeft: 'gold',
+            downTip: 'gold',
             labelGodLoves: true,
+            uprightRight: 'green',
+            upTip: 'green',
             labelWeLove: true,
             uprightWash: 'goldGreen',
-            armLeft: 'belongMuted',
-            armRight: 'goMuted',
-            armLeftWash: 'stoneBlue',
-            armRightWash: 'stoneRust',
-            armArrowsOut: true,
-            labelHorizontalRoles: true
+            armLeftMode: 'belong',
+            armRightMode: 'go',
+            armLeftWash: 'belong',
+            armRightWash: 'go',
+            labelLoveChurch: 'bold',
+            labelLoveLost: 'bold'
           },
-          desc: 'One-third down from the top, both horizontal arms draw outward with arrows toward Our Family and Family of God on the left and Not Yet in the Family on the right.'
+          desc: 'One-third down from the top, top and bottom outward arrows draw and connect at their tips to form the left arm labeled Love the Church and the right arm labeled Love the Lost.'
         },
         {
           id: 'final',
-          pill: 'Cross',
           pillLabel: 'Step 4: The Cross Holds It All',
           heading: 'The Cross Holds It All',
           verse: '"And walk in love, as Christ loved us and gave himself up for us, a fragrant offering and sacrifice to God."',
@@ -144,20 +145,23 @@
           accent: COLORS.deepRed,
           accentDark: '#6D1422',
           draw: {
-            uprightLeft: 'ink',
-            uprightRight: 'ink',
+            uprightLeft: 'gold',
+            downTip: 'gold',
             labelGodLoves: true,
+            uprightRight: 'green',
+            upTip: 'green',
             labelWeLove: true,
             uprightWash: 'goldGreen',
-            armLeft: 'belongMuted',
-            armRight: 'goMuted',
-            armLeftWash: 'stoneBlue',
-            armRightWash: 'stoneRust',
-            armArrowsOut: true,
-            labelHorizontalRoles: true,
-            finishedCross: 'full'
+            armLeftMode: 'belong',
+            armRightMode: 'go',
+            armLeftWash: 'belong',
+            armRightWash: 'go',
+            labelLoveChurch: 'bold',
+            labelLoveLost: 'bold',
+            finishedCross: 'full',
+            redTip: true
           },
-          desc: 'A pronounced deep red sketch line draws around the outside of the entire cross, holding God loves us, We love God, and love reaching outward together.'
+          desc: 'A pronounced deep red line led by a red arrowhead draws around the whole cross, showing Christ holds Love God, Love the Church, and Love the Lost together.'
         }
       ]
     },
@@ -168,7 +172,6 @@
       steps: [
         {
           id: 'start',
-          pill: 'Start',
           pillLabel: 'Start: Love Begins With God',
           heading: 'Love Begins With God',
           verse: '"Beloved, let us love one another, for love is from God, and whoever loves has been born of God and knows God."',
@@ -181,7 +184,6 @@
         },
         {
           id: 'review',
-          pill: '1. Loved',
           pillLabel: 'Step 1: Loved First',
           heading: 'Loved First',
           verse: CARDS.DOWN.verse,
@@ -191,17 +193,18 @@
           accentDark: '#236146',
           quickReview: true,
           draw: {
-            uprightLeft: 'ink',
-            uprightRight: 'ink',
+            uprightLeft: 'gold',
+            downTip: 'gold',
             labelGodLoves: true,
+            uprightRight: 'green',
+            upTip: 'green',
             labelWeLove: true,
             uprightWash: 'goldGreen'
           },
-          desc: 'The vertical beam draws cleanly with downward gold God loves us and upward green We love God arrows.'
+          desc: 'The gold downward arrow God loves us and green upward arrow We love God form the vertical beam.'
         },
         {
           id: 'neighbor',
-          pill: '2. Neighbor',
           pillLabel: 'Step 2: Love Your Neighbor as Yourself',
           heading: CARDS.NEIGHBOR.heading,
           verse: CARDS.NEIGHBOR.verse,
@@ -210,23 +213,24 @@
           accent: COLORS.neighbor,
           accentDark: '#415260',
           draw: {
-            uprightLeft: 'ink',
-            uprightRight: 'ink',
+            uprightLeft: 'gold',
+            downTip: 'gold',
             labelGodLoves: true,
+            uprightRight: 'green',
+            upTip: 'green',
             labelWeLove: true,
             uprightWash: 'goldGreen',
-            armLeft: 'blueGrey',
-            armRight: 'blueGrey',
+            armLeftMode: 'blueGrey',
+            armRightMode: 'blueGrey',
             armLeftWash: 'blueGrey',
             armRightWash: 'blueGrey',
-            armArrowsOut: true,
-            labelHorizontalRoles: true
+            labelLoveChurch: 'soft',
+            labelLoveLost: 'soft'
           },
-          desc: 'Both horizontal arms draw outward from one-third below the top in blue-grey with outward arrows.'
+          desc: 'Both horizontal arms draw outward with top and bottom arrows connected at the tips.'
         },
         {
           id: 'belong',
-          pill: '3. Belong',
           pillLabel: 'Step 3: Belong, Love Your Family in Christ',
           heading: CARDS.BELONG.heading,
           verse: CARDS.BELONG.verse,
@@ -236,23 +240,25 @@
           accentDark: '#36556B',
           redrawLeftArm: true,
           draw: {
-            uprightLeft: 'ink',
-            uprightRight: 'ink',
+            uprightLeft: 'gold',
+            downTip: 'gold',
             labelGodLoves: true,
+            uprightRight: 'green',
+            upTip: 'green',
             labelWeLove: true,
             uprightWash: 'goldGreen',
-            armLeft: 'belongBold',
+            armLeftMode: 'belong',
             armLeftWash: 'belong',
-            armRight: 'quietSolid',
+            armRightMode: 'quietSolid',
+            labelLoveChurch: 'bold',
             labelBelongInside: 'bold',
             belongIcons: 'bold',
             goPreviewCaption: true
           },
-          desc: 'The left arm redraws in bold Belong blue with house and fellowship table icons at its end, while the right arm dims quietly.'
+          desc: 'The left arm redraws in bold Belong blue labeled Love the Church with house and table icons underneath, while the right arm dims quietly.'
         },
         {
           id: 'final',
-          pill: 'Household',
           pillLabel: 'Step 4: Especially the Household of Faith',
           heading: 'Especially the Household of Faith',
           verse: '"So then, as we have opportunity, let us do good to everyone, and especially to those who are of the household of faith."',
@@ -261,20 +267,24 @@
           accent: COLORS.deepRed,
           accentDark: '#6D1422',
           draw: {
-            uprightLeft: 'ink',
-            uprightRight: 'ink',
+            uprightLeft: 'gold',
+            downTip: 'gold',
             labelGodLoves: true,
+            uprightRight: 'green',
+            upTip: 'green',
             labelWeLove: true,
             uprightWash: 'goldGreen',
-            armLeft: 'belongBold',
+            armLeftMode: 'belong',
             armLeftWash: 'belong',
-            armRight: 'quietSolid',
+            armRightMode: 'quietSolid',
+            labelLoveChurch: 'bold',
             labelBelongInside: 'bold',
             belongIcons: 'bold',
             goPreviewCaption: true,
-            finishedCross: 'belongFocus'
+            finishedCross: 'belongFocus',
+            redTip: true
           },
-          desc: 'A pronounced deep red outer sketch line encompasses the upright beam and bold Belong arm with house and table icons.'
+          desc: 'A pronounced deep red outline encompasses the vertical beam and Belong arm with house and table icons.'
         }
       ]
     },
@@ -285,7 +295,6 @@
       steps: [
         {
           id: 'start',
-          pill: 'Start',
           pillLabel: 'Start: The Love You Received',
           heading: 'The Love You Received',
           verse: '"We love because he first loved us."',
@@ -298,7 +307,6 @@
         },
         {
           id: 'review',
-          pill: '1. Family',
           pillLabel: 'Step 1: Loved and Belonging',
           heading: 'Loved and Belonging',
           verse: '"Beloved, if God so loved us, we also ought to love one another."',
@@ -308,21 +316,23 @@
           accentDark: '#36556B',
           quickReview: true,
           draw: {
-            uprightLeft: 'ink',
-            uprightRight: 'ink',
+            uprightLeft: 'gold',
+            downTip: 'gold',
             labelGodLoves: true,
+            uprightRight: 'green',
+            upTip: 'green',
             labelWeLove: true,
             uprightWash: 'goldGreen',
-            armLeft: 'belongQuiet',
+            armLeftMode: 'belong',
             armLeftWash: 'belongSoft',
+            labelLoveChurch: 'soft',
             labelBelongInside: 'soft',
             belongIcons: 'soft'
           },
-          desc: 'The vertical beam and the Belong arm with its house and fellowship table icons draw together cleanly.'
+          desc: 'The vertical beam and the Love the Church Belong arm draw together with house and fellowship table icons.'
         },
         {
           id: 'go',
-          pill: '2. Go',
           pillLabel: 'Step 2: Go, Love Those Not Yet in the Family',
           heading: CARDS.GO.heading,
           verse: CARDS.GO.verse,
@@ -331,25 +341,28 @@
           accent: COLORS.go,
           accentDark: '#8E411E',
           draw: {
-            uprightLeft: 'ink',
-            uprightRight: 'ink',
+            uprightLeft: 'gold',
+            downTip: 'gold',
             labelGodLoves: true,
+            uprightRight: 'green',
+            upTip: 'green',
             labelWeLove: true,
             uprightWash: 'goldGreen',
-            armLeft: 'belongQuiet',
+            armLeftMode: 'belong',
             armLeftWash: 'belongSoft',
+            labelLoveChurch: 'soft',
             labelBelongInside: 'soft',
             belongIcons: 'soft',
-            armRight: 'goBold',
+            armRightMode: 'go',
             armRightWash: 'go',
+            labelLoveLost: 'bold',
             labelGoInside: true,
             goRings: true
           },
-          desc: 'The right arm draws outward in bold rust labeled Go, ending in four widening rings labeled home, work and school, neighborhood, and nations.'
+          desc: 'The right arm draws outward with rust top and bottom arrows connected at the tips labeled Love the Lost and Go, widening into rings for home, work and school, neighborhood, and nations.'
         },
         {
           id: 'final',
-          pill: 'Sent',
           pillLabel: 'Step 3: You Are Sent',
           heading: 'You Are Sent',
           verse: '"Go therefore and make disciples of all nations, baptizing them in the name of the Father and of the Son and of the Holy Spirit."',
@@ -358,22 +371,27 @@
           accent: COLORS.deepRed,
           accentDark: '#6D1422',
           draw: {
-            uprightLeft: 'ink',
-            uprightRight: 'ink',
+            uprightLeft: 'gold',
+            downTip: 'gold',
             labelGodLoves: true,
+            uprightRight: 'green',
+            upTip: 'green',
             labelWeLove: true,
             uprightWash: 'goldGreen',
-            armLeft: 'belongQuiet',
+            armLeftMode: 'belong',
             armLeftWash: 'belongSoft',
+            labelLoveChurch: 'soft',
             labelBelongInside: 'soft',
             belongIcons: 'soft',
-            armRight: 'goBold',
+            armRightMode: 'go',
             armRightWash: 'go',
+            labelLoveLost: 'bold',
             labelGoInside: true,
             goRings: true,
-            finishedCross: 'full'
+            finishedCross: 'full',
+            redTip: true
           },
-          desc: 'A pronounced deep red outer line draws around the whole cross, uniting God loves us, We love God, Belong, and Go into all the world.'
+          desc: 'A pronounced deep red outer line led by a red arrowhead draws around the whole cross, uniting God loves us, We love God, Love the Church, and Love the Lost.'
         }
       ]
     }
@@ -439,7 +457,7 @@
     '.stage {',
     '  background: var(--paper);',
     '  border-bottom: 1px solid #ECE7DC;',
-    '  padding: 2px 4px 0;',
+    '  padding: 2px 2px 0;',
     '}',
     '.cross-svg {',
     '  display: block;',
@@ -491,8 +509,8 @@
     '  .widget-outer:not(.is-instant) .svg-fade {',
     '    transition: opacity var(--fade-dur, 420ms) ease var(--fade-delay, 0ms);',
     '  }',
-    '  .widget-outer .step-pill {',
-    '    transition: background-color 0.22s ease, border-color 0.22s ease, color 0.22s ease;',
+    '  .widget-outer .step-dot-fill {',
+    '    transition: background-color 0.22s ease, border-color 0.22s ease, transform 0.22s ease;',
     '  }',
     '  .widget-outer .nav-btn.primary,',
     '  .widget-outer .verse-card-bar,',
@@ -503,33 +521,39 @@
     '.step-strip {',
     '  display: flex;',
     '  justify-content: center;',
-    '  flex-wrap: nowrap;',
-    '  gap: 5px;',
-    '  padding: 7px 8px 6px;',
+    '  align-items: center;',
+    '  gap: 8px;',
+    '  padding: 6px 12px 5px;',
     '  background: var(--tray);',
     '  border-bottom: 1px solid var(--border);',
     '}',
-    '.step-pill {',
+    '.step-dot {',
     '  appearance: none;',
+    '  min-width: 28px;',
     '  min-height: 28px;',
-    '  padding: 4px 8px;',
-    '  border-radius: 999px;',
-    '  border: 1.5px solid #D3CCC0;',
-    '  background: #FFFFFF;',
-    '  color: var(--muted);',
-    '  font: 700 11px/1.1 system-ui, -apple-system, sans-serif;',
+    '  padding: 4px;',
+    '  border: none;',
+    '  background: transparent;',
+    '  display: inline-flex;',
+    '  align-items: center;',
+    '  justify-content: center;',
     '  cursor: pointer;',
-    '  white-space: nowrap;',
+    '  border-radius: 50%;',
     '}',
-    '.step-pill.passed {',
-    '  border-color: var(--pill-color, var(--ink));',
-    '  color: var(--ink);',
-    '  background: #FAF8F3;',
+    '.step-dot-fill {',
+    '  width: 16px;',
+    '  height: 16px;',
+    '  border-radius: 50%;',
+    '  border: 2.5px solid var(--dot-color, var(--ink));',
+    '  background: #FFFFFF;',
+    '  display: block;',
     '}',
-    '.step-pill.active {',
-    '  background: var(--pill-color, var(--ink));',
-    '  border-color: var(--pill-color, var(--ink));',
-    '  color: #FFFFFF;',
+    '.step-dot.passed .step-dot-fill {',
+    '  background: color-mix(in srgb, var(--dot-color, var(--ink)) 22%, #FFFFFF);',
+    '}',
+    '.step-dot.active .step-dot-fill {',
+    '  background: var(--dot-color, var(--ink));',
+    '  transform: scale(1.12);',
     '}',
     '.card-area {',
     '  background: var(--tray);',
@@ -611,7 +635,6 @@
     '  outline-offset: 2px;',
     '}',
     '@media (max-width: 395px) {',
-    '  .step-pill { padding: 4px 6px; font-size: 10.5px; }',
     '  .card-area { padding: 6px 10px 8px; }',
     '  .verse-card-content { padding: 8px 11px; }',
     '  .card-heading { font-size: 14.5px; }',
@@ -658,9 +681,10 @@
   }
 
   function buildCrossSvg(cfg) {
-    // 440 x 268 canvas: Upright x=[190..250] (width 60), y=[12..254] (height 242).
-    // Crossbar sits 1/3 down from top: y=[68..112] (center 90, which is 32.2% down).
-    // Left arm x=[96..190] (94w), Right arm x=[250..344] (94w).
+    // 440 x 268 canvas: larger cross filling stage white space cleanly.
+    // Upright: x=[192..248] (56w), y=[14..254] (240h).
+    // Crossbar 1/3 from top: y=[72..116] (center y=94 -> (94-14)/240 = 33.3% down!).
+    // Left arm x=[68..192] (124w), Right arm x=[248..372] (124w).
     var svg = svgEl('svg', {
       'class': 'cross-svg',
       'viewBox': '0 0 440 268',
@@ -682,46 +706,45 @@
       x2: '100%',
       y2: '0%'
     });
-    uprightGrad.appendChild(svgEl('stop', { offset: '0%', 'stop-color': COLORS.gold, 'stop-opacity': '0.16' }));
-    uprightGrad.appendChild(svgEl('stop', { offset: '48%', 'stop-color': COLORS.gold, 'stop-opacity': '0.09' }));
-    uprightGrad.appendChild(svgEl('stop', { offset: '52%', 'stop-color': COLORS.green, 'stop-opacity': '0.09' }));
-    uprightGrad.appendChild(svgEl('stop', { offset: '100%', 'stop-color': COLORS.green, 'stop-opacity': '0.16' }));
+    uprightGrad.appendChild(svgEl('stop', { offset: '0%', 'stop-color': COLORS.gold, 'stop-opacity': '0.15' }));
+    uprightGrad.appendChild(svgEl('stop', { offset: '48%', 'stop-color': COLORS.gold, 'stop-opacity': '0.08' }));
+    uprightGrad.appendChild(svgEl('stop', { offset: '52%', 'stop-color': COLORS.green, 'stop-opacity': '0.08' }));
+    uprightGrad.appendChild(svgEl('stop', { offset: '100%', 'stop-color': COLORS.green, 'stop-opacity': '0.15' }));
     defs.appendChild(uprightGrad);
     svg.appendChild(defs);
 
-    // Clean white sketch paper (zero dotted spoiler lines)
     var paperG = svgEl('g', { 'aria-hidden': 'true' });
     paperG.appendChild(svgEl('rect', { x: 0, y: 0, width: 440, height: 268, fill: '#FFFFFF' }));
     svg.appendChild(paperG);
 
-    // Subtle interior washes
+    // Subtle interior beam washes
     var washG = svgEl('g', { id: 'wash-layer', 'aria-hidden': 'true' });
     var uprightWash = svgEl('path', {
       id: 'wash-upright',
       'class': 'svg-fade',
-      d: 'M 191 13 Q 189 130 191 253 Q 220 255 249 253 Q 251 130 249 13 Q 220 11 191 13 Z',
+      d: 'M 192 14 Q 190 134 192 254 Q 220 256 248 254 Q 250 134 248 14 Q 220 12 192 14 Z',
       fill: 'url(#upright-wash-grad)'
     });
     var armLeftWash = svgEl('path', {
       id: 'wash-arm-left',
       'class': 'svg-fade',
-      d: 'M 190 69 Q 143 67 97 70 Q 95 90 97 111 Q 144 113 190 111 Z',
+      d: 'M 192 72 Q 130 70 68 72 L 68 116 Q 130 118 192 116 Z',
       fill: COLORS.belong,
-      'fill-opacity': '0.12'
+      'fill-opacity': '0.13'
     });
     var armRightWash = svgEl('path', {
       id: 'wash-arm-right',
       'class': 'svg-fade',
-      d: 'M 250 69 Q 297 67 343 70 Q 345 90 343 111 Q 296 113 250 111 Z',
+      d: 'M 248 72 Q 310 70 372 72 L 372 116 Q 310 118 248 116 Z',
       fill: COLORS.go,
-      'fill-opacity': '0.12'
+      'fill-opacity': '0.13'
     });
     var finishedGlow = svgEl('path', {
       id: 'wash-finished',
       'class': 'svg-fade',
-      d: 'M 183 6 L 257 6 L 257 62 L 351 62 L 351 119 L 257 119 L 257 261 L 183 261 L 183 119 L 89 119 L 89 62 L 183 62 Z',
+      d: 'M 183 6 L 257 6 L 257 63 L 381 63 L 381 124 L 257 124 L 257 262 L 183 262 L 183 124 L 59 124 L 59 63 L 183 63 Z',
       fill: COLORS.deepRed,
-      'fill-opacity': '0.06'
+      'fill-opacity': '0.05'
     });
     washG.appendChild(uprightWash);
     washG.appendChild(armLeftWash);
@@ -729,7 +752,6 @@
     washG.appendChild(finishedGlow);
     svg.appendChild(washG);
 
-    // Hand-drawn double-pass marker strokes
     var strokes = [];
     function addStrokePair(id, dMain, dTex, strokeColor, widthMain, widthTex) {
       var mainPath = svgEl('path', {
@@ -738,7 +760,7 @@
         d: dMain,
         fill: 'none',
         stroke: strokeColor,
-        'stroke-width': String(widthMain || 3.0),
+        'stroke-width': String(widthMain || 3.2),
         'stroke-linecap': 'round',
         'stroke-linejoin': 'round'
       });
@@ -748,7 +770,7 @@
         d: dTex,
         fill: 'none',
         stroke: strokeColor,
-        'stroke-width': String(widthTex || 1.25),
+        'stroke-width': String(widthTex || 1.3),
         'stroke-linecap': 'round',
         'stroke-linejoin': 'round'
       });
@@ -758,162 +780,174 @@
       return { main: mainPath, tex: texPath };
     }
 
-    // Step 1 Upright: Top-Right (249, 13) -> Left to Top-Left (191, 13) -> Down to Bottom-Left (191, 253)
+    // 1. Gold upright LEFT path: top-right (248, 14) -> top-left (192, 14) -> down to bottom-left (192, 250)
     addStrokePair(
       'stroke-upright-left',
-      'M 249 13 Q 220 11 191 13 Q 189 80 190 140 Q 192 198 191 253',
-      'M 248 14.3 Q 220 12.2 192.2 14.3 Q 190.2 81 191.2 140 Q 193 198 192.1 252',
-      COLORS.ink,
-      3.0,
-      1.25
+      'M 248 14 Q 220 12 192 14 Q 190 80 191 140 Q 193 196 192 250',
+      'M 246.8 15.3 Q 220 13.3 193.3 15.3 Q 191.3 81 192.3 140 Q 194 196 193.2 249',
+      COLORS.gold,
+      3.3,
+      1.3
     );
 
-    // Step 2 Upright: Bottom-Left (191, 253) -> Right to Bottom-Right (249, 253) -> Up to Top-Right (249, 13)
+    // 2. Green upright RIGHT path: bottom-left (192, 254) -> bottom-right (248, 254) -> up to top-right (248, 18)
     addStrokePair(
       'stroke-upright-right',
-      'M 191 253 Q 220 255 249 253 Q 251 196 250 135 Q 248 75 249 13',
-      'M 192 251.8 Q 220 253.8 248 251.8 Q 249.8 196 248.8 135 Q 247 75 247.9 14.3',
-      COLORS.ink,
-      3.0,
-      1.25
+      'M 192 254 Q 220 256 248 254 Q 250 196 249 136 Q 247 76 248 18',
+      'M 193.2 252.7 Q 220 254.7 246.8 252.7 Q 248.8 196 247.8 136 Q 246 76 246.8 19',
+      COLORS.green,
+      3.3,
+      1.3
     );
 
-    // Left arm outward from center (x: 190 -> 96 -> return)
+    // 3. Left arm: top arrow -> bottom arrow -> connect tips vertically
     addStrokePair(
-      'stroke-arm-left',
-      'M 190 69 Q 143 67 96 70 Q 94 90 96 111 Q 144 113 190 111',
-      'M 189.2 70.2 Q 143 68.2 97.2 71.1 Q 95.4 90 97.2 109.9 Q 144 111.8 189.2 109.8',
-      COLORS.ink,
-      2.8,
+      'stroke-arm-left-top',
+      'M 192 72 Q 130 70 72 72',
+      'M 191 73.2 Q 130 71.2 73 73.2',
+      COLORS.belong,
+      3.1,
+      1.2
+    );
+    addStrokePair(
+      'stroke-arm-left-bottom',
+      'M 192 116 Q 130 118 72 116',
+      'M 191 114.8 Q 130 116.8 73 114.8',
+      COLORS.belong,
+      3.1,
+      1.2
+    );
+    addStrokePair(
+      'stroke-arm-left-cap',
+      'M 68 72 Q 66 94 68 116',
+      'M 69.2 73 Q 67.3 94 69.2 115',
+      COLORS.belong,
+      3.1,
       1.2
     );
 
-    // Right arm outward from center (x: 250 -> 344 -> return)
+    // 4. Right arm: top arrow -> bottom arrow -> connect tips vertically
     addStrokePair(
-      'stroke-arm-right',
-      'M 250 69 Q 297 67 344 70 Q 346 90 344 111 Q 296 113 250 111',
-      'M 250.8 70.2 Q 297 68.2 342.8 71.1 Q 344.6 90 342.8 109.9 Q 296 111.8 250.8 109.8',
-      COLORS.ink,
-      2.8,
+      'stroke-arm-right-top',
+      'M 248 72 Q 310 70 368 72',
+      'M 249 73.2 Q 310 71.2 367 73.2',
+      COLORS.go,
+      3.1,
+      1.2
+    );
+    addStrokePair(
+      'stroke-arm-right-bottom',
+      'M 248 116 Q 310 118 368 116',
+      'M 249 114.8 Q 310 116.8 367 114.8',
+      COLORS.go,
+      3.1,
+      1.2
+    );
+    addStrokePair(
+      'stroke-arm-right-cap',
+      'M 372 72 Q 374 94 372 116',
+      'M 370.8 73 Q 372.7 94 370.8 115',
+      COLORS.go,
+      3.1,
       1.2
     );
 
-    // Pronounced outer encompassing deep-red sketch contour around the WHOLE cross (full vs 202 Belong focus)
+    // 5. Pronounced outer encompassing deep-red contour around whole cross (or Belong focus for 202)
     addStrokePair(
       'stroke-finish-full',
-      'M 220 5 Q 240 4 256 6 Q 258 35 257 62 Q 304 61 350 63 Q 353 90 350 118 Q 303 120 257 118 Q 258 190 256 260 Q 220 262 184 260 Q 182 190 183 118 Q 137 120 90 118 Q 87 90 90 63 Q 136 61 183 62 Q 182 35 184 6 Q 202 5 220 5',
-      'M 220 6.8 Q 239 5.5 254.5 7.5 Q 256.5 35 255.6 63.5 Q 303 62.6 348.5 64.5 Q 351 90 348.5 116.5 Q 303 118.4 255.6 116.5 Q 256.5 190 254.5 258.5 Q 220 260.4 185.5 258.5 Q 183.6 190 184.5 116.5 Q 137 118.4 91.5 116.5 Q 89 90 91.5 64.5 Q 137 62.6 184.5 63.5 Q 183.6 35 185.5 7.5 Q 202 6.6 220 6.8',
+      'M 220 5 Q 242 4 257 6 Q 259 35 258 63 Q 320 62 380 64 Q 383 94 380 123 Q 320 125 258 123 Q 259 194 257 262 Q 220 264 183 262 Q 181 194 182 123 Q 120 125 60 123 Q 57 94 60 64 Q 120 62 182 63 Q 181 35 183 6 Q 202 5 216 5',
+      'M 220 6.8 Q 241 5.6 255.4 7.6 Q 257.4 35 256.5 64.5 Q 320 63.5 378.4 65.5 Q 381 94 378.4 121.5 Q 320 123.5 256.5 121.5 Q 257.4 194 255.4 260.4 Q 220 262.2 184.6 260.4 Q 182.6 194 183.5 121.5 Q 120 123.5 61.6 121.5 Q 59 94 61.6 65.5 Q 120 63.5 183.5 64.5 Q 182.6 35 184.6 7.6 Q 202 6.6 216 6.8',
       COLORS.deepRed,
-      3.5,
+      3.6,
       1.5
     );
 
     addStrokePair(
       'stroke-finish-belong',
-      'M 220 5 Q 240 4 256 6 Q 258 130 256 260 Q 220 262 184 260 Q 182 190 183 118 Q 137 120 90 118 Q 87 90 90 63 Q 136 61 183 62 Q 182 35 184 6 Q 202 5 220 5',
-      'M 220 6.8 Q 239 5.5 254.5 7.5 Q 256.5 130 254.5 258.5 Q 220 260.4 185.5 258.5 Q 183.6 190 184.5 116.5 Q 137 118.4 91.5 116.5 Q 89 90 91.5 64.5 Q 137 62.6 184.5 63.5 Q 183.6 35 185.5 7.5 Q 202 6.6 220 6.8',
+      'M 220 5 Q 242 4 257 6 Q 259 134 257 262 Q 220 264 183 262 Q 181 194 182 123 Q 120 125 60 123 Q 57 94 60 64 Q 120 62 182 63 Q 181 35 183 6 Q 202 5 216 5',
+      'M 220 6.8 Q 241 5.6 255.4 7.6 Q 257.4 134 255.4 260.4 Q 220 262.2 184.6 260.4 Q 182.6 194 183.5 121.5 Q 120 123.5 61.6 121.5 Q 59 94 61.6 65.5 Q 120 63.5 183.5 64.5 Q 182.6 35 184.6 7.6 Q 202 6.6 216 6.8',
       COLORS.deepRed,
-      3.5,
+      3.6,
       1.5
     );
 
-    // Interior upright directional arrows + wording ("God loves us" down on left, "We love God" up on right)
-    var lblGodLoves = svgEl('g', { id: 'lbl-god-loves', 'class': 'svg-fade', 'aria-hidden': 'true' });
-    lblGodLoves.appendChild(svgEl('path', {
-      d: 'M 200 124 Q 199 180 200 236 M 195.5 228 L 200 238 L 204.5 228',
-      fill: 'none',
-      stroke: COLORS.gold,
-      'stroke-width': '2.1',
-      'stroke-linecap': 'round',
-      'stroke-linejoin': 'round'
-    }));
-    lblGodLoves.appendChild(svgEl('text', {
-      x: 213,
-      y: 180,
-      transform: 'rotate(90 213 180)',
+    // Permanent arrowheads locked on the image at the end of every drawn line
+    function addTipHead(id, d, fillColor) {
+      var head = svgEl('path', {
+        id: id,
+        'class': 'svg-fade',
+        d: d,
+        fill: fillColor,
+        stroke: fillColor,
+        'stroke-width': '1',
+        'stroke-linejoin': 'round'
+      });
+      svg.appendChild(head);
+      return head;
+    }
+
+    var tipHeads = {
+      downTip: addTipHead('tip-head-down', 'M 186.5 243 L 192 254.5 L 197.5 243 L 192 246 Z', COLORS.gold),
+      upTip: addTipHead('tip-head-up', 'M 242.5 24.5 L 248 13 L 253.5 24.5 L 248 21.5 Z', COLORS.green),
+      leftTopTip: addTipHead('tip-head-left-top', 'M 79 67 L 67 72 L 79 77 L 75.5 72 Z', COLORS.belong),
+      leftBotTip: addTipHead('tip-head-left-bot', 'M 79 111 L 67 116 L 79 121 L 75.5 116 Z', COLORS.belong),
+      rightTopTip: addTipHead('tip-head-right-top', 'M 361 67 L 373 72 L 361 77 L 364.5 72 Z', COLORS.go),
+      rightBotTip: addTipHead('tip-head-right-bot', 'M 361 111 L 373 116 L 361 121 L 364.5 116 Z', COLORS.go),
+      redTip: addTipHead('tip-head-red', 'M 210 0.5 L 222 5 L 210 9.5 L 213 5 Z', COLORS.deepRed)
+    };
+
+    // Words inside upright beam & above left/right horizontal bars (using white space on top of bars!)
+    var lblGodLoves = svgEl('text', {
+      id: 'lbl-god-loves',
+      'class': 'svg-fade hand-label',
+      x: 207,
+      y: 186,
+      transform: 'rotate(90 207 186)',
       'text-anchor': 'middle',
       fill: '#8E6707',
-      'font-size': '11.5',
-      'class': 'hand-label'
-    }, 'God loves us'));
+      'font-size': '13'
+    }, 'God loves us');
     svg.appendChild(lblGodLoves);
 
-    var lblWeLove = svgEl('g', { id: 'lbl-we-love', 'class': 'svg-fade', 'aria-hidden': 'true' });
-    lblWeLove.appendChild(svgEl('path', {
-      d: 'M 240 238 Q 241 180 240 124 M 235.5 132 L 240 122 L 244.5 132',
-      fill: 'none',
-      stroke: COLORS.green,
-      'stroke-width': '2.1',
-      'stroke-linecap': 'round',
-      'stroke-linejoin': 'round'
-    }));
-    lblWeLove.appendChild(svgEl('text', {
-      x: 229,
-      y: 180,
-      transform: 'rotate(-90 229 180)',
+    var lblWeLove = svgEl('text', {
+      id: 'lbl-we-love',
+      'class': 'svg-fade hand-label',
+      x: 233,
+      y: 186,
+      transform: 'rotate(-90 233 186)',
       'text-anchor': 'middle',
       fill: '#236146',
-      'font-size': '11.5',
-      'class': 'hand-label'
-    }, 'We love God'));
+      'font-size': '13'
+    }, 'We love God');
     svg.appendChild(lblWeLove);
 
-    // Horizontal arm outward arrows & labels INSIDE arms (zero words on outer white space in 201)
-    var armArrowsOutG = svgEl('g', { id: 'arm-arrows-out', 'class': 'svg-fade', 'aria-hidden': 'true' });
-    // Leftward arrow along bottom of left arm
-    armArrowsOutG.appendChild(svgEl('path', {
-      d: 'M 183 103 Q 142 104 104 103 M 112 99 L 103 103 L 112 107',
-      fill: 'none',
-      stroke: COLORS.belong,
-      'stroke-width': '1.9',
-      'stroke-linecap': 'round',
-      'stroke-linejoin': 'round'
-    }));
-    // Rightward arrow along bottom of right arm
-    armArrowsOutG.appendChild(svgEl('path', {
-      d: 'M 257 103 Q 298 104 336 103 M 328 99 L 337 103 L 328 107',
-      fill: 'none',
-      stroke: COLORS.go,
-      'stroke-width': '1.9',
-      'stroke-linecap': 'round',
-      'stroke-linejoin': 'round'
-    }));
-    svg.appendChild(armArrowsOutG);
-
-    var lblHorizontalRoles = svgEl('g', { id: 'lbl-horizontal-roles', 'class': 'svg-fade', 'aria-hidden': 'true' });
-    var leftRoleTxt = svgEl('text', {
-      x: 144,
-      y: 80,
+    var lblLoveChurch = svgEl('text', {
+      id: 'lbl-love-church',
+      'class': 'svg-fade hand-label',
+      x: 125,
+      y: 55,
       'text-anchor': 'middle',
-      fill: '#334F63',
-      'font-size': '9.2',
-      'font-weight': '700',
-      'class': 'clean-label'
-    });
-    leftRoleTxt.appendChild(svgEl('tspan', { x: 144, dy: '0' }, 'Our Family &'));
-    leftRoleTxt.appendChild(svgEl('tspan', { x: 144, dy: '10.2' }, 'Family of God'));
-    lblHorizontalRoles.appendChild(leftRoleTxt);
+      fill: COLORS.belong,
+      'font-size': '13.5'
+    }, 'Love the Church');
+    svg.appendChild(lblLoveChurch);
 
-    var rightRoleTxt = svgEl('text', {
-      x: 296,
-      y: 80,
+    var lblLoveLost = svgEl('text', {
+      id: 'lbl-love-lost',
+      'class': 'svg-fade hand-label',
+      x: 315,
+      y: 55,
       'text-anchor': 'middle',
-      fill: '#8E411E',
-      'font-size': '9.2',
-      'font-weight': '700',
-      'class': 'clean-label'
-    });
-    rightRoleTxt.appendChild(svgEl('tspan', { x: 296, dy: '0' }, 'Those Not Yet'));
-    rightRoleTxt.appendChild(svgEl('tspan', { x: 296, dy: '10.2' }, 'in the Family'));
-    lblHorizontalRoles.appendChild(rightRoleTxt);
-    svg.appendChild(lblHorizontalRoles);
+      fill: COLORS.go,
+      'font-size': '13.5'
+    }, 'Love the Lost');
+    svg.appendChild(lblLoveLost);
 
-    // 202 / 203 Belong & Go labels positioned neatly INSIDE arms
     var lblBelongInside = svgEl('text', {
       id: 'lbl-belong-inside',
       'class': 'svg-fade hand-label',
-      x: 144,
-      y: 95,
+      x: 129,
+      y: 99,
       'text-anchor': 'middle',
       fill: COLORS.belong,
       'font-size': '17'
@@ -923,8 +957,8 @@
     var lblGoInside = svgEl('text', {
       id: 'lbl-go-inside',
       'class': 'svg-fade hand-label',
-      x: 296,
-      y: 95,
+      x: 311,
+      y: 99,
       'text-anchor': 'middle',
       fill: COLORS.go,
       'font-size': '17'
@@ -935,29 +969,29 @@
     var lbl202GoCaption = svgEl('text', {
       id: 'lbl-202-go-preview',
       'class': 'svg-fade clean-label',
-      x: 303,
-      y: 129,
+      x: 315,
+      y: 135,
       'text-anchor': 'middle',
       fill: '#7A7165',
-      'font-size': '10',
+      'font-size': '10.5',
       'font-weight': '600'
     }, 'Go: Growing Out');
     svg.appendChild(lbl202GoCaption);
 
-    // 202 / 203 Belong icons (house + fellowship table centered vertically around y=90, left side x=16..82)
+    // 202 / 203 Belong house & table icons neatly in lower-left white space under Belong arm (x=66..164, y=136..248)
     var belongIconsG = svgEl('g', { id: 'belong-icons', 'class': 'svg-fade', 'aria-hidden': 'true' });
     belongIconsG.appendChild(svgEl('polygon', {
-      points: '27,54 49,35 71,54',
+      points: '76,162 96,144 116,162',
       fill: COLORS.belong,
       'fill-opacity': '0.16'
     }));
     belongIconsG.appendChild(svgEl('rect', {
-      x: 29, y: 122, width: 40, height: 10, rx: 3.5,
+      x: 118, y: 170, width: 38, height: 10, rx: 3.5,
       fill: COLORS.belong,
       'fill-opacity': '0.18'
     }));
     belongIconsG.appendChild(svgEl('path', {
-      d: 'M 25 55 L 49 34 L 73 55 M 31 52 L 31 78 L 67 78 L 67 52',
+      d: 'M 74 163 L 96 143 L 118 163 M 80 160 L 80 185 L 112 185 L 112 160',
       fill: 'none',
       stroke: COLORS.ink,
       'stroke-width': '2',
@@ -965,30 +999,30 @@
       'stroke-linejoin': 'round'
     }));
     belongIconsG.appendChild(svgEl('path', {
-      d: 'M 43 78 L 43 63 Q 49 61 55 63 L 55 78',
+      d: 'M 91 185 L 91 171 Q 96 169 101 171 L 101 185',
       fill: 'none',
       stroke: COLORS.belong,
       'stroke-width': '1.8',
       'stroke-linecap': 'round'
     }));
     belongIconsG.appendChild(svgEl('circle', {
-      cx: 36, cy: 112, r: 4, fill: '#FFFFFF', stroke: COLORS.ink, 'stroke-width': '1.7'
+      cx: 125, cy: 160, r: 3.8, fill: '#FFFFFF', stroke: COLORS.ink, 'stroke-width': '1.7'
     }));
     belongIconsG.appendChild(svgEl('circle', {
-      cx: 49, cy: 110, r: 4.2, fill: '#FFFFFF', stroke: COLORS.belong, 'stroke-width': '1.8'
+      cx: 137, cy: 158, r: 4, fill: '#FFFFFF', stroke: COLORS.belong, 'stroke-width': '1.8'
     }));
     belongIconsG.appendChild(svgEl('circle', {
-      cx: 62, cy: 112, r: 4, fill: '#FFFFFF', stroke: COLORS.ink, 'stroke-width': '1.7'
+      cx: 149, cy: 160, r: 3.8, fill: '#FFFFFF', stroke: COLORS.ink, 'stroke-width': '1.7'
     }));
     belongIconsG.appendChild(svgEl('path', {
-      d: 'M 30 121 Q 36 116 42 121 M 43 120 Q 49 115 55 120 M 56 121 Q 62 116 68 121',
+      d: 'M 119 169 Q 125 164 131 169 M 132 168 Q 137 163 142 168 M 143 169 Q 149 164 155 169',
       fill: 'none',
       stroke: COLORS.ink,
       'stroke-width': '1.6',
       'stroke-linecap': 'round'
     }));
     belongIconsG.appendChild(svgEl('path', {
-      d: 'M 27 123 Q 49 120 71 123 L 69 133 Q 49 135 29 133 Z M 33 133 L 33 144 M 65 133 L 65 144',
+      d: 'M 117 171 Q 137 168 157 171 L 155 181 Q 137 183 119 181 Z M 122 181 L 122 191 M 152 181 L 152 191',
       fill: 'none',
       stroke: COLORS.ink,
       'stroke-width': '1.9',
@@ -996,8 +1030,8 @@
       'stroke-linejoin': 'round'
     }));
     belongIconsG.appendChild(svgEl('text', {
-      x: 49,
-      y: 157,
+      x: 115,
+      y: 205,
       'text-anchor': 'middle',
       fill: COLORS.inkSoft,
       'font-size': '9.5',
@@ -1005,13 +1039,13 @@
     }, 'home & table'));
     svg.appendChild(belongIconsG);
 
-    // 203 Go widening rings centered clearly right of red halo (right border x=350, y=90)
+    // 203 Go widening rings neatly in lower-right white space radiating below/outward from Go arm (x=276..395, y=134..245)
     var goRingsG = svgEl('g', { id: 'go-rings', 'aria-hidden': 'true' });
     var ringPaths = [
-      { id: 'go-ring-1', d: 'M 361 74 Q 371 90 361 107', w: 2.2 },
-      { id: 'go-ring-2', d: 'M 374 60 Q 391 90 374 121', w: 2.0 },
-      { id: 'go-ring-3', d: 'M 388 45 Q 413 90 388 136', w: 1.85 },
-      { id: 'go-ring-4', d: 'M 402 31 Q 434 90 402 150', w: 1.7 }
+      { id: 'go-ring-1', d: 'M 387 74 Q 396 94 387 114', w: 2.2 },
+      { id: 'go-ring-2', d: 'M 397 61 Q 412 94 397 127', w: 2.0 },
+      { id: 'go-ring-3', d: 'M 407 48 Q 426 94 407 140', w: 1.8 },
+      { id: 'go-ring-4', d: 'M 417 36 Q 436 94 417 152', w: 1.6 }
     ];
     ringPaths.forEach(function (rp) {
       var p = svgEl('path', {
@@ -1028,24 +1062,24 @@
     });
     var goRingLabels = svgEl('g', { id: 'go-ring-labels', 'class': 'svg-fade' });
     goRingLabels.appendChild(svgEl('text', {
-      x: 360, y: 54, 'text-anchor': 'end', fill: COLORS.go, 'font-size': '9.8', 'font-weight': '700', 'class': 'clean-label'
+      x: 386, y: 55, 'text-anchor': 'end', fill: COLORS.go, 'font-size': '9.2', 'font-weight': '700', 'class': 'clean-label'
     }, 'home'));
     var workTxt = svgEl('text', {
-      x: 372, y: 135, 'text-anchor': 'end', fill: COLORS.ink, 'font-size': '9.3', 'font-weight': '600', 'class': 'clean-label'
+      x: 388, y: 141, 'text-anchor': 'end', fill: COLORS.ink, 'font-size': '9', 'font-weight': '600', 'class': 'clean-label'
     });
-    workTxt.appendChild(svgEl('tspan', { x: 372, dy: '0' }, 'work and'));
-    workTxt.appendChild(svgEl('tspan', { x: 372, dy: '10' }, 'school'));
+    workTxt.appendChild(svgEl('tspan', { x: 388, dy: '0' }, 'work and'));
+    workTxt.appendChild(svgEl('tspan', { x: 388, dy: '10' }, 'school'));
     goRingLabels.appendChild(workTxt);
     goRingLabels.appendChild(svgEl('text', {
-      x: 396, y: 20, 'text-anchor': 'middle', fill: COLORS.ink, 'font-size': '9.3', 'font-weight': '600', 'class': 'clean-label'
+      x: 405, y: 27, 'text-anchor': 'middle', fill: COLORS.ink, 'font-size': '9', 'font-weight': '600', 'class': 'clean-label'
     }, 'neighborhood'));
     goRingLabels.appendChild(svgEl('text', {
-      x: 405, y: 165, 'text-anchor': 'middle', fill: COLORS.go, 'font-size': '10.2', 'font-weight': '700', 'class': 'clean-label'
+      x: 416, y: 168, 'text-anchor': 'middle', fill: COLORS.go, 'font-size': '9.8', 'font-weight': '700', 'class': 'clean-label'
     }, 'nations'));
     goRingsG.appendChild(goRingLabels);
     svg.appendChild(goRingsG);
 
-    // Live travelling arrowhead tips synchronized with forward stroke paths
+    // Live leading pen-tip arrowheads during stroke draw
     function buildPenTip(id, fill) {
       var g = svgEl('g', { id: id, 'class': 'pen-tip', 'aria-hidden': 'true' });
       g.appendChild(svgEl('path', {
@@ -1062,8 +1096,12 @@
     var penTips = {
       'stroke-upright-left': buildPenTip('pen-tip-down', COLORS.gold),
       'stroke-upright-right': buildPenTip('pen-tip-up', COLORS.green),
-      'stroke-arm-left': buildPenTip('pen-tip-left', COLORS.belong),
-      'stroke-arm-right': buildPenTip('pen-tip-right', COLORS.go),
+      'stroke-arm-left-top': buildPenTip('pen-tip-ltop', COLORS.belong),
+      'stroke-arm-left-bottom': buildPenTip('pen-tip-lbot', COLORS.belong),
+      'stroke-arm-left-cap': buildPenTip('pen-tip-lcap', COLORS.belong),
+      'stroke-arm-right-top': buildPenTip('pen-tip-rtop', COLORS.go),
+      'stroke-arm-right-bottom': buildPenTip('pen-tip-rbot', COLORS.go),
+      'stroke-arm-right-cap': buildPenTip('pen-tip-rcap', COLORS.go),
       'stroke-finish-full': buildPenTip('pen-tip-red-full', COLORS.deepRed),
       'stroke-finish-belong': buildPenTip('pen-tip-red-belong', COLORS.deepRed)
     };
@@ -1074,6 +1112,7 @@
       svgDesc: svgDesc,
       strokes: strokes,
       penTips: penTips,
+      tipHeads: tipHeads,
       parts: {
         uprightWash: uprightWash,
         armLeftWash: armLeftWash,
@@ -1081,8 +1120,8 @@
         finishedGlow: finishedGlow,
         lblGodLoves: lblGodLoves,
         lblWeLove: lblWeLove,
-        armArrowsOutG: armArrowsOutG,
-        lblHorizontalRoles: lblHorizontalRoles,
+        lblLoveChurch: lblLoveChurch,
+        lblLoveLost: lblLoveLost,
         lblBelongInside: lblBelongInside,
         lblGoInside: lblGoInside,
         lbl202GoCaption: lbl202GoCaption,
@@ -1108,38 +1147,38 @@
     });
   }
 
-  function getStrokeColorForArm(mode) {
-    if (mode === 'ink') return COLORS.ink;
-    if (mode === 'belongMuted') return '#5B7080';
-    if (mode === 'goMuted') return '#8E5A42';
+  function getArmColor(mode) {
+    if (mode === 'belong') return COLORS.belong;
+    if (mode === 'go') return COLORS.go;
     if (mode === 'blueGrey') return COLORS.neighbor;
-    if (mode === 'belongBold' || mode === 'belongQuiet') return COLORS.belong;
-    if (mode === 'goBold') return COLORS.go;
-    if (mode === 'quietSolid') return '#C4BEB2';
+    if (mode === 'quietSolid') return COLORS.quietGrey;
     return COLORS.ink;
   }
 
   function buildStrokeTargetMap(stepObj) {
     var d = stepObj.draw || {};
     var map = {};
-    map['stroke-upright-left'] = { on: !!d.uprightLeft, color: COLORS.ink, w: 3.0 };
-    map['stroke-upright-right'] = { on: !!d.uprightRight, color: COLORS.ink, w: 3.0 };
-    map['stroke-arm-left'] = {
-      on: !!d.armLeft,
-      color: getStrokeColorForArm(d.armLeft),
-      w: d.armLeft === 'belongBold' ? 3.3 : (d.armLeft === 'quietSolid' ? 2.0 : 2.8),
-      quiet: d.armLeft === 'quietSolid'
-    };
-    map['stroke-arm-right'] = {
-      on: !!d.armRight,
-      color: getStrokeColorForArm(d.armRight),
-      w: d.armRight === 'goBold' ? 3.3 : (d.armRight === 'quietSolid' ? 2.0 : 2.8),
-      quiet: d.armRight === 'quietSolid'
-    };
-    map['stroke-finish-full'] = { on: d.finishedCross === 'full', color: COLORS.deepRed, w: 3.5 };
-    map['stroke-finish-belong'] = { on: d.finishedCross === 'belongFocus', color: COLORS.deepRed, w: 3.5 };
+    map['stroke-upright-left'] = { on: !!d.uprightLeft, color: COLORS.gold, w: 3.3 };
+    map['stroke-upright-right'] = { on: !!d.uprightRight, color: COLORS.green, w: 3.3 };
+
+    var lMode = d.armLeftMode;
+    var rMode = d.armRightMode;
+    var lColor = getArmColor(lMode);
+    var rColor = getArmColor(rMode);
+
+    map['stroke-arm-left-top'] = { on: !!lMode, color: lColor, w: 3.1, quiet: lMode === 'quietSolid' };
+    map['stroke-arm-left-bottom'] = { on: !!lMode, color: lColor, w: 3.1, quiet: lMode === 'quietSolid' };
+    map['stroke-arm-left-cap'] = { on: !!lMode, color: lColor, w: 3.1, quiet: lMode === 'quietSolid' };
+
+    map['stroke-arm-right-top'] = { on: !!rMode, color: rColor, w: 3.1, quiet: rMode === 'quietSolid' };
+    map['stroke-arm-right-bottom'] = { on: !!rMode, color: rColor, w: 3.1, quiet: rMode === 'quietSolid' };
+    map['stroke-arm-right-cap'] = { on: !!rMode, color: rColor, w: 3.1, quiet: rMode === 'quietSolid' };
+
+    map['stroke-finish-full'] = { on: d.finishedCross === 'full', color: COLORS.deepRed, w: 3.6 };
+    map['stroke-finish-belong'] = { on: d.finishedCross === 'belongFocus', color: COLORS.deepRed, w: 3.6 };
+
     for (var i = 1; i <= 4; i++) {
-      map['go-ring-' + i] = { on: !!d.goRings, color: COLORS.go, w: 2.3 - i * 0.15 };
+      map['go-ring-' + i] = { on: !!d.goRings, color: COLORS.go, w: 2.3 - i * 0.16 };
     }
     return map;
   }
@@ -1164,16 +1203,18 @@
     stage.appendChild(svgBundle.svg);
     host.appendChild(stage);
 
+    // Clean color-only step circles (no words on buttons)
     var strip = el('div', { 'class': 'step-strip', id: 'step-strip', role: 'group', 'aria-label': 'Lesson steps' });
-    var pillButtons = cfg.steps.map(function (st, idx) {
+    var dotButtons = cfg.steps.map(function (st, idx) {
       var btn = el('button', {
-        'class': 'step-pill',
+        'class': 'step-dot',
         type: 'button',
         'data-step': String(idx),
         'aria-label': st.pillLabel,
         'aria-pressed': 'false'
-      }, st.pill);
-      btn.style.setProperty('--pill-color', st.accent);
+      });
+      btn.style.setProperty('--dot-color', st.accent);
+      btn.appendChild(el('span', { 'class': 'step-dot-fill', 'aria-hidden': 'true' }));
       btn.addEventListener('click', function () {
         goTo(idx);
       });
@@ -1233,61 +1274,79 @@
     function applyWashAndLabelState(stepObj, animate) {
       var d = stepObj.draw || {};
       var p = svgBundle.parts;
-      var washDelay = animate ? (stepObj.quickReview ? '280ms' : '540ms') : '0ms';
-      var arrowLabelDelay = animate ? (stepObj.quickReview ? '180ms' : '340ms') : '0ms';
+      var t = svgBundle.tipHeads;
+      var washDelay = animate ? (stepObj.quickReview ? '280ms' : '640ms') : '0ms';
+      var arrowLabelDelay = animate ? (stepObj.quickReview ? '180ms' : '360ms') : '0ms';
 
       p.uprightWash.style.setProperty('--fade-delay', washDelay);
       p.uprightWash.classList.toggle('is-visible', !!d.uprightWash);
 
       p.armLeftWash.style.setProperty('--fade-delay', washDelay);
-      if (d.armLeftWash === 'belong') {
-        p.armLeftWash.setAttribute('fill', COLORS.belong);
-        p.armLeftWash.setAttribute('fill-opacity', '0.16');
-      } else if (d.armLeftWash === 'belongSoft') {
-        p.armLeftWash.setAttribute('fill', COLORS.belong);
-        p.armLeftWash.setAttribute('fill-opacity', '0.10');
-      } else if (d.armLeftWash === 'stoneBlue') {
-        p.armLeftWash.setAttribute('fill', COLORS.belong);
-        p.armLeftWash.setAttribute('fill-opacity', '0.10');
-      } else {
-        p.armLeftWash.setAttribute('fill', COLORS.neighbor);
-        p.armLeftWash.setAttribute('fill-opacity', '0.10');
-      }
+      p.armLeftWash.setAttribute('fill', d.armLeftWash === 'blueGrey' ? COLORS.neighbor : COLORS.belong);
+      p.armLeftWash.setAttribute('fill-opacity', d.armLeftWash === 'belongSoft' ? '0.09' : '0.13');
       p.armLeftWash.classList.toggle('is-visible', !!d.armLeftWash);
 
       p.armRightWash.style.setProperty('--fade-delay', washDelay);
-      if (d.armRightWash === 'go') {
-        p.armRightWash.setAttribute('fill', COLORS.go);
-        p.armRightWash.setAttribute('fill-opacity', '0.16');
-      } else if (d.armRightWash === 'stoneRust') {
-        p.armRightWash.setAttribute('fill', COLORS.go);
-        p.armRightWash.setAttribute('fill-opacity', '0.10');
-      } else {
-        p.armRightWash.setAttribute('fill', COLORS.neighbor);
-        p.armRightWash.setAttribute('fill-opacity', '0.10');
-      }
+      p.armRightWash.setAttribute('fill', d.armRightWash === 'blueGrey' ? COLORS.neighbor : COLORS.go);
+      p.armRightWash.setAttribute('fill-opacity', '0.13');
       p.armRightWash.classList.toggle('is-visible', !!d.armRightWash);
 
       p.finishedGlow.setAttribute(
         'd',
         d.finishedCross === 'belongFocus'
-          ? 'M 183 6 L 257 6 L 257 261 L 183 261 L 183 119 L 89 119 L 89 62 L 183 62 Z'
-          : 'M 183 6 L 257 6 L 257 62 L 351 62 L 351 119 L 257 119 L 257 261 L 183 261 L 183 119 L 89 119 L 89 62 L 183 62 Z'
+          ? 'M 183 6 L 257 6 L 257 262 L 183 262 L 183 124 L 59 124 L 59 63 L 183 63 Z'
+          : 'M 183 6 L 257 6 L 257 63 L 381 63 L 381 124 L 257 124 L 257 262 L 183 262 L 183 124 L 59 124 L 59 63 L 183 63 Z'
       );
-      p.finishedGlow.style.setProperty('--fade-delay', animate ? '460ms' : '0ms');
+      p.finishedGlow.style.setProperty('--fade-delay', animate ? '520ms' : '0ms');
       p.finishedGlow.classList.toggle('is-visible', !!d.finishedCross);
 
+      // Permanent arrowheads stay cleanly on finished lines
+      t.downTip.style.setProperty('--fade-delay', animate ? '820ms' : '0ms');
+      t.downTip.classList.toggle('is-visible', !!d.downTip);
+
+      t.upTip.style.setProperty('--fade-delay', animate ? '820ms' : '0ms');
+      t.upTip.classList.toggle('is-visible', !!d.upTip);
+
+      var lCol = getArmColor(d.armLeftMode);
+      var rCol = getArmColor(d.armRightMode);
+      t.leftTopTip.setAttribute('fill', lCol);
+      t.leftTopTip.setAttribute('stroke', lCol);
+      t.leftBotTip.setAttribute('fill', lCol);
+      t.leftBotTip.setAttribute('stroke', lCol);
+      t.rightTopTip.setAttribute('fill', rCol);
+      t.rightTopTip.setAttribute('stroke', rCol);
+      t.rightBotTip.setAttribute('fill', rCol);
+      t.rightBotTip.setAttribute('stroke', rCol);
+
+      t.leftTopTip.style.setProperty('--fade-delay', animate ? '320ms' : '0ms');
+      t.leftBotTip.style.setProperty('--fade-delay', animate ? '560ms' : '0ms');
+      t.leftTopTip.classList.toggle('is-visible', !!d.armLeftMode && d.armLeftMode !== 'quietSolid');
+      t.leftBotTip.classList.toggle('is-visible', !!d.armLeftMode && d.armLeftMode !== 'quietSolid');
+      t.leftTopTip.classList.toggle('is-soft', d.armLeftMode === 'quietSolid');
+      t.leftBotTip.classList.toggle('is-soft', d.armLeftMode === 'quietSolid');
+
+      t.rightTopTip.style.setProperty('--fade-delay', animate ? '780ms' : '0ms');
+      t.rightBotTip.style.setProperty('--fade-delay', animate ? '1020ms' : '0ms');
+      t.rightTopTip.classList.toggle('is-visible', !!d.armRightMode && d.armRightMode !== 'quietSolid');
+      t.rightBotTip.classList.toggle('is-visible', !!d.armRightMode && d.armRightMode !== 'quietSolid');
+
+      t.redTip.style.setProperty('--fade-delay', animate ? '940ms' : '0ms');
+      t.redTip.classList.toggle('is-visible', !!d.redTip);
+
+      // Words
       p.lblGodLoves.style.setProperty('--fade-delay', arrowLabelDelay);
       p.lblGodLoves.classList.toggle('is-visible', !!d.labelGodLoves);
 
       p.lblWeLove.style.setProperty('--fade-delay', arrowLabelDelay);
       p.lblWeLove.classList.toggle('is-visible', !!d.labelWeLove);
 
-      p.armArrowsOutG.style.setProperty('--fade-delay', washDelay);
-      p.armArrowsOutG.classList.toggle('is-visible', !!d.armArrowsOut);
+      p.lblLoveChurch.style.setProperty('--fade-delay', animate ? '520ms' : '0ms');
+      p.lblLoveChurch.classList.toggle('is-visible', d.labelLoveChurch === 'bold');
+      p.lblLoveChurch.classList.toggle('is-soft', d.labelLoveChurch === 'soft');
 
-      p.lblHorizontalRoles.style.setProperty('--fade-delay', washDelay);
-      p.lblHorizontalRoles.classList.toggle('is-visible', !!d.labelHorizontalRoles);
+      p.lblLoveLost.style.setProperty('--fade-delay', animate ? '960ms' : '0ms');
+      p.lblLoveLost.classList.toggle('is-visible', d.labelLoveLost === 'bold');
+      p.lblLoveLost.classList.toggle('is-soft', d.labelLoveLost === 'soft');
 
       p.lblBelongInside.style.setProperty('--fade-delay', washDelay);
       p.lblBelongInside.classList.toggle('is-visible', d.labelBelongInside === 'bold');
@@ -1300,14 +1359,26 @@
       p.belongIconsG.classList.toggle('is-visible', d.belongIcons === 'bold');
       p.belongIconsG.classList.toggle('is-soft', d.belongIcons === 'soft');
 
-      p.goRingLabels.style.setProperty('--fade-delay', animate ? '560ms' : '0ms');
+      p.goRingLabels.style.setProperty('--fade-delay', animate ? '640ms' : '0ms');
       p.goRingLabels.classList.toggle('is-visible', !!d.goRings);
 
       p.lbl202GoCaption.style.setProperty('--fade-delay', animate ? '260ms' : '0ms');
       p.lbl202GoCaption.classList.toggle('is-visible', !!d.goPreviewCaption);
     }
 
-    function applyStrokePair(mainId, target, treatAsOn, animate, animItems) {
+    // Sequenced sub-windows [startFrac, endFrac] so arm strokes draw:
+    // Left top -> Left bottom -> Left connect -> Right top -> Right bottom -> Right connect
+    function getSegmentWindow(id, hasLeftNew, hasRightNew) {
+      if (id === 'stroke-arm-left-top') return [0.0, hasRightNew ? 0.17 : 0.36];
+      if (id === 'stroke-arm-left-bottom') return [hasRightNew ? 0.17 : 0.36, hasRightNew ? 0.34 : 0.72];
+      if (id === 'stroke-arm-left-cap') return [hasRightNew ? 0.34 : 0.72, hasRightNew ? 0.48 : 1.0];
+      if (id === 'stroke-arm-right-top') return [hasLeftNew ? 0.52 : 0.0, hasLeftNew ? 0.69 : 0.36];
+      if (id === 'stroke-arm-right-bottom') return [hasLeftNew ? 0.69 : 0.36, hasLeftNew ? 0.86 : 0.72];
+      if (id === 'stroke-arm-right-cap') return [hasLeftNew ? 0.86 : 0.72, 1.0];
+      return [0.0, 1.0];
+    }
+
+    function applyStrokePair(mainId, target, treatAsOn, animate, animItems, win) {
       var pairs = [document.getElementById(mainId), document.getElementById(mainId + '-tex')];
       pairs.forEach(function (node) {
         if (!node) return;
@@ -1322,11 +1393,20 @@
           if (animate && !treatAsOn) {
             node.style.strokeDashoffset = String(len);
             node.classList.add('is-visible');
+            var tip = (!isTex && svgBundle.penTips[mainId]) ? svgBundle.penTips[mainId] : null;
+            if (tip) {
+              var tipPaths = tip.querySelectorAll('path');
+              for (var k = 0; k < tipPaths.length; k++) {
+                tipPaths[k].setAttribute('fill', target.color);
+                tipPaths[k].setAttribute('stroke', target.color);
+              }
+            }
             animItems.push({
               node: node,
               len: len,
-              tip: isTex ? null : (svgBundle.penTips[mainId] || null),
-              isArm: mainId === 'stroke-arm-left' || mainId === 'stroke-arm-right'
+              tip: tip,
+              w0: win[0],
+              w1: win[1]
             });
           } else {
             node.style.strokeDashoffset = '0';
@@ -1358,16 +1438,17 @@
       function frame(ts) {
         if (!startTs) startTs = ts;
         var raw = Math.min(1, (ts - startTs) / durMs);
-        var eased = 1 - Math.pow(1 - raw, 2.2);
         animItems.forEach(function (item) {
+          var localRaw = (raw - item.w0) / Math.max(0.01, item.w1 - item.w0);
+          localRaw = Math.max(0, Math.min(1, localRaw));
+          var eased = 1 - Math.pow(1 - localRaw, 2.0);
           var drawn = item.len * eased;
           item.node.style.strokeDashoffset = (item.len - drawn).toFixed(1);
-          // For horizontal arms, show outward arrow only during the outward top half (first ~45% of path)
           if (item.tip) {
-            if (item.isArm && eased > 0.45) {
-              item.tip.classList.remove('is-active');
-            } else {
+            if (localRaw > 0 && localRaw < 0.99) {
               positionPenTip(item, drawn);
+            } else {
+              item.tip.classList.remove('is-active');
             }
           }
         });
@@ -1392,8 +1473,10 @@
       var isForward = nextIdx === currentStep + 1;
       var animate = isForward && !reducedMotionQuery.matches;
       var nextStrokeMap = buildStrokeTargetMap(st);
-      // 30% slower than 720ms (~980ms for normal steps, 640ms for quick review)
-      var strokeDur = st.quickReview ? 640 : 980;
+
+      var hasLeftArmNew = !!(st.draw && st.draw.armLeftMode && (!prevStrokeMap['stroke-arm-left-top'].on || st.redrawLeftArm));
+      var hasRightArmNew = !!(st.draw && st.draw.armRightMode && !prevStrokeMap['stroke-arm-right-top'].on);
+      var strokeDur = st.quickReview ? 680 : ((hasLeftArmNew && hasRightArmNew) ? 1480 : 1020);
 
       host.classList.add('is-instant');
 
@@ -1401,13 +1484,14 @@
       Object.keys(nextStrokeMap).forEach(function (id) {
         var nextT = nextStrokeMap[id];
         var wasT = prevStrokeMap[id] || { on: false };
-        var forceRedraw = !!(st.redrawLeftArm && id === 'stroke-arm-left');
+        var forceRedraw = !!(st.redrawLeftArm && id.indexOf('stroke-arm-left-') === 0);
         var treatAsOn = !forceRedraw && wasT.on;
         var singleNode = document.getElementById(id);
         var hasTex = !!document.getElementById(id + '-tex');
+        var win = getSegmentWindow(id, hasLeftArmNew, hasRightArmNew);
 
         if (hasTex) {
-          applyStrokePair(id, nextT, treatAsOn, animate, animItems);
+          applyStrokePair(id, nextT, treatAsOn, animate, animItems, win);
         } else if (singleNode) {
           var len = parseFloat(singleNode.dataset.len || '300');
           if (nextT.color) singleNode.setAttribute('stroke', nextT.color);
@@ -1415,7 +1499,7 @@
             if (animate && !treatAsOn) {
               singleNode.style.strokeDashoffset = String(len);
               singleNode.classList.add('is-visible');
-              animItems.push({ node: singleNode, len: len, tip: null, isArm: false });
+              animItems.push({ node: singleNode, len: len, tip: null, w0: 0, w1: 1 });
             } else {
               singleNode.style.strokeDashoffset = '0';
               singleNode.classList.add('is-visible');
@@ -1444,7 +1528,7 @@
       document.documentElement.style.setProperty('--step-dark', st.accentDark);
       svgBundle.svgDesc.textContent = st.desc;
 
-      pillButtons.forEach(function (btn, idx) {
+      dotButtons.forEach(function (btn, idx) {
         btn.classList.toggle('active', idx === currentStep);
         btn.classList.toggle('passed', idx > 0 && idx < currentStep);
         btn.setAttribute('aria-pressed', idx === currentStep ? 'true' : 'false');
