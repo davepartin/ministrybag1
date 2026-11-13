@@ -205,6 +205,20 @@
             text += label + '\n';
             text += formatStoredValue(field, readFieldValue(field, responses, liveValues)) + '\n\n';
         }
+        // Removed prompts stay out of the lesson while their saved answers remain
+        // exportable. Only explicitly listed IDs from this lesson may be read.
+        var earlierText = '';
+        var retired = isPlainObject(lessonData) && Array.isArray(lessonData.retiredQuestions) ? lessonData.retiredQuestions : [];
+        retired.forEach(function (block) {
+            if (!block || block.type !== 'question' || typeof block.id !== 'string' || !block.id) return;
+            var id = questionRuntimeId(courseId, block.id);
+            if (includedIds.indexOf(id) !== -1) return;
+            var value = readFieldValue({ runtimeId: id }, responses, liveValues);
+            if (typeof value !== 'string' || !value.trim()) return;
+            includedIds.push(id);
+            earlierText += fieldLabel(block) + '\n' + value + '\n\n';
+        });
+        if (earlierText) text += 'Earlier saved responses\n\n' + earlierText;
         var notesText = '';
         collectLessonReadingNotes(courseId, lessonData).forEach(function (note) {
             // A cleared live field must suppress its older stored value, too.
@@ -215,7 +229,7 @@
             notesText += note.label + '\n' + value + '\n\n';
         });
         if (notesText) text += 'Reading Notes\n\n' + notesText;
-        if (!fields.length && !notesText) text += 'No written responses in this lesson.\n\n';
+        if (!fields.length && !notesText && !earlierText) text += 'No written responses in this lesson.\n\n';
         return { text: text, includedIds: includedIds, title: heading, fields: fields };
     }
 

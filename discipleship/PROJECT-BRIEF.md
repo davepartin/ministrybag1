@@ -146,6 +146,8 @@ discipleship/
 
 Each lesson JSON has a `title`, optional `description`, and a `blocks` array. Available block types:
 
+An optional top-level `retiredQuestions` array preserves the original question objects for prompts removed from the lesson. These are not rendered as answer fields. Email includes a retired answer under "Earlier saved responses" only when a nonblank response already exists for that exact ID. Keep these IDs reserved; do not reuse them for a different prompt or delete the stored response. Display numbering may change without changing storage IDs.
+
 - `heading` - section header (with optional `subheading: true` flag, optional `icon` property for image path)
 - `subheading` / `subheading2` - smaller section headers
 - `text` - paragraph content (supports inline HTML: `<strong>`, `<em>`)
