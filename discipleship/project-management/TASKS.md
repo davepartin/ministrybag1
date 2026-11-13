@@ -243,4 +243,4 @@ Plan and standard: [reviews/2026-11-11-series-review.md](reviews/2026-11-11-seri
 
 | [ ] | WORD-101-02-BAPTISM | REVIEW | Codex / codex/101-02-baptism-review / 2026-11-13 | Dave supplied exact replacement | Replace only the Review baptism sentence; preserve all other lesson content. |
 
-| [ ] | INTRO-201-10 | ACTIVE | Codex / codex/201-10-prodigal-return / 2026-11-13 | Dave approved two-sentence callback | Replace only story opening; preserve Learning Circle and Claude PR201. |
+| [ ] | INTRO-201-10 | REVIEW | Codex / codex/201-10-prodigal-return / 2026-11-13 | Dave approved two-sentence callback | Replace only story opening; preserve Learning Circle and Claude PR201. |

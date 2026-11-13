@@ -1,5 +1,10 @@
 # Growing Together Team Board
 
+## 201-10 story callback: November13
+
+Dave approved a two-sentence return to the prodigal story:201-01 Father welcome,201-02 new identity, now the son coming to his senses. Replaced only the old Jesus-once-told opening; the rest of the story and Learning Circle are untouched. [Log](logs/2026-11-13-INTRO-201-10-codex.md). Claude PR201 remains open as a separate larger flow revision: **preserve this approved opening when integrating it**. This packet does not replace Claude's other work.
+
+
 Latest exact wording from Dave: the101-02 Review now says "Baptism is one of the first outward signs of the life God has already started inside you." Its following assurance sentence and all other lesson content are unchanged. See [wording log](logs/2026-11-13-WORD-101-02-BAPTISM-codex.md). This supersedes older notes that the Review sentence was being left for later.
 
 ## 101-02 Scripture focus: November 13
