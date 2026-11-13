@@ -240,3 +240,5 @@ Plan and standard: [reviews/2026-11-11-series-review.md](reviews/2026-11-11-seri
 | [ ] | READ-HEADER-STANDARD | REVIEW | Codex / codex/reader-header-standard / 2026-11-13 | Dave approved John4-6 header as standard | Apply the same header to every built-in chapter reader; preserve reading content and storage keys. |
 
 | [ ] | FOCUS-101-02 | REVIEW | Codex / codex/101-02-scripture-focus / 2026-11-13 | Dave approved two Scripture cuts and folding new life into assurance | Remove inline Galatians2:20 and2Corinthians5:17,21 block; preserve all questions, widget and readings. |
+
+| [ ] | WORD-101-02-BAPTISM | REVIEW | Codex / codex/101-02-baptism-review / 2026-11-13 | Dave supplied exact replacement | Replace only the Review baptism sentence; preserve all other lesson content. |
