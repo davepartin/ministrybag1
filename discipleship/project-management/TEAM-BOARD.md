@@ -1,5 +1,9 @@
 # Growing Together Team Board
 
+## One cross across the 200 series: Dave's direction, November 13
+
+Dave wants the same drawn Great Commandment cross to open all three 200 courses. Upright beam: 201, God's love down and ours back up. Left arm: 202, Belong, home and church family. Right arm: 203, Go, people not yet in the family of God. Shared line: "Love comes down, goes up, and reaches out." Cross the Road leaves 202-01. Read the [plan](reviews/2026-11-13-cross-arc-plan.md) before touching 201-01, 202-01 or 203-01, and the [Gemini widget brief](reviews/2026-11-13-cross-widget-brief.md) before building. Order: Gemini builds WIDGET-CROSS-ARC (widget files only) -> Dave reviews three versions on his phone -> Claude wires CROSS-ARC-LESSONS. Dave's 201-01 work is his; only the widget swap and one bridge sentence are planned there.
+
 ## 101-02 Scripture focus: November 13
 
 Dave accepted the two-cut proposal: remove the inline Galatians2:20 quotation and2Corinthians5:17,21 block, folding new life/adoption into the assurance paragraph under You Can Be Sure. John3:16-17, Romans6:3-4 and1John5:13 remain. Lesson prose count1136 to1049,87 fewer words. All8questions, saved keys, John4-6 assignments, artwork and A-D widget unchanged. Dave only needs to reread the second baptism paragraph and assurance ending. See [log](logs/2026-11-13-FOCUS-101-02-codex.md). This supersedes the earlier suggestion-only status below; final whole-lesson approval remains separate.
