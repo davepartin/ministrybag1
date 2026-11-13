@@ -230,4 +230,4 @@ Plan and standard: [reviews/2026-11-11-series-review.md](reviews/2026-11-11-seri
 
 
 
-| [ ] | SERIES-CONSISTENCY | ACTIVE | Codex / codex/series-pass / 2026-11-12 | Dave overnight assignment | Prepare a measured editing guide without changing lesson paragraphs. |
+| [ ] | SERIES-CONSISTENCY | REVIEW | Codex / codex/series-consistency-pass / 2026-11-12 | Dave overnight assignment | Prepare a measured editing guide without changing lesson paragraphs. |
