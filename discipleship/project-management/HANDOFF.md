@@ -1,5 +1,10 @@
 # Resume here
 
+## Latest201-10 edit pass: nine items from Dave
+
+Dave's exact prose changes and clearer Repent/Believe sections are applied. The removed hardest-step question is absent from the lesson; prior answers remain in Email only when saved. Display questions are10.1-10.3 with existing IDs. Father section30% shorter, Scripture/widget/art/opening preserved. [Full change record](logs/2026-11-13-DAVE-201-10-ROUND2-codex.md). This supersedes the earlier201-10 flow-only editing link.
+
+
 ## Edit the newest201-10 draft
 
 Claude PR201 is being integrated with his full flow revision and teach-it question plus Dave's approved story callback. [Integration evidence](logs/2026-11-13-INTEGRATE-201-10-codex.md). Use the verified live version after deployment; older PR201 previews lack the callback. Before sending Dave to another lesson, check main and pending PRs and clearly identify the newest version. Older201-10 waiting notices below are historical after this integration. Final wording approval remains with Dave.
