@@ -1,5 +1,14 @@
 # Growing Together Team Board
 
+## Overnight handoff: November 12
+
+Dave assigned Claude 201-05, 201-10 and 202-01 as three separate editorial jobs. Codex leaves those files untouched. Dave is editing paragraphs; preserve his edits and avoid broad rewrites.
+
+Codex prepared a [37-lesson cadence/editing guide](reviews/2026-11-12-series-editing-guide.md), with measurements and one pointer per lesson. It changes no lesson prose or grades. Separately, FIX-101-AUDIO corrects only the reading-plan sentence in 101-01 to distinguish reading here from listening in a separate audio Bible. RESTORE-LABEL-REVIEW documents why old PR #28 needs a fresh port: 61 current keys are missing from its old label index, 64 old keys are retired, and 109 shared labels differ. Restore behavior remains unchanged. Each packet has its own PR/log and technical checks; final editorial approval stays with Dave.
+
+**Dave tomorrow:** reread just the corrected audio sentence in 101-01. No other paragraphs were rewritten by this batch. Use the chart and editing guide as optional pointers as you comb through each lesson. Check Claude's three PRs before editing those lessons. No new artwork or widget rebuild is claimed.
+
+
 ## Lesson-by-lesson review chart
 
 Dave requested a single chart with a grade, current word count and separate approval for length, questions, lesson text, widgets and images. The [37-lesson review chart](reviews/2026-11-12-lesson-review-chart.md) and [Excel workbook](reviews/2026-11-12-lesson-review-chart.xlsx) use main be039c7, with a consistent count method, all 263 current question prompts and exact-version evidence. The workbook adds a Grade detail sheet with all ten checkpoint scores, the earlier score, the reason and the next improvement for every lesson.
