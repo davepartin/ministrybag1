@@ -2,13 +2,13 @@
 
 ## Claude overnight editorial batch, November 13, 2026
 
-Dave assigned Claude three bounded editorial jobs on the night of November 12, from the [review chart](reviews/2026-11-12-lesson-review-chart.md): focused improvements to existing drafts, not rewrites. One lesson per branch and PR, stopped at REVIEW. Prose only: question objects, IDs, Scripture quotations, readings, widgets, images and sequences unchanged. Question proposals are in each PR body for Dave. Codex handles technical integration; Dave approves wording.
+Dave assigned Claude three bounded editorial jobs on the night of November 12, from the [review chart](reviews/2026-11-12-lesson-review-chart.md): focused improvements to existing drafts, not rewrites. One lesson per branch and PR, stopped at REVIEW. Prose only: question objects, IDs, Scripture quotations, readings, widgets, images and sequences unchanged. Question proposals are in each PR body for Dave. Codex handles technical integration; Dave approves wording. The three PRs touch different lesson files and different TASKS rows, so they can merge in any order.
 
-| Task | Lesson | Branch | Status |
+| Task | Lesson | PR | Status |
 |---|---|---|---|
-| TRIM-201-05 | 201-05 Overview of the Bible | claude/trim-201-05 | REVIEW. 1,508 to 1,430 words. [Log](logs/2026-11-13-TRIM-201-05-claude.md) |
-| FLOW-201-10 | 201-10 Repentance and the Learning Circle | claude/flow-201-10 | Queued, Claude, next |
-| TRIM-202-01 | 202-01 Loving Your Neighbors | claude/trim-202-01 | Queued, Claude, after 201-10 |
+| TRIM-201-05 | 201-05 Overview of the Bible | [#200](https://github.com/davepartin/ministrybag1/pull/200) | REVIEW. 1,508 to 1,430 words. [Log](logs/2026-11-13-TRIM-201-05-claude.md) |
+| FLOW-201-10 | 201-10 Repentance and the Learning Circle | [#201](https://github.com/davepartin/ministrybag1/pull/201) | REVIEW. Story moved up after the recap; 1,534 to 1,490 words, depth kept. Log in that PR: logs/2026-11-13-FLOW-201-10-claude.md |
+| TRIM-202-01 | 202-01 Loving Your Neighbors | [#202](https://github.com/davepartin/ministrybag1/pull/202) | REVIEW. 1,442 to 1,404 words; Grok sequence byte-identical, 92 sequence checks pass. Log in that PR: logs/2026-11-13-TRIM-202-01-claude.md |
 
 ## Lesson-by-lesson review chart
 
