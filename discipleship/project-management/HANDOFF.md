@@ -1,5 +1,12 @@
 # Resume here
 
+## Latest integration: 101-02, November 13
+
+Gemini PR #206 is integrated as 4b5dc3c: A-D Romans Road with the cross reveal, new John 4-6 reading headers, and the Greenhouse baptism wording. Independent technical/preview checks passed. Dave should reread the Greenhouse ending and Step D; the neighboring ABC introduction and older baptism sentence in the Review remain intentionally untouched for his later edit. The other six 101 lessons retain their previous reader appearance.
+
+Codex handles technical integration under current standing roles. Workers open a complete widget-plus-wording PR, record changed paragraphs on TEAM-BOARD and stop at REVIEW. No separate Claude technical review is required. Saved answers, reading keys and Scripture blocks are preserved. See [review log](logs/2026-11-13-REVIEW-206-codex.md).
+
+
 ## Latest review aid: 37-lesson approval chart
 
 Dave requested a lesson-by-lesson chart with grades, words and separate approvals for length, questions, text, widgets and images. Start at [the review chart](reviews/2026-11-12-lesson-review-chart.md), with its Excel/CSV downloads and all 263 current questions. It is a snapshot of main be039c7 and distinguishes matching recorded approvals, scoped/partial approvals, changed components and unrecorded gates. The five-sheet workbook includes the ten grading checkpoints, earlier/current scores, reasons and next improvements. Refreshed production average is 90.3/100; five AAA (A+). These grades supersede the older pre-integration scorecard for this snapshot and remain separate from Dave approval. No lesson content or approval record was changed by creating it. Use it for Dave's one-lesson-at-a-time review and put new actual approvals in DAVE.md against the reviewed version.
