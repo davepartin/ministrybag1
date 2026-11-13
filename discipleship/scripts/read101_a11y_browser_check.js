@@ -23,9 +23,21 @@ function check(name, value) { assert.ok(value, name); passed++; console.log('PAS
             await page.goto(BASE + '#101-1');
             await page.waitForSelector('#session-1.active');
             await page.waitForTimeout(500);
-            check(width + ': all 21 chapter toggles are native named buttons', await page.locator('.chapter-card-header').evaluateAll(headers => headers.length === 21 && headers.every(el =>
-                el.tagName === 'BUTTON' && el.type === 'button' && el.id && el.textContent.includes('Open John') &&
-                el.querySelector('.chapter-done-badge').getAttribute('aria-hidden') === 'true' && el.querySelector('.chapter-card-toggle').getAttribute('aria-hidden') === 'true')));
+            check(width + ': all 21 chapter toggles are native named buttons', await page.locator('.chapter-card-header').evaluateAll(headers => headers.length === 21 && headers.every(el => {
+                if (el.tagName !== 'BUTTON' || el.type !== 'button' || !el.id) return false;
+                if (el.closest('.chapter-card--v2')) {
+                    const badge = el.querySelector('.chapter-status-pill');
+                    const toggle = el.querySelector('.chapter-action-pill');
+                    return el.textContent.includes('Bible Reading') && el.textContent.includes('John') &&
+                        badge && badge.getAttribute('aria-hidden') === 'true' &&
+                        toggle && toggle.getAttribute('aria-hidden') === 'true';
+                }
+                const badge = el.querySelector('.chapter-done-badge');
+                const toggle = el.querySelector('.chapter-card-toggle');
+                return el.textContent.includes('Open John') &&
+                    badge && badge.getAttribute('aria-hidden') === 'true' &&
+                    toggle && toggle.getAttribute('aria-hidden') === 'true';
+            })));
             check(width + ': every collapsed toggle controls one hidden chapter', await page.locator('.chapter-card-header').evaluateAll(headers => headers.every(el => {
                 const body = document.getElementById(el.getAttribute('aria-controls'));
                 return el.getAttribute('aria-expanded') === 'false' && body && body.hidden && body.closest('.chapter-card') === el.closest('.chapter-card');
