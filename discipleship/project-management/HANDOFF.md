@@ -1,5 +1,28 @@
 # Resume here
 
+Latest201-10 edit: Dave approved the two-sentence callback to the first two Growing Deep lessons, then a return to the pigpen and repentance. Only that story opening changed. Claude PR201 remains open; preserve this callback when integrating his flow revision. [Evidence](logs/2026-11-13-INTRO-201-10-codex.md).
+
+
+Latest101-02 wording: Dave supplied the exact Review sentence "Baptism is one of the first outward signs of the life God has already started inside you." Applied without any other lesson-text changes. See [log](logs/2026-11-13-WORD-101-02-BAPTISM-codex.md); older notes about the Review wording being left untouched are superseded.
+
+
+## Latest editorial packet: 101-02 lighter ending
+
+Dave accepted FOCUS-101-02: remove the inline Galatians2:20 quotation and2Corinthians5:17,21 block; fold the brief new-life/adoption thought into assurance under You Can Be Sure. John3, Romans6 and1John5 remain as the three quoted anchors. Widget, questions, readings and saved keys are preserved. Reread pointers and checks: [log](logs/2026-11-13-FOCUS-101-02-codex.md). Earlier proposal-only notices below are historical.
+
+
+## Shared chapter header standard: November 13
+
+Dave approved the John4-6 header design for every embedded chapter reader. READ-HEADER-STANDARD uses one shared renderer for all21 assigned John chapters and future bible_reading blocks. Lesson JSON, Bible text and reading keys are untouched. This supersedes the earlier101-02-only appearance note below. Dave is considering a lighter101-02 Scripture ending; see the task log for the suggestion, which is not implemented.
+
+
+## Latest integration: 101-02, November 13
+
+Gemini PR #206 is integrated as 4b5dc3c: A-D Romans Road with the cross reveal, new John 4-6 reading headers, and the Greenhouse baptism wording. Independent technical/preview checks passed. Dave should reread the Greenhouse ending and Step D; the neighboring ABC introduction and older baptism sentence in the Review remain intentionally untouched for his later edit. The other six 101 lessons retain their previous reader appearance.
+
+Codex handles technical integration under current standing roles. Workers open a complete widget-plus-wording PR, record changed paragraphs on TEAM-BOARD and stop at REVIEW. No separate Claude technical review is required. Saved answers, reading keys and Scripture blocks are preserved. See [review log](logs/2026-11-13-REVIEW-206-codex.md).
+
+
 ## Latest review aid: 37-lesson approval chart
 
 Dave requested a lesson-by-lesson chart with grades, words and separate approvals for length, questions, text, widgets and images. Start at [the review chart](reviews/2026-11-12-lesson-review-chart.md), with its Excel/CSV downloads and all 263 current questions. It is a snapshot of main be039c7 and distinguishes matching recorded approvals, scoped/partial approvals, changed components and unrecorded gates. The five-sheet workbook includes the ten grading checkpoints, earlier/current scores, reasons and next improvements. Refreshed production average is 90.3/100; five AAA (A+). These grades supersede the older pre-integration scorecard for this snapshot and remain separate from Dave approval. No lesson content or approval record was changed by creating it. Use it for Dave's one-lesson-at-a-time review and put new actual approvals in DAVE.md against the reviewed version.
