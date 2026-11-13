@@ -1,5 +1,13 @@
 # Growing Together Team Board
 
+## Lesson-by-lesson review chart
+
+Dave requested a single chart with a grade, current word count and separate approval for length, questions, lesson text, widgets and images. The [37-lesson review chart](reviews/2026-11-12-lesson-review-chart.md) and [Excel workbook](reviews/2026-11-12-lesson-review-chart.xlsx) use main be039c7, with a consistent count method, all 263 current question prompts and exact-version evidence. The workbook adds a Grade detail sheet with all ten checkpoint scores, the earlier score, the reason and the next improvement for every lesson.
+
+Recorded approval is separated from scoped/partial approval, changed-since-approval and unrecorded status. Ten current lesson texts match recorded approvals (Daniel includes the separately approved age correction); 203-09 has later wording to recheck. Length sign-off is not inferred from the roughly 1,400-word guide; 203-08 keeps Dave's accepted-longer exception. Use this chart for Dave's one-lesson-at-a-time review; do not treat publication or a high grade as approval.
+
+**Refreshed production grades:** average 90.3/100; five AAA (A+), ten A, eleven A-, six B+, three B and two B-. This refresh supersedes the pre-integration grades below for the current assembled packages. Lowest are 201-05 Bible overview and 201-10 Learning Circle at B-. Preserve Dave's requested Learning Circle depth; its review concerns flow, repeated setup, explicit transfer and the older widget review. Suffering is now A- after Joseph art and the pastoral rewrite; stewardship is B+ with the stool and widow sequence, with its retained money-focused questions still to align. These are Codex production estimates using the existing rubric, separate from Dave's final approval. No lesson is edited to raise a grade.
+
 ## Current publishing checkpoint: working drafts assembled, November 12, 2026
 
 Dave's latest instruction is to integrate the working pieces now so he can edit one lesson at a time later: "do all this, i can edit the lessons later ... add them to the main". This supersedes earlier per-packet publishing holds for the items below. Integration is not final pastoral, wording, personal artwork or release approval. Preserve Dave's artwork and saved-answer contracts. Firebase configuration, billing, retention and workflows remain unchanged.

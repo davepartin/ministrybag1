@@ -1,5 +1,9 @@
 # Resume here
 
+## Latest review aid: 37-lesson approval chart
+
+Dave requested a lesson-by-lesson chart with grades, words and separate approvals for length, questions, text, widgets and images. Start at [the review chart](reviews/2026-11-12-lesson-review-chart.md), with its Excel/CSV downloads and all 263 current questions. It is a snapshot of main be039c7 and distinguishes matching recorded approvals, scoped/partial approvals, changed components and unrecorded gates. The five-sheet workbook includes the ten grading checkpoints, earlier/current scores, reasons and next improvements. Refreshed production average is 90.3/100; five AAA (A+). These grades supersede the older pre-integration scorecard for this snapshot and remain separate from Dave approval. No lesson content or approval record was changed by creating it. Use it for Dave's one-lesson-at-a-time review and put new actual approvals in DAVE.md against the reviewed version.
+
 ## Current checkpoint: integrated working pieces, November 12, 2026
 
 Dave authorized assembling the pieces into main before his later lesson-by-lesson edit. The current publishing table at the top of TEAM-BOARD supersedes older REVIEW/publishing-hold passages below for this batch. Integrated: #191 Bible, #195 suffering with question 5.5 restored, #192 source manuscript, #193 stool, #196 whole-life stewardship draft, #190 Samaritan sequence, #181 widow sequence, #188 house timing, #186 Emmaus sequence, #189 mirror and #194 Romans Road. Grok's worship-chain wiring #197 is also integrated after 55 local and 55 exact-preview checks. The integration log records the final combined verification.
