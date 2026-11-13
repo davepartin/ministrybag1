@@ -10,6 +10,16 @@ Dave assigned Claude three bounded editorial jobs on the night of November 12, f
 | FLOW-201-10 | 201-10 Repentance and the Learning Circle | [#201](https://github.com/davepartin/ministrybag1/pull/201) | REVIEW. Story moved up after the recap; 1,534 to 1,503 words, depth kept, teach-it 10.4 added. Log in that PR: logs/2026-11-13-FLOW-201-10-claude.md |
 | TRIM-202-01 | 202-01 Loving Your Neighbors | [#202](https://github.com/davepartin/ministrybag1/pull/202) | REVIEW. 1,442 to 1,422 words, teach-it 1.5 added (now five mid-lesson questions); Grok sequence byte-identical, 92 sequence checks pass. Log in that PR: logs/2026-11-13-TRIM-202-01-claude.md |
 
+## Latest editorial packet: 101-02 lighter ending
+
+Dave accepted FOCUS-101-02: remove the inline Galatians2:20 quotation and2Corinthians5:17,21 block; fold the brief new-life/adoption thought into assurance under You Can Be Sure. John3, Romans6 and1John5 remain as the three quoted anchors. Widget, questions, readings and saved keys are preserved. Reread pointers and checks: [log](logs/2026-11-13-FOCUS-101-02-codex.md). Earlier proposal-only notices below are historical.
+
+
+## Shared chapter header standard: November 13
+
+Dave approved the John4-6 header design for every embedded chapter reader. READ-HEADER-STANDARD uses one shared renderer for all21 assigned John chapters and future bible_reading blocks. Lesson JSON, Bible text and reading keys are untouched. This supersedes the earlier101-02-only appearance note below. Dave is considering a lighter101-02 Scripture ending; see the task log for the suggestion, which is not implemented.
+
+
 ## Latest integration: 101-02, November 13
 
 Gemini PR #206 is integrated as 4b5dc3c: A-D Romans Road with the cross reveal, new John 4-6 reading headers, and the Greenhouse baptism wording. Independent technical/preview checks passed. Dave should reread the Greenhouse ending and Step D; the neighboring ABC introduction and older baptism sentence in the Review remain intentionally untouched for his later edit. The other six 101 lessons retain their previous reader appearance.

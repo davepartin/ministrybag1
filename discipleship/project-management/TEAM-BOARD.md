@@ -10,6 +10,16 @@ Dave assigned Claude three bounded editorial jobs on the night of November 12, f
 | FLOW-201-10 | 201-10 Repentance and the Learning Circle | [#201](https://github.com/davepartin/ministrybag1/pull/201) | REVIEW. Story moved up after the recap; 1,534 to 1,503 words, depth kept, teach-it 10.4 added. Log in that PR: logs/2026-11-13-FLOW-201-10-claude.md |
 | TRIM-202-01 | 202-01 Loving Your Neighbors | [#202](https://github.com/davepartin/ministrybag1/pull/202) | REVIEW. 1,442 to 1,422 words, teach-it 1.5 added (now five mid-lesson questions); Grok sequence byte-identical, 92 sequence checks pass. Log in that PR: logs/2026-11-13-TRIM-202-01-claude.md |
 
+## 101-02 Scripture focus: November 13
+
+Dave accepted the two-cut proposal: remove the inline Galatians2:20 quotation and2Corinthians5:17,21 block, folding new life/adoption into the assurance paragraph under You Can Be Sure. John3:16-17, Romans6:3-4 and1John5:13 remain. Lesson prose count1136 to1049,87 fewer words. All8questions, saved keys, John4-6 assignments, artwork and A-D widget unchanged. Dave only needs to reread the second baptism paragraph and assurance ending. See [log](logs/2026-11-13-FOCUS-101-02-codex.md). This supersedes the earlier suggestion-only status below; final whole-lesson approval remains separate.
+
+
+## Shared chapter header standard: November 13
+
+Dave chose the John4-6 design as the standard for all embedded Bible chapter headers. READ-HEADER-STANDARD removes the101-02-only gate and duplicate legacy renderer. It covers all21 assigned John chapters today and future bible_reading blocks. No lesson text, question, reading assignment or saved key changes. See [log](logs/2026-11-13-READ-HEADER-STANDARD-codex.md) for scope and the separate101-02 Scripture-load suggestion; that suggestion is not implemented.
+
+
 ## Lesson 101-02 integrated working draft: November 13, 2026
 
 - **Task / PR:** [PR #206](https://github.com/davepartin/ministrybag1/pull/206) on isolated branch `gemini/101-02-updates` off `origin/main` (`a886cb7`)
