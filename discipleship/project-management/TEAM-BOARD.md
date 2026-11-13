@@ -1,10 +1,10 @@
 # Growing Together Team Board
 
-## Lesson 101-02 package ready for Codex review (`REVIEW`): November 13, 2026
+## Lesson 101-02 integrated working draft: November 13, 2026
 
 - **Task / PR:** [PR #206](https://github.com/davepartin/ministrybag1/pull/206) on isolated branch `gemini/101-02-updates` off `origin/main` (`a886cb7`)
 - **Firebase preview:** https://growing-together-discipleship--pr206-gemini-101-02-upd-psslq7ph.web.app/#101-2
-- **Status:** `REVIEW` (stopped for Codex technical integration and automatic merge deploy; preserves all question IDs `2-1`, `2-2`, `2-3`, `2-5`, `2-key`, `2-step`, `2-devos`, `2-prayer`, saved reading keys `notes-101-John-*` / `check-101-John-*`, and Scripture blocks). Details in [log](logs/2026-11-13-101-02-WIDGET-READING-gemini.md).
+- **Status:** technically integrated through #206 as `4b5dc3c`; final editorial/visual approval remains with Dave ( preserves all question IDs `2-1`, `2-2`, `2-3`, `2-5`, `2-key`, `2-step`, `2-devos`, `2-prayer`, saved reading keys `notes-101-John-*` / `check-101-John-*`, and Scripture blocks). Details in [log](logs/2026-11-13-101-02-WIDGET-READING-gemini.md).
 - **Changed files:** `discipleship/widgets/romans-road3.html`, `discipleship/data/101-02.json`, `discipleship/index.html`, `discipleship/scripts/read101_a11y_browser_check.js`, `discipleship/project-management/TEAM-BOARD.md`, `discipleship/project-management/logs/2026-11-13-101-02-WIDGET-READING-gemini.md`.
 - **Changed paragraph / card summaries:**
   1. `101-02.json` (`The Greenhouse`, lines 28-31): trimmed `", and everyone can see what was already true."` in paragraph 2, and updated the end of paragraph 3 to `"Baptism is one of the ways that green shoot becomes visible."`
@@ -15,6 +15,8 @@
   2. `romans-road3.html` (`Step D`): `"Your part: Live in dependence on the Spirit of God by fighting sin and following the ways of Jesus. God's part: Jesus will be with you every day."`
   3. Adjacent `101-02.json` paragraphs left untouched for your next pass: line 61 (`"three letters, the ABCs of salvation..."` above the 4-stop `A-D` widget) and line 141 (`"Baptism is the first green shoot..."` in `Lesson 2 Review`).
 - **Checks (all exit `0`):** `qa_foundation.sh` (`32` iframe, `126` assets, `415` Bible text, `1360` image checks), `test_answer_storage.js` (`64`), `read101_a11y_browser_check.js` (`57`), `read101_notes_browser_check.js` (`36`), `read101_retry_browser_check.js` (`33`), and `101-02` phone (`390x844`) + keyboard integration check.
+
+Codex independent integration review: required QA/export 167/storage 64/assets 126/images 1360 all exit 0; exact-preview reader accessibility 57, notes/Email 36, retry 33, widget 45 and new-header checks 21 all exit 0. Screenshots at phone widths inspected. Runtime source is unchanged by this status note. See [Codex review](logs/2026-11-13-REVIEW-206-codex.md).
 
 ## Overnight handoff: November 12
 
