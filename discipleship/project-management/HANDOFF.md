@@ -1,5 +1,8 @@
 # Resume here
 
+Latest201-10 edit: Dave approved the two-sentence callback to the first two Growing Deep lessons, then a return to the pigpen and repentance. Only that story opening changed. Claude PR201 remains open; preserve this callback when integrating his flow revision. [Evidence](logs/2026-11-13-INTRO-201-10-codex.md).
+
+
 Latest101-02 wording: Dave supplied the exact Review sentence "Baptism is one of the first outward signs of the life God has already started inside you." Applied without any other lesson-text changes. See [log](logs/2026-11-13-WORD-101-02-BAPTISM-codex.md); older notes about the Review wording being left untouched are superseded.
 
 
