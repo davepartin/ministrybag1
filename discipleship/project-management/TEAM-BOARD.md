@@ -10,6 +10,33 @@ Dave assigned Claude three bounded editorial jobs on the night of November 12, f
 | FLOW-201-10 | 201-10 Repentance and the Learning Circle | [#201](https://github.com/davepartin/ministrybag1/pull/201) | REVIEW. Story moved up after the recap; 1,534 to 1,503 words, depth kept, teach-it 10.4 added. Log in that PR: logs/2026-11-13-FLOW-201-10-claude.md |
 | TRIM-202-01 | 202-01 Loving Your Neighbors | [#202](https://github.com/davepartin/ministrybag1/pull/202) | REVIEW. 1,442 to 1,422 words, teach-it 1.5 added (now five mid-lesson questions); Grok sequence byte-identical, 92 sequence checks pass. Log in that PR: logs/2026-11-13-TRIM-202-01-claude.md |
 
+## Lesson 101-02 integrated working draft: November 13, 2026
+
+- **Task / PR:** [PR #206](https://github.com/davepartin/ministrybag1/pull/206) on isolated branch `gemini/101-02-updates` off `origin/main` (`a886cb7`)
+- **Firebase preview:** https://growing-together-discipleship--pr206-gemini-101-02-upd-psslq7ph.web.app/#101-2
+- **Status:** technically integrated through #206 as `4b5dc3c`; final editorial/visual approval remains with Dave ( preserves all question IDs `2-1`, `2-2`, `2-3`, `2-5`, `2-key`, `2-step`, `2-devos`, `2-prayer`, saved reading keys `notes-101-John-*` / `check-101-John-*`, and Scripture blocks). Details in [log](logs/2026-11-13-101-02-WIDGET-READING-gemini.md).
+- **Changed files:** `discipleship/widgets/romans-road3.html`, `discipleship/data/101-02.json`, `discipleship/index.html`, `discipleship/scripts/read101_a11y_browser_check.js`, `discipleship/project-management/TEAM-BOARD.md`, `discipleship/project-management/logs/2026-11-13-101-02-WIDGET-READING-gemini.md`.
+- **Changed paragraph / card summaries:**
+  1. `101-02.json` (`The Greenhouse`, lines 28-31): trimmed `", and everyone can see what was already true."` in paragraph 2, and updated the end of paragraph 3 to `"Baptism is one of the ways that green shoot becomes visible."`
+  2. `romans-road3.html` (`Start`, `A`, `B`, `C`, `D` cards, lines 634-675): updated the `Start` intro sentence and removed the instructional helper line; added inline Scripture refs (`Romans 3:23`, `Romans 6:23`, `Romans 5:8`, `Romans 10:9, 13`, `Luke 9:23`), updated `Your part / God's part` across `A..C` (`wages of sin is death` bolded, `"save you from your sins"` in `B`), and added Step `D` (`D. Discipleship: Follow Jesus`, Luke 9:23) with the wood-brown cross transformation and `Start` / `A` / `B` / `C` / `D` pills.
+  3. `index.html` (`101-02` `Bible Reading` cards only): added `BIBLE READING` eyebrow + book icon, empty/checked-box `Done` pill, crisp `Open` / `Close` pill, and cleaned `"I've read John X"` footer without trailing hint text; updated `read101_a11y_browser_check.js` for v1 + v2 headers.
+- **Items for Dave to reread:**
+  1. `101-02.json` (`The Greenhouse`, line 30): `"Baptism is one of the ways that green shoot becomes visible."` (tidied missing `"is"` and `"visable"` -> `"visible"`).
+  2. `romans-road3.html` (`Step D`): `"Your part: Live in dependence on the Spirit of God by fighting sin and following the ways of Jesus. God's part: Jesus will be with you every day."`
+  3. Adjacent `101-02.json` paragraphs left untouched for your next pass: line 61 (`"three letters, the ABCs of salvation..."` above the 4-stop `A-D` widget) and line 141 (`"Baptism is the first green shoot..."` in `Lesson 2 Review`).
+- **Checks (all exit `0`):** `qa_foundation.sh` (`32` iframe, `126` assets, `415` Bible text, `1360` image checks), `test_answer_storage.js` (`64`), `read101_a11y_browser_check.js` (`57`), `read101_notes_browser_check.js` (`36`), `read101_retry_browser_check.js` (`33`), and `101-02` phone (`390x844`) + keyboard integration check.
+
+Codex independent integration review: required QA/export 167/storage 64/assets 126/images 1360 all exit 0; exact-preview reader accessibility 57, notes/Email 36, retry 33, widget 45 and new-header checks 21 all exit 0. Screenshots at phone widths inspected. Runtime source is unchanged by this status note. See [Codex review](logs/2026-11-13-REVIEW-206-codex.md).
+
+## Overnight handoff: November 12
+
+Dave assigned Claude 201-05, 201-10 and 202-01 as three separate editorial jobs. Codex leaves those files untouched. Dave is editing paragraphs; preserve his edits and avoid broad rewrites.
+
+Codex prepared a [37-lesson cadence/editing guide](reviews/2026-11-12-series-editing-guide.md), with measurements and one pointer per lesson. It changes no lesson prose or grades. Separately, FIX-101-AUDIO corrects only the reading-plan sentence in 101-01 to distinguish reading here from listening in a separate audio Bible. RESTORE-LABEL-REVIEW documents why old PR #28 needs a fresh port: 61 current keys are missing from its old label index, 64 old keys are retired, and 109 shared labels differ. Restore behavior remains unchanged. Each packet has its own PR/log and technical checks; final editorial approval stays with Dave.
+
+**Dave tomorrow:** reread just the corrected audio sentence in 101-01. No other paragraphs were rewritten by this batch. Use the chart and editing guide as optional pointers as you comb through each lesson. Check Claude's three PRs before editing those lessons. No new artwork or widget rebuild is claimed.
+
+
 ## Lesson-by-lesson review chart
 
 Dave requested a single chart with a grade, current word count and separate approval for length, questions, lesson text, widgets and images. The [37-lesson review chart](reviews/2026-11-12-lesson-review-chart.md) and [Excel workbook](reviews/2026-11-12-lesson-review-chart.xlsx) use main be039c7, with a consistent count method, all 263 current question prompts and exact-version evidence. The workbook adds a Grade detail sheet with all ten checkpoint scores, the earlier score, the reason and the next improvement for every lesson.

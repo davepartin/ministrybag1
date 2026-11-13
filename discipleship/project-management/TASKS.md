@@ -230,3 +230,10 @@ Plan and standard: [reviews/2026-11-11-series-review.md](reviews/2026-11-11-seri
 | [ ] | WIDGET-101-02B | REVIEW | Gemini / gemini/widget-101-02-romans-road / 2026-11-12 | Dave's direction | Forward-perspective gravel Romans Road widget (`widgets/romans-road3.html`) leading toward a golden yellow horizon sun with natural step themes (`A` blue Admit SIN, `B` red Believe in Jesus as Savior with Cross, `C` green Confess Jesus as Lord with Crown) that drop from the sky and stick in the ground on step selection and clear on Start Over, replacing `widgets/romans-road2.html` in `data/101-02.json`. Evidence: logs/2026-11-12-WIDGET-101-02B-gemini.md. |
 
 
+
+
+| [ ] | FIX-101-AUDIO | REVIEW | Codex / codex/101-01-audio-claim / 2026-11-12 | Dave overnight assignment | Remove the unsupported built-in audio claim in 101-01 only. |
+| [ ] | RESTORE-LABEL-REVIEW | REVIEW | Codex / codex/restore-label-review / 2026-11-12 | Dave overnight assignment | Review old PR 28 against current source before integrating any restore UI change. |
+| [ ] | SERIES-CONSISTENCY | REVIEW | Codex / codex/series-consistency-pass / 2026-11-12 | Dave overnight assignment | Prepare a measured editing guide without changing lesson paragraphs. |
+
+| [ ] | REVIEW-206 | REVIEW | Codex / codex/review-206 / 2026-11-13 | Dave requested publishing 101-02 | Review Gemini PR 206, exact preview, saved-answer/reading compatibility and integration. |
