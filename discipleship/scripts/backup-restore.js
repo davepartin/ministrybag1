@@ -444,11 +444,16 @@
         };
     }
 
+    function plural(count, singular) {
+        var n = Number(count) || 0;
+        return n + ' ' + (n === 1 ? singular : singular + 's');
+    }
+
     function successCountsText(counts) {
         var c = counts || {};
-        return 'Restored ' + (c.restored || 0) + ' from the backup, kept ' +
-            (c.kept || 0) + ' device value(s), resolved ' +
-            (c.conflicts || 0) + ' conflict(s).';
+        return 'Restored ' + plural(c.restored, 'item') + ' from the backup, kept ' +
+            plural(c.kept, 'item') + ' already on this device, and settled ' +
+            plural(c.conflicts, 'difference') + '.';
     }
 
     function safetyBackupFilename() {
@@ -457,7 +462,7 @@
 
     function safetyStatusText(envelope) {
         var partial = envelope && envelope.complete === false
-            ? ' At least one store could not be read, and that original evidence is included when it was captured.'
+            ? ' Some saved data on this device could not be read. Its original copy is included when it could be captured.'
             : '';
         return 'A safety backup download was started. This page cannot prove the file was saved on your device. Confirm you have the file before restoring.' + partial;
     }
@@ -644,7 +649,7 @@
                 ? 'Review each conflict, download a safety backup, then confirm restore.'
                 : (validated.complete
                     ? 'This file cannot be restored.'
-                    : 'This backup is partial. Restore stays preview-only for this first restore path.'),
+                    : 'This backup file is partial, so it can be previewed but not restored.'),
             preview: previewResult,
             validated: {
                 ok: true,
@@ -706,7 +711,7 @@
         if (!prepared.confirmable) {
             return fail(
                 'partial-source',
-                'Only a complete version 1 backup can be restored. Partial source files stay preview-only.',
+                'Only a complete backup file can be restored. A partial file can only be previewed.',
                 { preview: prepared.preview }
             );
         }
@@ -747,7 +752,7 @@
         if (!opts.safetyEnvelope || !safetyIncludesGuardEvidence(opts.safetyEnvelope, currentDevice)) {
             return fail(
                 'missing-guard-evidence',
-                'The safety backup must include current page values and any captured original unreadable copy before a failed-load store can be replaced. Nothing was changed.'
+                'The safety backup must include what is on this page and any unreadable original copy before that saved data can be replaced. Nothing was changed.'
             );
         }
 
@@ -761,7 +766,7 @@
         if (!pre.ok) {
             return fail(
                 'snapshot-failed',
-                'Could not snapshot current storage for rollback, so restore did not start. Original data was not changed.',
+                'Could not make a copy of current data to undo with, so restore did not start. Nothing was changed.',
                 { storeErrors: pre.errors, offerSafetyDownload: true }
             );
         }
@@ -815,7 +820,7 @@
                 return {
                     ok: false,
                     code: 'rollback-failed',
-                    message: 'Restore did not finish, and rollback could not put every store back. Original data may be mixed. Use the pre-restore safety download. Success is not reported.',
+                    message: 'Restore did not finish, and not everything could be put back. Some saved data may be mixed. Use the safety backup you downloaded to recover. Restore was not completed.',
                     unchanged: false,
                     storeErrors: storeErrors,
                     rolledBack: rolledBack,
@@ -828,14 +833,14 @@
             var noun = STORE_NOUNS[writeFailed];
             var err = storeErrors[writeFailed];
             var errText = err === 'quota'
-                ? noun + ' could not be stored because this device is out of room.'
+                ? noun + ' could not be saved because this device is out of room.'
                 : err === 'unavailable'
-                    ? noun + ' could not be stored because storage is unavailable.'
-                    : noun + ' could not be stored.';
+                    ? noun + ' could not be saved because saving is unavailable on this device.'
+                    : noun + ' could not be saved.';
             return {
                 ok: false,
                 code: 'write-failed',
-                message: errText + ' Every store already changed was rolled back. Original data, memory and write guards were not replaced.',
+                message: errText + ' Everything changed so far was put back. Your current data was not replaced.',
                 unchanged: true,
                 storeErrors: storeErrors,
                 rolledBack: rolledBack,

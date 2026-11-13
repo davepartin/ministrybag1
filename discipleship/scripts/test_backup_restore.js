@@ -208,8 +208,8 @@ assert('ambiguous metadata stays unassigned', added.stores.answers.__gtAmbiguous
 assert('false-capable completion true is restored', added.stores.completion['complete-101-5'] === true);
 assert('reading note and check are restored', added.stores.reading['notes-101-John-13'] === 'SYN-reading-note' &&
     added.stores.reading['check-101-John-13'] === true);
-assert('success text reports exact counts', added.message.indexOf('Restored 8 from the backup') !== -1 &&
-    added.message.indexOf('kept 0') !== -1 && added.message.indexOf('resolved 0') !== -1);
+assert('success text reports exact counts', added.message.indexOf('Restored 8 items from the backup') !== -1 &&
+    added.message.indexOf('kept 0 items') !== -1 && added.message.indexOf('settled 0 differences') !== -1);
 
 var reloadStorage = makeStorage({
     christianFoundationsResponses: added.serialized.answers,
