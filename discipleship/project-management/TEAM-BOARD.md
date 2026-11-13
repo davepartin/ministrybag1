@@ -1,14 +1,6 @@
 # Growing Together Team Board
 
-## Claude overnight editorial batch, November 13, 2026
-
-Dave assigned Claude three bounded editorial jobs on the night of November 12, from the [review chart](reviews/2026-11-12-lesson-review-chart.md): focused improvements to existing drafts, not rewrites. One lesson per branch and PR, stopped at REVIEW. Prose only: question objects, IDs, Scripture quotations, readings, widgets, images and sequences unchanged. Question proposals are in each PR body for Dave; on November 13 Dave had the three teach-it questions applied. Codex handles technical integration; Dave approves wording. The three PRs touch different lesson files and different TASKS rows, so they can merge in any order.
-
-| Task | Lesson | PR | Status |
-|---|---|---|---|
-| TRIM-201-05 | 201-05 Overview of the Bible | [#200](https://github.com/davepartin/ministrybag1/pull/200) | REVIEW. 1,508 to 1,445 words, teach-it 5.4 added. [Log](logs/2026-11-13-TRIM-201-05-claude.md) |
-| FLOW-201-10 | 201-10 Repentance and the Learning Circle | [#201](https://github.com/davepartin/ministrybag1/pull/201) | REVIEW. Story moved up after the recap; 1,534 to 1,503 words, depth kept, teach-it 10.4 added. Log in that PR: logs/2026-11-13-FLOW-201-10-claude.md |
-| TRIM-202-01 | 202-01 Loving Your Neighbors | [#202](https://github.com/davepartin/ministrybag1/pull/202) | REVIEW. 1,442 to 1,422 words, teach-it 1.5 added (now five mid-lesson questions); Grok sequence byte-identical, 92 sequence checks pass. Log in that PR: logs/2026-11-13-TRIM-202-01-claude.md |
+Latest exact wording from Dave: the101-02 Review now says "Baptism is one of the first outward signs of the life God has already started inside you." Its following assurance sentence and all other lesson content are unchanged. See [wording log](logs/2026-11-13-WORD-101-02-BAPTISM-codex.md). This supersedes older notes that the Review sentence was being left for later.
 
 ## 101-02 Scripture focus: November 13
 
@@ -87,6 +79,16 @@ Required foundation/export/storage/assets/image checks passed throughout the iso
 **Verified publishing:** checkpoint main `972c26de`; Firebase Action [43322478865](https://github.com/davepartin/ministrybag1/actions/runs/43322478865) and Pages Action [43322476847](https://github.com/davepartin/ministrybag1/actions/runs/43322476847) both succeeded. All eight affected live lesson JSON files, three widgets and the generated image map matched the tested combined version. Evidence: [integration log](logs/2026-11-12-INTEGRATE-PIECES-codex.md) and [checkpoint #198](https://github.com/davepartin/ministrybag1/pull/198). This board-only refresh makes no runtime change.
 
 **Open PRs rechecked:** only older #28 (restore labels), #68 (finish-plan documents), and #2 (denomination guide, outside this project packet) remain open. None is part of this completed batch. Closed as superseded: #179, #182, #183 and #187. Branches/history retained.
+
+## Claude overnight editorial batch, November 13, 2026
+
+Dave assigned Claude three bounded editorial jobs on the night of November 12, from the [review chart](reviews/2026-11-12-lesson-review-chart.md): focused improvements to existing drafts, not rewrites. One lesson per branch and PR, stopped at REVIEW. Prose only: question objects, IDs, Scripture quotations, readings, widgets, images and sequences unchanged. Question proposals are in each PR body for Dave; on November 13 Dave had the three teach-it questions applied. Codex handles technical integration; Dave approves wording. The three PRs touch different lesson files and different TASKS rows, so they can merge in any order.
+
+| Task | Lesson | PR | Status |
+|---|---|---|---|
+| TRIM-201-05 | 201-05 Overview of the Bible | [#200](https://github.com/davepartin/ministrybag1/pull/200) | REVIEW. 1,508 to 1,445 words, teach-it 5.4 added. [Log](logs/2026-11-13-TRIM-201-05-claude.md) |
+| FLOW-201-10 | 201-10 Repentance and the Learning Circle | [#201](https://github.com/davepartin/ministrybag1/pull/201) | REVIEW. Story moved up after the recap; 1,534 to 1,503 words, depth kept, teach-it 10.4 added. Log in that PR: logs/2026-11-13-FLOW-201-10-claude.md |
+| TRIM-202-01 | 202-01 Loving Your Neighbors | [#202](https://github.com/davepartin/ministrybag1/pull/202) | REVIEW. 1,442 to 1,422 words, teach-it 1.5 added (now five mid-lesson questions); Grok sequence byte-identical, 92 sequence checks pass. Log in that PR: logs/2026-11-13-TRIM-202-01-claude.md |
 
 ## Current standing roles: Dave's instruction, November 12, 2026
 
