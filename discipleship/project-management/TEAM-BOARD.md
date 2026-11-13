@@ -2,7 +2,7 @@
 
 ## 201-10: Dave's nine edits, November13
 
-Dave confirmed nine items. Applied his exact cuts/rewrites, added Repent/Believe headings, integrated trust with Believe, removed the hardest-step prompt, rewrote the process question, and shortened The Father at the Gate30% while preserving Romans2:4. Three discussion prompts now display10.1-10.3; original IDs remain. Earlier answers to the removed prompt remain exportable only when present; no new prompt is shown. Lesson body1536 to1373 words. All Scripture, art, widget and the approved opening are unchanged. [Evidence](logs/2026-11-13-DAVE-201-10-ROUND2-codex.md). Use the newest live draft after deployment; older PR201 previews are historical.
+Dave confirmed nine items. Applied his exact cuts/rewrites, added Repent/Believe headings, integrated trust with Believe, removed the hardest-step prompt, rewrote the process question, and shortened The Father at the Gate 30% while preserving Romans2:4. Three discussion prompts now display10.1-10.3; original IDs remain. Earlier answers to the removed prompt remain exportable only when present; no new prompt is shown. Lesson body1536 to1373 words. All Scripture, art, widget and the approved opening are unchanged. [Evidence](logs/2026-11-13-DAVE-201-10-ROUND2-codex.md). Use the newest live draft after deployment; older PR201 previews are historical.
 
 
 ## 201-10 newest editing draft: November13
