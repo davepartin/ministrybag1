@@ -229,3 +229,5 @@ Plan and standard: [reviews/2026-11-11-series-review.md](reviews/2026-11-11-seri
 | [ ] | WIDGET-101-02B | REVIEW | Gemini / gemini/widget-101-02-romans-road / 2026-11-12 | Dave's direction | Forward-perspective gravel Romans Road widget (`widgets/romans-road3.html`) leading toward a golden yellow horizon sun with natural step themes (`A` blue Admit SIN, `B` red Believe in Jesus as Savior with Cross, `C` green Confess Jesus as Lord with Crown) that drop from the sky and stick in the ground on step selection and clear on Start Over, replacing `widgets/romans-road2.html` in `data/101-02.json`. Evidence: logs/2026-11-12-WIDGET-101-02B-gemini.md. |
 
 
+
+| [ ] | RESTORE-LABEL-REVIEW | ACTIVE | Codex / codex/restore-review / 2026-11-12 | Dave overnight assignment | Review old PR 28 against current source before integrating any restore UI change. |
