@@ -324,6 +324,28 @@ var legacyNotes = exporter.buildExport({ ...noteOpts, scope: 'course' });
 assert('legacy course scope limits notes to explicitly supplied lessons too', legacyNotes.body.includes('SYN-live') && !legacyNotes.body.includes('SYN-chapter-4-end'));
 assert('malformed reading store is ignored safely', !exporter.buildExport({ ...noteOpts, reading: [], liveValues: {} }).body.includes('Reading Notes'));
 
+// Retiring a prompt must not strand its existing answer or expose another lesson.
+var retiredLesson = readLesson('201-10.json');
+var retiredKey = 'question-201-201-10-2';
+var retiredValue = 'SYN-earlier response\n<plain text> & symbols';
+var retiredResponses = { [retiredKey]: retiredValue, 'question-201-other': 'SYN-other-retired' };
+var retiredSnapshot = JSON.stringify(retiredResponses);
+var retiredOptions = { courseId: '201', currentLessonNum: 10,
+    lessons: [{ num: 10, data: retiredLesson }], responses: retiredResponses };
+var retiredExport = exporter.buildExport(retiredOptions);
+assert('removed prompt is absent from active fields', !exporter.collectLessonExportFields('201', retiredLesson).some(f => f.runtimeId === retiredKey));
+assert('earlier answer exports under its original prompt without changing text', retiredExport.body.includes('Earlier saved responses\n\n10.2 - As you walked through the Learning Circle, which step is hardest for you?\n' + retiredValue));
+assert('retired answer ID remains tracked exactly once', retiredExport.includedIds.filter(id => id === retiredKey).length === 1);
+assert('retired export does not mutate stored answers', JSON.stringify(retiredResponses) === retiredSnapshot);
+assert('unlisted response stays outside retired export', !retiredExport.body.includes('SYN-other-retired'));
+assert('retired answer stays out of another selected lesson', !exporter.buildExport({ ...retiredOptions, currentLessonNum: 1, lessons: [{ num: 1, data: lesson20101 }] }).body.includes(retiredValue));
+assert('blank retired answer creates no placeholder or section', !exporter.buildExport({ ...retiredOptions, responses: { [retiredKey]: '   ' } }).body.includes('Earlier saved responses'));
+assert('explicit live clearing suppresses older retired answer', !exporter.buildExport({ ...retiredOptions, liveValues: { [retiredKey]: '' } }).body.includes(retiredValue));
+var duplicateRetired = { ...retiredLesson, retiredQuestions: retiredLesson.retiredQuestions.concat(retiredLesson.retiredQuestions) };
+assert('duplicate retired metadata does not repeat answers', exporter.buildExport({ ...retiredOptions, lessons: [{ num: 10, data: duplicateRetired }] }).includedIds.filter(id => id === retiredKey).length === 1);
+var restoredQuestion = { ...retiredLesson, blocks: retiredLesson.blocks.concat(retiredLesson.retiredQuestions) };
+assert('reintroduced question is exported once as active', !exporter.buildExport({ ...retiredOptions, lessons: [{ num: 10, data: restoredQuestion }] }).body.includes('Earlier saved responses'));
+
 if (failed) {
     console.error('\n' + failed + ' check(s) failed, ' + passed + ' passed.');
     process.exit(1);
