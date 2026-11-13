@@ -1,5 +1,10 @@
 # Resume here
 
+## Latest editorial packet: 101-02 lighter ending
+
+Dave accepted FOCUS-101-02: remove the inline Galatians2:20 quotation and2Corinthians5:17,21 block; fold the brief new-life/adoption thought into assurance under You Can Be Sure. John3, Romans6 and1John5 remain as the three quoted anchors. Widget, questions, readings and saved keys are preserved. Reread pointers and checks: [log](logs/2026-11-13-FOCUS-101-02-codex.md). Earlier proposal-only notices below are historical.
+
+
 ## Shared chapter header standard: November 13
 
 Dave approved the John4-6 header design for every embedded chapter reader. READ-HEADER-STANDARD uses one shared renderer for all21 assigned John chapters and future bible_reading blocks. Lesson JSON, Bible text and reading keys are untouched. This supersedes the earlier101-02-only appearance note below. Dave is considering a lighter101-02 Scripture ending; see the task log for the suggestion, which is not implemented.
