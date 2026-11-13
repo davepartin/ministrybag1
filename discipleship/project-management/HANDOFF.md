@@ -1,5 +1,8 @@
 # Resume here
 
+Latest101-02 wording: Dave supplied the exact Review sentence "Baptism is one of the first outward signs of the life God has already started inside you." Applied without any other lesson-text changes. See [log](logs/2026-11-13-WORD-101-02-BAPTISM-codex.md); older notes about the Review wording being left untouched are superseded.
+
+
 ## Latest editorial packet: 101-02 lighter ending
 
 Dave accepted FOCUS-101-02: remove the inline Galatians2:20 quotation and2Corinthians5:17,21 block; fold the brief new-life/adoption thought into assurance under You Can Be Sure. John3, Romans6 and1John5 remain as the three quoted anchors. Widget, questions, readings and saved keys are preserved. Reread pointers and checks: [log](logs/2026-11-13-FOCUS-101-02-codex.md). Earlier proposal-only notices below are historical.
