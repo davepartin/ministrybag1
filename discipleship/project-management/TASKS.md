@@ -239,3 +239,14 @@ Plan and standard: [reviews/2026-11-11-series-review.md](reviews/2026-11-11-seri
 | [ ] | REVIEW-206 | REVIEW | Codex / codex/review-206 / 2026-11-13 | Dave requested publishing 101-02 | Review Gemini PR 206, exact preview, saved-answer/reading compatibility and integration. |
 
 | [ ] | READ-HEADER-STANDARD | REVIEW | Codex / codex/reader-header-standard / 2026-11-13 | Dave approved John4-6 header as standard | Apply the same header to every built-in chapter reader; preserve reading content and storage keys. |
+
+| [ ] | FOCUS-101-02 | REVIEW | Codex / codex/101-02-scripture-focus / 2026-11-13 | Dave approved two Scripture cuts and folding new life into assurance | Remove inline Galatians2:20 and2Corinthians5:17,21 block; preserve all questions, widget and readings. |
+
+| [ ] | WORD-101-02-BAPTISM | REVIEW | Codex / codex/101-02-baptism-review / 2026-11-13 | Dave supplied exact replacement | Replace only the Review baptism sentence; preserve all other lesson content. |
+
+| [ ] | INTRO-201-10 | REVIEW | Codex / codex/201-10-prodigal-return / 2026-11-13 | Dave approved two-sentence callback | Replace only story opening; preserve Learning Circle and Claude PR201. |
+
+| [ ] | FLOW-201-10 | REVIEW | Claude / claude/flow-201-10 / 2026-11-13 | Dave assigned overnight 2026-11-12; review chart B- | Improve the flow of Repentance and the Learning Circle while preserving its depth and challenge: bring the prodigal story earlier, remove genuinely repeated setup, keep every Learning Circle step, grace before obedience, the Father's welcome, credits and the course transition. Propose a teach-it question in the PR body. Prose and block order only; questions, IDs, Scripture quotations, widget and art unchanged. Story now follows the recap; 1,534 to 1,490 lesson words. Required suites and 18 browser checks pass, exit 0. Dave wording review pending. Evidence: logs/2026-11-13-FLOW-201-10-claude.md. Round 2 (Dave, 2026-11-13): teach-it question 201-10-hand added; 1,503 words; checks rerun, exit 0. |
+| [ ] | INTEGRATE-201-10 | REVIEW | Codex / codex/integrate-flow201 / 2026-11-13 | Dave requested newest draft for editing | Integrate PR201 with approved callback preserved; make live draft current and identify outstanding dependencies. |
+
+| [ ] | DAVE-201-10-ROUND2 | REVIEW | Codex / codex/201-10-dave-edits / 2026-11-13 | Dave supplied nine edits | Exact prose edits, Repent/Believe headings, question retirement with saved-answer export, shorter Father section. Tenth item missing. |

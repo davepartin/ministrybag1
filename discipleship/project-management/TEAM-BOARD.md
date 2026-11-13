@@ -26,6 +26,30 @@
     - Stage labels (unnumbered, secondary): `Home`, `Work & School`, `Neighborhood`, `Nations`
 - **Checks (all exit `0` after final edit):** `qa_foundation.sh` (32 widget iframe checks), `test_lesson_export.js` (167 checks), `test_answer_storage.js` (64 checks), `check_lesson_assets.js` (126 asset references), and Playwright V5 suite across `201`/`202`/`203` (`390x844` phone, `1280x800` desktop, keyboard `Enter`/`Space`, `Back`/`Next`/`Start Over`, `prefers-reduced-motion: reduce`, zero `localStorage`, zero overflow, `201` unchanged at `cardH=129`/`widgetH=523`). Details in [log](logs/2026-11-13-WIDGET-GREAT-CMD-CROSS-gemini.md).
 
+
+## 201-10: Dave's nine edits, November13
+
+Dave confirmed nine items. Applied his exact cuts/rewrites, added Repent/Believe headings, integrated trust with Believe, removed the hardest-step prompt, rewrote the process question, and shortened The Father at the Gate 30% while preserving Romans2:4. Three discussion prompts now display10.1-10.3; original IDs remain. Earlier answers to the removed prompt remain exportable only when present; no new prompt is shown. Lesson body1536 to1373 words. All Scripture, art, widget and the approved opening are unchanged. [Evidence](logs/2026-11-13-DAVE-201-10-ROUND2-codex.md). Use the newest live draft after deployment; older PR201 previews are historical.
+
+
+## 201-10 newest editing draft: November13
+
+Dave asked to stop reviewing outdated lesson versions. Integration of Claude PR201 now combines his full flow revision, teach-it question and course handoff with Dave's approved two-sentence opening. All6original questions, Scripture and Learning Circle steps are preserved. See [integration log](logs/2026-11-13-INTEGRATE-201-10-codex.md). Previous notes that PR201 is waiting or the live lesson lacks its teach-it question are historical after this integration. The November12 B-minus is a score for the older package, not a fresh grade for this draft.
+
+**Review freshness:** before giving Dave an editing link or current grade, check main AND pending lesson PRs. Name the newest version and whether it is live or preview-only. Do not direct him to older live wording without explaining the pending changes. This does not authorize merging unrelated work.
+
+
+## 201-10 story callback: November13
+
+Dave approved a two-sentence return to the prodigal story:201-01 Father welcome,201-02 new identity, now the son coming to his senses. Replaced only the old Jesus-once-told opening; the rest of the story and Learning Circle are untouched. [Log](logs/2026-11-13-INTRO-201-10-codex.md). Claude PR201 remains open as a separate larger flow revision: **preserve this approved opening when integrating it**. This packet does not replace Claude's other work.
+
+
+Latest exact wording from Dave: the101-02 Review now says "Baptism is one of the first outward signs of the life God has already started inside you." Its following assurance sentence and all other lesson content are unchanged. See [wording log](logs/2026-11-13-WORD-101-02-BAPTISM-codex.md). This supersedes older notes that the Review sentence was being left for later.
+
+## 101-02 Scripture focus: November 13
+
+Dave accepted the two-cut proposal: remove the inline Galatians2:20 quotation and2Corinthians5:17,21 block, folding new life/adoption into the assurance paragraph under You Can Be Sure. John3:16-17, Romans6:3-4 and1John5:13 remain. Lesson prose count1136 to1049,87 fewer words. All8questions, saved keys, John4-6 assignments, artwork and A-D widget unchanged. Dave only needs to reread the second baptism paragraph and assurance ending. See [log](logs/2026-11-13-FOCUS-101-02-codex.md). This supersedes the earlier suggestion-only status below; final whole-lesson approval remains separate.
+
 ## Shared chapter header standard: November 13
 
 Dave chose the John4-6 design as the standard for all embedded Bible chapter headers. READ-HEADER-STANDARD removes the101-02-only gate and duplicate legacy renderer. It covers all21 assigned John chapters today and future bible_reading blocks. No lesson text, question, reading assignment or saved key changes. See [log](logs/2026-11-13-READ-HEADER-STANDARD-codex.md) for scope and the separate101-02 Scripture-load suggestion; that suggestion is not implemented.
