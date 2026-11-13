@@ -1,5 +1,10 @@
 # Growing Together Team Board
 
+## Shared chapter header standard: November 13
+
+Dave chose the John4-6 design as the standard for all embedded Bible chapter headers. READ-HEADER-STANDARD removes the101-02-only gate and duplicate legacy renderer. It covers all21 assigned John chapters today and future bible_reading blocks. No lesson text, question, reading assignment or saved key changes. See [log](logs/2026-11-13-READ-HEADER-STANDARD-codex.md) for scope and the separate101-02 Scripture-load suggestion; that suggestion is not implemented.
+
+
 ## Lesson 101-02 integrated working draft: November 13, 2026
 
 - **Task / PR:** [PR #206](https://github.com/davepartin/ministrybag1/pull/206) on isolated branch `gemini/101-02-updates` off `origin/main` (`a886cb7`)

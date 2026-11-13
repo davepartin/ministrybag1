@@ -237,4 +237,4 @@ Plan and standard: [reviews/2026-11-11-series-review.md](reviews/2026-11-11-seri
 
 | [ ] | REVIEW-206 | REVIEW | Codex / codex/review-206 / 2026-11-13 | Dave requested publishing 101-02 | Review Gemini PR 206, exact preview, saved-answer/reading compatibility and integration. |
 
-| [ ] | READ-HEADER-STANDARD | ACTIVE | Codex / codex/reader-header-standard / 2026-11-13 | Dave approved John4-6 header as standard | Apply the same header to every built-in chapter reader; preserve reading content and storage keys. |
+| [ ] | READ-HEADER-STANDARD | REVIEW | Codex / codex/reader-header-standard / 2026-11-13 | Dave approved John4-6 header as standard | Apply the same header to every built-in chapter reader; preserve reading content and storage keys. |

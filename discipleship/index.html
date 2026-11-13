@@ -2883,7 +2883,7 @@
             cursor: pointer;
         }
 
-        /* 101-02 Prototype: clear standardized Bible Reading dropdown bar & read status */
+        /* Standard Bible Reading chapter header and read status */
         .chapter-card--v2 {
             transition: border-color var(--transition), background var(--transition), box-shadow var(--transition);
         }
@@ -4444,7 +4444,6 @@
                             }
 
                             case 'bible_reading': {
-                                const isV2Reading = currentSeries === '101' && sessionNum === 2;
                                 html += `<div class="bible-reading-section">`;
                                 html += `<h3 class="reading-heading">${b.heading || 'Read the Word This Week'}</h3>`;
                                 if (b.intro) {
@@ -4454,7 +4453,6 @@
                                     const chId = ch.ref.replace(/\s+/g, '-');
                                     const checkId = `reading-check-${currentSeries}-${chId}`;
                                     const notesId = `reading-notes-${currentSeries}-${chId}`;
-                                    if (isV2Reading) {
                                         html += `
                                     <div class="chapter-group">
                                         <div class="chapter-card chapter-card--v2" id="card-${currentSeries}-${chId}">
@@ -4518,42 +4516,6 @@
                                             ></textarea>
                                         </div>
                                     </div>`;
-                                    } else {
-                                        html += `
-                                    <div class="chapter-group">
-                                        <div class="chapter-card" id="card-${currentSeries}-${chId}">
-                                            <button type="button" class="chapter-card-header" id="chapter-header-${currentSeries}-${chId}"
-                                                aria-expanded="false" aria-controls="body-${currentSeries}-${chId}"
-                                                onfocus="revealChapterHeader(this)"
-                                                onclick="toggleChapter('${currentSeries}-${chId}')">
-                                                <span class="chapter-card-title-wrap">
-                                                    <span class="chapter-card-title">Open ${ch.ref}</span>
-                                                </span>
-                                                <span class="chapter-done-badge" id="badge-${currentSeries}-${chId}" aria-hidden="true">&#10003;</span>
-                                                <span class="chapter-card-toggle" id="toggle-${currentSeries}-${chId}" aria-hidden="true">&#9662;</span>
-                                            </button>
-                                            <div class="chapter-card-body" id="body-${currentSeries}-${chId}" hidden>
-                                                <div class="chapter-card-content">
-                                                    <div class="esv-text" id="esv-${currentSeries}-${chId}" tabindex="0" role="region" aria-label="${ch.ref}">
-                                                        <div class="esv-loading">Loading ${ch.ref}...</div>
-                                                    </div>
-                                                </div>
-                                                <div class="chapter-card-footer">
-                                                    <div class="chapter-complete-row">
-                                                        <input type="checkbox" id="${checkId}" onchange="saveReadingCheck(this, '${currentSeries}-${chId}')">
-                                                        <label for="${checkId}">I've read ${ch.ref}</label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="chapter-notes-outer">
-                                            <label class="chapter-notes-label" for="${notesId}">Notes from ${ch.ref}</label>
-                                            <textarea class="chapter-notes-textarea" id="${notesId}"
-                                                oninput="autoGrow(this); saveReadingNotes(this, '${currentSeries}-${chId}');"
-                                            ></textarea>
-                                        </div>
-                                    </div>`;
-                                    }
                                 });
                                 html += `</div>`;
                                 break;

@@ -25,16 +25,10 @@ function check(name, value) { assert.ok(value, name); passed++; console.log('PAS
             await page.waitForTimeout(500);
             check(width + ': all 21 chapter toggles are native named buttons', await page.locator('.chapter-card-header').evaluateAll(headers => headers.length === 21 && headers.every(el => {
                 if (el.tagName !== 'BUTTON' || el.type !== 'button' || !el.id) return false;
-                if (el.closest('.chapter-card--v2')) {
-                    const badge = el.querySelector('.chapter-status-pill');
-                    const toggle = el.querySelector('.chapter-action-pill');
-                    return el.textContent.includes('Bible Reading') && el.textContent.includes('John') &&
-                        badge && badge.getAttribute('aria-hidden') === 'true' &&
-                        toggle && toggle.getAttribute('aria-hidden') === 'true';
-                }
-                const badge = el.querySelector('.chapter-done-badge');
-                const toggle = el.querySelector('.chapter-card-toggle');
-                return el.textContent.includes('Open John') &&
+                const badge = el.querySelector('.chapter-status-pill');
+                const toggle = el.querySelector('.chapter-action-pill');
+                return el.closest('.chapter-card--v2') &&
+                    el.textContent.includes('Bible Reading') && el.textContent.includes('John') &&
                     badge && badge.getAttribute('aria-hidden') === 'true' &&
                     toggle && toggle.getAttribute('aria-hidden') === 'true';
             })));
@@ -44,7 +38,7 @@ function check(name, value) { assert.ok(value, name); passed++; console.log('PAS
             })));
             check(width + ': all 21 note fields have explicit unique labels', await page.locator('.chapter-notes-textarea').evaluateAll(notes => notes.length === 21 && new Set(notes.map(el => el.id)).size === 21 && notes.every(el =>
                 el.labels.length === 1 && el.labels[0].htmlFor === el.id && el.labels[0].textContent.startsWith('Notes from John '))));
-            const header = page.getByRole('button', { name: 'Open John 1', exact: true });
+            const header = page.getByRole('button', { name: 'Bible Reading John 1', exact: true });
             const note = page.getByRole('textbox', { name: 'Notes from John 1', exact: true });
             const body = page.locator('#body-101-John-1');
             await header.focus();

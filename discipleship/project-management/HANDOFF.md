@@ -1,5 +1,10 @@
 # Resume here
 
+## Shared chapter header standard: November 13
+
+Dave approved the John4-6 header design for every embedded chapter reader. READ-HEADER-STANDARD uses one shared renderer for all21 assigned John chapters and future bible_reading blocks. Lesson JSON, Bible text and reading keys are untouched. This supersedes the earlier101-02-only appearance note below. Dave is considering a lighter101-02 Scripture ending; see the task log for the suggestion, which is not implemented.
+
+
 ## Latest integration: 101-02, November 13
 
 Gemini PR #206 is integrated as 4b5dc3c: A-D Romans Road with the cross reveal, new John 4-6 reading headers, and the Greenhouse baptism wording. Independent technical/preview checks passed. Dave should reread the Greenhouse ending and Step D; the neighboring ABC introduction and older baptism sentence in the Review remain intentionally untouched for his later edit. The other six 101 lessons retain their previous reader appearance.
