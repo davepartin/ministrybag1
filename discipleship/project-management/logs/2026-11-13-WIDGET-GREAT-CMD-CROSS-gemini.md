@@ -26,3 +26,35 @@ Built a single shared marker-drawn interactive SVG widget engine with three thin
   - `390px` mobile: `widgetH=515` across all three versions, `cardH=129` across all steps, zero overflow, button heights >= 44px
   - `1280px` desktop: `widgetH=566` (`201`/`203`) / `548` (`202`), stable `cardH` (`134` / `116`), zero overflow
   - Verified every forward step draws strokes (`strokeDashoffset === 0px`), `Back` restores prior step state immediately, `prefers-reduced-motion: reduce` shows completed drawings immediately with zero animation, zero `localStorage` keys written, zero em dashes, zero console/page/HTTP errors.
+
+## Update 2026-11-13 (Version 5 Studio Wash + 202/203 Final Slide Refinement)
+
+### Added / Changed Files
+- `discipleship/widgets/great-command-v5.js`: Shared Studio Wash Edition engine for `201` (unchanged), `202` (refined final slide `focus202`), and `203` (refined final slide `focus203`, preserving `"The Cross Holds It All"` at Step 3).
+- `discipleship/widgets/great-command-v5-201.html`, `great-command-v5-202.html`, `great-command-v5-203.html`: Thin Studio Wash shells.
+- `discipleship/widgets/STUDIO-WASH-GUIDE.md`, `discipleship/widgets/WIDGET-DESIGN-PLAYBOOK.md`: Studio Wash visual standard and widget design workflow docs requested by Dave.
+- `discipleship/project-management/TEAM-BOARD.md`: Recorded exact 202 and 203 final-card wording, changed files, and check results for `REVIEW`.
+
+### Exact Final-Card Wording (`202` and `203`)
+- **202 Growing Up (`focus202`):**
+  - Heading: `Love in Everyday Life`
+  - Scripture: `"So then, as we have opportunity, let us do good to everyone, and especially to those who are of the household of faith."` (`Galatians 6:10`)
+  - Paragraph: `Growing Up helps you put God's love into practice at home, in your church family, and among your neighbors, through generosity, faithful relationships, and care in hard seasons.`
+  - Visual: Keeps both horizontal arms (`Belong` blue `#2A5B7C`, `Neighbors` purple `#5F4684`), retains Belong + Neighbors scenes, adds one gentle curved dual stroke reveal from the horizontal arms down into both scenes, and centers `Home · Church Family · Neighbors` in a studio capsule below.
+- **203 Growing Out (`focus203`, Step 3 remains `"The Cross Holds It All"`):**
+  - Heading: `Make Disciples Where You Are`
+  - Scripture: `"Go therefore and make disciples of all nations"` (`Matthew 28:19`)
+  - Paragraph: `Learn to pray, listen, serve, and share Jesus with the people around you. Help someone follow Him and learn to help another.`
+  - Visual: Keeps cross recognizable with purple `Go` arm bright, retains outward reach arc, animates simple person -> person -> 3-person small-group multiplication cascade, and places compact unnumbered secondary labels (`Home · Work & School` / `Neighborhood · Nations`) calmly underneath.
+
+### Post-Final-Edit Verification (`exit 0`)
+- `bash scripts/qa_foundation.sh` (from `discipleship/`): **exit 0** (32 widget iframe checks passed)
+- `node scripts/test_lesson_export.js` (from `discipleship/`): **exit 0** (167 checks passed)
+- `node scripts/test_answer_storage.js` (from `discipleship/`): **exit 0** (64 checks passed)
+- `node scripts/check_lesson_assets.js` (from `discipleship/`): **exit 0** (126 asset references passed)
+- Em-dash check (`! grep -rn $'\xe2\x80\x94'` on `great-command-v5*` + guides): **exit 0**
+- Playwright `test_v5_all.js` across `great-command-v5-201.html`, `202.html`, `203.html`: **exit 0**
+  - Phone (`390x844`): `201` unchanged (`cardH=129`, `widgetH=523`), `202` (`cardH=163`, `widgetH=557`), `203` (`cardH=128`, `widgetH=522`), zero horizontal overflow, button heights >= 44px, Back/Next/Start Over verified, keyboard `Enter`/`Space` navigation verified, zero `localStorage` usage, zero page/console errors
+  - Desktop (`1280x800`): `cardH` stable (`134` / `132` / `116`), zero overflow
+  - `prefers-reduced-motion: reduce`: `stepDur=0` across every step, all active `.mission-arc` strokes at `strokeDashoffset=0`, all `.v5-stage-item.is-visible` at `opacity=1`
+

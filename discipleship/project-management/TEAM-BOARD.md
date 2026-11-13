@@ -1,5 +1,31 @@
 # Growing Together Team Board
 
+## Greatest Commandment Cross Widgets (Version 5 Studio Wash, 202 and 203 final-slide refinement): November 13, 2026
+
+- **Task / PR:** `WIDGET-GREAT-CMD-CROSS` / [PR #211](https://github.com/davepartin/ministrybag1/pull/211) on branch `gemini/widget-great-command-cross` (`REVIEW` for Dave visual/wording review and Codex integration)
+- **Changed files (new/updated in this pass):**
+  - `discipleship/widgets/great-command-v5.js`
+  - `discipleship/widgets/great-command-v5-201.html` (201 unchanged Studio Wash Edition baseline)
+  - `discipleship/widgets/great-command-v5-202.html` (202 Growing Up with refined final slide)
+  - `discipleship/widgets/great-command-v5-203.html` (203 Growing Out with refined final slide)
+  - `discipleship/widgets/STUDIO-WASH-GUIDE.md`
+  - `discipleship/widgets/WIDGET-DESIGN-PLAYBOOK.md`
+  - `discipleship/project-management/TEAM-BOARD.md`
+  - `discipleship/project-management/logs/2026-11-13-WIDGET-GREAT-CMD-CROSS-gemini.md`
+- **Untouched:** all lesson JSON files (`data/*.json`), question IDs, saved answers, `index.html`, `scripts/`, `images/`, Firebase settings/workflows, and 201 slides/colors/navigation.
+- **Exact final-card wording for Dave to review:**
+  - **202 Growing Up (`focus202`, Step 4):**
+    - Heading: `Love in Everyday Life`
+    - Scripture: `"So then, as we have opportunity, let us do good to everyone, and especially to those who are of the household of faith."` (`Galatians 6:10`)
+    - Paragraph: `Growing Up helps you put God's love into practice at home, in your church family, and among your neighbors, through generosity, faithful relationships, and care in hard seasons.`
+    - Stage subtitle: `Home · Church Family · Neighbors`
+  - **203 Growing Out (`focus203`, Step 4, keeping `"The Cross Holds It All"` as penultimate Step 3):**
+    - Heading: `Make Disciples Where You Are`
+    - Scripture: `"Go therefore and make disciples of all nations"` (`Matthew 28:19`)
+    - Paragraph: `Learn to pray, listen, serve, and share Jesus with the people around you. Help someone follow Him and learn to help another.`
+    - Stage labels (unnumbered, secondary): `Home`, `Work & School`, `Neighborhood`, `Nations`
+- **Checks (all exit `0` after final edit):** `qa_foundation.sh` (32 widget iframe checks), `test_lesson_export.js` (167 checks), `test_answer_storage.js` (64 checks), `check_lesson_assets.js` (126 asset references), and Playwright V5 suite across `201`/`202`/`203` (`390x844` phone, `1280x800` desktop, keyboard `Enter`/`Space`, `Back`/`Next`/`Start Over`, `prefers-reduced-motion: reduce`, zero `localStorage`, zero overflow, `201` unchanged at `cardH=129`/`widgetH=523`). Details in [log](logs/2026-11-13-WIDGET-GREAT-CMD-CROSS-gemini.md).
+
 ## Shared chapter header standard: November 13
 
 Dave chose the John4-6 design as the standard for all embedded Bible chapter headers. READ-HEADER-STANDARD removes the101-02-only gate and duplicate legacy renderer. It covers all21 assigned John chapters today and future bible_reading blocks. No lesson text, question, reading assignment or saved key changes. See [log](logs/2026-11-13-READ-HEADER-STANDARD-codex.md) for scope and the separate101-02 Scripture-load suggestion; that suggestion is not implemented.
