@@ -1,5 +1,21 @@
 # Growing Together Team Board
 
+## Lesson 101-02 package ready for Codex review (`REVIEW`): November 13, 2026
+
+- **Task / PR:** [PR #206](https://github.com/davepartin/ministrybag1/pull/206) on isolated branch `gemini/101-02-updates` off `origin/main` (`a886cb7`)
+- **Firebase preview:** https://growing-together-discipleship--pr206-gemini-101-02-upd-psslq7ph.web.app/#101-2
+- **Status:** `REVIEW` (stopped for Codex technical integration and automatic merge deploy; preserves all question IDs `2-1`, `2-2`, `2-3`, `2-5`, `2-key`, `2-step`, `2-devos`, `2-prayer`, saved reading keys `notes-101-John-*` / `check-101-John-*`, and Scripture blocks). Details in [log](logs/2026-11-13-101-02-WIDGET-READING-gemini.md).
+- **Changed files:** `discipleship/widgets/romans-road3.html`, `discipleship/data/101-02.json`, `discipleship/index.html`, `discipleship/scripts/read101_a11y_browser_check.js`, `discipleship/project-management/TEAM-BOARD.md`, `discipleship/project-management/logs/2026-11-13-101-02-WIDGET-READING-gemini.md`.
+- **Changed paragraph / card summaries:**
+  1. `101-02.json` (`The Greenhouse`, lines 28-31): trimmed `", and everyone can see what was already true."` in paragraph 2, and updated the end of paragraph 3 to `"Baptism is one of the ways that green shoot becomes visible."`
+  2. `romans-road3.html` (`Start`, `A`, `B`, `C`, `D` cards, lines 634-675): updated the `Start` intro sentence and removed the instructional helper line; added inline Scripture refs (`Romans 3:23`, `Romans 6:23`, `Romans 5:8`, `Romans 10:9, 13`, `Luke 9:23`), updated `Your part / God's part` across `A..C` (`wages of sin is death` bolded, `"save you from your sins"` in `B`), and added Step `D` (`D. Discipleship: Follow Jesus`, Luke 9:23) with the wood-brown cross transformation and `Start` / `A` / `B` / `C` / `D` pills.
+  3. `index.html` (`101-02` `Bible Reading` cards only): added `BIBLE READING` eyebrow + book icon, empty/checked-box `Done` pill, crisp `Open` / `Close` pill, and cleaned `"I've read John X"` footer without trailing hint text; updated `read101_a11y_browser_check.js` for v1 + v2 headers.
+- **Items for Dave to reread:**
+  1. `101-02.json` (`The Greenhouse`, line 30): `"Baptism is one of the ways that green shoot becomes visible."` (tidied missing `"is"` and `"visable"` -> `"visible"`).
+  2. `romans-road3.html` (`Step D`): `"Your part: Live in dependence on the Spirit of God by fighting sin and following the ways of Jesus. God's part: Jesus will be with you every day."`
+  3. Adjacent `101-02.json` paragraphs left untouched for your next pass: line 61 (`"three letters, the ABCs of salvation..."` above the 4-stop `A-D` widget) and line 141 (`"Baptism is the first green shoot..."` in `Lesson 2 Review`).
+- **Checks (all exit `0`):** `qa_foundation.sh` (`32` iframe, `126` assets, `415` Bible text, `1360` image checks), `test_answer_storage.js` (`64`), `read101_a11y_browser_check.js` (`57`), `read101_notes_browser_check.js` (`36`), `read101_retry_browser_check.js` (`33`), and `101-02` phone (`390x844`) + keyboard integration check.
+
 ## Overnight handoff: November 12
 
 Dave assigned Claude 201-05, 201-10 and 202-01 as three separate editorial jobs. Codex leaves those files untouched. Dave is editing paragraphs; preserve his edits and avoid broad rewrites.
