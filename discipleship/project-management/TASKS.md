@@ -230,4 +230,4 @@ Plan and standard: [reviews/2026-11-11-series-review.md](reviews/2026-11-11-seri
 
 
 
-| [ ] | FIX-101-AUDIO | ACTIVE | Codex / codex/audio / 2026-11-12 | Dave overnight assignment | Remove the unsupported built-in audio claim in 101-01 only. |
+| [ ] | FIX-101-AUDIO | REVIEW | Codex / codex/101-01-audio-claim / 2026-11-12 | Dave overnight assignment | Remove the unsupported built-in audio claim in 101-01 only. |
