@@ -1,5 +1,10 @@
 # Growing Together Team Board
 
+## 101-02 Scripture focus: November 13
+
+Dave accepted the two-cut proposal: remove the inline Galatians2:20 quotation and2Corinthians5:17,21 block, folding new life/adoption into the assurance paragraph under You Can Be Sure. John3:16-17, Romans6:3-4 and1John5:13 remain. Lesson prose count1136 to1049,87 fewer words. All8questions, saved keys, John4-6 assignments, artwork and A-D widget unchanged. Dave only needs to reread the second baptism paragraph and assurance ending. See [log](logs/2026-11-13-FOCUS-101-02-codex.md). This supersedes the earlier suggestion-only status below; final whole-lesson approval remains separate.
+
+
 ## Shared chapter header standard: November 13
 
 Dave chose the John4-6 design as the standard for all embedded Bible chapter headers. READ-HEADER-STANDARD removes the101-02-only gate and duplicate legacy renderer. It covers all21 assigned John chapters today and future bible_reading blocks. No lesson text, question, reading assignment or saved key changes. See [log](logs/2026-11-13-READ-HEADER-STANDARD-codex.md) for scope and the separate101-02 Scripture-load suggestion; that suggestion is not implemented.
