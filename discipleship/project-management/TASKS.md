@@ -230,4 +230,4 @@ Plan and standard: [reviews/2026-11-11-series-review.md](reviews/2026-11-11-seri
 
 
 
-| [ ] | RESTORE-LABEL-REVIEW | ACTIVE | Codex / codex/restore-review / 2026-11-12 | Dave overnight assignment | Review old PR 28 against current source before integrating any restore UI change. |
+| [ ] | RESTORE-LABEL-REVIEW | REVIEW | Codex / codex/restore-label-review / 2026-11-12 | Dave overnight assignment | Review old PR 28 against current source before integrating any restore UI change. |
