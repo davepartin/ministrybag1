@@ -96,7 +96,7 @@ async function runViewportCheck(browser, baseUrl, viewport, options = {}) {
     await page.screenshot({ path: path.join(options.captureDir, "before_white.png") });
   }
 
-  // Click first 5 visible buttons -> each turns ON with rotating distinct data-color
+  // Click first 6 visible buttons -> rotates in exact order: blue (0), teal (1), mustard (2), blue (0), teal (1), mustard (2)
   const visibleLoc = page.locator("#checklist-101-service-interests .checklist-tile:not([hidden])");
   const firstColors = [];
   for (let i = 0; i < 6; i++) {
@@ -106,7 +106,11 @@ async function runViewportCheck(browser, baseUrl, viewport, options = {}) {
     assert.strictEqual(pressed, "true", `Tile ${i} should have aria-pressed=true`);
     firstColors.push(color);
   }
-  assert.strictEqual(new Set(firstColors).size, 6, `Expected 6 rotating colors, got ${firstColors.join(",")}`);
+  assert.deepStrictEqual(
+    firstColors,
+    ["0", "1", "2", "0", "1", "2"],
+    `Expected blue(0), teal(1), mustard(2) repeating in order, got ${firstColors.join(",")}`
+  );
 
   if (options.captureDir) {
     await page.waitForTimeout(260);

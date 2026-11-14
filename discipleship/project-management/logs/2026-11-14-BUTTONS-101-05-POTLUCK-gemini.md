@@ -14,14 +14,11 @@
   - Kept `"Other"` visually last via flexbox `style="order: 1;"` so DOM indices stay 1:1 with `b.items[]` (`0..28`) without altering saved numeric selections.
   - Converted `.checklist-tile` elements to accessible `<button type="button">` controls (`aria-pressed`, compact ~20% shorter `36px` min-height with `7px 10px` mobile padding keeping a clean 2-column layout, crisp `:focus-visible`, `[hidden] { display: none !important; }`).
   - Unselected state stays crisp white (`#FFFFFF`, `#D8D1C4` border, tactile `2px` bottom push edge); `:hover` gated behind `@media (hover: hover)` so touch taps snap cleanly back to white when cleared.
-  - Selected state relies purely on rich L.L.Bean heritage color fill (no checkmark prefix) cycling across 6 WCAG AA/AAA tones:
-    - `0`: `#245A3E` (Pine Green, `#FFFFFF` text)
-    - `1`: `#C24A19` (Burnt Orange, `#FFFFFF` text)
+  - Selected state relies purely on rich heritage color fill (no checkmark prefix) rotating in strict order across 3 WCAG AA/AAA tones:
+    - `0`: `#224E70` (Blue / Heritage Navy, `#FFFFFF` text)
+    - `1`: `#286C6A` (Teal / Camp Teal, `#FFFFFF` text)
     - `2`: `#E6AE2B` (Mustard Yellow, `#231A0F` dark charcoal ink, `#C48F14` border)
-    - `3`: `#224E70` (Heritage Navy, `#FFFFFF` text)
-    - `4`: `#B53129` (Barn Red, `#FFFFFF` text)
-    - `5`: `#286C6A` (Camp Teal, `#FFFFFF` text)
-  - `setChecklistTileVisual` + `hydrateChecklistContainer`: pushing a button ON assigns the next color in the cursor rotation (avoiding the button's previous color `data-last-color` if toggled off and back on); turning it OFF returns it to white; saved array `responses['checklist-101-service-interests']` stays unchanged (`[indices]`) and reloads with distributed colors.
+  - `setChecklistTileVisual` + `hydrateChecklistContainer`: pushing buttons ON rotates strictly `blue -> teal -> mustard -> blue...` (and toggling a tile off and back on avoids repeating its previous color); turning a tile OFF returns it to white; saved array `responses['checklist-101-service-interests']` stays unchanged (`[indices]`) and reloads in `blue -> teal -> mustard` order.
   - `@media (prefers-reduced-motion: reduce)` disables transitions and press transform.
 - `discipleship/scripts/potluck_101_05_buttons_browser_check.js`: Multi-viewport (`390x844`, `375x812`, `1280x800`) and `prefers-reduced-motion: reduce` Playwright test on `index.html#101-5`.
 

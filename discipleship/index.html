@@ -1781,9 +1781,9 @@
         }
 
         .checklist-tile.selected {
-            --tile-bg: #245A3E;
-            --tile-border: #245A3E;
-            --tile-edge: #173D2A;
+            --tile-bg: #224E70;
+            --tile-border: #224E70;
+            --tile-edge: #15334B;
             --tile-fg: #FFFFFF;
             border-color: var(--tile-border);
             background: var(--tile-bg);
@@ -1793,16 +1793,16 @@
         }
 
         .checklist-tile.selected[data-color="0"] {
-            --tile-bg: #245A3E;
-            --tile-border: #245A3E;
-            --tile-edge: #173D2A;
+            --tile-bg: #224E70;
+            --tile-border: #224E70;
+            --tile-edge: #15334B;
             --tile-fg: #FFFFFF;
         }
 
         .checklist-tile.selected[data-color="1"] {
-            --tile-bg: #C24A19;
-            --tile-border: #C24A19;
-            --tile-edge: #8C310C;
+            --tile-bg: #286C6A;
+            --tile-border: #286C6A;
+            --tile-edge: #184745;
             --tile-fg: #FFFFFF;
         }
 
@@ -1811,27 +1811,6 @@
             --tile-border: #C48F14;
             --tile-edge: #AD7E12;
             --tile-fg: #231A0F;
-        }
-
-        .checklist-tile.selected[data-color="3"] {
-            --tile-bg: #224E70;
-            --tile-border: #224E70;
-            --tile-edge: #15334B;
-            --tile-fg: #FFFFFF;
-        }
-
-        .checklist-tile.selected[data-color="4"] {
-            --tile-bg: #B53129;
-            --tile-border: #B53129;
-            --tile-edge: #7D1E18;
-            --tile-fg: #FFFFFF;
-        }
-
-        .checklist-tile.selected[data-color="5"] {
-            --tile-bg: #286C6A;
-            --tile-border: #286C6A;
-            --tile-edge: #184745;
-            --tile-fg: #FFFFFF;
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -6178,8 +6157,8 @@
             persistResponses();
         }
 
-        const CHECKLIST_COLOR_COUNT = 6;
-        let checklistColorCursor = Math.floor(Math.random() * CHECKLIST_COLOR_COUNT);
+        const CHECKLIST_COLOR_COUNT = 3;
+        let checklistColorCursor = 0;
 
         function setChecklistTileVisual(tile, isSelected, colorIdx) {
             if (isSelected) {
@@ -6214,12 +6193,13 @@
             tiles.forEach(function (tile, index) {
                 const isSelected = hasSaved && saved.indexOf(index) !== -1;
                 if (isSelected) {
-                    setChecklistTileVisual(tile, true, index * 5 + pickOrder);
+                    setChecklistTileVisual(tile, true, pickOrder);
                     pickOrder += 1;
                 } else {
                     setChecklistTileVisual(tile, false);
                 }
             });
+            checklistColorCursor = pickOrder % CHECKLIST_COLOR_COUNT;
         }
 
         function toggleChecklistTile(el) {
