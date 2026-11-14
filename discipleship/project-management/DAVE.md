@@ -2,6 +2,10 @@
 
 Keep this small. Agents can draft from the approved direction while these decisions develop. A blocker in one row does not stop independent work.
 
+## Widget and one-sentence approval: Peaks and Valleys V2, November 14, 2026
+
+Dave explicitly approved PR #223 at `ea26435ddc7ea741817d4260ab07e81b760cdade`, the new paper/six-dot `widgets/peaks-and-valleys.html`, and the single exercise sentence "Include 3 to 5 peaks and 3 to 5 valleys." No other 101-01 text, questions, readings or artwork are changed. His 101-01/02 paragraph-by-paragraph reviews remain in progress, as he confirmed; existing edits stay protected and the lessons remain Silver.
+
 ## Widget approval: 202 headers and v5 lesson tags, November 13, 2026
 
 Dave explicitly approved PR #220 at `315fc757fa5fdec04382d86d766f73ca16d93593` and requested review, preview checks, merge and live verification. This approves the specified ten 202 widget headers, the v5 tags 201-01/202-01/203-01 and both Studio Wash guides. All eleven runtime files are byte-preserved. No approval is inferred for unrelated wording or artwork; existing lesson/component approvals remain separate.

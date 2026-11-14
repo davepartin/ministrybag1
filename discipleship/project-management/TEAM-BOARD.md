@@ -1,5 +1,12 @@
 # Growing Together Team Board
 
+## 101-01 Peaks and Valleys V2 approved: November 14, 2026
+
+Dave explicitly approved PR #223 at `ea26435`, including the paper/six-dot widget and exactly one lesson sentence: **Include 3 to 5 peaks and 3 to 5 valleys.** All other lesson copy, nine question objects/IDs, John readings and artwork are unchanged. The approved widget bytes are preserved. [Integration evidence](logs/2026-11-14-WIDGET-101-01-PEAKS-V2-codex.md).
+
+101-01 and 101-02 remain Silver: Dave confirmed his personal editing is still in progress and his existing edits must stay protected. This component/sentence approval does not award Gold or reopen other paragraphs. The 101 tracker and 101-01 component fingerprints identify V2 so future work must not restore V1 accidentally.
+
+
 ## Approved widget header rollout: PR #220
 
 Dave approved `315fc75`: all ten active 202 widgets use the dark `#2C2416` header with title on the left and lesson number on the right. The shared v5 engine now displays `201-01`, `202-01` and `203-01` instead of Course labels. Approved titles include Building From the Cornerstone and Reflecting God's Worth. [Technical review and verification](logs/2026-11-13-WIDGET-202-HEADERS-codex.md).

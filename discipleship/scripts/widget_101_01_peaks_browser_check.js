@@ -20,6 +20,11 @@ function startServer(rootDir) {
   return new Promise((resolve, reject) => {
     const server = http.createServer((req, res) => {
       const reqPath = (req.url || '/').split('?')[0];
+      if (reqPath === '/favicon.ico') {
+        res.writeHead(204);
+        res.end();
+        return;
+      }
       const rel = reqPath === '/' ? 'index.html' : reqPath.replace(/^\/+/, '');
       const fullPath = path.resolve(rootDir, rel);
       if (!fullPath.startsWith(rootDir + path.sep) && fullPath !== rootDir) {
