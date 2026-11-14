@@ -274,4 +274,4 @@ Plan and standard: [reviews/2026-11-11-series-review.md](reviews/2026-11-11-seri
 
 | [x] | FIREBASE-PR-CLEANUP-RESOURCE | DONE | Codex / codex/cleanup-canonical-resources / 2026-11-14 | First automatic cleanup safely rejected Firebase canonical resource names | Accept canonical project-qualified channel resources while requiring exact site and PR; regression tests; verify automatic cleanup. |
 
-| [ ] | GOLD-101-02 | ACTIVE | Codex / codex/101-02-gold / 2026-11-14 | Dave explicitly approved entire lesson, A-B-C-D widget and greenhouse image sequence Gold; record and protect exact versions without runtime edits | Bounded task, preservation checks, QA and review/deploy evidence. |
+| [x] | GOLD-101-02 | DONE | Codex / codex/101-02-gold / 2026-11-14 | Dave explicitly approved entire lesson, A-B-C-D widget and greenhouse image sequence Gold; record and protect exact versions without runtime edits | Bounded task, preservation checks, QA and review/deploy evidence. |

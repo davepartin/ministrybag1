@@ -15,14 +15,14 @@ Stages describe the text review, independently of widget and image approval. Gol
 | Lesson | Title | Stage | Approved widget | Approved image |
 |---|---|---|---|---|
 | 101-01 | Welcome. Let's Start Growing. | Silver: Dave-edited, protected | Yes: Peaks and Valleys V2 (#223) | Approval unrecorded: course graphic |
-| 101-02 | Salvation and Baptism | Silver: Dave-edited, protected | Yes: A-B-C-D road to cross | Approval unrecorded: greenhouse sequence |
+| 101-02 | Salvation and Baptism | Gold: whole lesson approved and protected | Gold: A-B-C-D road to cross | Gold: greenhouse sequence |
 | 101-03 | Prayer | Silver | No iframe widget; prayer exercise awaits review | Missing |
 | 101-04 | The Bible | Silver | No iframe widget; Discovery Questions exercise awaits review | Missing: Nicodemus lamplight planned |
 | 101-05 | The Church | Silver | No iframe widget; serving checklist awaits review | Approval unrecorded: aspen pair |
 | 101-06 | Sharing Jesus with Others | Silver: earlier Dave edits protected | No iframe widget; BLESS exercise awaits review | Approval unrecorded: woman-at-well pair / BLESS graphic |
 | 101-07 | When You Drift | Silver | No iframe widget; Stop, Turn, Tell, Receive awaits review | Missing |
 
-Silver on 101-01/02 is conservative, not a request to rewrite them. Dave says he has worked hard on both. Dave confirmed both personal read-throughs are still in progress; promote either to Gold only when he confirms completion. The record does not treat partial paragraph edits as approval of unseen paragraphs. Existing specific approvals remain in force even on Silver lessons.
+101-01 remains Silver with Dave edits protected. Dave has now explicitly approved the whole 101-02 lesson, its A-B-C-D widget and its greenhouse image sequence Gold (November14). Preserve the exact recorded text, questions, readings, widget and images; new edits require his specific direction. The record does not treat partial paragraph edits as approval of unseen paragraphs. Existing specific approvals remain in force even on Silver lessons.
 
 "Approval unrecorded" means that the image exists but this check did not establish Dave's approval of its exact current version. Do not replace it. "Missing" describes the current lesson, not a failed image. A working exercise can satisfy the teaching-tool need without a new animated widget.
 
@@ -47,3 +47,5 @@ These instructions implement Dave's direct request in chat on November 13. They 
 One specific consistency suggestion, not implemented: 101-02 still introduces "three letters, the ABCs of salvation" and says "Each stop is one verse from Romans," while the approved widget now includes D for discipleship. Propose a short bridge that preserves A-B-C as the salvation response and introduces D as following Jesus afterward. Ask Dave to approve the wording; do not silently reopen his edited lesson.
 
 November14 update: Dave approved the exact V2 widget at ea26435 and the one exercise sentence "Include 3 to 5 peaks and 3 to 5 valleys." All other 101-01 copy, questions, readings and artwork remain protected. Component fingerprints for 101-01 now reflect this approved update; all other lesson fingerprints retain their original baseline.
+
+Gold update, November14: Dave explicitly said "101-02 widget gold and 101-02 image are gold.whole lesson is gold". Approval applies to current main ae1c78e and the recorded component hashes. This supersedes older in-progress notices for 101-02. It does not change 101-01 or 101-05 text stages or waive release/pilot gates.
