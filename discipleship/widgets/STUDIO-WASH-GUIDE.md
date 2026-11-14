@@ -13,7 +13,7 @@ This guide captures the design lessons and locked visual standard from **Version
    - Never leave orphan labels stranded in distant corners where they create dead whitespace.
 4. **Show subtle ongoing movement via nested watermarks.** Instead of large solid arrowheads or clipart, place clean double-chevron directional marks (`stroke-width: 3` at `0.55` opacity plus a trailing `2.4` chevron at `0.26` opacity in the beam's own hue) near the outer edge of each washed lane.
 5. **Frame climaxes with crisp double hairlines, never fuzzy glow.** Step 5 unites the cross using a clean `3.5px` Deep Crimson outer path plus a `1.1px` (`0.45` opacity) inner hairline. Avoid blurry outer shadows or neon glows.
-6. **Keep typography modern, crisp, and legible at phone width.** Bold humanist/system sans (`system-ui`, `14.5px`, weight `700`) for diagram callouts; Georgia serif for Scripture (`13.5px`) inside the bottom card; compact `17px` header bar with course tag (`COURSE 201`).
+6. **Keep typography modern, crisp, and legible at phone width.** Bold humanist/system sans (`system-ui`, `14.5px`, weight `700`) for diagram callouts; Georgia serif for Scripture (`13.5px`) inside the bottom card; compact `17px` `#2C2416` header bar with widget title top-left and lesson tag top-right (`201-01`, `202-01`, `203-01`, dropping the word `COURSE`).
 
 ---
 

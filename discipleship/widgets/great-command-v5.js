@@ -56,7 +56,7 @@
   var VERSIONS = {
     '201': {
       title: 'The Greatest Commandment',
-      courseTag: 'Course 201',
+      courseTag: '201-01',
       regionLabel: 'Interactive cross drawing for 201 Loving God (Version 5)',
       svgTitle: 'The Greatest Commandment Cross (Growing Deep - Studio Wash)',
       steps: [
@@ -147,7 +147,7 @@
     },
     '202': {
       title: 'The Greatest Commandment',
-      courseTag: 'Course 202',
+      courseTag: '202-01',
       regionLabel: 'Interactive cross drawing for 202 Loving Your Neighbors (Version 5)',
       svgTitle: 'The Greatest Commandment Cross (Growing Up - Studio Wash)',
       steps: [
@@ -230,7 +230,7 @@
     },
     '203': {
       title: 'The Greatest Commandment',
-      courseTag: 'Course 203',
+      courseTag: '203-01',
       regionLabel: 'Interactive cross drawing for 203 Personal Ministry (Version 5)',
       svgTitle: 'The Greatest Commandment Cross (Growing Out - Studio Wash)',
       steps: [

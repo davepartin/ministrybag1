@@ -1,5 +1,13 @@
 # Growing Together Team Board
 
+## 202 Widget Header Standardization & Lesson Tag Format: November 13, 2026
+
+- **Task / Branch:** `WIDGET-202-HEADERS` on `gemini/widget-202-headers` (`REVIEW` for Dave visual check and Codex integration)
+- **Summary:** Dropped the word `Course` in favor of `<course>-<lesson>` top-right tags (`201-01`, `202-01`, `203-01` in `great-command-v5.js` + Studio Wash docs) and standardized all active `202` widgets (`202-01` through `202-10`) to the `#2C2416` bar (`36px` tall, `17px` `#FAF8F3` title top-left, `11px` `#E5DEC9` lesson number top-right), including Dave's confirmed titles **`Building From the Cornerstone`** (`202-02`) and **`Reflecting God's Worth`** (`202-06`) and `202-05` (`trust-the-artist.html`: **`Trust the Creator`**).
+- **Untouched:** all lesson JSON files (`data/*.json`), question IDs, saved answers, `index.html`, `scripts/`, `images/`, and Firebase config.
+- **Checks (all exit `0`):** Playwright across all 13 widgets (`390x844` and `1280x800`, zero overflow/errors/overlap, screenshots inspected), `qa_foundation.sh`, `test_lesson_export.js` (`177`), `test_answer_storage.js` (`64`), `check_lesson_assets.js` (`127`). [Evidence](logs/2026-11-13-WIDGET-202-HEADERS-gemini.md).
+
+
 ## 101 personal-editing protection and simple status
 
 Dave requested Bronze/Silver/Gold stages and separate widget/image approvals. Use the [five-column 101 tracker](reviews/101-editorial-status.md) before any 101 work. Protect his edits to 101-01/02 now and the earlier exact 101-06 edits; do not swap or remove story art without his direction. Gold requires his confirmed completed personal read-through, never an AI grade. Existing approved components stay approved independently. Lesson/widget/image files are unchanged by this documentation packet.
