@@ -1,0 +1,1006 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Church Potluck</title>
+<style>
+:root {
+  --ink: #2C2416;
+  --muted: #655F55;
+  --ghost-stroke: #B8AF9F;
+  --ghost-wash: #EDE7DA;
+  --line-soft: #E5DFD3;
+  --paper: #FBF9F4;
+
+  --gold: #A8760A;
+  --gold-dark: #7A5304;
+  --gold-soft: #FCF2D6;
+
+  --green: #1F684A;
+  --green-dark: #155030;
+  --green-soft: #E1F1E9;
+
+  --blue: #2A5B7C;
+  --blue-dark: #1C425C;
+  --blue-soft: #E2EEF6;
+
+  --plum: #5F4684;
+  --plum-dark: #453164;
+  --plum-soft: #EDE7F6;
+
+  --crimson: #8B1A2B;
+
+  --step-color: #2C2416;
+  --step-dark: #2C2416;
+  --step-soft: #F2EFE9;
+  --card-h: 112px;
+}
+
+.widget-outer[data-step="1"] {
+  --step-color: var(--gold);
+  --step-dark: var(--gold-dark);
+  --step-soft: var(--gold-soft);
+}
+.widget-outer[data-step="2"] {
+  --step-color: var(--green);
+  --step-dark: var(--green-dark);
+  --step-soft: var(--green-soft);
+}
+.widget-outer[data-step="3"] {
+  --step-color: var(--blue);
+  --step-dark: var(--blue-dark);
+  --step-soft: var(--blue-soft);
+}
+.widget-outer[data-step="4"] {
+  --step-color: var(--plum);
+  --step-dark: var(--plum-dark);
+  --step-soft: var(--plum-soft);
+}
+.widget-outer[data-step="5"] {
+  --step-color: var(--green);
+  --step-dark: var(--green-dark);
+  --step-soft: var(--green-soft);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: Georgia, Cambria, serif;
+  background: #F8F6F1;
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+.widget-outer {
+  background: #FFFFFF;
+  border-radius: 0;
+  overflow: hidden;
+  box-shadow: none;
+  border: none;
+  max-width: 100%;
+  width: 100%;
+  margin: 0;
+  position: relative;
+}
+
+@media (min-width: 560px) {
+  body {
+    padding: 16px;
+    background: #F8F6F1;
+  }
+  .widget-outer {
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(44, 36, 22, 0.08);
+    border: 1px solid #EBE5D9;
+    max-width: 460px;
+    margin: 0 auto;
+  }
+}
+
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:focus-visible,
+.center-candle:focus-visible {
+  outline: 3px solid var(--ink);
+  outline-offset: 2px;
+}
+
+.stage svg .dish-group:focus-visible {
+  outline: none;
+}
+
+.stage svg .dish-focus-ring {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.stage svg .dish-group:focus-visible .dish-focus-ring {
+  opacity: 1;
+}
+
+.title-bar {
+  background: var(--ink);
+  padding: 8px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.title-bar h1 {
+  font: 600 17px/1.15 system-ui, -apple-system, sans-serif;
+  color: #FAF8F3;
+  letter-spacing: 0.2px;
+  margin: 0;
+  text-align: left;
+}
+
+.course-tag {
+  font: 600 11px/1 system-ui, -apple-system, sans-serif;
+  letter-spacing: 0.9px;
+  text-transform: uppercase;
+  color: #E5DEC9;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.stage {
+  background: var(--paper);
+  padding: 4px 6px 2px;
+  border-bottom: 1px solid #EDE7DC;
+}
+
+.stage svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  user-select: none;
+}
+
+/* SVG layer transitions */
+.stage svg .table-wood {
+  fill: #F5EFE2;
+  stroke: var(--ink);
+  stroke-width: 1.6;
+  transition: fill 0.5s ease, stroke 0.5s ease;
+}
+
+.widget-outer.is-potluck .stage svg .table-wood {
+  fill: #F9F3E6;
+}
+
+.stage svg .table-runner {
+  opacity: 0;
+  transition: opacity 0.28s ease;
+}
+
+.widget-outer.is-potluck .stage svg .table-runner {
+  opacity: 1;
+}
+
+.stage svg .restaurant-solo {
+  opacity: 1;
+  transition: opacity 0.25s ease;
+}
+
+.widget-outer.is-potluck .stage svg .restaurant-solo {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.stage svg .root-network {
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.widget-outer[data-step="5"] .stage svg .root-network {
+  opacity: 0.8;
+}
+
+.stage svg .root-line {
+  fill: none;
+  stroke: #9A7228;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-dasharray: 220;
+  stroke-dashoffset: 220;
+  transition: stroke-dashoffset 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.widget-outer[data-step="5"] .stage svg .root-line {
+  stroke-dashoffset: 0;
+}
+
+.stage svg .center-candle {
+  opacity: 0.16;
+  transition: opacity 0.28s ease;
+}
+
+.widget-outer.is-potluck .stage svg .center-candle {
+  opacity: 1;
+}
+
+.stage svg .dish-group {
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.28s ease;
+}
+
+.widget-outer.is-potluck .stage svg .dish-group {
+  opacity: 0.16;
+  pointer-events: auto;
+}
+
+.stage svg .dish-group .dish-ring {
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.stage svg .dish-group .dish-picked {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.widget-outer.is-potluck .stage svg .dish-group.is-visited {
+  opacity: 0.42;
+}
+
+.widget-outer.is-potluck .stage svg .dish-group.is-active {
+  opacity: 1;
+}
+
+.widget-outer.is-potluck .stage svg .dish-group.is-active .dish-ring {
+  opacity: 1;
+}
+
+.widget-outer.is-potluck .stage svg .dish-group.is-muted-step5 {
+  opacity: 0.48;
+}
+
+.widget-outer.is-potluck .stage svg .dish-group.is-picked .dish-picked {
+  opacity: 1;
+}
+
+.stage svg .chair-pair {
+  opacity: 0.22;
+  transition: opacity 0.28s ease;
+}
+
+.stage svg .chair-pair.is-lit {
+  opacity: 1;
+}
+
+.stage svg .stage-banner-text {
+  font: 700 11.5px/1 system-ui, -apple-system, sans-serif;
+  letter-spacing: 0.85px;
+  text-transform: uppercase;
+  fill: var(--muted);
+}
+
+.stage svg .stage-footer-text {
+  font: 600 12px/1.15 system-ui, -apple-system, sans-serif;
+  fill: var(--muted);
+}
+
+/* Wordless step dots bar */
+.step-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+  padding: 5px 12px 2px;
+  background: #F6F4EE;
+}
+
+.step-dot {
+  min-width: 34px;
+  min-height: 28px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.step-dot::before {
+  content: "";
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #CFC8BA;
+  border: 1.5px solid #ABA292;
+  transition: transform 0.2s ease, background 0.25s ease, border-color 0.25s ease;
+}
+
+.step-dot.is-passed::before {
+  background: #E4DEC8;
+  border-color: var(--dot-color, var(--ink));
+}
+
+.step-dot.is-active::before {
+  width: 22px;
+  border-radius: 999px;
+  background: var(--dot-color, var(--ink));
+  border-color: var(--dot-color, var(--ink));
+}
+
+.step-dot[data-step="0"] { --dot-color: var(--ink); }
+.step-dot[data-step="1"] { --dot-color: var(--gold); }
+.step-dot[data-step="2"] { --dot-color: var(--green); }
+.step-dot[data-step="3"] { --dot-color: var(--blue); }
+.step-dot[data-step="4"] { --dot-color: var(--plum); }
+.step-dot[data-step="5"] { --dot-color: var(--green); }
+
+/* Caption card & navigation */
+.card-area {
+  background: #F6F4EE;
+  padding: 4px 12px 9px;
+}
+
+.verse-card {
+  background: #FFFFFF;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #EBE5D9;
+  box-shadow: 0 2px 12px rgba(44, 36, 22, 0.06);
+}
+
+.verse-card-bar {
+  height: 4px;
+  background: var(--step-color);
+  transition: background 0.3s ease;
+}
+
+.verse-card-content {
+  padding: 9px 13px;
+  min-height: var(--card-h, 112px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card-heading {
+  font: 700 15px/1.22 system-ui, -apple-system, sans-serif;
+  color: var(--step-dark);
+  margin: 0 0 4px;
+  transition: color 0.25s ease;
+}
+
+.card-verse {
+  font: 13.5px/1.38 Georgia, Cambria, serif;
+  color: #3D3426;
+  margin: 0;
+}
+
+.card-verse b {
+  color: var(--step-dark);
+}
+
+.verse-ref {
+  font: 600 11.5px/1.2 system-ui, -apple-system, sans-serif;
+  color: var(--muted);
+  white-space: nowrap;
+  margin-left: 4px;
+}
+
+.card-note {
+  display: block;
+  margin-top: 5px;
+  font: 12.2px/1.35 system-ui, -apple-system, sans-serif;
+  color: #4A4238;
+}
+
+.card-note b {
+  color: var(--step-dark);
+}
+
+.nav-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-top: 7px;
+}
+
+.nav-btn {
+  min-height: 44px;
+  min-width: 96px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1.5px solid #D4CFC4;
+  background: #FFFFFF;
+  color: var(--ink);
+  font: 700 13.5px/1 system-ui, -apple-system, sans-serif;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
+}
+
+.nav-btn:hover:not(:disabled) {
+  background: #FAF8F3;
+  border-color: var(--ink);
+}
+
+.nav-btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.nav-btn.primary {
+  background: var(--step-color);
+  border-color: var(--step-color);
+  color: #FFFFFF;
+}
+
+.nav-btn.primary:hover:not(:disabled) {
+  background: var(--step-dark);
+  border-color: var(--step-dark);
+}
+
+.nav-status {
+  font: 600 12px/1.2 system-ui, -apple-system, sans-serif;
+  color: var(--muted);
+  text-align: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+  .stage svg .root-line {
+    stroke-dashoffset: 0 !important;
+  }
+}
+</style>
+</head>
+<body>
+<div class="widget-outer" id="widgetOuter" data-step="0">
+  <header class="title-bar">
+    <h1>The Church Potluck</h1>
+    <span class="course-tag">101-05 · The Church</span>
+  </header>
+
+  <div class="stage">
+    <svg id="potluckSvg" viewBox="0 0 440 278" role="img" aria-labelledby="svgTitle svgDesc">
+      <title id="svgTitle">The Church Potluck: Acts 2 Community Table</title>
+      <desc id="svgDesc">A shared church table comparing sitting alone as a customer with bringing four Acts 2 dishes together as one family.</desc>
+
+      <defs>
+        <radialGradient id="tableGlow" cx="50%" cy="50%" r="55%">
+          <stop offset="0%" stop-color="#FFF9E6" stop-opacity="0.95"/>
+          <stop offset="65%" stop-color="#FBF9F4" stop-opacity="0.5"/>
+          <stop offset="100%" stop-color="#FBF9F4" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+
+      <!-- Warm vellum paper background -->
+      <rect x="0" y="0" width="440" height="278" fill="#FBF9F4"/>
+      <ellipse cx="220" cy="139" rx="195" ry="112" fill="url(#tableGlow)"/>
+
+      <!-- Subtle corner double-chevron studio wash watermarks -->
+      <g fill="none" stroke="#DFD7C8" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" opacity="0.55">
+        <polyline points="16,18 22,12 16,6"/>
+        <polyline points="23,18 29,12 23,6"/>
+        <polyline points="424,260 418,266 424,272"/>
+        <polyline points="417,260 411,266 417,272"/>
+      </g>
+
+      <!-- Top banner line inside canvas -->
+      <text x="220" y="21" text-anchor="middle" class="stage-banner-text" id="stageBanner">One Solo Plate vs. A Shared Family Table</text>
+
+      <!-- Eight wooden chairs around the table -->
+      <g id="chairsLayer">
+        <!-- Quad 1 chairs (Top-Left) -->
+        <g class="chair-pair" data-chair="1">
+          <rect x="116" y="34" width="40" height="12" rx="5" fill="#EFE8DA" stroke="#2C2416" stroke-width="1.5"/>
+          <rect x="38" y="80" width="12" height="36" rx="5" fill="#EFE8DA" stroke="#2C2416" stroke-width="1.5"/>
+        </g>
+        <!-- Quad 2 chairs (Top-Right) -->
+        <g class="chair-pair" data-chair="2">
+          <rect x="284" y="34" width="40" height="12" rx="5" fill="#EFE8DA" stroke="#2C2416" stroke-width="1.5"/>
+          <rect x="390" y="80" width="12" height="36" rx="5" fill="#EFE8DA" stroke="#2C2416" stroke-width="1.5"/>
+        </g>
+        <!-- Quad 3 chairs (Bottom-Left) -->
+        <g class="chair-pair" data-chair="3">
+          <rect x="116" y="232" width="40" height="12" rx="5" fill="#EFE8DA" stroke="#2C2416" stroke-width="1.5"/>
+          <rect x="38" y="162" width="12" height="36" rx="5" fill="#EFE8DA" stroke="#2C2416" stroke-width="1.5"/>
+        </g>
+        <!-- Quad 4 chairs (Bottom-Right) -->
+        <g class="chair-pair" data-chair="4">
+          <rect x="284" y="232" width="40" height="12" rx="5" fill="#EFE8DA" stroke="#2C2416" stroke-width="1.5"/>
+          <rect x="390" y="162" width="12" height="36" rx="5" fill="#EFE8DA" stroke="#2C2416" stroke-width="1.5"/>
+        </g>
+      </g>
+
+      <!-- Family Table surface -->
+      <rect class="table-wood" x="56" y="50" width="328" height="178" rx="28"/>
+      <!-- Inner bevel hairline -->
+      <rect x="62" y="56" width="316" height="166" rx="22" fill="none" stroke="#D8CEBC" stroke-width="1"/>
+
+      <!-- Woven linen runner (hidden in restaurant view, blossoms in potluck view) -->
+      <g class="table-runner">
+        <rect x="202" y="52" width="36" height="174" fill="#EFE8D8" opacity="0.72"/>
+        <line x1="204" y1="52" x2="204" y2="226" stroke="#C5B9A2" stroke-width="1" stroke-dasharray="3 3"/>
+        <line x1="236" y1="52" x2="236" y2="226" stroke="#C5B9A2" stroke-width="1" stroke-dasharray="3 3"/>
+        <polyline points="214,68 220,62 226,68" fill="none" stroke="#C5B9A2" stroke-width="1.2"/>
+        <polyline points="214,210 220,216 226,210" fill="none" stroke="#C5B9A2" stroke-width="1.2"/>
+      </g>
+
+      <!-- Aspen-style root connections linking all four quadrants into one Acts 2 body (Step 5) -->
+      <g class="root-network">
+        <path class="root-line" d="M 142,108 Q 182,135 220,139"/>
+        <path class="root-line" d="M 298,108 Q 258,135 220,139"/>
+        <path class="root-line" d="M 142,172 Q 182,143 220,139"/>
+        <path class="root-line" d="M 298,172 Q 258,143 220,139"/>
+      </g>
+
+      <!-- STEP 0: Restaurant solo setting on an underfed table -->
+      <g class="restaurant-solo" id="restaurantSolo">
+        <!-- Empty ghost table slots -->
+        <rect x="70" y="64" width="125" height="66" rx="12" fill="none" stroke="#D8CEBC" stroke-width="1.2" stroke-dasharray="4 4"/>
+        <rect x="245" y="64" width="125" height="66" rx="12" fill="none" stroke="#D8CEBC" stroke-width="1.2" stroke-dasharray="4 4"/>
+        <rect x="70" y="148" width="125" height="66" rx="12" fill="none" stroke="#D8CEBC" stroke-width="1.2" stroke-dasharray="4 4"/>
+        <rect x="245" y="148" width="125" height="66" rx="12" fill="none" stroke="#D8CEBC" stroke-width="1.2" stroke-dasharray="4 4"/>
+        <!-- Solo plate on left end -->
+        <ellipse cx="132" cy="139" rx="28" ry="22" fill="#FFFFFF" stroke="#8C8272" stroke-width="1.5"/>
+        <ellipse cx="132" cy="139" rx="19" ry="14" fill="#F8F5EE" stroke="#C5B9A2" stroke-width="1.1"/>
+        <!-- Fork and knife -->
+        <line x1="96" y1="126" x2="96" y2="152" stroke="#8C8272" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="93" y1="126" x2="93" y2="134" stroke="#8C8272" stroke-width="1.1" stroke-linecap="round"/>
+        <line x1="99" y1="126" x2="99" y2="134" stroke="#8C8272" stroke-width="1.1" stroke-linecap="round"/>
+        <path d="M 167,126 L 167,152" stroke="#8C8272" stroke-width="1.6" stroke-linecap="round"/>
+        <!-- Small tired server tray across the empty table -->
+        <rect x="248" y="120" width="118" height="38" rx="9" fill="#FFFFFF" stroke="#C5B9A2" stroke-width="1.3"/>
+        <text x="307" y="136" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#655F55">A few serving</text>
+        <text x="307" y="150" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11.5" fill="#7D7568">many watching</text>
+      </g>
+
+      <!-- Central candle & chalice/cup centerpiece (always gentle anchor, brighter in potluck) -->
+      <g class="center-candle" id="centerpiece" role="button" tabindex="0" aria-label="Full Acts 2 community view">
+        <circle cx="220" cy="139" r="24" fill="#FCF2D6" opacity="0.88"/>
+        <circle cx="220" cy="139" r="19" fill="#FFFFFF" stroke="#A8760A" stroke-width="1.5"/>
+        <!-- Warm cup + flame emblem -->
+        <path d="M 220,124 C 216,130 216,135 220,136 C 224,135 224,130 220,124 Z" fill="#E8A928" stroke="#A8760A" stroke-width="1.2"/>
+        <rect x="215" y="137" width="10" height="12" rx="2" fill="#FFF8E7" stroke="#2C2416" stroke-width="1.4"/>
+        <line x1="211" y1="150" x2="229" y2="150" stroke="#2C2416" stroke-width="1.4" stroke-linecap="round"/>
+      </g>
+
+      <!-- QUADRANT 1: WORD & PRAYER (Gold - Top Left) -->
+      <g class="dish-group" id="dish1" data-dish="1" role="button" tabindex="0" aria-label="Word and Prayer: Small Groups, Bible Study, Prayer Team, Mentoring" aria-pressed="false">
+        <rect class="dish-focus-ring" x="64" y="58" width="137" height="78" rx="16" fill="none" stroke="#2C2416" stroke-width="2.4"/>
+        <rect class="dish-ring" x="67" y="61" width="131" height="72" rx="14" fill="none" stroke="#A8760A" stroke-width="1.8"/>
+        <rect x="70" y="64" width="125" height="66" rx="12" fill="#FCF2D6" stroke="#A8760A" stroke-width="1.4"/>
+        <!-- Open Scripture book -->
+        <path d="M 101,84 Q 114,79 124,85 L 124,104 Q 114,99 101,103 Z" fill="#FFFFFF" stroke="#2C2416" stroke-width="1.5" stroke-linejoin="round"/>
+        <path d="M 147,84 Q 134,79 124,85 L 124,104 Q 134,99 147,103 Z" fill="#FFFBF0" stroke="#2C2416" stroke-width="1.5" stroke-linejoin="round"/>
+        <line x1="106" y1="90" x2="119" y2="89" stroke="#A8760A" stroke-width="1.1" stroke-linecap="round"/>
+        <line x1="106" y1="95" x2="119" y2="94" stroke="#A8760A" stroke-width="1.1" stroke-linecap="round"/>
+        <line x1="129" y1="89" x2="142" y2="90" stroke="#A8760A" stroke-width="1.1" stroke-linecap="round"/>
+        <line x1="129" y1="94" x2="142" y2="95" stroke="#A8760A" stroke-width="1.1" stroke-linecap="round"/>
+        <!-- Warm teacup beside book -->
+        <path d="M 157,89 L 175,89 L 173,101 Q 166,104 159,101 Z" fill="#FFFFFF" stroke="#2C2416" stroke-width="1.4" stroke-linejoin="round"/>
+        <path d="M 175,92 C 179,92 179,98 174,98" fill="none" stroke="#2C2416" stroke-width="1.3"/>
+        <path d="M 163,84 Q 161,80 164,76" fill="none" stroke="#A8760A" stroke-width="1.2" stroke-linecap="round"/>
+        <path d="M 169,84 Q 167,80 170,76" fill="none" stroke="#A8760A" stroke-width="1.2" stroke-linecap="round"/>
+        <!-- Label -->
+        <text x="132" y="121" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#7A5304">Word &amp; Prayer</text>
+        <!-- Picked badge -->
+        <g class="dish-picked">
+          <circle cx="184" cy="74" r="8" fill="#A8760A"/>
+          <polyline points="180,74 183,77 188,71" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+      </g>
+
+      <!-- QUADRANT 2: WELCOME & MEALS (Sage Green - Top Right) -->
+      <g class="dish-group" id="dish2" data-dish="2" role="button" tabindex="0" aria-label="Welcome and Breaking Bread: Greeting, First Impressions, Meals for Families" aria-pressed="false">
+        <rect class="dish-focus-ring" x="239" y="58" width="137" height="78" rx="16" fill="none" stroke="#2C2416" stroke-width="2.4"/>
+        <rect class="dish-ring" x="242" y="61" width="131" height="72" rx="14" fill="none" stroke="#1F684A" stroke-width="1.8"/>
+        <rect x="245" y="64" width="125" height="66" rx="12" fill="#E1F1E9" stroke="#1F684A" stroke-width="1.4"/>
+        <!-- Shared warm dish / casserole platter + scored loaf -->
+        <ellipse cx="290" cy="95" rx="22" ry="12" fill="#FFFFFF" stroke="#2C2416" stroke-width="1.5"/>
+        <path d="M 275,93 C 278,82 302,82 305,93 Q 290,98 275,93 Z" fill="#F2D7A4" stroke="#2C2416" stroke-width="1.4"/>
+        <line x1="284" y1="86" x2="287" y2="91" stroke="#7C4D25" stroke-width="1.2" stroke-linecap="round"/>
+        <line x1="292" y1="86" x2="295" y2="91" stroke="#7C4D25" stroke-width="1.2" stroke-linecap="round"/>
+        <!-- Side bowl of fruit / soup -->
+        <path d="M 321,89 L 347,89 C 346,102 322,102 321,89 Z" fill="#FFFFFF" stroke="#2C2416" stroke-width="1.4" stroke-linejoin="round"/>
+        <path d="M 328,83 Q 331,78 334,83" fill="none" stroke="#1F684A" stroke-width="1.2" stroke-linecap="round"/>
+        <path d="M 336,83 Q 339,78 342,83" fill="none" stroke="#1F684A" stroke-width="1.2" stroke-linecap="round"/>
+        <!-- Label -->
+        <text x="308" y="121" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#155030">Welcome &amp; Bread</text>
+        <!-- Picked badge -->
+        <g class="dish-picked">
+          <circle cx="359" cy="74" r="8" fill="#1F684A"/>
+          <polyline points="355,74 358,77 363,71" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+      </g>
+
+      <!-- QUADRANT 3: MAKING ROOM / HANDS (Harbour Blue - Bottom Left) -->
+      <g class="dish-group" id="dish3" data-dish="3" role="button" tabindex="0" aria-label="Making Room Together: Kids, Youth, Worship, Sound Tech, Setup, Creative Arts, Administration" aria-pressed="false">
+        <rect class="dish-focus-ring" x="64" y="142" width="137" height="78" rx="16" fill="none" stroke="#2C2416" stroke-width="2.4"/>
+        <rect class="dish-ring" x="67" y="145" width="131" height="72" rx="14" fill="none" stroke="#2A5B7C" stroke-width="1.8"/>
+        <rect x="70" y="148" width="125" height="66" rx="12" fill="#E2EEF6" stroke="#2A5B7C" stroke-width="1.4"/>
+        <!-- Table lamp / lantern making room + music note + kids star -->
+        <circle cx="105" cy="175" r="13" fill="#FFFFFF" stroke="#2C2416" stroke-width="1.4"/>
+        <path d="M 99,179 L 105,168 L 111,179 Z" fill="#FCE7A6" stroke="#2C2416" stroke-width="1.3" stroke-linejoin="round"/>
+        <line x1="105" y1="179" x2="105" y2="184" stroke="#2C2416" stroke-width="1.4"/>
+        <!-- Music eighth notes -->
+        <path d="M 131,182 L 131,166 L 144,164 L 144,180" fill="none" stroke="#2C2416" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="128" cy="182" r="3.2" fill="#2A5B7C"/>
+        <circle cx="141" cy="180" r="3.2" fill="#2A5B7C"/>
+        <!-- Kids / creative star block -->
+        <polygon points="165,166 168,172 175,173 170,178 171,184 165,181 159,184 160,178 155,173 162,172" fill="#FFFFFF" stroke="#2A5B7C" stroke-width="1.3" stroke-linejoin="round"/>
+        <!-- Label -->
+        <text x="132" y="205" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#1C425C">Making Room</text>
+        <!-- Picked badge -->
+        <g class="dish-picked">
+          <circle cx="184" cy="158" r="8" fill="#2A5B7C"/>
+          <polyline points="180,158 183,161 188,155" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+      </g>
+
+      <!-- QUADRANT 4: CARE & OUTWARD LOVE (Royal Plum - Bottom Right) -->
+      <g class="dish-group" id="dish4" data-dish="4" role="button" tabindex="0" aria-label="Care and Outward Love: Visiting the Sick, Outreach Events, Missions, Generosity, Social Media" aria-pressed="false">
+        <rect class="dish-focus-ring" x="239" y="142" width="137" height="78" rx="16" fill="none" stroke="#2C2416" stroke-width="2.4"/>
+        <rect class="dish-ring" x="242" y="145" width="131" height="72" rx="14" fill="none" stroke="#5F4684" stroke-width="1.8"/>
+        <rect x="245" y="148" width="125" height="66" rx="12" fill="#EDE7F6" stroke="#5F4684" stroke-width="1.4"/>
+        <!-- Woven care basket + heart -->
+        <path d="M 278,174 L 308,174 L 303,187 L 283,187 Z" fill="#FFFFFF" stroke="#2C2416" stroke-width="1.5" stroke-linejoin="round"/>
+        <path d="M 284,174 C 284,164 302,164 302,174" fill="none" stroke="#2C2416" stroke-width="1.5"/>
+        <line x1="286" y1="180" x2="300" y2="180" stroke="#5F4684" stroke-width="1.1"/>
+        <!-- Heart / neighbor lantern -->
+        <path d="M 332,185 C 321,178 320,168 326,166 C 329,165 332,168 332,170 C 332,168 335,165 338,166 C 344,168 343,178 332,185 Z" fill="#FFFFFF" stroke="#8B1A2B" stroke-width="1.4" stroke-linejoin="round"/>
+        <!-- Label -->
+        <text x="308" y="205" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#453164">Care &amp; Outreach</text>
+        <!-- Picked badge -->
+        <g class="dish-picked">
+          <circle cx="359" cy="158" r="8" fill="#5F4684"/>
+          <polyline points="355,158 358,161 363,155" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </g>
+      </g>
+
+      <!-- Bottom caption line inside canvas -->
+      <text x="220" y="266" text-anchor="middle" class="stage-footer-text" id="stageFooter">Select Next to walk through Acts 2:42-47 together</text>
+    </svg>
+  </div>
+
+  <!-- Wordless navigation dots -->
+  <div class="step-dots" role="tablist" aria-label="Potluck steps">
+    <button type="button" class="step-dot is-active" data-step="0" aria-label="Step 1: Not a Restaurant" aria-selected="true"></button>
+    <button type="button" class="step-dot" data-step="1" aria-label="Step 2: Word and Prayer" aria-selected="false"></button>
+    <button type="button" class="step-dot" data-step="2" aria-label="Step 3: Welcome and Breaking Bread" aria-selected="false"></button>
+    <button type="button" class="step-dot" data-step="3" aria-label="Step 4: Making Room Together" aria-selected="false"></button>
+    <button type="button" class="step-dot" data-step="4" aria-label="Step 5: Care and Outward Love" aria-selected="false"></button>
+    <button type="button" class="step-dot" data-step="5" aria-label="Step 6: The Whole Acts 2 Table" aria-selected="false"></button>
+  </div>
+
+  <div class="card-area">
+    <article class="verse-card" aria-live="polite">
+      <div class="verse-card-bar"></div>
+      <div class="verse-card-content" id="cardContent">
+        <h2 class="card-heading" id="cardHeading"></h2>
+        <p class="card-verse" id="cardVerse"></p>
+        <span class="card-note" id="cardNote"></span>
+      </div>
+    </article>
+
+    <nav class="nav-bar" aria-label="Lesson navigation">
+      <button type="button" class="nav-btn" id="prevBtn">&#8592; Back</button>
+      <span class="nav-status" id="navStatus">1 of 6</span>
+      <button type="button" class="nav-btn primary" id="nextBtn">Next &#8594;</button>
+    </nav>
+  </div>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  var STEPS = [
+    {
+      banner: "One Solo Plate vs. A Shared Family Table",
+      footer: "Everyone has a seat, and every dish enriches the whole table",
+      title: "The Church Potluck: Acts 2 Community Table",
+      desc: "An empty restaurant seat next to the four Acts 2 community dishes waiting to fill the church table.",
+      heading: "Not a Restaurant, a Family Table",
+      verse: "\u201CNow you are the body of Christ and individually members of it.\u201D",
+      ref: "1 Corinthians 12:27",
+      note: "A restaurant leaves a few exhausted while many watch. In God's family, <b>every person brings something real to share</b>."
+    },
+    {
+      banner: "Acts 2:42 · Teaching & Prayer",
+      footer: "Acts 2 rhythms: Small Groups · Bible Study · Prayer · Mentoring",
+      title: "Word and Prayer at the Church Table",
+      desc: "Gold watercolor wash highlights Word and Prayer: an open Bible and steaming teacup on the top-left corner of the table.",
+      heading: "1. Rooted in Word & Prayer",
+      verse: "\u201CAnd they devoted themselves to the apostles' teaching and the fellowship, to the breaking of bread and the prayers.\u201D",
+      ref: "Acts 2:42",
+      note: "<b>Ways to bring this dish:</b> Prayer Team, Small Group Leader, Teaching / Bible Study, Mentoring / Discipleship."
+    },
+    {
+      banner: "Acts 2:46 · Glad & Generous Hearts",
+      footer: "Acts 2 rhythms: Greeting · First Impressions · Meals for Families",
+      title: "Welcome and Breaking Bread at the Church Table",
+      desc: "Sage green wash highlights Welcome and Bread: a scored loaf and sharing bowl on the top-right corner of the table.",
+      heading: "2. Warm Welcome & Breaking Bread",
+      verse: "\u201C...breaking bread in their homes, they received their food with glad and generous hearts...\u201D",
+      ref: "Acts 2:46",
+      note: "<b>Ways to bring this dish:</b> Greeting / Welcome, First Impressions, Meals for Families, Men's / Women's Ministry."
+    },
+    {
+      banner: "Acts 2:44 · All Together as One",
+      footer: "Acts 2 rhythms: Kids · Youth · Worship · Tech · Setup · Creative · Admin",
+      title: "Making Room Together at the Church Table",
+      desc: "Harbour blue wash highlights Making Room: a warm lantern, musical notes, and a child's star on the bottom-left corner of the table.",
+      heading: "3. Hands Making Room Together",
+      verse: "\u201CAnd all who believed were together and had all things in common.\u201D",
+      ref: "Acts 2:44",
+      note: "<b>Ways to bring this dish:</b> Kids Ministry, Youth Ministry, Worship Team, Sound / Tech, Setup / Teardown, Creative Arts, Administration."
+    },
+    {
+      banner: "Acts 2:45, 47 · Love Overflowing",
+      footer: "Acts 2 rhythms: Visiting the Sick · Outreach · Missions · Generosity",
+      title: "Care and Outward Love at the Church Table",
+      desc: "Royal plum wash highlights Care and Outreach: a care basket and heart on the bottom-right corner of the table.",
+      heading: "4. Glad Care Overflowing Outside",
+      verse: "\u201C...distributing the proceeds to all, as any had need... praising God and having favor with all the people.\u201D",
+      ref: "Acts 2:45, 47",
+      note: "<b>Ways to bring this dish:</b> Visiting the Sick, Outreach Events, Missions, Financial Giving, Social Media."
+    },
+    {
+      banner: "Acts 2:42-47 · Every Seat Connected",
+      footer: "Select any dish to claim a spot, then check boxes below",
+      title: "The Full Acts 2 Community Table",
+      desc: "All four community dishes shine together around the center lamp with golden root lines uniting the family.",
+      heading: "The Joy of the Whole Family Together",
+      verse: "\u201CAnd day by day, attending the temple together and breaking bread in their homes...\u201D",
+      ref: "Acts 2:46",
+      note: "Serving is not a list of chores. Like aspen roots beneath the soil, <b>your dish strengthens everyone</b>. Select any dish above to picture your place, then check the boxes below."
+    }
+  ];
+
+  var DISH_NOTES = {
+    1: "<b>Word &amp; Prayer selected:</b> Imagine encouraging one friend over Scripture, praying before Sunday, or opening your living room for a small group. Check matching boxes below.",
+    2: "<b>Welcome &amp; Bread selected:</b> Picture a newcomer relaxing because you smiled at the door, learned their name, or dropped off a warm meal. Check matching boxes below.",
+    3: "<b>Making Room selected:</b> Kids learning Jesus loves them, steady sound, set-up chairs, or a song lifted together turn a crowd into a home. Check matching boxes below.",
+    4: "<b>Care &amp; Outreach selected:</b> Sitting beside someone who is hurting, blessing neighbors, or fueling missions lets the joy at the table spill outward. Check matching boxes below."
+  };
+
+  var outer = document.getElementById("widgetOuter");
+  var cardContent = document.getElementById("cardContent");
+  var cardHeading = document.getElementById("cardHeading");
+  var cardVerse = document.getElementById("cardVerse");
+  var cardNote = document.getElementById("cardNote");
+  var stageBanner = document.getElementById("stageBanner");
+  var stageFooter = document.getElementById("stageFooter");
+  var svgTitle = document.getElementById("svgTitle");
+  var svgDesc = document.getElementById("svgDesc");
+  var prevBtn = document.getElementById("prevBtn");
+  var nextBtn = document.getElementById("nextBtn");
+  var navStatus = document.getElementById("navStatus");
+  var dots = Array.prototype.slice.call(document.querySelectorAll(".step-dot"));
+  var dishes = Array.prototype.slice.call(document.querySelectorAll(".dish-group"));
+  var chairs = Array.prototype.slice.call(document.querySelectorAll(".chair-pair"));
+  var centerpiece = document.getElementById("centerpiece");
+
+  var currentStep = 0;
+  var maxVisited = 0;
+  var focusedDish = null;
+  var pickedDishes = {};
+  var lastMeasuredWidth = 0;
+
+  function renderCardContent(headingText, verseText, refText, noteHtml) {
+    cardHeading.textContent = headingText;
+    cardVerse.textContent = "";
+    cardVerse.appendChild(document.createTextNode(verseText + " "));
+    var refSpan = document.createElement("span");
+    refSpan.className = "verse-ref";
+    refSpan.textContent = refText;
+    cardVerse.appendChild(refSpan);
+    cardNote.innerHTML = noteHtml;
+  }
+
+  function fitCardHeight() {
+    var probe = cardContent.cloneNode(true);
+    probe.removeAttribute("id");
+    probe.style.position = "absolute";
+    probe.style.visibility = "hidden";
+    probe.style.pointerEvents = "none";
+    probe.style.height = "auto";
+    probe.style.minHeight = "0";
+    probe.style.width = cardContent.getBoundingClientRect().width + "px";
+    outer.appendChild(probe);
+
+    var pHead = probe.querySelector(".card-heading");
+    var pVerse = probe.querySelector(".card-verse");
+    var pNote = probe.querySelector(".card-note");
+    var maxH = 104;
+
+    function measure(h, v, r, n) {
+      pHead.textContent = h;
+      pVerse.textContent = "";
+      pVerse.appendChild(document.createTextNode(v + " "));
+      var span = document.createElement("span");
+      span.className = "verse-ref";
+      span.textContent = r;
+      pVerse.appendChild(span);
+      pNote.innerHTML = n;
+      var hgt = Math.ceil(probe.getBoundingClientRect().height);
+      if (hgt > maxH) maxH = hgt;
+    }
+
+    for (var i = 0; i < STEPS.length; i++) {
+      var st = STEPS[i];
+      measure(st.heading, st.verse, st.ref, st.note);
+    }
+    for (var k in DISH_NOTES) {
+      if (Object.prototype.hasOwnProperty.call(DISH_NOTES, k)) {
+        measure(STEPS[5].heading, STEPS[5].verse, STEPS[5].ref, DISH_NOTES[k]);
+      }
+    }
+
+    outer.removeChild(probe);
+    outer.style.setProperty("--card-h", maxH + "px");
+  }
+
+  function render() {
+    var st = STEPS[currentStep];
+    if (currentStep > maxVisited) maxVisited = currentStep;
+
+    outer.setAttribute("data-step", String(currentStep));
+    outer.classList.toggle("is-potluck", currentStep > 0);
+
+    stageBanner.textContent = st.banner;
+    svgTitle.textContent = st.title;
+    svgDesc.textContent = st.desc;
+
+    if (currentStep === 5 && focusedDish && DISH_NOTES[focusedDish]) {
+      renderCardContent(st.heading, st.verse, st.ref, DISH_NOTES[focusedDish]);
+      var pickedCount = Object.keys(pickedDishes).filter(function (id) { return pickedDishes[id]; }).length;
+      stageFooter.textContent = pickedCount > 0
+        ? pickedCount + " dish" + (pickedCount > 1 ? "es" : "") + " on the table · Select another dish or explore below"
+        : st.footer;
+    } else {
+      renderCardContent(st.heading, st.verse, st.ref, st.note);
+      stageFooter.textContent = st.footer;
+    }
+
+    dishes.forEach(function (el) {
+      var id = Number(el.getAttribute("data-dish"));
+      var isActive = false;
+      var isVisited = false;
+      var isMuted5 = false;
+
+      if (currentStep >= 1 && currentStep <= 4) {
+        isActive = id === currentStep;
+        isVisited = id < currentStep || id <= maxVisited;
+      } else if (currentStep === 5) {
+        if (focusedDish && focusedDish !== id && !pickedDishes[id]) {
+          isMuted5 = true;
+          isActive = false;
+        } else {
+          isActive = true;
+        }
+      }
+
+      el.classList.toggle("is-active", isActive);
+      el.classList.toggle("is-visited", isVisited);
+      el.classList.toggle("is-muted-step5", isMuted5);
+      el.classList.toggle("is-picked", Boolean(pickedDishes[id]));
+      el.setAttribute("aria-pressed", currentStep === 5 ? String(Boolean(pickedDishes[id])) : String(id === currentStep));
+    });
+
+    chairs.forEach(function (ch) {
+      var id = Number(ch.getAttribute("data-chair"));
+      var lit = (currentStep === 5) || (currentStep >= 1 && id <= currentStep) || Boolean(pickedDishes[id]);
+      ch.classList.toggle("is-lit", lit);
+    });
+
+    dots.forEach(function (dot, idx) {
+      var active = idx === currentStep;
+      var passed = idx < currentStep;
+      dot.classList.toggle("is-active", active);
+      dot.classList.toggle("is-passed", passed);
+      dot.setAttribute("aria-selected", active ? "true" : "false");
+    });
+
+    prevBtn.disabled = currentStep === 0;
+    nextBtn.disabled = currentStep === STEPS.length - 1;
+    navStatus.textContent = (currentStep + 1) + " of " + STEPS.length;
+  }
+
+  function goToStep(stepIndex) {
+    if (stepIndex < 0) stepIndex = 0;
+    if (stepIndex >= STEPS.length) stepIndex = STEPS.length - 1;
+    currentStep = stepIndex;
+    if (currentStep !== 5) focusedDish = null;
+    render();
+  }
+
+  function handleDishActivate(dishId) {
+    if (currentStep !== 5) {
+      goToStep(dishId);
+      return;
+    }
+    pickedDishes[dishId] = !pickedDishes[dishId];
+    focusedDish = pickedDishes[dishId] ? dishId : null;
+    render();
+  }
+
+  prevBtn.addEventListener("click", function () {
+    goToStep(currentStep - 1);
+  });
+
+  nextBtn.addEventListener("click", function () {
+    goToStep(currentStep + 1);
+  });
+
+  dots.forEach(function (dot) {
+    dot.addEventListener("click", function () {
+      goToStep(Number(dot.getAttribute("data-step")));
+    });
+  });
+
+  dishes.forEach(function (el) {
+    var dishId = Number(el.getAttribute("data-dish"));
+    el.addEventListener("click", function () {
+      handleDishActivate(dishId);
+    });
+    el.addEventListener("keydown", function (ev) {
+      if (ev.key === "Enter" || ev.key === " ") {
+        ev.preventDefault();
+        handleDishActivate(dishId);
+      }
+    });
+  });
+
+  centerpiece.addEventListener("click", function () {
+    focusedDish = null;
+    goToStep(5);
+  });
+  centerpiece.addEventListener("keydown", function (ev) {
+    if (ev.key === "Enter" || ev.key === " ") {
+      ev.preventDefault();
+      focusedDish = null;
+      goToStep(5);
+    }
+  });
+
+  document.addEventListener("keydown", function (ev) {
+    if (ev.key === "ArrowRight") {
+      if (currentStep < STEPS.length - 1) goToStep(currentStep + 1);
+    } else if (ev.key === "ArrowLeft") {
+      if (currentStep > 0) goToStep(currentStep - 1);
+    }
+  });
+
+  function updateLayoutOnWidth() {
+    var w = outer.getBoundingClientRect().width;
+    if (Math.abs(w - lastMeasuredWidth) < 2) return;
+    lastMeasuredWidth = w;
+    fitCardHeight();
+  }
+
+  if (typeof ResizeObserver !== "undefined") {
+    var ro = new ResizeObserver(updateLayoutOnWidth);
+    ro.observe(outer);
+  } else {
+    window.addEventListener("resize", updateLayoutOnWidth);
+  }
+
+  render();
+  lastMeasuredWidth = outer.getBoundingClientRect().width;
+  fitCardHeight();
+})();
+</script>
+</body>
+</html>
