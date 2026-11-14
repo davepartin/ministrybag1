@@ -32,6 +32,7 @@
         'oia-method.html': 'Observe, Interpret, Apply',
         'one-another.html': 'One Another',
         'personal-ministry-map.html': 'Your Personal Ministry Map',
+        'read-discover-respond.html': 'Read, Discover, Respond',
         'romans-road.html': 'The Romans Road',
         'stewardship-flip.html': 'The Stewardship Flip',
         'three-circles-video.html': 'Watch Someone Draw the 3 Circles',

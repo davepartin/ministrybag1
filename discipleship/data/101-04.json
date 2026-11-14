@@ -57,6 +57,12 @@
       "text": "These questions give you a place to begin. If something is unclear, read the verses around it and ask a trusted Christian to help. You do not have to force an answer or find a hidden message. Stay with what the passage says, and let a clear truth guide your response."
     },
     {
+      "type": "widget",
+      "src": "widgets/read-discover-respond.html",
+      "title": "Read, Discover, Respond",
+      "height": "550px"
+    },
+    {
       "type": "heading",
       "text": "Try It: Nicodemus Meets Jesus"
     },
