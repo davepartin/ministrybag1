@@ -2,6 +2,10 @@
 
 Keep this small. Agents can draft from the approved direction while these decisions develop. A blocker in one row does not stop independent work.
 
+## Widget approval: 202 headers and v5 lesson tags, November 13, 2026
+
+Dave explicitly approved PR #220 at `315fc757fa5fdec04382d86d766f73ca16d93593` and requested review, preview checks, merge and live verification. This approves the specified ten 202 widget headers, the v5 tags 201-01/202-01/203-01 and both Studio Wash guides. All eleven runtime files are byte-preserved. No approval is inferred for unrelated wording or artwork; existing lesson/component approvals remain separate.
+
 ## Widget approval: 201-05 Studio Wash Bookshelf, November 13, 2026
 
 Dave relayed Gemini's PR #219 preview, said Gemini did an "amazing job," and requested a merge/publication. Approved source: `7647927f8616ac9fcc7b28b9954c0f9050f47e47`, `widgets/bible-bookshelf2.html`. Codex wires it at the old Bookshelf position, keeps the original file and all lesson wording/questions unchanged, and changes only the SVG container role for accessible shelf controls. This records widget approval independently; existing 201-05 wording approvals remain unchanged.

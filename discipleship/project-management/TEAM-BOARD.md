@@ -1,8 +1,15 @@
 # Growing Together Team Board
 
+## Approved widget header rollout: PR #220
+
+Dave approved `315fc75`: all ten active 202 widgets use the dark `#2C2416` header with title on the left and lesson number on the right. The shared v5 engine now displays `201-01`, `202-01` and `203-01` instead of Course labels. Approved titles include Building From the Cornerstone and Reflecting God's Worth. [Technical review and verification](logs/2026-11-13-WIDGET-202-HEADERS-codex.md).
+
+All eleven approved runtime files remain byte-identical to Dave's reviewed source. The ten HTML interaction scripts are unchanged from before the header update; the shared engine changes only three tag strings. All lesson JSON, question IDs, saved answers, Scripture, images and index.html are untouched. Existing Bookshelf, mosaic and other integrations remain intact. Preview, merge and live deployment evidence is recorded on PR #220. No Firebase configuration changes or manual deployment.
+
+
 ## 202 Widget Header Standardization & Lesson Tag Format: November 13, 2026
 
-- **Task / Branch:** `WIDGET-202-HEADERS` on `gemini/widget-202-headers` (`REVIEW` for Dave visual check and Codex integration)
+- **Task / Branch:** `WIDGET-202-HEADERS` on `gemini/widget-202-headers` (`DONE`: Dave approved315fc75; Codex technical review and integration, PR220)
 - **Summary:** Dropped the word `Course` in favor of `<course>-<lesson>` top-right tags (`201-01`, `202-01`, `203-01` in `great-command-v5.js` + Studio Wash docs) and standardized all active `202` widgets (`202-01` through `202-10`) to the `#2C2416` bar (`36px` tall, `17px` `#FAF8F3` title top-left, `11px` `#E5DEC9` lesson number top-right), including Dave's confirmed titles **`Building From the Cornerstone`** (`202-02`) and **`Reflecting God's Worth`** (`202-06`) and `202-05` (`trust-the-artist.html`: **`Trust the Creator`**).
 - **Untouched:** all lesson JSON files (`data/*.json`), question IDs, saved answers, `index.html`, `scripts/`, `images/`, and Firebase config.
 - **Checks (all exit `0`):** Playwright across all 13 widgets (`390x844` and `1280x800`, zero overflow/errors/overlap, screenshots inspected), `qa_foundation.sh`, `test_lesson_export.js` (`177`), `test_answer_storage.js` (`64`), `check_lesson_assets.js` (`127`). [Evidence](logs/2026-11-13-WIDGET-202-HEADERS-gemini.md).
