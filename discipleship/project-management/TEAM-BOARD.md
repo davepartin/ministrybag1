@@ -22,8 +22,8 @@
   - **203 Growing Out (`focus203`, Step 4, keeping `"The Cross Holds It All"` as penultimate Step 3):**
     - Heading: `Make Disciples Where You Are`
     - Scripture: `"Go therefore and make disciples of all nations"` (`Matthew 28:19`)
-    - Paragraph: `Learn to pray, listen, serve, and share Jesus with the people around you. Help someone follow Him and learn to help another.`
-    - Stage labels (unnumbered, secondary): `Home`, `Work & School`, `Neighborhood`, `Nations`
+    - Paragraph: `Pray, listen, eat, serve, and share Jesus with the people around you. Go out and make disciples who will make disciples.`
+    - Stage visuals: `1 -> 2 -> 4` pyramid of `203-08` tables (2 seated people per table, purple disciple-maker across from another person) connected by angled multiplication arrows below the `Go` arm, with earlier place labels removed.
 - **Checks (all exit `0` after final edit):** `qa_foundation.sh` (32 widget iframe checks), `test_lesson_export.js` (177 checks), `test_answer_storage.js` (64 checks), `check_lesson_assets.js` (126 asset references), and Playwright V5 suite across `201`/`202`/`203` (`390x844` phone, `1280x800` desktop, keyboard `Enter`/`Space`, `Back`/`Next`/`Start Over`, `prefers-reduced-motion: reduce`, zero `localStorage`, zero overflow, `201` unchanged at `cardH=129`/`widgetH=523`). Details in [log](logs/2026-11-13-WIDGET-GREAT-CMD-CROSS-gemini.md).
 
 

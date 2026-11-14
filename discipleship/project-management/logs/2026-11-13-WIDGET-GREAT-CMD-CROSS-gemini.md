@@ -44,8 +44,8 @@ Built a single shared marker-drawn interactive SVG widget engine with three thin
 - **203 Growing Out (`focus203`, Step 3 remains `"The Cross Holds It All"`):**
   - Heading: `Make Disciples Where You Are`
   - Scripture: `"Go therefore and make disciples of all nations"` (`Matthew 28:19`)
-  - Paragraph: `Learn to pray, listen, serve, and share Jesus with the people around you. Help someone follow Him and learn to help another.`
-  - Visual: Keeps cross recognizable with purple `Go` arm bright, retains outward reach arc, animates simple person -> person -> 3-person small-group multiplication cascade, and places compact unnumbered secondary labels (`Home · Work & School` / `Neighborhood · Nations`) calmly underneath.
+  - Paragraph: `Pray, listen, eat, serve, and share Jesus with the people around you. Go out and make disciples who will make disciples.`
+  - Visual: Keeps cross recognizable with purple `Go` arm bright, removes earlier person arcs and place labels, and animates a `1 -> 2 -> 4` pyramid of `203-08` tables (`spaces-tables.html` style, 2 seated people per table with the left person in purple `#5F4684`) linked downward by angled multiplication arrows in the white space under `Go`.
 
 ### Post-Final-Edit Verification (`exit 0`)
 - `bash scripts/qa_foundation.sh` (from `discipleship/`): **exit 0** (32 widget iframe checks passed)

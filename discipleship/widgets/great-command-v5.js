@@ -297,7 +297,7 @@
           heading: 'Make Disciples Where You Are',
           verse: '"Go therefore and make disciples of all nations"',
           ref: 'Matthew 28:19',
-          note: 'Learn to pray, listen, serve, and share Jesus with the people around you. Help someone follow Him and learn to help another.',
+          note: 'Pray, listen, eat, serve, and share Jesus with the people around you. Go out and make disciples who will make disciples.',
           accent: COLORS.lost,
           accentDark: COLORS.lostDark,
           draw: {
@@ -309,7 +309,7 @@
             ghostCross: true,
             focus203: true
           },
-          desc: 'The vertical and left beams soften into a quiet watermark, spotlighting Go as outward movement reaches one person, then another, then a small group across home, work and school, neighborhood, and nations.'
+          desc: 'The vertical and left beams soften into a quiet watermark, spotlighting Go above a 1 to 2 to 4 table multiplication pyramid below.'
         }
       ]
     }
@@ -407,7 +407,6 @@
     '.mission-arc { fill: none; stroke-linecap: round; stroke-linejoin: round; }',
     '.overlay-head { font: 700 13.5px/1.15 system-ui, -apple-system, sans-serif; }',
     '.overlay-sub { font: 600 11.5px/1.15 system-ui, -apple-system, sans-serif; fill: #5B5347; }',
-    '.overlay-places { font: 600 11px/1.25 system-ui, -apple-system, sans-serif; fill: #5B5347; }',
     '.arm-go-word { font: 700 15px/1 system-ui, -apple-system, sans-serif; fill: #5F4684; letter-spacing: 0.2px; }',
     '.center-seam { opacity: 0; }',
     '.center-seam.is-visible { opacity: 0.5; }',
@@ -938,68 +937,143 @@
     }, 'your neighborhood'));
     svg.appendChild(overlay202);
 
-    // 7. Course 203 Dissolve Spotlight Overlay (Go arm -> one person -> another -> small group + places)
+    // 7. Course 203 Dissolve Spotlight Overlay (1 -> 2 -> 4 table pyramid under Go)
     var overlay203 = svgEl('g', { 'class': 'v5-overlay', 'aria-hidden': 'true' });
     overlay203.appendChild(svgEl('text', {
       'class': 'arm-go-word', x: '274', y: '103', 'text-anchor': 'middle'
     }, 'Go'));
 
-    // Retains outward reach arc right outside the Go arm, followed by simple disciple-making relay strokes
-    var reachPaths203 = [
-      { d: 'M 346 84 A 22 22 0 0 1 346 112', width: '2.1', op: '0.72' },
-      { d: 'M 372 91 Q 383 80 392 84', width: '1.7', op: '0.72' },
-      { d: 'M 402 97 Q 407 107 408 113', width: '1.7', op: '0.72' }
-    ].map(function (spec) {
+    function drawTableMark(parent, cx, cy, scale, showBook) {
+      var g = svgEl('g', {
+        transform: 'translate(' + cx + ',' + cy + ') scale(' + scale + ')'
+      });
+      var swMain = (1.35 / scale).toFixed(2);
+      var swSub = (1.15 / scale).toFixed(2);
+
+      // Left and right chairs (203-08 spaces-tables geometry)
+      [-1, 1].forEach(function (s) {
+        g.appendChild(svgEl('path', {
+          d: 'M' + (s * 110) + ',-32 L' + (s * 110) + ',56 M' + (s * 110) + ',18 L' + (s * 72) + ',18 M' + (s * 75) + ',18 L' + (s * 75) + ',56',
+          fill: 'none', stroke: COLORS.ink, 'stroke-width': swSub,
+          'stroke-linecap': 'round', 'stroke-linejoin': 'round'
+        }));
+      });
+
+      // Pedestal leg + base + round tabletop
+      g.appendChild(svgEl('path', {
+        d: 'M0,12 L0,55',
+        fill: 'none', stroke: COLORS.ink, 'stroke-width': swSub, 'stroke-linecap': 'round'
+      }));
+      g.appendChild(svgEl('ellipse', {
+        cx: '0', cy: '56', rx: '25', ry: '5',
+        fill: '#FFFFFF', stroke: COLORS.ink, 'stroke-width': swSub
+      }));
+      g.appendChild(svgEl('ellipse', {
+        cx: '0', cy: '0', rx: '58', ry: '13',
+        fill: '#FFFFFF', stroke: COLORS.ink, 'stroke-width': swMain
+      }));
+
+      if (showBook) {
+        g.appendChild(svgEl('path', {
+          d: 'M-14,-4 Q-7,-9 0,-4 Q7,-9 14,-4 L14,-11 Q7,-16 0,-11 Q-7,-16 -14,-11 Z M0,-11 L0,-4',
+          fill: '#FFFFFF', stroke: COLORS.ink, 'stroke-width': swSub,
+          'stroke-linecap': 'round', 'stroke-linejoin': 'round'
+        }));
+      }
+
+      // Seated person at a table: left side is purple multiplier, right side sits across
+      function addSeatedPerson(sideSign, strokeCol, fillCol) {
+        var pg = svgEl('g', {
+          transform: 'translate(' + (sideSign * 86) + ',16) scale(' + (-sideSign) + ',1)'
+        });
+        pg.appendChild(svgEl('path', {
+          d: 'M-12,0 L-12,-42 Q-12,-57 3,-57 Q17,-57 16,-42 L14,0 Z',
+          fill: fillCol, stroke: strokeCol, 'stroke-width': swMain, 'stroke-linejoin': 'round'
+        }));
+        pg.appendChild(svgEl('path', {
+          d: 'M2,0 L28,0 L28,36 L35,36',
+          fill: 'none', stroke: strokeCol, 'stroke-width': swMain,
+          'stroke-linecap': 'round', 'stroke-linejoin': 'round'
+        }));
+        pg.appendChild(svgEl('path', {
+          d: 'M6,-46 Q22,-32 40,-18',
+          fill: 'none', stroke: strokeCol, 'stroke-width': swMain, 'stroke-linecap': 'round'
+        }));
+        pg.appendChild(svgEl('circle', {
+          cx: '4', cy: '-73', r: '14',
+          fill: fillCol, stroke: strokeCol, 'stroke-width': swMain
+        }));
+        g.appendChild(pg);
+      }
+
+      addSeatedPerson(-1, COLORS.lost, COLORS.lostWash);
+      addSeatedPerson(1, COLORS.ink, '#FFFFFF');
+      parent.appendChild(g);
+    }
+
+    var row1Group203 = svgEl('g', { 'class': 'v5-stage-item' });
+    drawTableMark(row1Group203, 358, 151, 0.21, true);
+    overlay203.appendChild(row1Group203);
+
+    var row2Group203 = svgEl('g', { 'class': 'v5-stage-item' });
+    drawTableMark(row2Group203, 320, 202, 0.175, true);
+    drawTableMark(row2Group203, 396, 202, 0.175, true);
+    overlay203.appendChild(row2Group203);
+
+    var row3Group203 = svgEl('g', { 'class': 'v5-stage-item' });
+    [300, 338, 376, 414].forEach(function (tx) {
+      drawTableMark(row3Group203, tx, 251, 0.14, false);
+    });
+    overlay203.appendChild(row3Group203);
+
+    function arrowHeadPath(x1, y1, x2, y2, size) {
+      var angle = Math.atan2(y2 - y1, x2 - x1);
+      var a1 = angle - Math.PI * 0.78;
+      var a2 = angle + Math.PI * 0.78;
+      return 'M ' + (x2 + size * Math.cos(a1)).toFixed(1) + ' ' + (y2 + size * Math.sin(a1)).toFixed(1) +
+        ' L ' + x2.toFixed(1) + ' ' + y2.toFixed(1) +
+        ' L ' + (x2 + size * Math.cos(a2)).toFixed(1) + ' ' + (y2 + size * Math.sin(a2)).toFixed(1);
+    }
+
+    var arrowSpecs203 = [
+      // Row 1 -> Row 2 (2 angled lines)
+      { x1: 344, y1: 167, x2: 325, y2: 186, row: 1 },
+      { x1: 372, y1: 167, x2: 391, y2: 186, row: 1 },
+      // Row 2 -> Row 3 (4 angled lines)
+      { x1: 313, y1: 217, x2: 302, y2: 237, row: 2 },
+      { x1: 328, y1: 217, x2: 337, y2: 237, row: 2 },
+      { x1: 388, y1: 217, x2: 379, y2: 237, row: 2 },
+      { x1: 403, y1: 217, x2: 413, y2: 237, row: 2 }
+    ];
+
+    var reachPaths203 = arrowSpecs203.map(function (sp) {
       var p = svgEl('path', {
         'class': 'mission-arc',
-        d: spec.d,
+        d: 'M ' + sp.x1 + ' ' + sp.y1 + ' L ' + sp.x2 + ' ' + sp.y2,
         stroke: COLORS.lost,
-        'stroke-width': spec.width,
-        opacity: spec.op
+        'stroke-width': sp.row === 1 ? '1.85' : '1.6',
+        opacity: '0.84'
       });
+      p.dataset.row = String(sp.row);
       overlay203.appendChild(p);
       return p;
     });
 
-    function addPersonMark(parent, cx, cy, scale, fill) {
-      var r = (4 * scale).toFixed(2);
-      var sw = (1.75 * Math.max(0.88, scale)).toFixed(2);
-      var sx = (6.8 * scale).toFixed(2);
-      var shoulderTop = (cy + 5.2 * scale).toFixed(2);
-      var shoulderBot = (cy + 12.2 * scale).toFixed(2);
-      var shoulderCtrl = (cy + 4.4 * scale).toFixed(2);
-      parent.appendChild(svgEl('circle', {
-        cx: String(cx), cy: String(cy), r: r,
-        fill: fill, stroke: COLORS.lost, 'stroke-width': sw
-      }));
-      parent.appendChild(svgEl('path', {
-        d: 'M ' + (cx - Number(sx)).toFixed(1) + ' ' + shoulderBot + ' Q ' + cx + ' ' + shoulderCtrl + ' ' + (cx + Number(sx)).toFixed(1) + ' ' + shoulderBot,
-        fill: 'none', stroke: COLORS.lost, 'stroke-width': sw, 'stroke-linecap': 'round'
-      }));
-      void shoulderTop;
-    }
-
-    var p1Group203 = svgEl('g', { 'class': 'v5-stage-item' });
-    addPersonMark(p1Group203, 363, 93, 1, COLORS.lostWash);
-    overlay203.appendChild(p1Group203);
-
-    var p2Group203 = svgEl('g', { 'class': 'v5-stage-item' });
-    addPersonMark(p2Group203, 400, 83, 1, '#FFFFFF');
-    overlay203.appendChild(p2Group203);
-
-    var p3Group203 = svgEl('g', { 'class': 'v5-stage-item' });
-    addPersonMark(p3Group203, 408, 121, 0.88, '#FFFFFF');
-    addPersonMark(p3Group203, 396, 128, 0.88, COLORS.lostWash);
-    addPersonMark(p3Group203, 420, 128, 0.88, COLORS.lostWash);
-    overlay203.appendChild(p3Group203);
-
-    // Secondary compact, unnumbered places (calm spacing below diagram)
-    overlay203.appendChild(svgEl('text', {
-      'class': 'overlay-places', x: '360', y: '176', 'text-anchor': 'middle'
-    }, 'Home \u00B7 Work & School'));
-    overlay203.appendChild(svgEl('text', {
-      'class': 'overlay-places', x: '360', y: '194', 'text-anchor': 'middle'
-    }, 'Neighborhood \u00B7 Nations'));
+    var arrowHeadsR1 = svgEl('g', { 'class': 'v5-stage-item' });
+    var arrowHeadsR2 = svgEl('g', { 'class': 'v5-stage-item' });
+    arrowSpecs203.forEach(function (sp) {
+      var head = svgEl('path', {
+        d: arrowHeadPath(sp.x1, sp.y1, sp.x2, sp.y2, sp.row === 1 ? 5.2 : 4.5),
+        fill: 'none', stroke: COLORS.lost,
+        'stroke-width': sp.row === 1 ? '1.85' : '1.6',
+        'stroke-linecap': 'round', 'stroke-linejoin': 'round',
+        opacity: '0.86'
+      });
+      if (sp.row === 1) arrowHeadsR1.appendChild(head);
+      else arrowHeadsR2.appendChild(head);
+    });
+    overlay203.appendChild(arrowHeadsR1);
+    overlay203.appendChild(arrowHeadsR2);
     svg.appendChild(overlay203);
 
     return {
@@ -1018,7 +1092,7 @@
       reachPaths202: reachPaths202,
       reachDots202: reachDots202,
       reachPaths203: reachPaths203,
-      peopleStages203: [p1Group203, p2Group203, p3Group203],
+      peopleStages203: [row1Group203, arrowHeadsR1, row2Group203, arrowHeadsR2, row3Group203],
       sweeps: { down: sweepDown, up: sweepUp, left: sweepLeftGroup, right: sweepRightGroup },
       strokes: [crossOuter, crossInner],
       centerSeam: centerSeam,
@@ -1169,9 +1243,9 @@
       bundle.reachDots202.style.setProperty('--fade-delay', animate ? '640ms' : '0ms');
       bundle.reachDots202.classList.toggle('is-visible', !!draw.focus202);
 
-      bundle.overlays.v203.style.setProperty('--fade-delay', animate ? '180ms' : '0ms');
+      bundle.overlays.v203.style.setProperty('--fade-delay', animate ? '160ms' : '0ms');
       bundle.overlays.v203.classList.toggle('is-visible', !!draw.focus203);
-      var stageDelays203 = ['220ms', '520ms', '820ms'];
+      var stageDelays203 = ['140ms', '600ms', '520ms', '1040ms', '960ms'];
       bundle.peopleStages203.forEach(function (grp, idx) {
         grp.style.setProperty('--fade-delay', animate ? stageDelays203[idx] : '0ms');
         grp.classList.toggle('is-visible', !!draw.focus203);
@@ -1313,15 +1387,14 @@
         }
 
         if (!prevDraw.focus203 && nextDraw.focus203) {
-          var delays203 = [120, 380, 680];
-          bundle.reachPaths203.forEach(function (node, idx) {
+          bundle.reachPaths203.forEach(function (node) {
             var len = Number(node.dataset.len);
             node.style.strokeDashoffset = String(len);
             strokeJobs.push({
               node: node,
               len: len,
-              delay: delays203[idx] || 180,
-              dur: 420
+              delay: node.dataset.row === '2' ? 760 : 320,
+              dur: 380
             });
           });
         }
