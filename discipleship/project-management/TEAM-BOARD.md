@@ -6,6 +6,11 @@
 - **Summary:** Dropped the word `Course` in favor of `<course>-<lesson>` top-right tags (`201-01`, `202-01`, `203-01` in `great-command-v5.js` + Studio Wash docs) and standardized all active `202` widgets (`202-01` through `202-10`) to the `#2C2416` bar (`36px` tall, `17px` `#FAF8F3` title top-left, `11px` `#E5DEC9` lesson number top-right), including Dave's confirmed titles **`Building From the Cornerstone`** (`202-02`) and **`Reflecting God's Worth`** (`202-06`) and `202-05` (`trust-the-artist.html`: **`Trust the Creator`**).
 - **Untouched:** all lesson JSON files (`data/*.json`), question IDs, saved answers, `index.html`, `scripts/`, `images/`, and Firebase config.
 - **Checks (all exit `0`):** Playwright across all 13 widgets (`390x844` and `1280x800`, zero overflow/errors/overlap, screenshots inspected), `qa_foundation.sh`, `test_lesson_export.js` (`177`), `test_answer_storage.js` (`64`), `check_lesson_assets.js` (`127`). [Evidence](logs/2026-11-13-WIDGET-202-HEADERS-gemini.md).
+## 201-05 approved Studio Wash Bookshelf integration: November 13, 2026
+
+Dave praised the PR #219 preview and requested publication. The new `widgets/bible-bookshelf2.html` replaces the old Bookshelf embed in 201-05 at the same position. Existing lesson wording, Scripture, metadata, questions/IDs and images are unchanged; `widgets/bible-bookshelf.html` stays on disk unchanged. The new widget's approved appearance and wording remain; only the SVG accessibility container role changes so the ten shelf controls are exposed to assistive technology. [Integration evidence](logs/2026-11-13-INTEGRATE-201-05-BOOKSHELF-codex.md).
+
+This completes the widget component, not a new approval of unrelated lesson material. Existing 201-05 wording approvals remain in force. Exact-head preview, merge and automatic live deployment results are recorded on PR #219. No manual deployment or Firebase configuration changes.
 
 
 ## 101 personal-editing protection and simple status
