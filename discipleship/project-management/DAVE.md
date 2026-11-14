@@ -1,5 +1,9 @@
 # Dave's decision and approval queue
 
+## 101-01 component Gold and question retirement, November 14, 2026
+
+Dave approved the 101-01 course logo and Peaks and Valleys V2 widget Gold. Only question 1.5 (Who will you tell...) is removed from view; its unchanged original object is reserved in retiredQuestions so saved answers still export. All other wording, readings, questions, logo and widget bytes stay unchanged. Whole-lesson text remains Silver and protected.
+
 Keep this small. Agents can draft from the approved direction while these decisions develop. A blocker in one row does not stop independent work.
 
 ## Widget and one-sentence approval: Peaks and Valleys V2, November 14, 2026

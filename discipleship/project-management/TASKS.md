@@ -274,4 +274,4 @@ Plan and standard: [reviews/2026-11-11-series-review.md](reviews/2026-11-11-seri
 
 | [x] | FIREBASE-PR-CLEANUP-RESOURCE | DONE | Codex / codex/cleanup-canonical-resources / 2026-11-14 | First automatic cleanup safely rejected Firebase canonical resource names | Accept canonical project-qualified channel resources while requiring exact site and PR; regression tests; verify automatic cleanup. |
 
-| [ ] | DAVE-101-01-RETIRE-15 | ACTIVE | Codex / codex/101-01-retire-15 / 2026-11-14 | Remove1.5 with old answer reserved; logo and widget Gold; other wording/readings/art unchanged | Bounded task, preservation checks, QA and review/deploy evidence. |
+| [x] | DAVE-101-01-RETIRE-15 | DONE | Codex / codex/101-01-retire-15 / 2026-11-14 | Remove1.5 with old answer reserved; logo and widget Gold; other wording/readings/art unchanged | Bounded task, preservation checks, QA and review/deploy evidence. |

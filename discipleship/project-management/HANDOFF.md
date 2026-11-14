@@ -1,5 +1,9 @@
 # Resume here
 
+## 101-01 component Gold and question retirement, November 14, 2026
+
+Dave approved the 101-01 course logo and Peaks and Valleys V2 widget Gold. Only question 1.5 (Who will you tell...) is removed from view; its unchanged original object is reserved in retiredQuestions so saved answers still export. All other wording, readings, questions, logo and widget bytes stay unchanged. Whole-lesson text remains Silver and protected.
+
 ## 101-01 Peaks and Valleys V2 approved: November 14, 2026
 
 Dave explicitly approved PR #223 at `ea26435`, including the paper/six-dot widget and exactly one lesson sentence: **Include 3 to 5 peaks and 3 to 5 valleys.** All other lesson copy, nine question objects/IDs, John readings and artwork are unchanged. The approved widget bytes are preserved. [Integration evidence](logs/2026-11-14-WIDGET-101-01-PEAKS-V2-codex.md).
