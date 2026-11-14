@@ -95,14 +95,14 @@
     {
       "type": "checklist",
       "id": "service-interests",
-      "prompt": "If the church is a potluck, what dish are you bringing? Check the areas where you could see yourself serving, helping, or leading.",
+      "prompt": "Check the areas where you could see yourself getting involved in church?",
       "items": [
-        "Greeting / Welcome",
+        "Welcome Team",
         "Kids Ministry",
         "Worship Team",
-        "Sound / Tech",
-        "Small Group Leader",
-        "Setup / Teardown",
+        "Sound & Tech",
+        "Small Group",
+        "Setup & Teardown",
         "Prayer Team",
         "Meals for Families",
         "Youth Ministry",
@@ -114,7 +114,7 @@
         "Teaching / Bible Study",
         "Outreach Events",
         "Creative Arts",
-        "Mentoring / Discipleship",
+        "Mentoring",
         "First Impressions",
         "Financial Giving",
         "Teaching",
@@ -123,9 +123,12 @@
         "Community Service Team",
         "Lawn Team",
         "Hospitality",
-        "Other"
+        "Other",
+        "Men's Ministry",
+        "Women's Ministry"
       ],
       "retiredItemIndexes": [
+        11,
         14,
         18,
         19
