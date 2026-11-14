@@ -32,7 +32,7 @@ Read `discipleship/widgets/widget.md` for iframe sizing and scroll-safety rules,
 
 - **Diagram labels:** Bold system sans (`system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif`, `13.5px-15px`, weight `700`) for maximum phone crispness.
 - **Scripture card:** `Georgia, Cambria, serif` (`13.5px`) for Scripture quotes, `system-ui` (`15px` bold heading, `12.5px` plain reflection note).
-- **Title bar:** Compact `#2C2416` header with left-aligned title (`17px`) and right-aligned uppercase course tag (`COURSE 201`, `11px`).
+- **Title bar:** Compact `#2C2416` header with left-aligned title (`17px`, `#FAF8F3`) and right-aligned lesson number tag (`201-01`, `202-01`, `203-01`, `11px`, `#E5DEC9`, without the word `COURSE`).
 
 ---
 
