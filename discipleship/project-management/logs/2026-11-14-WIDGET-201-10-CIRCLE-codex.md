@@ -20,7 +20,7 @@ All actual exit codes 0:
 - bash scripts/qa_foundation.sh: all foundation suites passed.
 - node scripts/test_lesson_export.js: 186 checks passed.
 - node scripts/test_answer_storage.js: 64 checks passed.
-- node scripts/check_lesson_assets.js: 140 references resolved.
+- node scripts/check_lesson_assets.js: 140 references resolved initially; 139 after main PR #202 retired its old Cross the Road embed. Both runs exit 0.
 - node scripts/test_lesson_images.js: 1495 checks passed.
 - node scripts/test_widget_iframe.js: 32 checks passed.
 - GT_BASE_URL=http://127.0.0.1:8817/index.html GT_CHROMIUM_PATH=/usr/bin/chromium node scripts/widget_201_10_learning_circle_browser_check.js: 196 assertions passed, 375x667, 390x844 and 1280x800 plus 390x844 reduced motion.
@@ -31,3 +31,5 @@ Browser checks cover all six stops, Back, direct dots, restart, keyboard Enter/S
 Final exact-head preview Action/checks, widget/lesson/index byte comparisons, CLEAN merge state, merge SHA and production deployment/browser results are recorded on PR #243 after the tracking commit. No manual deployment or Hosting configuration change is part of this task.
 
 First integrated preview a7f9fb1: Action 43653239209 succeeded; bot comment confirmed that exact SHA. Widget, 201-10 JSON and index bytes matched. Embedded 196 assertions and direct-widget checks at 390/1280 passed, with CLEAN merge state and green checks. Main then advanced through PR #202; rerun results for the final combined head are recorded on PR #243.
+
+Combined current-main repository rerun: foundation, export 186, storage 64, assets 139, images 1495 and iframe 32 all exit 0. No scope or approved widget changes.
