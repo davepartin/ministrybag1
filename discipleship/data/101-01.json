@@ -95,9 +95,10 @@
       ]
     },
     {
-      "type": "image",
-      "src": "images/201.01-peaks-and-valleys.png",
-      "alt": "Peaks and Valleys Exercise Example"
+      "type": "widget",
+      "src": "widgets/peaks-and-valleys.html",
+      "height": "540px",
+      "title": "Peaks and Valleys"
     },
     {
       "type": "text",

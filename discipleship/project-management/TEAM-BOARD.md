@@ -1,5 +1,65 @@
 # Growing Together Team Board
 
+## 101 personal-editing protection and simple status
+
+Dave requested Bronze/Silver/Gold stages and separate widget/image approvals. Use the [five-column 101 tracker](reviews/101-editorial-status.md) before any 101 work. Protect his edits to 101-01/02 now and the earlier exact 101-06 edits; do not swap or remove story art without his direction. Gold requires his confirmed completed personal read-through, never an AI grade. Existing approved components stay approved independently. Lesson/widget/image files are unchanged by this documentation packet.
+
+
+## 101-01 Peaks and Valleys widget integration: November 13, 2026
+
+Dave approved the Peaks and Valleys widget in PR #217 at `832da0a` and requested technical review and merge. It replaces only the static example image beside the paper timeline exercise. All lesson prose, question objects/IDs, readings and metadata are preserved; the original example PNG remains on disk. Technical review added keyboard activation, named toggle semantics and focus feedback for the timeline points, with hidden points excluded from focus. Approved visual design and wording remain unchanged. [Integration evidence](logs/2026-11-13-INTEGRATE-101-01-PEAKS-codex.md).
+
+This is widget-component approval, not a new final approval of 101-01. Use PR #217's exact-head preview and deployment record; earlier preview links represent the version before the accessibility fix. The preceding mosaic and Studio Wash course-opener integrations remain intact.
+
+
+## Approved suffering mosaic integrated: November 13, 2026
+
+Dave approved PR #215 at `e82ed36` and requested integration and merge. **Trust the Creator** now replaces the Valley Road embed in 202-05, immediately after the cross paragraph under **God Meant It for Good**, before the pastoral care paragraph. The approved widget is byte-identical; `widgets/valley-road.html` remains on disk. All lesson wording, Scripture, metadata and eight question objects/answer IDs are unchanged. `WIDGET-202-05-MOSAIC` is DONE. [Technical evidence](logs/2026-11-13-INTEGRATE-202-05-MOSAIC-codex.md).
+
+This supersedes earlier notices that the mosaic still needs building or Claude wiring. Dave's approval covers this widget's look/wording, not final approval of the complete suffering lesson. Its prose and Piper credit remain for his lesson editing pass. Exact preview, merge and automatic-deploy results are recorded on PR #215.
+
+
+## Approved Studio Wash v5 widgets: course openers
+
+Dave approved PR #211's v5 widgets at `bd7000c` and requested integration. All four approved files are unchanged. 201-01 replaces the earlier Great Commandment widget at its existing position; 202-01 and 203-01 gain v5 introductions after their welcome/logo blocks and before their stories. Cross the Road and Personal Ministry Map remain in place. All original lesson copy, questions, IDs, Scripture and art are preserved. [Integration log](logs/2026-11-13-INTEGRATE-STUDIO-V5-codex.md).
+
+Independent checks: foundation QA/export 177/storage 64/assets 127/images 1368/iframe 32 pass, exit 0. Local browser 768 assertions across all three courses, three widths and both motion settings pass. Exact wired preview and live deployment are recorded on #211. Widget approval is separate from whole-lesson approval. Older standalone preview URLs in the original PR description refer to the earlier engine; use the v5 lesson pages after integration.
+
+**Pending text:** 202-01's separate editorial PR #202 remains open and must preserve this widget insertion. The widget rollout does not replace its pending lesson draft or authorize unrelated copy changes.
+
+
+## Greatest Commandment Cross Widgets (Version 5 Studio Wash, 202 and 203 final-slide refinement): November 13, 2026
+
+- **Task / PR:** `WIDGET-GREAT-CMD-CROSS` / [PR #211](https://github.com/davepartin/ministrybag1/pull/211) on branch `gemini/widget-great-command-cross` (`REVIEW` for Dave visual/wording review and Codex integration)
+- **Changed files (new/updated in this pass):**
+  - `discipleship/widgets/great-command-v5.js`
+  - `discipleship/widgets/great-command-v5-201.html` (201 unchanged Studio Wash Edition baseline)
+  - `discipleship/widgets/great-command-v5-202.html` (202 Growing Up with refined final slide)
+  - `discipleship/widgets/great-command-v5-203.html` (203 Growing Out with refined final slide)
+  - `discipleship/widgets/STUDIO-WASH-GUIDE.md`
+  - `discipleship/widgets/WIDGET-DESIGN-PLAYBOOK.md`
+  - `discipleship/project-management/TEAM-BOARD.md`
+  - `discipleship/project-management/logs/2026-11-13-WIDGET-GREAT-CMD-CROSS-gemini.md`
+- **Untouched:** all lesson JSON files (`data/*.json`), question IDs, saved answers, `index.html`, `scripts/`, `images/`, Firebase settings/workflows, and 201 slides/colors/navigation.
+- **Exact wording for Dave to review (`201`, `202`, and `203`):**
+  - **Widget header & `<title>` across all 3 (`201`, `202`, `203`):** `The Greatest Commandment`
+  - **202 Growing Up & 203 Growing Out (`Step 3` Cross card):**
+    - Heading: `The Cross is our Example`
+    - Scripture: `"Walk in love, as Christ loved us and gave himself up for us."` (`Ephesians 5:2`, with **`Walk in love`** and **`Christ loved us`** bolded)
+    - Paragraph: `Jesus loved you first and gave Himself for you. His love enables you to love God and your neighbors. You learn to love by receiving His love and following His example.`
+  - **202 Growing Up (`focus202`, Step 4):**
+    - Heading: `Love in Everyday Life`
+    - Scripture: `"So then, as we have opportunity, let us do good to everyone, and especially to those who are of the household of faith."` (`Galatians 6:10`)
+    - Paragraph: `Growing Up helps you put God's love into practice at home, in your church family, and among your neighbors, through generosity, faithful relationships, and care in hard seasons.`
+    - Stage visuals: single house (`Belong` / `Family & God's family`) on the left and a three-house neighborhood (`BLESS` / `your neighborhood`) on the right, with no bottom pill bubble.
+  - **203 Growing Out (`focus203`, Step 4):**
+    - Heading: `Make Disciples Where You Are`
+    - Scripture: `"Go therefore and make disciples of all nations"` (`Matthew 28:19`)
+    - Paragraph: `Pray, listen, eat, serve, and share Jesus with the people around you. Go out and make disciples who will make disciples.`
+    - Stage visuals: `1 -> 2 -> 4` pyramid of `203-08` tables (2 seated people per table, purple disciple-maker across from another person) connected by angled multiplication arrows below the `Go` arm, with earlier place labels removed.
+- **Checks (all exit `0` after final edit):** `qa_foundation.sh` (32 widget iframe checks), `test_lesson_export.js` (177 checks), `test_answer_storage.js` (64 checks), `check_lesson_assets.js` (126 asset references), and Playwright V5 suite across `201`/`202`/`203` (`390x844` phone, `1280x800` desktop, keyboard `Enter`/`Space`, `Back`/`Next`/`Start Over`, `prefers-reduced-motion: reduce`, zero `localStorage`, zero overflow, `201` unchanged at `cardH=129`/`widgetH=523`). Details in [log](logs/2026-11-13-WIDGET-GREAT-CMD-CROSS-gemini.md).
+
+
 ## 201-10: Dave's nine edits, November13
 
 Dave confirmed nine items. Applied his exact cuts/rewrites, added Repent/Believe headings, integrated trust with Believe, removed the hardest-step prompt, rewrote the process question, and shortened The Father at the Gate 30% while preserving Romans2:4. Three discussion prompts now display10.1-10.3; original IDs remain. Earlier answers to the removed prompt remain exportable only when present; no new prompt is shown. Lesson body1536 to1373 words. All Scripture, art, widget and the approved opening are unchanged. [Evidence](logs/2026-11-13-DAVE-201-10-ROUND2-codex.md). Use the newest live draft after deployment; older PR201 previews are historical.
@@ -22,7 +82,6 @@ Latest exact wording from Dave: the101-02 Review now says "Baptism is one of the
 ## 101-02 Scripture focus: November 13
 
 Dave accepted the two-cut proposal: remove the inline Galatians2:20 quotation and2Corinthians5:17,21 block, folding new life/adoption into the assurance paragraph under You Can Be Sure. John3:16-17, Romans6:3-4 and1John5:13 remain. Lesson prose count1136 to1049,87 fewer words. All8questions, saved keys, John4-6 assignments, artwork and A-D widget unchanged. Dave only needs to reread the second baptism paragraph and assurance ending. See [log](logs/2026-11-13-FOCUS-101-02-codex.md). This supersedes the earlier suggestion-only status below; final whole-lesson approval remains separate.
-
 
 ## Shared chapter header standard: November 13
 

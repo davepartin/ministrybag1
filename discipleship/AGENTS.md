@@ -14,6 +14,7 @@ This folder is one project inside the ministrybag1 repository. Work only inside 
 - Default to one implementing agent at a time. For concurrent work, use separate branches/worktrees and coordinator-assigned, non-overlapping files. Never let two agents edit the same checkout concurrently.
 - Do not spawn extra agents just to fill available slots. Dave is conserving usage; use his chosen available agent for each bounded assignment.
 - Keep scope small. Record newly discovered work in the board instead of expanding the assignment silently.
+- Before editing 101, read [Dave's editing protection and status](project-management/reviews/101-editorial-status.md). Protect his personally edited wording and existing artwork; older generic trim/art backlog rows do not override his current instructions.
 - Preserve saved answers and stable IDs. Any identity change needs a migration and regression evidence.
 - Do not print, copy, or commit credentials or real learner answers. Use synthetic data for checks. The existing exposed-token issue is tracked as SEC-001.
 - Run checks appropriate to changed behavior. Record exact commands, results, and limitations in a task log.
