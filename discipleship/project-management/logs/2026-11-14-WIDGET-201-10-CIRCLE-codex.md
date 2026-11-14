@@ -2,7 +2,7 @@
 
 PR #243: https://github.com/davepartin/ministrybag1/pull/243
 Integration branch: codex/review-243, pushed normally to gemini/widget-201-10-learning-circle.
-Base main: 4620a9efb4c3fc00806e41647fe626fb19b59b16.
+Initial base main: 4620a9efb4c3fc00806e41647fe626fb19b59b16. Updated normally onto c297170c911bb6473eed5733d9f58f0f6f5c1c08 after approved PR #202 merged during verification. No conflicts; the current main 202-01 changes are preserved, and are not part of this PR diff.
 
 ## Approval and scope
 
@@ -29,3 +29,5 @@ All actual exit codes 0:
 Browser checks cover all six stops, Back, direct dots, restart, keyboard Enter/Space, fixed card height, visible navigation, no page/widget horizontal overflow, accessible SVG description, no widget storage writes, no idle iframe mutations, no page/console/widget HTTP errors, preserved synthetic current/retired/other-lesson data, edited response after reload and correct Email export isolation. Reviewed 390px screenshots of Path, Believe and restored states.
 
 Final exact-head preview Action/checks, widget/lesson/index byte comparisons, CLEAN merge state, merge SHA and production deployment/browser results are recorded on PR #243 after the tracking commit. No manual deployment or Hosting configuration change is part of this task.
+
+First integrated preview a7f9fb1: Action 43653239209 succeeded; bot comment confirmed that exact SHA. Widget, 201-10 JSON and index bytes matched. Embedded 196 assertions and direct-widget checks at 390/1280 passed, with CLEAN merge state and green checks. Main then advanced through PR #202; rerun results for the final combined head are recorded on PR #243.
