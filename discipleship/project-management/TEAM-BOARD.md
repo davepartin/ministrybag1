@@ -1,13 +1,14 @@
 # Growing Together Team Board
 
-## 201-10 The Learning Circle widget path + Studio Wash frame upgrade (REVIEW): November 14, 2026
+## 201-10 The Learning Circle widget: Dave approved, Codex integration, November 14, 2026
 
-- **Task / Branch:** `WIDGET-201-10-CIRCLE` on `gemini/widget-201-10-learning-circle` (stopped at `REVIEW` for Dave's visual approval and Codex integration).
+- **Task / Branch:** `WIDGET-201-10-CIRCLE` DONE, PR #243 on `gemini/widget-201-10-learning-circle`; Codex integration branch `codex/review-243`. Dave explicitly approved only the widget at exact commit `9aee2c371e700b2badaef484230992e5a906c10a`. Approved HTML bytes are preserved. No whole-lesson Gold or 201-10 copy approval is inferred.
 - **Changes:** Upgraded `discipleship/widgets/learning-circle2.html` while keeping the core circle drawing, colors, 4 steps (`1. Reflect mind`, `2. Remorse heart`, `3. Plan steps`, `4. Obey act`), and Scripture flow intact:
   - Fixed the top road alignment so `The Path of Jesus` corridor (`y=42..70`) and directional line (`y=56`) share the exact centerline (`PATH_Y=56`), and aligned the departure curve (`We Turn Away`) and return curve (`Back on the Path`) so they smoothly leave from and rejoin onto `The Path of Jesus` itself.
   - Upgraded the outer frame to match the locked Studio Wash pattern: `#2C2416` top bar (`The Learning Circle` left, `201-10` `.course-tag` right), wordless interactive `.step-strip` dots (`>=28x28`), height-locked `.verse-card`, second-person clarity ending with `Keep turning. Keep believing.`, `#E0A526` `:focus-visible` outlines, `<svg role="img">` + dynamic `<title>`/`<desc>`, cancellable rAF animations, `prefers-reduced-motion: reduce`, zero `localStorage`, and zero em dashes.
   - Added Playwright regression test `discipleship/scripts/widget_201_10_learning_circle_browser_check.js` (desktop + `390x844` + `375x667` + `prefers-reduced-motion: reduce`, embedded in `#201-10`). `data/201-10.json`, `index.html`, and images remain completely untouched.
-- **Evidence:** [Gemini handoff log](logs/2026-11-14-WIDGET-201-10-CIRCLE-gemini.md).
+- **Verification:** Foundation, export (186), answer storage (64), assets (140), images (1495), iframe (32) and embedded Learning Circle browser checks (196 across four desktop/mobile/motion cases) all exit 0. Synthetic active/retired/other-lesson answers survive widget use, editing, reload and Email. Inline scripts parse; zero em dashes. Exact-head Firebase preview and live deployment results are recorded on PR #243.
+- **Evidence:** [Codex integration log](logs/2026-11-14-WIDGET-201-10-CIRCLE-codex.md), [Gemini handoff log](logs/2026-11-14-WIDGET-201-10-CIRCLE-gemini.md).
 
 ## 203-01 Claude rewrite approved, November 14, 2026
 

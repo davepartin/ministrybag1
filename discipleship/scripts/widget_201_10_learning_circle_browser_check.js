@@ -7,6 +7,7 @@ const assert = require('assert/strict');
 const fs = require('fs');
 const path = require('path');
 const { chromium } = require('playwright');
+const storage = require('./answer-storage.js');
 
 const BASE = process.env.GT_BASE_URL || 'http://127.0.0.1:8814/index.html';
 const SCREENSHOT_DIR = process.env.GT_SCREENSHOT_DIR || '';
@@ -33,17 +34,24 @@ function ck(label, cond) {
       questions.map((q, i) => ['question-201-' + q.id, 'SYN-lc-' + i])
     );
 
+    seed[storage.MIGRATION_FLAG] = true;
+    const retired = lessonData.retiredQuestions || [];
+    retired.forEach((q, i) => { seed['question-201-' + q.id] = 'SYN-lc-retired-' + i; });
+    const otherQuestion = require('../data/201-09.json').blocks.find(b => b.type === 'question');
+    const otherKey = 'question-201-' + otherQuestion.id;
+    seed[otherKey] = 'SYN-lc-other-lesson';
+
     const cases = [
-      { width: 375, motion: 'no-preference' },
-      { width: 390, motion: 'no-preference' },
-      { width: 1280, motion: 'no-preference' },
-      { width: 390, motion: 'reduce' }
+      { width: 375, height: 667, motion: 'no-preference' },
+      { width: 390, height: 844, motion: 'no-preference' },
+      { width: 1280, height: 800, motion: 'no-preference' },
+      { width: 390, height: 844, motion: 'reduce' }
     ];
 
     for (const c of cases) {
       const tag = c.width + '/' + c.motion;
       const context = await browser.newContext({
-        viewport: { width: c.width, height: 844 },
+        viewport: { width: c.width, height: c.height },
         reducedMotion: c.motion
       });
 
@@ -69,6 +77,8 @@ function ck(label, cond) {
         const page = await context.newPage();
         const errors = [];
         const httpErrors = [];
+        const consoleErrors = [];
+        page.on('console', m => { if (m.type() === 'error') consoleErrors.push(m.text()); });
         page.on('pageerror', e => errors.push(e.message));
         page.on('response', r => {
           if (r.url().includes('/widgets/') && r.status() >= 400) {
@@ -77,6 +87,7 @@ function ck(label, cond) {
         });
 
         await page.goto(BASE + '#201-10');
+        await page.locator('#session-10 .question-textarea').first().waitFor();
         const lesson = page.locator('#session-10');
         const frameEl = lesson.locator('iframe[src*="widgets/learning-circle2.html"]');
         await frameEl.waitFor();
@@ -122,20 +133,49 @@ function ck(label, cond) {
         const cardHeight = () =>
           frame.locator('.verse-card').evaluate(el => Math.round(el.getBoundingClientRect().height));
         const h0 = await cardHeight();
+        const checkFit = async label => {
+          const fit = await frame.evaluate(() => {
+            const card = document.querySelector('.verse-card');
+            const nav = document.querySelector('.nav-bar');
+            return {
+              cardHeight: card.getBoundingClientRect().height,
+              contentFits: card.scrollHeight <= card.clientHeight + 1,
+              navFits: nav.getBoundingClientRect().bottom <= innerHeight + 2,
+              dots: [...document.querySelectorAll('.step-dot')].every(d => {
+                const r = d.getBoundingClientRect();
+                return r.width >= 28 && r.height >= 28;
+              })
+            };
+          });
+          ck(tag + ' ' + label + ' stable card height', Math.abs(fit.cardHeight - h0) <= 1);
+          ck(tag + ' ' + label + ' card/nav fit iframe', fit.contentFits && fit.navFits);
+          ck(tag + ' ' + label + ' dot touch targets', fit.dots);
+        };
+        await checkFit('intro');
+        for (const q of questions) {
+          ck(tag + ' restored active answer ' + q.id,
+            await lesson.locator('#question-201-' + q.id).inputValue() === seed['question-201-' + q.id]);
+        }
+        const editKey = 'question-201-' + questions[0].id;
+        await lesson.locator('#' + editKey).fill('SYN-lc-edited');
+        await lesson.locator('#' + editKey).blur();
         ck(tag + ' intro card visible', (await frame.locator('.verse-card-title').textContent()).includes('Getting Back on the Path'));
         await snap('0-intro');
 
         const waitStep = c.motion === 'reduce' ? 60 : 920;
 
         // Walk all 6 stops with Next ->
-        await frame.locator('[data-control="begin"]').click();
+        await frame.locator('[data-control="begin"]').focus();
+        await frame.locator('[data-control="begin"]').press('Enter');
         await page.waitForTimeout(waitStep);
         ck(tag + ' step 1 The Path of Jesus', (await frame.locator('.verse-card-title').textContent()).includes('Path of Jesus'));
+        await checkFit('1-path');
         await snap('1-path');
 
         await frame.locator('[data-control="next"]').click();
         await page.waitForTimeout(waitStep);
         ck(tag + ' step 2 Drift', (await frame.locator('.verse-card-title').textContent()).includes('Following Your Own Way'));
+        await checkFit('2-drift');
         await snap('2-drift');
 
         await frame.locator('[data-control="next"]').click();
@@ -149,6 +189,7 @@ function ck(label, cond) {
         await frame.locator('[data-control="next"]').click();
         await page.waitForTimeout(waitStep);
         ck(tag + ' step 5 Believe', (await frame.locator('.verse-card-title').textContent()).includes('Believe'));
+        await checkFit('5-believe');
         await snap('5-believe');
 
         await frame.locator('[data-control="next"]').click();
@@ -157,7 +198,10 @@ function ck(label, cond) {
         ck(tag + ' step 6 Back on the Path', (await frame.locator('.verse-card-title').textContent()).includes('Back on the Path'));
         ck(tag + ' card height locked across all steps', Math.abs(h0 - hFinal) <= 1);
         ck(tag + ' return arrow visible at step 6', await frame.locator('#return-arrow').evaluate(el => el.classList.contains('is-on')));
+        await checkFit('6-restored');
         await snap('6-restored');
+
+        await checkFit('complete');
 
         // Back button check
         await frame.locator('[data-control="back"]').click();
@@ -165,7 +209,8 @@ function ck(label, cond) {
         ck(tag + ' Back returns to Believe', (await frame.locator('.verse-card-title').textContent()).includes('Believe'));
 
         // Direct step dot jump check + Start Over
-        await frame.locator('.step-dot').nth(1).click();
+        await frame.locator('.step-dot').nth(1).focus();
+        await frame.locator('.step-dot').nth(1).press('Space');
         await page.waitForTimeout(waitStep);
         ck(tag + ' step dot jumps to Path', (await frame.locator('.verse-card-title').textContent()).includes('Path of Jesus'));
 
@@ -194,7 +239,25 @@ function ck(label, cond) {
         });
         await page.waitForTimeout(500);
         ck(tag + ' zero idle iframe mutations', (await page.evaluate(() => window.__lcHeightWrites)) === 0);
-        ck(tag + ' zero console/HTTP errors', errors.length === 0 && httpErrors.length === 0);
+        ck(tag + ' zero console/HTTP errors', errors.length === 0 && httpErrors.length === 0 && consoleErrors.length === 0);
+        await page.waitForTimeout(200);
+        const expected = {...seed, [editKey]: 'SYN-lc-edited'};
+        ck(tag + ' widget preserved active/retired/other-lesson storage',
+          await page.evaluate(expected => {
+            const saved = JSON.parse(localStorage.getItem('christianFoundationsResponses'));
+            return Object.entries(expected).every(([k,v]) => saved[k] === v);
+          }, expected));
+        await page.reload();
+        await lesson.locator('#' + editKey).waitFor();
+        ck(tag + ' edit survives reload', await lesson.locator('#' + editKey).inputValue() === 'SYN-lc-edited');
+        await page.locator('#email-lesson-btn').click();
+        const email = await page.locator('#export-preview-text').textContent();
+        ck(tag + ' Email includes every current response',
+          questions.every(q => email.includes(expected['question-201-' + q.id])));
+        ck(tag + ' Email retains earlier responses',
+          retired.every(q => email.includes(expected['question-201-' + q.id])));
+        ck(tag + ' Email excludes other lesson', !email.includes(seed[otherKey]));
+        console.log('PASS Learning Circle ' + tag);
       } finally {
         await context.close();
       }
@@ -203,4 +266,4 @@ function ck(label, cond) {
   } finally {
     await browser.close();
   }
-})();
+})().catch(e => { console.error(e); process.exitCode = 1; });
