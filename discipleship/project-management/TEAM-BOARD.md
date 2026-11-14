@@ -1,5 +1,12 @@
 # Growing Together Team Board
 
+## Approved suffering mosaic integrated: November 13, 2026
+
+Dave approved PR #215 at `e82ed36` and requested integration and merge. **Trust the Creator** now replaces the Valley Road embed in 202-05, immediately after the cross paragraph under **God Meant It for Good**, before the pastoral care paragraph. The approved widget is byte-identical; `widgets/valley-road.html` remains on disk. All lesson wording, Scripture, metadata and eight question objects/answer IDs are unchanged. `WIDGET-202-05-MOSAIC` is DONE. [Technical evidence](logs/2026-11-13-INTEGRATE-202-05-MOSAIC-codex.md).
+
+This supersedes earlier notices that the mosaic still needs building or Claude wiring. Dave's approval covers this widget's look/wording, not final approval of the complete suffering lesson. Its prose and Piper credit remain for his lesson editing pass. Exact preview, merge and automatic-deploy results are recorded on PR #215.
+
+
 ## Approved Studio Wash v5 widgets: course openers
 
 Dave approved PR #211's v5 widgets at `bd7000c` and requested integration. All four approved files are unchanged. 201-01 replaces the earlier Great Commandment widget at its existing position; 202-01 and 203-01 gain v5 introductions after their welcome/logo blocks and before their stories. Cross the Road and Personal Ministry Map remain in place. All original lesson copy, questions, IDs, Scripture and art are preserved. [Integration log](logs/2026-11-13-INTEGRATE-STUDIO-V5-codex.md).

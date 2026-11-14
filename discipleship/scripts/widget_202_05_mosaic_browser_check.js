@@ -49,6 +49,13 @@ function startLocalServer() {
   return new Promise(function (resolve) {
     var server = http.createServer(function (req, res) {
       var clean = (req.url || '/').split('?')[0];
+      // Chromium requests a favicon even for a standalone widget. This local
+      // fixture has none; return an empty success without hiding asset errors.
+      if (clean === '/favicon.ico') {
+        res.writeHead(204);
+        res.end();
+        return;
+      }
       var filePath = path.resolve(ROOT, clean.replace(/^\/+/, ''));
       if (!filePath.startsWith(ROOT + path.sep) || !fs.existsSync(filePath) || fs.statSync(filePath).isDirectory()) {
         res.writeHead(404);
