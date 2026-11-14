@@ -1,5 +1,14 @@
 # Growing Together Team Board
 
+## Approved Studio Wash v5 widgets: course openers
+
+Dave approved PR #211's v5 widgets at `bd7000c` and requested integration. All four approved files are unchanged. 201-01 replaces the earlier Great Commandment widget at its existing position; 202-01 and 203-01 gain v5 introductions after their welcome/logo blocks and before their stories. Cross the Road and Personal Ministry Map remain in place. All original lesson copy, questions, IDs, Scripture and art are preserved. [Integration log](logs/2026-11-13-INTEGRATE-STUDIO-V5-codex.md).
+
+Independent checks: foundation QA/export 177/storage 64/assets 127/images 1368/iframe 32 pass, exit 0. Local browser 768 assertions across all three courses, three widths and both motion settings pass. Exact wired preview and live deployment are recorded on #211. Widget approval is separate from whole-lesson approval. Older standalone preview URLs in the original PR description refer to the earlier engine; use the v5 lesson pages after integration.
+
+**Pending text:** 202-01's separate editorial PR #202 remains open and must preserve this widget insertion. The widget rollout does not replace its pending lesson draft or authorize unrelated copy changes.
+
+
 ## Greatest Commandment Cross Widgets (Version 5 Studio Wash, 202 and 203 final-slide refinement): November 13, 2026
 
 - **Task / PR:** `WIDGET-GREAT-CMD-CROSS` / [PR #211](https://github.com/davepartin/ministrybag1/pull/211) on branch `gemini/widget-great-command-cross` (`REVIEW` for Dave visual/wording review and Codex integration)
