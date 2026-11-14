@@ -258,28 +258,10 @@ body {
   gap: 5px;
 }
 
-.card-top {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-
 .card-heading {
   font: 700 15px/1.22 system-ui, -apple-system, sans-serif;
   color: var(--step-dark);
   margin: 0;
-}
-
-.card-badge {
-  font: 700 11px/1 system-ui, -apple-system, sans-serif;
-  color: var(--step-dark);
-  background: var(--tray);
-  border: 1px solid rgba(44, 36, 22, 0.12);
-  border-radius: 999px;
-  padding: 4px 8px;
-  white-space: nowrap;
 }
 
 .card-quote {
@@ -423,7 +405,6 @@ button:focus-visible,
       labelY: 207,
       color: COLORS.plum,
       dark: COLORS.plumDark,
-      badge: 'Low 1 · -2/4',
       heading: '1. Low: Moved to a New Town',
       quote: '"Age 9: New school, felt lonely."',
       note: 'Start with a low dot below the middle line. Use the quarter marks to rate how hard that season felt.'
@@ -441,7 +422,6 @@ button:focus-visible,
       labelY: 79,
       color: COLORS.blue,
       dark: COLORS.blueDark,
-      badge: 'High 1 · +2/4',
       heading: '2. High: Summer Camp',
       quote: '"Age 13: Felt God\'s love at youth camp."',
       note: 'Place your next dot above the line and connect it from the first. Early sparks of joy belong here too.'
@@ -459,7 +439,6 @@ button:focus-visible,
       labelY: 228,
       color: COLORS.plum,
       dark: COLORS.plumDark,
-      badge: 'Low 2 · -3/4',
       heading: '3. Low: Family Hardship',
       quote: '"Age 16: Tough year at home, worried often."',
       note: 'Drop deeper on the quarter scale for harder seasons, writing only your age and a few words.'
@@ -477,7 +456,6 @@ button:focus-visible,
       labelY: 36,
       color: COLORS.gold,
       dark: COLORS.goldDark,
-      badge: 'High 2 · +4/4 ★',
       heading: '4. High: Became a Christian',
       quote: '"Age 19 ★: Came to faith in Christ!"',
       note: 'Mark one of your highs with a star for the moment or season you became a follower of Jesus.'
@@ -495,7 +473,6 @@ button:focus-visible,
       labelY: 249,
       color: COLORS.plum,
       dark: COLORS.plumDark,
-      badge: 'Low 3 · -4/4',
       heading: '5. Low: Loss of Grandma',
       quote: '"Age 26: Lost Grandma, prayed through grief."',
       note: 'Include painful valleys like losing someone you love. God can meet you deeply in your lowest seasons.'
@@ -513,7 +490,6 @@ button:focus-visible,
       labelY: 57,
       color: COLORS.green,
       dark: COLORS.greenDark,
-      badge: 'High 3 · +3/4',
       heading: '6. High: Growing with God Today',
       quote: '"Today: Joined a church group, trusting God."',
       note: 'Finish with a recent high, like loving community or starting this study. Step back and see God\'s hand across all 6 points.'
@@ -522,7 +498,6 @@ button:focus-visible,
 
   var READY_STEP = {
     pillLabel: 'Start: Blank Sheet of Paper',
-    badge: '3 Highs · 3 Lows',
     heading: 'Start with Your Blank Paper',
     quote: 'Draw a sideways T: Highs above the dotted middle line, Lows below, with four quarter marks up and down.',
     note: 'Place 3 to 5 peaks and 3 to 5 valleys one dot at a time, then connect your dots. Step through this 6-dot example.',
@@ -895,14 +870,10 @@ button:focus-visible,
     var verseCard = el('div', { 'class': 'verse-card' });
     verseCard.appendChild(el('div', { 'class': 'verse-card-bar', 'aria-hidden': 'true' }));
     var contentEl = el('div', { 'class': 'verse-card-content', id: 'card-content' });
-    var topRow = el('div', { 'class': 'card-top' });
     var headingEl = el('h2', { 'class': 'card-heading', id: 'card-heading' });
-    var badgeEl = el('span', { 'class': 'card-badge', id: 'card-badge' });
-    topRow.appendChild(headingEl);
-    topRow.appendChild(badgeEl);
     var quoteEl = el('p', { 'class': 'card-quote', id: 'card-quote' });
     var noteEl = el('p', { 'class': 'card-note', id: 'card-note' });
-    contentEl.appendChild(topRow);
+    contentEl.appendChild(headingEl);
     contentEl.appendChild(quoteEl);
     contentEl.appendChild(noteEl);
     verseCard.appendChild(contentEl);
@@ -955,11 +926,10 @@ button:focus-visible,
       });
     }
 
-    function applyCard(heading, badge, quote, note, color, dark) {
+    function applyCard(heading, quote, note, color, dark) {
       document.documentElement.style.setProperty('--step-color', color);
       document.documentElement.style.setProperty('--step-dark', dark);
       headingEl.textContent = heading;
-      badgeEl.textContent = badge;
       quoteEl.textContent = quote;
       noteEl.textContent = note;
     }
@@ -975,10 +945,10 @@ button:focus-visible,
       updateNodes(currentStep);
       if (selectedNodeId) {
         var sp = nodeRef.spec;
-        applyCard(sp.heading, sp.badge, sp.quote, sp.note, sp.color, sp.dark);
+        applyCard(sp.heading, sp.quote, sp.note, sp.color, sp.dark);
       } else {
         var cur = cardDataForStep(currentStep);
-        applyCard(cur.heading, cur.badge, cur.quote, cur.note, cur.color || cur.accent, cur.dark || cur.accentDark);
+        applyCard(cur.heading, cur.quote, cur.note, cur.color || cur.accent, cur.dark || cur.accentDark);
       }
     }
 
@@ -1047,7 +1017,6 @@ button:focus-visible,
       var card = cardDataForStep(currentStep);
       applyCard(
         card.heading,
-        card.badge,
         card.quote,
         card.note,
         card.color || card.accent,
@@ -1095,20 +1064,17 @@ button:focus-visible,
       if (!contentEl || contentEl.clientWidth === measuredWidth) return;
       measuredWidth = contentEl.clientWidth;
       var keepH = headingEl.textContent;
-      var keepB = badgeEl.textContent;
       var keepQ = quoteEl.textContent;
       var keepN = noteEl.textContent;
       var tallest = 0;
       document.documentElement.style.setProperty('--card-h', '0px');
       [READY_STEP].concat(POINTS).forEach(function (item) {
         headingEl.textContent = item.heading;
-        badgeEl.textContent = item.badge;
         quoteEl.textContent = item.quote;
         noteEl.textContent = item.note;
         tallest = Math.max(tallest, contentEl.offsetHeight);
       });
       headingEl.textContent = keepH;
-      badgeEl.textContent = keepB;
       quoteEl.textContent = keepQ;
       noteEl.textContent = keepN;
       document.documentElement.style.setProperty('--card-h', Math.max(112, tallest) + 'px');

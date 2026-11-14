@@ -62,6 +62,7 @@ async function readState(page) {
     return {
       step: Number(widget.getAttribute('data-step')),
       heading: document.getElementById('card-heading').textContent.trim(),
+      hasCardBadge: document.querySelectorAll('.card-badge').length > 0,
       quote: document.getElementById('card-quote').textContent.trim(),
       note: document.getElementById('card-note').textContent.trim(),
       stepCount: document.getElementById('step-count').textContent.trim(),
@@ -97,6 +98,7 @@ async function testViewport(browser, url, width, height, reducedMotion) {
   const init = await readState(page);
   assert.equal(init.step, 0);
   assert.equal(init.heading, EXPECTED_HEADINGS[0]);
+  assert.equal(init.hasCardBadge, false, 'slide counter pill must be absent');
   assert.equal(init.ghostCurves, 0, 'ghost dotted preview curve must not exist');
   assert.equal(init.visibleDots, 0, 'step 0 must start with blank paper (0 dots)');
   assert.equal(init.drawnSegs, 0, 'step 0 must have 0 segments drawn');

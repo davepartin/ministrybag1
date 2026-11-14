@@ -24,7 +24,8 @@
   5. `Age 26`: Lost Grandma (`-4/4` Low, replacing prior miscarriage example)
   6. `Today`: Church group (`+3/4` High)
 - Connecting line behavior: Each click places the next dot cleanly (`0` dots on Step 0), then animates the smooth connecting curve from the previous dot to the newly placed dot (no dotted line traced in advance).
-- Fixed-height card (`118px`, total widget height `523px` at `390x844`), keyboard arrow/button navigation, `aria-live="polite"`, `prefers-reduced-motion: reduce`, zero em dashes, zero `localStorage`, and zero external fonts/URLs.
+- Fixed-height card (`115px`, total widget height `520px` at `390x844`), keyboard arrow/button navigation, `aria-live="polite"`, `prefers-reduced-motion: reduce`, zero em dashes, zero `localStorage`, and zero external fonts/URLs.
+- Review fix (2026-11-13): Removed the top-right slide counter pill (`Low 1 · -2/4`, etc.) from all slides per Dave's feedback.
 
 ## Checks Executed (all exit 0)
 - Static content check (`miscarriage` absent, `0` em dashes, valid JSON, zero `localStorage`, zero external URLs) -> `STATIC_AUDIT_PASS`
