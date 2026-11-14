@@ -35,13 +35,18 @@ Built a single shared marker-drawn interactive SVG widget engine with three thin
 - `discipleship/widgets/STUDIO-WASH-GUIDE.md`, `discipleship/widgets/WIDGET-DESIGN-PLAYBOOK.md`: Studio Wash visual standard and widget design workflow docs requested by Dave.
 - `discipleship/project-management/TEAM-BOARD.md`: Recorded exact 202 and 203 final-card wording, changed files, and check results for `REVIEW`.
 
-### Exact Final-Card Wording (`202` and `203`)
-- **202 Growing Up (`focus202`):**
+### Exact Revised Wording (`201`, `202`, and `203`)
+- **Widget title (`201`, `202`, `203`):** Header and `<title>` stay `The Greatest Commandment` across all 3 widgets.
+- **202 Growing Up & 203 Growing Out (`Step 3` Cross card):**
+  - Heading: `The Cross is our Example`
+  - Scripture: `"Walk in love, as Christ loved us and gave himself up for us."` (`Ephesians 5:2`, bolding **`Walk in love`** and **`Christ loved us`**)
+  - Paragraph: `Jesus loved you first and gave Himself for you. His love enables you to love God and your neighbors. You learn to love by receiving His love and following His example.`
+- **202 Growing Up (`focus202`, Step 4):**
   - Heading: `Love in Everyday Life`
   - Scripture: `"So then, as we have opportunity, let us do good to everyone, and especially to those who are of the household of faith."` (`Galatians 6:10`)
   - Paragraph: `Growing Up helps you put God's love into practice at home, in your church family, and among your neighbors, through generosity, faithful relationships, and care in hard seasons.`
   - Visual: Keeps both horizontal arms (`Belong` blue `#2A5B7C`, `Neighbors` purple `#5F4684`), replaces the left table/right crossing-road icons with a single welcoming house (`Belong` / `Family & God's family`) on the left and a three-house neighborhood (`BLESS` / `your neighborhood`) on the right, adds one gentle curved dual stroke reveal from the horizontal arms down to both scenes, and leaves clean white space below (no bottom bubble).
-- **203 Growing Out (`focus203`, Step 3 remains `"The Cross Holds It All"`):**
+- **203 Growing Out (`focus203`, Step 4):**
   - Heading: `Make Disciples Where You Are`
   - Scripture: `"Go therefore and make disciples of all nations"` (`Matthew 28:19`)
   - Paragraph: `Pray, listen, eat, serve, and share Jesus with the people around you. Go out and make disciples who will make disciples.`
@@ -55,6 +60,6 @@ Built a single shared marker-drawn interactive SVG widget engine with three thin
 - Em-dash check (`! grep -rn $'\xe2\x80\x94'` on `great-command-v5*` + guides): **exit 0**
 - Playwright `test_v5_all.js` across `great-command-v5-201.html`, `202.html`, `203.html`: **exit 0**
   - Phone (`390x844`): `201` unchanged (`cardH=129`, `widgetH=523`), `202` (`cardH=163`, `widgetH=557`), `203` (`cardH=128`, `widgetH=522`), zero horizontal overflow, button heights >= 44px, Back/Next/Start Over verified, keyboard `Enter`/`Space` navigation verified, zero `localStorage` usage, zero page/console errors
-  - Desktop (`1280x800`): `cardH` stable (`134` / `132` / `116`), zero overflow
+  - Desktop (`1280x800`): `cardH` stable (`134` / `132` / `132`), zero overflow
   - `prefers-reduced-motion: reduce`: `stepDur=0` across every step, all active `.mission-arc` strokes at `strokeDashoffset=0`, all `.v5-stage-item.is-visible` at `opacity=1`
 

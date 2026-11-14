@@ -146,10 +146,10 @@
       ]
     },
     '202': {
-      title: 'Love Reaches Out',
+      title: 'The Greatest Commandment',
       courseTag: 'Course 202',
       regionLabel: 'Interactive cross drawing for 202 Loving Your Neighbors (Version 5)',
-      svgTitle: 'Love Reaches Out Cross (Growing Up - Studio Wash)',
+      svgTitle: 'The Greatest Commandment Cross (Growing Up - Studio Wash)',
       steps: [
         {
           id: 'start',
@@ -192,11 +192,12 @@
         },
         {
           id: 'cross',
-          pillLabel: 'Step 3: Christ Crossed Over First',
-          heading: 'Christ Crossed Over First',
-          verse: '"And walk in love, as Christ loved us and gave himself up for us, a fragrant offering and sacrifice to God."',
+          pillLabel: 'Step 3: The Cross is our Example',
+          heading: 'The Cross is our Example',
+          verse: '"Walk in love, as Christ loved us and gave himself up for us."',
+          verseRuns: ['"', { bold: 'Walk in love' }, ', as ', { bold: 'Christ loved us' }, ' and gave himself up for us."'],
           ref: 'Ephesians 5:2',
-          note: 'At the cross, Jesus crossed the widest distance for you. Now His love flows through you.',
+          note: 'Jesus loved you first and gave Himself for you. His love enables you to love God and your neighbors. You learn to love by receiving His love and following His example.',
           accent: COLORS.deepRed,
           accentDark: COLORS.deepRedDark,
           draw: {
@@ -228,10 +229,10 @@
       ]
     },
     '203': {
-      title: 'Love Goes Out',
+      title: 'The Greatest Commandment',
       courseTag: 'Course 203',
       regionLabel: 'Interactive cross drawing for 203 Personal Ministry (Version 5)',
-      svgTitle: 'Love Goes Out Cross (Growing Out - Studio Wash)',
+      svgTitle: 'The Greatest Commandment Cross (Growing Out - Studio Wash)',
       steps: [
         {
           id: 'start',
@@ -277,11 +278,12 @@
         },
         {
           id: 'cross',
-          pillLabel: 'Step 3: The Cross Sends Us',
-          heading: 'The Cross Holds It All',
-          verse: '"And walk in love, as Christ loved us and gave himself up for us, a fragrant offering and sacrifice to God."',
+          pillLabel: 'Step 3: The Cross is our Example',
+          heading: 'The Cross is our Example',
+          verse: '"Walk in love, as Christ loved us and gave himself up for us."',
+          verseRuns: ['"', { bold: 'Walk in love' }, ', as ', { bold: 'Christ loved us' }, ' and gave himself up for us."'],
           ref: 'Ephesians 5:2',
-          note: 'The finished cross carries this love out through ordinary believers like you.',
+          note: 'Jesus loved you first and gave Himself for you. His love enables you to love God and your neighbors. You learn to love by receiving His love and following His example.',
           accent: COLORS.deepRed,
           accentDark: COLORS.deepRedDark,
           draw: {
@@ -1441,12 +1443,29 @@
       });
 
       headingEl.textContent = nextStep.heading;
-      verseTextNode.textContent = nextStep.verse;
+      renderVerse(verseTextNode, nextStep);
       refEl.textContent = nextStep.ref;
       noteEl.textContent = nextStep.note;
       countEl.textContent = currentStep === 0 ? 'Ready' : ('Step ' + currentStep + ' of ' + (CONFIG.steps.length - 1));
       prevBtn.disabled = currentStep === 0;
       nextBtn.textContent = currentStep === 0 ? 'Begin \u2192' : (currentStep === CONFIG.steps.length - 1 ? '\u21BB Start Over' : 'Next \u2192');
+    }
+
+    function renderVerse(container, st) {
+      while (container.firstChild) container.removeChild(container.firstChild);
+      if (st.verseRuns && st.verseRuns.length) {
+        st.verseRuns.forEach(function (run) {
+          if (typeof run === 'string') {
+            container.appendChild(document.createTextNode(run));
+          } else if (run && run.bold) {
+            var strongEl = document.createElement('strong');
+            strongEl.textContent = run.bold;
+            container.appendChild(strongEl);
+          }
+        });
+      } else {
+        container.textContent = st.verse || '';
+      }
     }
 
     prevBtn.addEventListener('click', function () {
@@ -1461,23 +1480,20 @@
     function fitCardHeight() {
       if (!contentEl || contentEl.clientWidth === measuredWidth) return;
       measuredWidth = contentEl.clientWidth;
-      var keepH = headingEl.textContent;
-      var keepV = verseTextNode.textContent;
-      var keepR = refEl.textContent;
-      var keepN = noteEl.textContent;
+      var keepStep = CONFIG.steps[currentStep];
       var tallest = 0;
       document.documentElement.style.setProperty('--card-h', '0px');
       CONFIG.steps.forEach(function (st) {
         headingEl.textContent = st.heading;
-        verseTextNode.textContent = st.verse;
+        renderVerse(verseTextNode, st);
         refEl.textContent = st.ref;
         noteEl.textContent = st.note;
         tallest = Math.max(tallest, contentEl.offsetHeight);
       });
-      headingEl.textContent = keepH;
-      verseTextNode.textContent = keepV;
-      refEl.textContent = keepR;
-      noteEl.textContent = keepN;
+      headingEl.textContent = keepStep.heading;
+      renderVerse(verseTextNode, keepStep);
+      refEl.textContent = keepStep.ref;
+      noteEl.textContent = keepStep.note;
       document.documentElement.style.setProperty('--card-h', Math.max(108, tallest) + 'px');
     }
 

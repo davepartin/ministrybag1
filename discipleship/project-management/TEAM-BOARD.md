@@ -13,13 +13,18 @@
   - `discipleship/project-management/TEAM-BOARD.md`
   - `discipleship/project-management/logs/2026-11-13-WIDGET-GREAT-CMD-CROSS-gemini.md`
 - **Untouched:** all lesson JSON files (`data/*.json`), question IDs, saved answers, `index.html`, `scripts/`, `images/`, Firebase settings/workflows, and 201 slides/colors/navigation.
-- **Exact final-card wording for Dave to review:**
+- **Exact wording for Dave to review (`201`, `202`, and `203`):**
+  - **Widget header & `<title>` across all 3 (`201`, `202`, `203`):** `The Greatest Commandment`
+  - **202 Growing Up & 203 Growing Out (`Step 3` Cross card):**
+    - Heading: `The Cross is our Example`
+    - Scripture: `"Walk in love, as Christ loved us and gave himself up for us."` (`Ephesians 5:2`, with **`Walk in love`** and **`Christ loved us`** bolded)
+    - Paragraph: `Jesus loved you first and gave Himself for you. His love enables you to love God and your neighbors. You learn to love by receiving His love and following His example.`
   - **202 Growing Up (`focus202`, Step 4):**
     - Heading: `Love in Everyday Life`
     - Scripture: `"So then, as we have opportunity, let us do good to everyone, and especially to those who are of the household of faith."` (`Galatians 6:10`)
     - Paragraph: `Growing Up helps you put God's love into practice at home, in your church family, and among your neighbors, through generosity, faithful relationships, and care in hard seasons.`
     - Stage visuals: single house (`Belong` / `Family & God's family`) on the left and a three-house neighborhood (`BLESS` / `your neighborhood`) on the right, with no bottom pill bubble.
-  - **203 Growing Out (`focus203`, Step 4, keeping `"The Cross Holds It All"` as penultimate Step 3):**
+  - **203 Growing Out (`focus203`, Step 4):**
     - Heading: `Make Disciples Where You Are`
     - Scripture: `"Go therefore and make disciples of all nations"` (`Matthew 28:19`)
     - Paragraph: `Pray, listen, eat, serve, and share Jesus with the people around you. Go out and make disciples who will make disciples.`
