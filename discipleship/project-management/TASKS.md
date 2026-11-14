@@ -258,3 +258,5 @@ Plan and standard: [reviews/2026-11-11-series-review.md](reviews/2026-11-11-seri
 | [ ] | INTEGRATE-STUDIO-V5 | REVIEW | Codex / codex/integrate-studio-v5 / 2026-11-13 | Dave approved PR211 bd7000c and requested wiring/merge | Review approved v5 engine; wire course openers with all original prose/questions preserved; test combined pages and deploy. |
 
 | [x] | TRACK-101-DAVE-EDITING | DONE | Codex / codex/101-review-stages / 2026-11-13 | Dave requested a five-column Bronze/Silver/Gold chart and protection of personally edited work | Record current 101 stages and independent component approvals, protect Dave edits and art, no lesson/widget/image edits. |
+
+| [ ] | WIDGET-202-HEADERS | ACTIVE | Codex / codex/integrate-headers220 / 2026-11-13 | Dave approved PR220 at315fc75 and requested merge | Review ten active202 headers and three v5 lesson tags; preserve all lesson/answer/runtime content; verify exact preview and live deployment. |
