@@ -250,3 +250,5 @@ Plan and standard: [reviews/2026-11-11-series-review.md](reviews/2026-11-11-seri
 | [ ] | INTEGRATE-201-10 | REVIEW | Codex / codex/integrate-flow201 / 2026-11-13 | Dave requested newest draft for editing | Integrate PR201 with approved callback preserved; make live draft current and identify outstanding dependencies. |
 
 | [ ] | DAVE-201-10-ROUND2 | REVIEW | Codex / codex/201-10-dave-edits / 2026-11-13 | Dave supplied nine edits | Exact prose edits, Repent/Believe headings, question retirement with saved-answer export, shorter Father section. Tenth item missing. |
+
+| [ ] | INTEGRATE-101-01-PEAKS | ACTIVE | Codex / codex/integrate-peaks217 / 2026-11-13 | Dave approved 832da0a and requested merge | Review approved Peaks and Valleys widget, preserve lesson prose/IDs, test exact preview and automatic live deployment. |
