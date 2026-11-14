@@ -802,7 +802,7 @@
 
         if (step === -1) {
             title.textContent = 'The Holy Spirit, the GUIDE';
-            text.innerHTML = 'Begin the walk and watch GUIDE form one signpost at a time. Each stop shows one steady work of the Holy Spirit in the life of a believer.';
+            text.innerHTML = 'Each stop shows one steady work of the Holy Spirit in the life of a believer.';
             content.appendChild(title);
             content.appendChild(text);
         } else {
@@ -892,7 +892,7 @@
     }
 
     render();
-    window.gtCards = [{ title: 'The Holy Spirit, the GUIDE', text: 'Begin the walk and watch GUIDE form one signpost at a time. Each stop shows one steady work of the Holy Spirit in the life of a believer.' }].concat(stops.map(function (s) { return { title: s.title, text: s.verse + '<span class="card-note">' + s.note + '</span>', ref: s.ref }; }));
+    window.gtCards = [{ title: 'The Holy Spirit, the GUIDE', text: 'Each stop shows one steady work of the Holy Spirit in the life of a believer.' }].concat(stops.map(function (s) { return { title: s.title, text: s.verse + '<span class="card-note">' + s.note + '</span>', ref: s.ref }; }));
 }());
 
 // Size every card to the tallest step so the buttons never move (A-standard pattern).

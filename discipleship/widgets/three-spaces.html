@@ -229,7 +229,7 @@
             paint(null, true);
             var wrap = document.createElement('div'); wrap.className = 'begin-wrapper';
             var intro = document.createElement('p'); intro.className = 'begin-text';
-            intro.textContent = 'Where does your week actually happen? Tap Begin to see your three spaces.';
+            intro.textContent = 'Where does your week actually happen?';
             wrap.appendChild(intro);
             wrap.appendChild(button('Begin →', 'begin', 'begin-btn', function () { setFocus('next'); go(0); }));
             wrap.appendChild(button('Show whole diagram', 'overview', 'overview-btn', function () { resumeStep = step; mode = 'overview'; setFocus('return'); render(); }));
