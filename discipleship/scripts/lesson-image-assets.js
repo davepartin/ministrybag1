@@ -34,6 +34,21 @@
             }
         ]
     },
+    "images/201-05-translation-spectrum.png": {
+        "width": 1600,
+        "height": 530,
+        "sourceHash": "def43ef5a7dd79651a64db833ca42344a4f6f8ab4a0509e7d1941973a47cf4ad",
+        "variants": [
+            {
+                "src": "images/optimized/201-05-translation-spectrum-640.webp",
+                "width": 640
+            },
+            {
+                "src": "images/optimized/201-05-translation-spectrum-1280.webp",
+                "width": 1280
+            }
+        ]
+    },
     "images/201-growing-logo.png": {
         "width": 452,
         "height": 452,

@@ -14,10 +14,6 @@
     },
     {
       "type": "text",
-      "text": "If someone could sing like that over part of the library, imagine holding all 66 books. Many homes have a Bible that stays closed more than it is open. If that is you, there is no shame in it. Once you know how God's library is arranged, you can open His Word with confidence and find what the psalmist found: a lamp for the next step and food for your soul."
-    },
-    {
-      "type": "text",
       "text": "Carry this one sentence through the lesson: <strong>God's Word is a lamp for your path, and every shelf points to Jesus.</strong>"
     },
     {
@@ -105,12 +101,7 @@
     },
     {
       "type": "text",
-      "text": "You do not have to understand every page to be fed. Start small: read a little, carry one verse into your day, and let it light the next step. Over time, God's Word moves from the page into your heart, and you begin to love it the way the psalmist did."
-    },
-    {
-      "type": "image",
-      "src": "images/bible-journal.jpg",
-      "alt": "Open Bible, notebook, and coffee on a table"
+      "text": "You do not have to understand everything the first time you open the Bible. Reading it is like switching on a lamp in a dark room. At first you only make out the basic shapes, but the longer you stay, the more your eyes adjust to the light. God's Word is living and active (Hebrews 4:12), so every time you read it, talk about it, and sit under it, more comes into focus, and it keeps getting better."
     },
     {
       "type": "question",
@@ -119,18 +110,21 @@
       "height": "tall"
     },
     {
-      "type": "question",
-      "id": "201-05-hand",
-      "text": "5.4 - How would you explain the Bible's layout to a friend in one minute?",
-      "height": "tall"
-    },
-    {
       "type": "heading",
       "text": "A Word on Translations"
     },
     {
       "type": "text",
-      "text": "Some translations, like the ESV and NASB, lean toward word-for-word accuracy for careful study. Others, like the NIV and NLT, lean toward thought-for-thought clarity for steady reading. This course quotes the ESV unless a lesson notes another translation. The best translation is the one you will actually open."
+      "text": "Every English Bible is translated from the Hebrew, Aramaic, and Greek its books were first written in, and every translation team makes the same choice: stay as close as possible to the original words, or carry the original thought into natural English. Most translations sit somewhere along that line. Word-for-word translations like the NASB and ESV help with careful study. Thought-for-thought translations like the NIV and NLT help with steady reading."
+    },
+    {
+      "type": "image",
+      "src": "images/201-05-translation-spectrum.png",
+      "alt": "A line from Word for Word on the left to Thought for Thought on the right, with English Bible translations placed along it in order: NASB, ESV, KJV, NKJV, CSB, NIV, NLT, and The Message."
+    },
+    {
+      "type": "text",
+      "text": "This course quotes the ESV unless a lesson notes another translation. The best translation is the one you will actually open."
     },
     {
       "type": "heading",
