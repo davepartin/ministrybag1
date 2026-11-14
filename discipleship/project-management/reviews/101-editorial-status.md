@@ -14,7 +14,7 @@ Stages describe the text review, independently of widget and image approval. Gol
 
 | Lesson | Title | Stage | Approved widget | Approved image |
 |---|---|---|---|---|
-| 101-01 | Welcome. Let's Start Growing. | Silver: Dave-edited, protected | Yes: Peaks and Valleys V2 (#223) | Approval unrecorded: course graphic |
+| 101-01 | Welcome. Let's Start Growing. | Silver: Dave-edited, protected | Gold: Peaks and Valleys V2 | Gold: course logo |
 | 101-02 | Salvation and Baptism | Gold: whole lesson approved and protected | Gold: A-B-C-D road to cross | Gold: greenhouse sequence |
 | 101-03 | Prayer | Silver | No iframe widget; prayer exercise awaits review | Missing |
 | 101-04 | The Bible | Silver | No iframe widget; Discovery Questions exercise awaits review | Missing: Nicodemus lamplight planned |
@@ -49,3 +49,5 @@ One specific consistency suggestion, not implemented: 101-02 still introduces "t
 November14 update: Dave approved the exact V2 widget at ea26435 and the one exercise sentence "Include 3 to 5 peaks and 3 to 5 valleys." All other 101-01 copy, questions, readings and artwork remain protected. Component fingerprints for 101-01 now reflect this approved update; all other lesson fingerprints retain their original baseline.
 
 Gold update, November14: Dave explicitly said "101-02 widget gold and 101-02 image are gold.whole lesson is gold". Approval applies to current main ae1c78e and the recorded component hashes. This supersedes older in-progress notices for 101-02. It does not change 101-01 or 101-05 text stages or waive release/pilot gates.
+
+November 14, Dave explicitly approved the 101-01 logo and widget Gold and requested removal of question 1.5. The prompt is retired under its original ID, so any earlier answer remains available in Email. Whole lesson remains Silver.
