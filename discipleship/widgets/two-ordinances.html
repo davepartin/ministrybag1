@@ -5,282 +5,664 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>The Doorway and the Table</title>
 <style>
-  :root {
-    --green: #1D6B3F;
-    --green-soft: #D1EDD9;
-    --water: #2A7FA8;
-    --water-soft: #E3F0F7;
-    --wine: #9C4A38;
-    --wine-soft: #F6E8E3;
-    --ink: #2d2a26;
-    --ink-soft: #6b655c;
-    --card: #fdfbf7;
-    --border: #e3ddd0;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-    background: #F8F6F1;
-    color: var(--ink);
-    padding: 0;
-    margin: 0;
-  }
-  .widget-outer {
-    background: #FFFFFF;
-    max-width: 100%;
-    margin: 0 auto;
-    overflow: hidden;
-  }
-  @media (min-width: 560px) {
-    body { padding: 16px; }
-    .widget-outer {
-      max-width: 640px;
-      border-radius: 12px;
-      border: 1px solid #EBE5D9;
-      box-shadow: 0 6px 20px rgba(44, 36, 22, 0.08);
+    :root {
+        --ink: #2C2416;
+        --muted: #6E6559;
+        --linen: #F8F6F1;
+        --tray: #F6F4EE;
+        --border: #EBE5D9;
+        --stage: #FFFFFF;
+
+        --harbour: #2A5B7C;
+        --harbour-dark: #1E435C;
+        --harbour-wash: #E2EEF6;
+
+        --gold: #A8760A;
+        --gold-dark: #7D5604;
+        --gold-wash: #FCF2D6;
+
+        --crimson: #8B1A2B;
+        --crimson-dark: #6D1422;
+        --crimson-wash: #F8E8EC;
+
+        --sage: #1F684A;
+        --sage-dark: #164E37;
+        --sage-wash: #E1F1E9;
     }
-  }
-  .title-bar {
-    background: #2C2416;
-    padding: 8px 14px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 8px;
-  }
-  .title-bar h1 {
-    font: 600 17px/1.15 system-ui, -apple-system, sans-serif;
-    color: #FAF8F3;
-    letter-spacing: 0.2px;
-    margin: 0;
-    text-align: left;
-  }
-  .course-tag {
-    font: 600 11px/1 system-ui, -apple-system, sans-serif;
-    letter-spacing: 0.9px;
-    text-transform: uppercase;
-    color: #E5DEC9;
-    white-space: nowrap;
-    flex-shrink: 0;
-  }
-  .wrap { padding: 10px 10px 16px; }
-  .subtitle {
-    text-align: center;
-    font-size: 0.82rem;
-    color: var(--ink-soft);
-    margin: 2px 0 12px;
-  }
-  .facets {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 6px;
-    margin-bottom: 14px;
-  }
-  .facet {
-    border: 1.5px solid var(--border);
-    background: var(--card);
-    color: var(--ink-soft);
-    border-radius: 999px;
-    padding: 7px 12px;
-    font-size: 0.8rem;
-    font-weight: 600;
-    font-family: inherit;
-    cursor: pointer;
-    transition: background 0.25s, color 0.25s, border-color 0.25s;
-  }
-  .facet[aria-pressed="true"] {
-    background: var(--green);
-    border-color: var(--green);
-    color: #fff;
-  }
-  .facet.visited:not([aria-pressed="true"]) {
-    border-color: var(--green-soft);
-    color: var(--green);
-  }
-  .cards {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-  }
-  .card {
-    background: var(--card);
-    border: 1.5px solid var(--border);
-    border-radius: 14px;
-    padding: 14px 12px 16px;
-    text-align: center;
-    border-top: 4px solid var(--border);
-  }
-  .card.baptism { border-top-color: var(--water); }
-  .card.supper { border-top-color: var(--wine); }
-  .icon {
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    margin: 0 auto 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .baptism .icon { background: var(--water-soft); }
-  .supper .icon { background: var(--wine-soft); }
-  .card h2 { font-size: 0.95rem; margin-bottom: 2px; }
-  .baptism h2 { color: var(--water); }
-  .supper h2 { color: var(--wine); }
-  .card .tagline {
-    font-size: 0.72rem;
-    font-style: italic;
-    color: var(--ink-soft);
-    margin-bottom: 10px;
-  }
-  .card .answer {
-    font-size: 0.84rem;
-    line-height: 1.5;
-    min-height: 96px;
-    transition: opacity 0.3s;
-  }
-  .card .answer.fade { opacity: 0; }
-  .footer {
-    margin-top: 14px;
-    text-align: center;
-    font-size: 0.84rem;
-    color: var(--ink-soft);
-  }
-  .footer .reveal {
-    display: none;
-    background: var(--green-soft);
-    color: var(--green);
-    border-radius: 12px;
-    padding: 12px 14px;
-    font-weight: 600;
-    line-height: 1.5;
-  }
-  .footer .reveal.show { display: block; animation: rise 0.5s ease; }
-  @keyframes rise {
-    from { opacity: 0; transform: translateY(8px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .card .answer, .facet { transition: none; }
-    .footer .reveal.show { animation: none; }
-  }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+        background: var(--linen);
+        color: var(--ink);
+        overflow-x: hidden;
+    }
+
+    .widget-outer {
+        background: var(--stage);
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto;
+        overflow: hidden;
+    }
+
+    @media (min-width: 560px) {
+        body { padding: 14px; }
+        .widget-outer {
+            max-width: 460px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            box-shadow: 0 6px 20px rgba(44, 36, 22, 0.08);
+        }
+    }
+
+    /* Studio Wash Header */
+    .title-bar {
+        background: var(--ink);
+        padding: 10px 14px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+    }
+
+    .title-bar h1 {
+        font: 600 17px/1.15 system-ui, -apple-system, sans-serif;
+        color: #FAF8F3;
+        letter-spacing: 0.2px;
+        margin: 0;
+        text-align: left;
+    }
+
+    .course-tag {
+        font: 600 11px/1 system-ui, -apple-system, sans-serif;
+        letter-spacing: 0.9px;
+        text-transform: uppercase;
+        color: #E5DEC9;
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+
+    .wrap { padding: 9px 10px 11px; }
+
+    .subtitle {
+        text-align: center;
+        font-size: 12px;
+        color: var(--muted);
+        margin-bottom: 7px;
+        line-height: 1.35;
+    }
+
+    /* Whiteboard Diagram: One Doorway (Once) & One Table (Often) Under the Cross */
+    .diagram-box {
+        background: var(--tray);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 4px 6px;
+        margin-bottom: 8px;
+    }
+
+    .ordinance-svg {
+        width: 100%;
+        height: 132px;
+        display: block;
+    }
+
+    .ray-line {
+        transition: stroke-opacity 0.25s ease, stroke-width 0.25s ease;
+    }
+
+    .spot-el {
+        transition: opacity 0.25s ease;
+    }
+
+    .cross-gospel-group {
+        transition: opacity 0.28s ease;
+    }
+
+    /* Comparison Question Pills */
+    .facets {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 5px;
+        margin-bottom: 9px;
+    }
+
+    .facet {
+        appearance: none;
+        font-family: inherit;
+        min-height: 32px;
+        border: 1.5px solid var(--border);
+        background: var(--stage);
+        color: var(--ink);
+        border-radius: 999px;
+        padding: 5px 10px;
+        font-size: 11.5px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+    }
+
+    .facet:hover {
+        background: var(--tray);
+        border-color: #CFC6B4;
+    }
+
+    .facet[aria-pressed="true"] {
+        background: var(--ink);
+        border-color: var(--ink);
+        color: #FAF8F3;
+    }
+
+    .facet.visited:not([aria-pressed="true"]) {
+        border-color: #9AC6B1;
+        color: var(--sage-dark);
+        background: #F4FAF6;
+    }
+
+    .facet:focus-visible, .nav-btn:focus-visible {
+        outline: 2.5px solid var(--ink);
+        outline-offset: 2px;
+    }
+
+    /* Side-by-Side Comparison Cards */
+    .cards {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+    }
+
+    .card {
+        background: var(--stage);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 10px 9px 11px;
+        text-align: center;
+        border-top: 4px solid var(--border);
+        display: flex;
+        flex-direction: column;
+    }
+
+    .card.baptism { border-top-color: var(--harbour); }
+    .card.supper { border-top-color: var(--crimson); }
+
+    .card-badge {
+        display: inline-block;
+        margin: 0 auto 5px;
+        padding: 2px 8px;
+        border-radius: 999px;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.6px;
+        text-transform: uppercase;
+    }
+
+    .baptism .card-badge {
+        background: var(--harbour-wash);
+        color: var(--harbour-dark);
+    }
+
+    .supper .card-badge {
+        background: var(--gold-wash);
+        color: var(--gold-dark);
+    }
+
+    .card h2 {
+        font-size: 14px;
+        font-weight: 700;
+        margin-bottom: 2px;
+        line-height: 1.2;
+    }
+
+    .baptism h2 { color: var(--harbour-dark); }
+    .supper h2 { color: var(--crimson-dark); }
+
+    .card .tagline {
+        font-size: 11px;
+        font-style: italic;
+        color: var(--muted);
+        margin-bottom: 7px;
+    }
+
+    .card .answer {
+        font-size: 12.5px;
+        line-height: 1.44;
+        color: var(--ink);
+        min-height: var(--card-h, 118px);
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        text-align: left;
+        transition: opacity 0.16s ease;
+    }
+
+    .card .answer.fade { opacity: 0; }
+
+    /* Footer Reveal / Hint (fixed height to avoid layout jump) */
+    .footer {
+        margin-top: 8px;
+        min-height: var(--footer-h, 48px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .footer .hint {
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--muted);
+    }
+
+    .footer .reveal {
+        display: none;
+        width: 100%;
+        background: var(--crimson-wash);
+        color: var(--crimson-dark);
+        border: 1px solid #DFB3BC;
+        border-left: 3.5px solid var(--crimson);
+        border-radius: 8px;
+        padding: 8px 11px;
+        font-size: 12.2px;
+        font-weight: 600;
+        line-height: 1.4;
+    }
+
+    .footer .reveal.show {
+        display: block;
+    }
+
+    /* Bottom Navigation */
+    .nav-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        padding-top: 8px;
+    }
+
+    .nav-btn {
+        appearance: none;
+        font-family: inherit;
+        min-height: 36px;
+        padding: 6px 12px;
+        border-radius: 999px;
+        border: 1.5px solid var(--border);
+        background: var(--stage);
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--ink);
+        cursor: pointer;
+        transition: background-color 0.15s ease, border-color 0.15s ease;
+    }
+
+    .nav-btn:hover:not(:disabled) {
+        background: var(--tray);
+        border-color: #CFC6B4;
+    }
+
+    .nav-btn:disabled {
+        opacity: 0.42;
+        cursor: default;
+    }
+
+    .nav-btn.primary {
+        background: var(--ink);
+        border-color: var(--ink);
+        color: #FAF8F3;
+    }
+
+    .nav-btn.primary:hover:not(:disabled) {
+        background: #3F3421;
+        border-color: #3F3421;
+    }
+
+    .dot-nav {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 999px;
+        background: #DCD5C7;
+        transition: transform 0.18s ease, background-color 0.18s ease;
+    }
+
+    .dot.visited { background: var(--harbour); }
+    .dot.active { background: var(--ink); transform: scale(1.25); }
+
+    @media (max-width: 390px) {
+        .cards { gap: 6px; }
+        .card { padding: 9px 7px 10px; }
+        .card .answer { font-size: 12px; }
+        .ordinance-svg { height: 126px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+            transition: none !important;
+            animation: none !important;
+        }
+    }
 </style>
 </head>
 <body>
-<div class="widget-outer">
-<header class="title-bar"><h1>The Doorway and the Table</h1><span class="course-tag">202-10</span></header>
-<div class="wrap">
-  <div class="subtitle">Two gifts Jesus gave His church. Tap each question to compare.</div>
+<div class="widget-outer" id="widget-outer">
+    <header class="title-bar">
+        <h1>The Doorway and the Table</h1>
+        <span class="course-tag">202-10</span>
+    </header>
 
-  <div class="facets" role="group" aria-label="Questions to compare the two ordinances">
-    <button class="facet" data-i="0" aria-pressed="true">What is it?</button>
-    <button class="facet" data-i="1" aria-pressed="false">What does it picture?</button>
-    <button class="facet" data-i="2" aria-pressed="false">How often?</button>
-    <button class="facet" data-i="3" aria-pressed="false">What does it say?</button>
-    <button class="facet" data-i="4" aria-pressed="false">Where does it point?</button>
-  </div>
+    <div class="wrap">
+        <div class="subtitle">Two gifts Jesus gave His church. Tap each question to compare.</div>
 
-  <div class="cards">
-    <div class="card baptism">
-      <div class="icon" aria-hidden="true">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
-          <path d="M12 3.5c2.6 3.2 5 6.1 5 9a5 5 0 0 1-10 0c0-2.9 2.4-5.8 5-9z" stroke="#2A7FA8" stroke-width="1.8" fill="#E3F0F7"/>
-          <path d="M9.5 13.2a2.5 2.5 0 0 0 2.5 2.3" stroke="#2A7FA8" stroke-width="1.6" stroke-linecap="round"/>
-        </svg>
-      </div>
-      <h2>Baptism</h2>
-      <div class="tagline">The doorway</div>
-      <div class="answer" id="answer-b" aria-live="polite"></div>
+        <div class="diagram-box" aria-hidden="true">
+            <svg class="ordinance-svg" viewBox="0 0 440 138" preserveAspectRatio="xMidYMid meet">
+                <!-- Connector rays from Center Cross to Doorway & Table -->
+                <line class="ray-line" id="ray-left" x1="203" y1="34" x2="114" y2="45" stroke="#8B1A2B" stroke-width="1.6" stroke-dasharray="4 3" stroke-opacity="0.35" />
+                <line class="ray-line" id="ray-right" x1="237" y1="34" x2="330" y2="69" stroke="#8B1A2B" stroke-width="1.6" stroke-dasharray="4 3" stroke-opacity="0.35" />
+
+                <!-- Center Gospel Cross -->
+                <g class="cross-gospel-group" id="center-cross" opacity="0.72">
+                    <circle cx="220" cy="28" r="18" fill="#F8E8EC" stroke="#8B1A2B" stroke-width="1.2" />
+                    <path d="M 220 15 L 220 41 M 211 24 L 229 24" fill="none" stroke="#8B1A2B" stroke-width="3.2" stroke-linecap="round" />
+                    <path d="M 220 15 L 220 41 M 211 24 L 229 24" fill="none" stroke="#C9596B" stroke-width="1.0" stroke-linecap="round" />
+                    <text x="220" y="57" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="9" font-weight="700" letter-spacing="0.5" fill="#6D1422">ONE GOSPEL</text>
+                </g>
+
+                <!-- LEFT: The Doorway (Baptism) -->
+                <g id="svg-doorway">
+                    <!-- Arch Frame -->
+                    <path d="M 80 112 L 80 68 A 28 24 0 0 1 136 68 L 136 112" fill="#E2EEF6" stroke="#2A5B7C" stroke-width="2.2" stroke-linecap="round" />
+                    <line x1="68" y1="112" x2="148" y2="112" stroke="#1E435C" stroke-width="2" stroke-linecap="round" />
+                    <!-- Water wave inside doorway -->
+                    <path id="spot-water" class="spot-el" d="M 85 95 Q 94 90 103 95 T 121 95 T 131 95" fill="none" stroke="#2A5B7C" stroke-width="1.9" stroke-linecap="round" />
+                    <!-- Buried & Raised curve (Q1) -->
+                    <path id="spot-dive" class="spot-el" d="M 88 86 Q 108 106 128 74" fill="none" stroke="#1F684A" stroke-width="1.8" stroke-linecap="round" opacity="0.45" />
+                    <!-- ONCE single crossing arrow -->
+                    <g id="spot-once" class="spot-el">
+                        <path d="M 48 84 L 106 84" fill="none" stroke="#1E435C" stroke-width="2.4" stroke-linecap="round" />
+                        <polygon points="102,79 111,84 102,89" fill="#1E435C" />
+                        <rect x="30" y="54" width="44" height="16" rx="8" fill="#1E435C" />
+                        <text x="52" y="65" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="9.5" font-weight="700" fill="#FFFFFF">ONCE</text>
+                    </g>
+                    <!-- Speech / Forward markers -->
+                    <text id="door-sub" x="108" y="128" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="700" fill="#1E435C">THE DOORWAY</text>
+                </g>
+
+                <!-- RIGHT: The Table (Lord's Supper) -->
+                <g id="svg-table">
+                    <!-- Table Surface & Legs -->
+                    <ellipse cx="332" cy="84" rx="44" ry="11" fill="#FCF2D6" stroke="#A8760A" stroke-width="2" />
+                    <line x1="302" y1="92" x2="302" y2="112" stroke="#7D5604" stroke-width="2.2" stroke-linecap="round" />
+                    <line x1="362" y1="92" x2="362" y2="112" stroke="#7D5604" stroke-width="2.2" stroke-linecap="round" />
+                    <!-- Loaf + Cup on table -->
+                    <g id="spot-elements" class="spot-el">
+                        <path d="M 310 83 Q 317 75 324 83 Z" fill="#F6E8CC" stroke="#7D5604" stroke-width="1.5" />
+                        <path d="M 340 76 L 352 76 C 352 82 349 84 346 84 C 343 84 340 82 340 76 Z" fill="#F8E8EC" stroke="#8B1A2B" stroke-width="1.5" />
+                        <line x1="346" y1="84" x2="346" y2="88" stroke="#8B1A2B" stroke-width="1.5" />
+                    </g>
+                    <!-- OFTEN continuous returning loop arrow on right -->
+                    <g id="spot-often" class="spot-el">
+                        <path d="M 387.4 77.4 A 15 15 0 1 1 387.4 98.6" fill="none" stroke="#8B1A2B" stroke-width="2.3" stroke-linecap="round" />
+                        <polygon points="383,94 386,103 392,97" fill="#8B1A2B" />
+                        <rect x="372" y="48" width="52" height="16" rx="8" fill="#8B1A2B" />
+                        <text x="398" y="59" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="9.5" font-weight="700" fill="#FFFFFF">OFTEN</text>
+                    </g>
+                    <text id="table-sub" x="332" y="128" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="700" fill="#6D1422">THE TABLE</text>
+                </g>
+
+                <!-- Center Stage Prompt Badge -->
+                <rect x="156" y="84" width="128" height="22" rx="11" fill="#FFFFFF" stroke="#EBE5D9" stroke-width="1.2" />
+                <text id="center-badge-text" x="220" y="98" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="9.5" font-weight="700" fill="#2C2416">1. WHAT IS IT?</text>
+            </svg>
+        </div>
+
+        <div class="facets" role="group" aria-label="Questions to compare the two ordinances">
+            <button type="button" class="facet" data-i="0" aria-pressed="true">What is it?</button>
+            <button type="button" class="facet" data-i="1" aria-pressed="false">What does it picture?</button>
+            <button type="button" class="facet" data-i="2" aria-pressed="false">How often?</button>
+            <button type="button" class="facet" data-i="3" aria-pressed="false">What does it say?</button>
+            <button type="button" class="facet" data-i="4" aria-pressed="false">Where does it point?</button>
+        </div>
+
+        <div class="cards" id="cards">
+            <div class="card baptism">
+                <span class="card-badge">Once</span>
+                <h2>Baptism</h2>
+                <div class="tagline">The doorway</div>
+                <div class="answer" id="answer-b" aria-live="polite"></div>
+            </div>
+            <div class="card supper">
+                <span class="card-badge">Often</span>
+                <h2>The Lord's Supper</h2>
+                <div class="tagline">The table</div>
+                <div class="answer" id="answer-s" aria-live="polite"></div>
+            </div>
+        </div>
+
+        <div class="footer" id="footer">
+            <div class="hint" id="hint">1 of 5 questions explored</div>
+            <div class="reveal" id="reveal">One doorway. One table. The same gospel, given because Jesus longs to share it with you.</div>
+        </div>
+
+        <div class="nav-bar">
+            <button type="button" class="nav-btn" id="btn-prev" data-control="back" disabled>&larr; Back</button>
+            <div class="dot-nav" id="dot-nav" aria-label="Question 1 of 5">
+                <span class="dot active" aria-hidden="true"></span>
+                <span class="dot" aria-hidden="true"></span>
+                <span class="dot" aria-hidden="true"></span>
+                <span class="dot" aria-hidden="true"></span>
+                <span class="dot" aria-hidden="true"></span>
+            </div>
+            <button type="button" class="nav-btn primary" id="btn-next" data-control="next">Next &rarr;</button>
+        </div>
     </div>
-    <div class="card supper">
-      <div class="icon" aria-hidden="true">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
-          <path d="M5 8h8c0 2.5-1.8 4.5-4 4.5S5 10.5 5 8z" stroke="#9C4A38" stroke-width="1.7" fill="#F6E8E3"/>
-          <path d="M9 12.5V19M6.5 19h5" stroke="#9C4A38" stroke-width="1.7" stroke-linecap="round"/>
-          <ellipse cx="17.5" cy="16.5" rx="3.5" ry="2.4" stroke="#9C4A38" stroke-width="1.7" fill="#F6E8E3"/>
-        </svg>
-      </div>
-      <h2>The Lord's Supper</h2>
-      <div class="tagline">The table</div>
-      <div class="answer" id="answer-s" aria-live="polite"></div>
-    </div>
-  </div>
-
-  <div class="footer">
-    <div class="hint" id="hint">1 of 5 questions explored</div>
-    <div class="reveal" id="reveal">One doorway. One table. The same gospel, given because Jesus longs to share it with you.</div>
-  </div>
 </div>
 
 <script>
-  var content = [
-    {
-      b: "Going under the water and rising again in the name of the Father, the Son, and the Holy Spirit, after you trust in Jesus.",
-      s: "Eating the bread and drinking the cup with God's family, the meal Jesus began on the night before the cross."
-    },
-    {
-      b: "Your old life buried with Christ, your new life raised with Him, your sin washed clean.",
-      s: "His body given for you and His blood poured out for you. Grace you can taste."
-    },
-    {
-      b: "Once. It marks the doorway into life with Jesus and His church.",
-      s: "Again and again for the rest of your life. The table keeps feeding you."
-    },
-    {
-      b: "\"I belong to Jesus now.\" Said once, out loud, with your whole body.",
-      s: "\"Jesus died for me, and He is coming back.\" Proclaimed every time you eat and drink."
-    },
-    {
-      b: "Back to the cross and the empty tomb, and forward to your own resurrection.",
-      s: "Back to the cross, and forward to the wedding feast when you see Him face to face."
+(function () {
+    'use strict';
+
+    var content = [
+        {
+            badge: '1. WHAT IS IT?',
+            b: "Going under the water and rising again in the name of the Father, the Son, and the Holy Spirit, after you trust in Jesus.",
+            s: "Eating the bread and drinking the cup with God's family, the meal Jesus began on the night before the cross."
+        },
+        {
+            badge: '2. PICTURING GRACE',
+            b: "Your old life buried with Christ, your new life raised with Him, your sin washed clean.",
+            s: "His body given for you and His blood poured out for you. Grace you can taste."
+        },
+        {
+            badge: '3. ONCE VS. OFTEN',
+            b: "Once. It marks the doorway into life with Jesus and His church.",
+            s: "Again and again for the rest of your life. The table keeps feeding you."
+        },
+        {
+            badge: '4. WHAT IT SAYS',
+            b: "\"I belong to Jesus now.\" Said once, out loud, with your whole body.",
+            s: "\"Jesus died for me, and He is coming back.\" Proclaimed every time you eat and drink."
+        },
+        {
+            badge: '5. WHERE IT POINTS',
+            b: "Back to the cross and the empty tomb, and forward to your own resurrection.",
+            s: "Back to the cross, and forward to the wedding feast when you see Him face to face."
+        }
+    ];
+
+    var outer = document.getElementById('widget-outer');
+    var answerB = document.getElementById('answer-b');
+    var answerS = document.getElementById('answer-s');
+    var hint = document.getElementById('hint');
+    var reveal = document.getElementById('reveal');
+    var footer = document.getElementById('footer');
+    var buttons = Array.prototype.slice.call(document.querySelectorAll('.facet'));
+    var dots = Array.prototype.slice.call(document.querySelectorAll('.dot'));
+    var dotNav = document.getElementById('dot-nav');
+    var prevBtn = document.getElementById('btn-prev');
+    var nextBtn = document.getElementById('btn-next');
+
+    var centerBadge = document.getElementById('center-badge-text');
+    var centerCross = document.getElementById('center-cross');
+    var rayLeft = document.getElementById('ray-left');
+    var rayRight = document.getElementById('ray-right');
+    var spotDive = document.getElementById('spot-dive');
+    var spotOnce = document.getElementById('spot-once');
+    var spotOften = document.getElementById('spot-often');
+    var spotElements = document.getElementById('spot-elements');
+    var spotWater = document.getElementById('spot-water');
+
+    var current = 0;
+    var visited = {};
+    var fadeTimer = null;
+
+    function isReducedMotion() {
+        return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     }
-  ];
 
-  var answerB = document.getElementById('answer-b');
-  var answerS = document.getElementById('answer-s');
-  var hint = document.getElementById('hint');
-  var reveal = document.getElementById('reveal');
-  var buttons = Array.prototype.slice.call(document.querySelectorAll('.facet'));
-  var visited = {};
-  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function updateDiagram(i, allExplored) {
+        centerBadge.textContent = content[i].badge;
 
-  function show(i) {
-    buttons.forEach(function(btn) {
-      var active = Number(btn.dataset.i) === i;
-      btn.setAttribute('aria-pressed', active ? 'true' : 'false');
-      if (visited[btn.dataset.i]) btn.classList.add('visited');
+        var highlightCross = allExplored || i === 4;
+        centerCross.setAttribute('opacity', highlightCross ? '1' : '0.78');
+        rayLeft.setAttribute('stroke-opacity', highlightCross ? '0.95' : '0.35');
+        rayRight.setAttribute('stroke-opacity', highlightCross ? '0.95' : '0.35');
+        rayLeft.setAttribute('stroke-width', highlightCross ? '2.2' : '1.5');
+        rayRight.setAttribute('stroke-width', highlightCross ? '2.2' : '1.5');
+
+        spotWater.setAttribute('opacity', (i === 0 || i === 1) ? '1' : '0.55');
+        spotDive.setAttribute('opacity', i === 1 ? '1' : '0.35');
+        spotElements.setAttribute('opacity', (i === 0 || i === 1) ? '1' : '0.7');
+        spotOnce.setAttribute('opacity', (i === 2 || i === 3) ? '1' : '0.68');
+        spotOften.setAttribute('opacity', (i === 2 || i === 3) ? '1' : '0.68');
+    }
+
+    function show(i, immediate) {
+        current = i;
+        visited[i] = true;
+        var count = Object.keys(visited).length;
+        var allExplored = count >= content.length;
+
+        buttons.forEach(function (btn) {
+            var idx = Number(btn.dataset.i);
+            var active = idx === i;
+            btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+            btn.classList.toggle('visited', Boolean(visited[idx]));
+        });
+
+        dots.forEach(function (d, idx) {
+            d.classList.toggle('active', idx === i);
+            d.classList.toggle('visited', Boolean(visited[idx]) && idx !== i);
+        });
+        dotNav.setAttribute('aria-label', 'Question ' + (i + 1) + ' of ' + content.length);
+
+        prevBtn.disabled = i === 0;
+        if (i === content.length - 1) {
+            nextBtn.textContent = '\u21BB Start Over';
+            nextBtn.setAttribute('data-control', 'restart');
+        } else {
+            nextBtn.textContent = 'Next \u2192';
+            nextBtn.setAttribute('data-control', 'next');
+        }
+
+        updateDiagram(i, allExplored);
+
+        if (fadeTimer) {
+            clearTimeout(fadeTimer);
+            fadeTimer = null;
+        }
+
+        function swap() {
+            answerB.textContent = content[i].b;
+            answerS.textContent = content[i].s;
+            answerB.classList.remove('fade');
+            answerS.classList.remove('fade');
+        }
+
+        if (immediate || isReducedMotion()) {
+            swap();
+        } else {
+            answerB.classList.add('fade');
+            answerS.classList.add('fade');
+            fadeTimer = setTimeout(swap, 120);
+        }
+
+        if (allExplored) {
+            hint.style.display = 'none';
+            reveal.classList.add('show');
+        } else {
+            hint.style.display = 'block';
+            reveal.classList.remove('show');
+            hint.textContent = count + ' of ' + content.length + ' questions explored';
+        }
+    }
+
+    function fitCards() {
+        var answerWidth = answerB.clientWidth || Math.floor(((outer.clientWidth || 360) - 48) / 2);
+        var footerWidth = footer.clientWidth || ((outer.clientWidth || 360) - 20);
+
+        var probe = document.createElement('div');
+        probe.style.cssText = 'position:fixed;left:-9999px;top:0;visibility:hidden;pointer-events:none;width:' + answerWidth + 'px;font-family:' + getComputedStyle(answerB).fontFamily + ';font-size:' + getComputedStyle(answerB).fontSize + ';line-height:' + getComputedStyle(answerB).lineHeight + ';';
+        document.body.appendChild(probe);
+
+        var maxAnswerH = 0;
+        for (var i = 0; i < content.length; i++) {
+            probe.textContent = content[i].b;
+            maxAnswerH = Math.max(maxAnswerH, Math.ceil(probe.getBoundingClientRect().height));
+            probe.textContent = content[i].s;
+            maxAnswerH = Math.max(maxAnswerH, Math.ceil(probe.getBoundingClientRect().height));
+        }
+
+        probe.style.width = footerWidth + 'px';
+        probe.innerHTML = '<div style="border-left:3.5px solid #8B1A2B;padding:8px 11px;font-size:12.2px;font-weight:600;line-height:1.4;">' + reveal.textContent + '</div>';
+        var maxFooterH = Math.ceil(probe.getBoundingClientRect().height);
+
+        probe.remove();
+        outer.style.setProperty('--card-h', maxAnswerH + 'px');
+        outer.style.setProperty('--footer-h', maxFooterH + 'px');
+    }
+
+    buttons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            show(Number(btn.dataset.i), false);
+        });
     });
-    visited[i] = true;
-    var count = Object.keys(visited).length;
 
-    function swap() {
-      answerB.textContent = content[i].b;
-      answerS.textContent = content[i].s;
-      answerB.classList.remove('fade');
-      answerS.classList.remove('fade');
+    prevBtn.addEventListener('click', function () {
+        if (current > 0) show(current - 1, false);
+    });
+
+    nextBtn.addEventListener('click', function () {
+        if (current < content.length - 1) {
+            show(current + 1, false);
+        } else {
+            show(0, false);
+        }
+    });
+
+    fitCards();
+    show(0, true);
+
+    var rt = null;
+    var lastWidth = window.innerWidth;
+    // Refit only on width change so host iframe resize never creates a feedback loop.
+    window.addEventListener('resize', function () {
+        if (window.innerWidth === lastWidth) return;
+        lastWidth = window.innerWidth;
+        clearTimeout(rt);
+        rt = setTimeout(fitCards, 150);
+    });
+    if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(fitCards);
     }
-    if (reduced) {
-      swap();
-    } else {
-      answerB.classList.add('fade');
-      answerS.classList.add('fade');
-      setTimeout(swap, 250);
-    }
-
-    if (count >= content.length) {
-      hint.style.display = 'none';
-      reveal.classList.add('show');
-    } else {
-      hint.textContent = count + ' of 5 questions explored';
-    }
-  }
-
-  buttons.forEach(function(btn) {
-    btn.addEventListener('click', function() { show(Number(btn.dataset.i)); });
-  });
-
-  show(0);
+})();
 </script>
-</div>
 </body>
 </html>
