@@ -28,3 +28,7 @@ qa_foundation exit 0; test_lesson_export exit 0 (177); test_answer_storage exit 
 ## Handoff
 
 The mosaic widget brief used "Trust the Artist" for its title bar and last card; Gemini should use "Trust the Creator" (Dave relays). Placing the widget, the five-question count and length remain for the wiring pass.
+
+## Merge note
+
+Before merge, origin/main already carried INTEGRATE-202-05-MOSAIC (0c5d0f1): the Trust the Creator mosaic widget (widgets/trust-the-artist.html) placed after the cross paragraph and Valley Road removed. Merging main into this branch combined that with the Creator wording without conflict. The widget now sits under the new Trust the Creator heading, as planned. DAVE.md records both the reviewed sha256 and the combined sha256.
