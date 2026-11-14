@@ -1,5 +1,15 @@
 # Growing Together Team Board
 
+## 202-08 Closer to God Triangle Studio Wash frame update: November 14, 2026
+
+- **Task / Branch:** `WIDGET-202-08-FRAME` on `gemini/widget-202-08-frame` (`REVIEW`: ready for Dave preview and Codex integration).
+- **Changed files:**
+  - `discipleship/widgets/covenant-triangle.html` (updated outer chrome, wordless interactive `.step-strip`, unified height-locked `.verse-card` + `.nav-bar` frame across Intro/Steps/Overview, `system-ui` chrome font, `#E0A526` focus outline, dynamic `<desc>`, and reduced-motion transitions matching the Studio Wash pattern, while preserving the base look of `202-08` diagram artwork, palette, step copy, and Scripture verses)
+  - `discipleship/project-management/TEAM-BOARD.md`
+  - `discipleship/project-management/logs/2026-11-14-WIDGET-202-08-FRAME-gemini.md`
+- **Untouched:** `discipleship/data/202-08.json` prose, Scripture blocks, question objects/IDs, saved answers, and `index.html`.
+- **Evidence:** [Gemini handoff log](logs/2026-11-14-WIDGET-202-08-FRAME-gemini.md)
+
 ## Approved 101-05 potluck buttons, November 14, 2026
 
 Dave approved PR #232 at b83efe3: the compact three-column single-screen checklist, prompt and blue/teal/mustard serving buttons. Approved index.html and 101-05 JSON are byte-preserved. Old numeric slots remain reserved, including combined men's/women's ministry at 11; new choices append at 27 and 28. Other stays visually last without moving its DOM/storage index. All other wording, question objects, readings and aspen artwork remain unchanged. Whole-lesson text remains Silver and Dave edits stay protected.
