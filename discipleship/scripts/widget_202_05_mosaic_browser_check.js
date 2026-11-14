@@ -27,7 +27,7 @@ var EXPECTED_HEADINGS = [
   'You Cannot See It All Yet',
   'God Sees the Whole',
   'The Darkest Piece',
-  'Trust the Artist'
+  'Trust the Creator'
 ];
 
 var EXPECTED_VB_WIDTHS = [60, 124, 178, 440, 440, 440];
