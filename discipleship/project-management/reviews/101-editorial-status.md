@@ -1,6 +1,6 @@
 # 101: Dave's editing and component approvals
 
-Updated November 13, 2026. Baseline: main `fc3be3c`. Checked current main and open PRs; no pending 101 lesson revision was found. This replaces older scorecards for the question of what Dave should personally edit next. Those dated grades remain historical evidence.
+Updated November 14, 2026 for the approved 101-01 V2 component and exercise sentence in PR #223 at `ea26435`. Other rows retain the November 13 baseline at main `fc3be3c` unless separately updated. These review stages replace AI scorecards for deciding what Dave should personally edit next; dated grades remain historical evidence.
 
 ## Three stages
 

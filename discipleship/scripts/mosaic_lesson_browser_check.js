@@ -12,6 +12,9 @@ const shots = process.env.GT_SCREENSHOT_DIR;
 if (shots) fs.mkdirSync(shots, { recursive: true });
 const questions = data.blocks.filter(b => b.type === 'question');
 const seed = Object.fromEntries(questions.map((q, i) => ['question-202-' + q.id, 'SYN-mosaic-' + i]));
+const retired = data.retiredQuestions || [];
+const retiredKeys = retired.map(q => 'question-202-' + q.id);
+for (const key of retiredKeys) seed[key] = 'SYN-mosaic-retired-' + key;
 seed['question-201-201-01-1'] = 'SYN-other-course';
 let checks = 0;
 function ck(label, value) { checks++; assert.ok(value, label); }
@@ -52,9 +55,10 @@ function ck(label, value) { checks++; assert.ok(value, label); }
           return block.previousElementSibling.textContent.startsWith('The clearest proof is the cross.') && block.nextElementSibling.textContent.startsWith('A word of care.');
         }));
         ck(tag + ' all original fields', await lesson.locator('.question-textarea').count() === questions.length);
-        for (const [key, value] of Object.entries(seed).filter(([k]) => k.startsWith('question-202-'))) {
+        for (const [key, value] of Object.entries(seed).filter(([k]) => k.startsWith('question-202-') && !retiredKeys.includes(k))) {
           ck(tag + ' restores ' + key, await lesson.locator('#' + key).inputValue() === value);
         }
+        for (const key of retiredKeys) ck(tag + ' retired field absent but saved answer retained', await lesson.locator('#' + key).count() === 0 && await page.evaluate(key => JSON.parse(localStorage.getItem('christianFoundationsResponses'))[key], key) === seed[key]);
         const cardH = await frame.locator('#card-content').evaluate(e => e.clientHeight);
         const storage = await page.evaluate(() => localStorage.getItem('christianFoundationsResponses'));
         for (let step = 0; step <= 5; step++) {
@@ -94,6 +98,7 @@ function ck(label, value) { checks++; assert.ok(value, label); }
         const outgoing = await page.locator('#export-preview-text').textContent();
         ck(tag + ' Email includes edited and previous answers', outgoing.includes('SYN-mosaic-edited') && questions.slice(1).every((q, i) => outgoing.includes('SYN-mosaic-' + (i + 1))));
         ck(tag + ' Email excludes other course', !outgoing.includes('SYN-other-course'));
+        for (const key of retiredKeys) ck(tag + ' Email preserves earlier response', outgoing.includes('Earlier saved responses') && outgoing.includes(seed[key]) && retired.some(q => outgoing.includes(q.text)));
         ck(tag + ' no page errors', errors.length === 0);
         console.log('PASS ' + tag);
       } finally { await context.close(); }
