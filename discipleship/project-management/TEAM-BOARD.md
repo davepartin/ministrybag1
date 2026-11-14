@@ -4,6 +4,10 @@
 
 Dave confirms 101-05 remains Silver. Applied only his requested serving choices and moved the unchanged 5.3 prompt after the potluck teaching (including its supporting verse), before the checklist. Teaching and Discipleship Group are separate; Cleaning Team, Community Service Team, Lawn Team, Hospitality and Other are added. First Impressions, Financial Giving and the old combined Teaching / Bible Study tile are hidden. Original numeric positions remain reserved so saved selections are not reinterpreted; Email identifies a selected old option as an earlier selection. All other copy, question objects/IDs, reading keys and images stay unchanged.
 
+## 101-01 component Gold and question retirement, November 14, 2026
+
+Dave approved the 101-01 course logo and Peaks and Valleys V2 widget Gold. Only question 1.5 (Who will you tell...) is removed from view; its unchanged original object is reserved in retiredQuestions so saved answers still export. All other wording, readings, questions, logo and widget bytes stay unchanged. Whole-lesson text remains Silver and protected.
+
 ## 101-02 is Gold: November 14, 2026
 
 Dave explicitly approved the whole 101-02 lesson, the A-B-C-D widget and the greenhouse sequence Gold. No runtime or lesson file changed. The [101 tracker](reviews/101-editorial-status.md) and component fingerprints record the exact ae1c78e source and file hashes. Protect its text, questions, readings, widget and artwork; no generic trim, art refresh or style-uniformity task overrides this approval. This supersedes older notices that 101-02 was still in progress. Other lesson text stages remain separate.

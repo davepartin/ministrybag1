@@ -9,8 +9,8 @@
       "stage": "Silver",
       "dave_edits_protected": true,
       "full_personal_review": "in progress; Dave confirmed, edits protected",
-      "lesson_sha256": "049816748253ad2b207b6ae65fc7b735e384380537c1b4bca96c70840628e5e8",
-      "non_visual_content_sha256": "2ba393b5b34018e0ec15924841e633b26112e55d10de35e3a55c3dc3ebaa46ed",
+      "lesson_sha256": "37fffdb97ee95311875c08b7fd748118363791de37e5a51075e83932fa9254c0",
+      "non_visual_content_sha256": "3bd3c201d21f7301cf1063ea744c92b4415c0925410702500fa50b7b2cec6ec0",
       "visual_blocks": [
         {
           "type": "image",
@@ -32,6 +32,13 @@
         "date": "2026-11-14",
         "source": "ea26435ddc7ea741817d4260ab07e81b760cdade",
         "scope": "V2 widget and one exercise sentence only"
+      },
+      "component_approval": {
+        "date": "2026-11-14",
+        "source_main": "ae1c78e663613722dc87c895b229f1ed9383dcdf",
+        "widget": "Gold: Peaks and Valleys V2",
+        "image": "Gold: course logo images/3-circles-coral.png",
+        "scope": "Components only. Whole-lesson text remains Silver; remove question 1.5 from view and reserve its original ID and answer."
       }
     },
     {
