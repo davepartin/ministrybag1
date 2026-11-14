@@ -1,8 +1,12 @@
 # Resume here
 
-## 203-01 rewrite waiting for Dave: November 14, 2026
+## 203-01 Claude rewrite approved, November 14, 2026
 
-Dave asked Claude overnight to rewrite 203-01 as the opener for Growing Out, from his own sermon notes. Branch `claude/rewrite-203-01`, REVIEW, not merged. Story: Four Friends and a Roof (Mark 2:1-12). Phrase: "Love has names." Also "God grows your faith so He can work through you for the faith of others" and "Think beyond your tree, and pray for the orchard." The cross opener, the Personal Ministry Map, the names question (1.3) and the BLESS preview stay. Two follow-on briefs wait for Dave to assign: [Love Has Names map widget for Gemini](reviews/2026-11-14-203-01-love-has-names-widget-brief.md) and [Four Friends art for Grok](reviews/2026-11-14-203-01-four-friends-art-brief.md). Do not edit 203-01 prose until Dave has read this draft. [Log](logs/2026-11-14-REWRITE-203-01-claude.md).
+Dave explicitly approved Claude's 203-01 rewrite and accompanying work in chat on November 14 ("i approve of the work that claude did"). Approval source: PR #225 at 96fd1a685b89cb116304d989bdb70996cb1e4164. The exact approved lesson and TOC wording are preserved: Four Friends and a Roof, Love has names, Think beyond your tree, the Great Commission, the existing map and the practice. Four discussion questions and three closing questions remain. The original names question 203-01-4 and closing trio are unchanged; three original retired prompts reserve their IDs and existing answers. Protect this approved wording from unassigned rewrites. This is approval to integrate the work, not a separate Gold-stage or pilot/release declaration.
+
+The Love Has Names map brief and Four Friends art brief are approved planning documents only. Neither replacement widget nor story art is built by this PR. Both current widgets remain unchanged and functional; new components need their own implementation, preview and Dave visual approval. The existing 203-02 names-map dependency is preserved. PR #221 was already merged and verified live; Claude's earlier note that it is still waiting is historical.
+
+Evidence: [Codex integration log](logs/2026-11-14-REWRITE-203-01-codex.md), [Claude writing log](logs/2026-11-14-REWRITE-203-01-claude.md), and PR #225 for preview/live checks.
 
 ## Approved four-story sequence integration, November 14, 2026
 

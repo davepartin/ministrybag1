@@ -1,5 +1,11 @@
 # Dave's decision and approval queue
 
+## 203-01 wording approval and integration, November 14, 2026
+
+Dave explicitly approved Claude's 203-01 rewrite and accompanying work in chat on November 14 ("i approve of the work that claude did"). Approval source: PR #225 at 96fd1a685b89cb116304d989bdb70996cb1e4164. The exact approved lesson and TOC wording are preserved: Four Friends and a Roof, Love has names, Think beyond your tree, the Great Commission, the existing map and the practice. Four discussion questions and three closing questions remain. The original names question 203-01-4 and closing trio are unchanged; three original retired prompts reserve their IDs and existing answers. Protect this approved wording from unassigned rewrites. This is approval to integrate the work, not a separate Gold-stage or pilot/release declaration.
+
+The Love Has Names map brief and Four Friends art brief are approved planning documents only. Neither replacement widget nor story art is built by this PR. Both current widgets remain unchanged and functional; new components need their own implementation, preview and Dave visual approval. The existing 203-02 names-map dependency is preserved. PR #221 was already merged and verified live; Claude's earlier note that it is still waiting is historical.
+
 ## Approved four-story sequence integration, November 14, 2026
 
 Dave approved all four story-art sequences in PR #240 at 419c6a7: 101-07 shepherd (4 frames), 201-05 lamp (2), 203-02 Nehemiah (3), and 203-07 Jesus sends the 72 (4). All 13 original frames, 26 optimized WebP copies, stops/order, touchNext placement and image-map additions are preserved. The original jesus-sends-72.jpg remains unchanged on disk. Lesson wording, Scripture, questions/IDs, reading keys, index.html and the recently approved widgets remain untouched. This records story-image approval only, not whole-lesson Gold or new wording approval.
