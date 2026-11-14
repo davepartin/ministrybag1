@@ -1,5 +1,12 @@
 # Resume here
 
+## Approved widget header rollout: PR #220
+
+Dave approved `315fc75`: all ten active 202 widgets use the dark `#2C2416` header with title on the left and lesson number on the right. The shared v5 engine now displays `201-01`, `202-01` and `203-01` instead of Course labels. Approved titles include Building From the Cornerstone and Reflecting God's Worth. [Technical review and verification](logs/2026-11-13-WIDGET-202-HEADERS-codex.md).
+
+All eleven approved runtime files remain byte-identical to Dave's reviewed source. The ten HTML interaction scripts are unchanged from before the header update; the shared engine changes only three tag strings. All lesson JSON, question IDs, saved answers, Scripture, images and index.html are untouched. Existing Bookshelf, mosaic and other integrations remain intact. Preview, merge and live deployment evidence is recorded on PR #220. No Firebase configuration changes or manual deployment.
+
+
 ## 201-05 approved Studio Wash Bookshelf integration: November 13, 2026
 
 Dave praised the PR #219 preview and requested publication. The new `widgets/bible-bookshelf2.html` replaces the old Bookshelf embed in 201-05 at the same position. Existing lesson wording, Scripture, metadata, questions/IDs and images are unchanged; `widgets/bible-bookshelf.html` stays on disk unchanged. The new widget's approved appearance and wording remain; only the SVG accessibility container role changes so the ten shelf controls are exposed to assistive technology. [Integration evidence](logs/2026-11-13-INTEGRATE-201-05-BOOKSHELF-codex.md).

@@ -42,10 +42,15 @@
         button { -webkit-tap-highlight-color: transparent; font-family: 'Trebuchet MS', sans-serif; }
         button:focus-visible { outline: 3px solid #2C2416; outline-offset: 2px; }
 
-        .title-bar { background: #1D6B3F; padding: 10px 16px; text-align: center; }
+        .title-bar { background: #2C2416; padding: 8px 14px; display: flex; align-items: center; justify-content: space-between; gap: 8px; }
         .title-bar h1 {
-            font-size: 19px; font-weight: 700; color: #FFFFFF; margin: 0; line-height: 1.2;
-            font-family: 'Trebuchet MS', 'Inter', sans-serif;
+            font: 600 17px/1.15 system-ui, -apple-system, sans-serif;
+            color: #FAF8F3; letter-spacing: 0.2px; margin: 0; text-align: left;
+        }
+        .course-tag {
+            font: 600 11px/1 system-ui, -apple-system, sans-serif;
+            letter-spacing: 0.9px; text-transform: uppercase;
+            color: #E5DEC9; white-space: nowrap; flex-shrink: 0;
         }
 
         .diagram-wrapper { padding: 8px 8px 0; }
@@ -93,7 +98,7 @@
 </head>
 <body>
 <div class="widget-outer">
-    <div class="title-bar"><h1>The Closer to God Triangle</h1></div>
+    <div class="title-bar"><h1>The Closer to God Triangle</h1><span class="course-tag">202-08</span></div>
     <div class="diagram-wrapper">
         <svg id="tri" viewBox="0 0 360 290" role="img" aria-labelledby="tri-desc">
             <desc id="tri-desc">God at the top and two people at the bottom, far apart.</desc>

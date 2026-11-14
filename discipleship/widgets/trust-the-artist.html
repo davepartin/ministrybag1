@@ -82,26 +82,29 @@ body {
 
 .title-bar {
   background: var(--ink);
-  padding: 7px 14px;
+  padding: 8px 14px;
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
   gap: 8px;
 }
 
 .title-bar h1 {
-  font: 700 17px/1.2 system-ui, -apple-system, sans-serif;
+  font: 600 17px/1.15 system-ui, -apple-system, sans-serif;
   color: #FAF8F3;
   margin: 0;
   letter-spacing: 0.2px;
+  text-align: left;
 }
 
-.title-sub {
-  font: 600 11.5px/1 system-ui, -apple-system, sans-serif;
-  color: #DFD8C8;
+.course-tag {
+  font: 600 11px/1 system-ui, -apple-system, sans-serif;
+  color: #E5DEC9;
   margin: 0;
   white-space: nowrap;
-  letter-spacing: 0.4px;
+  letter-spacing: 0.9px;
+  text-transform: uppercase;
+  flex-shrink: 0;
 }
 
 .stage {
@@ -378,7 +381,7 @@ button:focus-visible {
 <main class="widget-outer" id="widget" data-step="0" aria-label="Trust the Creator: stained-glass mosaic from one dark shard to the cross and empty tomb">
   <header class="title-bar">
     <h1>Trust the Creator</h1>
-    <p class="title-sub">Genesis 50:20</p>
+    <span class="course-tag">202-05</span>
   </header>
 
   <div class="stage" id="stage"></div>
