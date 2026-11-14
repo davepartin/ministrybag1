@@ -1,5 +1,9 @@
 # Resume here
 
+## 201-10 Learning Circle widget approval and integration, November 14, 2026
+
+Dave explicitly approved only learning-circle2.html in PR #243 at 9aee2c371e700b2badaef484230992e5a906c10a. Codex preserved its exact bytes. No 201-10 JSON, index, question objects/IDs, readings, images or unrelated runtime files changed. This is component approval only, not whole-lesson Gold or copy approval. Foundation/export/storage/assets/images/iframe and 196 embedded browser assertions pass. Preview and production results are recorded on PR #243. Evidence: [Codex integration log](logs/2026-11-14-WIDGET-201-10-CIRCLE-codex.md).
+
 ## 203-01 Claude rewrite approved, November 14, 2026
 
 Dave explicitly approved Claude's 203-01 rewrite and accompanying work in chat on November 14 ("i approve of the work that claude did"). Approval source: PR #225 at 96fd1a685b89cb116304d989bdb70996cb1e4164. The exact approved lesson and TOC wording are preserved: Four Friends and a Roof, Love has names, Think beyond your tree, the Great Commission, the existing map and the practice. Four discussion questions and three closing questions remain. The original names question 203-01-4 and closing trio are unchanged; three original retired prompts reserve their IDs and existing answers. Protect this approved wording from unassigned rewrites. This is approval to integrate the work, not a separate Gold-stage or pilot/release declaration.
