@@ -1,5 +1,9 @@
 # Growing Together - Project State
 
+## Story-art delivery checkpoint, November 14, 2026
+
+Dave approved all four story-art sequences in PR #240 at 419c6a7: 101-07 shepherd (4 frames), 201-05 lamp (2), 203-02 Nehemiah (3), and 203-07 Jesus sends the 72 (4). All 13 original frames, 26 optimized WebP copies, stops/order, touchNext placement and image-map additions are preserved. The original jesus-sends-72.jpg remains unchanged on disk. Lesson wording, Scripture, questions/IDs, reading keys, index.html and the recently approved widgets remain untouched. This records story-image approval only, not whole-lesson Gold or new wording approval. This supersedes older missing/static-art inventory notes for these four lessons only. Current task status and verification are in project-management/TASKS.md and logs/2026-11-14-ART-STORY-SEQUENCES-4-codex.md.
+
 202 and 203 status refreshed October 12, 2026. Other project status below retains its prior audit dates. This is a lightweight orientation. Current task status lives in [project-management/TASKS.md](project-management/TASKS.md); immediate next work is in [project-management/HANDOFF.md](project-management/HANDOFF.md). Lesson order and browse metadata remain in curriculum-toc.csv.
 
 ## Current direction

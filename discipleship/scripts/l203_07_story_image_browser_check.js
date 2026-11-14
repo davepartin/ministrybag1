@@ -1,16 +1,23 @@
 #!/usr/bin/env node
 /**
  * 203-07 Jesus Sends the 72 story-image browser check.
- * Confirms the B&W-to-color dissolve loads both layers, fades on
- * scroll, keeps touchNext on the parable card, honors reduced
- * motion, and does not shift the page at phone and laptop widths.
+ * Confirms the four scroll frames load, advance in order as pairs walk down
+ * the road, keep touchNext on the parable card, honor reduced motion, and
+ * do not shift the page at phone and laptop widths.
  * Synthetic navigation only.
  */
 'use strict';
 
 var { chromium } = require('playwright');
+var assets = require('./lesson-image-assets.js');
 
 var BASE = process.env.L20307_STORY_BASE_URL || 'http://127.0.0.1:8765/index.html';
+var FRAMES = [
+    'images/203-07-story-seq-1.jpg',
+    'images/203-07-story-seq-2.jpg',
+    'images/203-07-story-seq-3.jpg',
+    'images/203-07-story-seq-4.jpg'
+];
 var QUESTION_IDS = [
     '203-07-1',
     '203-07-2',
@@ -20,7 +27,10 @@ var QUESTION_IDS = [
     '203-07-step',
     '203-07-prayer'
 ];
-var SAMPLE_PROGRESS = [0, 0.2, 0.4, 0.6, 0.8, 1];
+var STOPS = [0, 0.18, 0.34, 0.5];
+var LAST_STOP = STOPS[STOPS.length - 1];
+var AFTER_LAST = 0.55;
+var SAMPLE_PROGRESS = [0, 0.09, 0.18, 0.26, 0.34, 0.42, 0.5, 0.55, 0.7];
 var failed = 0;
 var passed = 0;
 
@@ -34,22 +44,21 @@ function assert(name, condition, detail) {
     console.error('FAIL: ' + name + (detail ? ' | ' + detail : ''));
 }
 
-async function waitForDissolve(page) {
-    await page.waitForSelector('#session-7.active [data-parable-dissolve]', { timeout: 20000 });
+async function waitForSequence(page) {
+    await page.waitForSelector('#session-7.active [data-parable-sequence]', { timeout: 20000 });
     await page.waitForFunction(function () {
-        var root = document.querySelector('#session-7.active [data-parable-dissolve]');
+        var root = document.querySelector('#session-7.active [data-parable-sequence]');
         if (!root) return false;
-        var color = root.querySelector('.parable-img-color');
-        var bw = root.querySelector('.parable-img-bw');
-        return color && bw &&
-            color.complete && color.naturalWidth > 0 && color.naturalHeight > 0 &&
-            bw.complete && bw.naturalWidth > 0 && bw.naturalHeight > 0;
+        var frames = Array.prototype.slice.call(root.querySelectorAll('.parable-sequence-frame'));
+        return frames.length === 4 && frames.every(function (img) {
+            return img.complete && img.naturalWidth > 0 && img.naturalHeight > 0;
+        });
     }, { timeout: 20000 });
 }
 
-async function setDissolveProgress(page, targetProgress) {
+async function setSequenceProgress(page, targetProgress) {
     await page.evaluate(function (progress) {
-        var el = document.querySelector('#session-7.active [data-parable-dissolve]');
+        var el = document.querySelector('#session-7.active [data-parable-sequence]');
         var topbar = document.querySelector('.lesson-topbar');
         var viewportHeight = window.innerHeight || document.documentElement.clientHeight || 1;
         var contentTop = topbar ? topbar.getBoundingClientRect().bottom : 0;
@@ -63,61 +72,57 @@ async function setDissolveProgress(page, targetProgress) {
     await page.waitForTimeout(80);
 }
 
-async function readDissolveState(page) {
+async function readSequenceState(page) {
     return page.evaluate(function (questionIds) {
         var session = document.querySelector('#session-7.active');
-        var el = session && session.querySelector('[data-parable-dissolve]');
-        var color = el && el.querySelector('.parable-img-color');
-        var bw = el && el.querySelector('.parable-img-bw');
+        var el = session && session.querySelector('[data-parable-sequence]');
+        var frames = el ? Array.prototype.slice.call(el.querySelectorAll('.parable-sequence-frame')) : [];
+        var imageWrap = el ? el.closest('.block-image') : null;
         var parable = session && session.querySelector('.block-parable');
-        var imageWrap = session && session.querySelector('.block-image');
         var topbar = document.querySelector('.lesson-topbar');
         var viewportHeight = window.innerHeight || document.documentElement.clientHeight || 1;
         var contentTop = topbar ? topbar.getBoundingClientRect().bottom : 0;
-        function box(img) {
-            if (!img) return null;
+        var frameBoxes = frames.map(function (img) {
             var r = img.getBoundingClientRect();
-            var opacityRaw = img.style.opacity === '' ? window.getComputedStyle(img).opacity : img.style.opacity;
             return {
-                src: img.getAttribute('src') || img.getAttribute('data-lesson-src') || '',
-                currentSrc: img.currentSrc || '',
+                src: img.getAttribute('src') || '',
                 alt: img.getAttribute('alt') || '',
-                opacity: Number(opacityRaw),
+                opacity: Number(img.style.opacity === '' ? window.getComputedStyle(img).opacity : img.style.opacity),
                 naturalWidth: img.naturalWidth,
                 naturalHeight: img.naturalHeight,
-                widthAttr: img.getAttribute('width') || '',
-                heightAttr: img.getAttribute('height') || '',
+                originalWidth: Number(img.getAttribute('width')),
+                originalHeight: Number(img.getAttribute('height')),
                 top: r.top,
                 left: r.left,
                 width: r.width,
                 height: r.height
             };
-        }
+        });
         var wrapBox = imageWrap ? imageWrap.getBoundingClientRect() : null;
         var parableBox = parable ? parable.getBoundingClientRect() : null;
+        var dominant = 0;
+        frameBoxes.forEach(function (frame, idx) {
+            if (frame.opacity >= frameBoxes[dominant].opacity) dominant = idx;
+        });
         var nextIsParable = !!(imageWrap && imageWrap.nextElementSibling &&
             imageWrap.nextElementSibling.classList.contains('block-parable'));
         var parableImgs = parable ? Array.from(parable.querySelectorAll('img')) : [];
         return {
-            hasDissolve: !!el,
-            framed: !!(el && el.classList.contains('block-image-dissolve-framed')),
-            staticDissolve: !!(el && el.classList.contains('parable-dissolve-static')),
+            frameCount: frames.length,
+            stops: el ? el.getAttribute('data-sequence-stops') : '',
             touchNext: !!(imageWrap && imageWrap.classList.contains('block-image-touch-next')),
             nextIsParable: nextIsParable,
+            hasBwPair: !!(session && session.querySelector('.parable-img-bw, .parable-img-color')),
             parableHasImg: parableImgs.length > 0,
-            parableImgSrc: parableImgs.map(function (img) {
-                return img.getAttribute('src') || img.getAttribute('data-lesson-src') || img.currentSrc || '';
-            }),
-            color: box(color),
-            bw: box(bw),
+            parableTitle: parable ? (parable.querySelector('.block-parable-title, h2, h3') || parable).textContent : '',
+            frames: frameBoxes,
+            dominant: dominant,
             wrapHeight: wrapBox ? wrapBox.height : 0,
-            wrapWidth: wrapBox ? wrapBox.width : 0,
             wrapTop: wrapBox ? wrapBox.top : null,
             wrapBottom: wrapBox ? wrapBox.bottom : null,
             contentTop: contentTop,
             viewportHeight: viewportHeight,
             parableTop: parableBox ? parableBox.top : null,
-            parableTitle: parable ? (parable.querySelector('.block-parable-title, h2, h3') || parable).textContent : '',
             questions: questionIds.map(function (id) {
                 return !!document.getElementById('question-203-' + id);
             }),
@@ -129,14 +134,9 @@ async function readDissolveState(page) {
 }
 
 function srcMatches(src, expected) {
-    return typeof src === 'string' && src.indexOf(expected) !== -1;
-}
-
-function layersAligned(sample) {
-    if (!sample.color || !sample.bw) return false;
-    return Math.abs(sample.bw.left - sample.color.left) < 1.5 &&
-        Math.abs(sample.bw.width - sample.color.width) < 1.5 &&
-        Math.abs(sample.bw.height - sample.color.height) < 1.5;
+    return typeof src === 'string' && assets[expected] && assets[expected].variants.some(function (variant) {
+        return src.indexOf(variant.src) !== -1;
+    });
 }
 
 (async function () {
@@ -145,112 +145,110 @@ function layersAligned(sample) {
         channel: process.env.GT_BROWSER_CHANNEL || 'chrome'
     });
     var errors = [];
-    var fadeNotes = [];
+    var lastFrameNotes = [];
 
     for (var width of [375, 390, 1280]) {
         var page = await browser.newPage({ viewport: { width: width, height: width === 1280 ? 800 : 844 } });
         page.on('pageerror', function (err) { errors.push(width + ': ' + String(err)); });
         await page.goto(BASE + '#203-7', { waitUntil: 'domcontentloaded' });
-        await waitForDissolve(page);
+        await waitForSequence(page);
 
-        var rest = await readDissolveState(page);
-        assert(width + ': dissolve root renders', rest.hasDissolve);
+        var rest = await readSequenceState(page);
+        assert(width + ': four sequence frames render', rest.frameCount === 4, String(rest.frameCount));
+        assert(width + ': sequence stops are 0,0.18,0.34,0.5', rest.stops === STOPS.join(','), rest.stops);
         assert(width + ': image keeps touchNext', rest.touchNext);
         assert(width + ': parable card follows the image', rest.nextIsParable);
-        assert(width + ': art is not framed', rest.framed === false);
+        assert(width + ': old bw/color pair is not rendered', rest.hasBwPair === false);
         assert(
             width + ': parable title is Jesus Sends the 72',
             rest.parableTitle && rest.parableTitle.indexOf('Jesus Sends the 72') !== -1,
             rest.parableTitle
         );
+        assert(width + ': parable does not contain a nested story image', rest.parableHasImg === false);
+        FRAMES.forEach(function (expected, idx) {
+            assert(
+                width + ': frame ' + (idx + 1) + ' delivery copy matches ' + expected,
+                rest.frames[idx] && srcMatches(rest.frames[idx].src, expected),
+                rest.frames[idx] && rest.frames[idx].src
+            );
+        });
+        var alt = rest.frames[0] && rest.frames[0].alt || '';
         assert(
-            width + ': parable does not repeat the old sends-72 image',
-            rest.parableHasImg === false,
-            JSON.stringify(rest.parableImgSrc)
-        );
-        assert(
-            width + ': color layer src is the 72 color art',
-            rest.color && (srcMatches(rest.color.src, '203-07-sends-72-color') ||
-                srcMatches(rest.color.currentSrc, '203-07-sends-72-color')),
-            rest.color && (rest.color.src + ' | ' + rest.color.currentSrc)
-        );
-        assert(
-            width + ': bw layer src is the 72 charcoal art',
-            rest.bw && (srcMatches(rest.bw.src, '203-07-sends-72-bw') ||
-                srcMatches(rest.bw.currentSrc, '203-07-sends-72-bw')),
-            rest.bw && (rest.bw.src + ' | ' + rest.bw.currentSrc)
-        );
-        var alt = rest.color && rest.color.alt || '';
-        assert(
-            width + ': color alt names Jesus sending pairs toward houses',
-            alt.indexOf('Jesus in the foreground') !== -1 &&
-                alt.indexOf('pairs of disciples') !== -1 &&
-                alt.indexOf('houses in the hills') !== -1,
+            width + ': first frame alt describes Jesus sending followers down the road',
+            alt.indexOf('Jesus') !== -1 && alt.indexOf('two by two') !== -1 && alt.indexOf('villages') !== -1,
             alt
         );
-        assert(
-            width + ': both layers load with reserved 1248x832 size',
-            rest.color && rest.bw &&
-                rest.color.widthAttr === '1248' && rest.color.heightAttr === '832' &&
-                rest.bw.widthAttr === '1248' && rest.bw.heightAttr === '832' &&
-                rest.color.naturalWidth > 0 && rest.bw.naturalWidth > 0 &&
-                rest.color.naturalWidth === rest.bw.naturalWidth &&
-                rest.color.naturalHeight === rest.bw.naturalHeight &&
-                Math.abs((rest.color.naturalWidth / rest.color.naturalHeight) - (1248 / 832)) < 0.02,
-            JSON.stringify({
-                color: rest.color && [rest.color.naturalWidth, rest.color.naturalHeight, rest.color.widthAttr, rest.color.heightAttr, rest.color.currentSrc],
-                bw: rest.bw && [rest.bw.naturalWidth, rest.bw.naturalHeight, rest.bw.widthAttr, rest.bw.heightAttr, rest.bw.currentSrc]
-            })
-        );
+        var sizesMatch = rest.frames.every(function (frame) {
+            return frame.originalWidth === 1203 && frame.originalHeight === 675 &&
+                Math.abs(frame.naturalWidth / frame.naturalHeight - 1203 / 675) < 0.01;
+        });
+        assert(width + ': all frames reserve 1203x675 with matching proportions', sizesMatch, JSON.stringify(rest.frames.map(function (f) {
+            return [f.naturalWidth, f.naturalHeight, f.originalWidth, f.originalHeight];
+        })));
         assert(width + ': all seven saved-answer IDs render', rest.questions.every(Boolean), JSON.stringify(rest.questions));
         assert(width + ': page does not scroll sideways', rest.overflowX === false, rest.scrollWidth + ' > ' + rest.viewport);
-        assert(width + ': both layers aligned at rest', layersAligned(rest), JSON.stringify({
-            color: rest.color && [rest.color.left, rest.color.width, rest.color.height],
-            bw: rest.bw && [rest.bw.left, rest.bw.width, rest.bw.height]
-        }));
 
         var heightAtStart = rest.wrapHeight;
         var order = [];
         var overlapShift = false;
-        var misaligned = false;
+        var lastStopVisible = false;
+        var lastStopNote = '';
         for (var i = 0; i < SAMPLE_PROGRESS.length; i++) {
-            await setDissolveProgress(page, SAMPLE_PROGRESS[i]);
-            var sample = await readDissolveState(page);
+            await setSequenceProgress(page, SAMPLE_PROGRESS[i]);
+            var sample = await readSequenceState(page);
             order.push({
                 progress: SAMPLE_PROGRESS[i],
-                bwOpacity: sample.bw ? Number(sample.bw.opacity.toFixed(3)) : null,
-                colorHeight: sample.color ? sample.color.height : null
+                dominant: sample.dominant,
+                opacities: sample.frames.map(function (f) { return Number(f.opacity.toFixed(3)); })
             });
             if (Math.abs(sample.wrapHeight - heightAtStart) > 1.5) overlapShift = true;
             if (sample.parableTop !== null && sample.wrapBottom !== null && sample.parableTop + 1 < sample.wrapBottom) {
                 overlapShift = true;
             }
-            if (!layersAligned(sample)) misaligned = true;
-            if (sample.parableTop !== null && sample.wrapBottom !== null) {
-                var gap = sample.parableTop - sample.wrapBottom;
-                if (gap > 2) overlapShift = true;
+            if (sample.parableTop !== null && sample.wrapBottom !== null && sample.parableTop - sample.wrapBottom > 2) {
+                overlapShift = true;
+            }
+            var firstBox = sample.frames[0];
+            var stackedOk = sample.frames.slice(1).every(function (frame) {
+                return Math.abs(frame.left - firstBox.left) < 1.5 &&
+                    Math.abs(frame.width - firstBox.width) < 1.5 &&
+                    Math.abs(frame.height - firstBox.height) < 1.5;
+            });
+            if (!stackedOk) overlapShift = true;
+            if (SAMPLE_PROGRESS[i] === LAST_STOP) {
+                lastStopVisible = sample.wrapBottom !== null &&
+                    sample.wrapBottom > sample.contentTop + 40 &&
+                    sample.wrapTop !== null &&
+                    sample.wrapTop < sample.viewportHeight;
+                lastStopNote = 'wrapTop=' + sample.wrapTop +
+                    ' wrapBottom=' + sample.wrapBottom +
+                    ' contentTop=' + sample.contentTop +
+                    ' viewportHeight=' + sample.viewportHeight;
             }
         }
         if (width === 390) {
-            console.log('390 dissolve samples: ' + JSON.stringify(order));
+            console.log('390 sequence samples: ' + JSON.stringify(order));
         }
-        var atStart = order.find(function (row) { return row.progress === 0; });
-        var atEnd = order.find(function (row) { return row.progress === 1; });
-        fadeNotes.push(
-            width + ' startBw=' + (atStart && atStart.bwOpacity) +
-            ' endBw=' + (atEnd && atEnd.bwOpacity) +
-            ' wrapHeight=' + heightAtStart
+        var atLastStop = order.find(function (row) { return row.progress === LAST_STOP; });
+        var afterLastStop = order.find(function (row) { return row.progress === AFTER_LAST; });
+        lastFrameNotes.push(
+            width + '@' + LAST_STOP + ' opacities=' + JSON.stringify(atLastStop && atLastStop.opacities) +
+            ' @' + AFTER_LAST + ' dominant=' + (afterLastStop && afterLastStop.dominant) +
+            ' wrapHeight=' + heightAtStart + ' ' + lastStopNote
         );
-        var fading = true;
+        var monotonic = true;
         for (var j = 1; j < order.length; j++) {
-            if (order[j].bwOpacity > order[j - 1].bwOpacity + 0.02) fading = false;
+            if (order[j].dominant < order[j - 1].dominant) monotonic = false;
         }
-        var dropped = atStart && atEnd && atEnd.bwOpacity < atStart.bwOpacity - 0.5;
-        assert(width + ': both layers load at progress 0', atStart && atStart.bwOpacity >= 0.95, JSON.stringify(atStart));
-        assert(width + ': black-and-white layer fades toward color on scroll', fading && dropped, JSON.stringify(order));
-        assert(width + ': color layer is visible at the end of the fade', atEnd && atEnd.bwOpacity <= 0.05, JSON.stringify(atEnd));
-        assert(width + ': both layers stay aligned through the fade', misaligned === false);
-        assert(width + ': touchNext joins the parable card without layout shift', overlapShift === false && heightAtStart > 100);
+        var used = {};
+        order.forEach(function (row) { used[row.dominant] = true; });
+        var lastFrameInAtStop = atLastStop && atLastStop.opacities && atLastStop.opacities[3] >= 0.85;
+        assert(width + ': frames advance in order as you scroll', monotonic, JSON.stringify(order));
+        assert(width + ': all four frames become dominant', Object.keys(used).length === 4, JSON.stringify(order));
+        assert(width + ': last frame is nearly opaque at stop ' + LAST_STOP, lastFrameInAtStop, JSON.stringify(atLastStop));
+        assert(width + ': last frame is exclusive just after stop ' + LAST_STOP, afterLastStop && afterLastStop.dominant === 3, JSON.stringify(afterLastStop));
+        assert(width + ': last frame is still on screen at the final stop', lastStopVisible, lastStopNote);
+        assert(width + ': sequence does not shift or overlap surrounding content', overlapShift === false && heightAtStart > 100);
 
         await page.close();
     }
@@ -261,22 +259,20 @@ function layersAligned(sample) {
     });
     reduced.on('pageerror', function (err) { errors.push('reduced: ' + String(err)); });
     await reduced.goto(BASE + '#203-7', { waitUntil: 'domcontentloaded' });
-    await waitForDissolve(reduced);
-    var reducedState = await readDissolveState(reduced);
-    assert('reduced motion: dissolve root renders', reducedState.hasDissolve);
-    assert('reduced motion: static color reveal without scrolling', reducedState.staticDissolve &&
-        reducedState.bw && reducedState.bw.opacity <= 0.05, JSON.stringify({
-        staticDissolve: reducedState.staticDissolve,
-        bwOpacity: reducedState.bw && reducedState.bw.opacity
-    }));
+    await waitForSequence(reduced);
+    var reducedState = await readSequenceState(reduced);
+    assert('reduced motion: four sequence frames render', reducedState.frameCount === 4, String(reducedState.frameCount));
     assert(
-        'reduced motion: color layer still loads',
-        reducedState.color && reducedState.color.naturalWidth > 0 &&
-            (srcMatches(reducedState.color.src, '203-07-sends-72-color') ||
-                srcMatches(reducedState.color.currentSrc, '203-07-sends-72-color')),
-        reducedState.color && (reducedState.color.src + ' | ' + reducedState.color.currentSrc)
+        'reduced motion: last frame is shown without scrolling',
+        reducedState.frames[3] && reducedState.frames[3].opacity >= 0.95 &&
+            reducedState.frames.slice(0, 3).every(function (frame) { return frame.opacity <= 0.05; }),
+        JSON.stringify(reducedState.frames.map(function (f) { return Number(f.opacity.toFixed(3)); }))
     );
-    assert('reduced motion: both layers aligned', layersAligned(reducedState));
+    assert(
+        'reduced motion: last frame src is seq-4',
+        reducedState.frames[3] && srcMatches(reducedState.frames[3].src, 'images/203-07-story-seq-4.jpg'),
+        reducedState.frames[3] && reducedState.frames[3].src
+    );
     assert('reduced motion: touchNext joins the parable', reducedState.touchNext && reducedState.nextIsParable);
     assert('reduced motion: page does not scroll sideways', reducedState.overflowX === false,
         reducedState.scrollWidth + ' > ' + reducedState.viewport);
@@ -284,7 +280,7 @@ function layersAligned(sample) {
 
     assert('no page exceptions', errors.length === 0, errors.slice(0, 2).join(' | '));
     await browser.close();
-    console.log('Dissolve timing: ' + fadeNotes.join('; '));
+    console.log('Last-frame timing: ' + lastFrameNotes.join('; '));
     if (failed) {
         console.error('\n' + failed + ' browser check(s) failed.');
         process.exit(1);

@@ -211,10 +211,39 @@
       "stage": "Silver",
       "dave_edits_protected": false,
       "full_personal_review": "unrecorded",
-      "lesson_sha256": "9a7183bda1197d010b254dae5b23112bf86ecccb04e777b7d238bef1e9a73792",
+      "lesson_sha256": "641e863858945b3bcf9c1f5c0412af24708611171bc51b2bb131618519364b4b",
       "non_visual_content_sha256": "1840da0f4b68f86bc0e6f952a012b225342e6ab1df5243da8a603408b2c5de0b",
-      "visual_blocks": [],
-      "visual_files_sha256": {}
+      "visual_blocks": [
+        {
+          "type": "image",
+          "imageSequence": [
+            "images/101-07-story-seq-1.jpg",
+            "images/101-07-story-seq-2.jpg",
+            "images/101-07-story-seq-3.jpg",
+            "images/101-07-story-seq-4.jpg"
+          ],
+          "imageSequenceStops": [
+            0,
+            0.18,
+            0.34,
+            0.5
+          ],
+          "alt": "A shepherd climbs down a rocky hillside toward a lost sheep and lifts it onto his shoulders",
+          "touchNext": true
+        }
+      ],
+      "visual_files_sha256": {
+        "images/101-07-story-seq-1.jpg": "4d0ad5da5372938165466dd30d9522a426b312d5853593857ecfc332c8bf135d",
+        "images/101-07-story-seq-2.jpg": "9a5e8d6bc9ec3d6cfe87182fa5750a04aae8bce21b7b0f245724d12701576a46",
+        "images/101-07-story-seq-3.jpg": "a63003df5502e48bcf9475b23826ecb4302b38bcc94051a04cf3d4ce5bdfaf54",
+        "images/101-07-story-seq-4.jpg": "9432ece3046a42695b9fabf25db5eb443f6aa56679a6dcaee82dcef05265fcf8"
+      },
+      "image_approval": {
+        "date": "2026-11-14",
+        "source": "419c6a7ec9cd04aaa68ffcbf9f617de9882fc03d",
+        "pr": 240,
+        "scope": "Four approved shepherd frames, order, stops and placement only; whole text remains Silver."
+      }
     }
   ]
 }
