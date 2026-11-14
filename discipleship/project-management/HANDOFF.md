@@ -1,5 +1,17 @@
 # Resume here
 
+## Approved suffering mosaic integrated: November 13, 2026
+
+Dave approved PR #215 at `e82ed36` and requested integration and merge. **Trust the Creator** now replaces the Valley Road embed in 202-05, immediately after the cross paragraph under **God Meant It for Good**, before the pastoral care paragraph. The approved widget is byte-identical; `widgets/valley-road.html` remains on disk. All lesson wording, Scripture, metadata and eight question objects/answer IDs are unchanged. `WIDGET-202-05-MOSAIC` is DONE. [Technical evidence](logs/2026-11-13-INTEGRATE-202-05-MOSAIC-codex.md).
+
+This supersedes earlier notices that the mosaic still needs building or Claude wiring. Dave's approval covers this widget's look/wording, not final approval of the complete suffering lesson. Its prose and Piper credit remain for his lesson editing pass. Exact preview, merge and automatic-deploy results are recorded on PR #215.
+
+
+## Studio Wash v5 integration, November 13
+
+PR #211 is being integrated at Dave's request. His approved source is `bd7000c`; the four v5 files remain byte-identical. The wired lessons are 201-01 (replacement), 202-01 and 203-01 (new opening widgets). All original copy/questions/IDs/Scripture remain; Cross the Road and Personal Ministry Map are retained. [Verification and placement](logs/2026-11-13-INTEGRATE-STUDIO-V5-codex.md). Use the verified v5 lesson pages after deployment, not the older cross-engine preview links in the historical PR body. 202-01's text revision in #202 is still separate and must retain the v5 intro.
+
+
 ## Latest201-10 edit pass: nine items from Dave
 
 Dave's exact prose changes and clearer Repent/Believe sections are applied. The removed hardest-step question is absent from the lesson; prior answers remain in Email only when saved. Display questions are10.1-10.3 with existing IDs. Father section 30% shorter, Scripture/widget/art/opening preserved. [Full change record](logs/2026-11-13-DAVE-201-10-ROUND2-codex.md). This supersedes the earlier201-10 flow-only editing link.

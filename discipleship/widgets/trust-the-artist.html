@@ -1,0 +1,790 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trust the Creator</title>
+<style>
+:root {
+  --ink: #2C2416;
+  --muted: #6E6559;
+  --paper: #FDFCFB;
+  --tray: #F6F4EE;
+  --border: #EBE5D9;
+  --step-color: #2C2416;
+  --step-dark: #2C2416;
+  --card-h: 108px;
+}
+
+.widget-outer[data-step="1"] {
+  --step-color: #6B645A;
+  --step-dark: #4F4941;
+}
+
+.widget-outer[data-step="2"] {
+  --step-color: #5C554B;
+  --step-dark: #3F3931;
+}
+
+.widget-outer[data-step="3"] {
+  --step-color: #7D6B48;
+  --step-dark: #5C4D30;
+}
+
+.widget-outer[data-step="4"] {
+  --step-color: #8B3E2B;
+  --step-dark: #6D2D1E;
+}
+
+.widget-outer[data-step="5"] {
+  --step-color: #9A6B16;
+  --step-dark: #754F0B;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: Georgia, Cambria, serif;
+  background: #F8F6F1;
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+.widget-outer {
+  background: #FFFFFF;
+  border-radius: 0;
+  overflow: hidden;
+  box-shadow: none;
+  border: none;
+  max-width: 100%;
+  width: 100%;
+  margin: 0;
+  position: relative;
+}
+
+@media (min-width: 560px) {
+  body {
+    padding: 16px;
+    background: #F8F6F1;
+  }
+  .widget-outer {
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(44, 36, 22, 0.08);
+    border: 1px solid #EBE5D9;
+    max-width: 460px;
+    margin: 0 auto;
+  }
+}
+
+.title-bar {
+  background: var(--ink);
+  padding: 7px 14px;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.title-bar h1 {
+  font: 700 17px/1.2 system-ui, -apple-system, sans-serif;
+  color: #FAF8F3;
+  margin: 0;
+  letter-spacing: 0.2px;
+}
+
+.title-sub {
+  font: 600 11.5px/1 system-ui, -apple-system, sans-serif;
+  color: #DFD8C8;
+  margin: 0;
+  white-space: nowrap;
+  letter-spacing: 0.4px;
+}
+
+.stage {
+  position: relative;
+  aspect-ratio: 440 / 276;
+  background: var(--paper);
+  border-bottom: 1px solid #EEE9DF;
+  overflow: hidden;
+}
+
+.stage svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.shard-wrap {
+  opacity: 0;
+}
+
+.shard-wrap.is-shown {
+  opacity: 1;
+}
+
+.shard-base {
+  stroke: #2C2416;
+  stroke-width: 2.3;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.shard-color {
+  opacity: 0;
+  stroke: #2C2416;
+  stroke-width: 2.3;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.mosaic-svg.is-color .shard-color {
+  opacity: 1;
+}
+
+.piece-poly {
+  fill: #452A17;
+  stroke: #C99A2E;
+  stroke-width: 1.45;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.piece-crack {
+  fill: none;
+  stroke: #755138;
+  stroke-width: 1.15;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.window-frame {
+  fill: none;
+  stroke: #2C2416;
+  stroke-width: 3.2;
+  vector-effect: non-scaling-stroke;
+  opacity: 0;
+}
+
+.window-frame.is-shown {
+  opacity: 1;
+}
+
+.cross-glow {
+  opacity: 0;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+.mosaic-svg.is-glow .cross-glow {
+  opacity: 0.72;
+}
+
+.mosaic-svg.is-glow .piece-poly {
+  stroke: #2C2416;
+  stroke-width: 2.3;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .widget-outer:not(.is-instant) .shard-wrap {
+    transition: opacity 420ms ease;
+  }
+  .widget-outer:not(.is-instant) .shard-base {
+    transition: fill 480ms ease;
+  }
+  .widget-outer:not(.is-instant) .shard-color {
+    transition: opacity 480ms ease var(--d, 0ms);
+  }
+  .widget-outer:not(.is-instant) .window-frame {
+    transition: opacity 420ms ease;
+  }
+  .widget-outer:not(.is-instant) .cross-glow {
+    transition: opacity 820ms ease;
+  }
+  .widget-outer:not(.is-instant) .piece-poly {
+    transition: stroke 700ms ease, stroke-width 700ms ease;
+  }
+}
+
+/* Step dots row */
+.dot-strip {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  padding: 0 10px;
+  background: #FAF8F4;
+  border-bottom: 1px solid #EEE9DF;
+}
+
+.step-dot-btn {
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 999px;
+}
+
+.step-dot-fill {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid var(--dot-color, #2C2416);
+  background: #FFFFFF;
+  transition: transform 180ms ease, background-color 180ms ease, border-color 180ms ease;
+}
+
+.step-dot-btn.is-passed .step-dot-fill {
+  background: var(--dot-soft, #EAE6DF);
+}
+
+.step-dot-btn.is-active .step-dot-fill {
+  background: var(--dot-color, #2C2416);
+  transform: scale(1.22);
+}
+
+/* Card + Navigation */
+.card-area {
+  background: var(--tray);
+  padding: 7px 12px 9px;
+}
+
+.verse-card {
+  background: #FFFFFF;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #EBE5D9;
+  box-shadow: 0 2px 12px rgba(44, 36, 22, 0.06);
+}
+
+.verse-card-bar {
+  height: 4px;
+  background: var(--step-color);
+  transition: background-color 260ms ease;
+}
+
+.verse-card-content {
+  padding: 8px 13px;
+  min-height: var(--card-h, 108px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card-heading {
+  font: 700 14.5px/1.22 system-ui, -apple-system, sans-serif;
+  color: var(--step-dark);
+  margin: 0 0 3px;
+  transition: color 250ms ease;
+}
+
+.card-heading[hidden] {
+  display: none;
+}
+
+.card-verse {
+  font: italic 12.5px/1.33 Georgia, Cambria, serif;
+  color: #3D3426;
+  margin: 0 0 4px;
+}
+
+.card-verse[hidden] {
+  display: none;
+}
+
+.card-text {
+  font: 13px/1.37 Georgia, Cambria, serif;
+  color: #362E22;
+  margin: 0;
+}
+
+.card-ref {
+  font: 600 11px/1.2 system-ui, -apple-system, sans-serif;
+  color: var(--muted);
+  margin: 3px 0 0;
+}
+
+.card-ref[hidden] {
+  display: none;
+}
+
+.nav-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-top: 7px;
+}
+
+.nav-btn {
+  min-height: 44px;
+  min-width: 98px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1.5px solid #D4CFC4;
+  background: #FFFFFF;
+  color: var(--ink);
+  font: 700 13.5px/1 system-ui, -apple-system, sans-serif;
+  cursor: pointer;
+}
+
+.nav-btn.primary {
+  background: var(--step-color);
+  border-color: var(--step-color);
+  color: #FFFFFF;
+  transition: background-color 250ms ease, border-color 250ms ease;
+}
+
+.nav-btn:disabled {
+  opacity: 0.36;
+  cursor: default;
+}
+
+.step-count {
+  font: 600 12px system-ui, -apple-system, sans-serif;
+  color: var(--muted);
+}
+
+button:focus-visible {
+  outline: 3px solid #E0A526;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shard-wrap,
+  .shard-base,
+  .shard-color,
+  .window-frame,
+  .cross-glow,
+  .step-dot-fill,
+  .verse-card-bar,
+  .card-heading,
+  .nav-btn.primary {
+    transition: none !important;
+  }
+}
+</style>
+</head>
+<body>
+<main class="widget-outer" id="widget" data-step="0" aria-label="Trust the Creator: stained-glass mosaic from one dark shard to the cross and empty tomb">
+  <header class="title-bar">
+    <h1>Trust the Creator</h1>
+    <p class="title-sub">Genesis 50:20</p>
+  </header>
+
+  <div class="stage" id="stage"></div>
+
+  <div class="dot-strip" id="dot-strip" role="group" aria-label="Mosaic steps"></div>
+
+  <section class="card-area" id="card-area" aria-live="polite">
+    <div class="verse-card">
+      <div class="verse-card-bar" aria-hidden="true"></div>
+      <div class="verse-card-content" id="card-content">
+        <h2 class="card-heading" id="card-heading"></h2>
+        <p class="card-verse" id="card-verse"></p>
+        <p class="card-text" id="card-text"></p>
+        <p class="card-ref" id="card-ref"></p>
+      </div>
+    </div>
+    <div class="nav-bar">
+      <button class="nav-btn" id="prev-btn" type="button">&larr; Back</button>
+      <span class="step-count" id="step-count"></span>
+      <button class="nav-btn primary" id="next-btn" type="button">Begin &rarr;</button>
+    </div>
+  </section>
+</main>
+
+<script>
+(function () {
+  'use strict';
+  var NS = 'http://www.w3.org/2000/svg';
+
+  var SHARDS = [{"k":"sky","z":1,"o":70,"ga":"#ECE9E2","gs":"#F5F3EE","fc":"#F7D76E","pts":[[144.0,142.2],[124.1,138.3],[116.7,121.5],[123.9,104.0],[144.0,104.0]]},{"k":"sky","z":2,"o":109,"ga":"#F1EEE8","gs":"#F2EFE9","fc":"#F4CA52","pts":[[107.9,150.4],[92.8,134.2],[98.0,123.8],[116.7,121.5],[124.1,138.3]]},{"k":"sky","z":2,"o":161,"ga":"#F1EEE8","gs":"#E7E3DA","fc":"#EC9C44","pts":[[77.8,137.3],[66.0,109.1],[90.2,105.2],[98.0,123.8],[92.8,134.2]]},{"k":"sky","z":3,"o":151,"ga":"#E3DFD6","gs":"#E7E3DA","fc":"#EC9C44","pts":[[77.0,183.5],[80.0,163.3],[106.9,156.3],[116.7,174.9]]},{"k":"sky","z":3,"o":83,"ga":"#D9D4CB","gs":"#F5F3EE","fc":"#F7D76E","pts":[[116.7,174.9],[106.9,156.3],[107.9,150.4],[124.1,138.3],[144.0,142.2],[144.0,169.0]]},{"k":"sky","z":3,"o":288,"ga":"#E3DFD6","gs":"#DBD6CC","fc":"#DF847C","pts":[[10.0,198.0],[10.0,155.9],[41.3,156.8],[49.6,189.4]]},{"k":"sky","z":3,"o":273,"ga":"#E3DFD6","gs":"#DBD6CC","fc":"#E7978C","pts":[[10.0,118.0],[39.9,113.2],[47.6,148.6],[41.3,156.8],[10.0,155.9]]},{"k":"sky","z":1,"o":127,"ga":"#E3DFD6","gs":"#F2EFE9","fc":"#F4CA52","pts":[[98.0,123.8],[90.2,105.2],[98.0,104.0],[123.9,104.0],[116.7,121.5]]},{"k":"sky","z":3,"o":215,"ga":"#E3DFD6","gs":"#E7E3DA","fc":"#F1AE56","pts":[[49.6,189.4],[41.3,156.8],[47.6,148.6],[71.1,147.8],[80.0,163.3],[77.0,183.5]]},{"k":"sky","z":3,"o":209,"ga":"#D9D4CB","gs":"#ECE9E1","fc":"#F1AE56","pts":[[71.1,147.8],[47.6,148.6],[39.9,113.2],[66.0,109.1],[77.8,137.3]]},{"k":"sky","z":3,"o":149,"ga":"#F1EEE8","gs":"#E7E3DA","fc":"#E58B38","pts":[[106.9,156.3],[80.0,163.3],[71.1,147.8],[77.8,137.3],[92.8,134.2],[107.9,150.4]]},{"k":"sky","z":2,"o":200,"ga":"#D9D4CB","gs":"#ECE9E1","fc":"#EC9C44","pts":[[58.5,110.3],[58.4,84.2],[63.3,78.7],[98.0,93.0],[98.0,104.0]]},{"k":"sky","z":3,"o":301,"ga":"#E3DFD6","gs":"#DBD6CC","fc":"#D67474","pts":[[10.0,118.0],[10.0,83.1],[29.9,86.3],[36.2,113.8]]},{"k":"sky","z":3,"o":270,"ga":"#D9D4CB","gs":"#E1DDD4","fc":"#DF847C","pts":[[36.5,80.4],[35.9,62.1],[44.7,51.8],[65.7,61.3],[63.3,78.7],[58.4,84.2]]},{"k":"sky","z":3,"o":334,"ga":"#F1EEE8","gs":"#DBD6CC","fc":"#D67474","pts":[[10.0,36.0],[44.7,51.8],[35.9,62.1],[10.0,61.2]]},{"k":"sky","z":3,"o":259,"ga":"#F1EEE8","gs":"#E7E3DA","fc":"#EC9C44","pts":[[36.2,113.8],[29.9,86.3],[36.5,80.4],[58.4,84.2],[58.5,110.3]]},{"k":"sky","z":3,"o":314,"ga":"#D9D4CB","gs":"#E1DDD4","fc":"#DF847C","pts":[[10.0,61.2],[35.9,62.1],[36.5,80.4],[29.9,86.3],[10.0,83.1]]},{"k":"sky","z":2,"o":208,"ga":"#E3DFD6","gs":"#E7E3DA","fc":"#E58B38","pts":[[98.0,93.0],[63.3,78.7],[65.7,61.3],[98.0,76.0]]},{"k":"sky","z":2,"o":269,"ga":"#F1EEE8","gs":"#DBD6CC","fc":"#DF847C","pts":[[77.4,49.1],[67.9,39.6],[68.2,32.6],[79.7,24.9],[93.8,35.5],[91.4,46.7]]},{"k":"sky","z":3,"o":317,"ga":"#E3DFD6","gs":"#DBD6CC","fc":"#D67474","pts":[[81.6,10.0],[79.7,24.9],[68.2,32.6],[50.5,20.8],[48.7,10.0]]},{"k":"sky","z":3,"o":360,"ga":"#D9D4CB","gs":"#E1DDD4","fc":"#E7978C","pts":[[10.0,36.0],[10.0,10.0],[48.7,10.0],[50.5,20.8],[34.7,47.2]]},{"k":"sky","z":2,"o":229,"ga":"#D9D4CB","gs":"#ECE9E1","fc":"#EC9C44","pts":[[96.7,54.1],[91.4,46.7],[93.8,35.5],[106.5,28.5],[121.1,47.0],[112.6,55.2]]},{"k":"sky","z":1,"o":174,"ga":"#ECE9E2","gs":"#ECE9E1","fc":"#E58B38","pts":[[114.6,76.0],[112.6,55.2],[121.1,47.0],[144.0,76.0]]},{"k":"sky","z":2,"o":230,"ga":"#F1EEE8","gs":"#E7E3DA","fc":"#EC9C44","pts":[[72.3,64.3],[77.4,49.1],[91.4,46.7],[96.7,54.1],[89.5,72.1]]},{"k":"sky","z":3,"o":304,"ga":"#ECE9E2","gs":"#E1DDD4","fc":"#E7978C","pts":[[34.7,47.2],[50.5,20.8],[68.2,32.6],[67.9,39.6],[49.1,53.8]]},{"k":"sky","z":1,"o":192,"ga":"#F1EEE8","gs":"#E7E3DA","fc":"#E58B38","pts":[[98.0,76.0],[89.5,72.1],[96.7,54.1],[112.6,55.2],[114.6,76.0]]},{"k":"sky","z":3,"o":284,"ga":"#E3DFD6","gs":"#DBD6CC","fc":"#E7978C","pts":[[92.0,10.0],[106.5,28.5],[93.8,35.5],[79.7,24.9],[81.6,10.0]]},{"k":"sky","z":2,"o":266,"ga":"#D9D4CB","gs":"#E1DDD4","fc":"#DF847C","pts":[[49.1,53.8],[67.9,39.6],[77.4,49.1],[72.3,64.3]]},{"k":"sky","z":2,"o":261,"ga":"#F1EEE8","gs":"#DBD6CC","fc":"#E7978C","pts":[[127.0,10.0],[128.0,26.5],[121.4,33.1],[106.4,10.0]]},{"k":"sky","z":2,"o":225,"ga":"#D9D4CB","gs":"#ECE9E1","fc":"#E58B38","pts":[[144.0,44.0],[119.6,40.3],[121.4,33.1],[128.0,26.5],[141.4,27.6],[144.0,34.0]]},{"k":"sky","z":2,"o":254,"ga":"#ECE9E2","gs":"#ECE9E1","fc":"#EC9C44","pts":[[117.4,42.2],[92.0,10.0],[106.4,10.0],[121.4,33.1],[119.6,40.3]]},{"k":"sky","z":2,"o":257,"ga":"#F1EEE8","gs":"#E7E3DA","fc":"#E58B38","pts":[[141.4,27.6],[128.0,26.5],[127.0,10.0],[134.0,10.0]]},{"k":"sky","z":1,"o":193,"ga":"#E3DFD6","gs":"#E7E3DA","fc":"#EC9C44","pts":[[117.4,42.2],[119.6,40.3],[144.0,44.0],[144.0,76.0]]},{"k":"sky","z":2,"o":244,"ga":"#E3DFD6","gs":"#E7E3DA","fc":"#F1AE56","pts":[[144.0,34.0],[134.0,10.0],[159.3,10.0],[155.5,34.0]]},{"k":"sky","z":2,"o":244,"ga":"#F1EEE8","gs":"#E7E3DA","fc":"#E58B38","pts":[[155.5,34.0],[159.3,10.0],[182.0,10.0],[172.0,34.0]]},{"k":"sky","z":3,"o":258,"ga":"#E3DFD6","gs":"#E7E3DA","fc":"#F1AE56","pts":[[182.0,10.0],[197.0,10.0],[195.7,25.2],[175.1,26.6]]},{"k":"sky","z":2,"o":202,"ga":"#F1EEE8","gs":"#E7E3DA","fc":"#E58B38","pts":[[187.7,56.8],[177.8,42.5],[202.2,39.1]]},{"k":"sky","z":2,"o":223,"ga":"#D9D4CB","gs":"#ECE9E1","fc":"#E58B38","pts":[[204.3,36.6],[202.2,39.1],[177.8,42.5],[172.0,40.3],[172.0,34.0],[175.1,26.6],[195.7,25.2]]},{"k":"sky","z":3,"o":264,"ga":"#F1EEE8","gs":"#DBD6CC","fc":"#E7978C","pts":[[204.3,36.6],[195.7,25.2],[197.0,10.0],[226.0,10.0]]},{"k":"sky","z":2,"o":180,"ga":"#F1EEE8","gs":"#E7E3DA","fc":"#F1AE56","pts":[[172.0,40.3],[177.8,42.5],[187.7,56.8],[172.0,76.0]]},{"k":"sky","z":3,"o":225,"ga":"#E3DFD6","gs":"#E7E3DA","fc":"#EC9C44","pts":[[220.2,74.6],[212.4,59.8],[221.9,40.3],[228.4,40.9],[240.7,51.9],[243.7,60.0]]},{"k":"sky","z":3,"o":329,"ga":"#F1EEE8","gs":"#DBD6CC","fc":"#DF847C","pts":[[269.0,44.2],[262.9,33.8],[274.8,14.0],[290.9,30.6]]},{"k":"sky","z":3,"o":322,"ga":"#ECE9E2","gs":"#E1DDD4","fc":"#E7978C","pts":[[274.3,10.0],[274.8,14.0],[262.9,33.8],[253.3,31.9],[242.9,20.5],[240.9,10.0]]},{"k":"sky","z":3,"o":273,"ga":"#D9D4CB","gs":"#E1DDD4","fc":"#E7978C","pts":[[242.9,20.5],[253.3,31.9],[240.7,51.9],[228.4,40.9]]},{"k":"sky","z":3,"o":277,"ga":"#E3DFD6","gs":"#DBD6CC","fc":"#DF847C","pts":[[226.0,10.0],[240.9,10.0],[242.9,20.5],[228.4,40.9],[221.9,40.3],[210.6,28.8]]},{"k":"sky","z":3,"o":278,"ga":"#ECE9E2","gs":"#E1DDD4","fc":"#DF847C","pts":[[243.7,60.0],[240.7,51.9],[253.3,31.9],[262.9,33.8],[269.0,44.2]]},{"k":"sky","z":3,"o":220,"ga":"#ECE9E2","gs":"#ECE9E1","fc":"#EC9C44","pts":[[191.4,52.3],[210.6,28.8],[221.9,40.3],[212.4,59.8]]},{"k":"sky","z":3,"o":172,"ga":"#D9D4CB","gs":"#ECE9E1","fc":"#E58B38","pts":[[172.0,76.0],[191.4,52.3],[212.4,59.8],[220.2,74.6],[218.0,76.0]]},{"k":"sky","z":3,"o":375,"ga":"#F1EEE8","gs":"#DBD6CC","fc":"#D67474","pts":[[290.9,30.6],[274.8,14.0],[274.3,10.0],[324.0,10.0]]},{"k":"sky","z":3,"o":493,"ga":"#F1EEE8","gs":"#CEC8BD","fc":"#B47E8E","pts":[[369.0,90.2],[380.5,66.4],[401.2,73.8],[401.3,93.3]]},{"k":"sky","z":3,"o":380,"ga":"#D9D4CB","gs":"#E1DDD4","fc":"#D67474","pts":[[311.4,84.8],[309.6,58.4],[320.2,46.7],[346.7,54.7],[343.5,87.8]]},{"k":"sky","z":3,"o":354,"ga":"#D9D4CB","gs":"#E1DDD4","fc":"#E7978C","pts":[[281.0,52.1],[274.7,40.7],[312.9,16.9],[320.2,46.7],[309.6,58.4]]},{"k":"sky","z":3,"o":266,"ga":"#ECE9E2","gs":"#E1DDD4","fc":"#D67474","pts":[[218.0,76.0],[274.7,40.7],[281.0,52.1],[275.5,81.4]]},{"k":"sky","z":3,"o":447,"ga":"#ECE9E2","gs":"#D4CFC4","fc":"#CF989D","pts":[[343.5,87.8],[346.7,54.7],[350.7,51.6],[378.6,61.2],[380.5,66.4],[369.0,90.2]]},{"k":"sky","z":3,"o":503,"ga":"#ECE9E2","gs":"#D4CFC4","fc":"#C48993","pts":[[390.4,10.0],[385.7,31.7],[355.7,36.2],[346.9,10.0]]},{"k":"sky","z":3,"o":571,"ga":"#F1EEE8","gs":"#CEC8BD","fc":"#C48993","pts":[[430.0,68.0],[409.7,66.1],[403.3,45.6],[430.0,29.7]]},{"k":"sky","z":3,"o":548,"ga":"#E3DFD6","gs":"#CEC8BD","fc":"#C48993","pts":[[401.3,93.3],[401.2,73.8],[409.7,66.1],[430.0,68.0],[430.0,96.0]]},{"k":"sky","z":3,"o":518,"ga":"#ECE9E2","gs":"#D4CFC4","fc":"#C48993","pts":[[403.3,45.6],[409.7,66.1],[401.2,73.8],[380.5,66.4],[378.6,61.2],[390.7,41.7]]},{"k":"sky","z":3,"o":487,"ga":"#D9D4CB","gs":"#D4CFC4","fc":"#C48993","pts":[[390.7,41.7],[378.6,61.2],[350.7,51.6],[355.7,36.2],[385.7,31.7]]},{"k":"sky","z":3,"o":317,"ga":"#ECE9E2","gs":"#E1DDD4","fc":"#E7978C","pts":[[275.5,81.4],[281.0,52.1],[309.6,58.4],[311.4,84.8]]},{"k":"sky","z":3,"o":563,"ga":"#E3DFD6","gs":"#CEC8BD","fc":"#B47E8E","pts":[[430.0,29.7],[403.3,45.6],[390.7,41.7],[385.7,31.7],[390.4,10.0],[430.0,10.0]]},{"k":"sky","z":3,"o":432,"ga":"#F1EEE8","gs":"#CEC8BD","fc":"#C48993","pts":[[324.0,10.0],[346.9,10.0],[355.7,36.2],[350.7,51.6],[346.7,54.7],[320.2,46.7],[312.9,16.9]]},{"k":"sky","z":3,"o":435,"ga":"#D9D4CB","gs":"#D4CFC4","fc":"#C48993","pts":[[379.0,91.2],[381.7,113.3],[375.3,121.1],[355.7,119.9],[349.4,111.1],[349.0,88.4]]},{"k":"sky","z":3,"o":230,"ga":"#D9D4CB","gs":"#ECE9E1","fc":"#F1AE56","pts":[[276.5,81.5],[272.6,101.9],[248.1,110.3],[243.0,78.4]]},{"k":"sky","z":3,"o":378,"ga":"#F1EEE8","gs":"#DBD6CC","fc":"#E7978C","pts":[[346.6,140.1],[323.0,130.9],[323.3,119.3],[349.4,111.1],[355.7,119.9]]},{"k":"sky","z":3,"o":410,"ga":"#E3DFD6","gs":"#CEC8BD","fc":"#C48993","pts":[[335.4,164.9],[347.9,144.0],[368.1,151.5],[365.5,180.5]]},{"k":"sky","z":3,"o":312,"ga":"#D9D4CB","gs":"#E1DDD4","fc":"#E7978C","pts":[[315.5,138.5],[287.1,121.4],[287.4,118.8],[300.5,109.3],[319.1,113.1],[323.3,119.3],[323.0,130.9]]},{"k":"sky","z":3,"o":425,"ga":"#F1EEE8","gs":"#CEC8BD","fc":"#B47E8E","pts":[[381.0,143.6],[368.1,151.5],[347.9,144.0],[346.6,140.1],[355.7,119.9],[375.3,121.1]]},{"k":"sky","z":3,"o":233,"ga":"#D9D4CB","gs":"#ECE9E1","fc":"#E58B38","pts":[[243.8,117.4],[248.1,110.3],[272.6,101.9],[287.4,118.8],[287.1,121.4],[278.1,135.2]]},{"k":"sky","z":3,"o":290,"ga":"#E3DFD6","gs":"#DBD6CC","fc":"#E7978C","pts":[[278.1,135.2],[287.1,121.4],[315.5,138.5],[311.7,152.6]]},{"k":"sky","z":3,"o":280,"ga":"#ECE9E2","gs":"#E1DDD4","fc":"#DF847C","pts":[[300.7,83.8],[300.5,109.3],[287.4,118.8],[272.6,101.9],[276.5,81.5]]},{"k":"sky","z":3,"o":488,"ga":"#F1EEE8","gs":"#CEC8BD","fc":"#CF989D","pts":[[413.7,141.5],[398.9,149.7],[381.0,143.6],[375.3,121.1],[381.7,113.3],[403.5,116.1]]},{"k":"sky","z":3,"o":372,"ga":"#ECE9E2","gs":"#E1DDD4","fc":"#D67474","pts":[[323.3,119.3],[319.1,113.1],[328.4,86.4],[349.0,88.4],[349.4,111.1]]},{"k":"sky","z":3,"o":499,"ga":"#E3DFD6","gs":"#CEC8BD","fc":"#B47E8E","pts":[[417.1,94.8],[403.5,116.1],[381.7,113.3],[379.0,91.2]]},{"k":"sky","z":3,"o":357,"ga":"#E3DFD6","gs":"#DBD6CC","fc":"#DF847C","pts":[[311.7,152.6],[315.5,138.5],[323.0,130.9],[346.6,140.1],[347.9,144.0],[335.4,164.9]]},{"k":"sky","z":3,"o":468,"ga":"#D9D4CB","gs":"#D4CFC4","fc":"#CF989D","pts":[[365.5,180.5],[368.1,151.5],[381.0,143.6],[398.9,149.7],[394.1,195.4]]},{"k":"sky","z":3,"o":545,"ga":"#ECE9E2","gs":"#D4CFC4","fc":"#C48993","pts":[[430.0,143.3],[413.7,141.5],[403.5,116.1],[417.1,94.8],[430.0,96.0]]},{"k":"sky","z":3,"o":177,"ga":"#D9D4CB","gs":"#ECE9E1","fc":"#EC9C44","pts":[[243.8,117.4],[218.0,104.0],[218.0,76.0],[243.0,78.4],[248.1,110.3]]},{"k":"sky","z":3,"o":330,"ga":"#ECE9E2","gs":"#E1DDD4","fc":"#E7978C","pts":[[328.4,86.4],[319.1,113.1],[300.5,109.3],[300.7,83.8]]},{"k":"sky","z":3,"o":535,"ga":"#D9D4CB","gs":"#D4CFC4","fc":"#C48993","pts":[[394.1,195.4],[398.9,149.7],[413.7,141.5],[430.0,143.3],[430.0,214.0]]},{"k":"sky","z":3,"o":233,"ga":"#ECE9E2","gs":"#ECE9E1","fc":"#EC9C44","pts":[[250.3,182.7],[251.2,159.9],[264.1,152.3],[284.2,173.0],[280.0,187.8]]},{"k":"sky","z":3,"o":264,"ga":"#ECE9E2","gs":"#E1DDD4","fc":"#E7978C","pts":[[305.6,149.4],[300.6,161.5],[284.2,173.0],[264.1,152.3],[270.2,131.1]]},{"k":"sky","z":3,"o":66,"ga":"#D9D4CB","gs":"#F5F3EE","fc":"#F9DF88","pts":[[172.0,169.0],[172.0,135.6],[195.0,137.8],[202.9,149.3],[197.0,173.4]]},{"k":"sky","z":3,"o":176,"ga":"#D9D4CB","gs":"#ECE9E1","fc":"#F1AE56","pts":[[220.7,177.5],[231.2,151.8],[251.2,159.9],[250.3,182.7]]},{"k":"sky","z":3,"o":347,"ga":"#F1EEE8","gs":"#DBD6CC","fc":"#DF847C","pts":[[345.8,170.3],[328.3,196.3],[327.5,196.1],[300.6,161.5],[305.6,149.4]]},{"k":"sky","z":3,"o":126,"ga":"#D9D4CB","gs":"#F5F3EE","fc":"#F4CA52","pts":[[197.0,173.4],[202.9,149.3],[229.0,147.4],[231.2,151.8],[220.7,177.5]]},{"k":"sky","z":3,"o":137,"ga":"#F1EEE8","gs":"#F2EFE9","fc":"#F7D76E","pts":[[218.0,104.0],[247.1,119.1],[231.4,133.8],[207.4,121.2],[205.2,104.0]]},{"k":"sky","z":3,"o":181,"ga":"#E3DFD6","gs":"#E7E3DA","fc":"#E58B38","pts":[[270.2,131.1],[264.1,152.3],[251.2,159.9],[231.2,151.8],[229.0,147.4],[231.4,133.8],[247.1,119.1]]},{"k":"sky","z":3,"o":302,"ga":"#E3DFD6","gs":"#DBD6CC","fc":"#D67474","pts":[[280.0,187.8],[284.2,173.0],[300.6,161.5],[327.5,196.1]]},{"k":"sky","z":2,"o":73,"ga":"#E3DFD6","gs":"#F2EFE9","fc":"#F7D76E","pts":[[172.0,104.0],[205.2,104.0],[207.4,121.2],[195.0,137.8],[172.0,135.6]]},{"k":"sky","z":3,"o":111,"ga":"#ECE9E2","gs":"#F5F3EE","fc":"#F9DF88","pts":[[207.4,121.2],[231.4,133.8],[229.0,147.4],[202.9,149.3],[195.0,137.8]]},{"k":"sky","z":3,"o":452,"ga":"#D9D4CB","gs":"#D4CFC4","fc":"#B47E8E","pts":[[328.3,196.3],[345.8,170.3],[430.0,214.0]]},{"k":"hill","z":3,"o":633,"ga":"#E3DFD6","gs":"#D4D0C7","fc":"#698B5A","pts":[[79.3,217.5],[90.5,224.1],[91.0,246.4],[69.9,246.8],[64.2,238.1],[78.7,217.6]]},{"k":"hill","z":3,"o":635,"ga":"#D9D4CB","gs":"#D4D0C7","fc":"#5B7E4F","pts":[[65.5,266.0],[69.9,246.8],[91.0,246.4],[92.7,248.3],[90.7,266.0]]},{"k":"hill","z":3,"o":620,"ga":"#E3DFD6","gs":"#D4D0C7","fc":"#5B7E4F","pts":[[49.4,236.4],[44.2,218.7],[60.1,209.3],[78.7,217.6],[64.2,238.1]]},{"k":"hill","z":3,"o":601,"ga":"#F1EEE8","gs":"#CECAC0","fc":"#415E38","pts":[[40.8,246.9],[10.0,235.1],[10.0,225.5],[44.2,218.7],[49.4,236.4]]},{"k":"hill","z":3,"o":664,"ga":"#E3DFD6","gs":"#C5C0B6","fc":"#4D6F44","pts":[[120.0,266.0],[110.2,247.4],[117.9,234.5],[138.1,235.3],[134.0,266.0]]},{"k":"hill","z":3,"o":668,"ga":"#E3DFD6","gs":"#C5C0B6","fc":"#415E38","pts":[[144.0,192.0],[142.0,207.1],[115.4,203.1],[101.5,178.2],[144.0,169.0]]},{"k":"hill","z":3,"o":613,"ga":"#ECE9E2","gs":"#CECAC0","fc":"#5B7E4F","pts":[[58.3,187.5],[60.1,209.3],[44.3,218.4],[32.2,193.2]]},{"k":"hill","z":3,"o":664,"ga":"#E3DFD6","gs":"#D4D0C7","fc":"#415E38","pts":[[138.1,235.3],[117.9,234.5],[107.8,220.2],[115.4,203.1],[142.0,207.1]]},{"k":"hill","z":3,"o":597,"ga":"#D9D4CB","gs":"#CECAC0","fc":"#698B5A","pts":[[10.0,266.0],[10.0,235.1],[40.8,246.9],[41.9,266.0]]},{"k":"hill","z":3,"o":650,"ga":"#D9D4CB","gs":"#C5C0B6","fc":"#5B7E4F","pts":[[90.7,266.0],[92.7,248.3],[110.2,247.4],[120.0,266.0]]},{"k":"hill","z":3,"o":617,"ga":"#F1EEE8","gs":"#D4D0C7","fc":"#537548","pts":[[41.9,266.0],[40.8,246.9],[49.4,236.4],[64.2,238.1],[69.9,246.8],[65.5,266.0]]},{"k":"hill","z":3,"o":630,"ga":"#ECE9E2","gs":"#CECAC0","fc":"#5B7E4F","pts":[[90.8,180.5],[79.3,217.5],[78.7,217.6],[60.1,209.3],[58.3,187.5]]},{"k":"hill","z":3,"o":596,"ga":"#ECE9E2","gs":"#CECAC0","fc":"#4D6F44","pts":[[10.0,225.5],[10.0,198.0],[32.2,193.2],[44.3,218.4]]},{"k":"hill","z":3,"o":646,"ga":"#F1EEE8","gs":"#CECAC0","fc":"#4D6F44","pts":[[101.5,178.2],[115.4,203.1],[107.8,220.2],[90.5,224.1],[79.3,217.5],[90.8,180.5]]},{"k":"hill","z":3,"o":649,"ga":"#F1EEE8","gs":"#D4D0C7","fc":"#537548","pts":[[107.8,220.2],[117.9,234.5],[110.2,247.4],[92.7,248.3],[91.0,246.4],[90.5,224.1]]},{"k":"hill","z":3,"o":688,"ga":"#F1EEE8","gs":"#C5C0B6","fc":"#4D6F44","pts":[[178.7,233.5],[159.2,243.6],[138.2,234.9],[140.9,214.7],[176.0,216.7]]},{"k":"hill","z":3,"o":680,"ga":"#F1EEE8","gs":"#CECAC0","fc":"#4D6F44","pts":[[134.0,266.0],[138.2,234.9],[159.2,243.6],[157.8,266.0]]},{"k":"hill","z":3,"o":687,"ga":"#ECE9E2","gs":"#D4D0C7","fc":"#537548","pts":[[176.0,216.7],[140.9,214.7],[144.0,192.0],[172.0,192.0]]},{"k":"hill","z":3,"o":695,"ga":"#F1EEE8","gs":"#CECAC0","fc":"#5B7E4F","pts":[[157.8,266.0],[159.2,243.6],[178.7,233.5],[184.0,266.0]]},{"k":"hill","z":3,"o":862,"ga":"#F1EEE8","gs":"#CECAC0","fc":"#698B5A","pts":[[395.8,266.0],[402.7,241.2],[430.0,237.6],[430.0,266.0]]},{"k":"hill","z":3,"o":733,"ga":"#E3DFD6","gs":"#C5C0B6","fc":"#5B7E4F","pts":[[243.6,181.5],[242.3,201.8],[212.5,213.0],[205.0,174.8]]},{"k":"hill","z":3,"o":764,"ga":"#D9D4CB","gs":"#CECAC0","fc":"#698B5A","pts":[[255.4,226.1],[254.1,212.1],[272.5,200.9],[281.6,207.3],[285.0,222.7],[276.2,235.2]]},{"k":"hill","z":3,"o":843,"ga":"#F1EEE8","gs":"#CECAC0","fc":"#5B7E4F","pts":[[371.5,266.0],[370.0,237.8],[390.6,227.5],[402.7,241.2],[395.8,266.0]]},{"k":"hill","z":3,"o":803,"ga":"#ECE9E2","gs":"#CECAC0","fc":"#698B5A","pts":[[347.0,232.4],[338.2,249.0],[312.4,238.5],[312.6,235.7],[330.1,221.6]]},{"k":"hill","z":3,"o":781,"ga":"#D9D4CB","gs":"#C5C0B6","fc":"#698B5A","pts":[[301.9,198.2],[306.8,209.9],[303.1,221.3],[285.0,222.7],[281.6,207.3]]},{"k":"hill","z":3,"o":859,"ga":"#E3DFD6","gs":"#C5C0B6","fc":"#698B5A","pts":[[390.6,227.5],[394.5,207.8],[430.0,214.0],[430.0,237.6],[402.7,241.2]]},{"k":"hill","z":3,"o":798,"ga":"#F1EEE8","gs":"#C5C0B6","fc":"#537548","pts":[[306.4,266.0],[307.4,245.2],[312.4,238.5],[338.2,249.0],[340.9,266.0]]},{"k":"hill","z":3,"o":778,"ga":"#ECE9E2","gs":"#D4D0C7","fc":"#5B7E4F","pts":[[271.9,266.0],[277.3,238.3],[307.4,245.2],[306.4,266.0]]},{"k":"hill","z":3,"o":721,"ga":"#E3DFD6","gs":"#CECAC0","fc":"#698B5A","pts":[[184.0,266.0],[178.3,231.0],[209.6,219.5],[234.2,244.4],[234.9,266.0]]},{"k":"hill","z":3,"o":795,"ga":"#D9D4CB","gs":"#D4D0C7","fc":"#415E38","pts":[[328.8,210.4],[330.1,221.6],[312.6,235.7],[303.1,221.3],[306.8,209.9]]},{"k":"hill","z":3,"o":710,"ga":"#ECE9E2","gs":"#D4D0C7","fc":"#537548","pts":[[209.6,219.5],[178.3,231.0],[172.0,192.0],[172.0,169.0],[205.0,174.8],[212.5,213.0]]},{"k":"hill","z":3,"o":794,"ga":"#E3DFD6","gs":"#CECAC0","fc":"#415E38","pts":[[335.9,197.6],[328.8,210.4],[306.8,209.9],[301.9,198.2],[303.1,191.9]]},{"k":"hill","z":3,"o":835,"ga":"#D9D4CB","gs":"#C5C0B6","fc":"#415E38","pts":[[394.5,207.8],[390.6,227.5],[370.0,237.8],[356.7,229.0],[359.8,201.7]]},{"k":"hill","z":3,"o":740,"ga":"#ECE9E2","gs":"#D4D0C7","fc":"#698B5A","pts":[[234.2,244.4],[209.6,219.5],[212.5,213.0],[242.3,201.8],[254.1,212.1],[255.4,226.1]]},{"k":"hill","z":3,"o":821,"ga":"#D9D4CB","gs":"#CECAC0","fc":"#415E38","pts":[[340.9,266.0],[338.2,249.0],[347.0,232.4],[356.7,229.0],[370.0,237.8],[371.5,266.0]]},{"k":"hill","z":3,"o":782,"ga":"#D9D4CB","gs":"#D4D0C7","fc":"#698B5A","pts":[[277.3,238.3],[276.2,235.2],[285.0,222.7],[303.1,221.3],[312.6,235.7],[312.4,238.5],[307.4,245.2]]},{"k":"hill","z":3,"o":756,"ga":"#ECE9E2","gs":"#D4D0C7","fc":"#4D6F44","pts":[[234.9,266.0],[234.2,244.4],[255.4,226.1],[276.2,235.2],[277.3,238.3],[271.9,266.0]]},{"k":"hill","z":3,"o":813,"ga":"#E3DFD6","gs":"#CECAC0","fc":"#5B7E4F","pts":[[359.8,201.7],[356.7,229.0],[347.0,232.4],[330.1,221.6],[328.8,210.4],[335.9,197.6]]},{"k":"hill","z":3,"o":775,"ga":"#ECE9E2","gs":"#CECAC0","fc":"#415E38","pts":[[303.1,191.9],[301.9,198.2],[281.6,207.3],[272.5,200.9],[273.2,186.6]]},{"k":"hill","z":3,"o":755,"ga":"#D9D4CB","gs":"#D4D0C7","fc":"#4D6F44","pts":[[273.2,186.6],[272.5,200.9],[254.1,212.1],[242.3,201.8],[243.6,181.5]]},{"k":"tomb_rock","z":3,"o":859,"ga":"#D9D4CB","gs":"#ABA59B","fc":"#6D655B","pts":[[260,192],[268,166],[284,187],[285,214],[264,214]]},{"k":"tomb_rock","z":3,"o":876,"ga":"#ECE9E2","gs":"#ABA59B","fc":"#7D756A","pts":[[268,166],[286,146],[294,166],[284,187]]},{"k":"tomb_rock","z":3,"o":904,"ga":"#D9D4CB","gs":"#ABA59B","fc":"#6D655B","pts":[[286,146],[312,139],[309,159],[294,166]]},{"k":"tomb_rock","z":3,"o":938,"ga":"#D9D4CB","gs":"#ABA59B","fc":"#6D655B","pts":[[312,139],[340,147],[324,166],[309,159]]},{"k":"tomb_rock","z":3,"o":965,"ga":"#E3DFD6","gs":"#B5AFA5","fc":"#8B8277","pts":[[340,147],[358,168],[332,187],[324,166]]},{"k":"tomb_rock","z":3,"o":980,"ga":"#E3DFD6","gs":"#B5AFA5","fc":"#8B8277","pts":[[358,168],[362,194],[340,198],[332,187]]},{"k":"tomb_rock","z":3,"o":960,"ga":"#ECE9E2","gs":"#ABA59B","fc":"#7D756A","pts":[[332,187],[340,198],[338,214],[331,214]]},{"k":"tomb_open","z":3,"o":918,"ga":"#ECE9E2","gs":"#5E5951","fc":"#1B1820","pts":[[294,166],[309,159],[324,166],[308,179]]},{"k":"tomb_open","z":3,"o":900,"ga":"#ECE9E2","gs":"#5E5951","fc":"#1B1820","pts":[[284,187],[294,166],[308,179],[306,198]]},{"k":"tomb_open","z":3,"o":932,"ga":"#D9D4CB","gs":"#5E5951","fc":"#2B2630","pts":[[324,166],[332,187],[306,198],[308,179]]},{"k":"tomb_open","z":3,"o":896,"ga":"#ECE9E2","gs":"#5E5951","fc":"#2B2630","pts":[[285,214],[284,187],[306,198],[307,214]]},{"k":"tomb_open","z":3,"o":934,"ga":"#F1EEE8","gs":"#524D46","fc":"#1B1820","pts":[[306,198],[332,187],[331,214],[307,214]]},{"k":"stone","z":3,"o":998,"ga":"#D9D4CB","gs":"#D8D3C9","fc":"#C9C0B2","pts":[[367.2,197.1],[361.3,203.2],[353.1,201.1],[350.8,192.9],[356.7,186.8],[364.9,188.9]]},{"k":"stone","z":3,"o":1019,"ga":"#E3DFD6","gs":"#CCC7BC","fc":"#ADA395","pts":[[367.2,197.1],[384.1,201.4],[383.3,206.3],[373.0,213.0],[364.9,216.2],[361.3,203.2]]},{"k":"stone","z":3,"o":993,"ga":"#ECE9E2","gs":"#D8D3C9","fc":"#BDB4A6","pts":[[361.3,203.2],[364.9,216.2],[362.0,217.3],[349.7,215.2],[345.5,208.8],[353.1,201.1]]},{"k":"stone","z":3,"o":976,"ga":"#ECE9E2","gs":"#D8D3C9","fc":"#BDB4A6","pts":[[353.1,201.1],[345.5,208.8],[343.0,205.0],[338.7,194.0],[339.4,190.0],[350.8,192.9]]},{"k":"stone","z":3,"o":981,"ga":"#F1EEE8","gs":"#CCC7BC","fc":"#9B9183","pts":[[350.8,192.9],[339.4,190.0],[340.8,181.7],[351.0,175.0],[353.1,174.1],[356.7,186.8]]},{"k":"stone","z":3,"o":1007,"ga":"#E3DFD6","gs":"#CCC7BC","fc":"#ADA395","pts":[[356.7,186.8],[353.1,174.1],[362.0,170.7],[374.3,172.8],[376.9,176.7],[364.9,188.9]]},{"k":"stone","z":3,"o":1026,"ga":"#ECE9E2","gs":"#D8D3C9","fc":"#BDB4A6","pts":[[364.9,188.9],[376.9,176.7],[381.0,183.0],[385.3,194.0],[384.1,201.4],[367.2,197.1]]},{"k":"cross","z":1,"o":1187,"ga":"#D9D4CB","gs":"#817B71","fc":"#6A452B","pts":[[98,76],[121,76],[114,91],[98,88]]},{"k":"cross","z":1,"o":1205,"ga":"#ECE9E2","gs":"#989288","fc":"#5C3B24","pts":[[98,88],[114,91],[122,104],[98,104]]},{"k":"piece","z":0,"o":1380,"ga":"#452A17","gs":"#452A17","fc":"#452A17","pts":[[121,76],[144,76],[147,89],[141,104],[122,104],[114,91]]},{"k":"cross","z":1,"o":1188,"ga":"#F1EEE8","gs":"#989288","fc":"#422817","pts":[[144,76],[172,76],[172,92],[147,89]]},{"k":"cross","z":1,"o":1206,"ga":"#ECE9E2","gs":"#989288","fc":"#5C3B24","pts":[[147,89],[172,92],[172,104],[141,104]]},{"k":"cross","z":2,"o":1189,"ga":"#D9D4CB","gs":"#989288","fc":"#6A452B","pts":[[172,76],[195,76],[189,93],[172,92]]},{"k":"cross","z":2,"o":1207,"ga":"#F1EEE8","gs":"#989288","fc":"#422817","pts":[[172,92],[189,93],[198,104],[172,104]]},{"k":"cross","z":3,"o":1197,"ga":"#F1EEE8","gs":"#817B71","fc":"#422817","pts":[[195,76],[218,76],[218,104],[198,104],[189,93]]},{"k":"cross","z":2,"o":1135,"ga":"#E3DFD6","gs":"#989288","fc":"#4D301C","pts":[[144,34],[172,34],[172,53],[144,49]]},{"k":"cross","z":1,"o":1154,"ga":"#F1EEE8","gs":"#989288","fc":"#422817","pts":[[144,49],[172,53],[159,66],[144,62]]},{"k":"cross","z":1,"o":1166,"ga":"#F1EEE8","gs":"#817B71","fc":"#422817","pts":[[144,62],[159,66],[172,53],[172,76],[144,76]]},{"k":"cross","z":1,"o":1226,"ga":"#ECE9E2","gs":"#8E887E","fc":"#5C3B24","pts":[[144,104],[172,104],[172,125],[144,118]]},{"k":"cross","z":2,"o":1251,"ga":"#D9D4CB","gs":"#817B71","fc":"#6A452B","pts":[[144,118],[172,125],[156,144],[144,140]]},{"k":"cross","z":2,"o":1262,"ga":"#D9D4CB","gs":"#989288","fc":"#6A452B","pts":[[172,125],[172,152],[156,144]]},{"k":"cross","z":3,"o":1282,"ga":"#F1EEE8","gs":"#8E887E","fc":"#422817","pts":[[144,140],[156,144],[172,152],[172,174],[144,168]]},{"k":"cross","z":3,"o":1315,"ga":"#E3DFD6","gs":"#817B71","fc":"#4D301C","pts":[[144,168],[172,174],[172,192],[144,192]]}];
+
+  var VIEWBOXES = [
+    [101.5, 71.2, 60.0, 37.6],
+    [72.0, 51.1, 124.0, 77.8],
+    [46.0, 36.0, 178.0, 111.6],
+    [0.0, 0.0, 440.0, 276.0],
+    [0.0, 0.0, 440.0, 276.0],
+    [0.0, 0.0, 440.0, 276.0]
+  ];
+
+  var DOT_THEMES = [
+    { color: '#2C2416', soft: '#E5E1D9', label: 'Start: Up Close' },
+    { color: '#6B645A', soft: '#E3DFD8', label: 'Step 1: The Pain Is Real' },
+    { color: '#5C554B', soft: '#DCD7CE', label: 'Step 2: You Cannot See It All Yet' },
+    { color: '#7D6B48', soft: '#EAE2D2', label: 'Step 3: God Sees the Whole' },
+    { color: '#8B3E2B', soft: '#F2DDD7', label: 'Step 4: The Darkest Piece' },
+    { color: '#9A6B16', soft: '#F6E9CE', label: 'Step 5: Trust the Creator' }
+  ];
+
+  var STEPS = [
+    {
+      heading: '',
+      verse: '',
+      ref: '',
+      text: 'This is what a hard season can feel like up close: one sharp, dark piece that makes no sense.',
+      svgTitle: 'Close-up of one dark, cracked glass piece',
+      svgDesc: 'Zoomed tightly onto a single dark, jagged, cracked shard of stained glass with a thin gold outline.'
+    },
+    {
+      heading: 'The Pain Is Real',
+      verse: '',
+      ref: '',
+      text: 'Up close there is no pattern to see, and you do not have to pretend there is. Joseph in the pit could not see past the walls.',
+      svgTitle: 'Dark piece surrounded by a few grey glass shards',
+      svgDesc: 'Zoomed out slightly to show a dozen pale grey neighbor glass shards around the dark piece, with no pattern yet visible.'
+    },
+    {
+      heading: 'You Cannot See It All Yet',
+      verse: '',
+      ref: '',
+      text: 'Job never got to read the book of Job. He only got to live it. God does not always show you the whole picture.',
+      svgTitle: 'Wider section of grey stained glass',
+      svgDesc: 'Zoomed out further to show a cluster of grey glass shards separated by dark lead lines, shapes still unclear.'
+    },
+    {
+      heading: 'God Sees the Whole',
+      verse: '"As for you, you meant evil against me, but God meant it for good, to bring it about that many people should be kept alive, as they are today."',
+      ref: 'Genesis 50:20',
+      text: "Joseph's brothers chose their cruelty. God, who sees the whole, wove even their evil into His plan to save many lives.",
+      svgTitle: 'Full stained-glass window in grey outlines',
+      svgDesc: 'Zoomed all the way out to the full stained-glass window in grey tones, revealing radiating sunrise rays, a hill, an empty cross, and an open tomb with the stone rolled away.'
+    },
+    {
+      heading: 'The Darkest Piece',
+      verse: '',
+      ref: '',
+      text: 'On that Friday, the cross looked like the darkest and most jagged piece of all. Wicked men meant it for evil, but God meant it to save the world, and three days later the tomb was empty.',
+      svgTitle: 'Stained-glass window lit with color around the dark piece',
+      svgDesc: 'Color washes across the stained glass from the gold, orange, and rose sunrise to the green hill, the open tomb, and the dark wood-brown cross. The dark shard stays dark in the crossbeam.'
+    },
+    {
+      heading: 'Trust the Creator',
+      verse: '',
+      ref: '',
+      text: 'Some of your picture you may not see until eternity, but you can rest in a loving and powerful God. You do not have to see the whole mosaic to trust the Creator.',
+      svgTitle: 'Full-color stained-glass window glowing behind the cross',
+      svgDesc: 'The finished stained-glass window glows softly behind the cross, showing how the dark shard belongs in the crossbeam within the whole sunrise picture.'
+    }
+  ];
+
+  function el(name, attrs, parent) {
+    var node = document.createElementNS(NS, name);
+    Object.keys(attrs || {}).forEach(function (k) {
+      node.setAttribute(k, attrs[k]);
+    });
+    if (parent) parent.appendChild(node);
+    return node;
+  }
+
+  function ptsToStr(pts) {
+    return pts.map(function (p) { return p[0] + ',' + p[1]; }).join(' ');
+  }
+
+  var svg = el('svg', {
+    xmlns: NS,
+    id: 'mosaic-svg',
+    class: 'mosaic-svg',
+    role: 'img',
+    'aria-labelledby': 'svg-title svg-desc',
+    viewBox: VIEWBOXES[0].join(' '),
+    preserveAspectRatio: 'xMidYMid meet'
+  });
+
+  var svgTitleEl = el('title', { id: 'svg-title' }, svg);
+  var svgDescEl = el('desc', { id: 'svg-desc' }, svg);
+
+  var defs = el('defs', {}, svg);
+  var glowGrad = el('radialGradient', {
+    id: 'cross-glow-grad',
+    cx: '158',
+    cy: '96',
+    r: '148',
+    gradientUnits: 'userSpaceOnUse'
+  }, defs);
+  el('stop', { offset: '0%', 'stop-color': '#FFFDF0', 'stop-opacity': '0.96' }, glowGrad);
+  el('stop', { offset: '34%', 'stop-color': '#FFF1B8', 'stop-opacity': '0.72' }, glowGrad);
+  el('stop', { offset: '68%', 'stop-color': '#FAD97A', 'stop-opacity': '0.28' }, glowGrad);
+  el('stop', { offset: '100%', 'stop-color': '#FAD97A', 'stop-opacity': '0' }, glowGrad);
+
+  var winClip = el('clipPath', { id: 'window-clip' }, defs);
+  el('rect', { x: 10, y: 10, width: 420, height: 256 }, winClip);
+
+  el('rect', { x: 0, y: 0, width: 440, height: 276, fill: '#FDFCFB' }, svg);
+
+  var sceneClip = el('g', { 'clip-path': 'url(#window-clip)' }, svg);
+  var bgLayer = el('g', { id: 'layer-bg' }, sceneClip);
+  // Warm backlight shining from behind the cross across the surrounding stained glass
+  el('circle', {
+    cx: '158',
+    cy: '96',
+    r: '148',
+    fill: 'url(#cross-glow-grad)',
+    class: 'cross-glow'
+  }, sceneClip);
+  var crossLayer = el('g', { id: 'layer-cross' }, sceneClip);
+  var pieceLayer = el('g', { id: 'layer-piece' }, sceneClip);
+
+  var shardRefs = [];
+
+  SHARDS.forEach(function (s) {
+    var pStr = ptsToStr(s.pts);
+    if (s.k === 'piece') {
+      var pg = el('g', { class: 'shard-wrap is-shown' }, pieceLayer);
+      el('polygon', { points: pStr, class: 'piece-poly' }, pg);
+      el('path', {
+        d: 'M 122 79 L 131 89 L 128 99 M 131 89 L 140 85 L 144 92',
+        class: 'piece-crack'
+      }, pg);
+      return;
+    }
+
+    var targetParent = (s.k === 'cross') ? crossLayer : bgLayer;
+    var g = el('g', { class: 'shard-wrap' }, targetParent);
+    var base = el('polygon', {
+      points: pStr,
+      fill: s.ga,
+      class: 'shard-base'
+    }, g);
+    var colorPoly = el('polygon', {
+      points: pStr,
+      fill: s.fc,
+      class: 'shard-color',
+      style: '--d:' + s.o + 'ms'
+    }, g);
+
+    shardRefs.push({
+      z: s.z,
+      ga: s.ga,
+      gs: s.gs,
+      wrap: g,
+      base: base,
+      color: colorPoly
+    });
+  });
+
+  var windowFrame = el('rect', {
+    x: 10,
+    y: 10,
+    width: 420,
+    height: 256,
+    class: 'window-frame'
+  }, svg);
+
+  document.getElementById('stage').appendChild(svg);
+
+  // Build wordless step dots
+  var dotStrip = document.getElementById('dot-strip');
+  var dotButtons = DOT_THEMES.map(function (theme, idx) {
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'step-dot-btn';
+    btn.style.setProperty('--dot-color', theme.color);
+    btn.style.setProperty('--dot-soft', theme.soft);
+    btn.setAttribute('aria-label', theme.label);
+    btn.setAttribute('aria-pressed', 'false');
+    var fill = document.createElement('span');
+    fill.className = 'step-dot-fill';
+    fill.setAttribute('aria-hidden', 'true');
+    btn.appendChild(fill);
+    btn.addEventListener('click', function () {
+      goTo(idx);
+    });
+    dotStrip.appendChild(btn);
+    return btn;
+  });
+
+  var widgetEl = document.getElementById('widget');
+  var headingEl = document.getElementById('card-heading');
+  var verseEl = document.getElementById('card-verse');
+  var textEl = document.getElementById('card-text');
+  var refEl = document.getElementById('card-ref');
+  var countEl = document.getElementById('step-count');
+  var prevBtn = document.getElementById('prev-btn');
+  var nextBtn = document.getElementById('next-btn');
+
+  var motionQuery = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : null;
+  var currentStep = 0;
+  var currentVB = VIEWBOXES[0].slice();
+  var rafId = null;
+
+  function prefersReduced() {
+    return Boolean(motionQuery && motionQuery.matches);
+  }
+
+  function setViewBox(vb) {
+    currentVB = vb.slice();
+    svg.setAttribute('viewBox', vb.map(function (n) { return n.toFixed(2); }).join(' '));
+  }
+
+  function easeOutCubic(t) {
+    return 1 - Math.pow(1 - t, 3);
+  }
+
+  function animateViewBox(targetVB, instant) {
+    if (rafId !== null) {
+      cancelAnimationFrame(rafId);
+      rafId = null;
+    }
+    var same = Math.abs(currentVB[0] - targetVB[0]) < 0.05 &&
+               Math.abs(currentVB[1] - targetVB[1]) < 0.05 &&
+               Math.abs(currentVB[2] - targetVB[2]) < 0.05 &&
+               Math.abs(currentVB[3] - targetVB[3]) < 0.05;
+    if (instant || same) {
+      setViewBox(targetVB);
+      return;
+    }
+    var startVB = currentVB.slice();
+    var startTime = null;
+    var duration = 900;
+
+    function tick(now) {
+      if (startTime === null) startTime = now;
+      var elapsed = now - startTime;
+      var t = Math.min(1, elapsed / duration);
+      var e = easeOutCubic(t);
+      setViewBox([
+        startVB[0] + (targetVB[0] - startVB[0]) * e,
+        startVB[1] + (targetVB[1] - startVB[1]) * e,
+        startVB[2] + (targetVB[2] - startVB[2]) * e,
+        startVB[3] + (targetVB[3] - startVB[3]) * e
+      ]);
+      if (t < 1) {
+        rafId = requestAnimationFrame(tick);
+      } else {
+        rafId = null;
+        setViewBox(targetVB);
+      }
+    }
+
+    rafId = requestAnimationFrame(tick);
+  }
+
+  function applyCard(st) {
+    if (st.heading) {
+      headingEl.textContent = st.heading;
+      headingEl.hidden = false;
+    } else {
+      headingEl.textContent = '';
+      headingEl.hidden = true;
+    }
+    if (st.verse) {
+      verseEl.textContent = st.verse;
+      verseEl.hidden = false;
+    } else {
+      verseEl.textContent = '';
+      verseEl.hidden = true;
+    }
+    textEl.textContent = st.text;
+    if (st.ref) {
+      refEl.textContent = st.ref;
+      refEl.hidden = false;
+    } else {
+      refEl.textContent = '';
+      refEl.hidden = true;
+    }
+  }
+
+  function goTo(nextStep, forceInstant) {
+    var target = Math.max(0, Math.min(STEPS.length - 1, nextStep));
+    var isBack = target < currentStep;
+    var instant = Boolean(forceInstant || isBack || prefersReduced());
+
+    widgetEl.classList.toggle('is-instant', instant);
+    if (instant) {
+      void widgetEl.offsetWidth;
+    }
+
+    currentStep = target;
+    var st = STEPS[currentStep];
+    widgetEl.setAttribute('data-step', String(currentStep));
+
+    var useSketchGrey = currentStep >= 3;
+    shardRefs.forEach(function (ref) {
+      var shown = ref.z <= Math.min(3, currentStep);
+      ref.wrap.classList.toggle('is-shown', shown);
+      ref.base.setAttribute('fill', useSketchGrey ? ref.gs : ref.ga);
+    });
+
+    windowFrame.classList.toggle('is-shown', currentStep >= 3);
+    svg.classList.toggle('is-color', currentStep >= 4);
+    svg.classList.toggle('is-glow', currentStep >= 5);
+
+    animateViewBox(VIEWBOXES[currentStep], instant);
+
+    svgTitleEl.textContent = st.svgTitle;
+    svgDescEl.textContent = st.svgDesc;
+
+    dotButtons.forEach(function (btn, idx) {
+      btn.classList.toggle('is-active', idx === currentStep);
+      btn.classList.toggle('is-passed', idx < currentStep);
+      btn.setAttribute('aria-pressed', idx === currentStep ? 'true' : 'false');
+    });
+
+    applyCard(st);
+    countEl.textContent = currentStep === 0 ? 'Ready' : ('Step ' + currentStep + ' of 5');
+
+    prevBtn.disabled = currentStep === 0;
+    if (currentStep === 0) {
+      nextBtn.innerHTML = 'Begin &rarr;';
+    } else if (currentStep === STEPS.length - 1) {
+      nextBtn.innerHTML = '&#8635; Start Over';
+    } else {
+      nextBtn.innerHTML = 'Next &rarr;';
+    }
+  }
+
+  prevBtn.addEventListener('click', function () {
+    if (currentStep > 0) goTo(currentStep - 1);
+  });
+
+  nextBtn.addEventListener('click', function () {
+    if (currentStep === STEPS.length - 1) {
+      goTo(0);
+    } else {
+      goTo(currentStep + 1);
+    }
+  });
+
+  var contentEl = document.getElementById('card-content');
+  var lastWidth = window.innerWidth;
+  var measuredAtWidth = 0;
+
+  function fitCardHeight() {
+    if (!contentEl || contentEl.clientWidth === measuredAtWidth) return;
+    measuredAtWidth = contentEl.clientWidth;
+    var tallest = 0;
+    document.documentElement.style.setProperty('--card-h', '0px');
+    STEPS.forEach(function (st) {
+      applyCard(st);
+      tallest = Math.max(tallest, contentEl.offsetHeight);
+    });
+    applyCard(STEPS[currentStep]);
+    document.documentElement.style.setProperty('--card-h', Math.max(100, tallest) + 'px');
+  }
+
+  var resizeTimer = null;
+  window.addEventListener('resize', function () {
+    if (window.innerWidth === lastWidth) return;
+    lastWidth = window.innerWidth;
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(fitCardHeight, 120);
+  });
+
+  goTo(0, true);
+  fitCardHeight();
+})();
+</script>
+</body>
+</html>

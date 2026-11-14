@@ -2,6 +2,14 @@
 
 Keep this small. Agents can draft from the approved direction while these decisions develop. A blocker in one row does not stop independent work.
 
+## Widget approval: Trust the Creator, November 13, 2026
+
+Dave explicitly approved the look and wording of `widgets/trust-the-artist.html` in PR #215 at `e82ed365cbf412378aa3e930296b620137e407af`, and authorized Codex to wire it after the cross paragraph under God Meant It for Good and merge after checks. The approved HTML is byte-preserved. This records component approval only; complete 202-05 wording and the existing Piper credit remain for Dave's review. Valley Road remains on disk.
+
+## Widget approval: Studio Wash v5, November 13, 2026
+
+Dave's direct integration instruction records approval of all three Greatest Commandment Studio Wash v5 variants in PR #211 at `bd7000ca40eb8a83514d1d25128cdd8465673f4f`: `widgets/great-command-v5-201.html`, `great-command-v5-202.html`, `great-command-v5-203.html` and their shared `great-command-v5.js`. These files are byte-preserved in the integration. He authorized replacing the 201-01 widget and adding the 202/203 versions at their lesson openings, with all existing lesson copy and answer IDs intact. This is component approval, not a new final approval of the three complete lessons or release.
+
 ## 202 review checklist, October 12, 2026
 
 All ten 202 lessons are written. No lesson is empty or a brief placeholder. This checklist records draft coverage separately from Dave's approval and from release readiness. Unrecorded means no final approval was found here; it does not mean Dave has never read the lesson. Existing approvals below remain unchanged.
@@ -12,7 +20,7 @@ All ten 202 lessons are written. No lesson is empty or a brief placeholder. This
 | 202-02 | substantive draft | unrecorded | [ ] Record Dave's review of the exact version; remaining gates in TASKS.md |
 | 202-03 | substantive draft | unrecorded | [ ] Record Dave's review of the exact version; remaining gates in TASKS.md |
 | 202-04 | substantive draft | unrecorded | [ ] Record Dave's review of the exact version; remaining gates in TASKS.md |
-| 202-05 | redrafted 2026-11-12 from Dave's collected direction, on branch claude/dazzling-brown-x7g9um | unrecorded | [ ] Dave reads the redraft; decide the mosaic widget; confirm the Piper credit. See logs/2026-11-12-L-202-05-REWORK-claude.md |
+| 202-05 | redrafted 2026-11-12 from Dave's collected direction, on branch claude/dazzling-brown-x7g9um | unrecorded | [ ] Dave reads the redraft; mosaic widget approved and integrated via #215; confirm the Piper credit. See logs/2026-11-12-L-202-05-REWORK-claude.md |
 | 202-06 | substantive draft | unrecorded | [ ] Record Dave's review of the exact version; remaining gates in TASKS.md |
 | 202-07 | substantive draft | unrecorded | [ ] Record Dave's review of the exact version; remaining gates in TASKS.md |
 | 202-08 | substantive draft | approved 2026-09-26 | 6d6e7c9 (PR #44), current text matches; pilot pending |
