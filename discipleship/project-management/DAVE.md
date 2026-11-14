@@ -1,5 +1,11 @@
 # Dave's decision and approval queue
 
+## Approved 202-08 frame integration, November 14, 2026
+
+Dave approved only the 202-08 covenant-triangle.html frame at 2c2eb09804ccab6bf7478b24c2e93bda8ea0ce17 in PR #239. The approved HTML bytes are unchanged. All lesson JSON, index.html, question objects/IDs, reading keys, saved answers, diagram artwork and unrelated runtime files remain unchanged. The four original step titles, teaching text and Scripture strings compare exactly to main. This component approval does not award whole-lesson or image approval.
+
+Evidence: [Codex integration log](logs/2026-11-14-WIDGET-202-08-FRAME-codex.md), PR #239 for preview and live verification.
+
 ## Approved 201-08 frame integration, November 14, 2026
 
 Dave approved the 201-08 Grace and Mercy Cycle Studio Wash frame at 1404ab8 in PR #238. Diagram artwork, colors, step text, Scripture and lesson JSON remain unchanged. Integration found and corrected only the sizing helper: measure the tray content width without its horizontal padding, so the long grace card no longer moves the navigation by 22px. All approved frame styling remains unchanged. This is component approval, not whole-lesson or image approval.
