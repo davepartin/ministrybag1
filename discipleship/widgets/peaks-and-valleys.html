@@ -1,0 +1,1109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Peaks and Valleys</title>
+<style>
+:root {
+  --ink: #2C2416;
+  --muted: #6E6559;
+  --tray: #F6F4EE;
+  --border: #EBE5D9;
+  --gold: #A8760A;
+  --gold-dark: #7D5604;
+  --gold-wash: #FCF2D6;
+  --green: #1F684A;
+  --green-dark: #164E37;
+  --green-wash: #E1F1E9;
+  --blue: #2A5B7C;
+  --blue-dark: #1E435C;
+  --blue-wash: #E2EEF6;
+  --plum: #5F4684;
+  --plum-dark: #473366;
+  --plum-wash: #EDE7F6;
+  --step-color: #2C2416;
+  --step-dark: #2C2416;
+  --card-h: 112px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: Georgia, Cambria, serif;
+  background: #F8F6F1;
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+.widget-outer {
+  background: #FFFFFF;
+  border-radius: 0;
+  overflow: hidden;
+  max-width: 100%;
+  width: 100%;
+  margin: 0;
+  position: relative;
+}
+
+@media (min-width: 560px) {
+  body {
+    padding: 16px;
+    background: #F8F6F1;
+  }
+  .widget-outer {
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(44, 36, 22, 0.08);
+    border: 1px solid #EBE5D9;
+    max-width: 460px;
+    margin: 0 auto;
+  }
+}
+
+.title-bar {
+  background: #2C2416;
+  padding: 8px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.title-bar h1 {
+  font: 600 17px/1.15 system-ui, -apple-system, sans-serif;
+  color: #FAF8F3;
+  letter-spacing: 0.2px;
+  margin: 0;
+}
+
+.course-tag {
+  font: 600 11px/1 system-ui, -apple-system, sans-serif;
+  letter-spacing: 0.9px;
+  text-transform: uppercase;
+  color: #E5DEC9;
+  white-space: nowrap;
+}
+
+.stage {
+  background: #EFECE3;
+  padding: 4px 6px;
+  border-bottom: 1px solid var(--border);
+}
+
+.pv-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.node-group {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.node-group.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.node-group.is-ghost {
+  opacity: 0.28;
+}
+
+.node-age {
+  font: 700 11.5px/1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  letter-spacing: 0.1px;
+}
+
+.node-label {
+  font: 600 10.5px/1.15 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  fill: #4A4238;
+}
+
+.star-age {
+  font: 700 11.5px/1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  fill: var(--gold-dark);
+}
+
+.star-label {
+  font: 700 10.5px/1.15 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  fill: var(--gold-dark);
+}
+
+.axis-word {
+  font: 700 11.5px/1 system-ui, -apple-system, sans-serif;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+}
+
+.node-focus-ring {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.node-group.is-selected .node-focus-ring,
+.node-group:focus-visible .node-focus-ring {
+  opacity: 1;
+}
+
+.seg-line {
+  fill: none;
+  stroke: var(--blue);
+  stroke-width: 2.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.curve-finish-glow {
+  fill: none;
+  stroke: #F8DDA0;
+  stroke-width: 8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0;
+}
+
+.curve-finish-glow.is-visible {
+  opacity: 0.65;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .widget-outer:not(.is-instant) .node-group {
+    transition: opacity 0.28s ease;
+  }
+  .widget-outer:not(.is-instant) .curve-finish-glow {
+    transition: opacity 0.4s ease;
+  }
+  .widget-outer .step-dot-fill {
+    transition: background-color 0.22s ease, border-color 0.22s ease, transform 0.22s ease;
+  }
+  .widget-outer .nav-btn.primary,
+  .widget-outer .verse-card-bar,
+  .widget-outer .card-heading {
+    transition: background-color 0.24s ease, border-color 0.24s ease, color 0.24s ease;
+  }
+}
+
+.step-strip {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px 5px;
+  background: var(--tray);
+  border-bottom: 1px solid var(--border);
+}
+
+.step-dot {
+  appearance: none;
+  min-width: 28px;
+  min-height: 28px;
+  padding: 4px;
+  border: none;
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.step-dot-fill {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 2.5px solid var(--dot-color, var(--ink));
+  background: #FFFFFF;
+  display: block;
+}
+
+.step-dot.passed .step-dot-fill {
+  background: color-mix(in srgb, var(--dot-color, var(--ink)) 22%, #FFFFFF);
+}
+
+.step-dot.active .step-dot-fill {
+  background: var(--dot-color, var(--ink));
+  transform: scale(1.12);
+}
+
+.card-area {
+  background: var(--tray);
+  padding: 7px 12px 10px;
+}
+
+.verse-card {
+  background: #FFFFFF;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #EBE5D9;
+  box-shadow: 0 2px 10px rgba(44, 36, 22, 0.05);
+}
+
+.verse-card-bar {
+  height: 4px;
+  background: var(--step-color);
+}
+
+.verse-card-content {
+  padding: 10px 13px;
+  min-height: var(--card-h, 112px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 5px;
+}
+
+.card-heading {
+  font: 700 15px/1.22 system-ui, -apple-system, sans-serif;
+  color: var(--step-dark);
+  margin: 0;
+}
+
+.card-quote {
+  font: 13.5px/1.36 Georgia, Cambria, serif;
+  color: #2C2416;
+  margin: 0;
+}
+
+.card-note {
+  font: 12.5px/1.36 system-ui, -apple-system, sans-serif;
+  color: #4A4238;
+  margin: 0;
+}
+
+.nav-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-top: 7px;
+}
+
+.nav-btn {
+  min-height: 44px;
+  min-width: 96px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1.5px solid #D4CFC4;
+  background: #FFFFFF;
+  color: var(--ink);
+  font: 700 13.5px/1 system-ui, -apple-system, sans-serif;
+  cursor: pointer;
+}
+
+.nav-btn.primary {
+  background: var(--step-color);
+  border-color: var(--step-color);
+  color: #FFFFFF;
+}
+
+.nav-btn:disabled {
+  opacity: 0.36;
+  cursor: default;
+}
+
+.step-count {
+  font: 600 12px system-ui, -apple-system, sans-serif;
+  color: var(--muted);
+}
+
+button:focus-visible,
+[role="button"]:focus-visible {
+  outline: 3px solid #E0A526;
+  outline-offset: 2px;
+}
+
+@media (max-width: 395px) {
+  .card-area {
+    padding: 6px 10px 8px;
+  }
+  .verse-card-content {
+    padding: 9px 11px;
+  }
+  .card-heading {
+    font-size: 14.5px;
+  }
+  .card-quote {
+    font-size: 13px;
+  }
+}
+
+@media (forced-colors: active) {
+  .step-dot-fill {
+    border-color: ButtonText;
+    background: Canvas;
+  }
+  .step-dot.active .step-dot-fill {
+    background: Highlight;
+    border-color: Highlight;
+  }
+  .nav-btn.primary {
+    border: 2px solid Highlight;
+  }
+}
+</style>
+</head>
+<body>
+<main class="widget-outer" id="widget" aria-label="Interactive Peaks and Valleys example on a sheet of paper"></main>
+
+<script>
+(function () {
+  'use strict';
+
+  var SVG_NS = 'http://www.w3.org/2000/svg';
+
+  var COLORS = {
+    ink: '#2C2416',
+    muted: '#6E6559',
+    gold: '#A8760A',
+    goldDark: '#7D5604',
+    goldWash: '#FCF2D6',
+    green: '#1F684A',
+    greenDark: '#164E37',
+    greenWash: '#E1F1E9',
+    blue: '#2A5B7C',
+    blueDark: '#1E435C',
+    blueWash: '#E2EEF6',
+    plum: '#5F4684',
+    plumDark: '#473366',
+    plumWash: '#EDE7F6'
+  };
+
+  // Quarter scale: horizonY = 148, quarterStep = 21
+  // Highs (+1/4..+4/4): 127, 106, 85, 64
+  // Lows  (-1/4..-4/4): 169, 190, 211, 232
+  var GEO = {
+    W: 440,
+    H: 290,
+    paperX: 12,
+    paperY: 10,
+    paperW: 414,
+    paperH: 270,
+    axisX: 56,
+    horizonY: 148,
+    quarter: 21,
+    lineRight: 412
+  };
+
+  // Exactly 6 points: 3 valleys (lows) + 3 peaks (highs), including back-to-back lows and back-to-back highs
+  var POINTS = [
+    {
+      id: 'dot1',
+      stepIdx: 1,
+      type: 'valley',
+      x: 92,
+      y: 190, // -2/4
+      age: 'Age 9',
+      shortLine: 'Moved town',
+      anchor: 'middle',
+      labelX: 92,
+      labelY: 207,
+      color: COLORS.plum,
+      dark: COLORS.plumDark,
+      heading: '1. Low: Moved to a New Town',
+      quote: '"Age 9: New school, felt lonely."',
+      note: ''
+    },
+    {
+      id: 'dot2',
+      stepIdx: 2,
+      type: 'peak',
+      x: 150,
+      y: 106, // +2/4
+      age: 'Age 13',
+      shortLine: 'Youth camp',
+      anchor: 'middle',
+      labelX: 150,
+      labelY: 79,
+      color: COLORS.blue,
+      dark: COLORS.blueDark,
+      heading: '2. High: Summer Camp',
+      quote: '"Age 13: Felt God\'s love at youth camp."',
+      note: ''
+    },
+    {
+      id: 'dot3',
+      stepIdx: 3,
+      type: 'valley',
+      x: 208,
+      y: 211, // -3/4
+      age: 'Age 16',
+      shortLine: 'Family stress',
+      anchor: 'middle',
+      labelX: 208,
+      labelY: 228,
+      color: COLORS.plum,
+      dark: COLORS.plumDark,
+      heading: '3. Low: Family Hardship',
+      quote: '"Age 16: Tough year at home, worried often."',
+      note: ''
+    },
+    {
+      id: 'dot4',
+      stepIdx: 4,
+      type: 'valley',
+      x: 266,
+      y: 232, // -4/4 (back-to-back low)
+      age: 'Age 20',
+      shortLine: 'Lost Grandma',
+      anchor: 'middle',
+      labelX: 266,
+      labelY: 249,
+      color: COLORS.plum,
+      dark: COLORS.plumDark,
+      heading: '4. Low: Loss of Grandma',
+      quote: '"Age 20: Lost Grandma, prayed through grief."',
+      note: ''
+    },
+    {
+      id: 'dot5',
+      stepIdx: 5,
+      type: 'star',
+      x: 318,
+      y: 64, // +4/4
+      age: 'Age 24 ★',
+      shortLine: 'Became a Christian',
+      anchor: 'middle',
+      labelX: 318,
+      labelY: 34,
+      color: COLORS.gold,
+      dark: COLORS.goldDark,
+      heading: '5. High: Became a Christian',
+      quote: '"Age 24 ★: Came to faith in Christ!"',
+      note: 'Put a star on the high where you became a follower of Jesus.'
+    },
+    {
+      id: 'dot6',
+      stepIdx: 6,
+      type: 'peak',
+      x: 392,
+      y: 85, // +3/4 (back-to-back high)
+      age: 'Today',
+      shortLine: 'Church group',
+      anchor: 'end',
+      labelX: 408,
+      labelY: 108,
+      labelBelow: true,
+      color: COLORS.green,
+      dark: COLORS.greenDark,
+      heading: '6. High: Growing with God Today',
+      quote: '"Today: Joined a church group, trusting God."',
+      note: ''
+    }
+  ];
+
+  var READY_STEP = {
+    pillLabel: 'Start: Blank Sheet of Paper',
+    heading: 'Start with Your Blank Paper',
+    quote: 'Draw a sideways T (Highs up, Lows down, 4 quarter marks each) with 3 to 5 peaks and valleys.',
+    note: 'You can have back-to-back highs or back-to-back lows. These are your experiences.',
+    accent: COLORS.ink,
+    accentDark: COLORS.ink,
+    desc: 'White sheet of paper with a vertical axis labeled Highs above and Lows below, four quarter tick marks up and down, and a horizontal dotted midline ready for six points.'
+  };
+
+  function el(tag, attrs, text) {
+    var node = document.createElement(tag);
+    if (attrs) {
+      Object.keys(attrs).forEach(function (k) {
+        if (attrs[k] !== null && attrs[k] !== undefined) node.setAttribute(k, String(attrs[k]));
+      });
+    }
+    if (text !== undefined) node.textContent = text;
+    return node;
+  }
+
+  function svgEl(tag, attrs, text) {
+    var node = document.createElementNS(SVG_NS, tag);
+    if (attrs) {
+      Object.keys(attrs).forEach(function (k) {
+        if (attrs[k] !== null && attrs[k] !== undefined) node.setAttribute(k, String(attrs[k]));
+      });
+    }
+    if (text !== undefined) node.textContent = text;
+    return node;
+  }
+
+  function starPath(cx, cy, outerR, innerR) {
+    var pts = [];
+    for (var i = 0; i < 10; i++) {
+      var r = i % 2 === 0 ? outerR : innerR;
+      var angle = (-Math.PI / 2) + (i * Math.PI / 5);
+      pts.push((cx + r * Math.cos(angle)).toFixed(2) + ',' + (cy + r * Math.sin(angle)).toFixed(2));
+    }
+    return 'M ' + pts.join(' L ') + ' Z';
+  }
+
+  function segBezier(a, b) {
+    var midX = ((a.x + b.x) / 2).toFixed(1);
+    return 'M ' + a.x + ' ' + a.y + ' C ' + midX + ' ' + a.y + ', ' + midX + ' ' + b.y + ', ' + b.x + ' ' + b.y;
+  }
+
+  function fullBezier() {
+    var d = 'M ' + POINTS[0].x + ' ' + POINTS[0].y;
+    for (var i = 1; i < POINTS.length; i++) {
+      var a = POINTS[i - 1];
+      var b = POINTS[i];
+      var midX = ((a.x + b.x) / 2).toFixed(1);
+      d += ' C ' + midX + ' ' + a.y + ', ' + midX + ' ' + b.y + ', ' + b.x + ' ' + b.y;
+    }
+    return d;
+  }
+
+  function buildSvg() {
+    var svg = svgEl('svg', {
+      'class': 'pv-svg',
+      viewBox: '0 0 ' + GEO.W + ' ' + GEO.H,
+      width: '100%',
+      role: 'group',
+      'aria-labelledby': 'pv-svg-title pv-svg-desc'
+    });
+
+    svg.appendChild(svgEl('title', { id: 'pv-svg-title' }, 'Peaks and Valleys: Example on Paper'));
+    var svgDesc = svgEl('desc', { id: 'pv-svg-desc' }, READY_STEP.desc);
+    svg.appendChild(svgDesc);
+
+    // 1. Sheet of paper rectangle on warm studio background
+    var paperGroup = svgEl('g', { 'aria-hidden': 'true' });
+    paperGroup.appendChild(svgEl('rect', {
+      x: String(GEO.paperX + 3),
+      y: String(GEO.paperY + 3),
+      width: String(GEO.paperW),
+      height: String(GEO.paperH),
+      rx: '4',
+      fill: '#D8D2C5',
+      opacity: '0.65'
+    }));
+    paperGroup.appendChild(svgEl('rect', {
+      x: String(GEO.paperX),
+      y: String(GEO.paperY),
+      width: String(GEO.paperW),
+      height: String(GEO.paperH),
+      rx: '4',
+      fill: '#FFFFFF',
+      stroke: '#BFB6A4',
+      'stroke-width': '1.4'
+    }));
+    // Subtle corner fold on top right so the paper reads right away
+    var foldR = GEO.paperX + GEO.paperW;
+    var foldT = GEO.paperY;
+    paperGroup.appendChild(svgEl('polygon', {
+      points: (foldR - 14) + ',' + foldT + ' ' + foldR + ',' + (foldT + 14) + ' ' + (foldR - 14) + ',' + (foldT + 14),
+      fill: '#F3EFE6',
+      stroke: '#C9C0AE',
+      'stroke-width': '1',
+      'stroke-linejoin': 'round'
+    }));
+    paperGroup.appendChild(svgEl('polygon', {
+      points: (foldR - 14) + ',' + foldT + ' ' + (foldR + 1) + ',' + foldT + ' ' + (foldR + 1) + ',' + (foldT + 15),
+      fill: '#EFECE3'
+    }));
+
+    // 2. Subtle quarter horizontal paper hairlines + Sideways-T axes
+    [1, 2, 3, 4].forEach(function (q) {
+      var yUp = GEO.horizonY - q * GEO.quarter;
+      var yDn = GEO.horizonY + q * GEO.quarter;
+      [yUp, yDn].forEach(function (gy) {
+        paperGroup.appendChild(svgEl('line', {
+          x1: String(GEO.axisX + 6),
+          y1: String(gy),
+          x2: String(GEO.lineRight),
+          y2: String(gy),
+          stroke: '#F1EDE3',
+          'stroke-width': '1'
+        }));
+        // Quarter hash marks on the vertical axis
+        paperGroup.appendChild(svgEl('line', {
+          x1: String(GEO.axisX - 6),
+          y1: String(gy),
+          x2: String(GEO.axisX + 5),
+          y2: String(gy),
+          stroke: '#5E5548',
+          'stroke-width': '1.5',
+          'stroke-linecap': 'round'
+        }));
+      });
+    });
+
+    // Vertical axis line on the far left of the chart
+    paperGroup.appendChild(svgEl('line', {
+      x1: String(GEO.axisX),
+      y1: '48',
+      x2: String(GEO.axisX),
+      y2: '248',
+      stroke: COLORS.ink,
+      'stroke-width': '1.8',
+      'stroke-linecap': 'round'
+    }));
+    // Crisp top/bottom end ticks on vertical axis
+    paperGroup.appendChild(svgEl('path', {
+      d: 'M ' + (GEO.axisX - 3.5) + ' 53 L ' + GEO.axisX + ' 47 L ' + (GEO.axisX + 3.5) + ' 53',
+      fill: 'none',
+      stroke: COLORS.ink,
+      'stroke-width': '1.6',
+      'stroke-linecap': 'round',
+      'stroke-linejoin': 'round'
+    }));
+    paperGroup.appendChild(svgEl('path', {
+      d: 'M ' + (GEO.axisX - 3.5) + ' 243 L ' + GEO.axisX + ' 249 L ' + (GEO.axisX + 3.5) + ' 243',
+      fill: 'none',
+      stroke: COLORS.ink,
+      'stroke-width': '1.6',
+      'stroke-linecap': 'round',
+      'stroke-linejoin': 'round'
+    }));
+
+    // Horizontal dotted line across the middle from left to right
+    paperGroup.appendChild(svgEl('line', {
+      x1: String(GEO.axisX),
+      y1: String(GEO.horizonY),
+      x2: String(GEO.lineRight),
+      y2: String(GEO.horizonY),
+      stroke: '#7B7162',
+      'stroke-width': '1.6',
+      'stroke-dasharray': '4 4'
+    }));
+
+    // Sideways vertical labels on the left side of the vertical line: HIGHS / LOWS
+    paperGroup.appendChild(svgEl('text', {
+      'class': 'axis-word',
+      x: '33',
+      y: '100',
+      'text-anchor': 'middle',
+      transform: 'rotate(-90 33 100)',
+      fill: COLORS.green
+    }, 'Highs'));
+
+    paperGroup.appendChild(svgEl('text', {
+      'class': 'axis-word',
+      x: '33',
+      y: '196',
+      'text-anchor': 'middle',
+      transform: 'rotate(-90 33 196)',
+      fill: COLORS.plum
+    }, 'Lows'));
+
+    svg.appendChild(paperGroup);
+
+    // 3. Soft golden ribbon glow behind finished 6-dot graph on Step 6
+    var finishGlow = svgEl('path', {
+      'class': 'curve-finish-glow',
+      d: fullBezier(),
+      'aria-hidden': 'true'
+    });
+    svg.appendChild(finishGlow);
+
+    // 4. Individual dot-to-dot connecting segments (NO ghost curve!)
+    var segmentRefs = [];
+    for (var i = 1; i < POINTS.length; i++) {
+      var seg = svgEl('path', {
+        'class': 'seg-line',
+        d: segBezier(POINTS[i - 1], POINTS[i]),
+        'aria-hidden': 'true'
+      });
+      svg.appendChild(seg);
+      segmentRefs.push({ el: seg, stepIdx: POINTS[i].stepIdx });
+    }
+
+    // 5. Six interactive dots (3 highs, 3 lows)
+    var nodeRefs = POINTS.map(function (spec) {
+      var g = svgEl('g', {
+        'class': 'node-group',
+        'data-node': spec.id,
+        role: 'button',
+        tabindex: '-1',
+        'aria-label': spec.heading,
+        'aria-pressed': 'false',
+        'aria-hidden': 'true'
+      });
+
+      // Generous 44px-equivalent SVG touch target around each dot
+      g.appendChild(svgEl('circle', {
+        cx: String(spec.x),
+        cy: String(spec.y),
+        r: '22',
+        fill: 'transparent'
+      }));
+
+      g.appendChild(svgEl('circle', {
+        'class': 'node-focus-ring',
+        cx: String(spec.x),
+        cy: String(spec.y),
+        r: spec.type === 'star' ? '15.5' : '10.5',
+        fill: 'none',
+        stroke: COLORS.ink,
+        'stroke-width': '2'
+      }));
+
+      if (spec.type === 'star') {
+        g.appendChild(svgEl('circle', {
+          cx: String(spec.x),
+          cy: String(spec.y),
+          r: '12',
+          fill: COLORS.goldWash,
+          stroke: COLORS.gold,
+          'stroke-width': '1.4'
+        }));
+        g.appendChild(svgEl('path', {
+          d: starPath(spec.x, spec.y, 9.2, 4.2),
+          fill: COLORS.gold,
+          stroke: COLORS.goldDark,
+          'stroke-width': '1.2',
+          'stroke-linejoin': 'round'
+        }));
+        g.appendChild(svgEl('text', {
+          'class': 'star-age',
+          x: String(spec.labelX),
+          y: String(spec.labelY),
+          'text-anchor': spec.anchor
+        }, spec.age));
+        g.appendChild(svgEl('text', {
+          'class': 'star-label',
+          x: String(spec.labelX),
+          y: String(spec.labelY + 12),
+          'text-anchor': spec.anchor
+        }, spec.shortLine));
+      } else {
+        g.appendChild(svgEl('circle', {
+          cx: String(spec.x),
+          cy: String(spec.y),
+          r: '5.5',
+          fill: spec.color,
+          stroke: '#FFFFFF',
+          'stroke-width': '1.8'
+        }));
+        g.appendChild(svgEl('circle', {
+          cx: String(spec.x),
+          cy: String(spec.y),
+          r: '6.2',
+          fill: 'none',
+          stroke: spec.color,
+          'stroke-width': '1.6'
+        }));
+
+        var placeBelow = spec.type === 'valley' || !!spec.labelBelow;
+        var tickY1 = placeBelow ? spec.y + 7 : spec.y - 7;
+        var tickY2 = placeBelow ? spec.y + 11 : spec.y - 11;
+        g.appendChild(svgEl('line', {
+          x1: String(spec.x),
+          y1: String(tickY1),
+          x2: String(spec.x),
+          y2: String(tickY2),
+          stroke: spec.color,
+          'stroke-width': '1.2',
+          opacity: '0.55'
+        }));
+
+        g.appendChild(svgEl('text', {
+          'class': 'node-age',
+          x: String(spec.labelX),
+          y: String(spec.labelY),
+          'text-anchor': spec.anchor,
+          fill: spec.color
+        }, spec.age));
+        g.appendChild(svgEl('text', {
+          'class': 'node-label',
+          x: String(spec.labelX),
+          y: String(spec.labelY + 12),
+          'text-anchor': spec.anchor
+        }, spec.shortLine));
+      }
+
+      svg.appendChild(g);
+      return { spec: spec, el: g };
+    });
+
+    return {
+      svg: svg,
+      svgDesc: svgDesc,
+      finishGlow: finishGlow,
+      segments: segmentRefs,
+      nodes: nodeRefs
+    };
+  }
+
+  function stepDescFor(stepIdx) {
+    if (stepIdx === 0) return READY_STEP.desc;
+    var placed = POINTS.slice(0, stepIdx).map(function (p) {
+      return p.age + ' (' + p.shortLine + ')';
+    }).join(', ');
+    return 'Sheet of paper with ' + stepIdx + ' of 6 points placed and connected: ' + placed + '.';
+  }
+
+  function init() {
+    var host = document.getElementById('widget');
+    if (!host) return;
+    host.innerHTML = '';
+
+    var header = el('header', { 'class': 'title-bar' });
+    header.appendChild(el('h1', null, 'Peaks and Valleys'));
+    header.appendChild(el('span', { 'class': 'course-tag' }, '6-Dot Example'));
+    host.appendChild(header);
+
+    var stage = el('div', { 'class': 'stage', id: 'stage' });
+    var bundle = buildSvg();
+    stage.appendChild(bundle.svg);
+    host.appendChild(stage);
+
+    var strip = el('div', { 'class': 'step-strip', id: 'step-strip', role: 'group', 'aria-label': 'Example dot steps' });
+    var stepData = [READY_STEP].concat(POINTS);
+    var dotButtons = stepData.map(function (item, idx) {
+      var btn = el('button', {
+        'class': 'step-dot',
+        type: 'button',
+        'data-step': String(idx),
+        'aria-label': idx === 0 ? READY_STEP.pillLabel : ('Dot ' + idx + ': ' + item.age + ' ' + item.shortLine),
+        'aria-pressed': 'false'
+      });
+      btn.style.setProperty('--dot-color', idx === 0 ? READY_STEP.accent : item.color);
+      btn.appendChild(el('span', { 'class': 'step-dot-fill', 'aria-hidden': 'true' }));
+      btn.addEventListener('click', function () { goTo(idx); });
+      strip.appendChild(btn);
+      return btn;
+    });
+    host.appendChild(strip);
+
+    var cardArea = el('section', { 'class': 'card-area', id: 'card-area', 'aria-live': 'polite' });
+    var verseCard = el('div', { 'class': 'verse-card' });
+    verseCard.appendChild(el('div', { 'class': 'verse-card-bar', 'aria-hidden': 'true' }));
+    var contentEl = el('div', { 'class': 'verse-card-content', id: 'card-content' });
+    var headingEl = el('h2', { 'class': 'card-heading', id: 'card-heading' });
+    var quoteEl = el('p', { 'class': 'card-quote', id: 'card-quote' });
+    var noteEl = el('p', { 'class': 'card-note', id: 'card-note' });
+    contentEl.appendChild(headingEl);
+    contentEl.appendChild(quoteEl);
+    contentEl.appendChild(noteEl);
+    verseCard.appendChild(contentEl);
+    cardArea.appendChild(verseCard);
+
+    var navBar = el('div', { 'class': 'nav-bar' });
+    var prevBtn = el('button', { 'class': 'nav-btn', id: 'prev-btn', type: 'button' }, '\u2190 Back');
+    var countEl = el('span', { 'class': 'step-count', id: 'step-count' });
+    var nextBtn = el('button', { 'class': 'nav-btn primary', id: 'next-btn', type: 'button' }, 'Place Dot 1 \u2192');
+    navBar.appendChild(prevBtn);
+    navBar.appendChild(countEl);
+    navBar.appendChild(nextBtn);
+    cardArea.appendChild(navBar);
+    host.appendChild(cardArea);
+
+    // Prepare path lengths for dot-to-dot segments
+    bundle.segments.forEach(function (seg) {
+      var len = seg.el.getTotalLength();
+      seg.len = len;
+      seg.el.style.strokeDasharray = String(len + 2);
+      seg.el.style.strokeDashoffset = String(len + 2);
+    });
+
+    var reducedMotionQuery = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : { matches: false };
+    var currentStep = 0;
+    var selectedNodeId = null;
+    var activeRaf = null;
+
+    function stopActiveAnim() {
+      if (activeRaf) {
+        cancelAnimationFrame(activeRaf);
+        activeRaf = null;
+      }
+    }
+
+    function setSegProgress(seg, fraction) {
+      var offset = Math.max(0, (seg.len + 2) * (1 - fraction));
+      seg.el.style.strokeDashoffset = String(offset);
+    }
+
+    function updateNodes(visibleStep) {
+      bundle.nodes.forEach(function (ref) {
+        var isVisible = ref.spec.stepIdx <= visibleStep;
+        ref.el.classList.toggle('is-visible', isVisible);
+        ref.el.classList.toggle('is-selected', ref.spec.id === selectedNodeId);
+        ref.el.classList.toggle('is-ghost', !!selectedNodeId && ref.spec.id !== selectedNodeId);
+        ref.el.setAttribute('tabindex', isVisible ? '0' : '-1');
+        ref.el.setAttribute('aria-hidden', isVisible ? 'false' : 'true');
+        ref.el.setAttribute('aria-pressed', ref.spec.id === selectedNodeId ? 'true' : 'false');
+      });
+    }
+
+    function applyCard(heading, quote, note, color, dark) {
+      document.documentElement.style.setProperty('--step-color', color);
+      document.documentElement.style.setProperty('--step-dark', dark);
+      headingEl.textContent = heading;
+      quoteEl.textContent = quote;
+      noteEl.textContent = note || '';
+      noteEl.style.display = note ? '' : 'none';
+    }
+
+    function cardDataForStep(stepIdx) {
+      if (stepIdx === 0) return READY_STEP;
+      return POINTS[stepIdx - 1];
+    }
+
+    function selectNode(nodeRef) {
+      if (!nodeRef || nodeRef.spec.stepIdx > currentStep) return;
+      selectedNodeId = selectedNodeId === nodeRef.spec.id ? null : nodeRef.spec.id;
+      updateNodes(currentStep);
+      if (selectedNodeId) {
+        var sp = nodeRef.spec;
+        applyCard(sp.heading, sp.quote, sp.note, sp.color, sp.dark);
+      } else {
+        var cur = cardDataForStep(currentStep);
+        applyCard(cur.heading, cur.quote, cur.note, cur.color || cur.accent, cur.dark || cur.accentDark);
+      }
+    }
+
+    bundle.nodes.forEach(function (ref) {
+      ref.el.addEventListener('click', function () {
+        selectNode(ref);
+      });
+      ref.el.addEventListener('keydown', function (event) {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          selectNode(ref);
+        }
+      });
+    });
+
+    function goTo(nextIdx) {
+      stopActiveAnim();
+      selectedNodeId = null;
+      var prevStepIdx = currentStep;
+      var goingForward = nextIdx > prevStepIdx;
+      var instant = reducedMotionQuery.matches || !goingForward || nextIdx <= 1;
+
+      host.classList.toggle('is-instant', instant);
+      updateNodes(nextIdx);
+      bundle.finishGlow.classList.toggle('is-visible', nextIdx === POINTS.length);
+
+      if (instant) {
+        bundle.segments.forEach(function (seg) {
+          setSegProgress(seg, seg.stepIdx <= nextIdx ? 1 : 0);
+        });
+      } else {
+        // Complete earlier segments right away, animate the newly connecting segment (nextIdx)
+        bundle.segments.forEach(function (seg) {
+          if (seg.stepIdx < nextIdx) setSegProgress(seg, 1);
+          else setSegProgress(seg, 0);
+        });
+        var targetSeg = bundle.segments.filter(function (s) { return s.stepIdx === nextIdx; })[0];
+        if (targetSeg) {
+          var t0 = performance.now();
+          var delayMs = 90;
+          var drawMs = 420;
+          var frame = function (now) {
+            var elapsed = now - t0;
+            if (elapsed <= delayMs) {
+              activeRaf = requestAnimationFrame(frame);
+              return;
+            }
+            var p = Math.min(1, (elapsed - delayMs) / drawMs);
+            var eased = 1 - Math.pow(1 - p, 2);
+            setSegProgress(targetSeg, eased);
+            if (p < 1) {
+              activeRaf = requestAnimationFrame(frame);
+            } else {
+              setSegProgress(targetSeg, 1);
+              activeRaf = null;
+            }
+          };
+          activeRaf = requestAnimationFrame(frame);
+        }
+      }
+
+      currentStep = nextIdx;
+      host.setAttribute('data-step', String(currentStep));
+      bundle.svgDesc.textContent = stepDescFor(currentStep);
+
+      var card = cardDataForStep(currentStep);
+      applyCard(
+        card.heading,
+        card.quote,
+        card.note,
+        card.color || card.accent,
+        card.dark || card.accentDark
+      );
+
+      dotButtons.forEach(function (btn, idx) {
+        btn.classList.toggle('active', idx === currentStep);
+        btn.classList.toggle('passed', idx > 0 && idx < currentStep);
+        btn.setAttribute('aria-pressed', idx === currentStep ? 'true' : 'false');
+      });
+
+      countEl.textContent = currentStep === 0 ? 'Blank Paper' : ('Dot ' + currentStep + ' of ' + POINTS.length);
+      prevBtn.disabled = currentStep === 0;
+      if (currentStep === 0) {
+        nextBtn.textContent = 'Place Dot 1 \u2192';
+      } else if (currentStep === POINTS.length) {
+        nextBtn.textContent = '\u21BB Start Over';
+      } else {
+        nextBtn.textContent = 'Next Dot \u2192';
+      }
+    }
+
+    prevBtn.addEventListener('click', function () {
+      if (currentStep > 0) goTo(currentStep - 1);
+    });
+    nextBtn.addEventListener('click', function () {
+      goTo(currentStep === POINTS.length ? 0 : currentStep + 1);
+    });
+
+    document.addEventListener('keydown', function (event) {
+      if (event.target && event.target.closest && event.target.closest('.node-group')) {
+        return;
+      }
+      if (event.key === 'ArrowRight' && currentStep < POINTS.length) {
+        goTo(currentStep + 1);
+      } else if (event.key === 'ArrowLeft' && currentStep > 0) {
+        goTo(currentStep - 1);
+      }
+    });
+
+    var lastWidth = window.innerWidth;
+    var measuredWidth = 0;
+    function fitCardHeight() {
+      if (!contentEl || contentEl.clientWidth === measuredWidth) return;
+      measuredWidth = contentEl.clientWidth;
+      var keepH = headingEl.textContent;
+      var keepQ = quoteEl.textContent;
+      var keepN = noteEl.textContent;
+      var keepND = noteEl.style.display;
+      var tallest = 0;
+      document.documentElement.style.setProperty('--card-h', '0px');
+      [READY_STEP].concat(POINTS).forEach(function (item) {
+        headingEl.textContent = item.heading;
+        quoteEl.textContent = item.quote;
+        noteEl.textContent = item.note || '';
+        noteEl.style.display = item.note ? '' : 'none';
+        tallest = Math.max(tallest, contentEl.offsetHeight);
+      });
+      headingEl.textContent = keepH;
+      quoteEl.textContent = keepQ;
+      noteEl.textContent = keepN;
+      noteEl.style.display = keepND;
+      document.documentElement.style.setProperty('--card-h', Math.max(92, tallest) + 'px');
+    }
+
+    var resizeTimer = null;
+    window.addEventListener('resize', function () {
+      if (window.innerWidth === lastWidth) return;
+      lastWidth = window.innerWidth;
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(fitCardHeight, 120);
+    });
+
+    goTo(0);
+    fitCardHeight();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
+</body>
+</html>

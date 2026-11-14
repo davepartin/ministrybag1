@@ -324,6 +324,48 @@ var legacyNotes = exporter.buildExport({ ...noteOpts, scope: 'course' });
 assert('legacy course scope limits notes to explicitly supplied lessons too', legacyNotes.body.includes('SYN-live') && !legacyNotes.body.includes('SYN-chapter-4-end'));
 assert('malformed reading store is ignored safely', !exporter.buildExport({ ...noteOpts, reading: [], liveValues: {} }).body.includes('Reading Notes'));
 
+// Retiring a prompt must not strand its existing answer or expose another lesson.
+var retiredLesson = readLesson('201-10.json');
+var retiredKey = 'question-201-201-10-2';
+var retiredValue = 'SYN-earlier response\n<plain text> & symbols';
+var retiredResponses = { [retiredKey]: retiredValue, 'question-201-other': 'SYN-other-retired' };
+var retiredSnapshot = JSON.stringify(retiredResponses);
+var retiredOptions = { courseId: '201', currentLessonNum: 10,
+    lessons: [{ num: 10, data: retiredLesson }], responses: retiredResponses };
+var retiredExport = exporter.buildExport(retiredOptions);
+assert('removed prompt is absent from active fields', !exporter.collectLessonExportFields('201', retiredLesson).some(f => f.runtimeId === retiredKey));
+assert('earlier answer exports under its original prompt without changing text', retiredExport.body.includes('Earlier saved responses\n\n10.2 - As you walked through the Learning Circle, which step is hardest for you?\n' + retiredValue));
+assert('retired answer ID remains tracked exactly once', retiredExport.includedIds.filter(id => id === retiredKey).length === 1);
+assert('retired export does not mutate stored answers', JSON.stringify(retiredResponses) === retiredSnapshot);
+assert('unlisted response stays outside retired export', !retiredExport.body.includes('SYN-other-retired'));
+assert('retired answer stays out of another selected lesson', !exporter.buildExport({ ...retiredOptions, currentLessonNum: 1, lessons: [{ num: 1, data: lesson20101 }] }).body.includes(retiredValue));
+assert('blank retired answer creates no placeholder or section', !exporter.buildExport({ ...retiredOptions, responses: { [retiredKey]: '   ' } }).body.includes('Earlier saved responses'));
+assert('explicit live clearing suppresses older retired answer', !exporter.buildExport({ ...retiredOptions, liveValues: { [retiredKey]: '' } }).body.includes(retiredValue));
+var duplicateRetired = { ...retiredLesson, retiredQuestions: retiredLesson.retiredQuestions.concat(retiredLesson.retiredQuestions) };
+assert('duplicate retired metadata does not repeat answers', exporter.buildExport({ ...retiredOptions, lessons: [{ num: 10, data: duplicateRetired }] }).includedIds.filter(id => id === retiredKey).length === 1);
+var restoredQuestion = { ...retiredLesson, blocks: retiredLesson.blocks.concat(retiredLesson.retiredQuestions) };
+assert('reintroduced question is exported once as active', !exporter.buildExport({ ...retiredOptions, lessons: [{ num: 10, data: restoredQuestion }] }).body.includes('Earlier saved responses'));
+
+// Removed service choices retain their original numeric identities.
+var serviceLesson = readLesson('101-05.json');
+var serviceKey = 'checklist-101-service-interests';
+var serviceResponses = { [serviceKey]: [14, 15, 18, 19, 20, 21, 22], 'question-202-unrelated': 'SYN-excluded' };
+var serviceSnapshot = JSON.stringify(serviceResponses);
+var serviceOpts = { courseId: '101', currentLessonNum: 5, lessons: [{ num: 5, data: serviceLesson }], responses: serviceResponses };
+var serviceExport = exporter.buildExport(serviceOpts);
+assert('old combined teaching choice is labeled earlier, not reinterpreted', serviceExport.body.includes('Teaching / Bible Study (earlier selection)'));
+assert('old First Impressions choice stays recoverable', serviceExport.body.includes('First Impressions (earlier selection)'));
+assert('old Financial Giving choice stays recoverable', serviceExport.body.includes('Financial Giving (earlier selection)'));
+assert('old Outreach index remains Outreach', serviceExport.body.includes('Outreach Events'));
+assert('new split and Cleaning choices export independently', serviceExport.body.includes('Teaching, Discipleship Group, Cleaning Team'));
+assert('service export never mutates selection indexes', JSON.stringify(serviceResponses) === serviceSnapshot);
+assert('service export excludes other lesson answers', !serviceExport.body.includes('SYN-excluded'));
+var emptyService = exporter.buildExport({ ...serviceOpts, responses: { [serviceKey]: [] } });
+assert('unselected earlier choices are not introduced to export', !emptyService.body.includes('(earlier selection)'));
+var serviceField = exporter.collectLessonExportFields('101', serviceLesson).find(f => f.runtimeId === serviceKey);
+serviceField.retiredItemIndexes.push(0);
+assert('export descriptor does not mutate lesson retirement metadata', !serviceLesson.blocks.find(b => b.type === 'checklist').retiredItemIndexes.includes(0));
+
 if (failed) {
     console.error('\n' + failed + ' check(s) failed, ' + passed + ' passed.');
     process.exit(1);

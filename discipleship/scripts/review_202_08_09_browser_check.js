@@ -51,8 +51,12 @@ function check(name, condition) {
         await page.keyboard.press('Escape');
         check('Escape closes preview', !(await page.locator('#export-preview-overlay').getAttribute('class')).includes('open'));
         const before = await page.evaluate(() => localStorage.getItem('christianFoundationsResponses'));
+        // Recovery tools moved to Home; lessons now expose Email and PDF only.
+        await page.goto(BASE);
+        await page.locator('#home-backup-tools summary').click();
+        await page.locator('#home-download-backup').waitFor({ state: 'visible' });
         const started = page.waitForEvent('download');
-        await page.click('#lesson-download-backup');
+        await page.click('#home-download-backup');
         const download = await started;
         assert.equal(await download.failure(), null);
         const chunks = [];

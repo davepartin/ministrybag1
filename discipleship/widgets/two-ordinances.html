@@ -20,22 +20,55 @@
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-    background: transparent;
+    background: #F8F6F1;
     color: var(--ink);
-    padding: 8px 4px 16px;
+    padding: 0;
+    margin: 0;
   }
-  .wrap { max-width: 640px; margin: 0 auto; }
-  .title {
-    text-align: center;
-    font-size: 1.15rem;
-    font-weight: 700;
-    color: var(--green);
+  .widget-outer {
+    background: #FFFFFF;
+    max-width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
   }
+  @media (min-width: 560px) {
+    body { padding: 16px; }
+    .widget-outer {
+      max-width: 640px;
+      border-radius: 12px;
+      border: 1px solid #EBE5D9;
+      box-shadow: 0 6px 20px rgba(44, 36, 22, 0.08);
+    }
+  }
+  .title-bar {
+    background: #2C2416;
+    padding: 8px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  .title-bar h1 {
+    font: 600 17px/1.15 system-ui, -apple-system, sans-serif;
+    color: #FAF8F3;
+    letter-spacing: 0.2px;
+    margin: 0;
+    text-align: left;
+  }
+  .course-tag {
+    font: 600 11px/1 system-ui, -apple-system, sans-serif;
+    letter-spacing: 0.9px;
+    text-transform: uppercase;
+    color: #E5DEC9;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .wrap { padding: 10px 10px 16px; }
   .subtitle {
     text-align: center;
     font-size: 0.82rem;
     color: var(--ink-soft);
-    margin: 4px 0 14px;
+    margin: 2px 0 12px;
   }
   .facets {
     display: flex;
@@ -134,8 +167,9 @@
 </style>
 </head>
 <body>
+<div class="widget-outer">
+<header class="title-bar"><h1>The Doorway and the Table</h1><span class="course-tag">202-10</span></header>
 <div class="wrap">
-  <div class="title">The Doorway and the Table</div>
   <div class="subtitle">Two gifts Jesus gave His church. Tap each question to compare.</div>
 
   <div class="facets" role="group" aria-label="Questions to compare the two ordinances">
@@ -247,5 +281,6 @@
 
   show(0);
 </script>
+</div>
 </body>
 </html>

@@ -57,21 +57,29 @@ body {
 }
 
 .title-bar {
-  background: var(--ink);
-  padding: 9px 14px;
-  text-align: center;
-  transition: background-color 0.35s ease;
-}
-
-.widget-outer.is-whole .title-bar {
-  background: var(--pop-dark);
+  background: #2C2416;
+  padding: 8px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
 }
 
 .title-bar h1 {
-  font: 700 18px/1.2 system-ui, -apple-system, sans-serif;
-  color: #faf8f3;
+  font: 600 17px/1.15 system-ui, -apple-system, sans-serif;
+  color: #FAF8F3;
   margin: 0;
   letter-spacing: 0.2px;
+  text-align: left;
+}
+
+.course-tag {
+  font: 600 11px/1 system-ui, -apple-system, sans-serif;
+  letter-spacing: 0.9px;
+  text-transform: uppercase;
+  color: #E5DEC9;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 /* Whiteboard stage */
@@ -449,6 +457,7 @@ button:focus-visible {
 <main class="widget-outer" id="widget" aria-label="Time, Talents, Treasure: three Ts forming a three-legged stool">
   <header class="title-bar">
     <h1>Time, Talents, Treasure</h1>
+    <span class="course-tag">202-07</span>
   </header>
 
   <div class="stage" id="stage" role="img" aria-label=""></div>

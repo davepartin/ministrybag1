@@ -1,0 +1,766 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bible Bookshelf</title>
+<style>
+:root {
+  --ink: #2C2416;
+  --muted: #6E6559;
+  --paper: #FAF8F3;
+  --tray: #F6F4EE;
+  --border: #EBE5D9;
+  --step-color: #2C2416;
+  --step-soft: #EDE8DE;
+  --step-dark: #2C2416;
+  --card-h: 132px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Georgia, Cambria, serif;
+  background: #F8F6F1;
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+.widget-outer {
+  background: #FFFFFF;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+@media (min-width: 560px) {
+  body {
+    padding: 16px;
+  }
+  .widget-outer {
+    max-width: 460px;
+    margin: 0 auto;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    box-shadow: 0 6px 20px rgba(44, 36, 22, 0.08);
+  }
+}
+
+.title-bar {
+  background: var(--ink);
+  padding: 7px 14px;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.title-bar h1 {
+  margin: 0;
+  font: 700 17px/1.2 system-ui, -apple-system, sans-serif;
+  color: #FAF8F3;
+  letter-spacing: 0.2px;
+}
+
+.title-sub {
+  margin: 0;
+  font: 600 11.5px/1 system-ui, -apple-system, sans-serif;
+  color: #DFD8C8;
+  white-space: nowrap;
+  letter-spacing: 0.4px;
+}
+
+.stage {
+  position: relative;
+  aspect-ratio: 440 / 276;
+  background: var(--paper);
+  border-bottom: 1px solid #EEE9DF;
+  overflow: hidden;
+}
+
+.stage svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.shelf-cluster {
+  cursor: pointer;
+  outline: none;
+}
+
+.cluster-books {
+  transform-box: fill-box;
+  transform-origin: center bottom;
+}
+
+.shelf-cluster .spine-rect {
+  fill: var(--sec-soft);
+  stroke: #2C2416;
+  stroke-width: 1.45;
+  vector-effect: non-scaling-stroke;
+}
+
+.shelf-cluster .spine-band {
+  fill: var(--sec-rich);
+  opacity: 0.34;
+}
+
+.shelf-cluster .cluster-halo {
+  opacity: 0;
+}
+
+.shelf-cluster .plate-pill {
+  fill: transparent;
+  stroke: transparent;
+  stroke-width: 1.2;
+}
+
+.shelf-cluster .plate-text {
+  font: 700 10.2px/1 system-ui, -apple-system, sans-serif;
+  fill: #4A3E2E;
+}
+
+.widget-outer.has-active .shelf-cluster:not(.is-active) {
+  opacity: 0.38;
+}
+
+.shelf-cluster.is-active .cluster-halo {
+  opacity: 0.14;
+}
+
+.shelf-cluster.is-active .cluster-books {
+  transform: translateY(-6px);
+}
+
+.shelf-cluster.is-active .spine-rect {
+  fill: var(--sec-rich);
+  stroke-width: 1.65;
+}
+
+.shelf-cluster.is-active .spine-band {
+  fill: #FAF8F3;
+  opacity: 0.26;
+}
+
+.shelf-cluster.is-active .plate-pill {
+  fill: var(--sec-rich);
+}
+
+.shelf-cluster.is-active .plate-text {
+  fill: #FFFFFF;
+}
+
+.shelf-cluster:focus-visible .focus-ring {
+  stroke: #E0A526;
+  stroke-width: 2.5;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .shelf-cluster,
+  .cluster-books,
+  .cluster-halo,
+  .spine-rect,
+  .spine-band,
+  .plate-pill,
+  .plate-text {
+    transition: opacity 240ms ease, transform 240ms cubic-bezier(0.22, 1, 0.36, 1), fill 220ms ease;
+  }
+}
+
+.card-area {
+  background: var(--tray);
+  padding: 8px 12px 10px;
+}
+
+.study-card {
+  background: #FFFFFF;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: 0 2px 12px rgba(44, 36, 22, 0.06);
+}
+
+.study-card-bar {
+  height: 4px;
+  background: var(--step-color);
+  transition: background-color 240ms ease;
+}
+
+.study-card-content {
+  padding: 12px 14px;
+  min-height: var(--card-h, 132px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 7px;
+}
+
+.card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.card-heading {
+  margin: 0;
+  font: 700 15px/1.2 system-ui, -apple-system, sans-serif;
+  color: var(--step-dark);
+}
+
+.card-badge {
+  font: 600 11px/1 system-ui, -apple-system, sans-serif;
+  color: var(--step-dark);
+  background: var(--step-soft);
+  padding: 4px 8px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.book-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.book-chip {
+  font: 600 11px/1.15 system-ui, -apple-system, sans-serif;
+  color: var(--ink);
+  background: var(--step-soft);
+  border: 1px solid rgba(44, 36, 22, 0.1);
+  border-radius: 5px;
+  padding: 3px 6px;
+}
+
+.card-text {
+  margin: 0;
+  font: 13px/1.4 Georgia, Cambria, serif;
+  color: #362E22;
+}
+
+.nav-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.nav-btn {
+  min-height: 44px;
+  min-width: 98px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1.5px solid #D4CFC4;
+  background: #FFFFFF;
+  color: var(--ink);
+  font: 700 13.5px/1 system-ui, -apple-system, sans-serif;
+  cursor: pointer;
+}
+
+.nav-btn.primary {
+  background: var(--step-color);
+  border-color: var(--step-color);
+  color: #FFFFFF;
+  transition: background-color 240ms ease, border-color 240ms ease;
+}
+
+.nav-btn:disabled {
+  opacity: 0.36;
+  cursor: default;
+}
+
+.step-count {
+  font: 600 12px system-ui, -apple-system, sans-serif;
+  color: var(--muted);
+}
+
+button:focus-visible {
+  outline: 3px solid #E0A526;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .study-card-bar,
+  .nav-btn.primary {
+    transition: none !important;
+  }
+}
+</style>
+</head>
+<body>
+<main class="widget-outer" id="widget" data-step="0" aria-label="Bible Bookshelf: 66 books across Old and New Testaments">
+  <header class="title-bar">
+    <h1>Bible Bookshelf</h1>
+    <p class="title-sub">66 Books &middot; 2 Testaments</p>
+  </header>
+
+  <div class="stage" id="stage"></div>
+
+  <section class="card-area" aria-live="polite">
+    <div class="study-card">
+      <div class="study-card-bar" aria-hidden="true"></div>
+      <div class="study-card-content" id="card-content">
+        <div class="card-top">
+          <h2 class="card-heading" id="card-heading"></h2>
+          <span class="card-badge" id="card-badge"></span>
+        </div>
+        <div class="book-chips" id="book-chips"></div>
+        <p class="card-text" id="card-text"></p>
+      </div>
+    </div>
+    <div class="nav-bar">
+      <button class="nav-btn" id="prev-btn" type="button">&larr; Back</button>
+      <span class="step-count" id="step-count"></span>
+      <button class="nav-btn primary" id="next-btn" type="button">Explore &rarr;</button>
+    </div>
+  </section>
+</main>
+
+<script>
+(function () {
+  'use strict';
+  var NS = 'http://www.w3.org/2000/svg';
+
+  var OVERVIEW = {
+    title: 'One Library, One Story',
+    badge: '66 Books · 10 Shelves',
+    color: '#2C2416',
+    soft: '#EFEBE1',
+    dark: '#2C2416',
+    chips: ['Old Testament (39)', 'New Testament (27)'],
+    text: 'Written by around 40 authors across 1,500 years. Every shelf tells one story: the Old Testament promises, and Jesus fulfills.'
+  };
+
+  var SHELVES = [
+    {
+      id: 'law',
+      testament: 'Old Testament',
+      shortLabel: 'Law (5)',
+      title: 'The Law',
+      badge: 'Old Testament · 5 Books',
+      color: '#4F7249',
+      soft: '#DCE8D9',
+      dark: '#395534',
+      x: 20, w: 60, row: 0,
+      books: ['Genesis', 'Exodus', 'Leviticus', 'Numbers', 'Deuteronomy'],
+      text: "Moses wrote these first five books: creation, humanity's fall, Abraham's covenant, the exodus from Egypt, and God's law. They show why we need a Savior."
+    },
+    {
+      id: 'history',
+      testament: 'Old Testament',
+      shortLabel: 'History (12)',
+      title: 'History',
+      badge: 'Old Testament · 12 Books',
+      color: '#825F41',
+      soft: '#EDE1D4',
+      dark: '#63462D',
+      x: 88, w: 94, row: 0,
+      books: ['Joshua', 'Judges', 'Ruth', '1 Samuel', '2 Samuel', '1 Kings', '2 Kings', '1 Chronicles', '2 Chronicles', 'Ezra', 'Nehemiah', 'Esther'],
+      text: 'Israel enters the Promised Land, rises under David, breaks into exile, and returns to rebuild. Even through failing kings, God keeps His covenant promises.'
+    },
+    {
+      id: 'poetry',
+      testament: 'Old Testament',
+      shortLabel: 'Poetry (5)',
+      title: 'Poetry and Wisdom',
+      badge: 'Old Testament · 5 Books',
+      color: '#9E7118',
+      soft: '#F6ECD0',
+      dark: '#7A550D',
+      x: 190, w: 60, row: 0,
+      books: ['Job', 'Psalms', 'Proverbs', 'Ecclesiastes', 'Song of Solomon'],
+      text: "Songs, prayers, proverbs, and honest wrestling with suffering and purpose. They give words to your heart's longing and point ahead to Jesus."
+    },
+    {
+      id: 'major',
+      testament: 'Old Testament',
+      shortLabel: 'Major (5)',
+      title: 'Major Prophets',
+      badge: 'Old Testament · 5 Books',
+      color: '#6E4E86',
+      soft: '#EAE1F0',
+      dark: '#523866',
+      x: 258, w: 60, row: 0,
+      books: ['Isaiah', 'Jeremiah', 'Lamentations', 'Ezekiel', 'Daniel'],
+      text: "Longer prophetic books calling Israel back to God, warning of judgment, and foretelling the coming King who would write God's law on human hearts."
+    },
+    {
+      id: 'minor',
+      testament: 'Old Testament',
+      shortLabel: 'Minor (12)',
+      title: 'Minor Prophets',
+      badge: 'Old Testament · 12 Books',
+      color: '#8A526D',
+      soft: '#EEDEE5',
+      dark: '#693B51',
+      x: 326, w: 94, row: 0,
+      books: ['Hosea', 'Joel', 'Amos', 'Obadiah', 'Jonah', 'Micah', 'Nahum', 'Habakkuk', 'Zephaniah', 'Haggai', 'Zechariah', 'Malachi'],
+      text: '"Minor" means shorter, not less important. Twelve voices call people to repent and wait with hope until Malachi closes before 400 years of silence.'
+    },
+    {
+      id: 'gospels',
+      testament: 'New Testament',
+      shortLabel: 'Gospels (4)',
+      title: 'The Gospels',
+      badge: 'New Testament · 4 Books',
+      color: '#2C7554',
+      soft: '#D9ECE3',
+      dark: '#1E543B',
+      x: 20, w: 70, row: 1,
+      books: ['Matthew', 'Mark', 'Luke', 'John'],
+      text: "Four portraits of Jesus' life, death, and resurrection: promised King (Matthew), Servant (Mark), detailed history (Luke), and Son of God (John)."
+    },
+    {
+      id: 'acts',
+      testament: 'New Testament',
+      shortLabel: 'Acts (1)',
+      title: 'Acts',
+      badge: 'New Testament · 1 Book',
+      color: '#BC5A20',
+      soft: '#F4DFD3',
+      dark: '#8C3F13',
+      x: 98, w: 54, row: 1,
+      books: ['Acts'],
+      text: 'Jesus ascends, the Spirit comes at Pentecost, and ordinary believers carry the good news from Jerusalem outward to the whole known world.'
+    },
+    {
+      id: 'paul',
+      testament: 'New Testament',
+      shortLabel: 'Paul (13)',
+      title: "Paul's Letters",
+      badge: 'New Testament · 13 Books',
+      color: '#2B6496',
+      soft: '#D9E7F2',
+      dark: '#1D476E',
+      x: 160, w: 108, row: 1,
+      books: ['Romans', '1 Corinthians', '2 Corinthians', 'Galatians', 'Ephesians', 'Philippians', 'Colossians', '1 Thessalonians', '2 Thessalonians', '1 Timothy', '2 Timothy', 'Titus', 'Philemon'],
+      text: 'Thirteen letters explaining the gospel (Romans), who we are in Christ (Ephesians), joy in Christ (Philippians), and godly church leadership.'
+    },
+    {
+      id: 'letters',
+      testament: 'New Testament',
+      shortLabel: 'Letters (8)',
+      title: 'Other Letters',
+      badge: 'New Testament · 8 Books',
+      color: '#24766A',
+      soft: '#D7ECE8',
+      dark: '#19544B',
+      x: 276, w: 82, row: 1,
+      books: ['Hebrews', 'James', '1 Peter', '2 Peter', '1 John', '2 John', '3 John', 'Jude'],
+      text: 'Letters by other apostles: Jesus fulfills the Old Testament (Hebrews), faith in action (James), hope in suffering (Peter), and love and truth (John).'
+    },
+    {
+      id: 'revelation',
+      testament: 'New Testament',
+      shortLabel: 'Rev. (1)',
+      title: 'Revelation',
+      badge: 'New Testament · 1 Book',
+      color: '#864055',
+      soft: '#EFDDE2',
+      dark: '#632B3C',
+      x: 366, w: 54, row: 1,
+      books: ['Revelation'],
+      text: 'Written by John from Patmos with a clear message: Jesus wins, evil is defeated, and God dwells with His people in a renewed creation.'
+    }
+  ];
+
+  function el(name, attrs, parent) {
+    var node = document.createElementNS(NS, name);
+    Object.keys(attrs || {}).forEach(function (k) {
+      node.setAttribute(k, attrs[k]);
+    });
+    if (parent) parent.appendChild(node);
+    return node;
+  }
+
+  var svg = el('svg', {
+    xmlns: NS,
+    id: 'bookshelf-svg',
+    role: 'group',
+    'aria-labelledby': 'svg-title svg-desc',
+    viewBox: '0 0 440 276',
+    preserveAspectRatio: 'xMidYMid meet'
+  });
+
+  var svgTitleEl = el('title', { id: 'svg-title' }, svg);
+  var svgDescEl = el('desc', { id: 'svg-desc' }, svg);
+
+  // Subtle bookcase architectural framing
+  el('rect', { x: 0, y: 0, width: 440, height: 276, fill: '#FAF8F3' }, svg);
+  el('rect', {
+    x: 10, y: 8, width: 420, height: 260, rx: 6,
+    fill: '#FBF9F4', stroke: '#2C2416', 'stroke-width': 1.6
+  }, svg);
+  el('rect', {
+    x: 14, y: 12, width: 412, height: 252, rx: 4,
+    fill: 'none', stroke: '#E5DDD0', 'stroke-width': 1
+  }, svg);
+
+  function addTestamentBanner(y, leftText, rightText) {
+    var lt = el('text', {
+      x: 22, y: y,
+      fill: '#2C2416',
+      'font-family': 'system-ui, -apple-system, sans-serif',
+      'font-size': '10.2',
+      'font-weight': '700',
+      'letter-spacing': '0.9'
+    }, svg);
+    lt.textContent = leftText;
+
+    var rt = el('text', {
+      x: 418, y: y,
+      fill: '#6E6559',
+      'text-anchor': 'end',
+      'font-family': 'system-ui, -apple-system, sans-serif',
+      'font-size': '10',
+      'font-weight': '600'
+    }, svg);
+    rt.textContent = rightText;
+  }
+
+  addTestamentBanner(27, 'OLD TESTAMENT', '39 Books · Promise');
+  addTestamentBanner(152, 'NEW TESTAMENT', '27 Books · Fulfillment');
+
+  function addOakPlank(y) {
+    el('rect', {
+      x: 16, y: y, width: 408, height: 9, rx: 2,
+      fill: '#E6CFA9', stroke: '#2C2416', 'stroke-width': 1.5
+    }, svg);
+    el('line', {
+      x1: 18, y1: y + 3.2, x2: 422, y2: y + 3.2,
+      stroke: '#F4E5CA', 'stroke-width': 1.1
+    }, svg);
+  }
+
+  addOakPlank(106);
+  addOakPlank(232);
+
+  var HEIGHT_PATTERN = [66, 59, 69, 62, 67, 61, 68, 63, 66, 60, 69, 62, 65];
+  var clusterNodes = [];
+
+  SHELVES.forEach(function (sec, idx) {
+    var stepIndex = idx + 1;
+    var plankY = sec.row === 0 ? 106 : 232;
+    var labelY = plankY + 23;
+    var count = sec.books.length;
+
+    var g = el('g', {
+      class: 'shelf-cluster',
+      role: 'button',
+      tabindex: '0',
+      'data-step-index': String(stepIndex),
+      'aria-label': sec.title + ', ' + sec.badge,
+      'aria-pressed': 'false',
+      style: '--sec-rich:' + sec.color + ';--sec-soft:' + sec.soft
+    }, svg);
+
+    // Invisible >=44px hit target box covering books + plank + label
+    el('rect', {
+      x: sec.x - 1, y: plankY - 79, width: sec.w + 2, height: 111, rx: 6,
+      fill: 'transparent', class: 'focus-ring'
+    }, g);
+
+    // Subtle soft wash halo behind books when active (moved slightly higher to clear lifted spines)
+    el('rect', {
+      x: sec.x - 3, y: plankY - 79, width: sec.w + 6, height: 77, rx: 8,
+      fill: sec.color, class: 'cluster-halo'
+    }, g);
+
+    var booksG = el('g', { class: 'cluster-books' }, g);
+
+    if (count === 1) {
+      // Single centered featured volume (Acts, Revelation)
+      var bw = 20;
+      var bx = sec.x + (sec.w - bw) / 2;
+      var bh = 68;
+      var by = plankY - bh;
+      el('rect', {
+        x: bx, y: by, width: bw, height: bh, rx: 2.5,
+        class: 'spine-rect'
+      }, booksG);
+      el('rect', {
+        x: bx + 1.5, y: by + 11, width: bw - 3, height: 6,
+        class: 'spine-band'
+      }, booksG);
+      el('rect', {
+        x: bx + 1.5, y: by + bh - 16, width: bw - 3, height: 5,
+        class: 'spine-band'
+      }, booksG);
+    } else {
+      var gap = count >= 12 ? 1.0 : 1.5;
+      var sw = (sec.w - 4 - gap * (count - 1)) / count;
+      var startX = sec.x + 2;
+      for (var i = 0; i < count; i++) {
+        var sx = startX + i * (sw + gap);
+        var sh = HEIGHT_PATTERN[(idx * 3 + i) % HEIGHT_PATTERN.length];
+        var sy = plankY - sh;
+        el('rect', {
+          x: sx.toFixed(1), y: sy, width: sw.toFixed(1), height: sh, rx: 1.6,
+          class: 'spine-rect'
+        }, booksG);
+        if (sw >= 6.4) {
+          el('rect', {
+            x: (sx + 1).toFixed(1), y: sy + 9, width: (sw - 2).toFixed(1), height: 4.5,
+            class: 'spine-band'
+          }, booksG);
+        }
+      }
+    }
+
+    var pillW = Math.max(sec.w, 54);
+    var pillX = sec.x + sec.w / 2 - pillW / 2;
+    el('rect', {
+      x: pillX, y: labelY - 11.5, width: pillW, height: 16, rx: 8,
+      class: 'plate-pill'
+    }, g);
+
+    var lbl = el('text', {
+      x: sec.x + sec.w / 2,
+      y: labelY,
+      'text-anchor': 'middle',
+      class: 'plate-text'
+    }, g);
+    lbl.textContent = sec.shortLabel;
+
+    g.addEventListener('click', function () {
+      goTo(currentStep === stepIndex ? 0 : stepIndex);
+    });
+    g.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        goTo(currentStep === stepIndex ? 0 : stepIndex);
+      }
+    });
+
+    clusterNodes.push(g);
+  });
+
+  document.getElementById('stage').appendChild(svg);
+
+  var widgetEl = document.getElementById('widget');
+  var headingEl = document.getElementById('card-heading');
+  var badgeEl = document.getElementById('card-badge');
+  var chipsEl = document.getElementById('book-chips');
+  var textEl = document.getElementById('card-text');
+  var countEl = document.getElementById('step-count');
+  var prevBtn = document.getElementById('prev-btn');
+  var nextBtn = document.getElementById('next-btn');
+
+  var currentStep = 0;
+
+  function applyCardContent(stepIdx) {
+    var isOverview = stepIdx === 0;
+    var sec = isOverview ? null : SHELVES[stepIdx - 1];
+    var color = isOverview ? OVERVIEW.color : sec.color;
+    var soft = isOverview ? OVERVIEW.soft : sec.soft;
+    var dark = isOverview ? OVERVIEW.dark : sec.dark;
+
+    widgetEl.style.setProperty('--step-color', color);
+    widgetEl.style.setProperty('--step-soft', soft);
+    widgetEl.style.setProperty('--step-dark', dark);
+
+    headingEl.textContent = isOverview ? OVERVIEW.title : sec.title;
+    badgeEl.textContent = isOverview ? OVERVIEW.badge : sec.badge;
+    textEl.textContent = isOverview ? OVERVIEW.text : sec.text;
+
+    chipsEl.innerHTML = '';
+    var list = isOverview ? OVERVIEW.chips : sec.books;
+    list.forEach(function (name) {
+      var chip = document.createElement('span');
+      chip.className = 'book-chip';
+      chip.textContent = name;
+      chipsEl.appendChild(chip);
+    });
+  }
+
+  function goTo(idx) {
+    var nextStep = Math.max(0, Math.min(SHELVES.length, idx));
+    currentStep = nextStep;
+    widgetEl.setAttribute('data-step', String(nextStep));
+    widgetEl.classList.toggle('has-active', nextStep > 0);
+
+    clusterNodes.forEach(function (node, i) {
+      var active = nextStep === i + 1;
+      node.classList.toggle('is-active', active);
+      node.setAttribute('aria-pressed', active ? 'true' : 'false');
+    });
+
+    applyCardContent(nextStep);
+
+    if (nextStep === 0) {
+      svgTitleEl.textContent = 'Bible Bookshelf: all 66 books';
+      svgDescEl.textContent = 'Two wooden library shelves holding 39 Old Testament books above and 27 New Testament books below, grouped into 10 sections.';
+      countEl.textContent = 'All 66 Books';
+    } else {
+      var sec = SHELVES[nextStep - 1];
+      svgTitleEl.textContent = sec.title + ' (' + sec.books.length + (sec.books.length === 1 ? ' book)' : ' books)');
+      svgDescEl.textContent = 'Highlighting ' + sec.title + ' on the ' + sec.testament + ' shelf: ' + sec.books.join(', ') + '.';
+      countEl.textContent = 'Shelf ' + nextStep + ' of ' + SHELVES.length;
+    }
+
+    prevBtn.disabled = nextStep === 0;
+    if (nextStep === 0) {
+      nextBtn.textContent = 'Explore \u2192';
+    } else if (nextStep === SHELVES.length) {
+      nextBtn.textContent = '\u21BA All Shelves';
+    } else {
+      nextBtn.textContent = 'Next \u2192';
+    }
+  }
+
+  prevBtn.addEventListener('click', function () {
+    if (currentStep > 0) goTo(currentStep - 1);
+  });
+
+  nextBtn.addEventListener('click', function () {
+    if (currentStep < SHELVES.length) {
+      goTo(currentStep + 1);
+    } else {
+      goTo(0);
+    }
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.target && e.target.tagName === 'TEXTAREA') return;
+    if (e.key === 'ArrowRight') {
+      if (currentStep < SHELVES.length) goTo(currentStep + 1);
+    } else if (e.key === 'ArrowLeft') {
+      if (currentStep > 0) goTo(currentStep - 1);
+    }
+  });
+
+  function fitCardHeight() {
+    var content = document.getElementById('card-content');
+    var saved = currentStep;
+    content.style.minHeight = '0';
+    var tallest = 0;
+    for (var s = 0; s <= SHELVES.length; s++) {
+      applyCardContent(s);
+      var h = content.getBoundingClientRect().height;
+      if (h > tallest) tallest = h;
+    }
+    content.style.minHeight = '';
+    widgetEl.style.setProperty('--card-h', Math.ceil(tallest) + 'px');
+    applyCardContent(saved);
+  }
+
+  goTo(0);
+  fitCardHeight();
+  var lastWidth = window.innerWidth;
+  window.addEventListener('resize', function () {
+    if (window.innerWidth !== lastWidth) {
+      lastWidth = window.innerWidth;
+      fitCardHeight();
+    }
+  });
+})();
+</script>
+</body>
+</html>

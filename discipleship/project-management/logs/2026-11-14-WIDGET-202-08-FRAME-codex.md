@@ -1,0 +1,9 @@
+# WIDGET-202-08-FRAME
+
+Dave approved only the 202-08 covenant-triangle.html frame at 2c2eb09804ccab6bf7478b24c2e93bda8ea0ce17 in PR #239. The approved HTML bytes are unchanged. All lesson JSON, index.html, question objects/IDs, reading keys, saved answers, diagram artwork and unrelated runtime files remain unchanged. The four original step titles, teaching text and Scripture strings compare exactly to main. This component approval does not award whole-lesson or image approval.
+
+Technical review: named native step controls, focused Back/Next navigation, overview/return/start-over, fixed card-height measurement, reduced-motion handling and width-only resize remeasurement. Widget has no network or answer-storage calls. Approved HTML SHA256 24ce3d53ddf8c408b5eddab8efdd01169d8085a54e39cda1e676f41116e3e789. Inline script parses.
+
+Required suite, all actual exits 0: npm ci; foundation; export 186; storage 64; assets 128; images 1366; iframe 32; review_202_08_09_browser_check.js (26, includes actual backup download and retired/current answer preservation); widget_headers_browser_check.js (4148 across 78 embedded viewport/motion cases). Additional targeted frame checks cover constant intro/overview/step cards, dots/keyboard, focus, idle/height-resize stability and saved answers/Email. Initial new idle assertion ran at 750ms during the documented 800ms diagram movement; the harness now waits 1200ms before measuring idle. No runtime edit was made. Exact-head preview and live evidence follows on PR #239.
+
+Targeted frame browser also exits 0: 231 checks across 375/390/1280 with normal and reduced motion. Intro, overview and all four steps have fixed fitting card heights (112px on phones, 116px on desktop); Back, dots/Space and Start Over work; idle and toolbar resize are stable; all current answers restore and edited answers survive reload; Email stays lesson-scoped. The approved widget file was not edited.

@@ -1,5 +1,156 @@
 # Resume here
 
+## 203-01 Claude rewrite approved, November 14, 2026
+
+Dave explicitly approved Claude's 203-01 rewrite and accompanying work in chat on November 14 ("i approve of the work that claude did"). Approval source: PR #225 at 96fd1a685b89cb116304d989bdb70996cb1e4164. The exact approved lesson and TOC wording are preserved: Four Friends and a Roof, Love has names, Think beyond your tree, the Great Commission, the existing map and the practice. Four discussion questions and three closing questions remain. The original names question 203-01-4 and closing trio are unchanged; three original retired prompts reserve their IDs and existing answers. Protect this approved wording from unassigned rewrites. This is approval to integrate the work, not a separate Gold-stage or pilot/release declaration.
+
+The Love Has Names map brief and Four Friends art brief are approved planning documents only. Neither replacement widget nor story art is built by this PR. Both current widgets remain unchanged and functional; new components need their own implementation, preview and Dave visual approval. The existing 203-02 names-map dependency is preserved. PR #221 was already merged and verified live; Claude's earlier note that it is still waiting is historical.
+
+Evidence: [Codex integration log](logs/2026-11-14-REWRITE-203-01-codex.md), [Claude writing log](logs/2026-11-14-REWRITE-203-01-claude.md), and PR #225 for preview/live checks.
+
+## Approved four-story sequence integration, November 14, 2026
+
+Dave approved all four story-art sequences in PR #240 at 419c6a7: 101-07 shepherd (4 frames), 201-05 lamp (2), 203-02 Nehemiah (3), and 203-07 Jesus sends the 72 (4). All 13 original frames, 26 optimized WebP copies, stops/order, touchNext placement and image-map additions are preserved. The original jesus-sends-72.jpg remains unchanged on disk. Lesson wording, Scripture, questions/IDs, reading keys, index.html and the recently approved widgets remain untouched. This records story-image approval only, not whole-lesson Gold or new wording approval.
+
+Evidence: [Codex integration log](logs/2026-11-14-ART-STORY-SEQUENCES-4-codex.md), PR #240 for exact-head preview and production verification.
+
+## Approved 202-09 RUN integration after triangle #239, November 14, 2026
+
+Dave approved only the RUN from Sin widget at 3e1325b6ad2af3019ebea5384d805e019a577dfa in PR #234, following already-merged triangle PR #239 (81b028b). Both starting-gun.html and covenant-triangle.html remain byte-identical to their approved commits (3e1325b and 2c2eb09). Main was merged normally into this branch, retaining all newer frame integrations and both board histories. The sole runtime diff from current main is starting-gun.html. All lesson JSON, index.html, question objects/IDs, reading keys, saved answers and unrelated lessons remain unchanged. Component approval only; no new whole-lesson or image approval is inferred.
+
+Evidence: [Codex integration log](logs/2026-11-14-WIDGET-202-09-STARTING-GUN-codex.md), PR #234 for exact-head preview and live verification.
+
+## Approved 202-08 frame integration, November 14, 2026
+
+Dave approved only the 202-08 covenant-triangle.html frame at 2c2eb09804ccab6bf7478b24c2e93bda8ea0ce17 in PR #239. The approved HTML bytes are unchanged. All lesson JSON, index.html, question objects/IDs, reading keys, saved answers, diagram artwork and unrelated runtime files remain unchanged. The four original step titles, teaching text and Scripture strings compare exactly to main. This component approval does not award whole-lesson or image approval.
+
+Evidence: [Codex integration log](logs/2026-11-14-WIDGET-202-08-FRAME-codex.md), PR #239 for preview and live verification.
+
+## Approved 201-08 frame integration, November 14, 2026
+
+Dave approved the 201-08 Grace and Mercy Cycle Studio Wash frame at 1404ab8 in PR #238. Diagram artwork, colors, step text, Scripture and lesson JSON remain unchanged. Integration found and corrected only the sizing helper: measure the tray content width without its horizontal padding, so the long grace card no longer moves the navigation by 22px. All approved frame styling remains unchanged. This is component approval, not whole-lesson or image approval.
+
+Evidence: [Codex integration log](logs/2026-11-14-WIDGET-201-08-FRAME-codex.md), PR #238 for preview and live verification.
+
+## Approved 101-05 potluck buttons, November 14, 2026
+
+Dave approved PR #232 at b83efe3: the compact three-column single-screen checklist, prompt and blue/teal/mustard serving buttons. Approved index.html and 101-05 JSON are byte-preserved. Old numeric slots remain reserved, including combined men's/women's ministry at 11; new choices append at 27 and 28. Other stays visually last without moving its DOM/storage index. All other wording, question objects, readings and aspen artwork remain unchanged. Whole-lesson text remains Silver and Dave edits stay protected.
+
+Evidence: [Codex integration log](logs/2026-11-14-BUTTONS-101-05-POTLUCK-codex.md), PR #232 for preview and live verification.
+
+## Approved 101-06 BLESS integration, November 14, 2026
+
+Dave approved PR #233 at 7949607: BLESS Rhythms widget and the BLESS section copy/placement. Both runtime files remain byte-identical to that approval. The approved change replaces the static BLESS graphic and box and adjusts the invitation to tap through. The original graphic remains on disk; woman-at-the-well story art, other prose, Scripture, John 16-18 readings and all eight question objects/IDs remain unchanged. Text remains Silver and earlier Dave edits stay protected. This is a specific new 101-06 assignment, not permission for broader changes or new art.
+
+Evidence: [Codex integration log](logs/2026-11-14-WIDGET-101-06-BLESS-codex.md) and PR #233 for exact-head preview and live deployment.
+
+## Approved 101-04 widget integration, November 14, 2026
+
+Dave approved only the Read, Discover, Respond widget in PR #229 at 21bb29b. Its HTML bytes and placement are preserved: after "These questions give you a place to begin..." and before Try It: Nicodemus Meets Jesus. All existing 101-04 copy, Discovery Questions box, Scripture, John 10-12 readings and nine question IDs remain unchanged. Text remains Silver for Dave's later review; no image or whole-lesson Gold approval is inferred.
+
+## 101-05 requested serving and teaching flow edits, November 14, 2026
+
+Dave confirms 101-05 remains Silver. Applied only his requested serving choices and moved the unchanged 5.3 prompt after the potluck teaching (including its supporting verse), before the checklist. Teaching and Discipleship Group are separate; Cleaning Team, Community Service Team, Lawn Team, Hospitality and Other are added. First Impressions, Financial Giving and the old combined Teaching / Bible Study tile are hidden. Original numeric positions remain reserved so saved selections are not reinterpreted; Email identifies a selected old option as an earlier selection. All other copy, question objects/IDs, reading keys and images stay unchanged.
+
+## 101-01 component Gold and question retirement, November 14, 2026
+
+Dave approved the 101-01 course logo and Peaks and Valleys V2 widget Gold. Only question 1.5 (Who will you tell...) is removed from view; its unchanged original object is reserved in retiredQuestions so saved answers still export. All other wording, readings, questions, logo and widget bytes stay unchanged. Whole-lesson text remains Silver and protected.
+
+## 101-02 is Gold: November 14, 2026
+
+Dave explicitly approved the whole 101-02 lesson, the A-B-C-D widget and the greenhouse sequence Gold. No runtime or lesson file changed. The [101 tracker](reviews/101-editorial-status.md) and component fingerprints record the exact ae1c78e source and file hashes. Protect its text, questions, readings, widget and artwork; no generic trim, art refresh or style-uniformity task overrides this approval. This supersedes older notices that 101-02 was still in progress. Other lesson text stages remain separate.
+
+
+## 101-01 Peaks and Valleys V2 approved: November 14, 2026
+
+Dave explicitly approved PR #223 at `ea26435`, including the paper/six-dot widget and exactly one lesson sentence: **Include 3 to 5 peaks and 3 to 5 valleys.** All other lesson copy, nine question objects/IDs, John readings and artwork are unchanged. The approved widget bytes are preserved. [Integration evidence](logs/2026-11-14-WIDGET-101-01-PEAKS-V2-codex.md).
+
+101-01 and 101-02 remain Silver: Dave confirmed his personal editing is still in progress and his existing edits must stay protected. This component/sentence approval does not award Gold or reopen other paragraphs. The 101 tracker and 101-01 component fingerprints identify V2 so future work must not restore V1 accidentally.
+
+## 202-05 trimmed draft authorized for merge: November 14, 2026
+
+Dave requested merge of PR #221's exact `2d6c258` draft. It folds question 5.5 into the practice and trims repeated prose; four discussion questions and the closing trio remain. The retired `201-09-5` metadata reserves its original ID, and existing answers remain stored and appear under Earlier saved responses in Email. All other question objects, quoted Scripture, headings, the Joseph artwork and the approved Creator mosaic/header are preserved. [Integration record](logs/2026-11-14-TRIM-202-05-INTEGRATE-codex.md).
+
+This is authorization to publish the draft for Dave's continuing lesson editing, not an inferred final whole-lesson Gold review. Use the newest verified live link after merge; the closed-PR preview will be removed automatically under his cleanup authorization.
+
+## Automatic closed-PR preview cleanup authorized: November 14, 2026
+
+Dave explicitly authorized automatic preview cleanup and merging PR #224. This supersedes the earlier Firebase hold only for the new close-event workflow: delete the closing same-repository PR's preview channels, never live or another PR's channels. The existing preview/deploy workflows, billing and retention settings remain unchanged. No manual sweep is authorized or performed. [Review and synthetic tests](logs/2026-11-14-FIREBASE-PR-CLEANUP-codex.md).
+
+The workflow pins Firebase CLI 15.36.0 on Node22, validates the complete channel list before deletion, rejects unexpected responses, uses a private temporary credential, and removes it on success/failure. Closed-PR preview links disappear; after a merge, use the verified live lesson link. Automatic cleanup execution and deployment evidence are recorded on PR #224 and subsequent merged PRs.
+
+
+## Approved widget header rollout: PR #220
+
+Dave approved `315fc75`: all ten active 202 widgets use the dark `#2C2416` header with title on the left and lesson number on the right. The shared v5 engine now displays `201-01`, `202-01` and `203-01` instead of Course labels. Approved titles include Building From the Cornerstone and Reflecting God's Worth. [Technical review and verification](logs/2026-11-13-WIDGET-202-HEADERS-codex.md).
+
+All eleven approved runtime files remain byte-identical to Dave's reviewed source. The ten HTML interaction scripts are unchanged from before the header update; the shared engine changes only three tag strings. All lesson JSON, question IDs, saved answers, Scripture, images and index.html are untouched. Existing Bookshelf, mosaic and other integrations remain intact. Preview, merge and live deployment evidence is recorded on PR #220. No Firebase configuration changes or manual deployment.
+
+
+## 201-05 approved Studio Wash Bookshelf integration: November 13, 2026
+
+Dave praised the PR #219 preview and requested publication. The new `widgets/bible-bookshelf2.html` replaces the old Bookshelf embed in 201-05 at the same position. Existing lesson wording, Scripture, metadata, questions/IDs and images are unchanged; `widgets/bible-bookshelf.html` stays on disk unchanged. The new widget's approved appearance and wording remain; only the SVG accessibility container role changes so the ten shelf controls are exposed to assistive technology. [Integration evidence](logs/2026-11-13-INTEGRATE-201-05-BOOKSHELF-codex.md).
+
+This completes the widget component, not a new approval of unrelated lesson material. Existing 201-05 wording approvals remain in force. Exact-head preview, merge and automatic live deployment results are recorded on PR #219. No manual deployment or Firebase configuration changes.
+
+
+## 101 personal-editing protection and simple status
+
+Dave requested Bronze/Silver/Gold stages and separate widget/image approvals. Use the [five-column 101 tracker](reviews/101-editorial-status.md) before any 101 work. Protect his edits to 101-01/02 now and the earlier exact 101-06 edits; do not swap or remove story art without his direction. Gold requires his confirmed completed personal read-through, never an AI grade. Existing approved components stay approved independently. Lesson/widget/image files are unchanged by this documentation packet.
+
+
+## 101-01 Peaks and Valleys widget integration: November 13, 2026
+
+Dave approved the Peaks and Valleys widget in PR #217 at `832da0a` and requested technical review and merge. It replaces only the static example image beside the paper timeline exercise. All lesson prose, question objects/IDs, readings and metadata are preserved; the original example PNG remains on disk. Technical review added keyboard activation, named toggle semantics and focus feedback for the timeline points, with hidden points excluded from focus. Approved visual design and wording remain unchanged. [Integration evidence](logs/2026-11-13-INTEGRATE-101-01-PEAKS-codex.md).
+
+This is widget-component approval, not a new final approval of 101-01. Use PR #217's exact-head preview and deployment record; earlier preview links represent the version before the accessibility fix. The preceding mosaic and Studio Wash course-opener integrations remain intact.
+
+
+## Approved suffering mosaic integrated: November 13, 2026
+
+Dave approved PR #215 at `e82ed36` and requested integration and merge. **Trust the Creator** now replaces the Valley Road embed in 202-05, immediately after the cross paragraph under **God Meant It for Good**, before the pastoral care paragraph. The approved widget is byte-identical; `widgets/valley-road.html` remains on disk. All lesson wording, Scripture, metadata and eight question objects/answer IDs are unchanged. `WIDGET-202-05-MOSAIC` is DONE. [Technical evidence](logs/2026-11-13-INTEGRATE-202-05-MOSAIC-codex.md).
+
+This supersedes earlier notices that the mosaic still needs building or Claude wiring. Dave's approval covers this widget's look/wording, not final approval of the complete suffering lesson. Its prose and Piper credit remain for his lesson editing pass. Exact preview, merge and automatic-deploy results are recorded on PR #215.
+
+
+## Studio Wash v5 integration, November 13
+
+PR #211 is being integrated at Dave's request. His approved source is `bd7000c`; the four v5 files remain byte-identical. The wired lessons are 201-01 (replacement), 202-01 and 203-01 (new opening widgets). All original copy/questions/IDs/Scripture remain; Cross the Road and Personal Ministry Map are retained. [Verification and placement](logs/2026-11-13-INTEGRATE-STUDIO-V5-codex.md). Use the verified v5 lesson pages after deployment, not the older cross-engine preview links in the historical PR body. 202-01's text revision in #202 is still separate and must retain the v5 intro.
+
+
+## Latest201-10 edit pass: nine items from Dave
+
+Dave's exact prose changes and clearer Repent/Believe sections are applied. The removed hardest-step question is absent from the lesson; prior answers remain in Email only when saved. Display questions are10.1-10.3 with existing IDs. Father section 30% shorter, Scripture/widget/art/opening preserved. [Full change record](logs/2026-11-13-DAVE-201-10-ROUND2-codex.md). This supersedes the earlier201-10 flow-only editing link.
+
+
+## Edit the newest201-10 draft
+
+Claude PR201 is being integrated with his full flow revision and teach-it question plus Dave's approved story callback. [Integration evidence](logs/2026-11-13-INTEGRATE-201-10-codex.md). Use the verified live version after deployment; older PR201 previews lack the callback. Before sending Dave to another lesson, check main and pending PRs and clearly identify the newest version. Older201-10 waiting notices below are historical after this integration. Final wording approval remains with Dave.
+
+
+Latest201-10 edit: Dave approved the two-sentence callback to the first two Growing Deep lessons, then a return to the pigpen and repentance. Only that story opening changed. Claude PR201 remains open; preserve this callback when integrating his flow revision. [Evidence](logs/2026-11-13-INTRO-201-10-codex.md).
+
+
+Latest101-02 wording: Dave supplied the exact Review sentence "Baptism is one of the first outward signs of the life God has already started inside you." Applied without any other lesson-text changes. See [log](logs/2026-11-13-WORD-101-02-BAPTISM-codex.md); older notes about the Review wording being left untouched are superseded.
+
+
+## Latest editorial packet: 101-02 lighter ending
+
+Dave accepted FOCUS-101-02: remove the inline Galatians2:20 quotation and2Corinthians5:17,21 block; fold the brief new-life/adoption thought into assurance under You Can Be Sure. John3, Romans6 and1John5 remain as the three quoted anchors. Widget, questions, readings and saved keys are preserved. Reread pointers and checks: [log](logs/2026-11-13-FOCUS-101-02-codex.md). Earlier proposal-only notices below are historical.
+
+
+## Shared chapter header standard: November 13
+
+Dave approved the John4-6 header design for every embedded chapter reader. READ-HEADER-STANDARD uses one shared renderer for all21 assigned John chapters and future bible_reading blocks. Lesson JSON, Bible text and reading keys are untouched. This supersedes the earlier101-02-only appearance note below. Dave is considering a lighter101-02 Scripture ending; see the task log for the suggestion, which is not implemented.
+
+
+## Latest integration: 101-02, November 13
+
+Gemini PR #206 is integrated as 4b5dc3c: A-D Romans Road with the cross reveal, new John 4-6 reading headers, and the Greenhouse baptism wording. Independent technical/preview checks passed. Dave should reread the Greenhouse ending and Step D; the neighboring ABC introduction and older baptism sentence in the Review remain intentionally untouched for his later edit. The other six 101 lessons retain their previous reader appearance.
+
+Codex handles technical integration under current standing roles. Workers open a complete widget-plus-wording PR, record changed paragraphs on TEAM-BOARD and stop at REVIEW. No separate Claude technical review is required. Saved answers, reading keys and Scripture blocks are preserved. See [review log](logs/2026-11-13-REVIEW-206-codex.md).
+
+
 ## Latest review aid: 37-lesson approval chart
 
 Dave requested a lesson-by-lesson chart with grades, words and separate approvals for length, questions, text, widgets and images. Start at [the review chart](reviews/2026-11-12-lesson-review-chart.md), with its Excel/CSV downloads and all 263 current questions. It is a snapshot of main be039c7 and distinguishes matching recorded approvals, scoped/partial approvals, changed components and unrecorded gates. The five-sheet workbook includes the ten grading checkpoints, earlier/current scores, reasons and next improvements. Refreshed production average is 90.3/100; five AAA (A+). These grades supersede the older pre-integration scorecard for this snapshot and remain separate from Dave approval. No lesson content or approval record was changed by creating it. Use it for Dave's one-lesson-at-a-time review and put new actual approvals in DAVE.md against the reviewed version.

@@ -15,6 +15,12 @@
       "align": "center"
     },
     {
+      "type": "widget",
+      "src": "widgets/great-command-v5-202.html",
+      "title": "The Greatest Commandment: Growing Up",
+      "height": "560px"
+    },
+    {
       "type": "image",
       "imageSequence": [
         "images/202-01-good-samaritan-seq-1.jpg",

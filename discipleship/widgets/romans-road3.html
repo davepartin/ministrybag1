@@ -27,6 +27,10 @@
   --green-dark: #155030;
   --green-soft: #DCEEE3;
   --green-glow: #F2F9F5;
+  --wood: #7C4D25;
+  --wood-dark: #5C3717;
+  --wood-soft: #EFE2D2;
+  --wood-glow: #FAF4EC;
   --step-color: #2C2416;
   --step-dark: #2C2416;
   --step-soft: #F2EFE9;
@@ -49,6 +53,12 @@
   --step-color: var(--green);
   --step-dark: var(--green-dark);
   --step-soft: var(--green-soft);
+}
+
+.widget-outer[data-step="4"] {
+  --step-color: var(--wood);
+  --step-dark: var(--wood-dark);
+  --step-soft: var(--wood-soft);
 }
 
 *, *::before, *::after {
@@ -125,32 +135,50 @@ svg .ink-line {
   stroke-linejoin: round;
 }
 
-svg .horizon-ridge {
-  fill: #f6f3ec;
+svg .horizon-ridge-tan {
+  fill: #f3ede2;
   stroke: var(--ink);
+  stroke-width: 1.4;
+  stroke-linejoin: round;
+  transition: opacity 0.6s ease;
+}
+
+svg .horizon-ridge-wood {
+  fill: url(#ridge-wood-grad);
+  stroke: #684323;
   stroke-width: 1.5;
   stroke-linejoin: round;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.widget-outer.is-cross svg .horizon-ridge-tan {
+  opacity: 0;
+}
+
+.widget-outer.is-cross svg .horizon-ridge-wood {
+  opacity: 1;
 }
 
 svg .sun-halo {
   fill: var(--sun-halo);
   opacity: 0.95;
-  transition: fill 0.35s ease, opacity 0.35s ease;
+  transition: fill 0.45s ease, opacity 0.45s ease;
 }
 
-.widget-outer.is-complete svg .sun-halo {
+.widget-outer.is-cross svg .sun-halo {
   fill: var(--sun-orb);
-  opacity: 0.45;
+  opacity: 0.48;
 }
 
 svg .sun-orb {
   fill: var(--sun-orb);
   stroke: var(--sun-stroke);
   stroke-width: 2;
-  transition: fill 0.35s ease;
+  transition: fill 0.45s ease;
 }
 
-.widget-outer.is-complete svg .sun-orb {
+.widget-outer.is-cross svg .sun-orb {
   fill: var(--sun-orb-warm);
 }
 
@@ -158,23 +186,80 @@ svg .sun-ray {
   stroke: var(--sun-stroke);
   stroke-linecap: round;
   opacity: 0.78;
-  transition: opacity 0.35s ease;
+  transition: opacity 0.45s ease;
 }
 
-.widget-outer.is-complete svg .sun-ray {
+.widget-outer.is-cross svg .sun-ray {
   opacity: 1;
+}
+
+svg .sun-ray-crown {
+  stroke: var(--sun-stroke);
+  stroke-linecap: round;
+  opacity: 0.78;
+  transition: opacity 0.45s ease, stroke-width 0.45s ease;
+}
+
+.widget-outer.is-cross svg .sun-ray-crown {
+  opacity: 1;
+  stroke-width: 2.5;
+}
+
+svg .horizon-seam {
+  stroke: var(--ink);
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  transition: opacity 0.55s ease;
+}
+
+.widget-outer.is-cross svg .horizon-seam {
+  opacity: 0;
 }
 
 svg .road-base {
   fill: #f4efe6;
+  stroke: none;
+  transition: fill 0.6s ease;
+}
+
+.widget-outer.is-cross svg .road-base {
+  fill: #AE7C50;
+}
+
+svg .road-edge {
+  fill: none;
   stroke: var(--ink);
-  stroke-width: 2;
-  stroke-linejoin: round;
+  stroke-width: 2.1;
+  stroke-linecap: round;
+  transition: stroke 0.6s ease;
+}
+
+.widget-outer.is-cross svg .road-edge {
+  stroke: #684323;
+}
+
+svg .wood-grain {
+  fill: none;
+  stroke: #7F542F;
+  stroke-width: 1.1;
+  stroke-linecap: round;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.widget-outer.is-cross svg .wood-grain {
+  opacity: 0.42;
 }
 
 svg .pebble {
   fill: #9b9283;
   opacity: 0.65;
+  transition: fill 0.6s ease, opacity 0.6s ease;
+}
+
+.widget-outer.is-cross svg .pebble {
+  fill: #6E4726;
+  opacity: 0.34;
 }
 
 svg .shrub {
@@ -321,9 +406,9 @@ svg .sign-group.active .sign-title {
 /* Step pills bar */
 .step-strip {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 5px;
-  padding: 5px 10px;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 6px;
+  padding: 6px 10px;
   background: #f8f6f1;
   border-bottom: 1px solid #eee9df;
 }
@@ -331,15 +416,16 @@ svg .sign-group.active .sign-title {
 .step-pill {
   --pill-color: var(--ink);
   --pill-soft: #f2efe9;
-  min-height: 32px;
+  min-height: 34px;
   padding: 4px 4px;
   border-radius: 8px;
   border: 1.5px solid #d4cfc4;
   background: #ffffff;
   color: var(--ink);
-  font: 700 11.5px/1.1 system-ui, -apple-system, sans-serif;
+  font: 700 13px/1 system-ui, -apple-system, sans-serif;
   text-align: center;
   cursor: pointer;
+  white-space: nowrap;
   transition: background-color 0.2s, border-color 0.2s, color 0.2s;
 }
 
@@ -362,6 +448,13 @@ svg .sign-group.active .sign-title {
   --pill-soft: var(--green-glow);
   border-color: rgba(29, 107, 63, 0.45);
   color: var(--green-dark);
+}
+
+.step-pill[data-step="4"] {
+  --pill-color: var(--wood);
+  --pill-soft: var(--wood-glow);
+  border-color: rgba(124, 77, 37, 0.5);
+  color: var(--wood-dark);
 }
 
 .step-pill.passed {
@@ -419,21 +512,22 @@ svg .sign-group.active .sign-title {
   color: var(--step-dark);
 }
 
+.verse-ref {
+  font: 600 11.5px/1.2 system-ui, -apple-system, sans-serif;
+  color: var(--muted);
+  white-space: nowrap;
+  margin-left: 3px;
+}
+
 .card-note {
   display: block;
-  margin-top: 4px;
+  margin-top: 5px;
   font: 12px/1.32 system-ui, -apple-system, sans-serif;
   color: #4a4238;
 }
 
 .card-note b {
   color: var(--step-dark);
-}
-
-.card-ref {
-  font: 600 11.5px/1.2 system-ui, -apple-system, sans-serif;
-  color: var(--muted);
-  margin: 3px 0 0;
 }
 
 .nav-bar {
@@ -482,6 +576,14 @@ button:focus-visible {
   svg .sun-halo,
   svg .sun-orb,
   svg .sun-ray,
+  svg .sun-ray-crown,
+  svg .horizon-ridge-tan,
+  svg .horizon-ridge-wood,
+  svg .horizon-seam,
+  svg .road-base,
+  svg .road-edge,
+  svg .wood-grain,
+  svg .pebble,
   svg .sign-group,
   svg .sign-drop,
   svg .sign-shadow,
@@ -498,7 +600,7 @@ button:focus-visible {
 </style>
 </head>
 <body>
-<main class="widget-outer" id="widget" aria-label="The Romans Road: forward gravel road into a Nevada sunset with three signs, A Admit Sin, B Believe in Jesus as Savior, and C Confess Jesus as Lord">
+<main class="widget-outer" id="widget" aria-label="The Romans Road: forward gravel road into a Nevada sunset over thin rolling hills, with three roadside signs A Admit Sin, B Believe in Jesus as Savior, C Confess Jesus as Lord, and a fourth stop D Disciple revealing the wooden cross">
   <header class="title-bar">
     <h1>The Romans Road</h1>
   </header>
@@ -514,7 +616,6 @@ button:focus-visible {
         <h2 class="card-heading" id="card-heading"></h2>
         <p class="card-verse" id="card-verse"></p>
         <span class="card-note" id="card-note"></span>
-        <p class="card-ref" id="card-ref"></p>
       </div>
     </div>
     <div class="nav-bar">
@@ -533,35 +634,43 @@ button:focus-visible {
   var steps = [
     {
       pill: 'Start',
+      pillLabel: 'Start: The ABCs of Salvation',
       heading: 'The ABCs of Salvation',
-      verse: 'Paul\'s letter to the Romans lays out the road back to God across three simple road signs: <b>Admit</b>, <b>Believe</b>, and <b>Confess</b>.',
-      note: 'Tap <b>Begin</b> or choose any stop below to walk the Romans Road.',
-      ref: 'Romans 3:23; 5:8; 6:23; 10:9',
-      aria: 'An open desert gravel road stretches forward to a golden sun rising at the center horizon, ready for three roadside signs.'
+      verse: 'These verses from the book of Romans show us the road of faith to a relationship with God. <span class="verse-ref">Romans 3:23; 5:8; 6:23; 10:9; Luke 9:23</span>',
+      note: '',
+      aria: 'An open desert gravel road stretches forward toward thin horizon hills and a golden sun, ready for roadside signs.'
     },
     {
-      pill: 'A · Admit',
+      pill: 'A',
+      pillLabel: 'A: Admit Sin',
       heading: 'A. Admit Sin',
-      verse: '"For <b>all have sinned</b> and fall short of the glory of God." "The wages of sin is death, but the <b>free gift of God</b> is eternal life in Christ Jesus our Lord."',
-      note: '<b>Your part:</b> admit your need honestly. <b>God\'s part:</b> He already put a free gift on the table.',
-      ref: 'Romans 3:23; 6:23',
+      verse: '"For <b>all have sinned</b> and fall short of the glory of God." <span class="verse-ref">Romans 3:23</span> "The <b>wages of sin is death</b>, but the free gift of God is eternal life in Christ Jesus our Lord." <span class="verse-ref">Romans 6:23</span>',
+      note: '<b>Your part:</b> Admit your need of salvation. <b>God\'s part:</b> He has already provided salvation in Jesus.',
       aria: 'Blue roadside sign A drops into the left foreground: Admit SIN.'
     },
     {
-      pill: 'B · Believe',
+      pill: 'B',
+      pillLabel: 'B: Believe in Jesus as Savior',
       heading: 'B. Believe in Jesus as Savior',
-      verse: '"God shows his love for us in that <b>while we were still sinners</b>, Christ died for us."',
-      note: '<b>Your part:</b> trust Jesus and His cross. <b>God\'s part:</b> He loved you first and paid the whole cost.',
-      ref: 'Romans 5:8',
+      verse: '"God shows his love for us in that <b>while we were still sinners</b>, Christ died for us." <span class="verse-ref">Romans 5:8</span>',
+      note: '<b>Your part:</b> Believe that Jesus died on a cross for you. <b>God\'s part:</b> Jesus was crucified to save you from your sins.',
       aria: 'Red roadside sign B with the cross drops into the right shoulder: Believe in Jesus as Savior.'
     },
     {
-      pill: 'C · Confess',
+      pill: 'C',
+      pillLabel: 'C: Confess Jesus as Lord',
       heading: 'C. Confess Jesus as Lord',
-      verse: '"If you <b>confess with your mouth</b> that Jesus is Lord and <b>believe in your heart</b> that God raised him from the dead, you will be saved... Everyone who calls on the name of the Lord will be saved."',
-      note: '<b>Your part:</b> bow to King Jesus and call on Him. <b>God\'s part:</b> He raised Jesus and keeps His promise.',
-      ref: 'Romans 10:9, 13',
+      verse: '"If you <b>confess with your mouth</b> that Jesus is Lord and <b>believe in your heart</b> that God raised him from the dead, you will be saved... Everyone who calls on the name of the Lord will be saved." <span class="verse-ref">Romans 10:9, 13</span>',
+      note: '<b>Your part:</b> Confess Jesus as your Lord and give Him the throne of your life. <b>God\'s part:</b> Jesus rose from the dead to show He was the Son of God sent to save the world through faith in Him.',
       aria: 'Green roadside sign C with the crown drops onto the left roadside ahead of A: Confess Jesus as Lord.'
+    },
+    {
+      pill: 'D',
+      pillLabel: 'D: Discipleship: Follow Jesus',
+      heading: 'D. Discipleship: Follow Jesus',
+      verse: '"If anyone would come after me, let him <b>deny himself</b> and <b>take up his cross daily</b> and <b>follow me</b>." <span class="verse-ref">Luke 9:23</span>',
+      note: '<b>Your part:</b> Live in dependence on the Spirit of God by fighting sin and following the ways of Jesus. <b>God\'s part:</b> Jesus will be with you every day.',
+      aria: 'Warm wood brown sweeps across the gravel road as the vertical post and the thin mountain ridge with its small center rise as the crossbeam and top of a wooden cross beneath the golden sun.'
     }
   ];
 
@@ -591,61 +700,74 @@ button:focus-visible {
   var skyClip = el('clipPath', { id: 'above-horizon' }, defs);
   el('rect', { x: 0, y: 0, width: 380, height: HY }, skyClip);
 
+  // Subtle cross-wood gradient across the mountain range (ends drop onto horizon at x=48 and x=332)
+  var woodFillGrad = el('linearGradient', { id: 'ridge-wood-grad', x1: '0%', y1: '0%', x2: '100%', y2: '0%' }, defs);
+  el('stop', { offset: '0%', 'stop-color': '#AE7C50' }, woodFillGrad);
+  el('stop', { offset: '50%', 'stop-color': '#9E6C40' }, woodFillGrad);
+  el('stop', { offset: '100%', 'stop-color': '#AE7C50' }, woodFillGrad);
+
   el('rect', { x: 0, y: 0, width: 380, height: VH, fill: '#fdfdfb' }, svg);
 
-  // Setting sun + rays clipped strictly above horizon HY=78
+  // Original horizon sunset sized to match road width (26px at HY=78 -> r=13) + rays clipped cleanly above horizon
   var sunLayer = el('g', { 'clip-path': 'url(#above-horizon)' }, svg);
-  el('circle', { cx: VX, cy: HY + 2, r: 54, class: 'sun-halo' }, sunLayer);
-  // Subtle Nevada sun rays radiating from center horizon
+  var sunCy = HY - 2.5;
+  el('circle', { cx: VX, cy: sunCy, r: 40, class: 'sun-halo' }, sunLayer);
   [-72, -52, -34, -18, 0, 18, 34, 52, 72].forEach(function (deg) {
     var rad = ((deg - 90) * Math.PI) / 180;
-    var r1 = 25;
-    var r2 = deg % 36 === 0 ? 45 : 37;
+    var r1 = 17;
+    var r2 = deg === 0 ? 37 : (deg % 36 === 0 ? 32 : 26);
     el('line', {
       x1: (VX + Math.cos(rad) * r1).toFixed(1),
-      y1: (HY + Math.sin(rad) * r1).toFixed(1),
+      y1: (sunCy + Math.sin(rad) * r1).toFixed(1),
       x2: (VX + Math.cos(rad) * r2).toFixed(1),
-      y2: (HY + Math.sin(rad) * r2).toFixed(1),
-      class: 'sun-ray',
+      y2: (sunCy + Math.sin(rad) * r2).toFixed(1),
+      class: deg === 0 ? 'sun-ray-crown' : 'sun-ray',
       'stroke-width': deg % 36 === 0 ? 1.8 : 1.3
     }, sunLayer);
   });
-  el('circle', { cx: VX, cy: HY + 2, r: 20, class: 'sun-orb' }, sunLayer);
+  el('circle', { cx: VX, cy: sunCy, r: 13, class: 'sun-orb' }, sunLayer);
   // Crisp minimalist desert cloud streaks flanking the sunset
   el('path', { d: 'M 42 40 H 96 M 60 48 H 106', stroke: '#d6cfc2', 'stroke-width': 1.5, 'stroke-linecap': 'round' }, sunLayer);
   el('path', { d: 'M 276 38 H 338 M 288 46 H 326', stroke: '#d6cfc2', 'stroke-width': 1.5, 'stroke-linecap': 'round' }, sunLayer);
 
-  // Distant Nevada desert mesas left & right leaving center sun unobstructed
-  el('path', {
-    d: 'M 0 70 L 42 64 L 78 64 L 106 72 L 138 76 L 154 ' + HY + ' L 0 ' + HY + ' Z',
-    class: 'horizon-ridge'
-  }, svg);
-  el('path', {
-    d: 'M 226 ' + HY + ' L 252 74 L 278 66 L 320 64 L 354 69 L 380 68 L 380 ' + HY + ' Z',
-    class: 'horizon-ridge'
-  }, svg);
+  // Subtle undulating horizon mountain range (x=48..332, organic 2px hills & ~2.4px center rise around sun)
+  var ridgePath = 'M 48 ' + HY + ' L 57 74.0 L 76 72.7 L 98 74.4 L 122 72.9 L 148 74.6 L 175 73.6 L 182 71.7 L 190 71.3 L 198 71.7 L 205 73.7 L 230 74.5 L 256 72.8 L 282 74.3 L 304 72.6 L 323 74.0 L 332 ' + HY + ' Z';
+  el('path', { d: ridgePath, class: 'horizon-ridge-tan' }, svg);
+  el('path', { d: ridgePath, class: 'horizon-ridge-wood' }, svg);
 
-  // Horizon line across the open valley
-  el('line', { x1: 0, y1: HY, x2: 380, y2: HY, class: 'ink-line', 'stroke-width': 1.8 }, svg);
+  // Outer horizon wings always anchored in ink; center road-top seam dissolves smoothly into the brown crossbeam on Step D
+  el('line', { x1: 0, y1: HY, x2: 177, y2: HY, class: 'ink-line', 'stroke-width': 1.8 }, svg);
+  el('line', { x1: 203, y1: HY, x2: 380, y2: HY, class: 'ink-line', 'stroke-width': 1.8 }, svg);
+  el('line', { x1: 177, y1: HY, x2: 203, y2: HY, class: 'horizon-seam' }, svg);
 
-  // 2. Gravel road trapezoid: wide foreground (104..276 at y=226) -> vanishing center (184..196 at y=78)
-  var roadPoly = '184,' + HY + ' 196,' + HY + ' 276,' + VH + ' 104,' + VH;
+  // 2. Widened perspective road trapezoid: foreground (112..268 at y=226) -> horizon beam (177..203 at y=78)
+  var roadPoly = '177,' + HY + ' 203,' + HY + ' 268,' + VH + ' 112,' + VH;
   el('polygon', { points: roadPoly, class: 'road-base' }, svg);
 
-  // Re-stroke crisp road edges on top of fills (no center or outer gray lines)
+  // Perspective wood-grain lines (hidden in tan gravel steps; softly visible when wood-brown cross appears)
+  [
+    'M 154 220 L 172 162',
+    'M 189 216 L 190 132',
+    'M 225 220 L 209 166',
+    'M 178 136 L 184 96',
+    'M 203 142 L 197 94'
+  ].forEach(function (dStr) {
+    el('path', { d: dStr, class: 'wood-grain' }, svg);
+  });
+
+  // Crisp road edges (ink on Steps 0..3 -> warm dark wood brown on Step 4)
   el('path', {
-    d: 'M 104 ' + VH + ' L 184 ' + HY + ' M 276 ' + VH + ' L 196 ' + HY,
-    class: 'ink-line',
-    'stroke-width': 2.2
+    d: 'M 112 ' + VH + ' L 177 ' + HY + ' M 268 ' + VH + ' L 203 ' + HY,
+    class: 'road-edge'
   }, svg);
 
-  // Perspective gravel stones/pebbles across the road (bigger in foreground, tiny in distance)
+  // Perspective gravel stones/pebbles across the road (staying inside 112..268 -> 177..203)
   var pebbles = [
-    [136, 218, 2.2, 1.1], [176, 212, 1.8, 1.0], [218, 220, 2.3, 1.1], [248, 210, 1.9, 1.0],
-    [154, 198, 1.8, 0.9], [198, 200, 1.7, 0.9], [234, 194, 1.7, 0.9], [136, 186, 1.6, 0.8],
-    [168, 174, 1.5, 0.8], [212, 176, 1.6, 0.8], [188, 162, 1.4, 0.7], [156, 154, 1.3, 0.7],
+    [138, 218, 2.2, 1.1], [176, 212, 1.8, 1.0], [218, 220, 2.3, 1.1], [244, 210, 1.9, 1.0],
+    [154, 198, 1.8, 0.9], [198, 200, 1.7, 0.9], [230, 194, 1.7, 0.9], [142, 186, 1.6, 0.8],
+    [168, 174, 1.5, 0.8], [212, 176, 1.6, 0.8], [188, 162, 1.4, 0.7], [158, 154, 1.3, 0.7],
     [214, 150, 1.3, 0.7], [178, 138, 1.2, 0.6], [202, 134, 1.2, 0.6], [186, 122, 1.0, 0.55],
-    [196, 114, 1.0, 0.5], [188, 102, 0.85, 0.45]
+    [196, 114, 1.0, 0.5], [189, 102, 0.85, 0.45]
   ];
   pebbles.forEach(function (p) {
     el('ellipse', { cx: p[0], cy: p[1], rx: p[2], ry: p[3], class: 'pebble' }, svg);
@@ -653,7 +775,7 @@ button:focus-visible {
 
   // Minimal desert sage tufts on open ground
   [
-    [156, 92, 0.55], [228, 96, 0.6], [312, 196, 0.95], [22, 132, 0.72], [344, 92, 0.6]
+    [154, 92, 0.55], [228, 96, 0.6], [312, 196, 0.95], [22, 132, 0.72], [344, 92, 0.6]
   ].forEach(function (t) {
     var sg = el('g', { transform: 'translate(' + t[0] + ',' + t[1] + ') scale(' + t[2] + ')' }, svg);
     el('path', { d: 'M -7 0 L -11 -7 M 0 0 L -1 -9 M 6 0 L 10 -6 M -9 0 H 9', class: 'shrub' }, sg);
@@ -738,6 +860,7 @@ button:focus-visible {
     btn.type = 'button';
     btn.className = 'step-pill' + (idx > 0 ? ' is-abc' : '');
     btn.setAttribute('data-step', String(idx));
+    btn.setAttribute('aria-label', st.pillLabel);
     btn.textContent = st.pill;
     btn.addEventListener('click', function () {
       goTo(idx);
@@ -751,7 +874,6 @@ button:focus-visible {
   var headingEl = document.getElementById('card-heading');
   var verseEl = document.getElementById('card-verse');
   var noteEl = document.getElementById('card-note');
-  var refEl = document.getElementById('card-ref');
   var countEl = document.getElementById('step-count');
   var prevBtn = document.getElementById('prev-btn');
   var nextBtn = document.getElementById('next-btn');
@@ -764,7 +886,8 @@ button:focus-visible {
 
     widgetEl.setAttribute('data-step', String(step));
     widgetEl.classList.toggle('has-step', step >= 1);
-    widgetEl.classList.toggle('is-complete', step === 3);
+    widgetEl.classList.toggle('is-complete', step >= 3);
+    widgetEl.classList.toggle('is-cross', step === 4);
 
     // Signs fall from the sky & stick when step >= idx; dissolve upward when going back/starting over
     var dropIdx = 0;
@@ -793,8 +916,8 @@ button:focus-visible {
     headingEl.textContent = st.heading;
     verseEl.innerHTML = st.verse;
     noteEl.innerHTML = st.note;
-    refEl.textContent = st.ref;
-    countEl.textContent = step === 0 ? 'Ready' : ('Step ' + step + ' of 3');
+    noteEl.style.display = st.note ? 'block' : 'none';
+    countEl.textContent = step === 0 ? 'Ready' : ('Step ' + step + ' of 4');
 
     prevBtn.disabled = step === 0;
     if (step === 0) {
@@ -829,20 +952,20 @@ button:focus-visible {
     var keepH = headingEl.textContent;
     var keepV = verseEl.innerHTML;
     var keepN = noteEl.innerHTML;
-    var keepR = refEl.textContent;
+    var keepND = noteEl.style.display;
     var tallest = 0;
     document.documentElement.style.setProperty('--card-h', '0px');
     steps.forEach(function (st) {
       headingEl.textContent = st.heading;
       verseEl.innerHTML = st.verse;
       noteEl.innerHTML = st.note;
-      refEl.textContent = st.ref;
+      noteEl.style.display = st.note ? 'block' : 'none';
       tallest = Math.max(tallest, contentEl.offsetHeight);
     });
     headingEl.textContent = keepH;
     verseEl.innerHTML = keepV;
     noteEl.innerHTML = keepN;
-    refEl.textContent = keepR;
+    noteEl.style.display = keepND;
     document.documentElement.style.setProperty('--card-h', Math.max(100, tallest) + 'px');
   }
 
