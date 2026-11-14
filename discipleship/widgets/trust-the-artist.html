@@ -184,6 +184,11 @@ body {
   opacity: 0.72;
 }
 
+.mosaic-svg.is-glow .piece-poly {
+  stroke: #2C2416;
+  stroke-width: 2.3;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .widget-outer:not(.is-instant) .shard-wrap {
     transition: opacity 420ms ease;
@@ -199,6 +204,9 @@ body {
   }
   .widget-outer:not(.is-instant) .cross-glow {
     transition: opacity 820ms ease;
+  }
+  .widget-outer:not(.is-instant) .piece-poly {
+    transition: stroke 700ms ease, stroke-width 700ms ease;
   }
 }
 

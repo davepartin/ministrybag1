@@ -105,6 +105,7 @@ async function runViewportCheck(browser, url, width, height) {
         vb: svg.getAttribute('viewBox'),
         isColor: svg.classList.contains('is-color'),
         isGlow: svg.classList.contains('is-glow'),
+        pieceStroke: getComputedStyle(document.querySelector('.piece-poly')).stroke,
         shownShards: shownShards,
         totalShards: totalShards,
         heading: document.getElementById('card-heading').textContent,
@@ -128,6 +129,9 @@ async function runViewportCheck(browser, url, width, height) {
       [state.prevH, state.nextH, state.dotMinH].join(','));
     assert(tag + ' step ' + s + ' grey before step 4 / color on 4-5', s < 4 ? !state.isColor : state.isColor);
     assert(tag + ' step ' + s + ' glow only on step 5', s < 5 ? !state.isGlow : state.isGlow);
+    assert(tag + ' step ' + s + ' piece outline gold on 0-4 / dark lead on 5',
+      s < 5 ? state.pieceStroke === 'rgb(201, 154, 46)' : state.pieceStroke === 'rgb(44, 36, 22)',
+      state.pieceStroke);
     assert(tag + ' step ' + s + ' accessible title/desc present', state.svgTitle.length > 0 && state.svgDesc.length > 0);
     cardHeights.push(state.cardH);
   }
