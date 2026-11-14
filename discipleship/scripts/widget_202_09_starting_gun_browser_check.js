@@ -163,6 +163,7 @@ async function waitStableSvgBox(frame, selector) {
         await page.waitForTimeout(motion === 'reduce' ? 50 : 620);
         const hFinal = await cardHeight();
         ck(tag + ' run 4 Full Life', (await frame.locator('.card-heading').textContent()).includes('Full Life'));
+        ck(tag + ' lead runner stays green on Full Life', (await frame.locator('#pose-run .r-torso').getAttribute('fill')) === '#1F684A');
         ck(tag + ' card height locked across all states', Math.abs(hIntro - hFinal) <= 1);
         await snap('run-full-life');
 
