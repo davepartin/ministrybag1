@@ -8,9 +8,9 @@
       "title": "Lesson 1: Welcome. Let's Start Growing.",
       "stage": "Silver",
       "dave_edits_protected": true,
-      "full_personal_review": "confirmation pending",
-      "lesson_sha256": "89f9007b68a218ba8cd72f41a52569756c151880537e8b57835dce663ffec469",
-      "non_visual_content_sha256": "a4602ce9f206eb3f700bc82933c604d85f5b537caff37aa467aed3dfb21029fc",
+      "full_personal_review": "in progress; Dave confirmed, edits protected",
+      "lesson_sha256": "049816748253ad2b207b6ae65fc7b735e384380537c1b4bca96c70840628e5e8",
+      "non_visual_content_sha256": "2ba393b5b34018e0ec15924841e633b26112e55d10de35e3a55c3dc3ebaa46ed",
       "visual_blocks": [
         {
           "type": "image",
@@ -26,7 +26,12 @@
       ],
       "visual_files_sha256": {
         "images/3-circles-coral.png": "b70a0a337621f8a05d030ea5cc6e7fb7a295cc41775875d0320d84a40c6cf3d9",
-        "widgets/peaks-and-valleys.html": "1a6aca05f4ed1b2f17814e7314ca08333acabb4704c3cb83c1839b02e72f8637"
+        "widgets/peaks-and-valleys.html": "5820d2974f924ad01cba9caac7f9f34e0bd1957612e6e8529915d924266d97e6"
+      },
+      "approved_update": {
+        "date": "2026-11-14",
+        "source": "ea26435ddc7ea741817d4260ab07e81b760cdade",
+        "scope": "V2 widget and one exercise sentence only"
       }
     },
     {
@@ -34,7 +39,7 @@
       "title": "Lesson 2: Salvation and Baptism",
       "stage": "Silver",
       "dave_edits_protected": true,
-      "full_personal_review": "confirmation pending",
+      "full_personal_review": "in progress; Dave confirmed, edits protected",
       "lesson_sha256": "2ed1308a10116576ef69b782f16ea7393e35d946a2add70117502999fcede812",
       "non_visual_content_sha256": "b6d54cfe4f0cb8e2138270713834ecfa476923370f4a4872b88fdb9f02d60f07",
       "visual_blocks": [

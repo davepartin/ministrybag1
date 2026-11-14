@@ -59,18 +59,21 @@ function ck(label, value) { checks++; assert.ok(value, label); }
         }, data));
         const cardH = await frame.locator('#card-content').evaluate(e => e.clientHeight);
         const storage = await page.evaluate(() => localStorage.getItem('christianFoundationsResponses'));
-        for (let step = 0; step <= 5; step++) {
+        for (let step = 0; step <= 6; step++) {
           if (step) await frame.locator('#next-btn').click();
-          const dur = Number(await frame.locator('#widget').getAttribute('data-step-dur'));
-          if (motion === 'reduce') ck(tag + ' reduced motion instant ' + step, dur === 0);
-          await page.waitForTimeout(dur + 500);
+          if (motion === 'reduce') ck(tag + ' reduced motion instant ' + step, await frame.locator('#widget').evaluate(e => e.classList.contains('is-instant')));
+          await page.waitForTimeout(motion === 'reduce' ? 40 : 650);
           ck(tag + ' active step ' + step, await frame.locator('.step-dot[aria-pressed="true"]').getAttribute('data-step') === String(step));
           ck(tag + ' stable fitting card ' + step, await frame.locator('#card-content').evaluate((e, h) => e.clientHeight === h && e.scrollHeight <= e.clientHeight + 1, cardH));
           ck(tag + ' fitting page/frame ' + step, await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1) && await frame.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1));
           ck(tag + ' full host height ' + step, await frameEl.evaluate(e => e.clientHeight) >= await frame.evaluate(() => Math.max(document.body.scrollHeight, document.documentElement.scrollHeight)) - 1);
-          ck(tag + ' named native step controls ' + step, await frame.locator('.step-dot').evaluateAll(es => es.length === 6 && es.every(e => e.tagName === 'BUTTON' && e.getAttribute('aria-label'))));
+          ck(tag + ' named native step controls ' + step, await frame.locator('.step-dot').evaluateAll(es => es.length === 7 && es.every(e => e.tagName === 'BUTTON' && e.getAttribute('aria-label'))));
+          ck(tag + ' one point per step ' + step, await frame.locator('.node-group.is-visible').count() === step);
           ck(tag + ' nodes only focusable when visible ' + step, await frame.locator('.node-group').evaluateAll(es => es.every(e => e.getAttribute('tabindex') === (e.classList.contains('is-visible') ? '0' : '-1') && e.getAttribute('aria-hidden') === (e.classList.contains('is-visible') ? 'false' : 'true'))));
-          if (shots && width === 390 && motion === 'no-preference' && [0, 2, 5].includes(step)) await frameEl.screenshot({ path: path.join(shots, 'peaks-390-step' + step + '.png') });
+          if (shots && width === 390 && motion === 'no-preference' && [0, 3, 6].includes(step)) {
+            await frameEl.evaluate(e => window.scrollTo({ top: scrollY + e.getBoundingClientRect().top - 100, behavior: 'instant' }));
+            await frameEl.screenshot({ path: path.join(shots, 'peaks-390-step' + step + '.png') });
+          }
         }
         ck(tag + ' accessible interactive drawing', await frame.locator('.pv-svg').getAttribute('role') === 'group' && (await frame.locator('#pv-svg-desc').textContent()).length > 0);
         await frameEl.evaluate(e => window.scrollTo({ top: scrollY + e.getBoundingClientRect().top - 120, behavior: 'instant' }));
@@ -84,15 +87,15 @@ function ck(label, value) { checks++; assert.ok(value, label); }
           ck(tag + ' point card fits ' + i, await frame.locator('#card-content').evaluate((e, h) => e.clientHeight === h && e.scrollHeight <= e.clientHeight + 1, cardH));
           await node.focus();
           await page.keyboard.press('Enter');
-          ck(tag + ' Enter deselects point ' + i, await node.getAttribute('aria-pressed') === 'false' && await frame.locator('#card-heading').textContent() === "God's Hand Across Your Whole Story");
+          ck(tag + ' Enter deselects point ' + i, await node.getAttribute('aria-pressed') === 'false' && await frame.locator('#card-heading').textContent() === '6. High: Growing with God Today');
           await page.keyboard.press('Space');
           ck(tag + ' Space selects point ' + i, await node.getAttribute('aria-pressed') === 'true' && await frame.locator('#card-heading').textContent() === label);
         }
         await frame.locator('#prev-btn').click();
-        ck(tag + ' Back instantly restores step', await frame.locator('#widget').getAttribute('data-step-dur') === '0' && await frame.locator('.step-dot[aria-pressed="true"]').getAttribute('data-step') === '4');
+        ck(tag + ' Back instantly restores step', await frame.locator('#widget').evaluate(e => e.classList.contains('is-instant')) && await frame.locator('.step-dot[aria-pressed="true"]').getAttribute('data-step') === '5');
         await frame.locator('.step-dot').last().focus();
         await page.keyboard.press('Space');
-        await page.waitForTimeout(Number(await frame.locator('#widget').getAttribute('data-step-dur')) + 500);
+        await page.waitForTimeout(motion === 'reduce' ? 40 : 650);
         await frame.locator('#next-btn').focus(); await page.keyboard.press('Enter');
         ck(tag + ' keyboard Start Over', await frame.locator('.step-dot[aria-pressed="true"]').getAttribute('data-step') === '0' && await frame.locator('#prev-btn').isDisabled());
         await page.waitForTimeout(500);

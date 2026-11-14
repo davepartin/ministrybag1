@@ -2,6 +2,10 @@
 
 Keep this small. Agents can draft from the approved direction while these decisions develop. A blocker in one row does not stop independent work.
 
+## Widget and one-sentence approval: Peaks and Valleys V2, November 14, 2026
+
+Dave explicitly approved PR #223 at `ea26435ddc7ea741817d4260ab07e81b760cdade`, the new paper/six-dot `widgets/peaks-and-valleys.html`, and the single exercise sentence "Include 3 to 5 peaks and 3 to 5 valleys." No other 101-01 text, questions, readings or artwork are changed. His 101-01/02 paragraph-by-paragraph reviews remain in progress, as he confirmed; existing edits stay protected and the lessons remain Silver.
+
 ## 202-05 draft merge authorization, November 14, 2026
 
 Dave explicitly requested merge of PR #221, the reviewed `2d6c258a5bf9d50864b97503112182fa66454e5b` draft. This authorizes publishing its prose trim and folding question 5.5 into the practice, with its old ID/answers preserved via retiredQuestions. It is not a declaration that his final paragraph-by-paragraph review of the complete lesson is finished. No new artwork or widget wording approval is inferred.

@@ -1,5 +1,11 @@
 # Growing Together Team Board
 
+## 101-01 Peaks and Valleys V2 approved: November 14, 2026
+
+Dave explicitly approved PR #223 at `ea26435`, including the paper/six-dot widget and exactly one lesson sentence: **Include 3 to 5 peaks and 3 to 5 valleys.** All other lesson copy, nine question objects/IDs, John readings and artwork are unchanged. The approved widget bytes are preserved. [Integration evidence](logs/2026-11-14-WIDGET-101-01-PEAKS-V2-codex.md).
+
+101-01 and 101-02 remain Silver: Dave confirmed his personal editing is still in progress and his existing edits must stay protected. This component/sentence approval does not award Gold or reopen other paragraphs. The 101 tracker and 101-01 component fingerprints identify V2 so future work must not restore V1 accidentally.
+
 ## 202-05 trimmed draft authorized for merge: November 14, 2026
 
 Dave requested merge of PR #221's exact `2d6c258` draft. It folds question 5.5 into the practice and trims repeated prose; four discussion questions and the closing trio remain. The retired `201-09-5` metadata reserves its original ID, and existing answers remain stored and appear under Earlier saved responses in Email. All other question objects, quoted Scripture, headings, the Joseph artwork and the approved Creator mosaic/header are preserved. [Integration record](logs/2026-11-14-TRIM-202-05-INTEGRATE-codex.md).
