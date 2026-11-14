@@ -40,7 +40,7 @@ Built a single shared marker-drawn interactive SVG widget engine with three thin
   - Heading: `Love in Everyday Life`
   - Scripture: `"So then, as we have opportunity, let us do good to everyone, and especially to those who are of the household of faith."` (`Galatians 6:10`)
   - Paragraph: `Growing Up helps you put God's love into practice at home, in your church family, and among your neighbors, through generosity, faithful relationships, and care in hard seasons.`
-  - Visual: Keeps both horizontal arms (`Belong` blue `#2A5B7C`, `Neighbors` purple `#5F4684`), retains Belong + Neighbors scenes, adds one gentle curved dual stroke reveal from the horizontal arms down into both scenes, and centers `Home · Church Family · Neighbors` in a studio capsule below.
+  - Visual: Keeps both horizontal arms (`Belong` blue `#2A5B7C`, `Neighbors` purple `#5F4684`), replaces the left table/right crossing-road icons with a single welcoming house (`Belong` / `Family & God's family`) on the left and a three-house neighborhood (`BLESS` / `your neighborhood`) on the right, adds one gentle curved dual stroke reveal from the horizontal arms down to both scenes, and leaves clean white space below (no bottom bubble).
 - **203 Growing Out (`focus203`, Step 3 remains `"The Cross Holds It All"`):**
   - Heading: `Make Disciples Where You Are`
   - Scripture: `"Go therefore and make disciples of all nations"` (`Matthew 28:19`)
@@ -49,7 +49,7 @@ Built a single shared marker-drawn interactive SVG widget engine with three thin
 
 ### Post-Final-Edit Verification (`exit 0`)
 - `bash scripts/qa_foundation.sh` (from `discipleship/`): **exit 0** (32 widget iframe checks passed)
-- `node scripts/test_lesson_export.js` (from `discipleship/`): **exit 0** (167 checks passed)
+- `node scripts/test_lesson_export.js` (from `discipleship/`): **exit 0** (177 checks passed)
 - `node scripts/test_answer_storage.js` (from `discipleship/`): **exit 0** (64 checks passed)
 - `node scripts/check_lesson_assets.js` (from `discipleship/`): **exit 0** (126 asset references passed)
 - Em-dash check (`! grep -rn $'\xe2\x80\x94'` on `great-command-v5*` + guides): **exit 0**

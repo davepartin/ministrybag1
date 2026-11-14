@@ -223,7 +223,7 @@
             ghostCross: true,
             focus202: true
           },
-          desc: 'The upright beam fades to a quiet watermark while gentle blue and purple lines connect the horizontal arms to the Belong and Neighbors scenes.'
+          desc: 'The upright beam fades to a quiet watermark while gentle blue and purple lines connect the horizontal arms to a single house for family and the family of God on the left and a neighborhood of houses labeled BLESS your neighborhood on the right.'
         }
       ]
     },
@@ -407,7 +407,6 @@
     '.mission-arc { fill: none; stroke-linecap: round; stroke-linejoin: round; }',
     '.overlay-head { font: 700 13.5px/1.15 system-ui, -apple-system, sans-serif; }',
     '.overlay-sub { font: 600 11.5px/1.15 system-ui, -apple-system, sans-serif; fill: #5B5347; }',
-    '.overlay-pill-text { font: 600 10.8px/1 system-ui, -apple-system, sans-serif; fill: #3E362C; letter-spacing: 0.15px; }',
     '.overlay-places { font: 600 11px/1.25 system-ui, -apple-system, sans-serif; fill: #5B5347; }',
     '.arm-go-word { font: 700 15px/1 system-ui, -apple-system, sans-serif; fill: #5F4684; letter-spacing: 0.2px; }',
     '.center-seam { opacity: 0; }',
@@ -821,13 +820,13 @@
     svg.appendChild(lblChurch);
     svg.appendChild(lblLost);
 
-    // 6. Course 202 Dissolve Spotlight Overlay (Belong + Neighbors with gentle connecting reveal)
+    // 6. Course 202 Dissolve Spotlight Overlay (House for Family/Church + Neighborhood of Houses)
     var overlay202 = svgEl('g', { 'class': 'v5-overlay', 'aria-hidden': 'true' });
 
-    // One gentle dual reach reveal flowing from the horizontal arms down to both people scenes
+    // One gentle dual reach reveal flowing from the horizontal arms down to both home and neighborhood scenes
     var reachPaths202 = [
-      { d: 'M 176 123 Q 130 128 104 144', stroke: COLORS.church },
-      { d: 'M 264 123 Q 310 128 336 144', stroke: COLORS.lost }
+      { d: 'M 176 123 Q 128 127 101 142', stroke: COLORS.church },
+      { d: 'M 264 123 Q 312 127 339 144', stroke: COLORS.lost }
     ].map(function (spec) {
       var p = svgEl('path', {
         'class': 'mission-arc',
@@ -841,72 +840,102 @@
     });
 
     var reachDots202 = svgEl('g', { 'class': 'v5-stage-item' });
-    reachDots202.appendChild(svgEl('circle', { cx: '104', cy: '144', r: '2.6', fill: COLORS.church }));
-    reachDots202.appendChild(svgEl('circle', { cx: '336', cy: '144', r: '2.6', fill: COLORS.lost }));
+    reachDots202.appendChild(svgEl('circle', { cx: '101', cy: '142', r: '2.6', fill: COLORS.church }));
+    reachDots202.appendChild(svgEl('circle', { cx: '339', cy: '144', r: '2.6', fill: COLORS.lost }));
     overlay202.appendChild(reachDots202);
 
-    // Left: Home & Table (Followers beside you) centered around x=102
-    overlay202.appendChild(svgEl('path', {
-      d: 'M 66 165 L 86 148 L 106 165 L 106 189 L 66 189 Z',
-      fill: COLORS.churchWash, stroke: COLORS.church, 'stroke-width': '1.8', 'stroke-linejoin': 'round'
+    function addHouseMark(parent, cx, baseY, w, bodyH, roofH, opts) {
+      var half = w / 2;
+      var eaves = opts.eaves || 3;
+      var eaveY = baseY - bodyH;
+      var peakY = eaveY - roofH;
+      var sw = opts.strokeWidth || '1.75';
+      if (opts.chimney) {
+        parent.appendChild(svgEl('rect', {
+          x: String((cx + half * 0.34).toFixed(1)),
+          y: String((peakY + roofH * 0.2).toFixed(1)),
+          width: '5.5',
+          height: String((roofH * 0.65).toFixed(1)),
+          rx: '1',
+          fill: opts.fill,
+          stroke: opts.stroke,
+          'stroke-width': '1.5'
+        }));
+      }
+      parent.appendChild(svgEl('path', {
+        d: 'M ' + (cx - half).toFixed(1) + ' ' + baseY +
+          ' L ' + (cx - half).toFixed(1) + ' ' + eaveY +
+          ' L ' + cx + ' ' + peakY +
+          ' L ' + (cx + half).toFixed(1) + ' ' + eaveY +
+          ' L ' + (cx + half).toFixed(1) + ' ' + baseY + ' Z',
+        fill: opts.fill,
+        stroke: opts.stroke,
+        'stroke-width': sw,
+        'stroke-linejoin': 'round'
+      }));
+      parent.appendChild(svgEl('path', {
+        d: 'M ' + (cx - half - eaves).toFixed(1) + ' ' + (eaveY + roofH * 0.16).toFixed(1) +
+          ' L ' + cx + ' ' + peakY +
+          ' L ' + (cx + half + eaves).toFixed(1) + ' ' + (eaveY + roofH * 0.16).toFixed(1),
+        fill: 'none',
+        stroke: opts.stroke,
+        'stroke-width': sw,
+        'stroke-linecap': 'round',
+        'stroke-linejoin': 'round'
+      }));
+      var doorW = opts.doorW || Math.max(6, Math.round(w * 0.28));
+      var doorH = opts.doorH || Math.max(10, Math.round(bodyH * 0.62));
+      parent.appendChild(svgEl('rect', {
+        x: String((cx - doorW / 2).toFixed(1)),
+        y: String(baseY - doorH),
+        width: String(doorW),
+        height: String(doorH),
+        rx: '1.3',
+        fill: opts.doorFill || '#FFFFFF',
+        stroke: opts.stroke,
+        'stroke-width': '1.5'
+      }));
+    }
+
+    // Left: Single welcoming house for family & the family of God
+    overlay202.appendChild(svgEl('line', {
+      x1: '72', y1: '190', x2: '130', y2: '190',
+      stroke: COLORS.church, 'stroke-width': '1.5', opacity: '0.45', 'stroke-linecap': 'round'
     }));
-    overlay202.appendChild(svgEl('rect', {
-      x: '81', y: '173', width: '10', height: '16', rx: '1.5',
-      fill: '#FFFFFF', stroke: COLORS.church, 'stroke-width': '1.5'
-    }));
-    overlay202.appendChild(svgEl('circle', { cx: '120', cy: '165', r: '4', fill: '#FFFFFF', stroke: COLORS.church, 'stroke-width': '1.6' }));
-    overlay202.appendChild(svgEl('circle', { cx: '133', cy: '165', r: '4', fill: '#FFFFFF', stroke: COLORS.church, 'stroke-width': '1.6' }));
-    overlay202.appendChild(svgEl('path', {
-      d: 'M 112 175 Q 126 171 141 175 L 139 183 L 114 183 Z',
-      fill: COLORS.churchWash, stroke: COLORS.church, 'stroke-width': '1.6', 'stroke-linejoin': 'round'
-    }));
-    overlay202.appendChild(svgEl('line', { x1: '116', y1: '183', x2: '116', y2: '190', stroke: COLORS.church, 'stroke-width': '1.6', 'stroke-linecap': 'round' }));
-    overlay202.appendChild(svgEl('line', { x1: '137', y1: '183', x2: '137', y2: '190', stroke: COLORS.church, 'stroke-width': '1.6', 'stroke-linecap': 'round' }));
+    addHouseMark(overlay202, 101, 190, 38, 23, 17, {
+      stroke: COLORS.church, fill: COLORS.churchWash, doorFill: '#FFFFFF',
+      doorW: 11, doorH: 15, eaves: 3.5, chimney: true, strokeWidth: '1.85'
+    });
     overlay202.appendChild(svgEl('text', {
-      'class': 'overlay-head', x: '101', y: '207', 'text-anchor': 'middle', fill: COLORS.church
+      'class': 'overlay-head', x: '101', y: '208', 'text-anchor': 'middle', fill: COLORS.church
     }, 'Belong'));
     overlay202.appendChild(svgEl('text', {
-      'class': 'overlay-sub', x: '101', y: '221', 'text-anchor': 'middle'
-    }, 'Followers beside you'));
+      'class': 'overlay-sub', x: '101', y: '223', 'text-anchor': 'middle'
+    }, "Family & God's family"));
 
-    // Right: Crossing the Road (Not-yet followers) centered around x=338
-    overlay202.appendChild(svgEl('path', {
-      d: 'M 300 183 Q 324 163 376 163 Q 356 186 324 191 Z',
-      fill: COLORS.lostWash, stroke: COLORS.lost, 'stroke-width': '1.5', 'stroke-linejoin': 'round'
+    // Right: Neighborhood of multiple houses (BLESS your neighborhood)
+    overlay202.appendChild(svgEl('line', {
+      x1: '291', y1: '190', x2: '387', y2: '190',
+      stroke: COLORS.lost, 'stroke-width': '1.5', opacity: '0.45', 'stroke-linecap': 'round'
     }));
-    overlay202.appendChild(svgEl('circle', { cx: '312', cy: '159', r: '4.5', fill: '#FFFFFF', stroke: COLORS.lost, 'stroke-width': '1.7' }));
-    overlay202.appendChild(svgEl('path', {
-      d: 'M 305 174 Q 312 166 319 174',
-      fill: 'none', stroke: COLORS.lost, 'stroke-width': '1.7', 'stroke-linecap': 'round'
-    }));
-    overlay202.appendChild(svgEl('path', {
-      d: 'M 324 168 L 349 168',
-      fill: 'none', stroke: COLORS.lost, 'stroke-width': '1.8', 'stroke-dasharray': '3 3', 'stroke-linecap': 'round'
-    }));
-    overlay202.appendChild(svgEl('path', {
-      d: 'M 345 164 L 351 168 L 345 172',
-      fill: 'none', stroke: COLORS.lost, 'stroke-width': '1.8', 'stroke-linecap': 'round', 'stroke-linejoin': 'round'
-    }));
-    overlay202.appendChild(svgEl('circle', { cx: '364', cy: '158', r: '4.5', fill: COLORS.lostWash, stroke: COLORS.lost, 'stroke-width': '1.7' }));
-    overlay202.appendChild(svgEl('path', {
-      d: 'M 357 174 Q 364 166 371 174',
-      fill: 'none', stroke: COLORS.lost, 'stroke-width': '1.7', 'stroke-linecap': 'round'
-    }));
+    addHouseMark(overlay202, 310, 190, 22, 19, 12, {
+      stroke: COLORS.lost, fill: COLORS.lostWash, doorFill: '#FFFFFF',
+      doorW: 6, doorH: 10, eaves: 2.5, strokeWidth: '1.65'
+    });
+    addHouseMark(overlay202, 368, 190, 22, 18, 12, {
+      stroke: COLORS.lost, fill: COLORS.lostWash, doorFill: '#FFFFFF',
+      doorW: 6, doorH: 10, eaves: 2.5, strokeWidth: '1.65'
+    });
+    addHouseMark(overlay202, 339, 190, 27, 23, 14, {
+      stroke: COLORS.lost, fill: '#FFFFFF', doorFill: COLORS.lostWash,
+      doorW: 8, doorH: 13, eaves: 3, chimney: true, strokeWidth: '1.8'
+    });
     overlay202.appendChild(svgEl('text', {
-      'class': 'overlay-head', x: '339', y: '207', 'text-anchor': 'middle', fill: COLORS.lost
-    }, 'Neighbors'));
+      'class': 'overlay-head', x: '339', y: '208', 'text-anchor': 'middle', fill: COLORS.lost
+    }, 'BLESS'));
     overlay202.appendChild(svgEl('text', {
-      'class': 'overlay-sub', x: '339', y: '221', 'text-anchor': 'middle'
-    }, 'Not-yet followers'));
-
-    // Calm unifying scope line beneath both scenes
-    overlay202.appendChild(svgEl('rect', {
-      x: '112', y: '241', width: '216', height: '22', rx: '11',
-      fill: '#FFFFFF', 'fill-opacity': '0.96', stroke: '#D8D1C5', 'stroke-width': '1'
-    }));
-    overlay202.appendChild(svgEl('text', {
-      'class': 'overlay-pill-text', x: '220', y: '255.5', 'text-anchor': 'middle'
-    }, 'Home \u00B7 Church Family \u00B7 Neighbors'));
+      'class': 'overlay-sub', x: '339', y: '223', 'text-anchor': 'middle'
+    }, 'your neighborhood'));
     svg.appendChild(overlay202);
 
     // 7. Course 203 Dissolve Spotlight Overlay (Go arm -> one person -> another -> small group + places)

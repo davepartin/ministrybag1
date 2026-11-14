@@ -18,13 +18,13 @@
     - Heading: `Love in Everyday Life`
     - Scripture: `"So then, as we have opportunity, let us do good to everyone, and especially to those who are of the household of faith."` (`Galatians 6:10`)
     - Paragraph: `Growing Up helps you put God's love into practice at home, in your church family, and among your neighbors, through generosity, faithful relationships, and care in hard seasons.`
-    - Stage subtitle: `Home · Church Family · Neighbors`
+    - Stage visuals: single house (`Belong` / `Family & God's family`) on the left and a three-house neighborhood (`BLESS` / `your neighborhood`) on the right, with no bottom pill bubble.
   - **203 Growing Out (`focus203`, Step 4, keeping `"The Cross Holds It All"` as penultimate Step 3):**
     - Heading: `Make Disciples Where You Are`
     - Scripture: `"Go therefore and make disciples of all nations"` (`Matthew 28:19`)
     - Paragraph: `Learn to pray, listen, serve, and share Jesus with the people around you. Help someone follow Him and learn to help another.`
     - Stage labels (unnumbered, secondary): `Home`, `Work & School`, `Neighborhood`, `Nations`
-- **Checks (all exit `0` after final edit):** `qa_foundation.sh` (32 widget iframe checks), `test_lesson_export.js` (167 checks), `test_answer_storage.js` (64 checks), `check_lesson_assets.js` (126 asset references), and Playwright V5 suite across `201`/`202`/`203` (`390x844` phone, `1280x800` desktop, keyboard `Enter`/`Space`, `Back`/`Next`/`Start Over`, `prefers-reduced-motion: reduce`, zero `localStorage`, zero overflow, `201` unchanged at `cardH=129`/`widgetH=523`). Details in [log](logs/2026-11-13-WIDGET-GREAT-CMD-CROSS-gemini.md).
+- **Checks (all exit `0` after final edit):** `qa_foundation.sh` (32 widget iframe checks), `test_lesson_export.js` (177 checks), `test_answer_storage.js` (64 checks), `check_lesson_assets.js` (126 asset references), and Playwright V5 suite across `201`/`202`/`203` (`390x844` phone, `1280x800` desktop, keyboard `Enter`/`Space`, `Back`/`Next`/`Start Over`, `prefers-reduced-motion: reduce`, zero `localStorage`, zero overflow, `201` unchanged at `cardH=129`/`widgetH=523`). Details in [log](logs/2026-11-13-WIDGET-GREAT-CMD-CROSS-gemini.md).
 
 
 ## 201-10: Dave's nine edits, November13
