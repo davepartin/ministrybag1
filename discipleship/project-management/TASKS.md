@@ -279,3 +279,5 @@ Plan and standard: [reviews/2026-11-11-series-review.md](reviews/2026-11-11-seri
 | [x] | DAVE-101-01-RETIRE-15 | DONE | Codex / codex/101-01-retire-15 / 2026-11-14 | Remove1.5 with old answer reserved; logo and widget Gold; other wording/readings/art unchanged | Bounded task, preservation checks, QA and review/deploy evidence. |
 
 | [x] | GOLD-101-02 | DONE | Codex / codex/101-02-gold / 2026-11-14 | Dave explicitly approved entire lesson, A-B-C-D widget and greenhouse image sequence Gold; record and protect exact versions without runtime edits | Bounded task, preservation checks, QA and review/deploy evidence. |
+
+| [ ] | WIDGET-101-04-RDR | ACTIVE | Codex / gemini/widget-101-04-discovery / 2026-11-14 | Dave approved widget at 21bb29b only; review and merge PR #229 | Preserve approved HTML and placement, all prose/questions/readings; QA, preview and live verification; text remains Silver. |
