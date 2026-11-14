@@ -65,14 +65,24 @@ async function runViewportCheck(browser, baseUrl, viewport, options = {}) {
   const overflow = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth);
   assert.strictEqual(overflow, false, `Horizontal overflow at ${viewport.width}x${viewport.height}`);
 
-  // Touch targets & retired tiles hidden cleanly
+  // Touch targets, 3-column grid, phone single-screen fit & retired tiles hidden cleanly
   const layoutInfo = await page.evaluate(() => {
-    const tiles = Array.from(document.querySelectorAll("#checklist-101-service-interests .checklist-tile"));
+    const box = document.getElementById("checklist-101-service-interests");
+    const boxRect = box.getBoundingClientRect();
+    const tiles = Array.from(box.querySelectorAll(".checklist-tile"));
     const visible = tiles.filter((t) => !t.hasAttribute("hidden"));
     const hidden = tiles.filter((t) => t.hasAttribute("hidden"));
     const heights = visible.map((t) => Math.round(t.getBoundingClientRect().height));
     const hiddenDisplay = hidden.map((t) => getComputedStyle(t).display);
     const visibleTexts = visible.map((t) => t.textContent.trim());
+    const clippedTiles = visible
+      .filter((t) => t.scrollWidth > t.clientWidth + 1)
+      .map((t) => t.textContent.trim());
+    const nonOtherLefts = new Set(
+      visible
+        .filter((t) => t.textContent.trim() !== "Other")
+        .map((t) => Math.round(t.getBoundingClientRect().left))
+    );
     const lastVisualTile = visible.reduce((best, t) => {
       const r = t.getBoundingClientRect();
       if (!best) return { text: t.textContent.trim(), top: r.top, left: r.left };
@@ -81,11 +91,29 @@ async function runViewportCheck(browser, baseUrl, viewport, options = {}) {
       }
       return best;
     }, null);
-    return { total: tiles.length, visible: visible.length, hidden: hidden.length, minH: Math.min(...heights), hiddenDisplay, visibleTexts, lastVisualText: lastVisualTile && lastVisualTile.text };
+    return {
+      blockHeight: Math.round(boxRect.height),
+      colCount: nonOtherLefts.size,
+      total: tiles.length,
+      visible: visible.length,
+      hidden: hidden.length,
+      minH: Math.min(...heights),
+      hiddenDisplay,
+      visibleTexts,
+      clippedTiles,
+      lastVisualText: lastVisualTile && lastVisualTile.text
+    };
   });
+  console.log(`Viewport ${viewport.width}x${viewport.height}: blockHeight=${layoutInfo.blockHeight}px, cols=${layoutInfo.colCount}, minTileH=${layoutInfo.minH}px`);
   assert.strictEqual(layoutInfo.hidden, 4, "Expected 4 retired items hidden");
   assert(layoutInfo.hiddenDisplay.every((d) => d === "none"), "Retired tiles should have display:none");
-  assert(layoutInfo.minH >= 34 && layoutInfo.minH <= 40, `Expected ~20% shorter tile min-height (34-40px), got ${layoutInfo.minH}px`);
+  assert.strictEqual(layoutInfo.colCount, 3, `Expected 3 columns, got ${layoutInfo.colCount}`);
+  assert.strictEqual(layoutInfo.clippedTiles.length, 0, `Tile text overflowed width: ${layoutInfo.clippedTiles.join(", ")}`);
+  assert(layoutInfo.minH >= 30 && layoutInfo.minH <= 40, `Expected compact tile min-height (30-40px), got ${layoutInfo.minH}px`);
+  assert(
+    layoutInfo.blockHeight <= viewport.height - 80,
+    `Expected checklist block (${layoutInfo.blockHeight}px) to fit in viewport (${viewport.height}px) without scrolling`
+  );
   assert(layoutInfo.visibleTexts.every((t) => !t.includes("/")), `No visible button should contain '/': ${layoutInfo.visibleTexts.filter((t) => t.includes("/"))}`);
   for (const expectedLabel of ["Welcome Team", "Small Group", "Men's Ministry", "Women's Ministry", "Mentoring"]) {
     assert(layoutInfo.visibleTexts.includes(expectedLabel), `Missing expected button label: ${expectedLabel}`);
@@ -171,6 +199,7 @@ async function main() {
   try {
     await runViewportCheck(browser, url, { width: 390, height: 844 }, { captureDir: SHOT_DIR });
     await runViewportCheck(browser, url, { width: 375, height: 812 });
+    await runViewportCheck(browser, url, { width: 375, height: 667 });
     await runViewportCheck(browser, url, { width: 1280, height: 800 });
     await runViewportCheck(browser, url, { width: 390, height: 844 }, { reducedMotion: "reduce" });
     console.log(`ALL POTLUCK BUTTON CHECKS PASSED. Screenshots saved to ${SHOT_DIR}`);
