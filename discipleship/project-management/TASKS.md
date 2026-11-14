@@ -250,3 +250,5 @@ Plan and standard: [reviews/2026-11-11-series-review.md](reviews/2026-11-11-seri
 | [ ] | INTEGRATE-201-10 | REVIEW | Codex / codex/integrate-flow201 / 2026-11-13 | Dave requested newest draft for editing | Integrate PR201 with approved callback preserved; make live draft current and identify outstanding dependencies. |
 
 | [ ] | DAVE-201-10-ROUND2 | REVIEW | Codex / codex/201-10-dave-edits / 2026-11-13 | Dave supplied nine edits | Exact prose edits, Repent/Believe headings, question retirement with saved-answer export, shorter Father section. Tenth item missing. |
+
+| [ ] | INTEGRATE-STUDIO-V5 | ACTIVE | Codex / codex/integrate-studio-v5 / 2026-11-13 | Dave approved PR211 bd7000c and requested wiring/merge | Review approved v5 engine; wire course openers with all original prose/questions preserved; test combined pages and deploy. |
