@@ -6,6 +6,10 @@ Dave approved the 101-01 course logo and Peaks and Valleys V2 widget Gold. Only 
 
 Keep this small. Agents can draft from the approved direction while these decisions develop. A blocker in one row does not stop independent work.
 
+## Whole-lesson Gold: 101-02, November 14, 2026
+
+Dave explicitly approved 101-02 as a whole lesson Gold, its A-B-C-D widget Gold and its greenhouse image sequence Gold. Reviewed source is current main ae1c78e663613722dc87c895b229f1ed9383dcdf. Exact lesson/widget/four-frame hashes are in reviews/101-editorial-baseline.json. Approval protects wording, questions, readings and artwork; no content was edited to record it. This supersedes his earlier in-progress status for 101-02 only. Technical or editorial work must preserve these components unless Dave directs a specific change. Pilot and release gates remain separate.
+
 ## Widget and one-sentence approval: Peaks and Valleys V2, November 14, 2026
 
 Dave explicitly approved PR #223 at `ea26435ddc7ea741817d4260ab07e81b760cdade`, the new paper/six-dot `widgets/peaks-and-valleys.html`, and the single exercise sentence "Include 3 to 5 peaks and 3 to 5 valleys." No other 101-01 text, questions, readings or artwork are changed. His 101-01/02 paragraph-by-paragraph reviews remain in progress, as he confirmed; existing edits stay protected and the lessons remain Silver.
