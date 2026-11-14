@@ -124,12 +124,6 @@
       "text": "Jesus answered with the story, then turned the question around. The law teacher asked, \"Who is my neighbor?\" meaning, \"Which people qualify for my love?\" Jesus asked back, \"Which of these three proved to be a neighbor?\" In one sentence Jesus changed the question from <em>What kind of person is my neighbor?</em> to <em>What kind of person am I becoming?</em>"
     },
     {
-      "type": "widget",
-      "src": "widgets/cross-the-road.html",
-      "title": "Cross the Road",
-      "height": "600px"
-    },
-    {
       "type": "text",
       "text": "Love does not start by sorting people into those who qualify and those who do not. It sees, it feels, and it crosses the road."
     },
@@ -162,14 +156,8 @@
     },
     {
       "type": "question",
-      "id": "202-01-4",
-      "text": "1.4 - Write one or two names of people you have treated more like an interruption than an assignment.",
-      "height": "tall"
-    },
-    {
-      "type": "question",
       "id": "202-01-hand",
-      "text": "1.5 - How would you explain to a friend what it means to cross the road for someone?",
+      "text": "1.4 - How would you explain to a friend what it means to cross the road for someone?",
       "height": "tall"
     },
     {
@@ -178,7 +166,7 @@
     },
     {
       "type": "text",
-      "text": "Pick one person who came to mind and do one costly thing for them this week. Costly does not have to mean expensive; it means it costs you something in attention, time, or comfort. Start by noticing: learn their name, ask a real question, and stay long enough to hear the real answer. Then help in one concrete way, like a meal, a ride, or something they did not ask for. Notice what God does in you when you move toward someone instead of past them."
+      "text": "Think of one person you have treated more like an interruption than an assignment, and do one costly thing for them this week. Costly does not have to mean expensive; it means it costs you something in attention, time, or comfort. Start by noticing: learn their name, ask a real question, and stay long enough to hear the real answer. Then help in one concrete way, like a meal, a ride, or something they did not ask for. Notice what God does in you when you move toward someone instead of past them."
     },
     {
       "type": "text",
@@ -217,6 +205,14 @@
       "id": "202-01-prayer",
       "text": "What is a prayer request for this week?",
       "height": "short"
+    }
+  ],
+  "retiredQuestions": [
+    {
+      "type": "question",
+      "id": "202-01-4",
+      "text": "1.4 - Write one or two names of people you have treated more like an interruption than an assignment.",
+      "height": "tall"
     }
   ]
 }
