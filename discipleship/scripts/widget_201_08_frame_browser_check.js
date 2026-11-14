@@ -22,6 +22,7 @@ function startStaticServer(rootDir) {
   return new Promise((resolve) => {
     const server = http.createServer((req, res) => {
       const reqPath = decodeURIComponent((req.url || "/").split("?")[0]);
+      if (reqPath === "/favicon.ico") { res.writeHead(204); res.end(); return; }
       const safePath = path.normalize(reqPath).replace(/^(\.\.[/\\])+/, "");
       const fullPath = path.join(rootDir, safePath === "/" ? "index.html" : safePath.replace(/^\/+/, ""));
       if (!fullPath.startsWith(rootDir) || !fs.existsSync(fullPath)) {
@@ -45,6 +46,7 @@ async function verifyLessonEmbed(browser, baseUrl, viewport, options = {}) {
     viewport,
     reducedMotion: options.reducedMotion || "no-preference"
   });
+  await ctx.route("**/scripts/account.js", r => r.fulfill({ body: "", contentType: "text/javascript" }));
   const page = await ctx.newPage();
   const errors = [];
   page.on("pageerror", (e) => errors.push(`pageerror: ${e.message}`));
@@ -113,7 +115,8 @@ async function verifyLessonEmbed(browser, baseUrl, viewport, options = {}) {
 }
 
 async function main() {
-  const { server, url } = await startStaticServer(ROOT);
+  const fixture = process.env.GRACE_BASE_URL ? null : await startStaticServer(ROOT);
+  const url = process.env.GRACE_BASE_URL || fixture.url;
   const browser = await chromium.launch({ headless: true });
   try {
     await verifyLessonEmbed(browser, url, { width: 390, height: 844 });
@@ -123,7 +126,7 @@ async function main() {
     console.log("ALL 201-08 FRAME EMBEDDED CHECKS PASSED.");
   } finally {
     await browser.close();
-    server.close();
+    if (fixture) fixture.server.close();
   }
 }
 

@@ -68,16 +68,19 @@ async function backControl(frame) {
 }
 
 async function controlReachable(page, sessionId, frame, label) {
-    var iframeBox = await page.locator(sessionId + '.active iframe.gt-widget-frame').first().boundingBox();
     var btn = await primaryControl(frame);
     await btn.waitFor({ state: 'visible', timeout: 10000 });
-    var box = await btn.boundingBox();
-    var ok = !!(iframeBox && box && box.width > 8 && box.height > 8 &&
-        box.y + 4 >= iframeBox.y &&
-        box.y + box.height - 4 <= iframeBox.y + iframeBox.height &&
-        box.x + 4 >= iframeBox.x &&
-        box.x + box.width - 4 <= iframeBox.x + iframeBox.width);
-    assert(label + ' primary control is inside the iframe', ok, JSON.stringify({ iframeBox: iframeBox, box: box }));
+    // Compare the control and its viewport in one context. Separate parent/child
+    // boundingBox calls can straddle the widget's automatic focus scroll.
+    var geometry = await btn.evaluate(function (el) {
+        var r = el.getBoundingClientRect();
+        return { x: r.x, y: r.y, width: r.width, height: r.height,
+            viewportWidth: window.innerWidth, viewportHeight: window.innerHeight };
+    });
+    var ok = geometry.width > 8 && geometry.height > 8 &&
+        geometry.y + 4 >= 0 && geometry.y + geometry.height - 4 <= geometry.viewportHeight &&
+        geometry.x + 4 >= 0 && geometry.x + geometry.width - 4 <= geometry.viewportWidth;
+    assert(label + ' primary control is inside the iframe', ok, JSON.stringify(geometry));
     return btn;
 }
 

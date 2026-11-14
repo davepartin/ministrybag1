@@ -852,7 +852,9 @@ function gtFitCards(items) {
     var area = document.getElementById('card-area');
     if (!area || !area.clientWidth) return;
     var m = document.createElement('div'), max = 0;
-    m.id = 'measure'; m.style.width = area.clientWidth + 'px';
+    var areaStyle = getComputedStyle(area);
+    var contentWidth = area.clientWidth - parseFloat(areaStyle.paddingLeft) - parseFloat(areaStyle.paddingRight);
+    m.id = 'measure'; m.style.width = contentWidth + 'px';
     document.documentElement.style.setProperty('--card-h', '0px');
     items.forEach(function (it) {
         m.insertAdjacentHTML('beforeend', '<div class="verse-card-wrapper"><div class="verse-card"><div class="verse-card-content">' +
