@@ -251,3 +251,5 @@ Plan and standard: [reviews/2026-11-11-series-review.md](reviews/2026-11-11-seri
 | [ ] | INTEGRATE-201-10 | REVIEW | Codex / codex/integrate-flow201 / 2026-11-13 | Dave requested newest draft for editing | Integrate PR201 with approved callback preserved; make live draft current and identify outstanding dependencies. |
 
 | [ ] | DAVE-201-10-ROUND2 | REVIEW | Codex / codex/201-10-dave-edits / 2026-11-13 | Dave supplied nine edits | Exact prose edits, Repent/Believe headings, question retirement with saved-answer export, shorter Father section. Tenth item missing. |
+
+| [ ] | INTEGRATE-202-05-MOSAIC | ACTIVE | Codex / codex/integrate-mosaic215 / 2026-11-13 | Dave approved e82ed36 and requested merge/wiring | Replace and relocate the embed after the cross paragraph, preserve all lesson copy/questions and valley-road.html, test/deploy PR215. |
