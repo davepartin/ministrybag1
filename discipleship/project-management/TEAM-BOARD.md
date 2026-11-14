@@ -1,5 +1,12 @@
 # Growing Together Team Board
 
+## Automatic closed-PR preview cleanup authorized: November 14, 2026
+
+Dave explicitly authorized automatic preview cleanup and merging PR #224. This supersedes the earlier Firebase hold only for the new close-event workflow: delete the closing same-repository PR's preview channels, never live or another PR's channels. The existing preview/deploy workflows, billing and retention settings remain unchanged. No manual sweep is authorized or performed. [Review and synthetic tests](logs/2026-11-14-FIREBASE-PR-CLEANUP-codex.md).
+
+The workflow pins Firebase CLI 15.36.0 on Node22, validates the complete channel list before deletion, rejects unexpected responses, uses a private temporary credential, and removes it on success/failure. Closed-PR preview links disappear; after a merge, use the verified live lesson link. Automatic cleanup execution and deployment evidence are recorded on PR #224 and subsequent merged PRs.
+
+
 ## Approved widget header rollout: PR #220
 
 Dave approved `315fc75`: all ten active 202 widgets use the dark `#2C2416` header with title on the left and lesson number on the right. The shared v5 engine now displays `201-01`, `202-01` and `203-01` instead of Course labels. Approved titles include Building From the Cornerstone and Reflecting God's Worth. [Technical review and verification](logs/2026-11-13-WIDGET-202-HEADERS-codex.md).
