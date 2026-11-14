@@ -103,7 +103,7 @@ Dave assigned Claude three bounded editorial jobs on the night of November 12, f
 
 | Task | Lesson | PR | Status |
 |---|---|---|---|
-| TRIM-201-05 | 201-05 Overview of the Bible | [#200](https://github.com/davepartin/ministrybag1/pull/200) | REVIEW. Rewritten around Psalm 119 (The Longest Song) at Dave's direction, replacing Josiah; 1,508 to 1,366 words; teach-it 5.4 added. [Log](logs/2026-11-13-TRIM-201-05-claude.md) |
+| TRIM-201-05 | 201-05 Overview of the Bible | [#200](https://github.com/davepartin/ministrybag1/pull/200) | MERGED, Dave approved 2026-11-14. Rewritten around Psalm 119 (The Longest Song) at Dave's direction, replacing Josiah; 1,508 to 1,366 words; teach-it 5.4 added. [Log](logs/2026-11-13-TRIM-201-05-claude.md) |
 | FLOW-201-10 | 201-10 Repentance and the Learning Circle | [#201](https://github.com/davepartin/ministrybag1/pull/201) | REVIEW. Story moved up after the recap; 1,534 to 1,503 words, depth kept, teach-it 10.4 added. Log in that PR: logs/2026-11-13-FLOW-201-10-claude.md |
 | TRIM-202-01 | 202-01 Loving Your Neighbors | [#202](https://github.com/davepartin/ministrybag1/pull/202) | REVIEW. 1,442 to 1,422 words, teach-it 1.5 added (now five mid-lesson questions); Grok sequence byte-identical, 92 sequence checks pass. Log in that PR: logs/2026-11-13-TRIM-202-01-claude.md |
 
