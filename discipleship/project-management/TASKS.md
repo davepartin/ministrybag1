@@ -267,3 +267,7 @@ Plan and standard: [reviews/2026-11-11-series-review.md](reviews/2026-11-11-seri
 | [x] | INTEGRATE-201-05-BOOKSHELF | DONE | Codex / codex/integrate-bookshelf219 / 2026-11-13 | Dave praised approved Studio Wash Bookshelf and requested publication | Wire bible-bookshelf2 into 201-05 only, preserve copy/questions and original widget, verify preview and automatic deployment. |
 
 | [x] | TRIM-202-05-INTEGRATE | DONE | Codex / codex/review-trim221 / 2026-11-14 | Dave authorized merging PR221, including the prose trim and retiring question5.5 while preserving saved answers | Technical integration, exact preservation checks, preview and automatic deployment verification. |
+
+| [x] | FIREBASE-PR-CLEANUP | DONE | Codex / codex/review-cleanup224 / 2026-11-14 | Dave explicitly authorized automatic closed-PR cleanup and merge224 | Pin CLI, validate channel payload/matching, test with synthetic CLI, enable close-only cleanup. No manual sweep, billing or other Firebase changes. |
+
+| [x] | FIREBASE-PR-CLEANUP-RESOURCE | DONE | Codex / codex/cleanup-canonical-resources / 2026-11-14 | First automatic cleanup safely rejected Firebase canonical resource names | Accept canonical project-qualified channel resources while requiring exact site and PR; regression tests; verify automatic cleanup. |
