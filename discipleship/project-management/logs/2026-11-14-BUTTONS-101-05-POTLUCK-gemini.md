@@ -2,11 +2,12 @@
 
 - Task ID: `BUTTONS-101-05-POTLUCK`
 - Branch: `gemini/101-05-potluck-buttons`
-- Base commit: `origin/main` (`d0c5634`)
-- Scope: Upgrade the interactive checklist buttons (`checklist-101-service-interests`) directly in `discipleship/index.html` and clean up `service-interests` item labels in `discipleship/data/101-05.json` per Dave's direction (no slashes, split Men's/Women's Ministry while preserving saved indices and keeping `Other` last).
+- Base commit: `origin/main` (`04c5c4f`)
+- Scope: Upgrade the interactive checklist buttons (`checklist-101-service-interests`) directly in `discipleship/index.html` and clean up `service-interests` prompt and item labels in `discipleship/data/101-05.json` per Dave's direction (no slashes, split Men's/Women's Ministry while preserving saved indices and keeping `Other` last).
 
 ## Summary of Changes
 - `discipleship/data/101-05.json`:
+  - Updated `service-interests` prompt to `"Check the areas where you could see yourself getting involved in church?"`.
   - Removed all `/` slashes from visible items: `Welcome Team` (0), `Sound & Tech` (3), `Small Group` (4), `Setup & Teardown` (5), `Mentoring` (17).
   - Retired index `11` (`"Men's / Women's Ministry"`) in `retiredItemIndexes` (`[11, 14, 18, 19]`) and appended `"Men's Ministry"` (27) and `"Women's Ministry"` (28), leaving all prose, questions, and Aspen art untouched.
 - `discipleship/index.html`:
