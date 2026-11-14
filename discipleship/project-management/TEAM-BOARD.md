@@ -2,7 +2,11 @@
 
 ## 202-08 Closer to God Triangle Studio Wash frame update: November 14, 2026
 
-- **Task / Branch:** `WIDGET-202-08-FRAME` on `gemini/widget-202-08-frame` (`REVIEW`: ready for Dave preview and Codex integration).
+Dave approved only the 202-08 covenant-triangle.html frame at 2c2eb09804ccab6bf7478b24c2e93bda8ea0ce17 in PR #239. The approved HTML bytes are unchanged. All lesson JSON, index.html, question objects/IDs, reading keys, saved answers, diagram artwork and unrelated runtime files remain unchanged. The four original step titles, teaching text and Scripture strings compare exactly to main. This component approval does not award whole-lesson or image approval.
+
+[Codex integration log](logs/2026-11-14-WIDGET-202-08-FRAME-codex.md).
+
+- **Task / Branch:** `WIDGET-202-08-FRAME` on `gemini/widget-202-08-frame` (Dave approved `2c2eb09`; Codex owns technical integration, preview, merge and live verification).
 - **Changed files:**
   - `discipleship/widgets/covenant-triangle.html` (updated outer chrome, wordless interactive `.step-strip`, unified height-locked `.verse-card` + `.nav-bar` frame across Intro/Steps/Overview, `system-ui` chrome font, `#E0A526` focus outline, dynamic `<desc>`, and reduced-motion transitions matching the Studio Wash pattern, while preserving the base look of `202-08` diagram artwork, palette, step copy, and Scripture verses)
   - `discipleship/project-management/TEAM-BOARD.md`
