@@ -37,9 +37,9 @@
     {
       "lesson": "101-02",
       "title": "Lesson 2: Salvation and Baptism",
-      "stage": "Silver",
+      "stage": "Gold",
       "dave_edits_protected": true,
-      "full_personal_review": "in progress; Dave confirmed, edits protected",
+      "full_personal_review": "complete; Dave explicitly approved whole lesson Gold on2026-11-14",
       "lesson_sha256": "2ed1308a10116576ef69b782f16ea7393e35d946a2add70117502999fcede812",
       "non_visual_content_sha256": "b6d54cfe4f0cb8e2138270713834ecfa476923370f4a4872b88fdb9f02d60f07",
       "visual_blocks": [
@@ -73,6 +73,21 @@
         "images/greenhouse-seq-3.jpg": "ea807389a92da7914584e09efc76ae20170d8a382c1eff4d797920c6e3416a46",
         "images/greenhouse-seq-4.jpg": "1c308e3282bf7db6e20a110cbe46ab2834b3924bc31c40a98703e5f858d0d6ac",
         "widgets/romans-road3.html": "7cf01ad10a85c637d8b6840d89b80f672d0b01cd99aa4456e8bf84982a1e6413"
+      },
+      "gold_approval": {
+        "date": "2026-11-14",
+        "source_main": "ae1c78e663613722dc87c895b229f1ed9383dcdf",
+        "text": "Gold",
+        "widget": "Gold",
+        "image": "Gold",
+        "lesson_sha256": "2ed1308a10116576ef69b782f16ea7393e35d946a2add70117502999fcede812",
+        "component_files_sha256": {
+          "images/greenhouse-seq-1.jpg": "59668c8ab306f55a88aa135323f053692e711df432ca8f386486378f0fd63f80",
+          "images/greenhouse-seq-2.jpg": "8f89724654422e6716d1dfe711206ea1a971e589a04c3552abca7b4d726a8aaf",
+          "images/greenhouse-seq-3.jpg": "ea807389a92da7914584e09efc76ae20170d8a382c1eff4d797920c6e3416a46",
+          "images/greenhouse-seq-4.jpg": "1c308e3282bf7db6e20a110cbe46ab2834b3924bc31c40a98703e5f858d0d6ac",
+          "widgets/romans-road3.html": "7cf01ad10a85c637d8b6840d89b80f672d0b01cd99aa4456e8bf84982a1e6413"
+        }
       }
     },
     {

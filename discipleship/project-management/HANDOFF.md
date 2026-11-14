@@ -4,6 +4,11 @@
 
 Dave confirms 101-05 remains Silver. Applied only his requested serving choices and moved the unchanged 5.3 prompt after the potluck teaching (including its supporting verse), before the checklist. Teaching and Discipleship Group are separate; Cleaning Team, Community Service Team, Lawn Team, Hospitality and Other are added. First Impressions, Financial Giving and the old combined Teaching / Bible Study tile are hidden. Original numeric positions remain reserved so saved selections are not reinterpreted; Email identifies a selected old option as an earlier selection. All other copy, question objects/IDs, reading keys and images stay unchanged.
 
+## 101-02 is Gold: November 14, 2026
+
+Dave explicitly approved the whole 101-02 lesson, the A-B-C-D widget and the greenhouse sequence Gold. No runtime or lesson file changed. The [101 tracker](reviews/101-editorial-status.md) and component fingerprints record the exact ae1c78e source and file hashes. Protect its text, questions, readings, widget and artwork; no generic trim, art refresh or style-uniformity task overrides this approval. This supersedes older notices that 101-02 was still in progress. Other lesson text stages remain separate.
+
+
 ## 101-01 Peaks and Valleys V2 approved: November 14, 2026
 
 Dave explicitly approved PR #223 at `ea26435`, including the paper/six-dot widget and exactly one lesson sentence: **Include 3 to 5 peaks and 3 to 5 valleys.** All other lesson copy, nine question objects/IDs, John readings and artwork are unchanged. The approved widget bytes are preserved. [Integration evidence](logs/2026-11-14-WIDGET-101-01-PEAKS-V2-codex.md).
