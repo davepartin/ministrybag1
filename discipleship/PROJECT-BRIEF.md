@@ -160,7 +160,7 @@ An optional top-level `retiredQuestions` array preserves the original question o
 - `bible_reading` - expandable chapter cards with bundled World English Bible text, completion checkbox, notes
 - `stepper` - step-by-step interactive element
 - `tool` - special tool/framework display
-- `checklist` - tappable tile grid with `id`, `prompt`, and `items` array (selections auto-save)
+- `checklist` - tappable tile grid with `id`, `prompt`, and `items` array (selections auto-save). Saved choices use numeric item positions. Keep original positions reserved and append new items. Optional `retiredItemIndexes` hides removed choices while retaining their DOM slots and saved selections; Email labels any previously selected retired choice "(earlier selection)". Never reorder or reuse an existing position for a different choice.
 - `widget` - embedded interactive HTML tool loaded via iframe with `src` pointing to a file in `widgets/` folder (auto-resizes to content height, optional `height` property for initial min-height)
 - `parable` - teaching story rendered as a framed card (`title`, `text`). For scroll-animated story artwork (`imageSequence` or `imageBw`/`imageColor`), place a standalone `image` block with `"touchNext": true` immediately before the `parable` block (see `story-image.md`, live exemplars `data/201-01.json` and `data/201-08.json`).
 

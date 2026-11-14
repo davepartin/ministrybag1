@@ -101,10 +101,10 @@
       "lesson": "101-05",
       "title": "Lesson 5: The Church",
       "stage": "Silver",
-      "dave_edits_protected": false,
+      "dave_edits_protected": true,
       "full_personal_review": "unrecorded",
-      "lesson_sha256": "3f1b45ce353f2f1845f2374aa8f3c54af87296b37021417ce43b4a035d3bcd12",
-      "non_visual_content_sha256": "6db2a9b469505cf434e8d96ddf9d88d98bd63ac3115312e9d1fc05da2fd06807",
+      "lesson_sha256": "9535a9c901a016a0d79c5ed2b0407a1e76941b224ab841101b1c1d22398c5e05",
+      "non_visual_content_sha256": "e341a1f5f5309f7a0dac48c1a5f080effd72b0abe66072ca523aac7e4271a345",
       "visual_blocks": [
         {
           "type": "image",
@@ -117,6 +117,10 @@
       "visual_files_sha256": {
         "images/aspen-bw.png": "3e869e2a00a38da5f1658c2b7fb24059bd594b11aa76e47cd1ec49f13b6a44c3",
         "images/aspen-color.png": "6a552052eda6c9ab0463d94303ede426a234137e1e3da66ea40bb41559313550"
+      },
+      "approved_update": {
+        "date": "2026-11-14",
+        "scope": "Only requested serving choices and move question 5.3 after potluck teaching; full review remains in progress."
       }
     },
     {

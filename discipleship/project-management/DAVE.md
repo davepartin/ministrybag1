@@ -1,5 +1,9 @@
 # Dave's decision and approval queue
 
+## 101-05 requested serving and teaching flow edits, November 14, 2026
+
+Dave confirms 101-05 remains Silver. Applied only his requested serving choices and moved the unchanged 5.3 prompt after the potluck teaching (including its supporting verse), before the checklist. Teaching and Discipleship Group are separate; Cleaning Team, Community Service Team, Lawn Team, Hospitality and Other are added. First Impressions, Financial Giving and the old combined Teaching / Bible Study tile are hidden. Original numeric positions remain reserved so saved selections are not reinterpreted; Email identifies a selected old option as an earlier selection. All other copy, question objects/IDs, reading keys and images stay unchanged.
+
 Keep this small. Agents can draft from the approved direction while these decisions develop. A blocker in one row does not stop independent work.
 
 ## Widget and one-sentence approval: Peaks and Valleys V2, November 14, 2026

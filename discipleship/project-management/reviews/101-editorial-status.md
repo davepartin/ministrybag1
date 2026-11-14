@@ -18,7 +18,7 @@ Stages describe the text review, independently of widget and image approval. Gol
 | 101-02 | Salvation and Baptism | Silver: Dave-edited, protected | Yes: A-B-C-D road to cross | Approval unrecorded: greenhouse sequence |
 | 101-03 | Prayer | Silver | No iframe widget; prayer exercise awaits review | Missing |
 | 101-04 | The Bible | Silver | No iframe widget; Discovery Questions exercise awaits review | Missing: Nicodemus lamplight planned |
-| 101-05 | The Church | Silver | No iframe widget; serving checklist awaits review | Approval unrecorded: aspen pair |
+| 101-05 | The Church | Silver: Dave edits protected | No iframe widget; serving checklist awaits review | Approval unrecorded: aspen pair |
 | 101-06 | Sharing Jesus with Others | Silver: earlier Dave edits protected | No iframe widget; BLESS exercise awaits review | Approval unrecorded: woman-at-well pair / BLESS graphic |
 | 101-07 | When You Drift | Silver | No iframe widget; Stop, Turn, Tell, Receive awaits review | Missing |
 
@@ -47,3 +47,5 @@ These instructions implement Dave's direct request in chat on November 13. They 
 One specific consistency suggestion, not implemented: 101-02 still introduces "three letters, the ABCs of salvation" and says "Each stop is one verse from Romans," while the approved widget now includes D for discipleship. Propose a short bridge that preserves A-B-C as the salvation response and introduces D as following Jesus afterward. Ask Dave to approve the wording; do not silently reopen his edited lesson.
 
 November14 update: Dave approved the exact V2 widget at ea26435 and the one exercise sentence "Include 3 to 5 peaks and 3 to 5 valleys." All other 101-01 copy, questions, readings and artwork remain protected. Component fingerprints for 101-01 now reflect this approved update; all other lesson fingerprints retain their original baseline.
+
+November 14: Dave confirms 101-05 Silver. His requested serving choices and the move of 5.3 after the potluck teaching are specific approved edits, not whole-lesson or component Gold. Preserve other wording and aspen art.
