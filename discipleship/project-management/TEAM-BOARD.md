@@ -1,8 +1,10 @@
 # Growing Together Team Board
 
-## 101-04 Read, Discover, Respond widget (`REVIEW`): November 14, 2026
+## 101-04 Read, Discover, Respond widget (Dave approved; technical integration): November 14, 2026
 
-- **Task / Branch:** `WIDGET-101-04-RDR` on `gemini/widget-101-04-discovery` (rebased onto `origin/main` at `d0c5634`; `REVIEW` for Dave visual/wording check and Codex integration).
+Dave approved only the Read, Discover, Respond widget in PR #229 at 21bb29b. Its HTML bytes and placement are preserved: after "These questions give you a place to begin..." and before Try It: Nicodemus Meets Jesus. All existing 101-04 copy, Discovery Questions box, Scripture, John 10-12 readings and nine question IDs remain unchanged. Text remains Silver for Dave's later review; no image or whole-lesson Gold approval is inferred.
+
+- **Task / Branch:** `WIDGET-101-04-RDR` on `gemini/widget-101-04-discovery` (rebased onto `origin/main` at `d0c5634`; Dave approved component at `21bb29b`; Codex owns checks, merge and live verification).
 - **Changed files:**
   - `discipleship/widgets/read-discover-respond.html` (new Studio Wash Edition interactive widget: `#2C2416` header `Read, Discover, Respond` | `101-04`, geometric Open Bible -> Gold `1. About God` / Blue `2. About People` / Green `3. Respond` lanes + Crimson double hairline on completion, worked passage `John 1:11-12` with non-overlapping Studio Wash highlights, fixed `--card-h`, reduced-motion support, zero `localStorage`, zero em dashes)
   - `discipleship/data/101-04.json` (wired `widgets/read-discover-respond.html` cleanly under **Read, Discover, Respond**, right before **Try It: Nicodemus Meets Jesus**; 100% of existing prose, `The Three Discovery Questions` box, Scripture, readings, and all 9 question IDs preserved)
@@ -10,7 +12,7 @@
   - `discipleship/scripts/widget_101_04_rdr_browser_check.js` (Playwright regression test across `375`, `390`, `1280`, and `prefers-reduced-motion: reduce`)
   - `discipleship/project-management/TEAM-BOARD.md`
   - `discipleship/project-management/logs/2026-11-14-WIDGET-101-04-RDR-gemini.md`
-- **Verification (all exit `0`):** `qa_foundation.sh` (32 iframe checks), `test_lesson_export.js` (`177`), `test_answer_storage.js` (`64`), `check_lesson_assets.js` (`128`), and `widget_101_04_rdr_browser_check.js` across 4 viewport/motion jobs. See [evidence log](logs/2026-11-14-WIDGET-101-04-RDR-gemini.md).
+- **Codex verification (all exit `0`):** npm ci; foundation; export 186; answer storage 64; assets 128; image checks 1367; iframe checks 32; original widget browser 126; expanded browser 226 across 375/390/1280 and reduced motion. The expanded check covers all nine saved answers, edit/reload, Email scope, approved placement, card fit and full iframe height. Final exact-head preview and automatic live deployment evidence is on PR #229. [Integration log](logs/2026-11-14-WIDGET-101-04-RDR-codex.md).
 
 
 ## 101-05 requested serving and teaching flow edits, November 14, 2026

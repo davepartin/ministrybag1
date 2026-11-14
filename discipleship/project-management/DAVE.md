@@ -1,5 +1,9 @@
 # Dave's decision and approval queue
 
+## Approved 101-04 widget integration, November 14, 2026
+
+Dave approved only the Read, Discover, Respond widget in PR #229 at 21bb29b. Its HTML bytes and placement are preserved: after "These questions give you a place to begin..." and before Try It: Nicodemus Meets Jesus. All existing 101-04 copy, Discovery Questions box, Scripture, John 10-12 readings and nine question IDs remain unchanged. Text remains Silver for Dave's later review; no image or whole-lesson Gold approval is inferred.
+
 ## 101-05 requested serving and teaching flow edits, November 14, 2026
 
 Dave confirms 101-05 remains Silver. Applied only his requested serving choices and moved the unchanged 5.3 prompt after the potluck teaching (including its supporting verse), before the checklist. Teaching and Discipleship Group are separate; Cleaning Team, Community Service Team, Lawn Team, Hospitality and Other are added. First Impressions, Financial Giving and the old combined Teaching / Bible Study tile are hidden. Original numeric positions remain reserved so saved selections are not reinterpreted; Email identifies a selected old option as an earlier selection. All other copy, question objects/IDs, reading keys and images stay unchanged.

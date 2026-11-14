@@ -114,10 +114,26 @@
       "stage": "Silver",
       "dave_edits_protected": false,
       "full_personal_review": "unrecorded",
-      "lesson_sha256": "0ed0c3dfed0ca5706c479ac809ff6cbb81649b53bef8d2385eba016bdd45ade0",
+      "lesson_sha256": "91ca5d026dde2111ad57ea690a6669b59c71e0fadedb0968d27b96e1c111ed45",
       "non_visual_content_sha256": "50cbc1764a0be33d7e5afd9e0ce84ca8196b3ee142a0bb437cc46cc952e47a0e",
-      "visual_blocks": [],
-      "visual_files_sha256": {}
+      "visual_blocks": [
+        {
+          "type": "widget",
+          "src": "widgets/read-discover-respond.html",
+          "title": "Read, Discover, Respond",
+          "height": "550px"
+        }
+      ],
+      "visual_files_sha256": {
+        "widgets/read-discover-respond.html": "aee1600d110d3feb0c321563c729eb5ce6129924f6770d1cd838e593a9e16883"
+      },
+      "component_approval": {
+        "date": "2026-11-14",
+        "source": "21bb29b59c48ec64d870465f9cf2fa30b31f0f28",
+        "pr": 229,
+        "widget": "Approved: Read, Discover, Respond",
+        "scope": "Widget only, exact HTML bytes and placement. Whole lesson remains Silver; no story image approval."
+      }
     },
     {
       "lesson": "101-05",

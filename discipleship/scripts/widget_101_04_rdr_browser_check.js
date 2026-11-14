@@ -15,6 +15,10 @@ const ROOT = path.resolve(__dirname, '..');
 const BASE = process.env.RDR_BASE_URL || 'http://127.0.0.1:8798/index.html';
 const lesson = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', '101-04.json'), 'utf8'));
 
+const questions = lesson.blocks.filter(b => b.type === 'question');
+const seed = Object.fromEntries(questions.map((q, i) => ['question-101-' + q.id, 'SYN-rdr-answer-' + i]));
+seed['question-202-unrelated'] = 'SYN-rdr-other-course';
+
 const JOBS = [
   { width: 375, height: 812, reducedMotion: 'no-preference' },
   { width: 390, height: 844, reducedMotion: 'no-preference' },
@@ -42,7 +46,7 @@ const JOBS = [
     });
     try {
       await ctx.route('**/scripts/account.js', r => r.fulfill({ body: '', contentType: 'text/javascript' }));
-      await ctx.addInitScript(() => {
+      await ctx.addInitScript(seed => {
         window.__rdrStorageWrites = 0;
         for (const m of ['setItem', 'removeItem', 'clear']) {
           const orig = Storage.prototype[m];
@@ -52,12 +56,10 @@ const JOBS = [
           };
         }
         if (window === window.top && !sessionStorage.getItem('rdrSeed')) {
-          localStorage.setItem('christianFoundationsResponses', JSON.stringify({
-            'question-101-4-1': 'SYN-rdr-101-04'
-          }));
+          localStorage.setItem('christianFoundationsResponses', JSON.stringify(seed));
           sessionStorage.setItem('rdrSeed', '1');
         }
-      });
+      }, seed);
 
       const page = await ctx.newPage();
       const errors = [];
@@ -81,8 +83,14 @@ const JOBS = [
 
       check(`${tag}: all existing questions preserved`,
         await section.locator('.question-textarea').count() === lesson.blocks.filter(b => b.type === 'question').length);
-      check(`${tag}: saved answer restored`,
-        await section.locator('#question-101-4-1').inputValue() === 'SYN-rdr-101-04');
+      for (const q of questions) {
+        const key = 'question-101-' + q.id;
+        check(`${tag}: saved answer restored ${key}`, await section.locator('#' + key).inputValue() === seed[key]);
+      }
+      check(`${tag}: approved placement`, await frameEl.evaluate(el => {
+        const block = el.closest('.block-widget');
+        return block.previousElementSibling.textContent.startsWith('These questions give you a place to begin') && block.nextElementSibling.textContent.includes('Try It: Nicodemus Meets Jesus');
+      }));
 
       const cardHeight = await frame.locator('#card-content').evaluate(e => e.getBoundingClientRect().height);
       const stepCount = await frame.locator('.step-dot').count();
@@ -100,6 +108,8 @@ const JOBS = [
           await frame.locator('.step-dot[aria-pressed="true"]').getAttribute('data-step') === String(s));
         check(`${tag}: constant card height step ${s}`,
           await frame.locator('#card-content').evaluate((e, h) => Math.abs(e.getBoundingClientRect().height - h) <= 1, cardHeight));
+        check(`${tag}: card content fits step ${s}`, await frame.locator('#card-content').evaluate(e => e.scrollHeight <= e.clientHeight + 1));
+        check(`${tag}: iframe includes full widget step ${s}`, await frameEl.evaluate(e => e.clientHeight) >= await frame.evaluate(() => Math.max(document.body.scrollHeight, document.documentElement.scrollHeight)) - 1);
         check(`${tag}: zero horizontal overflow step ${s}`,
           await frame.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1) &&
           await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1));
@@ -138,6 +148,19 @@ const JOBS = [
       check(`${tag}: widget never writes storage`, await frame.evaluate(() => window.__rdrStorageWrites) === 0);
       check(`${tag}: zero page or HTTP errors`, errors.length === 0 && httpErrors.length === 0);
 
+      const editKey = 'question-101-' + questions[0].id;
+      await section.locator('#' + editKey).fill('SYN-rdr-edited');
+      await page.reload();
+      await section.locator('#' + editKey).waitFor();
+      check(`${tag}: edited answer survives reload`, await section.locator('#' + editKey).inputValue() === 'SYN-rdr-edited');
+      check(`${tag}: all other saved answers remain exact`, await page.evaluate(({ seed, editKey }) => {
+        const saved = JSON.parse(localStorage.getItem('christianFoundationsResponses'));
+        return Object.entries(seed).every(([k,v]) => saved[k] === (k === editKey ? 'SYN-rdr-edited' : v));
+      }, { seed, editKey }));
+      await page.locator('#email-lesson-btn').click();
+      const outgoing = await page.locator('#export-preview-text').textContent();
+      check(`${tag}: Email contains all nine current answers`, outgoing.includes('SYN-rdr-edited') && questions.slice(1).every(q => outgoing.includes(seed['question-101-' + q.id])));
+      check(`${tag}: Email excludes another course`, !outgoing.includes('SYN-rdr-other-course'));
       console.log(`PASS ${tag}: card=${cardHeight}px`);
     } finally {
       await ctx.close();
