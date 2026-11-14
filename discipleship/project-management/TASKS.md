@@ -235,6 +235,7 @@ Plan and standard: [reviews/2026-11-11-series-review.md](reviews/2026-11-11-seri
 | [ ] | FIX-101-AUDIO | REVIEW | Codex / codex/101-01-audio-claim / 2026-11-12 | Dave overnight assignment | Remove the unsupported built-in audio claim in 101-01 only. |
 | [ ] | RESTORE-LABEL-REVIEW | REVIEW | Codex / codex/restore-label-review / 2026-11-12 | Dave overnight assignment | Review old PR 28 against current source before integrating any restore UI change. |
 | [ ] | SERIES-CONSISTENCY | REVIEW | Codex / codex/series-consistency-pass / 2026-11-12 | Dave overnight assignment | Prepare a measured editing guide without changing lesson paragraphs. |
+| [ ] | WIDGET-GREAT-CMD-CROSS | REVIEW | Gemini / gemini/widget-great-command-cross / 2026-11-13 | Dave interactive widget brief | Build shared engine widgets/great-command-cross.js and thin shells -201, -202, -203; stop at REVIEW. |
 
 | [ ] | REVIEW-206 | REVIEW | Codex / codex/review-206 / 2026-11-13 | Dave requested publishing 101-02 | Review Gemini PR 206, exact preview, saved-answer/reading compatibility and integration. |
 
@@ -250,3 +251,5 @@ Plan and standard: [reviews/2026-11-11-series-review.md](reviews/2026-11-11-seri
 | [ ] | INTEGRATE-201-10 | REVIEW | Codex / codex/integrate-flow201 / 2026-11-13 | Dave requested newest draft for editing | Integrate PR201 with approved callback preserved; make live draft current and identify outstanding dependencies. |
 
 | [ ] | DAVE-201-10-ROUND2 | REVIEW | Codex / codex/201-10-dave-edits / 2026-11-13 | Dave supplied nine edits | Exact prose edits, Repent/Believe headings, question retirement with saved-answer export, shorter Father section. Tenth item missing. |
+
+| [ ] | INTEGRATE-STUDIO-V5 | REVIEW | Codex / codex/integrate-studio-v5 / 2026-11-13 | Dave approved PR211 bd7000c and requested wiring/merge | Review approved v5 engine; wire course openers with all original prose/questions preserved; test combined pages and deploy. |

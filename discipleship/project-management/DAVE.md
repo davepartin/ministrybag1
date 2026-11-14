@@ -2,6 +2,10 @@
 
 Keep this small. Agents can draft from the approved direction while these decisions develop. A blocker in one row does not stop independent work.
 
+## Widget approval: Studio Wash v5, November 13, 2026
+
+Dave's direct integration instruction records approval of all three Greatest Commandment Studio Wash v5 variants in PR #211 at `bd7000ca40eb8a83514d1d25128cdd8465673f4f`: `widgets/great-command-v5-201.html`, `great-command-v5-202.html`, `great-command-v5-203.html` and their shared `great-command-v5.js`. These files are byte-preserved in the integration. He authorized replacing the 201-01 widget and adding the 202/203 versions at their lesson openings, with all existing lesson copy and answer IDs intact. This is component approval, not a new final approval of the three complete lessons or release.
+
 ## 202 review checklist, October 12, 2026
 
 All ten 202 lessons are written. No lesson is empty or a brief placeholder. This checklist records draft coverage separately from Dave's approval and from release readiness. Unrecorded means no final approval was found here; it does not mean Dave has never read the lesson. Existing approvals below remain unchanged.

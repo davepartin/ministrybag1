@@ -1,5 +1,10 @@
 # Resume here
 
+## Studio Wash v5 integration, November 13
+
+PR #211 is being integrated at Dave's request. His approved source is `bd7000c`; the four v5 files remain byte-identical. The wired lessons are 201-01 (replacement), 202-01 and 203-01 (new opening widgets). All original copy/questions/IDs/Scripture remain; Cross the Road and Personal Ministry Map are retained. [Verification and placement](logs/2026-11-13-INTEGRATE-STUDIO-V5-codex.md). Use the verified v5 lesson pages after deployment, not the older cross-engine preview links in the historical PR body. 202-01's text revision in #202 is still separate and must retain the v5 intro.
+
+
 ## Latest201-10 edit pass: nine items from Dave
 
 Dave's exact prose changes and clearer Repent/Believe sections are applied. The removed hardest-step question is absent from the lesson; prior answers remain in Email only when saved. Display questions are10.1-10.3 with existing IDs. Father section 30% shorter, Scripture/widget/art/opening preserved. [Full change record](logs/2026-11-13-DAVE-201-10-ROUND2-codex.md). This supersedes the earlier201-10 flow-only editing link.
