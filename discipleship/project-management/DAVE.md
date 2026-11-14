@@ -1,5 +1,23 @@
 # Dave's decision and approval queue
 
+## 203-01 wording approval and integration, November 14, 2026
+
+Dave explicitly approved Claude's 203-01 rewrite and accompanying work in chat on November 14 ("i approve of the work that claude did"). Approval source: PR #225 at 96fd1a685b89cb116304d989bdb70996cb1e4164. The exact approved lesson and TOC wording are preserved: Four Friends and a Roof, Love has names, Think beyond your tree, the Great Commission, the existing map and the practice. Four discussion questions and three closing questions remain. The original names question 203-01-4 and closing trio are unchanged; three original retired prompts reserve their IDs and existing answers. Protect this approved wording from unassigned rewrites. This is approval to integrate the work, not a separate Gold-stage or pilot/release declaration.
+
+The Love Has Names map brief and Four Friends art brief are approved planning documents only. Neither replacement widget nor story art is built by this PR. Both current widgets remain unchanged and functional; new components need their own implementation, preview and Dave visual approval. The existing 203-02 names-map dependency is preserved. PR #221 was already merged and verified live; Claude's earlier note that it is still waiting is historical.
+
+## Approved four-story sequence integration, November 14, 2026
+
+Dave approved all four story-art sequences in PR #240 at 419c6a7: 101-07 shepherd (4 frames), 201-05 lamp (2), 203-02 Nehemiah (3), and 203-07 Jesus sends the 72 (4). All 13 original frames, 26 optimized WebP copies, stops/order, touchNext placement and image-map additions are preserved. The original jesus-sends-72.jpg remains unchanged on disk. Lesson wording, Scripture, questions/IDs, reading keys, index.html and the recently approved widgets remain untouched. This records story-image approval only, not whole-lesson Gold or new wording approval.
+
+Evidence: [Codex integration log](logs/2026-11-14-ART-STORY-SEQUENCES-4-codex.md), PR #240 for exact-head preview and production verification.
+
+## Approved 202-09 RUN integration after triangle #239, November 14, 2026
+
+Dave approved only the RUN from Sin widget at 3e1325b6ad2af3019ebea5384d805e019a577dfa in PR #234, following already-merged triangle PR #239 (81b028b). Both starting-gun.html and covenant-triangle.html remain byte-identical to their approved commits (3e1325b and 2c2eb09). Main was merged normally into this branch, retaining all newer frame integrations and both board histories. The sole runtime diff from current main is starting-gun.html. All lesson JSON, index.html, question objects/IDs, reading keys, saved answers and unrelated lessons remain unchanged. Component approval only; no new whole-lesson or image approval is inferred.
+
+Evidence: [Codex integration log](logs/2026-11-14-WIDGET-202-09-STARTING-GUN-codex.md), PR #234 for exact-head preview and live verification.
+
 ## Approved 202-08 frame integration, November 14, 2026
 
 Dave approved only the 202-08 covenant-triangle.html frame at 2c2eb09804ccab6bf7478b24c2e93bda8ea0ce17 in PR #239. The approved HTML bytes are unchanged. All lesson JSON, index.html, question objects/IDs, reading keys, saved answers, diagram artwork and unrelated runtime files remain unchanged. The four original step titles, teaching text and Scripture strings compare exactly to main. This component approval does not award whole-lesson or image approval.
