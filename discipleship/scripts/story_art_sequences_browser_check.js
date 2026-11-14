@@ -11,6 +11,8 @@
 
 var { chromium } = require('playwright');
 var assets = require('./lesson-image-assets.js');
+var fs = require('fs'), path = require('path');
+var storage = require('./answer-storage.js');
 
 var BASE = process.env.GT_STORY_SEQ_BASE_URL || 'http://127.0.0.1:8765/index.html';
 
@@ -199,6 +201,21 @@ async function readSequenceState(page, cfg) {
         for (var width of [375, 390, 1280]) {
             var page = await browser.newPage({ viewport: { width: width, height: width === 1280 ? 800 : 844 } });
             page.on('pageerror', function (err) { errors.push(cfg.hash + '@' + width + ': ' + String(err)); });
+            var parts = cfg.hash.slice(1).split('-');
+            var lessonData = JSON.parse(fs.readFileSync(path.join(__dirname, '../data/' + parts[0] + '-' + parts[1].padStart(2, '0') + '.json'), 'utf8'));
+            var questions = lessonData.blocks.filter(function (b) { return b.type === 'question'; });
+            var seed = Object.fromEntries(questions.map(function (q, i) { return ['question-' + cfg.series + '-' + q.id, 'SYN-story-' + i]; }));
+            // These are current-format responses, not ambiguous pre-migration data.
+            seed[storage.MIGRATION_FLAG] = true;
+            seed['question-999-unrelated'] = 'SYN-story-other-course';
+            await page.route('**/scripts/account.js', function (r) { return r.fulfill({ body: '', contentType: 'text/javascript' }); });
+            await page.addInitScript(function (seed) {
+                if (window === window.top && !sessionStorage.getItem('story-seeded')) {
+                    localStorage.setItem('christianFoundationsResponses', JSON.stringify(seed));
+                    sessionStorage.setItem('story-seeded', 'yes');
+                }
+            }, seed);
+
             await page.goto(BASE + cfg.hash, { waitUntil: 'domcontentloaded' });
             await waitForSequence(page, cfg);
 
@@ -262,6 +279,18 @@ async function readSequenceState(page, cfg) {
             assert(tag + 'last frame reaches >=0.85 opacity at final stop', atLastStop && atLastStop.opacities[lastIdx] >= 0.85, JSON.stringify(atLastStop));
             assert(tag + 'last frame stays on screen at final stop', lastStopVisible);
             assert(tag + 'no layout shift or overlap', overlapShift === false && heightAtStart > 100);
+            for (var q of questions) {
+                var key = 'question-' + cfg.series + '-' + q.id;
+                assert(tag + 'saved answer restored ' + q.id, await page.locator('#' + key).inputValue() === seed[key]);
+            }
+            var editKey = 'question-' + cfg.series + '-' + questions[0].id;
+            await page.locator('#' + editKey).fill('SYN-story-edited');
+            await page.reload({ waitUntil: 'domcontentloaded' });
+            await page.locator('#' + editKey).waitFor();
+            assert(tag + 'answer edit survives reload', await page.locator('#' + editKey).inputValue() === 'SYN-story-edited');
+            await page.locator('#email-lesson-btn').click();
+            var outgoing = await page.locator('#export-preview-text').textContent();
+            assert(tag + 'Email preserves this lesson answers only', outgoing.includes('SYN-story-edited') && questions.slice(1).every(function (q) { return outgoing.includes(seed['question-' + cfg.series + '-' + q.id]); }) && !outgoing.includes('SYN-story-other-course'));
             await page.close();
         }
 
