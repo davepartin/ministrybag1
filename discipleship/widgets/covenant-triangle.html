@@ -1,383 +1,718 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Closer to God Triangle</title>
-    <style>
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Closer to God Triangle</title>
+<style>
+:root {
+  --ink: #2C2416;
+  --muted: #6E6559;
+  --tray: #F6F4EE;
+  --border: #EBE5D9;
+  --stone: #8C877C;
+  --stone-dark: #5A4E3C;
+  --gold: #B8892B;
+  --gold-dark: #966D1B;
+  --green: #1D6B3F;
+  --green-dark: #155030;
+  --plum: #8B4A5E;
+  --step-color: #2C2416;
+  --step-dark: #2C2416;
+  --card-h: 112px;
+}
 
-        body {
-            font-family: 'Georgia', 'Cambria', serif;
-            background: #F8F6F1;
-            color: #2C2416;
-            -webkit-font-smoothing: antialiased;
-            padding: 0;
-            margin: 0;
-        }
+*, *::before, *::after {
+  box-sizing: border-box;
+}
 
-        .widget-outer {
-            background: #FFFFFF;
-            border-radius: 0;
-            overflow: hidden;
-            box-shadow: none;
-            border: none;
-            max-width: 100%;
-            width: 100%;
-            margin: 0;
-            position: relative;
-        }
+body {
+  padding: 0;
+  margin: 0;
+  font-family: Georgia, Cambria, serif;
+  background: #F8F6F1;
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
 
-        @media (min-width: 560px) {
-            body { padding: 16px; background: #F8F6F1; }
-            .widget-outer {
-                border-radius: 12px;
-                box-shadow: 0 6px 20px rgba(44, 36, 22, 0.08);
-                border: 1px solid #EBE5D9;
-                max-width: 460px;
-                margin: 0 auto;
-            }
-        }
+.widget-outer {
+  background: #FFFFFF;
+  border-radius: 0;
+  overflow: hidden;
+  box-shadow: none;
+  border: none;
+  max-width: 100%;
+  width: 100%;
+  margin: 0;
+  position: relative;
+}
 
-        button { -webkit-tap-highlight-color: transparent; font-family: 'Trebuchet MS', sans-serif; }
-        button:focus-visible { outline: 3px solid #2C2416; outline-offset: 2px; }
+@media (min-width: 560px) {
+  body {
+    padding: 16px;
+    background: #F8F6F1;
+  }
+  .widget-outer {
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(44, 36, 22, 0.08);
+    border: 1px solid var(--border);
+    max-width: 460px;
+    margin: 0 auto;
+  }
+}
 
-        .title-bar { background: #2C2416; padding: 8px 14px; display: flex; align-items: center; justify-content: space-between; gap: 8px; }
-        .title-bar h1 {
-            font: 600 17px/1.15 system-ui, -apple-system, sans-serif;
-            color: #FAF8F3; letter-spacing: 0.2px; margin: 0; text-align: left;
-        }
-        .course-tag {
-            font: 600 11px/1 system-ui, -apple-system, sans-serif;
-            letter-spacing: 0.9px; text-transform: uppercase;
-            color: #E5DEC9; white-space: nowrap; flex-shrink: 0;
-        }
+.title-bar {
+  background: #2C2416;
+  padding: 8px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
 
-        .diagram-wrapper { padding: 8px 8px 0; }
-        svg#tri { display: block; width: 100%; height: auto; max-height: 300px; }
-        .label { font-family: 'Trebuchet MS', sans-serif; font-size: 16px; font-weight: 700; }
-        .phrase { font-family: 'Georgia', serif; font-size: 17px; font-style: italic; }
+.title-bar h1 {
+  font: 600 17px/1.15 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #FAF8F3;
+  letter-spacing: 0.2px;
+  margin: 0;
+  text-align: left;
+}
 
-        #card-area { background-color: #F6F4EE; border-top: 1px solid #EBE5D9; padding-top: 8px; }
-        .verse-card-wrapper { margin: 0 auto; padding: 0 12px 8px; max-width: 460px; }
-        .verse-card { background: #FFFFFF; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 14px rgba(44,36,22,0.06); }
-        .verse-card-bar { height: 4px; }
-        .verse-card-content { padding: 10px 16px; min-height: var(--card-h, 112px); display: flex; flex-direction: column; justify-content: flex-start; }
-        .card-title { font-family: 'Trebuchet MS', sans-serif; font-size: 16px; font-weight: 700; line-height: 1.3; margin-bottom: 4px; }
-        .card-text { font-size: 15px; line-height: 1.4; color: #3D3426; }
-        .card-ref { font-family: 'Trebuchet MS', sans-serif; font-size: 13px; color: #6B6358; margin-top: 4px; }
+.course-tag {
+  font: 600 11px/1 system-ui, -apple-system, sans-serif;
+  letter-spacing: 0.9px;
+  text-transform: uppercase;
+  color: #E5DEC9;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
 
-        .nav-bar { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; padding: 0 2px; gap: 8px; }
-        .nav-btn {
-            background: transparent; border: 1.5px solid #D4CFC4; border-radius: 10px;
-            padding: 10px 16px; min-height: 44px; font-size: 14px; color: #5A4E3C; cursor: pointer; font-weight: 600;
-        }
-        .nav-bar .nav-btn { min-width: 112px; text-align: center; }
-        .nav-btn.primary { color: #FFFFFF; border: none; background: #1D6B3F; }
-        .nav-btn[disabled] { opacity: 0.35; cursor: default; }
-        .step-count { font-family: 'Trebuchet MS', sans-serif; font-size: 13px; color: #6B6358; }
+.stage {
+  background: #FFFFFF;
+  padding: 6px 8px 4px;
+  border-bottom: 1px solid var(--border);
+}
 
-        .begin-wrapper { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 10px 16px 16px; }
-        .begin-text { font-size: 16px; line-height: 1.4; text-align: center; color: #3D3426; max-width: 340px; }
-        .begin-btn {
-            background: #1D6B3F; color: #FFFFFF; border: none; border-radius: 10px;
-            padding: 12px 28px; min-height: 44px; font-size: 16px; font-weight: 700; cursor: pointer;
-        }
-        .overview-btn {
-            background: transparent; border: 1.5px solid #D4CFC4; border-radius: 10px;
-            padding: 10px 16px; min-height: 44px; font-size: 14px; color: #5A4E3C; cursor: pointer; font-weight: 600;
-        }
-        .overview-panel { padding: 0 12px 12px; max-width: 460px; margin: 0 auto; }
-        .overview-caption { font-size: 16px; line-height: 1.4; text-align: center; color: #3D3426; margin: 2px 0 6px; }
-        .link { transition: stroke-dashoffset 0.9s ease; }
-        #tri-fill, #ground-shadow { transition: opacity 0.9s ease 0.5s; }
-        @media (prefers-reduced-motion: reduce) { .link, #tri-fill, #ground-shadow { transition: none; } }
-        #measure { position: absolute; left: 0; top: 0; visibility: hidden; pointer-events: none; }
-        .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-    </style>
+svg#tri {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 296px;
+}
+
+.label {
+  font: 700 15.5px/1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.phrase {
+  font: italic 17px/1.2 Georgia, Cambria, serif;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .widget-outer:not(.is-instant) .link {
+    transition: stroke-dashoffset 0.9s ease;
+  }
+  .widget-outer:not(.is-instant) #tri-fill,
+  .widget-outer:not(.is-instant) #ground-shadow {
+    transition: opacity 0.25s ease 0s;
+  }
+  .widget-outer.is-linked:not(.is-instant) #tri-fill,
+  .widget-outer.is-linked:not(.is-instant) #ground-shadow {
+    transition: opacity 0.9s ease 0.5s;
+  }
+  .widget-outer:not(.is-instant) #god-glow {
+    transition: opacity 0.45s ease;
+  }
+  .widget-outer .step-dot-fill {
+    transition: background-color 0.22s ease, border-color 0.22s ease, transform 0.22s ease;
+  }
+  .widget-outer .nav-btn.primary,
+  .widget-outer .verse-card-bar,
+  .widget-outer .card-title {
+    transition: background-color 0.24s ease, border-color 0.24s ease, color 0.24s ease;
+  }
+}
+
+.step-strip {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px 5px;
+  background: var(--tray);
+  border-bottom: 1px solid var(--border);
+}
+
+.step-dot {
+  appearance: none;
+  min-width: 28px;
+  min-height: 28px;
+  padding: 4px;
+  border: none;
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 50%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.step-dot-fill {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2.5px solid var(--dot-color, var(--ink));
+  background: #FFFFFF;
+  display: block;
+}
+
+.step-dot.passed .step-dot-fill {
+  background: color-mix(in srgb, var(--dot-color, var(--ink)) 22%, #FFFFFF);
+}
+
+.step-dot.active .step-dot-fill {
+  background: var(--dot-color, var(--ink));
+  transform: scale(1.12);
+}
+
+#card-area {
+  background: var(--tray);
+  padding: 7px 12px 10px;
+}
+
+.verse-card {
+  background: #FFFFFF;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: 0 2px 10px rgba(44, 36, 22, 0.05);
+}
+
+.verse-card-bar {
+  height: 4px;
+  background: var(--step-color);
+}
+
+.verse-card-content {
+  padding: 9px 13px;
+  min-height: var(--card-h, 112px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card-title {
+  font: 700 15px/1.25 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--step-dark);
+  margin: 0 0 4px;
+}
+
+.card-text {
+  font: 14px/1.4 Georgia, Cambria, serif;
+  color: #3D3426;
+  margin: 0;
+}
+
+.card-ref {
+  font: 600 12px/1.3 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--muted);
+  margin: 5px 0 0;
+}
+
+.nav-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-top: 7px;
+}
+
+.nav-btn {
+  appearance: none;
+  min-height: 44px;
+  min-width: 96px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1.5px solid #D4CFC4;
+  background: #FFFFFF;
+  color: var(--ink);
+  font: 700 13.5px/1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  white-space: nowrap;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.nav-btn.primary {
+  background: var(--step-color);
+  border-color: var(--step-color);
+  color: #FFFFFF;
+}
+
+.nav-btn:disabled {
+  opacity: 0.36;
+  cursor: default;
+}
+
+.step-count {
+  font: 600 12px/1.2 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--muted);
+  text-align: center;
+  white-space: nowrap;
+}
+
+button:focus-visible {
+  outline: 3px solid #E0A526;
+  outline-offset: 2px;
+}
+
+@media (max-width: 395px) {
+  #card-area {
+    padding: 6px 10px 8px;
+  }
+  .verse-card-content {
+    padding: 8px 11px;
+  }
+  .card-title {
+    font-size: 14.5px;
+  }
+  .card-text {
+    font-size: 13.5px;
+  }
+  .nav-btn {
+    min-width: 88px;
+    padding: 10px 12px;
+  }
+}
+
+#measure {
+  position: fixed;
+  left: -9999px;
+  top: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+</style>
 </head>
 <body>
-<div class="widget-outer">
-    <div class="title-bar"><h1>The Closer to God Triangle</h1><span class="course-tag">202-08</span></div>
-    <div class="diagram-wrapper">
-        <svg id="tri" viewBox="0 0 360 290" role="img" aria-labelledby="tri-desc">
-            <desc id="tri-desc">God at the top and two people at the bottom, far apart.</desc>
-            <ellipse id="ground-shadow" cx="180" cy="252" rx="112" ry="7" fill="#E3CD95" opacity="0"/>
-            <polygon id="tri-fill" points="180,46 94,240 266,240" fill="#F3E4B8" opacity="0"/>
-            <line id="link-a" class="link" stroke="#E3CD95" stroke-width="4" stroke-linecap="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/>
-            <line id="link-b" class="link" stroke="#E3CD95" stroke-width="4" stroke-linecap="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/>
-            <line id="gap" stroke="#8C877C" stroke-width="3" stroke-dasharray="6 6"/>
-            <circle id="god-glow" cx="180" cy="46" r="34" fill="#E9C46A" opacity="0"/>
-            <circle id="god" cx="180" cy="46" r="26"/>
-            <text id="god-label" x="180" y="52" text-anchor="middle" class="label" fill="#FFFFFF">God</text>
-            <circle id="dot-a" r="12" fill="#1D6B3F"/>
-            <circle id="dot-b" r="12" fill="#8B4A5E"/>
-            <text id="label-a" class="label" text-anchor="end" fill="#1D6B3F">You</text>
-            <text id="label-b" class="label" text-anchor="start" fill="#8B4A5E">Them</text>
-            <text id="phrase" x="180" y="278" text-anchor="middle" class="phrase"></text>
-        </svg>
-    </div>
-    <div id="card-area" aria-live="polite"></div>
-    <p class="sr-only" id="status" aria-live="polite"></p>
-</div>
+<main class="widget-outer" id="widget" role="region" aria-label="Interactive Closer to God Triangle">
+  <div class="title-bar">
+    <h1>The Closer to God Triangle</h1>
+    <span class="course-tag">202-08</span>
+  </div>
+
+  <div class="stage">
+    <svg id="tri" viewBox="0 0 360 286" width="100%" role="img" aria-labelledby="tri-title tri-desc">
+      <title id="tri-title">The Closer to God Triangle</title>
+      <desc id="tri-desc">God at the top and two people at the bottom, far apart.</desc>
+      <ellipse id="ground-shadow" cx="180" cy="250" rx="112" ry="7" fill="#E3CD95" opacity="0"/>
+      <polygon id="tri-fill" points="180,46 94,238 266,238" fill="#F3E4B8" opacity="0"/>
+      <line id="link-a" class="link" stroke="#E3CD95" stroke-width="4" stroke-linecap="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/>
+      <line id="link-b" class="link" stroke="#E3CD95" stroke-width="4" stroke-linecap="round" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/>
+      <line id="gap" stroke="#8C877C" stroke-width="3" stroke-dasharray="6 6"/>
+      <circle id="god-glow" cx="180" cy="46" r="34" fill="#E9C46A" opacity="0"/>
+      <circle id="god" cx="180" cy="46" r="26" fill="#CFC9BD"/>
+      <text id="god-label" x="180" y="51.5" text-anchor="middle" class="label" fill="#FFFFFF">God</text>
+      <circle id="dot-a" r="12" fill="#1D6B3F"/>
+      <circle id="dot-b" r="12" fill="#8B4A5E"/>
+      <text id="label-a" class="label" text-anchor="end" fill="#1D6B3F">You</text>
+      <text id="label-b" class="label" text-anchor="start" fill="#8B4A5E">Them</text>
+      <text id="phrase" x="180" y="276" text-anchor="middle" class="phrase" fill="#6E6559"></text>
+    </svg>
+  </div>
+
+  <div class="step-strip" id="step-strip" role="group" aria-label="Triangle steps"></div>
+  <div id="card-area" aria-live="polite"></div>
+  <p class="sr-only" id="status" aria-live="polite"></p>
+</main>
+
 <script>
-    var APEX = { x: 180, y: 46 }, LEFT = { x: 94, y: 240 }, RIGHT = { x: 266, y: 240 };
-    var GREEN = '#1D6B3F', GOLD = '#B8892B', GREY = '#CFC9BD';
+(function () {
+  'use strict';
 
-    var steps = [
-        {
-            t: 0, godLit: false, linked: false, phrase: 'I will, if you will.', phraseColor: '#6B6358',
-            color: '#8C877C',
-            title: 'Contract: I will, if you will.',
-            text: 'When each person keeps score, love lasts only as long as the other one performs. The distance grows.',
-            ref: '',
-            desc: 'God is faint at the top. The two people stand alone and far apart at the bottom, with nothing connecting them to God.'
-        },
-        {
-            t: 0, godLit: true, linked: true, phrase: 'God loved us first.', phraseColor: GOLD,
-            color: GOLD,
-            title: 'God came down to us.',
-            text: 'God came to us in Jesus. When each person accepts His love, a line of grace connects them to Him.',
-            ref: '“We love because he first loved us.” (1 John 4:19)',
-            desc: 'God lights up, and lines of grace come down from God to each person, forming a triangle with a soft shadow on the ground.'
-        },
-        {
-            t: 0.45, godLit: true, linked: true, phrase: 'I will, even when.', phraseColor: GREEN,
-            color: GREEN,
-            title: 'Covenant: I will, even when.',
-            text: 'Each person turns toward God. As you move closer to Him, you move closer to each other.',
-            ref: '“Draw near to God, and he will draw near to you.” (James 4:8)',
-            desc: 'The triangle stays in place. Both people move up its sides toward God, and the gap between them shrinks.'
-        },
-        {
-            t: 0.7, godLit: true, linked: true, phrase: 'I will, even when.', phraseColor: GREEN,
-            color: GREEN,
-            title: 'Closer to God, closer to each other.',
-            text: 'Christ’s love is the center that holds you together, whether they are your spouse, fiancé, or someone you are dating.',
-            ref: '“as Christ loved the church and gave himself up for her” (Ephesians 5:25)',
-            desc: 'Inside the Closer to God Triangle, both people are near the top, close to God and close to each other.'
-        }
-    ];
+  var APEX = { x: 180, y: 46 };
+  var LEFT = { x: 94, y: 238 };
+  var RIGHT = { x: 266, y: 238 };
 
-    var step = -1, mode = 'guide', resumeStep = -1, pendingFocus = null;
-    var currentT = 0, animFrame = null;
-    var reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var INK = '#2C2416';
+  var STONE = '#8C877C';
+  var STONE_DARK = '#5A4E3C';
+  var GOLD = '#B8892B';
+  var GOLD_DARK = '#966D1B';
+  var GREEN = '#1D6B3F';
+  var GREY = '#CFC9BD';
 
-    function lerp(a, b, t) { return a + (b - a) * t; }
-    function el(id) { return document.getElementById(id); }
+  var INTRO_CARD = {
+    color: INK,
+    dark: INK,
+    dotLabel: 'Start: The Closer to God Triangle',
+    title: 'Two people, one faithful God.',
+    text: 'Tap Begin to see what draws them together.',
+    ref: ''
+  };
 
-    function placeDots(t) {
-        var ax = lerp(LEFT.x, APEX.x, t), ay = lerp(LEFT.y, APEX.y, t);
-        var bx = lerp(RIGHT.x, APEX.x, t), by = lerp(RIGHT.y, APEX.y, t);
-        el('dot-a').setAttribute('cx', ax); el('dot-a').setAttribute('cy', ay);
-        el('dot-b').setAttribute('cx', bx); el('dot-b').setAttribute('cy', by);
-        el('label-a').setAttribute('x', ax - 18); el('label-a').setAttribute('y', ay + 6);
-        el('label-b').setAttribute('x', bx + 18); el('label-b').setAttribute('y', by + 6);
-        el('gap').setAttribute('x1', ax + 13); el('gap').setAttribute('y1', ay);
-        el('gap').setAttribute('x2', bx - 13); el('gap').setAttribute('y2', by);
-        currentT = t;
+  var OVERVIEW_CARD = {
+    color: GREEN,
+    dark: GREEN,
+    title: 'The Closer to God Triangle',
+    text: 'God came down to us first. As each person draws near to God, they draw near to each other.',
+    ref: ''
+  };
+
+  var steps = [
+    {
+      t: 0, godLit: false, linked: false,
+      phrase: 'I will, if you will.', phraseColor: '#6E6559',
+      color: STONE, dark: STONE_DARK,
+      dotLabel: 'Step 1: Contract - I will, if you will.',
+      title: 'Contract: I will, if you will.',
+      text: 'When each person keeps score, love lasts only as long as the other one performs. The distance grows.',
+      ref: '',
+      desc: 'God is faint at the top. The two people stand alone and far apart at the bottom, with nothing connecting them to God.'
+    },
+    {
+      t: 0, godLit: true, linked: true,
+      phrase: 'God loved us first.', phraseColor: GOLD_DARK,
+      color: GOLD, dark: GOLD_DARK,
+      dotLabel: 'Step 2: God came down to us.',
+      title: 'God came down to us.',
+      text: 'God came to us in Jesus. When each person accepts His love, a line of grace connects them to Him.',
+      ref: '\u201CWe love because he first loved us.\u201D (1 John 4:19)',
+      desc: 'God lights up, and lines of grace come down from God to each person, forming a triangle with a soft shadow on the ground.'
+    },
+    {
+      t: 0.45, godLit: true, linked: true,
+      phrase: 'I will, even when.', phraseColor: GREEN,
+      color: GREEN, dark: GREEN,
+      dotLabel: 'Step 3: Covenant - I will, even when.',
+      title: 'Covenant: I will, even when.',
+      text: 'Each person turns toward God. As you move closer to Him, you move closer to each other.',
+      ref: '\u201CDraw near to God, and he will draw near to you.\u201D (James 4:8)',
+      desc: 'The triangle stays in place. Both people move up its sides toward God, and the gap between them shrinks.'
+    },
+    {
+      t: 0.7, godLit: true, linked: true,
+      phrase: 'I will, even when.', phraseColor: GREEN,
+      color: GREEN, dark: GREEN,
+      dotLabel: 'Step 4: Closer to God, closer to each other.',
+      title: 'Closer to God, closer to each other.',
+      text: 'Christ\u2019s love is the center that holds you together, whether they are your spouse, fianc\u00e9, or someone you are dating.',
+      ref: '\u201Cas Christ loved the church and gave himself up for her\u201D (Ephesians 5:25)',
+      desc: 'Inside the Closer to God Triangle, both people are near the top, close to God and close to each other.'
     }
+  ];
 
-    function moveTo(target) {
-        if (animFrame) cancelAnimationFrame(animFrame);
-        if (reduceMotion || Math.abs(target - currentT) < 0.001) { placeDots(target); return; }
-        var start = currentT, t0 = null, dur = 800;
-        function frame(ts) {
-            if (t0 === null) t0 = ts;
-            var p = Math.min((ts - t0) / dur, 1);
-            var e = p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
-            placeDots(lerp(start, target, e));
-            if (p < 1) animFrame = requestAnimationFrame(frame);
-        }
+  var step = -1;
+  var mode = 'guide';
+  var resumeStep = -1;
+  var pendingFocus = null;
+  var currentT = 0;
+  var animFrame = null;
+  var reduceQuery = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : { matches: false };
+
+  function lerp(a, b, t) { return a + (b - a) * t; }
+  function el(id) { return document.getElementById(id); }
+
+  function placeDots(t) {
+    var ax = lerp(LEFT.x, APEX.x, t), ay = lerp(LEFT.y, APEX.y, t);
+    var bx = lerp(RIGHT.x, APEX.x, t), by = lerp(RIGHT.y, APEX.y, t);
+    el('dot-a').setAttribute('cx', ax); el('dot-a').setAttribute('cy', ay);
+    el('dot-b').setAttribute('cx', bx); el('dot-b').setAttribute('cy', by);
+    el('label-a').setAttribute('x', ax - 18); el('label-a').setAttribute('y', ay + 5.5);
+    el('label-b').setAttribute('x', bx + 18); el('label-b').setAttribute('y', by + 5.5);
+    el('gap').setAttribute('x1', ax + 13); el('gap').setAttribute('y1', ay);
+    el('gap').setAttribute('x2', bx - 13); el('gap').setAttribute('y2', by);
+    currentT = t;
+  }
+
+  function moveTo(target, instant) {
+    if (animFrame) {
+      cancelAnimationFrame(animFrame);
+      animFrame = null;
+    }
+    if (instant || reduceQuery.matches || Math.abs(target - currentT) < 0.001) {
+      placeDots(target);
+      return;
+    }
+    var start = currentT;
+    var t0 = null;
+    var dur = 800;
+    function frame(ts) {
+      if (t0 === null) t0 = ts;
+      var p = Math.min((ts - t0) / dur, 1);
+      var e = p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
+      placeDots(lerp(start, target, e));
+      if (p < 1) {
         animFrame = requestAnimationFrame(frame);
+      } else {
+        animFrame = null;
+      }
     }
+    animFrame = requestAnimationFrame(frame);
+  }
 
-    function paintDiagram(s, faded) {
-        var lit = s && s.godLit;
-        el('god').setAttribute('fill', lit ? GOLD : GREY);
-        el('god-glow').setAttribute('opacity', lit ? '0.35' : '0');
-        var linked = s && s.linked;
-        el('link-a').setAttribute('stroke-dashoffset', linked ? '0' : '1');
-        el('link-b').setAttribute('stroke-dashoffset', linked ? '0' : '1');
-        el('tri-fill').setAttribute('opacity', linked ? '0.55' : '0');
-        el('ground-shadow').setAttribute('opacity', linked ? '0.6' : '0');
-        var phrase = el('phrase');
-        phrase.textContent = s ? s.phrase : '';
-        phrase.setAttribute('fill', s ? s.phraseColor : '#6B6358');
-        ['dot-a', 'dot-b', 'label-a', 'label-b', 'gap'].forEach(function (id) {
-            el(id).setAttribute('opacity', faded ? '0.45' : '1');
-        });
-        el('tri-desc').textContent = s ? s.desc : 'God at the top and two people at the bottom, far apart.';
+  function paintDiagram(s, faded, instant) {
+    var linked = !!(s && s.linked);
+    el('widget').classList.toggle('is-instant', !!(instant || reduceQuery.matches));
+    el('widget').classList.toggle('is-linked', linked);
+    var lit = s && s.godLit;
+    el('god').setAttribute('fill', lit ? GOLD : GREY);
+    el('god-glow').setAttribute('opacity', lit ? '0.35' : '0');
+    el('link-a').setAttribute('stroke-dashoffset', linked ? '0' : '1');
+    el('link-b').setAttribute('stroke-dashoffset', linked ? '0' : '1');
+    el('tri-fill').setAttribute('opacity', linked ? '0.55' : '0');
+    el('ground-shadow').setAttribute('opacity', linked ? '0.6' : '0');
+    var phrase = el('phrase');
+    phrase.textContent = s ? s.phrase : '';
+    phrase.setAttribute('fill', s ? s.phraseColor : '#6E6559');
+    ['dot-a', 'dot-b', 'label-a', 'label-b', 'gap'].forEach(function (id) {
+      el(id).setAttribute('opacity', faded ? '0.45' : '1');
+    });
+    el('tri-desc').textContent = s ? s.desc : 'God at the top and two people at the bottom, far apart.';
+  }
+
+  function setFocus(name) { pendingFocus = name; }
+  function applyFocus() {
+    if (!pendingFocus) return;
+    var target = document.querySelector('[data-control="' + pendingFocus + '"]');
+    pendingFocus = null;
+    if (target) target.focus();
+  }
+
+  function button(label, control, cls, onClick) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = cls;
+    b.setAttribute('data-control', control);
+    b.textContent = label;
+    b.addEventListener('click', onClick);
+    return b;
+  }
+
+  function buildCard(c) {
+    var vc = document.createElement('div');
+    vc.className = 'verse-card';
+    var bar = document.createElement('div');
+    bar.className = 'verse-card-bar';
+    bar.style.background = c.color;
+    vc.appendChild(bar);
+    var content = document.createElement('div');
+    content.className = 'verse-card-content';
+    var title = document.createElement('p');
+    title.className = 'card-title';
+    title.style.color = c.dark || c.color;
+    title.textContent = c.title;
+    content.appendChild(title);
+    var text = document.createElement('p');
+    text.className = 'card-text';
+    text.textContent = c.text;
+    content.appendChild(text);
+    if (c.ref) {
+      var ref = document.createElement('p');
+      ref.className = 'card-ref';
+      ref.textContent = c.ref;
+      content.appendChild(ref);
     }
+    vc.appendChild(content);
+    return vc;
+  }
 
-    function setFocus(name) { pendingFocus = name; }
-    function applyFocus() {
-        if (!pendingFocus) return;
-        var target = document.querySelector('[data-control="' + pendingFocus + '"]');
-        pendingFocus = null;
-        if (target) target.focus();
-    }
+  // Size every card (intro, steps, overview) to the tallest one so Back and Next never shift height.
+  function fitCards() {
+    var area = el('card-area');
+    var cs = getComputedStyle(area);
+    var innerW = area.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+    var m = document.createElement('div');
+    m.id = 'measure';
+    m.style.width = Math.max(innerW, 240) + 'px';
+    document.documentElement.style.setProperty('--card-h', '0px');
+    var max = 0;
+    [INTRO_CARD, OVERVIEW_CARD].concat(steps).forEach(function (c) {
+      m.appendChild(buildCard(c));
+    });
+    document.body.appendChild(m);
+    m.querySelectorAll('.verse-card-content').forEach(function (node) {
+      max = Math.max(max, node.offsetHeight);
+    });
+    document.body.removeChild(m);
+    document.documentElement.style.setProperty('--card-h', Math.max(max, 112) + 'px');
+  }
 
-    function button(label, control, cls, onClick) {
-        var b = document.createElement('button');
-        b.type = 'button';
-        b.className = cls;
-        b.setAttribute('data-control', control);
-        b.textContent = label;
-        b.addEventListener('click', onClick);
-        return b;
-    }
+  var strip = el('step-strip');
+  var dots = [];
 
-    function buildCard(s) {
-        var vc = document.createElement('div');
-        vc.className = 'verse-card';
-        var bar = document.createElement('div');
-        bar.className = 'verse-card-bar';
-        bar.style.background = s.color;
-        vc.appendChild(bar);
-        var content = document.createElement('div');
-        content.className = 'verse-card-content';
-        var title = document.createElement('p');
-        title.className = 'card-title';
-        title.style.color = s.color === '#8C877C' ? '#5A4E3C' : s.color;
-        title.textContent = s.title;
-        content.appendChild(title);
-        var text = document.createElement('p');
-        text.className = 'card-text';
-        text.textContent = s.text;
-        content.appendChild(text);
-        if (s.ref) {
-            var ref = document.createElement('p');
-            ref.className = 'card-ref';
-            ref.textContent = s.ref;
-            content.appendChild(ref);
-        }
-        vc.appendChild(content);
-        return vc;
-    }
+  function addDot(dotStep, label, color) {
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'step-dot';
+    btn.style.setProperty('--dot-color', color);
+    btn.setAttribute('aria-label', label);
+    btn.setAttribute('aria-pressed', 'false');
+    var fill = document.createElement('span');
+    fill.className = 'step-dot-fill';
+    btn.appendChild(fill);
+    btn.addEventListener('click', function () {
+      go(dotStep, false);
+    });
+    strip.appendChild(btn);
+    dots.push({ btn: btn, step: dotStep });
+  }
 
-    // Size every step's card to the tallest one so Back and Next never move.
-    function fitCards() {
-        var area = el('card-area');
-        var m = document.createElement('div');
-        m.id = 'measure';
-        m.style.width = area.clientWidth + 'px';
-        document.documentElement.style.setProperty('--card-h', '0px');
-        var max = 0;
-        steps.forEach(function (s) {
-            var w = document.createElement('div');
-            w.className = 'verse-card-wrapper';
-            w.appendChild(buildCard(s));
-            m.appendChild(w);
-        });
-        document.body.appendChild(m);
-        m.querySelectorAll('.verse-card-content').forEach(function (c) { max = Math.max(max, c.offsetHeight); });
-        document.body.removeChild(m);
-        document.documentElement.style.setProperty('--card-h', Math.max(max, 112) + 'px');
-    }
+  addDot(-1, INTRO_CARD.dotLabel, INTRO_CARD.color);
+  steps.forEach(function (s, idx) {
+    addDot(idx, s.dotLabel, s.color);
+  });
 
-    function go(idx) {
+  function updateDots() {
+    var activeStep = mode === 'overview' ? steps.length - 1 : step;
+    dots.forEach(function (d) {
+      var isCurrent = d.step === activeStep;
+      var isPassed = d.step < activeStep;
+      d.btn.classList.toggle('active', isCurrent);
+      d.btn.classList.toggle('passed', isPassed);
+      d.btn.setAttribute('aria-pressed', isCurrent ? 'true' : 'false');
+    });
+  }
+
+  function go(idx, instant) {
+    mode = 'guide';
+    step = idx;
+    resumeStep = idx;
+    render(instant);
+  }
+
+  function render(instant) {
+    var cardArea = el('card-area');
+    cardArea.innerHTML = '';
+
+    var activeSpec = mode === 'overview'
+      ? OVERVIEW_CARD
+      : (step === -1 ? INTRO_CARD : steps[step]);
+
+    document.documentElement.style.setProperty('--step-color', activeSpec.color);
+    document.documentElement.style.setProperty('--step-dark', activeSpec.dark || activeSpec.color);
+
+    if (mode === 'overview') {
+      var last = steps[steps.length - 1];
+      paintDiagram(last, false, instant);
+      moveTo(last.t, instant);
+      cardArea.appendChild(buildCard(OVERVIEW_CARD));
+      var onav = document.createElement('div');
+      onav.className = 'nav-bar';
+      onav.appendChild(button('\u2190 Steps', 'return', 'nav-btn', function () {
         mode = 'guide';
-        step = idx;
-        resumeStep = idx;
-        render();
+        step = resumeStep;
+        setFocus(step === -1 ? 'begin' : 'next');
+        render(false);
+      }));
+      var oc = document.createElement('span');
+      oc.className = 'step-count';
+      oc.textContent = 'Whole diagram';
+      onav.appendChild(oc);
+      onav.appendChild(button('\u21BB Start Over', 'restart', 'nav-btn primary', function () {
+        resumeStep = -1;
+        setFocus('begin');
+        go(-1, false);
+      }));
+      cardArea.appendChild(onav);
+      updateDots();
+      el('status').textContent = 'Whole diagram shown.';
+      applyFocus();
+      return;
     }
 
-    function render() {
-        var card = el('card-area');
-        card.innerHTML = '';
-
-        if (mode === 'overview') {
-            var last = steps[steps.length - 1];
-            paintDiagram(last, false);
-            moveTo(last.t);
-            var panel = document.createElement('div');
-            panel.className = 'overview-panel';
-            var cap = document.createElement('p');
-            cap.className = 'overview-caption';
-            cap.textContent = 'God came down to us first. As each person draws near to God, they draw near to each other.';
-            panel.appendChild(cap);
-            var onav = document.createElement('div');
-            onav.className = 'nav-bar';
-            onav.appendChild(button('Return to steps', 'return', 'nav-btn', function () {
-                mode = 'guide'; step = resumeStep;
-                setFocus(step === -1 ? 'begin' : 'next'); render();
-            }));
-            onav.appendChild(button('↻ Restart', 'restart', 'nav-btn primary', function () {
-                resumeStep = -1; setFocus('begin'); go(-1);
-            }));
-            panel.appendChild(onav);
-            card.appendChild(panel);
-            el('status').textContent = 'Whole diagram shown.';
-            applyFocus();
-            return;
-        }
-
-        if (step === -1) {
-            paintDiagram(null, true);
-            moveTo(0);
-            var wrap = document.createElement('div');
-            wrap.className = 'begin-wrapper';
-            var intro = document.createElement('p');
-            intro.className = 'begin-text';
-            intro.textContent = 'Two people, one faithful God. Tap Begin to see what draws them together.';
-            wrap.appendChild(intro);
-            wrap.appendChild(button('Begin →', 'begin', 'begin-btn', function () { setFocus('next'); go(0); }));
-            wrap.appendChild(button('Show whole diagram', 'overview', 'overview-btn', function () {
-                resumeStep = step; mode = 'overview'; setFocus('return'); render();
-            }));
-            card.appendChild(wrap);
-            el('status').textContent = '';
-            applyFocus();
-            return;
-        }
-
-        var s = steps[step];
-        paintDiagram(s, false);
-        moveTo(s.t);
-
-        var wrapper = document.createElement('div');
-        wrapper.className = 'verse-card-wrapper';
-        wrapper.appendChild(buildCard(s));
-
-        var nav = document.createElement('div');
-        nav.className = 'nav-bar';
-        nav.appendChild(button('← Back', 'back', 'nav-btn', function () {
-            setFocus(step === 0 ? 'begin' : 'back'); go(step - 1);
-        }));
-        var count = document.createElement('span');
-        count.className = 'step-count';
-        count.textContent = (step + 1) + ' of ' + steps.length;
-        nav.appendChild(count);
-        if (step < steps.length - 1) {
-            nav.appendChild(button('Next →', 'next', 'nav-btn primary', function () { setFocus('next'); go(step + 1); }));
-        } else {
-            nav.appendChild(button('↻ Restart', 'restart', 'nav-btn primary', function () { setFocus('begin'); go(-1); }));
-        }
-        wrapper.appendChild(nav);
-        card.appendChild(wrapper);
-        el('status').textContent = 'Step ' + (step + 1) + ' of ' + steps.length + ': ' + s.title;
-        applyFocus();
+    if (step === -1) {
+      paintDiagram(null, true, instant);
+      moveTo(0, instant);
+      cardArea.appendChild(buildCard(INTRO_CARD));
+      var inav = document.createElement('div');
+      inav.className = 'nav-bar';
+      inav.appendChild(button('Whole diagram', 'overview', 'nav-btn', function () {
+        resumeStep = step;
+        mode = 'overview';
+        setFocus('return');
+        render(false);
+      }));
+      var ic = document.createElement('span');
+      ic.className = 'step-count';
+      ic.textContent = 'Ready';
+      inav.appendChild(ic);
+      inav.appendChild(button('Begin \u2192', 'begin', 'nav-btn primary begin-btn', function () {
+        setFocus('next');
+        go(0, false);
+      }));
+      cardArea.appendChild(inav);
+      updateDots();
+      el('status').textContent = '';
+      applyFocus();
+      return;
     }
 
-    [['link-a', LEFT], ['link-b', RIGHT]].forEach(function (l) {
-        var line = el(l[0]);
-        line.setAttribute('x1', APEX.x); line.setAttribute('y1', APEX.y);
-        line.setAttribute('x2', l[1].x); line.setAttribute('y2', l[1].y);
-    });
-    placeDots(0);
-    fitCards();
-    render();
-    var resizeTimer = null, lastWidth = window.innerWidth;
-    // Refit only when the width changes. The page briefly resizes this frame's height to measure it,
-    // and refitting on that would start a measure-resize loop that jolts the page while scrolling.
-    window.addEventListener('resize', function () {
-        if (window.innerWidth === lastWidth) return;
-        lastWidth = window.innerWidth;
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(fitCards, 150);
-    });
-    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitCards);
+    var s = steps[step];
+    paintDiagram(s, false, instant);
+    moveTo(s.t, instant);
+    cardArea.appendChild(buildCard(s));
+
+    var nav = document.createElement('div');
+    nav.className = 'nav-bar';
+    nav.appendChild(button('\u2190 Back', 'back', 'nav-btn', function () {
+      setFocus(step === 0 ? 'begin' : 'back');
+      go(step - 1, false);
+    }));
+    var count = document.createElement('span');
+    count.className = 'step-count';
+    count.textContent = (step + 1) + ' of ' + steps.length;
+    nav.appendChild(count);
+    if (step < steps.length - 1) {
+      nav.appendChild(button('Next \u2192', 'next', 'nav-btn primary', function () {
+        setFocus('next');
+        go(step + 1, false);
+      }));
+    } else {
+      nav.appendChild(button('\u21BB Start Over', 'restart', 'nav-btn primary', function () {
+        setFocus('begin');
+        go(-1, false);
+      }));
+    }
+    cardArea.appendChild(nav);
+    updateDots();
+    el('status').textContent = 'Step ' + (step + 1) + ' of ' + steps.length + ': ' + s.title;
+    applyFocus();
+  }
+
+  [['link-a', LEFT], ['link-b', RIGHT]].forEach(function (l) {
+    var line = el(l[0]);
+    line.setAttribute('x1', APEX.x); line.setAttribute('y1', APEX.y);
+    line.setAttribute('x2', l[1].x); line.setAttribute('y2', l[1].y);
+  });
+
+  placeDots(0);
+  fitCards();
+  render(true);
+
+  var resizeTimer = null;
+  var lastWidth = window.innerWidth;
+  // Refit only when the width changes. The page briefly resizes this frame's height to measure it,
+  // and refitting on that would start a measure-resize loop that jolts the page while scrolling.
+  window.addEventListener('resize', function () {
+    if (window.innerWidth === lastWidth) return;
+    lastWidth = window.innerWidth;
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(fitCards, 150);
+  });
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(fitCards);
+  }
+})();
 </script>
 </body>
 </html>

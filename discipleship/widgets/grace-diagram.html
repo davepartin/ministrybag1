@@ -47,40 +47,44 @@
         }
 
         button {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
             -webkit-tap-highlight-color: transparent;
         }
 
         button:focus-visible,
         .grace-box:focus-visible {
-            outline: 3px solid #2C2416;
+            outline: 3px solid #E0A526;
             outline-offset: 2px;
         }
 
         .title-bar {
             background: #2C2416;
-            padding: 14px 20px 12px;
-            text-align: center;
+            padding: 8px 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
         }
 
         .title-bar h1 {
-            font-size: 20px;
-            font-weight: 700;
+            font: 600 17px/1.15 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
             color: #FAF8F3;
             margin: 0;
-            line-height: 1.2;
-            font-family: 'Trebuchet MS', 'Inter', sans-serif;
-            letter-spacing: 0.1px;
+            letter-spacing: 0.2px;
+            text-align: left;
         }
 
-        .title-bar p {
-            font-size: 12px;
-            color: #FFFFFF;
-            margin: 5px 0 0 0;
-            font-family: 'Georgia', 'Cambria', serif;
+        .course-tag {
+            font: 600 11px/1 system-ui, -apple-system, sans-serif;
+            letter-spacing: 0.9px;
+            text-transform: uppercase;
+            color: #E5DEC9;
+            white-space: nowrap;
+            flex-shrink: 0;
         }
 
         .diagram-wrapper {
-            padding: 18px 0 0;
+            padding: 16px 0;
             display: flex;
             justify-content: center;
         }
@@ -188,19 +192,26 @@
             margin: 0;
         }
 
-        /* Verse card */
+        /* Card area and Studio Wash chrome frame */
+        #card-area {
+            background-color: #F6F4EE;
+            border-top: 1px solid #EBE5D9;
+            padding: 12px 12px 14px;
+        }
+
         .verse-card-wrapper {
-            max-width: 640px;
-            margin: 14px auto 0;
-            padding: 0 16px 28px;
+            max-width: 460px;
+            margin: 0 auto;
+            padding: 0;
         }
 
         .verse-card {
             background: #FFFFFF;
+            border: 1px solid #EBE5D9;
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 2px 14px rgba(44,36,22,0.06);
-            animation: fadeSlide 0.35s ease;
+            box-shadow: 0 2px 10px rgba(44,36,22,0.05);
+            animation: fadeSlide 0.3s ease;
         }
 
         .verse-card-bar {
@@ -208,32 +219,34 @@
         }
 
         .verse-card-content {
-            padding: 16px 20px 18px;
-            min-height: 175px;
+            padding: 12px 16px 14px;
+            height: auto;
+            min-height: var(--card-h, 112px);
         }
 
         .verse-card-title {
-            font-size: 17px;
-            font-weight: 400;
-            color: #5A4E3C;
-            margin: 0 0 10px 0;
-            line-height: 1.2;
-            font-family: 'Georgia', 'Cambria', serif;
+            font-size: 16px;
+            font-weight: 700;
+            color: #2C2416;
+            margin: 0 0 6px 0;
+            line-height: 1.3;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
         }
 
         .verse-card-text {
-            font-size: 14px;
-            line-height: 1.65;
+            font-size: 14.5px;
+            line-height: 1.5;
             color: #3D3426;
-            margin: 0 0 8px 0;
+            margin: 0 0 6px 0;
+            font-family: 'Georgia', 'Cambria', serif;
         }
 
         .verse-card-ref {
-            font-size: 11px;
-            color: #9B917F;
+            font-size: 12.5px;
+            color: #6B6358;
             margin: 0;
-            font-weight: 600;
-            font-family: 'Trebuchet MS', sans-serif;
+            font-weight: 500;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
         }
 
         /* Navigation */
@@ -241,47 +254,67 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 12px;
+            margin-top: 10px;
             padding: 0 2px;
+            gap: 8px;
         }
 
         .nav-btn {
-            background: transparent;
+            background: #FFFFFF;
             border: 1.5px solid #D4CFC4;
             border-radius: 10px;
-            padding: 8px 14px;
+            padding: 10px 14px;
             min-height: 44px;
-            font-size: 12px;
-            font-family: 'Trebuchet MS', sans-serif;
+            min-width: 106px;
+            text-align: center;
+            font-size: 14px;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            color: #5A4E3C;
             cursor: pointer;
             font-weight: 600;
         }
 
         .nav-btn.primary {
-            color: #fff;
+            color: #FFFFFF;
             border: none;
         }
 
         .nav-btn:disabled {
-            color: #CCC5B8;
+            color: #B8B1A4;
+            border-color: #E2DDD2;
+            background: #FAF8F3;
             cursor: default;
         }
 
         .dot-nav {
+            flex: 1;
             display: flex;
-            gap: 5px;
+            gap: 2px;
             align-items: center;
+            justify-content: center;
         }
 
-        .dot {
-            height: 8px;
-            border-radius: 4px;
-            transition: all 0.3s ease;
+        .dot-btn {
+            background: transparent;
+            border: none;
+            min-width: 24px;
+            min-height: 28px;
+            padding: 0 2px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             cursor: default;
         }
 
-        .dot.active-dot {
+        .dot-btn.active-dot {
             cursor: pointer;
+        }
+
+        .dot-pill {
+            display: block;
+            height: 8px;
+            border-radius: 4px;
+            transition: width 0.25s ease, background-color 0.25s ease;
         }
 
         /* Begin button */
@@ -290,109 +323,99 @@
             flex-direction: column;
             align-items: center;
             gap: 10px;
-            padding: 16px 16px 20px;
+            padding: 8px 4px 6px;
         }
 
         .begin-btn {
             background: #2C2416;
             border: 1.5px solid #2C2416;
             border-radius: 10px;
-            padding: 10px 28px;
+            padding: 11px 28px;
             min-height: 44px;
-            font-size: 14px;
-            font-family: 'Trebuchet MS', sans-serif;
-            color: #fff;
+            font-size: 15px;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            color: #FAF8F3;
             cursor: pointer;
             font-weight: 600;
-            box-shadow: 0 2px 8px rgba(44,36,22,0.2);
+            box-shadow: 0 2px 6px rgba(44,36,22,0.16);
         }
 
         .overview-btn {
-            background: transparent;
+            background: #FFFFFF;
             border: 1.5px solid #D4CFC4;
             border-radius: 10px;
-            padding: 10px 16px;
+            padding: 10px 18px;
             min-height: 44px;
-            font-size: 13px;
-            font-family: 'Trebuchet MS', sans-serif;
+            font-size: 13.5px;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
             color: #5A4E3C;
             cursor: pointer;
             font-weight: 600;
         }
 
+        @media (hover: hover) {
+            .begin-btn:hover { background: #3D3321; border-color: #3D3321; }
+            .overview-btn:hover,
+            .nav-btn:not(:disabled):not(.primary):hover {
+                border-color: #9B917F;
+                background: #FAF8F3;
+            }
+        }
+
         .overview-panel {
-            max-width: 640px;
-            margin: 8px auto 0;
-            padding: 0 16px 16px;
+            max-width: 460px;
+            margin: 0 auto;
+            padding: 2px 0;
         }
 
         .overview-caption {
             font-size: 15px;
-            line-height: 1.35;
-            color: #3D3426;
+            line-height: 1.4;
+            color: #2C2416;
             text-align: center;
             margin: 0 0 10px;
             font-family: 'Georgia', 'Cambria', serif;
         }
 
-        .widget-outer.overview-mode .title-bar {
-            padding: 8px 16px;
-        }
-
-        .widget-outer.overview-mode .title-bar p {
-            display: none;
-        }
-
         .widget-outer.overview-mode .diagram-wrapper {
-            padding-top: 8px;
+            padding: 12px 0;
         }
 
         @keyframes fadeSlide {
             from { opacity: 0; transform: translateY(6px); }
             to { opacity: 1; transform: translateY(0); }
         }
-    
+
         /* intro verse sits on a soft panel so faded box labels don't show through */
         .intro-overlay > div { background: rgba(255,255,255,0.92); border-radius: 12px; padding: 12px 14px; }
 
-        /* ---- A-standard chrome: matches three-spaces, wheel, shape, covenant-triangle, starting-gun, mission-map ---- */
-        button { font-family: 'Trebuchet MS', sans-serif; -webkit-tap-highlight-color: transparent; }
-        button:focus-visible { outline: 3px solid #2C2416; outline-offset: 2px; }
-        .title-bar { background: #1D6B3F; padding: 10px 16px; text-align: center; }
-        .title-bar h1 { font-size: 19px; font-weight: 700; color: #FFFFFF; margin: 0; line-height: 1.2; font-family: 'Trebuchet MS', 'Inter', sans-serif; letter-spacing: 0; }
-        .title-bar p { display: none; }
-        #card-area { background-color: #F6F4EE; border-top: 1px solid #EBE5D9; padding-top: 8px; }
-        .verse-card-wrapper { margin: 0 auto; padding: 0 12px 10px; max-width: 460px; }
-        .verse-card-content { padding: 10px 16px; height: auto; min-height: var(--card-h, 112px); overflow: visible; justify-content: flex-start; }
-        .verse-card-title { font-family: 'Trebuchet MS', sans-serif; font-size: 16px; font-weight: 700; line-height: 1.3; margin: 0 0 4px; }
-        .verse-card-text { font-size: 15px; line-height: 1.4; color: #3D3426; margin: 0; flex-grow: 0; }
-        .verse-card-ref { font-family: 'Trebuchet MS', sans-serif; font-size: 13px; font-weight: 400; color: #6B6358; margin: 4px 0 0; }
-        .nav-bar { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; padding: 0 2px; gap: 8px; }
-        .nav-btn { background: transparent; border: 1.5px solid #D4CFC4; border-radius: 10px; padding: 10px 12px; min-height: 44px; min-width: 112px; text-align: center; font-size: 14px; font-weight: 600; color: #5A4E3C; cursor: pointer; font-family: 'Trebuchet MS', sans-serif; }
-        .nav-btn.primary { color: #FFFFFF; border: none; background: #1D6B3F !important; box-shadow: none !important; }
-        .nav-btn[disabled] { opacity: 0.35; cursor: default; }
-        .begin-btn { background: #1D6B3F; color: #FFFFFF; border: none; border-radius: 10px; padding: 12px 28px; min-height: 44px; font-size: 16px; font-weight: 700; cursor: pointer; box-shadow: none; font-family: 'Trebuchet MS', sans-serif; }
-        .overview-btn { background: transparent; border: 1.5px solid #D4CFC4; border-radius: 10px; padding: 10px 16px; min-height: 44px; font-size: 14px; color: #5A4E3C; cursor: pointer; font-weight: 600; }
-        .dot-nav { flex: 1; justify-content: center; }
         #measure { position: absolute; left: 0; top: 0; visibility: hidden; pointer-events: none; }
+
+        @media (prefers-reduced-motion: reduce) {
+            .grace-box, .grace-box .box-label, .grace-box .box-desc, .grace-box .box-desc .big,
+            .cross-beam, .arrow-group, .dot-pill, .verse-card {
+                transition: none !important;
+                animation: none !important;
+            }
+        }
     </style>
 </head>
 <body>
 
-<div class="widget-outer">
+<main class="widget-outer" aria-label="The Grace and Mercy Cycle interactive diagram">
 
-<div class="title-bar">
+<header class="title-bar">
     <h1>The Grace and Mercy Cycle</h1>
-    <p>"For by grace you have been saved through faith."</p>
-</div>
+    <span class="course-tag">201-08</span>
+</header>
 
 <div class="diagram-wrapper">
     <div class="diagram-container" id="diagram"></div>
 </div>
 
-<div id="card-area"></div>
+<div id="card-area" aria-live="polite"></div>
 
-</div>
+</main>
 
 <script>
     // ---- Data ----
@@ -552,6 +575,15 @@
         svg.setAttribute('width', W);
         svg.setAttribute('height', H);
         svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+        svg.setAttribute('role', 'img');
+        const svgTitle = document.createElementNS('http://www.w3.org/2000/svg', 'title');
+        svgTitle.textContent = 'The Grace and Mercy Cycle arrows';
+        const svgDesc = document.createElementNS('http://www.w3.org/2000/svg', 'desc');
+        svgDesc.textContent = isOverview()
+            ? 'All four truths connected around the cross: Mercy to Justified to Righteous to Grace.'
+            : (step >= 0 ? 'Current focus: ' + stops[step].label + '.' : 'Introductory view of the Grace and Mercy Cycle.');
+        svg.appendChild(svgTitle);
+        svg.appendChild(svgDesc);
 
         function addArrow(minStep, x1, y1, x2, y2, tipX, tipY, tipPoints) {
             const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
@@ -608,7 +640,17 @@
                 // Native button name includes both visible teaching and definition.
                 box.addEventListener('click', () => { openStep(idx); });
             } else if (active) {
+                box.setAttribute('role', 'button');
+                box.setAttribute('tabindex', '0');
+                box.setAttribute('aria-pressed', viewing ? 'true' : 'false');
                 box.addEventListener('click', () => { step = idx; render(); });
+                box.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        step = idx;
+                        render();
+                    }
+                });
             }
 
             const lbl = document.createElement('span');
@@ -751,16 +793,26 @@
 
             const dots = document.createElement('div');
             dots.className = 'dot-nav';
+            dots.setAttribute('role', 'group');
+            dots.setAttribute('aria-label', 'Cycle steps');
             stops.forEach((s, i) => {
-                const dot = document.createElement('div');
-                dot.className = 'dot' + (isActive(i) ? ' active-dot' : '');
-                dot.style.width = (step === i ? '20px' : '8px');
-                dot.style.background = step === i ? stops[i].color : (isActive(i) ? stops[i].color + '66' : '#D4CFC4');
-                dot.style.cursor = isActive(i) ? 'pointer' : 'default';
-                if (isActive(i)) {
-                    dot.addEventListener('click', () => { step = i; render(); });
+                const clickable = isActive(i);
+                const dotBtn = document.createElement('button');
+                dotBtn.type = 'button';
+                dotBtn.className = 'dot-btn' + (clickable ? ' active-dot' : '');
+                dotBtn.setAttribute('aria-label', 'Step ' + (i + 1) + ' of ' + stops.length + ': ' + s.label);
+                dotBtn.setAttribute('aria-pressed', step === i ? 'true' : 'false');
+                if (!clickable) {
+                    dotBtn.disabled = true;
+                } else {
+                    dotBtn.addEventListener('click', () => { step = i; render(); });
                 }
-                dots.appendChild(dot);
+                const pill = document.createElement('span');
+                pill.className = 'dot-pill';
+                pill.style.width = (step === i ? '20px' : '8px');
+                pill.style.background = step === i ? stops[i].color : (clickable ? stops[i].color + '66' : '#D4CFC4');
+                dotBtn.appendChild(pill);
+                dots.appendChild(dotBtn);
             });
 
             const nextBtn = document.createElement('button');
@@ -800,7 +852,9 @@ function gtFitCards(items) {
     var area = document.getElementById('card-area');
     if (!area || !area.clientWidth) return;
     var m = document.createElement('div'), max = 0;
-    m.id = 'measure'; m.style.width = area.clientWidth + 'px';
+    var areaStyle = getComputedStyle(area);
+    var contentWidth = area.clientWidth - parseFloat(areaStyle.paddingLeft) - parseFloat(areaStyle.paddingRight);
+    m.id = 'measure'; m.style.width = contentWidth + 'px';
     document.documentElement.style.setProperty('--card-h', '0px');
     items.forEach(function (it) {
         m.insertAdjacentHTML('beforeend', '<div class="verse-card-wrapper"><div class="verse-card"><div class="verse-card-content">' +

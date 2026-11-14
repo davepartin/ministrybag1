@@ -11,6 +11,26 @@
 - **Untouched:** `discipleship/data/202-09.json` prose, Scripture blocks, question objects/IDs, saved answers, `index.html`, and unrelated lessons.
 - **Evidence:** [Gemini handoff log](logs/2026-11-14-WIDGET-202-09-STARTING-GUN-gemini.md)
 
+## 202-08 Closer to God Triangle Studio Wash frame update: November 14, 2026
+
+Dave approved only the 202-08 covenant-triangle.html frame at 2c2eb09804ccab6bf7478b24c2e93bda8ea0ce17 in PR #239. The approved HTML bytes are unchanged. All lesson JSON, index.html, question objects/IDs, reading keys, saved answers, diagram artwork and unrelated runtime files remain unchanged. The four original step titles, teaching text and Scripture strings compare exactly to main. This component approval does not award whole-lesson or image approval.
+
+[Codex integration log](logs/2026-11-14-WIDGET-202-08-FRAME-codex.md).
+
+- **Task / Branch:** `WIDGET-202-08-FRAME` on `gemini/widget-202-08-frame` (Dave approved `2c2eb09`; Codex owns technical integration, preview, merge and live verification).
+- **Changed files:**
+  - `discipleship/widgets/covenant-triangle.html` (updated outer chrome, wordless interactive `.step-strip`, unified height-locked `.verse-card` + `.nav-bar` frame across Intro/Steps/Overview, `system-ui` chrome font, `#E0A526` focus outline, dynamic `<desc>`, and reduced-motion transitions matching the Studio Wash pattern, while preserving the base look of `202-08` diagram artwork, palette, step copy, and Scripture verses)
+  - `discipleship/project-management/TEAM-BOARD.md`
+  - `discipleship/project-management/logs/2026-11-14-WIDGET-202-08-FRAME-gemini.md`
+- **Untouched:** `discipleship/data/202-08.json` prose, Scripture blocks, question objects/IDs, saved answers, and `index.html`.
+- **Evidence:** [Gemini handoff log](logs/2026-11-14-WIDGET-202-08-FRAME-gemini.md)
+
+## Approved 201-08 frame integration, November 14, 2026
+
+Dave approved the 201-08 Grace and Mercy Cycle Studio Wash frame at 1404ab8 in PR #238. Diagram artwork, colors, step text, Scripture and lesson JSON remain unchanged. Integration found and corrected only the sizing helper: measure the tray content width without its horizontal padding, so the long grace card no longer moves the navigation by 22px. All approved frame styling remains unchanged. This is component approval, not whole-lesson or image approval.
+
+Evidence: [Codex integration log](logs/2026-11-14-WIDGET-201-08-FRAME-codex.md), PR #238 for preview and live verification.
+
 ## Approved 101-05 potluck buttons, November 14, 2026
 
 Dave approved PR #232 at b83efe3: the compact three-column single-screen checklist, prompt and blue/teal/mustard serving buttons. Approved index.html and 101-05 JSON are byte-preserved. Old numeric slots remain reserved, including combined men's/women's ministry at 11; new choices append at 27 and 28. Other stays visually last without moving its DOM/storage index. All other wording, question objects, readings and aspen artwork remain unchanged. Whole-lesson text remains Silver and Dave edits stay protected.
