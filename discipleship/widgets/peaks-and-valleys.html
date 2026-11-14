@@ -22,8 +22,6 @@
   --plum: #5F4684;
   --plum-dark: #473366;
   --plum-wash: #EDE7F6;
-  --crimson: #8B1A2B;
-  --crimson-dark: #6D1422;
   --step-color: #2C2416;
   --step-dark: #2C2416;
   --card-h: 112px;
@@ -46,8 +44,6 @@ body {
   background: #FFFFFF;
   border-radius: 0;
   overflow: hidden;
-  box-shadow: none;
-  border: none;
   max-width: 100%;
   width: 100%;
   margin: 0;
@@ -93,8 +89,8 @@ body {
 }
 
 .stage {
-  background: #FFFFFF;
-  padding: 6px 8px 4px;
+  background: #EFECE3;
+  padding: 4px 6px;
   border-bottom: 1px solid var(--border);
 }
 
@@ -116,47 +112,33 @@ body {
 }
 
 .node-group.is-ghost {
-  opacity: 0.22;
+  opacity: 0.28;
 }
 
 .node-age {
-  font: 700 12px/1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font: 700 11.5px/1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   letter-spacing: 0.1px;
 }
 
 .node-label {
-  font: 600 11px/1.15 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font: 600 10.5px/1.15 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   fill: #4A4238;
 }
 
 .star-age {
-  font: 700 12px/1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font: 700 11.5px/1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   fill: var(--gold-dark);
 }
 
 .star-label {
-  font: 700 11px/1.15 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font: 700 10.5px/1.15 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   fill: var(--gold-dark);
 }
 
-.axis-tag {
-  font: 700 9.5px/1 system-ui, -apple-system, sans-serif;
-  letter-spacing: 0.7px;
+.axis-word {
+  font: 700 11.5px/1 system-ui, -apple-system, sans-serif;
+  letter-spacing: 1.8px;
   text-transform: uppercase;
-  fill: #857B6D;
-}
-
-.star-halo,
-.climax-badge,
-.today-chevrons {
-  opacity: 0;
-  pointer-events: none;
-}
-
-.star-halo.is-visible,
-.climax-badge.is-visible,
-.today-chevrons.is-visible {
-  opacity: 1;
 }
 
 .node-focus-ring {
@@ -169,16 +151,7 @@ body {
   opacity: 1;
 }
 
-.curve-ghost {
-  fill: none;
-  stroke: #DFD8CA;
-  stroke-width: 1.5;
-  stroke-dasharray: 4 5;
-  stroke-linecap: round;
-  opacity: 0.75;
-}
-
-.curve-main {
+.seg-line {
   fill: none;
   stroke: var(--blue);
   stroke-width: 2.8;
@@ -186,33 +159,25 @@ body {
   stroke-linejoin: round;
 }
 
-.curve-climax {
+.curve-finish-glow {
   fill: none;
-  stroke: #FADFA0;
-  stroke-width: 8.5;
+  stroke: #F8DDA0;
+  stroke-width: 8;
   stroke-linecap: round;
   stroke-linejoin: round;
   opacity: 0;
 }
 
-.curve-climax.is-visible {
-  opacity: 0.72;
-}
-
-.climax-contour {
-  fill: none;
-  stroke: var(--crimson);
-  stroke-linecap: round;
-  stroke-linejoin: round;
+.curve-finish-glow.is-visible {
+  opacity: 0.65;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .widget-outer:not(.is-instant) .node-group,
-  .widget-outer:not(.is-instant) .star-halo,
-  .widget-outer:not(.is-instant) .climax-badge,
-  .widget-outer:not(.is-instant) .today-chevrons,
-  .widget-outer:not(.is-instant) .curve-climax {
-    transition: opacity 0.42s ease var(--fade-delay, 0ms);
+  .widget-outer:not(.is-instant) .node-group {
+    transition: opacity 0.28s ease;
+  }
+  .widget-outer:not(.is-instant) .curve-finish-glow {
+    transition: opacity 0.4s ease;
   }
   .widget-outer .step-dot-fill {
     transition: background-color 0.22s ease, border-color 0.22s ease, transform 0.22s ease;
@@ -249,8 +214,8 @@ body {
 }
 
 .step-dot-fill {
-  width: 16px;
-  height: 16px;
+  width: 15px;
+  height: 15px;
   border-radius: 50%;
   border: 2.5px solid var(--dot-color, var(--ink));
   background: #FFFFFF;
@@ -285,37 +250,48 @@ body {
 }
 
 .verse-card-content {
-  padding: 9px 13px;
+  padding: 10px 13px;
   min-height: var(--card-h, 112px);
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
+  gap: 5px;
+}
+
+.card-top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
 .card-heading {
   font: 700 15px/1.22 system-ui, -apple-system, sans-serif;
   color: var(--step-dark);
-  margin: 0 0 4px;
-}
-
-.card-verse {
-  font: 13.5px/1.36 Georgia, Cambria, serif;
-  color: #3D3426;
   margin: 0;
 }
 
-.verse-ref {
-  font: 600 11.5px/1.2 system-ui, -apple-system, sans-serif;
-  color: var(--muted);
+.card-badge {
+  font: 700 11px/1 system-ui, -apple-system, sans-serif;
+  color: var(--step-dark);
+  background: var(--tray);
+  border: 1px solid rgba(44, 36, 22, 0.12);
+  border-radius: 999px;
+  padding: 4px 8px;
   white-space: nowrap;
-  margin-left: 4px;
+}
+
+.card-quote {
+  font: 13.5px/1.36 Georgia, Cambria, serif;
+  color: #2C2416;
+  margin: 0;
 }
 
 .card-note {
-  display: block;
-  margin-top: 5px;
-  font: 12.5px/1.34 system-ui, -apple-system, sans-serif;
+  font: 12.5px/1.36 system-ui, -apple-system, sans-serif;
   color: #4A4238;
+  margin: 0;
 }
 
 .nav-bar {
@@ -354,7 +330,8 @@ body {
   color: var(--muted);
 }
 
-button:focus-visible {
+button:focus-visible,
+[role="button"]:focus-visible {
   outline: 3px solid #E0A526;
   outline-offset: 2px;
 }
@@ -364,12 +341,12 @@ button:focus-visible {
     padding: 6px 10px 8px;
   }
   .verse-card-content {
-    padding: 8px 11px;
+    padding: 9px 11px;
   }
   .card-heading {
     font-size: 14.5px;
   }
-  .card-verse {
+  .card-quote {
     font-size: 13px;
   }
 }
@@ -390,7 +367,7 @@ button:focus-visible {
 </style>
 </head>
 <body>
-<main class="widget-outer" id="widget" aria-label="Interactive Peaks and Valleys timeline example for Course 101 Lesson 1"></main>
+<main class="widget-outer" id="widget" aria-label="Interactive Peaks and Valleys example on a sheet of paper"></main>
 
 <script>
 (function () {
@@ -412,286 +389,147 @@ button:focus-visible {
     blueWash: '#E2EEF6',
     plum: '#5F4684',
     plumDark: '#473366',
-    plumWash: '#EDE7F6',
-    crimson: '#8B1A2B',
-    crimsonDark: '#6D1422'
+    plumWash: '#EDE7F6'
   };
 
+  // Quarter scale: horizonY = 148, quarterStep = 21
+  // Highs (+1/4..+4/4): 127, 106, 85, 64
+  // Lows  (-1/4..-4/4): 169, 190, 211, 232
   var GEO = {
     W: 440,
-    H: 278,
+    H: 290,
+    paperX: 12,
+    paperY: 10,
+    paperW: 414,
+    paperH: 270,
+    axisX: 56,
     horizonY: 148,
-    startX: 44,
-    endX: 406
+    quarter: 21,
+    lineRight: 412
   };
 
-  // Smooth cubic Bezier path across 4 valleys, 3 peaks, the Star at 17, and Today
-  var CURVE_D = [
-    'M 44 206',
-    'C 62 206, 74 96, 92 96',
-    'C 110 96, 122 198, 140 198',
-    'C 158 198, 166 153, 178 134',
-    'C 190 115, 198 76, 218 76',
-    'C 238 76, 248 196, 266 196',
-    'C 284 196, 294 72, 312 72',
-    'C 330 72, 340 212, 358 212',
-    'C 376 212, 390 108, 406 72'
-  ].join(' ');
-
-  var AREA_D = CURVE_D + ' L 406 148 L 44 148 Z';
-
-  // Node definitions anchored cleanly above peaks or below valleys
-  var NODES = [
+  // Exactly 6 points: 3 valleys (lows) + 3 peaks (highs), 1 dot added per click
+  var POINTS = [
     {
-      id: 'n8',
+      id: 'dot1',
       stepIdx: 1,
       type: 'valley',
-      x: 44,
-      y: 206,
-      age: 'Age 8',
-      shortLine: 'New town',
+      x: 96,
+      y: 190, // -2/4
+      age: 'Age 9',
+      shortLine: 'Moved town',
       anchor: 'middle',
-      labelX: 52,
-      labelY: 230,
+      labelX: 96,
+      labelY: 207,
       color: COLORS.plum,
-      fill: COLORS.plumWash,
-      heading: 'Age 8: Moved to a New Town',
-      verse: '"8 - Moved to new town, felt lonely."',
-      ref: 'Idea: Early Change',
-      note: 'Idea for your graph: a childhood move, a new school, or a season you felt out of place.'
+      dark: COLORS.plumDark,
+      badge: 'Low 1 · -2/4',
+      heading: '1. Low: Moved to a New Town',
+      quote: '"Age 9: New school, felt lonely."',
+      note: 'Start with a low dot below the middle line. Use the quarter marks to rate how hard that season felt.'
     },
     {
-      id: 'n12',
-      stepIdx: 1,
+      id: 'dot2',
+      stepIdx: 2,
       type: 'peak',
-      x: 92,
-      y: 96,
-      age: 'Age 12',
-      shortLine: 'Summer camp',
+      x: 155,
+      y: 106, // +2/4
+      age: 'Age 13',
+      shortLine: 'Youth camp',
       anchor: 'middle',
-      labelX: 92,
-      labelY: 61,
+      labelX: 155,
+      labelY: 79,
       color: COLORS.blue,
-      fill: COLORS.blueWash,
-      heading: 'Age 12: Felt God\'s Love at Camp',
-      verse: '"12 - Summer camp, felt God\'s love."',
-      ref: 'Idea: Early Spark',
-      note: 'Idea for your graph: a camp, church moment, or friend who first pointed you toward God.'
+      dark: COLORS.blueDark,
+      badge: 'High 1 · +2/4',
+      heading: '2. High: Summer Camp',
+      quote: '"Age 13: Felt God\'s love at youth camp."',
+      note: 'Place your next dot above the line and connect it from the first. Early sparks of joy belong here too.'
     },
     {
-      id: 'n15',
-      stepIdx: 1,
+      id: 'dot3',
+      stepIdx: 3,
       type: 'valley',
-      x: 140,
-      y: 198,
-      age: 'Age 15',
+      x: 214,
+      y: 211, // -3/4
+      age: 'Age 16',
       shortLine: 'Family stress',
       anchor: 'middle',
-      labelX: 140,
-      labelY: 222,
+      labelX: 214,
+      labelY: 228,
       color: COLORS.plum,
-      fill: COLORS.plumWash,
-      heading: 'Age 15: Family Hardship',
-      verse: '"15 - Dad lost his job, family stress."',
-      ref: 'Idea: Hard Season',
-      note: 'Idea for your graph: money trouble, tension at home, or pressure you could not control.'
+      dark: COLORS.plumDark,
+      badge: 'Low 2 · -3/4',
+      heading: '3. Low: Family Hardship',
+      quote: '"Age 16: Tough year at home, worried often."',
+      note: 'Drop deeper on the quarter scale for harder seasons, writing only your age and a few words.'
     },
     {
-      id: 'n17',
-      stepIdx: 2,
+      id: 'dot4',
+      stepIdx: 4,
       type: 'star',
-      x: 178,
-      y: 134,
-      age: '17',
-      shortLine: 'Accepted Christ',
-      anchor: 'start',
-      labelX: 192,
-      labelY: 134,
+      x: 273,
+      y: 64, // +4/4
+      age: 'Age 19 ★',
+      shortLine: 'Became a Christian',
+      anchor: 'middle',
+      labelX: 273,
+      labelY: 36,
       color: COLORS.gold,
-      fill: COLORS.goldWash,
-      heading: 'Age 17: Put a Star Here',
-      verse: '"17 - Youth retreat: Accepted Christ!"',
-      ref: 'The Turning Point',
-      note: 'Idea for your graph: mark a star at the moment or season you became a follower of Jesus.'
+      dark: COLORS.goldDark,
+      badge: 'High 2 · +4/4 ★',
+      heading: '4. High: Became a Christian',
+      quote: '"Age 19 ★: Came to faith in Christ!"',
+      note: 'Mark one of your highs with a star for the moment or season you became a follower of Jesus.'
     },
     {
-      id: 'n21',
-      stepIdx: 2,
-      type: 'peak',
-      x: 218,
-      y: 76,
-      age: 'Age 21',
-      shortLine: 'Mission trip',
-      anchor: 'middle',
-      labelX: 218,
-      labelY: 42,
-      color: COLORS.blue,
-      fill: COLORS.blueWash,
-      heading: 'Age 21: Short-Term Trip to Peru',
-      verse: '"21 - Short-term mission trip to Peru."',
-      ref: 'Idea: A Place',
-      note: 'Idea for your graph: a trip, service step, or place that stretched and grew your faith.'
-    },
-    {
-      id: 'n26',
-      stepIdx: 3,
+      id: 'dot5',
+      stepIdx: 5,
       type: 'valley',
-      x: 266,
-      y: 196,
+      x: 332,
+      y: 232, // -4/4
       age: 'Age 26',
-      shortLine: 'Career doubts',
+      shortLine: 'Lost Grandma',
       anchor: 'middle',
-      labelX: 266,
-      labelY: 220,
+      labelX: 332,
+      labelY: 249,
       color: COLORS.plum,
-      fill: COLORS.plumWash,
-      heading: 'Age 26: Questioning Your Path',
-      verse: '"26 - Career struggles, questioning path."',
-      ref: 'Idea: Crossroads',
-      note: 'Idea for your graph: a season of job stress, closed doors, or wondering what came next.'
+      dark: COLORS.plumDark,
+      badge: 'Low 3 · -4/4',
+      heading: '5. Low: Loss of Grandma',
+      quote: '"Age 26: Lost Grandma, prayed through grief."',
+      note: 'Include painful valleys like losing someone you love. God can meet you deeply in your lowest seasons.'
     },
     {
-      id: 'n30',
-      stepIdx: 3,
+      id: 'dot6',
+      stepIdx: 6,
       type: 'peak',
-      x: 312,
-      y: 72,
-      age: 'Age 30',
-      shortLine: 'Married',
-      anchor: 'middle',
-      labelX: 310,
-      labelY: 38,
-      color: COLORS.green,
-      fill: COLORS.greenWash,
-      heading: 'Age 30: Key People and Community',
-      verse: '"30 - Married Sarah, joined prayer group."',
-      ref: 'Idea: Key People',
-      note: 'Idea for your graph: marriage, a mentor, or a small group that carried you closer to Jesus.'
-    },
-    {
-      id: 'n34',
-      stepIdx: 4,
-      type: 'valley',
-      x: 358,
-      y: 212,
-      age: 'Age 34',
-      shortLine: 'Grief, prayer',
-      anchor: 'middle',
-      labelX: 358,
-      labelY: 235,
-      color: COLORS.plum,
-      fill: COLORS.plumWash,
-      heading: 'Age 34: Praying Through Tears',
-      verse: '"34 - Miscarriage, grief, praying through tears."',
-      ref: 'Idea: Deep Grief',
-      note: 'Idea for your graph: a painful valley where you do not have to explain everything, just note where God met you.'
-    },
-    {
-      id: 'nToday',
-      stepIdx: 4,
-      type: 'today',
-      x: 406,
-      y: 72,
+      x: 391,
+      y: 85, // +3/4
       age: 'Today',
-      shortLine: 'Trusting God',
+      shortLine: 'Church group',
       anchor: 'end',
-      labelX: 424,
-      labelY: 38,
+      labelX: 406,
+      labelY: 57,
       color: COLORS.green,
-      fill: COLORS.greenWash,
-      heading: 'Today: Trusting God Forward',
-      verse: '"Current day: Trusting God for the future."',
-      ref: 'Idea: Right Now',
-      note: 'Idea for your graph: joyful milestones (like a child\'s birth or serving) leading up to today.'
+      dark: COLORS.greenDark,
+      badge: 'High 3 · +3/4',
+      heading: '6. High: Growing with God Today',
+      quote: '"Today: Joined a church group, trusting God."',
+      note: 'Finish with a recent high, like loving community or starting this study. Step back and see God\'s hand across all 6 points.'
     }
   ];
 
-  var STEPS = [
-    {
-      id: 'ready',
-      pillLabel: 'Start: Your Story on Paper',
-      heading: 'Your Story on Paper',
-      verse: '"Draw a simple timeline of your life with 6 to 8 high points and low points."',
-      ref: 'Peaks & Valleys',
-      note: 'Step through this example to spark ideas before drawing your own graph on paper.',
-      accent: COLORS.ink,
-      accentDark: COLORS.ink,
-      xTarget: 0,
-      visibleUpToStep: 0,
-      climax: false,
-      desc: 'Ruled timeline stage divided into high peaks above and low valleys below, ready to trace an example journey.'
-    },
-    {
-      id: 'roots',
-      pillLabel: 'Step 1: Early Moves, Sparks, and Stress',
-      heading: '1. Early Moves, Sparks, and Stress',
-      verse: '8: Moved, felt lonely  ·  12: Summer camp  ·  15: Family job stress',
-      ref: '',
-      note: 'Ideas for your own line: a childhood move, a camp or person where you felt God\'s love, or family pressure.',
-      accent: COLORS.blue,
-      accentDark: COLORS.blueDark,
-      xTarget: 152,
-      visibleUpToStep: 1,
-      climax: false,
-      desc: 'Line sweeps from a valley at age 8 up to a peak at age 12 and dips to a family valley at age 15.'
-    },
-    {
-      id: 'star',
-      pillLabel: 'Step 2: Put a Star Where You Trusted Christ',
-      heading: '2. Put a Star Where You Trusted Christ',
-      verse: '17 ★: Accepted Christ at youth retreat  ·  21: Mission trip to Peru',
-      ref: '',
-      note: 'Put a star where you began following Jesus, then note a trip or moment that stretched your faith.',
-      accent: COLORS.gold,
-      accentDark: COLORS.goldDark,
-      xTarget: 240,
-      visibleUpToStep: 2,
-      climax: false,
-      desc: 'Line climbs through a sunlit gold star at age 17 labeled Accepted Christ and rises to a peak at age 21.'
-    },
-    {
-      id: 'people',
-      pillLabel: 'Step 3: Crossroads and Key People',
-      heading: '3. Crossroads and Key People',
-      verse: '26: Career struggles  ·  30: Married Sarah, joined prayer group',
-      ref: '',
-      note: 'Think of seasons when you questioned your path, alongside the people and community God gave you.',
-      accent: COLORS.green,
-      accentDark: COLORS.greenDark,
-      xTarget: 334,
-      visibleUpToStep: 3,
-      climax: false,
-      desc: 'Line dips into career doubts at age 26 and climbs to a green peak at age 30 for marriage and prayer community.'
-    },
-    {
-      id: 'today',
-      pillLabel: 'Step 4: Deep Valleys and Today',
-      heading: '4. Deep Valleys and Today\'s Hope',
-      verse: '34: Miscarriage, praying through tears  ·  Today: Trusting God',
-      ref: '',
-      note: 'Include painful valleys where you cried out to God, plus joys like family or serving leading to today.',
-      accent: COLORS.plum,
-      accentDark: COLORS.plumDark,
-      xTarget: 440,
-      visibleUpToStep: 4,
-      climax: false,
-      desc: 'Line descends into grief and prayer at age 34, then rises into Today with forward chevrons for trusting God.'
-    },
-    {
-      id: 'climax',
-      pillLabel: 'Step 5: God\'s Hand Across Your Whole Story',
-      heading: 'God\'s Hand Across Your Whole Story',
-      verse: '"He who began a good work in you will bring it to completion."',
-      ref: 'Philippians 1:6',
-      note: 'He was there before you knew His name. Tap any point above to revisit an idea for your own timeline.',
-      accent: COLORS.crimson,
-      accentDark: COLORS.crimsonDark,
-      xTarget: 440,
-      visibleUpToStep: 4,
-      climax: true,
-      desc: 'A warm golden thread and crimson double-hairline star frame the entire timeline from age 8 to today, showing God\'s steady hand.'
-    }
-  ];
+  var READY_STEP = {
+    pillLabel: 'Start: Blank Sheet of Paper',
+    badge: '3 Highs · 3 Lows',
+    heading: 'Start with Your Blank Paper',
+    quote: 'Draw a sideways T: Highs above the dotted middle line, Lows below, with four quarter marks up and down.',
+    note: 'Place 3 to 5 peaks and 3 to 5 valleys one dot at a time, then connect your dots. Step through this 6-dot example.',
+    accent: COLORS.ink,
+    accentDark: COLORS.ink,
+    desc: 'White sheet of paper with a vertical axis labeled Highs above and Lows below, four quarter tick marks up and down, and a horizontal dotted midline ready for six points.'
+  };
 
   function el(tag, attrs, text) {
     var node = document.createElement(tag);
@@ -725,6 +563,22 @@ button:focus-visible {
     return 'M ' + pts.join(' L ') + ' Z';
   }
 
+  function segBezier(a, b) {
+    var midX = ((a.x + b.x) / 2).toFixed(1);
+    return 'M ' + a.x + ' ' + a.y + ' C ' + midX + ' ' + a.y + ', ' + midX + ' ' + b.y + ', ' + b.x + ' ' + b.y;
+  }
+
+  function fullBezier() {
+    var d = 'M ' + POINTS[0].x + ' ' + POINTS[0].y;
+    for (var i = 1; i < POINTS.length; i++) {
+      var a = POINTS[i - 1];
+      var b = POINTS[i];
+      var midX = ((a.x + b.x) / 2).toFixed(1);
+      d += ' C ' + midX + ' ' + a.y + ', ' + midX + ' ' + b.y + ', ' + b.x + ' ' + b.y;
+    }
+    return d;
+  }
+
   function buildSvg() {
     var svg = svgEl('svg', {
       'class': 'pv-svg',
@@ -734,149 +588,154 @@ button:focus-visible {
       'aria-labelledby': 'pv-svg-title pv-svg-desc'
     });
 
-    svg.appendChild(svgEl('title', { id: 'pv-svg-title' }, 'My Journey of Faith: Peaks and Valleys Example'));
-    var svgDesc = svgEl('desc', { id: 'pv-svg-desc' }, STEPS[0].desc);
+    svg.appendChild(svgEl('title', { id: 'pv-svg-title' }, 'Peaks and Valleys: Example on Paper'));
+    var svgDesc = svgEl('desc', { id: 'pv-svg-desc' }, READY_STEP.desc);
     svg.appendChild(svgDesc);
 
-    var defs = svgEl('defs');
-
-    var peakGrad = svgEl('linearGradient', { id: 'pv-peak-wash', x1: '0%', y1: '0%', x2: '100%', y2: '0%' });
-    peakGrad.appendChild(svgEl('stop', { offset: '0%', 'stop-color': COLORS.blueWash }));
-    peakGrad.appendChild(svgEl('stop', { offset: '55%', 'stop-color': COLORS.blueWash }));
-    peakGrad.appendChild(svgEl('stop', { offset: '100%', 'stop-color': COLORS.greenWash }));
-    defs.appendChild(peakGrad);
-
-    var clipAbove = svgEl('clipPath', { id: 'pv-clip-above' });
-    clipAbove.appendChild(svgEl('rect', { x: '0', y: '0', width: String(GEO.W), height: String(GEO.horizonY) }));
-    defs.appendChild(clipAbove);
-
-    var clipBelow = svgEl('clipPath', { id: 'pv-clip-below' });
-    clipBelow.appendChild(svgEl('rect', { x: '0', y: String(GEO.horizonY), width: String(GEO.W), height: String(GEO.H - GEO.horizonY) }));
-    defs.appendChild(clipBelow);
-
-    var clipReveal = svgEl('clipPath', { id: 'pv-clip-reveal' });
-    var revealRect = svgEl('rect', { x: '0', y: '0', width: '0', height: String(GEO.H) });
-    clipReveal.appendChild(revealRect);
-    defs.appendChild(clipReveal);
-
-    svg.appendChild(defs);
-
-    // 1. Subtle studio ruled backdrop & horizon axis
-    var guides = svgEl('g', { 'aria-hidden': 'true' });
-    [68, 108, 188, 228].forEach(function (gy) {
-      guides.appendChild(svgEl('line', {
-        x1: '24', y1: String(gy), x2: '422', y2: String(gy),
-        stroke: '#EFEBE2', 'stroke-width': '1'
-      }));
-    });
-    guides.appendChild(svgEl('line', {
-      x1: '24', y1: '36', x2: '24', y2: '252',
-      stroke: '#E4DDD0', 'stroke-width': '1.2'
+    // 1. Sheet of paper rectangle on warm studio background
+    var paperGroup = svgEl('g', { 'aria-hidden': 'true' });
+    paperGroup.appendChild(svgEl('rect', {
+      x: String(GEO.paperX + 3),
+      y: String(GEO.paperY + 3),
+      width: String(GEO.paperW),
+      height: String(GEO.paperH),
+      rx: '4',
+      fill: '#D8D2C5',
+      opacity: '0.65'
     }));
-    guides.appendChild(svgEl('line', {
-      x1: '24', y1: String(GEO.horizonY), x2: '422', y2: String(GEO.horizonY),
-      stroke: '#CEC6B8', 'stroke-width': '1.2', 'stroke-dasharray': '4 4'
+    paperGroup.appendChild(svgEl('rect', {
+      x: String(GEO.paperX),
+      y: String(GEO.paperY),
+      width: String(GEO.paperW),
+      height: String(GEO.paperH),
+      rx: '4',
+      fill: '#FFFFFF',
+      stroke: '#BFB6A4',
+      'stroke-width': '1.4'
     }));
-    guides.appendChild(svgEl('text', {
-      'class': 'axis-tag', x: '29', y: '142'
-    }, 'Highs'));
-    guides.appendChild(svgEl('text', {
-      'class': 'axis-tag', x: '29', y: '160'
-    }, 'Lows'));
-    svg.appendChild(guides);
-
-    // 2. Faint blueprint ghost of the curve (visible at Ready step)
-    svg.appendChild(svgEl('path', {
-      'class': 'curve-ghost',
-      d: CURVE_D,
-      'aria-hidden': 'true'
-    }));
-
-    // 3. Luminous translucent washes clipped above/below horizon and revealed left-to-right
-    var washGroup = svgEl('g', { 'clip-path': 'url(#pv-clip-reveal)', 'aria-hidden': 'true' });
-
-    var aboveWrap = svgEl('g', { 'clip-path': 'url(#pv-clip-above)' });
-    aboveWrap.appendChild(svgEl('path', {
-      d: AREA_D,
-      fill: 'url(#pv-peak-wash)',
-      opacity: '0.82'
-    }));
-    washGroup.appendChild(aboveWrap);
-
-    var belowWrap = svgEl('g', { 'clip-path': 'url(#pv-clip-below)' });
-    belowWrap.appendChild(svgEl('path', {
-      d: AREA_D,
-      fill: COLORS.plumWash,
-      opacity: '0.82'
-    }));
-    washGroup.appendChild(belowWrap);
-
-    svg.appendChild(washGroup);
-
-    // 4. Climax golden ribbon sits behind the main curve at Step 5
-    var curveClimax = svgEl('path', {
-      'class': 'curve-climax',
-      d: CURVE_D,
-      'aria-hidden': 'true'
-    });
-    svg.appendChild(curveClimax);
-
-    // 5. Main timeline curve (drawn smoothly via stroke-dashoffset)
-    var curveMain = svgEl('path', {
-      'class': 'curve-main',
-      d: CURVE_D
-    });
-    svg.appendChild(curveMain);
-
-    var starHalo = svgEl('g', { 'class': 'star-halo', 'aria-hidden': 'true' });
-    var starOuterContour = svgEl('circle', {
-      'class': 'climax-contour',
-      cx: '178', cy: '134', r: '18',
-      'stroke-width': '2.4'
-    });
-    var starInnerContour = svgEl('circle', {
-      'class': 'climax-contour',
-      cx: '178', cy: '134', r: '14.5',
+    // Subtle corner fold on top right so the paper reads right away
+    var foldR = GEO.paperX + GEO.paperW;
+    var foldT = GEO.paperY;
+    paperGroup.appendChild(svgEl('polygon', {
+      points: (foldR - 14) + ',' + foldT + ' ' + foldR + ',' + (foldT + 14) + ' ' + (foldR - 14) + ',' + (foldT + 14),
+      fill: '#F3EFE6',
+      stroke: '#C9C0AE',
       'stroke-width': '1',
-      opacity: '0.45'
-    });
-    starHalo.appendChild(starInnerContour);
-    starHalo.appendChild(starOuterContour);
-    svg.appendChild(starHalo);
+      'stroke-linejoin': 'round'
+    }));
+    paperGroup.appendChild(svgEl('polygon', {
+      points: (foldR - 14) + ',' + foldT + ' ' + (foldR + 1) + ',' + foldT + ' ' + (foldR + 1) + ',' + (foldT + 15),
+      fill: '#EFECE3'
+    }));
 
-    // Delicate double-chevron forward watermarks at the Today rising tip
-    var todayChevrons = svgEl('g', {
-      'class': 'today-chevrons',
-      transform: 'translate(406, 72) rotate(-66)',
+    // 2. Subtle quarter horizontal paper hairlines + Sideways-T axes
+    [1, 2, 3, 4].forEach(function (q) {
+      var yUp = GEO.horizonY - q * GEO.quarter;
+      var yDn = GEO.horizonY + q * GEO.quarter;
+      [yUp, yDn].forEach(function (gy) {
+        paperGroup.appendChild(svgEl('line', {
+          x1: String(GEO.axisX + 6),
+          y1: String(gy),
+          x2: String(GEO.lineRight),
+          y2: String(gy),
+          stroke: '#F1EDE3',
+          'stroke-width': '1'
+        }));
+        // Quarter hash marks on the vertical axis
+        paperGroup.appendChild(svgEl('line', {
+          x1: String(GEO.axisX - 6),
+          y1: String(gy),
+          x2: String(GEO.axisX + 5),
+          y2: String(gy),
+          stroke: '#5E5548',
+          'stroke-width': '1.5',
+          'stroke-linecap': 'round'
+        }));
+      });
+    });
+
+    // Vertical axis line on the far left of the chart
+    paperGroup.appendChild(svgEl('line', {
+      x1: String(GEO.axisX),
+      y1: '48',
+      x2: String(GEO.axisX),
+      y2: '248',
+      stroke: COLORS.ink,
+      'stroke-width': '1.8',
+      'stroke-linecap': 'round'
+    }));
+    // Crisp top/bottom end ticks on vertical axis
+    paperGroup.appendChild(svgEl('path', {
+      d: 'M ' + (GEO.axisX - 3.5) + ' 53 L ' + GEO.axisX + ' 47 L ' + (GEO.axisX + 3.5) + ' 53',
+      fill: 'none',
+      stroke: COLORS.ink,
+      'stroke-width': '1.6',
+      'stroke-linecap': 'round',
+      'stroke-linejoin': 'round'
+    }));
+    paperGroup.appendChild(svgEl('path', {
+      d: 'M ' + (GEO.axisX - 3.5) + ' 243 L ' + GEO.axisX + ' 249 L ' + (GEO.axisX + 3.5) + ' 243',
+      fill: 'none',
+      stroke: COLORS.ink,
+      'stroke-width': '1.6',
+      'stroke-linecap': 'round',
+      'stroke-linejoin': 'round'
+    }));
+
+    // Horizontal dotted line across the middle from left to right
+    paperGroup.appendChild(svgEl('line', {
+      x1: String(GEO.axisX),
+      y1: String(GEO.horizonY),
+      x2: String(GEO.lineRight),
+      y2: String(GEO.horizonY),
+      stroke: '#7B7162',
+      'stroke-width': '1.6',
+      'stroke-dasharray': '4 4'
+    }));
+
+    // Sideways vertical labels on the left side of the vertical line: HIGHS / LOWS
+    paperGroup.appendChild(svgEl('text', {
+      'class': 'axis-word',
+      x: '33',
+      y: '100',
+      'text-anchor': 'middle',
+      transform: 'rotate(-90 33 100)',
+      fill: COLORS.green
+    }, 'Highs'));
+
+    paperGroup.appendChild(svgEl('text', {
+      'class': 'axis-word',
+      x: '33',
+      y: '196',
+      'text-anchor': 'middle',
+      transform: 'rotate(-90 33 196)',
+      fill: COLORS.plum
+    }, 'Lows'));
+
+    svg.appendChild(paperGroup);
+
+    // 3. Soft golden ribbon glow behind finished 6-dot graph on Step 6
+    var finishGlow = svgEl('path', {
+      'class': 'curve-finish-glow',
+      d: fullBezier(),
       'aria-hidden': 'true'
     });
-    todayChevrons.appendChild(svgEl('path', {
-      d: 'M -1 -5 L 6 0 L -1 5',
-      fill: 'none', stroke: COLORS.blue, 'stroke-width': '2.6',
-      'stroke-linecap': 'round', 'stroke-linejoin': 'round', opacity: '0.88'
-    }));
-    todayChevrons.appendChild(svgEl('path', {
-      d: 'M -8 -4.5 L -2 0 L -8 4.5',
-      fill: 'none', stroke: COLORS.blue, 'stroke-width': '2',
-      'stroke-linecap': 'round', 'stroke-linejoin': 'round', opacity: '0.35'
-    }));
-    svg.appendChild(todayChevrons);
+    svg.appendChild(finishGlow);
 
-    // 6. Climax studio caption badge anchored cleanly below horizon at Step 5
-    var climaxBadge = svgEl('g', { 'class': 'climax-badge', 'aria-hidden': 'true' });
-    climaxBadge.appendChild(svgEl('rect', {
-      x: '122', y: '250', width: '196', height: '21', rx: '10.5',
-      fill: COLORS.goldWash, stroke: COLORS.crimson, 'stroke-width': '1.2'
-    }));
-    climaxBadge.appendChild(svgEl('text', {
-      x: '220', y: '264', 'text-anchor': 'middle',
-      fill: COLORS.crimsonDark,
-      style: 'font: 700 10.5px/1 system-ui, -apple-system, sans-serif; letter-spacing: 0.25px;'
-    }, 'God\'s hand across every season'));
-    svg.appendChild(climaxBadge);
+    // 4. Individual dot-to-dot connecting segments (NO ghost curve!)
+    var segmentRefs = [];
+    for (var i = 1; i < POINTS.length; i++) {
+      var seg = svgEl('path', {
+        'class': 'seg-line',
+        d: segBezier(POINTS[i - 1], POINTS[i]),
+        'aria-hidden': 'true'
+      });
+      svg.appendChild(seg);
+      segmentRefs.push({ el: seg, stepIdx: POINTS[i].stepIdx });
+    }
 
-    // 7. Interactive peak, valley, and star nodes
-    var nodeRefs = NODES.map(function (spec) {
+    // 5. Six interactive dots (3 highs, 3 lows)
+    var nodeRefs = POINTS.map(function (spec) {
       var g = svgEl('g', {
         'class': 'node-group',
         'data-node': spec.id,
@@ -887,60 +746,80 @@ button:focus-visible {
         'aria-hidden': 'true'
       });
 
-      // Invisible generous touch hit area
+      // Generous 44px-equivalent SVG touch target around each dot
       g.appendChild(svgEl('circle', {
-        cx: String(spec.x), cy: String(spec.y), r: '18',
+        cx: String(spec.x),
+        cy: String(spec.y),
+        r: '22',
         fill: 'transparent'
       }));
 
-      // Selection ring
       g.appendChild(svgEl('circle', {
         'class': 'node-focus-ring',
-        cx: String(spec.x), cy: String(spec.y),
-        r: spec.type === 'star' ? '15.5' : '9.5',
-        fill: 'none', stroke: COLORS.ink, 'stroke-width': '2'
+        cx: String(spec.x),
+        cy: String(spec.y),
+        r: spec.type === 'star' ? '15.5' : '10.5',
+        fill: 'none',
+        stroke: COLORS.ink,
+        'stroke-width': '2'
       }));
 
       if (spec.type === 'star') {
         g.appendChild(svgEl('circle', {
-          cx: String(spec.x), cy: String(spec.y), r: '12',
-          fill: COLORS.goldWash, stroke: COLORS.gold, 'stroke-width': '1.2', opacity: '0.85'
+          cx: String(spec.x),
+          cy: String(spec.y),
+          r: '12',
+          fill: COLORS.goldWash,
+          stroke: COLORS.gold,
+          'stroke-width': '1.4'
         }));
         g.appendChild(svgEl('path', {
-          d: starPath(spec.x, spec.y, 9.5, 4.3),
-          fill: COLORS.gold, stroke: COLORS.goldDark, 'stroke-width': '1.2', 'stroke-linejoin': 'round'
-        }));
-
-        // Crisp pill badge tucked inside the open arch right of the star
-        g.appendChild(svgEl('rect', {
-          x: '190', y: '119', width: '53', height: '27', rx: '7',
-          fill: COLORS.goldWash, stroke: COLORS.gold, 'stroke-width': '1.2'
+          d: starPath(spec.x, spec.y, 9.2, 4.2),
+          fill: COLORS.gold,
+          stroke: COLORS.goldDark,
+          'stroke-width': '1.2',
+          'stroke-linejoin': 'round'
         }));
         g.appendChild(svgEl('text', {
-          'class': 'star-age', x: '216.5', y: '130', 'text-anchor': 'middle'
-        }, '17 · ★'));
+          'class': 'star-age',
+          x: String(spec.labelX),
+          y: String(spec.labelY),
+          'text-anchor': spec.anchor
+        }, spec.age));
         g.appendChild(svgEl('text', {
-          'class': 'star-label', x: '216.5', y: '142', 'text-anchor': 'middle'
-        }, 'Christ!'));
+          'class': 'star-label',
+          x: String(spec.labelX),
+          y: String(spec.labelY + 12),
+          'text-anchor': spec.anchor
+        }, spec.shortLine));
       } else {
-        if (spec.type !== 'today') {
-          g.appendChild(svgEl('circle', {
-            cx: String(spec.x), cy: String(spec.y), r: '5.2',
-            fill: '#FFFFFF', stroke: spec.color, 'stroke-width': '2.4'
-          }));
-        }
+        g.appendChild(svgEl('circle', {
+          cx: String(spec.x),
+          cy: String(spec.y),
+          r: '5.5',
+          fill: spec.color,
+          stroke: '#FFFFFF',
+          'stroke-width': '1.8'
+        }));
+        g.appendChild(svgEl('circle', {
+          cx: String(spec.x),
+          cy: String(spec.y),
+          r: '6.2',
+          fill: 'none',
+          stroke: spec.color,
+          'stroke-width': '1.6'
+        }));
 
-        // Subtle connector tick from point toward its label
         var tickY1 = spec.type === 'valley' ? spec.y + 7 : spec.y - 7;
-        var tickY2 = spec.type === 'valley' ? spec.y + 13 : spec.y - 13;
-        if (spec.type === 'today') {
-          tickY1 = spec.y - 10;
-          tickY2 = spec.y - 16;
-        }
+        var tickY2 = spec.type === 'valley' ? spec.y + 11 : spec.y - 11;
         g.appendChild(svgEl('line', {
-          x1: String(spec.x), y1: String(tickY1),
-          x2: String(spec.x), y2: String(tickY2),
-          stroke: spec.color, 'stroke-width': '1.2', opacity: '0.45'
+          x1: String(spec.x),
+          y1: String(tickY1),
+          x2: String(spec.x),
+          y2: String(tickY2),
+          stroke: spec.color,
+          'stroke-width': '1.2',
+          opacity: '0.55'
         }));
 
         g.appendChild(svgEl('text', {
@@ -953,7 +832,7 @@ button:focus-visible {
         g.appendChild(svgEl('text', {
           'class': 'node-label',
           x: String(spec.labelX),
-          y: String(spec.labelY + 13),
+          y: String(spec.labelY + 12),
           'text-anchor': spec.anchor
         }, spec.shortLine));
       }
@@ -965,29 +844,18 @@ button:focus-visible {
     return {
       svg: svg,
       svgDesc: svgDesc,
-      revealRect: revealRect,
-      curveMain: curveMain,
-      curveClimax: curveClimax,
-      starHalo: starHalo,
-      starContours: [starOuterContour, starInnerContour],
-      todayChevrons: todayChevrons,
-      climaxBadge: climaxBadge,
+      finishGlow: finishGlow,
+      segments: segmentRefs,
       nodes: nodeRefs
     };
   }
 
-  function findLengthForX(pathNode, targetX, totalLen) {
-    if (targetX <= GEO.startX) return 0;
-    if (targetX >= GEO.endX) return totalLen;
-    var lo = 0;
-    var hi = totalLen;
-    for (var i = 0; i < 18; i++) {
-      var mid = (lo + hi) / 2;
-      var pt = pathNode.getPointAtLength(mid);
-      if (pt.x < targetX) lo = mid;
-      else hi = mid;
-    }
-    return (lo + hi) / 2;
+  function stepDescFor(stepIdx) {
+    if (stepIdx === 0) return READY_STEP.desc;
+    var placed = POINTS.slice(0, stepIdx).map(function (p) {
+      return p.age + ' (' + p.shortLine + ')';
+    }).join(', ');
+    return 'Sheet of paper with ' + stepIdx + ' of 6 points placed and connected: ' + placed + '.';
   }
 
   function init() {
@@ -997,7 +865,7 @@ button:focus-visible {
 
     var header = el('header', { 'class': 'title-bar' });
     header.appendChild(el('h1', null, 'Peaks and Valleys'));
-    header.appendChild(el('span', { 'class': 'course-tag' }, 'Course 101'));
+    header.appendChild(el('span', { 'class': 'course-tag' }, '6-Dot Example'));
     host.appendChild(header);
 
     var stage = el('div', { 'class': 'stage', id: 'stage' });
@@ -1005,16 +873,17 @@ button:focus-visible {
     stage.appendChild(bundle.svg);
     host.appendChild(stage);
 
-    var strip = el('div', { 'class': 'step-strip', id: 'step-strip', role: 'group', 'aria-label': 'Timeline steps' });
-    var dotButtons = STEPS.map(function (st, idx) {
+    var strip = el('div', { 'class': 'step-strip', id: 'step-strip', role: 'group', 'aria-label': 'Example dot steps' });
+    var stepData = [READY_STEP].concat(POINTS);
+    var dotButtons = stepData.map(function (item, idx) {
       var btn = el('button', {
         'class': 'step-dot',
         type: 'button',
         'data-step': String(idx),
-        'aria-label': st.pillLabel,
+        'aria-label': idx === 0 ? READY_STEP.pillLabel : ('Dot ' + idx + ': ' + item.age + ' ' + item.shortLine),
         'aria-pressed': 'false'
       });
-      btn.style.setProperty('--dot-color', st.accent);
+      btn.style.setProperty('--dot-color', idx === 0 ? READY_STEP.accent : item.color);
       btn.appendChild(el('span', { 'class': 'step-dot-fill', 'aria-hidden': 'true' }));
       btn.addEventListener('click', function () { goTo(idx); });
       strip.appendChild(btn);
@@ -1026,15 +895,15 @@ button:focus-visible {
     var verseCard = el('div', { 'class': 'verse-card' });
     verseCard.appendChild(el('div', { 'class': 'verse-card-bar', 'aria-hidden': 'true' }));
     var contentEl = el('div', { 'class': 'verse-card-content', id: 'card-content' });
+    var topRow = el('div', { 'class': 'card-top' });
     var headingEl = el('h2', { 'class': 'card-heading', id: 'card-heading' });
-    var verseWrap = el('p', { 'class': 'card-verse', id: 'card-verse' });
-    var verseTextNode = el('span', { id: 'card-verse-text' });
-    var refEl = el('span', { 'class': 'verse-ref', id: 'card-ref' });
-    verseWrap.appendChild(verseTextNode);
-    verseWrap.appendChild(refEl);
-    var noteEl = el('span', { 'class': 'card-note', id: 'card-note' });
-    contentEl.appendChild(headingEl);
-    contentEl.appendChild(verseWrap);
+    var badgeEl = el('span', { 'class': 'card-badge', id: 'card-badge' });
+    topRow.appendChild(headingEl);
+    topRow.appendChild(badgeEl);
+    var quoteEl = el('p', { 'class': 'card-quote', id: 'card-quote' });
+    var noteEl = el('p', { 'class': 'card-note', id: 'card-note' });
+    contentEl.appendChild(topRow);
+    contentEl.appendChild(quoteEl);
     contentEl.appendChild(noteEl);
     verseCard.appendChild(contentEl);
     cardArea.appendChild(verseCard);
@@ -1042,37 +911,25 @@ button:focus-visible {
     var navBar = el('div', { 'class': 'nav-bar' });
     var prevBtn = el('button', { 'class': 'nav-btn', id: 'prev-btn', type: 'button' }, '\u2190 Back');
     var countEl = el('span', { 'class': 'step-count', id: 'step-count' });
-    var nextBtn = el('button', { 'class': 'nav-btn primary', id: 'next-btn', type: 'button' }, 'Begin \u2192');
+    var nextBtn = el('button', { 'class': 'nav-btn primary', id: 'next-btn', type: 'button' }, 'Place Dot 1 \u2192');
     navBar.appendChild(prevBtn);
     navBar.appendChild(countEl);
     navBar.appendChild(nextBtn);
     cardArea.appendChild(navBar);
     host.appendChild(cardArea);
 
-    var totalLen = bundle.curveMain.getTotalLength();
-    bundle.curveMain.style.strokeDasharray = String(totalLen + 4);
-    bundle.curveMain.style.strokeDashoffset = String(totalLen + 4);
-
-    bundle.curveClimax.style.strokeDasharray = String(totalLen + 4);
-    bundle.curveClimax.style.strokeDashoffset = String(totalLen + 4);
-
-    bundle.starContours.forEach(function (c) {
-      var len = Math.ceil(c.getTotalLength()) + 4;
-      c.dataset.len = String(len);
-      c.style.strokeDasharray = String(len);
-      c.style.strokeDashoffset = String(len);
-    });
-
-    var stepCurveLens = STEPS.map(function (st) {
-      return findLengthForX(bundle.curveMain, st.xTarget, totalLen);
+    // Prepare path lengths for dot-to-dot segments
+    bundle.segments.forEach(function (seg) {
+      var len = seg.el.getTotalLength();
+      seg.len = len;
+      seg.el.style.strokeDasharray = String(len + 2);
+      seg.el.style.strokeDashoffset = String(len + 2);
     });
 
     var reducedMotionQuery = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : { matches: false };
     var currentStep = 0;
     var selectedNodeId = null;
     var activeRaf = null;
-    var CURVE_PX_PER_SEC = 185;
-    var CLIMAX_PX_PER_SEC = 280;
 
     function stopActiveAnim() {
       if (activeRaf) {
@@ -1081,17 +938,14 @@ button:focus-visible {
       }
     }
 
-    function applyRevealAtLength(lenVal) {
-      var offset = Math.max(0, (totalLen + 4) - lenVal);
-      bundle.curveMain.style.strokeDashoffset = String(offset);
-      var revealW = lenVal <= 1 ? 0 : (lenVal >= totalLen - 1 ? GEO.W : bundle.curveMain.getPointAtLength(lenVal).x);
-      bundle.revealRect.setAttribute('width', String(revealW));
+    function setSegProgress(seg, fraction) {
+      var offset = Math.max(0, (seg.len + 2) * (1 - fraction));
+      seg.el.style.strokeDashoffset = String(offset);
     }
 
-    function updateNodes(visibleUpToStep, animate) {
+    function updateNodes(visibleStep) {
       bundle.nodes.forEach(function (ref) {
-        var isVisible = ref.spec.stepIdx <= visibleUpToStep;
-        ref.el.style.setProperty('--fade-delay', animate && ref.spec.stepIdx === visibleUpToStep ? '220ms' : '0ms');
+        var isVisible = ref.spec.stepIdx <= visibleStep;
         ref.el.classList.toggle('is-visible', isVisible);
         ref.el.classList.toggle('is-selected', ref.spec.id === selectedNodeId);
         ref.el.classList.toggle('is-ghost', !!selectedNodeId && ref.spec.id !== selectedNodeId);
@@ -1101,36 +955,30 @@ button:focus-visible {
       });
     }
 
-    function applyClimaxInstant(isOn) {
-      bundle.curveClimax.classList.toggle('is-visible', isOn);
-      bundle.curveClimax.style.strokeDashoffset = isOn ? '0' : String(totalLen + 4);
-      bundle.starHalo.classList.toggle('is-visible', isOn);
-      bundle.starContours.forEach(function (c) {
-        c.style.strokeDashoffset = isOn ? '0' : c.dataset.len;
-      });
-      bundle.climaxBadge.classList.toggle('is-visible', isOn);
+    function applyCard(heading, badge, quote, note, color, dark) {
+      document.documentElement.style.setProperty('--step-color', color);
+      document.documentElement.style.setProperty('--step-dark', dark);
+      headingEl.textContent = heading;
+      badgeEl.textContent = badge;
+      quoteEl.textContent = quote;
+      noteEl.textContent = note;
     }
 
-    function applyCardContent(title, verse, refText, noteText, accent, accentDark) {
-      document.documentElement.style.setProperty('--step-color', accent);
-      document.documentElement.style.setProperty('--step-dark', accentDark);
-      headingEl.textContent = title;
-      verseTextNode.textContent = verse;
-      refEl.textContent = refText;
-      refEl.style.display = refText ? '' : 'none';
-      noteEl.textContent = noteText;
+    function cardDataForStep(stepIdx) {
+      if (stepIdx === 0) return READY_STEP;
+      return POINTS[stepIdx - 1];
     }
 
     function selectNode(nodeRef) {
-      if (!nodeRef || nodeRef.spec.stepIdx > STEPS[currentStep].visibleUpToStep) return;
+      if (!nodeRef || nodeRef.spec.stepIdx > currentStep) return;
       selectedNodeId = selectedNodeId === nodeRef.spec.id ? null : nodeRef.spec.id;
-      updateNodes(STEPS[currentStep].visibleUpToStep, false);
+      updateNodes(currentStep);
       if (selectedNodeId) {
         var sp = nodeRef.spec;
-        applyCardContent(sp.heading, sp.verse, sp.ref, sp.note, sp.color, sp.color);
+        applyCard(sp.heading, sp.badge, sp.quote, sp.note, sp.color, sp.dark);
       } else {
-        var st = STEPS[currentStep];
-        applyCardContent(st.heading, st.verse, st.ref, st.note, st.accent, st.accentDark);
+        var cur = cardDataForStep(currentStep);
+        applyCard(cur.heading, cur.badge, cur.quote, cur.note, cur.color || cur.accent, cur.dark || cur.accentDark);
       }
     }
 
@@ -1150,65 +998,41 @@ button:focus-visible {
       stopActiveAnim();
       selectedNodeId = null;
       var prevStepIdx = currentStep;
-      var nextStep = STEPS[nextIdx];
       var goingForward = nextIdx > prevStepIdx;
-      var instant = reducedMotionQuery.matches || !goingForward || nextIdx === 0;
+      var instant = reducedMotionQuery.matches || !goingForward || nextIdx <= 1;
 
-      var startLen = stepCurveLens[prevStepIdx];
-      var targetLen = stepCurveLens[nextIdx];
+      host.classList.toggle('is-instant', instant);
+      updateNodes(nextIdx);
+      bundle.finishGlow.classList.toggle('is-visible', nextIdx === POINTS.length);
 
       if (instant) {
-        host.dataset.stepDur = '0';
-        host.classList.add('is-instant');
-        applyRevealAtLength(targetLen);
-        bundle.todayChevrons.classList.toggle('is-visible', nextStep.visibleUpToStep >= 4);
-        applyClimaxInstant(nextStep.climax);
-        updateNodes(nextStep.visibleUpToStep, false);
+        bundle.segments.forEach(function (seg) {
+          setSegProgress(seg, seg.stepIdx <= nextIdx ? 1 : 0);
+        });
       } else {
-        host.classList.remove('is-instant');
-        applyRevealAtLength(startLen);
-        bundle.todayChevrons.style.setProperty('--fade-delay', '360ms');
-        bundle.todayChevrons.classList.toggle('is-visible', nextStep.visibleUpToStep >= 4);
-        updateNodes(nextStep.visibleUpToStep, true);
-
-        var curveDur = targetLen > startLen ? ((targetLen - startLen) / CURVE_PX_PER_SEC) * 1000 : 0;
-        var climaxDur = (!STEPS[prevStepIdx].climax && nextStep.climax)
-          ? Math.max((totalLen / CLIMAX_PX_PER_SEC) * 1000, 650)
-          : 0;
-        var totalDur = Math.max(curveDur, climaxDur);
-        host.dataset.stepDur = String(Math.round(totalDur));
-
-        if (!nextStep.climax) {
-          applyClimaxInstant(false);
-        } else if (climaxDur > 0) {
-          bundle.curveClimax.classList.add('is-visible');
-          bundle.starHalo.classList.add('is-visible');
-          bundle.climaxBadge.style.setProperty('--fade-delay', '420ms');
-          bundle.climaxBadge.classList.add('is-visible');
-        }
-
-        if (totalDur > 0) {
+        // Complete earlier segments right away, animate the newly connecting segment (nextIdx)
+        bundle.segments.forEach(function (seg) {
+          if (seg.stepIdx < nextIdx) setSegProgress(seg, 1);
+          else setSegProgress(seg, 0);
+        });
+        var targetSeg = bundle.segments.filter(function (s) { return s.stepIdx === nextIdx; })[0];
+        if (targetSeg) {
           var t0 = performance.now();
+          var delayMs = 90;
+          var drawMs = 420;
           var frame = function (now) {
             var elapsed = now - t0;
-            if (curveDur > 0) {
-              var cp = Math.min(1, elapsed / curveDur);
-              var eased = 1 - Math.pow(1 - cp, 2);
-              applyRevealAtLength(startLen + (targetLen - startLen) * eased);
+            if (elapsed <= delayMs) {
+              activeRaf = requestAnimationFrame(frame);
+              return;
             }
-            if (climaxDur > 0) {
-              var xp = Math.min(1, elapsed / climaxDur);
-              bundle.curveClimax.style.strokeDashoffset = String((totalLen + 4) * (1 - xp));
-              bundle.starContours.forEach(function (c) {
-                var clen = Number(c.dataset.len);
-                c.style.strokeDashoffset = String(clen * (1 - Math.min(1, xp * 1.45)));
-              });
-            }
-            if (elapsed < totalDur) {
+            var p = Math.min(1, (elapsed - delayMs) / drawMs);
+            var eased = 1 - Math.pow(1 - p, 2);
+            setSegProgress(targetSeg, eased);
+            if (p < 1) {
               activeRaf = requestAnimationFrame(frame);
             } else {
-              applyRevealAtLength(targetLen);
-              if (nextStep.climax) applyClimaxInstant(true);
+              setSegProgress(targetSeg, 1);
               activeRaf = null;
             }
           };
@@ -1217,8 +1041,18 @@ button:focus-visible {
       }
 
       currentStep = nextIdx;
-      bundle.svgDesc.textContent = nextStep.desc;
-      applyCardContent(nextStep.heading, nextStep.verse, nextStep.ref, nextStep.note, nextStep.accent, nextStep.accentDark);
+      host.setAttribute('data-step', String(currentStep));
+      bundle.svgDesc.textContent = stepDescFor(currentStep);
+
+      var card = cardDataForStep(currentStep);
+      applyCard(
+        card.heading,
+        card.badge,
+        card.quote,
+        card.note,
+        card.color || card.accent,
+        card.dark || card.accentDark
+      );
 
       dotButtons.forEach(function (btn, idx) {
         btn.classList.toggle('active', idx === currentStep);
@@ -1226,16 +1060,33 @@ button:focus-visible {
         btn.setAttribute('aria-pressed', idx === currentStep ? 'true' : 'false');
       });
 
-      countEl.textContent = currentStep === 0 ? 'Ready' : ('Step ' + currentStep + ' of ' + (STEPS.length - 1));
+      countEl.textContent = currentStep === 0 ? 'Blank Paper' : ('Dot ' + currentStep + ' of ' + POINTS.length);
       prevBtn.disabled = currentStep === 0;
-      nextBtn.textContent = currentStep === 0 ? 'Begin \u2192' : (currentStep === STEPS.length - 1 ? '\u21BB Start Over' : 'Next \u2192');
+      if (currentStep === 0) {
+        nextBtn.textContent = 'Place Dot 1 \u2192';
+      } else if (currentStep === POINTS.length) {
+        nextBtn.textContent = '\u21BB Start Over';
+      } else {
+        nextBtn.textContent = 'Next Dot \u2192';
+      }
     }
 
     prevBtn.addEventListener('click', function () {
       if (currentStep > 0) goTo(currentStep - 1);
     });
     nextBtn.addEventListener('click', function () {
-      goTo(currentStep === STEPS.length - 1 ? 0 : currentStep + 1);
+      goTo(currentStep === POINTS.length ? 0 : currentStep + 1);
+    });
+
+    document.addEventListener('keydown', function (event) {
+      if (event.target && event.target.closest && event.target.closest('.node-group')) {
+        return;
+      }
+      if (event.key === 'ArrowRight' && currentStep < POINTS.length) {
+        goTo(currentStep + 1);
+      } else if (event.key === 'ArrowLeft' && currentStep > 0) {
+        goTo(currentStep - 1);
+      }
     });
 
     var lastWidth = window.innerWidth;
@@ -1244,32 +1095,21 @@ button:focus-visible {
       if (!contentEl || contentEl.clientWidth === measuredWidth) return;
       measuredWidth = contentEl.clientWidth;
       var keepH = headingEl.textContent;
-      var keepV = verseTextNode.textContent;
-      var keepR = refEl.textContent;
+      var keepB = badgeEl.textContent;
+      var keepQ = quoteEl.textContent;
       var keepN = noteEl.textContent;
-      var keepRDisp = refEl.style.display;
       var tallest = 0;
       document.documentElement.style.setProperty('--card-h', '0px');
-      STEPS.forEach(function (st) {
-        headingEl.textContent = st.heading;
-        verseTextNode.textContent = st.verse;
-        refEl.textContent = st.ref;
-        refEl.style.display = st.ref ? '' : 'none';
-        noteEl.textContent = st.note;
-        tallest = Math.max(tallest, contentEl.offsetHeight);
-      });
-      NODES.forEach(function (sp) {
-        headingEl.textContent = sp.heading;
-        verseTextNode.textContent = sp.verse;
-        refEl.textContent = sp.ref;
-        refEl.style.display = sp.ref ? '' : 'none';
-        noteEl.textContent = sp.note;
+      [READY_STEP].concat(POINTS).forEach(function (item) {
+        headingEl.textContent = item.heading;
+        badgeEl.textContent = item.badge;
+        quoteEl.textContent = item.quote;
+        noteEl.textContent = item.note;
         tallest = Math.max(tallest, contentEl.offsetHeight);
       });
       headingEl.textContent = keepH;
-      verseTextNode.textContent = keepV;
-      refEl.textContent = keepR;
-      refEl.style.display = keepRDisp;
+      badgeEl.textContent = keepB;
+      quoteEl.textContent = keepQ;
       noteEl.textContent = keepN;
       document.documentElement.style.setProperty('--card-h', Math.max(112, tallest) + 'px');
     }
