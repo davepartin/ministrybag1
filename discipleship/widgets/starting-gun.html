@@ -14,8 +14,9 @@
         }
         button { -webkit-tap-highlight-color: transparent; font-family: 'Trebuchet MS', sans-serif; }
         button:focus-visible { outline: 3px solid #2C2416; outline-offset: 2px; }
-        .title-bar { background: #1D6B3F; padding: 10px 16px; text-align: center; }
-        .title-bar h1 { font-size: 19px; font-weight: 700; color: #FFFFFF; margin: 0; line-height: 1.2; font-family: 'Trebuchet MS', 'Inter', sans-serif; }
+        .title-bar { background: #2C2416; padding: 8px 14px; display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+        .title-bar h1 { font: 600 17px/1.15 system-ui, -apple-system, sans-serif; color: #FAF8F3; letter-spacing: 0.2px; margin: 0; text-align: left; }
+        .course-tag { font: 600 11px/1 system-ui, -apple-system, sans-serif; letter-spacing: 0.9px; text-transform: uppercase; color: #E5DEC9; white-space: nowrap; flex-shrink: 0; }
         .diagram-wrapper { padding: 6px 6px 0; }
         svg#scene { display: block; width: 100%; height: auto; max-height: 290px; }
         .lbl { font-family: 'Trebuchet MS', sans-serif; font-weight: 700; }
@@ -50,7 +51,7 @@
 </head>
 <body>
 <div class="widget-outer">
-    <div class="title-bar"><h1>RUN from Sin</h1></div>
+    <div class="title-bar"><h1>RUN from Sin</h1><span class="course-tag">202-09</span></div>
     <div class="diagram-wrapper">
         <svg id="scene" viewBox="0 0 360 280" role="img" aria-labelledby="scene-desc">
             <desc id="scene-desc">A runner on a slope. The pit is below to the left. Full Life is at the top of the hill to the right.</desc>
