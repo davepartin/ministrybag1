@@ -18,7 +18,7 @@ Stages describe the text review, independently of widget and image approval. Gol
 | 101-02 | Salvation and Baptism | Gold: whole lesson approved and protected | Gold: A-B-C-D road to cross | Gold: greenhouse sequence |
 | 101-03 | Prayer | Silver | No iframe widget; prayer exercise awaits review | Missing |
 | 101-04 | The Bible | Silver | No iframe widget; Discovery Questions exercise awaits review | Missing: Nicodemus lamplight planned |
-| 101-05 | The Church | Silver | No iframe widget; serving checklist awaits review | Approval unrecorded: aspen pair |
+| 101-05 | The Church | Silver: Dave edits protected | No iframe widget; serving checklist awaits review | Approval unrecorded: aspen pair |
 | 101-06 | Sharing Jesus with Others | Silver: earlier Dave edits protected | No iframe widget; BLESS exercise awaits review | Approval unrecorded: woman-at-well pair / BLESS graphic |
 | 101-07 | When You Drift | Silver | No iframe widget; Stop, Turn, Tell, Receive awaits review | Missing |
 
@@ -51,3 +51,5 @@ November14 update: Dave approved the exact V2 widget at ea26435 and the one exer
 Gold update, November14: Dave explicitly said "101-02 widget gold and 101-02 image are gold.whole lesson is gold". Approval applies to current main ae1c78e and the recorded component hashes. This supersedes older in-progress notices for 101-02. It does not change 101-01 or 101-05 text stages or waive release/pilot gates.
 
 November 14, Dave explicitly approved the 101-01 logo and widget Gold and requested removal of question 1.5. The prompt is retired under its original ID, so any earlier answer remains available in Email. Whole lesson remains Silver.
+
+November 14: Dave confirms 101-05 Silver. His requested serving choices and the move of 5.3 after the potluck teaching are specific approved edits, not whole-lesson or component Gold. Preserve other wording and aspen art.

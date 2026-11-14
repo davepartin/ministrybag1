@@ -346,6 +346,26 @@ assert('duplicate retired metadata does not repeat answers', exporter.buildExpor
 var restoredQuestion = { ...retiredLesson, blocks: retiredLesson.blocks.concat(retiredLesson.retiredQuestions) };
 assert('reintroduced question is exported once as active', !exporter.buildExport({ ...retiredOptions, lessons: [{ num: 10, data: restoredQuestion }] }).body.includes('Earlier saved responses'));
 
+// Removed service choices retain their original numeric identities.
+var serviceLesson = readLesson('101-05.json');
+var serviceKey = 'checklist-101-service-interests';
+var serviceResponses = { [serviceKey]: [14, 15, 18, 19, 20, 21, 22], 'question-202-unrelated': 'SYN-excluded' };
+var serviceSnapshot = JSON.stringify(serviceResponses);
+var serviceOpts = { courseId: '101', currentLessonNum: 5, lessons: [{ num: 5, data: serviceLesson }], responses: serviceResponses };
+var serviceExport = exporter.buildExport(serviceOpts);
+assert('old combined teaching choice is labeled earlier, not reinterpreted', serviceExport.body.includes('Teaching / Bible Study (earlier selection)'));
+assert('old First Impressions choice stays recoverable', serviceExport.body.includes('First Impressions (earlier selection)'));
+assert('old Financial Giving choice stays recoverable', serviceExport.body.includes('Financial Giving (earlier selection)'));
+assert('old Outreach index remains Outreach', serviceExport.body.includes('Outreach Events'));
+assert('new split and Cleaning choices export independently', serviceExport.body.includes('Teaching, Discipleship Group, Cleaning Team'));
+assert('service export never mutates selection indexes', JSON.stringify(serviceResponses) === serviceSnapshot);
+assert('service export excludes other lesson answers', !serviceExport.body.includes('SYN-excluded'));
+var emptyService = exporter.buildExport({ ...serviceOpts, responses: { [serviceKey]: [] } });
+assert('unselected earlier choices are not introduced to export', !emptyService.body.includes('(earlier selection)'));
+var serviceField = exporter.collectLessonExportFields('101', serviceLesson).find(f => f.runtimeId === serviceKey);
+serviceField.retiredItemIndexes.push(0);
+assert('export descriptor does not mutate lesson retirement metadata', !serviceLesson.blocks.find(b => b.type === 'checklist').retiredItemIndexes.includes(0));
+
 if (failed) {
     console.error('\n' + failed + ' check(s) failed, ' + passed + ' passed.');
     process.exit(1);

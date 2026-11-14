@@ -1755,6 +1755,10 @@
             user-select: none;
         }
 
+        .checklist-tile[hidden] {
+            display: none !important;
+        }
+
         .checklist-tile:hover {
             border-color: var(--accent);
         }
@@ -4326,7 +4330,10 @@
                                     <div class="checklist-prompt">${b.prompt}</div>
                                     <div class="checklist-grid">`;
                                 b.items.forEach((item, i) => {
-                                    html += `<div class="checklist-tile" data-checklist="${clId}" data-index="${i}" onclick="toggleChecklistTile(this)">${item}</div>`;
+                                    // Keep retired positions in the DOM so stored numeric selections
+                                    // retain their meaning when visible choices are edited.
+                                    const retired = Array.isArray(b.retiredItemIndexes) && b.retiredItemIndexes.includes(i);
+                                    html += `<div class="checklist-tile" data-checklist="${clId}" data-index="${i}"${retired ? ' hidden' : ''} onclick="toggleChecklistTile(this)">${item}</div>`;
                                 });
                                 html += `</div></div>`;
                                 break;
