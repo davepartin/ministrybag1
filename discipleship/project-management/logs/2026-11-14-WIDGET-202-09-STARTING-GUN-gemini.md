@@ -15,7 +15,8 @@ Upgraded `discipleship/widgets/starting-gun.html` (`RUN from Sin`, Lesson `202-0
   - Handcrafted beveled timber Cross bridge (`#cross-post` + crossbeam + warm gold double hairline aura) revealing purposefully from the summit down into the pit floor to illustrate grace rescuing out of the pit (`Psalm 32:5`) and empowering uphill obedience (`1 Corinthians 6:19-20`).
 - **Traveler Silhouettes & Mileposts:**
   - Replaced geometric stick lines with sculpted runner silhouettes across active running stride (with motion streak lines), humble crouching inside the pit (`3. Hide in Shame`), and Harbour Blue running companion joining alongside on `N: Need Others` (`2 Timothy 2:22`) and arriving at `Full Life` (`John 10:10`).
-  - Replaced floating grey boxes with interactive `R GRACE`, `U SPIRIT`, `N OTHERS` hillside signposts clickable via pointer or keyboard (`Enter` / `Space`).
+  - Replaced floating grey boxes with interactive `R`, `U`, `N` hillside bubbles clickable via pointer or keyboard (`Enter` / `Space`).
+  - Equal-weight, equal-color `Stay and look` and `RUN` choice buttons stretching flush to `<- Choose ->`.
 - **Studio Wash UI Chrome & Stability:**
   - Directional step strip (`<- Pit` | Pit steps | Temptation | RUN steps | `RUN ->`) with `28px+` circle dot targets (`aria-pressed`, `aria-label`).
   - Pre-measured constant `--card-h` across all 10 states via `fitCardHeight()` (`window.innerWidth` resize only; zero idle DOM writes; zero `localStorage`; zero em dashes `U+2014`).
