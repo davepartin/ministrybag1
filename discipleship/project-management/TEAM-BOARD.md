@@ -1,5 +1,11 @@
 # Growing Together Team Board
 
+## Approved four-story sequence integration, November 14, 2026
+
+Dave approved all four story-art sequences in PR #240 at 419c6a7: 101-07 shepherd (4 frames), 201-05 lamp (2), 203-02 Nehemiah (3), and 203-07 Jesus sends the 72 (4). All 13 original frames, 26 optimized WebP copies, stops/order, touchNext placement and image-map additions are preserved. The original jesus-sends-72.jpg remains unchanged on disk. Lesson wording, Scripture, questions/IDs, reading keys, index.html and the recently approved widgets remain untouched. This records story-image approval only, not whole-lesson Gold or new wording approval.
+
+Evidence: [Codex integration log](logs/2026-11-14-ART-STORY-SEQUENCES-4-codex.md), PR #240 for exact-head preview and production verification.
+
 ## 202-09 RUN from Sin widget upgrade (AAA Studio Wash Edition): November 14, 2026
 
 Codex verification: foundation, export 186, storage 64, assets 128, images 1366, iframe 32, RUN browser 294, lesson/backup browser 26 and header browser 4148 across 78 cases all exit 0. Both approved widgets are byte-preserved. Task WIDGET-202-09-STARTING-GUN DONE; exact-head preview and live deployment evidence on PR #234.

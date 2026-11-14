@@ -20,7 +20,7 @@ Stages describe the text review, independently of widget and image approval. Gol
 | 101-04 | The Bible | Silver | Yes: Read, Discover, Respond (#229, 21bb29b) | Missing: Nicodemus lamplight planned |
 | 101-05 | The Church | Silver: Dave edits protected | Yes: compact potluck serving buttons (#232, b83efe3) | Approval unrecorded: aspen pair |
 | 101-06 | Sharing Jesus with Others | Silver: earlier Dave edits protected | Yes: BLESS Rhythms (#233, 7949607) | Approval unrecorded: woman-at-well pair |
-| 101-07 | When You Drift | Silver | No iframe widget; Stop, Turn, Tell, Receive awaits review | Missing |
+| 101-07 | When You Drift | Silver | No iframe widget; Stop, Turn, Tell, Receive awaits review | Yes: approved four-frame shepherd sequence (#240, 419c6a7) |
 
 101-01 remains Silver with Dave edits protected. Dave has now explicitly approved the whole 101-02 lesson, its A-B-C-D widget and its greenhouse image sequence Gold (November14). Preserve the exact recorded text, questions, readings, widget and images; new edits require his specific direction. The record does not treat partial paragraph edits as approval of unseen paragraphs. Existing specific approvals remain in force even on Silver lessons.
 
@@ -42,7 +42,7 @@ These instructions implement Dave's direct request in chat on November 13. They 
 - 101-02: Dave's direct A-B-C-D design direction, description of the completed widget as "amazing," and instruction to publish; integrated through #206. His exact baptism Review wording and accepted Scripture cuts are recorded in #209 and #212. Current widget remains `widgets/romans-road3.html`.
 - 101-06: six wording edits from Dave followed by "merge it" recorded in DAVE.md, REWORK-101-06 / #142. This is evidence of protected specific edits, not automatic final approval of every component.
 - Component fingerprints: [101-editorial-baseline.json](101-editorial-baseline.json). These are a reference snapshot, not an automated CI lock or a new approval.
-- Next suggested conversation: **101-03 Prayer**. Its Father-centered story and practical prayer exercise are present; its opening artwork is missing. Read it with Dave before proposing prose changes. Then consider 101-04's missing Nicodemus lamp art and 101-07's missing shepherd art. Do not generate or replace art under this documentation task.
+- Next suggested conversation: **101-03 Prayer**. Its Father-centered story and practical prayer exercise are present; its opening artwork is missing. Read it with Dave before proposing prose changes. Then consider 101-04's missing Nicodemus lamp art. The 101-07 shepherd sequence is now approved in PR #240 and must be preserved. Do not generate or replace art under this documentation task.
 
 One specific consistency suggestion, not implemented: 101-02 still introduces "three letters, the ABCs of salvation" and says "Each stop is one verse from Romans," while the approved widget now includes D for discipleship. Propose a short bridge that preserves A-B-C as the salvation response and introduces D as following Jesus afterward. Ask Dave to approve the wording; do not silently reopen his edited lesson.
 
@@ -59,3 +59,5 @@ November 14: Dave explicitly approved only the 101-04 Read, Discover, Respond wi
 November 14: Dave approved PR #233 at 79496076f1bca314c0a8d352180685b5408a627c, including the BLESS Rhythms widget, its section copy and placement. This specific assignment supersedes the earlier no-new-101-06-work restriction only for that approved section. Preserve both approved files exactly. The static BLESS graphic and box are replaced in the lesson; the original graphic remains on disk. Woman-at-the-well story art and all other copy, Scripture, readings and question objects are unchanged. Whole-lesson text stays Silver with Dave's earlier edits protected; no story-image or whole-lesson Gold approval is inferred.
 
 November 14: Dave approved PR #232 at b83efe3, including the compact three-column single-screen service checklist, its prompt and blue/teal/mustard buttons. Preserve approved index.html styling/behavior and checklist JSON. Original numeric slots, including retired combined men's/women's ministry index 11, remain reserved; new separate choices append at 27 and 28. All other lesson content and aspen artwork are unchanged. Text stays Silver; no image or whole-lesson Gold approval is inferred.
+
+November 14: Dave approved the four-frame 101-07 shepherd story sequence in PR #240 at 419c6a7. Image approval only; text stays Silver and all wording, questions, reading keys and existing tool remain unchanged. Preserve the approved frames, order, stops and placement.

@@ -8,6 +8,23 @@
       "text": "You have walked through six lessons now: what it means to follow Jesus, to be saved and baptized, to pray, to read the Bible, to be part of a church family, and to share your faith. This final lesson may be the one that holds all the others together. No matter how well you learn the foundations, there will be days when you drift. You will sin. You will wander. And when that happens, you need to know what to do next."
     },
     {
+      "type": "image",
+      "imageSequence": [
+        "images/101-07-story-seq-1.jpg",
+        "images/101-07-story-seq-2.jpg",
+        "images/101-07-story-seq-3.jpg",
+        "images/101-07-story-seq-4.jpg"
+      ],
+      "imageSequenceStops": [
+        0,
+        0.18,
+        0.34,
+        0.5
+      ],
+      "alt": "A shepherd climbs down a rocky hillside toward a lost sheep and lifts it onto his shoulders",
+      "touchNext": true
+    },
+    {
       "type": "parable",
       "title": "The Shepherd Who Comes Looking",
       "text": "Jesus told a story about a shepherd who had a hundred sheep. Picture one of them wandering off, not in rebellion and not by any plan, just drifting one patch of grass at a time, until it looks up and realizes it is alone.<br><br><em>\"What man of you, having a hundred sheep, if he has lost one of them, does not leave the ninety-nine in the open country, and go after the one that is lost, until he finds it? And when he has found it, he lays it on his shoulders, rejoicing.\" (Luke 15:4-5)</em><br><br>Notice what the shepherd does. He does not wait for the sheep to find its way back. He does not stand at the gate shaking his head. He leaves everything and goes after the one. And when he finds it, he does not scold it. He puts it on his shoulders and carries it home, and then he calls his friends and neighbors to celebrate. Jesus finished the story this way: <em>\"Just so, I tell you, there will be more joy in heaven over one sinner who repents than over ninety-nine righteous persons who need no repentance\"</em> (Luke 15:7)."

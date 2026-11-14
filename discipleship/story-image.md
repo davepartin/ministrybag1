@@ -24,7 +24,7 @@ Dave drew much of the art himself before the bots arrived. **Before generating a
 |---|---|---|
 | `good-samaritan-story.jpg` | Good Samaritan (202-01) | Finished, Dave's look. Kept in the folder unused after the walking-away sequence in ART-202-01b. |
 | `fruit-tree-story.jpg`, `fruit-tree-story-color.jpg` | Two people under a fruit tree (201-09 Fruit of the Spirit) | Finished pair in Dave's look. Replaced by the vine sequence in #153. |
-| `jesus-sends-72.jpg` | Jesus sending the 72 (203-07) | Finished, Dave's look. Restored to 203-07 on 2026-11-12 at Dave's direction; the generated dissolve files from #169 stay in the folder unused. |
+| `jesus-sends-72.jpg` | Jesus sending the 72 (203-07) | Finished, Dave's look. Used as base plate (`seq-1`) for the 4-frame walking sequence `203-07-story-seq-1..4.jpg`; original file stays untouched in the folder. |
 | `jesus-light-bw.jpg`, `jesus-light-color.jpg` | Jesus as light | Finished pair, unused. Ask Dave which lesson. |
 | `soils-bw.jpeg`, `soils-color.jpg` | Four soils (201-04) | Finished pair. Replaced by the six-frame sequence in #147. |
 | `running-father-bw3.jpeg`, `running-father-color3.jpeg` | Running father (201-01) | Finished pair. Replaced by the five-frame sequence. |
@@ -169,12 +169,12 @@ Optional field: `"frame": true` adds a 1px border (`.block-image-dissolve-framed
 | 101-04 | The Bible | None | - | Needs parable + story art |
 | 101-05 | The Aspen Grove | B&W -> Color | `aspen-bw.png` -> `aspen-color.png` | Live (`touchNext: true`) |
 | 101-06 | The Woman at the Well | B&W -> Color | `woman-well-bw.png` -> `woman-well-color.png` | Live (`touchNext: true`) |
-| 101-07 | The Shepherd Who Comes Looking | None | - | Needs story art |
+| 101-07 | The Shepherd Who Comes Looking | **4-Frame Sequence** | `101-07-story-seq-1.jpg` .. `4.jpg` (stops `[0, 0.18, 0.34, 0.5]`) | Live (`touchNext: true`) |
 | 201-01 | The Running Father | **5-Frame Sequence** | `running-father-seq-1.jpg` .. `5.jpg` (stops `[0, 0.16, 0.3, 0.44, 0.58]`) | **Benchmark sequence** |
 | 201-02 | The Family Robe | **3-Frame Sequence** | `robe-down.jpg`, `robe-mid.jpg`, `robe-up.jpg` (stops `[0, 0.25, 0.45]`) | Live sequence |
 | 201-03 | The Pillar in the Wilderness | B&W -> Color | `pillar-fire-bw.png` -> `pillar-fire-color.png` | Live (`touchNext: true`) |
 | 201-04 | The Sower and the Soil | B&W -> Color | `soils-bw.jpeg` -> `soils-color.jpg` | Live (`touchNext: true`) |
-| 201-05 | The Book Found in the Temple | Single static | `bible-journal.jpg` (not attached to parable) | Needs Temple scroll story art |
+| 201-05 | The Longest Song | **2-Frame Sequence** | `201-05-story-seq-1.jpg`, `201-05-story-seq-2.jpg` (stops `[0, 0.4]`) | Live (`touchNext: true`) |
 | 201-06 | The Road to Emmaus | **4-Frame Sequence** | `creation1.jpg` .. `creation4.jpg` (stops `[0, 0.25, 0.4, 0.65]`) | Live sequence |
 | 201-07 | Philip and the Ethiopian | B&W -> Color | `philip-eunich-bw2.png` -> `philip-eunich-color2.png` | Live (`touchNext: true`) |
 | 201-08 | The Unmerciful Servant | B&W -> Color | `kings-mercy.jpg` -> `kings-mercy-color.jpg` | Live (`touchNext: true`, `frame: true`) |
@@ -191,12 +191,12 @@ Optional field: `"frame": true` adds a 1px border (`.block-image-dissolve-framed
 | 202-09 | The View from the Roof | B&W -> Color | `202.09-david-roof-bw.png` -> `202.09-david-roof-color.png` | Live (`touchNext: true`, `frame: true`) |
 | 202-10 | The Table He Longed For | B&W -> Color | `last-supper-bw.jpg` -> `last-supper-color.jpg` | Live (`touchNext: true`, `frame: true`) |
 | 203-01 | On the Mountain | Logo only | `203-3circle-logo.png` | Needs story art if parable kept |
-| 203-02 | A Prayer Before the Answer | Logo only | `203-02-bless-logo.png` | Needs Nehemiah story art |
+| 203-02 | A Prayer Before the Answer | **3-Frame Sequence** | `203-02-story-seq-1.jpg` .. `3.jpg` (stops `[0, 0.25, 0.45]`) | Live (`touchNext: true`) |
 | 203-03 | Stay with Us | **4-Frame Sequence** | `emmaus-bread-seq-1.jpg` .. `4.jpg` (stops `[0, 0.18, 0.34, 0.5]`) | Live (`touchNext: true`); old dissolve pair stays unused |
 | 203-04 | The Towel and the Basin | B&W -> Color | `jesus-washing-feet-bw.png` -> `jesus-washing-feet-color.png` | Live (`touchNext: true`) |
 | 203-05 | I Was Blind, Now I See | **2-Frame Sequence** | `blind-1-closedeyes.jpg`, `blind-2-openeyes.jpg` (stops `[0, 0.4]`) | Live sequence |
 | 203-06 | Faithful in Babylon | B&W -> Color | `203-06-daniel-window-bw.jpg` -> `203-06-daniel-window-color.jpg` | Live (`touchNext: true`) |
-| 203-07 | Jesus Sends the 72 | B&W -> Color | `203-07-sends-72-bw.jpg` -> `203-07-sends-72-color.jpg` | Live (`touchNext: true`) |
+| 203-07 | Jesus Sends the 72 | **4-Frame Sequence** | `203-07-story-seq-1.jpg` .. `4.jpg` (stops `[0, 0.18, 0.34, 0.5]`; built from `jesus-sends-72.jpg`) | Live (`touchNext: true`) |
 | 203-08 | Four Generations | Single B&W | `203.08-paul-timothy-bw.jpg` (`touchNext: true`) | Tracked as `ART-008` (add color or sequence) |
 | 203-09 | The Tentmakers | B&W -> Color | `203-09-tentmakers-bw.jpg` -> `203-09-tentmakers-color.jpg` | Live (`touchNext: true`) |
 | 203-10 | A Place for Every Part | None | - | Needs body/parts story art |

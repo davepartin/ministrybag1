@@ -13,8 +13,19 @@
     },
     {
       "type": "image",
-      "src": "images/jesus-sends-72.jpg",
-      "alt": "Jesus, in the foreground, sends His followers out two by two down a long road toward the villages",
+      "imageSequence": [
+        "images/203-07-story-seq-1.jpg",
+        "images/203-07-story-seq-2.jpg",
+        "images/203-07-story-seq-3.jpg",
+        "images/203-07-story-seq-4.jpg"
+      ],
+      "imageSequenceStops": [
+        0,
+        0.18,
+        0.34,
+        0.5
+      ],
+      "alt": "Jesus, in the foreground, sends His followers out two by two as they walk farther down a long road toward the villages",
       "touchNext": true
     },
     {
