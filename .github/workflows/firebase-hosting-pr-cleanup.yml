@@ -1,0 +1,136 @@
+name: Clean up Firebase Hosting preview on PR close
+
+on:
+  pull_request:
+    types: [closed]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: firebase-preview-cleanup-${{ github.event.pull_request.number }}
+  cancel-in-progress: false
+
+jobs:
+  delete_preview:
+    if: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Delete closed PR preview channel
+        working-directory: discipleship
+        env:
+          FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_GROWING_TOGETHER_DISCIPLESHIP }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          PROJECT_ID: growing-together-discipleship
+          SITE_ID: growing-together-discipleship
+        run: |
+          python3 - <<'EOF'
+          import json
+          import os
+          import re
+          import subprocess
+          import sys
+          import tempfile
+
+          firebase_cli = ["npx", "--yes", "firebase-tools@15.36.0"]
+
+          pr_number = os.environ.get("PR_NUMBER", "").strip()
+          if not re.fullmatch(r"\d+", pr_number):
+              raise SystemExit(f"Invalid PR_NUMBER: {pr_number!r}")
+
+          sa_json = os.environ.get("FIREBASE_SA", "")
+          if not sa_json.strip():
+              raise SystemExit("Missing FIREBASE_SERVICE_ACCOUNT_GROWING_TOGETHER_DISCIPLESHIP secret")
+          if not isinstance(json.loads(sa_json), dict):
+              raise SystemExit("Firebase service-account credential must be a JSON object")
+
+          project_id = os.environ["PROJECT_ID"]
+          site_id = os.environ["SITE_ID"]
+          runner_temp = os.environ.get("RUNNER_TEMP", "/tmp")
+          creds_fd, creds_path = tempfile.mkstemp(prefix="firebase-pr-cleanup-", suffix=".json", dir=runner_temp)
+
+          try:
+              with os.fdopen(creds_fd, "w", encoding="utf-8") as f:
+                  f.write(sa_json)
+
+              env = os.environ.copy()
+              env["GOOGLE_APPLICATION_CREDENTIALS"] = creds_path
+              env.pop("FIREBASE_SA", None)
+
+              list_res = subprocess.run(
+                  firebase_cli + [
+                      "hosting:channel:list",
+                      "--project",
+                      project_id,
+                      "--site",
+                      site_id,
+                      "--json",
+                  ],
+                  env=env,
+                  capture_output=True,
+                  text=True,
+                  timeout=180,
+              )
+              if list_res.returncode != 0:
+                  sys.stderr.write(list_res.stderr)
+                  sys.stdout.write(list_res.stdout)
+                  raise SystemExit(list_res.returncode)
+
+              payload_text = list_res.stdout
+              start = payload_text.find("{")
+              end = payload_text.rfind("}")
+              if start == -1 or end == -1:
+                  raise SystemExit("Firebase channel listing did not contain valid JSON")
+              payload = json.loads(payload_text[start : end + 1])
+              if not isinstance(payload, dict) or payload.get("status") != "success":
+                  raise SystemExit("Firebase channel listing did not report success")
+              result = payload.get("result")
+              if not isinstance(result, dict) or not isinstance(result.get("channels"), list):
+                  raise SystemExit("Firebase channel listing has an unexpected channels format")
+              channels = result["channels"]
+              # action-hosting-deploy names PR channels as pr<NUMBER>-<sanitized-branch>
+              pattern = re.compile(rf"^pr{pr_number}-")
+              targets = []
+              for channel in channels:
+                  if not isinstance(channel, dict) or not isinstance(channel.get("name"), str):
+                      raise SystemExit("Firebase channel listing contains an invalid channel")
+                  prefix = f"sites/{site_id}/channels/"
+                  if not channel["name"].startswith(prefix):
+                      raise SystemExit("Firebase channel listing contains a channel from an unexpected site")
+                  cid = channel["name"][len(prefix):]
+                  if not cid or "/" in cid:
+                      raise SystemExit("Firebase channel listing contains an invalid channel ID")
+                  if cid and cid != "live" and pattern.match(cid):
+                      targets.append(cid)
+
+              if not targets:
+                  print(f"No Firebase Hosting preview channel found for PR #{pr_number}.")
+                  raise SystemExit(0)
+
+              for cid in sorted(set(targets)):
+                  print(f"Deleting Firebase Hosting preview channel: {cid}")
+                  del_res = subprocess.run(
+                      firebase_cli + [
+                          "hosting:channel:delete",
+                          cid,
+                          "--site",
+                          site_id,
+                          "--project",
+                          project_id,
+                          "--force",
+                      ],
+                      env=env,
+                      text=True,
+                      timeout=90,
+                  )
+                  if del_res.returncode != 0:
+                      raise SystemExit(del_res.returncode)
+          finally:
+              if os.path.exists(creds_path):
+                  os.remove(creds_path)
+          EOF

@@ -2,6 +2,10 @@
 
 Keep this small. Agents can draft from the approved direction while these decisions develop. A blocker in one row does not stop independent work.
 
+## Firebase exception: automatic closed-PR preview cleanup, November 14, 2026
+
+Dave explicitly said "i authorize automatic clean up" and requested merge of PR #224, #221 and #223. This authorizes the close-event cleanup workflow and its technical hardening. It supersedes the earlier no-Firebase-workflow/no-preview-deletion instruction only for automatic cleanup of the closed same-repository PR's own preview channels. No manual sweep, live-channel deletion, billing or other retention/configuration change is authorized. Normal production publishing continues through the existing automatic merge workflow.
+
 ## Widget approval: 202 headers and v5 lesson tags, November 13, 2026
 
 Dave explicitly approved PR #220 at `315fc757fa5fdec04382d86d766f73ca16d93593` and requested review, preview checks, merge and live verification. This approves the specified ten 202 widget headers, the v5 tags 201-01/202-01/203-01 and both Studio Wash guides. All eleven runtime files are byte-preserved. No approval is inferred for unrelated wording or artwork; existing lesson/component approvals remain separate.
