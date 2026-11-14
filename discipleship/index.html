@@ -1720,58 +1720,133 @@
 
         /* Checklist grid (service interest tiles) */
         .block-checklist {
-            margin: 32px 0;
+            margin: 24px 0;
             border: 1.5px solid var(--border);
             border-radius: var(--radius-sm);
-            padding: 24px;
+            padding: 18px 16px;
             background: var(--surface);
         }
 
         .checklist-prompt {
-            font-size: 1rem;
+            font-size: 0.96rem;
             font-weight: 600;
             color: var(--text-primary);
-            margin-bottom: 16px;
-            line-height: 1.6;
+            margin-bottom: 12px;
+            line-height: 1.4;
         }
 
         .checklist-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 8px;
         }
 
         .checklist-tile {
-            padding: 12px 18px;
-            border: 1.5px solid var(--border);
-            border-radius: var(--radius-sm);
-            background: var(--surface);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            min-width: 0;
+            min-height: 34px;
+            padding: 6px 8px;
+            border: 1.5px solid #D8D1C4;
+            border-radius: 8px;
+            background: #FFFFFF;
             color: var(--text-primary);
-            font-size: 0.9rem;
+            font-family: inherit;
+            font-size: 0.78rem;
             font-weight: 500;
+            line-height: 1.14;
+            overflow-wrap: break-word;
+            box-shadow: 0 2px 0 rgba(44, 36, 22, 0.06);
             cursor: pointer;
-            transition: all var(--transition);
+            transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease, transform 0.12s ease, box-shadow 0.18s ease;
             -webkit-tap-highlight-color: transparent;
             user-select: none;
         }
 
-        .checklist-tile:hover {
-            border-color: var(--accent);
+        .checklist-tile[hidden] {
+            display: none !important;
+        }
+
+        @media (hover: hover) {
+            .checklist-tile:hover:not(.selected) {
+                border-color: #2C2416;
+                background: #FCFBF8;
+            }
+        }
+
+        .checklist-tile:active {
+            transform: translateY(1px);
+            box-shadow: 0 1px 0 rgba(44, 36, 22, 0.06);
+        }
+
+        .checklist-tile:focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 2px;
         }
 
         .checklist-tile.selected {
-            border-color: var(--accent);
-            background: rgba(45, 106, 79, 0.08);
-            color: var(--accent);
+            --tile-bg: #224E70;
+            --tile-border: #224E70;
+            --tile-edge: #15334B;
+            --tile-fg: #FFFFFF;
+            border-color: var(--tile-border);
+            background: var(--tile-bg);
+            color: var(--tile-fg);
             font-weight: 600;
+            box-shadow: 0 2px 0 var(--tile-edge);
+        }
+
+        .checklist-tile.selected[data-color="0"] {
+            --tile-bg: #224E70;
+            --tile-border: #224E70;
+            --tile-edge: #15334B;
+            --tile-fg: #FFFFFF;
+        }
+
+        .checklist-tile.selected[data-color="1"] {
+            --tile-bg: #286C6A;
+            --tile-border: #286C6A;
+            --tile-edge: #184745;
+            --tile-fg: #FFFFFF;
+        }
+
+        .checklist-tile.selected[data-color="2"] {
+            --tile-bg: #E6AE2B;
+            --tile-border: #C48F14;
+            --tile-edge: #AD7E12;
+            --tile-fg: #231A0F;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .checklist-tile {
+                transition: none;
+            }
+            .checklist-tile:active {
+                transform: none;
+            }
         }
 
         @media (max-width: 600px) {
+            .block-checklist {
+                margin: 18px -6px;
+                padding: 12px 10px;
+            }
+            .checklist-prompt {
+                font-size: 0.88rem;
+                line-height: 1.3;
+                margin-bottom: 10px;
+            }
+            .checklist-grid {
+                gap: 5px;
+            }
             .checklist-tile {
-                flex: 1 1 calc(50% - 10px);
-                text-align: center;
-                font-size: 0.85rem;
-                padding: 10px 12px;
+                min-height: 32px;
+                padding: 4px 5px;
+                border-radius: 7px;
+                font-size: 0.685rem;
+                line-height: 1.12;
             }
         }
 
@@ -4326,7 +4401,11 @@
                                     <div class="checklist-prompt">${b.prompt}</div>
                                     <div class="checklist-grid">`;
                                 b.items.forEach((item, i) => {
-                                    html += `<div class="checklist-tile" data-checklist="${clId}" data-index="${i}" onclick="toggleChecklistTile(this)">${item}</div>`;
+                                    // Keep retired positions in the DOM so stored numeric selections
+                                    // retain their meaning when visible choices are edited.
+                                    const retired = Array.isArray(b.retiredItemIndexes) && b.retiredItemIndexes.includes(i);
+                                    const orderAttr = item === 'Other' ? ' style="order: 1; grid-column: 1 / -1;"' : '';
+                                    html += `<button type="button" class="checklist-tile" data-checklist="${clId}" data-index="${i}" aria-pressed="false"${retired ? ' hidden' : ''}${orderAttr} onclick="toggleChecklistTile(this)">${item}</button>`;
                                 });
                                 html += `</div></div>`;
                                 break;
@@ -5702,11 +5781,7 @@
                 r.checked = responses[key] === r.value;
             });
             document.querySelectorAll('.block-checklist').forEach(function (container) {
-                const saved = responses[container.id];
-                const tiles = container.querySelectorAll('.checklist-tile');
-                tiles.forEach(function (tile, index) {
-                    tile.classList.toggle('selected', Array.isArray(saved) && saved.indexOf(index) !== -1);
-                });
+                hydrateChecklistContainer(container, responses[container.id]);
             });
             loadedSessionNums.forEach(function (sessionNum) {
                 const key = 'complete-' + currentSeries + '-' + sessionNum;
@@ -6101,8 +6176,54 @@
             persistResponses();
         }
 
+        const CHECKLIST_COLOR_COUNT = 3;
+        let checklistColorCursor = 0;
+
+        function setChecklistTileVisual(tile, isSelected, colorIdx) {
+            if (isSelected) {
+                tile.classList.add('selected');
+                tile.setAttribute('aria-pressed', 'true');
+                if (!tile.hasAttribute('data-color')) {
+                    let resolved;
+                    if (typeof colorIdx === 'number') {
+                        resolved = ((colorIdx % CHECKLIST_COLOR_COUNT) + CHECKLIST_COLOR_COUNT) % CHECKLIST_COLOR_COUNT;
+                    } else {
+                        const prevColor = tile.getAttribute('data-last-color');
+                        if (prevColor !== null && String(checklistColorCursor) === prevColor) {
+                            checklistColorCursor = (checklistColorCursor + 1) % CHECKLIST_COLOR_COUNT;
+                        }
+                        resolved = checklistColorCursor;
+                        checklistColorCursor = (checklistColorCursor + 1) % CHECKLIST_COLOR_COUNT;
+                    }
+                    tile.setAttribute('data-color', String(resolved));
+                    tile.setAttribute('data-last-color', String(resolved));
+                }
+            } else {
+                tile.classList.remove('selected');
+                tile.removeAttribute('data-color');
+                tile.setAttribute('aria-pressed', 'false');
+            }
+        }
+
+        function hydrateChecklistContainer(container, saved) {
+            const hasSaved = Array.isArray(saved);
+            const tiles = container.querySelectorAll('.checklist-tile');
+            let pickOrder = 0;
+            tiles.forEach(function (tile, index) {
+                const isSelected = hasSaved && saved.indexOf(index) !== -1;
+                if (isSelected) {
+                    setChecklistTileVisual(tile, true, pickOrder);
+                    pickOrder += 1;
+                } else {
+                    setChecklistTileVisual(tile, false);
+                }
+            });
+            checklistColorCursor = pickOrder % CHECKLIST_COLOR_COUNT;
+        }
+
         function toggleChecklistTile(el) {
-            el.classList.toggle('selected');
+            const willSelect = !el.classList.contains('selected');
+            setChecklistTileVisual(el, willSelect);
             const clId = el.getAttribute('data-checklist');
             const container = document.getElementById(clId);
             if (!container) return;
@@ -6126,12 +6247,7 @@
             });
 
             document.querySelectorAll('.block-checklist').forEach(container => {
-                const clId = container.id;
-                const saved = responses[clId];
-                if (Array.isArray(saved)) {
-                    const tiles = container.querySelectorAll('.checklist-tile');
-                    saved.forEach(i => { if (tiles[i]) tiles[i].classList.add('selected'); });
-                }
+                hydrateChecklistContainer(container, responses[container.id]);
             });
         }
 

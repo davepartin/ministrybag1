@@ -98,7 +98,8 @@
                     jsonId: block.id,
                     runtimeId: checklistRuntimeId(courseId, block.id),
                     label: fieldLabel(block) || checklistRuntimeId(courseId, block.id),
-                    items: Array.isArray(block.items) ? block.items.slice() : []
+                    items: Array.isArray(block.items) ? block.items.slice() : [],
+                    retiredItemIndexes: Array.isArray(block.retiredItemIndexes) ? block.retiredItemIndexes.slice() : []
                 });
             }
         }
@@ -114,7 +115,8 @@
             for (var i = 0; i < raw.length; i++) {
                 var item = field.items && field.items[raw[i]];
                 if (item != null && item !== '') {
-                    labels.push(String(item));
+                    var earlier = Array.isArray(field.retiredItemIndexes) && field.retiredItemIndexes.indexOf(raw[i]) !== -1;
+                    labels.push(String(item) + (earlier ? ' (earlier selection)' : ''));
                 }
             }
             return labels.length ? labels.join(', ') : EMPTY_RESPONSE;

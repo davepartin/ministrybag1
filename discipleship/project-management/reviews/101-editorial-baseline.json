@@ -8,9 +8,9 @@
       "title": "Lesson 1: Welcome. Let's Start Growing.",
       "stage": "Silver",
       "dave_edits_protected": true,
-      "full_personal_review": "confirmation pending",
-      "lesson_sha256": "89f9007b68a218ba8cd72f41a52569756c151880537e8b57835dce663ffec469",
-      "non_visual_content_sha256": "a4602ce9f206eb3f700bc82933c604d85f5b537caff37aa467aed3dfb21029fc",
+      "full_personal_review": "in progress; Dave confirmed, edits protected",
+      "lesson_sha256": "37fffdb97ee95311875c08b7fd748118363791de37e5a51075e83932fa9254c0",
+      "non_visual_content_sha256": "3bd3c201d21f7301cf1063ea744c92b4415c0925410702500fa50b7b2cec6ec0",
       "visual_blocks": [
         {
           "type": "image",
@@ -26,15 +26,27 @@
       ],
       "visual_files_sha256": {
         "images/3-circles-coral.png": "b70a0a337621f8a05d030ea5cc6e7fb7a295cc41775875d0320d84a40c6cf3d9",
-        "widgets/peaks-and-valleys.html": "1a6aca05f4ed1b2f17814e7314ca08333acabb4704c3cb83c1839b02e72f8637"
+        "widgets/peaks-and-valleys.html": "5820d2974f924ad01cba9caac7f9f34e0bd1957612e6e8529915d924266d97e6"
+      },
+      "approved_update": {
+        "date": "2026-11-14",
+        "source": "ea26435ddc7ea741817d4260ab07e81b760cdade",
+        "scope": "V2 widget and one exercise sentence only"
+      },
+      "component_approval": {
+        "date": "2026-11-14",
+        "source_main": "ae1c78e663613722dc87c895b229f1ed9383dcdf",
+        "widget": "Gold: Peaks and Valleys V2",
+        "image": "Gold: course logo images/3-circles-coral.png",
+        "scope": "Components only. Whole-lesson text remains Silver; remove question 1.5 from view and reserve its original ID and answer."
       }
     },
     {
       "lesson": "101-02",
       "title": "Lesson 2: Salvation and Baptism",
-      "stage": "Silver",
+      "stage": "Gold",
       "dave_edits_protected": true,
-      "full_personal_review": "confirmation pending",
+      "full_personal_review": "complete; Dave explicitly approved whole lesson Gold on2026-11-14",
       "lesson_sha256": "2ed1308a10116576ef69b782f16ea7393e35d946a2add70117502999fcede812",
       "non_visual_content_sha256": "b6d54cfe4f0cb8e2138270713834ecfa476923370f4a4872b88fdb9f02d60f07",
       "visual_blocks": [
@@ -68,6 +80,21 @@
         "images/greenhouse-seq-3.jpg": "ea807389a92da7914584e09efc76ae20170d8a382c1eff4d797920c6e3416a46",
         "images/greenhouse-seq-4.jpg": "1c308e3282bf7db6e20a110cbe46ab2834b3924bc31c40a98703e5f858d0d6ac",
         "widgets/romans-road3.html": "7cf01ad10a85c637d8b6840d89b80f672d0b01cd99aa4456e8bf84982a1e6413"
+      },
+      "gold_approval": {
+        "date": "2026-11-14",
+        "source_main": "ae1c78e663613722dc87c895b229f1ed9383dcdf",
+        "text": "Gold",
+        "widget": "Gold",
+        "image": "Gold",
+        "lesson_sha256": "2ed1308a10116576ef69b782f16ea7393e35d946a2add70117502999fcede812",
+        "component_files_sha256": {
+          "images/greenhouse-seq-1.jpg": "59668c8ab306f55a88aa135323f053692e711df432ca8f386486378f0fd63f80",
+          "images/greenhouse-seq-2.jpg": "8f89724654422e6716d1dfe711206ea1a971e589a04c3552abca7b4d726a8aaf",
+          "images/greenhouse-seq-3.jpg": "ea807389a92da7914584e09efc76ae20170d8a382c1eff4d797920c6e3416a46",
+          "images/greenhouse-seq-4.jpg": "1c308e3282bf7db6e20a110cbe46ab2834b3924bc31c40a98703e5f858d0d6ac",
+          "widgets/romans-road3.html": "7cf01ad10a85c637d8b6840d89b80f672d0b01cd99aa4456e8bf84982a1e6413"
+        }
       }
     },
     {
@@ -87,19 +114,35 @@
       "stage": "Silver",
       "dave_edits_protected": false,
       "full_personal_review": "unrecorded",
-      "lesson_sha256": "0ed0c3dfed0ca5706c479ac809ff6cbb81649b53bef8d2385eba016bdd45ade0",
+      "lesson_sha256": "91ca5d026dde2111ad57ea690a6669b59c71e0fadedb0968d27b96e1c111ed45",
       "non_visual_content_sha256": "50cbc1764a0be33d7e5afd9e0ce84ca8196b3ee142a0bb437cc46cc952e47a0e",
-      "visual_blocks": [],
-      "visual_files_sha256": {}
+      "visual_blocks": [
+        {
+          "type": "widget",
+          "src": "widgets/read-discover-respond.html",
+          "title": "Read, Discover, Respond",
+          "height": "550px"
+        }
+      ],
+      "visual_files_sha256": {
+        "widgets/read-discover-respond.html": "aee1600d110d3feb0c321563c729eb5ce6129924f6770d1cd838e593a9e16883"
+      },
+      "component_approval": {
+        "date": "2026-11-14",
+        "source": "21bb29b59c48ec64d870465f9cf2fa30b31f0f28",
+        "pr": 229,
+        "widget": "Approved: Read, Discover, Respond",
+        "scope": "Widget only, exact HTML bytes and placement. Whole lesson remains Silver; no story image approval."
+      }
     },
     {
       "lesson": "101-05",
       "title": "Lesson 5: The Church",
       "stage": "Silver",
-      "dave_edits_protected": false,
+      "dave_edits_protected": true,
       "full_personal_review": "unrecorded",
-      "lesson_sha256": "3f1b45ce353f2f1845f2374aa8f3c54af87296b37021417ce43b4a035d3bcd12",
-      "non_visual_content_sha256": "6db2a9b469505cf434e8d96ddf9d88d98bd63ac3115312e9d1fc05da2fd06807",
+      "lesson_sha256": "2c6cd828dec9bfb11f55b0124141fabe33a799f6bace208fa9aad4b65beb923b",
+      "non_visual_content_sha256": "b34fbc55346873a96fd2224a7e65d987fd5c2090de0022114fa41a0cc7d577f6",
       "visual_blocks": [
         {
           "type": "image",
@@ -112,6 +155,18 @@
       "visual_files_sha256": {
         "images/aspen-bw.png": "3e869e2a00a38da5f1658c2b7fb24059bd594b11aa76e47cd1ec49f13b6a44c3",
         "images/aspen-color.png": "6a552052eda6c9ab0463d94303ede426a234137e1e3da66ea40bb41559313550"
+      },
+      "approved_update": {
+        "date": "2026-11-14",
+        "scope": "Only requested serving choices and move question 5.3 after potluck teaching; full review remains in progress."
+      },
+      "component_approval": {
+        "date": "2026-11-14",
+        "source": "b83efe3e4cb36824d23ec034b048761ab98b8822",
+        "pr": 232,
+        "widget": "Approved: compact three-column potluck checklist, prompt and blue/teal/mustard buttons",
+        "index_html_sha256": "244c6b19b2ffdfa50ea81ec9243a746269fd388549863dd13d2b82f28ee89245",
+        "scope": "Component only. Whole text stays Silver; aspen image approval remains unrecorded. Preserve numeric saved-choice identities."
       }
     },
     {
@@ -120,8 +175,8 @@
       "stage": "Silver",
       "dave_edits_protected": true,
       "full_personal_review": "unrecorded",
-      "lesson_sha256": "2a2b5f2bcc5f50c208e4cd58f98417d2c426873ed90234ff0830315e7a8eb975",
-      "non_visual_content_sha256": "8e5832303a2cd7350a4bcaafa2409f0d889d9201f66140348a01e346261f9e67",
+      "lesson_sha256": "05c71d28a6bb6ed97e084c8a3fe54f97a414f37fa93b76828052447b9f5ee076",
+      "non_visual_content_sha256": "7a743c04e283c935c537848cdf1ae95bc51fac6d086f9d9290234d6abae4f152",
       "visual_blocks": [
         {
           "type": "image",
@@ -131,15 +186,23 @@
           "touchNext": true
         },
         {
-          "type": "image",
-          "src": "images/203-02-bless-logo.png",
-          "alt": "BLESS Rhythms"
+          "type": "widget",
+          "src": "widgets/bless-intro.html",
+          "height": "550px",
+          "title": "BLESS Rhythms"
         }
       ],
       "visual_files_sha256": {
-        "images/203-02-bless-logo.png": "834d70c87b001b32bc76ea0d09735600f8894db0f46f041e78df982b8b145fde",
         "images/woman-well-bw.png": "2f5ce47bb6d898345485fddce3f3af97df2ce271d673b3afa70db5c2388ec4e9",
-        "images/woman-well-color.png": "714fef705eb6c2e54af1076944d1b5e2d9ad3f446a6c3ef6171df671508ee4ea"
+        "images/woman-well-color.png": "714fef705eb6c2e54af1076944d1b5e2d9ad3f446a6c3ef6171df671508ee4ea",
+        "widgets/bless-intro.html": "d889f112a67f40d3b85012892fa102ce7b1d0d48186d90c37f37b0eb4ee9008c"
+      },
+      "component_approval": {
+        "date": "2026-11-14",
+        "source": "79496076f1bca314c0a8d352180685b5408a627c",
+        "pr": 233,
+        "widget": "Approved: BLESS Rhythms",
+        "scope": "Exact widget HTML, BLESS section copy and placement only. Text stays Silver; original static BLESS graphic retained on disk; no story art approval."
       }
     },
     {
@@ -148,10 +211,39 @@
       "stage": "Silver",
       "dave_edits_protected": false,
       "full_personal_review": "unrecorded",
-      "lesson_sha256": "9a7183bda1197d010b254dae5b23112bf86ecccb04e777b7d238bef1e9a73792",
+      "lesson_sha256": "641e863858945b3bcf9c1f5c0412af24708611171bc51b2bb131618519364b4b",
       "non_visual_content_sha256": "1840da0f4b68f86bc0e6f952a012b225342e6ab1df5243da8a603408b2c5de0b",
-      "visual_blocks": [],
-      "visual_files_sha256": {}
+      "visual_blocks": [
+        {
+          "type": "image",
+          "imageSequence": [
+            "images/101-07-story-seq-1.jpg",
+            "images/101-07-story-seq-2.jpg",
+            "images/101-07-story-seq-3.jpg",
+            "images/101-07-story-seq-4.jpg"
+          ],
+          "imageSequenceStops": [
+            0,
+            0.18,
+            0.34,
+            0.5
+          ],
+          "alt": "A shepherd climbs down a rocky hillside toward a lost sheep and lifts it onto his shoulders",
+          "touchNext": true
+        }
+      ],
+      "visual_files_sha256": {
+        "images/101-07-story-seq-1.jpg": "4d0ad5da5372938165466dd30d9522a426b312d5853593857ecfc332c8bf135d",
+        "images/101-07-story-seq-2.jpg": "9a5e8d6bc9ec3d6cfe87182fa5750a04aae8bce21b7b0f245724d12701576a46",
+        "images/101-07-story-seq-3.jpg": "a63003df5502e48bcf9475b23826ecb4302b38bcc94051a04cf3d4ce5bdfaf54",
+        "images/101-07-story-seq-4.jpg": "9432ece3046a42695b9fabf25db5eb443f6aa56679a6dcaee82dcef05265fcf8"
+      },
+      "image_approval": {
+        "date": "2026-11-14",
+        "source": "419c6a7ec9cd04aaa68ffcbf9f617de9882fc03d",
+        "pr": 240,
+        "scope": "Four approved shepherd frames, order, stops and placement only; whole text remains Silver."
+      }
     }
   ]
 }

@@ -1,0 +1,1226 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BLESS Rhythms</title>
+<style>
+:root {
+  --ink: #2C2416;
+  --muted: #6E6559;
+  --tray: #F6F4EE;
+  --border: #EBE5D9;
+  --b-color: #A85412;
+  --b-dark: #7D3B08;
+  --b-wash: #FDECD8;
+  --l-color: #575148;
+  --l-dark: #3A352E;
+  --l-wash: #EFECE6;
+  --e-color: #2A6B32;
+  --e-dark: #1C4B22;
+  --e-wash: #E3F2E1;
+  --s1-color: #2F3A44;
+  --s1-dark: #1F272E;
+  --s1-wash: #EAEEF2;
+  --s2-color: #1D628C;
+  --s2-dark: #144868;
+  --s2-wash: #E2EEF6;
+  --all-color: #8B1A2B;
+  --all-dark: #6D1422;
+  --all-wash: #F9E8EB;
+  --step-color: #2C2416;
+  --step-dark: #2C2416;
+  --card-h: 112px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: Georgia, Cambria, serif;
+  background: #F8F6F1;
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+.widget-outer {
+  background: #FFFFFF;
+  border-radius: 0;
+  overflow: hidden;
+  max-width: 100%;
+  width: 100%;
+  margin: 0;
+  position: relative;
+}
+
+@media (min-width: 560px) {
+  body {
+    padding: 16px;
+    background: #F8F6F1;
+  }
+  .widget-outer {
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(44, 36, 22, 0.08);
+    border: 1px solid #EBE5D9;
+    max-width: 460px;
+    margin: 0 auto;
+  }
+}
+
+.title-bar {
+  background: #2C2416;
+  padding: 8px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.title-bar h1 {
+  font: 600 17px/1.15 system-ui, -apple-system, sans-serif;
+  color: #FAF8F3;
+  letter-spacing: 0.2px;
+  margin: 0;
+}
+
+.course-tag {
+  font: 600 11px/1 system-ui, -apple-system, sans-serif;
+  letter-spacing: 0.9px;
+  text-transform: uppercase;
+  color: #E5DEC9;
+  white-space: nowrap;
+}
+
+.stage {
+  background: #FFFFFF;
+  padding: 2px 4px;
+  border-bottom: 1px solid var(--border);
+}
+
+.bless-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.pent-node {
+  cursor: pointer;
+}
+
+.pent-letter {
+  font: 800 26px/1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  text-anchor: middle;
+}
+
+.pent-word {
+  font: 700 11.5px/1.15 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  text-anchor: middle;
+}
+
+.phase-title {
+  font: 700 10.5px/1.1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  text-anchor: middle;
+  letter-spacing: 0.2px;
+}
+
+.phase-sub {
+  font: 600 9.5px/1.1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  text-anchor: middle;
+}
+
+.flow-caption {
+  font: 600 10.5px/1.1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  text-anchor: middle;
+  fill: #6E6559;
+  letter-spacing: 0.15px;
+}
+
+.pent-halo {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.pent-node.is-active .pent-halo,
+.pent-node:focus-visible .pent-halo {
+  opacity: 1;
+}
+
+.pent-body {
+  opacity: 0.34;
+}
+
+.pent-node.is-lit .pent-body {
+  opacity: 1;
+}
+
+.pent-node.is-ghost .pent-body {
+  opacity: 0.38;
+}
+
+.phase-band {
+  opacity: 0.32;
+}
+
+.phase-band.is-lit {
+  opacity: 1;
+}
+
+.phase-band.is-ghost {
+  opacity: 0.25;
+}
+
+.conn-active {
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.step-strip {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 12px 4px;
+  background: var(--tray);
+  border-bottom: 1px solid var(--border);
+}
+
+.step-dot {
+  appearance: none;
+  min-width: 28px;
+  min-height: 28px;
+  padding: 4px;
+  border: none;
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.step-dot-fill {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 2.5px solid var(--dot-color, var(--ink));
+  background: #FFFFFF;
+  display: block;
+}
+
+.step-dot.passed .step-dot-fill {
+  background: color-mix(in srgb, var(--dot-color, var(--ink)) 22%, #FFFFFF);
+}
+
+.step-dot.active .step-dot-fill {
+  background: var(--dot-color, var(--ink));
+  transform: scale(1.12);
+}
+
+.card-area {
+  background: var(--tray);
+  padding: 7px 12px 10px;
+}
+
+.verse-card {
+  background: #FFFFFF;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #EBE5D9;
+  box-shadow: 0 2px 10px rgba(44, 36, 22, 0.05);
+}
+
+.verse-card-bar {
+  height: 4px;
+  background: var(--step-color);
+}
+
+.verse-card-content {
+  padding: 10px 13px;
+  min-height: var(--card-h, 112px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 5px;
+}
+
+.card-heading {
+  font: 700 15px/1.22 system-ui, -apple-system, sans-serif;
+  color: var(--step-dark);
+  margin: 0;
+}
+
+.card-quote {
+  font: 13.5px/1.36 Georgia, Cambria, serif;
+  color: #2C2416;
+  margin: 0;
+}
+
+.card-note {
+  font: 12.5px/1.36 system-ui, -apple-system, sans-serif;
+  color: #4A4238;
+  margin: 0;
+}
+
+.nav-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-top: 7px;
+}
+
+.nav-btn {
+  min-height: 44px;
+  min-width: 96px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1.5px solid #D4CFC4;
+  background: #FFFFFF;
+  color: var(--ink);
+  font: 700 13.5px/1 system-ui, -apple-system, sans-serif;
+  cursor: pointer;
+}
+
+.nav-btn.primary {
+  background: var(--step-color);
+  border-color: var(--step-color);
+  color: #FFFFFF;
+}
+
+.nav-btn:disabled {
+  opacity: 0.36;
+  cursor: default;
+}
+
+.step-count {
+  font: 600 12px system-ui, -apple-system, sans-serif;
+  color: var(--muted);
+}
+
+button:focus-visible,
+[role="button"]:focus-visible {
+  outline: 3px solid #E0A526;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .widget-outer:not(.is-instant) .pent-body,
+  .widget-outer:not(.is-instant) .phase-band,
+  .widget-outer:not(.is-instant) .pent-halo {
+    transition: opacity 0.32s ease;
+  }
+  .widget-outer .step-dot-fill {
+    transition: background-color 0.22s ease, border-color 0.22s ease, transform 0.22s ease;
+  }
+  .widget-outer .nav-btn.primary,
+  .widget-outer .verse-card-bar,
+  .widget-outer .card-heading {
+    transition: background-color 0.24s ease, border-color 0.24s ease, color 0.24s ease;
+  }
+}
+
+@media (max-width: 395px) {
+  .card-area {
+    padding: 6px 10px 8px;
+  }
+  .verse-card-content {
+    padding: 9px 11px;
+  }
+  .card-heading {
+    font-size: 14.5px;
+  }
+  .card-quote {
+    font-size: 13px;
+  }
+}
+
+@media (forced-colors: active) {
+  .step-dot-fill {
+    border-color: ButtonText;
+    background: Canvas;
+  }
+  .step-dot.active .step-dot-fill {
+    background: Highlight;
+    border-color: Highlight;
+  }
+  .nav-btn.primary {
+    border: 2px solid Highlight;
+  }
+}
+</style>
+</head>
+<body>
+<main class="widget-outer" id="widget" aria-label="Interactive introduction to the BLESS rhythms"></main>
+
+<script>
+(function () {
+  'use strict';
+
+  var SVG_NS = 'http://www.w3.org/2000/svg';
+
+  var COLORS = {
+    ink: '#2C2416',
+    muted: '#6E6559',
+    b: '#A85412',
+    bDark: '#7D3B08',
+    bWash: '#FDECD8',
+    l: '#575148',
+    lDark: '#3A352E',
+    lWash: '#EFECE6',
+    e: '#2A6B32',
+    eDark: '#1C4B22',
+    eWash: '#E3F2E1',
+    s1: '#2F3A44',
+    s1Dark: '#1F272E',
+    s1Wash: '#EAEEF2',
+    s2: '#1D628C',
+    s2Dark: '#144868',
+    s2Wash: '#E2EEF6',
+    all: '#8B1A2B',
+    allDark: '#6D1422',
+    allWash: '#F9E8EB'
+  };
+
+  // Pentagon centers evenly spaced across 440x278 Studio Wash stage
+  var ITEMS = [
+    {
+      key: 'B',
+      cx: 56,
+      cy: 108,
+      labelLines: ['Begin in', 'Prayer'],
+      color: COLORS.b,
+      dark: COLORS.bDark,
+      wash: COLORS.bWash,
+      stepIdx: 1,
+      aria: 'B: Begin in Prayer',
+      heading: 'B - Begin in Prayer',
+      quote: '"Continue steadfastly in prayer... that God may open to us a door for the word." (Colossians 4:2-3)',
+      note: 'Talk to God about people before you talk to people about God. Prayer starts the rhythm because God is already at work.'
+    },
+    {
+      key: 'L',
+      cx: 138,
+      cy: 108,
+      labelLines: ['Listen'],
+      color: COLORS.l,
+      dark: COLORS.lDark,
+      wash: COLORS.lWash,
+      stepIdx: 2,
+      aria: 'L: Listen',
+      heading: 'L - Listen',
+      quote: '"Let every person be quick to hear, slow to speak." (James 1:19)',
+      note: 'At the well, Jesus asked a question first. Ask good questions and hear their story before you tell yours.'
+    },
+    {
+      key: 'E',
+      cx: 220,
+      cy: 108,
+      labelLines: ['Eat'],
+      color: COLORS.e,
+      dark: COLORS.eDark,
+      wash: COLORS.eWash,
+      stepIdx: 3,
+      aria: 'E: Eat Together',
+      heading: 'E - Eat Together',
+      quote: '"He took the bread and blessed and broke it and gave it to them." (Luke 24:30)',
+      note: 'Share coffee, lunch, or a simple meal. Time around a table slows life down so real friendship can grow.'
+    },
+    {
+      key: 'S',
+      cx: 302,
+      cy: 108,
+      labelLines: ['Serve'],
+      color: COLORS.s1,
+      dark: COLORS.s1Dark,
+      wash: COLORS.s1Wash,
+      stepIdx: 4,
+      aria: 'S: Serve',
+      heading: 'S - Serve',
+      quote: '"Through love serve one another." (Galatians 5:13)',
+      note: 'Notice a practical need and meet it with no strings attached. Love opens hearts long before arguments do.'
+    },
+    {
+      key: 'S',
+      cx: 384,
+      cy: 108,
+      labelLines: ['Story'],
+      color: COLORS.s2,
+      dark: COLORS.s2Dark,
+      wash: COLORS.s2Wash,
+      stepIdx: 5,
+      aria: 'S: Share Your Story',
+      heading: 'S - Story',
+      quote: '"Come, see a man who told me all that I ever did." (John 4:29)',
+      note: 'When trust opens the door, tell what Jesus did for you, keep the ABCs ready, and invite them to come and see.'
+    }
+  ];
+
+  var STEPS = [
+    {
+      id: 'ready',
+      dotLabel: 'Overview: BLESS natural rhythm',
+      color: COLORS.ink,
+      dark: COLORS.ink,
+      heading: 'A Natural Way to Share Jesus',
+      quote: '"Come, see a man who told me all that I ever did." (John 4:29)',
+      note: 'BLESS is five everyday habits in a natural order that makes sense: pray first, build trust, then share your story.',
+      desc: 'Outline of the five connected BLESS emblems waiting along a calm left-to-right path.'
+    },
+    {
+      id: 'B',
+      dotLabel: 'Step 1: B - Begin in Prayer',
+      color: ITEMS[0].color,
+      dark: ITEMS[0].dark,
+      heading: ITEMS[0].heading,
+      quote: ITEMS[0].quote,
+      note: ITEMS[0].note,
+      desc: 'B pentagon with praying hands lights up in warm gold wash, anchored to phase one: With God.'
+    },
+    {
+      id: 'L',
+      dotLabel: 'Step 2: L - Listen',
+      color: ITEMS[1].color,
+      dark: ITEMS[1].dark,
+      heading: ITEMS[1].heading,
+      quote: ITEMS[1].quote,
+      note: ITEMS[1].note,
+      desc: 'Line sweeps from Prayer to Listen, lighting the ear emblem and opening the Build Trust bridge.'
+    },
+    {
+      id: 'E',
+      dotLabel: 'Step 3: E - Eat Together',
+      color: ITEMS[2].color,
+      dark: ITEMS[2].dark,
+      heading: ITEMS[2].heading,
+      quote: ITEMS[2].quote,
+      note: ITEMS[2].note,
+      desc: 'Line sweeps from Listen to Eat, lighting the plate and utensils emblem in soft sage wash.'
+    },
+    {
+      id: 'S1',
+      dotLabel: 'Step 4: S - Serve',
+      color: ITEMS[3].color,
+      dark: ITEMS[3].dark,
+      heading: ITEMS[3].heading,
+      quote: ITEMS[3].quote,
+      note: ITEMS[3].note,
+      desc: 'Line sweeps from Eat to Serve, lighting the open helping hands emblem in crisp slate wash.'
+    },
+    {
+      id: 'S2',
+      dotLabel: 'Step 5: S - Story',
+      color: ITEMS[4].color,
+      dark: ITEMS[4].dark,
+      heading: ITEMS[4].heading,
+      quote: ITEMS[4].quote,
+      note: ITEMS[4].note,
+      desc: 'Line sweeps from Serve to Story, lighting the speech bubbles emblem and the Share Jesus step.'
+    },
+    {
+      id: 'connected',
+      dotLabel: 'Step 6: Living the BLESS Rhythm',
+      color: COLORS.all,
+      dark: COLORS.allDark,
+      heading: 'Living the BLESS Rhythm',
+      quote: '"How beautiful are the feet of those who preach the good news!" (Romans 10:15)',
+      note: 'Not a rigid checklist, just a natural bridge from prayer to friendship to Jesus. Growing Out (203) explores each one in full.',
+      desc: 'All five BLESS emblems shine together with arrows and three-part rhythm: 1. With God, 2. Build Trust, 3. Share Jesus.'
+    }
+  ];
+
+  function el(tag, attrs, parent) {
+    var node = document.createElement(tag);
+    if (attrs) {
+      Object.keys(attrs).forEach(function (k) {
+        if (k === 'text') node.textContent = attrs[k];
+        else if (k === 'class') node.className = attrs[k];
+        else node.setAttribute(k, attrs[k]);
+      });
+    }
+    if (parent) parent.appendChild(node);
+    return node;
+  }
+
+  function svgEl(tag, attrs, parent) {
+    var node = document.createElementNS(SVG_NS, tag);
+    if (attrs) {
+      Object.keys(attrs).forEach(function (k) {
+        if (k === 'text') node.textContent = attrs[k];
+        else node.setAttribute(k, attrs[k]);
+      });
+    }
+    if (parent) parent.appendChild(node);
+    return node;
+  }
+
+  function pentPoints(cx, cy, r) {
+    var pts = [];
+    for (var i = 0; i < 5; i++) {
+      var a = (-90 + i * 72) * Math.PI / 180;
+      var x = cx + r * Math.cos(a);
+      var y = cy + r * Math.sin(a);
+      pts.push(x.toFixed(1) + ',' + y.toFixed(1));
+    }
+    return pts.join(' ');
+  }
+
+  function drawIcon(idx, parent, color, dark) {
+    var g = svgEl('g', {}, parent);
+    if (idx === 0) {
+      // B: Praying hands + 3 rays (sculptural silhouette matching BLESS emblem)
+      svgEl('path', {
+        d: 'M -8.5 -17.5 L -11.5 -22.5 M 0 -19 L 0 -24.5 M 8.5 -17.5 L 11.5 -22.5',
+        fill: 'none',
+        stroke: color,
+        'stroke-width': '2',
+        'stroke-linecap': 'round'
+      }, g);
+      // Back (left) hand with raised thumb & palm heel
+      svgEl('path', {
+        d: 'M -2.5 14.5 L -6.5 14.5 C -9.2 14.5 -10.5 12 -10 8.5 L -13.5 1 C -14.3 -0.8 -12.5 -2.6 -10.8 -1.2 L -8 2.2 L -7.6 -10.5 C -7.6 -13.5 -3.5 -14.5 -2.5 -11.8 Z',
+        fill: '#FFFFFF',
+        stroke: dark,
+        'stroke-width': '1.7',
+        'stroke-linejoin': 'round',
+        'stroke-linecap': 'round'
+      }, g);
+      // Front (right) hand with clean finger steps & base
+      svgEl('path', {
+        d: 'M -1.5 15 C -3 15 -4.2 13.8 -4.2 12 L -4.2 5 L -7.8 -1.5 C -8.7 -3.2 -6.8 -4.8 -5.2 -3.3 L -2.2 0 L -2.2 -12.2 C -2.2 -14.4 0.8 -14.4 0.8 -12.2 L 0.8 -10.5 C 0.8 -12.5 3.8 -12.5 3.8 -10.5 L 3.8 -8.2 C 3.8 -10.2 6.8 -10.2 6.8 -8.2 L 6.8 -5.8 C 6.8 -7.6 9.6 -7.6 9.6 -5.8 L 9.6 7.5 C 9.6 12.2 6.8 15 2.5 15 Z',
+        fill: '#FFFFFF',
+        stroke: dark,
+        'stroke-width': '1.7',
+        'stroke-linejoin': 'round',
+        'stroke-linecap': 'round'
+      }, g);
+      // Subtle vertical finger separation lines
+      svgEl('path', {
+        d: 'M 0.8 -10.5 L 0.8 0.5 M 3.8 -8.2 L 3.8 1 M 6.8 -5.8 L 6.8 1.5',
+        fill: 'none',
+        stroke: dark,
+        'stroke-width': '1.4',
+        'stroke-linecap': 'round'
+      }, g);
+    } else if (idx === 1) {
+      // L: Ear + 3 listening sound waves
+      svgEl('path', {
+        d: 'M -12 -5 C -13 -14 -3 -17 3 -12 C 7 -9 7 -2 3 2 C 0 5 -1 9 -3 12 C -5 16 -11 15 -11 10',
+        fill: 'none',
+        stroke: dark,
+        'stroke-width': '2.4',
+        'stroke-linecap': 'round'
+      }, g);
+      svgEl('path', {
+        d: 'M -8 -4 C -8 -9 -3 -10 0 -7 C 2 -5 1 -1 -2 1 C -4 2 -4 5 -5 7',
+        fill: 'none',
+        stroke: color,
+        'stroke-width': '2',
+        'stroke-linecap': 'round'
+      }, g);
+      svgEl('path', {
+        d: 'M 7 -6 C 10 -3 10 3 7 6 M 11 -9 C 15 -4 15 4 11 9 M 15 -12 C 20 -5 20 5 15 12',
+        fill: 'none',
+        stroke: dark,
+        'stroke-width': '1.9',
+        'stroke-linecap': 'round'
+      }, g);
+    } else if (idx === 2) {
+      // E: Plate concentric rings + centered spoon & fork
+      svgEl('circle', {
+        cx: '0',
+        cy: '1',
+        r: '15.5',
+        fill: '#FFFFFF',
+        stroke: color,
+        'stroke-width': '1.8'
+      }, g);
+      svgEl('circle', {
+        cx: '0',
+        cy: '1',
+        r: '10.2',
+        fill: 'none',
+        stroke: color,
+        'stroke-width': '1.1',
+        opacity: '0.65'
+      }, g);
+      // Spoon
+      svgEl('ellipse', {
+        cx: '-3.8',
+        cy: '-4.5',
+        rx: '3.1',
+        ry: '5',
+        fill: '#FFFFFF',
+        stroke: dark,
+        'stroke-width': '1.7'
+      }, g);
+      svgEl('path', {
+        d: 'M -3.8 0.5 L -3.8 12.5',
+        fill: 'none',
+        stroke: dark,
+        'stroke-width': '2.1',
+        'stroke-linecap': 'round'
+      }, g);
+      // Fork positioned snug next to spoon so pair sits centered on plate
+      svgEl('path', {
+        d: 'M 1.6 -9.5 L 1.6 -3 M 3.8 -9.5 L 3.8 -3 M 6 -9.5 L 6 -3 M 1.6 -3 C 1.6 0.4 6 0.4 6 -3 M 3.8 0 L 3.8 12.5',
+        fill: 'none',
+        stroke: dark,
+        'stroke-width': '1.8',
+        'stroke-linecap': 'round',
+        'stroke-linejoin': 'round'
+      }, g);
+    } else if (idx === 3) {
+      // S: Two downward-facing open hands with slim tucked thumbs (5 digits each) + 3 service rays
+      var handsG = svgEl('g', { transform: 'translate(0,-2.5) scale(1,-1)' }, g);
+      // Left hand: slim wrist -> slim tucked outer thumb curving into palm -> 4 fingers -> inner pinky edge
+      svgEl('path', {
+        d: 'M -12.8 12.5 L -12.8 9.2 C -15.2 6.8 -15.7 2.4 -15.6 -2.8 C -15.5 -4.3 -13.6 -4.3 -13.3 -2.6 L -13.3 -10.2 C -13.3 -12.4 -10.4 -12.4 -10.4 -10.2 L -10.4 -12.5 C -10.4 -14.7 -7.3 -14.7 -7.3 -12.5 L -7.3 -10.8 C -7.3 -13 -4.3 -13 -4.3 -10.8 L -4.3 -7.5 C -4.3 -9.4 -1.6 -9.4 -1.6 -7.5 L -1.6 5.5 C -1.6 8.2 -3.8 10.2 -3.8 12.5 Z',
+        fill: '#FFFFFF',
+        stroke: dark,
+        'stroke-width': '1.6',
+        'stroke-linejoin': 'round',
+        'stroke-linecap': 'round'
+      }, handsG);
+      svgEl('path', {
+        d: 'M -10.4 -10.2 L -10.4 -1.8 M -7.3 -10.8 L -7.3 -1.6 M -4.3 -7.5 L -4.3 -1.2 M -13.3 -2.6 C -12.9 -0.3 -11.0 0.7 -9.4 2.8',
+        fill: 'none',
+        stroke: dark,
+        'stroke-width': '1.5',
+        'stroke-linecap': 'round',
+        'stroke-linejoin': 'round'
+      }, handsG);
+      // Right hand (exact mirror)
+      svgEl('path', {
+        d: 'M 12.8 12.5 L 12.8 9.2 C 15.2 6.8 15.7 2.4 15.6 -2.8 C 15.5 -4.3 13.6 -4.3 13.3 -2.6 L 13.3 -10.2 C 13.3 -12.4 10.4 -12.4 10.4 -10.2 L 10.4 -12.5 C 10.4 -14.7 7.3 -14.7 7.3 -12.5 L 7.3 -10.8 C 7.3 -13 4.3 -13 4.3 -10.8 L 4.3 -7.5 C 4.3 -9.4 1.6 -9.4 1.6 -7.5 L 1.6 5.5 C 1.6 8.2 3.8 10.2 3.8 12.5 Z',
+        fill: '#FFFFFF',
+        stroke: dark,
+        'stroke-width': '1.6',
+        'stroke-linejoin': 'round',
+        'stroke-linecap': 'round'
+      }, handsG);
+      svgEl('path', {
+        d: 'M 10.4 -10.2 L 10.4 -1.8 M 7.3 -10.8 L 7.3 -1.6 M 4.3 -7.5 L 4.3 -1.2 M 13.3 -2.6 C 12.9 -0.3 11.0 0.7 9.4 2.8',
+        fill: 'none',
+        stroke: dark,
+        'stroke-width': '1.5',
+        'stroke-linecap': 'round',
+        'stroke-linejoin': 'round'
+      }, handsG);
+      // Three radiating service rays below fingers
+      svgEl('path', {
+        d: 'M -5.8 13.8 L -8.6 18.2 M 0 14.2 L 0 18.8 M 5.8 13.8 L 8.6 18.2',
+        fill: 'none',
+        stroke: color,
+        'stroke-width': '1.7',
+        'stroke-linecap': 'round'
+      }, g);
+    } else {
+      // S: Double speech bubbles with dialogue lines
+      svgEl('path', {
+        d: 'M -16 3 C -16 -3 -10 -7 -3 -7 C 4 -7 10 -3 10 3 C 10 9 4 13 -3 13 C -5 13 -7 12.5 -9 11.8 L -14 14.5 L -12.6 9.8 C -14.8 8 -16 5.7 -16 3 Z',
+        fill: '#FFFFFF',
+        stroke: color,
+        'stroke-width': '1.6',
+        'stroke-linejoin': 'round'
+      }, g);
+      svgEl('path', {
+        d: 'M -5 -2 C -5 -8.5 1 -13 8.5 -13 C 16 -13 21.5 -8.5 21.5 -2 C 21.5 1.8 19.6 5.1 16.5 7 L 18 11.5 L 12.5 8.8 C 11.2 9.1 9.9 9.2 8.5 9.2 C 1 9.2 -5 4.5 -5 -2 Z',
+        fill: '#FFFFFF',
+        stroke: dark,
+        'stroke-width': '1.8',
+        'stroke-linejoin': 'round'
+      }, g);
+      svgEl('path', {
+        d: 'M 2.5 -5 L 14.5 -5 M 2 -1.8 L 14 -1.8 M 3 1.4 L 11.5 1.4',
+        fill: 'none',
+        stroke: dark,
+        'stroke-width': '1.7',
+        'stroke-linecap': 'round'
+      }, g);
+    }
+    return g;
+  }
+
+  function buildStage(parent) {
+    var stage = el('div', { class: 'stage' }, parent);
+    var svg = svgEl('svg', {
+      class: 'bless-svg',
+      viewBox: '0 0 440 278',
+      width: '100%',
+      role: 'img',
+      'aria-labelledby': 'bless-svg-title bless-svg-desc'
+    }, stage);
+
+    var svgTitle = svgEl('title', { id: 'bless-svg-title', text: 'BLESS Rhythms' }, svg);
+    var svgDesc = svgEl('desc', { id: 'bless-svg-desc', text: STEPS[0].desc }, svg);
+
+    // Connecting segments & chevrons between adjacent pentagons (4 gaps: 1->2, 2->3, 3->4, 4->5)
+    var connectors = [];
+    for (var gIdx = 0; gIdx < ITEMS.length - 1; gIdx++) {
+      var leftX = ITEMS[gIdx].cx + 33;
+      var rightX = ITEMS[gIdx + 1].cx - 33;
+      var midX = (leftX + rightX) / 2;
+      var y = 108;
+      var cGroup = svgEl('g', {}, svg);
+      var line = svgEl('line', {
+        class: 'conn-active',
+        x1: leftX,
+        y1: y,
+        x2: rightX,
+        y2: y,
+        stroke: ITEMS[gIdx + 1].color,
+        'stroke-width': '2.2'
+      }, cGroup);
+      var chevron = svgEl('path', {
+        d: 'M ' + (midX - 2.5) + ' ' + (y - 4.5) + ' L ' + (midX + 2.5) + ' ' + y + ' L ' + (midX - 2.5) + ' ' + (y + 4.5),
+        fill: 'none',
+        stroke: ITEMS[gIdx + 1].color,
+        'stroke-width': '2.1',
+        'stroke-linecap': 'round',
+        'stroke-linejoin': 'round'
+      }, cGroup);
+      var len = Math.max(1, rightX - leftX);
+      line.style.strokeDasharray = String(len);
+      line.style.strokeDashoffset = String(len);
+      chevron.style.opacity = '0';
+      connectors.push({
+        stepIdx: gIdx + 2, // animates when entering L (2), E (3), S (4), S (5)
+        line: line,
+        chevron: chevron,
+        len: len
+      });
+    }
+
+    // 5 Pentagon Emblem Nodes
+    var pentNodes = ITEMS.map(function (item, idx) {
+      var group = svgEl('g', {
+        class: 'pent-node',
+        tabindex: '0',
+        role: 'button',
+        'aria-label': item.aria
+      }, svg);
+
+      // Clean double-hairline active ring (Studio Wash: no fuzzy glow)
+      var halo = svgEl('polygon', {
+        class: 'pent-halo',
+        points: pentPoints(item.cx, item.cy, 36.5),
+        fill: 'none',
+        stroke: item.color,
+        'stroke-width': '2.4'
+      }, group);
+
+      // Pentagon body group (letter + pentagon + icon + action label)
+      var body = svgEl('g', { class: 'pent-body' }, group);
+
+      // Letter above pentagon (B L E S S)
+      var letter = svgEl('text', {
+        class: 'pent-letter',
+        x: item.cx,
+        y: 56,
+        fill: item.dark,
+        text: item.key
+      }, body);
+
+      // Pentagon fill + 1.6px Studio Wash hairline
+      svgEl('polygon', {
+        points: pentPoints(item.cx, item.cy, 31.5),
+        fill: item.wash,
+        stroke: item.color,
+        'stroke-width': '1.7',
+        'stroke-linejoin': 'round'
+      }, body);
+
+      // Inner hairline contour for craft
+      svgEl('polygon', {
+        points: pentPoints(item.cx, item.cy, 27.5),
+        fill: 'none',
+        stroke: item.color,
+        'stroke-width': '0.7',
+        opacity: '0.32',
+        'stroke-linejoin': 'round'
+      }, body);
+
+      // Crisp centered icon
+      var iconWrap = svgEl('g', {
+        transform: 'translate(' + item.cx + ',' + (item.cy + 2) + ')'
+      }, body);
+      drawIcon(idx, iconWrap, item.color, item.dark);
+
+      // Action word below pentagon
+      if (item.labelLines.length === 2) {
+        svgEl('text', {
+          class: 'pent-word',
+          x: item.cx,
+          y: 158,
+          fill: item.dark,
+          text: item.labelLines[0]
+        }, body);
+        svgEl('text', {
+          class: 'pent-word',
+          x: item.cx,
+          y: 171,
+          fill: item.dark,
+          text: item.labelLines[1]
+        }, body);
+      } else {
+        svgEl('text', {
+          class: 'pent-word',
+          x: item.cx,
+          y: 162,
+          fill: item.dark,
+          text: item.labelLines[0]
+        }, body);
+      }
+
+      return {
+        item: item,
+        group: group,
+        halo: halo,
+        body: body,
+        letter: letter
+      };
+    });
+
+    // Bottom 3-Phase Bridge showing how BLESS connects in rough order
+    var phasesGroup = svgEl('g', {}, svg);
+    var PHASES = [
+      {
+        id: 'phase1',
+        x: 16,
+        w: 76,
+        fill: COLORS.bWash,
+        stroke: COLORS.b,
+        dark: COLORS.bDark,
+        title: '1. With God',
+        sub: 'Pray first',
+        activeSteps: [1, 6]
+      },
+      {
+        id: 'phase2',
+        x: 110,
+        w: 220,
+        fill: COLORS.eWash,
+        stroke: COLORS.e,
+        dark: COLORS.eDark,
+        title: '2. Love & Build Trust',
+        sub: 'Listen \u2192 Share a Table \u2192 Serve',
+        activeSteps: [2, 3, 4, 6]
+      },
+      {
+        id: 'phase3',
+        x: 348,
+        w: 76,
+        fill: COLORS.s2Wash,
+        stroke: COLORS.s2,
+        dark: COLORS.s2Dark,
+        title: '3. Share',
+        sub: 'Tell Jesus',
+        activeSteps: [5, 6]
+      }
+    ];
+
+    var phaseBands = PHASES.map(function (ph) {
+      var g = svgEl('g', { class: 'phase-band' }, phasesGroup);
+      svgEl('rect', {
+        x: ph.x,
+        y: 194,
+        width: ph.w,
+        height: 40,
+        rx: 8,
+        fill: ph.fill,
+        stroke: ph.stroke,
+        'stroke-width': '1.4'
+      }, g);
+      svgEl('text', {
+        class: 'phase-title',
+        x: ph.x + ph.w / 2,
+        y: 211,
+        fill: ph.dark,
+        text: ph.title
+      }, g);
+      svgEl('text', {
+        class: 'phase-sub',
+        x: ph.x + ph.w / 2,
+        y: 226,
+        fill: ph.dark,
+        text: ph.sub
+      }, g);
+      return { cfg: ph, group: g };
+    });
+
+    // Bridge chevrons between the 3 phase bands (x=101 and x=339 at y=214)
+    var phaseArrows = [101, 339].map(function (ax, idx) {
+      var arrow = svgEl('path', {
+        d: 'M ' + (ax - 3) + ' 209 L ' + (ax + 2) + ' 214 L ' + (ax - 3) + ' 219',
+        fill: 'none',
+        stroke: idx === 0 ? COLORS.e : COLORS.s2,
+        'stroke-width': '2',
+        'stroke-linecap': 'round',
+        'stroke-linejoin': 'round'
+      }, phasesGroup);
+      arrow.style.opacity = '0.28';
+      return arrow;
+    });
+
+    // Bottom calm rhythm note uniting the whole picture
+    var flowLine = svgEl('path', {
+      d: 'M 42 250 L 396 250 M 391 246.5 L 396.5 250 L 391 253.5',
+      fill: 'none',
+      stroke: COLORS.all,
+      'stroke-width': '1.6',
+      'stroke-linecap': 'round',
+      'stroke-linejoin': 'round',
+      opacity: '0.2'
+    }, svg);
+    var flowText = svgEl('text', {
+      class: 'flow-caption',
+      x: 220,
+      y: 266,
+      text: 'Natural rhythm: Pray first \u2192 Build trust \u2192 Invite them in'
+    }, svg);
+
+    return {
+      svgTitle: svgTitle,
+      svgDesc: svgDesc,
+      pentNodes: pentNodes,
+      connectors: connectors,
+      phaseBands: phaseBands,
+      phaseArrows: phaseArrows,
+      flowLine: flowLine,
+      flowText: flowText
+    };
+  }
+
+  function init() {
+    var host = document.getElementById('widget');
+    if (!host) return;
+
+    var bar = el('div', { class: 'title-bar' }, host);
+    el('h1', { text: 'BLESS Rhythms' }, bar);
+    el('span', { class: 'course-tag', text: '101-06' }, bar);
+
+    var bundle = buildStage(host);
+
+    var strip = el('div', { class: 'step-strip', role: 'group', 'aria-label': 'BLESS rhythm steps' }, host);
+    var dotButtons = STEPS.map(function (st) {
+      var btn = el('button', {
+        type: 'button',
+        class: 'step-dot',
+        'aria-label': st.dotLabel,
+        'aria-pressed': 'false'
+      }, strip);
+      btn.style.setProperty('--dot-color', st.color);
+      el('span', { class: 'step-dot-fill' }, btn);
+      return btn;
+    });
+
+    var cardArea = el('div', { class: 'card-area' }, host);
+    var cardBox = el('div', { class: 'verse-card' }, cardArea);
+    el('div', { class: 'verse-card-bar' }, cardBox);
+    var contentEl = el('div', { class: 'verse-card-content' }, cardBox);
+    var headingEl = el('h2', { class: 'card-heading' }, contentEl);
+    var quoteEl = el('p', { class: 'card-quote' }, contentEl);
+    var noteEl = el('p', { class: 'card-note' }, contentEl);
+
+    var navBar = el('div', { class: 'nav-bar' }, cardArea);
+    var prevBtn = el('button', { type: 'button', class: 'nav-btn', text: '\u2190 Back' }, navBar);
+    var countEl = el('span', { class: 'step-count', text: 'Ready' }, navBar);
+    var nextBtn = el('button', { type: 'button', class: 'nav-btn primary', text: 'Begin \u2192' }, navBar);
+
+    var currentStep = 0;
+    var activeRaf = null;
+    var reducedMotionQuery = window.matchMedia
+      ? window.matchMedia('(prefers-reduced-motion: reduce)')
+      : { matches: false };
+
+    function stopAnim() {
+      if (activeRaf !== null) {
+        cancelAnimationFrame(activeRaf);
+        activeRaf = null;
+      }
+    }
+
+    function setConnProgress(conn, p) {
+      var t = Math.max(0, Math.min(1, p));
+      conn.line.style.strokeDashoffset = (conn.len * (1 - t)).toFixed(2);
+      conn.chevron.style.opacity = t > 0.72 ? String(((t - 0.72) / 0.28).toFixed(2)) : '0';
+    }
+
+    function updateVisualState(stepIdx) {
+      bundle.pentNodes.forEach(function (pn) {
+        var idx = pn.item.stepIdx;
+        var lit = stepIdx === 6 ? true : (stepIdx > 0 && idx <= stepIdx);
+        var active = stepIdx === idx;
+        var ghost = stepIdx === 0;
+        pn.group.classList.toggle('is-lit', lit);
+        pn.group.classList.toggle('is-active', active);
+        pn.group.classList.toggle('is-ghost', ghost);
+        pn.group.setAttribute('aria-pressed', active ? 'true' : 'false');
+      });
+
+      bundle.phaseBands.forEach(function (pb) {
+        var isHit = false;
+        if (stepIdx === 6) isHit = true;
+        else if (stepIdx === 1 && pb.cfg.id === 'phase1') isHit = true;
+        else if (stepIdx >= 2 && stepIdx <= 4 && pb.cfg.id === 'phase2') isHit = true;
+        else if (stepIdx === 5 && pb.cfg.id === 'phase3') isHit = true;
+        // Keep earlier phases visible as the bridge builds left to right
+        var reached = (stepIdx >= 1 && pb.cfg.id === 'phase1') ||
+                      (stepIdx >= 2 && pb.cfg.id === 'phase2') ||
+                      (stepIdx >= 5 && pb.cfg.id === 'phase3');
+        pb.group.classList.toggle('is-lit', isHit || reached);
+        pb.group.classList.toggle('is-ghost', stepIdx === 0);
+      });
+
+      bundle.phaseArrows[0].style.opacity = stepIdx >= 2 ? '0.9' : '0.22';
+      bundle.phaseArrows[1].style.opacity = stepIdx >= 5 ? '0.9' : '0.22';
+      bundle.flowLine.setAttribute('opacity', stepIdx === 6 ? '0.8' : '0.22');
+      bundle.flowLine.setAttribute('stroke', stepIdx === 6 ? COLORS.all : '#C5BDB0');
+      bundle.flowText.setAttribute('fill', stepIdx === 6 ? COLORS.allDark : '#6E6559');
+    }
+
+    function goTo(nextIdx) {
+      stopAnim();
+      var prevIdx = currentStep;
+      var goingForward = nextIdx > prevIdx;
+      var instant = reducedMotionQuery.matches || !goingForward || nextIdx <= 1 || nextIdx === 6;
+
+      host.classList.toggle('is-instant', instant);
+      updateVisualState(nextIdx);
+
+      if (instant) {
+        bundle.connectors.forEach(function (conn) {
+          setConnProgress(conn, conn.stepIdx <= nextIdx ? 1 : 0);
+        });
+      } else {
+        bundle.connectors.forEach(function (conn) {
+          if (conn.stepIdx < nextIdx) setConnProgress(conn, 1);
+          else setConnProgress(conn, 0);
+        });
+        var targetConn = bundle.connectors.filter(function (c) { return c.stepIdx === nextIdx; })[0];
+        if (targetConn) {
+          var t0 = performance.now();
+          var drawMs = 260;
+          var frame = function (now) {
+            var p = Math.min(1, (now - t0) / drawMs);
+            var eased = 1 - Math.pow(1 - p, 2);
+            setConnProgress(targetConn, eased);
+            if (p < 1) {
+              activeRaf = requestAnimationFrame(frame);
+            } else {
+              setConnProgress(targetConn, 1);
+              activeRaf = null;
+            }
+          };
+          activeRaf = requestAnimationFrame(frame);
+        }
+      }
+
+      currentStep = nextIdx;
+      var step = STEPS[currentStep];
+      host.setAttribute('data-step', String(currentStep));
+      host.style.setProperty('--step-color', step.color);
+      host.style.setProperty('--step-dark', step.dark);
+      bundle.svgDesc.textContent = step.desc;
+
+      headingEl.textContent = step.heading;
+      quoteEl.textContent = step.quote;
+      noteEl.textContent = step.note;
+
+      dotButtons.forEach(function (btn, idx) {
+        btn.classList.toggle('active', idx === currentStep);
+        btn.classList.toggle('passed', idx > 0 && idx < currentStep);
+        btn.setAttribute('aria-pressed', idx === currentStep ? 'true' : 'false');
+      });
+
+      countEl.textContent = currentStep === 0 ? 'Ready' : ('Step ' + currentStep + ' of ' + (STEPS.length - 1));
+      prevBtn.disabled = currentStep === 0;
+      if (currentStep === 0) {
+        nextBtn.textContent = 'Begin \u2192';
+      } else if (currentStep === STEPS.length - 1) {
+        nextBtn.textContent = '\u21BB Start Over';
+      } else {
+        nextBtn.textContent = 'Next \u2192';
+      }
+    }
+
+    dotButtons.forEach(function (btn, idx) {
+      btn.addEventListener('click', function () {
+        goTo(idx);
+      });
+    });
+
+    bundle.pentNodes.forEach(function (pn) {
+      pn.group.addEventListener('click', function () {
+        goTo(pn.item.stepIdx);
+      });
+      pn.group.addEventListener('keydown', function (event) {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          goTo(pn.item.stepIdx);
+        }
+      });
+    });
+
+    prevBtn.addEventListener('click', function () {
+      if (currentStep > 0) goTo(currentStep - 1);
+    });
+    nextBtn.addEventListener('click', function () {
+      goTo(currentStep === STEPS.length - 1 ? 0 : currentStep + 1);
+    });
+
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'ArrowRight' && currentStep < STEPS.length - 1) {
+        goTo(currentStep + 1);
+      } else if (event.key === 'ArrowLeft' && currentStep > 0) {
+        goTo(currentStep - 1);
+      }
+    });
+
+    var lastWidth = window.innerWidth;
+    var measuredWidth = 0;
+    function fitCardHeight() {
+      if (!contentEl || contentEl.clientWidth === measuredWidth) return;
+      measuredWidth = contentEl.clientWidth;
+      var keepH = headingEl.textContent;
+      var keepQ = quoteEl.textContent;
+      var keepN = noteEl.textContent;
+      var tallest = 0;
+      document.documentElement.style.setProperty('--card-h', '0px');
+      STEPS.forEach(function (st) {
+        headingEl.textContent = st.heading;
+        quoteEl.textContent = st.quote;
+        noteEl.textContent = st.note;
+        tallest = Math.max(tallest, contentEl.offsetHeight);
+      });
+      headingEl.textContent = keepH;
+      quoteEl.textContent = keepQ;
+      noteEl.textContent = keepN;
+      document.documentElement.style.setProperty('--card-h', Math.max(96, tallest) + 'px');
+    }
+
+    var resizeTimer = null;
+    window.addEventListener('resize', function () {
+      if (window.innerWidth === lastWidth) return;
+      lastWidth = window.innerWidth;
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(fitCardHeight, 120);
+    });
+
+    goTo(0);
+    fitCardHeight();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
+</body>
+</html>
