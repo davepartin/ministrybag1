@@ -1,5 +1,17 @@
 # Growing Together Team Board
 
+## 202-01 opening flow and Greatest Commandment placement (`REVIEW`): November 13, 2026
+
+- **Task / Branch:** `L-202-01-OPENING-WIDGET` on `gemini/202-01-great-command-flow` (rebased onto `origin/main` after PR #220 merge; `REVIEW` for Dave visual/wording check and Codex integration).
+- **Changed files:**
+  - `discipleship/index.html` (shared `renderImageBlockHtml` helper + optional `blocks[0].placement === "top"` hoist above `.session-title-row`, plus spacing rules `.block-image-top-hero` and `.session-description:has(+ .block-text)`)
+  - `discipleship/data/202-01.json` (moved `images/202-3circles-logo.png` to top above `Lesson 1`, rewrote opening 2 paragraphs to introduce 202 Growing Up from 201 / Greatest Commandment / loving family, church family, and neighbors, kept Good Samaritan `imageSequence` immediately after those 2 paragraphs, moved `widgets/great-command-v5-202.html` into **The Second Is Like the First**, and removed `widgets/cross-the-road.html` plus its `"Walk down the road..."` lead-in under **Who Is My Neighbor?**)
+  - `discipleship/scripts/studio_v5_browser_check.js` (updated `202` assertion to expect `cross-the-road.html` removed and `great-command-v5-202.html` placed after `.block-parable`)
+  - `discipleship/project-management/TEAM-BOARD.md`
+  - `discipleship/project-management/logs/2026-11-13-L-202-01-OPENING-WIDGET-gemini.md`
+- **Coordination note:** Open PR #202 (`claude/trim-202-01`) also edits `discipleship/data/202-01.json` (prose trim draft pre-dating PR #211). This branch preserves all seven question IDs (`202-01-1`..`202-01-4`, `202-01-key`, `202-01-step`, `202-01-prayer`), Good Samaritan scroll sequence stops, and zero em dashes. See [evidence log](logs/2026-11-13-L-202-01-OPENING-WIDGET-gemini.md).
+
+
 ## Approved widget header rollout: PR #220
 
 Dave approved `315fc75`: all ten active 202 widgets use the dark `#2C2416` header with title on the left and lesson number on the right. The shared v5 engine now displays `201-01`, `202-01` and `203-01` instead of Course labels. Approved titles include Building From the Cornerstone and Reflecting God's Worth. [Technical review and verification](logs/2026-11-13-WIDGET-202-HEADERS-codex.md).
@@ -13,6 +25,8 @@ All eleven approved runtime files remain byte-identical to Dave's reviewed sourc
 - **Summary:** Dropped the word `Course` in favor of `<course>-<lesson>` top-right tags (`201-01`, `202-01`, `203-01` in `great-command-v5.js` + Studio Wash docs) and standardized all active `202` widgets (`202-01` through `202-10`) to the `#2C2416` bar (`36px` tall, `17px` `#FAF8F3` title top-left, `11px` `#E5DEC9` lesson number top-right), including Dave's confirmed titles **`Building From the Cornerstone`** (`202-02`) and **`Reflecting God's Worth`** (`202-06`) and `202-05` (`trust-the-artist.html`: **`Trust the Creator`**).
 - **Untouched:** all lesson JSON files (`data/*.json`), question IDs, saved answers, `index.html`, `scripts/`, `images/`, and Firebase config.
 - **Checks (all exit `0`):** Playwright across all 13 widgets (`390x844` and `1280x800`, zero overflow/errors/overlap, screenshots inspected), `qa_foundation.sh`, `test_lesson_export.js` (`177`), `test_answer_storage.js` (`64`), `check_lesson_assets.js` (`127`). [Evidence](logs/2026-11-13-WIDGET-202-HEADERS-gemini.md).
+
+
 ## 201-05 approved Studio Wash Bookshelf integration: November 13, 2026
 
 Dave praised the PR #219 preview and requested publication. The new `widgets/bible-bookshelf2.html` replaces the old Bookshelf embed in 201-05 at the same position. Existing lesson wording, Scripture, metadata, questions/IDs and images are unchanged; `widgets/bible-bookshelf.html` stays on disk unchanged. The new widget's approved appearance and wording remain; only the SVG accessibility container role changes so the ten shelf controls are exposed to assistive technology. [Integration evidence](logs/2026-11-13-INTEGRATE-201-05-BOOKSHELF-codex.md).
