@@ -1,5 +1,9 @@
 # Growing Together Team Board
 
+## 203-01 rewrite waiting for Dave: November 14, 2026
+
+Dave asked Claude overnight to rewrite 203-01 as the opener for Growing Out, from his own sermon notes. Branch `claude/rewrite-203-01`, REVIEW, not merged. Story: Four Friends and a Roof (Mark 2:1-12). Phrase: "Love has names." Also "God grows your faith so He can work through you for the faith of others" and "Think beyond your tree, and pray for the orchard." The cross opener, the Personal Ministry Map, the names question (1.3) and the BLESS preview stay. Two follow-on briefs wait for Dave to assign: [Love Has Names map widget for Gemini](reviews/2026-11-14-203-01-love-has-names-widget-brief.md) and [Four Friends art for Grok](reviews/2026-11-14-203-01-four-friends-art-brief.md). Do not edit 203-01 prose until Dave has read this draft. [Log](logs/2026-11-14-REWRITE-203-01-claude.md).
+
 ## Approved widget header rollout: PR #220
 
 Dave approved `315fc75`: all ten active 202 widgets use the dark `#2C2416` header with title on the left and lesson number on the right. The shared v5 engine now displays `201-01`, `202-01` and `203-01` instead of Course labels. Approved titles include Building From the Cornerstone and Reflecting God's Worth. [Technical review and verification](logs/2026-11-13-WIDGET-202-HEADERS-codex.md).
