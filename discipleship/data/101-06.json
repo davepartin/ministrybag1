@@ -47,28 +47,18 @@
       "text": "For I am not ashamed of the gospel, for it is the power of God for salvation to everyone who believes, to the Jew first and also to the Greek."
     },
     {
-      "type": "image",
-      "src": "images/203-02-bless-logo.png",
-      "alt": "BLESS Rhythms"
-    },
-    {
       "type": "heading",
       "text": "A First Taste of BLESS"
     },
     {
       "type": "text",
-      "text": "A simple rhythm called BLESS helps you live on mission every day, and if you look at the well again you will see Jesus doing almost all of it. <a href=\"#203-2\" style=\"color: var(--accent); font-weight: 600;\">Growing Out, the 203 course</a>, walks through each rhythm in full. Here is a first taste."
+      "text": "A simple rhythm called BLESS helps you live on mission every day, and if you look at the well again you will see Jesus doing almost all of it. <a href=\"#203-2\" style=\"color: var(--accent); font-weight: 600;\">Growing Out, the 203 course</a>, walks through each rhythm in full. Tap through below for a first taste."
     },
     {
-      "type": "box",
-      "title": "BLESS: A First Taste",
-      "content": [
-        "<strong>B-Begin with Prayer.</strong> Talk to God about people before you talk to people about God. Prayer prepares the soil of the hearts you are sowing into.",
-        "<strong>L-Listen.</strong> Ask good questions and care about their story. Jesus asked the woman at the well for a drink and met her right where she was.",
-        "<strong>E-Eat.</strong> Share a meal or a cup of coffee. A lot of Jesus' ministry happened around tables.",
-        "<strong>S-Serve.</strong> Meet a need with no strings attached. People do not care how much you know until they know how much you care.",
-        "<strong>S-Story.</strong> Tell what Jesus has done for you, and invite them to come and see."
-      ]
+      "type": "widget",
+      "src": "widgets/bless-intro.html",
+      "height": "550px",
+      "title": "BLESS Rhythms"
     },
     {
       "type": "question",

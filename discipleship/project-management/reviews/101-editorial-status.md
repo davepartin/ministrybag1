@@ -19,7 +19,7 @@ Stages describe the text review, independently of widget and image approval. Gol
 | 101-03 | Prayer | Silver | No iframe widget; prayer exercise awaits review | Missing |
 | 101-04 | The Bible | Silver | Yes: Read, Discover, Respond (#229, 21bb29b) | Missing: Nicodemus lamplight planned |
 | 101-05 | The Church | Silver: Dave edits protected | No iframe widget; serving checklist awaits review | Approval unrecorded: aspen pair |
-| 101-06 | Sharing Jesus with Others | Silver: earlier Dave edits protected | No iframe widget; BLESS exercise awaits review | Approval unrecorded: woman-at-well pair / BLESS graphic |
+| 101-06 | Sharing Jesus with Others | Silver: earlier Dave edits protected | Yes: BLESS Rhythms (#233, 7949607) | Approval unrecorded: woman-at-well pair |
 | 101-07 | When You Drift | Silver | No iframe widget; Stop, Turn, Tell, Receive awaits review | Missing |
 
 101-01 remains Silver with Dave edits protected. Dave has now explicitly approved the whole 101-02 lesson, its A-B-C-D widget and its greenhouse image sequence Gold (November14). Preserve the exact recorded text, questions, readings, widget and images; new edits require his specific direction. The record does not treat partial paragraph edits as approval of unseen paragraphs. Existing specific approvals remain in force even on Silver lessons.
@@ -28,7 +28,7 @@ Stages describe the text review, independently of widget and image approval. Gol
 
 ## Protection instructions for every agent
 
-1. Protect Dave's edits to 101-01 and 101-02 immediately, regardless of stage. Protect the six exact edits recorded for 101-06 in PR #142 as well. No new 101-06 content work is assigned.
+1. Protect Dave's edits to 101-01 and 101-02 immediately, regardless of stage. Protect the six exact edits recorded for 101-06 in PR #142 as well. Only the specifically approved BLESS section in PR #233 is assigned for 101-06; broader content work remains unassigned.
 2. Do not rewrite a protected lesson to improve an AI score, make tone uniform or shorten it. Propose changes to Dave first. His specific new editing instruction authorizes that specific change.
 3. Do not remove, swap, redraw or reorder any existing 101 story art or sequence without Dave's explicit direction, including art whose approval is unrecorded. Story art and widgets are independent approval decisions. Technical integration must preserve the approved appearance and wording; report any necessary technical correction.
 4. Before touching a 101 lesson, compare current main and pending PRs with this record and the companion component fingerprints. A changed file does not automatically inherit an earlier approval. Record the version Dave actually reviewed, date, evidence and any exceptions.
@@ -55,3 +55,5 @@ November 14, Dave explicitly approved the 101-01 logo and widget Gold and reques
 November 14: Dave confirms 101-05 Silver. His requested serving choices and the move of 5.3 after the potluck teaching are specific approved edits, not whole-lesson or component Gold. Preserve other wording and aspen art.
 
 November 14: Dave explicitly approved only the 101-04 Read, Discover, Respond widget component in PR #229 at 21bb29b. Preserve the approved HTML bytes and placement after "These questions give you a place to begin..." before Try It: Nicodemus Meets Jesus. Whole-lesson text remains Silver for his later review; story art remains missing. No existing wording, Discovery Questions box, Scripture, John 10-12 readings or question IDs are changed.
+
+November 14: Dave approved PR #233 at 79496076f1bca314c0a8d352180685b5408a627c, including the BLESS Rhythms widget, its section copy and placement. This specific assignment supersedes the earlier no-new-101-06-work restriction only for that approved section. Preserve both approved files exactly. The static BLESS graphic and box are replaced in the lesson; the original graphic remains on disk. Woman-at-the-well story art and all other copy, Scripture, readings and question objects are unchanged. Whole-lesson text stays Silver with Dave's earlier edits protected; no story-image or whole-lesson Gold approval is inferred.

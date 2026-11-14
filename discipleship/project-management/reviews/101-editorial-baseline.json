@@ -167,8 +167,8 @@
       "stage": "Silver",
       "dave_edits_protected": true,
       "full_personal_review": "unrecorded",
-      "lesson_sha256": "2a2b5f2bcc5f50c208e4cd58f98417d2c426873ed90234ff0830315e7a8eb975",
-      "non_visual_content_sha256": "8e5832303a2cd7350a4bcaafa2409f0d889d9201f66140348a01e346261f9e67",
+      "lesson_sha256": "05c71d28a6bb6ed97e084c8a3fe54f97a414f37fa93b76828052447b9f5ee076",
+      "non_visual_content_sha256": "7a743c04e283c935c537848cdf1ae95bc51fac6d086f9d9290234d6abae4f152",
       "visual_blocks": [
         {
           "type": "image",
@@ -178,15 +178,23 @@
           "touchNext": true
         },
         {
-          "type": "image",
-          "src": "images/203-02-bless-logo.png",
-          "alt": "BLESS Rhythms"
+          "type": "widget",
+          "src": "widgets/bless-intro.html",
+          "height": "550px",
+          "title": "BLESS Rhythms"
         }
       ],
       "visual_files_sha256": {
-        "images/203-02-bless-logo.png": "834d70c87b001b32bc76ea0d09735600f8894db0f46f041e78df982b8b145fde",
         "images/woman-well-bw.png": "2f5ce47bb6d898345485fddce3f3af97df2ce271d673b3afa70db5c2388ec4e9",
-        "images/woman-well-color.png": "714fef705eb6c2e54af1076944d1b5e2d9ad3f446a6c3ef6171df671508ee4ea"
+        "images/woman-well-color.png": "714fef705eb6c2e54af1076944d1b5e2d9ad3f446a6c3ef6171df671508ee4ea",
+        "widgets/bless-intro.html": "d889f112a67f40d3b85012892fa102ce7b1d0d48186d90c37f37b0eb4ee9008c"
+      },
+      "component_approval": {
+        "date": "2026-11-14",
+        "source": "79496076f1bca314c0a8d352180685b5408a627c",
+        "pr": 233,
+        "widget": "Approved: BLESS Rhythms",
+        "scope": "Exact widget HTML, BLESS section copy and placement only. Text stays Silver; original static BLESS graphic retained on disk; no story art approval."
       }
     },
     {
