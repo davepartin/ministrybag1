@@ -1,5 +1,12 @@
 # Resume here
 
+## 201-05 approved Studio Wash Bookshelf integration: November 13, 2026
+
+Dave praised the PR #219 preview and requested publication. The new `widgets/bible-bookshelf2.html` replaces the old Bookshelf embed in 201-05 at the same position. Existing lesson wording, Scripture, metadata, questions/IDs and images are unchanged; `widgets/bible-bookshelf.html` stays on disk unchanged. The new widget's approved appearance and wording remain; only the SVG accessibility container role changes so the ten shelf controls are exposed to assistive technology. [Integration evidence](logs/2026-11-13-INTEGRATE-201-05-BOOKSHELF-codex.md).
+
+This completes the widget component, not a new approval of unrelated lesson material. Existing 201-05 wording approvals remain in force. Exact-head preview, merge and automatic live deployment results are recorded on PR #219. No manual deployment or Firebase configuration changes.
+
+
 ## 101 personal-editing protection and simple status
 
 Dave requested Bronze/Silver/Gold stages and separate widget/image approvals. Use the [five-column 101 tracker](reviews/101-editorial-status.md) before any 101 work. Protect his edits to 101-01/02 now and the earlier exact 101-06 edits; do not swap or remove story art without his direction. Gold requires his confirmed completed personal read-through, never an AI grade. Existing approved components stay approved independently. Lesson/widget/image files are unchanged by this documentation packet.
