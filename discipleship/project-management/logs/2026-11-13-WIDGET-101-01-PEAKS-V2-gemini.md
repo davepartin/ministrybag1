@@ -16,17 +16,16 @@
 ## Design & Content Updates
 - Sheet of paper canvas: Crisp white rectangle with subtle drop shadow and folded top-right corner on a warm studio mat (`#EFECE3`), starting completely blank of dots and without any dotted ghost curve.
 - Sideways-T axes and quarter scale: Far-left vertical line labeled sideways with `Highs` on the top half and `Lows` on the bottom half, 4 quarter hash ticks up and 4 quarter hash ticks down (`21px` per quarter around `horizonY = 148`), subtle paper guide hairlines, and a horizontal dotted midline across the middle.
-- Six dots (`3 highs`, `3 lows`), one per click:
+- Six dots (`3 highs`, `3 lows`), one per click, showing back-to-back lows and back-to-back highs:
   1. `Age 9`: Moved town (`-2/4` Low)
   2. `Age 13`: Youth camp (`+2/4` High)
   3. `Age 16`: Family stress (`-3/4` Low)
-  4. `Age 19 ★`: Became a Christian (`+4/4` High with gold star)
-  5. `Age 26`: Lost Grandma (`-4/4` Low, replacing prior miscarriage example)
-  6. `Today`: Church group (`+3/4` High)
+  4. `Age 20`: Lost Grandma (`-4/4` Low, back-to-back low replacing prior miscarriage example)
+  5. `Age 24 ★`: Became a Christian (`+4/4` High with gold star)
+  6. `Today`: Church group (`+3/4` High, back-to-back high)
 - Connecting line behavior: Each click places the next dot cleanly (`0` dots on Step 0), then animates the smooth connecting curve from the previous dot to the newly placed dot (no dotted line traced in advance).
 - Fixed-height card (`115px`, total widget height `520px` at `390x844`), keyboard arrow/button navigation, `aria-live="polite"`, `prefers-reduced-motion: reduce`, zero em dashes, zero `localStorage`, and zero external fonts/URLs.
-- Review fix (2026-11-13): Removed the top-right slide counter pill (`Low 1 · -2/4`, etc.) from all slides per Dave's feedback.
-- Wording update (2026-11-13): Updated Dot 1 note to `"Start your dot with a high or a low that was important to you as a young person."` per Dave's exact direction.
+- Review fixes (2026-11-13): Removed the top-right slide counter pill (`Low 1 · -2/4`, etc.) from all slides; removed explanatory `.card-note` copy from all dot slides except the Christian star dot (`dot5`); arranged the 6 points to show back-to-back lows (`Dots 3-4`) and back-to-back highs (`Dots 5-6`) and noted that in Step 0.
 
 ## Checks Executed (all exit 0)
 - Static content check (`miscarriage` absent, `0` em dashes, valid JSON, zero `localStorage`, zero external URLs) -> `STATIC_AUDIT_PASS`

@@ -11,8 +11,8 @@ const EXPECTED_HEADINGS = [
   '1. Low: Moved to a New Town',
   '2. High: Summer Camp',
   '3. Low: Family Hardship',
-  '4. High: Became a Christian',
-  '5. Low: Loss of Grandma',
+  '4. Low: Loss of Grandma',
+  '5. High: Became a Christian',
   '6. High: Growing with God Today'
 ];
 
@@ -117,6 +117,11 @@ async function testViewport(browser, url, width, height, reducedMotion) {
     const st = await readState(page);
     assert.equal(st.step, i);
     assert.equal(st.heading, EXPECTED_HEADINGS[i]);
+    if (i === 5) {
+      assert.ok(st.note.length > 0, 'Christian star dot keeps its brief note');
+    } else {
+      assert.equal(st.note, '', `dot ${i} should have no extra explanation note`);
+    }
     assert.equal(st.visibleDots, i, `step ${i} must show ${i} dot(s)`);
     assert.equal(st.drawnSegs, i - 1, `step ${i} must have ${i - 1} connected segment(s)`);
     assert.equal(st.overflowX, false);

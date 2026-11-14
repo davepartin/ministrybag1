@@ -390,117 +390,118 @@ button:focus-visible,
     lineRight: 412
   };
 
-  // Exactly 6 points: 3 valleys (lows) + 3 peaks (highs), 1 dot added per click
+  // Exactly 6 points: 3 valleys (lows) + 3 peaks (highs), including back-to-back lows and back-to-back highs
   var POINTS = [
     {
       id: 'dot1',
       stepIdx: 1,
       type: 'valley',
-      x: 96,
+      x: 92,
       y: 190, // -2/4
       age: 'Age 9',
       shortLine: 'Moved town',
       anchor: 'middle',
-      labelX: 96,
+      labelX: 92,
       labelY: 207,
       color: COLORS.plum,
       dark: COLORS.plumDark,
       heading: '1. Low: Moved to a New Town',
       quote: '"Age 9: New school, felt lonely."',
-      note: 'Start your dot with a high or a low that was important to you as a young person.'
+      note: ''
     },
     {
       id: 'dot2',
       stepIdx: 2,
       type: 'peak',
-      x: 155,
+      x: 150,
       y: 106, // +2/4
       age: 'Age 13',
       shortLine: 'Youth camp',
       anchor: 'middle',
-      labelX: 155,
+      labelX: 150,
       labelY: 79,
       color: COLORS.blue,
       dark: COLORS.blueDark,
       heading: '2. High: Summer Camp',
       quote: '"Age 13: Felt God\'s love at youth camp."',
-      note: 'Place your next dot above the line and connect it from the first. Early sparks of joy belong here too.'
+      note: ''
     },
     {
       id: 'dot3',
       stepIdx: 3,
       type: 'valley',
-      x: 214,
+      x: 208,
       y: 211, // -3/4
       age: 'Age 16',
       shortLine: 'Family stress',
       anchor: 'middle',
-      labelX: 214,
+      labelX: 208,
       labelY: 228,
       color: COLORS.plum,
       dark: COLORS.plumDark,
       heading: '3. Low: Family Hardship',
       quote: '"Age 16: Tough year at home, worried often."',
-      note: 'Drop deeper on the quarter scale for harder seasons, writing only your age and a few words.'
+      note: ''
     },
     {
       id: 'dot4',
       stepIdx: 4,
-      type: 'star',
-      x: 273,
-      y: 64, // +4/4
-      age: 'Age 19 ★',
-      shortLine: 'Became a Christian',
+      type: 'valley',
+      x: 266,
+      y: 232, // -4/4 (back-to-back low)
+      age: 'Age 20',
+      shortLine: 'Lost Grandma',
       anchor: 'middle',
-      labelX: 273,
-      labelY: 36,
-      color: COLORS.gold,
-      dark: COLORS.goldDark,
-      heading: '4. High: Became a Christian',
-      quote: '"Age 19 ★: Came to faith in Christ!"',
-      note: 'Mark one of your highs with a star for the moment or season you became a follower of Jesus.'
+      labelX: 266,
+      labelY: 249,
+      color: COLORS.plum,
+      dark: COLORS.plumDark,
+      heading: '4. Low: Loss of Grandma',
+      quote: '"Age 20: Lost Grandma, prayed through grief."',
+      note: ''
     },
     {
       id: 'dot5',
       stepIdx: 5,
-      type: 'valley',
-      x: 332,
-      y: 232, // -4/4
-      age: 'Age 26',
-      shortLine: 'Lost Grandma',
+      type: 'star',
+      x: 318,
+      y: 64, // +4/4
+      age: 'Age 24 ★',
+      shortLine: 'Became a Christian',
       anchor: 'middle',
-      labelX: 332,
-      labelY: 249,
-      color: COLORS.plum,
-      dark: COLORS.plumDark,
-      heading: '5. Low: Loss of Grandma',
-      quote: '"Age 26: Lost Grandma, prayed through grief."',
-      note: 'Include painful valleys like losing someone you love. God can meet you deeply in your lowest seasons.'
+      labelX: 318,
+      labelY: 34,
+      color: COLORS.gold,
+      dark: COLORS.goldDark,
+      heading: '5. High: Became a Christian',
+      quote: '"Age 24 ★: Came to faith in Christ!"',
+      note: 'Put a star on the high where you became a follower of Jesus.'
     },
     {
       id: 'dot6',
       stepIdx: 6,
       type: 'peak',
-      x: 391,
-      y: 85, // +3/4
+      x: 392,
+      y: 85, // +3/4 (back-to-back high)
       age: 'Today',
       shortLine: 'Church group',
       anchor: 'end',
-      labelX: 406,
-      labelY: 57,
+      labelX: 408,
+      labelY: 108,
+      labelBelow: true,
       color: COLORS.green,
       dark: COLORS.greenDark,
       heading: '6. High: Growing with God Today',
       quote: '"Today: Joined a church group, trusting God."',
-      note: 'Finish with a recent high, like loving community or starting this study. Step back and see God\'s hand across all 6 points.'
+      note: ''
     }
   ];
 
   var READY_STEP = {
     pillLabel: 'Start: Blank Sheet of Paper',
     heading: 'Start with Your Blank Paper',
-    quote: 'Draw a sideways T: Highs above the dotted middle line, Lows below, with four quarter marks up and down.',
-    note: 'Place 3 to 5 peaks and 3 to 5 valleys one dot at a time, then connect your dots. Step through this 6-dot example.',
+    quote: 'Draw a sideways T (Highs up, Lows down, 4 quarter marks each) with 3 to 5 peaks and valleys.',
+    note: 'You can have back-to-back highs or back-to-back lows. These are your experiences.',
     accent: COLORS.ink,
     accentDark: COLORS.ink,
     desc: 'White sheet of paper with a vertical axis labeled Highs above and Lows below, four quarter tick marks up and down, and a horizontal dotted midline ready for six points.'
@@ -785,8 +786,9 @@ button:focus-visible,
           'stroke-width': '1.6'
         }));
 
-        var tickY1 = spec.type === 'valley' ? spec.y + 7 : spec.y - 7;
-        var tickY2 = spec.type === 'valley' ? spec.y + 11 : spec.y - 11;
+        var placeBelow = spec.type === 'valley' || !!spec.labelBelow;
+        var tickY1 = placeBelow ? spec.y + 7 : spec.y - 7;
+        var tickY2 = placeBelow ? spec.y + 11 : spec.y - 11;
         g.appendChild(svgEl('line', {
           x1: String(spec.x),
           y1: String(tickY1),
@@ -931,7 +933,8 @@ button:focus-visible,
       document.documentElement.style.setProperty('--step-dark', dark);
       headingEl.textContent = heading;
       quoteEl.textContent = quote;
-      noteEl.textContent = note;
+      noteEl.textContent = note || '';
+      noteEl.style.display = note ? '' : 'none';
     }
 
     function cardDataForStep(stepIdx) {
@@ -1066,18 +1069,21 @@ button:focus-visible,
       var keepH = headingEl.textContent;
       var keepQ = quoteEl.textContent;
       var keepN = noteEl.textContent;
+      var keepND = noteEl.style.display;
       var tallest = 0;
       document.documentElement.style.setProperty('--card-h', '0px');
       [READY_STEP].concat(POINTS).forEach(function (item) {
         headingEl.textContent = item.heading;
         quoteEl.textContent = item.quote;
-        noteEl.textContent = item.note;
+        noteEl.textContent = item.note || '';
+        noteEl.style.display = item.note ? '' : 'none';
         tallest = Math.max(tallest, contentEl.offsetHeight);
       });
       headingEl.textContent = keepH;
       quoteEl.textContent = keepQ;
       noteEl.textContent = keepN;
-      document.documentElement.style.setProperty('--card-h', Math.max(112, tallest) + 'px');
+      noteEl.style.display = keepND;
+      document.documentElement.style.setProperty('--card-h', Math.max(92, tallest) + 'px');
     }
 
     var resizeTimer = null;
