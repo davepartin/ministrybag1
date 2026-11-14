@@ -1,5 +1,10 @@
 # Resume here
 
+## 101 personal-editing protection and simple status
+
+Dave requested Bronze/Silver/Gold stages and separate widget/image approvals. Use the [five-column 101 tracker](reviews/101-editorial-status.md) before any 101 work. Protect his edits to 101-01/02 now and the earlier exact 101-06 edits; do not swap or remove story art without his direction. Gold requires his confirmed completed personal read-through, never an AI grade. Existing approved components stay approved independently. Lesson/widget/image files are unchanged by this documentation packet.
+
+
 ## 101-01 Peaks and Valleys widget integration: November 13, 2026
 
 Dave approved the Peaks and Valleys widget in PR #217 at `832da0a` and requested technical review and merge. It replaces only the static example image beside the paper timeline exercise. All lesson prose, question objects/IDs, readings and metadata are preserved; the original example PNG remains on disk. Technical review added keyboard activation, named toggle semantics and focus feedback for the timeline points, with hidden points excluded from focus. Approved visual design and wording remain unchanged. [Integration evidence](logs/2026-11-13-INTEGRATE-101-01-PEAKS-codex.md).
