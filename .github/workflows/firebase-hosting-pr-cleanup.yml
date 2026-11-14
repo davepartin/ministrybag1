@@ -99,12 +99,16 @@ jobs:
               for channel in channels:
                   if not isinstance(channel, dict) or not isinstance(channel.get("name"), str):
                       raise SystemExit("Firebase channel listing contains an invalid channel")
-                  prefix = f"sites/{site_id}/channels/"
-                  if not channel["name"].startswith(prefix):
+                  # Hosting returns project-qualified canonical names; older
+                  # responses may use the short sites/... form. Site IDs are
+                  # globally unique, and every CLI call fixes project and site.
+                  resource = re.fullmatch(
+                      rf"(?:projects/[^/]+/)?sites/{re.escape(site_id)}/channels/([^/]+)",
+                      channel["name"],
+                  )
+                  if not resource:
                       raise SystemExit("Firebase channel listing contains a channel from an unexpected site")
-                  cid = channel["name"][len(prefix):]
-                  if not cid or "/" in cid:
-                      raise SystemExit("Firebase channel listing contains an invalid channel ID")
+                  cid = resource.group(1)
                   if cid and cid != "live" and pattern.match(cid):
                       targets.append(cid)
 
