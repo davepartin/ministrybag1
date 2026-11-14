@@ -14,6 +14,21 @@
       "width": "70%"
     },
     {
+      "type": "image",
+      "imageSequence": [
+        "images/203-02-story-seq-1.jpg",
+        "images/203-02-story-seq-2.jpg",
+        "images/203-02-story-seq-3.jpg"
+      ],
+      "imageSequenceStops": [
+        0,
+        0.25,
+        0.45
+      ],
+      "alt": "Nehemiah stands before King Artaxerxes with the royal cup, closes his eyes in a silent prayer to God, and extends the cup forward",
+      "touchNext": true
+    },
+    {
       "type": "parable",
       "title": "A Prayer Before the Answer",
       "text": "Nehemiah had a good job in a palace a long way from home. He was cupbearer to Artaxerxes, king of Persia, so he stood near the most powerful man in the world every day. Then his brother arrived with news from Jerusalem. The walls were broken down, the gates were burned, and the people there were in great trouble and shame.<br><br>Nehemiah did not rush in to fix it. He wept, and then he prayed. <em>\"As soon as I heard these words I sat down and wept and mourned for days, and I continued fasting and praying before the God of heaven\"</em> (Nehemiah 1:4). Day after day he carried those people to God, and he asked for one thing for himself: success, and <em>\"mercy in the sight of this man\"</em> when the moment came (Nehemiah 1:11).<br><br>The moment came about four months later. Nehemiah was serving the king, and the king noticed his face. <em>\"Why is your face sad, seeing you are not sick?\"</em> (Nehemiah 2:2). Nehemiah was afraid. Then the king asked, <em>\"What are you requesting?\"</em> Before he answered, Nehemiah did one more thing: <em>\"So I prayed to the God of heaven\"</em> (Nehemiah 2:4). Then he spoke, and the king said yes. Nehemiah knew exactly why: <em>\"the good hand of my God was upon me\"</em> (Nehemiah 2:8)."
