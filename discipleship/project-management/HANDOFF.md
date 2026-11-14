@@ -1,5 +1,12 @@
 # Resume here
 
+## 101-01 Peaks and Valleys widget integration: November 13, 2026
+
+Dave approved the Peaks and Valleys widget in PR #217 at `832da0a` and requested technical review and merge. It replaces only the static example image beside the paper timeline exercise. All lesson prose, question objects/IDs, readings and metadata are preserved; the original example PNG remains on disk. Technical review added keyboard activation, named toggle semantics and focus feedback for the timeline points, with hidden points excluded from focus. Approved visual design and wording remain unchanged. [Integration evidence](logs/2026-11-13-INTEGRATE-101-01-PEAKS-codex.md).
+
+This is widget-component approval, not a new final approval of 101-01. Use PR #217's exact-head preview and deployment record; earlier preview links represent the version before the accessibility fix. The preceding mosaic and Studio Wash course-opener integrations remain intact.
+
+
 ## Approved suffering mosaic integrated: November 13, 2026
 
 Dave approved PR #215 at `e82ed36` and requested integration and merge. **Trust the Creator** now replaces the Valley Road embed in 202-05, immediately after the cross paragraph under **God Meant It for Good**, before the pastoral care paragraph. The approved widget is byte-identical; `widgets/valley-road.html` remains on disk. All lesson wording, Scripture, metadata and eight question objects/answer IDs are unchanged. `WIDGET-202-05-MOSAIC` is DONE. [Technical evidence](logs/2026-11-13-INTEGRATE-202-05-MOSAIC-codex.md).

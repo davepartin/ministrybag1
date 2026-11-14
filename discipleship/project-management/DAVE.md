@@ -2,6 +2,10 @@
 
 Keep this small. Agents can draft from the approved direction while these decisions develop. A blocker in one row does not stop independent work.
 
+## Widget approval: 101-01 Peaks and Valleys, November 13, 2026
+
+Dave relayed that he previewed and approved the look and wording of PR #217 at `832da0a4f4b36e93fd5ce3dee409bbc56f2afcf6`, and explicitly requested Codex technical review and merge. The approved design/wording remain; technical integration adds keyboard/screen-reader access to the same timeline points. Only the static example image block in 101-01 is replaced. This records component approval, not final whole-lesson approval.
+
 ## Widget approval: Trust the Creator, November 13, 2026
 
 Dave explicitly approved the look and wording of `widgets/trust-the-artist.html` in PR #215 at `e82ed365cbf412378aa3e930296b620137e407af`, and authorized Codex to wire it after the cross paragraph under God Meant It for Good and merge after checks. The approved HTML is byte-preserved. This records component approval only; complete 202-05 wording and the existing Piper credit remain for Dave's review. Valley Road remains on disk.
