@@ -141,8 +141,8 @@
       "stage": "Silver",
       "dave_edits_protected": true,
       "full_personal_review": "unrecorded",
-      "lesson_sha256": "9535a9c901a016a0d79c5ed2b0407a1e76941b224ab841101b1c1d22398c5e05",
-      "non_visual_content_sha256": "e341a1f5f5309f7a0dac48c1a5f080effd72b0abe66072ca523aac7e4271a345",
+      "lesson_sha256": "2c6cd828dec9bfb11f55b0124141fabe33a799f6bace208fa9aad4b65beb923b",
+      "non_visual_content_sha256": "b34fbc55346873a96fd2224a7e65d987fd5c2090de0022114fa41a0cc7d577f6",
       "visual_blocks": [
         {
           "type": "image",
@@ -159,6 +159,14 @@
       "approved_update": {
         "date": "2026-11-14",
         "scope": "Only requested serving choices and move question 5.3 after potluck teaching; full review remains in progress."
+      },
+      "component_approval": {
+        "date": "2026-11-14",
+        "source": "b83efe3e4cb36824d23ec034b048761ab98b8822",
+        "pr": 232,
+        "widget": "Approved: compact three-column potluck checklist, prompt and blue/teal/mustard buttons",
+        "index_html_sha256": "244c6b19b2ffdfa50ea81ec9243a746269fd388549863dd13d2b82f28ee89245",
+        "scope": "Component only. Whole text stays Silver; aspen image approval remains unrecorded. Preserve numeric saved-choice identities."
       }
     },
     {

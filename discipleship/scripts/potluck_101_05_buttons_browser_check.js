@@ -9,7 +9,7 @@ const { chromium } = require("playwright");
 const ROOT = path.resolve(__dirname, "..");
 const SHOT_DIR =
   process.env.SHOT_DIR ||
-  "/Users/dpartin/.gemini/antigravity/brain/f6932f32-8ffd-4554-beec-fbe4d8f15996/scratch/potluck-buttons-shots";
+  path.join(require("os").tmpdir(), "potluck-101-05-shots");
 
 function startStaticServer(rootDir) {
   const mime = {
@@ -23,6 +23,11 @@ function startStaticServer(rootDir) {
   return new Promise((resolve) => {
     const server = http.createServer((req, res) => {
       const reqPath = decodeURIComponent((req.url || "/").split("?")[0]);
+      if (reqPath === "/favicon.ico") {
+        res.writeHead(204);
+        res.end();
+        return;
+      }
       const safePath = path.normalize(reqPath).replace(/^(\.\.[/\\])+/, "");
       const fullPath = path.join(rootDir, safePath === "/" ? "index.html" : safePath);
       if (!fullPath.startsWith(rootDir) || !fs.existsSync(fullPath)) {
@@ -51,6 +56,7 @@ async function runViewportCheck(browser, baseUrl, viewport, options = {}) {
     viewport,
     reducedMotion: options.reducedMotion || "no-preference"
   });
+  await context.route("**/scripts/account.js", route => route.fulfill({ body: "", contentType: "text/javascript" }));
   const page = await context.newPage();
   const errors = [];
   page.on("pageerror", (e) => errors.push(`pageerror: ${e.message}`));
@@ -194,7 +200,8 @@ async function runViewportCheck(browser, baseUrl, viewport, options = {}) {
 
 async function main() {
   fs.mkdirSync(SHOT_DIR, { recursive: true });
-  const { server, url } = await startStaticServer(ROOT);
+  const fixture = process.env.POTLUCK_BASE_URL ? null : await startStaticServer(ROOT);
+  const url = process.env.POTLUCK_BASE_URL || fixture.url;
   const browser = await chromium.launch();
   try {
     await runViewportCheck(browser, url, { width: 390, height: 844 }, { captureDir: SHOT_DIR });
@@ -205,7 +212,7 @@ async function main() {
     console.log(`ALL POTLUCK BUTTON CHECKS PASSED. Screenshots saved to ${SHOT_DIR}`);
   } finally {
     await browser.close();
-    server.close();
+    if (fixture) fixture.server.close();
   }
 }
 

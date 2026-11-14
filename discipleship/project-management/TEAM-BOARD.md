@@ -1,5 +1,11 @@
 # Growing Together Team Board
 
+## Approved 101-05 potluck buttons, November 14, 2026
+
+Dave approved PR #232 at b83efe3: the compact three-column single-screen checklist, prompt and blue/teal/mustard serving buttons. Approved index.html and 101-05 JSON are byte-preserved. Old numeric slots remain reserved, including combined men's/women's ministry at 11; new choices append at 27 and 28. Other stays visually last without moving its DOM/storage index. All other wording, question objects, readings and aspen artwork remain unchanged. Whole-lesson text remains Silver and Dave edits stay protected.
+
+Evidence: [Codex integration log](logs/2026-11-14-BUTTONS-101-05-POTLUCK-codex.md), PR #232 for preview and live verification.
+
 ## Approved 101-06 BLESS integration, November 14, 2026
 
 Task WIDGET-101-06-BLESS: Dave approved the component; technical checks pass. Foundation, export 186, storage 64, assets 128, images 1366, iframe 32 and BLESS browser 465 all exit 0. Preview/live evidence belongs on PR #233; whole lesson remains Silver.

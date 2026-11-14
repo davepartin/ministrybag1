@@ -18,7 +18,7 @@ Stages describe the text review, independently of widget and image approval. Gol
 | 101-02 | Salvation and Baptism | Gold: whole lesson approved and protected | Gold: A-B-C-D road to cross | Gold: greenhouse sequence |
 | 101-03 | Prayer | Silver | No iframe widget; prayer exercise awaits review | Missing |
 | 101-04 | The Bible | Silver | Yes: Read, Discover, Respond (#229, 21bb29b) | Missing: Nicodemus lamplight planned |
-| 101-05 | The Church | Silver: Dave edits protected | No iframe widget; serving checklist awaits review | Approval unrecorded: aspen pair |
+| 101-05 | The Church | Silver: Dave edits protected | Yes: compact potluck serving buttons (#232, b83efe3) | Approval unrecorded: aspen pair |
 | 101-06 | Sharing Jesus with Others | Silver: earlier Dave edits protected | Yes: BLESS Rhythms (#233, 7949607) | Approval unrecorded: woman-at-well pair |
 | 101-07 | When You Drift | Silver | No iframe widget; Stop, Turn, Tell, Receive awaits review | Missing |
 
@@ -57,3 +57,5 @@ November 14: Dave confirms 101-05 Silver. His requested serving choices and the 
 November 14: Dave explicitly approved only the 101-04 Read, Discover, Respond widget component in PR #229 at 21bb29b. Preserve the approved HTML bytes and placement after "These questions give you a place to begin..." before Try It: Nicodemus Meets Jesus. Whole-lesson text remains Silver for his later review; story art remains missing. No existing wording, Discovery Questions box, Scripture, John 10-12 readings or question IDs are changed.
 
 November 14: Dave approved PR #233 at 79496076f1bca314c0a8d352180685b5408a627c, including the BLESS Rhythms widget, its section copy and placement. This specific assignment supersedes the earlier no-new-101-06-work restriction only for that approved section. Preserve both approved files exactly. The static BLESS graphic and box are replaced in the lesson; the original graphic remains on disk. Woman-at-the-well story art and all other copy, Scripture, readings and question objects are unchanged. Whole-lesson text stays Silver with Dave's earlier edits protected; no story-image or whole-lesson Gold approval is inferred.
+
+November 14: Dave approved PR #232 at b83efe3, including the compact three-column single-screen service checklist, its prompt and blue/teal/mustard buttons. Preserve approved index.html styling/behavior and checklist JSON. Original numeric slots, including retired combined men's/women's ministry index 11, remain reserved; new separate choices append at 27 and 28. All other lesson content and aspen artwork are unchanged. Text stays Silver; no image or whole-lesson Gold approval is inferred.
