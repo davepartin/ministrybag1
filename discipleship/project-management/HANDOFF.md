@@ -1,5 +1,11 @@
 # Resume here
 
+## Approved 202-09 RUN integration after triangle #239, November 14, 2026
+
+Dave approved only the RUN from Sin widget at 3e1325b6ad2af3019ebea5384d805e019a577dfa in PR #234, following already-merged triangle PR #239 (81b028b). Both starting-gun.html and covenant-triangle.html remain byte-identical to their approved commits (3e1325b and 2c2eb09). Main was merged normally into this branch, retaining all newer frame integrations and both board histories. The sole runtime diff from current main is starting-gun.html. All lesson JSON, index.html, question objects/IDs, reading keys, saved answers and unrelated lessons remain unchanged. Component approval only; no new whole-lesson or image approval is inferred.
+
+Evidence: [Codex integration log](logs/2026-11-14-WIDGET-202-09-STARTING-GUN-codex.md), PR #234 for exact-head preview and live verification.
+
 ## Approved 202-08 frame integration, November 14, 2026
 
 Dave approved only the 202-08 covenant-triangle.html frame at 2c2eb09804ccab6bf7478b24c2e93bda8ea0ce17 in PR #239. The approved HTML bytes are unchanged. All lesson JSON, index.html, question objects/IDs, reading keys, saved answers, diagram artwork and unrelated runtime files remain unchanged. The four original step titles, teaching text and Scripture strings compare exactly to main. This component approval does not award whole-lesson or image approval.
