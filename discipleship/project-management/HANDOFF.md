@@ -1,5 +1,12 @@
 # Resume here
 
+## 202-05 trimmed draft authorized for merge: November 14, 2026
+
+Dave requested merge of PR #221's exact `2d6c258` draft. It folds question 5.5 into the practice and trims repeated prose; four discussion questions and the closing trio remain. The retired `201-09-5` metadata reserves its original ID, and existing answers remain stored and appear under Earlier saved responses in Email. All other question objects, quoted Scripture, headings, the Joseph artwork and the approved Creator mosaic/header are preserved. [Integration record](logs/2026-11-14-TRIM-202-05-INTEGRATE-codex.md).
+
+This is authorization to publish the draft for Dave's continuing lesson editing, not an inferred final whole-lesson Gold review. Use the newest verified live link after merge; the closed-PR preview will be removed automatically under his cleanup authorization.
+
+
 ## Approved widget header rollout: PR #220
 
 Dave approved `315fc75`: all ten active 202 widgets use the dark `#2C2416` header with title on the left and lesson number on the right. The shared v5 engine now displays `201-01`, `202-01` and `203-01` instead of Course labels. Approved titles include Building From the Cornerstone and Reflecting God's Worth. [Technical review and verification](logs/2026-11-13-WIDGET-202-HEADERS-codex.md).

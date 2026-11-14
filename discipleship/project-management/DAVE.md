@@ -2,6 +2,10 @@
 
 Keep this small. Agents can draft from the approved direction while these decisions develop. A blocker in one row does not stop independent work.
 
+## 202-05 draft merge authorization, November 14, 2026
+
+Dave explicitly requested merge of PR #221, the reviewed `2d6c258a5bf9d50864b97503112182fa66454e5b` draft. This authorizes publishing its prose trim and folding question 5.5 into the practice, with its old ID/answers preserved via retiredQuestions. It is not a declaration that his final paragraph-by-paragraph review of the complete lesson is finished. No new artwork or widget wording approval is inferred.
+
 ## Widget approval: 202 headers and v5 lesson tags, November 13, 2026
 
 Dave explicitly approved PR #220 at `315fc757fa5fdec04382d86d766f73ca16d93593` and requested review, preview checks, merge and live verification. This approves the specified ten 202 widget headers, the v5 tags 201-01/202-01/203-01 and both Studio Wash guides. All eleven runtime files are byte-preserved. No approval is inferred for unrelated wording or artwork; existing lesson/component approvals remain separate.

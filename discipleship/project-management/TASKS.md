@@ -266,4 +266,4 @@ Plan and standard: [reviews/2026-11-11-series-review.md](reviews/2026-11-11-seri
 
 | [x] | INTEGRATE-201-05-BOOKSHELF | DONE | Codex / codex/integrate-bookshelf219 / 2026-11-13 | Dave praised approved Studio Wash Bookshelf and requested publication | Wire bible-bookshelf2 into 201-05 only, preserve copy/questions and original widget, verify preview and automatic deployment. |
 
-| [ ] | TRIM-202-05-INTEGRATE | ACTIVE | Codex / codex/review-trim221 / 2026-11-14 | Dave authorized merging PR221, including the prose trim and retiring question5.5 while preserving saved answers | Technical integration, exact preservation checks, preview and automatic deployment verification. |
+| [x] | TRIM-202-05-INTEGRATE | DONE | Codex / codex/review-trim221 / 2026-11-14 | Dave authorized merging PR221, including the prose trim and retiring question5.5 while preserving saved answers | Technical integration, exact preservation checks, preview and automatic deployment verification. |
