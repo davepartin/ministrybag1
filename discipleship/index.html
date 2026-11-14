@@ -1269,6 +1269,14 @@
             margin-bottom: 32px;
         }
 
+        .session-description:has(+ .block-text) {
+            margin-bottom: 16px;
+        }
+
+        .block-image.block-image-top-hero {
+            margin: 0 0 20px;
+        }
+
         /* Content blocks */
         .block-heading {
             font-size: 1.2rem;
@@ -4192,7 +4200,40 @@
                 div.className = 'session' + (data.class ? ' ' + data.class : '');
                 div.id = `session-${sessionNum}`;
 
+                const renderImageBlockHtml = (b, extraClass = '') => {
+                    const imgStyle = b.width ? `style="width: ${b.width}; max-width: 100%; height: auto;"` : '';
+                    const imageClasses = `block-image${b.touchNext ? ' block-image-touch-next' : ''}${extraClass ? ' ' + extraClass : ''}`;
+                    if (Array.isArray(b.imageSequence) && b.imageSequence.length) {
+                        const dissolveClasses = `block-image-dissolve${b.frame ? ' block-image-dissolve-framed' : ''}`;
+                        const sequenceStops = Array.isArray(b.imageSequenceStops) ? ` data-sequence-stops="${b.imageSequenceStops.join(',')}"` : '';
+                        let blockHtml = `<div class="${imageClasses}">
+                            <div class="${dissolveClasses}" data-parable-dissolve data-parable-sequence${sequenceStops}>`;
+                        b.imageSequence.forEach((src, frameIdx) => {
+                            blockHtml += `<img class="parable-sequence-frame" ${GrowingTogetherLessonImages.attributes(src, BUILD_VERSION)} alt="${frameIdx === 0 ? (b.alt || '') : ''}" aria-hidden="${frameIdx === 0 ? 'false' : 'true'}">`;
+                        });
+                        blockHtml += `</div>
+                        </div>`;
+                        return blockHtml;
+                    }
+                    if (b.imageBw && b.imageColor) {
+                        const dissolveClasses = `block-image-dissolve${b.frame ? ' block-image-dissolve-framed' : ''}`;
+                        return `<div class="${imageClasses}">
+                            <div class="${dissolveClasses}" data-parable-dissolve>
+                                <img class="parable-img-color" ${GrowingTogetherLessonImages.attributes(b.imageColor, BUILD_VERSION)} alt="${b.alt || ''}">
+                                <img class="parable-img-bw" ${GrowingTogetherLessonImages.attributes(b.imageBw, BUILD_VERSION)} alt="" aria-hidden="true" style="opacity:1;">
+                            </div>
+                        </div>`;
+                    }
+                    return `<div class="${imageClasses}"><img ${GrowingTogetherLessonImages.attributes(b.src, BUILD_VERSION)} alt="${b.alt || ''}" ${imgStyle} onerror="this.style.display='none'"></div>`;
+                };
+
                 let html = '';
+                const topHeroBlock = data.blocks && data.blocks[0] && data.blocks[0].type === 'image' && data.blocks[0].placement === 'top'
+                    ? data.blocks[0]
+                    : null;
+                if (topHeroBlock) {
+                    html += renderImageBlockHtml(topHeroBlock, 'block-image-top-hero');
+                }
                 const meta = COURSE_META[currentSeries];
                 const showLogo = meta && meta.logo && idx > 0;
                 if (showLogo) {
@@ -4212,6 +4253,7 @@
 
                 if (data.blocks) {
                     data.blocks.forEach((b, blockIdx) => {
+                        if (blockIdx === 0 && topHeroBlock) return;
                         switch (b.type) {
                             case 'heading':
                                 let iconHTML = '';
@@ -4238,29 +4280,7 @@
                                 break;
 
                             case 'image':
-                                const imgStyle = b.width ? `style="width: ${b.width}; max-width: 100%; height: auto;"` : '';
-                                const imageClasses = `block-image${b.touchNext ? ' block-image-touch-next' : ''}`;
-                                if (Array.isArray(b.imageSequence) && b.imageSequence.length) {
-                                    const dissolveClasses = `block-image-dissolve${b.frame ? ' block-image-dissolve-framed' : ''}`;
-                                    const sequenceStops = Array.isArray(b.imageSequenceStops) ? ` data-sequence-stops="${b.imageSequenceStops.join(',')}"` : '';
-                                    html += `<div class="${imageClasses}">
-                                        <div class="${dissolveClasses}" data-parable-dissolve data-parable-sequence${sequenceStops}>`;
-                                    b.imageSequence.forEach((src, frameIdx) => {
-                                        html += `<img class="parable-sequence-frame" ${GrowingTogetherLessonImages.attributes(src, BUILD_VERSION)} alt="${frameIdx === 0 ? (b.alt || '') : ''}" aria-hidden="${frameIdx === 0 ? 'false' : 'true'}">`;
-                                    });
-                                    html += `</div>
-                                    </div>`;
-                                } else if (b.imageBw && b.imageColor) {
-                                    const dissolveClasses = `block-image-dissolve${b.frame ? ' block-image-dissolve-framed' : ''}`;
-                                    html += `<div class="${imageClasses}">
-                                        <div class="${dissolveClasses}" data-parable-dissolve>
-                                            <img class="parable-img-color" ${GrowingTogetherLessonImages.attributes(b.imageColor, BUILD_VERSION)} alt="${b.alt || ''}">
-                                            <img class="parable-img-bw" ${GrowingTogetherLessonImages.attributes(b.imageBw, BUILD_VERSION)} alt="" aria-hidden="true" style="opacity:1;">
-                                        </div>
-                                    </div>`;
-                                } else {
-                                    html += `<div class="${imageClasses}"><img ${GrowingTogetherLessonImages.attributes(b.src, BUILD_VERSION)} alt="${b.alt || ''}" ${imgStyle} onerror="this.style.display='none'"></div>`;
-                                }
+                                html += renderImageBlockHtml(b);
                                 break;
 
                             case 'verse':

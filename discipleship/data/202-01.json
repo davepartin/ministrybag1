@@ -1,24 +1,19 @@
 {
   "id": "1",
   "title": "Lesson 1: Loving Your Neighbors",
-  "description": "Jesus said the second great commandment is like the first: love your neighbor as yourself. Through the Good Samaritan, you will see how Jesus turned the question around, from who counts as my neighbor to whom I will move toward, and how He crossed the road to you first.",
+  "description": "In Growing Deep (201), you learned the heart of the Greatest Commandment: God loved us first. The Father ran toward you, the Son gave Himself for you, and the Spirit now fills and guides you. Now in Growing Up (202), His love becomes what sends you out to love the people in your life.",
   "blocks": [
-    {
-      "type": "text",
-      "text": "Growing Deep gave you the foundations of life with God: the Father who runs toward you, the Son who covers you, and the Spirit who guides you. Now in <strong>Growing Up</strong>, that love starts to reach the people around you, beginning with the person God has placed right next to you."
-    },
     {
       "type": "image",
       "src": "images/202-3circles-logo.png",
       "alt": "Growing Together Discipleship Series: Growing Up in Discipleship highlighted.",
       "width": "100%",
-      "align": "center"
+      "align": "center",
+      "placement": "top"
     },
     {
-      "type": "widget",
-      "src": "widgets/great-command-v5-202.html",
-      "title": "The Greatest Commandment: Growing Up",
-      "height": "560px"
+      "type": "text",
+      "text": "This course will walk you through putting that love into practice with your family, your church family, and your neighbors. Before you trace how the rest of <strong>Growing Up</strong> unfolds, step onto the road to Jericho in the parable of the Good Samaritan and watch Jesus turn a cautious question into a picture of love in motion."
     },
     {
       "type": "image",
@@ -73,7 +68,17 @@
     },
     {
       "type": "text",
-      "text": "Jesus called the second commandment <em>like</em> the first. Not lesser. Not optional. Loving God and loving the person next to you are one love pointed in two directions. And the order matters. You do not love your neighbor out of an empty tank. You give away what the Father has already poured into you."
+      "text": "Jesus called the second commandment <em>like</em> the first. Not lesser. Not optional. Loving God and loving the person next to you are one love pointed in two directions. The order matters: Christ loved you first and gave Himself up for you, and His love is what sends you out. You do not love others out of an empty tank. You give away what God has already poured into you."
+    },
+    {
+      "type": "text",
+      "text": "Walk through the Greatest Commandment below to see how Christ's love at the cross becomes our example and sends us into everyday life with our family, our church family, and our neighbors."
+    },
+    {
+      "type": "widget",
+      "src": "widgets/great-command-v5-202.html",
+      "title": "The Greatest Commandment",
+      "height": "560px"
     },
     {
       "type": "heading",
@@ -121,13 +126,7 @@
     },
     {
       "type": "text",
-      "text": "Jesus answered with the story, then flipped the question. The law teacher asked, \"Who is my neighbor?\" meaning, \"Which people qualify for my love?\" Jesus asked back, \"Which of these three proved to be a neighbor?\" In one sentence Jesus changed the question from <em>What kind of person is my neighbor?</em> to <em>What kind of person am I becoming?</em> Walk down the road and watch the question turn around."
-    },
-    {
-      "type": "widget",
-      "src": "widgets/cross-the-road.html",
-      "title": "Cross the Road",
-      "height": "600px"
+      "text": "Jesus answered with the story, then flipped the question. The law teacher asked, \"Who is my neighbor?\" meaning, \"Which people qualify for my love?\" Jesus asked back, \"Which of these three proved to be a neighbor?\" In one sentence Jesus changed the question from <em>What kind of person is my neighbor?</em> to <em>What kind of person am I becoming?</em>"
     },
     {
       "type": "text",
@@ -184,7 +183,7 @@
     },
     {
       "type": "text",
-      "text": "Loving your neighbor is not a separate assignment from loving God. It is the same love pointed in a second direction. Jesus made your own self-love the measuring stick, summed it up in the Golden Rule, and through Paul called you to count others more significant than yourself. Then, through the Good Samaritan, He turned the question around, from <em>Who qualifies for my love?</em> to <em>Who will I move toward?</em> <strong>Because Jesus crossed the road to you, you can cross the road to others.</strong>"
+      "text": "Loving your neighbor is not a separate assignment from loving God. It is the same love pointed in a second direction. Because Jesus loved you first and crossed the road to rescue you, His love motivates and sends you out to love your family, your church family, and your neighbors. <strong>Because Jesus crossed the road to you, you can cross the road to others.</strong>"
     },
     {
       "type": "text",
