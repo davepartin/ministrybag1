@@ -1,247 +1,675 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>One Another</title>
-    <style>
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>One Another</title>
+<style>
+    :root {
+        --ink: #2C2416;
+        --muted: #6E6559;
+        --linen: #F8F6F1;
+        --tray: #F6F4EE;
+        --border: #EBE5D9;
+        --stage: #FFFFFF;
 
-        body {
-            font-family: 'Georgia', 'Cambria', serif;
-            background: #F8F6F1;
-            color: #2C2416;
-            -webkit-font-smoothing: antialiased;
-            padding: 0;
-            margin: 0;
-        }
+        --harbour: #2A5B7C;
+        --harbour-dark: #1E435C;
+        --harbour-wash: #E2EEF6;
 
+        --gold: #A8760A;
+        --gold-dark: #7D5604;
+        --gold-wash: #FCF2D6;
+
+        --crimson: #8B1A2B;
+        --crimson-dark: #6D1422;
+        --crimson-wash: #F8E8EC;
+
+        --speed-flow: 0.55s;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+        background: var(--linen);
+        color: var(--ink);
+        overflow-x: hidden;
+    }
+
+    .widget-outer {
+        background: var(--stage);
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto;
+        overflow: hidden;
+    }
+
+    @media (min-width: 560px) {
+        body { padding: 14px; }
         .widget-outer {
-            background: #FFFFFF;
-            border-radius: 0;
-            overflow: hidden;
-            box-shadow: none;
-            border: none;
-            max-width: 100%;
-            width: 100%;
-            margin: 0;
-            position: relative;
+            max-width: 460px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            box-shadow: 0 6px 20px rgba(44, 36, 22, 0.08);
         }
+    }
 
-        @media (min-width: 560px) {
-            body { padding: 16px; background: #F8F6F1; }
-            .widget-outer {
-                border-radius: 12px;
-                box-shadow: 0 6px 20px rgba(44, 36, 22, 0.08);
-                border: 1px solid #EBE5D9;
-                max-width: 460px;
-                margin: 0 auto;
+    /* Studio Wash Header */
+    .title-bar {
+        background: var(--ink);
+        padding: 10px 14px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+    }
+
+    .title-bar h1 {
+        font: 600 17px/1.15 system-ui, -apple-system, sans-serif;
+        color: #FAF8F3;
+        letter-spacing: 0.2px;
+        margin: 0;
+        text-align: left;
+    }
+
+    .course-tag {
+        font: 600 11px/1 system-ui, -apple-system, sans-serif;
+        letter-spacing: 0.9px;
+        text-transform: uppercase;
+        color: #E5DEC9;
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+
+    .inner { padding: 10px 10px 12px; }
+
+    /* Anchor strip */
+    .anchor {
+        text-align: center;
+        padding: 7px 10px;
+        border-radius: 8px;
+        background: var(--harbour-wash);
+        border: 1px solid #C8DCE9;
+        font-size: 12px;
+        line-height: 1.35;
+        color: var(--harbour-dark);
+        margin-bottom: 8px;
+    }
+
+    .anchor strong {
+        font-weight: 700;
+        color: var(--harbour-dark);
+    }
+
+    /* Whiteboard Diagram: Christ First -> Family Table Loop */
+    .diagram-box {
+        background: var(--tray);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 6px;
+        margin-bottom: 9px;
+    }
+
+    .table-svg {
+        width: 100%;
+        height: 122px;
+        display: block;
+    }
+
+    .flow-arrow {
+        stroke-dasharray: 120;
+        stroke-dashoffset: 0;
+        transition: stroke-dashoffset var(--speed-flow) ease-out, stroke 0.2s ease;
+    }
+
+    .table-seat {
+        transition: r 0.18s ease, fill 0.18s ease, stroke 0.18s ease;
+    }
+
+    /* 8-Action Grid */
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 6px;
+        margin-bottom: 9px;
+    }
+
+    .ocard {
+        appearance: none;
+        font-family: inherit;
+        background: var(--stage);
+        border: 1.5px solid var(--border);
+        border-radius: 8px;
+        padding: 7px 4px;
+        min-height: 44px;
+        font-size: 11px;
+        font-weight: 600;
+        color: var(--ink);
+        line-height: 1.2;
+        text-align: center;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 3px;
+        transition: border-color 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+    }
+
+    .ocard:hover {
+        border-color: var(--harbour);
+        background: #F4F9FC;
+    }
+
+    .ocard.active {
+        border: 2px solid var(--harbour);
+        background: var(--harbour-wash);
+        color: var(--harbour-dark);
+        font-weight: 700;
+    }
+
+    .ocard.picked {
+        border-color: var(--gold);
+        box-shadow: inset 0 0 0 1px var(--gold);
+    }
+
+    .ocard.picked.active {
+        border-color: var(--crimson);
+        box-shadow: inset 0 0 0 1px var(--crimson);
+        color: var(--crimson-dark);
+        background: var(--crimson-wash);
+    }
+
+    .ocard .check {
+        color: var(--gold-dark);
+        font-weight: 800;
+        font-size: 11px;
+    }
+
+    .ocard.picked.active .check {
+        color: var(--crimson-dark);
+    }
+
+    .ocard:focus-visible, .btn:focus-visible {
+        outline: 2.5px solid var(--ink);
+        outline-offset: 2px;
+    }
+
+    /* Teaching Study Card */
+    .card-area {
+        min-height: var(--card-h, 198px);
+        display: flex;
+        flex-direction: column;
+    }
+
+    .card {
+        flex: 1;
+        border: 1px solid var(--border);
+        border-top: 4px solid var(--harbour);
+        border-radius: 10px;
+        background: var(--stage);
+        padding: 11px 12px 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .card.picked-card {
+        border-top-color: var(--crimson);
+    }
+
+    .card.empty {
+        justify-content: center;
+        text-align: center;
+        background: var(--tray);
+        border-top-color: var(--gold);
+        color: var(--muted);
+        padding: 16px;
+        font-size: 13.5px;
+        line-height: 1.5;
+    }
+
+    .card-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+    }
+
+    .card-title {
+        font-size: 15.5px;
+        font-weight: 700;
+        color: var(--ink);
+        line-height: 1.25;
+    }
+
+    .card-verse {
+        font-size: 13px;
+        color: var(--ink);
+        line-height: 1.45;
+        background: var(--tray);
+        padding: 8px 10px;
+        border-radius: 7px;
+        border-left: 3px solid var(--harbour);
+    }
+
+    .card-ref {
+        font-size: 11.5px;
+        font-weight: 600;
+        color: var(--muted);
+        margin-left: 4px;
+        white-space: nowrap;
+    }
+
+    .band {
+        padding: 7px 10px;
+        border-radius: 7px;
+        font-size: 12.5px;
+        line-height: 1.4;
+    }
+
+    .band-first {
+        background: var(--gold-wash);
+        color: var(--ink);
+        border-left: 3px solid var(--gold);
+    }
+
+    .band-try {
+        background: var(--harbour-wash);
+        color: var(--ink);
+        border-left: 3px solid var(--harbour);
+    }
+
+    .band-tag {
+        font-size: 10.5px;
+        font-weight: 700;
+        letter-spacing: 0.45px;
+        text-transform: uppercase;
+        display: block;
+        margin-bottom: 1px;
+    }
+
+    .band-first .band-tag { color: var(--gold-dark); }
+    .band-try .band-tag { color: var(--harbour-dark); }
+
+    .actions {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        padding-top: 4px;
+        margin-top: auto;
+    }
+
+    .btn {
+        appearance: none;
+        font-family: inherit;
+        min-height: 36px;
+        border: 1.5px solid var(--border);
+        background: var(--stage);
+        border-radius: 999px;
+        padding: 6px 12px;
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--ink);
+        cursor: pointer;
+        transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    }
+
+    .btn:hover {
+        background: var(--tray);
+        border-color: #CFC6B4;
+    }
+
+    .btn-pick {
+        background: var(--harbour);
+        border-color: var(--harbour);
+        color: #FAF8F3;
+    }
+
+    .btn-pick:hover {
+        background: var(--harbour-dark);
+        border-color: var(--harbour-dark);
+    }
+
+    .btn-pick.picked {
+        background: var(--crimson);
+        border-color: var(--crimson);
+        color: #FAF8F3;
+    }
+
+    .btn-pick.picked:hover {
+        background: var(--crimson-dark);
+        border-color: var(--crimson-dark);
+    }
+
+    .pick-status {
+        font-size: 11px;
+        color: var(--muted);
+        font-weight: 600;
+    }
+
+    .pick-status.has-pick {
+        color: var(--crimson-dark);
+    }
+
+    @media (max-width: 390px) {
+        .ocard { font-size: 10.5px; padding: 6px 3px; }
+        .table-svg { height: 116px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+            transition: none !important;
+            animation: none !important;
+        }
+    }
+</style>
+</head>
+<body>
+<div class="widget-outer" id="widget-outer">
+    <header class="title-bar">
+        <h1>One Another</h1>
+        <span class="course-tag">202-03</span>
+    </header>
+
+    <div class="inner">
+        <div class="anchor">
+            <strong>&ldquo;Love one another, just as I have loved you.&rdquo;</strong> John 13:34
+        </div>
+
+        <div class="diagram-box" aria-hidden="true">
+            <svg class="table-svg" id="table-svg" viewBox="0 0 440 132" preserveAspectRatio="xMidYMid meet">
+                <!-- Christ First hub on left -->
+                <circle cx="62" cy="60" r="34" fill="#FCF2D6" stroke="#A8760A" stroke-width="1.4" />
+                <!-- Deep Crimson double-hairline cross -->
+                <path d="M 62 38 L 62 82 M 46 54 L 78 54" fill="none" stroke="#8B1A2B" stroke-width="3.5" stroke-linecap="round" />
+                <path d="M 62 38 L 62 82 M 46 54 L 78 54" fill="none" stroke="#C9596B" stroke-width="1.1" stroke-linecap="round" />
+                <text x="62" y="114" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="700" letter-spacing="0.6" fill="#7D5604">CHRIST FIRST</text>
+
+                <!-- Flow arrow from Cross -> Family Table -->
+                <path class="flow-arrow" id="source-arrow" d="M 101 60 L 147 60" fill="none" stroke="#A8760A" stroke-width="2.4" stroke-linecap="round" />
+                <polygon points="142,54 152,60 142,66" fill="#A8760A" />
+                <text x="126" y="49" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="9" font-weight="600" fill="#7D5604">AS HE LOVED</text>
+
+                <!-- Family Table loop on right -->
+                <ellipse cx="292" cy="62" rx="124" ry="42" fill="#FFFFFF" stroke="#2A5B7C" stroke-width="1.8" stroke-dasharray="6 4" />
+                <ellipse cx="292" cy="62" rx="92" ry="26" fill="#E2EEF6" opacity="0.55" />
+
+                <!-- Clockwise directional arrowheads on the loop -->
+                <polygon points="290,16 298,20 290,24" fill="#2A5B7C" />
+                <polygon points="294,100 286,104 294,108" fill="#2A5B7C" />
+
+                <!-- Center focal label inside the table -->
+                <text id="diagram-focus-label" x="292" y="59" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11.5" font-weight="700" fill="#1E435C">ONE ANOTHER</text>
+                <text id="diagram-focus-sub" x="292" y="73" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="9.5" font-weight="600" fill="#6E6559">TAP AN ACTION</text>
+
+                <!-- 8 Seat Dots around the Family Table -->
+                <g id="seat-dots"></g>
+            </svg>
+        </div>
+
+        <div class="grid" id="grid" role="group" aria-label="One-another commands"></div>
+        <div class="card-area" id="card-area" aria-live="polite"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    'use strict';
+
+    var cards = [
+        { name: 'Welcome', title: 'Welcome one another', verse: '\u201cwelcome one another as Christ has welcomed you\u201d', ref: 'Romans 15:7',
+          first: 'Christ welcomed you when you were far off.', tryit: 'Sit by someone new on Sunday and learn their name.' },
+        { name: 'Carry burdens', title: 'Bear one another\u2019s burdens', verse: '\u201cBear one another\u2019s burdens, and so fulfill the law of Christ.\u201d', ref: 'Galatians 6:2',
+          first: 'Jesus carried your heaviest burden, your sin.', tryit: 'Ask someone what is heavy right now, and help carry it.' },
+        { name: 'Forgive', title: 'Forgive one another', verse: '\u201cforgiving one another, as God in Christ forgave you\u201d', ref: 'Ephesians 4:32',
+          first: 'God in Christ forgave you everything.', tryit: 'Let go of one grudge, or ask forgiveness for one thing.' },
+        { name: 'Encourage', title: 'Encourage one another', verse: '\u201cencourage one another and build one another up\u201d', ref: '1 Thessalonians 5:11',
+          first: 'Jesus speaks courage over you in His Word.', tryit: 'Send one specific note of thanks or encouragement.' },
+        { name: 'Pray for', title: 'Pray for one another', verse: '\u201cpray for one another, that you may be healed\u201d', ref: 'James 5:16',
+          first: 'Jesus is praying for you right now (Romans 8:34).', tryit: 'Ask how to pray for someone, then pray with them.' },
+        { name: 'Serve', title: 'Serve one another', verse: '\u201cthrough love serve one another\u201d', ref: 'Galatians 5:13',
+          first: 'Jesus came not to be served but to serve (Mark 10:45).', tryit: 'Do one quiet act of service no one asked for.' },
+        { name: 'Open your home', title: 'Show hospitality', verse: '\u201cShow hospitality to one another without grumbling.\u201d', ref: '1 Peter 4:9',
+          first: 'Jesus is preparing a place for you (John 14:2).', tryit: 'Invite someone from church for a meal or coffee.' },
+        { name: 'Honor', title: 'Honor one another', verse: '\u201cOutdo one another in showing honor.\u201d', ref: 'Romans 12:10',
+          first: 'Jesus calls you His friend (John 15:15).', tryit: 'Tell someone what you see God doing in them.' }
+    ];
+
+    // 8 seat coordinates placed evenly around the Family Table ellipse (cx=292, cy=62, rx=124, ry=42)
+    var seatCoords = [
+        { x: 168, y: 62 },
+        { x: 204, y: 32 },
+        { x: 292, y: 20 },
+        { x: 380, y: 32 },
+        { x: 416, y: 62 },
+        { x: 380, y: 92 },
+        { x: 292, y: 104 },
+        { x: 204, y: 92 }
+    ];
+
+    var outer = document.getElementById('widget-outer');
+    var grid = document.getElementById('grid');
+    var area = document.getElementById('card-area');
+    var seatDotsEl = document.getElementById('seat-dots');
+    var focusLabelEl = document.getElementById('diagram-focus-label');
+    var focusSubEl = document.getElementById('diagram-focus-sub');
+    var sourceArrowEl = document.getElementById('source-arrow');
+
+    var active = -1;
+    var picked = -1;
+
+    function isReducedMotion() {
+        return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    }
+
+    function esc(s) {
+        return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+
+    function buildGrid() {
+        grid.innerHTML = cards.map(function (c, i) {
+            return '<button type="button" class="ocard" data-card="' + i + '">' + esc(c.name) + '</button>';
+        }).join('');
+
+        grid.querySelectorAll('.ocard').forEach(function (b) {
+            b.addEventListener('click', function () {
+                selectCard(Number(b.dataset.card));
+            });
+        });
+    }
+
+    function buildSeats() {
+        var ns = 'http://www.w3.org/2000/svg';
+        seatDotsEl.innerHTML = '';
+        seatCoords.forEach(function (pt, idx) {
+            var g = document.createElementNS(ns, 'g');
+            g.setAttribute('data-seat', String(idx));
+
+            var halo = document.createElementNS(ns, 'circle');
+            halo.setAttribute('cx', String(pt.x));
+            halo.setAttribute('cy', String(pt.y));
+            halo.setAttribute('r', '10');
+            halo.setAttribute('fill', 'none');
+            halo.setAttribute('stroke', 'none');
+            halo.setAttribute('stroke-width', '1.5');
+            halo.setAttribute('class', 'seat-halo');
+
+            var dot = document.createElementNS(ns, 'circle');
+            dot.setAttribute('cx', String(pt.x));
+            dot.setAttribute('cy', String(pt.y));
+            dot.setAttribute('r', '6');
+            dot.setAttribute('fill', '#FFFFFF');
+            dot.setAttribute('stroke', '#2A5B7C');
+            dot.setAttribute('stroke-width', '2');
+            dot.setAttribute('class', 'table-seat');
+
+            g.appendChild(halo);
+            g.appendChild(dot);
+            seatDotsEl.appendChild(g);
+        });
+    }
+
+    function pulseSourceArrow() {
+        if (!sourceArrowEl || isReducedMotion()) return;
+        sourceArrowEl.style.transition = 'none';
+        sourceArrowEl.style.strokeDashoffset = '50';
+        void sourceArrowEl.getBoundingClientRect();
+        sourceArrowEl.style.transition = 'stroke-dashoffset 0.52s ease-out';
+        sourceArrowEl.style.strokeDashoffset = '0';
+    }
+
+    function selectCard(i) {
+        active = (active === i) ? -1 : i;
+        render(true);
+    }
+
+    function cardHtml(i, pk) {
+        if (i < 0) {
+            return '<div class="card empty">' +
+                '<div class="card-title" style="margin-bottom:4px;">Christ Loves First. We Pass It Around.</div>' +
+                'Tap any action above to see what Jesus did first, then choose one to practice this week.' +
+            '</div>';
+        }
+        var c = cards[i];
+        var isP = pk === i;
+        var st = pk >= 0 && pk !== i ? 'Picked: ' + esc(cards[pk].name) : '';
+        return '<div class="card' + (isP ? ' picked-card' : '') + '">' +
+            '<div class="card-top">' +
+                '<div class="card-title">' + esc(c.title) + '</div>' +
+                '<span class="pick-status' + (isP ? ' has-pick' : '') + '">' + st + '</span>' +
+            '</div>' +
+            '<div class="card-verse">' + esc(c.verse) + '<span class="card-ref">' + esc(c.ref) + '</span></div>' +
+            '<div class="band band-first"><span class="band-tag">Jesus First</span>' + esc(c.first) + '</div>' +
+            '<div class="band band-try"><span class="band-tag">Try This Week</span>' + esc(c.tryit) + '</div>' +
+            '<div class="actions">' +
+                '<button type="button" class="btn" data-control="clear">&larr; Clear</button>' +
+                '<button type="button" class="btn btn-pick' + (isP ? ' picked' : '') + '" data-control="' + (isP ? 'picked' : 'pick') + '">' +
+                    (isP ? '&#10003; Picked for this week' : 'Pick one for this week') +
+                '</button>' +
+            '</div>' +
+        '</div>';
+    }
+
+    function updateDiagram() {
+        var groups = seatDotsEl.querySelectorAll('g');
+        for (var i = 0; i < groups.length; i++) {
+            var halo = groups[i].querySelector('.seat-halo');
+            var dot = groups[i].querySelector('.table-seat');
+            var isAct = i === active;
+            var isPick = i === picked;
+
+            if (isPick) {
+                halo.setAttribute('stroke', '#8B1A2B');
+                halo.setAttribute('stroke-width', '1.4');
+                halo.setAttribute('fill', '#F8E8EC');
+                dot.setAttribute('r', isAct ? '8' : '7');
+                dot.setAttribute('fill', '#8B1A2B');
+                dot.setAttribute('stroke', '#A8760A');
+                dot.setAttribute('stroke-width', '2');
+            } else if (isAct) {
+                halo.setAttribute('stroke', '#A8760A');
+                halo.setAttribute('stroke-width', '1.4');
+                halo.setAttribute('fill', '#FCF2D6');
+                dot.setAttribute('r', '7.5');
+                dot.setAttribute('fill', '#2A5B7C');
+                dot.setAttribute('stroke', '#1E435C');
+                dot.setAttribute('stroke-width', '2');
+            } else {
+                halo.setAttribute('stroke', 'none');
+                halo.setAttribute('fill', 'none');
+                dot.setAttribute('r', '5.5');
+                dot.setAttribute('fill', '#FFFFFF');
+                dot.setAttribute('stroke', '#2A5B7C');
+                dot.setAttribute('stroke-width', '2');
             }
         }
 
-        button { -webkit-tap-highlight-color: transparent; font-family: 'Trebuchet MS', sans-serif; }
-        button:focus-visible { outline: 3px solid #2C2416; outline-offset: 2px; }
-
-        .title-bar { background: #2C2416; padding: 8px 14px; display: flex; align-items: center; justify-content: space-between; gap: 8px; }
-        .title-bar h1 {
-            font: 600 17px/1.15 system-ui, -apple-system, sans-serif;
-            color: #FAF8F3; letter-spacing: 0.2px; margin: 0; text-align: left;
-        }
-        .course-tag {
-            font: 600 11px/1 system-ui, -apple-system, sans-serif;
-            letter-spacing: 0.9px; text-transform: uppercase;
-            color: #E5DEC9; white-space: nowrap; flex-shrink: 0;
-        }
-
-        .anchor { padding: 12px 18px 4px; text-align: center; }
-        .anchor-quote { font-size: 16px; font-style: italic; line-height: 1.35; color: #155030; }
-        .anchor-ref { font-family: 'Trebuchet MS', sans-serif; font-size: 13px; color: #6B6358; margin-top: 2px; }
-        .hint { font-family: 'Trebuchet MS', sans-serif; font-size: 13px; color: #6B6358; text-align: center; padding: 6px 12px 0; }
-
-        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 8px 12px 12px; }
-        .ocard {
-            position: relative; display: flex; flex-direction: column; align-items: flex-start; justify-content: center;
-            min-height: 52px; padding: 8px 12px; text-align: left; cursor: pointer;
-            background: #F6F4EE; border: 1.5px solid #E3DCCC; border-radius: 10px; color: #2C2416;
-        }
-        .ocard-name { font-size: 15px; font-weight: 700; line-height: 1.2; }
-        .ocard-ref { font-size: 12px; color: #6B6358; margin-top: 2px; }
-        .ocard.selected { background: #E3EFE6; border-color: #1D6B3F; }
-        .ocard.selected .ocard-name { color: #155030; }
-        .ocard.picked { background: #F6EEDB; border-color: #B8892B; }
-        .ocard.picked .ocard-name { color: #8A6418; }
-        .ocard .star { position: absolute; top: 6px; right: 9px; font-size: 15px; color: #B8892B; }
-
-        #card-area { background-color: #F6F4EE; border-top: 1px solid #EBE5D9; padding: 8px 0 12px; }
-        .verse-card-wrapper { margin: 0 auto; padding: 0 12px; max-width: 460px; }
-        .verse-card { background: #FFFFFF; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 14px rgba(44,36,22,0.06); }
-        .verse-card-bar { height: 4px; }
-        .verse-card-content { padding: 10px 16px; min-height: var(--card-h, 150px); display: flex; flex-direction: column; justify-content: flex-start; }
-        .card-title { font-family: 'Trebuchet MS', sans-serif; font-size: 16px; font-weight: 700; line-height: 1.3; margin-bottom: 4px; }
-        .card-verse { font-size: 15px; font-style: italic; line-height: 1.4; color: #3D3426; }
-        .card-ref { font-family: 'Trebuchet MS', sans-serif; font-size: 13px; color: #6B6358; margin-top: 2px; }
-        .card-line { font-size: 15px; line-height: 1.4; color: #3D3426; margin-top: 8px; }
-        .card-line b { font-family: 'Trebuchet MS', sans-serif; font-size: 13px; letter-spacing: 0.02em; text-transform: uppercase; }
-        .card-empty { font-size: 15px; line-height: 1.4; color: #3D3426; }
-
-        .nav-bar { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; padding: 0 2px; gap: 8px; }
-        .nav-btn {
-            background: transparent; border: 1.5px solid #D4CFC4; border-radius: 10px;
-            padding: 10px 16px; min-height: 44px; font-size: 14px; color: #5A4E3C; cursor: pointer; font-weight: 600;
-        }
-        .nav-bar .nav-btn { min-width: 112px; text-align: center; }
-        .nav-bar .nav-btn.right { min-width: 128px; }
-        .nav-btn.gold { cursor: default; }
-        .nav-btn.primary { color: #FFFFFF; border: none; background: #1D6B3F; }
-        .nav-btn.gold { color: #FFFFFF; border: none; background: #B8892B; }
-        .nav-btn[disabled] { opacity: 0.35; cursor: default; }
-        .pick-status { font-family: 'Trebuchet MS', sans-serif; font-size: 13px; color: #6B6358; text-align: center; flex: 1; }
-
-        #measure { position: absolute; left: 0; top: 0; visibility: hidden; pointer-events: none; }
-        .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-    
-        /* Tighter spacing so the whole widget fits one phone screen (about 610px at 375 wide). */
-        .anchor { padding: 8px 16px 2px; }
-        .hint { padding: 3px 12px 0; }
-        .grid { gap: 6px; padding: 6px 12px 8px; }
-        .ocard { min-height: 44px; padding: 5px 12px; }
-        .ocard-ref { margin-top: 1px; }
-        .card-line { margin-top: 4px; }
-        #card-area { padding: 8px 0 10px; }
-    </style>
-</head>
-<body>
-<div class="widget-outer">
-    <div class="title-bar"><h1>One Another</h1><span class="course-tag">202-03</span></div>
-    <div class="anchor">
-        <p class="anchor-quote">“Just as I have loved you, you also are to love one another.”</p>
-        <p class="anchor-ref">John 13:34</p>
-    </div>
-    <p class="hint">Tap a card to read it. Then pick one for this week.</p>
-    <div class="grid" id="grid" role="group" aria-label="One another commands"></div>
-    <div id="card-area" aria-live="polite"></div>
-    <p class="sr-only" id="status" aria-live="polite"></p>
-</div>
-<script>
-    var GREEN = '#1D6B3F', GOLD = '#B8892B';
-    var cards = [
-        { name: 'Welcome', title: 'Welcome one another', verse: '“welcome one another as Christ has welcomed you”', ref: 'Romans 15:7',
-          first: 'Christ welcomed you when you were far off.', tryit: 'Sit by someone new on Sunday and learn their name.' },
-        { name: 'Carry burdens', title: 'Bear one another’s burdens', verse: '“Bear one another’s burdens, and so fulfill the law of Christ.”', ref: 'Galatians 6:2',
-          first: 'Jesus carried your heaviest burden, your sin.', tryit: 'Ask someone what is heavy right now, and help carry it.' },
-        { name: 'Forgive', title: 'Forgive one another', verse: '“forgiving one another, as God in Christ forgave you”', ref: 'Ephesians 4:32',
-          first: 'God in Christ forgave you everything.', tryit: 'Let go of one grudge, or ask forgiveness for one thing.' },
-        { name: 'Encourage', title: 'Encourage one another', verse: '“encourage one another and build one another up”', ref: '1 Thessalonians 5:11',
-          first: 'Jesus speaks courage over you in His Word.', tryit: 'Send one specific note of thanks or encouragement.' },
-        { name: 'Pray for', title: 'Pray for one another', verse: '“pray for one another, that you may be healed”', ref: 'James 5:16',
-          first: 'Jesus is praying for you right now (Romans 8:34).', tryit: 'Ask how to pray for someone, then pray with them.' },
-        { name: 'Serve', title: 'Serve one another', verse: '“through love serve one another”', ref: 'Galatians 5:13',
-          first: 'Jesus came not to be served but to serve (Mark 10:45).', tryit: 'Do one quiet act of service no one asked for.' },
-        { name: 'Open your home', title: 'Show hospitality', verse: '“Show hospitality to one another without grumbling.”', ref: '1 Peter 4:9',
-          first: 'Jesus is preparing a place for you (John 14:2).', tryit: 'Invite someone from church for a meal or coffee.' },
-        { name: 'Honor', title: 'Honor one another', verse: '“Outdo one another in showing honor.”', ref: 'Romans 12:10',
-          first: 'Jesus calls you His friend (John 15:15).', tryit: 'Tell someone what you see God doing in them.' }
-    ];
-    var selected = -1, picked = -1, pendingFocus = null;
-    function el(id) { return document.getElementById(id); }
-
-    function buildGrid() {
-        var g = el('grid');
-        cards.forEach(function (c, i) {
-            var b = document.createElement('button');
-            b.type = 'button'; b.className = 'ocard'; b.setAttribute('data-card', i);
-            var n = document.createElement('span'); n.className = 'ocard-name'; n.textContent = c.name; b.appendChild(n);
-            var r = document.createElement('span'); r.className = 'ocard-ref'; r.textContent = c.ref; b.appendChild(r);
-            b.addEventListener('click', function () { selected = i; render(); });
-            g.appendChild(b);
-        });
-    }
-    function paintGrid() {
-        document.querySelectorAll('.ocard').forEach(function (b, i) {
-            b.classList.toggle('selected', i === selected && i !== picked);
-            b.classList.toggle('picked', i === picked);
-            b.setAttribute('aria-pressed', i === selected ? 'true' : 'false');
-            var star = b.querySelector('.star');
-            if (i === picked && !star) { star = document.createElement('span'); star.className = 'star'; star.setAttribute('aria-hidden', 'true'); star.textContent = '★'; b.appendChild(star); }
-            if (i !== picked && star) b.removeChild(star);
-            b.setAttribute('aria-label', cards[i].title + ', ' + cards[i].ref + (i === picked ? ', picked for this week' : ''));
-        });
-    }
-    function line(label, text, color) {
-        var p = document.createElement('p'); p.className = 'card-line';
-        var b = document.createElement('b'); b.textContent = label + ' '; b.style.color = color; p.appendChild(b);
-        p.appendChild(document.createTextNode(text)); return p;
-    }
-    function buildCard(i) {
-        var isPicked = i === picked;
-        var color = isPicked ? GOLD : GREEN;
-        var vc = document.createElement('div'); vc.className = 'verse-card';
-        var bar = document.createElement('div'); bar.className = 'verse-card-bar'; bar.style.background = color; vc.appendChild(bar);
-        var c = document.createElement('div'); c.className = 'verse-card-content';
-        if (i === -1) {
-            var t0 = document.createElement('p'); t0.className = 'card-title'; t0.style.color = GREEN; t0.textContent = 'Family love has a shape.'; c.appendChild(t0);
-            var e = document.createElement('p'); e.className = 'card-empty';
-            e.textContent = 'The New Testament says “one another” again and again. Each card shows how Jesus loved you first, and one simple way to pass that love on.';
-            c.appendChild(e);
+        if (active >= 0) {
+            focusLabelEl.textContent = cards[active].name.toUpperCase();
+            focusLabelEl.setAttribute('fill', active === picked ? '#6D1422' : '#1E435C');
+            focusSubEl.textContent = active === picked ? 'PICKED FOR THIS WEEK' : 'FAMILY TABLE ACTION';
+        } else if (picked >= 0) {
+            focusLabelEl.textContent = 'ONE ANOTHER';
+            focusLabelEl.setAttribute('fill', '#1E435C');
+            focusSubEl.textContent = 'WEEKLY PICK: ' + cards[picked].name.toUpperCase();
         } else {
-            var s = cards[i];
-            var t = document.createElement('p'); t.className = 'card-title'; t.style.color = color; t.textContent = (isPicked ? '★ ' : '') + s.title; c.appendChild(t);
-            var v = document.createElement('p'); v.className = 'card-verse'; v.textContent = s.verse; c.appendChild(v);
-            var r = document.createElement('p'); r.className = 'card-ref'; r.textContent = s.ref; c.appendChild(r);
-            c.appendChild(line('Jesus first:', s.first, GOLD));
-            c.appendChild(line('Try this:', s.tryit, GREEN));
+            focusLabelEl.textContent = 'ONE ANOTHER';
+            focusLabelEl.setAttribute('fill', '#1E435C');
+            focusSubEl.textContent = 'TAP AN ACTION';
         }
-        vc.appendChild(c); return vc;
     }
+
+    function render(animate) {
+        grid.querySelectorAll('.ocard').forEach(function (b, idx) {
+            var isA = idx === active;
+            var isP = idx === picked;
+            b.classList.toggle('active', isA);
+            b.classList.toggle('picked', isP);
+            b.setAttribute('aria-pressed', isA ? 'true' : 'false');
+            b.innerHTML = (isP ? '<span class="check" aria-hidden="true">&#10003;</span>' : '') + esc(cards[idx].name);
+        });
+
+        updateDiagram();
+        if (animate && active >= 0) pulseSourceArrow();
+
+        area.innerHTML = cardHtml(active, picked);
+
+        var clearBtn = area.querySelector('[data-control="clear"]');
+        if (clearBtn) {
+            clearBtn.addEventListener('click', function () {
+                active = -1;
+                render(false);
+            });
+        }
+
+        var pickBtn = area.querySelector('.btn-pick');
+        if (pickBtn) {
+            pickBtn.addEventListener('click', function () {
+                picked = (picked === active) ? -1 : active;
+                render(false);
+            });
+        }
+    }
+
     function fitCards() {
-        var area = el('card-area'), m = document.createElement('div'), max = 0, keep = picked;
-        m.id = 'measure'; m.style.width = area.clientWidth + 'px';
-        document.documentElement.style.setProperty('--card-h', '0px');
-        for (var i = -1; i < cards.length; i++) {
-            picked = i; // measure the longest (starred) title too
-            var w = document.createElement('div'); w.className = 'verse-card-wrapper'; w.appendChild(buildCard(i)); m.appendChild(w);
+        var width = area.clientWidth || outer.clientWidth || 360;
+        var probe = document.createElement('div');
+        probe.style.cssText = 'position:fixed;left:-9999px;top:0;visibility:hidden;pointer-events:none;width:' + width + 'px;display:flex;flex-direction:column;';
+        document.body.appendChild(probe);
+
+        var maxH = 0;
+        probe.innerHTML = cardHtml(-1, -1);
+        maxH = Math.max(maxH, Math.ceil(probe.getBoundingClientRect().height));
+
+        for (var i = 0; i < cards.length; i++) {
+            probe.innerHTML = cardHtml(i, i);
+            maxH = Math.max(maxH, Math.ceil(probe.getBoundingClientRect().height));
         }
-        picked = keep;
-        document.body.appendChild(m);
-        m.querySelectorAll('.verse-card-content').forEach(function (c) { max = Math.max(max, c.offsetHeight); });
-        document.body.removeChild(m);
-        document.documentElement.style.setProperty('--card-h', Math.max(max, 150) + 'px');
+
+        probe.remove();
+        outer.style.setProperty('--card-h', maxH + 'px');
     }
-    function button(label, control, cls, onClick, disabled) {
-        var b = document.createElement('button'); b.type = 'button'; b.className = cls; b.setAttribute('data-control', control);
-        b.textContent = label; b.disabled = !!disabled; b.addEventListener('click', onClick); return b;
-    }
-    function applyFocus() { if (!pendingFocus) return; var t = document.querySelector('[data-control="' + pendingFocus + '"]'); pendingFocus = null; if (t) t.focus(); }
-    function render() {
-        paintGrid();
-        var area = el('card-area'); area.innerHTML = '';
-        var wrapper = document.createElement('div'); wrapper.className = 'verse-card-wrapper';
-        wrapper.appendChild(buildCard(selected));
-        var nav = document.createElement('div'); nav.className = 'nav-bar';
-        var status = document.createElement('span'); status.className = 'pick-status';
-        status.textContent = picked === -1 ? 'Nothing picked yet' : 'This week: ' + cards[picked].name;
-        if (selected !== -1 && selected === picked) {
-            nav.appendChild(button('Clear pick', 'clear', 'nav-btn', function () { picked = -1; pendingFocus = 'pick'; render(); }));
-            nav.appendChild(status);
-            var pb = button('★ Picked', 'picked', 'nav-btn gold right', function () {}); pb.setAttribute('aria-disabled', 'true'); nav.appendChild(pb);
-        } else {
-            nav.appendChild(button('Clear pick', 'clear', 'nav-btn', function () { picked = -1; pendingFocus = 'pick'; render(); }, picked === -1));
-            nav.appendChild(status);
-            nav.appendChild(button('Pick this one', 'pick', 'nav-btn primary right', function () { picked = selected; pendingFocus = 'clear'; render(); }, selected === -1));
-        }
-        wrapper.appendChild(nav); area.appendChild(wrapper);
-        el('status').textContent = selected === -1 ? '' : (cards[selected].title + (selected === picked ? '. Picked for this week.' : ''));
-        applyFocus();
-    }
-    buildGrid(); fitCards(); render();
-    var rt = null, lastWidth = window.innerWidth;
-    // Refit only when the width changes, so the host page's height measurement cannot start a loop.
+
+    buildGrid();
+    buildSeats();
+    fitCards();
+    render(false);
+
+    var rt = null;
+    var lastWidth = window.innerWidth;
+    // Refit only when width changes so host iframe measurements never start a loop.
     window.addEventListener('resize', function () {
         if (window.innerWidth === lastWidth) return;
         lastWidth = window.innerWidth;
-        clearTimeout(rt); rt = setTimeout(fitCards, 150);
+        clearTimeout(rt);
+        rt = setTimeout(fitCards, 150);
     });
-    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitCards);
+    if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(fitCards);
+    }
+})();
 </script>
 </body>
 </html>
