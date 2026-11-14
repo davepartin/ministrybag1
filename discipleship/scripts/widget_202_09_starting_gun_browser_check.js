@@ -64,7 +64,10 @@ async function waitStableSvgBox(frame, selector) {
               return orig.apply(this, arguments);
             };
           });
-          localStorage.setItem('christianFoundationsResponses', JSON.stringify(initial));
+          if (window === window.top && !sessionStorage.getItem('run-seeded')) {
+            localStorage.setItem('christianFoundationsResponses', JSON.stringify(initial));
+            sessionStorage.setItem('run-seeded', 'yes');
+          }
         }, seed);
 
         await page.goto(BASE + '#202-9');
@@ -78,6 +81,11 @@ async function waitStableSvgBox(frame, selector) {
         const frame = page.frameLocator('#session-9 iframe[src*="starting-gun"]');
         await waitStableSvgBox(frame, '#scene');
 
+        const stored = await page.evaluate(() => localStorage.getItem('christianFoundationsResponses'));
+        for (const q of questions) {
+          const key = 'question-202-' + q.id;
+          ck(tag + ' restores ' + key, await page.locator('#' + key).inputValue() === seed[key]);
+        }
         const titleText = (await frame.locator('.title-bar h1').textContent()).trim();
         const courseTag = (await frame.locator('.course-tag').textContent()).trim();
         ck(tag + ' title bar', titleText === 'RUN from Sin' && courseTag === '202-09');
@@ -93,6 +101,8 @@ async function waitStableSvgBox(frame, selector) {
         ck(tag + ' height fits iframe cleanly', layout.h > 300);
 
         async function snap(name) {
+          ck(tag + ' full iframe at ' + name, await frameEl.evaluate(el => el.clientHeight >= Math.max(el.contentDocument.documentElement.scrollHeight, el.contentDocument.body.scrollHeight) - 1));
+          ck(tag + ' card text fits at ' + name, await frame.locator('.verse-card-content').evaluate(el => el.scrollHeight <= el.clientHeight + 1));
           if (!SCREENSHOT_DIR || width !== 390 || motion !== 'no-preference') {
             if (SCREENSHOT_DIR && (width === 1280 || width === 375) && motion === 'no-preference' && name === 'intro') {
               await frameEl.evaluate(e =>
@@ -172,6 +182,21 @@ async function waitStableSvgBox(frame, selector) {
         await page.waitForTimeout(motion === 'reduce' ? 50 : 620);
         ck(tag + ' flag-r interactive jump', (await frame.locator('.card-heading').textContent()).includes('Remember the Cross'));
 
+        // Verify both remaining signposts by keyboard, then restart and choose RUN directly.
+        for (const [id, key, heading] of [['flag-u', 'Enter', 'United with God'], ['flag-n', 'Space', 'Need Others']]) {
+          await frame.locator('#' + id).focus();
+          await page.keyboard.press(key);
+          await page.waitForTimeout(motion === 'reduce' ? 50 : 620);
+          ck(tag + ' keyboard ' + id, (await frame.locator('.card-heading').textContent()).includes(heading));
+        }
+        await frame.locator('[data-control="next"]').click();
+        await frame.locator('[data-control="restart"]').click();
+        ck(tag + ' Start Over', await frame.locator('[data-control="begin"]').count() === 1);
+        await frame.locator('[data-control="begin"]').click();
+        await frame.locator('[data-control="run"]').click();
+        await page.waitForTimeout(motion === 'reduce' ? 50 : 620);
+        ck(tag + ' direct RUN choice', (await frame.locator('.card-heading').textContent()).includes('Remember the Cross'));
+
         // Verify zero idle style mutations
         await page.waitForTimeout(300);
         const styleWrites = await frameEl.evaluate(async el => {
@@ -185,13 +210,22 @@ async function waitStableSvgBox(frame, selector) {
         ck(tag + ' zero idle iframe writes', styleWrites === 0);
 
         // Verify zero localStorage writes from widget and no page errors
-        ck(tag + ' zero iframe localStorage writes', await page.evaluate(() => window.__iframeStorageWrites) === 0);
+        ck(tag + ' zero iframe localStorage writes', await frame.locator('body').evaluate(() => window.__iframeStorageWrites) === 0);
         ck(tag + ' no page errors', errors.length === 0);
 
         // Verify zero em dashes in rendered widget text or SVG description
         const hasEmDash = await frame.locator('body').evaluate(b => b.innerText.includes('\u2014'));
         ck(tag + ' zero em dashes', !hasEmDash);
 
+        ck(tag + ' widget preserves every saved answer', await page.evaluate(() => localStorage.getItem('christianFoundationsResponses')) === stored);
+        const key = 'question-202-' + questions[0].id;
+        await page.locator('#' + key).fill('SYN-run-edited');
+        await page.reload({ waitUntil: 'domcontentloaded' });
+        await page.locator('#' + key).waitFor();
+        ck(tag + ' edited answer survives reload', await page.locator('#' + key).inputValue() === 'SYN-run-edited');
+        await page.locator('#email-lesson-btn').click();
+        const outgoing = await page.locator('#export-preview-text').textContent();
+        ck(tag + ' Email includes current answers only', outgoing.includes('SYN-run-edited') && questions.slice(1).every(q => outgoing.includes(seed['question-202-' + q.id])) && !outgoing.includes('SYN-101-preserved'));
         await context.close();
       }
     }

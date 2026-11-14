@@ -2,7 +2,13 @@
 
 ## 202-09 RUN from Sin widget upgrade (AAA Studio Wash Edition): November 14, 2026
 
-- **Task / Branch:** `WIDGET-202-09-STARTING-GUN` on `gemini/widget-202-09-starting-gun` (`REVIEW`: ready for Dave review and Codex integration).
+Codex verification: foundation, export 186, storage 64, assets 128, images 1366, iframe 32, RUN browser 294, lesson/backup browser 26 and header browser 4148 across 78 cases all exit 0. Both approved widgets are byte-preserved. Task WIDGET-202-09-STARTING-GUN DONE; exact-head preview and live deployment evidence on PR #234.
+
+Dave approved only the RUN from Sin widget at 3e1325b6ad2af3019ebea5384d805e019a577dfa in PR #234, following already-merged triangle PR #239 (81b028b). Both starting-gun.html and covenant-triangle.html remain byte-identical to their approved commits (3e1325b and 2c2eb09). Main was merged normally into this branch, retaining all newer frame integrations and both board histories. The sole runtime diff from current main is starting-gun.html. All lesson JSON, index.html, question objects/IDs, reading keys, saved answers and unrelated lessons remain unchanged. Component approval only; no new whole-lesson or image approval is inferred.
+
+[Codex integration log](logs/2026-11-14-WIDGET-202-09-STARTING-GUN-codex.md).
+
+- **Task / Branch:** `WIDGET-202-09-STARTING-GUN` on `gemini/widget-202-09-starting-gun` (Dave approved `3e1325b`; Codex owns integration after merged #239).
 - **Changed files:**
   - `discipleship/widgets/starting-gun.html` (upgraded from stick-figure vector diagram to AAA Studio Wash Illustrated Edition: `#2C2416` dark header `RUN from Sin` / `202-09`, stone chasm pit and twilight shadow atmosphere overlay, sunrise summit with golden rays & olive grove crest (`FULL LIFE`), sculpted illustrated runner postures with dynamic running stride + motion streaks + crouching shame silhouette + Harbour Blue running partner, handcrafted timber Cross bridge sweeping from summit down into The Pit, planted hillside `R`, `U`, `N` interactive bubbles, equal-width choice buttons around `<- Choose ->`, bidirectional `<- Pit` / `RUN ->` step strip with `28px+` touch targets, bold-highlighted Georgia Scripture cards with pre-measured `--card-h`, width-only resize, `prefers-reduced-motion: reduce` instant state, zero `localStorage`, zero em dashes)
   - `discipleship/scripts/widget_202_09_starting_gun_browser_check.js` (Playwright regression check across `375`, `390`, `1280`, and reduced motion)
