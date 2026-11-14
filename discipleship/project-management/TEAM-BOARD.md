@@ -1,5 +1,16 @@
 # Growing Together Team Board
 
+## 202-09 RUN from Sin widget upgrade (AAA Studio Wash Edition): November 14, 2026
+
+- **Task / Branch:** `WIDGET-202-09-STARTING-GUN` on `gemini/widget-202-09-starting-gun` (`REVIEW`: ready for Dave review and Codex integration).
+- **Changed files:**
+  - `discipleship/widgets/starting-gun.html` (upgraded from stick-figure vector diagram to AAA Studio Wash Illustrated Edition: `#2C2416` dark header `RUN from Sin` / `202-09`, stone chasm pit and twilight shadow atmosphere overlay, sunrise summit with golden rays & olive grove crest (`FULL LIFE`), sculpted illustrated runner postures with dynamic running stride + motion streaks + crouching shame silhouette + Harbour Blue running partner, handcrafted timber Cross bridge sweeping from summit down into The Pit, planted hillside `R`, `U`, `N` interactive bubbles, equal-width choice buttons around `<- Choose ->`, bidirectional `<- Pit` / `RUN ->` step strip with `28px+` touch targets, bold-highlighted Georgia Scripture cards with pre-measured `--card-h`, width-only resize, `prefers-reduced-motion: reduce` instant state, zero `localStorage`, zero em dashes)
+  - `discipleship/scripts/widget_202_09_starting_gun_browser_check.js` (Playwright regression check across `375`, `390`, `1280`, and reduced motion)
+  - `discipleship/project-management/TEAM-BOARD.md`
+  - `discipleship/project-management/logs/2026-11-14-WIDGET-202-09-STARTING-GUN-gemini.md`
+- **Untouched:** `discipleship/data/202-09.json` prose, Scripture blocks, question objects/IDs, saved answers, `index.html`, and unrelated lessons.
+- **Evidence:** [Gemini handoff log](logs/2026-11-14-WIDGET-202-09-STARTING-GUN-gemini.md)
+
 ## Approved 101-05 potluck buttons, November 14, 2026
 
 Dave approved PR #232 at b83efe3: the compact three-column single-screen checklist, prompt and blue/teal/mustard serving buttons. Approved index.html and 101-05 JSON are byte-preserved. Old numeric slots remain reserved, including combined men's/women's ministry at 11; new choices append at 27 and 28. Other stays visually last without moving its DOM/storage index. All other wording, question objects, readings and aspen artwork remain unchanged. Whole-lesson text remains Silver and Dave edits stay protected.
