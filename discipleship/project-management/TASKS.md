@@ -253,6 +253,6 @@ Plan and standard: [reviews/2026-11-11-series-review.md](reviews/2026-11-11-seri
 
 | [ ] | DAVE-201-10-ROUND2 | REVIEW | Codex / codex/201-10-dave-edits / 2026-11-13 | Dave supplied nine edits | Exact prose edits, Repent/Believe headings, question retirement with saved-answer export, shorter Father section. Tenth item missing. |
 
-| [ ] | INTEGRATE-101-01-PEAKS | ACTIVE | Codex / codex/integrate-peaks217 / 2026-11-13 | Dave approved 832da0a and requested merge | Review approved Peaks and Valleys widget, preserve lesson prose/IDs, test exact preview and automatic live deployment. |
+| [x] | INTEGRATE-101-01-PEAKS | DONE | Codex / codex/integrate-peaks217 / 2026-11-13 | Dave approved 832da0a and requested merge | Approved widget reviewed; keyboard point controls added; lesson prose/nine question objects preserved. All local checks pass. Exact-head preview and live deployment evidence on PR217. |
 | [x] | INTEGRATE-202-05-MOSAIC | DONE | Codex / codex/integrate-mosaic215 / 2026-11-13 | Dave approved e82ed36 and requested merge/wiring | Replace and relocate the embed after the cross paragraph, preserve all lesson copy/questions and valley-road.html, test/deploy PR215. |
 | [ ] | INTEGRATE-STUDIO-V5 | REVIEW | Codex / codex/integrate-studio-v5 / 2026-11-13 | Dave approved PR211 bd7000c and requested wiring/merge | Review approved v5 engine; wire course openers with all original prose/questions preserved; test combined pages and deploy. |
