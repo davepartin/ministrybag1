@@ -62,4 +62,3 @@ Built a single shared marker-drawn interactive SVG widget engine with three thin
   - Phone (`390x844`): `201` unchanged (`cardH=129`, `widgetH=523`), `202` (`cardH=163`, `widgetH=557`), `203` (`cardH=128`, `widgetH=522`), zero horizontal overflow, button heights >= 44px, Back/Next/Start Over verified, keyboard `Enter`/`Space` navigation verified, zero `localStorage` usage, zero page/console errors
   - Desktop (`1280x800`): `cardH` stable (`134` / `132` / `132`), zero overflow
   - `prefers-reduced-motion: reduce`: `stepDur=0` across every step, all active `.mission-arc` strokes at `strokeDashoffset=0`, all `.v5-stage-item.is-visible` at `opacity=1`
-
