@@ -1,831 +1,891 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Grace and Mercy Cycle</title>
-    <style>
-        *, *::before, *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Grace and Mercy Cycle</title>
+<style>
+    :root {
+        --ink: #2C2416;
+        --muted: #6E6559;
+        --linen: #F8F6F1;
+        --tray: #F6F4EE;
+        --border: #EBE5D9;
+        --stage: #FFFFFF;
 
-        body {
-            font-family: 'Georgia', 'Cambria', serif;
-            background: #F8F6F1;
-            color: #2C2416;
-            -webkit-font-smoothing: antialiased;
-            padding: 0;
-            margin: 0;
-        }
+        --gold: #A8760A;
+        --gold-dark: #7D5604;
+        --gold-wash: #FCF2D6;
 
+        --sage: #1F684A;
+        --sage-dark: #164E37;
+        --sage-wash: #E1F1E9;
+
+        --harbour: #2A5B7C;
+        --harbour-dark: #1E435C;
+        --harbour-wash: #E2EEF6;
+
+        --crimson: #8B1A2B;
+        --crimson-dark: #6D1422;
+        --crimson-wash: #F8E8EC;
+
+        --speed-stroke: 0.72s;
+        --speed-arrow: 0.42s;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+        background: var(--linen);
+        color: var(--ink);
+        overflow-x: hidden;
+    }
+
+    .widget-outer {
+        background: var(--stage);
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto;
+        overflow: hidden;
+    }
+
+    @media (min-width: 560px) {
+        body { padding: 14px; }
         .widget-outer {
-            background: #FFFFFF;
-            border-radius: 0;
-            overflow: hidden;
-            box-shadow: none;
-            border: none;
-            max-width: 100%;
-            width: 100%;
-            margin: 0;
-            position: relative;
-        }
-
-        @media (min-width: 560px) {
-            body {
-                padding: 16px;
-                background: #F8F6F1;
-            }
-            .widget-outer {
-                border-radius: 12px;
-                box-shadow: 0 6px 20px rgba(44, 36, 22, 0.08);
-                border: 1px solid #EBE5D9;
-                max-width: 460px;
-                margin: 0 auto;
-            }
-        }
-
-        button {
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        button:focus-visible,
-        .grace-box:focus-visible {
-            outline: 3px solid #2C2416;
-            outline-offset: 2px;
-        }
-
-        .title-bar {
-            background: #2C2416;
-            padding: 14px 20px 12px;
-            text-align: center;
-        }
-
-        .title-bar h1 {
-            font-size: 20px;
-            font-weight: 700;
-            color: #FAF8F3;
-            margin: 0;
-            line-height: 1.2;
-            font-family: 'Trebuchet MS', 'Inter', sans-serif;
-            letter-spacing: 0.1px;
-        }
-
-        .title-bar p {
-            font-size: 12px;
-            color: #FFFFFF;
-            margin: 5px 0 0 0;
-            font-family: 'Georgia', 'Cambria', serif;
-        }
-
-        .diagram-wrapper {
-            padding: 18px 0 0;
-            display: flex;
-            justify-content: center;
-        }
-
-        .diagram-container {
-            position: relative;
-            overflow: visible;
-        }
-
-        /* Boxes */
-        .grace-box {
-            position: absolute;
-            padding: 0;
-            border-radius: 8px;
-            cursor: default;
-            transition: all 0.4s ease;
-            font-family: 'Trebuchet MS', sans-serif;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            -webkit-tap-highlight-color: transparent;
-            z-index: 2;
-        }
-
-        .grace-box.active,
-        .grace-box.overview-box {
-            cursor: pointer;
-        }
-
-        .grace-box .box-label {
-            font-size: 19px;
-            font-weight: 700;
-            margin-bottom: 4px;
-            transition: color 0.4s ease;
-        }
-
-        .grace-box .box-desc {
-            font-size: 13px;
-            line-height: 1.4;
-            transition: color 0.4s ease;
-        }
-
-        .grace-box .box-desc .big {
-            font-weight: 800;
-            transition: color 0.4s ease;
-        }
-
-        /* Cross beams */
-        .cross-beam {
-            position: absolute;
-            background-color: #D9CEBF;
-            border-radius: 4px;
-            z-index: 1;
-            pointer-events: none;
-            transition: opacity 0.8s ease;
-            opacity: 0;
-        }
-
-        .cross-beam.visible {
-            opacity: 1;
-        }
-
-        /* Arrow SVG */
-        .arrow-group {
-            transition: opacity 0.5s ease;
-            opacity: 0;
-        }
-
-        .arrow-group.visible {
-            opacity: 1;
-        }
-
-        /* Intro overlay */
-        .intro-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 20;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 20px;
-            pointer-events: none;
-        }
-
-        .intro-overlay .intro-verse {
-            font-size: 22px;
-            line-height: 1.5;
-            color: #2C2416;
-            font-family: 'Georgia', 'Cambria', serif;
-            font-style: italic;
-            margin: 0 0 8px 0;
-            font-weight: 400;
-            text-shadow: 0 1px 4px rgba(250,248,243,0.9);
-        }
-
-        .intro-overlay .intro-ref {
-            font-size: 13px;
-            color: #9B917F;
-            font-family: 'Trebuchet MS', sans-serif;
-            font-weight: 600;
-            margin: 0;
-        }
-
-        /* Verse card */
-        .verse-card-wrapper {
-            max-width: 640px;
-            margin: 14px auto 0;
-            padding: 0 16px 28px;
-        }
-
-        .verse-card {
-            background: #FFFFFF;
+            max-width: 460px;
             border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 2px 14px rgba(44,36,22,0.06);
-            animation: fadeSlide 0.35s ease;
+            border: 1px solid var(--border);
+            box-shadow: 0 6px 20px rgba(44, 36, 22, 0.08);
         }
+    }
 
-        .verse-card-bar {
-            height: 4px;
+    /* Studio Wash Header */
+    .title-bar {
+        background: var(--ink);
+        padding: 10px 14px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+    }
+
+    .title-bar h1 {
+        font: 600 17px/1.15 system-ui, -apple-system, sans-serif;
+        color: #FAF8F3;
+        letter-spacing: 0.2px;
+        margin: 0;
+        text-align: left;
+    }
+
+    .course-tag {
+        font: 600 11px/1 system-ui, -apple-system, sans-serif;
+        letter-spacing: 0.9px;
+        text-transform: uppercase;
+        color: #E5DEC9;
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+
+    /* Diagram Stage */
+    .diagram-wrapper {
+        width: 100%;
+        padding: 10px 8px 6px;
+        background: var(--stage);
+    }
+
+    .diagram-container {
+        position: relative;
+        width: 100%;
+        height: 256px;
+        background: var(--tray);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .widget-outer.overview-mode .diagram-wrapper {
+        padding: 8px 8px 4px;
+    }
+
+    .widget-outer.overview-mode .diagram-container {
+        height: 244px;
+    }
+
+    .cross-container {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        z-index: 2;
+    }
+
+    .cross-svg {
+        width: 100%;
+        height: 100%;
+        display: block;
+    }
+
+    .cross-halo {
+        opacity: 0;
+        transition: opacity 0.45s ease;
+    }
+
+    .cross-container.visible .cross-halo {
+        opacity: 1;
+    }
+
+    .cross-guides {
+        opacity: 0.72;
+        transition: opacity 0.35s ease;
+    }
+
+    .cross-container.visible .cross-guides {
+        opacity: 0;
+    }
+
+    .cross-draw {
+        stroke-dasharray: 220;
+        stroke-dashoffset: 220;
+        opacity: 0;
+        transition: stroke-dashoffset var(--speed-stroke) cubic-bezier(0.22, 1, 0.36, 1), opacity 0.25s ease;
+    }
+
+    .cross-container.visible .cross-draw {
+        stroke-dashoffset: 0;
+        opacity: 1;
+    }
+
+    /* Perimeter Arrows */
+    .arrows-svg {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 3;
+    }
+
+    .arrow-group {
+        opacity: 0;
+        transition: opacity var(--speed-arrow) ease;
+    }
+
+    .arrow-group.visible {
+        opacity: 1;
+    }
+
+    .arrow-line {
+        stroke-dasharray: 90;
+        stroke-dashoffset: 90;
+        transition: stroke-dashoffset var(--speed-arrow) ease-out;
+    }
+
+    .arrow-group.visible .arrow-line {
+        stroke-dashoffset: 0;
+    }
+
+    /* Four Corner Quadrant Boxes */
+    .grace-box {
+        position: absolute;
+        width: 39%;
+        max-width: 162px;
+        min-height: 76px;
+        border-radius: 9px;
+        background: var(--stage);
+        border: 1.5px solid var(--border);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 5px 6px 6px;
+        opacity: 0;
+        z-index: 4;
+        box-shadow: 0 2px 6px rgba(44, 36, 22, 0.05);
+        transition: opacity 0.35s ease, transform 0.35s ease, background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .grace-box.visible { opacity: 1; }
+    .grace-box.active {
+        opacity: 1;
+        box-shadow: 0 3px 10px rgba(44, 36, 22, 0.12);
+    }
+    .grace-box.past { opacity: 0.94; }
+
+    button.grace-box {
+        appearance: none;
+        font-family: inherit;
+        color: inherit;
+    }
+
+    .grace-box.overview-box {
+        cursor: pointer;
+        min-height: 74px;
+    }
+
+    .grace-box.overview-box:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 10px rgba(44, 36, 22, 0.14);
+    }
+
+    .grace-box.overview-box:focus-visible {
+        outline: 2.5px solid var(--ink);
+        outline-offset: 2px;
+    }
+
+    /* Corner Coordinates */
+    .box-0 { bottom: 6px; left: 6px; }
+    .box-1 { top: 6px; left: 6px; }
+    .box-2 { top: 6px; right: 6px; }
+    .box-3 { bottom: 6px; right: 6px; }
+
+    .box-label {
+        font-size: 13px;
+        font-weight: 700;
+        line-height: 1.15;
+        letter-spacing: 0.2px;
+        margin-bottom: 2px;
+    }
+
+    .box-desc {
+        font-size: 10.2px;
+        line-height: 1.24;
+        color: var(--ink);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .grace-box.visible .box-desc { opacity: 1; }
+
+    .box-desc .big {
+        font-weight: 800;
+        letter-spacing: 0.45px;
+        display: block;
+        margin: 1px 0;
+    }
+
+    /* Quadrant Studio Wash Color Pairs */
+    .box-0.active { border: 2px solid var(--sage); background: var(--sage-wash); }
+    .box-0 .box-label, .box-0 .big { color: var(--sage-dark); }
+    .box-0.past { border-color: #9AC6B1; background: #F5FAF7; }
+
+    .box-1.active { border: 2px solid var(--crimson); background: var(--crimson-wash); }
+    .box-1 .box-label, .box-1 .big { color: var(--crimson-dark); }
+    .box-1.past { border-color: #D9A4AE; background: #FCF6F7; }
+
+    .box-2.active { border: 2px solid var(--harbour); background: var(--harbour-wash); }
+    .box-2 .box-label, .box-2 .big { color: var(--harbour-dark); }
+    .box-2.past { border-color: #A7C4D8; background: #F4F9FC; }
+
+    .box-3.active { border: 2px solid var(--gold); background: var(--gold-wash); }
+    .box-3 .box-label, .box-3 .big { color: var(--gold-dark); }
+    .box-3.past { border-color: #DFC383; background: #FDFAF1; }
+
+    /* Teaching Card + Intro + Overview Panel */
+    .card-area {
+        width: 100%;
+        padding: 4px 10px 10px;
+        background: var(--stage);
+        min-height: var(--card-h, 198px);
+        display: flex;
+        flex-direction: column;
+    }
+
+    .widget-outer.overview-mode .card-area {
+        min-height: 0;
+        padding: 4px 10px 10px;
+    }
+
+    .intro-overlay {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 12px 14px;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        background: var(--tray);
+        gap: 10px;
+    }
+
+    .intro-quote {
+        font-size: 14.5px;
+        color: var(--ink);
+        line-height: 1.45;
+        font-style: italic;
+        font-weight: 500;
+        max-width: 310px;
+    }
+
+    .intro-ref {
+        font-size: 12px;
+        color: var(--muted);
+        font-style: normal;
+        font-weight: 600;
+        display: block;
+        margin-top: 4px;
+    }
+
+    .btn-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .overview-panel {
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        background: var(--tray);
+        padding: 10px 12px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        text-align: center;
+    }
+
+    .overview-caption {
+        font-size: 13.5px;
+        font-weight: 700;
+        color: var(--crimson-dark);
+        line-height: 1.3;
+    }
+
+    .verse-card {
+        flex: 1;
+        border-radius: 10px;
+        overflow: hidden;
+        border: 1px solid var(--border);
+        background: var(--stage);
+        display: flex;
+        flex-direction: column;
+    }
+
+    .verse-card-bar {
+        height: 4px;
+        width: 100%;
+        flex-shrink: 0;
+    }
+
+    .verse-card-content {
+        padding: 10px 12px 10px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .verse-card-title {
+        font-size: 15px;
+        font-weight: 600;
+        color: var(--ink);
+        margin-bottom: 5px;
+        line-height: 1.25;
+    }
+
+    .verse-card-text {
+        font-size: 13.5px;
+        line-height: 1.48;
+        color: var(--ink);
+        margin-bottom: 6px;
+    }
+
+    .verse-card-ref {
+        font-size: 11.5px;
+        font-weight: 600;
+        color: var(--muted);
+        text-align: right;
+    }
+
+    /* Controls & Wordless Progress Dots */
+    .nav-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 6px;
+        padding: 8px 0 0;
+        margin-top: auto;
+    }
+
+    .nav-right {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .nav-btn, .begin-btn, .overview-btn {
+        appearance: none;
+        font-family: inherit;
+        white-space: nowrap;
+        min-height: 36px;
+        padding: 7px 12px;
+        border-radius: 999px;
+        border: 1.5px solid var(--border);
+        background: var(--stage);
+        font-size: 12.5px;
+        font-weight: 600;
+        color: var(--ink);
+        cursor: pointer;
+        transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+    }
+
+    .nav-btn:hover, .overview-btn:hover {
+        background: var(--tray);
+        border-color: #CFC6B4;
+    }
+
+    .nav-btn:focus-visible, .begin-btn:focus-visible, .overview-btn:focus-visible {
+        outline: 2.5px solid var(--ink);
+        outline-offset: 2px;
+    }
+
+    .nav-btn.primary, .begin-btn {
+        background: var(--ink);
+        color: #FAF8F3;
+        border-color: var(--ink);
+    }
+
+    .nav-btn.primary:hover, .begin-btn:hover {
+        background: #3F3421;
+        border-color: #3F3421;
+    }
+
+    .overview-btn {
+        color: var(--muted);
+        border-color: #DED7C8;
+        padding: 7px 11px;
+    }
+
+    .overview-btn:hover {
+        color: var(--ink);
+    }
+
+    .dot-nav {
+        display: flex;
+        gap: 6px;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 999px;
+        background: #DCD5C7;
+        transition: transform 0.2s ease, background-color 0.2s ease;
+    }
+
+    .dot.active {
+        transform: scale(1.25);
+    }
+
+    @media (max-width: 395px) {
+        .grace-box { width: 39.5%; padding: 4px 5px 5px; }
+        .box-label { font-size: 12.5px; }
+        .box-desc { font-size: 9.8px; }
+        .nav-btn, .begin-btn, .overview-btn { padding: 6px 9px; font-size: 11.5px; }
+        .dot-nav { gap: 4px; }
+        .dot { width: 6px; height: 6px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+            transition: none !important;
+            animation: none !important;
         }
-
-        .verse-card-content {
-            padding: 16px 20px 18px;
-            min-height: 175px;
+        .cross-container.visible .cross-draw,
+        .arrow-group.visible .arrow-line {
+            stroke-dashoffset: 0 !important;
         }
-
-        .verse-card-title {
-            font-size: 17px;
-            font-weight: 400;
-            color: #5A4E3C;
-            margin: 0 0 10px 0;
-            line-height: 1.2;
-            font-family: 'Georgia', 'Cambria', serif;
-        }
-
-        .verse-card-text {
-            font-size: 14px;
-            line-height: 1.65;
-            color: #3D3426;
-            margin: 0 0 8px 0;
-        }
-
-        .verse-card-ref {
-            font-size: 11px;
-            color: #9B917F;
-            margin: 0;
-            font-weight: 600;
-            font-family: 'Trebuchet MS', sans-serif;
-        }
-
-        /* Navigation */
-        .nav-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 12px;
-            padding: 0 2px;
-        }
-
-        .nav-btn {
-            background: transparent;
-            border: 1.5px solid #D4CFC4;
-            border-radius: 10px;
-            padding: 8px 14px;
-            min-height: 44px;
-            font-size: 12px;
-            font-family: 'Trebuchet MS', sans-serif;
-            cursor: pointer;
-            font-weight: 600;
-        }
-
-        .nav-btn.primary {
-            color: #fff;
-            border: none;
-        }
-
-        .nav-btn:disabled {
-            color: #CCC5B8;
-            cursor: default;
-        }
-
-        .dot-nav {
-            display: flex;
-            gap: 5px;
-            align-items: center;
-        }
-
-        .dot {
-            height: 8px;
-            border-radius: 4px;
-            transition: all 0.3s ease;
-            cursor: default;
-        }
-
-        .dot.active-dot {
-            cursor: pointer;
-        }
-
-        /* Begin button */
-        .begin-wrapper {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-            padding: 16px 16px 20px;
-        }
-
-        .begin-btn {
-            background: #2C2416;
-            border: 1.5px solid #2C2416;
-            border-radius: 10px;
-            padding: 10px 28px;
-            min-height: 44px;
-            font-size: 14px;
-            font-family: 'Trebuchet MS', sans-serif;
-            color: #fff;
-            cursor: pointer;
-            font-weight: 600;
-            box-shadow: 0 2px 8px rgba(44,36,22,0.2);
-        }
-
-        .overview-btn {
-            background: transparent;
-            border: 1.5px solid #D4CFC4;
-            border-radius: 10px;
-            padding: 10px 16px;
-            min-height: 44px;
-            font-size: 13px;
-            font-family: 'Trebuchet MS', sans-serif;
-            color: #5A4E3C;
-            cursor: pointer;
-            font-weight: 600;
-        }
-
-        .overview-panel {
-            max-width: 640px;
-            margin: 8px auto 0;
-            padding: 0 16px 16px;
-        }
-
-        .overview-caption {
-            font-size: 15px;
-            line-height: 1.35;
-            color: #3D3426;
-            text-align: center;
-            margin: 0 0 10px;
-            font-family: 'Georgia', 'Cambria', serif;
-        }
-
-        .widget-outer.overview-mode .title-bar {
-            padding: 8px 16px;
-        }
-
-        .widget-outer.overview-mode .title-bar p {
-            display: none;
-        }
-
-        .widget-outer.overview-mode .diagram-wrapper {
-            padding-top: 8px;
-        }
-
-        @keyframes fadeSlide {
-            from { opacity: 0; transform: translateY(6px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-    
-        /* intro verse sits on a soft panel so faded box labels don't show through */
-        .intro-overlay > div { background: rgba(255,255,255,0.92); border-radius: 12px; padding: 12px 14px; }
-
-        /* ---- A-standard chrome: matches three-spaces, wheel, shape, covenant-triangle, starting-gun, mission-map ---- */
-        button { font-family: 'Trebuchet MS', sans-serif; -webkit-tap-highlight-color: transparent; }
-        button:focus-visible { outline: 3px solid #2C2416; outline-offset: 2px; }
-        .title-bar { background: #1D6B3F; padding: 10px 16px; text-align: center; }
-        .title-bar h1 { font-size: 19px; font-weight: 700; color: #FFFFFF; margin: 0; line-height: 1.2; font-family: 'Trebuchet MS', 'Inter', sans-serif; letter-spacing: 0; }
-        .title-bar p { display: none; }
-        #card-area { background-color: #F6F4EE; border-top: 1px solid #EBE5D9; padding-top: 8px; }
-        .verse-card-wrapper { margin: 0 auto; padding: 0 12px 10px; max-width: 460px; }
-        .verse-card-content { padding: 10px 16px; height: auto; min-height: var(--card-h, 112px); overflow: visible; justify-content: flex-start; }
-        .verse-card-title { font-family: 'Trebuchet MS', sans-serif; font-size: 16px; font-weight: 700; line-height: 1.3; margin: 0 0 4px; }
-        .verse-card-text { font-size: 15px; line-height: 1.4; color: #3D3426; margin: 0; flex-grow: 0; }
-        .verse-card-ref { font-family: 'Trebuchet MS', sans-serif; font-size: 13px; font-weight: 400; color: #6B6358; margin: 4px 0 0; }
-        .nav-bar { display: flex; justify-content: space-between; align-items: center; margin-top: 10px; padding: 0 2px; gap: 8px; }
-        .nav-btn { background: transparent; border: 1.5px solid #D4CFC4; border-radius: 10px; padding: 10px 12px; min-height: 44px; min-width: 112px; text-align: center; font-size: 14px; font-weight: 600; color: #5A4E3C; cursor: pointer; font-family: 'Trebuchet MS', sans-serif; }
-        .nav-btn.primary { color: #FFFFFF; border: none; background: #1D6B3F !important; box-shadow: none !important; }
-        .nav-btn[disabled] { opacity: 0.35; cursor: default; }
-        .begin-btn { background: #1D6B3F; color: #FFFFFF; border: none; border-radius: 10px; padding: 12px 28px; min-height: 44px; font-size: 16px; font-weight: 700; cursor: pointer; box-shadow: none; font-family: 'Trebuchet MS', sans-serif; }
-        .overview-btn { background: transparent; border: 1.5px solid #D4CFC4; border-radius: 10px; padding: 10px 16px; min-height: 44px; font-size: 14px; color: #5A4E3C; cursor: pointer; font-weight: 600; }
-        .dot-nav { flex: 1; justify-content: center; }
-        #measure { position: absolute; left: 0; top: 0; visibility: hidden; pointer-events: none; }
-    </style>
+    }
+</style>
 </head>
 <body>
 
-<div class="widget-outer">
+<div class="widget-outer" id="widget-outer">
+    <div class="title-bar">
+        <h1>The Grace and Mercy Cycle</h1>
+        <span class="course-tag">201-08</span>
+    </div>
 
-<div class="title-bar">
-    <h1>The Grace and Mercy Cycle</h1>
-    <p>"For by grace you have been saved through faith."</p>
-</div>
+    <div class="diagram-wrapper">
+        <div class="diagram-container" id="diagram">
+            <div class="cross-container" id="cross-container" aria-hidden="true">
+                <svg class="cross-svg" viewBox="0 0 400 250" preserveAspectRatio="xMidYMid meet">
+                    <!-- Subtle negative-space guides pointing inward -->
+                    <g class="cross-guides" stroke="#DED7C8" stroke-width="1" stroke-dasharray="3 4">
+                        <line x1="200" y1="74" x2="200" y2="176" />
+                        <line x1="158" y1="112" x2="242" y2="112" />
+                    </g>
+                    <!-- Soft crimson wash revealed on step 5 / overview -->
+                    <ellipse class="cross-halo" cx="200" cy="118" rx="34" ry="42" fill="#F8E8EC" />
+                    <!-- Center Cross in the negative space: double-hairline Deep Crimson -->
+                    <path class="cross-draw" d="M 200 78 L 200 168" fill="none" stroke="#8B1A2B" stroke-width="3.5" stroke-linecap="round" />
+                    <path class="cross-draw" d="M 168 110 L 232 110" fill="none" stroke="#8B1A2B" stroke-width="3.5" stroke-linecap="round" />
+                    <path class="cross-draw" d="M 200 78 L 200 168" fill="none" stroke="#C9596B" stroke-width="1.1" stroke-linecap="round" />
+                    <path class="cross-draw" d="M 168 110 L 232 110" fill="none" stroke="#C9596B" stroke-width="1.1" stroke-linecap="round" />
+                </svg>
+            </div>
 
-<div class="diagram-wrapper">
-    <div class="diagram-container" id="diagram"></div>
-</div>
+            <svg class="arrows-svg" viewBox="0 0 400 250" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+                <!-- Arrow 0: Mercy -> Justified (left vertical up) -->
+                <g class="arrow-group" id="arrow-0">
+                    <path class="arrow-line" d="M 68 151 L 68 101" stroke="#1F684A" stroke-width="2.2" fill="none" stroke-linecap="round" />
+                    <polygon points="62,104 68,94 74,104" fill="#1F684A" />
+                </g>
+                <!-- Arrow 1: Justified -> Righteous (top horizontal right) -->
+                <g class="arrow-group" id="arrow-1">
+                    <path class="arrow-line" d="M 170 44 L 228 44" stroke="#8B1A2B" stroke-width="2.2" fill="none" stroke-linecap="round" />
+                    <polygon points="224,38 235,44 224,50" fill="#8B1A2B" />
+                </g>
+                <!-- Arrow 2: Righteous -> Grace (right vertical down) -->
+                <g class="arrow-group" id="arrow-2">
+                    <path class="arrow-line" d="M 332 98 L 332 148" stroke="#2A5B7C" stroke-width="2.2" fill="none" stroke-linecap="round" />
+                    <polygon points="326,144 332,154 338,144" fill="#2A5B7C" />
+                </g>
+                <!-- Arrow 3: Grace -> Mercy (bottom horizontal left) -->
+                <g class="arrow-group" id="arrow-3">
+                    <path class="arrow-line" d="M 230 206 L 172 206" stroke="#A8760A" stroke-width="2.2" fill="none" stroke-linecap="round" />
+                    <polygon points="176,200 165,206 176,212" fill="#A8760A" />
+                </g>
+            </svg>
 
-<div id="card-area"></div>
+            <div class="grace-box box-0" id="box-0">
+                <div class="box-label">Mercy</div>
+                <div class="box-desc" id="desc-0"></div>
+            </div>
 
+            <div class="grace-box box-1" id="box-1">
+                <div class="box-label">Justified</div>
+                <div class="box-desc" id="desc-1"></div>
+            </div>
+
+            <div class="grace-box box-2" id="box-2">
+                <div class="box-label">Righteous</div>
+                <div class="box-desc" id="desc-2"></div>
+            </div>
+
+            <div class="grace-box box-3" id="box-3">
+                <div class="box-label">Grace</div>
+                <div class="box-desc" id="desc-3"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-area" id="card-area" aria-live="polite"></div>
 </div>
 
 <script>
-    // ---- Data ----
-    const stops = [
+(function () {
+    'use strict';
+
+    var stops = [
         {
-            id: "mercy", label: "Mercy",
-            cardTitle: 'God\'s Great Love and <span style="font-weight:700;color:#5B8A72">Mercy</span>',
-            color: "#5B8A72", borderColor: "#5B8A72", bgColor: "#EFF6F2",
-            ref: "Ephesians 2:4-5 (ESV)",
+            id: 'mercy',
+            label: 'Mercy',
+            cardTitle: 'God\'s Great Love and <span style="font-weight:700;color:#1F684A">Mercy</span>',
+            color: '#1F684A',
+            borderColor: '#1F684A',
+            bgColor: '#E1F1E9',
+            ref: 'Ephesians 2:4-5 (ESV)',
             verse: 'But God, being rich in <b>mercy</b>, because of the <b>great love</b> with which he loved us, even when we were dead in our trespasses, made us <b>alive</b> together with Christ - by <b>grace</b> you have been <b>saved</b>.'
         },
         {
-            id: "justified", label: "Justified",
-            cardTitle: '<span style="font-weight:700;color:#8B4A5E">Justified</span>: Declared Righteous',
-            color: "#8B4A5E", borderColor: "#8B4A5E", bgColor: "#F6EFF2",
-            ref: "Romans 5:9 (ESV)",
+            id: 'justified',
+            label: 'Justified',
+            cardTitle: '<span style="font-weight:700;color:#8B1A2B">Justified</span>: Declared Righteous',
+            color: '#8B1A2B',
+            borderColor: '#8B1A2B',
+            bgColor: '#F8E8EC',
+            ref: 'Romans 5:9 (ESV)',
             verse: 'Since, therefore, we have now been <b>justified</b> by his <b>blood</b>, much more shall we be saved by him from the <b>wrath</b> of God.'
         },
         {
-            id: "righteous", label: "Righteous",
-            cardTitle: 'Clothed in <span style="font-weight:700;color:#4A6B8B">Righteousness</span>',
-            color: "#4A6B8B", borderColor: "#4A6B8B", bgColor: "#EFF3F6",
-            ref: "2 Corinthians 5:21 (ESV)",
+            id: 'righteous',
+            label: 'Righteous',
+            cardTitle: 'Clothed in <span style="font-weight:700;color:#2A5B7C">Righteousness</span>',
+            color: '#2A5B7C',
+            borderColor: '#2A5B7C',
+            bgColor: '#E2EEF6',
+            ref: '2 Corinthians 5:21 (ESV)',
             verse: 'For our sake he made him to be sin who knew <b>no sin</b>, so that in him we might become the <b>righteousness</b> of God.'
         },
         {
-            id: "overflow", label: "Grace",
-            cardTitle: 'We Get and Give <span style="font-weight:700;color:#9B7B2F">Grace</span>',
-            color: "#9B7B2F", borderColor: "#9B7B2F", bgColor: "#FBF5E6",
-            ref: "Ephesians 2:8-10 (ESV)",
+            id: 'overflow',
+            label: 'Grace',
+            cardTitle: 'We Get and Give <span style="font-weight:700;color:#A8760A">Grace</span>',
+            color: '#A8760A',
+            borderColor: '#A8760A',
+            bgColor: '#FCF2D6',
+            ref: 'Ephesians 2:8-10 (ESV)',
             verse: 'For by <b>grace</b> you have been saved through faith. And this is not your own doing; it is the <b>gift</b> of God, not a result of works, so that no one may boast. For we are his <b>workmanship</b>, created in Christ Jesus for <b>good works</b>...'
         },
         {
-            id: "cross", label: "The Cross",
-            cardTitle: 'Give <span style="font-weight:700;color:#9B7B2F">Grace</span>, Show <span style="font-weight:700;color:#5B8A72">Mercy</span>, &amp; <span style="font-weight:700;color:#8B4A5E">Forgive</span>',
-            color: "#6B5232", borderColor: "#6B5232", bgColor: "#F5EDE3",
-            ref: "Ephesians 4:32 (ESV)",
+            id: 'cross',
+            label: 'The Cross',
+            cardTitle: 'Give <span style="font-weight:700;color:#A8760A">Grace</span>, Show <span style="font-weight:700;color:#1F684A">Mercy</span>, &amp; <span style="font-weight:700;color:#8B1A2B">Forgive</span>',
+            color: '#8B1A2B',
+            borderColor: '#8B1A2B',
+            bgColor: '#F8E8EC',
+            ref: 'Ephesians 4:32 (ESV)',
             verse: 'Be kind to one another, tenderhearted, forgiving one another, <b>as God in Christ forgave you</b>.'
         }
     ];
 
-    // ---- Layout constants ----
-    const BOX = 138, BOX_H_TOP = 116, BOX_H_BOT = 130, GAP = 50, GAP_V = 50;
-    const W = BOX * 2 + GAP, H = BOX_H_TOP + GAP_V + BOX_H_BOT;
-    const rightL = BOX + GAP, botTop = BOX_H_TOP + GAP_V;
-    const leftCx = BOX / 2, rightCx = BOX + GAP + BOX / 2;
-    const topArrowY = BOX_H_TOP * 0.5;
-    const botArrowY = botTop + BOX_H_BOT * 0.78 - 3;
-    const midX = BOX + GAP / 2, midY = BOX_H_TOP + GAP_V / 2;
-    const BEAM = 45;
-    const ARR = "#6B6358", SW = 2, HEAD = 8;
-    const greyBorder = "#D4CFC4", greyBg = "#F5F3EF", greyText = "#B8B1A4";
-
-    let step = -1;
-    let mode = 'guide';
-    let resumeStep = -1;
-    let pendingFocus = null;
-
-    // ---- Box positions: [idx, top, left, height] ----
-    // Top-left=Grace(3), Top-right=Mercy(0), Bot-right=Justified(1), Bot-left=Righteous(2)
-    const boxPositions = [
-        { idx: 0, top: 0, left: BOX + GAP, height: BOX_H_TOP },      // Mercy
-        { idx: 1, top: botTop, left: BOX + GAP, height: BOX_H_BOT },  // Justified
-        { idx: 2, top: botTop, left: 0, height: BOX_H_BOT },          // Righteous
-        { idx: 3, top: 0, left: 0, height: BOX_H_TOP }                // Grace
+    var boxDescriptions = [
+        { label: 'Mercy', lines: ['God spares me', '<span class="big">JUDGMENT</span>', 'I deserve'], bigSize: '13.5px' },
+        { label: 'Justified', lines: ['God', '<span class="big">DECLARES</span>', 'me righteous'], bigSize: '13.5px' },
+        { label: 'Righteous', lines: ['Christ is my', '<span class="big">RIGHT</span>', 'standing'], bigSize: '14.5px' },
+        { label: 'Grace', lines: ['getting a', '<span class="big">GIFT</span>', "you don't deserve"], bigSize: '14.5px' }
     ];
 
-    const boxDescriptions = [
-        { label: "Mercy", lines: ['God spares me', '<span class="big">JUDGMENT</span>', 'I deserve'], bigSize: '15px' },
-        { label: "Justified", lines: ['God', '<span class="big">DECLARES</span>', 'me righteous'], bigSize: '15px' },
-        { label: "Righteous", lines: ['Christ is my', '<span class="big">RIGHT</span>', 'standing'], bigSize: '16px' },
-        { label: "Grace", lines: ['getting a', '<span class="big">GIFT</span>', "you don't deserve"], bigSize: '16px' }
-    ];
+    var outer = document.getElementById('widget-outer');
+    var diagram = document.getElementById('diagram');
+    var cardArea = document.getElementById('card-area');
+    var crossContainer = document.getElementById('cross-container');
+    var step = -1;
+    var mode = 'step';
+    var savedStep = -1;
 
-    function isOverview() { return mode === 'overview'; }
-
-    function isActive(idx) {
-        if (isOverview()) return idx <= 3;
-        return idx <= step || step === 4;
+    function isOverview() {
+        return mode === 'overview';
     }
 
-    function setFocus(name) {
-        pendingFocus = name;
+    function descHtml(index) {
+        var bd = boxDescriptions[index];
+        return bd.lines.join('<br>').replace(
+            '<span class="big">',
+            '<span class="big" style="font-size:' + bd.bigSize + '">'
+        );
     }
 
-    function applyFocus() {
-        if (!pendingFocus) return;
-        const el = document.querySelector('[data-control="' + pendingFocus + '"]');
-        pendingFocus = null;
-        if (el && typeof el.focus === 'function') el.focus();
-    }
-
-    function goOverview() {
-        resumeStep = step;
-        mode = 'overview';
-        setFocus('return');
-        render();
-    }
-
-    function returnToSteps() {
-        mode = 'guide';
-        step = resumeStep;
-        setFocus(step === -1 ? 'begin' : (step === stops.length - 1 ? 'restart' : 'next'));
-        render();
-    }
-
-    function restartToBegin() {
-        mode = 'guide';
-        step = -1;
-        resumeStep = -1;
-        setFocus('begin');
-        render();
-    }
-
-    function openStep(idx) {
-        mode = 'guide';
-        step = idx;
-        resumeStep = idx;
-        setFocus(idx === stops.length - 1 ? 'restart' : 'next');
-        render();
-    }
-
-    function render() {
-        const showIntro = !isOverview() && step === -1;
-        const allDim = showIntro;
-        const showCross = isOverview() || step === 4;
-        const current = step >= 0 ? stops[step] : stops[0];
-        document.querySelector('.widget-outer').classList.toggle('overview-mode', isOverview());
-
-        const diagram = document.getElementById('diagram');
-        diagram.style.width = W + 'px';
-        diagram.style.height = H + 'px';
-        diagram.innerHTML = '';
-
-        // -- Cross beams --
-        const vTop = midY - BEAM / 2 - GAP_V / 2 - 40;
-        const vHeight = botArrowY - vTop;
-        const vTrimmed = vHeight * 0.95;
-        const vOffset = (vHeight - vTrimmed) / 2;
-        const vBeam = document.createElement('div');
-        vBeam.className = 'cross-beam' + (showCross ? ' visible' : '');
-        vBeam.style.cssText = `left:${midX - BEAM/2}px;top:${vTop + vOffset + 6 + 5 + 2.5 + 3 - 2 - 10 - 6}px;width:${BEAM}px;height:${vTrimmed - 10 - 5 + 3 + 20}px;`;
-        diagram.appendChild(vBeam);
-
-        const hLeft = midX - BEAM / 2 - GAP / 2 - 40;
-        const hWidth = BEAM + GAP + 80;
-        const hTrimmed = hWidth * 0.95;
-        const hOffset = (hWidth - hTrimmed) / 2;
-        const hBeam = document.createElement('div');
-        hBeam.className = 'cross-beam' + (showCross ? ' visible' : '');
-        hBeam.style.cssText = `left:${hLeft + hOffset + 5 + 2.5 - 10 - 5}px;top:${midY - BEAM/2}px;width:${hTrimmed - 10 - 5 + 20 + 10}px;height:${BEAM}px;`;
-        diagram.appendChild(hBeam);
-
-        // -- SVG Arrows --
-        const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-        svg.style.cssText = 'position:absolute;top:0;left:0;z-index:1;';
-        svg.setAttribute('width', W);
-        svg.setAttribute('height', H);
-        svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
-
-        function addArrow(minStep, x1, y1, x2, y2, tipX, tipY, tipPoints) {
-            const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
-            g.classList.add('arrow-group');
-            if (isOverview() || step >= minStep) g.classList.add('visible');
-            const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-            line.setAttribute('x1', x1); line.setAttribute('y1', y1);
-            line.setAttribute('x2', x2); line.setAttribute('y2', y2);
-            line.setAttribute('stroke', ARR); line.setAttribute('stroke-width', SW);
-            g.appendChild(line);
-            const poly = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
-            poly.setAttribute('points', tipPoints);
-            poly.setAttribute('fill', ARR);
-            g.appendChild(poly);
-            svg.appendChild(g);
+    function setBoxElement(index, asButton) {
+        var oldEl = document.getElementById('box-' + index);
+        var targetTag = asButton ? 'BUTTON' : 'DIV';
+        if (oldEl.tagName === targetTag) {
+            return oldEl;
         }
+        var el = document.createElement(targetTag.toLowerCase());
+        el.id = oldEl.id;
+        el.className = 'grace-box box-' + index;
+        if (asButton) {
+            el.type = 'button';
+            el.setAttribute('data-control', 'box-' + boxDescriptions[index].label.toLowerCase());
+            el.setAttribute('aria-label', boxDescriptions[index].label + ': ' + boxDescriptions[index].lines.join(' ').replace(/<[^>]+>/g, '') + '. Open step.');
+            el.addEventListener('click', function () {
+                selectStop(index);
+            });
+        }
+        el.innerHTML =
+            '<div class="box-label">' + boxDescriptions[index].label + '</div>' +
+            '<div class="box-desc" id="desc-' + index + '"></div>';
+        oldEl.replaceWith(el);
+        return el;
+    }
 
-        // Arrow 1: Mercy → Justified DOWN
-        addArrow(1, rightCx, BOX_H_TOP, rightCx, botTop - HEAD - 1, 0, 0,
-            `${rightCx},${botTop} ${rightCx - HEAD*0.55},${botTop - HEAD} ${rightCx + HEAD*0.55},${botTop - HEAD}`);
-        // Arrow 2: Justified → Righteous LEFT
-        addArrow(2, rightL, botArrowY, BOX + HEAD + 1, botArrowY, 0, 0,
-            `${BOX},${botArrowY} ${BOX + HEAD},${botArrowY - HEAD*0.55} ${BOX + HEAD},${botArrowY + HEAD*0.55}`);
-        // Arrow 3: Righteous → Grace UP
-        addArrow(3, leftCx, botTop, leftCx, BOX_H_TOP + HEAD + 1, 0, 0,
-            `${leftCx},${BOX_H_TOP} ${leftCx - HEAD*0.55},${BOX_H_TOP + HEAD} ${leftCx + HEAD*0.55},${BOX_H_TOP + HEAD}`);
-        // Arrow 4: Grace → Mercy RIGHT
-        addArrow(3, BOX, topArrowY, rightL - HEAD - 1, topArrowY, 0, 0,
-            `${rightL},${topArrowY} ${rightL - HEAD},${topArrowY - HEAD*0.55} ${rightL - HEAD},${topArrowY + HEAD*0.55}`);
-
-        diagram.appendChild(svg);
-
-        // -- Boxes --
-        boxPositions.forEach(bp => {
-            const idx = bp.idx;
-            if (idx > 3) return;
-            const s = stops[idx];
-            const active = allDim ? false : isActive(idx);
-            const viewing = step === idx;
-            const desc = boxDescriptions[idx];
-
-            const box = document.createElement(isOverview() ? 'button' : 'div');
-            box.className = 'grace-box' + (active ? ' active' : '') + (isOverview() ? ' overview-box' : '');
-            box.style.cssText = `top:${bp.top}px;left:${bp.left}px;width:${BOX}px;height:${bp.height}px;
-                background:${active ? (viewing ? s.bgColor : '#FFFFFF') : greyBg};
-                border:2.5px solid ${active ? s.borderColor : greyBorder};
-                box-shadow:${viewing ? `0 4px 16px ${s.color}40` : active ? '0 1px 6px rgba(44,36,22,0.05)' : 'none'};
-                transform:${!isOverview() && viewing ? 'scale(1.03)' : 'scale(1)'};
-                opacity:${active ? 1 : 0.45};`;
-
-            if (isOverview()) {
-                box.type = 'button';
-                box.setAttribute('data-control', 'box-' + desc.label.toLowerCase());
-                // Native button name includes both visible teaching and definition.
-                box.addEventListener('click', () => { openStep(idx); });
-            } else if (active) {
-                box.addEventListener('click', () => { step = idx; render(); });
+    function updateDiagram() {
+        var overview = isOverview();
+        for (var i = 0; i < 4; i++) {
+            var box = setBoxElement(i, overview);
+            var desc = document.getElementById('desc-' + i);
+            box.className = 'grace-box box-' + i + (overview ? ' overview-box' : '');
+            if (overview || step >= i) {
+                box.classList.add('visible');
+                desc.innerHTML = descHtml(i);
+                if (overview || step === i || step === 4) {
+                    box.classList.add('active');
+                } else {
+                    box.classList.add('past');
+                }
+            } else {
+                desc.innerHTML = '';
             }
-
-            const lbl = document.createElement('span');
-            lbl.className = 'box-label';
-            lbl.style.color = active ? s.color : greyText;
-            lbl.textContent = desc.label;
-            box.appendChild(lbl);
-
-            const d = document.createElement('span');
-            d.className = 'box-desc';
-            d.style.color = active ? '#3D3426' : greyText;
-            d.style.padding = '0 6px';
-            d.innerHTML = desc.lines.map(line => {
-                return line.replace('<span class="big">', `<span class="big" style="font-size:${desc.bigSize};font-weight:800;color:${active ? '#2C2416' : greyText}">`);
-            }).join('<br>');
-            box.appendChild(d);
-
-            diagram.appendChild(box);
-        });
-
-        // -- Intro overlay --
-        if (showIntro) {
-            const overlay = document.createElement('div');
-            overlay.className = 'intro-overlay';
-            overlay.style.width = W + 'px';
-            overlay.style.height = H + 'px';
-            overlay.innerHTML = `
-                <div>
-                    <p class="intro-verse">"For by grace you have been saved through faith."</p>
-                    <p class="intro-ref">Ephesians 2:8</p>
-                </div>`;
-            diagram.appendChild(overlay);
         }
 
-        // -- Card area --
-        const cardArea = document.getElementById('card-area');
-        cardArea.innerHTML = '';
-
-        if (isOverview()) {
-            const panel = document.createElement('div');
-            panel.className = 'overview-panel';
-
-            const caption = document.createElement('p');
-            caption.className = 'overview-caption';
-            caption.innerHTML = stops[4].cardTitle;
-            panel.appendChild(caption);
-
-            const nav = document.createElement('div');
-            nav.className = 'nav-bar';
-
-            const returnBtn = document.createElement('button');
-            returnBtn.type = 'button';
-            returnBtn.className = 'nav-btn';
-            returnBtn.setAttribute('data-control', 'return');
-            returnBtn.textContent = 'Return to steps';
-            returnBtn.addEventListener('click', returnToSteps);
-
-            const restartBtn = document.createElement('button');
-            restartBtn.type = 'button';
-            restartBtn.className = 'nav-btn primary';
-            restartBtn.setAttribute('data-control', 'restart');
-            restartBtn.textContent = '\u21BB Restart';
-            restartBtn.style.background = '#6B5232';
-            restartBtn.addEventListener('click', restartToBegin);
-
-            nav.appendChild(returnBtn);
-            nav.appendChild(restartBtn);
-            panel.appendChild(nav);
-            cardArea.appendChild(panel);
-        } else if (showIntro) {
-            const wrap = document.createElement('div');
-            wrap.className = 'begin-wrapper';
-            const btn = document.createElement('button');
-            btn.type = 'button';
-            btn.className = 'begin-btn';
-            btn.setAttribute('data-control', 'begin');
-            btn.textContent = 'Begin \u2192';
-            btn.addEventListener('click', () => { step = 0; setFocus('next'); render(); });
-            wrap.appendChild(btn);
-
-            const overviewBtn = document.createElement('button');
-            overviewBtn.type = 'button';
-            overviewBtn.className = 'overview-btn';
-            overviewBtn.setAttribute('data-control', 'overview');
-            overviewBtn.textContent = 'Show whole diagram';
-            overviewBtn.addEventListener('click', goOverview);
-            wrap.appendChild(overviewBtn);
-            cardArea.appendChild(wrap);
-        } else {
-            const wrapper = document.createElement('div');
-            wrapper.className = 'verse-card-wrapper';
-
-            // Card
-            const card = document.createElement('div');
-            card.className = 'verse-card';
-            card.style.borderColor = current.borderColor + '33';
-
-            const bar = document.createElement('div');
-            bar.className = 'verse-card-bar';
-            bar.style.background = current.color;
-            card.appendChild(bar);
-
-            const content = document.createElement('div');
-            content.className = 'verse-card-content';
-
-            const title = document.createElement('h2');
-            title.className = 'verse-card-title';
-            title.innerHTML = current.cardTitle;
-
-            const text = document.createElement('p');
-            text.className = 'verse-card-text';
-            text.innerHTML = current.verse;
-
-            const ref = document.createElement('p');
-            ref.className = 'verse-card-ref';
-            ref.textContent = current.ref;
-
-            content.appendChild(title);
-            content.appendChild(text);
-            content.appendChild(ref);
-            card.appendChild(content);
-            wrapper.appendChild(card);
-
-            // Navigation
-            const nav = document.createElement('div');
-            nav.className = 'nav-bar';
-
-            const backBtn = document.createElement('button');
-            backBtn.type = 'button';
-            backBtn.className = 'nav-btn';
-            backBtn.setAttribute('data-control', 'back');
-            backBtn.textContent = '\u2190 Back';
-            backBtn.style.color = step === -1 ? '#CCC5B8' : '#5A4E3C';
-            backBtn.disabled = step === -1;
-            backBtn.addEventListener('click', () => {
-                step = Math.max(-1, step - 1);
-                setFocus(step === -1 ? 'begin' : 'back');
-                render();
-            });
-
-            const dots = document.createElement('div');
-            dots.className = 'dot-nav';
-            stops.forEach((s, i) => {
-                const dot = document.createElement('div');
-                dot.className = 'dot' + (isActive(i) ? ' active-dot' : '');
-                dot.style.width = (step === i ? '20px' : '8px');
-                dot.style.background = step === i ? stops[i].color : (isActive(i) ? stops[i].color + '66' : '#D4CFC4');
-                dot.style.cursor = isActive(i) ? 'pointer' : 'default';
-                if (isActive(i)) {
-                    dot.addEventListener('click', () => { step = i; render(); });
-                }
-                dots.appendChild(dot);
-            });
-
-            const nextBtn = document.createElement('button');
-            nextBtn.type = 'button';
-            nextBtn.className = 'nav-btn primary';
-            const isLast = step === stops.length - 1;
-            nextBtn.setAttribute('data-control', isLast ? 'restart' : 'next');
-            nextBtn.textContent = isLast ? '\u21BB Restart' : 'Next \u2192';
-            nextBtn.style.background = current.color;
-            nextBtn.style.boxShadow = `0 2px 8px ${current.color}33`;
-            nextBtn.addEventListener('click', () => {
-                if (isLast) {
-                    restartToBegin();
-                    return;
-                }
-                step = Math.min(stops.length - 1, step + 1);
-                setFocus(step === stops.length - 1 ? 'restart' : 'next');
-                render();
-            });
-
-            nav.appendChild(backBtn);
-            nav.appendChild(dots);
-            nav.appendChild(nextBtn);
-            wrapper.appendChild(nav);
-
-
-            cardArea.appendChild(wrapper);
+        for (var a = 0; a < 4; a++) {
+            var arrow = document.getElementById('arrow-' + a);
+            arrow.classList.toggle('visible', overview || step >= a + 1);
         }
 
-        applyFocus();
+        crossContainer.classList.toggle('visible', overview || step === 4);
+        outer.classList.toggle('overview-mode', overview);
     }
 
+    function introHtml() {
+        return '<div class="intro-overlay">' +
+            '<div class="intro-quote">' +
+                '&ldquo;For by grace you have been saved through faith.&rdquo;' +
+                '<span class="intro-ref">Ephesians 2:8</span>' +
+            '</div>' +
+            '<div class="btn-row">' +
+                '<button type="button" class="begin-btn" data-control="begin">Begin &rarr;</button>' +
+                '<button type="button" class="overview-btn" data-control="overview">Show whole diagram</button>' +
+            '</div>' +
+        '</div>';
+    }
+
+    function overviewCardHtml() {
+        return '<div class="overview-panel">' +
+            '<div class="overview-caption">Give Grace, Show Mercy, &amp; Forgive</div>' +
+            '<div class="btn-row">' +
+                '<button type="button" class="nav-btn" data-control="return">Return to steps</button>' +
+                '<button type="button" class="nav-btn primary" data-control="restart">&#8635; Restart</button>' +
+            '</div>' +
+        '</div>';
+    }
+
+    function guidedCardHtml(s, stepIdx) {
+        var isLast = stepIdx === stops.length - 1;
+        var dotsHtml = stops.map(function (st, idx) {
+            var bg = idx === stepIdx ? s.color : (idx < stepIdx ? st.color : '#DCD5C7');
+            return '<span class="dot' + (idx === stepIdx ? ' active' : '') + '" style="background:' + bg + '" aria-hidden="true"></span>';
+        }).join('');
+
+        return '<div class="verse-card" style="background:' + s.bgColor + ';border-color:' + s.borderColor + ';">' +
+            '<div class="verse-card-bar" style="background:' + s.color + ';"></div>' +
+            '<div class="verse-card-content">' +
+                '<div class="verse-card-title">' + s.cardTitle + '</div>' +
+                '<div class="verse-card-text">' + s.verse + '</div>' +
+                '<div class="verse-card-ref">' + s.ref + '</div>' +
+            '</div>' +
+        '</div>' +
+        '<div class="nav-bar">' +
+            '<button type="button" class="nav-btn" data-control="back">&larr; Back</button>' +
+            '<div class="dot-nav" aria-label="Step ' + (stepIdx + 1) + ' of ' + stops.length + '">' + dotsHtml + '</div>' +
+            '<div class="nav-right">' +
+                '<button type="button" class="overview-btn" data-control="overview">Show whole diagram</button>' +
+                (isLast
+                    ? '<button type="button" class="nav-btn primary" data-control="restart">&#8635; Restart</button>'
+                    : '<button type="button" class="nav-btn primary" data-control="next">Next &rarr;</button>') +
+            '</div>' +
+        '</div>';
+    }
+
+    function bindCardControls() {
+        var beginBtn = cardArea.querySelector('[data-control="begin"]');
+        if (beginBtn) beginBtn.addEventListener('click', function () { goToStep(0); });
+
+        var backBtn = cardArea.querySelector('[data-control="back"]');
+        if (backBtn) backBtn.addEventListener('click', function () { goToStep(step - 1); });
+
+        var nextBtn = cardArea.querySelector('[data-control="next"]');
+        if (nextBtn) nextBtn.addEventListener('click', function () { goToStep(step + 1); });
+
+        var overviewBtn = cardArea.querySelector('[data-control="overview"]');
+        if (overviewBtn) overviewBtn.addEventListener('click', openOverview);
+
+        var returnBtn = cardArea.querySelector('[data-control="return"]');
+        if (returnBtn) returnBtn.addEventListener('click', closeOverview);
+
+        var restartBtn = cardArea.querySelector('[data-control="restart"]');
+        if (restartBtn) restartBtn.addEventListener('click', restart);
+    }
+
+    function focusControl(controlName) {
+        var btn = cardArea.querySelector('[data-control="' + controlName + '"]');
+        if (btn && typeof btn.focus === 'function') {
+            btn.focus({ preventScroll: true });
+        }
+    }
+
+    function render(focusTarget) {
+        updateDiagram();
+        if (isOverview()) {
+            cardArea.innerHTML = overviewCardHtml();
+        } else if (step === -1) {
+            cardArea.innerHTML = introHtml();
+        } else {
+            cardArea.innerHTML = guidedCardHtml(stops[step], step);
+        }
+        bindCardControls();
+        if (focusTarget) focusControl(focusTarget);
+    }
+
+    function fitCardHeight() {
+        var width = cardArea.clientWidth || outer.clientWidth || 360;
+        var wasOverview = outer.classList.contains('overview-mode');
+        outer.classList.remove('overview-mode');
+
+        var probe = document.createElement('div');
+        probe.style.cssText = 'position:fixed;left:-9999px;top:0;visibility:hidden;pointer-events:none;width:' + width + 'px;padding:4px 10px 10px;display:flex;flex-direction:column;';
+        document.body.appendChild(probe);
+
+        var maxH = 0;
+        probe.innerHTML = introHtml();
+        maxH = Math.max(maxH, Math.ceil(probe.getBoundingClientRect().height));
+
+        for (var i = 0; i < stops.length; i++) {
+            probe.innerHTML = guidedCardHtml(stops[i], i);
+            maxH = Math.max(maxH, Math.ceil(probe.getBoundingClientRect().height));
+        }
+
+        probe.remove();
+        if (wasOverview) outer.classList.add('overview-mode');
+        outer.style.setProperty('--card-h', maxH + 'px');
+    }
+
+    function goToStep(s) {
+        if (s < -1 || s >= stops.length) return;
+        mode = 'step';
+        step = s;
+        savedStep = s;
+        render();
+    }
+
+    function openOverview() {
+        if (!isOverview()) {
+            savedStep = step;
+        }
+        mode = 'overview';
+        render('return');
+    }
+
+    function closeOverview() {
+        mode = 'step';
+        step = savedStep;
+        if (step === -1) {
+            render('begin');
+        } else if (step === stops.length - 1) {
+            render('restart');
+        } else {
+            render('next');
+        }
+    }
+
+    function selectStop(index) {
+        mode = 'step';
+        step = index;
+        savedStep = index;
+        render(index === stops.length - 1 ? 'restart' : 'next');
+    }
+
+    function restart() {
+        mode = 'step';
+        step = -1;
+        savedStep = -1;
+        render('begin');
+    }
+
+    fitCardHeight();
     render();
 
-// Size every card to the tallest step so the buttons never move (A-standard pattern).
-function gtFitCards(items) {
-    var area = document.getElementById('card-area');
-    if (!area || !area.clientWidth) return;
-    var m = document.createElement('div'), max = 0;
-    m.id = 'measure'; m.style.width = area.clientWidth + 'px';
-    document.documentElement.style.setProperty('--card-h', '0px');
-    items.forEach(function (it) {
-        m.insertAdjacentHTML('beforeend', '<div class="verse-card-wrapper"><div class="verse-card"><div class="verse-card-content">' +
-            (it.title ? '<h2 class="verse-card-title">' + it.title + '</h2>' : '') +
-            (it.text ? '<p class="verse-card-text">' + it.text + '</p>' : '') +
-            (it.ref ? '<p class="verse-card-ref">' + it.ref + '</p>' : '') + '</div></div></div>');
-    });
-    document.body.appendChild(m);
-    m.querySelectorAll('.verse-card-content').forEach(function (c) { max = Math.max(max, c.offsetHeight); });
-    document.body.removeChild(m);
-    document.documentElement.style.setProperty('--card-h', Math.max(max, 112) + 'px');
-}
-// Refit only when the width changes. The page briefly resizes this frame's height to measure it,
-// and refitting on that would start a measure-resize loop that jolts the page while scrolling.
-function gtWatchWidth(fn) {
-    var rt = null, lastWidth = window.innerWidth;
+    var resizeTimer = null;
+    var lastWidth = window.innerWidth;
+    // Refit on width changes only so host iframe height adjustments never loop.
     window.addEventListener('resize', function () {
         if (window.innerWidth === lastWidth) return;
         lastWidth = window.innerWidth;
-        clearTimeout(rt); rt = setTimeout(fn, 150);
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(fitCardHeight, 150);
     });
-    if (document.fonts && document.fonts.ready) document.fonts.ready.then(fn);
-}
-function gtFit() { gtFitCards(stops.map(function (s) { return { title: s.cardTitle, text: s.verse, ref: s.ref }; })); }
-gtFit(); gtWatchWidth(gtFit);
+    if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(fitCardHeight);
+    }
+})();
 </script>
 </body>
 </html>

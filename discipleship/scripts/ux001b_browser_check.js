@@ -377,7 +377,7 @@ async function checkViewport(browser, vp) {
     assert(prefix + 'overview labels remain inside iframe with save-error banner', errorFit.labels.every(function (l) { return l.inIframe; }), JSON.stringify(errorFit.labels));
     await setBanner(page, 'hidden');
 
-    var mercy = frame.getByRole('button', { name: /Mercy.*PUNISHMENT/i });
+    var mercy = frame.getByRole('button', { name: /Mercy.*(JUDGMENT|PUNISHMENT)/i });
     assert(prefix + 'overview tile exposes teaching in native button name',
         await mercy.count() === 1 && await mercy.evaluate(function (el) { return el.tagName === 'BUTTON'; }));
     await mercy.focus();
