@@ -1,5 +1,11 @@
 # Dave's decision and approval queue
 
+## Approved 101-06 BLESS integration, November 14, 2026
+
+Dave approved PR #233 at 7949607: BLESS Rhythms widget and the BLESS section copy/placement. Both runtime files remain byte-identical to that approval. The approved change replaces the static BLESS graphic and box and adjusts the invitation to tap through. The original graphic remains on disk; woman-at-the-well story art, other prose, Scripture, John 16-18 readings and all eight question objects/IDs remain unchanged. Text remains Silver and earlier Dave edits stay protected. This is a specific new 101-06 assignment, not permission for broader changes or new art.
+
+Evidence: [Codex integration log](logs/2026-11-14-WIDGET-101-06-BLESS-codex.md) and PR #233 for exact-head preview and live deployment.
+
 ## Approved 101-04 widget integration, November 14, 2026
 
 Dave approved only the Read, Discover, Respond widget in PR #229 at 21bb29b. Its HTML bytes and placement are preserved: after "These questions give you a place to begin..." and before Try It: Nicodemus Meets Jesus. All existing 101-04 copy, Discovery Questions box, Scripture, John 10-12 readings and nine question IDs remain unchanged. Text remains Silver for Dave's later review; no image or whole-lesson Gold approval is inferred.

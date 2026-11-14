@@ -282,4 +282,4 @@ Plan and standard: [reviews/2026-11-11-series-review.md](reviews/2026-11-11-seri
 
 | [x] | WIDGET-101-04-RDR | DONE | Codex / gemini/widget-101-04-discovery / 2026-11-14 | Dave approved widget at 21bb29b only; review and merge PR #229 | Preserve approved HTML and placement, all prose/questions/readings; QA, preview and live verification; text remains Silver. |
 
-| [ ] | WIDGET-101-06-BLESS | ACTIVE | Codex / gemini/widget-101-06-bless / 2026-11-14 | Dave approved PR #233 at 7949607, widget and BLESS section/placement | Preserve exact approved runtime, questions/readings and story artwork; QA, browser, preview, merge and live checks. |
+| [x] | WIDGET-101-06-BLESS | DONE | Codex / gemini/widget-101-06-bless / 2026-11-14 | Dave approved PR #233 at 7949607, widget and BLESS section/placement | Preserve exact approved runtime, questions/readings and story artwork; QA, browser, preview, merge and live checks. |
