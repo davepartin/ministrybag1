@@ -78,6 +78,20 @@ class CleanupTests(unittest.TestCase):
         code, ids, commands = self.run_workflow(payload())
         self.assertEqual((code, ids, len(commands)), (0, [], 1))
 
+    def test_canonical_project_id_resource_names(self):
+        data = payload('live', 'pr224-canonical', 'pr2240-other')
+        for item in data['result']['channels']:
+            item['name'] = 'projects/' + SITE + '/' + item['name']
+        code, ids, _ = self.run_workflow(data)
+        self.assertEqual((code, ids), (0, ['pr224-canonical']))
+
+    def test_canonical_project_number_resource_names(self):
+        data = payload('live', 'pr224-canonical', 'pr223-other')
+        for item in data['result']['channels']:
+            item['name'] = 'projects/123456789/' + item['name']
+        code, ids, _ = self.run_workflow(data)
+        self.assertEqual((code, ids), (0, ['pr224-canonical']))
+
     def test_no_matching_channels_is_success(self):
         code, ids, _ = self.run_workflow(payload('live', 'pr223-other', 'pr2240-other'))
         self.assertEqual((code, ids), (0, []))
