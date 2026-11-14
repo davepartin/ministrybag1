@@ -1,0 +1,119 @@
+name: Clean up Firebase Hosting preview on PR close
+
+on:
+  pull_request:
+    types: [closed]
+
+permissions:
+  contents: read
+
+jobs:
+  delete_preview:
+    if: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Delete closed PR preview channel
+        working-directory: discipleship
+        env:
+          FIREBASE_SA: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_GROWING_TOGETHER_DISCIPLESHIP }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          PROJECT_ID: growing-together-discipleship
+          SITE_ID: growing-together-discipleship
+        run: |
+          python3 - <<'EOF'
+          import json
+          import os
+          import re
+          import subprocess
+          import sys
+
+          pr_number = os.environ.get("PR_NUMBER", "").strip()
+          if not re.fullmatch(r"\d+", pr_number):
+              raise SystemExit(f"Invalid PR_NUMBER: {pr_number!r}")
+
+          sa_json = os.environ.get("FIREBASE_SA", "")
+          if not sa_json.strip():
+              raise SystemExit("Missing FIREBASE_SERVICE_ACCOUNT_GROWING_TOGETHER_DISCIPLESHIP secret")
+
+          project_id = os.environ["PROJECT_ID"]
+          site_id = os.environ["SITE_ID"]
+          runner_temp = os.environ.get("RUNNER_TEMP", "/tmp")
+          creds_path = os.path.join(runner_temp, f"firebase-sa-{os.getpid()}.json")
+
+          try:
+              with open(creds_path, "w", encoding="utf-8") as f:
+                  f.write(sa_json)
+              os.chmod(creds_path, 0o600)
+
+              env = os.environ.copy()
+              env["GOOGLE_APPLICATION_CREDENTIALS"] = creds_path
+              env.pop("FIREBASE_SA", None)
+
+              list_res = subprocess.run(
+                  [
+                      "npx",
+                      "-y",
+                      "firebase-tools@latest",
+                      "hosting:channel:list",
+                      "--project",
+                      project_id,
+                      "--site",
+                      site_id,
+                      "--json",
+                  ],
+                  env=env,
+                  capture_output=True,
+                  text=True,
+              )
+              if list_res.returncode != 0:
+                  sys.stderr.write(list_res.stderr)
+                  sys.stdout.write(list_res.stdout)
+                  raise SystemExit(list_res.returncode)
+
+              payload_text = list_res.stdout
+              start = payload_text.find("{")
+              end = payload_text.rfind("}")
+              if start == -1 or end == -1:
+                  raise SystemExit(f"Unexpected firebase CLI output: {payload_text!r}")
+              payload = json.loads(payload_text[start : end + 1])
+              channels = payload.get("result", {}).get("channels", [])
+              # action-hosting-deploy names PR channels as pr<NUMBER>-<sanitized-branch>
+              pattern = re.compile(rf"^pr{pr_number}-")
+              targets = []
+              for channel in channels:
+                  cid = channel.get("name", "").split("/")[-1]
+                  if cid and cid != "live" and pattern.match(cid):
+                      targets.append(cid)
+
+              if not targets:
+                  print(f"No Firebase Hosting preview channel found for PR #{pr_number}.")
+                  raise SystemExit(0)
+
+              for cid in targets:
+                  print(f"Deleting Firebase Hosting preview channel: {cid}")
+                  del_res = subprocess.run(
+                      [
+                          "npx",
+                          "-y",
+                          "firebase-tools@latest",
+                          "hosting:channel:delete",
+                          cid,
+                          "--site",
+                          site_id,
+                          "--project",
+                          project_id,
+                          "--force",
+                      ],
+                      env=env,
+                      text=True,
+                  )
+                  if del_res.returncode != 0:
+                      raise SystemExit(del_res.returncode)
+          finally:
+              if os.path.exists(creds_path):
+                  os.remove(creds_path)
+          EOF
