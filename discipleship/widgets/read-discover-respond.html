@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Read, Discover, Respond</title>
+<style>
+:root {
+  --ink: #2C2416;
+  --muted: #6E6559;
+  --tray: #F6F4EE;
+  --border: #EBE5D9;
+  --gold: #A8760A;
+  --gold-dark: #7D5604;
+  --gold-wash: #FCF2D6;
+  --gold-hi: #F8E5AE;
+  --gold-line: #C48F10;
+  --blue: #2A5B7C;
+  --blue-dark: #1E435C;
+  --blue-wash: #E2EEF6;
+  --blue-hi: #D2E5F3;
+  --blue-line: #3B6F91;
+  --green: #1F684A;
+  --green-dark: #164E37;
+  --green-wash: #E1F1E9;
+  --green-hi: #CEE8DA;
+  --green-line: #2E7D5B;
+  --crimson: #8B1A2B;
+  --crimson-dark: #6D1422;
+  --charcoal: #5C5142;
+  --step-color: #2C2416;
+  --step-dark: #2C2416;
+  --card-h: 132px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: Georgia, Cambria, serif;
+  background: #F8F6F1;
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+.widget-outer {
+  background: #FFFFFF;
+  border-radius: 0;
+  overflow: hidden;
+  max-width: 100%;
+  width: 100%;
+  margin: 0;
+  position: relative;
+}
+
+@media (min-width: 560px) {
+  body {
+    padding: 16px;
+    background: #F8F6F1;
+  }
+  .widget-outer {
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(44, 36, 22, 0.08);
+    border: 1px solid #EBE5D9;
+    max-width: 460px;
+    margin: 0 auto;
+  }
+}
+
+.title-bar {
+  background: #2C2416;
+  padding: 8px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.title-bar h1 {
+  font: 600 17px/1.15 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #FAF8F3;
+  letter-spacing: 0.2px;
+  margin: 0;
+}
+
+.course-tag {
+  font: 600 11px/1 system-ui, -apple-system, sans-serif;
+  letter-spacing: 0.9px;
+  text-transform: uppercase;
+  color: #E5DEC9;
+  white-space: nowrap;
+}
+
+.stage {
+  background: #FFFFFF;
+  padding: 4px 6px 2px;
+  border-bottom: 1px solid var(--border);
+}
+
+.rdr-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.svg-label-caps {
+  font: 700 11.5px/1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  fill: var(--ink);
+}
+
+.svg-sub {
+  font: 600 10px/1.1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  fill: var(--muted);
+}
+
+.lane-title {
+  font: 700 13px/1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.lane-cue {
+  font: 600 9.8px/1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.lane-num {
+  font: 700 12.5px/1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  fill: #FFFFFF;
+}
+
+.svg-hit {
+  cursor: pointer;
+}
+
+.bible-group,
+.lane-group,
+.stem-path,
+.finish-frame {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .widget-outer:not(.is-instant) .bible-group,
+  .widget-outer:not(.is-instant) .lane-group,
+  .widget-outer:not(.is-instant) .stem-path,
+  .widget-outer:not(.is-instant) .finish-frame,
+  .widget-outer:not(.is-instant) .passage-box {
+    transition: opacity 0.34s ease;
+  }
+  .widget-outer:not(.is-instant) .hl {
+    transition: background-color 0.32s ease, border-color 0.32s ease;
+  }
+  .widget-outer .step-dot-fill {
+    transition: background-color 0.22s ease, border-color 0.22s ease, transform 0.22s ease;
+  }
+  .widget-outer .nav-btn.primary,
+  .widget-outer .verse-card-bar,
+  .widget-outer .card-kicker {
+    transition: background-color 0.24s ease, color 0.24s ease;
+  }
+}
+
+.passage-band {
+  background: #FAF8F3;
+  padding: 8px 12px 9px;
+  border-bottom: 1px solid var(--border);
+}
+
+.passage-box {
+  background: #FFFFFF;
+  border: 1px solid #E6DFD1;
+  border-radius: 10px;
+  padding: 8px 11px 9px;
+}
+
+.passage-box.is-dim {
+  opacity: 0.62;
+}
+
+.passage-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.passage-kicker {
+  font: 700 10px/1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  letter-spacing: 0.9px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.passage-ref {
+  font: 700 11px/1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--ink);
+}
+
+.passage-text {
+  font: 400 13.5px/1.56 Georgia, Cambria, serif;
+  color: var(--ink);
+  margin: 0;
+}
+
+.passage-text sup {
+  font: 700 9.5px/1 system-ui, -apple-system, sans-serif;
+  color: var(--muted);
+  margin-right: 1px;
+}
+
+.hl {
+  border-radius: 2px;
+  padding: 1px 0;
+  border-bottom: 1.5px solid transparent;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+.hl.is-god {
+  background-color: var(--gold-hi);
+  border-bottom-color: var(--gold-line);
+}
+
+.hl.is-people {
+  background-color: var(--blue-hi);
+  border-bottom-color: var(--blue-line);
+}
+
+.hl.is-respond {
+  background-color: var(--green-hi);
+  border-bottom-color: var(--green-line);
+}
+
+.step-strip {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px 5px;
+  background: var(--tray);
+  border-bottom: 1px solid var(--border);
+}
+
+.step-dot {
+  appearance: none;
+  min-width: 28px;
+  min-height: 28px;
+  padding: 4px;
+  border: none;
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.step-dot-fill {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 2.5px solid var(--dot-color, var(--ink));
+  background: #FFFFFF;
+}
+
+.step-dot[aria-pressed="true"] .step-dot-fill {
+  background: var(--dot-color, var(--ink));
+  transform: scale(1.12);
+}
+
+.card-area {
+  background: var(--tray);
+  padding: 6px 12px 10px;
+}
+
+.verse-card {
+  background: #FFFFFF;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(44, 36, 22, 0.06);
+  border: 1px solid var(--border);
+}
+
+.verse-card-bar {
+  height: 4px;
+  background: var(--step-color);
+}
+
+.verse-card-content {
+  padding: 10px 14px 11px;
+  min-height: var(--card-h);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.card-kicker {
+  font: 700 10.5px/1.15 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  letter-spacing: 0.75px;
+  text-transform: uppercase;
+  color: var(--step-color);
+  margin: 0 0 3px;
+}
+
+.card-heading {
+  font: 700 15px/1.28 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--ink);
+  margin: 0 0 5px;
+}
+
+.card-body {
+  font: 400 13px/1.48 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #3D3426;
+  margin: 0;
+}
+
+.card-example {
+  font: 600 12.5px/1.42 Georgia, Cambria, serif;
+  color: var(--ink);
+  margin: 6px 0 0;
+  padding-top: 5px;
+  border-top: 1px solid #F0EAE0;
+}
+
+.nav-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.nav-btn {
+  appearance: none;
+  border-radius: 10px;
+  min-height: 44px;
+  min-width: 104px;
+  padding: 10px 14px;
+  font: 600 14px/1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-btn.secondary {
+  background: #FFFFFF;
+  color: #4F4537;
+  border: 1.5px solid #D4CFC4;
+}
+
+.nav-btn.secondary:disabled {
+  opacity: 0.42;
+  cursor: default;
+}
+
+.nav-btn.primary {
+  background: var(--step-color);
+  color: #FFFFFF;
+  border: none;
+}
+
+.step-count {
+  font: 600 13px/1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--muted);
+  text-align: center;
+  white-space: nowrap;
+}
+
+button:focus-visible {
+  outline: 3px solid #E0A526;
+  outline-offset: 2px;
+}
+
+#measure-host {
+  position: absolute;
+  left: 0;
+  top: 0;
+  visibility: hidden;
+  pointer-events: none;
+  z-index: -1;
+}
+</style>
+</head>
+<body>
+<div class="widget-outer" id="widget" data-step="0" data-step-dur="0">
+  <div class="title-bar">
+    <h1>Read, Discover, Respond</h1>
+    <span class="course-tag">101-04</span>
+  </div>
+
+  <div class="stage">
+    <svg class="rdr-svg" viewBox="0 0 440 166" width="100%" role="img" aria-labelledby="svg-title svg-desc">
+      <title id="svg-title">Read, Discover, Respond</title>
+      <desc id="svg-desc">Diagram showing an open Bible labeled Read connected to the Three Discovery Questions: 1 About God, 2 About People, and 3 Respond.</desc>
+      <defs>
+        <clipPath id="clip-bible">
+          <rect id="clip-bible-rect" x="18" y="46" width="114" height="92" />
+        </clipPath>
+        <clipPath id="clip-lane-1">
+          <rect id="clip-lane-1-rect" x="157" y="13" width="268" height="42" />
+        </clipPath>
+        <clipPath id="clip-lane-2">
+          <rect id="clip-lane-2-rect" x="157" y="62" width="268" height="42" />
+        </clipPath>
+        <clipPath id="clip-lane-3">
+          <rect id="clip-lane-3-rect" x="157" y="111" width="268" height="42" />
+        </clipPath>
+      </defs>
+
+      <!-- Resting dotted connector ghosts so empty lanes stay grounded -->
+      <path d="M126,87 C142,87 142,34 158,34" fill="none" stroke="#E5DEC9" stroke-width="1.5" stroke-dasharray="3 3" />
+      <path d="M126,87 L158,83" fill="none" stroke="#E5DEC9" stroke-width="1.5" stroke-dasharray="3 3" />
+      <path d="M126,87 C142,87 142,132 158,132" fill="none" stroke="#E5DEC9" stroke-width="1.5" stroke-dasharray="3 3" />
+
+      <!-- Resting ghost outlines for the three lanes -->
+      <rect x="158" y="15" width="264" height="38" rx="10" fill="#FCFAF5" stroke="#E8E1D4" stroke-width="1.3" />
+      <rect x="158" y="64" width="264" height="38" rx="10" fill="#FCFAF5" stroke="#E8E1D4" stroke-width="1.3" />
+      <rect x="158" y="113" width="264" height="38" rx="10" fill="#FCFAF5" stroke="#E8E1D4" stroke-width="1.3" />
+
+      <!-- Final double-hairline completion frame -->
+      <g class="finish-frame" id="finish-frame" opacity="0">
+        <rect id="finish-outer" x="10" y="6" width="420" height="154" rx="14" fill="none" stroke="#8B1A2B" stroke-width="2.4" stroke-opacity="0.72" />
+        <rect x="14" y="10" width="412" height="146" rx="11" fill="none" stroke="#8B1A2B" stroke-width="1" stroke-opacity="0.34" />
+      </g>
+
+      <!-- Stem connectors (animated via stroke-dashoffset) -->
+      <path id="stem-1" class="stem-path" d="M126,87 C142,87 142,34 158,34" fill="none" stroke="#A8760A" stroke-width="2.4" stroke-linecap="round" />
+      <path id="stem-2" class="stem-path" d="M126,87 L158,83" fill="none" stroke="#2A5B7C" stroke-width="2.4" stroke-linecap="round" />
+      <path id="stem-3" class="stem-path" d="M126,87 C142,87 142,132 158,132" fill="none" stroke="#1F684A" stroke-width="2.4" stroke-linecap="round" />
+
+      <!-- Left Emblem: Open Bible (Read) -->
+      <g id="bible-group" class="bible-group svg-hit" data-jump="1">
+        <text class="svg-label-caps" x="74" y="27" text-anchor="middle">READ</text>
+        <text class="svg-sub" x="74" y="41" text-anchor="middle">Slowly, twice</text>
+        <g clip-path="url(#clip-bible)">
+          <!-- Cover backplate -->
+          <rect x="22" y="54" width="104" height="72" rx="6" fill="#F2ECE0" stroke="#2C2416" stroke-width="1.8" />
+          <!-- Left and right arched pages -->
+          <path d="M27,57 Q50,51 74,60 L74,121 Q50,113 27,119 Z" fill="#FFFDF8" stroke="#2C2416" stroke-width="1.6" stroke-linejoin="round" />
+          <path d="M121,57 Q98,51 74,60 L74,121 Q98,113 121,119 Z" fill="#FFFDF8" stroke="#2C2416" stroke-width="1.6" stroke-linejoin="round" />
+          <!-- Subtle text lines on pages -->
+          <line x1="34" y1="69" x2="65" y2="70" stroke="#A69C8E" stroke-width="1.6" stroke-linecap="round" />
+          <line x1="34" y1="78" x2="65" y2="79" stroke="#A69C8E" stroke-width="1.6" stroke-linecap="round" />
+          <line x1="34" y1="87" x2="62" y2="88" stroke="#A69C8E" stroke-width="1.6" stroke-linecap="round" />
+          <line x1="34" y1="96" x2="65" y2="97" stroke="#A69C8E" stroke-width="1.6" stroke-linecap="round" />
+          <line x1="34" y1="105" x2="58" y2="106" stroke="#A69C8E" stroke-width="1.6" stroke-linecap="round" />
+
+          <line x1="83" y1="70" x2="114" y2="69" stroke="#A69C8E" stroke-width="1.6" stroke-linecap="round" />
+          <line x1="83" y1="79" x2="114" y2="78" stroke="#A69C8E" stroke-width="1.6" stroke-linecap="round" />
+          <line x1="83" y1="88" x2="110" y2="87" stroke="#A69C8E" stroke-width="1.6" stroke-linecap="round" />
+          <line x1="83" y1="97" x2="114" y2="96" stroke="#A69C8E" stroke-width="1.6" stroke-linecap="round" />
+          <line x1="83" y1="106" x2="108" y2="105" stroke="#A69C8E" stroke-width="1.6" stroke-linecap="round" />
+          <!-- Ribbon marker -->
+          <path d="M71,120 L71,134 L74,130.5 L77,134 L77,120 Z" fill="#8B1A2B" />
+        </g>
+        <circle cx="126" cy="87" r="3" fill="#2C2416" />
+      </g>
+
+      <!-- Lane 1: About God (Gold) -->
+      <g id="lane-1" class="lane-group svg-hit" data-jump="2" clip-path="url(#clip-lane-1)">
+        <rect x="159" y="15" width="262" height="38" rx="10" fill="#FCF2D6" stroke="#A8760A" stroke-width="1.6" />
+        <circle cx="178" cy="34" r="11" fill="#A8760A" />
+        <text class="lane-num" x="178" y="38.5" text-anchor="middle">1</text>
+        <text class="lane-title" x="196" y="38.5" fill="#7D5604">About God</text>
+        <text class="lane-cue" x="391" y="37.5" text-anchor="end" fill="#7D5604" opacity="0.82">says · does · cares</text>
+        <polyline points="399,29 404,34 399,39" fill="none" stroke="#A8760A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" opacity="0.52" />
+        <polyline points="406,29 411,34 406,39" fill="none" stroke="#A8760A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.26" />
+      </g>
+
+      <!-- Lane 2: About People (Harbour Blue) -->
+      <g id="lane-2" class="lane-group svg-hit" data-jump="3" clip-path="url(#clip-lane-2)">
+        <rect x="159" y="64" width="262" height="38" rx="10" fill="#E2EEF6" stroke="#2A5B7C" stroke-width="1.6" />
+        <circle cx="178" cy="83" r="11" fill="#2A5B7C" />
+        <text class="lane-num" x="178" y="87.5" text-anchor="middle">2</text>
+        <text class="lane-title" x="196" y="87.5" fill="#1E435C">About People</text>
+        <text class="lane-cue" x="391" y="86.5" text-anchor="end" fill="#1E435C" opacity="0.82">say · trust · do</text>
+        <polyline points="399,78 404,83 399,88" fill="none" stroke="#2A5B7C" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" opacity="0.52" />
+        <polyline points="406,78 411,83 406,88" fill="none" stroke="#2A5B7C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.26" />
+      </g>
+
+      <!-- Lane 3: Respond (Sage Green) -->
+      <g id="lane-3" class="lane-group svg-hit" data-jump="4" clip-path="url(#clip-lane-3)">
+        <rect x="159" y="113" width="262" height="38" rx="10" fill="#E1F1E9" stroke="#1F684A" stroke-width="1.6" />
+        <circle cx="178" cy="132" r="11" fill="#1F684A" />
+        <text class="lane-num" x="178" y="136.5" text-anchor="middle">3</text>
+        <text class="lane-title" x="196" y="136.5" fill="#164E37">Respond</text>
+        <text class="lane-cue" x="391" y="135.5" text-anchor="end" fill="#164E37" opacity="0.82">trust · obey · turn</text>
+        <polyline points="399,127 404,132 399,137" fill="none" stroke="#1F684A" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" opacity="0.52" />
+        <polyline points="406,127 411,132 406,137" fill="none" stroke="#1F684A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.26" />
+      </g>
+    </svg>
+  </div>
+
+  <div class="passage-band">
+    <div class="passage-box" id="passage-box">
+      <div class="passage-meta">
+        <span class="passage-kicker">Worked Example</span>
+        <span class="passage-ref">John 1:11-12</span>
+      </div>
+      <p class="passage-text" id="passage-text">
+        <sup>11</sup><span class="hl" data-hl="god">He came to his own</span>, and <span class="hl" data-hl="people">his own people did not receive him</span>. <sup>12</sup>But to all <span class="hl" data-hl="respond">who did receive him, who believed in his name</span>, <span class="hl" data-hl="god">he gave the right to become children of God</span>.
+      </p>
+    </div>
+  </div>
+
+  <div class="step-strip" role="group" aria-label="Study steps">
+    <button type="button" class="step-dot" data-step="0" aria-label="Overview: Read, Discover, Respond" aria-pressed="true" style="--dot-color: #2C2416;"><span class="step-dot-fill"></span></button>
+    <button type="button" class="step-dot" data-step="1" aria-label="Step 1: Read slowly" aria-pressed="false" style="--dot-color: #5C5142;"><span class="step-dot-fill"></span></button>
+    <button type="button" class="step-dot" data-step="2" aria-label="Step 2: Question 1, What does this passage tell me about God?" aria-pressed="false" style="--dot-color: #A8760A;"><span class="step-dot-fill"></span></button>
+    <button type="button" class="step-dot" data-step="3" aria-label="Step 3: Question 2, What does this passage tell me about people?" aria-pressed="false" style="--dot-color: #2A5B7C;"><span class="step-dot-fill"></span></button>
+    <button type="button" class="step-dot" data-step="4" aria-label="Step 4: Question 3, What is this passage calling me to do or believe?" aria-pressed="false" style="--dot-color: #1F684A;"><span class="step-dot-fill"></span></button>
+    <button type="button" class="step-dot" data-step="5" aria-label="Step 5: All three questions together" aria-pressed="false" style="--dot-color: #8B1A2B;"><span class="step-dot-fill"></span></button>
+  </div>
+
+  <div class="card-area">
+    <div class="verse-card">
+      <div class="verse-card-bar"></div>
+      <div class="verse-card-content" id="card-content">
+        <p class="card-kicker" id="card-kicker"></p>
+        <h2 class="card-heading" id="card-heading"></h2>
+        <p class="card-body" id="card-body"></p>
+        <p class="card-example" id="card-example"></p>
+      </div>
+    </div>
+
+    <div class="nav-bar">
+      <button type="button" class="nav-btn secondary" id="prev-btn" disabled>&larr; Back</button>
+      <span class="step-count" id="step-count">Ready</span>
+      <button type="button" class="nav-btn primary" id="next-btn">Begin &rarr;</button>
+    </div>
+  </div>
+</div>
+
+<div id="measure-host" aria-hidden="true"></div>
+
+<script>
+(function () {
+  var STEPS = [
+    {
+      color: '#2C2416',
+      kicker: 'Bible Study Rhythm',
+      heading: 'Read, Discover, Respond',
+      body: 'Choose a short passage and read it slowly, more than once if you need to. Notice who is speaking and what is happening.',
+      example: 'Then ask three questions to pay attention to God, people, and your response.',
+      desc: 'Overview showing an open Bible labeled Read connected to the Three Discovery Questions: 1 About God, 2 About People, and 3 Respond.',
+      bibleOpacity: 0.92,
+      lanes: [0.22, 0.22, 0.22],
+      stems: [0, 0, 0],
+      frameOpacity: 0,
+      dimPassage: true,
+      hl: [],
+      nextLabel: 'Begin \u2192',
+      countLabel: 'Ready'
+    },
+    {
+      color: '#5C5142',
+      kicker: 'Step 1 \u00b7 Read Slowly',
+      heading: 'Listen Before Answering',
+      body: 'Read the verses aloud or twice through. Notice who is speaking and what is happening before trying to summarize.',
+      example: 'John 1:11-12: John tells how Jesus came into His own world and how people responded.',
+      desc: 'Open Bible highlighted cleanly in step 1 while the sample passage John 1:11-12 appears unhighlighted for slow reading.',
+      bibleOpacity: 1,
+      lanes: [0.16, 0.16, 0.16],
+      stems: [0, 0, 0],
+      frameOpacity: 0,
+      dimPassage: false,
+      animateBible: true,
+      hl: [],
+      nextLabel: 'Next \u2192',
+      countLabel: 'Step 1 of 5'
+    },
+    {
+      color: '#A8760A',
+      kicker: 'Discovery Question 1 \u00b7 God',
+      heading: '1. What does this passage tell me about God?',
+      body: 'Look for what God says and does: His character, His promises, or His care for people.',
+      example: 'Here (gold): Jesus came close to His own and gives believers the right to be God\'s children.',
+      desc: 'Gold connector draws from the open Bible to lane 1 About God, and the God phrases in John 1:11-12 glow gold.',
+      bibleOpacity: 0.92,
+      lanes: [1, 0.14, 0.14],
+      stems: [1, 0, 0],
+      animateStem: 1,
+      animateLane: 1,
+      frameOpacity: 0,
+      dimPassage: false,
+      hl: ['god'],
+      nextLabel: 'Next \u2192',
+      countLabel: 'Step 2 of 5'
+    },
+    {
+      color: '#2A5B7C',
+      kicker: 'Discovery Question 2 \u00b7 People',
+      heading: '2. What does this passage tell me about people?',
+      body: 'Notice what people say, believe, and do: their need, their choices, or their response to God.',
+      example: 'Here (blue): Even His own people did not receive Him when He came.',
+      desc: 'Blue connector draws to lane 2 About People, and the people phrase in John 1:11-12 glows harbour blue.',
+      bibleOpacity: 0.92,
+      lanes: [0.2, 1, 0.14],
+      stems: [0.22, 1, 0],
+      animateStem: 2,
+      animateLane: 2,
+      frameOpacity: 0,
+      dimPassage: false,
+      hl: ['people'],
+      nextLabel: 'Next \u2192',
+      countLabel: 'Step 3 of 5'
+    },
+    {
+      color: '#1F684A',
+      kicker: 'Discovery Question 3 \u00b7 Respond',
+      heading: '3. What is this passage calling me to do or believe?',
+      body: 'Look for a truth to trust, a command to follow, a sin to turn from, or a promise to hold on to.',
+      example: 'Let your response grow from what the passage says: receive Jesus and believe in His name.',
+      desc: 'Green connector draws to lane 3 Respond, and the response phrase in John 1:11-12 glows sage green.',
+      bibleOpacity: 0.92,
+      lanes: [0.2, 0.2, 1],
+      stems: [0.22, 0.22, 1],
+      animateStem: 3,
+      animateLane: 3,
+      frameOpacity: 0,
+      dimPassage: false,
+      hl: ['respond'],
+      nextLabel: 'Next \u2192',
+      countLabel: 'Step 4 of 5'
+    },
+    {
+      color: '#8B1A2B',
+      kicker: 'Stay With What It Says',
+      heading: 'Start Simple and Keep Listening',
+      body: 'If something is unclear, read surrounding verses and ask a trusted Christian. You do not need to force a hidden message.',
+      example: 'Stay with what the passage says, and let a clear truth guide your response today.',
+      desc: 'All three discovery lanes and the open Bible are united cleanly while all three color highlights appear together in John 1:11-12.',
+      bibleOpacity: 1,
+      lanes: [1, 1, 1],
+      stems: [0.92, 0.92, 0.92],
+      frameOpacity: 1,
+      animateFrame: true,
+      dimPassage: false,
+      hl: ['god', 'people', 'respond'],
+      nextLabel: 'Start Over',
+      countLabel: 'Step 5 of 5'
+    }
+  ];
+
+  var widget = document.getElementById('widget');
+  var bibleGroup = document.getElementById('bible-group');
+  var laneEls = [
+    document.getElementById('lane-1'),
+    document.getElementById('lane-2'),
+    document.getElementById('lane-3')
+  ];
+  var stemEls = [
+    document.getElementById('stem-1'),
+    document.getElementById('stem-2'),
+    document.getElementById('stem-3')
+  ];
+  var finishFrame = document.getElementById('finish-frame');
+  var finishOuter = document.getElementById('finish-outer');
+  var clipBibleRect = document.getElementById('clip-bible-rect');
+  var clipLaneRects = [
+    document.getElementById('clip-lane-1-rect'),
+    document.getElementById('clip-lane-2-rect'),
+    document.getElementById('clip-lane-3-rect')
+  ];
+  var passageBox = document.getElementById('passage-box');
+  var hlEls = Array.prototype.slice.call(document.querySelectorAll('.hl'));
+  var dotEls = Array.prototype.slice.call(document.querySelectorAll('.step-dot'));
+  var cardKicker = document.getElementById('card-kicker');
+  var cardHeading = document.getElementById('card-heading');
+  var cardBody = document.getElementById('card-body');
+  var cardExample = document.getElementById('card-example');
+  var prevBtn = document.getElementById('prev-btn');
+  var nextBtn = document.getElementById('next-btn');
+  var stepCount = document.getElementById('step-count');
+  var svgDesc = document.getElementById('svg-desc');
+  var measureHost = document.getElementById('measure-host');
+
+  var current = 0;
+  var rafId = null;
+  var lastMeasuredWidth = 0;
+  var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var stemLengths = stemEls.map(function (el) { return el.getTotalLength(); });
+  var frameLength = finishOuter.getTotalLength();
+
+  function cancelAnim() {
+    if (rafId !== null) {
+      cancelAnimationFrame(rafId);
+      rafId = null;
+    }
+  }
+
+  function clearClipSweeps() {
+    clipBibleRect.setAttribute('width', '114');
+    clipLaneRects.forEach(function (rect) { rect.setAttribute('width', '268'); });
+    stemEls.forEach(function (el) { el.style.strokeDasharray = 'none'; el.style.strokeDashoffset = '0'; });
+    finishOuter.style.strokeDasharray = 'none';
+    finishOuter.style.strokeDashoffset = '0';
+  }
+
+  function renderCardContent(step) {
+    cardKicker.textContent = step.kicker;
+    cardHeading.textContent = step.heading;
+    cardBody.textContent = step.body;
+    cardExample.textContent = step.example;
+  }
+
+  function fitCardHeight() {
+    var width = document.getElementById('card-content').getBoundingClientRect().width;
+    if (!width) return;
+    lastMeasuredWidth = window.innerWidth;
+
+    measureHost.style.width = width + 'px';
+    measureHost.innerHTML = '';
+    var maxH = 0;
+
+    STEPS.forEach(function (step) {
+      var probe = document.createElement('div');
+      probe.className = 'verse-card-content';
+      probe.style.minHeight = '0';
+      probe.innerHTML =
+        '<p class="card-kicker"></p>' +
+        '<h2 class="card-heading"></h2>' +
+        '<p class="card-body"></p>' +
+        '<p class="card-example"></p>';
+      probe.querySelector('.card-kicker').textContent = step.kicker;
+      probe.querySelector('.card-heading').textContent = step.heading;
+      probe.querySelector('.card-body').textContent = step.body;
+      probe.querySelector('.card-example').textContent = step.example;
+      measureHost.appendChild(probe);
+      var h = Math.ceil(probe.getBoundingClientRect().height);
+      if (h > maxH) maxH = h;
+    });
+
+    measureHost.innerHTML = '';
+    if (maxH > 0) {
+      document.documentElement.style.setProperty('--card-h', maxH + 'px');
+    }
+  }
+
+  function applyStep(idx, instant) {
+    cancelAnim();
+    current = idx;
+    var step = STEPS[idx];
+    var isInstant = instant || reducedMotion.matches;
+
+    widget.classList.toggle('is-instant', isInstant);
+    widget.setAttribute('data-step', String(idx));
+    widget.style.setProperty('--step-color', step.color);
+
+    bibleGroup.style.opacity = String(step.bibleOpacity);
+    laneEls.forEach(function (el, i) { el.style.opacity = String(step.lanes[i]); });
+    stemEls.forEach(function (el, i) { el.style.opacity = String(step.stems[i]); });
+    finishFrame.style.opacity = String(step.frameOpacity);
+    passageBox.classList.toggle('is-dim', Boolean(step.dimPassage));
+
+    hlEls.forEach(function (el) {
+      var kind = el.getAttribute('data-hl');
+      var on = step.hl.indexOf(kind) !== -1;
+      el.classList.toggle('is-god', on && kind === 'god');
+      el.classList.toggle('is-people', on && kind === 'people');
+      el.classList.toggle('is-respond', on && kind === 'respond');
+    });
+
+    dotEls.forEach(function (btn, i) {
+      btn.setAttribute('aria-pressed', i === idx ? 'true' : 'false');
+    });
+
+    renderCardContent(step);
+    svgDesc.textContent = step.desc;
+    stepCount.textContent = step.countLabel;
+    nextBtn.textContent = step.nextLabel;
+    prevBtn.disabled = idx === 0;
+
+    clearClipSweeps();
+
+    if (isInstant) {
+      widget.setAttribute('data-step-dur', '0');
+      return;
+    }
+
+    var start = null;
+    var totalDur = 0;
+
+    if (step.animateBible) {
+      clipBibleRect.setAttribute('width', '0');
+      totalDur = 420;
+    } else if (step.animateStem || step.animateLane) {
+      var laneIdx = step.animateLane - 1;
+      var stemIdx = step.animateStem - 1;
+      var stemLen = stemLengths[stemIdx];
+      stemEls[stemIdx].style.strokeDasharray = stemLen;
+      stemEls[stemIdx].style.strokeDashoffset = stemLen;
+      clipLaneRects[laneIdx].setAttribute('width', '0');
+      totalDur = 640;
+    } else if (step.animateFrame) {
+      finishOuter.style.strokeDasharray = frameLength;
+      finishOuter.style.strokeDashoffset = frameLength;
+      totalDur = 620;
+    }
+
+    widget.setAttribute('data-step-dur', String(totalDur));
+    if (!totalDur) return;
+
+    function tick(ts) {
+      if (start === null) start = ts;
+      var elapsed = ts - start;
+      var t = Math.min(elapsed / totalDur, 1);
+
+      if (step.animateBible) {
+        clipBibleRect.setAttribute('width', String(114 * t));
+      } else if (step.animateStem || step.animateLane) {
+        var stemT = Math.min(elapsed / 240, 1);
+        var laneT = Math.max(0, Math.min((elapsed - 160) / 480, 1));
+        var si = step.animateStem - 1;
+        var li = step.animateLane - 1;
+        stemEls[si].style.strokeDashoffset = String(stemLengths[si] * (1 - stemT));
+        clipLaneRects[li].setAttribute('width', String(268 * laneT));
+      } else if (step.animateFrame) {
+        finishOuter.style.strokeDashoffset = String(frameLength * (1 - t));
+      }
+
+      if (t < 1) {
+        rafId = requestAnimationFrame(tick);
+      } else {
+        rafId = null;
+        clearClipSweeps();
+      }
+    }
+
+    rafId = requestAnimationFrame(tick);
+  }
+
+  prevBtn.addEventListener('click', function () {
+    if (current > 0) applyStep(current - 1, true);
+  });
+
+  nextBtn.addEventListener('click', function () {
+    if (current < STEPS.length - 1) {
+      applyStep(current + 1, false);
+    } else {
+      applyStep(0, true);
+    }
+  });
+
+  dotEls.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var target = Number(btn.getAttribute('data-step'));
+      if (Number.isInteger(target) && target >= 0 && target < STEPS.length) {
+        applyStep(target, target < current);
+      }
+    });
+  });
+
+  [bibleGroup].concat(laneEls).forEach(function (el) {
+    el.addEventListener('click', function () {
+      var target = Number(el.getAttribute('data-jump'));
+      if (Number.isInteger(target) && target >= 0 && target < STEPS.length) {
+        applyStep(target, target < current);
+      }
+    });
+  });
+
+  window.addEventListener('resize', function () {
+    if (window.innerWidth !== lastMeasuredWidth) {
+      fitCardHeight();
+    }
+  });
+
+  fitCardHeight();
+  applyStep(0, true);
+})();
+</script>
+</body>
+</html>

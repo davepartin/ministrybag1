@@ -1,5 +1,18 @@
 # Growing Together Team Board
 
+## 101-04 Read, Discover, Respond widget (`REVIEW`): November 14, 2026
+
+- **Task / Branch:** `WIDGET-101-04-RDR` on `gemini/widget-101-04-discovery` (rebased onto `origin/main` at `d0c5634`; `REVIEW` for Dave visual/wording check and Codex integration).
+- **Changed files:**
+  - `discipleship/widgets/read-discover-respond.html` (new Studio Wash Edition interactive widget: `#2C2416` header `Read, Discover, Respond` | `101-04`, geometric Open Bible -> Gold `1. About God` / Blue `2. About People` / Green `3. Respond` lanes + Crimson double hairline on completion, worked passage `John 1:11-12` with non-overlapping Studio Wash highlights, fixed `--card-h`, reduced-motion support, zero `localStorage`, zero em dashes)
+  - `discipleship/data/101-04.json` (wired `widgets/read-discover-respond.html` cleanly under **Read, Discover, Respond**, right before **Try It: Nicodemus Meets Jesus**; 100% of existing prose, `The Three Discovery Questions` box, Scripture, readings, and all 9 question IDs preserved)
+  - `discipleship/scripts/widget-iframe.js` (added `'read-discover-respond.html': 'Read, Discover, Respond'` fallback title)
+  - `discipleship/scripts/widget_101_04_rdr_browser_check.js` (Playwright regression test across `375`, `390`, `1280`, and `prefers-reduced-motion: reduce`)
+  - `discipleship/project-management/TEAM-BOARD.md`
+  - `discipleship/project-management/logs/2026-11-14-WIDGET-101-04-RDR-gemini.md`
+- **Verification (all exit `0`):** `qa_foundation.sh` (32 iframe checks), `test_lesson_export.js` (`177`), `test_answer_storage.js` (`64`), `check_lesson_assets.js` (`128`), and `widget_101_04_rdr_browser_check.js` across 4 viewport/motion jobs. See [evidence log](logs/2026-11-14-WIDGET-101-04-RDR-gemini.md).
+
+
 ## 101-05 requested serving and teaching flow edits, November 14, 2026
 
 Dave confirms 101-05 remains Silver. Applied only his requested serving choices and moved the unchanged 5.3 prompt after the potluck teaching (including its supporting verse), before the checklist. Teaching and Discipleship Group are separate; Cleaning Team, Community Service Team, Lawn Team, Hospitality and Other are added. First Impressions, Financial Giving and the old combined Teaching / Bible Study tile are hidden. Original numeric positions remain reserved so saved selections are not reinterpreted; Email identifies a selected old option as an earlier selection. All other copy, question objects/IDs, reading keys and images stay unchanged.
