@@ -107,7 +107,7 @@ function ck(label, cond) {
             tagColor: getComputedStyle(tagEl).color
           };
         });
-        ck(tag + ' header format', hdr.title === 'Baptism Identifies Us with Jesus' && hdr.courseTag === '202-10');
+        ck(tag + ' header format', hdr.title === 'Baptism' && hdr.courseTag === '202-10');
         ck(
           tag + ' header Studio Wash colors',
           hdr.bg === 'rgb(44, 36, 22)' &&
