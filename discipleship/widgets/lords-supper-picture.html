@@ -117,66 +117,30 @@ body {
 
 /* Selective-color SVG transitions (right side stays completely still!) */
 .hand-light {
-  fill: var(--bw-light);
-  stroke: var(--bw-stroke);
-  transition: fill 0.45s ease, stroke 0.45s ease;
-}
-.hand-mid {
-  fill: var(--bw-mid);
+  fill: #FFFFFF;
+  stroke: none;
   transition: fill 0.45s ease;
 }
-.hand-hi {
-  fill: var(--bw-hi);
+.nail-shield {
+  fill: #FFFFFF;
   transition: fill 0.45s ease;
-}
-.hand-shade {
-  fill: #9A9388;
-  opacity: 0.22;
-  transition: fill 0.45s ease, opacity 0.45s ease;
-}
-.hand-line {
-  stroke: var(--bw-stroke);
-  transition: stroke 0.45s ease;
-}
-.hand-hatch {
-  stroke: #4D463D;
-  transition: stroke 0.45s ease;
 }
 
 #supper-svg.color-body .hand-light {
   fill: var(--flesh-light);
-  stroke: var(--flesh-stroke);
 }
-#supper-svg.color-body .hand-mid {
-  fill: var(--flesh-mid);
-}
-#supper-svg.color-body .hand-hi {
-  fill: var(--flesh-hi);
-}
-#supper-svg.color-body .hand-shade {
-  fill: #8E4E1B;
-  opacity: 0.28;
-}
-#supper-svg.color-body .hand-line {
-  stroke: var(--flesh-stroke);
-}
-#supper-svg.color-body .hand-hatch {
-  stroke: #7A4318;
+#supper-svg.color-body .nail-shield {
+  fill: #DCD8CE;
 }
 
 .blood-main {
-  fill: #4A443C;
-  transition: fill 0.45s ease;
-}
-.blood-hi {
-  fill: #7B7469;
-  transition: fill 0.45s ease;
+  fill: #FFFFFF;
+  opacity: 0;
+  transition: fill 0.45s ease, opacity 0.45s ease;
 }
 #supper-svg.color-blood .blood-main {
   fill: var(--crimson);
-}
-#supper-svg.color-blood .blood-hi {
-  fill: var(--crimson-hi);
+  opacity: 0.92;
 }
 
 /* Bread color toggle & ragged break motion */
@@ -223,8 +187,8 @@ body {
 #bread-left-half,
 #bread-right-half,
 #bread-crumbs,
-#cup-upright,
-#cup-pouring-forward,
+#cup-tilter,
+#cup-tilted-wine,
 #cup-pour-stream,
 #cup-upright-wine {
   transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.38s ease;
@@ -232,13 +196,7 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .hand-light,
-  .hand-mid,
-  .hand-hi,
-  .hand-shade,
-  .hand-line,
-  .hand-hatch,
   .blood-main,
-  .blood-hi,
   .bread-light,
   .bread-mid,
   .bread-crumb,
@@ -250,10 +208,11 @@ body {
   #bread-left-half,
   #bread-right-half,
   #bread-crumbs,
-  #cup-upright,
-  #cup-pouring-forward,
+  #cup-tilter,
+  #cup-tilted-wine,
   #cup-pour-stream,
   #cup-upright-wine,
+  .nail-shield,
   .step-dot-fill,
   .nav-btn {
     transition: none;
@@ -448,25 +407,8 @@ button:focus-visible {
 
       <defs>
         <clipPath id="cupBowlClip">
-          <path d="M 120 108 L 164 108 C 163 132 154 146 142 148 C 130 146 121 132 120 108 Z"/>
+          <path d="M 130 110 L 174 110 C 173 134 164 148 152 150 C 140 148 131 134 130 110 Z"/>
         </clipPath>
-        <clipPath id="cupPourRimClip">
-          <ellipse cx="142" cy="118" rx="23.5" ry="12.5"/>
-        </clipPath>
-        <linearGradient id="woodFadeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0"/>
-          <stop offset="16%" stop-color="#FFFFFF" stop-opacity="1"/>
-          <stop offset="84%" stop-color="#FFFFFF" stop-opacity="1"/>
-          <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
-        </linearGradient>
-        <mask id="rightEdgeFade">
-          <rect x="195" y="40" width="180" height="190" fill="url(#woodFadeGrad)"/>
-        </mask>
-        <linearGradient id="winePourGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stop-color="#BD2C41"/>
-          <stop offset="45%" stop-color="#9B1C2E"/>
-          <stop offset="100%" stop-color="#6D1220"/>
-        </linearGradient>
       </defs>
 
       <!-- Top Column Pills -->
@@ -488,20 +430,20 @@ button:focus-visible {
       <!-- ===================== LEFT SIDE: AT THE TABLE ===================== -->
       <g id="table-side">
         <!-- Quiet Table Surface -->
-        <rect x="12" y="190" width="166" height="14" rx="3" fill="#F3F1EC" stroke="#CCC6BA" stroke-width="1.2"/>
-        <ellipse cx="52" cy="191" rx="35" ry="4" fill="#E8E4DC" stroke="#CFC9BD" stroke-width="1"/>
-        <ellipse cx="142" cy="191" rx="20" ry="3.5" fill="#E8E4DC"/>
+        <rect x="10" y="190" width="170" height="14" rx="3" fill="#F3F1EC" stroke="#CCC6BA" stroke-width="1.2"/>
+        <ellipse cx="42" cy="191" rx="30" ry="3.8" fill="#E8E4DC" stroke="#CFC9BD" stroke-width="1"/>
+        <ellipse cx="152" cy="191" rx="20" ry="3.5" fill="#E8E4DC"/>
 
-        <!-- LOAF OF BREAD (left side of table, well clear of cup) -->
+        <!-- LOAF OF BREAD (positioned cleanly on left so sideways pour never hits it!) -->
         <g id="bread-group">
           <!-- Whole Unbroken Loaf (Ready only) -->
           <g id="bread-whole-loaf" opacity="1">
             <path class="bread-light"
-                  d="M 20 187 L 84 187 C 82 166 68 153 52 153 C 36 153 22 166 20 187 Z"
+                  d="M 16 187 L 68 187 C 66 168 55 157 42 157 C 29 157 18 168 16 187 Z"
                   stroke-width="1.6" stroke-linejoin="round"/>
-            <path class="bread-mid" d="M 23 181 L 81 181 L 84 187 L 20 187 Z" stroke="none" opacity="0.48"/>
-            <path class="bread-score" d="M 29 171 C 36 161 45 158 52 158" fill="none" stroke-width="1.4" stroke-linecap="round" opacity="0.6"/>
-            <path class="bread-score" d="M 36 170 L 45 175 M 53 167 L 63 173 M 67 170 L 74 175" fill="none" stroke-width="1.3" stroke-linecap="round" opacity="0.72"/>
+            <path class="bread-mid" d="M 18 182 L 66 182 L 68 187 L 16 187 Z" stroke="none" opacity="0.48"/>
+            <path class="bread-score" d="M 23 173 C 29 164 36 161 42 161" fill="none" stroke-width="1.3" stroke-linecap="round" opacity="0.6"/>
+            <path class="bread-score" d="M 29 172 L 36 177 M 43 169 L 51 174 M 54 172 L 60 177" fill="none" stroke-width="1.2" stroke-linecap="round" opacity="0.72"/>
           </g>
 
           <!-- Broken Torn Halves (Step 1+) -->
@@ -509,313 +451,149 @@ button:focus-visible {
             <!-- Left Torn Loaf Piece -->
             <g id="bread-left-half">
               <path class="bread-light"
-                    d="M 20 187
-                       L 53 187
-                       L 50 181 L 54 174 L 49 167 L 53 161 L 50 154
-                       C 35 155 22 168 20 187 Z"
+                    d="M 16 187
+                       L 43 187
+                       L 40 181 L 44 175 L 39 169 L 43 163 L 40 158
+                       C 28 159 18 170 16 187 Z"
                     stroke-width="1.6" stroke-linejoin="round"/>
-              <path class="bread-score" d="M 28 172 C 33 163 40 160 47 159" fill="none" stroke-width="1.5" stroke-linecap="round" opacity="0.65"/>
-              <path class="bread-score" d="M 35 172 L 43 177" fill="none" stroke-width="1.3" stroke-linecap="round" opacity="0.7"/>
+              <path class="bread-score" d="M 22 173 C 26 166 32 163 38 162" fill="none" stroke-width="1.35" stroke-linecap="round" opacity="0.65"/>
+              <path class="bread-score" d="M 28 173 L 35 178" fill="none" stroke-width="1.2" stroke-linecap="round" opacity="0.7"/>
               <path id="crumb-l" class="bread-crumb"
-                    d="M 50 154 L 53 161 L 49 167 L 54 174 L 50 181 L 53 187 C 47 186 45 180 47 172 C 47 165 46 159 50 154 Z"
+                    d="M 40 158 L 43 163 L 39 169 L 44 175 L 40 181 L 43 187 C 38 186 36 180 38 173 C 38 167 37 162 40 158 Z"
                     stroke-width="1"/>
             </g>
 
             <!-- Right Torn Loaf Piece -->
             <g id="bread-right-half">
               <path class="bread-light"
-                    d="M 50 154
-                       L 53 161 L 49 167 L 54 174 L 50 181 L 53 187
-                       L 84 187
-                       C 82 168 69 154 50 154 Z"
+                    d="M 40 158
+                       L 43 163 L 39 169 L 44 175 L 40 181 L 43 187
+                       L 68 187
+                       C 66 170 55 158 40 158 Z"
                     stroke-width="1.6" stroke-linejoin="round"/>
-              <path class="bread-mid" d="M 52 181 L 83 181 L 84 187 L 53 187 Z" stroke="none" opacity="0.55"/>
-              <path class="bread-score" d="M 58 161 C 66 164 72 170 76 177" fill="none" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
-              <path class="bread-score" d="M 60 172 L 71 177" fill="none" stroke-width="1.3" stroke-linecap="round" opacity="0.7"/>
+              <path class="bread-mid" d="M 42 182 L 67 182 L 68 187 L 43 187 Z" stroke="none" opacity="0.55"/>
+              <path class="bread-score" d="M 47 164 C 53 166 58 171 61 177" fill="none" stroke-width="1.35" stroke-linecap="round" opacity="0.6"/>
+              <path class="bread-score" d="M 49 173 L 58 178" fill="none" stroke-width="1.2" stroke-linecap="round" opacity="0.7"/>
               <path id="crumb-r" class="bread-crumb"
-                    d="M 50 154 C 55 160 56 167 55 174 C 57 181 56 185 53 187 L 50 181 L 54 174 L 49 167 L 53 161 Z"
+                    d="M 40 158 C 44 163 45 169 44 175 C 46 181 45 185 43 187 L 40 181 L 44 175 L 39 169 L 43 163 Z"
                     stroke-width="1"/>
             </g>
 
             <!-- Uneven torn crumbs when broken -->
             <g id="bread-crumbs">
-              <polygon class="bread-crumb" points="50,183 53,185 51,187 48,185" stroke-width="0.7"/>
-              <circle class="bread-crumb" cx="56" cy="188" r="1.5" stroke-width="0.7"/>
-              <polygon class="bread-crumb" points="46,188 48,189 47,191 45,190" stroke-width="0.6"/>
-              <circle class="bread-crumb" cx="52" cy="192" r="1.1" stroke-width="0.6"/>
+              <polygon class="bread-crumb" points="40,184 43,186 41,188 38,186" stroke-width="0.7"/>
+              <circle class="bread-crumb" cx="45" cy="189" r="1.4" stroke-width="0.7"/>
+              <polygon class="bread-crumb" points="37,189 39,190 38,192 36,191" stroke-width="0.6"/>
+              <circle class="bread-crumb" cx="42" cy="192" r="1.1" stroke-width="0.6"/>
             </g>
           </g>
         </g>
 
-        <!-- CUP (upright on Ready/Step 1/Step 3; tips FORWARD TOWARD THE CAMERA on Step 2, completely clear of bread) -->
+        <!-- CUP (reverted to clean sideways tilt at -32deg, pouring onto open table clear of bread!) -->
         <g id="cup-group">
-          <!-- UPRIGHT CHALICE (Ready, Step 1, Step 3) -->
-          <g id="cup-upright" opacity="1">
+          <!-- Sideways pour stream aligned cleanly to tilted lip (95, 122), clear of bread at x=16..71 -->
+          <g id="cup-pour-stream" opacity="0">
+            <path d="M 95 122 C 89 138 89 162 90 189 L 95 189 C 94 164 94 140 99 124 Z"
+                  fill="var(--crimson)"/>
+            <path d="M 95 125 C 91 140 91 163 92 186"
+                  fill="none" stroke="var(--crimson-hi)" stroke-width="1.2" stroke-linecap="round" opacity="0.75"/>
+            <ellipse cx="92" cy="190" rx="10.5" ry="2.5" fill="var(--crimson)"/>
+            <ellipse cx="91.5" cy="189.5" rx="6" ry="1.2" fill="var(--crimson-hi)" opacity="0.62"/>
+          </g>
+
+          <!-- Tilting Cup Body -->
+          <g id="cup-tilter" style="transform-origin: 152px 168px;">
             <!-- Stem & Foot -->
-            <path d="M 138.5 148 L 138.5 178 L 128 187 L 156 187 L 145.5 178 L 145.5 148 Z"
+            <path d="M 148 150 L 148 180 L 138 189 L 166 189 L 156 180 L 156 150 Z"
                   fill="#F1EFEA" stroke="#2C2416" stroke-width="1.5" stroke-linejoin="round"/>
-            <ellipse cx="142" cy="187" rx="14.5" ry="2.7" fill="#E3E0D8" stroke="#2C2416" stroke-width="1.3"/>
+            <ellipse cx="152" cy="189" rx="14.5" ry="2.8" fill="#E3E0D8" stroke="#2C2416" stroke-width="1.3"/>
 
             <!-- Clear Crystal Goblet Bowl -->
-            <path d="M 118 106 L 166 106 C 165 133 155 148 142 150 C 129 148 119 133 118 106 Z"
+            <path d="M 128 108 L 176 108 C 175 135 165 150 152 152 C 139 150 129 135 128 108 Z"
                   fill="#FAFBFD" fill-opacity="0.78" stroke="#2C2416" stroke-width="1.5" stroke-linejoin="round"/>
 
-            <!-- Upright Wine Fill (Step 3) -->
+            <!-- Upright/Tilted Wine Fill clipped cleanly inside goblet -->
             <g clip-path="url(#cupBowlClip)">
+              <!-- Upright wine fill (Step 3) -->
               <g id="cup-upright-wine" opacity="0">
-                <rect x="116" y="120" width="52" height="32" fill="var(--crimson)"/>
-                <ellipse cx="142" cy="120" rx="21.5" ry="4" fill="var(--crimson-hi)"/>
-                <path d="M 122 133 C 127 143 135 148 142 148 C 149 148 157 143 162 133 L 162 150 L 122 150 Z"
+                <rect x="126" y="122" width="52" height="32" fill="var(--crimson)"/>
+                <ellipse cx="152" cy="122" rx="21.5" ry="4.1" fill="var(--crimson-hi)"/>
+                <path d="M 132 135 C 137 145 145 150 152 150 C 159 150 167 145 172 135 L 172 152 L 132 152 Z"
                       fill="var(--crimson-dark)" opacity="0.5"/>
+              </g>
+              <!-- Gravity-level pouring wine surface (+32deg compensates -32deg cup tilt so meniscus stays horizontal!) -->
+              <g id="cup-tilted-wine" opacity="0">
+                <g transform="rotate(32 145 128)">
+                  <rect x="116" y="123" width="64" height="42" fill="var(--crimson)"/>
+                  <ellipse cx="147" cy="123" rx="26" ry="4.2" fill="var(--crimson-hi)"/>
+                </g>
               </g>
             </g>
 
             <!-- Specular Rim & Glass Highlight -->
-            <path d="M 124 112 C 124 124 127 135 132 141" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" opacity="0.9"/>
-            <ellipse cx="142" cy="106" rx="24" ry="4.2" fill="none" stroke="#2C2416" stroke-width="1.5"/>
-          </g>
-
-          <!-- FORWARD-POURING CHALICE (Step 2: pitched forward toward the camera, pouring over front lip away from bread) -->
-          <g id="cup-pouring-forward" opacity="0">
-            <!-- Tilted cup body pitched toward viewer with stem angled back-right so stream never reads like a stem -->
-            <g transform="rotate(16 142 118)">
-              <!-- Foreshortened foot & stem angled upward/back-right behind the tilted crystal belly -->
-              <ellipse cx="142" cy="69" rx="13" ry="4" fill="#E3E0D8" stroke="#2C2416" stroke-width="1.3"/>
-              <path d="M 138.8 72 L 137.5 94 L 146.5 94 L 145.2 72 Z"
-                    fill="#F1EFEA" stroke="#2C2416" stroke-width="1.4" stroke-linejoin="round"/>
-
-              <!-- Back crystal belly receding behind open forward-facing rim -->
-              <path d="M 118 117 C 120 89 164 89 166 117 Z"
-                    fill="#F5F6F8" stroke="#2C2416" stroke-width="1.5" stroke-linejoin="round"/>
-              <path d="M 124 110 C 127 97 136 92 142 92" fill="none" stroke="#FFFFFF" stroke-width="1.7" stroke-linecap="round" opacity="0.88"/>
-            </g>
-
-            <!-- Wide elliptical open mouth facing the camera -->
-            <ellipse cx="142" cy="118" rx="24.5" ry="12.5" fill="#FAFBFD" stroke="#2C2416" stroke-width="1.5"/>
-
-            <!-- Crimson wine brimming inside open forward-tilted bowl -->
-            <g clip-path="url(#cupPourRimClip)">
-              <path d="M 116 114 C 126 111 158 111 168 114 L 168 134 L 116 134 Z" fill="var(--crimson)"/>
-              <ellipse cx="142" cy="115" rx="22" ry="4.4" fill="var(--crimson-hi)" opacity="0.92"/>
-              <path d="M 122 123 C 130 129 154 129 162 123 L 162 133 L 122 133 Z" fill="var(--crimson-dark)" opacity="0.42"/>
-            </g>
-
-            <!-- Crisp outer rim & inner upper glass lip -->
-            <ellipse cx="142" cy="118" rx="24.5" ry="12.5" fill="none" stroke="#2C2416" stroke-width="1.5"/>
-            <path d="M 119.5 115 C 124 108 160 108 164.5 115" fill="none" stroke="#8C857A" stroke-width="0.9" opacity="0.65"/>
-
-            <!-- Wine Pouring Forward OVER the Front Crystal Lip Toward Camera (drawn ON TOP of rim so it clearly spills out!) -->
-            <g id="cup-pour-stream" opacity="0">
-              <!-- Smooth narrowing fluid sheet spilling out over front lower lip (y=127..131) toward front foreground (y=204) -->
-              <path d="M 135 127.5
-                       C 138 128 145 128 149 127
-                       C 149 144 146 168 145 190
-                       C 144.8 197 146 202 147.5 204.5
-                       L 135 204.5
-                       C 136.5 201 137.5 194 137.5 186
-                       C 137.5 164 136 144 135 127.5 Z"
-                    fill="url(#winePourGrad)"/>
-              <!-- Soft curved meniscus rolling right over the front rim thickness -->
-              <ellipse cx="142" cy="129" rx="6.8" ry="2.2" fill="var(--crimson-hi)" opacity="0.88"/>
-              <!-- Specular gleam streaks inside pouring stream -->
-              <path d="M 139.5 132 C 139.8 154 139.5 178 139 201"
-                    fill="none" stroke="#E5687A" stroke-width="1.4" stroke-linecap="round" opacity="0.68"/>
-              <path d="M 143.2 138 C 143 158 142.5 178 142.8 196"
-                    fill="none" stroke="#BD2C41" stroke-width="0.95" stroke-linecap="round" opacity="0.48"/>
-              <!-- Organic foreground wine splash & droplets (asymmetrical puddle, never mimicking a cup base) -->
-              <path d="M 124 205.5
-                       C 124 202.2 133 200.5 142 201
-                       C 152 201.5 161 203.2 160.5 206
-                       C 160 208.8 150 209.5 140 209.2
-                       C 130 208.9 124 207.8 124 205.5 Z"
-                    fill="var(--crimson)"/>
-              <ellipse cx="141.5" cy="204.6" rx="10.5" ry="1.8" fill="var(--crimson-hi)" opacity="0.65"/>
-              <ellipse cx="120.5" cy="206.5" rx="3.2" ry="1.2" fill="var(--crimson)" opacity="0.85"/>
-              <circle cx="163" cy="204.5" r="1.4" fill="var(--crimson)" opacity="0.8"/>
-            </g>
+            <path d="M 134 114 C 134 126 137 137 142 143" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" opacity="0.9"/>
+            <ellipse cx="152" cy="108" rx="24" ry="4.2" fill="none" stroke="#2C2416" stroke-width="1.5"/>
           </g>
         </g>
       </g>
 
-      <!-- ===================== RIGHT SIDE: STATIC ARTWORK (OPEN HAND ON WOOD) ===================== -->
+      <!-- ===================== RIGHT SIDE: PENCIL ARTWORK + SELECTIVE COLOR LAYERS ===================== -->
       <!-- Nothing moves here! Only selective skin color OR selective blood color turns ON. -->
-      <g id="cross-beam-scene" mask="url(#rightEdgeFade)">
-
-        <!-- Subtle Horizontal Weathered Timber Surface Underneath (lowered so open palm rises cleanly in white space) -->
-        <g id="timber-beam">
-          <path d="M 196 168 L 372 163 L 372 205 L 196 205 Z" fill="#F2EFE8"/>
-          <path d="M 198 168 L 370 163" stroke="#6E675C" stroke-width="1.15" opacity="0.58"/>
-          <path d="M 198 196 L 370 194" stroke="#6E675C" stroke-width="0.95" opacity="0.42"/>
-          <!-- Woodgrain contours -->
-          <path d="M 202 176 C 232 174 268 176 306 173 M 316 172 C 338 170 354 172 368 171"
-                fill="none" stroke="#857E72" stroke-width="0.85" stroke-linecap="round" opacity="0.48"/>
-          <path d="M 200 186 C 238 188 282 184 330 185 M 338 185 C 352 184 362 185 368 185"
-                fill="none" stroke="#857E72" stroke-width="0.85" stroke-linecap="round" opacity="0.44"/>
-          <!-- Soft grounded cast shadow directly beneath wrist and hypothenar heel -->
-          <path d="M 204 194 C 236 190 274 187 308 180 C 325 175 338 168 346 164 L 339 182 C 316 191 278 198 228 202 L 202 203 Z"
-                fill="#5E574C" opacity="0.22"/>
-          <!-- Subtle diagonal ink hatching inside cast shadow under palm heel -->
-          <path d="M 244 186 L 252 196 M 253 185 L 261 195 M 262 184 L 270 194 M 271 182 L 279 192 M 280 181 L 288 191 M 289 179 L 297 189 M 298 176 L 306 186 M 307 172 L 314 182"
-                stroke="#4A443C" stroke-width="0.8" stroke-linecap="round" opacity="0.44"/>
-        </g>
-
-        <!-- Jesus' Open Upturned Pierced Hand (True sculptural anatomy modeled on reference sketch!) -->
+      <svg id="cross-beam-scene" x="194" y="34" width="182" height="198" viewBox="0 55 438 478">
+        <!-- Selective Color Pair 1: Jesus' Hand Skin Wash (pure white when B&W, warm #E2B484 when color-body is active) -->
         <g id="jesus-hand">
-          <!-- Back-plane Upright Middle Finger (extended deeply into palm web to guarantee zero gaps!) -->
-          <g id="finger-middle">
-            <path class="hand-light"
-                  d="M 308 134
-                     L 322 65
-                     C 323 55 330 51 335 53
-                     C 340 56 340 64 338 77
-                     L 332 134 Z"
-                  stroke-width="1.35" stroke-linejoin="round"/>
-            <path class="hand-mid"
-                  d="M 332 54 C 338 56 339 64 337 77 L 332 124 L 325 122 C 330 92 334 65 332 54 Z"
-                  opacity="0.58"/>
-            <path class="hand-line" d="M 324 72 C 328 73 333 74 336 76" fill="none" stroke-width="0.95" stroke-linecap="round"/>
-            <path class="hand-line" d="M 322 90 C 327 91 331 92 334 94" fill="none" stroke-width="0.95" stroke-linecap="round"/>
-            <path class="hand-hatch" d="M 331 64 L 336 66 M 330 78 L 335 80 M 328 96 L 333 98" fill="none" stroke-width="0.7" opacity="0.5"/>
-          </g>
-
-          <!-- Main Hand Silhouette: Forearm + Wrist + Open Cupped Palm + Arched Thumb + Index Finger -->
-          <g id="palm-and-thumb">
-            <path class="hand-light"
-                  d="M 196 173
-                     C 212 162 224 152 231 142
-                     C 237 132 242 118 249 107
-                     C 256 96 266 87 276 87
-                     C 283 87 286 92 284 98
-                     C 282 103 276 109 270 115
-                     C 265 120 264 126 266 128
-                     C 272 121 282 110 291 93
-                     C 298 80 304 64 309 57
-                     C 312 52 319 52 322 57
-                     C 325 63 322 76 318 92
-                     C 315 103 313 111 313 118
-                     C 322 118 332 126 334 140
-                     C 336 154 326 168 308 174
-                     C 289 180 266 181 245 186
-                     C 228 190 212 198 196 205 Z"
-                  stroke-width="1.45" stroke-linejoin="round"/>
-
-            <!-- Soft Tonal Palm Volume & Undercarriage Shading -->
-            <path class="hand-mid"
-                  d="M 197 192
-                     C 214 185 232 178 249 174
-                     C 271 170 295 168 313 160
-                     C 323 155 329 148 331 142
-                     C 334 152 325 166 307 172
-                     C 288 178 265 180 244 185
-                     C 227 189 212 197 197 204 Z"
-                  opacity="0.72"/>
-            <!-- Cupped hollow shadow around palm center & thumb web -->
-            <path class="hand-shade"
-                  d="M 248 148 C 254 134 268 124 282 124 C 296 124 306 132 308 144 C 302 154 286 158 270 156 C 256 154 248 152 248 148 Z"/>
-            <!-- Soft light highlights on thenar pad, thumb tip, and index upper edge -->
-            <path class="hand-hi"
-                  d="M 244 144 C 242 132 246 116 256 104 C 264 95 274 90 280 92 C 278 99 268 108 260 118 C 254 127 254 140 244 144 Z"
-                  opacity="0.78"/>
-            <path class="hand-hi"
-                  d="M 304 82 C 309 68 313 58 317 57 C 319 63 316 77 310 92 C 306 96 302 90 304 82 Z"
-                  opacity="0.65"/>
-
-            <!-- Anatomical Palm, Wrist, Thumb & Index Contour Ink Details -->
-            <!-- Forearm tendon & wrist crease -->
-            <path class="hand-line" d="M 206 180 C 219 172 232 164 243 156" fill="none" stroke-width="1.05" stroke-linecap="round" opacity="0.7"/>
-            <path class="hand-line" d="M 230 144 C 234 152 238 161 243 169" fill="none" stroke-width="0.95" stroke-linecap="round" opacity="0.55"/>
-            <!-- Life line curving gently around thenar mound -->
-            <path class="hand-line" d="M 263 128 C 257 137 255 150 258 161" fill="none" stroke-width="1.15" stroke-linecap="round" opacity="0.82"/>
-            <!-- Palm transverse creases -->
-            <path class="hand-line" d="M 284 122 C 294 123 305 127 312 132" fill="none" stroke-width="1.05" stroke-linecap="round" opacity="0.75"/>
-            <path class="hand-line" d="M 286 135 C 296 136 306 140 314 146" fill="none" stroke-width="0.95" stroke-linecap="round" opacity="0.6"/>
-            <!-- Thumb joint fold & thumbnail edge -->
-            <path class="hand-line" d="M 259 107 C 264 109 269 111 271 114" fill="none" stroke-width="1" stroke-linecap="round" opacity="0.75"/>
-            <path class="hand-line" d="M 268 92 C 272 89 278 88 281 91 C 279 94 273 95 268 92 Z" fill="none" stroke-width="0.9" opacity="0.6"/>
-            <!-- Index finger joint creases -->
-            <path class="hand-line" d="M 304 75 C 309 76 315 78 318 80" fill="none" stroke-width="1" stroke-linecap="round" opacity="0.75"/>
-            <path class="hand-line" d="M 297 93 C 303 95 310 97 314 99" fill="none" stroke-width="1" stroke-linecap="round" opacity="0.75"/>
-            <path class="hand-line" d="M 289 109 C 296 111 303 114 307 117" fill="none" stroke-width="0.95" stroke-linecap="round" opacity="0.68"/>
-
-            <!-- Delicate Graphite Cross-Hatching Shading -->
-            <path class="hand-hatch"
-                  d="M 205 190 L 214 196 M 214 185 L 224 192 M 223 181 L 233 188 M 233 177 L 243 184 M 244 174 L 254 182 M 256 172 L 265 180 M 268 171 L 276 179 M 280 169 L 288 177 M 292 166 L 299 174 M 303 162 L 310 170"
-                  fill="none" stroke-width="0.75" stroke-linecap="round" opacity="0.52"/>
-            <path class="hand-hatch"
-                  d="M 239 138 L 246 143 M 241 131 L 248 136 M 244 124 L 250 128 M 249 116 L 255 120"
-                  fill="none" stroke-width="0.7" stroke-linecap="round" opacity="0.42"/>
-          </g>
-
-          <!-- Foreground Curled Ring Finger (tucking cleanly in front of palm web with zero gaps) -->
-          <g id="finger-ring">
-            <path class="hand-light"
-                  d="M 306 142
-                     C 319 124 329 99 334 80
-                     C 336 72 343 70 347 75
-                     C 350 81 346 99 341 117
-                     C 336 132 330 144 322 152 Z"
-                  stroke-width="1.4" stroke-linejoin="round"/>
-            <path class="hand-mid"
-                  d="M 342 75 C 347 78 346 94 341 114 C 336 130 330 142 322 149 L 316 144 C 327 128 336 106 340 86 Z"
-                  opacity="0.56"/>
-            <path class="hand-line" d="M 332 95 C 337 97 341 99 344 101" fill="none" stroke-width="0.95" stroke-linecap="round"/>
-            <path class="hand-line" d="M 326 115 C 331 117 336 119 339 121" fill="none" stroke-width="0.95" stroke-linecap="round"/>
-            <!-- Subtle curved fingertip nail sliver -->
-            <path class="hand-line" d="M 339 74 C 343 74 345 77 345 81" fill="none" stroke-width="0.85" stroke-linecap="round" opacity="0.65"/>
-            <path class="hand-hatch" d="M 336 104 L 342 106 M 332 120 L 338 123 M 326 135 L 332 138" fill="none" stroke-width="0.7" opacity="0.5"/>
-          </g>
-
-          <!-- Foreground Curled Little Finger / Pinky on Outer Right Contour -->
-          <g id="finger-pinky">
-            <path class="hand-light"
-                  d="M 317 166
-                     C 329 156 341 139 348 119
-                     C 351 110 353 98 352 93
-                     C 351 89 345 89 342 95
-                     C 339 103 335 120 326 135
-                     C 320 145 314 152 308 158"
-                  stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/>
-            <path class="hand-mid"
-                  d="M 350 93 C 353 96 351 112 345 127 C 339 143 329 156 318 164 L 312 158 C 325 147 336 132 342 114 Z"
-                  opacity="0.62"/>
-            <path class="hand-line" d="M 339 112 C 343 114 347 116 349 118" fill="none" stroke-width="0.95" stroke-linecap="round"/>
-            <path class="hand-line" d="M 331 131 C 336 134 340 136 342 138" fill="none" stroke-width="0.9" stroke-linecap="round"/>
-            <path class="hand-hatch" d="M 341 122 L 346 125 M 335 137 L 341 141 M 327 151 L 333 155" fill="none" stroke-width="0.7" opacity="0.52"/>
-          </g>
+          <path class="hand-light"
+                d="M 2 340
+                   C 36 318 68 292 86 254
+                   C 104 214 134 176 168 148
+                   C 192 126 212 118 228 120
+                   C 241 122 244 136 236 154
+                   C 226 176 206 196 184 212
+                   C 172 222 168 232 170 242
+                   C 194 242 228 242 260 228
+                   C 280 216 296 196 306 168
+                   C 312 142 314 104 324 84
+                   C 330 74 342 74 348 84
+                   C 352 94 349 124 348 146
+                   C 350 132 362 92 384 86
+                   C 396 86 398 112 396 138
+                   C 394 150 392 160 392 168
+                   C 398 182 396 210 395 234
+                   C 395 248 390 264 385 280
+                   C 380 302 368 328 344 346
+                   C 306 378 250 404 182 408
+                   C 138 412 88 432 2 486 Z"/>
         </g>
 
-        <!-- Delicate Blood Trickles Down From Center Palm Nail (Selective Color Pair 2!) -->
-        <g id="beam-blood">
-          <!-- Small quiet stain right where iron spike pierces center palm -->
-          <ellipse class="blood-main" cx="275" cy="135" rx="4.5" ry="2.6" stroke="#2C2416" stroke-width="0.75"/>
-          <!-- Three slender solemn trickles with tiny droplets (matching reference restraint) -->
-          <path class="blood-main"
-                d="M 272 136 C 270 141 267 146 264 150 C 263 152 265 153 266 151 C 268 147 271 142 273 137 Z"
-                stroke="#2C2416" stroke-width="0.65"/>
-          <path class="blood-main"
-                d="M 275.5 137 C 275 144 275.5 153 275 160 C 275 163 277.8 163 277.8 160 C 277.8 153 277.5 144 277.2 137 Z"
-                stroke="#2C2416" stroke-width="0.65"/>
-          <path class="blood-main"
-                d="M 278.5 136 C 280 142 281 148 282 153 C 282.3 155 284.4 154.5 284 152 C 283 147 281.5 141 279.8 136 Z"
-                stroke="#2C2416" stroke-width="0.65"/>
-          <circle class="blood-main" cx="264.5" cy="153.5" r="1.4" stroke="#2C2416" stroke-width="0.6"/>
-          <circle class="blood-main" cx="276.4" cy="162.2" r="1.6" stroke="#2C2416" stroke-width="0.6"/>
-          <path class="blood-hi" d="M 276 142 C 276 148 276 153 276 157" fill="none" stroke-width="0.8" opacity="0.6"/>
-        </g>
-
-        <!-- Forged Iron Nail Spike Driven Through Center Palm (Always crisp dark iron charcoal) -->
+        <!-- Forged Iron Nail Shield (transparent/white in B&W so zero halo; cool neutral grey under color-body) -->
         <g id="wrist-nail">
-          <!-- Palm entry crease depression -->
-          <path d="M 269 133 C 273 137 279 137 282 133" fill="none" stroke="#2C2416" stroke-width="1.2" stroke-linecap="round"/>
-          <!-- Tapered forged iron shaft -->
-          <polygon points="265,107 272,107 277,135 272.5,135" fill="#46413A" stroke="#2C2416" stroke-width="1.2" stroke-linejoin="round"/>
-          <line x1="267" y1="109" x2="273.5" y2="133" stroke="#9E978C" stroke-width="0.9"/>
-          <!-- Rough hammered beveled circular/faceted iron head -->
-          <ellipse cx="268" cy="105.5" rx="9.5" ry="4.8" fill="#3E3932" stroke="#2C2416" stroke-width="1.2"/>
-          <ellipse cx="268" cy="102.5" rx="9.8" ry="4.8" fill="#635C52" stroke="#2C2416" stroke-width="1.2"/>
-          <path d="M 261 102 C 264 99.5 272 99.5 275 102" fill="none" stroke="#A69F93" stroke-width="0.95" stroke-linecap="round"/>
+          <path class="nail-shield"
+                d="M 168 246
+                   C 168 228 228 228 228 248
+                   C 228 260 218 266 208 269
+                   L 216 324
+                   L 198 324
+                   L 186 268
+                   C 176 264 168 258 168 246 Z"/>
         </g>
-      </g>
+
+        <!-- Selective Color Pair 2: Delicate Blood Trickles (transparent in B&W, exact #9B1C2E crimson when color-blood is active) -->
+        <g id="beam-blood">
+          <!-- Entry wound pool -->
+          <ellipse class="blood-main" cx="212" cy="322" rx="14" ry="6"/>
+          <!-- Lower-left tiny streak + droplet -->
+          <path class="blood-main" d="M 136 353 L 122 375 L 126 378 L 139 356 Z"/>
+          <circle class="blood-main" cx="122.5" cy="381" r="4.8"/>
+          <!-- Main vertical twin blood trickles below nail -->
+          <path class="blood-main" d="M 213 326 C 216 346 219 370 219 393 L 225 393 C 225 370 222 346 218 326 Z"/>
+          <circle class="blood-main" cx="222" cy="394" r="4.8"/>
+          <path class="blood-main" d="M 224 330 C 228 348 232 366 234 384 L 239 384 C 237 366 233 348 228 330 Z"/>
+          <circle class="blood-main" cx="236.5" cy="385" r="4.2"/>
+        </g>
+
+        <!-- Crisp Transparent Charcoal Pencil Artwork on Top -->
+        <image id="hand-ink-layer" href="202-10-hand-beam-ink.png" x="0" y="0" width="438" height="552" preserveAspectRatio="xMidYMid meet"/>
+      </svg>
 
       <!-- Bottom Labels -->
       <g id="stage-labels">
@@ -1055,10 +833,10 @@ button:focus-visible {
     if (s.splitBread) {
       el('bread-whole-loaf').style.opacity = '0';
       el('bread-broken-halves').style.opacity = '1';
-      el('bread-left-half').style.transform = 'translate(-5px, 1px) rotate(-6deg)';
-      el('bread-left-half').style.transformOrigin = '46px 185px';
-      el('bread-right-half').style.transform = 'translate(5px, 1px) rotate(5deg)';
-      el('bread-right-half').style.transformOrigin = '58px 185px';
+      el('bread-left-half').style.transform = 'translate(-4px, 1px) rotate(-6deg)';
+      el('bread-left-half').style.transformOrigin = '38px 185px';
+      el('bread-right-half').style.transform = 'translate(4px, 1px) rotate(5deg)';
+      el('bread-right-half').style.transformOrigin = '46px 185px';
     } else {
       el('bread-whole-loaf').style.opacity = '1';
       el('bread-broken-halves').style.opacity = '0';
@@ -1067,19 +845,15 @@ button:focus-visible {
     }
 
     if (s.tiltCup) {
-      el('cup-upright').style.opacity = '0';
-      el('cup-upright-wine').style.opacity = '0';
-      el('cup-pouring-forward').style.opacity = '1';
-      el('cup-pouring-forward').style.transform = 'translate(0px, 2px) scale(1.03)';
-      el('cup-pouring-forward').style.transformOrigin = '142px 124px';
+      el('cup-tilter').style.transform = 'translate(-4px, -8px) rotate(-32deg)';
       el('cup-pour-stream').style.opacity = '1';
+      el('cup-tilted-wine').style.opacity = '1';
+      el('cup-upright-wine').style.opacity = '0';
     } else {
-      el('cup-upright').style.opacity = '1';
-      el('cup-upright-wine').style.opacity = s.uprightWine ? '1' : '0';
-      el('cup-pouring-forward').style.opacity = '0';
-      el('cup-pouring-forward').style.transform = 'translate(0px, -4px) scale(0.96)';
-      el('cup-pouring-forward').style.transformOrigin = '142px 124px';
+      el('cup-tilter').style.transform = 'translate(0, 0) rotate(0deg)';
       el('cup-pour-stream').style.opacity = '0';
+      el('cup-tilted-wine').style.opacity = '0';
+      el('cup-upright-wine').style.opacity = s.uprightWine ? '1' : '0';
     }
 
     el('link-badge-bg').setAttribute('fill', s.linkBg);
