@@ -112,8 +112,7 @@ body {
 
 #new-bank-wash,
 #cross-glow,
-#tomb-glow,
-#union-ray {
+#tomb-glow {
   transition: opacity 0.45s ease;
 }
 
@@ -134,7 +133,6 @@ body {
   #new-bank-wash,
   #cross-glow,
   #tomb-glow,
-  #union-ray,
   #you-fig,
   #tomb-stone,
   #baptizer-arms,
@@ -326,10 +324,7 @@ button:focus-visible {
   </div>
 
   <div class="stage">
-    <svg id="baptism-svg" viewBox="0 0 380 272" width="100%" role="img" aria-labelledby="bap-title bap-desc">
-      <title id="bap-title">What Baptism Pictures</title>
-      <desc id="bap-desc">Side-by-side scene showing your baptism pool on the left and Jesus' tomb and cross on the right.</desc>
-
+    <svg id="baptism-svg" viewBox="0 0 380 272" width="100%" role="img" aria-label="What Baptism Pictures" aria-describedby="bap-desc">
       <defs>
         <radialGradient id="crossGlowGrad" cx="50%" cy="50%" r="50%">
           <stop offset="0%" stop-color="#9B3B2A" stop-opacity="0.3"/>
@@ -346,17 +341,18 @@ button:focus-visible {
           <stop offset="55%" stop-color="#F3D98B" stop-opacity="0.45"/>
           <stop offset="100%" stop-color="#E0A526" stop-opacity="0"/>
         </radialGradient>
-        <linearGradient id="unionBeamGrad" x1="100%" y1="0%" x2="0%" y2="0%">
-          <stop offset="0%" stop-color="#F3D98B" stop-opacity="0.52"/>
-          <stop offset="55%" stop-color="#F3D98B" stop-opacity="0.22"/>
-          <stop offset="100%" stop-color="#E0A526" stop-opacity="0"/>
-        </linearGradient>
         <clipPath id="tombStoneClip">
-          <circle cx="0" cy="0" r="19"/>
+          <circle cx="0" cy="0" r="18.5"/>
+        </clipPath>
+        <clipPath id="leftPanelClip">
+          <rect x="10" y="38" width="168" height="200" rx="8"/>
+        </clipPath>
+        <clipPath id="rightPanelClip">
+          <rect x="202" y="38" width="168" height="200" rx="8"/>
         </clipPath>
       </defs>
 
-      <!-- Top Parallel Column Headers + Center Union Badge -->
+      <!-- Top Parallel Column Headers + Full-Height Center Dividing Line in White Corridor -->
       <g id="column-headers">
         <rect x="26" y="7" width="136" height="23" rx="11.5" fill="#EBF4F9" stroke="#C5DFEC" stroke-width="1"/>
         <text class="svg-sans" x="94" y="22.5" text-anchor="middle" font-size="11.5" font-weight="700" fill="#2A7FA8">Your Baptism</text>
@@ -364,7 +360,7 @@ button:focus-visible {
         <rect x="218" y="7" width="136" height="23" rx="11.5" fill="#F5EFE3" stroke="#DFD4BE" stroke-width="1"/>
         <text class="svg-sans" x="286" y="22.5" text-anchor="middle" font-size="11.5" font-weight="700" fill="#6F4C24">What Jesus Did</text>
 
-        <line x1="190" y1="36" x2="190" y2="246" stroke="#DFD9CD" stroke-width="1.5" stroke-dasharray="4 4"/>
+        <line id="center-divider" x1="190" y1="30" x2="190" y2="266" stroke="#CFC8BA" stroke-width="1.6" stroke-dasharray="4 4"/>
 
         <g id="link-badge">
           <circle id="link-badge-bg" cx="190" cy="18.5" r="10.5" fill="#FFFFFF" stroke="#D4CFC4" stroke-width="1.5"/>
@@ -372,22 +368,23 @@ button:focus-visible {
         </g>
       </g>
 
-      <!-- ===================== CONTINUOUS GROUND ACROSS SPLIT STAGE ===================== -->
-      <path d="M 8 176 L 32 194 L 40 218 L 114 218 L 122 194 L 146 172 L 190 168 Q 204 158 220 158 L 292 156 Q 338 141 372 166 L 372 238 L 8 238 Z" fill="#EAE2D2"/>
+      <!-- ===================== LEFT PANEL (SEPARATE): YOUR BAPTISM ===================== -->
+      <rect x="10" y="38" width="168" height="200" rx="8" fill="#FFFFFF" stroke="#E5DEC9" stroke-width="1.2"/>
+      <g id="baptism-side" clip-path="url(#leftPanelClip)">
+        <!-- Shallow earth banks & pool contained inside left panel (x=10..178) -->
+        <path d="M 10 176 L 34 194 L 42 218 L 110 218 L 118 194 L 142 172 L 178 170 L 178 238 L 10 238 Z" fill="#EAE2D2"/>
 
-      <!-- ===================== LEFT SIDE: COMPACT RIVERBANK & WAIST-HIGH POOL ===================== -->
-      <g id="baptism-side">
         <!-- Fixed shallow water basin back fill (y=194..218) -->
-        <polygon points="32,194 122,194 114,218 40,218" fill="#D5ECF6"/>
+        <polygon points="34,194 118,194 110,218 42,218" fill="#D5ECF6"/>
 
-        <!-- Green bloom overlay on right terrace for Resurrection & New Life (stops cleanly at x=190) -->
-        <path id="new-bank-wash" d="M 114 218 L 122 194 L 146 172 L 190 168 L 190 238 L 114 238 Z" fill="#D8ECDC" opacity="0"/>
+        <!-- Green bloom overlay on right terrace for Resurrection & New Life -->
+        <path id="new-bank-wash" d="M 110 218 L 118 194 L 142 172 L 178 170 L 178 238 L 110 238 Z" fill="#D8ECDC" opacity="0"/>
 
-        <!-- Crisp continuous bank contour -->
-        <path d="M 8 176 L 32 194 L 40 218 L 114 218 L 122 194 L 146 172 L 190 168" fill="none" stroke="#8C8375" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <!-- Crisp bank contour inside left panel -->
+        <path d="M 10 176 L 34 194 L 42 218 L 110 218 L 118 194 L 142 172 L 178 170" fill="none" stroke="#8C8375" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 
-        <!-- Fixed Pastor / Baptizer standing waist-deep in shallow water at x=100, y=216 -->
-        <g id="baptizer" transform="translate(100,216)">
+        <!-- Fixed Pastor / Baptizer standing waist-deep in shallow water at x=97, y=216 -->
+        <g id="baptizer" transform="translate(97,216)">
           <line x1="-3.5" y1="-15" x2="-4" y2="-1" stroke="#4A6B8B" stroke-width="3.8" stroke-linecap="round"/>
           <line x1="3.5" y1="-15" x2="4" y2="-1" stroke="#4A6B8B" stroke-width="3.8" stroke-linecap="round"/>
           <line x1="0" y1="-34" x2="0" y2="-15" stroke="#4A6B8B" stroke-width="4.8" stroke-linecap="round"/>
@@ -399,7 +396,7 @@ button:focus-visible {
         </g>
 
         <!-- Hero Person Being Baptized: upright/leaning/bending pose (CONSTANT color #1D6B3F across every slide) -->
-        <g id="you-fig" transform="translate(20,174)">
+        <g id="you-fig" transform="translate(22,178)">
           <g stroke="#FFFFFF" stroke-width="1.8" paint-order="stroke" stroke-linejoin="round" stroke-linecap="round">
             <circle cx="0" cy="-37" r="5.4" fill="#1D6B3F"/>
             <line x1="0" y1="-31" x2="0" y2="-15" stroke="#1D6B3F" stroke-width="4.8"/>
@@ -410,112 +407,111 @@ button:focus-visible {
           </g>
         </g>
 
-        <!-- Same Baptized Person KNEELING & bowing on right bank facing risen Jesus (Slide 4, constant color #1D6B3F) -->
-        <g id="you-kneel" class="fade-part" transform="translate(158,170)">
+        <!-- Same Baptized Person KNEELING & bowing to worship Jesus (Slide 4, constant color #1D6B3F) -->
+        <g id="you-kneel" class="fade-part" transform="translate(155,171)">
           <g stroke="#FFFFFF" stroke-width="1.8" paint-order="stroke" stroke-linejoin="round" stroke-linecap="round">
             <!-- Lower shin & foot resting behind on the bank -->
             <line x1="-13" y1="-1" x2="-1" y2="-1" stroke="#1D6B3F" stroke-width="3.6"/>
             <!-- Thigh rising up to hip -->
             <line x1="-1" y1="-1" x2="-7" y2="-11" stroke="#1D6B3F" stroke-width="3.8"/>
-            <!-- Torso bowing forward toward Jesus on right -->
+            <!-- Torso bowing forward toward Jesus -->
             <line x1="-7" y1="-11" x2="-0.5" y2="-22" stroke="#1D6B3F" stroke-width="4.8"/>
-            <!-- Head bowed in reverence toward Jesus -->
+            <!-- Head bowed in worship -->
             <circle cx="4" cy="-27" r="5.2" fill="#1D6B3F"/>
-            <!-- Arms extended forward in surrender toward Jesus -->
+            <!-- Arms extended forward in surrender/worship -->
             <line x1="-1" y1="-19" x2="8.5" y2="-15.5" stroke="#1D6B3F" stroke-width="3.2"/>
             <line x1="-1" y1="-19" x2="7.5" y2="-12" stroke="#1D6B3F" stroke-width="3.2"/>
           </g>
         </g>
 
         <!-- Translucent water overlay layered ON TOP of waist-deep / submerged bodies -->
-        <polygon points="32,194 122,194 114,218 40,218" fill="#A9D5EA" opacity="0.55"/>
-        <path d="M 32 194 Q 54 191.5 77 194 Q 100 196.5 122 194" fill="none" stroke="#2A7FA8" stroke-width="2.2" stroke-linecap="round"/>
+        <polygon points="34,194 118,194 110,218 42,218" fill="#A9D5EA" opacity="0.55"/>
+        <path d="M 34 194 Q 55 191.5 76 194 Q 97 196.5 118 194" fill="none" stroke="#2A7FA8" stroke-width="2.2" stroke-linecap="round"/>
 
         <!-- Burial surface ripples (Slide 2) -->
         <g id="water-ripples" class="fade-part" fill="none" stroke="#2A7FA8" stroke-linecap="round">
-          <path d="M 48 189 Q 66 185 84 189" stroke-width="1.7"/>
-          <path d="M 56 184 Q 72 181 86 184" stroke-width="1.3" opacity="0.72"/>
+          <path d="M 48 189 Q 65 185 82 189" stroke-width="1.7"/>
+          <path d="M 55 184 Q 70 181 84 184" stroke-width="1.3" opacity="0.72"/>
         </g>
       </g>
+      <rect x="10" y="38" width="168" height="200" rx="8" fill="none" stroke="#E5DEC9" stroke-width="1.2"/>
 
-      <!-- ===================== GOLDEN UNION RAY (Slide 4: Higher Risen Jesus -> Kneeling Believer) ===================== -->
-      <polygon id="union-ray" points="206,115 206,155 148,162 148,136" fill="url(#unionBeamGrad)" opacity="0"/>
-
-      <!-- ===================== RIGHT SIDE: HIGHER GROUND (TOMB LEFT 258, CROSS RIGHT 340) ===================== -->
-      <g id="jesus-side">
+      <!-- ===================== RIGHT PANEL (SEPARATE): WHAT JESUS DID ===================== -->
+      <rect x="202" y="38" width="168" height="200" rx="8" fill="#FFFFFF" stroke="#E5DEC9" stroke-width="1.2"/>
+      <g id="jesus-side" clip-path="url(#rightPanelClip)">
         <!-- Warm crimson-amber glow behind Cross on RIGHT (Slide 1) -->
-        <circle id="cross-glow" cx="340" cy="96" r="38" fill="url(#crossGlowGrad)" opacity="0"/>
+        <circle id="cross-glow" cx="340" cy="96" r="36" fill="url(#crossGlowGrad)" opacity="0"/>
 
-        <!-- Golden sunrise glow behind Tomb doorway on LEFT of Jesus side (Slides 3-4) -->
-        <circle id="tomb-glow" cx="258" cy="126" r="54" fill="url(#tombGlowGrad)" opacity="0"/>
+        <!-- Golden sunrise glow behind Tomb doorway (Slides 3-4, clipped cleanly inside right panel) -->
+        <circle id="tomb-glow" cx="266" cy="126" r="52" fill="url(#tombGlowGrad)" opacity="0"/>
 
-        <!-- Subtle hillside contour continuing smoothly from center line across tomb & cross hill -->
-        <path d="M 190 168 Q 204 158 220 158 L 294 156 Q 338 141 372 166" fill="none" stroke="#8C8375" stroke-width="2" stroke-linecap="round"/>
+        <!-- Separate higher hillside completely contained inside right panel (x=202..370) -->
+        <path d="M 202 158 Q 214 156 232 156 L 298 155 Q 338 142 370 160 L 370 238 L 202 238 Z" fill="#EAE2D2"/>
+        <path d="M 202 158 Q 214 156 232 156 L 298 155 Q 338 142 370 160" fill="none" stroke="#8C8375" stroke-width="2" stroke-linecap="round"/>
 
-        <!-- Monumental Stone Tomb Rock Mound on LEFT of Jesus' higher hillside (x=222..294, base y=158, crest y=106) -->
+        <!-- Monumental Stone Tomb Rock Mound on LEFT of Jesus' hillside (x=232..300, base y=156, crest y=106) -->
         <g id="tomb-mound">
-          <path d="M 222 158 C 225 122 239 106 258 106 C 277 106 290 122 294 158 Z" fill="#C9C0B0" stroke="#7A7162" stroke-width="1.9" stroke-linejoin="round"/>
-          <!-- Layered rock facet shading so rock mass clearly frames the inset doorway -->
-          <path d="M 229 156 C 232 128 243 112 258 112 C 272 112 282 128 285 156 Z" fill="#BFB5A4" opacity="0.55"/>
-          <path d="M 236 117 Q 256 109 276 119" fill="none" stroke="#DFD7C8" stroke-width="1.8" stroke-linecap="round"/>
-          <!-- Inset arched stone rim + dark tomb doorway (18x28 well inside 72x52 rock mound so stone seals with zero gaps) -->
-          <path d="M 247 158 L 247 139 A 11 11 0 0 1 269 139 L 269 158" fill="none" stroke="#8C8375" stroke-width="1.6"/>
-          <path id="tomb-mouth" d="M 249 158 L 249 139 A 9 9 0 0 1 267 139 L 267 158 Z" fill="#2C2416"/>
+          <path d="M 232 156 C 235 121 248 106 266 106 C 284 106 296 121 300 156 Z" fill="#C9C0B0" stroke="#7A7162" stroke-width="1.9" stroke-linejoin="round"/>
+          <!-- Layered rock facet shading -->
+          <path d="M 239 154 C 242 127 252 112 266 112 C 279 112 288 127 291 154 Z" fill="#BFB5A4" opacity="0.55"/>
+          <path d="M 245 117 Q 264 109 283 119" fill="none" stroke="#DFD7C8" stroke-width="1.8" stroke-linecap="round"/>
+          <!-- Inset arched stone rim + dark tomb doorway (18x27 well inside 68x50 rock mound) -->
+          <path d="M 255 156 L 255 138 A 11 11 0 0 1 277 138 L 277 156" fill="none" stroke="#8C8375" stroke-width="1.6"/>
+          <path id="tomb-mouth" d="M 257 156 L 257 138 A 9 9 0 0 1 275 138 L 275 156 Z" fill="#2C2416"/>
           <!-- Golden light streaming from empty tomb & radiating softly above rock crest (Slides 3-4) -->
           <g id="tomb-rays" class="fade-part">
-            <path d="M 250.5 156 L 250.5 139.5 A 7.5 7.5 0 0 1 265.5 139.5 L 265.5 156 Z" fill="#F6DF98" opacity="0.94"/>
-            <line x1="258" y1="101" x2="258" y2="91" stroke="#E0A526" stroke-width="1.8" stroke-linecap="round" opacity="0.85"/>
-            <line x1="244" y1="104" x2="237" y2="95" stroke="#E0A526" stroke-width="1.6" stroke-linecap="round" opacity="0.8"/>
-            <line x1="272" y1="104" x2="279" y2="95" stroke="#E0A526" stroke-width="1.6" stroke-linecap="round" opacity="0.8"/>
+            <path d="M 258.5 154 L 258.5 138.5 A 7.5 7.5 0 0 1 273.5 138.5 L 273.5 154 Z" fill="#F6DF98" opacity="0.94"/>
+            <line x1="266" y1="101" x2="266" y2="91" stroke="#E0A526" stroke-width="1.8" stroke-linecap="round" opacity="0.85"/>
+            <line x1="252" y1="104" x2="245" y2="95" stroke="#E0A526" stroke-width="1.6" stroke-linecap="round" opacity="0.8"/>
+            <line x1="280" y1="104" x2="287" y2="95" stroke="#E0A526" stroke-width="1.6" stroke-linecap="round" opacity="0.8"/>
           </g>
         </g>
 
-        <!-- Rolling Stone: r=19 seals 18x28 doorway completely at (258,142) on Slide 2, parked open beside tomb at (290,141) -->
-        <g id="tomb-stone" transform="translate(290,141)">
-          <circle cx="0" cy="0" r="19" fill="#B5AC9C" stroke="#7A7162" stroke-width="1.9"/>
+        <!-- Rolling Stone: r=18.5 seals 18x27 doorway completely at (266,140) on Slide 2, parked open beside tomb at (297,140) -->
+        <g id="tomb-stone" transform="translate(297,140)">
+          <circle cx="0" cy="0" r="18.5" fill="#B5AC9C" stroke="#7A7162" stroke-width="1.9"/>
           <g clip-path="url(#tombStoneClip)">
-            <path d="M -19 8 Q -2 18 17 6 L 20 20 L -20 20 Z" fill="#9A9181"/>
-            <path d="M -13 -8 A 15 15 0 0 1 9 -13" fill="none" stroke="#CCC4B5" stroke-width="1.7" stroke-linecap="round"/>
+            <path d="M -18.5 8 Q -2 17.5 16.5 6 L 19.5 19.5 L -19.5 19.5 Z" fill="#9A9181"/>
+            <path d="M -12.5 -8 A 14.5 14.5 0 0 1 8.5 -12.5" fill="none" stroke="#CCC4B5" stroke-width="1.7" stroke-linecap="round"/>
           </g>
         </g>
 
-        <!-- White-Robed Risen Jesus standing higher up outside the open tomb JUST right of center line (Slides 3-4) -->
-        <g id="jesus-risen" transform="translate(206,158)">
-          <!-- Step 3: Jesus facing forward in victory outside open tomb -->
+        <!-- White-Robed Risen Jesus standing on left side of tomb in RIGHT panel (Slides 3-4) -->
+        <g id="jesus-risen" transform="translate(220,156)">
+          <!-- Step 3: Jesus comes out of the tomb facing forward -->
           <g id="jesus-risen-front" class="fade-part">
-            <circle cx="0" cy="-38" r="22" fill="url(#jesusHaloGrad)"/>
+            <circle cx="0" cy="-38" r="21" fill="url(#jesusHaloGrad)"/>
             <circle cx="0" cy="-42" r="7.5" fill="none" stroke="#E0A526" stroke-width="1.5" opacity="0.88"/>
-            <line x1="0" y1="-30" x2="-10" y2="-23" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round"/>
-            <line x1="0" y1="-30" x2="-10" y2="-23" stroke="#7A7060" stroke-width="1.4" stroke-linecap="round" opacity="0.5"/>
+            <line x1="0" y1="-30" x2="-9.5" y2="-23" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round"/>
+            <line x1="0" y1="-30" x2="-9.5" y2="-23" stroke="#7A7060" stroke-width="1.4" stroke-linecap="round" opacity="0.5"/>
             <line x1="0" y1="-30" x2="8.5" y2="-24" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round"/>
             <line x1="0" y1="-30" x2="8.5" y2="-24" stroke="#7A7060" stroke-width="1.4" stroke-linecap="round" opacity="0.5"/>
-            <path d="M -5.5 -34 L 5.5 -34 L 9 0 L -9 0 Z" fill="#FFFFFF" stroke="#7A7060" stroke-width="1.5" stroke-linejoin="round"/>
+            <path d="M -5.5 -34 L 5.5 -34 L 8.8 0 L -8.8 0 Z" fill="#FFFFFF" stroke="#7A7060" stroke-width="1.5" stroke-linejoin="round"/>
             <path d="M -4 -33 L 4.5 -16 L 1 0" fill="none" stroke="#DDD6C7" stroke-width="1.5" stroke-linecap="round"/>
             <circle cx="0" cy="-42" r="5.2" fill="#E6BC94" stroke="#7D5229" stroke-width="1.2"/>
             <path d="M -4.2 -44.2 A 4.8 4.8 0 0 1 4.2 -44.2" fill="none" stroke="#8A5A2B" stroke-width="1.9" stroke-linecap="round"/>
             <path d="M -3.8 -40.5 A 4.5 4.5 0 0 0 3.8 -40.5 L 2.8 -37.2 Q 0 -35.6 -2.8 -37.2 Z" fill="#7A5129"/>
           </g>
 
-          <!-- Step 4: Jesus turns toward the kneeling man as he bows -->
+          <!-- Step 4: Surprise reveal - Jesus turns toward the kneeling man bowing across on his bank -->
           <g id="jesus-risen-turned" class="fade-part">
-            <circle cx="-1" cy="-38" r="22" fill="url(#jesusHaloGrad)"/>
+            <circle cx="-1" cy="-38" r="21" fill="url(#jesusHaloGrad)"/>
             <circle cx="-1.5" cy="-42" r="7.5" fill="none" stroke="#E0A526" stroke-width="1.5" opacity="0.88"/>
-            <!-- Back sleeve edge & main robe angled slightly left toward kneeling believer -->
-            <path d="M -5 -34 L 4.5 -34 L 7.5 0 L -10.5 0 Z" fill="#FFFFFF" stroke="#7A7060" stroke-width="1.5" stroke-linejoin="round"/>
+            <path d="M -5 -34 L 4.5 -34 L 7.5 0 L -10 0 Z" fill="#FFFFFF" stroke="#7A7060" stroke-width="1.5" stroke-linejoin="round"/>
             <path d="M -3.5 -33 L -1.5 -16 L -5.5 0" fill="none" stroke="#DDD6C7" stroke-width="1.5" stroke-linecap="round"/>
-            <!-- Both welcoming arms reaching LEFT across center line toward kneeling believer -->
-            <line x1="-1.5" y1="-29" x2="-13" y2="-23" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round"/>
-            <line x1="-1.5" y1="-29" x2="-13" y2="-23" stroke="#7A7060" stroke-width="1.4" stroke-linecap="round" opacity="0.55"/>
-            <line x1="-0.5" y1="-26" x2="-11" y2="-19" stroke="#FFFFFF" stroke-width="3.6" stroke-linecap="round"/>
-            <line x1="-0.5" y1="-26" x2="-11" y2="-19" stroke="#7A7060" stroke-width="1.3" stroke-linecap="round" opacity="0.5"/>
-            <!-- Warm 3/4 head turned left toward the man bowing + hair on back & small beard on left chin -->
+            <!-- Both welcoming arms extending toward the kneeling man across the divider with clean panel margin -->
+            <line x1="-1.5" y1="-29" x2="-11" y2="-23" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round"/>
+            <line x1="-1.5" y1="-29" x2="-11" y2="-23" stroke="#7A7060" stroke-width="1.4" stroke-linecap="round" opacity="0.55"/>
+            <line x1="-0.5" y1="-26" x2="-9.5" y2="-19" stroke="#FFFFFF" stroke-width="3.6" stroke-linecap="round"/>
+            <line x1="-0.5" y1="-26" x2="-9.5" y2="-19" stroke="#7A7060" stroke-width="1.3" stroke-linecap="round" opacity="0.5"/>
+            <!-- 3/4 turned head facing left toward kneeling believer -->
             <circle cx="-1.5" cy="-42" r="5.1" fill="#E6BC94" stroke="#7D5229" stroke-width="1.2"/>
             <path d="M -4.2 -46.2 C 1.2 -47.2 4.6 -44.2 3.8 -39" fill="none" stroke="#8A5A2B" stroke-width="2" stroke-linecap="round"/>
             <path d="M -5.8 -40.5 Q -4.4 -36.5 -1 -37.2 Q -3.2 -39 -5.8 -40.5 Z" fill="#7A5129"/>
           </g>
         </g>
 
-        <!-- Properly Proportioned Calvary Cross on RIGHT side of Jesus' higher hillside (x=340, y=76..147) -->
+        <!-- Properly Proportioned Calvary Cross on RIGHT side of Jesus' hillside (x=340, y=76..147) -->
         <g id="calvary-cross">
           <line x1="340" y1="76" x2="340" y2="147" stroke="#8A5A2B" stroke-width="7.2" stroke-linecap="round"/>
           <line x1="319" y1="95" x2="361" y2="95" stroke="#8A5A2B" stroke-width="6.8" stroke-linecap="round"/>
@@ -525,21 +521,15 @@ button:focus-visible {
 
         <!-- Jesus on the Cross (Slide 1: Death) - warm skin tone, small beard, crown of thorns -->
         <g id="jesus-cross" class="fade-part">
-          <!-- Outstretched arms along the crossbar with thin outline so arms separate cleanly from wood -->
           <line x1="322" y1="95" x2="358" y2="95" stroke="#7D5229" stroke-width="4.4" stroke-linecap="round"/>
           <line x1="322" y1="95" x2="358" y2="95" stroke="#E6BC94" stroke-width="2.9" stroke-linecap="round"/>
-          <!-- Neck + torso + legs -->
           <line x1="340" y1="90.5" x2="340" y2="95" stroke="#E6BC94" stroke-width="2.6"/>
           <path d="M 337 94 L 343 94 L 342 113 L 338 113 Z" fill="#E6BC94" stroke="#7D5229" stroke-width="0.9" stroke-linejoin="round"/>
           <path d="M 338 117 L 342 117 L 341.2 130 L 338.8 130 Z" fill="#E6BC94" stroke="#7D5229" stroke-width="0.9" stroke-linejoin="round"/>
-          <!-- Clean white cloth wrap -->
           <path d="M 336.8 109 L 343.2 109 L 342.8 118 L 337.2 118 Z" fill="#FFFFFF" stroke="#B8AF9F" stroke-width="0.8" stroke-linejoin="round"/>
-          <!-- Warm head + hair framing + small full chin beard + crown of thorns -->
           <circle cx="340" cy="86" r="4.6" fill="#E6BC94" stroke="#7D5229" stroke-width="1.1"/>
           <path d="M 336 85.2 A 4.4 4.4 0 0 1 344 85.2" fill="none" stroke="#8A5A2B" stroke-width="1.5" stroke-linecap="round"/>
-          <!-- Small full chin beard -->
           <path d="M 336.5 87 A 4 4 0 0 0 343.5 87 L 342.4 90 Q 340 91.6 337.6 90 Z" fill="#6F4923"/>
-          <!-- Crown of thorns -->
           <path d="M 335.1 83.6 Q 340 81.4 344.9 83.6" fill="none" stroke="#4D361A" stroke-width="1.4" stroke-linecap="round"/>
           <path d="M 335.5 82.6 Q 340 84.4 344.5 82.6" fill="none" stroke="#4D361A" stroke-width="1.1" stroke-linecap="round"/>
           <line x1="336.3" y1="82.2" x2="335.2" y2="80.6" stroke="#3D2912" stroke-width="1.1" stroke-linecap="round"/>
@@ -547,6 +537,7 @@ button:focus-visible {
           <line x1="343.7" y1="82.2" x2="344.8" y2="80.6" stroke="#3D2912" stroke-width="1.1" stroke-linecap="round"/>
         </g>
       </g>
+      <rect x="202" y="38" width="168" height="200" rx="8" fill="none" stroke="#E5DEC9" stroke-width="1.2"/>
 
       <!-- ===================== BOTTOM PARALLEL STAGE CAPTIONS ===================== -->
       <text id="cap-left" class="svg-sans fade-part" x="94" y="260" text-anchor="middle" font-size="12" font-weight="700" fill="#2C2416"></text>
@@ -556,6 +547,7 @@ button:focus-visible {
 
   <div class="step-strip" id="step-strip" role="group" aria-label="Baptism steps"></div>
   <div id="card-area" aria-live="polite"></div>
+  <p class="sr-only" id="bap-desc">Two separate framed scenes showing your baptism pool on the left and Jesus' tomb and cross on the right.</p>
   <p class="sr-only" id="status" aria-live="polite"></p>
 </main>
 
@@ -647,33 +639,33 @@ button:focus-visible {
     // Baptized person keeps ONE consistent green color across all steps
     if (idx < 0) {
       fig.style.opacity = '1';
-      fig.setAttribute('transform', 'translate(20,176) rotate(0)');
+      fig.setAttribute('transform', 'translate(22,178) rotate(0)');
       arms.setAttribute('transform', 'translate(0,-29) rotate(0)');
-      stone.setAttribute('transform', 'translate(290,141) rotate(0)');
+      stone.setAttribute('transform', 'translate(297,140) rotate(0)');
     } else if (idx === 0) {
       // 1. Death: standing waist-deep leaning toward pastor so they touch/overlap; Jesus on Cross
       fig.style.opacity = '1';
-      fig.setAttribute('transform', 'translate(84,216) rotate(9)');
+      fig.setAttribute('transform', 'translate(81,216) rotate(9)');
       arms.setAttribute('transform', 'translate(0,-29) rotate(-4)');
-      stone.setAttribute('transform', 'translate(290,141) rotate(0)');
+      stone.setAttribute('transform', 'translate(297,140) rotate(0)');
     } else if (idx === 1) {
       // 2. Burial: lowered backwards under water right in pastor's arms so they touch/overlap; stone sealed
       fig.style.opacity = '1';
-      fig.setAttribute('transform', 'translate(96,214) rotate(-65)');
+      fig.setAttribute('transform', 'translate(93,214) rotate(-65)');
       arms.setAttribute('transform', 'translate(0,-29) rotate(-42)');
-      stone.setAttribute('transform', 'translate(258,142) rotate(-95)');
+      stone.setAttribute('transform', 'translate(266,140) rotate(-95)');
     } else if (idx === 2) {
-      // 3. Resurrection: rising up onto bank cleanly; stone open & white-robed Jesus stands on other side
+      // 3. Resurrection: rising up onto bank cleanly; stone open & white-robed Jesus rises on right side
       fig.style.opacity = '1';
-      fig.setAttribute('transform', 'translate(128,186) rotate(4)');
+      fig.setAttribute('transform', 'translate(125,186) rotate(4)');
       arms.setAttribute('transform', 'translate(0,-30) rotate(14)');
-      stone.setAttribute('transform', 'translate(290,141) rotate(12)');
+      stone.setAttribute('transform', 'translate(297,140) rotate(12)');
     } else {
-      // 4. New Life: kneeling & bowing on bank while Risen Jesus turns toward the man
+      // 4. New Life: kneeling & bowing on bank to worship Risen Jesus turning across the divide
       fig.style.opacity = '0';
-      fig.setAttribute('transform', 'translate(154,170) rotate(0)');
+      fig.setAttribute('transform', 'translate(153,171) rotate(0)');
       arms.setAttribute('transform', 'translate(0,-29) rotate(10)');
-      stone.setAttribute('transform', 'translate(290,141) rotate(12)');
+      stone.setAttribute('transform', 'translate(297,140) rotate(12)');
     }
 
     setClass('you-kneel', idx === 3);
@@ -686,7 +678,6 @@ button:focus-visible {
     setClass('tomb-rays', idx >= 2);
     setClass('jesus-risen-front', idx === 2);
     setClass('jesus-risen-turned', idx === 3);
-    el('union-ray').setAttribute('opacity', idx === 3 ? '1' : '0');
 
     // Bottom parallel captions
     var capL = el('cap-left');

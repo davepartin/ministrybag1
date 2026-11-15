@@ -133,7 +133,7 @@ function ck(label, cond) {
         await page.waitForTimeout(waitStep);
         ck(tag + ' step 1 Death', (await frame.locator('.verse-card-title').textContent()).includes('Crucified with Christ'));
         ck(tag + ' step 1 cross glow and Jesus on cross', (await frame.locator('#cross-glow').getAttribute('opacity')) === '1' && await frame.locator('#jesus-cross').evaluate(el => el.classList.contains('is-on')));
-        ck(tag + ' step 1 waist-deep touching pastor', (await frame.locator('#you-fig').getAttribute('transform')).includes('translate(84,216)'));
+        ck(tag + ' step 1 waist-deep touching pastor', (await frame.locator('#you-fig').getAttribute('transform')).includes('translate(81,216)'));
         ck(tag + ' step 1 bottom captions', (await frame.locator('#cap-left').textContent()) === 'Old Self Dies in Water' && (await frame.locator('#cap-right').textContent()) === 'Christ Died on the Cross');
         await snap('1-death');
 
@@ -141,7 +141,7 @@ function ck(label, cond) {
         await frame.locator('#btn-next').click();
         await page.waitForTimeout(waitStep);
         ck(tag + ' step 2 Burial', (await frame.locator('.verse-card-title').textContent()).includes('Buried with Him'));
-        ck(tag + ' step 2 stone rolled over tomb', (await frame.locator('#tomb-stone').getAttribute('transform')).includes('translate(258,142)'));
+        ck(tag + ' step 2 stone rolled over tomb', (await frame.locator('#tomb-stone').getAttribute('transform')).includes('translate(266,140)'));
         ck(tag + ' step 2 bent back under water + ripples', (await frame.locator('#you-fig').getAttribute('transform')).includes('rotate(-65)') && await frame.locator('#water-ripples').evaluate(el => el.classList.contains('is-on')));
         await snap('2-burial');
 
@@ -149,8 +149,8 @@ function ck(label, cond) {
         await frame.locator('#btn-next').click();
         await page.waitForTimeout(waitStep);
         ck(tag + ' step 3 Resurrection', (await frame.locator('.verse-card-title').textContent()).includes('Raised with Christ'));
-        ck(tag + ' step 3 stone open + risen white-robed Jesus', (await frame.locator('#tomb-stone').getAttribute('transform')).includes('translate(290,141)') && await frame.locator('#jesus-risen-front').evaluate(el => el.classList.contains('is-on')));
-        ck(tag + ' clean emergence without splash drops or bank plant', (await frame.locator('#splash-drops').count()) === 0 && (await frame.locator('#new-sprout').count()) === 0);
+        ck(tag + ' step 3 stone open + risen white-robed Jesus', (await frame.locator('#tomb-stone').getAttribute('transform')).includes('translate(297,140)') && await frame.locator('#jesus-risen-front').evaluate(el => el.classList.contains('is-on')));
+        ck(tag + ' separate panels + no SVG title tooltip', (await frame.locator('#center-divider').getAttribute('y2')) === '266' && (await frame.locator('#baptism-svg title').count()) === 0);
         await snap('3-resurrection');
 
         // Step 4: New Life
@@ -159,7 +159,7 @@ function ck(label, cond) {
         const hFinal = await cardHeight();
         ck(tag + ' step 4 New Life', (await frame.locator('.verse-card-title').textContent()).includes('Old Has Gone, New Has Come'));
         ck(tag + ' card height locked across all steps', Math.abs(h0 - hFinal) <= 1);
-        ck(tag + ' step 4 kneeling believer + Jesus turned toward man + union ray', await frame.locator('#you-kneel').evaluate(el => el.classList.contains('is-on')) && await frame.locator('#jesus-risen-turned').evaluate(el => el.classList.contains('is-on')) && (await frame.locator('#union-ray').getAttribute('opacity')) === '1');
+        ck(tag + ' step 4 kneeling worshipper + Jesus turned toward man across divide', await frame.locator('#you-kneel').evaluate(el => el.classList.contains('is-on')) && await frame.locator('#jesus-risen-turned').evaluate(el => el.classList.contains('is-on')) && (await frame.locator('#union-ray').count()) === 0);
         await snap('4-newlife');
 
         // Back button + dot jump + Start Over check
