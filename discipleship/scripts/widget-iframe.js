@@ -29,6 +29,7 @@
         'great-exchange3.html': 'The Great Exchange',
         'guide-spirit2.html': 'The GUIDE of the Holy Spirit',
         'learning-circle2.html': 'The Learning Circle',
+        'lords-supper-picture.html': 'What the Table Pictures',
         'oia-method.html': 'Observe, Interpret, Apply',
         'one-another.html': 'One Another',
         'personal-ministry-map.html': 'Your Personal Ministry Map',

@@ -100,6 +100,11 @@
       "text": "The meal looks back to the cross, and it looks forward to the day you eat with Jesus face to face. It also looks around. One loaf is shared by many people, which is a quiet reminder that you were saved into a household. This is not something you do alone in your kitchen."
     },
     {
+      "type": "widget",
+      "src": "widgets/lords-supper-picture.html",
+      "height": "600px"
+    },
+    {
       "type": "heading",
       "text": "Come Ready"
     },
@@ -120,11 +125,6 @@
       "id": "202-10-honest",
       "text": "10.3 - What would you need to be honest about before you come to the table next?",
       "height": "tall"
-    },
-    {
-      "type": "widget",
-      "src": "widgets/two-ordinances.html",
-      "height": "640px"
     },
     {
       "type": "heading",
