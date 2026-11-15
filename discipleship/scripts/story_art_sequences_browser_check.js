@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
- * Browser verification for all four new story-art scroll sequences:
- * 101-07, 201-05, 203-02, and 203-07.
+ * Browser verification for the approved story-art scroll sequences:
+ * 101-07, 201-05, and 203-07.
  * Verifies responsive frame loading, monotonic scroll cross-fade,
  * final frame visibility, touchNext card attachment without layout shift,
  * prefers-reduced-motion fallback, and preserved saved-answer IDs
@@ -48,22 +48,6 @@ var LESSONS = [
         stops: [0, 0.4],
         samples: [0, 0.15, 0.28, 0.4, 0.48, 0.65],
         questionIds: ['201-05-found', '201-05-2', '201-05-3', '201-05-key', '201-05-step', '201-05-prayer']
-    },
-    {
-        hash: '#203-2',
-        sessionSel: '#session-2.active',
-        series: '203',
-        parableTitle: 'A Prayer Before the Answer',
-        expectedW: 1280,
-        expectedH: 720,
-        frames: [
-            'images/203-02-story-seq-1.jpg',
-            'images/203-02-story-seq-2.jpg',
-            'images/203-02-story-seq-3.jpg'
-        ],
-        stops: [0, 0.25, 0.45],
-        samples: [0, 0.12, 0.25, 0.35, 0.45, 0.52, 0.68],
-        questionIds: ['203-02-story', '203-02-1', '203-02-rhythm', '203-02-7', '203-02-key', '203-02-step', '203-02-prayer']
     },
     {
         hash: '#203-7',
@@ -307,6 +291,44 @@ async function readSequenceState(page, cfg) {
             reducedState.frames.slice(0, lastIdx).every(function (f) { return f.opacity <= 0.05; }));
         assert(cfg.hash + ' reduced motion: touchNext intact', reducedState.touchNext && reducedState.nextIsParable);
         await reduced.close();
+    }
+
+    // Explicit regression for Dave's batch-2 decisions: prayer art removed,
+    // Paul and Timothy remains one static image joined to its story.
+    for (var checkCase of [
+        { width: 375, motion: 'no-preference' },
+        { width: 390, motion: 'no-preference' },
+        { width: 1280, motion: 'no-preference' },
+        { width: 390, motion: 'reduce' }
+    ]) {
+        for (var lessonNo of [2, 8]) {
+            var staticPage = await browser.newPage({ viewport: { width: checkCase.width, height: 844 }, reducedMotion: checkCase.motion });
+            staticPage.on('pageerror', function (err) { errors.push(String(err)); });
+            var imageRequests = [];
+            staticPage.on('request', function (r) { imageRequests.push(r.url()); });
+            await staticPage.route('**/scripts/account.js', function (r) { return r.fulfill({ body: '', contentType: 'text/javascript' }); });
+            await staticPage.goto(BASE + '#203-' + lessonNo, { waitUntil: 'domcontentloaded' });
+            var active = staticPage.locator('#session-' + lessonNo + '.active');
+            await active.locator('.question-textarea').first().waitFor();
+            var staticTag = '#203-' + lessonNo + ' ' + checkCase.width + '/' + checkCase.motion + ': ';
+            assert(staticTag + 'no sequence renderer', await active.locator('[data-parable-sequence]').count() === 0);
+            assert(staticTag + 'no removed prayer frame requested', imageRequests.every(function (url) { return !url.includes('203-02-story-seq-'); }));
+            assert(staticTag + 'no horizontal overflow', await staticPage.evaluate(function () { return document.documentElement.scrollWidth <= innerWidth + 1; }));
+            if (lessonNo === 8) {
+                var still = active.locator('img[src*="203.08-paul-timothy-bw"]');
+                assert(staticTag + 'one static Paul/Timothy image', await still.count() === 1);
+                await still.scrollIntoViewIfNeeded();
+                await still.evaluate(function (img) { return img.decode(); });
+                assert(staticTag + 'static image loaded', await still.evaluate(function (img) { return img.complete && img.naturalWidth > 0; }));
+                assert(staticTag + 'touchNext still joins Four Generations', await still.evaluate(function (img) {
+                    var wrap = img.closest('.block-image');
+                    return wrap && wrap.classList.contains('block-image-touch-next') && wrap.nextElementSibling && wrap.nextElementSibling.textContent.includes('Four Generations');
+                }));
+            } else {
+                assert(staticTag + 'prayer story retained', (await active.innerText()).includes('A Prayer Before the Answer'));
+            }
+            await staticPage.close();
+        }
     }
 
     assert('no page exceptions', errors.length === 0, errors.slice(0, 3).join(' | '));
