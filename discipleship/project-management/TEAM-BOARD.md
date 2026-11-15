@@ -1,5 +1,13 @@
 # Growing Together Team Board
 
+## Redundant Begin-instruction cleanup: November 14, 2026
+
+Dave authorized review and merge of PR #244 at d10db55. WIDGET-REMOVE-TAP-BEGIN DONE: seven widget files keep their question/meaning hooks and Begin buttons while removing redundant initial-slide instructions. Only the triangle also omits its now-empty paragraph and margin. All seven widget files match d10db55 exactly. This specific instruction authorizes that small triangle intro change after #239; all other approved triangle text/art/frame stays intact.
+
+Current main was merged normally, resolving only the TASKS append conflict by preserving both this task and the completed #243 row. The just-published Learning Circle remains byte-identical to 9aee2c3. All lesson JSON, index.html, images and Gold files are unchanged. Cross the Road stays on disk; its retired 202-01 embed is not restored. No new whole-lesson approval or Gold stage is inferred.
+
+Foundation/export/storage/assets/images/iframe and ENG-003 browser checks pass. The targeted browser script covers all seven widgets across three sizes and reduced motion, plus six active lesson embeds with saved-answer edit/reload checks. Exact-head Firebase preview, merge state and production results are recorded on PR #244. Evidence: [Codex integration log](logs/2026-11-14-WIDGET-REMOVE-TAP-BEGIN-codex.md).
+
 ## 201-10 The Learning Circle widget: Dave approved, Codex integration, November 14, 2026
 
 - **Task / Branch:** `WIDGET-201-10-CIRCLE` DONE, PR #243 on `gemini/widget-201-10-learning-circle`; Codex integration branch `codex/review-243`. Dave explicitly approved only the widget at exact commit `9aee2c371e700b2badaef484230992e5a906c10a`. Approved HTML bytes are preserved. No whole-lesson Gold or 201-10 copy approval is inferred.

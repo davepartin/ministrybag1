@@ -229,7 +229,7 @@
             paint(steps[3], true);
             var wrap = document.createElement('div'); wrap.className = 'begin-wrapper';
             var intro = document.createElement('p'); intro.className = 'begin-text';
-            intro.textContent = 'Who has God already placed around you? Tap Begin to draw your map.';
+            intro.textContent = 'Who has God already placed around you?';
             wrap.appendChild(intro);
             wrap.appendChild(button('Begin →', 'begin', 'begin-btn', function () { setFocus('next'); go(0); }));
             wrap.appendChild(button('Show whole map', 'overview', 'overview-btn', function () { resumeStep = step; mode = 'overview'; setFocus('return'); render(); }));

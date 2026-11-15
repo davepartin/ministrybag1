@@ -277,7 +277,7 @@
             paint(null, true);
             var wrap = document.createElement('div'); wrap.className = 'begin-wrapper';
             var intro = document.createElement('p'); intro.className = 'begin-text';
-            intro.textContent = 'Three questions, asked in order. Tap Begin to walk through Psalm 23 with them.';
+            intro.textContent = 'Three questions, asked in order.';
             wrap.appendChild(intro);
             wrap.appendChild(button('Begin →', 'begin', 'begin-btn', function () { setFocus('next'); go(0); }));
             wrap.appendChild(button('Show whole diagram', 'overview', 'overview-btn', function () { resumeStep = step; mode = 'overview'; setFocus('return'); render(); }));

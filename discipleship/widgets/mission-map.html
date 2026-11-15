@@ -214,7 +214,7 @@
             paint(steps[0], true);
             var wrap = document.createElement('div'); wrap.className = 'begin-wrapper';
             var intro = document.createElement('p'); intro.className = 'begin-text';
-            intro.textContent = 'Where does God want you on mission, and who is with you? Tap Begin to build your map.';
+            intro.textContent = 'Where does God want you on mission, and who is with you?';
             wrap.appendChild(intro);
             wrap.appendChild(button('Begin →', 'begin', 'begin-btn', function () { setFocus('next'); go(0); }));
             wrap.appendChild(button('Show whole map', 'overview', 'overview-btn', function () { resumeStep = step; mode = 'overview'; setFocus('return'); render(); }));

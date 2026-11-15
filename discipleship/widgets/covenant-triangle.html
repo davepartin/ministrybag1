@@ -356,7 +356,7 @@ button:focus-visible {
     dark: INK,
     dotLabel: 'Start: The Closer to God Triangle',
     title: 'Two people, one faithful God.',
-    text: 'Tap Begin to see what draws them together.',
+    text: '',
     ref: ''
   };
 
@@ -511,11 +511,14 @@ button:focus-visible {
     title.className = 'card-title';
     title.style.color = c.dark || c.color;
     title.textContent = c.title;
+    if (!c.text && !c.ref) title.style.marginBottom = '0';
     content.appendChild(title);
-    var text = document.createElement('p');
-    text.className = 'card-text';
-    text.textContent = c.text;
-    content.appendChild(text);
+    if (c.text) {
+      var text = document.createElement('p');
+      text.className = 'card-text';
+      text.textContent = c.text;
+      content.appendChild(text);
+    }
     if (c.ref) {
       var ref = document.createElement('p');
       ref.className = 'card-ref';
