@@ -18,24 +18,28 @@
   --tray: #F6F4EE;
   --bg: #F8F6F1;
 
-  /* Shared Color 1: Unleavened Bread & Christ's Given Body */
-  --flesh-hi: #F3D4B0;
+  /* Exact Monochrome Ink State */
+  --bw-hi: #FAF9F6;
+  --bw-light: #EDEBE5;
+  --bw-mid: #D3CFC6;
+  --bw-dark: #8A8479;
+  --bw-stroke: #2C2416;
+
+  /* Color Pair 1: Broken Bread = Given Body */
+  --flesh-hi: #F4D7B5;
   --flesh-light: #E2B484;
-  --flesh-mid: #C98A52;
-  --flesh-stroke: #8C5324;
+  --flesh-mid: #C78950;
+  --flesh-stroke: #7E481D;
   --bread-accent: #A96224;
   --bread-dark: #874C19;
 
-  /* Shared Color 2: Cup of Wine & Christ's Shed Blood */
+  /* Color Pair 2: Poured Wine = Shed Blood */
   --crimson: #9B1C2E;
   --crimson-hi: #BD2C41;
   --crimson-dark: #6D1220;
 
-  /* Remembrance & Hope Accents */
-  --slate: #2A5B7C;
-  --slate-dark: #1E435C;
-  --gold: #946B06;
-  --gold-dark: #755304;
+  /* Finale Union Accent */
+  --union: #2C2416;
 }
 
 body {
@@ -111,51 +115,125 @@ body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
-.svg-serif {
-  font-family: Georgia, Cambria, serif;
+/* Selective-color SVG transitions (right side stays completely still!) */
+.hand-light {
+  fill: var(--bw-light);
+  stroke: var(--bw-stroke);
+  transition: fill 0.45s ease, stroke 0.45s ease;
+}
+.hand-mid {
+  fill: var(--bw-mid);
+  transition: fill 0.45s ease;
+}
+.hand-hi {
+  fill: var(--bw-hi);
+  transition: fill 0.45s ease;
+}
+.hand-line {
+  stroke: var(--bw-stroke);
+  transition: stroke 0.45s ease;
 }
 
-.fade-part {
-  opacity: 0;
-  transition: opacity 0.35s ease;
+#supper-svg.color-body .hand-light {
+  fill: var(--flesh-light);
+  stroke: var(--flesh-stroke);
+}
+#supper-svg.color-body .hand-mid {
+  fill: var(--flesh-mid);
+}
+#supper-svg.color-body .hand-hi {
+  fill: var(--flesh-hi);
+}
+#supper-svg.color-body .hand-line {
+  stroke: var(--flesh-stroke);
 }
 
-.fade-part.is-on {
-  opacity: 1;
+.blood-main {
+  fill: #4A443C;
+  transition: fill 0.45s ease;
+}
+.blood-hi {
+  fill: #7B7469;
+  transition: fill 0.45s ease;
+}
+#supper-svg.color-blood .blood-main {
+  fill: var(--crimson);
+}
+#supper-svg.color-blood .blood-hi {
+  fill: var(--crimson-hi);
+}
+
+/* Bread color toggle & ragged break motion */
+.bread-light {
+  fill: var(--bw-light);
+  stroke: var(--bw-stroke);
+  transition: fill 0.45s ease, stroke 0.45s ease;
+}
+.bread-mid {
+  fill: var(--bw-mid);
+  stroke: var(--bw-stroke);
+  transition: fill 0.45s ease, stroke 0.45s ease;
+}
+.bread-crumb {
+  fill: var(--bw-hi);
+  stroke: var(--bw-mid);
+  transition: fill 0.45s ease, stroke 0.45s ease, opacity 0.35s ease;
+}
+.bread-score {
+  stroke: var(--bw-dark);
+  transition: stroke 0.45s ease;
+}
+
+#supper-svg.color-body .bread-light {
+  fill: var(--flesh-light);
+  stroke: var(--flesh-stroke);
+}
+#supper-svg.color-body .bread-mid {
+  fill: var(--flesh-mid);
+  stroke: var(--flesh-stroke);
+}
+#supper-svg.color-body .bread-crumb {
+  fill: var(--flesh-hi);
+  stroke: var(--flesh-mid);
+}
+#supper-svg.color-body .bread-score {
+  stroke: var(--flesh-stroke);
 }
 
 #bread-group,
 #cup-group,
-#hand-group,
-#blood-group,
-#cross-base,
-#bridge-wash,
-#dawn-glow,
-#remember-arc,
-#fellowship-table {
-  transition: opacity 0.42s ease;
-}
-
-#bread-left,
-#bread-right,
-#cup-wine {
-  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.42s ease;
+#bread-whole-loaf,
+#bread-broken-halves,
+#bread-left-half,
+#bread-right-half,
+#bread-crumbs,
+#cup-tilter,
+#cup-pour-stream,
+#cup-upright-wine {
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.35s ease;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .fade-part,
+  .hand-light,
+  .hand-mid,
+  .hand-hi,
+  .hand-line,
+  .blood-main,
+  .blood-hi,
+  .bread-light,
+  .bread-mid,
+  .bread-crumb,
+  .bread-score,
   #bread-group,
   #cup-group,
-  #hand-group,
-  #blood-group,
-  #cross-base,
-  #bridge-wash,
-  #dawn-glow,
-  #remember-arc,
-  #fellowship-table,
-  #bread-left,
-  #bread-right,
-  #cup-wine,
+  #bread-whole-loaf,
+  #bread-broken-halves,
+  #bread-left-half,
+  #bread-right-half,
+  #bread-crumbs,
+  #cup-tilter,
+  #cup-pour-stream,
+  #cup-upright-wine,
   .step-dot-fill,
   .nav-btn {
     transition: none;
@@ -225,7 +303,7 @@ body {
 
 .verse-card-content {
   padding: 9px 13px;
-  min-height: var(--card-h, 118px);
+  min-height: var(--card-h, 110px);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -344,47 +422,17 @@ button:focus-visible {
   </header>
 
   <div class="stage">
-    <svg id="supper-svg" viewBox="0 0 380 272" width="100%" role="img" aria-labelledby="supper-title supper-desc">
+    <svg id="supper-svg" viewBox="0 0 380 264" width="100%" role="img" aria-labelledby="supper-title supper-desc">
       <title id="supper-title">What the Table Pictures</title>
-      <desc id="supper-desc">Side-by-side illustration showing bread and a cup on the left matching Jesus' body and blood on the cross on the right.</desc>
+      <desc id="supper-desc">Side-by-side scene showing bread and a cup on the left matching Jesus' hand and blood on the crossbeam on the right.</desc>
 
       <defs>
-        <radialGradient id="bodyHaloGrad" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stop-color="#E2B484" stop-opacity="0.48"/>
-          <stop offset="65%" stop-color="#C98A52" stop-opacity="0.16"/>
-          <stop offset="100%" stop-color="#E2B484" stop-opacity="0"/>
-        </radialGradient>
-        <radialGradient id="bloodHaloGrad" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stop-color="#9B1C2E" stop-opacity="0.24"/>
-          <stop offset="65%" stop-color="#BD2C41" stop-opacity="0.08"/>
-          <stop offset="100%" stop-color="#9B1C2E" stop-opacity="0"/>
-        </radialGradient>
-        <radialGradient id="dawnHaloGrad" cx="50%" cy="50%" r="55%">
-          <stop offset="0%" stop-color="#FAF0C8" stop-opacity="0.98"/>
-          <stop offset="50%" stop-color="#F3D98B" stop-opacity="0.56"/>
-          <stop offset="100%" stop-color="#E0A526" stop-opacity="0"/>
-        </radialGradient>
-        <linearGradient id="breadBridgeGrad" x1="100%" y1="0%" x2="0%" y2="0%">
-          <stop offset="0%" stop-color="#C98A52" stop-opacity="0.28"/>
-          <stop offset="50%" stop-color="#E2B484" stop-opacity="0.34"/>
-          <stop offset="100%" stop-color="#C98A52" stop-opacity="0.22"/>
-        </linearGradient>
-        <linearGradient id="bloodBridgeGrad" x1="100%" y1="0%" x2="0%" y2="0%">
-          <stop offset="0%" stop-color="#9B1C2E" stop-opacity="0.22"/>
-          <stop offset="50%" stop-color="#BD2C41" stop-opacity="0.28"/>
-          <stop offset="100%" stop-color="#9B1C2E" stop-opacity="0.18"/>
-        </linearGradient>
-        <linearGradient id="hopeBridgeGrad" x1="100%" y1="0%" x2="0%" y2="0%">
-          <stop offset="0%" stop-color="#E0A526" stop-opacity="0.34"/>
-          <stop offset="50%" stop-color="#F3D98B" stop-opacity="0.30"/>
-          <stop offset="100%" stop-color="#E0A526" stop-opacity="0.16"/>
-        </linearGradient>
         <clipPath id="cupBowlClip">
-          <path d="M 118 118 L 166 118 C 165 144 156 158 142 160 C 128 158 119 144 118 118 Z"/>
+          <path d="M 118 110 L 164 110 C 163 134 154 148 141 150 C 128 148 119 134 118 110 Z"/>
         </clipPath>
       </defs>
 
-      <!-- Top Parallel Column Headers + Center Equals Link Badge -->
+      <!-- Top Column Pills -->
       <g id="column-headers">
         <rect x="24" y="7" width="140" height="23" rx="11.5" fill="#F8F3E8" stroke="#DDD1BC" stroke-width="1"/>
         <text class="svg-sans" x="94" y="22.5" text-anchor="middle" font-size="11.5" font-weight="700" fill="#6D4D25">At the Table</text>
@@ -392,7 +440,7 @@ button:focus-visible {
         <rect x="216" y="7" width="140" height="23" rx="11.5" fill="#F5EFE3" stroke="#DFD4BE" stroke-width="1"/>
         <text class="svg-sans" x="286" y="22.5" text-anchor="middle" font-size="11.5" font-weight="700" fill="#6F4C24">At the Cross</text>
 
-        <line x1="190" y1="36" x2="190" y2="236" stroke="#E4DED2" stroke-width="1.4" stroke-dasharray="4 4"/>
+        <line x1="190" y1="36" x2="190" y2="232" stroke="#E4DED2" stroke-width="1.3" stroke-dasharray="4 4"/>
 
         <g id="link-badge">
           <circle id="link-badge-bg" cx="190" cy="18.5" r="10.5" fill="#FFFFFF" stroke="#D4CFC4" stroke-width="1.5"/>
@@ -400,211 +448,239 @@ button:focus-visible {
         </g>
       </g>
 
-      <!-- Soft color-match connecting wash across the center divider -->
-      <g id="bridge-wash" opacity="0">
-        <path id="bridge-path" d="M 52 150 L 252 96 L 266 138 L 76 194 Z" fill="url(#breadBridgeGrad)"/>
-      </g>
-
-      <!-- Golden Dawn Horizon Behind Right Cross (Step 4) -->
-      <g id="dawn-glow" opacity="0">
-        <circle cx="292" cy="126" r="76" fill="url(#dawnHaloGrad)"/>
-        <line x1="292" y1="54" x2="292" y2="64" stroke="#E0A526" stroke-width="2" stroke-linecap="round" opacity="0.72"/>
-        <line x1="252" y1="68" x2="260" y2="76" stroke="#E0A526" stroke-width="2" stroke-linecap="round" opacity="0.62"/>
-        <line x1="332" y1="68" x2="324" y2="76" stroke="#E0A526" stroke-width="2" stroke-linecap="round" opacity="0.62"/>
-        <line x1="236" y1="96" x2="246" y2="99" stroke="#E0A526" stroke-width="2" stroke-linecap="round" opacity="0.52"/>
-        <line x1="348" y1="96" x2="338" y2="99" stroke="#E0A526" stroke-width="2" stroke-linecap="round" opacity="0.52"/>
-      </g>
-
       <!-- ===================== LEFT SIDE: AT THE TABLE ===================== -->
       <g id="table-side">
-        <!-- Warm linen table runner & wood table surface -->
-        <rect x="14" y="196" width="166" height="24" rx="4" fill="#F2ECE0" stroke="#DDD3C0" stroke-width="1.2"/>
-        <path d="M 14 210 L 180 210 L 180 220 C 180 222 178 224 176 224 L 18 224 C 16 224 14 222 14 220 Z" fill="#C9B396"/>
-        <ellipse cx="64" cy="197" rx="40" ry="5" fill="#E3DAC8" stroke="#CBBFA7" stroke-width="1"/>
-        <ellipse cx="142" cy="197" rx="22" ry="4" fill="#E3DAC8"/>
+        <!-- Quiet Table Surface -->
+        <rect x="14" y="192" width="166" height="16" rx="3" fill="#F3F1EC" stroke="#CCC6BA" stroke-width="1.2"/>
+        <ellipse cx="62" cy="193" rx="40" ry="4.5" fill="#E8E4DC" stroke="#CFC9BD" stroke-width="1"/>
+        <ellipse cx="141" cy="193" rx="22" ry="3.8" fill="#E8E4DC"/>
 
-        <!-- Golden fellowship halo & look-forward arc (Step 4) -->
-        <g id="fellowship-table" opacity="0">
-          <ellipse cx="98" cy="170" rx="74" ry="42" fill="url(#dawnHaloGrad)" opacity="0.52"/>
-          <path d="M 130 66 C 166 48 212 48 248 64"
-                fill="none" stroke="#946B06" stroke-width="2.4" stroke-dasharray="5 4" stroke-linecap="round"/>
-          <path d="M 244 56 L 252 65 L 240 67"
-                fill="none" stroke="#946B06" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-          <rect x="144" y="38" width="92" height="17" rx="8.5" fill="#FDF5DC" stroke="#E5CF8B" stroke-width="1"/>
-          <text class="svg-sans" x="190" y="50" text-anchor="middle" font-size="9.5" font-weight="700" fill="#755304">Look Forward</text>
-        </g>
-
-        <!-- UNLEAVENED BREAD (uses EXACT --flesh-light / --flesh-mid / --flesh-stroke palette) -->
+        <!-- LOAF OF BREAD (starts genuinely whole, tears unevenly on Step 1+) -->
         <g id="bread-group">
-          <ellipse id="bread-halo" cx="64" cy="176" rx="42" ry="24" fill="url(#bodyHaloGrad)" opacity="0"/>
-
-          <!-- Left Half of Loaf -->
-          <g id="bread-left">
-            <path d="M 28 193 L 64 193 L 64 158 C 44 158 29 170 28 193 Z"
-                  fill="var(--flesh-light)" stroke="var(--flesh-stroke)" stroke-width="1.6" stroke-linejoin="round"/>
-            <!-- Soft top crust highlight & scored line -->
-            <path d="M 35 178 C 41 167 51 163 61 163" fill="none" stroke="var(--flesh-hi)" stroke-width="2" stroke-linecap="round"/>
-            <path d="M 43 175 L 55 182" fill="none" stroke="var(--flesh-mid)" stroke-width="1.4" stroke-linecap="round"/>
-            <!-- Cut crumb face visible when split -->
-            <path id="crumb-face-l" class="fade-part" d="M 64 159 L 64 192 C 59 191 58 184 60 176 C 61 168 60 162 64 159 Z"
-                  fill="var(--flesh-hi)" stroke="var(--flesh-mid)" stroke-width="1"/>
+          <!-- Whole Unbroken Loaf (visible on Ready only) -->
+          <g id="bread-whole-loaf" opacity="1">
+            <path class="bread-light"
+                  d="M 27 189 L 97 189 C 95 168 80 155 62 155 C 44 155 29 168 27 189 Z"
+                  stroke-width="1.6" stroke-linejoin="round"/>
+            <path class="bread-mid" d="M 30 183 L 94 183 L 97 189 L 27 189 Z" stroke="none" opacity="0.48"/>
+            <path class="bread-score" d="M 36 173 C 44 163 54 160 62 160" fill="none" stroke-width="1.4" stroke-linecap="round" opacity="0.6"/>
+            <path class="bread-score" d="M 44 172 L 54 177 M 63 169 L 74 175 M 78 172 L 86 177" fill="none" stroke-width="1.3" stroke-linecap="round" opacity="0.72"/>
           </g>
 
-          <!-- Right Half of Loaf -->
-          <g id="bread-right">
-            <path d="M 64 193 L 100 193 C 99 170 84 158 64 158 Z"
-                  fill="var(--flesh-mid)" stroke="var(--flesh-stroke)" stroke-width="1.6" stroke-linejoin="round"/>
-            <!-- Match inner light tone on right shoulder -->
-            <path d="M 64 159 C 78 159 90 168 94 184 L 64 184 Z"
-                  fill="var(--flesh-light)" opacity="0.88"/>
-            <path d="M 68 164 C 77 166 84 171 88 179" fill="none" stroke="var(--flesh-hi)" stroke-width="1.6" stroke-linecap="round"/>
-            <path d="M 73 175 L 85 181" fill="none" stroke="var(--flesh-stroke)" stroke-width="1.3" stroke-linecap="round" opacity="0.65"/>
-            <path id="crumb-face-r" class="fade-part" d="M 64 159 C 68 163 67 171 67 177 C 67 185 69 191 64 192 Z"
-                  fill="var(--flesh-hi)" stroke="var(--flesh-mid)" stroke-width="1"/>
-          </g>
+          <!-- Broken Torn Halves (visible on Step 1+) -->
+          <g id="bread-broken-halves" opacity="0">
+            <!-- Left Torn Loaf Piece -->
+            <g id="bread-left-half">
+              <path class="bread-light"
+                    d="M 27 189
+                       L 63 189
+                       L 60 183 L 64 176 L 59 169 L 63 163 L 60 156
+                       C 43 157 29 170 27 189 Z"
+                    stroke-width="1.6" stroke-linejoin="round"/>
+              <path class="bread-score" d="M 35 174 C 40 165 48 162 56 161" fill="none" stroke-width="1.5" stroke-linecap="round" opacity="0.65"/>
+              <path class="bread-score" d="M 42 174 L 52 179" fill="none" stroke-width="1.3" stroke-linecap="round" opacity="0.7"/>
+              <path id="crumb-l" class="bread-crumb"
+                    d="M 60 156 L 63 163 L 59 169 L 64 176 L 60 183 L 63 189 C 57 188 55 182 57 174 C 57 167 56 161 60 156 Z"
+                    stroke-width="1"/>
+            </g>
 
-          <!-- Falling Crumbs when broken -->
-          <g id="bread-crumbs" class="fade-part">
-            <circle cx="62" cy="187" r="1.8" fill="var(--flesh-mid)"/>
-            <circle cx="66" cy="191" r="1.5" fill="var(--flesh-stroke)" opacity="0.75"/>
-            <circle cx="63.5" cy="195" r="1.4" fill="var(--flesh-light)" stroke="var(--flesh-stroke)" stroke-width="0.6"/>
-          </g>
-        </g>
+            <!-- Right Torn Loaf Piece -->
+            <g id="bread-right-half">
+              <path class="bread-light"
+                    d="M 60 156
+                       L 63 163 L 59 169 L 64 176 L 60 183 L 63 189
+                       L 97 189
+                       C 95 170 81 156 60 156 Z"
+                    stroke-width="1.6" stroke-linejoin="round"/>
+              <path class="bread-mid" d="M 62 183 L 96 183 L 97 189 L 63 189 Z" stroke="none" opacity="0.55"/>
+              <path class="bread-score" d="M 69 163 C 77 166 84 172 88 179" fill="none" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+              <path class="bread-score" d="M 71 174 L 83 179" fill="none" stroke-width="1.3" stroke-linecap="round" opacity="0.7"/>
+              <path id="crumb-r" class="bread-crumb"
+                    d="M 60 156 C 65 162 66 169 65 176 C 67 183 66 187 63 189 L 60 183 L 64 176 L 59 169 L 63 163 Z"
+                    stroke-width="1"/>
+            </g>
 
-        <!-- CHALICE / CUP OF WINE (uses EXACT --crimson / --crimson-hi / --crimson-dark palette) -->
-        <g id="cup-group">
-          <ellipse id="cup-halo" cx="142" cy="146" rx="34" ry="38" fill="url(#bloodHaloGrad)" opacity="0"/>
-
-          <!-- Clear Chalice Stem & Foot -->
-          <path d="M 138 159 L 138 186 L 127 195 L 157 195 L 146 186 L 146 159 Z"
-                fill="#EAE4D7" stroke="#6E6557" stroke-width="1.5" stroke-linejoin="round"/>
-          <ellipse cx="142" cy="195" rx="16" ry="3" fill="#DDD5C5" stroke="#6E6557" stroke-width="1.3"/>
-
-          <!-- Outer Crystal Glass Bowl -->
-          <path d="M 116 116 L 168 116 C 167 144 157 160 142 162 C 127 160 117 144 116 116 Z"
-                fill="#F7FAFC" fill-opacity="0.72" stroke="#6E6557" stroke-width="1.6" stroke-linejoin="round"/>
-
-          <!-- Deep Crimson Wine Inside Bowl (clipped to glass bowl, slides/fades in on Step 2+) -->
-          <g clip-path="url(#cupBowlClip)">
-            <g id="cup-wine" opacity="0">
-              <rect x="114" y="131" width="56" height="34" fill="var(--crimson)"/>
-              <!-- Subtle deep base crescent -->
-              <path d="M 120 144 C 126 155 135 160 142 160 C 150 160 158 155 164 144 L 164 162 L 120 162 Z"
-                    fill="var(--crimson-dark)" opacity="0.55"/>
-              <!-- Surface meniscus highlight matching shed blood sheen -->
-              <ellipse cx="142" cy="131" rx="23.5" ry="4.6" fill="var(--crimson-hi)"/>
-              <ellipse cx="142" cy="131" rx="17" ry="2.2" fill="#D94D61" opacity="0.45"/>
+            <!-- Uneven torn crumbs when broken -->
+            <g id="bread-crumbs">
+              <polygon class="bread-crumb" points="60,185 63,187 61,189 58,187" stroke-width="0.7"/>
+              <circle class="bread-crumb" cx="66" cy="190" r="1.6" stroke-width="0.7"/>
+              <polygon class="bread-crumb" points="56,190 58,191 57,193 55,192" stroke-width="0.6"/>
+              <circle class="bread-crumb" cx="63" cy="194" r="1.2" stroke-width="0.6"/>
             </g>
           </g>
-
-          <!-- Glass Specular Gleam + Rim -->
-          <path d="M 122 122 C 122 135 126 146 131 152" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" opacity="0.88"/>
-          <ellipse cx="142" cy="116" rx="26" ry="4.5" fill="none" stroke="#6E6557" stroke-width="1.5"/>
         </g>
-      </g>
 
-      <!-- ===================== RIGHT SIDE: AT THE CROSS ===================== -->
-      <g id="cross-side">
-        <!-- Timber Cross + Crown of Thorns -->
-        <g id="cross-base">
-          <!-- Vertical post -->
-          <rect x="281" y="44" width="30" height="178" rx="3" fill="#6E5338" stroke="#4D3824" stroke-width="1.5"/>
-          <path d="M 303 45 L 310 45 L 310 221 L 303 221 Z" fill="#5A422B" opacity="0.65"/>
-          <line x1="289" y1="54" x2="289" y2="210" stroke="#533D28" stroke-width="1" opacity="0.45"/>
+        <!-- CUP (stands calm & B&W initially, TILTS & POURS OUT wine on Step 2!) -->
+        <g id="cup-group">
+          <!-- Poured stream & shallow poured pool aligned cleanly to tilted left lip at (87, 123)! -->
+          <g id="cup-pour-stream" opacity="0">
+            <path d="M 86 123 C 79 138 78 162 80 189 L 85 189 C 84 164 85 140 90 125 Z"
+                  fill="var(--crimson)"/>
+            <path d="M 86 126 C 81 141 80 163 82 186"
+                  fill="none" stroke="var(--crimson-hi)" stroke-width="1.2" stroke-linecap="round" opacity="0.75"/>
+            <ellipse cx="83" cy="190" rx="14" ry="2.8" fill="var(--crimson)"/>
+            <ellipse cx="82.5" cy="189.5" rx="8" ry="1.3" fill="var(--crimson-hi)" opacity="0.6"/>
+          </g>
 
-          <!-- Horizontal crossbeam (spanning left-to-right for outstretched hand) -->
-          <rect x="206" y="102" width="160" height="28" rx="3" fill="#775A3E" stroke="#4D3824" stroke-width="1.5"/>
-          <path d="M 207 123 L 365 123 L 365 129 L 207 129 Z" fill="#5B422B" opacity="0.65"/>
-          <line x1="216" y1="110" x2="356" y2="110" stroke="#533D28" stroke-width="1" opacity="0.4"/>
+          <!-- Tilting Cup Body -->
+          <g id="cup-tilter" style="transform-origin: 141px 168px;">
+            <!-- Stem & Foot -->
+            <path d="M 137 150 L 137 180 L 126 189 L 156 189 L 145 180 L 145 150 Z"
+                  fill="#F1EFEA" stroke="#2C2416" stroke-width="1.5" stroke-linejoin="round"/>
+            <ellipse cx="141" cy="189" rx="15" ry="2.8" fill="#E3E0D8" stroke="#2C2416" stroke-width="1.3"/>
 
-          <!-- Stylized Crown of Thorns resting across top post -->
-          <g id="thorns-crown">
-            <ellipse cx="296" cy="79" rx="23" ry="8.5" fill="none" stroke="#4E3823" stroke-width="3"/>
-            <path d="M 274 79 C 284 71 308 87 318 78" fill="none" stroke="#65492F" stroke-width="2.2" stroke-linecap="round"/>
-            <path d="M 276 76 C 288 86 304 71 317 81" fill="none" stroke="#3F2C1B" stroke-width="1.8" stroke-linecap="round"/>
-            <!-- Small clean thorns -->
-            <path d="M 279 73 L 274 68 M 292 70 L 290 64 M 305 71 L 309 65 M 316 76 L 322 72 M 286 87 L 283 93 M 303 87 L 307 93"
-                  stroke="#3F2C1B" stroke-width="1.5" stroke-linecap="round"/>
+            <!-- Clear Crystal Goblet Bowl -->
+            <path d="M 116 108 L 166 108 C 165 135 155 150 141 152 C 127 150 117 135 116 108 Z"
+                  fill="#FAFBFD" fill-opacity="0.78" stroke="#2C2416" stroke-width="1.5" stroke-linejoin="round"/>
+
+            <!-- Upright/Tilted Wine Fill clipped cleanly inside goblet -->
+            <g clip-path="url(#cupBowlClip)">
+              <!-- Upright wine fill (Step 3) -->
+              <g id="cup-upright-wine" opacity="0">
+                <rect x="114" y="122" width="54" height="32" fill="var(--crimson)"/>
+                <ellipse cx="141" cy="122" rx="22" ry="4.2" fill="var(--crimson-hi)"/>
+                <path d="M 120 135 C 125 145 134 150 141 150 C 149 150 157 145 162 135 L 162 152 L 120 152 Z"
+                      fill="var(--crimson-dark)" opacity="0.5"/>
+              </g>
+              <!-- Gravity-level pouring wine surface (+32deg compensates -32deg cup tilt so meniscus stays horizontal!) -->
+              <g id="cup-tilted-wine" opacity="0">
+                <g transform="rotate(32 134 128)">
+                  <rect x="104" y="123" width="66" height="42" fill="var(--crimson)"/>
+                  <ellipse cx="136" cy="123" rx="28" ry="4.2" fill="var(--crimson-hi)"/>
+                </g>
+              </g>
+            </g>
+
+            <!-- Specular Rim & Glass Highlight -->
+            <path d="M 122 114 C 122 126 125 137 130 143" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" opacity="0.9"/>
+            <ellipse cx="141" cy="108" rx="25" ry="4.2" fill="none" stroke="#2C2416" stroke-width="1.5"/>
           </g>
         </g>
+      </g>
 
-        <!-- CLOSE-UP OUTSTRETCHED HAND & NAIL (uses EXACT --flesh-light / --flesh-mid / --flesh-stroke as the Bread!) -->
-        <g id="hand-group">
-          <circle id="hand-halo" cx="284" cy="116" r="44" fill="url(#bodyHaloGrad)" opacity="0"/>
+      <!-- ===================== RIGHT SIDE: STATIC PEN-AND-INK SCENE (HAND ON THE BEAM) ===================== -->
+      <!-- Notice: Nothing moves here! Only selective skin color OR selective blood color turns ON. -->
+      <g id="cross-beam-scene">
 
-          <!-- Sculptural Tapered Wrist + Open Palm + Thumb + Four Soft Fingers along Crossbeam -->
-          <path d="M 218 110
-                   C 234 109.5 248 108 258 107
-                   C 264 105.5 270 100 274.5 95
-                   C 277.5 92 282 93.5 281.5 97.5
-                   C 280.5 101.5 276 104.5 274.5 106.5
-                   L 293 105.5
-                   C 300 105 313 104.5 316.5 106
-                   C 319.5 107 319.5 111 315.5 112
-                   L 299 112.5
-                   L 320.5 112.5
-                   C 324.5 113 324.5 117 320.5 118
-                   L 299 118.5
-                   L 318.5 119
-                   C 322 119.5 322 123 318.5 123.5
-                   L 297 123.8
-                   L 311 124.2
-                   C 314.5 124.8 314 128.5 310 128.5
-                   L 266 127.5
-                   C 259 127.5 253 125 246 124.2
-                   C 235 123.5 224 123 218 122.5 Z"
-                fill="var(--flesh-light)" stroke="var(--flesh-stroke)" stroke-width="1.5" stroke-linejoin="round"/>
+        <!-- Heavy 3/4 Squared Wooden Crossbeam (Always crisp monochrome ink) -->
+        <g id="timber-beam">
+          <!-- Top Plane of Beam -->
+          <polygon points="196,105 268,81 364,132 296,158"
+                   fill="#ECE9E2" stroke="#2C2416" stroke-width="1.6" stroke-linejoin="round"/>
+          <!-- Woodgrain lines along top plane -->
+          <path d="M 212 103 L 266 86 M 206 109 L 278 144 M 224 118 L 298 152 M 310 112 L 348 132"
+                stroke="#6E675C" stroke-width="1" stroke-linecap="round" opacity="0.65"/>
 
-          <!-- Subtle forearm / palm shading matching the darker bread half -->
-          <path d="M 219 119 C 234 119.5 246 120 255 120.5 C 262 123 270 125.8 286 125.8 L 308 126.8 L 266 127.5 C 259 127.5 253 125 246 124.2 C 235 123.5 224 123 219 122.5 Z"
-                fill="var(--flesh-mid)" opacity="0.65"/>
-          <path d="M 271 112 C 273 120 280 124 289 124" fill="none" stroke="var(--flesh-mid)" stroke-width="1.3" stroke-linecap="round"/>
+          <!-- Left Vertical Side Face of Beam -->
+          <polygon points="196,105 296,158 296,214 196,156"
+                   fill="#DDD9D0" stroke="#2C2416" stroke-width="1.6" stroke-linejoin="round"/>
+          <!-- Clean ink hatching & woodgrain on shaded beam side -->
+          <path d="M 204 120 L 288 166 M 204 134 L 288 182 M 204 146 L 288 196"
+                stroke="#5A5349" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
+          <path d="M 206 155 L 210 162 M 216 161 L 220 168 M 226 167 L 230 174 M 256 184 L 260 192 M 266 190 L 270 198 M 276 196 L 280 204"
+                stroke="#4D473E" stroke-width="0.9" stroke-linecap="round" opacity="0.45"/>
 
-          <!-- Iron Nail Head in center of palm -->
-          <circle cx="282" cy="117" r="4.5" fill="#46413C" stroke="#2C2416" stroke-width="1.2"/>
-          <circle cx="280.8" cy="115.8" r="1.4" fill="#857E74"/>
+          <!-- Front-Right Cut End of Timber Beam -->
+          <polygon points="296,158 364,132 364,186 296,214"
+                   fill="#CECAC0" stroke="#2C2416" stroke-width="1.6" stroke-linejoin="round"/>
+          <!-- Timber end-grain rings -->
+          <path d="M 310 172 C 322 162 342 156 352 164 C 352 178 326 192 310 190 Z"
+                fill="none" stroke="#5A5349" stroke-width="1" opacity="0.55"/>
+          <path d="M 322 174 C 330 168 340 166 344 171" fill="none" stroke="#5A5349" stroke-width="1" opacity="0.5"/>
         </g>
 
-        <!-- SHED BLOOD STREAM & DROPS (uses EXACT --crimson / --crimson-hi / --crimson-dark as the Wine!) -->
-        <g id="blood-group" opacity="0">
-          <circle cx="292" cy="156" r="44" fill="url(#bloodHaloGrad)"/>
-
-          <!-- Subtle crimson mark around the nail -->
-          <circle cx="282" cy="121" r="3.4" fill="var(--crimson)"/>
-          <!-- Clean flowing crimson stream down the upright timber -->
-          <path d="M 282 122 C 282 140 287 148 287 166 C 287 180 285 192 288 208"
-                fill="none" stroke="var(--crimson)" stroke-width="3.4" stroke-linecap="round"/>
-          <path d="M 282 125 C 282 140 286 148 286 164"
-                fill="none" stroke="var(--crimson-hi)" stroke-width="1.1" stroke-linecap="round" opacity="0.75"/>
-
-          <!-- Clean stylized droplets -->
-          <path d="M 297 148 C 297 148 301 154 301 157 C 301 159.5 299.2 161.2 297 161.2 C 294.8 161.2 293 159.5 293 157 C 293 154 297 148 297 148 Z"
-                fill="var(--crimson)"/>
-          <circle cx="296" cy="156.5" r="1.1" fill="var(--crimson-hi)"/>
-
-          <path d="M 277 175 C 277 175 280.5 180.5 280.5 183 C 280.5 185 278.9 186.6 277 186.6 C 275.1 186.6 273.5 185 273.5 183 C 273.5 180.5 277 175 277 175 Z"
-                fill="var(--crimson)"/>
-
-          <!-- Covenant Crimson Pool at Cross Base -->
-          <ellipse cx="296" cy="222" rx="34" ry="5.5" fill="var(--crimson)"/>
-          <ellipse cx="294" cy="221" rx="22" ry="2.2" fill="var(--crimson-hi)" opacity="0.55"/>
+        <!-- Blood Trickle Over Left Edge of Beam & Under Wrist Nail (Selective Color Pair 2!) -->
+        <g id="beam-blood">
+          <!-- Small quiet wrist stain + slow trickle down beam side face -->
+          <path class="blood-main"
+                d="M 225 99
+                   C 221 103 219 108 220 116
+                   C 221 124 222 134 221 146
+                   C 221 151 224 153 226 149
+                   C 227 142 227 132 229 124
+                   C 231 129 232 136 232 141
+                   C 232 145 235 146 236 142
+                   C 237 134 236 121 236 113
+                   C 235 106 232 101 225 99 Z"
+                stroke="#2C2416" stroke-width="1" stroke-linejoin="round"/>
+          <path class="blood-hi"
+                d="M 224 114 C 224 123 224 134 223 142"
+                stroke="none" opacity="0.65"/>
+          <circle class="blood-main" cx="223" cy="159" r="2.2" stroke="#2C2416" stroke-width="0.8"/>
         </g>
 
-        <!-- Remembrance Directional Arc (Step 3: Look Back from Cross to Table) -->
-        <g id="remember-arc" opacity="0">
-          <path d="M 248 64 C 212 48 166 48 130 66"
-                fill="none" stroke="#2A5B7C" stroke-width="2.4" stroke-dasharray="5 4" stroke-linecap="round"/>
-          <path d="M 134 58 L 126 67 L 138 69"
-                fill="none" stroke="#2A5B7C" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
-          <rect x="150" y="38" width="80" height="17" rx="8.5" fill="#E9F2F7" stroke="#BFD6E4" stroke-width="1"/>
-          <text class="svg-sans" x="190" y="50" text-anchor="middle" font-size="9.5" font-weight="700" fill="#1E435C">Look Back</text>
+        <!-- Jesus' Open Upturned Hand & Wrist Resting on Top of the Beam (Selective Color Pair 1!) -->
+        <g id="jesus-hand">
+          <!-- Forearm + Wrist + Open Palm + Soft Thumb + 4 Gently Curled Fingers -->
+          <path class="hand-light"
+                d="M 197 96
+                   L 229 88
+                   C 242 84 256 80 272 80
+                   C 288 80 301 82 313 84
+                   C 319 85 322 89 318 93
+                   C 313 96 303 95 296 94
+                   C 291 93 288 94 286 96
+                   C 296 98 310 100 322 102
+                   C 327 103 328 108 323 110
+                   C 327 112 326 116 320 116
+                   C 313 116 304 114 297 113
+                   C 305 117 314 119 316 122
+                   C 317 125 313 128 307 127
+                   C 309 130 306 133 300 132
+                   C 294 131 286 128 280 126
+                   C 272 132 259 134 246 131
+                   C 235 127 230 120 227 114
+                   L 197 116 Z"
+                stroke-width="1.6" stroke-linejoin="round"/>
+
+          <!-- Heel of palm & shadowed side of upturned curled fingers -->
+          <path class="hand-mid"
+                d="M 244 128
+                   C 258 132 272 130 280 124
+                   C 287 127 298 130 304 130
+                   C 308 130 310 127 306 125
+                   L 285 118
+                   C 276 116 266 121 253 122
+                   C 242 122 234 116 230 110
+                   L 228 114
+                   C 231 120 236 126 244 128 Z"
+                opacity="0.72"/>
+
+          <!-- Soft highlight on upturned thumb pad & center palm -->
+          <path class="hand-hi"
+                d="M 272 84 C 288 83 302 85 312 88 C 306 91 294 90 284 90 C 276 90 270 87 272 84 Z"
+                opacity="0.8"/>
+
+          <!-- Clean anatomical palm & finger-fold ink lines (echoing sketch clarity) -->
+          <path class="hand-line" d="M 255 96 C 266 99 275 104 282 112" fill="none" stroke-width="1.2" stroke-linecap="round"/>
+          <path class="hand-line" d="M 252 108 C 263 111 273 114 284 115" fill="none" stroke-width="1.1" stroke-linecap="round"/>
+          <path class="hand-line" d="M 284 97 C 294 99 306 101 317 104" fill="none" stroke-width="1.2" stroke-linecap="round"/>
+          <path class="hand-line" d="M 288 107 C 299 109 309 112 318 115" fill="none" stroke-width="1.2" stroke-linecap="round"/>
+          <path class="hand-line" d="M 282 117 C 292 119 303 122 310 125" fill="none" stroke-width="1.2" stroke-linecap="round"/>
+          <!-- Knuckle / fingertip curl details -->
+          <path class="hand-line" d="M 314 86 C 316 87 316 90 314 91" fill="none" stroke-width="1" stroke-linecap="round"/>
+          <path class="hand-line" d="M 320 104 C 322 106 321 109 318 110" fill="none" stroke-width="1" stroke-linecap="round"/>
+          <path class="hand-line" d="M 311 120 C 313 122 312 125 309 125" fill="none" stroke-width="1" stroke-linecap="round"/>
+
+          <!-- Blood pooling slightly right around entry of spike at wrist -->
+          <ellipse class="blood-main" cx="231" cy="94" rx="5.5" ry="3.2" stroke="#2C2416" stroke-width="0.9"/>
+        </g>
+
+        <!-- Forged Iron Nail Spike Driven Through Wrist (Always crisp dark charcoal ink) -->
+        <g id="wrist-nail">
+          <!-- Spike shaft -->
+          <polygon points="229,63 234,63 233,95 229.5,95" fill="#46413A" stroke="#2C2416" stroke-width="1.3" stroke-linejoin="round"/>
+          <line x1="230.5" y1="65" x2="230.5" y2="93" stroke="#9B9489" stroke-width="0.9"/>
+          <!-- Faceted square iron nail head -->
+          <polygon points="223,58 232,55 240,59 235,64 225,63" fill="#5E584F" stroke="#2C2416" stroke-width="1.3" stroke-linejoin="round"/>
+          <polygon points="223,58 232,55 234,59 225,61" fill="#8C857A" opacity="0.65"/>
         </g>
       </g>
 
-      <!-- Clean Bottom Pair Labels -->
+      <!-- Bottom Labels -->
       <g id="stage-labels">
-        <text id="left-caption" class="svg-sans" x="94" y="256" text-anchor="middle" font-size="11" font-weight="700" fill="#6E6557">Bread and Cup</text>
-        <text id="right-caption" class="svg-sans" x="286" y="256" text-anchor="middle" font-size="11" font-weight="700" fill="#6E6557">Cross of Christ</text>
+        <text id="left-caption" class="svg-sans" x="94" y="248" text-anchor="middle" font-size="11" font-weight="700" fill="#6E6557">Bread and Cup</text>
+        <text id="right-caption" class="svg-sans" x="286" y="248" text-anchor="middle" font-size="11" font-weight="700" fill="#6E6557">Body and Blood</text>
       </g>
     </svg>
   </div>
@@ -628,30 +704,23 @@ button:focus-visible {
       dark: '#2C2416',
       accent: '#2C2416',
       title: 'A Meal That Points to the Cross',
-      text: 'Jesus left us bread and a cup so we would never forget His cross.',
-      ref: 'Luke 22:15, 19-20',
+      text: 'Jesus gave His church bread and a cup so we would never forget His cross.',
+      ref: 'Luke 22:19-20',
       leftCap: 'Bread and Cup',
       leftCapColor: '#6E6557',
-      rightCap: 'Cross of Christ',
+      rightCap: 'Hand on the Beam',
       rightCapColor: '#6E6557',
+      colorBody: false,
+      colorBlood: false,
       splitBread: false,
-      breadOpacity: 0.78,
-      cupWine: false,
-      cupOpacity: 0.78,
-      handOpacity: 0,
-      handHalo: false,
-      breadHalo: false,
-      cupHalo: false,
-      showBlood: false,
-      crossOpacity: 0.72,
-      bridge: 'none',
+      breadOpacity: 1,
+      cupOpacity: 1,
+      tiltCup: false,
+      uprightWine: false,
       linkBg: '#FFFFFF',
       linkBorder: '#D4CFC4',
       linkText: '#6E6557',
-      dawn: false,
-      rememberArc: false,
-      fellowship: false,
-      desc: 'Whole loaf of bread and an empty chalice sit on a table on the left. On the right stands Jesus\' wooden cross with a crown of thorns.'
+      desc: 'In black and white, one whole loaf of bread and an upright empty cup sit at the table on the left. On the right rests Jesus\' open nailed hand on a wooden beam.'
     },
     {
       dotLabel: 'Step 1: The Bread and His Body',
@@ -659,30 +728,23 @@ button:focus-visible {
       dark: '#874C19',
       accent: '#874C19',
       title: '1. The Bread: His Body',
-      text: '<b>"This is my body, which is given for you."</b> Broken bread, same color as His body on the cross.',
+      text: '<b>"This is my body, which is given for you."</b> The broken bread matches the warm color of His body.',
       ref: 'Luke 22:19 | 1 Corinthians 11:24',
       leftCap: 'Bread Broken',
       leftCapColor: '#874C19',
-      rightCap: 'Body Given',
+      rightCap: 'His Body Given',
       rightCapColor: '#874C19',
+      colorBody: true,
+      colorBlood: false,
       splitBread: true,
       breadOpacity: 1,
-      cupWine: false,
-      cupOpacity: 0.20,
-      handOpacity: 1,
-      handHalo: true,
-      breadHalo: true,
-      cupHalo: false,
-      showBlood: false,
-      crossOpacity: 0.96,
-      bridge: 'bread',
+      cupOpacity: 0.35,
+      tiltCup: false,
+      uprightWine: false,
       linkBg: '#A96224',
       linkBorder: '#A96224',
       linkText: '#FFFFFF',
-      dawn: false,
-      rememberArc: false,
-      fellowship: false,
-      desc: 'The bread splits cleanly into two halves in warm golden-sand color, matching the exact color of Jesus\' nailed open hand on the crossbeam.'
+      desc: 'The loaf tears apart with a rough broken edge in warm bread color, while only Jesus\' hand on the beam lights up in the exact same color.'
     },
     {
       dotLabel: 'Step 2: The Cup and His Blood',
@@ -690,92 +752,47 @@ button:focus-visible {
       dark: '#6D1220',
       accent: '#9B1C2E',
       title: '2. The Cup: His Blood',
-      text: '<b>"This cup is the new covenant in my blood."</b> Crimson wine, same color as His blood shed for you.',
+      text: '<b>"This cup is the new covenant in my blood, poured out for you."</b> The poured wine matches the color of His blood.',
       ref: 'Luke 22:20 | Matthew 26:28',
-      leftCap: 'Cup Poured',
+      leftCap: 'Cup Poured Out',
       leftCapColor: '#9B1C2E',
-      rightCap: 'Blood Shed',
+      rightCap: 'His Blood Shed',
       rightCapColor: '#9B1C2E',
+      colorBody: false,
+      colorBlood: true,
       splitBread: true,
-      breadOpacity: 0.20,
-      cupWine: true,
+      breadOpacity: 0.38,
       cupOpacity: 1,
-      handOpacity: 0.56,
-      handHalo: false,
-      breadHalo: false,
-      cupHalo: true,
-      showBlood: true,
-      crossOpacity: 0.96,
-      bridge: 'blood',
+      tiltCup: true,
+      uprightWine: false,
       linkBg: '#9B1C2E',
       linkBorder: '#9B1C2E',
       linkText: '#FFFFFF',
-      dawn: false,
-      rememberArc: false,
-      fellowship: false,
-      desc: 'The chalice fills with deep crimson wine on the left, matching the exact crimson blood flowing down the cross from Jesus\' pierced hand on the right.'
+      desc: 'The cup tilts and pours crimson wine on the left. On the right, Jesus\' hand returns to black and white while only the blood turns the exact same crimson.'
     },
     {
-      dotLabel: 'Step 3: Do This in Remembrance',
-      color: '#2A5B7C',
-      dark: '#1E435C',
-      accent: '#1E435C',
-      title: '3. Look Back: Remember Me',
-      text: '<b>"Do this in remembrance of me."</b> Come honestly, look back to Jesus, and give thanks.',
-      ref: '1 Corinthians 11:24-25',
+      dotLabel: 'Step 3: Remember Until He Comes',
+      color: '#2C2416',
+      dark: '#2C2416',
+      accent: '#2C2416',
+      title: '3. Remember Until He Comes',
+      text: '<b>"As often as you eat this bread and drink the cup, you proclaim the Lord\'s death until he comes."</b>',
+      ref: '1 Corinthians 11:24-26',
       leftCap: 'Eat and Drink',
-      leftCapColor: '#1E435C',
-      rightCap: 'Look Back to Cross',
-      rightCapColor: '#1E435C',
+      leftCapColor: '#2C2416',
+      rightCap: 'Do This in Remembrance',
+      rightCapColor: '#2C2416',
+      colorBody: true,
+      colorBlood: true,
       splitBread: true,
       breadOpacity: 1,
-      cupWine: true,
       cupOpacity: 1,
-      handOpacity: 0.92,
-      handHalo: false,
-      breadHalo: false,
-      cupHalo: false,
-      showBlood: true,
-      crossOpacity: 1,
-      bridge: 'none',
-      linkBg: '#2A5B7C',
-      linkBorder: '#2A5B7C',
+      tiltCup: false,
+      uprightWine: true,
+      linkBg: '#2C2416',
+      linkBorder: '#2C2416',
       linkText: '#FFFFFF',
-      dawn: false,
-      rememberArc: true,
-      fellowship: false,
-      desc: 'Broken bread and the filled cup stand together on the table while an arrow traces back from the cross, showing the meal reminds us of Jesus.'
-    },
-    {
-      dotLabel: 'Step 4: Proclaim Until He Comes',
-      color: '#946B06',
-      dark: '#755304',
-      accent: '#755304',
-      title: '4. Look Forward: Until He Comes',
-      text: '<b>"You proclaim the Lord\'s death until he comes."</b> One table together until we eat with Jesus face to face.',
-      ref: '1 Corinthians 11:26 | Luke 22:18',
-      leftCap: 'One Shared Table',
-      leftCapColor: '#755304',
-      rightCap: 'Until He Comes',
-      rightCapColor: '#755304',
-      splitBread: true,
-      breadOpacity: 1,
-      cupWine: true,
-      cupOpacity: 1,
-      handOpacity: 0.58,
-      handHalo: false,
-      breadHalo: false,
-      cupHalo: false,
-      showBlood: true,
-      crossOpacity: 0.96,
-      bridge: 'hope',
-      linkBg: '#946B06',
-      linkBorder: '#946B06',
-      linkText: '#FFFFFF',
-      dawn: true,
-      rememberArc: false,
-      fellowship: true,
-      desc: 'Golden morning light rises behind the cross while broken bread and wine are shared together at one table, looking forward to Christ\'s return.'
+      desc: 'Broken bread and the filled cup stand together on the table while both the hand and the blood glow together in color on the crossbeam.'
     }
   ];
 
@@ -855,7 +872,7 @@ button:focus-visible {
       max = Math.max(max, node.offsetHeight);
     });
     document.body.removeChild(m);
-    document.documentElement.style.setProperty('--card-h', Math.max(max, 118) + 'px');
+    document.documentElement.style.setProperty('--card-h', Math.max(max, 110) + 'px');
   }
 
   var strip = el('step-strip');
@@ -888,55 +905,38 @@ button:focus-visible {
   }
 
   function paintScene(s) {
+    var svg = el('supper-svg');
+    svg.classList.toggle('color-body', !!s.colorBody);
+    svg.classList.toggle('color-blood', !!s.colorBlood);
+
     el('bread-group').style.opacity = String(s.breadOpacity);
     el('cup-group').style.opacity = String(s.cupOpacity);
-    el('hand-group').style.opacity = String(s.handOpacity);
-    el('cross-base').style.opacity = String(s.crossOpacity);
-
-    el('bread-halo').style.opacity = s.breadHalo ? '1' : '0';
-    el('hand-halo').style.opacity = s.handHalo ? '1' : '0';
-    el('cup-halo').style.opacity = s.cupHalo ? '1' : '0';
 
     if (s.splitBread) {
-      el('bread-left').style.transform = 'translate(-8px, 1px) rotate(-7deg)';
-      el('bread-left').style.transformOrigin = '56px 190px';
-      el('bread-right').style.transform = 'translate(8px, 1px) rotate(7deg)';
-      el('bread-right').style.transformOrigin = '72px 190px';
-      el('crumb-face-l').classList.add('is-on');
-      el('crumb-face-r').classList.add('is-on');
-      el('bread-crumbs').classList.add('is-on');
+      el('bread-whole-loaf').style.opacity = '0';
+      el('bread-broken-halves').style.opacity = '1';
+      el('bread-left-half').style.transform = 'translate(-7px, 1px) rotate(-7deg)';
+      el('bread-left-half').style.transformOrigin = '56px 186px';
+      el('bread-right-half').style.transform = 'translate(7px, 1px) rotate(6deg)';
+      el('bread-right-half').style.transformOrigin = '68px 186px';
     } else {
-      el('bread-left').style.transform = 'translate(0, 0) rotate(0deg)';
-      el('bread-right').style.transform = 'translate(0, 0) rotate(0deg)';
-      el('crumb-face-l').classList.remove('is-on');
-      el('crumb-face-r').classList.remove('is-on');
-      el('bread-crumbs').classList.remove('is-on');
+      el('bread-whole-loaf').style.opacity = '1';
+      el('bread-broken-halves').style.opacity = '0';
+      el('bread-left-half').style.transform = 'translate(0, 0) rotate(0deg)';
+      el('bread-right-half').style.transform = 'translate(0, 0) rotate(0deg)';
     }
 
-    el('cup-wine').style.opacity = s.cupWine ? '1' : '0';
-    el('blood-group').style.opacity = s.showBlood ? '1' : '0';
-
-    var bridge = el('bridge-wash');
-    var bridgePath = el('bridge-path');
-    if (s.bridge === 'bread') {
-      bridgePath.setAttribute('fill', 'url(#breadBridgeGrad)');
-      bridgePath.setAttribute('d', 'M 48 156 L 266 95 L 278 136 L 78 192 Z');
-      bridge.style.opacity = '1';
-    } else if (s.bridge === 'blood') {
-      bridgePath.setAttribute('fill', 'url(#bloodBridgeGrad)');
-      bridgePath.setAttribute('d', 'M 122 122 L 298 118 L 302 186 L 122 158 Z');
-      bridge.style.opacity = '1';
-    } else if (s.bridge === 'hope') {
-      bridgePath.setAttribute('fill', 'url(#hopeBridgeGrad)');
-      bridgePath.setAttribute('d', 'M 48 142 L 296 104 L 296 168 L 48 192 Z');
-      bridge.style.opacity = '1';
+    if (s.tiltCup) {
+      el('cup-tilter').style.transform = 'translate(-5px, -8px) rotate(-32deg)';
+      el('cup-pour-stream').style.opacity = '1';
+      el('cup-tilted-wine').style.opacity = '1';
+      el('cup-upright-wine').style.opacity = '0';
     } else {
-      bridge.style.opacity = '0';
+      el('cup-tilter').style.transform = 'translate(0, 0) rotate(0deg)';
+      el('cup-pour-stream').style.opacity = '0';
+      el('cup-tilted-wine').style.opacity = '0';
+      el('cup-upright-wine').style.opacity = s.uprightWine ? '1' : '0';
     }
-
-    el('dawn-glow').style.opacity = s.dawn ? '1' : '0';
-    el('remember-arc').style.opacity = s.rememberArc ? '1' : '0';
-    el('fellowship-table').style.opacity = s.fellowship ? '1' : '0';
 
     el('link-badge-bg').setAttribute('fill', s.linkBg);
     el('link-badge-bg').setAttribute('stroke', s.linkBorder);
@@ -953,8 +953,8 @@ button:focus-visible {
 
   function goTo(idx, fromDot) {
     step = Math.max(0, Math.min(steps.length - 1, idx));
-    if (!fromDot) {
-      if (step === 0) setFocus('next');
+    if (!fromDot && step === 0) {
+      setFocus('next');
     }
     render();
   }

@@ -78,75 +78,87 @@ function createServer() {
 
     const initialState = await frame.locator('body').evaluate(() => {
       const root = document.documentElement;
+      const svg = document.getElementById('supper-svg');
       const card = document.querySelector('.verse-card-content');
-      const cs = getComputedStyle(document.documentElement);
       return {
         text: document.body.innerText,
         overflow: root.scrollWidth > window.innerWidth + 1,
         cardH: card ? card.getBoundingClientRect().height : 0,
-        fleshLight: cs.getPropertyValue('--flesh-light').trim(),
-        crimson: cs.getPropertyValue('--crimson').trim(),
-        handOpacity: getComputedStyle(document.getElementById('hand-group')).opacity,
-        bloodOpacity: getComputedStyle(document.getElementById('blood-group')).opacity
+        wholeOpacity: getComputedStyle(document.getElementById('bread-whole-loaf')).opacity,
+        brokenOpacity: getComputedStyle(document.getElementById('bread-broken-halves')).opacity,
+        hasBodyColor: svg.classList.contains('color-body'),
+        hasBloodColor: svg.classList.contains('color-blood')
       };
     });
 
     assert(cfg.name + ' no horizontal overflow inside widget', !initialState.overflow);
     assert(cfg.name + ' no tap-begin text on intro', !/tap begin/i.test(initialState.text));
-    assert(cfg.name + ' hand & blood hidden cleanly on intro', initialState.handOpacity === '0' && initialState.bloodOpacity === '0');
+    assert(cfg.name + ' intro starts monochrome with one whole unbroken loaf',
+      !initialState.hasBodyColor && !initialState.hasBloodColor && initialState.wholeOpacity === '1' && initialState.brokenOpacity === '0');
 
-    // Step 1: Begin -> Bread & Body
+    // Step 1: Begin -> Bread breaks raggedly & ONLY Jesus' hand turns warm bread color
     await frame.locator('[data-control="next"]').click();
-    await page.waitForTimeout(cfg.reducedMotion === 'reduce' ? 60 : 500);
-    const step1 = await frame.locator('body').evaluate(() => ({
-      title: document.querySelector('.verse-card-title').textContent,
-      cardH: document.querySelector('.verse-card-content').getBoundingClientRect().height,
-      handOpacity: getComputedStyle(document.getElementById('hand-group')).opacity,
-      bloodOpacity: getComputedStyle(document.getElementById('blood-group')).opacity,
-      bridgeOpacity: getComputedStyle(document.getElementById('bridge-wash')).opacity,
-      cupOpacity: getComputedStyle(document.getElementById('cup-group')).opacity,
-      breadColor: getComputedStyle(document.querySelector('#bread-left path')).fill,
-      handColor: getComputedStyle(document.querySelector('#hand-group path')).fill
-    }));
+    await page.waitForTimeout(cfg.reducedMotion === 'reduce' ? 60 : 520);
+    const step1 = await frame.locator('body').evaluate(() => {
+      const svg = document.getElementById('supper-svg');
+      return {
+        title: document.querySelector('.verse-card-title').textContent,
+        cardH: document.querySelector('.verse-card-content').getBoundingClientRect().height,
+        wholeOpacity: getComputedStyle(document.getElementById('bread-whole-loaf')).opacity,
+        brokenOpacity: getComputedStyle(document.getElementById('bread-broken-halves')).opacity,
+        hasBodyColor: svg.classList.contains('color-body'),
+        hasBloodColor: svg.classList.contains('color-blood'),
+        breadFill: getComputedStyle(document.querySelector('#bread-left-half .bread-light')).fill,
+        handFill: getComputedStyle(document.querySelector('#jesus-hand .hand-light')).fill,
+        bloodFill: getComputedStyle(document.querySelector('#beam-blood .blood-main')).fill
+      };
+    });
     assert(cfg.name + ' Step 1 shows The Bread: His Body', /1\. The Bread: His Body/.test(step1.title), step1.title);
-    assert(cfg.name + ' Step 1 bread & hand fill color match 1:1', step1.breadColor === step1.handColor, step1.breadColor + ' vs ' + step1.handColor);
-    assert(cfg.name + ' Step 1 reveals hand and keeps blood off', Number(step1.handOpacity) > 0.9 && step1.bloodOpacity === '0');
-    assert(cfg.name + ' Step 1 shows color bridge and locks card height', Number(step1.bridgeOpacity) > 0.9 && Math.abs(step1.cardH - initialState.cardH) < 2);
+    assert(cfg.name + ' Step 1 switches to broken loaf & turns only hand color ON',
+      step1.hasBodyColor && !step1.hasBloodColor && step1.wholeOpacity === '0' && Number(step1.brokenOpacity) > 0.9);
+    assert(cfg.name + ' Step 1 bread & hand fill match 1:1', step1.breadFill === step1.handFill, step1.breadFill + ' vs ' + step1.handFill);
+    assert(cfg.name + ' Step 1 keeps blood monochrome & card height locked',
+      !/155,\s*28,\s*46/.test(step1.bloodFill) && Math.abs(step1.cardH - initialState.cardH) < 2, step1.bloodFill);
 
-    // Step 2: Next -> Cup & Blood
+    // Step 2: Next -> Hand returns to B&W, cup tilts & pours, ONLY blood turns crimson
     await frame.locator('[data-control="next"]').click();
-    await page.waitForTimeout(cfg.reducedMotion === 'reduce' ? 60 : 500);
-    const step2 = await frame.locator('body').evaluate(() => ({
-      title: document.querySelector('.verse-card-title').textContent,
-      cardH: document.querySelector('.verse-card-content').getBoundingClientRect().height,
-      bloodOpacity: getComputedStyle(document.getElementById('blood-group')).opacity,
-      wineOpacity: getComputedStyle(document.getElementById('cup-wine')).opacity,
-      wineColor: getComputedStyle(document.querySelector('#cup-wine rect')).fill,
-      bloodDropColor: getComputedStyle(document.querySelector('#blood-group path[fill="var(--crimson)"]')).fill
-    }));
+    await page.waitForTimeout(cfg.reducedMotion === 'reduce' ? 60 : 520);
+    const step2 = await frame.locator('body').evaluate(() => {
+      const svg = document.getElementById('supper-svg');
+      return {
+        title: document.querySelector('.verse-card-title').textContent,
+        cardH: document.querySelector('.verse-card-content').getBoundingClientRect().height,
+        hasBodyColor: svg.classList.contains('color-body'),
+        hasBloodColor: svg.classList.contains('color-blood'),
+        pourOpacity: getComputedStyle(document.getElementById('cup-pour-stream')).opacity,
+        cupTransform: document.getElementById('cup-tilter').style.transform,
+        wineFill: getComputedStyle(document.querySelector('#cup-tilted-wine rect')).fill,
+        bloodFill: getComputedStyle(document.querySelector('#beam-blood .blood-main')).fill
+      };
+    });
     assert(cfg.name + ' Step 2 shows The Cup: His Blood', /2\. The Cup: His Blood/.test(step2.title), step2.title);
-    assert(cfg.name + ' Step 2 wine & blood fill color match 1:1', step2.wineColor === step2.bloodDropColor, step2.wineColor + ' vs ' + step2.bloodDropColor);
-    assert(cfg.name + ' Step 2 reveals both wine and blood and locks card height', Number(step2.wineOpacity) > 0.9 && Number(step2.bloodOpacity) > 0.9 && Math.abs(step2.cardH - initialState.cardH) < 2);
+    assert(cfg.name + ' Step 2 returns hand to B&W and turns blood crimson ON', !step2.hasBodyColor && step2.hasBloodColor);
+    assert(cfg.name + ' Step 2 tilts cup & pours crimson wine matching blood 1:1',
+      /rotate\(-32deg\)/.test(step2.cupTransform) && Number(step2.pourOpacity) > 0.9 && step2.wineFill === step2.bloodFill,
+      step2.wineFill + ' vs ' + step2.bloodFill);
+    assert(cfg.name + ' Step 2 card height locked', Math.abs(step2.cardH - initialState.cardH) < 2);
 
-    // Step 3: Next -> Look Back
+    // Step 3: Next -> Remember Until He Comes (both colored together, cup upright & filled)
     await frame.locator('[data-control="next"]').click();
-    await page.waitForTimeout(cfg.reducedMotion === 'reduce' ? 60 : 400);
-    const step3 = await frame.locator('body').evaluate(() => ({
-      title: document.querySelector('.verse-card-title').textContent,
-      arcOpacity: getComputedStyle(document.getElementById('remember-arc')).opacity,
-      cardH: document.querySelector('.verse-card-content').getBoundingClientRect().height
-    }));
-    assert(cfg.name + ' Step 3 shows Remembrance and Look Back arc', /3\. Look Back/.test(step3.title) && Number(step3.arcOpacity) > 0.9 && Math.abs(step3.cardH - initialState.cardH) < 2);
-
-    // Step 4: Next -> Look Forward & Start Over
-    await frame.locator('[data-control="next"]').click();
-    await page.waitForTimeout(cfg.reducedMotion === 'reduce' ? 60 : 400);
-    const step4 = await frame.locator('body').evaluate(() => ({
-      title: document.querySelector('.verse-card-title').textContent,
-      dawnOpacity: getComputedStyle(document.getElementById('dawn-glow')).opacity,
-      cardH: document.querySelector('.verse-card-content').getBoundingClientRect().height
-    }));
-    assert(cfg.name + ' Step 4 shows Until He Comes and dawn glow', /4\. Look Forward/.test(step4.title) && Number(step4.dawnOpacity) > 0.9 && Math.abs(step4.cardH - initialState.cardH) < 2);
+    await page.waitForTimeout(cfg.reducedMotion === 'reduce' ? 60 : 520);
+    const step3 = await frame.locator('body').evaluate(() => {
+      const svg = document.getElementById('supper-svg');
+      return {
+        title: document.querySelector('.verse-card-title').textContent,
+        cardH: document.querySelector('.verse-card-content').getBoundingClientRect().height,
+        hasBodyColor: svg.classList.contains('color-body'),
+        hasBloodColor: svg.classList.contains('color-blood'),
+        uprightWineOpacity: getComputedStyle(document.getElementById('cup-upright-wine')).opacity
+      };
+    });
+    assert(cfg.name + ' Step 3 shows Remember Until He Comes with both colored & upright cup',
+      /3\. Remember Until He Comes/.test(step3.title) && step3.hasBodyColor && step3.hasBloodColor && Number(step3.uprightWineOpacity) > 0.9);
+    assert(cfg.name + ' Step 3 card height locked', Math.abs(step3.cardH - initialState.cardH) < 2);
 
     await frame.locator('[data-control="restart"]').click();
     await page.waitForTimeout(100);
