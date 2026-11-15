@@ -293,6 +293,44 @@ async function readSequenceState(page, cfg) {
         await reduced.close();
     }
 
+    // Explicit regression for Dave's batch-2 decisions: prayer art removed,
+    // Paul and Timothy remains one static image joined to its story.
+    for (var checkCase of [
+        { width: 375, motion: 'no-preference' },
+        { width: 390, motion: 'no-preference' },
+        { width: 1280, motion: 'no-preference' },
+        { width: 390, motion: 'reduce' }
+    ]) {
+        for (var lessonNo of [2, 8]) {
+            var staticPage = await browser.newPage({ viewport: { width: checkCase.width, height: 844 }, reducedMotion: checkCase.motion });
+            staticPage.on('pageerror', function (err) { errors.push(String(err)); });
+            var imageRequests = [];
+            staticPage.on('request', function (r) { imageRequests.push(r.url()); });
+            await staticPage.route('**/scripts/account.js', function (r) { return r.fulfill({ body: '', contentType: 'text/javascript' }); });
+            await staticPage.goto(BASE + '#203-' + lessonNo, { waitUntil: 'domcontentloaded' });
+            var active = staticPage.locator('#session-' + lessonNo + '.active');
+            await active.locator('.question-textarea').first().waitFor();
+            var staticTag = '#203-' + lessonNo + ' ' + checkCase.width + '/' + checkCase.motion + ': ';
+            assert(staticTag + 'no sequence renderer', await active.locator('[data-parable-sequence]').count() === 0);
+            assert(staticTag + 'no removed prayer frame requested', imageRequests.every(function (url) { return !url.includes('203-02-story-seq-'); }));
+            assert(staticTag + 'no horizontal overflow', await staticPage.evaluate(function () { return document.documentElement.scrollWidth <= innerWidth + 1; }));
+            if (lessonNo === 8) {
+                var still = active.locator('img[src*="203.08-paul-timothy-bw"]');
+                assert(staticTag + 'one static Paul/Timothy image', await still.count() === 1);
+                await still.scrollIntoViewIfNeeded();
+                await still.evaluate(function (img) { return img.decode(); });
+                assert(staticTag + 'static image loaded', await still.evaluate(function (img) { return img.complete && img.naturalWidth > 0; }));
+                assert(staticTag + 'touchNext still joins Four Generations', await still.evaluate(function (img) {
+                    var wrap = img.closest('.block-image');
+                    return wrap && wrap.classList.contains('block-image-touch-next') && wrap.nextElementSibling && wrap.nextElementSibling.textContent.includes('Four Generations');
+                }));
+            } else {
+                assert(staticTag + 'prayer story retained', (await active.innerText()).includes('A Prayer Before the Answer'));
+            }
+            await staticPage.close();
+        }
+    }
+
     assert('no page exceptions', errors.length === 0, errors.slice(0, 3).join(' | '));
     await browser.close();
     if (failed) {

@@ -1,6 +1,14 @@
 # Growing Together - Project State
 
-## Story-art delivery checkpoint, November 14, 2026
+## Story-art decisions: November 15, 2026 (supersedes the affected PR #240 inventory)
+
+Dave approved PR #248 at ae5c9d450d1b4bfbcd1fdead69190fd8bde4bdac. 101-07 retains its four-frame sequence, order/stops and touchNext placement, with the frame-4 cloak now B&W/grey marker. The approved replacement JPG, both WebP copies and new SHA-256 are preserved. 203-02 is restored byte-for-byte to pre-#240 a3beacb; its three source JPGs and six WebP copies are removed. Its story/teaching remains; there is no replacement story image under this task. Do not restore the removed sequence from old four-story completion notes.
+
+201-05 keeps its two-frame lamp sequence. 203-07 keeps its four-frame Jesus sends the 72 sequence and the unchanged original jesus-sends-72.jpg. 203-08 keeps the single static 203.08-paul-timothy-bw.jpg with touchNext: true; no color/sequence work is assigned, and ART-008 is paused pending new direction. All lesson prose, Scripture, questions/IDs, readings, widgets, index and saved-answer code are unchanged. 101-07 text remains Silver; this is specific artwork approval only.
+
+ART-STORY-SEQUENCES-B2 DONE. Foundation/export/storage/assets/images/iframe and browser checks pass: sequences plus static/revert guards (266), prayer/listen (39), Jesus sends (69), Timothy (34). Exact-head Firebase preview, production checks and merge evidence are recorded on PR #248. Evidence: [Codex integration log](project-management/logs/2026-11-15-ART-STORY-SEQUENCES-B2-codex.md).
+
+## Historical story-art delivery checkpoint, November 14, 2026 (affected decisions superseded above)
 
 Dave approved all four story-art sequences in PR #240 at 419c6a7: 101-07 shepherd (4 frames), 201-05 lamp (2), 203-02 Nehemiah (3), and 203-07 Jesus sends the 72 (4). All 13 original frames, 26 optimized WebP copies, stops/order, touchNext placement and image-map additions are preserved. The original jesus-sends-72.jpg remains unchanged on disk. Lesson wording, Scripture, questions/IDs, reading keys, index.html and the recently approved widgets remain untouched. This records story-image approval only, not whole-lesson Gold or new wording approval. This supersedes older missing/static-art inventory notes for these four lessons only. Current task status and verification are in project-management/TASKS.md and logs/2026-11-14-ART-STORY-SEQUENCES-4-codex.md.
 
