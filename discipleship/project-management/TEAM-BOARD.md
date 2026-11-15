@@ -1,5 +1,14 @@
 # Growing Together Team Board
 
+## 202-10 Baptism parallel analogy widget (REVIEW): November 14, 2026
+
+- **Task / Branch:** `WIDGET-202-10-BAPTISM` on `gemini/widget-202-10-baptism` (stopped at `REVIEW` for Dave's visual approval and Codex integration).
+- **Changes:** Built the first of the two `202-10` widgets (`discipleship/widgets/baptism-picture.html`) and wired it directly into the Baptism section of `discipleship/data/202-10.json` (right after `"Jesus gave the picture first, then did the work, and now you step into the same picture to point back at what He did for you."`), leaving all `202-10` prose, Scripture blocks, questions/IDs, and companion `two-ordinances.html` intact pending Dave's design direction for the second widget (The Lord's Supper):
+  - Fixed side-by-side Studio Wash stage (`Your Baptism` riverbank/water pool + waiting baptizer on left; `What Jesus Did` Calvary hillside + cross + rolling-stone tomb on right) synced across Intro + 4 parallel steps (`1. Death: Crucified with Christ`, `2. Burial: Buried with Him`, `3. Resurrection: Raised with Christ`, `4. New Life: Old Has Gone, New Has Come`) with Romans 6:4-6, Galatians 2:20, Colossians 2:12 / 3:1, and 2 Corinthians 5:17 language.
+  - Studio Wash `#2C2416` `.title-bar` (`What Baptism Pictures` / `202-10`), wordless 5-dot `.step-strip`, height-locked `.verse-card`, `#E0A526` `:focus-visible` outlines, `<svg role="img">` + dynamic `<title>`/`<desc>`, `prefers-reduced-motion: reduce`, zero `localStorage`, and zero em dashes.
+  - Registered `'baptism-picture.html': 'What Baptism Pictures'` in `discipleship/scripts/widget-iframe.js` and added Playwright check `discipleship/scripts/widget_202_10_baptism_browser_check.js`.
+- **Evidence:** [Gemini handoff log](logs/2026-11-14-WIDGET-202-10-BAPTISM-gemini.md).
+
 ## Redundant Begin-instruction cleanup: November 14, 2026
 
 Dave authorized review and merge of PR #244 at d10db55. WIDGET-REMOVE-TAP-BEGIN DONE: seven widget files keep their question/meaning hooks and Begin buttons while removing redundant initial-slide instructions. Only the triangle also omits its now-empty paragraph and margin. All seven widget files match d10db55 exactly. This specific instruction authorizes that small triangle intro change after #239; all other approved triangle text/art/frame stays intact.

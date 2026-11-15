@@ -16,6 +16,7 @@
     var KNOWN_TITLES = {
         'apest-rating.html': 'APEST Self-Rating',
         'armor-of-god.html': 'Put on the Armor of God',
+        'baptism-picture.html': 'What Baptism Pictures',
         'bible-bookshelf.html': 'Bible Bookshelf Widget',
         'biblical-storyline.html': 'The Biblical Storyline',
         'biblical-timeline.html': 'The Biblical Timeline',
