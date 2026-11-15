@@ -1,13 +1,21 @@
 # Growing Together Team Board
 
-## 202-10 Baptism parallel analogy widget (REVIEW): November 14, 2026
+## 202-10 Baptism parallel analogy widget (REVIEW): November 15, 2026
 
 - **Task / Branch:** `WIDGET-202-10-BAPTISM` on `gemini/widget-202-10-baptism` (stopped at `REVIEW` for Dave's visual approval and Codex integration).
 - **Changes:** Built the first of the two `202-10` widgets (`discipleship/widgets/baptism-picture.html`) and wired it directly into the Baptism section of `discipleship/data/202-10.json` (right after `"Jesus gave the picture first, then did the work, and now you step into the same picture to point back at what He did for you."`), leaving all `202-10` prose, Scripture blocks, questions/IDs, and companion `two-ordinances.html` intact pending Dave's design direction for the second widget (The Lord's Supper):
-  - Fixed side-by-side Studio Wash stage matching terrain across the center line (`Your Baptism` riverbank + shallow waist-high water pool + pastor on left; `What Jesus Did` higher ground with stone tomb on left and Calvary cross on right) synced across Intro + 4 parallel steps (`1. Death: Crucified with Christ` waist-deep in water alongside Christ on the cross, `2. Burial: Buried with Him` bent backward under water with pastor helping alongside tomb sealed by rolling stone, `3. Resurrection: Raised with Christ` stepping up out of water alongside stone rolled open and white-robed risen Jesus, `4. New Life: Old Has Gone, New Has Come` baptized person in consistent green kneeling across the line facing higher-up white-robed risen Jesus) with Romans 6:4-6, Galatians 2:20, Colossians 2:12 / 3:1, and 2 Corinthians 5:17 language.
-  - Studio Wash `#2C2416` `.title-bar` (`What Baptism Pictures` / `202-10`), wordless 5-dot `.step-strip`, height-locked `.verse-card`, `#E0A526` `:focus-visible` outlines, `<svg role="img">` + dynamic `<title>`/`<desc>`, `prefers-reduced-motion: reduce`, zero `localStorage`, and zero em dashes.
-  - Registered `'baptism-picture.html': 'What Baptism Pictures'` in `discipleship/scripts/widget-iframe.js` and added Playwright check `discipleship/scripts/widget_202_10_baptism_browser_check.js`.
+  - Fixed two separate framed Studio Wash panels (`Baptism` riverbank + waist-high water pool + pastor on left; `Jesus` grey stone tomb on left and Calvary cross on right) synced across Intro + 4 parallel steps (`1. Death: Crucified with Christ` candidate leaning into pastor in waist-deep water alongside bearded, thorn-crowned Christ on the cross, `2. Burial: Buried with Him` candidate bent backward overlapping pastor under water alongside tomb sealed by rolling stone, `3. Resurrection: Raised with Christ` stepping up out of water alongside stone rolled open and white-robed risen Jesus, `4. New Life: Old Has Gone, New Has Come` black `#1C1915` shorter-neck candidate kneeling in worship while white-robed risen Jesus turns toward him) with Romans 6:4-6, Galatians 2:20, Colossians 2:12 / 3:1, and 2 Corinthians 5:17 language.
+  - Studio Wash `#2C2416` `.title-bar` (`Baptism Identifies Us with Jesus` / `202-10`), wordless 5-dot `.step-strip`, height-locked `.verse-card`, `#E0A526` `:focus-visible` outlines, `<svg role="img">` + `aria-label` + `.sr-only` `#bap-desc` (without `<title>` hover tooltip), `prefers-reduced-motion: reduce`, zero `localStorage`, and zero em dashes.
+  - Registered `'baptism-picture.html': 'Baptism Identifies Us with Jesus'` in `discipleship/scripts/widget-iframe.js` and added Playwright check `discipleship/scripts/widget_202_10_baptism_browser_check.js`.
 - **Evidence:** [Gemini handoff log](logs/2026-11-14-WIDGET-202-10-BAPTISM-gemini.md).
+
+## Story-art decisions: November 15, 2026 (supersedes the affected PR #240 inventory)
+
+Dave approved PR #248 at ae5c9d450d1b4bfbcd1fdead69190fd8bde4bdac. 101-07 retains its four-frame sequence, order/stops and touchNext placement, with the frame-4 cloak now B&W/grey marker. The approved replacement JPG, both WebP copies and new SHA-256 are preserved. 203-02 is restored byte-for-byte to pre-#240 a3beacb; its three source JPGs and six WebP copies are removed. Its story/teaching remains; there is no replacement story image under this task. Do not restore the removed sequence from old four-story completion notes.
+
+201-05 keeps its two-frame lamp sequence. 203-07 keeps its four-frame Jesus sends the 72 sequence and the unchanged original jesus-sends-72.jpg. 203-08 keeps the single static 203.08-paul-timothy-bw.jpg with touchNext: true; no color/sequence work is assigned, and ART-008 is paused pending new direction. All lesson prose, Scripture, questions/IDs, readings, widgets, index and saved-answer code are unchanged. 101-07 text remains Silver; this is specific artwork approval only.
+
+ART-STORY-SEQUENCES-B2 DONE. Foundation/export/storage/assets/images/iframe and browser checks pass: sequences plus static/revert guards (266), prayer/listen (39), Jesus sends (69), Timothy (34). Exact-head Firebase preview, production checks and merge evidence are recorded on PR #248. Evidence: [Codex integration log](logs/2026-11-15-ART-STORY-SEQUENCES-B2-codex.md).
 
 ## Redundant Begin-instruction cleanup: November 14, 2026
 
@@ -35,7 +43,7 @@ The Love Has Names map brief and Four Friends art brief are approved planning do
 
 Evidence: [Codex integration log](logs/2026-11-14-REWRITE-203-01-codex.md), [Claude writing log](logs/2026-11-14-REWRITE-203-01-claude.md), and PR #225 for preview/live checks.
 
-## Approved four-story sequence integration, November 14, 2026
+## Historical four-story integration, November 14, 2026 (203-02 and 101-07 frame 4 superseded above)
 
 Dave approved all four story-art sequences in PR #240 at 419c6a7: 101-07 shepherd (4 frames), 201-05 lamp (2), 203-02 Nehemiah (3), and 203-07 Jesus sends the 72 (4). All 13 original frames, 26 optimized WebP copies, stops/order, touchNext placement and image-map additions are preserved. The original jesus-sends-72.jpg remains unchanged on disk. Lesson wording, Scripture, questions/IDs, reading keys, index.html and the recently approved widgets remain untouched. This records story-image approval only, not whole-lesson Gold or new wording approval.
 
