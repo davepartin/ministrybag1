@@ -49,7 +49,7 @@
     "images/101-07-story-seq-4.jpg": {
         "width": 1280,
         "height": 720,
-        "sourceHash": "9432ece3046a42695b9fabf25db5eb443f6aa56679a6dcaee82dcef05265fcf8",
+        "sourceHash": "6a01c0840b317dea7d9e1d2d24581d145c52a6a46cbe2b5b58e53bb005a178e3",
         "variants": [
             {
                 "src": "images/optimized/101-07-story-seq-4-640.webp",
@@ -697,51 +697,6 @@
             },
             {
                 "src": "images/optimized/203-02-bless-logo-1280.webp",
-                "width": 1280
-            }
-        ]
-    },
-    "images/203-02-story-seq-1.jpg": {
-        "width": 1280,
-        "height": 720,
-        "sourceHash": "3bab5d9844034d617940e02adbf06917a314c00ffd487451e84f4f327030854c",
-        "variants": [
-            {
-                "src": "images/optimized/203-02-story-seq-1-640.webp",
-                "width": 640
-            },
-            {
-                "src": "images/optimized/203-02-story-seq-1-1280.webp",
-                "width": 1280
-            }
-        ]
-    },
-    "images/203-02-story-seq-2.jpg": {
-        "width": 1280,
-        "height": 720,
-        "sourceHash": "0a46b67f220732323f5c9097ceb2a810bc2daa0998d932f835e97ddc113c4e79",
-        "variants": [
-            {
-                "src": "images/optimized/203-02-story-seq-2-640.webp",
-                "width": 640
-            },
-            {
-                "src": "images/optimized/203-02-story-seq-2-1280.webp",
-                "width": 1280
-            }
-        ]
-    },
-    "images/203-02-story-seq-3.jpg": {
-        "width": 1280,
-        "height": 720,
-        "sourceHash": "8e0dd388783751beea19e9ec90f7e29968ae054c6d9e7a952ea4dbddf7293e0c",
-        "variants": [
-            {
-                "src": "images/optimized/203-02-story-seq-3-640.webp",
-                "width": 640
-            },
-            {
-                "src": "images/optimized/203-02-story-seq-3-1280.webp",
                 "width": 1280
             }
         ]

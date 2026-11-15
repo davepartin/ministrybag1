@@ -191,7 +191,7 @@ Optional field: `"frame": true` adds a 1px border (`.block-image-dissolve-framed
 | 202-09 | The View from the Roof | B&W -> Color | `202.09-david-roof-bw.png` -> `202.09-david-roof-color.png` | Live (`touchNext: true`, `frame: true`) |
 | 202-10 | The Table He Longed For | B&W -> Color | `last-supper-bw.jpg` -> `last-supper-color.jpg` | Live (`touchNext: true`, `frame: true`) |
 | 203-01 | On the Mountain | Logo only | `203-3circle-logo.png` | Needs story art if parable kept |
-| 203-02 | A Prayer Before the Answer | **3-Frame Sequence** | `203-02-story-seq-1.jpg` .. `3.jpg` (stops `[0, 0.25, 0.45]`) | Live (`touchNext: true`) |
+| 203-02 | A Prayer Before the Answer | None | - | Needs story art |
 | 203-03 | Stay with Us | **4-Frame Sequence** | `emmaus-bread-seq-1.jpg` .. `4.jpg` (stops `[0, 0.18, 0.34, 0.5]`) | Live (`touchNext: true`); old dissolve pair stays unused |
 | 203-04 | The Towel and the Basin | B&W -> Color | `jesus-washing-feet-bw.png` -> `jesus-washing-feet-color.png` | Live (`touchNext: true`) |
 | 203-05 | I Was Blind, Now I See | **2-Frame Sequence** | `blind-1-closedeyes.jpg`, `blind-2-openeyes.jpg` (stops `[0, 0.4]`) | Live sequence |
