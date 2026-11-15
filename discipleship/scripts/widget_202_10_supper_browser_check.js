@@ -120,27 +120,31 @@ function createServer() {
     assert(cfg.name + ' Step 1 keeps blood monochrome & card height locked',
       !/155,\s*28,\s*46/.test(step1.bloodFill) && Math.abs(step1.cardH - initialState.cardH) < 2, step1.bloodFill);
 
-    // Step 2: Next -> Hand returns to B&W, cup tilts & pours, ONLY blood turns crimson
+    // Step 2: Next -> Hand returns to B&W, cup tips forward toward camera away from bread, ONLY blood turns crimson
     await frame.locator('[data-control="next"]').click();
     await page.waitForTimeout(cfg.reducedMotion === 'reduce' ? 60 : 520);
     const step2 = await frame.locator('body').evaluate(() => {
       const svg = document.getElementById('supper-svg');
+      const breadBox = document.getElementById('bread-broken-halves').getBoundingClientRect();
+      const pourBox = document.getElementById('cup-pour-stream').getBoundingClientRect();
       return {
         title: document.querySelector('.verse-card-title').textContent,
         cardH: document.querySelector('.verse-card-content').getBoundingClientRect().height,
         hasBodyColor: svg.classList.contains('color-body'),
         hasBloodColor: svg.classList.contains('color-blood'),
         pourOpacity: getComputedStyle(document.getElementById('cup-pour-stream')).opacity,
-        cupTransform: document.getElementById('cup-tilter').style.transform,
-        wineFill: getComputedStyle(document.querySelector('#cup-tilted-wine rect')).fill,
+        pourForwardOpacity: getComputedStyle(document.getElementById('cup-pouring-forward')).opacity,
+        uprightOpacity: getComputedStyle(document.getElementById('cup-upright')).opacity,
+        pourClearsBread: pourBox.left > breadBox.right + 12,
+        wineFill: getComputedStyle(document.querySelector('#cup-pouring-forward [fill="var(--crimson)"]')).fill,
         bloodFill: getComputedStyle(document.querySelector('#beam-blood .blood-main')).fill
       };
     });
     assert(cfg.name + ' Step 2 shows The Cup: His Blood', /2\. The Cup: His Blood/.test(step2.title), step2.title);
     assert(cfg.name + ' Step 2 returns hand to B&W and turns blood crimson ON', !step2.hasBodyColor && step2.hasBloodColor);
-    assert(cfg.name + ' Step 2 tilts cup & pours crimson wine matching blood 1:1',
-      /rotate\(-32deg\)/.test(step2.cupTransform) && Number(step2.pourOpacity) > 0.9 && step2.wineFill === step2.bloodFill,
-      step2.wineFill + ' vs ' + step2.bloodFill);
+    assert(cfg.name + ' Step 2 tips cup forward toward viewer, clears bread, and matches blood 1:1',
+      step2.uprightOpacity === '0' && Number(step2.pourForwardOpacity) > 0.9 && Number(step2.pourOpacity) > 0.9 && step2.pourClearsBread && step2.wineFill === step2.bloodFill,
+      'upright=' + step2.uprightOpacity + ' clearsBread=' + step2.pourClearsBread + ' ' + step2.wineFill + ' vs ' + step2.bloodFill);
     assert(cfg.name + ' Step 2 card height locked', Math.abs(step2.cardH - initialState.cardH) < 2);
 
     // Step 3: Next -> Remember Until He Comes (both colored together, cup upright & filled)
