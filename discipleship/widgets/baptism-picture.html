@@ -101,10 +101,6 @@ body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
-.svg-serif {
-  font-family: Georgia, Cambria, serif;
-}
-
 .fade-part {
   opacity: 0;
   transition: opacity 0.35s ease;
@@ -122,7 +118,7 @@ body {
 }
 
 #you-fig {
-  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1), color 0.35s ease;
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.25s ease;
 }
 
 #tomb-stone {
@@ -332,7 +328,7 @@ button:focus-visible {
   <div class="stage">
     <svg id="baptism-svg" viewBox="0 0 380 272" width="100%" role="img" aria-labelledby="bap-title bap-desc">
       <title id="bap-title">What Baptism Pictures</title>
-      <desc id="bap-desc">Side-by-side scene showing a baptism pool on the left and Jesus' cross and stone tomb on the right.</desc>
+      <desc id="bap-desc">Side-by-side scene showing your baptism pool on the left and Jesus' tomb and cross on the right.</desc>
 
       <defs>
         <radialGradient id="crossGlowGrad" cx="50%" cy="50%" r="50%">
@@ -345,13 +341,17 @@ button:focus-visible {
           <stop offset="45%" stop-color="#F3D98B" stop-opacity="0.62"/>
           <stop offset="100%" stop-color="#E0A526" stop-opacity="0"/>
         </radialGradient>
+        <radialGradient id="jesusHaloGrad" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#FFF5D1" stop-opacity="0.95"/>
+          <stop offset="55%" stop-color="#F3D98B" stop-opacity="0.45"/>
+          <stop offset="100%" stop-color="#E0A526" stop-opacity="0"/>
+        </radialGradient>
         <linearGradient id="unionBeamGrad" x1="100%" y1="0%" x2="0%" y2="0%">
-          <stop offset="0%" stop-color="#E0A526" stop-opacity="0.46"/>
-          <stop offset="50%" stop-color="#F3D98B" stop-opacity="0.38"/>
-          <stop offset="100%" stop-color="#E0A526" stop-opacity="0.16"/>
+          <stop offset="0%" stop-color="#F3D98B" stop-opacity="0.52"/>
+          <stop offset="100%" stop-color="#E0A526" stop-opacity="0.12"/>
         </linearGradient>
         <clipPath id="tombStoneClip">
-          <circle cx="0" cy="0" r="23"/>
+          <circle cx="0" cy="0" r="20"/>
         </clipPath>
       </defs>
 
@@ -363,7 +363,7 @@ button:focus-visible {
         <rect x="218" y="7" width="136" height="23" rx="11.5" fill="#F5EFE3" stroke="#DFD4BE" stroke-width="1"/>
         <text class="svg-sans" x="286" y="22.5" text-anchor="middle" font-size="11.5" font-weight="700" fill="#6F4C24">What Jesus Did</text>
 
-        <line x1="190" y1="36" x2="190" y2="254" stroke="#E4DED2" stroke-width="1.4" stroke-dasharray="4 4"/>
+        <line x1="190" y1="36" x2="190" y2="246" stroke="#DFD9CD" stroke-width="1.5" stroke-dasharray="4 4"/>
 
         <g id="link-badge">
           <circle id="link-badge-bg" cx="190" cy="18.5" r="10.5" fill="#FFFFFF" stroke="#D4CFC4" stroke-width="1.5"/>
@@ -371,142 +371,162 @@ button:focus-visible {
         </g>
       </g>
 
-      <!-- ===================== LEFT SIDE: FIXED BAPTISM SETTING ===================== -->
+      <!-- ===================== LEFT SIDE: COMPACT RIVERBANK & WAIST-HIGH POOL ===================== -->
       <g id="baptism-side">
-        <!-- Fixed water basin back fill -->
-        <polygon points="46,178 142,178 130,224 58,224" fill="#DDF0F8"/>
+        <!-- Fixed shallow water basin back fill (y=194..218) -->
+        <polygon points="34,194 120,194 112,218 42,218" fill="#DDF0F8"/>
 
-        <!-- Fixed earth banks around the water pool -->
-        <path d="M 10 148 L 46 178 L 58 224 L 130 224 L 142 178 L 178 148 L 178 242 L 10 242 Z" fill="#EDE6D7"/>
-        <!-- Inner water carve restored above earth fill -->
-        <polygon points="46,178 142,178 130,224 58,224" fill="#D5ECF6"/>
+        <!-- Fixed earth banks sloping down into shallow water and rising cleanly toward Jesus' higher ground -->
+        <path d="M 8 176 L 34 194 L 42 218 L 112 218 L 120 194 L 144 172 L 188 170 L 188 238 L 8 238 Z" fill="#EDE6D7"/>
+        <polygon points="34,194 120,194 112,218 42,218" fill="#D5ECF6"/>
 
-        <!-- Green bloom overlay on right bank for Resurrection / New Life -->
-        <path id="new-bank-wash" d="M 130 224 L 142 178 L 178 148 L 178 242 L 130 242 Z" fill="#D6EAD9" opacity="0"/>
+        <!-- Green bloom overlay on right terrace for Resurrection & New Life -->
+        <path id="new-bank-wash" d="M 112 218 L 120 194 L 144 172 L 188 170 L 188 238 L 112 238 Z" fill="#D8ECDC" opacity="0"/>
 
-        <!-- Crisp bank contour line -->
-        <path d="M 10 148 L 46 178 L 58 224 L 130 224 L 142 178 L 178 148" fill="none" stroke="#8C8375" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        <!-- Crisp continuous bank contour -->
+        <path d="M 8 176 L 34 194 L 42 218 L 112 218 L 120 194 L 144 172 L 188 170" fill="none" stroke="#8C8375" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 
-        <!-- Tiny green sprout on the far right bank (New Life) -->
-        <g id="new-sprout" class="fade-part" transform="translate(170,152)">
-          <line x1="0" y1="2" x2="0" y2="-8" stroke="#1D6B3F" stroke-width="1.8" stroke-linecap="round"/>
-          <path d="M 0 -5 C -5 -9 -8 -5 -1 -2" fill="#5A9A6B"/>
-          <path d="M 0 -7 C 5 -11 8 -7 1 -4" fill="#1D6B3F"/>
+        <!-- Tiny green sprout on the bank behind the kneeling figure (Steps 3-4) -->
+        <g id="new-sprout" class="fade-part" transform="translate(178,170)">
+          <line x1="0" y1="2" x2="0" y2="-7" stroke="#1D6B3F" stroke-width="1.6" stroke-linecap="round"/>
+          <path d="M 0 -4 C -4 -8 -7 -4 -1 -2" fill="#5A9A6B"/>
+          <path d="M 0 -6 C 4 -10 7 -6 1 -3" fill="#1D6B3F"/>
         </g>
 
-        <!-- Dashed ghost mark on Old Life slope (Step 1) -->
-        <g id="old-shadow" class="fade-part" transform="translate(22,158)" opacity="0">
-          <circle cx="0" cy="-31" r="5" fill="none" stroke="#B6AEA0" stroke-width="1.4" stroke-dasharray="2.5 2"/>
-          <line x1="0" y1="-25" x2="0" y2="-11" stroke="#B6AEA0" stroke-width="2.8" stroke-linecap="round" stroke-dasharray="2.5 2"/>
-          <line x1="0" y1="-11" x2="-4" y2="0" stroke="#B6AEA0" stroke-width="2.5" stroke-linecap="round"/>
-          <line x1="0" y1="-11" x2="4" y2="0" stroke="#B6AEA0" stroke-width="2.5" stroke-linecap="round"/>
-        </g>
-
-        <!-- Fixed Baptizer standing waist-deep in the water at x=116, y=220 -->
-        <g id="baptizer" transform="translate(118,220)">
-          <line x1="-4" y1="-18" x2="-5" y2="-2" stroke="#4A6B8B" stroke-width="4.2" stroke-linecap="round"/>
-          <line x1="4" y1="-18" x2="5" y2="-2" stroke="#4A6B8B" stroke-width="4.2" stroke-linecap="round"/>
-          <line x1="0" y1="-40" x2="0" y2="-18" stroke="#4A6B8B" stroke-width="5.5" stroke-linecap="round"/>
-          <circle cx="0" cy="-48" r="6" fill="#4A6B8B"/>
-          <g id="baptizer-arms" transform="translate(0,-34)">
-            <line x1="0" y1="0" x2="-15" y2="-2" stroke="#4A6B8B" stroke-width="3.6" stroke-linecap="round"/>
-            <line x1="0" y1="0" x2="-12" y2="6" stroke="#4A6B8B" stroke-width="3.6" stroke-linecap="round"/>
+        <!-- Fixed Pastor / Baptizer standing waist-deep in shallow water at x=98, y=216 -->
+        <g id="baptizer" transform="translate(98,216)">
+          <line x1="-3.5" y1="-15" x2="-4" y2="-1" stroke="#4A6B8B" stroke-width="3.8" stroke-linecap="round"/>
+          <line x1="3.5" y1="-15" x2="4" y2="-1" stroke="#4A6B8B" stroke-width="3.8" stroke-linecap="round"/>
+          <line x1="0" y1="-34" x2="0" y2="-15" stroke="#4A6B8B" stroke-width="4.8" stroke-linecap="round"/>
+          <circle cx="0" cy="-41" r="5.3" fill="#4A6B8B"/>
+          <g id="baptizer-arms" transform="translate(0,-29)">
+            <line x1="0" y1="0" x2="-13" y2="-2" stroke="#4A6B8B" stroke-width="3.2" stroke-linecap="round"/>
+            <line x1="0" y1="0" x2="-11" y2="5" stroke="#4A6B8B" stroke-width="3.2" stroke-linecap="round"/>
           </g>
         </g>
 
-        <!-- Hero Person Being Baptized (color driven smoothly by CSS color/currentColor) -->
-        <g id="you-fig" transform="translate(24,158)" style="color:#2C2416">
-          <g stroke="#FFFFFF" stroke-width="2" paint-order="stroke" stroke-linejoin="round" stroke-linecap="round">
-            <circle cx="0" cy="-35" r="6" fill="currentColor"/>
-            <line x1="0" y1="-28" x2="0" y2="-13" stroke="currentColor" stroke-width="5.2"/>
-            <line x1="0" y1="-24" x2="-7" y2="-16" stroke="currentColor" stroke-width="3.4"/>
-            <line x1="0" y1="-24" x2="8" y2="-17" stroke="currentColor" stroke-width="3.4"/>
-            <line x1="0" y1="-13" x2="-5" y2="0" stroke="currentColor" stroke-width="3.8"/>
-            <line x1="0" y1="-13" x2="5" y2="0" stroke="currentColor" stroke-width="3.8"/>
-          </g>
-          <!-- Golden inner life motif ("Christ lives in me", shown on Step 4) -->
-          <g id="inner-christ" class="fade-part" transform="translate(0,-22)">
-            <circle cx="0" cy="0" r="5" fill="#F3D98B" opacity="0.9"/>
-            <line x1="0" y1="-3" x2="0" y2="3" stroke="#7A5804" stroke-width="1.5" stroke-linecap="round"/>
-            <line x1="-2.2" y1="-0.8" x2="2.2" y2="-0.8" stroke="#7A5804" stroke-width="1.5" stroke-linecap="round"/>
+        <!-- Hero Person Being Baptized: upright/bending pose (CONSTANT color #1D6B3F across every slide) -->
+        <g id="you-fig" transform="translate(20,174)">
+          <g stroke="#FFFFFF" stroke-width="1.8" paint-order="stroke" stroke-linejoin="round" stroke-linecap="round">
+            <circle cx="0" cy="-37" r="5.4" fill="#1D6B3F"/>
+            <line x1="0" y1="-31" x2="0" y2="-15" stroke="#1D6B3F" stroke-width="4.8"/>
+            <line x1="0" y1="-27" x2="-6" y2="-18" stroke="#1D6B3F" stroke-width="3.2"/>
+            <line x1="0" y1="-27" x2="7" y2="-19" stroke="#1D6B3F" stroke-width="3.2"/>
+            <line x1="0" y1="-15" x2="-4.5" y2="-1" stroke="#1D6B3F" stroke-width="3.5"/>
+            <line x1="0" y1="-15" x2="4.5" y2="-1" stroke="#1D6B3F" stroke-width="3.5"/>
           </g>
         </g>
 
-        <!-- Translucent water overlay layered ON TOP of submerged bodies and baptizer legs -->
-        <polygon points="46,178 142,178 130,224 58,224" fill="#A9D5EA" opacity="0.54"/>
-        <!-- Crisp top water wave -->
-        <path d="M 46 178 Q 70 175 94 178 Q 118 181 142 178" fill="none" stroke="#2A7FA8" stroke-width="2.4" stroke-linecap="round"/>
+        <!-- Same Baptized Person KNEELING on right bank facing risen Jesus (Slide 4, constant color #1D6B3F) -->
+        <g id="you-kneel" class="fade-part" transform="translate(158,171)">
+          <g stroke="#FFFFFF" stroke-width="1.8" paint-order="stroke" stroke-linejoin="round" stroke-linecap="round">
+            <!-- Lower shin & foot resting behind on the bank -->
+            <line x1="-13" y1="-1" x2="-1" y2="-1" stroke="#1D6B3F" stroke-width="3.6"/>
+            <!-- Thigh rising up to hip -->
+            <line x1="-1" y1="-1" x2="-7" y2="-11" stroke="#1D6B3F" stroke-width="3.8"/>
+            <!-- Torso leaning reverently forward toward Jesus on right -->
+            <line x1="-7" y1="-11" x2="-2" y2="-23" stroke="#1D6B3F" stroke-width="4.8"/>
+            <!-- Head bowed slightly up toward Jesus -->
+            <circle cx="1.5" cy="-29.5" r="5.2" fill="#1D6B3F"/>
+            <!-- Arms extended/folded forward toward Jesus -->
+            <line x1="-3" y1="-20" x2="7" y2="-16" stroke="#1D6B3F" stroke-width="3.2"/>
+            <line x1="-3" y1="-20" x2="5" y2="-13" stroke="#1D6B3F" stroke-width="3.2"/>
+          </g>
+        </g>
 
-        <!-- Water surface ripples & burial arc (Step 2) -->
+        <!-- Translucent water overlay layered ON TOP of waist-deep / submerged bodies -->
+        <polygon points="34,194 120,194 112,218 42,218" fill="#A9D5EA" opacity="0.55"/>
+        <path d="M 34 194 Q 56 191.5 77 194 Q 98 196.5 120 194" fill="none" stroke="#2A7FA8" stroke-width="2.2" stroke-linecap="round"/>
+
+        <!-- Burial surface ripples (Slide 2) -->
         <g id="water-ripples" class="fade-part" fill="none" stroke="#2A7FA8" stroke-linecap="round">
-          <path d="M 62 172 Q 80 168 98 172" stroke-width="1.8"/>
-          <path d="M 72 167 Q 86 164 100 167" stroke-width="1.4" opacity="0.7"/>
+          <path d="M 46 189 Q 64 185 82 189" stroke-width="1.7"/>
+          <path d="M 54 184 Q 70 181 84 184" stroke-width="1.3" opacity="0.72"/>
         </g>
 
-        <!-- Rising splash droplets (Step 3) -->
-        <g id="splash-drops" class="fade-part" stroke="#2A7FA8" stroke-width="1.8" stroke-linecap="round" fill="none">
-          <path d="M 68 174 Q 62 162 56 158"/>
-          <path d="M 96 174 Q 102 162 108 158"/>
-          <circle cx="53" cy="154" r="1.4" fill="#2A7FA8" stroke="none"/>
-          <circle cx="111" cy="154" r="1.4" fill="#2A7FA8" stroke="none"/>
+        <!-- Rising water droplets around candidate stepping out (Slide 3) -->
+        <g id="splash-drops" class="fade-part" stroke="#2A7FA8" stroke-width="1.6" stroke-linecap="round" fill="none">
+          <path d="M 116 176 Q 111 167 106 163"/>
+          <path d="M 136 172 Q 141 163 147 160"/>
+          <circle cx="104" cy="159" r="1.3" fill="#2A7FA8" stroke="none"/>
+          <circle cx="150" cy="157" r="1.3" fill="#2A7FA8" stroke="none"/>
         </g>
-
-        <!-- Subtle surface ripples stay above translucent pool -->
       </g>
 
-      <!-- ===================== GOLDEN UNION RAY (Step 4) ===================== -->
-      <polygon id="union-ray" points="292,154 316,178 166,144 166,126" fill="url(#unionBeamGrad)" opacity="0"/>
+      <!-- ===================== GOLDEN UNION RAY (Slide 4: Higher Risen Jesus -> Kneeling Believer) ===================== -->
+      <polygon id="union-ray" points="212,118 212,154 156,158 156,138" fill="url(#unionBeamGrad)" opacity="0"/>
 
-      <!-- ===================== RIGHT SIDE: FIXED CROSS & TOMB ===================== -->
+      <!-- ===================== RIGHT SIDE: HIGHER GROUND (TOMB LEFT 242, CROSS RIGHT 328) ===================== -->
       <g id="jesus-side">
-        <!-- Warm crimson-amber glow behind Cross (Step 1) -->
-        <circle id="cross-glow" cx="242" cy="106" r="50" fill="url(#crossGlowGrad)" opacity="0"/>
+        <!-- Warm crimson-amber glow behind Cross on RIGHT (Slide 1) -->
+        <circle id="cross-glow" cx="328" cy="76" r="46" fill="url(#crossGlowGrad)" opacity="0"/>
 
-        <!-- Golden sunrise glow behind Tomb doorway (Steps 3-4) -->
-        <circle id="tomb-glow" cx="318" cy="190" r="62" fill="url(#tombGlowGrad)" opacity="0"/>
+        <!-- Golden sunrise glow behind Tomb doorway on LEFT of Jesus side (Slides 3-4) -->
+        <circle id="tomb-glow" cx="242" cy="136" r="54" fill="url(#tombGlowGrad)" opacity="0"/>
 
-        <!-- Fixed Calvary hillside terrain -->
-        <path d="M 198 222 Q 242 192 276 196 Q 324 200 368 222 L 368 242 L 198 242 Z" fill="#EAE2D2"/>
-        <path d="M 198 222 Q 242 192 276 196 Q 324 200 368 222" fill="none" stroke="#8C8375" stroke-width="2" stroke-linecap="round"/>
+        <!-- Higher land stepping smoothly up from left bank (170 -> 158) toward tomb plateau & Calvary hill -->
+        <path d="M 192 170 Q 204 158 220 158 L 284 156 Q 326 140 372 168 L 372 238 L 192 238 Z" fill="#EAE2D2"/>
+        <path d="M 192 170 Q 204 158 220 158 L 284 156 Q 326 140 372 168" fill="none" stroke="#8C8375" stroke-width="2" stroke-linecap="round"/>
 
-        <!-- Fixed Cross on left crest (x=242) -->
-        <g id="calvary-cross">
-          <line x1="242" y1="74" x2="242" y2="196" stroke="#8A5A2B" stroke-width="9" stroke-linecap="round"/>
-          <line x1="217" y1="103" x2="267" y2="103" stroke="#8A5A2B" stroke-width="8.5" stroke-linecap="round"/>
-          <!-- Subtle inner warm wood bevel -->
-          <line x1="242" y1="76" x2="242" y2="194" stroke="#A67442" stroke-width="2.6" stroke-linecap="round"/>
-          <line x1="219" y1="103" x2="265" y2="103" stroke="#A67442" stroke-width="2.4" stroke-linecap="round"/>
-        </g>
-
-        <!-- Fixed Rock Tomb mound in hillside (x=276..358) -->
+        <!-- Stone Tomb on LEFT of Jesus' higher hillside (x=212..274, base y=158) -->
         <g id="tomb-mound">
-          <path d="M 278 214 Q 318 150 358 214 Z" fill="#C9C0B0" stroke="#8C8375" stroke-width="1.8" stroke-linejoin="round"/>
-          <!-- Tomb arched dark interior -->
-          <path id="tomb-mouth" d="M 303 214 L 303 189 A 15 15 0 0 1 333 189 L 333 214 Z" fill="#2C2416"/>
-          <!-- Sunrise light beams streaming from empty tomb (Steps 3-4) -->
+          <path d="M 212 158 Q 242 104 274 158 Z" fill="#C9C0B0" stroke="#8C8375" stroke-width="1.8" stroke-linejoin="round"/>
+          <!-- Dark arched tomb doorway -->
+          <path id="tomb-mouth" d="M 229 158 L 229 135 A 13 13 0 0 1 255 135 L 255 158 Z" fill="#2C2416"/>
+          <!-- Golden light streaming from empty tomb (Slides 3-4) -->
           <g id="tomb-rays" class="fade-part">
-            <path d="M 306 212 L 306 190 A 12 12 0 0 1 330 190 L 330 212 Z" fill="#F6DF98" opacity="0.88"/>
-            <line x1="318" y1="168" x2="318" y2="152" stroke="#E0A526" stroke-width="2.2" stroke-linecap="round"/>
-            <line x1="302" y1="173" x2="291" y2="161" stroke="#E0A526" stroke-width="2" stroke-linecap="round"/>
-            <line x1="334" y1="173" x2="345" y2="161" stroke="#E0A526" stroke-width="2" stroke-linecap="round"/>
-            <!-- Folded linen cloth glyph on tomb shelf -->
-            <path d="M 311 206 Q 318 202 325 206 L 323 210 L 313 210 Z" fill="#FFFFFF" stroke="#B89B5E" stroke-width="1"/>
+            <path d="M 231 156 L 231 136 A 11 11 0 0 1 253 136 L 253 156 Z" fill="#F6DF98" opacity="0.9"/>
+            <line x1="242" y1="117" x2="242" y2="103" stroke="#E0A526" stroke-width="2" stroke-linecap="round"/>
+            <line x1="228" y1="121" x2="218" y2="110" stroke="#E0A526" stroke-width="1.8" stroke-linecap="round"/>
+            <line x1="256" y1="121" x2="266" y2="110" stroke="#E0A526" stroke-width="1.8" stroke-linecap="round"/>
           </g>
         </g>
 
-        <!-- Heavy Rolling Stone: sits beside tomb at x=352, or rolls shut over doorway x=318 -->
-        <g id="tomb-stone" transform="translate(352,193)">
-          <circle cx="0" cy="0" r="23" fill="#B5AC9C" stroke="#7A7162" stroke-width="2"/>
+        <!-- Rolling Stone: parked beside tomb at x=274, rolls left over tomb at x=242 on Slide 2 -->
+        <g id="tomb-stone" transform="translate(274,139)">
+          <circle cx="0" cy="0" r="20" fill="#B5AC9C" stroke="#7A7162" stroke-width="1.9"/>
           <g clip-path="url(#tombStoneClip)">
-            <path d="M -22 10 Q -2 22 20 8 L 24 24 L -24 24 Z" fill="#9A9181"/>
-            <path d="M -16 -9 A 18 18 0 0 1 11 -16" fill="none" stroke="#CCC4B5" stroke-width="2" stroke-linecap="round"/>
+            <path d="M -20 9 Q -2 19 18 7 L 21 21 L -21 21 Z" fill="#9A9181"/>
+            <path d="M -14 -8 A 16 16 0 0 1 10 -14" fill="none" stroke="#CCC4B5" stroke-width="1.8" stroke-linecap="round"/>
           </g>
+        </g>
+
+        <!-- White-Robed Risen Jesus standing higher up outside the open tomb JUST right of center line (Slides 3-4) -->
+        <g id="jesus-risen" class="fade-part" transform="translate(214,158)">
+          <circle cx="0" cy="-38" r="23" fill="url(#jesusHaloGrad)"/>
+          <circle cx="0" cy="-42" r="7.5" fill="none" stroke="#E0A526" stroke-width="1.5" opacity="0.85"/>
+          <!-- Open welcoming arms beneath robe sleeves -->
+          <line x1="0" y1="-30" x2="-12" y2="-23" stroke="#FFFFFF" stroke-width="4.2" stroke-linecap="round"/>
+          <line x1="0" y1="-30" x2="-12" y2="-23" stroke="#7A7060" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+          <line x1="0" y1="-30" x2="11" y2="-24" stroke="#FFFFFF" stroke-width="4.2" stroke-linecap="round"/>
+          <!-- Flowing white robe -->
+          <path d="M -5.5 -34 L 5.5 -34 L 9.5 0 L -9.5 0 Z" fill="#FFFFFF" stroke="#7A7060" stroke-width="1.5" stroke-linejoin="round"/>
+          <path d="M -4 -33 L 5 -16 L 1 0" fill="none" stroke="#DDD6C7" stroke-width="1.5" stroke-linecap="round"/>
+          <!-- Head -->
+          <circle cx="0" cy="-42" r="5.3" fill="#6F4C24" stroke="#FFFFFF" stroke-width="1.2" paint-order="stroke"/>
+        </g>
+
+        <!-- Calvary Cross on RIGHT side of Jesus' higher hillside (x=328, base y=148) -->
+        <g id="calvary-cross">
+          <line x1="328" y1="44" x2="328" y2="148" stroke="#8A5A2B" stroke-width="8.5" stroke-linecap="round"/>
+          <line x1="305" y1="71" x2="351" y2="71" stroke="#8A5A2B" stroke-width="8" stroke-linecap="round"/>
+          <line x1="328" y1="46" x2="328" y2="146" stroke="#A67442" stroke-width="2.4" stroke-linecap="round"/>
+          <line x1="307" y1="71" x2="349" y2="71" stroke="#A67442" stroke-width="2.2" stroke-linecap="round"/>
+        </g>
+
+        <!-- Jesus on the Cross (Slide 1: Death) -->
+        <g id="jesus-cross" class="fade-part">
+          <circle cx="328" cy="62" r="9" fill="#F3D98B" opacity="0.55"/>
+          <line x1="311" y1="72" x2="345" y2="72" stroke="#F4EFE6" stroke-width="4.2" stroke-linecap="round"/>
+          <path d="M 324.5 71 L 331.5 71 L 331 105 L 325 105 Z" fill="#F4EFE6" stroke="#7A5835" stroke-width="1.1"/>
+          <path d="M 324 91 L 332 89 L 331.5 98 L 324.5 98 Z" fill="#FFFFFF"/>
+          <circle cx="328" cy="62" r="4.8" fill="#5D3D22" stroke="#F4EFE6" stroke-width="1.2" paint-order="stroke"/>
         </g>
       </g>
 
       <!-- ===================== BOTTOM PARALLEL STAGE CAPTIONS ===================== -->
-      <text id="cap-left" class="svg-sans fade-part" x="94" y="261" text-anchor="middle" font-size="12" font-weight="700" fill="#2C2416"></text>
-      <text id="cap-right" class="svg-sans fade-part" x="286" y="261" text-anchor="middle" font-size="12" font-weight="700" fill="#2C2416"></text>
+      <text id="cap-left" class="svg-sans fade-part" x="94" y="260" text-anchor="middle" font-size="12" font-weight="700" fill="#2C2416"></text>
+      <text id="cap-right" class="svg-sans fade-part" x="286" y="260" text-anchor="middle" font-size="12" font-weight="700" fill="#2C2416"></text>
     </svg>
   </div>
 
@@ -529,7 +549,7 @@ button:focus-visible {
     ref: '',
     capLeft: '',
     capRight: '',
-    desc: 'Side-by-side scene showing a baptism pool on the left and Jesus\' cross and open tomb on the right.'
+    desc: 'Side-by-side scene showing your baptism pool on the left and Jesus\' tomb and cross on higher ground on the right.'
   };
 
   var stops = [
@@ -539,11 +559,11 @@ button:focus-visible {
       cardTitle: '1. Death: Crucified with Christ',
       color: '#9B3B2A',
       dark: '#822F21',
-      verse: 'Jesus died on the cross for your sin. Stepping into the water declares your old life ended with Him: <b>"I have been crucified with Christ."</b>',
+      verse: 'Jesus died on the cross for your sin. Standing in the water declares your old life ended with Him: <b>"I have been crucified with Christ."</b>',
       ref: 'Galatians 2:20  |  Romans 6:6',
-      capLeft: 'Old Self Dies',
-      capRight: 'Jesus Died on the Cross',
-      desc: 'Left: you step down the bank into the water as old self ends. Right: glow illuminates Jesus\' cross.'
+      capLeft: 'Old Self Dies in Water',
+      capRight: 'Christ Died on the Cross',
+      desc: 'Left: you stand waist-deep in the water beside the pastor. Right: Jesus hangs on the cross on the right hill.'
     },
     {
       id: 'burial',
@@ -551,11 +571,11 @@ button:focus-visible {
       cardTitle: '2. Burial: Buried with Him',
       color: '#4A6B8B',
       dark: '#385570',
-      verse: 'Just as Jesus\' body was sealed in the tomb, going under the water pictures burying your old life: <b>"We were buried therefore with him by baptism into death."</b>',
+      verse: 'Just as Jesus\' body was sealed in the tomb, bending back under the water pictures burying your old life: <b>"We were buried therefore with him by baptism into death."</b>',
       ref: 'Romans 6:4  |  Colossians 2:12',
-      capLeft: 'Buried Under Water',
+      capLeft: 'Lowered Under Water',
       capRight: 'Buried in the Tomb',
-      desc: 'Left: the baptizer lowers you beneath the translucent blue water. Right: the heavy stone rolls shut across the tomb doorway.'
+      desc: 'Left: you bend backward beneath the water with the pastor supporting you. Right: the cross is empty and the stone rolls shut across the tomb.'
     },
     {
       id: 'resurrection',
@@ -563,11 +583,11 @@ button:focus-visible {
       cardTitle: '3. Resurrection: Raised with Christ',
       color: '#1D6B3F',
       dark: '#165531',
-      verse: 'God rolled the stone away and raised Jesus from the dead. Coming up out of the water pictures rising with Him so <b>"we too might walk in newness of life."</b>',
+      verse: 'God rolled the stone away and raised Jesus from the dead. Rising out of the water pictures rising with Him so <b>"we too might walk in newness of life."</b>',
       ref: 'Romans 6:4  |  Colossians 3:1',
-      capLeft: 'Raised to Life',
-      capRight: 'Stone Rolled Away',
-      desc: 'Left: you rise splashing up out of the water as the right bank blooms green. Right: the stone rolls away and golden dawn light pours from the empty tomb.'
+      capLeft: 'Raised Out of Water',
+      capRight: 'Jesus Raised to Life',
+      desc: 'Left: you rise from the water onto the bank. Right: the stone rolls open and white-robed Jesus rises from the tomb on higher ground.'
     },
     {
       id: 'newlife',
@@ -575,11 +595,11 @@ button:focus-visible {
       cardTitle: '4. New Life: Old Has Gone, New Has Come',
       color: '#946B06',
       dark: '#7A5804',
-      verse: '<b>"The old has passed away; behold, the new has come."</b> You no longer live for yourself, because <b>Christ lives in you</b>. Now you walk forward belonging to Jesus.',
+      verse: '<b>"The old has passed away; behold, the new has come."</b> You bow before the risen Savior: you no longer live for yourself, because <b>Christ lives in you</b>.',
       ref: '2 Corinthians 5:17  |  Galatians 2:20',
-      capLeft: 'Walk in New Life',
-      capRight: 'Christ Lives in You',
-      desc: 'Right: light from the risen tomb reaches across into your chest as you walk up the green bank in new creation life.'
+      capLeft: 'Kneeling Before Jesus',
+      capRight: 'Risen Savior & New Life',
+      desc: 'Left: you kneel on the green bank right of the pool, facing across the line toward the white-robed risen Jesus standing outside the open tomb.'
     }
   ];
 
@@ -600,51 +620,52 @@ button:focus-visible {
     var arms = el('baptizer-arms');
     var stone = el('tomb-stone');
 
-    // Sync figure pose, color, baptizer arms, tomb stone, and glows cleanly in parallel
+    // Baptized person keeps ONE consistent green color across all steps
     if (idx < 0) {
-      fig.setAttribute('transform', 'translate(24,158)');
-      fig.style.color = INK;
-      arms.setAttribute('transform', 'translate(0,-34)');
-      stone.setAttribute('transform', 'translate(352,193) rotate(0)');
+      fig.style.opacity = '1';
+      fig.setAttribute('transform', 'translate(20,176) rotate(0)');
+      arms.setAttribute('transform', 'translate(0,-29) rotate(0)');
+      stone.setAttribute('transform', 'translate(274,139) rotate(0)');
     } else if (idx === 0) {
-      // 1. Death: stepping down the left bank toward water, cross glowing on right
-      fig.setAttribute('transform', 'translate(42,174) rotate(9)');
-      fig.style.color = '#9B3B2A';
-      arms.setAttribute('transform', 'translate(0,-34) rotate(-5)');
-      stone.setAttribute('transform', 'translate(352,193) rotate(0)');
+      // 1. Death: standing waist-deep in water (y=216 -> water line y=194 cuts waist), Jesus on Cross
+      fig.style.opacity = '1';
+      fig.setAttribute('transform', 'translate(68,216) rotate(0)');
+      arms.setAttribute('transform', 'translate(0,-29) rotate(-8)');
+      stone.setAttribute('transform', 'translate(274,139) rotate(0)');
     } else if (idx === 1) {
-      // 2. Burial: reclined under water on left, stone rolled shut over tomb on right
-      fig.setAttribute('transform', 'translate(58,202) rotate(78)');
-      fig.style.color = '#385570';
-      arms.setAttribute('transform', 'translate(0,-34) rotate(-22)');
-      stone.setAttribute('transform', 'translate(318,194) rotate(-95)');
+      // 2. Burial: bending backwards under water with pastor helping; stone rolled over tomb
+      fig.style.opacity = '1';
+      fig.setAttribute('transform', 'translate(79,213) rotate(-74)');
+      arms.setAttribute('transform', 'translate(0,-29) rotate(-24)');
+      stone.setAttribute('transform', 'translate(242,139) rotate(-95)');
     } else if (idx === 2) {
-      // 3. Resurrection: rising up out of water on left, stone rolled open & tomb blazing on right
-      fig.setAttribute('transform', 'translate(82,192) rotate(0)');
-      fig.style.color = '#1D6B3F';
-      arms.setAttribute('transform', 'translate(0,-36) rotate(18)');
-      stone.setAttribute('transform', 'translate(354,193) rotate(12)');
+      // 3. Resurrection: rising up onto bank out of pool; stone open & white-robed Jesus risen outside tomb
+      fig.style.opacity = '1';
+      fig.setAttribute('transform', 'translate(126,188) rotate(4)');
+      arms.setAttribute('transform', 'translate(0,-30) rotate(14)');
+      stone.setAttribute('transform', 'translate(274,139) rotate(12)');
     } else {
-      // 4. New Life: walking up blossoming far bank with Christ light within
-      fig.setAttribute('transform', 'translate(160,154) rotate(0)');
-      fig.style.color = '#1D6B3F';
-      arms.setAttribute('transform', 'translate(0,-34) rotate(12)');
-      stone.setAttribute('transform', 'translate(354,193) rotate(12)');
+      // 4. New Life: upright figure swapped smoothly to kneeling pose on bank facing higher risen Jesus
+      fig.style.opacity = '0';
+      fig.setAttribute('transform', 'translate(154,171) rotate(0)');
+      arms.setAttribute('transform', 'translate(0,-29) rotate(10)');
+      stone.setAttribute('transform', 'translate(274,139) rotate(12)');
     }
 
-    el('old-shadow').style.opacity = idx === 0 ? '1' : '0';
+    setClass('you-kneel', idx === 3);
     setClass('water-ripples', idx === 1);
     setClass('splash-drops', idx === 2);
-    setClass('inner-christ', idx === 3);
     setClass('new-sprout', idx >= 2);
     el('new-bank-wash').setAttribute('opacity', idx >= 2 ? '1' : '0');
 
     el('cross-glow').setAttribute('opacity', idx === 0 ? '1' : '0');
+    setClass('jesus-cross', idx === 0);
     el('tomb-glow').setAttribute('opacity', idx >= 2 ? '1' : '0');
     setClass('tomb-rays', idx >= 2);
+    setClass('jesus-risen', idx >= 2);
     el('union-ray').setAttribute('opacity', idx === 3 ? '1' : '0');
 
-    // Bottom parallel labels
+    // Bottom parallel captions
     var capL = el('cap-left');
     var capR = el('cap-right');
     capL.textContent = data.capLeft;
@@ -654,7 +675,7 @@ button:focus-visible {
     setClass('cap-left', idx >= 0);
     setClass('cap-right', idx >= 0);
 
-    // Center equality badge tint
+    // Center equality badge
     var badgeBg = el('link-badge-bg');
     var badgeTxt = el('link-badge-txt');
     if (idx < 0) {

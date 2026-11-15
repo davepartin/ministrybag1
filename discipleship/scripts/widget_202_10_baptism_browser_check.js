@@ -132,23 +132,24 @@ function ck(label, cond) {
         await frame.locator('#btn-next').click();
         await page.waitForTimeout(waitStep);
         ck(tag + ' step 1 Death', (await frame.locator('.verse-card-title').textContent()).includes('Crucified with Christ'));
-        ck(tag + ' step 1 cross glow on', (await frame.locator('#cross-glow').getAttribute('opacity')) === '1');
-        ck(tag + ' step 1 bottom captions', (await frame.locator('#cap-left').textContent()) === 'Old Self Dies' && (await frame.locator('#cap-right').textContent()) === 'Jesus Died on the Cross');
+        ck(tag + ' step 1 cross glow and Jesus on cross', (await frame.locator('#cross-glow').getAttribute('opacity')) === '1' && await frame.locator('#jesus-cross').evaluate(el => el.classList.contains('is-on')));
+        ck(tag + ' step 1 waist-deep in water', (await frame.locator('#you-fig').getAttribute('transform')).includes('translate(68,216)'));
+        ck(tag + ' step 1 bottom captions', (await frame.locator('#cap-left').textContent()) === 'Old Self Dies in Water' && (await frame.locator('#cap-right').textContent()) === 'Christ Died on the Cross');
         await snap('1-death');
 
         // Step 2: Burial
         await frame.locator('#btn-next').click();
         await page.waitForTimeout(waitStep);
         ck(tag + ' step 2 Burial', (await frame.locator('.verse-card-title').textContent()).includes('Buried with Him'));
-        ck(tag + ' step 2 stone rolled over tomb', (await frame.locator('#tomb-stone').getAttribute('transform')).includes('translate(318,194)'));
-        ck(tag + ' step 2 water ripples on', await frame.locator('#water-ripples').evaluate(el => el.classList.contains('is-on')));
+        ck(tag + ' step 2 stone rolled over tomb', (await frame.locator('#tomb-stone').getAttribute('transform')).includes('translate(242,139)'));
+        ck(tag + ' step 2 bent back under water + ripples', (await frame.locator('#you-fig').getAttribute('transform')).includes('rotate(-74)') && await frame.locator('#water-ripples').evaluate(el => el.classList.contains('is-on')));
         await snap('2-burial');
 
         // Step 3: Resurrection
         await frame.locator('#btn-next').click();
         await page.waitForTimeout(waitStep);
         ck(tag + ' step 3 Resurrection', (await frame.locator('.verse-card-title').textContent()).includes('Raised with Christ'));
-        ck(tag + ' step 3 stone rolled open + tomb rays', (await frame.locator('#tomb-stone').getAttribute('transform')).includes('translate(354,193)') && await frame.locator('#tomb-rays').evaluate(el => el.classList.contains('is-on')));
+        ck(tag + ' step 3 stone open + risen white-robed Jesus', (await frame.locator('#tomb-stone').getAttribute('transform')).includes('translate(274,139)') && await frame.locator('#jesus-risen').evaluate(el => el.classList.contains('is-on')));
         ck(tag + ' step 3 splash drops on', await frame.locator('#splash-drops').evaluate(el => el.classList.contains('is-on')));
         await snap('3-resurrection');
 
@@ -158,7 +159,7 @@ function ck(label, cond) {
         const hFinal = await cardHeight();
         ck(tag + ' step 4 New Life', (await frame.locator('.verse-card-title').textContent()).includes('Old Has Gone, New Has Come'));
         ck(tag + ' card height locked across all steps', Math.abs(h0 - hFinal) <= 1);
-        ck(tag + ' step 4 union ray + inner christ light', (await frame.locator('#union-ray').getAttribute('opacity')) === '1' && await frame.locator('#inner-christ').evaluate(el => el.classList.contains('is-on')));
+        ck(tag + ' step 4 kneeling believer facing risen Jesus + union ray', await frame.locator('#you-kneel').evaluate(el => el.classList.contains('is-on')) && (await frame.locator('#union-ray').getAttribute('opacity')) === '1');
         await snap('4-newlife');
 
         // Back button + dot jump + Start Over check
