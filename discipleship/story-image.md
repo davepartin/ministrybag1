@@ -166,7 +166,7 @@ Optional field: `"frame": true` adds a 1px border (`.block-image-dissolve-framed
 | 101-01 | Course Opener | Static diagram | `images/3-circles-coral.png`, `images/201.01-peaks-and-valleys.png` | Course opener (exception) |
 | 101-02 | The Greenhouse | **4-Frame Sequence** | `greenhouse-seq-1.jpg` .. `4.jpg` (stops `[0, 0.18, 0.34, 0.5]`) | Live (`touchNext: true`) |
 | 101-03 | Teach Us to Pray | None | - | Needs story art |
-| 101-04 | The Bible | None | - | Needs parable + story art |
+| 101-04 | Questions in the Night | B&W -> Color | `101-04-nicodemus-bw.jpg` -> `101-04-nicodemus-color.jpg` (`1280x720`, 16:9) | Live (`touchNext: true`) |
 | 101-05 | The Aspen Grove | B&W -> Color | `aspen-bw.png` -> `aspen-color.png` | Live (`touchNext: true`) |
 | 101-06 | The Woman at the Well | B&W -> Color | `woman-well-bw.png` -> `woman-well-color.png` | Live (`touchNext: true`) |
 | 101-07 | The Shepherd Who Comes Looking | **4-Frame Sequence** | `101-07-story-seq-1.jpg` .. `4.jpg` (stops `[0, 0.18, 0.34, 0.5]`) | Live (`touchNext: true`); frame 4 B&W per Dave / PR #248 |
