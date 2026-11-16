@@ -1,5 +1,13 @@
 # Growing Together Team Board
 
+## Daily Prayers companion ready for review: November 16, 2026
+
+APP-DAILY-PRAYERS REVIEW. Dave asked Codex to polish Daily Prayers as the model for companion apps. One authored app in tools/daily-prayers/ now provides a warm paper reading view, four native editing sections, input autosave, Undo, accessible phone/keyboard controls, and explicit save/restore copies. Original prayer wording and both legacy browser-storage keys are preserved. Opening old prayers does not rewrite them. Malformed data, blocked storage and restore failures are handled without silently replacing an existing prayer list.
+
+Generated root dailyprayers/ delivery copies preserve the MinistryBag address and origin. Growing Together can serve the same app at /tools/daily-prayers/. Browser data does not travel between origins or sync with accounts; the interface states that and offers portable copies. The existing 101-03 app link and every lesson JSON, index.html, question, reading, Gold file, widget and image remain unchanged. No Firebase configuration or publishing workflow changes are included.
+
+Repository QA and 270 synthetic browser assertions pass across both hosted paths, including 320/375/390/1280 layouts, reduced motion, keyboard, legacy output, autosave/reload, copy/email/print, backup cancellation/restore/rollback and storage failure. A fresh visual design and UI wording await Dave's review; this packet is not merged or published. Preview evidence is on the codex/daily-prayers-companion PR. Pattern: [Companion apps](COMPANION-APPS.md). Evidence: [Codex log](logs/2026-11-16-APP-DAILY-PRAYERS-codex.md).
+
 ## 202-10 Lord's Supper update approved: November 16, 2026
 
 Dave approved PR #252 at 169a7d54c50689e814ae0ff5455421f6172147bd. SUPPER-202-10 DONE: the approved 1152x864 (4:3) bread-and-cup B&W/color pair and four 640/1152 WebP copies are added as a framed, touchNext dissolve immediately after The Lord's Supper: The Table You Return To. Both source JPGs, delivery copies, lesson placement and generated image map remain byte-identical to the approved PR. The existing opening Last Supper pair is retained.
