@@ -16,27 +16,27 @@ if (SCREENSHOT_DIR) fs.mkdirSync(SCREENSHOT_DIR, { recursive: true });
 const EXPECTED = [
   {
     name: 'start',
-    title: 'Which Way Are You Facing?',
+    title: 'Which Way Are You Going?',
     verse: '',
     text: 'Every follower of Jesus drifts sometimes. Repentance is a 180-degree turn back to Him.'
   },
   {
     name: 'stop',
     title: 'Stop',
-    verse: '"If we confess our sins, he is faithful and just to forgive us our sins and to cleanse us from all unrighteousness." (1 John 1:9)',
-    text: 'Be honest with God that you are headed the wrong way. Name your sin without excuses.'
+    verse: '"I acknowledged my sin to you, and I did not cover my iniquity; I said, \'I will confess my sins to the LORD\'..." (Psalm 32:5)',
+    text: 'Stop heading into the dark. Admit your sin to God without excuses.'
   },
   {
     name: 'turn',
     title: 'Turn',
-    verse: '"you turned to God from idols to serve the living and true God" (1 Thessalonians 1:9)',
-    text: 'Turn all the way around, away from your sin and back to Jesus.'
+    verse: '"Repent therefore, and turn back, that your sins may be wiped out..." (Acts 3:19)',
+    text: 'Turn away from your sin and back toward God.'
   },
   {
     name: 'walk',
     title: 'Walk',
-    verse: '"Repent therefore, and turn back, that your sins may be blotted out, that times of refreshing may come from the presence of the Lord" (Acts 3:19)',
-    text: 'Walk forward forgiven, with Jesus, in the new direction. You can make this turn on any day.'
+    verse: '"...walk in the light, as he is in the light... and the blood of Jesus his Son cleanses us from all sin." (1 John 1:7)',
+    text: 'Walk forward forgiven into the light.'
   }
 ];
 

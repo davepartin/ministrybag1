@@ -8,7 +8,8 @@
   - Removed all 4 dots on the road (`#drift-steps` & `#walk-trail` deleted; zero dotted road lines).
   - Converted the entire SVG scene (`#turn-svg`) to black and white (`DARKNESS` left -> `LIGHT` right, charcoal hillside cross, crisp white `#stop-line` in Step 1, B&W `STOP` badge and B&W `180°` turn arc/badge).
   - Moved the Step 3 `Walk` ending position forward (`translate(274, 140)`) closer to the cross.
-  - Updated [widget_101_07_stop_turn_walk_browser_check.js](../scripts/widget_101_07_stop_turn_walk_browser_check.js) to verify straight arms, removed road dots, white stop line, B&W elements, and Step 3 position `x >= 270`.
+  - Updated slide copy to tighter verses and wording: Start `Which Way Are You Going?`, Step 1 `Stop` (`Psalm 32:5` snippet), Step 2 `Turn` (`Acts 3:19` snippet, `Turn away from your sin and back toward God.`), Step 3 `Walk` (`1 John 1:7` snippet, `Walk forward forgiven into the light.`).
+  - Updated [widget_101_07_stop_turn_walk_browser_check.js](../scripts/widget_101_07_stop_turn_walk_browser_check.js) and [stop_turn_walk_embedded_browser_check.js](../scripts/stop_turn_walk_embedded_browser_check.js) to verify the updated copy, straight arms, removed road dots, white stop line, B&W elements, and Step 3 position `x >= 270`.
 - **Evidence:** [Gemini handoff log](logs/2026-11-16-WIDGET-101-07-BW-REFINE-gemini.md).
 
 ## 101-07 interim box removed: November 15, 2026
