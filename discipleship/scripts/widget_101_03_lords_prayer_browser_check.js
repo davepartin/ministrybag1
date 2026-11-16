@@ -100,7 +100,7 @@ const JOBS = [
       }
       check(`${tag}: approved placement`, await frameEl.evaluate(el => {
         const block = el.closest('.block-widget');
-        return block.previousElementSibling.textContent.includes('Read the prayer below') &&
+        return block.previousElementSibling.textContent.includes('You can find it in Matthew 6:9-13 and Luke 11:2-4') &&
           block.nextElementSibling.textContent.includes('The prayer moves in six simple steps');
       }));
 
