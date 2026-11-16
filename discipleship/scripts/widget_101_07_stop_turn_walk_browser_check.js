@@ -199,14 +199,20 @@ function ck(label, cond) {
 
         const waitStep = c.motion === 'reduce' ? 60 : 880;
 
-        // Single path without dotted lines, simple background without Jesus figure/stars/sun/grass/trees, LIGHT label
+        // Single path without dotted lines/road dots, straight arms, white stop line, B&W scene, LIGHT label
         ck(
-          tag + ' single continuous path has no dotted lines',
-          await page.locator('#single-path').evaluate(el => !el.outerHTML.includes('stroke-dasharray'))
+          tag + ' single continuous path has no dotted lines or road dots',
+          await page.locator('#single-path').evaluate(el => !el.outerHTML.includes('stroke-dasharray')) &&
+            (await page.locator('#drift-steps, #walk-trail').count()) === 0
         );
         ck(
-          tag + ' simplified B&W scene omits Jesus figure, stars, sun, grass, trees',
-          (await page.locator('#jesus-companion, #night-stars, #dark-silhouette, #refreshing-sprouts, #sun-beams').count()) === 0
+          tag + ' traveler uses straight 2-arm silhouette with no bent elbow',
+          await page.locator('#t-arm-f').evaluate(el => (el.getAttribute('d').match(/\bL\b/g) || []).length === 1)
+        );
+        ck(
+          tag + ' stop line is white and simplified B&W scene omits extra elements',
+          (await page.locator('#stop-line').getAttribute('stroke')) === '#FFFFFF' &&
+            (await page.locator('#jesus-companion, #night-stars, #dark-silhouette, #refreshing-sprouts, #sun-beams').count()) === 0
         );
         ck(
           tag + ' labels DARKNESS and LIGHT only',
@@ -238,10 +244,10 @@ function ck(label, cond) {
         await page.waitForTimeout(waitStep);
         await checkStep(EXPECTED[3], '3-walk');
         ck(
-          tag + ' step 3 traveler walks forward toward Light',
+          tag + ' step 3 traveler walks closer to cross',
           await page.locator('#traveler').evaluate(el => {
             const m = el.getAttribute('transform').match(/translate\(([\d.]+)/);
-            return m && parseFloat(m[1]) >= 200;
+            return m && parseFloat(m[1]) >= 270;
           })
         );
         await snap('3-walk');

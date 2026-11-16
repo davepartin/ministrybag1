@@ -1,5 +1,16 @@
 # Growing Together Team Board
 
+## 101-07 Repentance is 180 Degrees B&W visual polish (REVIEW): November 16, 2026
+
+- **Task / Branch:** `WIDGET-101-07-BW-REFINE` on `gemini/widget-101-07-bw-refine` (stopped at `REVIEW` for Dave's visual approval and Codex integration; lesson JSON `data/101-07.json` untouched).
+- **Changes:** Applied Dave's visual polish to [stop-turn-walk.html](../widgets/stop-turn-walk.html) (`Repentance is 180 Degrees` / `101-07`):
+  - Replaced the traveler's bent elbow with normal straight 2-arm stick-man geometry (`#t-arm-f` & `#t-arm-b`, no bent elbow).
+  - Removed all 4 dots on the road (`#drift-steps` & `#walk-trail` deleted; zero dotted road lines).
+  - Converted the entire SVG scene (`#turn-svg`) to black and white (`DARKNESS` left -> `LIGHT` right, charcoal hillside cross, crisp white `#stop-line` in Step 1, B&W `STOP` badge and B&W `180°` turn arc/badge).
+  - Moved the Step 3 `Walk` ending position forward (`translate(274, 140)`) closer to the cross.
+  - Updated [widget_101_07_stop_turn_walk_browser_check.js](../scripts/widget_101_07_stop_turn_walk_browser_check.js) to verify straight arms, removed road dots, white stop line, B&W elements, and Step 3 position `x >= 270`.
+- **Evidence:** [Gemini handoff log](logs/2026-11-16-WIDGET-101-07-BW-REFINE-gemini.md).
+
 ## 101-07 interim box removed: November 15, 2026
 
 Dave explicitly directed that the stop-turn-walk widget replace The 180: Stop, Turn, Walk box. WIDGET-101-07-REMOVE-BOX removes only that box. One approved widget remains immediately after Repentance has three simple steps: Stop, Turn, Walk. All other #249 wording, active/retired questions, reading keys, approved widget bytes and B&W shepherd artwork remain unchanged. Text stays Silver.
