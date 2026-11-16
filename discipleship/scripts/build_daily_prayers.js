@@ -6,9 +6,9 @@ const source=path.resolve(__dirname,'../tools/daily-prayers');
 const target=path.resolve(__dirname,'../../dailyprayers');
 const check=process.argv.includes('--check');
 if(!check) fs.mkdirSync(target,{recursive:true});
-for(const file of ['index.html','app.css','app.js']){
+for(const file of ['index.html','app.css','app.js','ministrybagsatchel1.svg']){
  const marker=file.endsWith('.html')?'<!-- Generated from discipleship/tools/daily-prayers/index.html. Edit that source, then run node discipleship/scripts/build_daily_prayers.js. -->\n':'/* Generated from discipleship/tools/daily-prayers/'+file+'. Edit that source, then run node discipleship/scripts/build_daily_prayers.js. */\n';
- const content=marker+fs.readFileSync(path.join(source,file),'utf8');
+ const content=(file.endsWith('.svg')?'':marker)+fs.readFileSync(path.join(source,file),'utf8');
  if(check){if(!fs.existsSync(path.join(target,file))||fs.readFileSync(path.join(target,file),'utf8')!==content)throw new Error('Daily Prayers mirror is stale: '+file);}
  else fs.writeFileSync(path.join(target,file),content);
 }

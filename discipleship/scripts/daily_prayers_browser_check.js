@@ -32,6 +32,10 @@ async function upload(page, value, name='synthetic-prayers.json') {
    const raw=JSON.stringify(data); const original='Existing prayer stays exactly as saved.\n\nSYNTHETIC ONLY.';
    await context.addInitScript(({DATA,PRAYER,raw,original})=>{if(!sessionStorage.getItem('seeded')){localStorage.clear();localStorage.setItem(DATA,raw);localStorage.setItem(PRAYER,original);sessionStorage.setItem('seeded','yes');}},{DATA,PRAYER,raw,original});
    const response=await page.goto(url);equal(response.status(),200,'app responds');
+   equal(await page.locator('#read-prayers').innerText(),'Create Your Daily Prayer →','action describes creating a personal prayer');
+   equal(await page.locator('main').evaluate(el=>getComputedStyle(el).maxWidth),'640px','same content width as Growing Together');
+   ok(await page.locator('main').evaluate(el=>el.getBoundingClientRect().width<=640),'content never fills laptop screen');
+   ok(await page.locator('.ministry-link img').evaluate(el=>el.complete&&el.naturalWidth>0),'MinistryBag logo loaded');
    await page.locator('#read-view').waitFor({state:'visible'});
    equal(await page.locator('#prayer-content').textContent(),original,'saved prayer verbatim');
    equal(await page.evaluate(k=>localStorage.getItem(k),DATA),raw,'load never rewrites data');

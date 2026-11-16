@@ -8,6 +8,12 @@ Generated root dailyprayers/ delivery copies preserve the MinistryBag address an
 
 Repository QA and 270 synthetic browser assertions pass across both hosted paths, including 320/375/390/1280 layouts, reduced motion, keyboard, legacy output, autosave/reload, copy/email/print, backup cancellation/restore/rollback and storage failure. A fresh visual design and UI wording await Dave's review; this packet is not merged or published. Preview evidence is on the codex/daily-prayers-companion PR. Pattern: [Companion apps](COMPANION-APPS.md). Evidence: [Codex log](logs/2026-11-16-APP-DAILY-PRAYERS-codex.md).
 
+### Dave follow-up: companion app family
+
+PR #261 now uses Create Your Daily Prayer for the generation action, matches Growing Together's 640px content width in a single column, and shows the existing MinistryBag satchel beside its header link. The existing logo is copied byte-identically, not redesigned. Source and legacy delivery copies stay synchronized.
+
+[COMPANION-APPS.md](COMPANION-APPS.md#proposed-aaa-rollout-november-16) maps the common visual family, a future MinistryBag discovery-page pass, and Weekly Connection Time as an optional married-couples practice link after Keeping the Vow in 202-08. Weekly Connection Time already has seven useful moments; preserve its content and connection_time_ data keys, add truthful storage-error handling and a return-to-lesson link in its own bounded packet. No homepage, Weekly Connection Time or 202-08 changes are included here. Dave's new design review remains pending.
+
 ## 202-10 Lord's Supper update approved: November 16, 2026
 
 Dave approved PR #252 at 169a7d54c50689e814ae0ff5455421f6172147bd. SUPPER-202-10 DONE: the approved 1152x864 (4:3) bread-and-cup B&W/color pair and four 640/1152 WebP copies are added as a framed, touchNext dissolve immediately after The Lord's Supper: The Table You Return To. Both source JPGs, delivery copies, lesson placement and generated image map remain byte-identical to the approved PR. The existing opening Last Supper pair is retained.
