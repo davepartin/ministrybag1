@@ -16,10 +16,10 @@ Stages describe the text review, independently of widget and image approval. Gol
 |---|---|---|---|---|
 | 101-01 | Welcome. Let's Start Growing. | Silver: Dave-edited, protected | Gold: Peaks and Valleys V2 | Gold: course logo |
 | 101-02 | Salvation and Baptism | Gold: whole lesson approved and protected | Gold: A-B-C-D road to cross | Gold: greenhouse sequence |
-| 101-03 | Prayer | Silver | No iframe widget; prayer exercise awaits review | Missing |
+| 101-03 | Prayer | Silver | No iframe widget; prayer exercise awaits review | Yes: Teach Us to Pray dawn dissolve (`101-03-prayer-bw/color.jpg`) |
 | 101-04 | The Bible | Silver: Dave edits protected | Yes: Read, Discover, Respond (#229, 21bb29b) | Yes: Nicodemus oil-lamp dissolve (#263, b52e4f4) |
-| 101-05 | The Church | Silver: Dave edits protected | Yes: compact potluck serving buttons (#232, b83efe3) | Approval unrecorded: aspen pair |
-| 101-06 | Sharing Jesus with Others | Silver: earlier Dave edits protected | Yes: BLESS Rhythms (#233, 7949607) | Approval unrecorded: woman-at-well pair |
+| 101-05 | The Church | Silver: Dave edits protected | Yes: compact potluck serving buttons (#232, b83efe3) | Yes: Aspen Grove separate-to-connected roots dissolve |
+| 101-06 | Sharing Jesus with Others | Silver: earlier Dave edits protected | Yes: BLESS Rhythms (#233, 7949607) | Yes: Woman at the Well sunlit well dissolve |
 | 101-07 | When You Drift | Silver | Yes: Repentance is 180 Degrees (#251, 53d2d60) | Yes: four-frame shepherd sequence; B&W frame 4 approved (#248, ae5c9d4) |
 
 101-01 remains Silver with Dave edits protected. Dave has now explicitly approved the whole 101-02 lesson, its A-B-C-D widget and its greenhouse image sequence Gold (November14). Preserve the exact recorded text, questions, readings, widget and images; new edits require his specific direction. The record does not treat partial paragraph edits as approval of unseen paragraphs. Existing specific approvals remain in force even on Silver lessons.
@@ -83,3 +83,5 @@ November 16: Dave explicitly approved PR #263 at b52e4f4ab59024193484e23eff0ad99
 November 16: Dave requested an earlier 101-04 lamp reveal after seeing it finish above the screen. Only the new imageDissolveOnEntry timing flag is enabled on this image. It brightens on entry and finishes when centered below the fixed header. Both approved JPGs, all WebP files, placement, prose, questions, readings and widget stay unchanged. The baseline records this timing-only update; text remains Silver.
 
 November 16: Claude's 101 course review is saved at reviews/2026-11-16-101-course-review.md. Dave loves almost all of its ideas; work goes one lesson at a time, starting with 101-03. Read it before proposing 101 changes.
+
+November 16: Dave approved the Course 101 story art upgrades for 101-03 (`101-03-prayer-bw/color.jpg`), 101-05 (updated `aspen-bw.png` -> unchanged `aspen-color.png`), and 101-06 (unchanged `woman-well-bw.png` -> sunlit well `woman-well-color.png`), with `imageDissolveOnEntry: true` on all three so the full dissolve completes while centered and visible before scrolling to the top. Nonvisual prose, Scripture, questions, readings, and widgets remain unchanged; texts remain Silver.

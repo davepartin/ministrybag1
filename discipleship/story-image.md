@@ -153,7 +153,7 @@ Optional field: `"frame": true` adds a 1px border (`.block-image-dissolve-framed
 
 ### Earlier completion for an approved pair
 
-Optional `imageDissolveOnEntry: true` on a two-layer image starts the dissolve when its top reaches 90% down the visible area below the fixed lesson header, and completes it when the image is centered in that area. When the image fits within the visible area, the complete lighter image is fully on screen at completion. A taller-than-viewport image completes at the header edge. Reduced motion still shows the static lighter layer. This opt-in is currently enabled only for the 101-04 Nicodemus lamp at Dave's request; all other pair and sequence timings remain unchanged. Do not apply it broadly to approved artwork without direction.
+Optional `imageDissolveOnEntry: true` on a two-layer image starts the dissolve when its top reaches 90% down the visible area below the fixed lesson header, and completes it when the image is centered in that area. When the image fits within the visible area, the complete lighter image is fully on screen at completion. A taller-than-viewport image completes at the header edge. Reduced motion still shows the static lighter layer. Per Dave's direction, this opt-in is enabled on the `101-03`, `101-04`, `101-05`, and `101-06` two-layer dissolves so the full reveal completes before the image scrolls to the top; all other pair and sequence timings remain unchanged. Do not apply it broadly to approved artwork without direction.
 
 ### Art Prompts for Charcoal Pairs or Sequences
 
@@ -169,10 +169,10 @@ Optional `imageDissolveOnEntry: true` on a two-layer image starts the dissolve w
 |--------|-----------------|-----------------|------------------|-----------------------|
 | 101-01 | Course Opener | Static diagram | `images/3-circles-coral.png`, `images/201.01-peaks-and-valleys.png` | Course opener (exception) |
 | 101-02 | The Greenhouse | **4-Frame Sequence** | `greenhouse-seq-1.jpg` .. `4.jpg` (stops `[0, 0.18, 0.34, 0.5]`) | Live (`touchNext: true`) |
-| 101-03 | Teach Us to Pray | None | - | Needs story art |
-| 101-04 | Questions in the Night | B&W -> Color | `101-04-nicodemus-bw.jpg` -> `101-04-nicodemus-color.jpg` (`1280x720`, 16:9) | Live (`touchNext: true`) |
-| 101-05 | The Aspen Grove | B&W -> Color | `aspen-bw.png` -> `aspen-color.png` | Live (`touchNext: true`) |
-| 101-06 | The Woman at the Well | B&W -> Color | `woman-well-bw.png` -> `woman-well-color.png` | Live (`touchNext: true`) |
+| 101-03 | Teach Us to Pray | B&W -> Color | `101-03-prayer-bw.jpg` -> `101-03-prayer-color.jpg` (`1280x720`, 16:9) | Live (`touchNext: true`, `imageDissolveOnEntry: true`) |
+| 101-04 | Questions in the Night | B&W -> Color | `101-04-nicodemus-bw.jpg` -> `101-04-nicodemus-color.jpg` (`1280x720`, 16:9) | Live (`touchNext: true`, `imageDissolveOnEntry: true`) |
+| 101-05 | The Aspen Grove | B&W -> Color | `aspen-bw.png` -> `aspen-color.png` (`1400x788`) | Live (`touchNext: true`, `imageDissolveOnEntry: true`) |
+| 101-06 | The Woman at the Well | B&W -> Color | `woman-well-bw.png` -> `woman-well-color.png` (`1400x610`) | Live (`touchNext: true`, `imageDissolveOnEntry: true`) |
 | 101-07 | The Shepherd Who Comes Looking | **4-Frame Sequence** | `101-07-story-seq-1.jpg` .. `4.jpg` (stops `[0, 0.18, 0.34, 0.5]`) | Live (`touchNext: true`); frame 4 B&W per Dave / PR #248 |
 | 201-01 | The Running Father | **5-Frame Sequence** | `running-father-seq-1.jpg` .. `5.jpg` (stops `[0, 0.16, 0.3, 0.44, 0.58]`) | **Benchmark sequence** |
 | 201-02 | The Family Robe | **3-Frame Sequence** | `robe-down.jpg`, `robe-mid.jpg`, `robe-up.jpg` (stops `[0, 0.25, 0.45]`) | Live sequence |

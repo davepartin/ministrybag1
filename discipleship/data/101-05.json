@@ -12,7 +12,8 @@
       "imageBw": "images/aspen-bw.png",
       "imageColor": "images/aspen-color.png",
       "alt": "An aspen grove with golden leaves and white bark",
-      "touchNext": true
+      "touchNext": true,
+      "imageDissolveOnEntry": true
     },
     {
       "type": "parable",

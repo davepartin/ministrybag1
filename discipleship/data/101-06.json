@@ -16,7 +16,8 @@
       "imageBw": "images/woman-well-bw.png",
       "imageColor": "images/woman-well-color.png",
       "alt": "Jesus speaking with the Samaritan woman at the well",
-      "touchNext": true
+      "touchNext": true,
+      "imageDissolveOnEntry": true
     },
     {
       "type": "parable",
