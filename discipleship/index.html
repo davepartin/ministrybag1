@@ -4856,15 +4856,40 @@
                 pushHash(currentSeries + '-' + targetNum);
             }
 
-            // Scroll lesson content to top
-            window.scrollTo({ top: 0, behavior: 'smooth' });
             refreshWidgetIframes();
+            // A new lesson always starts at the top, even when revisiting it.
+            // Move focus off the persistent bottom button without scrolling it.
+            const heading = sess && sess.querySelector('.session-title');
+            if (heading) {
+                heading.tabIndex = -1;
+                heading.focus({ preventScroll: true });
+            }
+            window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
         }
 
-        function nextSession() {
+        function nextCourseForNavigation() {
+            const courses = cachedCurriculum || [];
+            const idx = courses.findIndex(course => course.id === currentSeries);
+            if (idx < 0) return null;
+            return courses.slice(idx + 1).find(course =>
+                course.lessons.length && !COMING_SOON_SERIES.has(course.id)) || null;
+        }
+
+        async function nextSession() {
             const idx = loadedSessionNums.indexOf(currentSession);
-            if (idx > -1 && idx < loadedSessionNums.length - 1) {
+            if (idx < 0) return;
+            if (idx < loadedSessionNums.length - 1) {
                 showSession(loadedSessionNums[idx + 1]);
+                return;
+            }
+            const nextCourse = nextCourseForNavigation();
+            if (nextCourse) {
+                document.getElementById('next-btn').disabled = true;
+                await openSeries(nextCourse.id);
+                if (loadedSessionNums.length) pushHash(currentSeries + '-' + currentSession);
+            } else {
+                goHome();
+                window.scrollTo({ top: 0, behavior: 'instant' });
             }
         }
 
@@ -4886,18 +4911,13 @@
             const isLastLesson = currentIndex >= totalSessions - 1;
             prevBtn.disabled = currentIndex <= 0;
 
-            // On last lesson of 101, show green "Go to 201" button instead of disabled Next
-            if (isLastLesson && currentSeries === '101') {
-                nextBtn.disabled = false;
-                nextBtn.classList.add('go-to-next-course');
-                nextBtn.textContent = 'Go to 201 Growing Deep';
-                nextBtn.onclick = () => { openSeries('201'); };
-            } else {
-                nextBtn.disabled = isLastLesson;
-                nextBtn.classList.remove('go-to-next-course');
-                nextBtn.innerHTML = 'Next &#8250;';
-                nextBtn.onclick = nextSession;
-            }
+            const nextCourse = isLastLesson ? nextCourseForNavigation() : null;
+            nextBtn.disabled = false;
+            nextBtn.classList.toggle('go-to-next-course', isLastLesson);
+            nextBtn.textContent = isLastLesson
+                ? (nextCourse ? `Go to ${nextCourse.id} ${nextCourse.name}` : 'Back to courses')
+                : 'Next lesson \u203A';
+            nextBtn.onclick = nextSession;
 
             const ordinal = currentIndex > -1 ? currentIndex + 1 : 1;
             numLabel.textContent = `${ordinal} / ${totalSessions}`;

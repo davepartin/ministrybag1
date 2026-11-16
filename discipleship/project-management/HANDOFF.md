@@ -1,5 +1,11 @@
 # Resume here
 
+## Lesson navigation: November 15, 2026
+
+Dave requested that bottom Next always open the destination at the top, including completed/revisited lessons, and that course endings name the next course. NAV-LESSON-TOP DONE: navigation now refreshes the destination layout, focuses its heading with preventScroll, and moves immediately to scrollY 0. Bottom buttons show Next lesson within a course; Go to 201 Growing Deep, Go to 202 Growing Up and Go to 203 Growing Out at boundaries. After 203, Back to courses returns home at the top. Coming Soon courses are excluded from automatic progression; their status/content is unchanged. Cross-course navigation now updates the URL to the actual first lesson.
+
+Runtime scope is only shared index.html navigation. All lesson JSON, question objects/IDs, readings, Gold content, story art and widget files remain unchanged. No completion or answer store is cleared or rewritten by navigation. The regression fails on the previous smooth-scroll code and passes 964 assertions across all 37 published lessons at 375/390/1280 and reduced motion, including revisits, keyboard Next, saved answers, completion flags and real John notes. Core QA and ENG-003 pass. Exact-head preview/live results are recorded on the integration PR for codex/lesson-next-top. Evidence: [Codex log](logs/2026-11-15-NAV-LESSON-TOP-codex.md).
+
 ## Story-art decisions: November 15, 2026 (supersedes the affected PR #240 inventory)
 
 Dave approved PR #248 at ae5c9d450d1b4bfbcd1fdead69190fd8bde4bdac. 101-07 retains its four-frame sequence, order/stops and touchNext placement, with the frame-4 cloak now B&W/grey marker. The approved replacement JPG, both WebP copies and new SHA-256 are preserved. 203-02 is restored byte-for-byte to pre-#240 a3beacb; its three source JPGs and six WebP copies are removed. Its story/teaching remains; there is no replacement story image under this task. Do not restore the removed sequence from old four-story completion notes.
