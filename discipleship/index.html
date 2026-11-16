@@ -4747,9 +4747,12 @@
                     const rect = el.getBoundingClientRect();
                     let progress = (fadeStartY - rect.top) / fadeRange;
                     if (el.hasAttribute('data-dissolve-on-entry')) {
-                        const entryStartY = contentTop + visibleHeight * 0.90;
+                        const scrollY = window.scrollY || window.pageYOffset || 0;
+                        const docTop = rect.top + scrollY;
+                        const entryStartY = Math.min(contentTop + visibleHeight * 0.90, docTop);
                         const entryEndY = contentTop + Math.max((visibleHeight - rect.height) / 2, 0);
-                        progress = (entryStartY - rect.top) / Math.max(entryStartY - entryEndY, 1);
+                        const rawProgress = (entryStartY - rect.top) / Math.max(entryStartY - entryEndY, 1);
+                        progress = (rawProgress - 0.20) / 0.80;
                     }
 
                     progress = Math.max(0, Math.min(1, progress));
