@@ -1,5 +1,16 @@
 # Growing Together Team Board
 
+## 101-04 Read, Discover, Respond polish (REVIEW): November 16, 2026
+
+- **Task / Branch:** `WIDGET-101-04-RDR-POLISH` on `gemini/widget-101-04-rdr-polish` (stopped at `REVIEW`; do not merge without Dave's go-ahead; `data/101-04.json` and all unrelated files untouched).
+- **Changes:** Updated [read-discover-respond.html](../widgets/read-discover-respond.html) and [widget_101_04_rdr_browser_check.js](../scripts/widget_101_04_rdr_browser_check.js):
+  - Step 0 (`Ready`) shows a closed Bible (`#bible-closed`) on the left side of the diagram instead of repeating the already-open spread; advancing to Step 1 (`Read Slowly`) hides the closed cover and unfolds `#bible-open-part` rightward (`clip-bible-rect` width `50 -> 114`).
+  - Step 0 (`Ready`) keeps `#passage-box` crisp white while dimming `.passage-meta` (`0.22`) and `.passage-text` (`0.14`, `#7C7468`) beneath a centered `John 1:11-12` watermark (`.passage-watermark`); advancing to Step 1 fades the watermark out and brings the worked-example passage cleanly to the forefront (`opacity: 1`).
+  - Simplified `STEPS[0]` card copy (`Open any passage with three simple movements: read it well, notice what it says, and respond.` / `Step through John 1:11-12 to see how the rhythm works.`) to remove overlap with Step 1 (`Listen Before Answering`).
+  - Preserved locked `--card-h` (`166px` mobile / `147px` desktop), `prefers-reduced-motion: reduce`, keyboard navigation, zero idle DOM mutations, zero `localStorage` writes, and zero em dashes.
+- **Verification:** `qa_foundation.sh`, `test_lesson_export.js` (`186`), `test_answer_storage.js` (`64`), `check_lesson_assets.js` (`139`), `test_widget_iframe.js` (`32`), and `widget_101_04_rdr_browser_check.js` (`234`) all pass (`exit 0`), plus visual inspection of `390x844` captures across Steps 0, 1, 2, and 5.
+- **Evidence:** [Gemini handoff log](logs/2026-11-16-WIDGET-101-04-RDR-POLISH-gemini.md).
+
 ## 202-10 Lord's Supper update approved: November 16, 2026
 
 Dave approved PR #252 at 169a7d54c50689e814ae0ff5455421f6172147bd. SUPPER-202-10 DONE: the approved 1152x864 (4:3) bread-and-cup B&W/color pair and four 640/1152 WebP copies are added as a framed, touchNext dissolve immediately after The Lord's Supper: The Table You Return To. Both source JPGs, delivery copies, lesson placement and generated image map remain byte-identical to the approved PR. The existing opening Last Supper pair is retained.

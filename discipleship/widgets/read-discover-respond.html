@@ -144,10 +144,16 @@ body {
 
 @media (prefers-reduced-motion: no-preference) {
   .widget-outer:not(.is-instant) .bible-group,
+  .widget-outer:not(.is-instant) .bible-closed,
+  .widget-outer:not(.is-instant) .bible-open-part,
+  .widget-outer:not(.is-instant) .bible-labels,
   .widget-outer:not(.is-instant) .lane-group,
   .widget-outer:not(.is-instant) .stem-path,
   .widget-outer:not(.is-instant) .finish-frame,
-  .widget-outer:not(.is-instant) .passage-box {
+  .widget-outer:not(.is-instant) .passage-box,
+  .widget-outer:not(.is-instant) .passage-meta,
+  .widget-outer:not(.is-instant) .passage-text,
+  .widget-outer:not(.is-instant) .passage-watermark {
     transition: opacity 0.34s ease;
   }
   .widget-outer:not(.is-instant) .hl {
@@ -170,14 +176,43 @@ body {
 }
 
 .passage-box {
+  position: relative;
+  overflow: hidden;
   background: #FFFFFF;
   border: 1px solid #E6DFD1;
   border-radius: 10px;
   padding: 8px 11px 9px;
 }
 
-.passage-box.is-dim {
-  opacity: 0.62;
+.passage-watermark {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.passage-watermark span {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 23px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: rgba(44, 36, 22, 0.52);
+}
+
+.passage-box.is-dim .passage-meta {
+  opacity: 0.22;
+}
+
+.passage-box.is-dim .passage-text {
+  opacity: 0.14;
+  color: #7C7468;
+}
+
+.passage-box.is-dim .passage-watermark {
+  opacity: 1;
 }
 
 .passage-meta {
@@ -433,16 +468,36 @@ button:focus-visible {
       <path id="stem-2" class="stem-path" d="M126,87 L158,83" fill="none" stroke="#2A5B7C" stroke-width="2.4" stroke-linecap="round" />
       <path id="stem-3" class="stem-path" d="M126,87 C142,87 142,132 158,132" fill="none" stroke="#1F684A" stroke-width="2.4" stroke-linecap="round" />
 
-      <!-- Left Emblem: Open Bible (Read) -->
+      <!-- Left Emblem: Bible (Closed on Ready, Open on Read+) -->
       <g id="bible-group" class="bible-group svg-hit" data-jump="1">
-        <text class="svg-label-caps" x="74" y="27" text-anchor="middle">READ</text>
-        <text class="svg-sub" x="74" y="41" text-anchor="middle">Slowly, twice</text>
-        <g clip-path="url(#clip-bible)">
-          <!-- Cover backplate -->
-          <rect x="22" y="54" width="104" height="72" rx="6" fill="#F2ECE0" stroke="#2C2416" stroke-width="1.8" />
-          <!-- Left and right arched pages -->
-          <path d="M27,57 Q50,51 74,60 L74,121 Q50,113 27,119 Z" fill="#FFFDF8" stroke="#2C2416" stroke-width="1.6" stroke-linejoin="round" />
-          <path d="M121,57 Q98,51 74,60 L74,121 Q98,113 121,119 Z" fill="#FFFDF8" stroke="#2C2416" stroke-width="1.6" stroke-linejoin="round" />
+        <g id="bible-labels" class="bible-labels">
+          <text class="svg-label-caps" x="74" y="27" text-anchor="middle">READ</text>
+          <text class="svg-sub" x="74" y="41" text-anchor="middle">Slowly, twice</text>
+        </g>
+        <!-- Closed Bible on left side (Step 0) -->
+        <g id="bible-closed" class="bible-closed">
+          <!-- Back cover edge -->
+          <rect x="27" y="57" width="46" height="68" rx="4" fill="#DDD3C2" stroke="#2C2416" stroke-width="1.4" />
+          <!-- Page fore-edges -->
+          <rect x="66" y="57" width="6" height="66" rx="1.5" fill="#FFFDF8" stroke="#2C2416" stroke-width="1.3" />
+          <line x1="69" y1="60" x2="69" y2="120" stroke="#CBBFA8" stroke-width="1" />
+          <!-- Front cover + spine -->
+          <rect x="24" y="54" width="43" height="70" rx="4.5" fill="#F2ECE0" stroke="#2C2416" stroke-width="1.8" />
+          <rect x="24" y="54" width="8.5" height="70" rx="3" fill="#5C5142" stroke="#2C2416" stroke-width="1.6" />
+          <!-- Cover emblem / title lines -->
+          <line x1="48" y1="74" x2="48" y2="90" stroke="#5C5142" stroke-width="1.8" stroke-linecap="round" />
+          <line x1="42" y1="80" x2="54" y2="80" stroke="#5C5142" stroke-width="1.8" stroke-linecap="round" />
+          <line x1="39" y1="100" x2="57" y2="100" stroke="#B7AC99" stroke-width="1.4" stroke-linecap="round" />
+          <!-- Ribbon bookmark -->
+          <path d="M44,124 L44,135 L47,131.5 L50,135 L50,124 Z" fill="#8B1A2B" />
+        </g>
+        <g id="bible-open-part" class="bible-open-part">
+          <g clip-path="url(#clip-bible)">
+            <!-- Cover backplate -->
+            <rect x="22" y="54" width="104" height="72" rx="6" fill="#F2ECE0" stroke="#2C2416" stroke-width="1.8" />
+            <!-- Left and right arched pages -->
+            <path d="M27,57 Q50,51 74,60 L74,121 Q50,113 27,119 Z" fill="#FFFDF8" stroke="#2C2416" stroke-width="1.6" stroke-linejoin="round" />
+            <path d="M121,57 Q98,51 74,60 L74,121 Q98,113 121,119 Z" fill="#FFFDF8" stroke="#2C2416" stroke-width="1.6" stroke-linejoin="round" />
           <!-- Subtle text lines on pages -->
           <line x1="34" y1="69" x2="65" y2="70" stroke="#A69C8E" stroke-width="1.6" stroke-linecap="round" />
           <line x1="34" y1="78" x2="65" y2="79" stroke="#A69C8E" stroke-width="1.6" stroke-linecap="round" />
@@ -456,9 +511,10 @@ button:focus-visible {
           <line x1="83" y1="97" x2="114" y2="96" stroke="#A69C8E" stroke-width="1.6" stroke-linecap="round" />
           <line x1="83" y1="106" x2="108" y2="105" stroke="#A69C8E" stroke-width="1.6" stroke-linecap="round" />
           <!-- Ribbon marker -->
-          <path d="M71,120 L71,134 L74,130.5 L77,134 L77,120 Z" fill="#8B1A2B" />
+            <path d="M71,120 L71,134 L74,130.5 L77,134 L77,120 Z" fill="#8B1A2B" />
+          </g>
+          <circle cx="126" cy="87" r="3" fill="#2C2416" />
         </g>
-        <circle cx="126" cy="87" r="3" fill="#2C2416" />
       </g>
 
       <!-- Lane 1: About God (Gold) -->
@@ -498,6 +554,7 @@ button:focus-visible {
 
   <div class="passage-band">
     <div class="passage-box" id="passage-box">
+      <div class="passage-watermark" id="passage-watermark" aria-hidden="true"><span>John 1:11-12</span></div>
       <div class="passage-meta">
         <span class="passage-kicker">Worked Example</span>
         <span class="passage-ref">John 1:11-12</span>
@@ -545,10 +602,11 @@ button:focus-visible {
       color: '#2C2416',
       kicker: 'Bible Study Rhythm',
       heading: 'Read, Discover, Respond',
-      body: 'Choose a short passage and read it slowly, more than once if you need to. Notice who is speaking and what is happening.',
-      example: 'Then ask three questions to pay attention to God, people, and your response.',
-      desc: 'Overview showing an open Bible labeled Read connected to the Three Discovery Questions: 1 About God, 2 About People, and 3 Respond.',
-      bibleOpacity: 0.92,
+      body: 'Open any passage with three simple movements: read it well, notice what it says, and respond.',
+      example: 'Step through John 1:11-12 to see how the rhythm works.',
+      desc: 'Overview showing a closed Bible on the left and the Three Discovery Questions: 1 About God, 2 About People, and 3 Respond.',
+      closedBible: true,
+      bibleOpacity: 0.96,
       lanes: [0.22, 0.22, 0.22],
       stems: [0, 0, 0],
       frameOpacity: 0,
@@ -753,6 +811,12 @@ button:focus-visible {
     widget.style.setProperty('--step-color', step.color);
 
     bibleGroup.style.opacity = String(step.bibleOpacity);
+    var bibleClosedEl = document.getElementById('bible-closed');
+    var bibleOpenEl = document.getElementById('bible-open-part');
+    var bibleLabelsEl = document.getElementById('bible-labels');
+    if (bibleClosedEl) bibleClosedEl.style.opacity = step.closedBible ? '1' : '0';
+    if (bibleOpenEl) bibleOpenEl.style.opacity = step.closedBible ? '0' : '1';
+    if (bibleLabelsEl) bibleLabelsEl.style.opacity = step.closedBible ? '0.45' : '1';
     laneEls.forEach(function (el, i) { el.style.opacity = String(step.lanes[i]); });
     stemEls.forEach(function (el, i) { el.style.opacity = String(step.stems[i]); });
     finishFrame.style.opacity = String(step.frameOpacity);
@@ -787,7 +851,7 @@ button:focus-visible {
     var totalDur = 0;
 
     if (step.animateBible) {
-      clipBibleRect.setAttribute('width', '0');
+      clipBibleRect.setAttribute('width', '50');
       totalDur = 420;
     } else if (step.animateStem || step.animateLane) {
       var laneIdx = step.animateLane - 1;
@@ -812,7 +876,7 @@ button:focus-visible {
       var t = Math.min(elapsed / totalDur, 1);
 
       if (step.animateBible) {
-        clipBibleRect.setAttribute('width', String(114 * t));
+        clipBibleRect.setAttribute('width', String(50 + 64 * t));
       } else if (step.animateStem || step.animateLane) {
         var stemT = Math.min(elapsed / 240, 1);
         var laneT = Math.max(0, Math.min((elapsed - 160) / 480, 1));

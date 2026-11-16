@@ -13,6 +13,8 @@ const { chromium } = require('playwright');
 
 const ROOT = path.resolve(__dirname, '..');
 const BASE = process.env.RDR_BASE_URL || 'http://127.0.0.1:8798/index.html';
+const SCREENSHOT_DIR = process.env.RDR_SCREENSHOT_DIR || '';
+if (SCREENSHOT_DIR) fs.mkdirSync(SCREENSHOT_DIR, { recursive: true });
 const lesson = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', '101-04.json'), 'utf8'));
 
 const questions = lesson.blocks.filter(b => b.type === 'question');
@@ -113,6 +115,28 @@ const JOBS = [
         check(`${tag}: zero horizontal overflow step ${s}`,
           await frame.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1) &&
           await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1));
+
+        if (s === 0 || s === 1) {
+          const vis = await frame.evaluate(() => {
+            const c = getComputedStyle(document.getElementById('bible-closed')).opacity;
+            const o = getComputedStyle(document.getElementById('bible-open-part')).opacity;
+            const wm = getComputedStyle(document.getElementById('passage-watermark')).opacity;
+            const pt = getComputedStyle(document.getElementById('passage-text')).opacity;
+            const dim = document.getElementById('passage-box').classList.contains('is-dim');
+            return { c: Number(c), o: Number(o), wm: Number(wm), pt: Number(pt), dim };
+          });
+          if (s === 0) {
+            check(`${tag}: step 0 closed Bible + dimmed watermarked passage`,
+              vis.c === 1 && vis.o === 0 && vis.dim && vis.wm === 1 && vis.pt <= 0.25);
+          } else {
+            check(`${tag}: step 1 open Bible + foreground passage`,
+              vis.c === 0 && vis.o === 1 && !vis.dim && vis.wm === 0 && vis.pt === 1);
+          }
+        }
+
+        if (SCREENSHOT_DIR && tag === '390/no-preference' && [0, 1, 2, 5].includes(s)) {
+          await frameEl.screenshot({ path: path.join(SCREENSHOT_DIR, `step-${s}.png`) });
+        }
       }
 
       const gaps = await frame.evaluate(() => [1, 2, 3].map(i => {
