@@ -1,5 +1,11 @@
 # Growing Together - Project State
 
+## Course 101 story art integrated: November 16, 2026
+
+ART-101-03-05-06 DONE, PR #268. Dave asked Codex to merge Gemini's completed art at 17684f32bb846bda53cc91fd0ffb45ec777bb751: the new 101-03 pre-dawn prayer pair before Teach Us to Pray, revised individual roots in 101-05 aspen-bw.png with the existing color layer preserved, and the 101-06 sunlit well/terracotta reveal with its B&W layer preserved. All three use imageDissolveOnEntry so full light appears while the complete image is visible. Approved art/delivery/map bytes are unchanged from Gemini's submission.
+
+Current main #266 Lord's Prayer widget and approval records are retained. Merge conflicts were confined to editorial baseline/status; both widget and new art records are preserved. No lesson prose, Scripture, question/answer identity, reading, existing widget or runtime index changes. All three texts stay Silver; image approval does not grant whole-lesson Gold. Local checks include repository QA, 464 four-lesson reveal checks, 225 Lord's Prayer widget checks, 128 lamp checks and 64 delivery checks. Final preview/live evidence is on PR #268. Evidence: [Codex log](project-management/logs/2026-11-16-ART-101-03-05-06-codex.md).
+
 ## 101-04 Nicodemus lamp artwork approved: November 16, 2026
 
 Dave approved PR #263 at b52e4f4ab59024193484e23eff0ad99d90904bae: the 1280x720 darker-to-lighter clay oil-lamp pair, four optimized 640/1280 WebP copies, generated image map, and touchNext placement immediately before Questions in the Night. Preserve these approved bytes. Older notes describing 101-04 story art as missing are superseded.
