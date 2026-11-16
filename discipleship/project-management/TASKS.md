@@ -304,3 +304,5 @@ Plan and standard: [reviews/2026-11-11-series-review.md](reviews/2026-11-11-seri
 
 
 | [x] | ART-STORY-SEQUENCES-B2 | DONE | Codex / codex/review-248 (PR #248) / 2026-11-15 | Dave approved ae5c9d4 | Keep 101-07 four-frame sequence with B&W frame 4; revert 203-02 to a3beacb and delete its sequence assets. Preserve 201-05, 203-07, 203-08, all teaching, IDs, widgets and saved answers. QA and 266/39/69/34 browser checks pass. Preview/live evidence on PR #248; logs/2026-11-15-ART-STORY-SEQUENCES-B2-codex.md. |
+
+| [x] | NAV-LESSON-TOP | DONE | Codex / codex/lesson-next-top / 2026-11-15 | Dave requested reliable Next navigation and course labels | Immediate top + heading focus on every visit; next published-course labels/first-lesson URL; final published course returns home. 964 browser assertions, core QA and ENG-003 pass. All lesson/Gold/art/widget files and saved data preserved. Evidence: logs/2026-11-15-NAV-LESSON-TOP-codex.md; PR for codex/lesson-next-top records preview/live integration. |

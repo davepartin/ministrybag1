@@ -139,6 +139,7 @@ discipleship/
 - All responses auto-save to localStorage silently
 - Email previews only the current lesson: course name, title, the lesson's own description as a short summary, then each question as its number plus a short form of the question (closing questions are labeled Key thing, This week's step, Daily devotions, Prayer request) with the learner's answer. There is no separate summaries file; edit the lesson's description to change the summary.
 - Lesson navigation has two compact actions: Email and a disabled Download Blank PDF placeholder for the current course. Whole-course blank PDFs will be produced only when the course is ready; the placeholder does not print or download anything.
+- Bottom Next always starts the destination at the top immediately, with focus on its lesson heading. Within-course labels say Next lesson; course endings name the next available course from curriculum-toc.csv. Coming Soon courses are skipped; the last available course returns to the course list. Completed/revisited lessons use the same behavior and retain their saved work.
 - Home links to an About Growing Together view (`#about`) with Dave Partin's bio, the study's purpose and Scripture acknowledgments. Its portrait loads only when opened. About stays in the app to preserve unsaved answers in memory. Collapsible backup/recovery tools remain on home; save-error recovery controls stay available.
 - Lesson count is auto-detected: drop a new JSON file and it appears
 
