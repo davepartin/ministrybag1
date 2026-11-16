@@ -197,7 +197,13 @@ function ck(label, cond) {
         await checkStep(EXPECTED[0], '0-start');
         await snap('0-start');
 
-        const waitStep = c.motion === 'reduce' ? 60 : 860;
+        const waitStep = c.motion === 'reduce' ? 60 : 880;
+
+        // Single path without dotted road lines
+        ck(
+          tag + ' single continuous path has no dotted lines',
+          await page.locator('#single-path').evaluate(el => !el.outerHTML.includes('stroke-dasharray'))
+        );
 
         // Keyboard Enter on Begin -> Step 1 Stop
         await page.locator('[data-control="begin"]').focus();
@@ -212,7 +218,7 @@ function ck(label, cond) {
         await checkStep(EXPECTED[2], '2-turn');
         ck(
           tag + ' step 2 Turn faces right',
-          await page.locator('#traveler').evaluate(el => el.getAttribute('transform').includes('scale(1, 1)'))
+          await page.locator('#traveler').evaluate(el => /scale\(1(?:\.0+)?,\s*1\)/.test(el.getAttribute('transform')))
         );
         await snap('2-turn');
 

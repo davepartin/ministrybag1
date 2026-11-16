@@ -12,13 +12,10 @@
   --border: #EBE5D9;
   --rust: #9B3B2A;
   --rust-dark: #7A2B1D;
-  --rust-soft: #F9E5E1;
   --gold: #A8760A;
   --gold-dark: #7D5604;
-  --gold-soft: #FCF2D6;
   --sage: #1F684A;
   --sage-dark: #164E37;
-  --sage-soft: #E1F1E9;
   --step-color: #2C2416;
   --step-dark: #2C2416;
   --card-h: 144px;
@@ -105,10 +102,6 @@ svg#turn-svg {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
-.svg-serif {
-  font-family: Georgia, Cambria, serif;
-}
-
 .fade-part {
   opacity: 0;
 }
@@ -117,22 +110,31 @@ svg#turn-svg {
   opacity: 1;
 }
 
-.fade-part.is-ghost {
-  opacity: 0.16;
-}
-
-.idol-cluster {
+.fade-part.is-soft {
   opacity: 0.42;
 }
 
-.idol-cluster.is-faded {
-  opacity: 0.13;
+.dark-veil {
+  opacity: 0.9;
+}
+
+.dark-veil.is-pushed-back {
+  opacity: 0.22;
+}
+
+.sun-flood {
+  opacity: 0;
+}
+
+.sun-flood.is-on {
+  opacity: 1;
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .widget-outer:not(.is-instant) .fade-part,
-  .widget-outer:not(.is-instant) .idol-cluster {
-    transition: opacity 0.42s ease var(--fade-delay, 0ms);
+  .widget-outer:not(.is-instant) .dark-veil,
+  .widget-outer:not(.is-instant) .sun-flood {
+    transition: opacity 0.48s ease var(--fade-delay, 0ms);
   }
   .widget-outer .step-dot-fill {
     transition: background-color 0.22s ease, border-color 0.22s ease, transform 0.22s ease;
@@ -335,163 +337,231 @@ button:focus-visible {
   <div class="stage">
     <svg id="turn-svg" viewBox="0 0 380 218" width="100%" role="img" aria-label="The 180" aria-describedby="stw-desc">
       <defs>
-        <radialGradient id="godGlow" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stop-color="#FFE694" stop-opacity="0.72"/>
-          <stop offset="48%" stop-color="#FCF2D6" stop-opacity="0.48"/>
-          <stop offset="100%" stop-color="#FCF2D6" stop-opacity="0"/>
-        </radialGradient>
-        <linearGradient id="walkLaneGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stop-color="#E1F1E9"/>
-          <stop offset="65%" stop-color="#E6F4EC"/>
-          <stop offset="100%" stop-color="#FCF2D6"/>
+        <!-- Continuous atmosphere: deep night/darkness left fading smoothly into radiant morning light right -->
+        <linearGradient id="skyGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#272834"/>
+          <stop offset="28%" stop-color="#4A4A59"/>
+          <stop offset="56%" stop-color="#B9B2A9"/>
+          <stop offset="80%" stop-color="#F6E9C9"/>
+          <stop offset="100%" stop-color="#FCE6A2"/>
         </linearGradient>
+
+        <!-- Distant ridge gradient: dark shadow left -> sunlit olive-sage right -->
+        <linearGradient id="backHillGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#353642"/>
+          <stop offset="42%" stop-color="#76736E"/>
+          <stop offset="76%" stop-color="#B9BC9F"/>
+          <stop offset="100%" stop-color="#D7D3AC"/>
+        </linearGradient>
+
+        <!-- Foreground valley floor: dark dusk earth left -> warm sunlit meadow right -->
+        <linearGradient id="meadowGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#47464F"/>
+          <stop offset="32%" stop-color="#7D7974"/>
+          <stop offset="62%" stop-color="#C8C3B2"/>
+          <stop offset="85%" stop-color="#EAE1C6"/>
+          <stop offset="100%" stop-color="#F5EAC6"/>
+        </linearGradient>
+
+        <!-- One continuous dirt/stone walking path shading from shadow on left into warm sunlight on right -->
+        <linearGradient id="singlePathGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#5E5B61"/>
+          <stop offset="30%" stop-color="#9A8E80"/>
+          <stop offset="62%" stop-color="#D7C7AE"/>
+          <stop offset="100%" stop-color="#F4E4BE"/>
+        </linearGradient>
+
+        <!-- Warm golden light radiating from the Cross & sun -->
+        <radialGradient id="sunHaloGrad" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#FFF9E3" stop-opacity="0.96"/>
+          <stop offset="42%" stop-color="#FFE694" stop-opacity="0.62"/>
+          <stop offset="78%" stop-color="#FDE39A" stop-opacity="0.22"/>
+          <stop offset="100%" stop-color="#FDE39A" stop-opacity="0"/>
+        </radialGradient>
+
+        <!-- Refreshing Step 3 sunlight wash pouring across the path -->
+        <linearGradient id="refreshFloodGrad" x1="100%" y1="0%" x2="12%" y2="20%">
+          <stop offset="0%" stop-color="#FFE69A" stop-opacity="0.48"/>
+          <stop offset="55%" stop-color="#DCEEE3" stop-opacity="0.34"/>
+          <stop offset="100%" stop-color="#DCEEE3" stop-opacity="0"/>
+        </linearGradient>
+
+        <!-- Night veil over far left valley -->
+        <linearGradient id="darkMaskGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#1E1F2A" stop-opacity="0.52"/>
+          <stop offset="55%" stop-color="#2D2E3B" stop-opacity="0.22"/>
+          <stop offset="100%" stop-color="#2D2E3B" stop-opacity="0"/>
+        </linearGradient>
+
         <clipPath id="stageClip">
           <rect x="6" y="4" width="368" height="210" rx="10"/>
         </clipPath>
       </defs>
 
       <g clip-path="url(#stageClip)">
-        <!-- Calm paper backing -->
-        <rect x="6" y="4" width="368" height="210" rx="10" fill="#FDFCF9" stroke="#EBE5D9" stroke-width="1"/>
+        <!-- Full sky from darkness left to light right -->
+        <rect x="6" y="4" width="368" height="210" fill="url(#skyGrad)"/>
 
-        <!-- Persistent Warm Presence of God on the right -->
-        <g id="god-presence">
-          <circle cx="328" cy="116" r="76" fill="url(#godGlow)"/>
-          <!-- Subtle radiant sun-lines inside presence -->
-          <g stroke="#C48F10" stroke-width="1.3" stroke-linecap="round" opacity="0.45">
-            <line x1="328" y1="62" x2="328" y2="54"/>
-            <line x1="302" y1="71" x2="296" y2="65"/>
-            <line x1="354" y1="71" x2="360" y2="65"/>
-            <line x1="291" y1="96" x2="283" y2="93"/>
-            <line x1="365" y1="96" x2="372" y2="93"/>
+        <!-- Faint dusk stars on far dark left -->
+        <g id="night-stars" fill="#EAE6DF" opacity="0.52">
+          <circle cx="28" cy="24" r="1.2"/>
+          <circle cx="52" cy="17" r="0.9"/>
+          <circle cx="44" cy="39" r="1.1"/>
+          <circle cx="76" cy="26" r="0.8"/>
+          <circle cx="20" cy="48" r="0.9"/>
+        </g>
+
+        <!-- Distant rolling hills -->
+        <path d="M 6 124 Q 68 106 132 122 Q 204 138 274 114 Q 332 95 374 108 L 374 162 L 6 162 Z" fill="url(#backHillGrad)"/>
+
+        <!-- Soft sunlit beams streaming down diagonally from top-right God light -->
+        <g id="sun-beams">
+          <circle cx="328" cy="56" r="82" fill="url(#sunHaloGrad)"/>
+          <polygon points="328,56 176,162 246,174" fill="#FFF4CC" opacity="0.16"/>
+          <polygon points="328,56 238,162 324,166" fill="#FFF4CC" opacity="0.24"/>
+          <circle cx="328" cy="56" r="15" fill="#FFE79A" stroke="#C48F10" stroke-width="1.5"/>
+          <!-- Clean crisp sun rays -->
+          <g stroke="#B8892B" stroke-width="1.5" stroke-linecap="round" opacity="0.72">
+            <line x1="328" y1="35" x2="328" y2="27"/>
+            <line x1="308" y1="44" x2="302" y2="38"/>
+            <line x1="348" y1="44" x2="354" y2="38"/>
+            <line x1="301" y1="62" x2="293" y2="65"/>
+            <line x1="355" y1="62" x2="363" y2="65"/>
           </g>
-          <!-- Clean Studio Wash Cross Anchor -->
-          <g transform="translate(328, 108)">
-            <rect x="-3.5" y="-26" width="7" height="52" rx="2.5" fill="#FDF8EA" stroke="#A8760A" stroke-width="1.6"/>
-            <rect x="-18" y="-12" width="36" height="6.5" rx="2.5" fill="#FDF8EA" stroke="#A8760A" stroke-width="1.6"/>
-            <rect x="-2.2" y="-24" width="4.4" height="48" rx="1.5" fill="#E8C76B" opacity="0.55"/>
-            <rect x="-16" y="-10.8" width="32" height="4.1" rx="1.5" fill="#E8C76B" opacity="0.55"/>
-          </g>
-          <text x="328" y="150" text-anchor="middle" class="svg-sans" font-size="10.5" font-weight="700" letter-spacing="0.9" fill="#7D5604">GOD</text>
         </g>
 
-        <!-- Muted Idols / Distractions Cluster on far left -->
-        <g id="idol-cluster" class="idol-cluster">
-          <rect x="20" y="102" width="12" height="28" rx="2" fill="#D9D3C7" stroke="#6E6559" stroke-width="1.2"/>
-          <polygon points="36,130 43,108 50,130" fill="#D9D3C7" stroke="#6E6559" stroke-width="1.2" stroke-linejoin="round"/>
-          <circle cx="26" cy="96" r="5" fill="#E5DFD3" stroke="#6E6559" stroke-width="1.2"/>
-          <text x="35" y="144" text-anchor="middle" class="svg-sans" font-size="9.5" font-weight="700" letter-spacing="0.6" fill="#6E6559">IDOLS</text>
+        <!-- Foreground valley meadow -->
+        <path d="M 6 142 Q 94 128 184 140 Q 272 152 374 120 L 374 214 L 6 214 Z" fill="url(#meadowGrad)"/>
+
+        <!-- Subtle bare winter shadow tree & stones on far dark left ridge -->
+        <g id="dark-silhouette" opacity="0.65" stroke="#262733" stroke-linecap="round" fill="none">
+          <path d="M 38 144 L 38 112" stroke-width="2.6"/>
+          <path d="M 38 124 L 27 114" stroke-width="1.6"/>
+          <path d="M 38 120 L 49 111" stroke-width="1.5"/>
+          <path d="M 38 114 L 34 104" stroke-width="1.2"/>
+          <ellipse cx="52" cy="145" rx="7" ry="3.2" fill="#323340" stroke="none"/>
+          <ellipse cx="22" cy="148" rx="6" ry="2.8" fill="#2A2B36" stroke="none"/>
         </g>
 
-        <!-- Faint Ghost 180 Hairpin Guide (keeps the full loop quietly in view) -->
-        <g id="ghost-loop" fill="none" stroke="#DDD6C8" stroke-linecap="round" stroke-linejoin="round" opacity="0.5">
-          <path d="M 272 64 L 128 64" stroke-width="16" opacity="0.28"/>
-          <path d="M 128 64 A 48 48 0 0 0 128 160" stroke-width="16" opacity="0.24"/>
-          <path d="M 128 160 L 284 160" stroke-width="16" opacity="0.28"/>
-          <path d="M 272 64 L 128 64 A 48 48 0 0 0 128 160 L 284 160" stroke="#CFC7B8" stroke-width="1.4" stroke-dasharray="4 4"/>
+        <!-- Cross of Jesus on the sunlit right hill -->
+        <g id="hill-cross" transform="translate(328, 126)">
+          <rect x="-3" y="-42" width="6" height="44" rx="1.8" fill="#8C5D2B" stroke="#5C3A16" stroke-width="1.2"/>
+          <rect x="-15" y="-29" width="30" height="5.5" rx="1.8" fill="#8C5D2B" stroke="#5C3A16" stroke-width="1.2"/>
+          <rect x="-1.5" y="-40" width="3" height="40" rx="1" fill="#C48F10" opacity="0.35"/>
         </g>
 
-        <!-- TOP DRIFT LANE (Walking Left / Wrong Way) -->
-        <g id="drift-lane" class="fade-part">
-          <path d="M 272 52 L 128 52 A 6 6 0 0 0 122 58 L 122 70 A 6 6 0 0 0 128 76 L 272 76 A 6 6 0 0 0 278 70 L 278 58 A 6 6 0 0 0 272 52 Z"
-                fill="#F9E5E1" fill-opacity="0.72" stroke="#9B3B2A" stroke-width="1.4"/>
-          <!-- Soft leftward drift chevron watermarks -->
-          <g fill="none" stroke="#9B3B2A" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="172,59 165,64 172,69" stroke-width="2.4" opacity="0.52"/>
-            <polyline points="180,59 173,64 180,69" stroke-width="2" opacity="0.26"/>
-            <polyline points="244,59 237,64 244,69" stroke-width="2.4" opacity="0.44"/>
-            <polyline points="252,59 245,64 252,69" stroke-width="2" opacity="0.22"/>
-          </g>
-          <text id="lbl-wrong-way" x="202" y="88" text-anchor="middle" class="svg-sans" font-size="10" font-weight="700" letter-spacing="0.6" fill="#7A2B1D">WRONG WAY</text>
+        <!-- Step 3 warm sunlight & refreshing wash flooding back over the path -->
+        <rect id="sun-flood" class="sun-flood" x="6" y="4" width="368" height="210" fill="url(#refreshFloodGrad)"/>
+
+        <!-- Left darkness veil (fades softly when walking back into the light in Step 3) -->
+        <rect id="dark-veil" class="dark-veil" x="6" y="4" width="210" height="210" fill="url(#darkMaskGrad)"/>
+
+        <!-- ONE CONTINUOUS WINDING NATURAL PATH (No dotted lines, no road stripes!) -->
+        <g id="single-path">
+          <!-- Warm golden edge highlight on sunlit right edge of path -->
+          <path d="M 6 170 C 66 159 124 148 188 140 C 254 132 314 127 374 125 L 374 139 C 314 143 254 152 192 164 C 128 176 70 190 6 204 Z"
+                fill="url(#singlePathGrad)"/>
+          <!-- Organic earth borders -->
+          <path d="M 6 170 C 66 159 124 148 188 140 C 254 132 314 127 374 125"
+                fill="none" stroke="#6B6257" stroke-width="1.6" stroke-linecap="round" opacity="0.72"/>
+          <path d="M 6 204 C 70 190 128 176 192 164 C 254 152 314 143 374 139"
+                fill="none" stroke="#6B6257" stroke-width="1.8" stroke-linecap="round" opacity="0.78"/>
+          <!-- Small natural stones & tufts along path margin -->
+          <ellipse cx="78" cy="192" rx="3" ry="1.5" fill="#5D564E" opacity="0.5"/>
+          <ellipse cx="148" cy="175" rx="2.5" ry="1.3" fill="#7D7262" opacity="0.45"/>
+          <ellipse cx="268" cy="153" rx="2.8" ry="1.4" fill="#9A896E" opacity="0.45"/>
+          <path d="M 242 130 Q 245 123 248 130 M 245 130 Q 249 122 252 130" fill="none" stroke="#657B59" stroke-width="1.2" stroke-linecap="round" opacity="0.65"/>
+          <path d="M 272 153 Q 275 146 278 153 M 275 153 Q 279 145 282 153" fill="none" stroke="#657B59" stroke-width="1.2" stroke-linecap="round" opacity="0.65"/>
         </g>
 
-        <!-- Step 1 STOP Barrier Marker -->
-        <g id="stop-marker" class="fade-part">
-          <line x1="126" y1="36" x2="126" y2="83" stroke="#9B3B2A" stroke-width="3.2" stroke-linecap="round"/>
-          <rect x="84" y="12" width="52" height="22" rx="11" fill="#F9E5E1" stroke="#9B3B2A" stroke-width="1.6"/>
-          <text x="110" y="27" text-anchor="middle" class="svg-sans" font-size="11" font-weight="800" letter-spacing="0.8" fill="#7A2B1D">STOP</text>
+        <!-- Step 3 refreshing green grass/sprouts along the sunlit path -->
+        <g id="refreshing-sprouts" class="fade-part" fill="none" stroke="#1F684A" stroke-width="1.5" stroke-linecap="round">
+          <path d="M 134 180 Q 137 171 140 180 M 137 180 Q 141 170 144 180"/>
+          <path d="M 198 168 Q 201 159 204 168 M 201 168 Q 205 158 208 168"/>
+          <path d="M 164 114 Q 186 105 208 114" stroke="#2E7D5B" opacity="0.55"/>
+          <path d="M 176 104 Q 196 97 216 104" stroke="#2E7D5B" opacity="0.45"/>
         </g>
 
-        <!-- 180 DEGREE TURN RIBBON (Left Semicircle Arc: top 64 down to bottom 160) -->
+        <!-- Organic natural walking step pairs showing drift away from God's light (Start & Step 1) -->
+        <g id="drift-steps" class="fade-part" fill="#7D7262" opacity="0.38">
+          <ellipse cx="238" cy="144" rx="2.3" ry="1.0" transform="rotate(-10 238 144)"/>
+          <ellipse cx="232" cy="148" rx="2.3" ry="1.0" transform="rotate(-10 232 148)"/>
+          <ellipse cx="206" cy="148" rx="2.3" ry="1.0" transform="rotate(-8 206 148)"/>
+          <ellipse cx="200" cy="153" rx="2.3" ry="1.0" transform="rotate(-8 200 153)"/>
+        </g>
+
+        <!-- Step 1 STOP bar & halt mark right on the path before deep darkness -->
+        <g id="stop-mark" class="fade-part">
+          <!-- Crisp red-rust ground pause stroke across the path ahead of traveler's feet -->
+          <path d="M 88 153 L 94 182" stroke="#9B3B2A" stroke-width="3.2" stroke-linecap="round"/>
+          <!-- Clean Stop badge floating gracefully above pause point -->
+          <rect x="64" y="96" width="54" height="22" rx="11" fill="#FFF5F3" stroke="#9B3B2A" stroke-width="1.6"/>
+          <text x="91" y="111" text-anchor="middle" class="svg-sans" font-size="11" font-weight="800" letter-spacing="0.8" fill="#7A2B1D">STOP</text>
+        </g>
+
+        <!-- Step 2 180-degree sweeping rotational arrow right over the traveler on the same path -->
         <g id="turn-arc-group" class="fade-part">
-          <!-- Outer & inner hairpin ribbon wash -->
-          <path d="M 128 52 A 60 60 0 0 0 128 172 L 128 148 A 36 36 0 0 1 128 76 Z"
-                fill="#FCF2D6" fill-opacity="0.85" stroke="#A8760A" stroke-width="1.5" stroke-linejoin="round"/>
-          <!-- Double chevrons guiding counterclockwise 180 turn -->
-          <g fill="none" stroke="#A8760A" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="75,112 80,120 85,112" stroke-width="2.6" opacity="0.62"/>
-            <polyline points="75,103 80,111 85,103" stroke-width="2" opacity="0.28"/>
-          </g>
+          <!-- Luminous golden horseshoe spin arc arching right over the traveler on the path -->
+          <path id="turn-arc-glow" d="M 80 126 C 72 86 154 86 146 124"
+                fill="none" stroke="#FCF2D6" stroke-width="9" stroke-linecap="round" opacity="0.9"/>
+          <path id="turn-arc-line" d="M 80 126 C 72 86 154 86 146 124"
+                fill="none" stroke="#A8760A" stroke-width="2.6" stroke-linecap="round"/>
+          <!-- Crisp arrowhead pointing toward the Light on the right -->
+          <polyline id="turn-arrowhead" points="139,119 146,125 153,118"
+                    fill="none" stroke="#A8760A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- 180° pill nestled cleanly above apex -->
+          <rect x="92" y="64" width="44" height="22" rx="11" fill="#FCF2D6" stroke="#A8760A" stroke-width="1.5"/>
+          <text x="114" y="79" text-anchor="middle" class="svg-sans" font-size="11.5" font-weight="800" letter-spacing="0.4" fill="#7D5604">180°</text>
         </g>
 
-        <!-- Center animated stroke highlight for Step 2 -->
-        <path id="turn-stroke" d="M 128 64 A 48 48 0 0 0 128 160"
-              fill="none" stroke="#C48F10" stroke-width="3.2" stroke-linecap="round" opacity="0"/>
-
-        <!-- Step 2 180° Badge in center pocket -->
-        <g id="turn-badge" class="fade-part">
-          <rect x="112" y="95" width="76" height="24" rx="12" fill="#FCF2D6" stroke="#A8760A" stroke-width="1.6"/>
-          <text x="150" y="111" text-anchor="middle" class="svg-sans" font-size="11.5" font-weight="800" letter-spacing="0.6" fill="#7D5604">180° TURN</text>
+        <!-- Step 3 Return footsteps along the same sunlit path -->
+        <g id="walk-trail" class="fade-part" fill="#1F684A" opacity="0.34">
+          <ellipse cx="136" cy="161" rx="2.4" ry="1.0" transform="rotate(-11 136 161)"/>
+          <ellipse cx="143" cy="164" rx="2.4" ry="1.0" transform="rotate(-11 143 164)"/>
+          <ellipse cx="160" cy="157" rx="2.4" ry="1.0" transform="rotate(-10 160 157)"/>
+          <ellipse cx="167" cy="160" rx="2.4" ry="1.0" transform="rotate(-10 167 160)"/>
         </g>
 
-        <!-- BOTTOM RETURN LANE (Walking Right / New Direction toward Jesus & God) -->
-        <g id="walk-lane" class="fade-part">
-          <path d="M 128 148 L 278 148 A 6 6 0 0 1 284 154 L 284 166 A 6 6 0 0 1 278 172 L 128 172 A 6 6 0 0 1 122 166 L 122 154 A 6 6 0 0 1 128 148 Z"
-                fill="url(#walkLaneGrad)" fill-opacity="0.92" stroke="#1F684A" stroke-width="1.5"/>
-          <!-- Rightward chevrons toward God's Presence -->
-          <g fill="none" stroke="#1F684A" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="154,155 161,160 154,165" stroke-width="2.4" opacity="0.55"/>
-            <polyline points="146,155 153,160 146,165" stroke-width="2" opacity="0.26"/>
-            <polyline points="266,155 273,160 266,165" stroke-width="2.4" opacity="0.55"/>
-            <polyline points="258,155 265,160 258,165" stroke-width="2" opacity="0.26"/>
-          </g>
-          <!-- Gentle times-of-refreshing breeze arcs above return road -->
-          <g fill="none" stroke="#2E7D5B" stroke-width="1.5" stroke-linecap="round" opacity="0.55">
-            <path d="M 152 138 Q 168 132 184 138"/>
-            <path d="M 162 131 Q 176 126 190 131" opacity="0.6"/>
-          </g>
-          <text x="203" y="191" text-anchor="middle" class="svg-sans" font-size="10.5" font-weight="700" letter-spacing="0.6" fill="#164E37">NEW DIRECTION</text>
-        </g>
-
-        <!-- Start ghost cue arrow hints -->
-        <g id="start-cue" class="fade-part">
-          <text x="202" y="88" text-anchor="middle" class="svg-sans" font-size="10" font-weight="600" letter-spacing="0.5" fill="#6E6559">DRIFTING AWAY</text>
-          <rect x="116" y="95" width="68" height="24" rx="12" fill="#F6F4EE" stroke="#C9C0B1" stroke-width="1.2"/>
-          <text x="150" y="111" text-anchor="middle" class="svg-sans" font-size="11" font-weight="700" letter-spacing="0.5" fill="#6E6559">180°</text>
-        </g>
-
-        <!-- Jesus Companion Figure (appears on Step 3 Walk alongside traveler) -->
-        <g id="jesus-companion" class="fade-part" transform="translate(254, 162)">
-          <!-- Soft golden aura -->
-          <circle cx="0" cy="-22" r="19" fill="#FCF2D6" opacity="0.65"/>
-          <!-- Head + warm halo -->
-          <circle cx="0" cy="-35" r="7.5" fill="none" stroke="#C48F10" stroke-width="1.2" opacity="0.72"/>
+        <!-- Jesus Companion walking on the same sunlit path toward God's Light (Step 3 Walk) -->
+        <g id="jesus-companion" class="fade-part" transform="translate(230, 149)">
+          <!-- Soft golden presence halo -->
+          <circle cx="0" cy="-22" r="20" fill="#FFF7DA" opacity="0.72"/>
+          <!-- Subtle head aura -->
+          <circle cx="0" cy="-35" r="7.5" fill="none" stroke="#C48F10" stroke-width="1.2" opacity="0.78"/>
           <circle cx="0" cy="-35" r="4.8" fill="#FAF8F3" stroke="#7D5604" stroke-width="1.5"/>
-          <!-- Flowing clean robe silhouette facing slightly toward companion / forward -->
-          <path d="M -5.5 -27 L 5.5 -27 L 8.5 -3 L -8.5 -3 Z" fill="#FAF8F3" stroke="#7D5604" stroke-width="1.5" stroke-linejoin="round"/>
-          <!-- Welcoming arm reaching gently toward traveler / forward -->
+          <!-- Cream/gold robe silhouette -->
+          <path d="M -5.5 -27 L 5.5 -27 L 8.5 -2 L -8.5 -2 Z" fill="#FAF8F3" stroke="#7D5604" stroke-width="1.5" stroke-linejoin="round"/>
+          <!-- Welcoming arms walking alongside -->
           <path d="M -4 -23 L -11 -18" stroke="#7D5604" stroke-width="2" stroke-linecap="round"/>
-          <path d="M 4 -23 L 11 -18" stroke="#7D5604" stroke-width="2" stroke-linecap="round"/>
-          <text x="0" y="-47" text-anchor="middle" class="svg-sans" font-size="9.5" font-weight="700" letter-spacing="0.5" fill="#7D5604">WITH JESUS</text>
+          <path d="M 4 -23 L 11 -17" stroke="#7D5604" stroke-width="2" stroke-linecap="round"/>
         </g>
 
-        <!-- Traveler Stick Figure (single continuous identity, rotates cleanly via scaleX) -->
-        <g id="traveler" transform="translate(206, 66) scale(-1, 1)">
+        <!-- Continuous Traveler Identity on the ONE single path -->
+        <g id="traveler" transform="translate(170, 155) scale(-1, 1)">
+          <!-- Ground contact shadow on the path -->
+          <ellipse cx="0" cy="0" rx="8" ry="2.2" fill="#2C2416" opacity="0.22"/>
           <!-- Head -->
           <circle cx="0" cy="-32" r="5" fill="#1C1915"/>
           <!-- Neck & torso -->
           <line x1="0" y1="-27.5" x2="0" y2="-11" stroke="#1C1915" stroke-width="3.2" stroke-linecap="round"/>
           <!-- Forward arm -->
-          <path id="t-arm-f" d="M 0 -22 L 8 -16 L 13 -18" fill="none" stroke="#1C1915" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M 0 -22 L 8 -16 L 12 -18" fill="none" stroke="#1C1915" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
           <!-- Back arm -->
-          <path id="t-arm-b" d="M 0 -22 L -7 -15" fill="none" stroke="#1C1915" stroke-width="2.4" stroke-linecap="round"/>
+          <path d="M 0 -22 L -7 -15" fill="none" stroke="#1C1915" stroke-width="2.4" stroke-linecap="round"/>
           <!-- Stride legs -->
-          <path id="t-leg-f" d="M 0 -11 L 6 -2" fill="none" stroke="#1C1915" stroke-width="2.9" stroke-linecap="round"/>
-          <path id="t-leg-b" d="M 0 -11 L -6 -2" fill="none" stroke="#1C1915" stroke-width="2.7" stroke-linecap="round"/>
+          <path d="M 0 -11 L 6 -1" fill="none" stroke="#1C1915" stroke-width="2.9" stroke-linecap="round"/>
+          <path d="M 0 -11 L -6 -1" fill="none" stroke="#1C1915" stroke-width="2.7" stroke-linecap="round"/>
         </g>
+
+        <!-- Minimal Atmospheric Anchor Labels: DARKNESS (left) vs LIGHT (right) -->
+        <text x="40" y="199" text-anchor="middle" class="svg-sans" font-size="9.5" font-weight="700" letter-spacing="0.8" fill="#ECE8E0" opacity="0.78">DARKNESS</text>
+        <text x="328" y="160" text-anchor="middle" class="svg-sans" font-size="9.5" font-weight="700" letter-spacing="0.8" fill="#6D4A04">GOD'S LIGHT</text>
+
+        <!-- Inner hairline border around framed scene -->
+        <rect x="6" y="4" width="368" height="210" rx="10" fill="none" stroke="#EBE5D9" stroke-width="1"/>
       </g>
     </svg>
-    <p id="stw-desc" class="sr-only">Visual showing a 180-degree turn from walking away from God on the upper path back toward God on the lower path.</p>
+    <p id="stw-desc" class="sr-only">Visual showing one continuous path from God's light on the right into darkness on the left, turning 180 degrees on that same path back into the light.</p>
   </div>
 
   <div class="step-strip" id="step-strip" role="group" aria-label="Steps"></div>
@@ -515,7 +585,7 @@ button:focus-visible {
     color: '#2C2416',
     dark: '#2C2416',
     dotLabel: 'Start: Which Way Are You Facing?',
-    desc: 'A traveler stands on the upper path facing away from God, while the dotted 180-degree return path leads back to God.'
+    desc: 'A traveler walks left along one winding path away from God\'s sunlit hill on the right toward the darkness.'
   };
 
   var stops = [
@@ -526,7 +596,7 @@ button:focus-visible {
       color: '#9B3B2A',
       dark: '#7A2B1D',
       dotLabel: 'Step 1: Stop',
-      desc: 'Step 1, Stop: The upper path highlights Wrong Way ending at a firm red Stop marker as the traveler halts before turning.'
+      desc: 'Step 1, Stop: The traveler halts on the path at a crimson Stop mark right before entering deeper darkness.'
     },
     {
       cardTitle: 'Turn',
@@ -535,7 +605,7 @@ button:focus-visible {
       color: '#A8760A',
       dark: '#7D5604',
       dotLabel: 'Step 2: Turn',
-      desc: 'Step 2, Turn: A golden 180-degree curve turns the traveler all the way around from idols to face God and Jesus.'
+      desc: 'Step 2, Turn: Right on that same path, a golden 180-degree turn turns the traveler all the way around away from the darkness to face God\'s light.'
     },
     {
       cardTitle: 'Walk',
@@ -544,23 +614,24 @@ button:focus-visible {
       color: '#1F684A',
       dark: '#164E37',
       dotLabel: 'Step 3: Walk',
-      desc: 'Step 3, Walk: The green New Direction lane illuminates as the traveler walks forward beside Jesus toward God.'
+      desc: 'Step 3, Walk: Warm golden light pushes the darkness back as the traveler walks forward along the same path beside Jesus toward God\'s light.'
     }
   ];
 
-  var turnStroke = el('turn-stroke');
-  var LEN_TURN = turnStroke.getTotalLength();
-  turnStroke.style.strokeDasharray = LEN_TURN;
-  turnStroke.style.strokeDashoffset = LEN_TURN;
+  var turnArcGlow = el('turn-arc-glow');
+  var turnArcLine = el('turn-arc-line');
+  var LEN_ARC = turnArcLine.getTotalLength();
+  turnArcGlow.style.strokeDasharray = LEN_ARC;
+  turnArcLine.style.strokeDasharray = LEN_ARC;
 
   var traveler = el('traveler');
 
   function setFade(id, mode, delayMs) {
     var node = el(id);
     if (!node) return;
-    node.classList.remove('is-on', 'is-ghost');
+    node.classList.remove('is-on', 'is-soft');
     if (mode === 'on') node.classList.add('is-on');
-    else if (mode === 'ghost') node.classList.add('is-ghost');
+    else if (mode === 'soft') node.classList.add('is-soft');
     node.style.setProperty('--fade-delay', (delayMs || 0) + 'ms');
   }
 
@@ -571,8 +642,8 @@ button:focus-visible {
     }
   }
 
-  function setTravelerPos(x, y, dirSign) {
-    traveler.setAttribute('transform', 'translate(' + x.toFixed(1) + ', ' + y.toFixed(1) + ') scale(' + dirSign + ', 1)');
+  function setTravelerPos(x, y, scaleX) {
+    traveler.setAttribute('transform', 'translate(' + x.toFixed(1) + ', ' + y.toFixed(1) + ') scale(' + scaleX.toFixed(3) + ', 1)');
   }
 
   function runTween(duration, onTick, onDone) {
@@ -602,65 +673,68 @@ button:focus-visible {
     var isTurn = targetStep === 1;
     var isWalk = targetStep === 2;
 
-    // Far-left idols cluster stays active on Start & Stop, fades gently on Turn & Walk
-    el('idol-cluster').classList.toggle('is-faded', isTurn || isWalk);
+    el('dark-veil').classList.toggle('is-pushed-back', isWalk);
+    el('sun-flood').classList.toggle('is-on', isWalk);
 
-    setFade('start-cue', isStart ? 'on' : 'off', 0);
-    setFade('drift-lane', isStop ? 'on' : (isTurn || isWalk ? 'ghost' : 'off'), 0);
-    setFade('stop-marker', isStop ? 'on' : (isTurn || isWalk ? 'ghost' : 'off'), isStop && !isInst ? 120 : 0);
+    setFade('drift-steps', (isStart || isStop) ? 'on' : 'off', 0);
+    setFade('stop-mark', isStop ? 'on' : 'off', 0);
+    setFade('turn-arc-group', isTurn ? 'on' : 'off', 0);
+    setFade('walk-trail', isWalk ? 'on' : 'off', isWalk && !isInst ? 120 : 0);
+    setFade('refreshing-sprouts', isWalk ? 'on' : 'off', isWalk && !isInst ? 200 : 0);
+    setFade('jesus-companion', isWalk ? 'on' : 'off', isWalk && !isInst ? 150 : 0);
 
-    setFade('turn-arc-group', isTurn ? 'on' : (isWalk ? 'ghost' : 'off'), 0);
-    setFade('turn-badge', isTurn ? 'on' : (isWalk ? 'ghost' : 'off'), isTurn && !isInst ? 220 : 0);
+    el('turn-arrowhead').setAttribute('opacity', isTurn ? '1' : '0');
+    turnArcGlow.style.strokeDashoffset = isTurn ? 0 : LEN_ARC;
+    turnArcLine.style.strokeDashoffset = isTurn ? 0 : LEN_ARC;
 
-    setFade('walk-lane', isWalk ? 'on' : 'off', 0);
-    setFade('jesus-companion', isWalk ? 'on' : 'off', isWalk && !isInst ? 140 : 0);
-
-    turnStroke.setAttribute('opacity', isTurn ? '1' : '0');
-    turnStroke.style.strokeDashoffset = isTurn ? 0 : LEN_TURN;
-
-    // Traveler placement + calm transition on forward steps
+    // Ground coordinates follow the winding path slope smoothly:
+    // Start (170, 155) -> Stop (114, 166) -> Turn in place (114, 166) -> Walk forward (192, 153)
     if (isStart) {
-      setTravelerPos(206, 66, -1);
+      setTravelerPos(170, 155, -1);
     } else if (isStop) {
       if (!isInst && prevStep === -1) {
-        setTravelerPos(206, 66, -1);
+        setTravelerPos(170, 155, -1);
         runTween(620, function (k) {
-          setTravelerPos(206 + (152 - 206) * k, 66, -1);
+          var px = 170 + (114 - 170) * k;
+          var py = 155 + (166 - 155) * k;
+          setTravelerPos(px, py, -1);
         });
       } else {
-        setTravelerPos(152, 66, -1);
+        setTravelerPos(114, 166, -1);
       }
     } else if (isTurn) {
       if (!isInst) {
-        turnStroke.style.strokeDashoffset = LEN_TURN;
-        runTween(760, function (k, raw) {
-          turnStroke.style.strokeDashoffset = (LEN_TURN * (1 - k)).toFixed(1);
-          // Sweep traveler cleanly along the semicircle arc from top (128, 66) to bottom (140, 162)
-          var theta = -Math.PI / 2 - Math.PI * k;
-          var cx = 128;
-          var cy = 114;
-          var rx = 48;
-          var ry = 48;
-          var px = cx + rx * Math.cos(theta);
-          var py = cy + ry * Math.sin(theta);
-          var dir = raw < 0.5 ? -1 : 1;
-          if (k > 0.96) px = 128 + (140 - 128) * ((k - 0.96) / 0.04);
-          setTravelerPos(px, py, dir);
+        el('turn-arrowhead').setAttribute('opacity', '0');
+        turnArcGlow.style.strokeDashoffset = LEN_ARC;
+        turnArcLine.style.strokeDashoffset = LEN_ARC;
+        runTween(780, function (k) {
+          var dash = (LEN_ARC * (1 - k)).toFixed(1);
+          turnArcGlow.style.strokeDashoffset = dash;
+          turnArcLine.style.strokeDashoffset = dash;
+          if (k > 0.85) el('turn-arrowhead').setAttribute('opacity', Math.min((k - 0.85) / 0.15, 1).toFixed(2));
+          // True 180-degree horizontal pivot in place on the path
+          var flip = -1 + 2 * k;
+          if (Math.abs(flip) < 0.08) flip = flip < 0 ? -0.08 : 0.08;
+          setTravelerPos(114, 166, flip);
         }, function () {
-          turnStroke.style.strokeDashoffset = 0;
-          setTravelerPos(140, 162, 1);
+          turnArcGlow.style.strokeDashoffset = 0;
+          turnArcLine.style.strokeDashoffset = 0;
+          el('turn-arrowhead').setAttribute('opacity', '1');
+          setTravelerPos(114, 166, 1);
         });
       } else {
-        setTravelerPos(140, 162, 1);
+        setTravelerPos(114, 166, 1);
       }
     } else if (isWalk) {
       if (!isInst && prevStep === 1) {
-        setTravelerPos(140, 162, 1);
-        runTween(680, function (k) {
-          setTravelerPos(140 + (218 - 140) * k, 162, 1);
+        setTravelerPos(114, 166, 1);
+        runTween(720, function (k) {
+          var px = 114 + (192 - 114) * k;
+          var py = 166 + (153 - 166) * k;
+          setTravelerPos(px, py, 1);
         });
       } else {
-        setTravelerPos(218, 162, 1);
+        setTravelerPos(192, 153, 1);
       }
     }
 
