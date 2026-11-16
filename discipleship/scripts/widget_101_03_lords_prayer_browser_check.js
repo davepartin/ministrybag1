@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * 101-03 The Lord's Prayer widget browser verification.
+ * 101-03 The Lord's Prayer accordion widget browser verification.
  * Serve discipleship/ locally and pass LP_BASE_URL (default http://127.0.0.1:8797/index.html).
  * Uses isolated contexts and synthetic answers only.
  */
@@ -21,7 +21,7 @@ const seed = Object.fromEntries(questions.map((q, i) => ['question-101-' + q.id,
 seed['question-202-unrelated'] = 'SYN-lp-other-course';
 
 const EXPECTED_HEADINGS = [
-  'Click any line to see its step',
+  null,
   'Connect Relationally',
   'Worship His Name',
   'Pray His Agenda First',
@@ -104,14 +104,11 @@ const JOBS = [
           block.nextElementSibling.textContent.includes('The prayer moves in six simple steps');
       }));
 
-      const cardHeight = await frame.locator('#card-content').evaluate(e => e.getBoundingClientRect().height);
-      const lineCount = await frame.locator('.prayer-line').count();
-      const stepCount = await frame.locator('.step-dot').count();
-      check(`${tag}: seven prayer lines present`, lineCount === 7);
-      check(`${tag}: eight study steps present`, stepCount === 8);
+      const itemCount = await frame.locator('.prayer-item').count();
+      check(`${tag}: seven accordion prayer lines present`, itemCount === 7);
 
       const targetsOk = await frame.evaluate(() => {
-        const els = Array.from(document.querySelectorAll('.prayer-line, .step-dot'));
+        const els = Array.from(document.querySelectorAll('.prayer-summary, .nav-btn'));
         return els.every(el => {
           const r = el.getBoundingClientRect();
           return r.width >= 24 && r.height >= 24;
@@ -124,18 +121,10 @@ const JOBS = [
           await frame.locator('#widget').evaluate(e => e.classList.contains('is-instant')));
       }
 
-      for (let s = 0; s < stepCount; s++) {
+      for (let s = 0; s <= itemCount; s++) {
         if (s > 0) await frame.locator('#next-btn').click();
-        await page.waitForTimeout(job.reducedMotion === 'reduce' ? 40 : 120);
+        await page.waitForTimeout(job.reducedMotion === 'reduce' ? 60 : 180);
 
-        check(`${tag}: active dot step ${s}`,
-          await frame.locator('.step-dot[aria-pressed="true"]').getAttribute('data-step') === String(s));
-        check(`${tag}: expected heading step ${s}`,
-          await frame.locator('#card-heading').textContent() === EXPECTED_HEADINGS[s]);
-        check(`${tag}: constant card height step ${s}`,
-          await frame.locator('#card-content').evaluate((e, h) => Math.abs(e.getBoundingClientRect().height - h) <= 1, cardHeight));
-        check(`${tag}: card content fits step ${s}`,
-          await frame.locator('#card-content').evaluate(e => e.scrollHeight <= e.clientHeight + 1));
         check(`${tag}: iframe fits widget step ${s}`,
           await frameEl.evaluate(e => e.clientHeight) >= await frame.evaluate(() => Math.max(document.body.scrollHeight, document.documentElement.scrollHeight)) - 1);
         check(`${tag}: zero horizontal overflow step ${s}`,
@@ -143,11 +132,22 @@ const JOBS = [
           await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1));
 
         if (s === 0) {
-          check(`${tag}: no prayer line pressed on step 0`,
-            await frame.locator('.prayer-line[aria-pressed="true"]').count() === 0);
+          check(`${tag}: all accordion drawers closed on step 0`,
+            await frame.locator('.prayer-item[open]').count() === 0);
         } else {
-          check(`${tag}: line ${s} pressed on step ${s}`,
-            await frame.locator(`.prayer-line[data-step="${s}"][aria-pressed="true"]`).count() === 1);
+          check(`${tag}: exclusive drawer ${s} open and heading matches`,
+            await frame.locator('.prayer-item[open]').count() === 1 &&
+            await frame.locator(`.prayer-item[data-step="${s}"][open]`).count() === 1 &&
+            await frame.locator(`.prayer-item[data-step="${s}"] .step-heading`).textContent() === EXPECTED_HEADINGS[s]);
+
+          if (s < itemCount) {
+            const pushedDown = await frame.evaluate(step => {
+              const cur = document.querySelector(`.prayer-item[data-step="${step}"] .step-drawer`).getBoundingClientRect();
+              const next = document.querySelector(`.prayer-item[data-step="${step + 1}"]`).getBoundingClientRect();
+              return next.top >= cur.bottom - 1;
+            }, s);
+            check(`${tag}: open drawer ${s} sits right above next line`, pushedDown);
+          }
         }
 
         if (SCREENSHOT_DIR && tag === '390/no-preference' && [0, 1, 3, 7].includes(s)) {
@@ -155,31 +155,43 @@ const JOBS = [
         }
       }
 
-      await frame.locator('.prayer-line[data-step="3"]').click();
-      check(`${tag}: clicking line 3 highlights it and shows Pray His Agenda First`,
-        await frame.locator('.prayer-line[data-step="3"]').getAttribute('aria-pressed') === 'true' &&
-        await frame.locator('#card-heading').textContent() === 'Pray His Agenda First');
+      await frame.locator('.prayer-item[data-step="3"] summary').click();
+      await page.waitForTimeout(100);
+      check(`${tag}: clicking line 3 closes line 7 and opens Pray His Agenda First`,
+        await frame.locator('.prayer-item[open]').count() === 1 &&
+        await frame.locator('.prayer-item[data-step="3"][open]').count() === 1 &&
+        await frame.locator('#step-count').textContent() === 'Step 3 of 6');
+
+      await frame.locator('.prayer-item[data-step="3"] summary').click();
+      await page.waitForTimeout(100);
+      check(`${tag}: clicking open line 3 again collapses accordion cleanly`,
+        await frame.locator('.prayer-item[open]').count() === 0 &&
+        await frame.locator('#step-count').textContent() === 'Ready' &&
+        await frame.locator('#prev-btn').isDisabled());
+
+      await frame.locator('.prayer-item[data-step="6"] summary').click();
+      await page.waitForTimeout(100);
+      check(`${tag}: clicking line 6 opens Engage in Spiritual Warfare`,
+        await frame.locator('.prayer-item[data-step="6"][open]').count() === 1 &&
+        await frame.locator('#step-count').textContent() === 'Step 6 of 6');
 
       await frame.locator('#prev-btn').click();
-      check(`${tag}: Back returns from line 3 to step 2`,
-        await frame.locator('.prayer-line[data-step="2"]').getAttribute('aria-pressed') === 'true' &&
-        await frame.locator('#card-heading').textContent() === 'Worship His Name');
-
-      await frame.locator('.prayer-line[data-step="6"]').click();
-      check(`${tag}: clicking line 6 jumps to Engage in Spiritual Warfare`,
-        await frame.locator('.prayer-line[data-step="6"]').getAttribute('aria-pressed') === 'true' &&
-        await frame.locator('#card-heading').textContent() === 'Engage in Spiritual Warfare');
-
-      await frame.locator('.step-dot').last().focus();
-      await page.keyboard.press('Space');
-      await page.waitForTimeout(80);
-      check(`${tag}: Space activates closing praise step`,
-        await frame.locator('.step-dot[aria-pressed="true"]').getAttribute('data-step') === '7' &&
-        await frame.locator('#card-heading').textContent() === 'Return the Glory to God');
+      await page.waitForTimeout(100);
+      check(`${tag}: Back moves from line 6 to line 5`,
+        await frame.locator('.prayer-item[data-step="5"][open]').count() === 1 &&
+        await frame.locator('#step-count').textContent() === 'Step 5 of 6');
 
       await frame.locator('#next-btn').click();
-      check(`${tag}: Start Over returns to step 0`,
-        await frame.locator('.step-dot[aria-pressed="true"]').getAttribute('data-step') === '0' &&
+      await frame.locator('#next-btn').click();
+      await page.waitForTimeout(100);
+      check(`${tag}: Next reaches closing Amen`,
+        await frame.locator('.prayer-item[data-step="7"][open]').count() === 1 &&
+        await frame.locator('#step-count').textContent() === 'Amen');
+
+      await frame.locator('#next-btn').click();
+      await page.waitForTimeout(100);
+      check(`${tag}: Start Over closes all rows back to Ready`,
+        await frame.locator('.prayer-item[open]').count() === 0 &&
         await frame.locator('#prev-btn').isDisabled());
 
       await page.waitForTimeout(200);
@@ -209,7 +221,7 @@ const JOBS = [
         outgoing.includes('SYN-lp-edited') && questions.slice(1).every(q => outgoing.includes(seed['question-101-' + q.id])));
       check(`${tag}: Email excludes another course`, !outgoing.includes('SYN-lp-other-course'));
       const widgetH = await frameEl.evaluate(e => e.clientHeight);
-      console.log(`PASS ${tag}: card=${cardHeight}px widget=${widgetH}px`);
+      console.log(`PASS ${tag}: widget=${widgetH}px`);
     } finally {
       await ctx.close();
     }
