@@ -24,7 +24,7 @@ const EXPECTED = [
     name: 'stop',
     title: 'Stop',
     verse: '"I acknowledged my sin to you, and I did not cover my iniquity; I said, \'I will confess my sins to the LORD\'..." (Psalm 32:5)',
-    text: 'Stop heading into the dark. Admit your sin to God without excuses.'
+    text: 'Stop heading into the dark. Admit your sin to God.'
   },
   {
     name: 'turn',
