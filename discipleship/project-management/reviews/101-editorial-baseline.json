@@ -101,12 +101,29 @@
       "lesson": "101-03",
       "title": "Lesson 3: Prayer",
       "stage": "Silver",
-      "dave_edits_protected": false,
+      "dave_edits_protected": true,
       "full_personal_review": "unrecorded",
-      "lesson_sha256": "5016514adc99573918bc8570878e24e2a03940d4416b596cc2310455c7c4ec41",
-      "non_visual_content_sha256": "fc2a4dbc9b5c75b9cd83f7cf8aafb63e3ad827356295fbc82e9a9ddbf3030c56",
-      "visual_blocks": [],
-      "visual_files_sha256": {}
+      "lesson_sha256": "abe23b3ced32ce3c0eb5d658ad907cb58e3775e2ac85296759f6ed9125ecd17f",
+      "non_visual_content_sha256": "c5150cadb19b1621d27077d426eacb9a1e1081a95b60e7a5519d0a2d35038c89",
+      "visual_blocks": [
+        {
+          "type": "widget",
+          "src": "widgets/lords-prayer.html",
+          "title": "The Lord's Prayer",
+          "height": "460px"
+        }
+      ],
+      "visual_files_sha256": {
+        "widgets/lords-prayer.html": "973a5c6cb3b5b0d460ae51df4b949e921cb6cc1019428d36718d5c40c33fcfaf"
+      },
+      "component_approval": {
+        "date": "2026-11-16",
+        "source": "3542e12bc85b2d8793e4402d04b744737b9ebdca",
+        "pr": 266,
+        "widget": "Approved: The Lord's Prayer",
+        "scope": "Exact widget bytes, title, registration and replacement of only the static The Lord's Prayer verse block. Other lesson prose, questions, readings and Daily Prayers tool unchanged. Text remains Silver; no image or whole-lesson Gold approval."
+      },
+      "recorded_date": "2026-11-16"
     },
     {
       "lesson": "101-04",
