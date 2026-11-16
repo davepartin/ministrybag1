@@ -5,43 +5,7 @@
   "blocks": [
     {
       "type": "text",
-      "text": "You have spent this course growing up: loving your neighbors, your family, and your church family, serving with your gifts, standing firm, worshiping, giving, and guarding your heart. The last lesson of Growing Up ends at a table."
-    },
-    {
-      "type": "image",
-      "imageBw": "images/last-supper-bw.jpg",
-      "imageColor": "images/last-supper-color.jpg",
-      "alt": "Jesus breaking bread at the Passover table, surrounded by His disciples in an upper room",
-      "frame": true,
-      "touchNext": true
-    },
-    {
-      "type": "parable",
-      "title": "The Table He Longed For",
-      "text": "On the night before the cross, Jesus gathered His closest friends around a Passover table in a borrowed upstairs room. He told them how much the meal meant to Him."
-    },
-    {
-      "type": "verse",
-      "reference": "Luke 22:15",
-      "text": "And he said to them, \"I have earnestly desired to eat this Passover with you before I suffer.\""
-    },
-    {
-      "type": "text",
-      "text": "Then He took the bread, gave thanks, broke it, and handed it to them. \"This is my body, which is given for you.\" He lifted the cup. \"This cup that is poured out for you is the new covenant in my blood.\""
-    },
-    {
-      "type": "text",
-      "text": "Look around that table. Judas would betray Him before midnight. Peter would deny Him three times before sunrise. The rest would scatter into the dark. Jesus knew every bit of it, and He still longed to eat with them."
-    },
-    {
-      "type": "text",
-      "text": "Both of the gifts in this lesson come from a Savior who wanted you at the table before you ever got it right."
-    },
-    {
-      "type": "question",
-      "id": "202-10-1",
-      "text": "10.1 - How does it change things to know Jesus wanted them at the table knowing they would fail Him that night?",
-      "height": "tall"
+      "text": "You have spent this course growing up: loving your neighbors, your family, and your church family, serving with your gifts, standing firm, worshiping, giving, and guarding your heart. In this final lesson of Growing Up, we look at the two gifts Jesus left His church: a doorway you walk through once, and a table you return to for the rest of your life."
     },
     {
       "type": "heading",
@@ -84,7 +48,7 @@
     {
       "type": "question",
       "id": "202-10-2",
-      "text": "10.2 - What is one honest reason you have not been baptized, or one thing that day still means to you?",
+      "text": "10.1 - What is one honest reason you have not been baptized, or one thing that day still means to you?",
       "height": "tall"
     },
     {
@@ -100,6 +64,28 @@
       "touchNext": true
     },
     {
+      "type": "parable",
+      "title": "The Table He Longed For",
+      "text": "On the night before the cross, Jesus gathered His closest friends around a Passover table in a borrowed upstairs room. He told them how much the meal meant to Him."
+    },
+    {
+      "type": "verse",
+      "reference": "Luke 22:15",
+      "text": "And he said to them, \"I have earnestly desired to eat this Passover with you before I suffer.\""
+    },
+    {
+      "type": "text",
+      "text": "Then He took the bread, gave thanks, broke it, and handed it to them. \"This is my body, which is given for you.\" He lifted the cup. \"This cup that is poured out for you is the new covenant in my blood.\""
+    },
+    {
+      "type": "text",
+      "text": "Look around that table. Judas would betray Him before midnight. Peter would deny Him three times before sunrise. The rest would scatter into the dark. Jesus knew every bit of it, and He still longed to eat with them."
+    },
+    {
+      "type": "text",
+      "text": "Both of the gifts in this lesson come from a Savior who wanted you at the table before you ever got it right."
+    },
+    {
       "type": "text",
       "text": "If baptism is the doorway you walk through once, the Lord's Supper is the table you come back to for the rest of your life. Jesus took the oldest meal in Israel's story and filled it with Himself. The bread is His body given for you. The cup is His blood poured out for you."
     },
@@ -111,6 +97,12 @@
     {
       "type": "text",
       "text": "The meal looks back to the cross, and it looks forward to the day you eat with Jesus face to face. It also looks around. One loaf is shared by many people, which is a quiet reminder that you were saved into a household. This is not something you do alone in your kitchen."
+    },
+    {
+      "type": "question",
+      "id": "202-10-1",
+      "text": "10.2 - How does it change things to know Jesus wanted them at the table knowing they would fail Him that night?",
+      "height": "tall"
     },
     {
       "type": "heading",

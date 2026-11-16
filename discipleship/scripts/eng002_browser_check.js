@@ -30,6 +30,7 @@ async function checkLessonPair(page, hash, sessionId, expected, label) {
     await page.goto(BASE + hash, { waitUntil: 'domcontentloaded' });
     await page.waitForSelector(sessionId + '.active', { timeout: 15000 });
     await page.waitForSelector(sessionId + ' .parable-img-color', { timeout: 15000 });
+    await page.locator(sessionId + ' .parable-img-color').scrollIntoViewIfNeeded();
     await page.waitForFunction(function (sid) {
         var root = document.querySelector(sid);
         var color = root && root.querySelector('.parable-img-color');
@@ -67,8 +68,8 @@ async function checkLessonPair(page, hash, sessionId, expected, label) {
 
     await page.setViewportSize({ width: 390, height: 844 });
     var supper = await checkLessonPair(page, '#202-10', '#session-10', {
-        color: 'images/last-supper-color.jpg',
-        bw: 'images/last-supper-bw.jpg'
+        color: 'images/202-10-bread-cup-color.jpg',
+        bw: 'images/202-10-bread-cup-bw.jpg'
     }, '202-10 phone');
 
     var feet = await checkLessonPair(page, '#203-4', '#session-4', {
@@ -78,8 +79,8 @@ async function checkLessonPair(page, hash, sessionId, expected, label) {
 
     await page.setViewportSize({ width: 1280, height: 800 });
     await checkLessonPair(page, '#202-10', '#session-10', {
-        color: 'images/last-supper-color.jpg',
-        bw: 'images/last-supper-bw.jpg'
+        color: 'images/202-10-bread-cup-color.jpg',
+        bw: 'images/202-10-bread-cup-bw.jpg'
     }, '202-10 laptop');
 
     assert('202-10 pair shares one composition size', supper.colorW === supper.bwW && supper.colorH === supper.bwH);
