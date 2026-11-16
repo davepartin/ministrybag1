@@ -114,7 +114,7 @@
       "stage": "Silver",
       "dave_edits_protected": true,
       "full_personal_review": "unrecorded",
-      "lesson_sha256": "bde5cd438731129dfa1d5ad8087975839c8b2933683fa1b69ac22eea57ba928f",
+      "lesson_sha256": "0965a0e7589c3a251f5bade8394311464be0dd9e52ea4fa90a9f4d63af22b78b",
       "non_visual_content_sha256": "68614506e139cf948586c6b9a6ea0b54e1b7504f52502974486cb1defbd550de",
       "visual_blocks": [
         {
@@ -122,7 +122,8 @@
           "imageBw": "images/101-04-nicodemus-bw.jpg",
           "imageColor": "images/101-04-nicodemus-color.jpg",
           "alt": "Nicodemus holding an open scroll as he talks with Jesus at night beside a small clay oil lamp",
-          "touchNext": true
+          "touchNext": true,
+          "imageDissolveOnEntry": true
         },
         {
           "type": "widget",
@@ -155,6 +156,11 @@
         "pr": 263,
         "image": "Approved: Nicodemus darker-to-lighter clay oil-lamp dissolve",
         "scope": "Exact two JPGs, four WebP copies, image block and placement before Questions in the Night. No whole-lesson Gold or new wording approval."
+      },
+      "image_timing_update": {
+        "date": "2026-11-16",
+        "source": "Dave direct request in chat: full light sooner, while the image is still visible",
+        "scope": "imageDissolveOnEntry true on the Nicodemus pair only; all approved image bytes and nonvisual lesson content unchanged"
       }
     },
     {

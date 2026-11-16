@@ -12,7 +12,8 @@
       "imageBw": "images/101-04-nicodemus-bw.jpg",
       "imageColor": "images/101-04-nicodemus-color.jpg",
       "alt": "Nicodemus holding an open scroll as he talks with Jesus at night beside a small clay oil lamp",
-      "touchNext": true
+      "touchNext": true,
+      "imageDissolveOnEntry": true
     },
     {
       "type": "parable",
