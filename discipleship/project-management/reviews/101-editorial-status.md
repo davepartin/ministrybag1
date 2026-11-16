@@ -69,3 +69,5 @@ November 15: Dave directed a rethink of 101-07 (shorter; grace keeps you saved; 
 November 16: Dave approved the 101-07 rewrite text in PR #249 ("approved, merge it, keep them retired") at 7963809. Questions 7-3 and 7-hand stay retired with IDs reserved. Protect the approved wording. The approved stop-turn-walk widget (#251) replaces the interim "The 180: Stop, Turn, Walk" box when Codex integrates it. Gold is not claimed; it needs Dave's confirmed personal review.
 
 November 15: Dave approved widget PR #251 at 53d2d60. The 510px embed follows the three-step setup in the current approved #249 wording. All current prose, the teaching box, eight active questions, two retired question objects/IDs, John 19-21 and the approved B&W shepherd sequence are preserved. Text remains Silver.
+
+Later November 15: Dave explicitly requested removing the interim The 180: Stop, Turn, Walk box now that #251 is merged. Only that box is deleted; the approved widget remains directly after the three-step setup. This supersedes the earlier box-retention note. All other wording, active/retired answers, reading keys and story art stay protected. Text remains Silver.
