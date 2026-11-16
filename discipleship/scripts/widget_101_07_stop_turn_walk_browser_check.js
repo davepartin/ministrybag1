@@ -210,6 +210,12 @@ function ck(label, cond) {
           await page.locator('#t-arm-f').evaluate(el => (el.getAttribute('d').match(/\bL\b/g) || []).length === 1)
         );
         ck(
+          tag + ' turn arrow is a single white line with white arrowhead',
+          (await page.locator('#turn-arc-glow').count()) === 0 &&
+            (await page.locator('#turn-arc-line').getAttribute('stroke')) === '#FFFFFF' &&
+            (await page.locator('#turn-arrowhead').getAttribute('stroke')) === '#FFFFFF'
+        );
+        ck(
           tag + ' stop line is white and simplified B&W scene omits extra elements',
           (await page.locator('#stop-line').getAttribute('stroke')) === '#FFFFFF' &&
             (await page.locator('#jesus-companion, #night-stars, #dark-silhouette, #refreshing-sprouts, #sun-beams').count()) === 0
