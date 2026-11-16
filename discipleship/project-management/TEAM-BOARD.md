@@ -1,5 +1,15 @@
 # Growing Together Team Board
 
+## 101-03 The Lord's Prayer widget (REVIEW): November 16, 2026
+
+- **Task / Branch:** `WIDGET-101-03-LORDS-PRAYER` on `gemini/widget-101-03-lords-prayer` (stopped at `REVIEW` pending Dave's visual approval).
+- **Changes:** Built [lords-prayer.html](../widgets/lords-prayer.html), registered `'lords-prayer.html': "The Lord's Prayer"` in [widget-iframe.js](../scripts/widget-iframe.js), replaced only the static `"The Lord's Prayer"` verse block in `discipleship/data/101-03.json` with `{ "type": "widget", "src": "widgets/lords-prayer.html", "title": "The Lord's Prayer", "height": "520px" }`, and added [widget_101_03_lords_prayer_browser_check.js](../scripts/widget_101_03_lords_prayer_browser_check.js):
+  - All 7 prayer lines (`Our Father, who is in heaven,` through `For yours is the kingdom, and the power, and the glory forever, Amen.`, grouping `your kingdom come, your will be done / on earth as it is in heaven.` together) render as native `<button>` rows with step badges, right chevrons, and a `Click any line` pill cue.
+  - Clicking any prayer line (or stepping with `Begin`/`Next`/`Back` or dot controls) highlights the Scripture line cleanly (soft Studio Wash fill + underline marker matching `read-discover-respond.html`) and updates the compact Step Heading card below (`Connect Relationally`, `Worship His Name`, `Pray His Agenda First`, `Depend on Him for Everything`, `Forgive and Be Forgiven`, `Engage in Spiritual Warfare`, and `Return the Glory to God`), keeping all existing `101-03` step teaching and questions right underneath.
+  - Locked `--card-h` (`54px`) across all 8 steps (`583px` total height on mobile `375`/`390`, `585px` on desktop), `>= 24x24px` interactive targets, `:focus-visible` outlines, `prefers-reduced-motion: reduce` support, zero idle DOM mutations, zero `localStorage` writes, and zero em dashes.
+- **Verification:** `qa_foundation.sh`, `test_lesson_export.js` (`186`), `test_answer_storage.js` (`64`), `check_lesson_assets.js` (`142`), `test_widget_iframe.js` (`32`), and embedded `#101-3` browser check (`329` checks across `375x812`, `390x844`, `1280x800`, and `390/reduce`) exit `0`, plus visual screenshot inspection of Steps `0`, `1`, `3`, and `7`.
+- **Evidence:** [Gemini handoff log](logs/2026-11-16-WIDGET-101-03-LORDS-PRAYER-gemini.md).
+
 ## 101-04 Nicodemus lamp artwork approved: November 16, 2026
 
 Dave approved PR #263 at b52e4f4ab59024193484e23eff0ad99d90904bae: the 1280x720 darker-to-lighter clay oil-lamp pair, four optimized 640/1280 WebP copies, generated image map, and touchNext placement immediately before Questions in the Night. Preserve these approved bytes. Older notes describing 101-04 story art as missing are superseded.
