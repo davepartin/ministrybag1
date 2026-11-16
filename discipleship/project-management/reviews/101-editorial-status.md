@@ -75,3 +75,5 @@ Later November 15: Dave explicitly requested removing the interim The 180: Stop,
 November 16: Dave's nine exact 101-07 wording edits applied word for word after the widget placement (#251). Protect them along with the approved rewrite.
 
 November 16: Dave's exact 101-03 edits (summary and phrase "Prayer is talking with a Father who loves to listen", recap, Teach Us to Pray with his theology correction, Lord's Prayer label, 3.3 and 3.4 wording) merged in PR #258. Protect them. Stage stays Silver.
+
+November 16: Dave approved the simpler 101-04 (PR #259): the approved Read, Discover, Respond widget now teaches the Three Discovery Questions alone; the duplicate box and paragraphs, the A Tool You Can Share section and 4.5 (4-6, retired) are removed. Dave's standing rule: 101 lessons do not need teach-it questions.

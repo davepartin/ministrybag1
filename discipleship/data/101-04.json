@@ -103,20 +103,6 @@
     },
     {
       "type": "heading",
-      "text": "A Tool You Can Share"
-    },
-    {
-      "type": "text",
-      "text": "You do not have to know every answer to read the Bible with a friend. Open a short passage together and ask the same three questions."
-    },
-    {
-      "type": "question",
-      "id": "4-6",
-      "text": "4.5 - How would you explain the Three Discovery Questions to a friend who has never read the Bible?",
-      "data_question": "4.5 - Explaining Discovery Questions to a friend"
-    },
-    {
-      "type": "heading",
       "text": "This Week's Practice"
     },
     {
@@ -178,6 +164,14 @@
       "id": "4-prayer",
       "text": "What is a prayer request for this week?",
       "height": "short"
+    }
+  ],
+  "retiredQuestions": [
+    {
+      "type": "question",
+      "id": "4-6",
+      "text": "4.5 - How would you explain the Three Discovery Questions to a friend who has never read the Bible?",
+      "data_question": "4.5 - Explaining Discovery Questions to a friend"
     }
   ]
 }

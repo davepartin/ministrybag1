@@ -26,3 +26,7 @@ scripts/widget_101_04_rdr_browser_check.js: the placement assertion now anchors 
 ## Verification
 
 qa_foundation 0; test_lesson_export 0 (186); test_answer_storage 0 (64); check_lesson_assets 0 (139); widget_101_04_rdr_browser_check 226 passed (temporary copy pointed at /opt/pw-browsers/chromium); local render of #101-4 at 375/390/1280, 18 of 18.
+
+## Round 2: 4.5 retired (Dave, November 16)
+
+Dave approved the PR and said "retire 4.5", adding that not every lesson needs a tell-a-friend or teach-it question, especially in 101. Removed the "A Tool You Can Share" heading and paragraph and question 4.5 (4-6, moved to retiredQuestions). The share line was not moved into the practice. 890 words, four mid-lesson questions. Checks rerun: qa_foundation 0; export 0 (186); storage 0 (64); assets 0 (139); widget check 226 passed; render 18 of 18. Dave's rule recorded in DAVE.md decisions.
