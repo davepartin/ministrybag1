@@ -73,3 +73,5 @@ November 15: Dave approved widget PR #251 at 53d2d60. The 510px embed follows th
 Later November 15: Dave explicitly requested removing the interim The 180: Stop, Turn, Walk box now that #251 is merged. Only that box is deleted; the approved widget remains directly after the three-step setup. This supersedes the earlier box-retention note. All other wording, active/retired answers, reading keys and story art stay protected. Text remains Silver.
 
 November 16: Dave's nine exact 101-07 wording edits applied word for word after the widget placement (#251). Protect them along with the approved rewrite.
+
+November 16: Dave's exact 101-03 edits (summary and phrase "Prayer is talking with a Father who loves to listen", recap, Teach Us to Pray with his theology correction, Lord's Prayer label, 3.3 and 3.4 wording) merged in PR #258. Protect them. Stage stays Silver.
