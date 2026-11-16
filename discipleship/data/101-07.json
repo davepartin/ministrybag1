@@ -1,11 +1,11 @@
 {
   "id": "7",
   "title": "Lesson 7: When You Drift",
-  "description": "You will stumble. Every Christian does. This lesson is not about guilt. It is about knowing how to turn around when you wander off the path, how to confess honestly, and how to trust the Shepherd who comes looking for you before you even know you are lost.",
+  "description": "You will stumble. Every Christian does. This lesson shows that Jesus saves you and keeps you by grace, that obeying Him is how you show your love, and how to turn around when you fall: Stop, Turn, Walk.",
   "blocks": [
     {
       "type": "text",
-      "text": "You have walked through six lessons now: what it means to follow Jesus, to be saved and baptized, to pray, to read the Bible, to be part of a church family, and to share your faith. This final lesson may be the one that holds all the others together. No matter how well you learn the foundations, there will be days when you drift. You will sin. You will wander. And when that happens, you need to know what to do next."
+      "text": "You have walked through six lessons now. This last one is about the days you fall short, because every follower of Jesus does, and about what happens next. It begins with a shepherd."
     },
     {
       "type": "image",
@@ -31,7 +31,7 @@
     },
     {
       "type": "text",
-      "text": "That is the heart of God toward you. He is not waiting to punish you when you wander. He comes looking. <strong>When you drift, you do not have to find your way back alone. Turn around, and the Shepherd carries you home.</strong>"
+      "text": "Notice who does the work in this story. The sheep does not find its way home, and it does not earn its place back in the flock. The shepherd goes after it, carries it home, and celebrates. That is how Jesus saved you, and it is how He keeps you."
     },
     {
       "type": "question",
@@ -41,24 +41,58 @@
     },
     {
       "type": "heading",
-      "text": "What Repentance Really Means"
+      "text": "Kept by Jesus, Not by Being Perfect"
     },
     {
       "type": "text",
-      "text": "Many people hear the word \"repentance\" and picture guilt, shame, or punishment. But the Bible paints a completely different picture. The Greek word for repentance is <em>metanoia</em>, and it means a change of mind that leads to a change of direction. Picture a 180-degree turn. You were walking one direction, away from God, and now you stop, turn around, and walk toward Him. Not groveling. Not earning your way back. Just turning."
-    },
-    {
-      "type": "text",
-      "text": "Sin always promises something good around the next bend, but the road just gets darker. Repentance is the moment you stop believing that lie and turn your whole self around. And the moment you turn, you discover the Shepherd was already coming to find you."
+      "text": "Many new Christians quietly wonder: if I sin after I am saved, am I still saved? Here is the good news. You were not saved by being good, and you do not stay saved by being good. It is all Jesus. He paid for your sin on the cross, and He holds on to you. Jesus said of His sheep, <em>\"I give them eternal life, and they will never perish, and no one will snatch them out of my hand\"</em> (John 10:28)."
     },
     {
       "type": "verse",
-      "reference": "Acts 3:19",
-      "text": "Repent therefore, and turn back, that your sins may be blotted out, that times of refreshing may come from the presence of the Lord."
+      "reference": "Ephesians 2:8-10",
+      "text": "For by grace you have been saved through faith. And this is not your own doing; it is the gift of God, not a result of works, so that no one may boast. For we are his workmanship, created in Christ Jesus for good works, which God prepared beforehand, that we should walk in them."
     },
     {
       "type": "text",
-      "text": "Did you catch that? Turning back does not lead to punishment, it leads to refreshing. Repentance is not the end of something good. It is the beginning of something better: the doorway back to peace, back to closeness with God, back to the life you were actually made for."
+      "text": "Paul puts good works in their right place. They do not save you, but they do follow. You were saved <em>for</em> good works, not <em>by</em> them. Think of an apple tree. It does not grow apples to become an apple tree. It grows apples because it already is one."
+    },
+    {
+      "type": "question",
+      "id": "7-saved",
+      "text": "7.2 - Have you ever felt you had to be good enough to stay saved?",
+      "height": "tall"
+    },
+    {
+      "type": "heading",
+      "text": "Obedience Shows Your Love"
+    },
+    {
+      "type": "text",
+      "text": "So does obeying God matter? Very much. Jesus said, <em>\"If you love me, you will keep my commandments\"</em> (John 14:15). Obedience is not how you earn your place in God's family. It is how you show your love for the One who brought you in. <strong>You do not obey to stay saved. You obey because you are saved.</strong>"
+    },
+    {
+      "type": "text",
+      "text": "The Bible calls this growing in holiness: becoming more like Jesus, a little at a time. Some days you will fight sin hard, but you do not fight alone or on your own strength. The same grace that saved you trains you to say no to sin and yes to God (Titus 2:11-12), and the Holy Spirit lives in you to help."
+    },
+    {
+      "type": "heading",
+      "text": "When You Fall, Turn Around"
+    },
+    {
+      "type": "text",
+      "text": "You will still sin. <em>\"The righteous falls seven times and rises again\"</em> (Proverbs 24:16). What marks a follower of Jesus is not that they never fall but that they get back up and come home. The Bible calls that repentance."
+    },
+    {
+      "type": "text",
+      "text": "Repentance means turning around. In the Old Testament the word means to turn back, and in the New Testament it means a change of mind that changes your direction. Picture a 180-degree turn: you were walking away from God, and now you turn and walk back toward Him. Paul described new believers who <em>\"turned to God from idols to serve the living and true God\"</em> (1 Thessalonians 1:9). Repentance is not a 360-degree spin, where you feel bad for a moment and keep walking the same way. It is a full turn home."
+    },
+    {
+      "type": "text",
+      "text": "When you sin, you will hear two voices. Condemnation says, \"You are a failure. Give up,\" and it pushes you away from God. Conviction is the Holy Spirit saying, \"You are headed the wrong way. Come home,\" and it pulls you toward Him. If what you feel makes you want to run from God, that is not His voice."
+    },
+    {
+      "type": "text",
+      "text": "Repentance has three simple steps: <strong>Stop, Turn, Walk.</strong>"
     },
     {
       "type": "widget",
@@ -67,12 +101,17 @@
       "height": "510px"
     },
     {
-      "type": "heading",
-      "text": "Confession: Keeping the Air Clear"
+      "type": "box",
+      "title": "The 180: Stop, Turn, Walk",
+      "content": [
+        "<strong>Stop.</strong> Be honest with God that you are headed the wrong way. Name your sin without excuses (1 John 1:9).",
+        "<strong>Turn.</strong> Turn all the way around, away from your sin and back to Jesus (1 Thessalonians 1:9).",
+        "<strong>Walk.</strong> Walk forward forgiven, with Jesus, in the new direction. <em>\"Repent therefore, and turn back, that your sins may be blotted out\"</em> (Acts 3:19)."
+      ]
     },
     {
       "type": "text",
-      "text": "If repentance is the big turn, confession is the daily practice that keeps your heart clean. Confession simply means agreeing with God about what happened. You stop hiding, stop excusing, and stop pretending. You just say it out loud: \"Lord, I was impatient with my family. I lied about that. I chose my comfort over obedience.\""
+      "text": "You can make that turn in a few honest minutes on any day. In a later course you will learn a fuller tool called the Learning Circle. The promise underneath it does not change:"
     },
     {
       "type": "verse",
@@ -81,71 +120,21 @@
     },
     {
       "type": "text",
-      "text": "Read that promise slowly. He is <em>faithful</em>, meaning He will always do it. He is <em>just</em>, meaning the cross already paid the price, so forgiving you is not a favor, it is a finished transaction. And He does not just forgive, He <em>cleanses</em>. Not halfway. All of it."
-    },
-    {
-      "type": "text",
-      "text": "Here is what a new believer needs to understand: confession does not change your standing with God. When you trusted Jesus, you became His child forever. But unconfessed sin clouds the closeness you feel with Him. A child who disobeys a parent is still their child, but there is tension in the home until things are made right. Confession clears the air and brings you back into the warmth of the Father's presence."
-    },
-    {
-      "type": "box",
-      "title": "The Way Home: Stop, Turn, Tell, Receive",
-      "content": [
-        "<strong>Stop.</strong> Notice the drift. Be honest that you have wandered off the path.",
-        "<strong>Turn.</strong> Change direction and walk back toward God. \"Repent therefore, and turn back\" (Acts 3:19).",
-        "<strong>Tell.</strong> Confess to God what happened, by name and without excuses (1 John 1:9).",
-        "<strong>Receive.</strong> Take the forgiveness Jesus already secured at the cross. \"There is therefore now no condemnation for those who are in Christ Jesus\" (Romans 8:1)."
-      ]
-    },
-    {
-      "type": "text",
-      "text": "That is the simplest version of repentance, and you can walk it in a few honest minutes, any day, anywhere. In a future course, you will learn a fuller tool called The Learning Circle that walks through this rhythm step by step."
-    },
-    {
-      "type": "question",
-      "id": "7-3",
-      "text": "7.2 - What do you need to tell God today, and does guilt push you from Him or draw you toward Him?",
-      "data_question": "7.2 - Practicing confession"
+      "text": "This week you will read John 21. Peter had denied Jesus three times, and after the resurrection Jesus met him on a beach. He did not shame Peter. He asked him, <em>\"Do you love me?\"</em> and then said, <em>\"Follow me\"</em> (John 21:17, 19). Failure was not the end of Peter's story. Love and following were the next chapter."
     },
     {
       "type": "heading",
-      "text": "Conviction Is Not Condemnation"
+      "text": "Bring It Into the Light"
     },
     {
       "type": "text",
-      "text": "One of the most important things to understand as a new believer is the difference between two voices. <strong>Condemnation</strong> is the voice of the enemy. It says, \"You are a failure. You will never change. Give up.\" It drives you away from God and into shame. <strong>Conviction</strong> is the voice of the Holy Spirit. It says, \"You have sinned. Come home to the Father.\" It draws you back to God and into grace."
-    },
-    {
-      "type": "text",
-      "text": "The difference is the direction they push you. If what you are feeling makes you want to run from God, that is not His voice. If what you are feeling makes you want to run to God, that is the Holy Spirit doing exactly what He was sent to do."
-    },
-    {
-      "type": "verse",
-      "reference": "Romans 8:1",
-      "text": "There is therefore now no condemnation for those who are in Christ Jesus."
+      "text": "God also gives you His people. <em>\"Therefore, confess your sins to one another and pray for one another, that you may be healed\"</em> (James 5:16). You do not tell a friend in order to be forgiven, because Jesus already settled that. You tell someone so you do not carry your sin alone. Talking about sin out loud can feel scary the first time, and that is normal. Find a mature believer you trust. If you are going through these lessons with someone, this is a good place to slow down and ask your questions."
     },
     {
       "type": "question",
-      "id": "7-hand",
-      "text": "7.3 - How would you explain Stop, Turn, Tell, Receive to a friend who feels too far gone?",
+      "id": "7-ask",
+      "text": "7.3 - What questions about sin, forgiveness, or obeying God do you want to talk through?",
       "height": "tall"
-    },
-    {
-      "type": "heading",
-      "text": "When You Stumble, Get Back Up"
-    },
-    {
-      "type": "text",
-      "text": "You will stumble, and every Christian does. A new believer needs to know this up front, because without that honesty, failure can feel like the end of the road when it is not. What defines you is not your failures but Jesus' faithfulness. The mark of a true follower of Jesus is not perfection, it is getting back up and walking with Him again."
-    },
-    {
-      "type": "verse",
-      "reference": "Micah 7:8",
-      "text": "Rejoice not over me, O my enemy; when I fall, I shall rise; when I sit in darkness, the LORD will be a light to me."
-    },
-    {
-      "type": "text",
-      "text": "That is the promise. When you fall, you will rise. When you sit in darkness, the Lord Himself will be a light to you. Not because you are strong enough to recover, but because the Shepherd who left the ninety-nine is strong enough to carry you home."
     },
     {
       "type": "heading",
@@ -153,12 +142,7 @@
     },
     {
       "type": "text",
-      "text": "You have now walked through all seven lessons of the Starting in Discipleship course. You have explored what it means to follow Jesus, to be saved and baptized, to pray, to read the Bible, to be part of the church, to share your faith, and to turn back to God when you drift. These are not just topics you have studied. They are the foundations of a life that is being transformed by the grace of God."
-    },
-    {
-      "type": "verse",
-      "reference": "Psalm 51:10-12",
-      "text": "Create in me a clean heart, O God, and renew a right spirit within me. Cast me not away from your presence, and take not your Holy Spirit from me. Restore to me the joy of your salvation, and uphold me with a willing spirit."
+      "text": "You have now walked through all seven lessons of Starting in Discipleship: following Jesus, salvation and baptism, prayer, the Bible, the church, sharing your faith, and getting back up when you fall. These are not just topics. They are the foundations of a life being changed by the grace of God."
     },
     {
       "type": "question",
@@ -173,7 +157,7 @@
     },
     {
       "type": "text",
-      "text": "When you drift, you do not have to find your way back alone. Repentance is not a burden. It is a gift: a turn back to a Shepherd who was already coming to find you. Stop, turn, tell God what happened, and receive the forgiveness Jesus already secured. Confession keeps the air clear, and the Holy Spirit's conviction is not condemnation. It is love drawing you home."
+      "text": "Jesus saved you by grace, and He keeps you by grace. Like the shepherd, He goes after you when you wander and carries you home. Obedience does not earn His love; it shows your love for Him. You do not obey to stay saved. You obey because you are saved. And when you fall, bring it into the light with someone you trust, and make the 180: <strong>Stop, Turn, Walk.</strong>"
     },
     {
       "type": "text",
@@ -222,6 +206,20 @@
       "id": "7-prayer",
       "text": "What is a prayer request for this week?",
       "height": "short"
+    }
+  ],
+  "retiredQuestions": [
+    {
+      "type": "question",
+      "id": "7-3",
+      "text": "7.2 - What do you need to tell God today, and does guilt push you from Him or draw you toward Him?",
+      "data_question": "7.2 - Practicing confession"
+    },
+    {
+      "type": "question",
+      "id": "7-hand",
+      "text": "7.3 - How would you explain Stop, Turn, Tell, Receive to a friend who feels too far gone?",
+      "height": "tall"
     }
   ]
 }
