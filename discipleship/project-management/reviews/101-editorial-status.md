@@ -89,3 +89,5 @@ November 16: Dave explicitly approved PR #266 at 3542e12bc85b2d8793e4402d04b7447
 November 16: Dave approved the Course 101 story art upgrades for 101-03 (`101-03-prayer-bw/color.jpg`), 101-05 (updated `aspen-bw.png` -> unchanged `aspen-color.png`), and 101-06 (unchanged `woman-well-bw.png` -> sunlit well `woman-well-color.png`), with `imageDissolveOnEntry: true` on all three so the full dissolve completes while centered and visible before scrolling to the top. Nonvisual prose, Scripture, questions, readings, and widgets remain unchanged; texts remain Silver.
 
 PR #268 integration preserves the approved #266 Lord's Prayer widget and its component approval alongside the new 101-03 story art. The 101-05 checklist and 101-06 BLESS widget also remain exact. All three lesson texts stay Silver.
+
+November 16: Dave approved the exact Lord's Prayer hint follow-up in PR #270 at 23660ca: Choose a line to see its step alongside MATTHEW 6:9-13. The current widget hash records that approved follow-up. Lesson JSON, all other widget behavior/copy, artwork and the new #271 B&W hold remain unchanged. Component-only approval; text stays Silver.
