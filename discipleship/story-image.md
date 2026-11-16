@@ -153,7 +153,7 @@ Optional field: `"frame": true` adds a 1px border (`.block-image-dissolve-framed
 
 ### Earlier completion for an approved pair
 
-Optional `imageDissolveOnEntry: true` on a two-layer image starts the dissolve when its top reaches 90% down the visible area below the fixed lesson header, and completes it when the image is centered in that area. When the image fits within the visible area, the complete lighter image is fully on screen at completion. A taller-than-viewport image completes at the header edge. Reduced motion still shows the static lighter layer. Per Dave's direction, this opt-in is enabled on the `101-03`, `101-04`, `101-05`, and `101-06` two-layer dissolves so the full reveal completes before the image scrolls to the top; all other pair and sequence timings remain unchanged. Do not apply it broadly to approved artwork without direction.
+Optional `imageDissolveOnEntry: true` on a two-layer image starts at 100% B&W when the image enters 90% down the visible area below the fixed lesson header (or at its initial `scrollY = 0` position if it is already visible on load), holds 100% B&W for the first 20% of scroll travel so the learner sees the monochrome/dark state first, and completes the color reveal when centered in that area before scrolling off the top. A taller-than-viewport image completes at the header edge. Reduced motion still shows the static lighter layer. Per Dave's direction, this opt-in is enabled on the `101-03`, `101-04`, `101-05`, and `101-06` two-layer dissolves; all other pair and sequence timings remain unchanged. Do not apply it broadly to approved artwork without direction.
 
 ### Art Prompts for Charcoal Pairs or Sequences
 
