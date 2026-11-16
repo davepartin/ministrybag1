@@ -189,7 +189,7 @@ Optional field: `"frame": true` adds a 1px border (`.block-image-dissolve-framed
 | 202-07 | Two Small Coins | **4-Frame Sequence** | `202-07-two-coins-seq-1.jpg` .. `4.jpg` (stops `[0, 0.18, 0.34, 0.5]`) | Live (`touchNext: true`) |
 | 202-08 | The Marble and the Chisel | B&W -> Color | `202.08-marble-chisel-bw.jpg` -> `202.08-marble-chisel-color.jpg` | Live (`touchNext: true`, `frame: true`) |
 | 202-09 | The View from the Roof | B&W -> Color | `202.09-david-roof-bw.png` -> `202.09-david-roof-color.png` | Live (`touchNext: true`, `frame: true`) |
-| 202-10 | The Table He Longed For | B&W -> Color | `last-supper-bw.jpg` -> `last-supper-color.jpg` | Live (`touchNext: true`, `frame: true`) |
+| 202-10 | The Table He Longed For; bread and cup | Two B&W -> Color pairs | Existing `last-supper-bw.jpg` -> `last-supper-color.jpg`; approved `202-10-bread-cup-bw.jpg` -> `202-10-bread-cup-color.jpg` (1152x864, 4:3) | Live (`touchNext: true`, `frame: true`); bread/cup approved PR #252, 169a7d5 |
 | 203-01 | On the Mountain | Logo only | `203-3circle-logo.png` | Needs story art if parable kept |
 | 203-02 | A Prayer Before the Answer | None | - | PR #240 sequence reverted per Dave / PR #248; no new art assigned |
 | 203-03 | Stay with Us | **4-Frame Sequence** | `emmaus-bread-seq-1.jpg` .. `4.jpg` (stops `[0, 0.18, 0.34, 0.5]`) | Live (`touchNext: true`); old dissolve pair stays unused |
