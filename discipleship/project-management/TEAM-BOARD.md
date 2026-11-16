@@ -1,5 +1,12 @@
 # Growing Together Team Board
 
+## 101-03 Lord's Prayer hint polish (REVIEW): November 16, 2026
+
+- **Task / Branch:** `WIDGET-101-03-HINT` on `gemini/widget-101-03-hint` (stopped at `REVIEW`; follow-up to PR `#266`).
+- **Changes:** Updated only [lords-prayer.html](../widgets/lords-prayer.html) header cue so mobile and desktop both read `Choose a line to see its step` alongside `MATTHEW 6:9-13`, replacing `Click any line` / `.tap-hint`. Leaves `discipleship/data/101-03.json`, `widget-iframe.js`, `index.html`, story art, and all unrelated files untouched.
+- **Verification:** `qa_foundation.sh`, `test_lesson_export.js` (`186`), `test_answer_storage.js` (`64`), `check_lesson_assets.js` (`144`), `test_widget_iframe.js` (`32`), and embedded `#101-3` browser check (`225` checks across `375x812`, `390x844`, `1280x800`, and `390/reduce`; `500px` phone / `520px` desktop) exit `0`, plus screenshot inspection of `step-0.png` and `step-1.png`.
+- **Evidence:** [Gemini handoff log](logs/2026-11-16-WIDGET-101-03-HINT-gemini.md).
+
 ## Course 101 story art integrated: November 16, 2026
 
 ART-101-03-05-06 DONE, PR #268. Dave asked Codex to merge Gemini's completed art at 17684f32bb846bda53cc91fd0ffb45ec777bb751: the new 101-03 pre-dawn prayer pair before Teach Us to Pray, revised individual roots in 101-05 aspen-bw.png with the existing color layer preserved, and the 101-06 sunlit well/terracotta reveal with its B&W layer preserved. All three use imageDissolveOnEntry so full light appears while the complete image is visible. Approved art/delivery/map bytes are unchanged from Gemini's submission.
