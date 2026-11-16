@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Baptism</title>
+<style>
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --ink: #2C2416;
+  --muted: #6E6557;
+  --border: #EBE5D9;
+  --tray: #F6F4EE;
+  --bg: #F8F6F1;
+  --rust: #9B3B2A;
+  --rust-dark: #822F21;
+  --slate: #4A6B8B;
+  --slate-dark: #385570;
+  --green: #1D6B3F;
+  --green-dark: #165531;
+  --gold: #946B06;
+  --gold-dark: #7A5804;
+  --water: #2A7FA8;
+}
+
+body {
+  font-family: Georgia, Cambria, serif;
+  background: var(--bg);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  margin: 0;
+  padding: 0;
+}
+
+.widget-outer {
+  background: #FFFFFF;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  overflow: hidden;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+@media (min-width: 560px) {
+  body {
+    padding: 16px;
+    background: var(--bg);
+  }
+  .widget-outer {
+    max-width: 460px;
+    margin: 0 auto;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    box-shadow: 0 6px 20px rgba(44, 36, 22, 0.08);
+  }
+}
+
+.title-bar {
+  background: var(--ink);
+  padding: 8px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.title-bar h1 {
+  font: 600 17px/1.15 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #FAF8F3;
+  letter-spacing: 0.2px;
+  text-align: left;
+}
+
+.course-tag {
+  font: 600 11px/1 system-ui, -apple-system, sans-serif;
+  letter-spacing: 0.9px;
+  text-transform: uppercase;
+  color: #E5DEC9;
+  white-space: nowrap;
+}
+
+.stage {
+  background: #FFFFFF;
+  padding: 6px 6px 0;
+}
+
+#baptism-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.svg-sans {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.fade-part {
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.fade-part.is-on {
+  opacity: 1;
+}
+
+#new-bank-wash,
+#cross-glow,
+#tomb-glow {
+  transition: opacity 0.45s ease;
+}
+
+#you-fig {
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.25s ease;
+}
+
+#tomb-stone {
+  transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+#baptizer-arms {
+  transition: transform 0.45s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-part,
+  #new-bank-wash,
+  #cross-glow,
+  #tomb-glow,
+  #you-fig,
+  #tomb-stone,
+  #baptizer-arms,
+  .step-dot-fill,
+  .nav-btn {
+    transition: none;
+  }
+}
+
+.step-strip {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 12px 6px;
+  background: var(--tray);
+  border-top: 1px solid var(--border);
+}
+
+.step-dot {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 50%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.step-dot-fill {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 2.4px solid var(--dot-color, var(--ink));
+  background: #FFFFFF;
+  display: block;
+}
+
+.step-dot.passed .step-dot-fill {
+  background: color-mix(in srgb, var(--dot-color, var(--ink)) 22%, #FFFFFF);
+}
+
+.step-dot.active .step-dot-fill {
+  background: var(--dot-color, var(--ink));
+  transform: scale(1.14);
+}
+
+#card-area {
+  background: var(--tray);
+  padding: 6px 12px 10px;
+}
+
+.verse-card {
+  background: #FFFFFF;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: 0 2px 10px rgba(44, 36, 22, 0.05);
+}
+
+.verse-card-bar {
+  height: 4px;
+  background: var(--step-color);
+}
+
+.verse-card-content {
+  padding: 9px 13px;
+  min-height: var(--card-h, 118px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  --accent-color: var(--step-dark);
+}
+
+.verse-card-title {
+  font: 700 15px/1.25 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--step-dark);
+  margin: 0 0 4px;
+}
+
+.verse-card-text {
+  font: 13.5px/1.42 Georgia, Cambria, serif;
+  color: #3D3426;
+  margin: 0;
+}
+
+.verse-card-text b {
+  color: var(--accent-color, var(--ink));
+  font-weight: 700;
+}
+
+.verse-card-ref {
+  font: 600 11.5px/1.3 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--muted);
+  margin: 5px 0 0;
+}
+
+.nav-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-top: 7px;
+}
+
+.nav-btn {
+  appearance: none;
+  min-height: 44px;
+  min-width: 96px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1.5px solid #D4CFC4;
+  background: #FFFFFF;
+  color: #4D4334;
+  font: 600 13.5px/1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.nav-btn.primary {
+  background: var(--step-color, var(--ink));
+  border-color: var(--step-color, var(--ink));
+  color: #FFFFFF;
+}
+
+.nav-btn.ghost {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.step-count {
+  font: 600 12.5px/1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--muted);
+  text-align: center;
+}
+
+button:focus-visible {
+  outline: 3px solid #E0A526;
+  outline-offset: 2px;
+}
+
+@media (max-width: 395px) {
+  #card-area {
+    padding: 5px 10px 8px;
+  }
+  .verse-card-content {
+    padding: 8px 11px;
+  }
+  .verse-card-title {
+    font-size: 14.5px;
+  }
+  .verse-card-text {
+    font-size: 13px;
+  }
+  .nav-btn {
+    min-width: 88px;
+    padding: 10px 12px;
+  }
+}
+
+#measure {
+  position: fixed;
+  left: -9999px;
+  top: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+</style>
+</head>
+<body>
+<main class="widget-outer" id="widget" role="region" aria-label="Interactive Baptism Analogy">
+  <div class="title-bar">
+    <h1>Baptism</h1>
+    <span class="course-tag">202-10</span>
+  </div>
+
+  <div class="stage">
+    <svg id="baptism-svg" viewBox="0 0 380 245" width="100%" role="img" aria-label="Baptism" aria-describedby="bap-desc">
+      <defs>
+        <radialGradient id="crossGlowGrad" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#9B3B2A" stop-opacity="0.3"/>
+          <stop offset="55%" stop-color="#E0A526" stop-opacity="0.16"/>
+          <stop offset="100%" stop-color="#E0A526" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="tombGlowGrad" cx="50%" cy="55%" r="55%">
+          <stop offset="0%" stop-color="#FAF0C8" stop-opacity="0.98"/>
+          <stop offset="45%" stop-color="#F3D98B" stop-opacity="0.62"/>
+          <stop offset="100%" stop-color="#E0A526" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="jesusHaloGrad" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#FFF5D1" stop-opacity="0.95"/>
+          <stop offset="55%" stop-color="#F3D98B" stop-opacity="0.45"/>
+          <stop offset="100%" stop-color="#E0A526" stop-opacity="0"/>
+        </radialGradient>
+        <clipPath id="tombStoneClip">
+          <circle cx="0" cy="0" r="18.5"/>
+        </clipPath>
+        <clipPath id="leftPanelClip">
+          <rect x="10" y="37" width="168" height="200" rx="8"/>
+        </clipPath>
+        <clipPath id="rightPanelClip">
+          <rect x="202" y="37" width="168" height="200" rx="8"/>
+        </clipPath>
+      </defs>
+
+      <!-- Clean Separate Panel Headers -->
+      <g id="column-headers">
+        <rect x="38" y="6" width="112" height="23" rx="11.5" fill="#EBF4F9" stroke="#C5DFEC" stroke-width="1"/>
+        <text class="svg-sans" x="94" y="21.5" text-anchor="middle" font-size="11.5" font-weight="700" fill="#2A7FA8">Baptism</text>
+
+        <rect x="230" y="6" width="112" height="23" rx="11.5" fill="#F5EFE3" stroke="#DFD4BE" stroke-width="1"/>
+        <text class="svg-sans" x="286" y="21.5" text-anchor="middle" font-size="11.5" font-weight="700" fill="#6F4C24">Jesus</text>
+      </g>
+
+      <!-- ===================== LEFT PANEL (SEPARATE): BAPTISM ===================== -->
+      <rect x="10" y="37" width="168" height="200" rx="8" fill="#FFFFFF" stroke="#E5DEC9" stroke-width="1.2"/>
+      <g id="baptism-side" clip-path="url(#leftPanelClip)">
+        <!-- Shallow earth banks & pool contained inside left panel (x=10..178) -->
+        <path d="M 10 175 L 34 193 L 42 217 L 110 217 L 118 193 L 142 171 L 178 169 L 178 237 L 10 237 Z" fill="#EAE2D2"/>
+
+        <!-- Fixed shallow water basin back fill (y=193..217) -->
+        <polygon points="34,193 118,193 110,217 42,217" fill="#D5ECF6"/>
+
+        <!-- Green bloom overlay on right terrace for Resurrection & New Life -->
+        <path id="new-bank-wash" d="M 110 217 L 118 193 L 142 171 L 178 169 L 178 237 L 110 237 Z" fill="#D8ECDC" opacity="0"/>
+
+        <!-- Crisp bank contour inside left panel -->
+        <path d="M 10 175 L 34 193 L 42 217 L 110 217 L 118 193 L 142 171 L 178 169" fill="none" stroke="#8C8375" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+
+        <!-- Fixed Pastor / Baptizer standing waist-deep in shallow water at x=97, y=215 -->
+        <g id="baptizer" transform="translate(97,215)">
+          <line x1="-3.5" y1="-15" x2="-4" y2="-1" stroke="#4A6B8B" stroke-width="3.8" stroke-linecap="round"/>
+          <line x1="3.5" y1="-15" x2="4" y2="-1" stroke="#4A6B8B" stroke-width="3.8" stroke-linecap="round"/>
+          <line x1="0" y1="-33" x2="0" y2="-15" stroke="#4A6B8B" stroke-width="4.8" stroke-linecap="round"/>
+          <circle cx="0" cy="-39.5" r="5.3" fill="#4A6B8B"/>
+          <g id="baptizer-arms" transform="translate(0,-29)">
+            <line x1="0" y1="0" x2="-18.5" y2="-1" stroke="#4A6B8B" stroke-width="3.2" stroke-linecap="round"/>
+            <line x1="0" y1="0" x2="-16.5" y2="5.5" stroke="#4A6B8B" stroke-width="3.2" stroke-linecap="round"/>
+          </g>
+        </g>
+
+        <!-- Hero Person Being Baptized: black (#1C1915), shorter neck, upright/leaning/bending pose -->
+        <g id="you-fig" transform="translate(22,177)">
+          <g stroke="#FFFFFF" stroke-width="1.5" paint-order="stroke" stroke-linejoin="round" stroke-linecap="round">
+            <circle cx="0" cy="-34" r="5.3" fill="#1C1915"/>
+            <line x1="0" y1="-29.5" x2="0" y2="-15" stroke="#1C1915" stroke-width="4.8"/>
+            <line x1="0" y1="-27" x2="-6" y2="-18.5" stroke="#1C1915" stroke-width="3.2"/>
+            <line x1="0" y1="-27" x2="7" y2="-19.5" stroke="#1C1915" stroke-width="3.2"/>
+            <line x1="0" y1="-15" x2="-4.5" y2="-1" stroke="#1C1915" stroke-width="3.5"/>
+            <line x1="0" y1="-15" x2="4.5" y2="-1" stroke="#1C1915" stroke-width="3.5"/>
+          </g>
+        </g>
+
+        <!-- Same Baptized Person KNEELING & bowing to worship Jesus (Slide 4, black #1C1915, shorter neck) -->
+        <g id="you-kneel" class="fade-part" transform="translate(155,170)">
+          <g stroke="#FFFFFF" stroke-width="1.5" paint-order="stroke" stroke-linejoin="round" stroke-linecap="round">
+            <!-- Lower shin & foot resting behind on the bank -->
+            <line x1="-13" y1="-1" x2="-1" y2="-1" stroke="#1C1915" stroke-width="3.6"/>
+            <!-- Thigh rising up to hip -->
+            <line x1="-1" y1="-1" x2="-7" y2="-11" stroke="#1C1915" stroke-width="3.8"/>
+            <!-- Torso bowing forward toward Jesus -->
+            <line x1="-7" y1="-11" x2="-0.5" y2="-22" stroke="#1C1915" stroke-width="4.8"/>
+            <!-- Head bowed cleanly onto shoulders (shorter neck) -->
+            <circle cx="2.6" cy="-25.4" r="5.1" fill="#1C1915"/>
+            <!-- Arms extended forward in surrender/worship -->
+            <line x1="-1" y1="-19" x2="8.5" y2="-15.5" stroke="#1C1915" stroke-width="3.2"/>
+            <line x1="-1" y1="-19" x2="7.5" y2="-12" stroke="#1C1915" stroke-width="3.2"/>
+          </g>
+        </g>
+
+        <!-- Translucent water overlay layered ON TOP of waist-deep / submerged bodies -->
+        <polygon points="34,193 118,193 110,217 42,217" fill="#A9D5EA" opacity="0.55"/>
+        <path d="M 34 193 Q 55 190.5 76 193 Q 97 195.5 118 193" fill="none" stroke="#2A7FA8" stroke-width="2.2" stroke-linecap="round"/>
+
+        <!-- Burial surface ripples (Slide 2) -->
+        <g id="water-ripples" class="fade-part" fill="none" stroke="#2A7FA8" stroke-linecap="round">
+          <path d="M 48 188 Q 65 184 82 188" stroke-width="1.7"/>
+          <path d="M 55 183 Q 70 180 84 183" stroke-width="1.3" opacity="0.72"/>
+        </g>
+      </g>
+      <rect x="10" y="37" width="168" height="200" rx="8" fill="none" stroke="#E5DEC9" stroke-width="1.2"/>
+
+      <!-- ===================== RIGHT PANEL (SEPARATE): JESUS ===================== -->
+      <rect x="202" y="37" width="168" height="200" rx="8" fill="#FFFFFF" stroke="#E5DEC9" stroke-width="1.2"/>
+      <g id="jesus-side" clip-path="url(#rightPanelClip)">
+        <!-- Warm crimson-amber glow behind Cross on RIGHT (Slide 1) -->
+        <circle id="cross-glow" cx="340" cy="95" r="36" fill="url(#crossGlowGrad)" opacity="0"/>
+
+        <!-- Golden sunrise glow behind Tomb doorway (Slides 3-4, clipped cleanly inside right panel) -->
+        <circle id="tomb-glow" cx="266" cy="125" r="52" fill="url(#tombGlowGrad)" opacity="0"/>
+
+        <!-- Separate higher hillside completely contained inside right panel (x=202..370) -->
+        <path d="M 202 157 Q 214 155 232 155 L 298 154 Q 338 141 370 159 L 370 237 L 202 237 Z" fill="#EAE2D2"/>
+        <path d="M 202 157 Q 214 155 232 155 L 298 154 Q 338 141 370 159" fill="none" stroke="#8C8375" stroke-width="2" stroke-linecap="round"/>
+
+        <!-- Monumental Stone Tomb Rock Mound on LEFT of Jesus' hillside (x=232..300, base y=155, crest y=105) -->
+        <g id="tomb-mound">
+          <path d="M 232 155 C 235 120 248 105 266 105 C 284 105 296 120 300 155 Z" fill="#C9C0B0" stroke="#7A7162" stroke-width="1.9" stroke-linejoin="round"/>
+          <!-- Layered rock facet shading -->
+          <path d="M 239 153 C 242 126 252 111 266 111 C 279 111 288 126 291 153 Z" fill="#BFB5A4" opacity="0.55"/>
+          <path d="M 245 116 Q 264 108 283 118" fill="none" stroke="#DFD7C8" stroke-width="1.8" stroke-linecap="round"/>
+          <!-- Inset arched stone rim + dark tomb doorway -->
+          <path d="M 255 155 L 255 137 A 11 11 0 0 1 277 137 L 277 155" fill="none" stroke="#8C8375" stroke-width="1.6"/>
+          <path id="tomb-mouth" d="M 257 155 L 257 137 A 9 9 0 0 1 275 137 L 275 155 Z" fill="#2C2416"/>
+          <!-- Golden light streaming from empty tomb & radiating softly above rock crest (Slides 3-4) -->
+          <g id="tomb-rays" class="fade-part">
+            <path d="M 258.5 153 L 258.5 137.5 A 7.5 7.5 0 0 1 273.5 137.5 L 273.5 153 Z" fill="#F6DF98" opacity="0.94"/>
+            <line x1="266" y1="100" x2="266" y2="90" stroke="#E0A526" stroke-width="1.8" stroke-linecap="round" opacity="0.85"/>
+            <line x1="252" y1="103" x2="245" y2="94" stroke="#E0A526" stroke-width="1.6" stroke-linecap="round" opacity="0.8"/>
+            <line x1="280" y1="103" x2="287" y2="94" stroke="#E0A526" stroke-width="1.6" stroke-linecap="round" opacity="0.8"/>
+          </g>
+        </g>
+
+        <!-- Rolling Stone: r=18.5 seals doorway completely at (266,139) on Slide 2, parked open beside tomb at (297,139) -->
+        <g id="tomb-stone" transform="translate(297,139)">
+          <circle cx="0" cy="0" r="18.5" fill="#B5AC9C" stroke="#7A7162" stroke-width="1.9"/>
+          <g clip-path="url(#tombStoneClip)">
+            <path d="M -18.5 8 Q -2 17.5 16.5 6 L 19.5 19.5 L -19.5 19.5 Z" fill="#9A9181"/>
+            <path d="M -12.5 -8 A 14.5 14.5 0 0 1 8.5 -12.5" fill="none" stroke="#CCC4B5" stroke-width="1.7" stroke-linecap="round"/>
+          </g>
+        </g>
+
+        <!-- White-Robed Risen Jesus standing on left side of tomb in RIGHT panel (Slides 3-4) -->
+        <g id="jesus-risen" transform="translate(220,155)">
+          <!-- Step 3: Jesus comes out of the tomb facing forward -->
+          <g id="jesus-risen-front" class="fade-part">
+            <circle cx="0" cy="-38" r="21" fill="url(#jesusHaloGrad)"/>
+            <circle cx="0" cy="-42" r="7.5" fill="none" stroke="#E0A526" stroke-width="1.5" opacity="0.88"/>
+            <line x1="0" y1="-30" x2="-9.5" y2="-23" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round"/>
+            <line x1="0" y1="-30" x2="-9.5" y2="-23" stroke="#7A7060" stroke-width="1.4" stroke-linecap="round" opacity="0.5"/>
+            <line x1="0" y1="-30" x2="8.5" y2="-24" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round"/>
+            <line x1="0" y1="-30" x2="8.5" y2="-24" stroke="#7A7060" stroke-width="1.4" stroke-linecap="round" opacity="0.5"/>
+            <path d="M -5.5 -34 L 5.5 -34 L 8.8 0 L -8.8 0 Z" fill="#FFFFFF" stroke="#7A7060" stroke-width="1.5" stroke-linejoin="round"/>
+            <path d="M -4 -33 L 4.5 -16 L 1 0" fill="none" stroke="#DDD6C7" stroke-width="1.5" stroke-linecap="round"/>
+            <circle cx="0" cy="-42" r="5.2" fill="#E6BC94" stroke="#7D5229" stroke-width="1.2"/>
+            <path d="M -4.2 -44.2 A 4.8 4.8 0 0 1 4.2 -44.2" fill="none" stroke="#8A5A2B" stroke-width="1.9" stroke-linecap="round"/>
+            <path d="M -3.8 -40.5 A 4.5 4.5 0 0 0 3.8 -40.5 L 2.8 -37.2 Q 0 -35.6 -2.8 -37.2 Z" fill="#7A5129"/>
+          </g>
+
+          <!-- Step 4: Surprise reveal - Jesus turns toward the kneeling man bowing across on his bank -->
+          <g id="jesus-risen-turned" class="fade-part">
+            <circle cx="-1" cy="-38" r="21" fill="url(#jesusHaloGrad)"/>
+            <circle cx="-1.5" cy="-42" r="7.5" fill="none" stroke="#E0A526" stroke-width="1.5" opacity="0.88"/>
+            <path d="M -5 -34 L 4.5 -34 L 7.5 0 L -10 0 Z" fill="#FFFFFF" stroke="#7A7060" stroke-width="1.5" stroke-linejoin="round"/>
+            <path d="M -3.5 -33 L -1.5 -16 L -5.5 0" fill="none" stroke="#DDD6C7" stroke-width="1.5" stroke-linecap="round"/>
+            <!-- Both welcoming arms extending toward the kneeling man across the divider with clean panel margin -->
+            <line x1="-1.5" y1="-29" x2="-11" y2="-23" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round"/>
+            <line x1="-1.5" y1="-29" x2="-11" y2="-23" stroke="#7A7060" stroke-width="1.4" stroke-linecap="round" opacity="0.55"/>
+            <line x1="-0.5" y1="-26" x2="-9.5" y2="-19" stroke="#FFFFFF" stroke-width="3.6" stroke-linecap="round"/>
+            <line x1="-0.5" y1="-26" x2="-9.5" y2="-19" stroke="#7A7060" stroke-width="1.3" stroke-linecap="round" opacity="0.5"/>
+            <!-- 3/4 turned head facing left toward kneeling believer -->
+            <circle cx="-1.5" cy="-42" r="5.1" fill="#E6BC94" stroke="#7D5229" stroke-width="1.2"/>
+            <path d="M -4.2 -46.2 C 1.2 -47.2 4.6 -44.2 3.8 -39" fill="none" stroke="#8A5A2B" stroke-width="2" stroke-linecap="round"/>
+            <path d="M -5.8 -40.5 Q -4.4 -36.5 -1 -37.2 Q -3.2 -39 -5.8 -40.5 Z" fill="#7A5129"/>
+          </g>
+        </g>
+
+        <!-- Properly Proportioned Calvary Cross on RIGHT side of Jesus' hillside (x=340, y=75..146) -->
+        <g id="calvary-cross">
+          <line x1="340" y1="75" x2="340" y2="146" stroke="#8A5A2B" stroke-width="7.2" stroke-linecap="round"/>
+          <line x1="319" y1="94" x2="361" y2="94" stroke="#8A5A2B" stroke-width="6.8" stroke-linecap="round"/>
+          <line x1="340" y1="77" x2="340" y2="144" stroke="#A87644" stroke-width="2" stroke-linecap="round"/>
+          <line x1="321" y1="94" x2="359" y2="94" stroke="#A87644" stroke-width="1.8" stroke-linecap="round"/>
+        </g>
+
+        <!-- Jesus on the Cross (Slide 1: Death) - warm skin tone, small beard, crown of thorns -->
+        <g id="jesus-cross" class="fade-part">
+          <line x1="322" y1="94" x2="358" y2="94" stroke="#7D5229" stroke-width="4.4" stroke-linecap="round"/>
+          <line x1="322" y1="94" x2="358" y2="94" stroke="#E6BC94" stroke-width="2.9" stroke-linecap="round"/>
+          <line x1="340" y1="89.5" x2="340" y2="94" stroke="#E6BC94" stroke-width="2.6"/>
+          <path d="M 337 93 L 343 93 L 342 112 L 338 112 Z" fill="#E6BC94" stroke="#7D5229" stroke-width="0.9" stroke-linejoin="round"/>
+          <path d="M 338 116 L 342 116 L 341.2 129 L 338.8 129 Z" fill="#E6BC94" stroke="#7D5229" stroke-width="0.9" stroke-linejoin="round"/>
+          <path d="M 336.8 108 L 343.2 108 L 342.8 117 L 337.2 117 Z" fill="#FFFFFF" stroke="#B8AF9F" stroke-width="0.8" stroke-linejoin="round"/>
+          <circle cx="340" cy="85" r="4.6" fill="#E6BC94" stroke="#7D5229" stroke-width="1.1"/>
+          <path d="M 336 84.2 A 4.4 4.4 0 0 1 344 84.2" fill="none" stroke="#8A5A2B" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M 336.5 86 A 4 4 0 0 0 343.5 86 L 342.4 89 Q 340 90.6 337.6 89 Z" fill="#6F4923"/>
+          <path d="M 335.1 82.6 Q 340 80.4 344.9 82.6" fill="none" stroke="#4D361A" stroke-width="1.4" stroke-linecap="round"/>
+          <path d="M 335.5 81.6 Q 340 83.4 344.5 81.6" fill="none" stroke="#4D361A" stroke-width="1.1" stroke-linecap="round"/>
+          <line x1="336.3" y1="81.2" x2="335.2" y2="79.6" stroke="#3D2912" stroke-width="1.1" stroke-linecap="round"/>
+          <line x1="340" y1="80.6" x2="340" y2="78.8" stroke="#3D2912" stroke-width="1.1" stroke-linecap="round"/>
+          <line x1="343.7" y1="81.2" x2="344.8" y2="79.6" stroke="#3D2912" stroke-width="1.1" stroke-linecap="round"/>
+        </g>
+      </g>
+      <rect x="202" y="37" width="168" height="200" rx="8" fill="none" stroke="#E5DEC9" stroke-width="1.2"/>
+    </svg>
+  </div>
+
+  <div class="step-strip" id="step-strip" role="group" aria-label="Baptism steps"></div>
+  <div id="card-area" aria-live="polite"></div>
+  <p class="sr-only" id="bap-desc">Two separate framed scenes showing your baptism pool on the left and Jesus' tomb and cross on the right.</p>
+  <p class="sr-only" id="status" aria-live="polite"></p>
+</main>
+
+<script>
+(function () {
+  'use strict';
+
+  var INK = '#2C2416';
+  var INTRO = {
+    color: INK,
+    dark: INK,
+    dotLabel: 'Start: Identifying with Jesus',
+    cardTitle: 'Identifying with Jesus',
+    verse: 'Baptism does not save you. It is the outward picture of an inner reality: choosing to identify with Jesus in His death, burial, and resurrection.',
+    ref: '',
+    capLeft: '',
+    capRight: '',
+    desc: 'Side-by-side scene showing your baptism pool on the left and Jesus\' tomb and cross on higher ground on the right.'
+  };
+
+  var stops = [
+    {
+      id: 'death',
+      dotLabel: 'Step 1: Death - Crucified with Christ',
+      cardTitle: '1. Death: Crucified with Christ',
+      color: '#9B3B2A',
+      dark: '#822F21',
+      verse: 'Jesus died on the cross for your sin. Standing in the water declares your old life ended with Him: <b>"I have been crucified with Christ."</b>',
+      ref: 'Galatians 2:20  |  Romans 6:6',
+      capLeft: 'Old Self Dies in Water',
+      capRight: 'Christ Died on the Cross',
+      desc: 'Left: you stand waist-deep in the water beside the pastor. Right: Jesus hangs on the cross on the right hill.'
+    },
+    {
+      id: 'burial',
+      dotLabel: 'Step 2: Burial - Buried with Him',
+      cardTitle: '2. Burial: Buried with Him',
+      color: '#4A6B8B',
+      dark: '#385570',
+      verse: 'Just as Jesus\' body was sealed in the tomb, bending back under the water pictures burying your old life: <b>"We were buried therefore with him by baptism into death."</b>',
+      ref: 'Romans 6:4  |  Colossians 2:12',
+      capLeft: 'Lowered Under Water',
+      capRight: 'Buried in the Tomb',
+      desc: 'Left: you bend backward beneath the water with the pastor supporting you. Right: the cross is empty and the stone rolls shut across the tomb.'
+    },
+    {
+      id: 'resurrection',
+      dotLabel: 'Step 3: Resurrection - Raised with Christ',
+      cardTitle: '3. Resurrection: Raised with Christ',
+      color: '#1D6B3F',
+      dark: '#165531',
+      verse: 'God rolled the stone away and raised Jesus from the dead. Rising out of the water pictures rising with Him so <b>"we too might walk in newness of life."</b>',
+      ref: 'Romans 6:4  |  Colossians 3:1',
+      capLeft: 'Raised Out of Water',
+      capRight: 'Jesus Raised to Life',
+      desc: 'Left: you rise from the water onto the bank. Right: the stone rolls open and white-robed Jesus rises from the tomb on higher ground.'
+    },
+    {
+      id: 'newlife',
+      dotLabel: 'Step 4: New Life - Old Has Gone, New Has Come',
+      cardTitle: '4. New Life: Old Has Gone, New Has Come',
+      color: '#946B06',
+      dark: '#7A5804',
+      verse: '<b>"The old has passed away; behold, the new has come."</b> You bow before the risen Savior: you no longer live for yourself, because <b>Christ lives in you</b>.',
+      ref: '2 Corinthians 5:17  |  Galatians 2:20',
+      capLeft: 'Kneeling Before Jesus',
+      capRight: 'Risen Savior & New Life',
+      desc: 'Left: you kneel on the green bank right of the pool, facing across the line toward the white-robed risen Jesus standing outside the open tomb.'
+    }
+  ];
+
+  var step = -1;
+  var pendingFocus = null;
+  var reduceQuery = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : { matches: false };
+
+  function el(id) { return document.getElementById(id); }
+
+  function setClass(id, on) {
+    var node = el(id);
+    if (node) node.classList.toggle('is-on', !!on);
+  }
+
+  function applyScene(idx) {
+    var data = idx < 0 ? INTRO : stops[idx];
+    var fig = el('you-fig');
+    var arms = el('baptizer-arms');
+    var stone = el('tomb-stone');
+
+    // Baptized person keeps ONE consistent black color (#1C1915) across all steps
+    if (idx < 0) {
+      fig.style.opacity = '1';
+      fig.setAttribute('transform', 'translate(22,177) rotate(0)');
+      arms.setAttribute('transform', 'translate(0,-29) rotate(0)');
+      stone.setAttribute('transform', 'translate(297,139) rotate(0)');
+    } else if (idx === 0) {
+      // 1. Death: standing waist-deep leaning toward pastor so they touch/overlap; Jesus on Cross
+      fig.style.opacity = '1';
+      fig.setAttribute('transform', 'translate(81,215) rotate(9)');
+      arms.setAttribute('transform', 'translate(0,-29) rotate(-4)');
+      stone.setAttribute('transform', 'translate(297,139) rotate(0)');
+    } else if (idx === 1) {
+      // 2. Burial: lowered backwards under water right in pastor's arms so they touch/overlap; stone sealed
+      fig.style.opacity = '1';
+      fig.setAttribute('transform', 'translate(93,213) rotate(-65)');
+      arms.setAttribute('transform', 'translate(0,-29) rotate(-42)');
+      stone.setAttribute('transform', 'translate(266,139) rotate(-95)');
+    } else if (idx === 2) {
+      // 3. Resurrection: rising up onto bank cleanly; stone open & white-robed Jesus rises on right side
+      fig.style.opacity = '1';
+      fig.setAttribute('transform', 'translate(125,185) rotate(4)');
+      arms.setAttribute('transform', 'translate(0,-30) rotate(14)');
+      stone.setAttribute('transform', 'translate(297,139) rotate(12)');
+    } else {
+      // 4. New Life: kneeling & bowing on bank to worship Risen Jesus turning across
+      fig.style.opacity = '0';
+      fig.setAttribute('transform', 'translate(153,170) rotate(0)');
+      arms.setAttribute('transform', 'translate(0,-29) rotate(10)');
+      stone.setAttribute('transform', 'translate(297,139) rotate(12)');
+    }
+
+    setClass('you-kneel', idx === 3);
+    setClass('water-ripples', idx === 1);
+    el('new-bank-wash').setAttribute('opacity', idx >= 2 ? '1' : '0');
+
+    el('cross-glow').setAttribute('opacity', idx === 0 ? '1' : '0');
+    setClass('jesus-cross', idx === 0);
+    el('tomb-glow').setAttribute('opacity', idx >= 2 ? '1' : '0');
+    setClass('tomb-rays', idx >= 2);
+    setClass('jesus-risen-front', idx === 2);
+    setClass('jesus-risen-turned', idx === 3);
+
+    el('bap-desc').textContent = data.desc;
+  }
+
+  function renderDots() {
+    var strip = el('step-strip');
+    strip.innerHTML = '';
+
+    var items = [{ color: INK, label: INTRO.dotLabel, idx: -1 }];
+    for (var i = 0; i < stops.length; i++) {
+      items.push({ color: stops[i].color, label: stops[i].dotLabel, idx: i });
+    }
+
+    for (var j = 0; j < items.length; j++) {
+      var item = items[j];
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'step-dot';
+      if (item.idx === step) btn.classList.add('active');
+      else if (step >= 0 && item.idx >= 0 && item.idx < step) btn.classList.add('passed');
+      btn.style.setProperty('--dot-color', item.color);
+      btn.setAttribute('aria-label', item.label);
+      btn.setAttribute('aria-pressed', item.idx === step ? 'true' : 'false');
+      (function (targetIdx) {
+        btn.addEventListener('click', function () { goTo(targetIdx); });
+      })(item.idx);
+
+      var fill = document.createElement('span');
+      fill.className = 'step-dot-fill';
+      fill.setAttribute('aria-hidden', 'true');
+      btn.appendChild(fill);
+      strip.appendChild(btn);
+    }
+  }
+
+  function buildCardMarkup(d) {
+    return '<div class="verse-card" style="--step-color:' + d.color + ';--step-dark:' + d.dark + '">'
+      + '<div class="verse-card-bar"></div>'
+      + '<div class="verse-card-content">'
+      + '<p class="verse-card-title">' + d.cardTitle + '</p>'
+      + '<p class="verse-card-text">' + d.verse + '</p>'
+      + (d.ref ? '<p class="verse-card-ref">' + d.ref + '</p>' : '')
+      + '</div></div>';
+  }
+
+  function renderCard() {
+    var area = el('card-area');
+    var data = step < 0 ? INTRO : stops[step];
+    var isIntro = step < 0;
+    var isLast = step === stops.length - 1;
+
+    var backHtml = isIntro
+      ? '<button type="button" class="nav-btn ghost" disabled aria-hidden="true" tabindex="-1">Back</button>'
+      : '<button type="button" class="nav-btn" id="btn-back">&#8592; Back</button>';
+
+    var countText = isIntro ? 'Ready' : (step + 1) + ' of ' + stops.length;
+
+    var nextHtml = isIntro
+      ? '<button type="button" class="nav-btn primary" id="btn-next" style="--step-color:' + data.color + '">Begin &#8594;</button>'
+      : (isLast
+          ? '<button type="button" class="nav-btn primary" id="btn-next" style="--step-color:' + data.color + '">&#8635; Start Over</button>'
+          : '<button type="button" class="nav-btn primary" id="btn-next" style="--step-color:' + data.color + '">Next &#8594;</button>');
+
+    area.innerHTML = buildCardMarkup(data)
+      + '<div class="nav-bar">' + backHtml + '<span class="step-count">' + countText + '</span>' + nextHtml + '</div>';
+
+    var backBtn = el('btn-back');
+    if (backBtn) {
+      backBtn.addEventListener('click', function () {
+        pendingFocus = 'back';
+        goTo(step - 1);
+      });
+    }
+
+    var nextBtn = el('btn-next');
+    nextBtn.addEventListener('click', function () {
+      pendingFocus = 'next';
+      if (isLast) goTo(-1);
+      else goTo(step + 1);
+    });
+
+    if (pendingFocus) {
+      var target = pendingFocus === 'back' ? backBtn : nextBtn;
+      pendingFocus = null;
+      if (target) target.focus();
+    }
+
+    el('status').textContent = (isIntro ? 'Intro: ' : 'Step ' + (step + 1) + ' of ' + stops.length + ': ') + data.cardTitle;
+  }
+
+  function fitCards() {
+    var outer = el('widget');
+    var measure = el('measure');
+    if (!measure) {
+      measure = document.createElement('div');
+      measure.id = 'measure';
+      document.body.appendChild(measure);
+    }
+    var width = Math.min(outer.clientWidth || 436, 460) - 24;
+    if (width < 200) width = 320;
+    measure.style.width = width + 'px';
+
+    var all = [INTRO].concat(stops);
+    var maxH = 0;
+    for (var i = 0; i < all.length; i++) {
+      measure.innerHTML = buildCardMarkup(all[i]).replace('min-height: var(--card-h, 118px)', 'min-height: 0');
+      var content = measure.querySelector('.verse-card-content');
+      if (content) content.style.minHeight = '0px';
+      var h = content ? content.offsetHeight : 0;
+      if (h > maxH) maxH = h;
+    }
+    if (maxH > 0) {
+      document.documentElement.style.setProperty('--card-h', Math.ceil(maxH) + 'px');
+    }
+    measure.innerHTML = '';
+  }
+
+  function goTo(target) {
+    step = target;
+    applyScene(step);
+    renderDots();
+    renderCard();
+  }
+
+  var lastW = window.innerWidth;
+  window.addEventListener('resize', function () {
+    if (window.innerWidth !== lastW) {
+      lastW = window.innerWidth;
+      fitCards();
+    }
+  });
+
+  if (reduceQuery && reduceQuery.matches) {
+    document.documentElement.classList.add('reduced-motion');
+  }
+
+  fitCards();
+  goTo(-1);
+})();
+</script>
+</body>
+</html>
