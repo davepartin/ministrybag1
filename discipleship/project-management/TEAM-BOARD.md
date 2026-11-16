@@ -1,12 +1,12 @@
 # Growing Together Team Board
 
-## 101-07 The 180 widget (REVIEW): November 15, 2026
+## 101-07 Repentance is 180 Degrees widget (REVIEW): November 15, 2026
 
 - **Task / Branch:** `WIDGET-101-07-THE-180` on `gemini/widget-101-07-stop-turn-walk` (stopped at `REVIEW` for Dave's visual approval and Codex placement in `101-07`).
-- **Changes:** Built standalone Studio Wash widget [stop-turn-walk.html](../widgets/stop-turn-walk.html) (`The 180` / `101-07`) leaving all lesson JSON (`data/*.json`) untouched:
+- **Changes:** Built standalone Studio Wash widget [stop-turn-walk.html](../widgets/stop-turn-walk.html) (`Repentance is 180 Degrees` / `101-07`) leaving all lesson JSON (`data/*.json`) untouched:
   - Visualizes one continuous winding footpath (no dotted lines) across mostly black-and-white rolling hills with slight accent color, stretching from `LIGHT` (and subtle hillside cross) on the right toward `DARKNESS` on the left (no sun, stars, trees, grass, or Jesus figure): Start walks leftward toward `DARKNESS` (`Which Way Are You Facing?`), Step 1 `Stop` halts on the trail (`1 John 1:9` ESV), Step 2 `180°` turns around in place on the same path back toward `LIGHT` (`1 Thessalonians 1:9` ESV), and Step 3 `Walk` brightens the trail as the short-necked black traveler walks forward toward `LIGHT` (`Acts 3:19` ESV).
   - Exact requested wording preserved with zero forbidden author words outside verbatim Scripture quotes and zero em dashes, Studio Wash `#2C2416` `.title-bar`, wordless 4-dot `.step-strip`, locked `--card-h`, `#E0A526` `:focus-visible`, `<svg role="img" aria-label>` + `.sr-only` `#stw-desc`, `prefers-reduced-motion: reduce`, idle-silent rAF, and zero `localStorage`.
-  - Registered `'stop-turn-walk.html': 'The 180'` in `discipleship/scripts/widget-iframe.js` and added Playwright test `discipleship/scripts/widget_101_07_stop_turn_walk_browser_check.js`.
+  - Registered `'stop-turn-walk.html': 'Repentance is 180 Degrees'` in `discipleship/scripts/widget-iframe.js` and added Playwright test `discipleship/scripts/widget_101_07_stop_turn_walk_browser_check.js`.
 - **Evidence:** [Gemini handoff log](logs/2026-11-15-WIDGET-101-07-THE-180-gemini.md).
 
 ## 202-10 Baptism widget: Dave approved, Codex integration, November 15, 2026

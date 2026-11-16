@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Standalone browser check for 101-07 The 180 widget (Studio Wash Edition).
+// Standalone browser check for 101-07 Repentance is 180 Degrees widget (Studio Wash Edition).
 // Lesson files remain untouched until review approval.
 'use strict';
 
@@ -135,7 +135,7 @@ function ck(label, cond) {
             tagColor: getComputedStyle(tagEl).color
           };
         });
-        ck(tag + ' header text', hdr.title === 'The 180' && hdr.courseTag === '101-07');
+        ck(tag + ' header text', hdr.title === 'Repentance is 180 Degrees' && hdr.courseTag === '101-07');
         ck(
           tag + ' header Studio Wash colors',
           hdr.bg === 'rgb(44, 36, 22)' &&
