@@ -1,5 +1,11 @@
 # Growing Together Team Board
 
+## 101-07 interim box removed: November 15, 2026
+
+Dave explicitly directed that the stop-turn-walk widget replace The 180: Stop, Turn, Walk box. WIDGET-101-07-REMOVE-BOX removes only that box. One approved widget remains immediately after Repentance has three simple steps: Stop, Turn, Walk. All other #249 wording, active/retired questions, reading keys, approved widget bytes and B&W shepherd artwork remain unchanged. Text stays Silver.
+
+This supersedes the earlier #251 integration note retaining the box under the then-current no-prose-change guardrail. The three-step teaching now appears only in the widget. Verification and final preview/live evidence are recorded on the follow-up PR for codex/10107-remove-interim-box. Evidence: [Codex log](logs/2026-11-15-WIDGET-101-07-REMOVE-BOX-codex.md).
+
 ## 101-07 approved widget placed: November 15, 2026
 
 Dave approved PR #251 at exact 53d2d60543a471dd98d027f8cc4d52e8322d82ea. WIDGET-101-07-THE-180 DONE: stop-turn-walk.html remains byte-identical, title Repentance is 180 Degrees / 101-07. The iframe registration and approved standalone browser test are unchanged. One widget block is added immediately after the Stop, Turn, Walk setup in the current repentance section, before its existing teaching box. Phone heights measured 498.8px (375) and 507.4px (390); initial height is 510px with automatic iframe sizing.

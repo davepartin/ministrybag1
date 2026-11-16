@@ -211,8 +211,8 @@
       "stage": "Silver",
       "dave_edits_protected": false,
       "full_personal_review": "unrecorded",
-      "lesson_sha256": "45627c1639722a2828861483f90fbcdcdc98cac45c851c7c0e955233de318c58",
-      "non_visual_content_sha256": "1c2df4626aa21f4f51c7ac8c8ddca5589a412232cc6de282d65e0a9c032f086a",
+      "lesson_sha256": "a6ba61d0296bbaf8189a07907de0b50bfac50473cdbb990aacfc5dbbd9ad6593",
+      "non_visual_content_sha256": "0539a9c815b606eefe8d7407b18af14fd93a17cef57f5ac8f338dfecfe765f92",
       "visual_blocks": [
         {
           "type": "image",
@@ -257,7 +257,11 @@
         "pr": 251,
         "scope": "Widget HTML only, with authorized insertion after current Stop, Turn, Walk setup, 510px initial height. Approved main #249 content/retired answers and art remain unchanged; text stays Silver."
       },
-      "non_visual_source_main": "97bb1208090925ec6226a4474213e3ede9987c68"
+      "non_visual_source_main": "81571c33f6a2cc03a85863c88d13d2debab923c0",
+      "authorized_content_update": {
+        "date": "2026-11-15",
+        "scope": "Dave explicitly requested removing only the interim The 180: Stop, Turn, Walk box after #251. Approved widget bytes/placement, all other wording, active/retired questions, reading and art unchanged. Text stays Silver."
+      }
     }
   ]
 }
