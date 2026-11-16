@@ -1,5 +1,13 @@
 # Resume here
 
+## 101-04 Nicodemus lamp artwork approved: November 16, 2026
+
+Dave approved PR #263 at b52e4f4ab59024193484e23eff0ad99d90904bae: the 1280x720 darker-to-lighter clay oil-lamp pair, four optimized 640/1280 WebP copies, generated image map, and touchNext placement immediately before Questions in the Night. Preserve these approved bytes. Older notes describing 101-04 story art as missing are superseded.
+
+Current main 0b4a799 (#259) is preserved: all prose, Scripture, eight active questions, retired 4-6, John 10-12 and Read, Discover, Respond widget are unchanged. In particular, do not restore the retired share section/question or duplicate Discovery Questions box. All unrelated lessons, index, saved-answer code and existing art stay unchanged. Image approval only; text remains Silver with Dave edits protected. The 101 status and baseline now record the current protected content and exact approved image hashes.
+
+Core QA, asset/image/export/storage/iframe checks and targeted widget/dissolve browser verification are recorded in the integration log. Final exact-head Firebase preview, merge and production deployment evidence are on PR #263. Evidence: [Codex integration log](logs/2026-11-16-ART-101-04-LAMP-codex.md).
+
 ## 202-10 Lord's Supper update approved: November 16, 2026
 
 Dave approved PR #252 at 169a7d54c50689e814ae0ff5455421f6172147bd. SUPPER-202-10 DONE: the approved 1152x864 (4:3) bread-and-cup B&W/color pair and four 640/1152 WebP copies are added as a framed, touchNext dissolve immediately after The Lord's Supper: The Table You Return To. Both source JPGs, delivery copies, lesson placement and generated image map remain byte-identical to the approved PR. The existing opening Last Supper pair is retained.
