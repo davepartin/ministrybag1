@@ -20,7 +20,7 @@ Stages describe the text review, independently of widget and image approval. Gol
 | 101-04 | The Bible | Silver | Yes: Read, Discover, Respond (#229, 21bb29b) | Missing: Nicodemus lamplight planned |
 | 101-05 | The Church | Silver: Dave edits protected | Yes: compact potluck serving buttons (#232, b83efe3) | Approval unrecorded: aspen pair |
 | 101-06 | Sharing Jesus with Others | Silver: earlier Dave edits protected | Yes: BLESS Rhythms (#233, 7949607) | Approval unrecorded: woman-at-well pair |
-| 101-07 | When You Drift | Silver | No iframe widget; Stop, Turn, Tell, Receive awaits review | Yes: four-frame shepherd sequence; B&W frame 4 approved (#248, ae5c9d4) |
+| 101-07 | When You Drift | Silver | Yes: Repentance is 180 Degrees (#251, 53d2d60) | Yes: four-frame shepherd sequence; B&W frame 4 approved (#248, ae5c9d4) |
 
 101-01 remains Silver with Dave edits protected. Dave has now explicitly approved the whole 101-02 lesson, its A-B-C-D widget and its greenhouse image sequence Gold (November14). Preserve the exact recorded text, questions, readings, widget and images; new edits require his specific direction. The record does not treat partial paragraph edits as approval of unseen paragraphs. Existing specific approvals remain in force even on Silver lessons.
 
@@ -63,3 +63,5 @@ November 14: Dave approved PR #232 at b83efe3, including the compact three-colum
 November 14: Dave approved the four-frame 101-07 shepherd story sequence in PR #240 at 419c6a7. Image approval only; text stays Silver and all wording, questions, reading keys and existing tool remain unchanged. Preserve the approved frames, order, stops and placement.
 
 November 15: Dave approved PR #248 at ae5c9d4: retain 101-07 sequence order/stops/placement and frames 1-3, replace only frame 4 and its delivery copies with the approved B&W cloak version. The recorded hash and image approval source now identify that exact replacement. Text stays Silver and unchanged. This supersedes the earlier frame-4 color approval only.
+
+November 15: Dave approved only the 101-07 widget in PR #251 at 53d2d60 and authorized placement. Approved HTML, title registration and standalone test are preserved. The new 510px widget block follows the Acts 3:19 explanation before Confession. No existing prose, Scripture, questions/readings or approved four-frame shepherd art changes. Text stays Silver; PR #249 wording remains unapproved and unmerged. Retain this widget if that wording is approved later.

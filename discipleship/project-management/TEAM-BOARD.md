@@ -1,5 +1,13 @@
 # Growing Together Team Board
 
+## 101-07 approved widget placed: November 15, 2026
+
+Dave approved PR #251 at exact 53d2d60543a471dd98d027f8cc4d52e8322d82ea. WIDGET-101-07-THE-180 DONE: stop-turn-walk.html remains byte-identical, title Repentance is 180 Degrees / 101-07. The iframe registration and approved standalone browser test are unchanged. One widget block is added after Acts 3:19 and its explanation in What Repentance Really Means, before Confession: Keeping the Air Clear. Phone heights measured 498.8px (375) and 507.4px (390); initial height is 510px with automatic iframe sizing.
+
+All existing 101-07 prose, Scripture, questions (including 7-1, 7-3, 7-hand), John 19-21 reading and PR #248 four-frame B&W shepherd art remain untouched. Index, saved-answer code and all unrelated lessons/widgets/art remain unchanged. Text stays Silver; component approval only. PR #249 remains a separate unapproved wording draft and is not integrated here; any later revision must retain this approved widget.
+
+Core QA, export/storage/assets/images/iframe checks pass. Approved standalone browser test: 265 assertions unchanged. Separate embedded check: 204 assertions across 375/390/1280 and reduced motion, stable --card-h, fitting controls, real pointer activation with no scroll jump (within 1px rounding), all answers, edit/reload/revisit/Email. Exact-head Firebase preview and live evidence are recorded on PR #251. Evidence: [Codex integration log](logs/2026-11-15-WIDGET-101-07-THE-180-codex.md).
+
 ## 101-07 Repentance is 180 Degrees widget (REVIEW): November 15, 2026
 
 - **Task / Branch:** `WIDGET-101-07-THE-180` on `gemini/widget-101-07-stop-turn-walk` (stopped at `REVIEW` for Dave's visual approval and Codex placement in `101-07`).
