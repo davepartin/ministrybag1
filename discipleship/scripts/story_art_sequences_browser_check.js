@@ -32,7 +32,7 @@ var LESSONS = [
         ],
         stops: [0, 0.18, 0.34, 0.5],
         samples: [0, 0.09, 0.18, 0.26, 0.34, 0.42, 0.5, 0.55, 0.7],
-        questionIds: ['7-1', '7-3', '7-hand', '7-6', '7-key', '7-step', '7-devos', '7-prayer']
+        questionIds: ['7-1', '7-saved', '7-ask', '7-6', '7-key', '7-step', '7-devos', '7-prayer']
     },
     {
         hash: '#201-5',
