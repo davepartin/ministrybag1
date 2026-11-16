@@ -122,7 +122,7 @@
         }
       ],
       "visual_files_sha256": {
-        "widgets/lords-prayer.html": "973a5c6cb3b5b0d460ae51df4b949e921cb6cc1019428d36718d5c40c33fcfaf",
+        "widgets/lords-prayer.html": "0ec13850a1b8561461ae5b5a1ab0bfc253c5298c0e1dd16c3960ff8b0c06d038",
         "images/101-03-prayer-bw.jpg": "ec3a7f80e3963b758b2300c86b6ad4363bbc8b91fd6ae7bd26953b0bd3e57fe5",
         "images/optimized/101-03-prayer-bw-640.webp": "fce490b8e3faf36b729d62a1d633d8ef335f4e639215514aa865afa6f678ac69",
         "images/optimized/101-03-prayer-bw-1280.webp": "f234ebf9933df332a274d156a2a9b36b33d80ca662a718bc6c9bd1843a3abb09",
@@ -146,7 +146,13 @@
         "pr": 268,
         "approved_commit": "17684f32bb846bda53cc91fd0ffb45ec777bb751"
       },
-      "content_baseline_source": "d523897: current main lesson content and approved widgets preserved; #268 changes images/timing only"
+      "content_baseline_source": "d523897: current main lesson content and approved widgets preserved; #268 changes images/timing only",
+      "widget_hint_update": {
+        "date": "2026-11-16",
+        "source": "23660ca21721469d2aad15d692b69d64a3e97c60",
+        "pr": 270,
+        "scope": "Dave approved the exact hint follow-up: Choose a line to see its step and MATTHEW 6:9-13. Other widget content/behavior and lesson JSON unchanged. Supersedes only the earlier hint styling/copy in #266."
+      }
     },
     {
       "lesson": "101-04",

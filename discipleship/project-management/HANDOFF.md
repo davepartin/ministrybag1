@@ -1,5 +1,17 @@
 # Resume here
 
+## Lord's Prayer hint follow-up: November 16, 2026
+
+WIDGET-101-03-HINT DONE, PR #270. Dave approved 23660ca21721469d2aad15d692b69d64a3e97c60: Choose a line to see its step alongside MATTHEW 6:9-13. The submitted widget bytes are preserved exactly. Current #271 entry-hold timing and both board histories are retained. Only the board append conflicted during the normal merge; no runtime conflict or reversion.
+
+Lesson JSON, other widget copy/behavior, Scripture, questions/IDs, readings, story artwork and saved-answer logic remain unchanged. Text stays Silver. Required QA and all 225 unchanged widget browser checks pass. Baseline hash records the approved hint version. Final preview/live evidence on PR #270; [Codex log](logs/2026-11-16-WIDGET-101-03-HINT-codex.md).
+
+## Entry dissolve B&W hold: November 16, 2026
+
+ART-101-ENTRY-HOLD DONE, PR #271. Dave approved b5aa6f52d8c869610e5c29a40659b754ca8255be. The submitted runtime and image-guide bytes are preserved: entry reveals open fully B&W at scroll zero, hold for the first 20 percent of their travel, and finish fully colored while centered below the fixed header. This applies to the existing 101-03/04/05/06 entry pairs. Reduced motion still shows the static final image; other pairs/sequences retain existing timing.
+
+All lesson JSON, approved images/deliveries, widgets, IDs/readings and saved-answer implementation are unchanged. Foundation QA, export/storage/assets/images/iframe, image-delivery 64, lamp 128 and dedicated hold/reverse/resize 216 checks pass. The hold regression fails on the previous runtime. Preview, merge and live evidence are on PR #271; [Codex log](logs/2026-11-16-ART-101-ENTRY-HOLD-codex.md).
+
 ## Course 101 story art integrated: November 16, 2026
 
 ART-101-03-05-06 DONE, PR #268. Dave asked Codex to merge Gemini's completed art at 17684f32bb846bda53cc91fd0ffb45ec777bb751: the new 101-03 pre-dawn prayer pair before Teach Us to Pray, revised individual roots in 101-05 aspen-bw.png with the existing color layer preserved, and the 101-06 sunlit well/terracotta reveal with its B&W layer preserved. All three use imageDissolveOnEntry so full light appears while the complete image is visible. Approved art/delivery/map bytes are unchanged from Gemini's submission.
