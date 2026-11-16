@@ -1,5 +1,11 @@
 # Resume here
 
+## 202-10 Baptism widget integration: November 15, 2026
+
+Dave explicitly approved only PR #246 at 3c3b32827cc419d856e5407eb928f7356133be22: baptism-picture.html (Baptism / 202-10) and its exact placement after Jesus gave the picture first. The approved widget, 202-10 JSON insertion, iframe helper and submitted browser test remain byte-identical. Main was merged normally, preserving the new lesson navigation and both board/task histories. All other lesson copy, Scripture, question IDs/objects, readings, saved-answer code, images and companion two-ordinances.html are unchanged. The companion remains reserved for the later Lord's Supper widget; this packet does not build or approve it. No whole-lesson Gold approval is inferred.
+
+WIDGET-202-10-BAPTISM DONE. Core QA and 112 unchanged approved browser assertions plus 114 separate direct/embedded integration checks pass. Final exact-head Firebase preview and production verification are recorded on PR #246. Evidence: [Codex integration log](logs/2026-11-15-WIDGET-202-10-BAPTISM-codex.md).
+
 ## Lesson navigation: November 15, 2026
 
 Dave requested that bottom Next always open the destination at the top, including completed/revisited lessons, and that course endings name the next course. NAV-LESSON-TOP DONE: navigation now refreshes the destination layout, focuses its heading with preventScroll, and moves immediately to scrollY 0. Bottom buttons show Next lesson within a course; Go to 201 Growing Deep, Go to 202 Growing Up and Go to 203 Growing Out at boundaries. After 203, Back to courses returns home at the top. Coming Soon courses are excluded from automatic progression; their status/content is unchanged. Cross-course navigation now updates the URL to the actual first lesson.
