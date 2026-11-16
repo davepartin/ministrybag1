@@ -1227,6 +1227,11 @@
             line-height: 1.3;
         }
 
+        /* Focus moves here on lesson change for screen readers; the heading is not a tab stop, so no ring. */
+        .session-title:focus {
+            outline: none;
+        }
+
         .session-title-row {
             display: flex;
             flex-direction: column;
