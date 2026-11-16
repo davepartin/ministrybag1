@@ -92,6 +92,14 @@
       "text": "The Lord's Supper: The Table You Return To"
     },
     {
+      "type": "image",
+      "imageBw": "images/202-10-bread-cup-bw.jpg",
+      "imageColor": "images/202-10-bread-cup-color.jpg",
+      "alt": "A loaf of bread broken in two with crumbs beside a simple first-century cup of wine on a weathered wooden table",
+      "frame": true,
+      "touchNext": true
+    },
+    {
       "type": "text",
       "text": "If baptism is the doorway you walk through once, the Lord's Supper is the table you come back to for the rest of your life. Jesus took the oldest meal in Israel's story and filled it with Himself. The bread is His body given for you. The cup is His blood poured out for you."
     },
@@ -125,11 +133,6 @@
       "id": "202-10-honest",
       "text": "10.3 - What would you need to be honest about before you come to the table next?",
       "height": "tall"
-    },
-    {
-      "type": "widget",
-      "src": "widgets/two-ordinances.html",
-      "height": "640px"
     },
     {
       "type": "heading",

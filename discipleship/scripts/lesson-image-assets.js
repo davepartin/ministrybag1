@@ -510,6 +510,36 @@
             }
         ]
     },
+    "images/202-10-bread-cup-bw.jpg": {
+        "width": 1152,
+        "height": 864,
+        "sourceHash": "3759b180296301eab90b80644a7fed4500507df8f1209c1c8d065f216338fcd7",
+        "variants": [
+            {
+                "src": "images/optimized/202-10-bread-cup-bw-640.webp",
+                "width": 640
+            },
+            {
+                "src": "images/optimized/202-10-bread-cup-bw-1152.webp",
+                "width": 1152
+            }
+        ]
+    },
+    "images/202-10-bread-cup-color.jpg": {
+        "width": 1152,
+        "height": 864,
+        "sourceHash": "11b2e132d4868be972ecfd64272436b33d39ce5a072c4aa9c8917f2b9a656070",
+        "variants": [
+            {
+                "src": "images/optimized/202-10-bread-cup-color-640.webp",
+                "width": 640
+            },
+            {
+                "src": "images/optimized/202-10-bread-cup-color-1152.webp",
+                "width": 1152
+            }
+        ]
+    },
     "images/202-3circles-logo.png": {
         "width": 1216,
         "height": 458,
