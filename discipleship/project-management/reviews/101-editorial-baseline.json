@@ -112,11 +112,18 @@
       "lesson": "101-04",
       "title": "Lesson 4: The Bible",
       "stage": "Silver",
-      "dave_edits_protected": false,
+      "dave_edits_protected": true,
       "full_personal_review": "unrecorded",
-      "lesson_sha256": "91ca5d026dde2111ad57ea690a6669b59c71e0fadedb0968d27b96e1c111ed45",
-      "non_visual_content_sha256": "50cbc1764a0be33d7e5afd9e0ce84ca8196b3ee142a0bb437cc46cc952e47a0e",
+      "lesson_sha256": "bde5cd438731129dfa1d5ad8087975839c8b2933683fa1b69ac22eea57ba928f",
+      "non_visual_content_sha256": "68614506e139cf948586c6b9a6ea0b54e1b7504f52502974486cb1defbd550de",
       "visual_blocks": [
+        {
+          "type": "image",
+          "imageBw": "images/101-04-nicodemus-bw.jpg",
+          "imageColor": "images/101-04-nicodemus-color.jpg",
+          "alt": "Nicodemus holding an open scroll as he talks with Jesus at night beside a small clay oil lamp",
+          "touchNext": true
+        },
         {
           "type": "widget",
           "src": "widgets/read-discover-respond.html",
@@ -125,14 +132,29 @@
         }
       ],
       "visual_files_sha256": {
-        "widgets/read-discover-respond.html": "aee1600d110d3feb0c321563c729eb5ce6129924f6770d1cd838e593a9e16883"
+        "widgets/read-discover-respond.html": "aee1600d110d3feb0c321563c729eb5ce6129924f6770d1cd838e593a9e16883",
+        "images/101-04-nicodemus-bw.jpg": "db1da44fe0ce741d5af078846ec7d0169e91b89decc8d51bab504a35a5f25a50",
+        "images/optimized/101-04-nicodemus-bw-640.webp": "918b3fb87ee63c6981de7bd56782301d0dca0685c880fba557522bbb324b4b31",
+        "images/optimized/101-04-nicodemus-bw-1280.webp": "b1b3dd107d15eced3626d3b1e1c95a10c077a7c215d59635a12bd80eea4de6df",
+        "images/101-04-nicodemus-color.jpg": "c08c7f12da47ee3bdbae44e7067473a9ca56e6cb744ca0e821402a17b4c2df14",
+        "images/optimized/101-04-nicodemus-color-640.webp": "f37266294ba799910bca276a56ce41120b533c146cd15a86d80407ecac5c92d4",
+        "images/optimized/101-04-nicodemus-color-1280.webp": "ac5cfa87643f0a53b3427c635529c0532762dfe0a784d988bb3a56f0473c15d0"
       },
       "component_approval": {
         "date": "2026-11-14",
         "source": "21bb29b59c48ec64d870465f9cf2fa30b31f0f28",
         "pr": 229,
         "widget": "Approved: Read, Discover, Respond",
-        "scope": "Widget only, exact HTML bytes and placement. Whole lesson remains Silver; no story image approval."
+        "scope": "Widget only, exact HTML bytes. Whole lesson remains Silver; separate image approval is recorded in image_approval."
+      },
+      "recorded_date": "2026-11-16",
+      "content_baseline_source": "0b4a7996b44940e5fbd6040150d6834bd2b1e35c: current Dave-approved #259 simplification, unchanged except the approved image block",
+      "image_approval": {
+        "date": "2026-11-16",
+        "source": "b52e4f4ab59024193484e23eff0ad99d90904bae",
+        "pr": 263,
+        "image": "Approved: Nicodemus darker-to-lighter clay oil-lamp dissolve",
+        "scope": "Exact two JPGs, four WebP copies, image block and placement before Questions in the Night. No whole-lesson Gold or new wording approval."
       }
     },
     {

@@ -17,7 +17,7 @@ Stages describe the text review, independently of widget and image approval. Gol
 | 101-01 | Welcome. Let's Start Growing. | Silver: Dave-edited, protected | Gold: Peaks and Valleys V2 | Gold: course logo |
 | 101-02 | Salvation and Baptism | Gold: whole lesson approved and protected | Gold: A-B-C-D road to cross | Gold: greenhouse sequence |
 | 101-03 | Prayer | Silver | No iframe widget; prayer exercise awaits review | Missing |
-| 101-04 | The Bible | Silver | Yes: Read, Discover, Respond (#229, 21bb29b) | Missing: Nicodemus lamplight planned |
+| 101-04 | The Bible | Silver: Dave edits protected | Yes: Read, Discover, Respond (#229, 21bb29b) | Yes: Nicodemus oil-lamp dissolve (#263, b52e4f4) |
 | 101-05 | The Church | Silver: Dave edits protected | Yes: compact potluck serving buttons (#232, b83efe3) | Approval unrecorded: aspen pair |
 | 101-06 | Sharing Jesus with Others | Silver: earlier Dave edits protected | Yes: BLESS Rhythms (#233, 7949607) | Approval unrecorded: woman-at-well pair |
 | 101-07 | When You Drift | Silver | Yes: Repentance is 180 Degrees (#251, 53d2d60) | Yes: four-frame shepherd sequence; B&W frame 4 approved (#248, ae5c9d4) |
@@ -42,7 +42,7 @@ These instructions implement Dave's direct request in chat on November 13. They 
 - 101-02: Dave's direct A-B-C-D design direction, description of the completed widget as "amazing," and instruction to publish; integrated through #206. His exact baptism Review wording and accepted Scripture cuts are recorded in #209 and #212. Current widget remains `widgets/romans-road3.html`.
 - 101-06: six wording edits from Dave followed by "merge it" recorded in DAVE.md, REWORK-101-06 / #142. This is evidence of protected specific edits, not automatic final approval of every component.
 - Component fingerprints: [101-editorial-baseline.json](101-editorial-baseline.json). These are a reference snapshot, not an automated CI lock or a new approval.
-- Next suggested conversation: **101-03 Prayer**. Its Father-centered story and practical prayer exercise are present; its opening artwork is missing. Read it with Dave before proposing prose changes. Then consider 101-04's missing Nicodemus lamp art. The 101-07 shepherd sequence is now approved in PR #240 and must be preserved. Do not generate or replace art under this documentation task.
+- Next suggested conversation: **101-03 Prayer**. Its Father-centered story and practical prayer exercise are present; its opening artwork is missing. Read it with Dave before proposing prose changes. 101-04 now has the approved Nicodemus oil-lamp pair (#263); preserve it. The 101-07 shepherd sequence is now approved in PR #240 and must be preserved. Do not generate or replace art under this documentation task.
 
 One specific consistency suggestion, not implemented: 101-02 still introduces "three letters, the ABCs of salvation" and says "Each stop is one verse from Romans," while the approved widget now includes D for discipleship. Propose a short bridge that preserves A-B-C as the salvation response and introduces D as following Jesus afterward. Ask Dave to approve the wording; do not silently reopen his edited lesson.
 
@@ -77,3 +77,5 @@ November 16: Dave's nine exact 101-07 wording edits applied word for word after 
 November 16: Dave's exact 101-03 edits (summary and phrase "Prayer is talking with a Father who loves to listen", recap, Teach Us to Pray with his theology correction, Lord's Prayer label, 3.3 and 3.4 wording) merged in PR #258. Protect them. Stage stays Silver.
 
 November 16: Dave approved the simpler 101-04 (PR #259): the approved Read, Discover, Respond widget now teaches the Three Discovery Questions alone; the duplicate box and paragraphs, the A Tool You Can Share section and 4.5 (4-6, retired) are removed. Dave's standing rule: 101 lessons do not need teach-it questions.
+
+November 16: Dave explicitly approved PR #263 at b52e4f4ab59024193484e23eff0ad99d90904bae, the 1280x720 darker-to-lighter clay oil-lamp dissolve, its four delivery copies and placement directly before Questions in the Night. Image approval only. Current #259 simplification, all eight active questions, retired 4-6, Scripture, John 10-12 and the approved Read, Discover, Respond widget remain unchanged. Fingerprints now capture this current protected version and the approved image files. Text stays Silver; older missing-art notes are superseded.
