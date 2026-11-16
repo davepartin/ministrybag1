@@ -199,10 +199,21 @@ function ck(label, cond) {
 
         const waitStep = c.motion === 'reduce' ? 60 : 880;
 
-        // Single path without dotted road lines
+        // Single path without dotted lines, simple background without Jesus figure/stars/sun/grass/trees, LIGHT label
         ck(
           tag + ' single continuous path has no dotted lines',
           await page.locator('#single-path').evaluate(el => !el.outerHTML.includes('stroke-dasharray'))
+        );
+        ck(
+          tag + ' simplified B&W scene omits Jesus figure, stars, sun, grass, trees',
+          (await page.locator('#jesus-companion, #night-stars, #dark-silhouette, #refreshing-sprouts, #sun-beams').count()) === 0
+        );
+        ck(
+          tag + ' labels DARKNESS and LIGHT only',
+          await page.evaluate(() => {
+            const labels = [...document.querySelectorAll('#turn-svg text')].map(n => n.textContent.trim());
+            return labels.includes('DARKNESS') && labels.includes('LIGHT') && !labels.includes("GOD'S LIGHT");
+          })
         );
 
         // Keyboard Enter on Begin -> Step 1 Stop
@@ -227,8 +238,11 @@ function ck(label, cond) {
         await page.waitForTimeout(waitStep);
         await checkStep(EXPECTED[3], '3-walk');
         ck(
-          tag + ' step 3 Jesus companion visible',
-          await page.locator('#jesus-companion').evaluate(el => el.classList.contains('is-on'))
+          tag + ' step 3 traveler walks forward toward Light',
+          await page.locator('#traveler').evaluate(el => {
+            const m = el.getAttribute('transform').match(/translate\(([\d.]+)/);
+            return m && parseFloat(m[1]) >= 200;
+          })
         );
         await snap('3-walk');
 
