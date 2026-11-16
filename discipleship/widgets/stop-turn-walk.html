@@ -1,0 +1,846 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The 180</title>
+<style>
+:root {
+  --ink: #2C2416;
+  --muted: #6E6559;
+  --tray: #F6F4EE;
+  --border: #EBE5D9;
+  --rust: #9B3B2A;
+  --rust-dark: #7A2B1D;
+  --rust-soft: #F9E5E1;
+  --gold: #A8760A;
+  --gold-dark: #7D5604;
+  --gold-soft: #FCF2D6;
+  --sage: #1F684A;
+  --sage-dark: #164E37;
+  --sage-soft: #E1F1E9;
+  --step-color: #2C2416;
+  --step-dark: #2C2416;
+  --card-h: 144px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: Georgia, Cambria, serif;
+  background: #F8F6F1;
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+.widget-outer {
+  background: #FFFFFF;
+  border-radius: 0;
+  overflow: hidden;
+  box-shadow: none;
+  border: none;
+  max-width: 100%;
+  width: 100%;
+  margin: 0;
+  position: relative;
+}
+
+@media (min-width: 560px) {
+  body {
+    padding: 16px;
+    background: #F8F6F1;
+  }
+  .widget-outer {
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(44, 36, 22, 0.08);
+    border: 1px solid var(--border);
+    max-width: 460px;
+    margin: 0 auto;
+  }
+}
+
+.title-bar {
+  background: #2C2416;
+  padding: 8px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.title-bar h1 {
+  font: 600 17px/1.15 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #FAF8F3;
+  letter-spacing: 0.2px;
+  margin: 0;
+  text-align: left;
+}
+
+.course-tag {
+  font: 600 11px/1 system-ui, -apple-system, sans-serif;
+  letter-spacing: 0.9px;
+  text-transform: uppercase;
+  color: #E5DEC9;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.stage {
+  background: #FFFFFF;
+  padding: 6px 6px 2px;
+  border-bottom: 1px solid var(--border);
+}
+
+svg#turn-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.svg-sans {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.svg-serif {
+  font-family: Georgia, Cambria, serif;
+}
+
+.fade-part {
+  opacity: 0;
+}
+
+.fade-part.is-on {
+  opacity: 1;
+}
+
+.fade-part.is-ghost {
+  opacity: 0.16;
+}
+
+.idol-cluster {
+  opacity: 0.42;
+}
+
+.idol-cluster.is-faded {
+  opacity: 0.13;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .widget-outer:not(.is-instant) .fade-part,
+  .widget-outer:not(.is-instant) .idol-cluster {
+    transition: opacity 0.42s ease var(--fade-delay, 0ms);
+  }
+  .widget-outer .step-dot-fill {
+    transition: background-color 0.22s ease, border-color 0.22s ease, transform 0.22s ease;
+  }
+  .widget-outer .nav-btn.primary,
+  .widget-outer .verse-card-bar,
+  .widget-outer .verse-card-title {
+    transition: background-color 0.24s ease, border-color 0.24s ease, color 0.24s ease;
+  }
+}
+
+.step-strip {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px 5px;
+  background: var(--tray);
+  border-bottom: 1px solid var(--border);
+}
+
+.step-dot {
+  appearance: none;
+  min-width: 28px;
+  min-height: 28px;
+  padding: 4px;
+  border: none;
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 50%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.step-dot-fill {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 2.4px solid var(--dot-color, var(--ink));
+  background: #FFFFFF;
+  display: block;
+}
+
+.step-dot.passed .step-dot-fill {
+  background: color-mix(in srgb, var(--dot-color, var(--ink)) 22%, #FFFFFF);
+}
+
+.step-dot.active .step-dot-fill {
+  background: var(--dot-color, var(--ink));
+  transform: scale(1.14);
+}
+
+#card-area {
+  background: var(--tray);
+  padding: 7px 12px 10px;
+}
+
+.verse-card {
+  background: #FFFFFF;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: 0 2px 10px rgba(44, 36, 22, 0.05);
+}
+
+.verse-card-bar {
+  height: 4px;
+  background: var(--step-color);
+}
+
+.verse-card-content {
+  padding: 10px 13px;
+  min-height: var(--card-h, 144px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  --accent-color: var(--step-dark);
+}
+
+.verse-card-title {
+  font: 700 15.5px/1.2 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--step-dark);
+  margin: 0 0 5px;
+}
+
+.verse-card-quote {
+  font: 400 13.5px/1.38 Georgia, Cambria, serif;
+  color: #3D3426;
+  margin: 0 0 6px;
+}
+
+.verse-card-text {
+  font: 500 13px/1.38 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--ink);
+  margin: 0;
+}
+
+.verse-card-text.is-start {
+  font: 400 13.5px/1.44 Georgia, Cambria, serif;
+  color: #3D3426;
+}
+
+.nav-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-top: 7px;
+}
+
+.nav-btn {
+  appearance: none;
+  min-height: 44px;
+  min-width: 96px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1.5px solid #D4CFC4;
+  background: #FFFFFF;
+  color: var(--ink);
+  font: 700 13.5px/1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  white-space: nowrap;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.nav-btn.primary {
+  background: var(--step-color);
+  border-color: var(--step-color);
+  color: #FFFFFF;
+}
+
+.nav-btn.single-begin {
+  margin-left: auto;
+}
+
+.step-count {
+  font: 600 12px/1.2 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--muted);
+  text-align: center;
+  white-space: nowrap;
+}
+
+button:focus-visible {
+  outline: 3px solid #E0A526;
+  outline-offset: 2px;
+}
+
+@media (max-width: 395px) {
+  #card-area {
+    padding: 6px 10px 8px;
+  }
+  .verse-card-content {
+    padding: 9px 11px;
+  }
+  .verse-card-title {
+    font-size: 15px;
+  }
+  .verse-card-quote {
+    font-size: 13px;
+  }
+  .verse-card-text {
+    font-size: 12.5px;
+  }
+  .verse-card-text.is-start {
+    font-size: 13px;
+  }
+  .nav-btn {
+    min-width: 88px;
+    padding: 10px 12px;
+  }
+}
+
+#measure {
+  position: fixed;
+  left: -9999px;
+  top: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+</style>
+</head>
+<body>
+<main class="widget-outer" id="widget" role="region" aria-label="The 180 interactive visual">
+  <div class="title-bar">
+    <h1>The 180</h1>
+    <span class="course-tag">101-07</span>
+  </div>
+
+  <div class="stage">
+    <svg id="turn-svg" viewBox="0 0 380 218" width="100%" role="img" aria-label="The 180" aria-describedby="stw-desc">
+      <defs>
+        <radialGradient id="godGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#FFE694" stop-opacity="0.72"/>
+          <stop offset="48%" stop-color="#FCF2D6" stop-opacity="0.48"/>
+          <stop offset="100%" stop-color="#FCF2D6" stop-opacity="0"/>
+        </radialGradient>
+        <linearGradient id="walkLaneGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#E1F1E9"/>
+          <stop offset="65%" stop-color="#E6F4EC"/>
+          <stop offset="100%" stop-color="#FCF2D6"/>
+        </linearGradient>
+        <clipPath id="stageClip">
+          <rect x="6" y="4" width="368" height="210" rx="10"/>
+        </clipPath>
+      </defs>
+
+      <g clip-path="url(#stageClip)">
+        <!-- Calm paper backing -->
+        <rect x="6" y="4" width="368" height="210" rx="10" fill="#FDFCF9" stroke="#EBE5D9" stroke-width="1"/>
+
+        <!-- Persistent Warm Presence of God on the right -->
+        <g id="god-presence">
+          <circle cx="328" cy="116" r="76" fill="url(#godGlow)"/>
+          <!-- Subtle radiant sun-lines inside presence -->
+          <g stroke="#C48F10" stroke-width="1.3" stroke-linecap="round" opacity="0.45">
+            <line x1="328" y1="62" x2="328" y2="54"/>
+            <line x1="302" y1="71" x2="296" y2="65"/>
+            <line x1="354" y1="71" x2="360" y2="65"/>
+            <line x1="291" y1="96" x2="283" y2="93"/>
+            <line x1="365" y1="96" x2="372" y2="93"/>
+          </g>
+          <!-- Clean Studio Wash Cross Anchor -->
+          <g transform="translate(328, 108)">
+            <rect x="-3.5" y="-26" width="7" height="52" rx="2.5" fill="#FDF8EA" stroke="#A8760A" stroke-width="1.6"/>
+            <rect x="-18" y="-12" width="36" height="6.5" rx="2.5" fill="#FDF8EA" stroke="#A8760A" stroke-width="1.6"/>
+            <rect x="-2.2" y="-24" width="4.4" height="48" rx="1.5" fill="#E8C76B" opacity="0.55"/>
+            <rect x="-16" y="-10.8" width="32" height="4.1" rx="1.5" fill="#E8C76B" opacity="0.55"/>
+          </g>
+          <text x="328" y="150" text-anchor="middle" class="svg-sans" font-size="10.5" font-weight="700" letter-spacing="0.9" fill="#7D5604">GOD</text>
+        </g>
+
+        <!-- Muted Idols / Distractions Cluster on far left -->
+        <g id="idol-cluster" class="idol-cluster">
+          <rect x="20" y="102" width="12" height="28" rx="2" fill="#D9D3C7" stroke="#6E6559" stroke-width="1.2"/>
+          <polygon points="36,130 43,108 50,130" fill="#D9D3C7" stroke="#6E6559" stroke-width="1.2" stroke-linejoin="round"/>
+          <circle cx="26" cy="96" r="5" fill="#E5DFD3" stroke="#6E6559" stroke-width="1.2"/>
+          <text x="35" y="144" text-anchor="middle" class="svg-sans" font-size="9.5" font-weight="700" letter-spacing="0.6" fill="#6E6559">IDOLS</text>
+        </g>
+
+        <!-- Faint Ghost 180 Hairpin Guide (keeps the full loop quietly in view) -->
+        <g id="ghost-loop" fill="none" stroke="#DDD6C8" stroke-linecap="round" stroke-linejoin="round" opacity="0.5">
+          <path d="M 272 64 L 128 64" stroke-width="16" opacity="0.28"/>
+          <path d="M 128 64 A 48 48 0 0 0 128 160" stroke-width="16" opacity="0.24"/>
+          <path d="M 128 160 L 284 160" stroke-width="16" opacity="0.28"/>
+          <path d="M 272 64 L 128 64 A 48 48 0 0 0 128 160 L 284 160" stroke="#CFC7B8" stroke-width="1.4" stroke-dasharray="4 4"/>
+        </g>
+
+        <!-- TOP DRIFT LANE (Walking Left / Wrong Way) -->
+        <g id="drift-lane" class="fade-part">
+          <path d="M 272 52 L 128 52 A 6 6 0 0 0 122 58 L 122 70 A 6 6 0 0 0 128 76 L 272 76 A 6 6 0 0 0 278 70 L 278 58 A 6 6 0 0 0 272 52 Z"
+                fill="#F9E5E1" fill-opacity="0.72" stroke="#9B3B2A" stroke-width="1.4"/>
+          <!-- Soft leftward drift chevron watermarks -->
+          <g fill="none" stroke="#9B3B2A" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="172,59 165,64 172,69" stroke-width="2.4" opacity="0.52"/>
+            <polyline points="180,59 173,64 180,69" stroke-width="2" opacity="0.26"/>
+            <polyline points="244,59 237,64 244,69" stroke-width="2.4" opacity="0.44"/>
+            <polyline points="252,59 245,64 252,69" stroke-width="2" opacity="0.22"/>
+          </g>
+          <text id="lbl-wrong-way" x="202" y="88" text-anchor="middle" class="svg-sans" font-size="10" font-weight="700" letter-spacing="0.6" fill="#7A2B1D">WRONG WAY</text>
+        </g>
+
+        <!-- Step 1 STOP Barrier Marker -->
+        <g id="stop-marker" class="fade-part">
+          <line x1="126" y1="36" x2="126" y2="83" stroke="#9B3B2A" stroke-width="3.2" stroke-linecap="round"/>
+          <rect x="84" y="12" width="52" height="22" rx="11" fill="#F9E5E1" stroke="#9B3B2A" stroke-width="1.6"/>
+          <text x="110" y="27" text-anchor="middle" class="svg-sans" font-size="11" font-weight="800" letter-spacing="0.8" fill="#7A2B1D">STOP</text>
+        </g>
+
+        <!-- 180 DEGREE TURN RIBBON (Left Semicircle Arc: top 64 down to bottom 160) -->
+        <g id="turn-arc-group" class="fade-part">
+          <!-- Outer & inner hairpin ribbon wash -->
+          <path d="M 128 52 A 60 60 0 0 0 128 172 L 128 148 A 36 36 0 0 1 128 76 Z"
+                fill="#FCF2D6" fill-opacity="0.85" stroke="#A8760A" stroke-width="1.5" stroke-linejoin="round"/>
+          <!-- Double chevrons guiding counterclockwise 180 turn -->
+          <g fill="none" stroke="#A8760A" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="75,112 80,120 85,112" stroke-width="2.6" opacity="0.62"/>
+            <polyline points="75,103 80,111 85,103" stroke-width="2" opacity="0.28"/>
+          </g>
+        </g>
+
+        <!-- Center animated stroke highlight for Step 2 -->
+        <path id="turn-stroke" d="M 128 64 A 48 48 0 0 0 128 160"
+              fill="none" stroke="#C48F10" stroke-width="3.2" stroke-linecap="round" opacity="0"/>
+
+        <!-- Step 2 180° Badge in center pocket -->
+        <g id="turn-badge" class="fade-part">
+          <rect x="112" y="95" width="76" height="24" rx="12" fill="#FCF2D6" stroke="#A8760A" stroke-width="1.6"/>
+          <text x="150" y="111" text-anchor="middle" class="svg-sans" font-size="11.5" font-weight="800" letter-spacing="0.6" fill="#7D5604">180° TURN</text>
+        </g>
+
+        <!-- BOTTOM RETURN LANE (Walking Right / New Direction toward Jesus & God) -->
+        <g id="walk-lane" class="fade-part">
+          <path d="M 128 148 L 278 148 A 6 6 0 0 1 284 154 L 284 166 A 6 6 0 0 1 278 172 L 128 172 A 6 6 0 0 1 122 166 L 122 154 A 6 6 0 0 1 128 148 Z"
+                fill="url(#walkLaneGrad)" fill-opacity="0.92" stroke="#1F684A" stroke-width="1.5"/>
+          <!-- Rightward chevrons toward God's Presence -->
+          <g fill="none" stroke="#1F684A" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="154,155 161,160 154,165" stroke-width="2.4" opacity="0.55"/>
+            <polyline points="146,155 153,160 146,165" stroke-width="2" opacity="0.26"/>
+            <polyline points="266,155 273,160 266,165" stroke-width="2.4" opacity="0.55"/>
+            <polyline points="258,155 265,160 258,165" stroke-width="2" opacity="0.26"/>
+          </g>
+          <!-- Gentle times-of-refreshing breeze arcs above return road -->
+          <g fill="none" stroke="#2E7D5B" stroke-width="1.5" stroke-linecap="round" opacity="0.55">
+            <path d="M 152 138 Q 168 132 184 138"/>
+            <path d="M 162 131 Q 176 126 190 131" opacity="0.6"/>
+          </g>
+          <text x="203" y="191" text-anchor="middle" class="svg-sans" font-size="10.5" font-weight="700" letter-spacing="0.6" fill="#164E37">NEW DIRECTION</text>
+        </g>
+
+        <!-- Start ghost cue arrow hints -->
+        <g id="start-cue" class="fade-part">
+          <text x="202" y="88" text-anchor="middle" class="svg-sans" font-size="10" font-weight="600" letter-spacing="0.5" fill="#6E6559">DRIFTING AWAY</text>
+          <rect x="116" y="95" width="68" height="24" rx="12" fill="#F6F4EE" stroke="#C9C0B1" stroke-width="1.2"/>
+          <text x="150" y="111" text-anchor="middle" class="svg-sans" font-size="11" font-weight="700" letter-spacing="0.5" fill="#6E6559">180°</text>
+        </g>
+
+        <!-- Jesus Companion Figure (appears on Step 3 Walk alongside traveler) -->
+        <g id="jesus-companion" class="fade-part" transform="translate(254, 162)">
+          <!-- Soft golden aura -->
+          <circle cx="0" cy="-22" r="19" fill="#FCF2D6" opacity="0.65"/>
+          <!-- Head + warm halo -->
+          <circle cx="0" cy="-35" r="7.5" fill="none" stroke="#C48F10" stroke-width="1.2" opacity="0.72"/>
+          <circle cx="0" cy="-35" r="4.8" fill="#FAF8F3" stroke="#7D5604" stroke-width="1.5"/>
+          <!-- Flowing clean robe silhouette facing slightly toward companion / forward -->
+          <path d="M -5.5 -27 L 5.5 -27 L 8.5 -3 L -8.5 -3 Z" fill="#FAF8F3" stroke="#7D5604" stroke-width="1.5" stroke-linejoin="round"/>
+          <!-- Welcoming arm reaching gently toward traveler / forward -->
+          <path d="M -4 -23 L -11 -18" stroke="#7D5604" stroke-width="2" stroke-linecap="round"/>
+          <path d="M 4 -23 L 11 -18" stroke="#7D5604" stroke-width="2" stroke-linecap="round"/>
+          <text x="0" y="-47" text-anchor="middle" class="svg-sans" font-size="9.5" font-weight="700" letter-spacing="0.5" fill="#7D5604">WITH JESUS</text>
+        </g>
+
+        <!-- Traveler Stick Figure (single continuous identity, rotates cleanly via scaleX) -->
+        <g id="traveler" transform="translate(206, 66) scale(-1, 1)">
+          <!-- Head -->
+          <circle cx="0" cy="-32" r="5" fill="#1C1915"/>
+          <!-- Neck & torso -->
+          <line x1="0" y1="-27.5" x2="0" y2="-11" stroke="#1C1915" stroke-width="3.2" stroke-linecap="round"/>
+          <!-- Forward arm -->
+          <path id="t-arm-f" d="M 0 -22 L 8 -16 L 13 -18" fill="none" stroke="#1C1915" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- Back arm -->
+          <path id="t-arm-b" d="M 0 -22 L -7 -15" fill="none" stroke="#1C1915" stroke-width="2.4" stroke-linecap="round"/>
+          <!-- Stride legs -->
+          <path id="t-leg-f" d="M 0 -11 L 6 -2" fill="none" stroke="#1C1915" stroke-width="2.9" stroke-linecap="round"/>
+          <path id="t-leg-b" d="M 0 -11 L -6 -2" fill="none" stroke="#1C1915" stroke-width="2.7" stroke-linecap="round"/>
+        </g>
+      </g>
+    </svg>
+    <p id="stw-desc" class="sr-only">Visual showing a 180-degree turn from walking away from God on the upper path back toward God on the lower path.</p>
+  </div>
+
+  <div class="step-strip" id="step-strip" role="group" aria-label="Steps"></div>
+  <div id="card-area"></div>
+  <div id="status" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+</main>
+
+<script>
+(function () {
+  var el = function (id) { return document.getElementById(id); };
+  var outer = el('widget');
+  var reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var animRaf = null;
+  var step = -1;
+  var pendingFocus = null;
+
+  var INTRO = {
+    cardTitle: 'Which Way Are You Facing?',
+    verse: '',
+    text: 'Every follower of Jesus drifts sometimes. Repentance is a 180-degree turn back to Him.',
+    color: '#2C2416',
+    dark: '#2C2416',
+    dotLabel: 'Start: Which Way Are You Facing?',
+    desc: 'A traveler stands on the upper path facing away from God, while the dotted 180-degree return path leads back to God.'
+  };
+
+  var stops = [
+    {
+      cardTitle: 'Stop',
+      verse: '"If we confess our sins, he is faithful and just to forgive us our sins and to cleanse us from all unrighteousness." (1 John 1:9)',
+      text: 'Be honest with God that you are headed the wrong way. Name your sin without excuses.',
+      color: '#9B3B2A',
+      dark: '#7A2B1D',
+      dotLabel: 'Step 1: Stop',
+      desc: 'Step 1, Stop: The upper path highlights Wrong Way ending at a firm red Stop marker as the traveler halts before turning.'
+    },
+    {
+      cardTitle: 'Turn',
+      verse: '"you turned to God from idols to serve the living and true God" (1 Thessalonians 1:9)',
+      text: 'Turn all the way around, away from your sin and back to Jesus.',
+      color: '#A8760A',
+      dark: '#7D5604',
+      dotLabel: 'Step 2: Turn',
+      desc: 'Step 2, Turn: A golden 180-degree curve turns the traveler all the way around from idols to face God and Jesus.'
+    },
+    {
+      cardTitle: 'Walk',
+      verse: '"Repent therefore, and turn back, that your sins may be blotted out, that times of refreshing may come from the presence of the Lord" (Acts 3:19)',
+      text: 'Walk forward forgiven, with Jesus, in the new direction. You can make this turn on any day.',
+      color: '#1F684A',
+      dark: '#164E37',
+      dotLabel: 'Step 3: Walk',
+      desc: 'Step 3, Walk: The green New Direction lane illuminates as the traveler walks forward beside Jesus toward God.'
+    }
+  ];
+
+  var turnStroke = el('turn-stroke');
+  var LEN_TURN = turnStroke.getTotalLength();
+  turnStroke.style.strokeDasharray = LEN_TURN;
+  turnStroke.style.strokeDashoffset = LEN_TURN;
+
+  var traveler = el('traveler');
+
+  function setFade(id, mode, delayMs) {
+    var node = el(id);
+    if (!node) return;
+    node.classList.remove('is-on', 'is-ghost');
+    if (mode === 'on') node.classList.add('is-on');
+    else if (mode === 'ghost') node.classList.add('is-ghost');
+    node.style.setProperty('--fade-delay', (delayMs || 0) + 'ms');
+  }
+
+  function stopAnim() {
+    if (animRaf) {
+      cancelAnimationFrame(animRaf);
+      animRaf = null;
+    }
+  }
+
+  function setTravelerPos(x, y, dirSign) {
+    traveler.setAttribute('transform', 'translate(' + x.toFixed(1) + ', ' + y.toFixed(1) + ') scale(' + dirSign + ', 1)');
+  }
+
+  function runTween(duration, onTick, onDone) {
+    stopAnim();
+    var start = performance.now();
+    function frame(now) {
+      var raw = Math.min((now - start) / duration, 1);
+      var eased = raw < 0.5 ? 2 * raw * raw : 1 - Math.pow(-2 * raw + 2, 2) / 2;
+      onTick(eased, raw);
+      if (raw < 1) {
+        animRaf = requestAnimationFrame(frame);
+      } else {
+        animRaf = null;
+        if (onDone) onDone();
+      }
+    }
+    animRaf = requestAnimationFrame(frame);
+  }
+
+  function paintVisual(targetStep, instant, prevStep) {
+    var isInst = instant || reducedMotion;
+    outer.classList.toggle('is-instant', isInst);
+    stopAnim();
+
+    var isStart = targetStep === -1;
+    var isStop = targetStep === 0;
+    var isTurn = targetStep === 1;
+    var isWalk = targetStep === 2;
+
+    // Far-left idols cluster stays active on Start & Stop, fades gently on Turn & Walk
+    el('idol-cluster').classList.toggle('is-faded', isTurn || isWalk);
+
+    setFade('start-cue', isStart ? 'on' : 'off', 0);
+    setFade('drift-lane', isStop ? 'on' : (isTurn || isWalk ? 'ghost' : 'off'), 0);
+    setFade('stop-marker', isStop ? 'on' : (isTurn || isWalk ? 'ghost' : 'off'), isStop && !isInst ? 120 : 0);
+
+    setFade('turn-arc-group', isTurn ? 'on' : (isWalk ? 'ghost' : 'off'), 0);
+    setFade('turn-badge', isTurn ? 'on' : (isWalk ? 'ghost' : 'off'), isTurn && !isInst ? 220 : 0);
+
+    setFade('walk-lane', isWalk ? 'on' : 'off', 0);
+    setFade('jesus-companion', isWalk ? 'on' : 'off', isWalk && !isInst ? 140 : 0);
+
+    turnStroke.setAttribute('opacity', isTurn ? '1' : '0');
+    turnStroke.style.strokeDashoffset = isTurn ? 0 : LEN_TURN;
+
+    // Traveler placement + calm transition on forward steps
+    if (isStart) {
+      setTravelerPos(206, 66, -1);
+    } else if (isStop) {
+      if (!isInst && prevStep === -1) {
+        setTravelerPos(206, 66, -1);
+        runTween(620, function (k) {
+          setTravelerPos(206 + (152 - 206) * k, 66, -1);
+        });
+      } else {
+        setTravelerPos(152, 66, -1);
+      }
+    } else if (isTurn) {
+      if (!isInst) {
+        turnStroke.style.strokeDashoffset = LEN_TURN;
+        runTween(760, function (k, raw) {
+          turnStroke.style.strokeDashoffset = (LEN_TURN * (1 - k)).toFixed(1);
+          // Sweep traveler cleanly along the semicircle arc from top (128, 66) to bottom (140, 162)
+          var theta = -Math.PI / 2 - Math.PI * k;
+          var cx = 128;
+          var cy = 114;
+          var rx = 48;
+          var ry = 48;
+          var px = cx + rx * Math.cos(theta);
+          var py = cy + ry * Math.sin(theta);
+          var dir = raw < 0.5 ? -1 : 1;
+          if (k > 0.96) px = 128 + (140 - 128) * ((k - 0.96) / 0.04);
+          setTravelerPos(px, py, dir);
+        }, function () {
+          turnStroke.style.strokeDashoffset = 0;
+          setTravelerPos(140, 162, 1);
+        });
+      } else {
+        setTravelerPos(140, 162, 1);
+      }
+    } else if (isWalk) {
+      if (!isInst && prevStep === 1) {
+        setTravelerPos(140, 162, 1);
+        runTween(680, function (k) {
+          setTravelerPos(140 + (218 - 140) * k, 162, 1);
+        });
+      } else {
+        setTravelerPos(218, 162, 1);
+      }
+    }
+
+    var stateObj = isStart ? INTRO : stops[targetStep];
+    el('stw-desc').textContent = stateObj.desc;
+  }
+
+  function makeCard(spec) {
+    var vc = document.createElement('div');
+    vc.className = 'verse-card';
+    var bar = document.createElement('div');
+    bar.className = 'verse-card-bar';
+    bar.style.background = spec.color;
+    vc.appendChild(bar);
+
+    var content = document.createElement('div');
+    content.className = 'verse-card-content';
+    content.style.setProperty('--accent-color', spec.dark || spec.color);
+
+    var title = document.createElement('h2');
+    title.className = 'verse-card-title';
+    title.style.color = spec.dark || spec.color;
+    title.textContent = spec.cardTitle;
+    content.appendChild(title);
+
+    if (spec.verse) {
+      var quote = document.createElement('p');
+      quote.className = 'verse-card-quote';
+      quote.textContent = spec.verse;
+      content.appendChild(quote);
+    }
+
+    var text = document.createElement('p');
+    text.className = spec.verse ? 'verse-card-text' : 'verse-card-text is-start';
+    text.textContent = spec.text;
+    content.appendChild(text);
+
+    vc.appendChild(content);
+    return vc;
+  }
+
+  function fitCards() {
+    var area = el('card-area');
+    var cs = getComputedStyle(area);
+    var innerW = area.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+    var m = document.createElement('div');
+    m.id = 'measure';
+    m.style.width = Math.max(innerW, 240) + 'px';
+    document.documentElement.style.setProperty('--card-h', '0px');
+    var max = 0;
+    [INTRO].concat(stops).forEach(function (spec) {
+      m.appendChild(makeCard(spec));
+    });
+    document.body.appendChild(m);
+    m.querySelectorAll('.verse-card-content').forEach(function (node) {
+      max = Math.max(max, node.offsetHeight);
+    });
+    document.body.removeChild(m);
+    document.documentElement.style.setProperty('--card-h', Math.max(max, 128) + 'px');
+  }
+
+  var strip = el('step-strip');
+  var dots = [];
+
+  function addDot(idx, label, color) {
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'step-dot';
+    btn.style.setProperty('--dot-color', color);
+    btn.setAttribute('aria-label', label);
+    btn.setAttribute('aria-pressed', 'false');
+    var fill = document.createElement('span');
+    fill.className = 'step-dot-fill';
+    btn.appendChild(fill);
+    btn.addEventListener('click', function () {
+      go(idx, false);
+    });
+    strip.appendChild(btn);
+    dots.push({ btn: btn, step: idx });
+  }
+
+  addDot(-1, INTRO.dotLabel, INTRO.color);
+  stops.forEach(function (s, i) {
+    addDot(i, s.dotLabel, s.color);
+  });
+
+  function updateDots() {
+    dots.forEach(function (d) {
+      var isCurrent = d.step === step;
+      var isPassed = d.step < step;
+      d.btn.classList.toggle('active', isCurrent);
+      d.btn.classList.toggle('passed', isPassed);
+      d.btn.setAttribute('aria-pressed', isCurrent ? 'true' : 'false');
+    });
+  }
+
+  function makeBtn(label, control, cls, onClick) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = cls;
+    b.setAttribute('data-control', control);
+    b.textContent = label;
+    b.addEventListener('click', onClick);
+    return b;
+  }
+
+  function applyFocus() {
+    if (!pendingFocus) return;
+    var target = document.querySelector('[data-control="' + pendingFocus + '"]');
+    pendingFocus = null;
+    if (target) target.focus();
+  }
+
+  function go(nextStep, instant, focusControl) {
+    var prevStep = step;
+    step = nextStep;
+    pendingFocus = focusControl || null;
+
+    var spec = step === -1 ? INTRO : stops[step];
+    document.documentElement.style.setProperty('--step-color', spec.color);
+    document.documentElement.style.setProperty('--step-dark', spec.dark || spec.color);
+
+    paintVisual(step, instant, prevStep);
+
+    var cardArea = el('card-area');
+    cardArea.innerHTML = '';
+    cardArea.appendChild(makeCard(spec));
+
+    var nav = document.createElement('div');
+    nav.className = 'nav-bar';
+
+    if (step === -1) {
+      var count0 = document.createElement('span');
+      count0.className = 'step-count';
+      count0.textContent = 'Ready';
+      nav.appendChild(count0);
+      nav.appendChild(makeBtn('Begin \u2192', 'begin', 'nav-btn primary begin-btn single-begin', function () {
+        go(0, false, 'next');
+      }));
+      el('status').textContent = INTRO.cardTitle;
+    } else {
+      nav.appendChild(makeBtn('\u2190 Back', 'back', 'nav-btn', function () {
+        go(step - 1, false, step === 0 ? 'begin' : 'back');
+      }));
+      var count = document.createElement('span');
+      count.className = 'step-count';
+      count.textContent = (step + 1) + ' of ' + stops.length;
+      nav.appendChild(count);
+      if (step < stops.length - 1) {
+        nav.appendChild(makeBtn('Next \u2192', 'next', 'nav-btn primary', function () {
+          go(step + 1, false, 'next');
+        }));
+      } else {
+        nav.appendChild(makeBtn('\u21BB Start Over', 'restart', 'nav-btn primary', function () {
+          go(-1, false, 'begin');
+        }));
+      }
+      el('status').textContent = 'Step ' + (step + 1) + ' of ' + stops.length + ': ' + spec.cardTitle;
+    }
+
+    cardArea.appendChild(nav);
+    updateDots();
+    applyFocus();
+  }
+
+  go(-1, true, null);
+  fitCards();
+
+  var resizeTimer = null;
+  var lastWidth = window.innerWidth;
+  window.addEventListener('resize', function () {
+    if (window.innerWidth === lastWidth) return;
+    lastWidth = window.innerWidth;
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(fitCards, 150);
+  });
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(fitCards);
+  }
+})();
+</script>
+</body>
+</html>

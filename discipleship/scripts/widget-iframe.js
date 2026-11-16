@@ -35,6 +35,7 @@
         'read-discover-respond.html': 'Read, Discover, Respond',
         'romans-road.html': 'The Romans Road',
         'stewardship-flip.html': 'The Stewardship Flip',
+        'stop-turn-walk.html': 'The 180',
         'three-circles-video.html': 'Watch Someone Draw the 3 Circles',
         'three-circles.html': 'The 3 Circles',
         'two-ordinances.html': 'The Doorway and the Table',

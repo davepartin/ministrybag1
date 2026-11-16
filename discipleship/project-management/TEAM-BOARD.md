@@ -1,5 +1,14 @@
 # Growing Together Team Board
 
+## 101-07 The 180 widget (REVIEW): November 15, 2026
+
+- **Task / Branch:** `WIDGET-101-07-THE-180` on `gemini/widget-101-07-stop-turn-walk` (stopped at `REVIEW` for Dave's visual approval and Codex placement in `101-07`).
+- **Changes:** Built standalone Studio Wash widget [stop-turn-walk.html](../widgets/stop-turn-walk.html) (`The 180` / `101-07`) leaving all lesson JSON (`data/*.json`) untouched:
+  - Visualizes a 180-degree hairpin turn: upper `WRONG WAY` drift away from God's cross-lit presence on the right (`Which Way Are You Facing?`), Step 1 `Stop` barrier + confession (1 John 1:9 ESV), Step 2 `180° TURN` arc turning from faded `IDOLS` toward God (1 Thessalonians 1:9 ESV), and Step 3 `Walk` forward in `NEW DIRECTION` beside Jesus into `GOD`'s presence (Acts 3:19 ESV).
+  - Exact requested wording preserved with zero forbidden author words outside verbatim Scripture quotes and zero em dashes, Studio Wash `#2C2416` `.title-bar`, wordless 4-dot `.step-strip`, locked `--card-h`, `#E0A526` `:focus-visible`, `<svg role="img" aria-label>` + `.sr-only` `#stw-desc`, `prefers-reduced-motion: reduce`, idle-silent rAF, and zero `localStorage`.
+  - Registered `'stop-turn-walk.html': 'The 180'` in `discipleship/scripts/widget-iframe.js` and added Playwright test `discipleship/scripts/widget_101_07_stop_turn_walk_browser_check.js`.
+- **Evidence:** [Gemini handoff log](logs/2026-11-15-WIDGET-101-07-THE-180-gemini.md).
+
 ## Lesson navigation: November 15, 2026
 
 Dave requested that bottom Next always open the destination at the top, including completed/revisited lessons, and that course endings name the next course. NAV-LESSON-TOP DONE: navigation now refreshes the destination layout, focuses its heading with preventScroll, and moves immediately to scrollY 0. Bottom buttons show Next lesson within a course; Go to 201 Growing Deep, Go to 202 Growing Up and Go to 203 Growing Out at boundaries. After 203, Back to courses returns home at the top. Coming Soon courses are excluded from automatic progression; their status/content is unchanged. Cross-course navigation now updates the URL to the actual first lesson.
