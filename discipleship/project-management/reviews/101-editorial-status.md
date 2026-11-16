@@ -16,10 +16,10 @@ Stages describe the text review, independently of widget and image approval. Gol
 |---|---|---|---|---|
 | 101-01 | Welcome. Let's Start Growing. | Silver: Dave-edited, protected | Gold: Peaks and Valleys V2 | Gold: course logo |
 | 101-02 | Salvation and Baptism | Gold: whole lesson approved and protected | Gold: A-B-C-D road to cross | Gold: greenhouse sequence |
-| 101-03 | Prayer | Silver: Dave edits protected | Yes: The Lord's Prayer (#266, 3542e12) | Missing |
+| 101-03 | Prayer | Silver: Dave edits protected | Yes: The Lord's Prayer (#266, 3542e12) | Yes: Teach Us to Pray dawn dissolve (`101-03-prayer-bw/color.jpg`) |
 | 101-04 | The Bible | Silver: Dave edits protected | Yes: Read, Discover, Respond (#229, 21bb29b) | Yes: Nicodemus oil-lamp dissolve (#263, b52e4f4) |
-| 101-05 | The Church | Silver: Dave edits protected | Yes: compact potluck serving buttons (#232, b83efe3) | Approval unrecorded: aspen pair |
-| 101-06 | Sharing Jesus with Others | Silver: earlier Dave edits protected | Yes: BLESS Rhythms (#233, 7949607) | Approval unrecorded: woman-at-well pair |
+| 101-05 | The Church | Silver: Dave edits protected | Yes: compact potluck serving buttons (#232, b83efe3) | Yes: Aspen Grove separate-to-connected roots dissolve |
+| 101-06 | Sharing Jesus with Others | Silver: earlier Dave edits protected | Yes: BLESS Rhythms (#233, 7949607) | Yes: Woman at the Well sunlit well dissolve |
 | 101-07 | When You Drift | Silver | Yes: Repentance is 180 Degrees (#251, 53d2d60) | Yes: four-frame shepherd sequence; B&W frame 4 approved (#248, ae5c9d4) |
 
 101-01 remains Silver with Dave edits protected. Dave has now explicitly approved the whole 101-02 lesson, its A-B-C-D widget and its greenhouse image sequence Gold (November14). Preserve the exact recorded text, questions, readings, widget and images; new edits require his specific direction. The record does not treat partial paragraph edits as approval of unseen paragraphs. Existing specific approvals remain in force even on Silver lessons.
@@ -42,7 +42,7 @@ These instructions implement Dave's direct request in chat on November 13. They 
 - 101-02: Dave's direct A-B-C-D design direction, description of the completed widget as "amazing," and instruction to publish; integrated through #206. His exact baptism Review wording and accepted Scripture cuts are recorded in #209 and #212. Current widget remains `widgets/romans-road3.html`.
 - 101-06: six wording edits from Dave followed by "merge it" recorded in DAVE.md, REWORK-101-06 / #142. This is evidence of protected specific edits, not automatic final approval of every component.
 - Component fingerprints: [101-editorial-baseline.json](101-editorial-baseline.json). These are a reference snapshot, not an automated CI lock or a new approval.
-- Next suggested conversation: **101-03 Prayer**. Its Father-centered story and practical prayer exercise are present; its opening artwork is missing. Read it with Dave before proposing prose changes. 101-04 now has the approved Nicodemus oil-lamp pair (#263); preserve it. The 101-07 shepherd sequence is now approved in PR #240 and must be preserved. Do not generate or replace art under this documentation task.
+- Next suggested conversation: **101-03 Prayer**. Its Father-centered story, approved Lord's Prayer widget and approved dawn story-art dissolve are present. Read it with Dave before proposing prose changes. 101-04 now has the approved Nicodemus oil-lamp pair (#263); preserve it. The 101-07 shepherd sequence is now approved in PR #240 and must be preserved. Do not generate or replace art under this documentation task.
 
 One specific consistency suggestion, not implemented: 101-02 still introduces "three letters, the ABCs of salvation" and says "Each stop is one verse from Romans," while the approved widget now includes D for discipleship. Propose a short bridge that preserves A-B-C as the salvation response and introduces D as following Jesus afterward. Ask Dave to approve the wording; do not silently reopen his edited lesson.
 
@@ -85,3 +85,7 @@ November 16: Dave requested an earlier 101-04 lamp reveal after seeing it finish
 November 16: Claude's 101 course review is saved at reviews/2026-11-16-101-course-review.md. Dave loves almost all of its ideas; work goes one lesson at a time, starting with 101-03. Read it before proposing 101 changes.
 
 November 16: Dave explicitly approved PR #266 at 3542e12bc85b2d8793e4402d04b744737b9ebdca. Preserve the exact Lord's Prayer accordion widget, title and registration, replacing only the static prayer verse block in 101-03. All other prose, step teaching, eight questions/IDs, John 7-9 and Daily Prayers tool remain unchanged. Widget component approval only; text remains Silver and story art remains missing. The baseline now records this component and current protected lesson. The separate #267 course review is preserved.
+
+November 16: Dave approved the Course 101 story art upgrades for 101-03 (`101-03-prayer-bw/color.jpg`), 101-05 (updated `aspen-bw.png` -> unchanged `aspen-color.png`), and 101-06 (unchanged `woman-well-bw.png` -> sunlit well `woman-well-color.png`), with `imageDissolveOnEntry: true` on all three so the full dissolve completes while centered and visible before scrolling to the top. Nonvisual prose, Scripture, questions, readings, and widgets remain unchanged; texts remain Silver.
+
+PR #268 integration preserves the approved #266 Lord's Prayer widget and its component approval alongside the new 101-03 story art. The 101-05 checklist and 101-06 BLESS widget also remain exact. All three lesson texts stay Silver.

@@ -1,5 +1,11 @@
 # Resume here
 
+## Course 101 story art integrated: November 16, 2026
+
+ART-101-03-05-06 DONE, PR #268. Dave asked Codex to merge Gemini's completed art at 17684f32bb846bda53cc91fd0ffb45ec777bb751: the new 101-03 pre-dawn prayer pair before Teach Us to Pray, revised individual roots in 101-05 aspen-bw.png with the existing color layer preserved, and the 101-06 sunlit well/terracotta reveal with its B&W layer preserved. All three use imageDissolveOnEntry so full light appears while the complete image is visible. Approved art/delivery/map bytes are unchanged from Gemini's submission.
+
+Current main #266 Lord's Prayer widget and approval records are retained. Merge conflicts were confined to editorial baseline/status; both widget and new art records are preserved. No lesson prose, Scripture, question/answer identity, reading, existing widget or runtime index changes. All three texts stay Silver; image approval does not grant whole-lesson Gold. Local checks include repository QA, 464 four-lesson reveal checks, 225 Lord's Prayer widget checks, 128 lamp checks and 64 delivery checks. Final preview/live evidence is on PR #268. Evidence: [Codex log](logs/2026-11-16-ART-101-03-05-06-codex.md).
+
 ## 101-03 Lord's Prayer widget approved: November 16, 2026
 
 WIDGET-101-03-LORDS-PRAYER DONE. Dave approved PR #266 at 3542e12bc85b2d8793e4402d04b744737b9ebdca. Exact lords-prayer.html bytes, title The Lord's Prayer, iframe registration and placement are preserved. Only the static The Lord's Prayer verse block becomes a widget; every other lesson field, all eight questions/IDs, John 7-9, six-step teaching and Daily Prayers tool remain unchanged. Text stays Silver with Dave edits protected; no image or whole-lesson Gold is inferred.
