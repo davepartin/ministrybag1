@@ -48,9 +48,10 @@
       "text": "Jesus taught us to pray in the Lord's Prayer, giving us a pattern to follow. Read the prayer below. This is the familiar wording many Christians pray, and it is the same wording the Daily Prayers tool uses at the end of this lesson. You can read Jesus' words for yourself in Matthew 6:9-13."
     },
     {
-      "type": "verse",
-      "reference": "The Lord's Prayer",
-      "text": "Our Father, who is in heaven,<br>\nHoly is your name,<br>\nyour kingdom come, your will be done<br>\non earth as it is in heaven.<br>\nGive us this day our daily bread.<br>\nForgive us our sins, as we forgive those who sin against us.<br>\nAnd lead us not into temptation, but deliver us from evil.<br>\nFor yours is the kingdom, and the power, and the glory forever, Amen."
+      "type": "widget",
+      "src": "widgets/lords-prayer.html",
+      "title": "The Lord's Prayer",
+      "height": "460px"
     },
     {
       "type": "text",

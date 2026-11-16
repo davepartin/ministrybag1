@@ -16,7 +16,7 @@ Stages describe the text review, independently of widget and image approval. Gol
 |---|---|---|---|---|
 | 101-01 | Welcome. Let's Start Growing. | Silver: Dave-edited, protected | Gold: Peaks and Valleys V2 | Gold: course logo |
 | 101-02 | Salvation and Baptism | Gold: whole lesson approved and protected | Gold: A-B-C-D road to cross | Gold: greenhouse sequence |
-| 101-03 | Prayer | Silver | No iframe widget; prayer exercise awaits review | Yes: Teach Us to Pray dawn dissolve (`101-03-prayer-bw/color.jpg`) |
+| 101-03 | Prayer | Silver: Dave edits protected | Yes: The Lord's Prayer (#266, 3542e12) | Yes: Teach Us to Pray dawn dissolve (`101-03-prayer-bw/color.jpg`) |
 | 101-04 | The Bible | Silver: Dave edits protected | Yes: Read, Discover, Respond (#229, 21bb29b) | Yes: Nicodemus oil-lamp dissolve (#263, b52e4f4) |
 | 101-05 | The Church | Silver: Dave edits protected | Yes: compact potluck serving buttons (#232, b83efe3) | Yes: Aspen Grove separate-to-connected roots dissolve |
 | 101-06 | Sharing Jesus with Others | Silver: earlier Dave edits protected | Yes: BLESS Rhythms (#233, 7949607) | Yes: Woman at the Well sunlit well dissolve |
@@ -84,4 +84,8 @@ November 16: Dave requested an earlier 101-04 lamp reveal after seeing it finish
 
 November 16: Claude's 101 course review is saved at reviews/2026-11-16-101-course-review.md. Dave loves almost all of its ideas; work goes one lesson at a time, starting with 101-03. Read it before proposing 101 changes.
 
+November 16: Dave explicitly approved PR #266 at 3542e12bc85b2d8793e4402d04b744737b9ebdca. Preserve the exact Lord's Prayer accordion widget, title and registration, replacing only the static prayer verse block in 101-03. All other prose, step teaching, eight questions/IDs, John 7-9 and Daily Prayers tool remain unchanged. Widget component approval only; text remains Silver and story art remains missing. The baseline now records this component and current protected lesson. The separate #267 course review is preserved.
+
 November 16: Dave approved the Course 101 story art upgrades for 101-03 (`101-03-prayer-bw/color.jpg`), 101-05 (updated `aspen-bw.png` -> unchanged `aspen-color.png`), and 101-06 (unchanged `woman-well-bw.png` -> sunlit well `woman-well-color.png`), with `imageDissolveOnEntry: true` on all three so the full dissolve completes while centered and visible before scrolling to the top. Nonvisual prose, Scripture, questions, readings, and widgets remain unchanged; texts remain Silver.
+
+PR #268 integration preserves the approved #266 Lord's Prayer widget and its component approval alongside the new 101-03 story art. The 101-05 checklist and 101-06 BLESS widget also remain exact. All three lesson texts stay Silver.

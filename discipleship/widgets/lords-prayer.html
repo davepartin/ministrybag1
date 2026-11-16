@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Lord's Prayer</title>
+<style>
+:root {
+  --ink: #2C2416;
+  --muted: #6E6559;
+  --tray: #F6F4EE;
+  --border: #EBE5D9;
+  --step-color: #2C2416;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: Georgia, Cambria, serif;
+  background: #F8F6F1;
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+.widget-outer {
+  background: #FFFFFF;
+  border-radius: 0;
+  overflow: hidden;
+  box-shadow: none;
+  border: none;
+  max-width: 100%;
+  width: 100%;
+  margin: 0;
+  position: relative;
+}
+
+@media (min-width: 560px) {
+  body {
+    padding: 16px;
+    background: #F8F6F1;
+  }
+  .widget-outer {
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(44, 36, 22, 0.08);
+    border: 1px solid #EBE5D9;
+    max-width: 460px;
+    margin: 0 auto;
+  }
+}
+
+.title-bar {
+  background: #2C2416;
+  padding: 8px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.title-bar h1 {
+  font: 600 17px/1.15 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #FAF8F3;
+  letter-spacing: 0.2px;
+  margin: 0;
+}
+
+.course-tag {
+  font: 600 11px/1 system-ui, -apple-system, sans-serif;
+  letter-spacing: 0.9px;
+  text-transform: uppercase;
+  color: #E5DEC9;
+  white-space: nowrap;
+}
+
+.prayer-band {
+  background: #FAF8F3;
+  padding: 9px 12px 10px;
+}
+
+.prayer-box {
+  background: #FFFFFF;
+  border: 1px solid #E6DFD1;
+  border-radius: 10px;
+  padding: 8px 9px 9px;
+}
+
+.prayer-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 7px;
+  padding: 0 2px;
+}
+
+.prayer-kicker {
+  font: 700 10px/1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  letter-spacing: 0.9px;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.tap-hint {
+  font: 600 10.5px/1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #5C5142;
+  background: #F4EFE4;
+  border: 1px solid #DFD7C8;
+  border-radius: 999px;
+  padding: 3px 8px;
+  white-space: nowrap;
+}
+
+.prayer-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.prayer-item {
+  --row-color: #2C2416;
+  --row-wash: #FAF1E6;
+  --row-hi: #F4DEC4;
+  --row-line: #B57333;
+  border: 1px solid #ECE6D9;
+  border-radius: 9px;
+  background: #FCFBF8;
+  overflow: hidden;
+}
+
+.prayer-item[open] {
+  background: var(--row-wash);
+  border-color: var(--row-color);
+  box-shadow: 0 1px 6px rgba(44, 36, 22, 0.07);
+}
+
+.prayer-summary {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  min-block-size: 36px;
+  padding: 6px 9px;
+  margin: 0;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.prayer-summary::-webkit-details-marker {
+  display: none;
+}
+
+@media (hover: hover) {
+  .prayer-item:not([open]) .prayer-summary:hover {
+    background: #F6F1E6;
+  }
+  .prayer-item:not([open]):hover {
+    border-color: #CBBFA8;
+  }
+  .prayer-item:not([open]) .prayer-summary:hover .line-chev {
+    color: var(--ink);
+    opacity: 0.95;
+  }
+}
+
+.line-num {
+  flex: 0 0 auto;
+  min-inline-size: 20px;
+  min-block-size: 20px;
+  padding: 0 4px;
+  border-radius: 999px;
+  background: #EFE9DC;
+  color: #5C5142;
+  font: 700 10.5px/20px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  text-align: center;
+}
+
+.prayer-item[open] .line-num {
+  background: var(--row-color);
+  color: #FFFFFF;
+}
+
+.line-text {
+  flex: 1 1 auto;
+  font: 400 13.5px/1.42 Georgia, Cambria, serif;
+  color: var(--ink);
+}
+
+.hl {
+  border-radius: 2px;
+  padding: 1px 0;
+  border-bottom: 1.5px solid transparent;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+.prayer-item[open] .hl {
+  background-color: var(--row-hi);
+  border-bottom-color: var(--row-line);
+  padding: 1px 2px;
+}
+
+.line-chev {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 16px;
+  block-size: 16px;
+  color: #9C9283;
+  opacity: 0.78;
+}
+
+.line-chev::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-right: 1.8px solid currentColor;
+  border-bottom: 1.8px solid currentColor;
+  transform: rotate(-45deg);
+  transform-origin: center;
+}
+
+.prayer-item[open] .line-chev {
+  color: var(--row-color);
+  opacity: 1;
+}
+
+.prayer-item[open] .line-chev::before {
+  transform: rotate(45deg);
+}
+
+.step-drawer {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 6px 8px;
+  padding: 7px 10px 8px 37px;
+  background: #FFFFFF;
+  border-top: 1px solid rgba(44, 36, 22, 0.1);
+}
+
+.step-kicker {
+  font: 700 10px/1.2 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  letter-spacing: 0.75px;
+  text-transform: uppercase;
+  color: var(--row-color);
+  white-space: nowrap;
+}
+
+.step-heading {
+  font: 700 15.5px/1.2 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--ink);
+  margin: 0;
+}
+
+.nav-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px 10px;
+  background: var(--tray);
+  border-top: 1px solid var(--border);
+}
+
+.nav-btn {
+  appearance: none;
+  border-radius: 9px;
+  padding: 7px 13px;
+  min-block-size: 34px;
+  font: 600 12.5px/1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  cursor: pointer;
+}
+
+.nav-btn.secondary {
+  background: #FFFFFF;
+  border: 1.5px solid #D4CFC4;
+  color: var(--ink);
+}
+
+.nav-btn.secondary:disabled {
+  opacity: 0.42;
+  cursor: default;
+}
+
+.nav-btn.primary {
+  background: var(--step-color);
+  border: 1.5px solid var(--step-color);
+  color: #FFFFFF;
+}
+
+.step-count {
+  font: 600 12px/1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--muted);
+}
+
+summary:focus-visible,
+button:focus-visible {
+  outline: 2.5px solid #2C2416;
+  outline-offset: -2px;
+}
+
+.nav-btn:focus-visible {
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .widget-outer:not(.is-instant) .prayer-item,
+  .widget-outer:not(.is-instant) .prayer-summary,
+  .widget-outer:not(.is-instant) .line-num,
+  .widget-outer:not(.is-instant) .hl {
+    transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
+  }
+  .widget-outer:not(.is-instant) .line-chev::before {
+    transition: transform 0.2s ease;
+  }
+  .widget-outer:not(.is-instant) .prayer-item[open] .step-drawer {
+    animation: drawer-pop 0.18s ease-out both;
+  }
+  .widget-outer:not(.is-instant) .nav-btn:not(:disabled):active {
+    transform: scale(0.99);
+  }
+  .widget-outer:not(.is-instant) .nav-btn.primary {
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+  }
+}
+
+@keyframes drawer-pop {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+</style>
+</head>
+<body>
+<main class="widget-outer" id="widget">
+  <header class="title-bar">
+    <h1>The Lord's Prayer</h1>
+    <span class="course-tag">101-03</span>
+  </header>
+
+  <section class="prayer-band" aria-label="Interactive Lord's Prayer">
+    <div class="prayer-box">
+      <div class="prayer-meta">
+        <span class="prayer-kicker">Matthew 6:9-13 Pattern</span>
+        <span class="tap-hint" id="tap-hint">Click any line</span>
+      </div>
+
+      <div class="prayer-list" role="group" aria-label="Lines of the Lord's Prayer">
+        <details name="lords-prayer" class="prayer-item" data-step="1" style="--row-color: #8C5319; --row-wash: #FAF1E6; --row-hi: #F4DEC4; --row-line: #B57333;">
+          <summary class="prayer-summary">
+            <span class="line-num" aria-hidden="true">1</span>
+            <span class="line-text"><span class="hl">Our Father, who is in heaven,</span></span>
+            <span class="line-chev" aria-hidden="true"></span>
+          </summary>
+          <div class="step-drawer">
+            <span class="step-kicker">Step 1 · Father</span>
+            <h2 class="step-heading">Connect Relationally</h2>
+          </div>
+        </details>
+
+        <details name="lords-prayer" class="prayer-item" data-step="2" style="--row-color: #946806; --row-wash: #FCF5DE; --row-hi: #F8E5AE; --row-line: #B8860B;">
+          <summary class="prayer-summary">
+            <span class="line-num" aria-hidden="true">2</span>
+            <span class="line-text"><span class="hl">Holy is your name,</span></span>
+            <span class="line-chev" aria-hidden="true"></span>
+          </summary>
+          <div class="step-drawer">
+            <span class="step-kicker">Step 2 · Worship</span>
+            <h2 class="step-heading">Worship His Name</h2>
+          </div>
+        </details>
+
+        <details name="lords-prayer" class="prayer-item" data-step="3" style="--row-color: #2A5B7C; --row-wash: #E8F1F8; --row-hi: #D2E5F3; --row-line: #3B6F91;">
+          <summary class="prayer-summary">
+            <span class="line-num" aria-hidden="true">3</span>
+            <span class="line-text"><span class="hl">your kingdom come, your will be done<br>on earth as it is in heaven.</span></span>
+            <span class="line-chev" aria-hidden="true"></span>
+          </summary>
+          <div class="step-drawer">
+            <span class="step-kicker">Step 3 · Kingdom</span>
+            <h2 class="step-heading">Pray His Agenda First</h2>
+          </div>
+        </details>
+
+        <details name="lords-prayer" class="prayer-item" data-step="4" style="--row-color: #1F684A; --row-wash: #E6F3EC; --row-hi: #CEE8DA; --row-line: #2E7D5B;">
+          <summary class="prayer-summary">
+            <span class="line-num" aria-hidden="true">4</span>
+            <span class="line-text"><span class="hl">Give us this day our daily bread.</span></span>
+            <span class="line-chev" aria-hidden="true"></span>
+          </summary>
+          <div class="step-drawer">
+            <span class="step-kicker">Step 4 · Provision</span>
+            <h2 class="step-heading">Depend on Him for Everything</h2>
+          </div>
+        </details>
+
+        <details name="lords-prayer" class="prayer-item" data-step="5" style="--row-color: #225E63; --row-wash: #E5F2F2; --row-hi: #CDE6E6; --row-line: #307B82;">
+          <summary class="prayer-summary">
+            <span class="line-num" aria-hidden="true">5</span>
+            <span class="line-text"><span class="hl">Forgive us our sins, as we forgive those who sin against us.</span></span>
+            <span class="line-chev" aria-hidden="true"></span>
+          </summary>
+          <div class="step-drawer">
+            <span class="step-kicker">Step 5 · Grace</span>
+            <h2 class="step-heading">Forgive and Be Forgiven</h2>
+          </div>
+        </details>
+
+        <details name="lords-prayer" class="prayer-item" data-step="6" style="--row-color: #8B1A2B; --row-wash: #F9E9EC; --row-hi: #F1CFD5; --row-line: #A93042;">
+          <summary class="prayer-summary">
+            <span class="line-num" aria-hidden="true">6</span>
+            <span class="line-text"><span class="hl">And lead us not into temptation, but deliver us from evil.</span></span>
+            <span class="line-chev" aria-hidden="true"></span>
+          </summary>
+          <div class="step-drawer">
+            <span class="step-kicker">Step 6 · Protection</span>
+            <h2 class="step-heading">Engage in Spiritual Warfare</h2>
+          </div>
+        </details>
+
+        <details name="lords-prayer" class="prayer-item" data-step="7" style="--row-color: #4A3F31; --row-wash: #F3EFE6; --row-hi: #E5DEC9; --row-line: #6E6559;">
+          <summary class="prayer-summary">
+            <span class="line-num" aria-hidden="true">&#10022;</span>
+            <span class="line-text"><span class="hl">For yours is the kingdom, and the power, and the glory forever, Amen.</span></span>
+            <span class="line-chev" aria-hidden="true"></span>
+          </summary>
+          <div class="step-drawer">
+            <span class="step-kicker">Closing Praise</span>
+            <h2 class="step-heading">Return the Glory to God</h2>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <div class="nav-bar">
+    <button type="button" class="nav-btn secondary" id="prev-btn" disabled>&larr; Back</button>
+    <span class="step-count" id="step-count">Ready</span>
+    <button type="button" class="nav-btn primary" id="next-btn">Begin &rarr;</button>
+  </div>
+</main>
+
+<script>
+(function () {
+  var META = [
+    { color: '#2C2416', countLabel: 'Ready', nextLabel: 'Begin \u2192' },
+    { color: '#8C5319', countLabel: 'Step 1 of 6', nextLabel: 'Next \u2192' },
+    { color: '#946806', countLabel: 'Step 2 of 6', nextLabel: 'Next \u2192' },
+    { color: '#2A5B7C', countLabel: 'Step 3 of 6', nextLabel: 'Next \u2192' },
+    { color: '#1F684A', countLabel: 'Step 4 of 6', nextLabel: 'Next \u2192' },
+    { color: '#225E63', countLabel: 'Step 5 of 6', nextLabel: 'Next \u2192' },
+    { color: '#8B1A2B', countLabel: 'Step 6 of 6', nextLabel: 'Next \u2192' },
+    { color: '#4A3F31', countLabel: 'Amen', nextLabel: 'Start Over' }
+  ];
+
+  var widget = document.getElementById('widget');
+  var items = Array.prototype.slice.call(document.querySelectorAll('.prayer-item'));
+  var prevBtn = document.getElementById('prev-btn');
+  var nextBtn = document.getElementById('next-btn');
+  var stepCount = document.getElementById('step-count');
+
+  var reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reducedMotion) {
+    widget.classList.add('is-instant');
+  }
+
+  // Fallback for browsers without exclusive <details name="..."> support.
+  var supportsExclusiveDetails = typeof HTMLDetailsElement !== 'undefined' &&
+    Object.hasOwn(HTMLDetailsElement.prototype, 'name');
+
+  var currentStep = 0;
+
+  function syncNavFromDom() {
+    var openStep = 0;
+    for (var i = 0; i < items.length; i++) {
+      if (items[i].open) {
+        openStep = Number(items[i].getAttribute('data-step'));
+        break;
+      }
+    }
+    currentStep = openStep;
+    var meta = META[openStep] || META[0];
+    widget.style.setProperty('--step-color', meta.color);
+    stepCount.textContent = meta.countLabel;
+    nextBtn.textContent = meta.nextLabel;
+    prevBtn.disabled = (openStep === 0);
+  }
+
+  function openStep(idx) {
+    for (var i = 0; i < items.length; i++) {
+      var stepNum = Number(items[i].getAttribute('data-step'));
+      var shouldOpen = (stepNum === idx);
+      if (items[i].open !== shouldOpen) {
+        items[i].open = shouldOpen;
+      }
+    }
+    syncNavFromDom();
+  }
+
+  items.forEach(function (detailsEl) {
+    detailsEl.addEventListener('toggle', function () {
+      if (!supportsExclusiveDetails && detailsEl.open) {
+        for (var i = 0; i < items.length; i++) {
+          if (items[i] !== detailsEl && items[i].open) {
+            items[i].open = false;
+          }
+        }
+      }
+      syncNavFromDom();
+    });
+  });
+
+  prevBtn.addEventListener('click', function () {
+    if (currentStep > 0) openStep(currentStep - 1);
+  });
+
+  nextBtn.addEventListener('click', function () {
+    if (currentStep < items.length) {
+      openStep(currentStep + 1);
+    } else {
+      openStep(0);
+    }
+  });
+
+  syncNavFromDom();
+}());
+</script>
+</body>
+</html>

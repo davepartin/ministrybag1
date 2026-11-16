@@ -103,8 +103,8 @@
       "stage": "Silver",
       "dave_edits_protected": true,
       "full_personal_review": "unrecorded",
-      "lesson_sha256": "babe4bab0cc7ce4f1344e3c720f32ee25d9a4db62df082bff308efe8c306d25f",
-      "non_visual_content_sha256": "eebb465296471644f830c6e423fa5cf4f3e017b94f19192421f842965a578ed0",
+      "lesson_sha256": "93745b452ee8228f3541b14930ee366703bf49c7ebd0827024a6c55ae5008267",
+      "non_visual_content_sha256": "c5150cadb19b1621d27077d426eacb9a1e1081a95b60e7a5519d0a2d35038c89",
       "visual_blocks": [
         {
           "type": "image",
@@ -113,9 +113,16 @@
           "alt": "A disciple watches from the pre-dawn shadow as first light breaks over the valley onto Jesus praying beside an olive tree",
           "touchNext": true,
           "imageDissolveOnEntry": true
+        },
+        {
+          "type": "widget",
+          "src": "widgets/lords-prayer.html",
+          "title": "The Lord's Prayer",
+          "height": "460px"
         }
       ],
       "visual_files_sha256": {
+        "widgets/lords-prayer.html": "973a5c6cb3b5b0d460ae51df4b949e921cb6cc1019428d36718d5c40c33fcfaf",
         "images/101-03-prayer-bw.jpg": "ec3a7f80e3963b758b2300c86b6ad4363bbc8b91fd6ae7bd26953b0bd3e57fe5",
         "images/optimized/101-03-prayer-bw-640.webp": "fce490b8e3faf36b729d62a1d633d8ef335f4e639215514aa865afa6f678ac69",
         "images/optimized/101-03-prayer-bw-1280.webp": "f234ebf9933df332a274d156a2a9b36b33d80ca662a718bc6c9bd1843a3abb09",
@@ -123,13 +130,23 @@
         "images/optimized/101-03-prayer-color-640.webp": "86621e9f1c18bc5ec14f08ec0156f344e48d17a02e67ff433f5a87a04177d750",
         "images/optimized/101-03-prayer-color-1280.webp": "54643ae56375f3633e518e95e20495dae5a87bd4390e7fb56a07750222e28e36"
       },
-      "content_baseline_source": "61a7ee8: Dave-approved PR #258 text, questions, readings, and exercises, unchanged except adding the approved story image block",
+      "component_approval": {
+        "date": "2026-11-16",
+        "source": "3542e12bc85b2d8793e4402d04b744737b9ebdca",
+        "pr": 266,
+        "widget": "Approved: The Lord's Prayer",
+        "scope": "Exact widget bytes, title, registration and replacement of only the static The Lord's Prayer verse block. Other lesson prose, questions, readings and Daily Prayers tool unchanged. Text remains Silver; no image or whole-lesson Gold approval."
+      },
+      "recorded_date": "2026-11-16",
       "image_approval": {
         "date": "2026-11-16",
         "source": "Dave approved Proposal 1 in chat with imageDissolveOnEntry timing",
         "image": "Approved: 101-03 Teach Us to Pray pre-dawn-to-dawn dissolve",
-        "scope": "Exact two JPGs, four WebP copies, image block with imageDissolveOnEntry true, and placement before Teach Us to Pray. Text remains Silver."
-      }
+        "scope": "Exact two JPGs, four WebP copies, image block with imageDissolveOnEntry true, and placement before Teach Us to Pray. Text remains Silver.",
+        "pr": 268,
+        "approved_commit": "17684f32bb846bda53cc91fd0ffb45ec777bb751"
+      },
+      "content_baseline_source": "d523897: current main lesson content and approved widgets preserved; #268 changes images/timing only"
     },
     {
       "lesson": "101-04",
@@ -206,9 +223,9 @@
       ],
       "visual_files_sha256": {
         "images/aspen-bw.png": "35addb8a0aa53f5073aeacbf0e9ea8430e0c7c8de57deb34319386e58241b990",
+        "images/aspen-color.png": "6a552052eda6c9ab0463d94303ede426a234137e1e3da66ea40bb41559313550",
         "images/optimized/aspen-bw-640.webp": "a257dcd50260e7f6aef45396f31ec0bd125ef16961260a1370c76616b2839fa1",
         "images/optimized/aspen-bw-1280.webp": "7fa940b6f266dc920f0e4b638d85f564494aef3276667d2465cfdec0ec028b57",
-        "images/aspen-color.png": "6a552052eda6c9ab0463d94303ede426a234137e1e3da66ea40bb41559313550",
         "images/optimized/aspen-color-640.webp": "18bad9ec4849a72297eb3341b04dd240c1f260ca142afcaf2ef5e0af44faf705",
         "images/optimized/aspen-color-1280.webp": "1e15e98140aba6cf78a0298658ef09ddea0ff6d294b8ace96915c9a147b94f40"
       },
@@ -228,8 +245,12 @@
         "date": "2026-11-16",
         "source": "Dave approved Proposal 3 (v4 separate-to-connected roots) in chat with imageDissolveOnEntry timing",
         "image": "Approved: Aspen Grove updated separate-trunk-roots B&W -> white-connected-roots + green canopy dissolve",
-        "scope": "Updated aspen-bw.png, unchanged aspen-color.png, four WebP copies, and imageDissolveOnEntry true. Nonvisual lesson content unchanged; text stays Silver."
-      }
+        "scope": "Updated aspen-bw.png, unchanged aspen-color.png, four WebP copies, and imageDissolveOnEntry true. Nonvisual lesson content unchanged; text stays Silver.",
+        "pr": 268,
+        "approved_commit": "17684f32bb846bda53cc91fd0ffb45ec777bb751"
+      },
+      "recorded_date": "2026-11-16",
+      "content_baseline_source": "d523897: current main lesson content and approved widgets preserved; #268 changes images/timing only"
     },
     {
       "lesson": "101-06",
@@ -257,12 +278,12 @@
       ],
       "visual_files_sha256": {
         "images/woman-well-bw.png": "2f5ce47bb6d898345485fddce3f3af97df2ce271d673b3afa70db5c2388ec4e9",
+        "images/woman-well-color.png": "8c22724f2993f681f4784c8ee071f6ac3de25de732ea70e05c2eb5c06364086d",
+        "widgets/bless-intro.html": "d889f112a67f40d3b85012892fa102ce7b1d0d48186d90c37f37b0eb4ee9008c",
         "images/optimized/woman-well-bw-640.webp": "dee95339c39e4b7b6ffde9e4d7527c2264fa6189abaf2413bef5bd1fb77b35ec",
         "images/optimized/woman-well-bw-1280.webp": "4b970f3f3fbd33db0d478df8024fc3f958cfd00ef48ed2c4d8f99d249629bfe7",
-        "images/woman-well-color.png": "8c22724f2993f681f4784c8ee071f6ac3de25de732ea70e05c2eb5c06364086d",
         "images/optimized/woman-well-color-640.webp": "986f0c2a1b8bedf8997207f4955481186b9810f5732b2b1d8d1cccae0aa6701d",
-        "images/optimized/woman-well-color-1280.webp": "aa4c95e15f856ed3f76334f0a760be062a30dc4fa334f1a04c5f4ca39dc30d8f",
-        "widgets/bless-intro.html": "d889f112a67f40d3b85012892fa102ce7b1d0d48186d90c37f37b0eb4ee9008c"
+        "images/optimized/woman-well-color-1280.webp": "aa4c95e15f856ed3f76334f0a760be062a30dc4fa334f1a04c5f4ca39dc30d8f"
       },
       "component_approval": {
         "date": "2026-11-14",
@@ -275,8 +296,12 @@
         "date": "2026-11-16",
         "source": "Dave approved Proposal 2 (warm sunlight at well + terracotta shawl reveal) in chat with imageDissolveOnEntry timing",
         "image": "Approved: Woman at the Well monochrome -> sunlit Jesus at well + warm shawl reveal",
-        "scope": "Unchanged woman-well-bw.png, updated woman-well-color.png, four WebP copies, and imageDissolveOnEntry true. Nonvisual lesson content unchanged; text stays Silver."
-      }
+        "scope": "Unchanged woman-well-bw.png, updated woman-well-color.png, four WebP copies, and imageDissolveOnEntry true. Nonvisual lesson content unchanged; text stays Silver.",
+        "pr": 268,
+        "approved_commit": "17684f32bb846bda53cc91fd0ffb45ec777bb751"
+      },
+      "recorded_date": "2026-11-16",
+      "content_baseline_source": "d523897: current main lesson content and approved widgets preserved; #268 changes images/timing only"
     },
     {
       "lesson": "101-07",
