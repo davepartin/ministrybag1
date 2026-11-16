@@ -1,5 +1,11 @@
 # Growing Together Team Board
 
+## 101-03 approved voice revision: November 16, 2026
+
+VOICE-101-03 DONE, PR #269. Dave approved Claude's exact 65cc11013e4cbc0c1a59ca57f6ba1dc944b9aae8 revision: eight text blocks covering What Is Prayer, the shorter Matthew/Luke introduction, and the six step explanations in second person. Heading names and quoted prayer lines remain unchanged. Protect this wording; text stays Silver until Dave confirms whole-lesson Gold.
+
+Current #270 hint and #271 B&W hold were merged normally and remain exact. Questions/IDs, John 7-9, practice/review, art/story, widget/tool and saved-answer code are unchanged. Required QA, 225 widget and 464 story checks pass. Baseline/status record the approved wording; final preview/live evidence is on #269. [Codex integration log](logs/2026-11-16-VOICE-101-03-codex.md).
+
 ## Lord's Prayer hint follow-up: November 16, 2026
 
 WIDGET-101-03-HINT DONE, PR #270. Dave approved 23660ca21721469d2aad15d692b69d64a3e97c60: Choose a line to see its step alongside MATTHEW 6:9-13. The submitted widget bytes are preserved exactly. Current #271 entry-hold timing and both board histories are retained. Only the board append conflicted during the normal merge; no runtime conflict or reversion.

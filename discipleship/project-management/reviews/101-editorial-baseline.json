@@ -103,8 +103,8 @@
       "stage": "Silver",
       "dave_edits_protected": true,
       "full_personal_review": "unrecorded",
-      "lesson_sha256": "93745b452ee8228f3541b14930ee366703bf49c7ebd0827024a6c55ae5008267",
-      "non_visual_content_sha256": "c5150cadb19b1621d27077d426eacb9a1e1081a95b60e7a5519d0a2d35038c89",
+      "lesson_sha256": "105b1a535d20e9b9fee5230e2153af33268851322933172b7c5cc073c7b91b9a",
+      "non_visual_content_sha256": "dcbedac9c8d8b4eb76dac602dd63a05d0ff9279d18d2ed84c7e29533b9c67499",
       "visual_blocks": [
         {
           "type": "image",
@@ -146,12 +146,18 @@
         "pr": 268,
         "approved_commit": "17684f32bb846bda53cc91fd0ffb45ec777bb751"
       },
-      "content_baseline_source": "d523897: current main lesson content and approved widgets preserved; #268 changes images/timing only",
+      "content_baseline_source": "65cc11013e4cbc0c1a59ca57f6ba1dc944b9aae8: Dave-approved PR #269 voice revision; current #270 widget hint and approved art retained",
       "widget_hint_update": {
         "date": "2026-11-16",
         "source": "23660ca21721469d2aad15d692b69d64a3e97c60",
         "pr": 270,
         "scope": "Dave approved the exact hint follow-up: Choose a line to see its step and MATTHEW 6:9-13. Other widget content/behavior and lesson JSON unchanged. Supersedes only the earlier hint styling/copy in #266."
+      },
+      "approved_voice_update": {
+        "date": "2026-11-16",
+        "source": "65cc11013e4cbc0c1a59ca57f6ba1dc944b9aae8",
+        "pr": 269,
+        "scope": "Eight text blocks only: second-person What Is Prayer, shorter two-address introduction and six step explanations. All headings, quoted lines, questions/readings, practice/review, art/story/widgets/tools unchanged. Specific wording approval; text Silver."
       }
     },
     {
