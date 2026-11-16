@@ -41,20 +41,7 @@
     },
     {
       "type": "text",
-      "text": "Choose a short passage and read it slowly, more than once if you need to. Notice who is speaking and what is happening. Then ask three questions to help you pay attention to God, to people, and to the response His Word calls for."
-    },
-    {
-      "type": "box",
-      "title": "The Three Discovery Questions",
-      "content": [
-        "<strong>1. What does this passage tell me about God?</strong> Look for what God says and does. What does the passage show about His character, His promises, or His care for people?",
-        "<strong>2. What does this passage tell me about people?</strong> Notice what people say, believe, and do. What does the passage show about their need, their choices, or their response to God?",
-        "<strong>3. What is this passage calling me to do or believe?</strong> Look for a truth to trust, a command to follow, a sin to turn from, or a promise to hold on to. Let your response grow from what the passage actually says."
-      ]
-    },
-    {
-      "type": "text",
-      "text": "These questions give you a place to begin. If something is unclear, read the verses around it and ask a trusted Christian to help. You do not have to force an answer or find a hidden message. Stay with what the passage says, and let a clear truth guide your response."
+      "text": "Here is a simple way to listen to God in any passage: read it slowly, then ask three questions."
     },
     {
       "type": "widget",
@@ -95,7 +82,7 @@
     },
     {
       "type": "text",
-      "text": "You have read a passage, considered what it says about God and people, and named a response. Keep that rhythm close: <strong>Read, discover, respond.</strong> You can begin with what is clear while continuing to ask questions about what you do not yet understand."
+      "text": "That is the rhythm: <strong>Read, discover, respond.</strong> Begin with what is clear, and keep asking about what you do not yet understand."
     },
     {
       "type": "heading",
@@ -113,20 +100,6 @@
     {
       "type": "text",
       "text": "The wise builder heard Jesus' words and acted on them. That is why the third Discovery Question matters. A passage might call you to trust God's promise, ask forgiveness, or care for someone. Choose a response that fits what you read. Obedience is a response to God's love, not a way to earn it."
-    },
-    {
-      "type": "heading",
-      "text": "A Tool You Can Share"
-    },
-    {
-      "type": "text",
-      "text": "You do not have to know every answer before you can read with a friend. Open a short passage, listen to what it says, and use the same three questions. If something puzzles you, you can seek help. You are passing on a way to listen to God's Word, not presenting yourself as an expert."
-    },
-    {
-      "type": "question",
-      "id": "4-6",
-      "text": "4.5 - How would you explain the Three Discovery Questions to a friend who has never read the Bible?",
-      "data_question": "4.5 - Explaining Discovery Questions to a friend"
     },
     {
       "type": "heading",
@@ -191,6 +164,14 @@
       "id": "4-prayer",
       "text": "What is a prayer request for this week?",
       "height": "short"
+    }
+  ],
+  "retiredQuestions": [
+    {
+      "type": "question",
+      "id": "4-6",
+      "text": "4.5 - How would you explain the Three Discovery Questions to a friend who has never read the Bible?",
+      "data_question": "4.5 - Explaining Discovery Questions to a friend"
     }
   ]
 }
