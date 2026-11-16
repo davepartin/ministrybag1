@@ -177,9 +177,9 @@ function ck(label, cond) {
         await page.waitForTimeout(200);
         ck(tag + ' Start Over resets to Intro', (await frame.locator('.verse-card-title').textContent()).includes('Identifying with Jesus'));
 
-        // Companion widget two-ordinances.html still present and loading
+        // The placeholder two-ordinances.html widget was removed from 202-10 at Dave's direction (Nov 16)
         const twoOrdCount = await lesson.locator('iframe[src*="widgets/two-ordinances.html"]').count();
-        ck(tag + ' two-ordinances widget still present', twoOrdCount === 1);
+        ck(tag + ' two-ordinances placeholder removed from the lesson', twoOrdCount === 0);
 
         // Layout fit, existing 202-10 answers preserved, idle stability
         const frameOverflow = await frame.evaluate(() => document.documentElement.scrollWidth > window.innerWidth + 1);
