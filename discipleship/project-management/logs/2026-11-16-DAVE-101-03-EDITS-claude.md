@@ -12,3 +12,13 @@ Branch: claude/101-03-dave-edits
 Only blocks 0 (recap) and 1 (story) and the summary changed. Not changed, flagged for Dave: the bold line in "What is Prayer?" still reads "Prayer is a child talking with a Father who loves to listen."
 
 Checks: qa_foundation 0; test_lesson_export 0 (186); test_answer_storage 0 (64); check_lesson_assets 0 (138); local Playwright render of #101-3 at 375/390/1280, 15 of 15.
+
+## Round 2: Dave's five edits (November 16)
+
+1. Theology correction: "Prayer was how He stayed close to the Father He loved." became Dave's "Prayer displayed His close relationship with the Father." (Jesus did not need prayer to stay close to the Father.)
+2. Bold line under What is Prayer?: "Prayer is talking with a Father who loves to listen." The Lesson Review opened with the same phrase, so it was changed to match.
+3. Lord's Prayer verse label: "(traditional wording, from Matthew 6:9-13)" removed; label now "The Lord's Prayer".
+4. 3.3 (3-4): "What is one thing God cares about you can pray for?"
+5. 3.4 (3-hand): "What are some needs you can ask God for today?"
+
+Blocks changed against main: 0, 1, 3, 8, 20, 24, 36 and the summary. Question IDs unchanged. sha256 data/101-03.json 1de24116425eb931dff34af844821221f9cabc64440ee551fd3ba5120384d6ef. Checks: qa_foundation 0; test_lesson_export 0 (186); test_answer_storage 0 (64); check_lesson_assets 0 (138); render 15 of 15.
