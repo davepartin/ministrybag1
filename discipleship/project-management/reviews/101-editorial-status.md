@@ -65,3 +65,5 @@ November 14: Dave approved the four-frame 101-07 shepherd story sequence in PR #
 November 15: Dave approved PR #248 at ae5c9d4: retain 101-07 sequence order/stops/placement and frames 1-3, replace only frame 4 and its delivery copies with the approved B&W cloak version. The recorded hash and image approval source now identify that exact replacement. Text stays Silver and unchanged. This supersedes the earlier frame-4 color approval only.
 
 November 15: Dave directed a rethink of 101-07 (shorter; grace keeps you saved; obedience shows love; getting back up; room for a first conversation about sin). Draft on branch claude/rewrite-101-07 at REVIEW, not merged. The approved four-frame shepherd sequence and its parable text are unchanged. Stage stays Silver until Dave reads it.
+
+November 16: Dave approved the 101-07 rewrite text in PR #249 ("approved, merge it, keep them retired") at 7963809. Questions 7-3 and 7-hand stay retired with IDs reserved. Protect the approved wording. The approved stop-turn-walk widget (#251) replaces the interim "The 180: Stop, Turn, Walk" box when Codex integrates it. Gold is not claimed; it needs Dave's confirmed personal review.
