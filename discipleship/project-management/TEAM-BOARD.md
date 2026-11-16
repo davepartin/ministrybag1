@@ -1,8 +1,14 @@
 # Growing Together Team Board
 
-## 101-03 The Lord's Prayer widget (REVIEW): November 16, 2026
+## 101-03 Lord's Prayer widget approved: November 16, 2026
 
-- **Task / Branch:** `WIDGET-101-03-LORDS-PRAYER` on `gemini/widget-101-03-lords-prayer` (stopped at `REVIEW` pending Dave's visual approval).
+WIDGET-101-03-LORDS-PRAYER DONE. Dave approved PR #266 at 3542e12bc85b2d8793e4402d04b744737b9ebdca. Exact lords-prayer.html bytes, title The Lord's Prayer, iframe registration and placement are preserved. Only the static The Lord's Prayer verse block becomes a widget; every other lesson field, all eight questions/IDs, John 7-9, six-step teaching and Daily Prayers tool remain unchanged. Text stays Silver with Dave edits protected; no image or whole-lesson Gold is inferred.
+
+Current main #267 course-review documentation is merged normally and preserved alongside both task/board histories. Foundation/export/storage/assets/images/iframe and all 225 browser checks pass on phone, desktop and reduced motion. Exact-head preview and production evidence are on PR #266. Baseline/status record this widget approval. Evidence: [Codex integration log](logs/2026-11-16-WIDGET-101-03-LORDS-PRAYER-codex.md).
+
+## 101-03 The Lord's Prayer widget (DONE): November 16, 2026
+
+- **Task / Branch:** `WIDGET-101-03-LORDS-PRAYER` on `gemini/widget-101-03-lords-prayer` (Dave approved exact `3542e12`; Codex integration and final live evidence are recorded on PR #266).
 - **Changes:** Built [lords-prayer.html](../widgets/lords-prayer.html), registered `'lords-prayer.html': "The Lord's Prayer"` in [widget-iframe.js](../scripts/widget-iframe.js), replaced only the static `"The Lord's Prayer"` verse block in `discipleship/data/101-03.json` with `{ "type": "widget", "src": "widgets/lords-prayer.html", "title": "The Lord's Prayer", "height": "460px" }`, and added [widget_101_03_lords_prayer_browser_check.js](../scripts/widget_101_03_lords_prayer_browser_check.js):
   - All 7 prayer lines (`Our Father, who is in heaven,` through `For yours is the kingdom, and the power, and the glory forever, Amen.`, grouping `your kingdom come, your will be done / on earth as it is in heaven.` together) render as native `<details name="lords-prayer">` / `<summary>` exclusive accordion rows with numbered pills, rotating chevrons, and a `Click any line` pill cue (plus `HTMLDetailsElement` exclusivity fallback).
   - Clicking any prayer line (or stepping with `Begin`/`Next`/`Back`) highlights the Scripture line cleanly (soft Studio Wash fill + underline marker matching `read-discover-respond.html`) and pushes lines below down to pop open the matching sans-serif Step Heading drawer directly underneath that line (`Connect Relationally`, `Worship His Name`, `Pray His Agenda First`, `Depend on Him for Everything`, `Forgive and Be Forgiven`, `Engage in Spiritual Warfare`, and `Return the Glory to God`), closing automatically when another line is selected.
