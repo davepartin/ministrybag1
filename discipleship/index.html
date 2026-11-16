@@ -4332,8 +4332,9 @@
                                     </div>`;
                                 } else if (b.imageBw && b.imageColor) {
                                     const dissolveClasses = `block-image-dissolve${b.frame ? ' block-image-dissolve-framed' : ''}`;
+                                    const dissolveOnEntry = b.imageDissolveOnEntry === true ? ' data-dissolve-on-entry' : '';
                                     html += `<div class="${imageClasses}">
-                                        <div class="${dissolveClasses}" data-parable-dissolve>
+                                        <div class="${dissolveClasses}" data-parable-dissolve${dissolveOnEntry}>
                                             <img class="parable-img-color" ${GrowingTogetherLessonImages.attributes(b.imageColor, BUILD_VERSION)} alt="${b.alt || ''}">
                                             <img class="parable-img-bw" ${GrowingTogetherLessonImages.attributes(b.imageBw, BUILD_VERSION)} alt="" aria-hidden="true" style="opacity:1;">
                                         </div>
@@ -4745,6 +4746,11 @@
 
                     const rect = el.getBoundingClientRect();
                     let progress = (fadeStartY - rect.top) / fadeRange;
+                    if (el.hasAttribute('data-dissolve-on-entry')) {
+                        const entryStartY = contentTop + visibleHeight * 0.90;
+                        const entryEndY = contentTop + Math.max((visibleHeight - rect.height) / 2, 0);
+                        progress = (entryStartY - rect.top) / Math.max(entryStartY - entryEndY, 1);
+                    }
 
                     progress = Math.max(0, Math.min(1, progress));
                     bwImg.style.opacity = (1 - progress).toFixed(3);

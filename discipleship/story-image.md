@@ -151,6 +151,10 @@ Optional field: `"frame": true` adds a 1px border (`.block-image-dissolve-framed
 - The **black-and-white image** (`parable-img-bw`, `z-index: 2`, `position: absolute; inset: 0`) sits on top at `opacity: 1`.
 - Scrolling from `40%` down the visible area to `-22%` above the top bar reduces `bwImg.style.opacity` from `1` to `0`, revealing the color image underneath.
 
+### Earlier completion for an approved pair
+
+Optional `imageDissolveOnEntry: true` on a two-layer image starts the dissolve when its top reaches 90% down the visible area below the fixed lesson header, and completes it when the image is centered in that area. When the image fits within the visible area, the complete lighter image is fully on screen at completion. A taller-than-viewport image completes at the header edge. Reduced motion still shows the static lighter layer. This opt-in is currently enabled only for the 101-04 Nicodemus lamp at Dave's request; all other pair and sequence timings remain unchanged. Do not apply it broadly to approved artwork without direction.
+
 ### Art Prompts for Charcoal Pairs or Sequences
 
 - **B&W Base / Sequence Frame Prompt:** `[Describe scene] in a 3:2 or 16:9 wide aspect ratio. A rough black and white charcoal sketch, dynamic and expressive linework, loose and energetic pencil strokes, high contrast lighting with deep shadows, storyboard concept art style, emotional and evocative body language, heavy cross-hatching, warm grayscale monochromatic palette.`

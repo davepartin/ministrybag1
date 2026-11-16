@@ -1,5 +1,11 @@
 # Growing Together Team Board
 
+## 101-04 lamp timing correction: November 16, 2026
+
+Dave requested full light sooner while the image is still on screen. ART-101-04-LAMP-TIMING enables imageDissolveOnEntry only on the Nicodemus pair: fade begins on entry and completes with the image centered below the lesson header. All approved source/delivery artwork, placement, prose, Scripture, eight active questions, retired 4-6, John readings and widget bytes are unchanged. Text stays Silver. Other image/sequence timings keep their existing behavior. Baseline and image documentation record this timing-only update.
+
+The physical visibility regression fails on the old timing. Phone/desktop/short-screen/reduced-motion and legacy dissolve checks are recorded in [the timing log](logs/2026-11-16-ART-101-04-LAMP-TIMING-codex.md). Final preview, merge and production evidence are on the codex/10104-lamp-timing PR.
+
 ## 101-04 Nicodemus lamp artwork approved: November 16, 2026
 
 Dave approved PR #263 at b52e4f4ab59024193484e23eff0ad99d90904bae: the 1280x720 darker-to-lighter clay oil-lamp pair, four optimized 640/1280 WebP copies, generated image map, and touchNext placement immediately before Questions in the Night. Preserve these approved bytes. Older notes describing 101-04 story art as missing are superseded.
