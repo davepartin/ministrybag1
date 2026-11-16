@@ -211,8 +211,8 @@
       "stage": "Silver",
       "dave_edits_protected": false,
       "full_personal_review": "unrecorded",
-      "lesson_sha256": "6a30203e227470f225bee1e36ebed4d03a4b05d4b2d90f92ec32027c90605cf8",
-      "non_visual_content_sha256": "1840da0f4b68f86bc0e6f952a012b225342e6ab1df5243da8a603408b2c5de0b",
+      "lesson_sha256": "45627c1639722a2828861483f90fbcdcdc98cac45c851c7c0e955233de318c58",
+      "non_visual_content_sha256": "1c2df4626aa21f4f51c7ac8c8ddca5589a412232cc6de282d65e0a9c032f086a",
       "visual_blocks": [
         {
           "type": "image",
@@ -255,8 +255,9 @@
         "date": "2026-11-15",
         "source": "53d2d60543a471dd98d027f8cc4d52e8322d82ea",
         "pr": 251,
-        "scope": "Widget HTML only, with authorized insertion after Acts 3:19 explanation, 510px initial height. All prior content/art remains unchanged; text stays Silver."
-      }
+        "scope": "Widget HTML only, with authorized insertion after current Stop, Turn, Walk setup, 510px initial height. Approved main #249 content/retired answers and art remain unchanged; text stays Silver."
+      },
+      "non_visual_source_main": "97bb1208090925ec6226a4474213e3ede9987c68"
     }
   ]
 }

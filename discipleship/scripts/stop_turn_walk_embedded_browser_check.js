@@ -7,8 +7,10 @@ const data=require('../data/101-07.json');
 const other=require('../data/101-06.json').blocks.find(b=>b.type==='question');
 const base=process.env.STW_LESSON_BASE_URL||'http://127.0.0.1:8823/index.html';
 const questions=data.blocks.filter(b=>b.type==='question');
+const retired=data.retiredQuestions||[];
 const seed={[storage.MIGRATION_FLAG]:true};
 for(const [i,q]of questions.entries())seed['question-101-'+q.id]='SYN-stw-'+i;
+for(const [i,q]of retired.entries())seed['question-101-'+q.id]='SYN-stw-retired-'+i;
 const foreignKey='question-101-'+other.id;seed[foreignKey]='SYN-stw-other-lesson';
 let checks=0;const ck=(label,ok)=>{assert.ok(ok,label);checks++;};
 (async()=>{
@@ -54,12 +56,13 @@ let checks=0;const ck=(label,ok)=>{assert.ok(ok,label);checks++;};
     ck('iframe fits',await frame.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
     for(const q of questions)ck('current answer retained '+q.id,await lesson.locator('#question-101-'+q.id).inputValue()===seed['question-101-'+q.id]);
     ck('all stored answers untouched',await page.evaluate(seed=>{const saved=JSON.parse(localStorage.getItem('christianFoundationsResponses'));return Object.entries(seed).every(([k,v])=>saved[k]===v);},seed));
-    const editKey='question-101-7-hand';await lesson.locator('#'+editKey).fill('SYN-stw-edited');await lesson.locator('#'+editKey).blur();
-    await page.reload();await lesson.locator('#'+editKey).waitFor();ck('7-hand edit survives reload',await lesson.locator('#'+editKey).inputValue()==='SYN-stw-edited');
+    const editKey='question-101-7-1';await lesson.locator('#'+editKey).fill('SYN-stw-edited');await lesson.locator('#'+editKey).blur();
+    await page.reload();await lesson.locator('#'+editKey).waitFor();ck('active answer edit survives reload',await lesson.locator('#'+editKey).inputValue()==='SYN-stw-edited');
     await page.goto(base+'#101-6',{waitUntil:'domcontentloaded'});await page.locator('#session-6.active #'+foreignKey).waitFor();ck('other lesson answer retained',await page.locator('#session-6.active #'+foreignKey).inputValue()===seed[foreignKey]);
-    await page.goto(base+'#101-7',{waitUntil:'domcontentloaded'});await lesson.locator('#'+editKey).waitFor();ck('7-hand edit survives revisit',await lesson.locator('#'+editKey).inputValue()==='SYN-stw-edited');
+    await page.goto(base+'#101-7',{waitUntil:'domcontentloaded'});await lesson.locator('#'+editKey).waitFor();ck('active answer edit survives revisit',await lesson.locator('#'+editKey).inputValue()==='SYN-stw-edited');
     await page.locator('#email-lesson-btn').click();const email=await page.locator('#export-preview-text').textContent();
-    ck('Email includes every lesson answer',questions.every(q=>email.includes(q.id==='7-hand'?'SYN-stw-edited':seed['question-101-'+q.id])));
+    ck('Email includes every lesson answer',questions.every(q=>email.includes(q.id==='7-1'?'SYN-stw-edited':seed['question-101-'+q.id])));
+    for(const q of retired)ck('Earlier saved response retained '+q.id,email.includes(q.text)&&email.includes(seed['question-101-'+q.id]));
     ck('Email excludes other lesson',!email.includes(seed[foreignKey]));ck('no page/widget HTTP errors',errors.length===0);
     console.log('PASS embedded 101-07 '+width+'/'+motion+' card-h='+cardH.trim());
    }finally{await ctx.close();}
