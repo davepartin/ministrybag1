@@ -1,5 +1,13 @@
 # Resume here
 
+## 101-07 approved widget placed: November 15, 2026
+
+Dave approved PR #251 at exact 53d2d60543a471dd98d027f8cc4d52e8322d82ea. WIDGET-101-07-THE-180 DONE: stop-turn-walk.html remains byte-identical, title Repentance is 180 Degrees / 101-07. The iframe registration and approved standalone browser test are unchanged. One widget block is added immediately after the Stop, Turn, Walk setup in the current repentance section, before its existing teaching box. Phone heights measured 498.8px (375) and 507.4px (390); initial height is 510px with automatic iframe sizing.
+
+All current approved #249 prose, Scripture, eight active questions, retired 7-3/7-hand objects and answers, and John 19-21 reading and PR #248 four-frame B&W shepherd art remain untouched. Index, saved-answer code and all unrelated lessons/widgets/art remain unchanged. Text stays Silver; component approval only. Approved PR #249 landed during integration and is preserved from main 97bb120. The widget follows its three-step setup; the existing interim box remains under this no-prose-change scope. Questions 7-3 and 7-hand remain retired, with their saved responses retained.
+
+Core QA, export/storage/assets/images/iframe checks pass. Approved standalone browser test: 265 assertions unchanged. Separate embedded check: 212 assertions across 375/390/1280 and reduced motion, stable --card-h, fitting controls, real pointer activation with no scroll jump (within 1px rounding), all answers, edit/reload/revisit/Email. Exact-head Firebase preview and live evidence are recorded on PR #251. Evidence: [Codex integration log](logs/2026-11-15-WIDGET-101-07-THE-180-codex.md).
+
 ## 202-10 Baptism widget integration: November 15, 2026
 
 Dave explicitly approved only PR #246 at 3c3b32827cc419d856e5407eb928f7356133be22: baptism-picture.html (Baptism / 202-10) and its exact placement after Jesus gave the picture first. The approved widget, 202-10 JSON insertion, iframe helper and submitted browser test remain byte-identical. Main was merged normally, preserving the new lesson navigation and both board/task histories. All other lesson copy, Scripture, question IDs/objects, readings, saved-answer code, images and companion two-ordinances.html are unchanged. The companion remains reserved for the later Lord's Supper widget; this packet does not build or approve it. No whole-lesson Gold approval is inferred.

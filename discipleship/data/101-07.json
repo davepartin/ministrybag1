@@ -95,6 +95,12 @@
       "text": "Repentance has three simple steps: <strong>Stop, Turn, Walk.</strong>"
     },
     {
+      "type": "widget",
+      "src": "widgets/stop-turn-walk.html",
+      "title": "Repentance is 180 Degrees",
+      "height": "510px"
+    },
+    {
       "type": "box",
       "title": "The 180: Stop, Turn, Walk",
       "content": [

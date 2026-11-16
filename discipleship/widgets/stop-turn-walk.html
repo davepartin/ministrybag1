@@ -1,0 +1,841 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Repentance is 180 Degrees</title>
+<style>
+:root {
+  --ink: #2C2416;
+  --muted: #6E6559;
+  --tray: #F6F4EE;
+  --border: #EBE5D9;
+  --rust: #9B3B2A;
+  --rust-dark: #7A2B1D;
+  --gold: #A8760A;
+  --gold-dark: #7D5604;
+  --sage: #1F684A;
+  --sage-dark: #164E37;
+  --step-color: #2C2416;
+  --step-dark: #2C2416;
+  --card-h: 144px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: Georgia, Cambria, serif;
+  background: #F8F6F1;
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+.widget-outer {
+  background: #FFFFFF;
+  border-radius: 0;
+  overflow: hidden;
+  box-shadow: none;
+  border: none;
+  max-width: 100%;
+  width: 100%;
+  margin: 0;
+  position: relative;
+}
+
+@media (min-width: 560px) {
+  body {
+    padding: 16px;
+    background: #F8F6F1;
+  }
+  .widget-outer {
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(44, 36, 22, 0.08);
+    border: 1px solid var(--border);
+    max-width: 460px;
+    margin: 0 auto;
+  }
+}
+
+.title-bar {
+  background: #2C2416;
+  padding: 8px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.title-bar h1 {
+  font: 600 17px/1.15 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #FAF8F3;
+  letter-spacing: 0.2px;
+  margin: 0;
+  text-align: left;
+}
+
+.course-tag {
+  font: 600 11px/1 system-ui, -apple-system, sans-serif;
+  letter-spacing: 0.9px;
+  text-transform: uppercase;
+  color: #E5DEC9;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.stage {
+  background: #FFFFFF;
+  padding: 6px 6px 2px;
+  border-bottom: 1px solid var(--border);
+}
+
+svg#turn-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.svg-sans {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.fade-part {
+  opacity: 0;
+}
+
+.fade-part.is-on {
+  opacity: 1;
+}
+
+.dark-veil {
+  opacity: 0.88;
+}
+
+.dark-veil.is-pushed-back {
+  opacity: 0.24;
+}
+
+.light-wash {
+  opacity: 0;
+}
+
+.light-wash.is-on {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .widget-outer:not(.is-instant) .fade-part,
+  .widget-outer:not(.is-instant) .dark-veil,
+  .widget-outer:not(.is-instant) .light-wash {
+    transition: opacity 0.45s ease var(--fade-delay, 0ms);
+  }
+  .widget-outer .step-dot-fill {
+    transition: background-color 0.22s ease, border-color 0.22s ease, transform 0.22s ease;
+  }
+  .widget-outer .nav-btn.primary,
+  .widget-outer .verse-card-bar,
+  .widget-outer .verse-card-title {
+    transition: background-color 0.24s ease, border-color 0.24s ease, color 0.24s ease;
+  }
+}
+
+.step-strip {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px 5px;
+  background: var(--tray);
+  border-bottom: 1px solid var(--border);
+}
+
+.step-dot {
+  appearance: none;
+  min-width: 28px;
+  min-height: 28px;
+  padding: 4px;
+  border: none;
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 50%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.step-dot-fill {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 2.4px solid var(--dot-color, var(--ink));
+  background: #FFFFFF;
+  display: block;
+}
+
+.step-dot.passed .step-dot-fill {
+  background: color-mix(in srgb, var(--dot-color, var(--ink)) 22%, #FFFFFF);
+}
+
+.step-dot.active .step-dot-fill {
+  background: var(--dot-color, var(--ink));
+  transform: scale(1.14);
+}
+
+#card-area {
+  background: var(--tray);
+  padding: 7px 12px 10px;
+}
+
+.verse-card {
+  background: #FFFFFF;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: 0 2px 10px rgba(44, 36, 22, 0.05);
+}
+
+.verse-card-bar {
+  height: 4px;
+  background: var(--step-color);
+}
+
+.verse-card-content {
+  padding: 10px 13px;
+  min-height: var(--card-h, 144px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  --accent-color: var(--step-dark);
+}
+
+.verse-card-title {
+  font: 700 15.5px/1.2 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--step-dark);
+  margin: 0 0 5px;
+}
+
+.verse-card-quote {
+  font: 400 13.5px/1.38 Georgia, Cambria, serif;
+  color: #3D3426;
+  margin: 0 0 6px;
+}
+
+.verse-card-text {
+  font: 500 13px/1.38 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--ink);
+  margin: 0;
+}
+
+.verse-card-text.is-start {
+  font: 400 13.5px/1.44 Georgia, Cambria, serif;
+  color: #3D3426;
+}
+
+.nav-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-top: 7px;
+}
+
+.nav-btn {
+  appearance: none;
+  min-height: 44px;
+  min-width: 96px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1.5px solid #D4CFC4;
+  background: #FFFFFF;
+  color: var(--ink);
+  font: 700 13.5px/1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  white-space: nowrap;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.nav-btn.primary {
+  background: var(--step-color);
+  border-color: var(--step-color);
+  color: #FFFFFF;
+}
+
+.nav-btn.single-begin {
+  margin-left: auto;
+}
+
+.step-count {
+  font: 600 12px/1.2 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--muted);
+  text-align: center;
+  white-space: nowrap;
+}
+
+button:focus-visible {
+  outline: 3px solid #E0A526;
+  outline-offset: 2px;
+}
+
+@media (max-width: 395px) {
+  #card-area {
+    padding: 6px 10px 8px;
+  }
+  .verse-card-content {
+    padding: 9px 11px;
+  }
+  .verse-card-title {
+    font-size: 15px;
+  }
+  .verse-card-quote {
+    font-size: 13px;
+  }
+  .verse-card-text {
+    font-size: 12.5px;
+  }
+  .verse-card-text.is-start {
+    font-size: 13px;
+  }
+  .nav-btn {
+    min-width: 88px;
+    padding: 10px 12px;
+  }
+}
+
+#measure {
+  position: fixed;
+  left: -9999px;
+  top: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+</style>
+</head>
+<body>
+<main class="widget-outer" id="widget" role="region" aria-label="Repentance is 180 Degrees interactive visual">
+  <div class="title-bar">
+    <h1>Repentance is 180 Degrees</h1>
+    <span class="course-tag">101-07</span>
+  </div>
+
+  <div class="stage">
+    <svg id="turn-svg" viewBox="0 0 380 218" width="100%" role="img" aria-label="Repentance is 180 Degrees" aria-describedby="stw-desc">
+      <defs>
+        <!-- Simple black-and-white gradient sky: deep charcoal darkness left -> clean bright light right -->
+        <linearGradient id="skyGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#1E1E20"/>
+          <stop offset="30%" stop-color="#48484B"/>
+          <stop offset="58%" stop-color="#C6C5C1"/>
+          <stop offset="82%" stop-color="#F5F4F0"/>
+          <stop offset="100%" stop-color="#FCFBF7"/>
+        </linearGradient>
+
+        <!-- Slight distant hill: dark charcoal left -> light silver right -->
+        <linearGradient id="backHillGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#2D2D30"/>
+          <stop offset="45%" stop-color="#767678"/>
+          <stop offset="80%" stop-color="#D8D7D2"/>
+          <stop offset="100%" stop-color="#EFECE4"/>
+        </linearGradient>
+
+        <!-- Foreground gentle hills: dark grey left -> bright off-white right -->
+        <linearGradient id="meadowGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#363639"/>
+          <stop offset="36%" stop-color="#848380"/>
+          <stop offset="68%" stop-color="#DCDBD6"/>
+          <stop offset="100%" stop-color="#F7F5EE"/>
+        </linearGradient>
+
+        <!-- One single winding path in simple black-and-white tones -->
+        <linearGradient id="singlePathGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#4E4E52"/>
+          <stop offset="34%" stop-color="#9A9994"/>
+          <stop offset="68%" stop-color="#DDDCD7"/>
+          <stop offset="100%" stop-color="#F5F3EC"/>
+        </linearGradient>
+
+        <!-- Subtle warm light halo behind the right-side cross (only slight color) -->
+        <radialGradient id="lightGlowGrad" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#FFFDF5" stop-opacity="0.9"/>
+          <stop offset="50%" stop-color="#FCF2D6" stop-opacity="0.34"/>
+          <stop offset="100%" stop-color="#FCF2D6" stop-opacity="0"/>
+        </radialGradient>
+
+        <!-- Step 3 brightening wash flowing back from the light side across the hills -->
+        <linearGradient id="lightFloodGrad" x1="100%" y1="0%" x2="12%" y2="15%">
+          <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.52"/>
+          <stop offset="60%" stop-color="#F6F4EA" stop-opacity="0.28"/>
+          <stop offset="100%" stop-color="#F6F4EA" stop-opacity="0"/>
+        </linearGradient>
+
+        <!-- Left darkness veil (eases slightly on Walk) -->
+        <linearGradient id="darkMaskGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#141416" stop-opacity="0.48"/>
+          <stop offset="60%" stop-color="#222225" stop-opacity="0.18"/>
+          <stop offset="100%" stop-color="#222225" stop-opacity="0"/>
+        </linearGradient>
+
+        <clipPath id="stageClip">
+          <rect x="6" y="4" width="368" height="210" rx="10"/>
+        </clipPath>
+      </defs>
+
+      <g clip-path="url(#stageClip)">
+        <!-- Simple Darkness-to-Light backdrop -->
+        <rect x="6" y="4" width="368" height="210" fill="url(#skyGrad)"/>
+
+        <!-- Slight distant hills (no stars, no sun, no trees, no grass) -->
+        <path d="M 6 126 Q 74 108 142 124 Q 214 140 284 114 Q 336 96 374 108 L 374 166 L 6 166 Z" fill="url(#backHillGrad)"/>
+
+        <!-- Subtle soft light glow on right side (no sun orb) -->
+        <circle cx="328" cy="96" r="88" fill="url(#lightGlowGrad)"/>
+
+        <!-- Slight foreground hills -->
+        <path d="M 6 144 Q 98 130 188 142 Q 274 152 374 122 L 374 214 L 6 214 Z" fill="url(#meadowGrad)"/>
+
+        <!-- Step 3 soft light wash pushing darkness back -->
+        <rect id="light-wash" class="light-wash" x="6" y="4" width="368" height="210" fill="url(#lightFloodGrad)"/>
+
+        <!-- Restrained Cross on the right hill (minimal slight warm accent) -->
+        <g id="hill-cross" transform="translate(328, 126)">
+          <rect x="-3" y="-44" width="6" height="46" rx="1.6" fill="#6E5A44" stroke="#3D3226" stroke-width="1.2"/>
+          <rect x="-15" y="-31" width="30" height="5.5" rx="1.6" fill="#6E5A44" stroke="#3D3226" stroke-width="1.2"/>
+        </g>
+
+        <!-- Left darkness veil -->
+        <rect id="dark-veil" class="dark-veil" x="6" y="4" width="210" height="210" fill="url(#darkMaskGrad)"/>
+
+        <!-- ONE CONTINUOUS WINDING PATH (no dotted lines) -->
+        <g id="single-path">
+          <path d="M 6 170 C 66 159 124 148 188 140 C 254 132 314 127 374 125 L 374 139 C 314 143 254 152 192 164 C 128 176 70 190 6 204 Z"
+                fill="url(#singlePathGrad)"/>
+          <path d="M 6 170 C 66 159 124 148 188 140 C 254 132 314 127 374 125"
+                fill="none" stroke="#4D4C49" stroke-width="1.5" stroke-linecap="round" opacity="0.72"/>
+          <path d="M 6 204 C 70 190 128 176 192 164 C 254 152 314 143 374 139"
+                fill="none" stroke="#4D4C49" stroke-width="1.7" stroke-linecap="round" opacity="0.78"/>
+        </g>
+
+        <!-- Subtle footprint pairs showing drift away (Start & Step 1) -->
+        <g id="drift-steps" class="fade-part" fill="#595854" opacity="0.34">
+          <ellipse cx="238" cy="144" rx="2.2" ry="0.95" transform="rotate(-10 238 144)"/>
+          <ellipse cx="232" cy="148" rx="2.2" ry="0.95" transform="rotate(-10 232 148)"/>
+          <ellipse cx="206" cy="148" rx="2.2" ry="0.95" transform="rotate(-8 206 148)"/>
+          <ellipse cx="200" cy="153" rx="2.2" ry="0.95" transform="rotate(-8 200 153)"/>
+        </g>
+
+        <!-- Step 1 STOP bar & halt mark right on the path (slight crimson color) -->
+        <g id="stop-mark" class="fade-part">
+          <path d="M 88 153 L 94 182" stroke="#9B3B2A" stroke-width="3" stroke-linecap="round"/>
+          <rect x="64" y="96" width="54" height="22" rx="11" fill="#FAF8F6" stroke="#9B3B2A" stroke-width="1.6"/>
+          <text x="91" y="111" text-anchor="middle" class="svg-sans" font-size="11" font-weight="800" letter-spacing="0.8" fill="#7A2B1D">STOP</text>
+        </g>
+
+        <!-- Step 2 180-degree sweeping rotational arrow on the same path (slight gold color) -->
+        <g id="turn-arc-group" class="fade-part">
+          <path id="turn-arc-glow" d="M 80 126 C 72 86 154 86 146 124"
+                fill="none" stroke="#F8F5EE" stroke-width="8.5" stroke-linecap="round" opacity="0.88"/>
+          <path id="turn-arc-line" d="M 80 126 C 72 86 154 86 146 124"
+                fill="none" stroke="#A8760A" stroke-width="2.5" stroke-linecap="round"/>
+          <polyline id="turn-arrowhead" points="139,119 146,125 153,118"
+                    fill="none" stroke="#A8760A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect x="92" y="64" width="44" height="22" rx="11" fill="#FDF9EC" stroke="#A8760A" stroke-width="1.5"/>
+          <text x="114" y="79" text-anchor="middle" class="svg-sans" font-size="11.5" font-weight="800" letter-spacing="0.4" fill="#7D5604">180°</text>
+        </g>
+
+        <!-- Step 3 Return footsteps on the same path (slight green tint) -->
+        <g id="walk-trail" class="fade-part" fill="#1F684A" opacity="0.34">
+          <ellipse cx="136" cy="161" rx="2.3" ry="0.95" transform="rotate(-11 136 161)"/>
+          <ellipse cx="143" cy="164" rx="2.3" ry="0.95" transform="rotate(-11 143 164)"/>
+          <ellipse cx="164" cy="156" rx="2.3" ry="0.95" transform="rotate(-10 164 156)"/>
+          <ellipse cx="171" cy="159" rx="2.3" ry="0.95" transform="rotate(-10 171 159)"/>
+        </g>
+
+        <!-- Continuous Traveler Character on the ONE path (short natural neck, crisp black) -->
+        <g id="traveler" transform="translate(170, 155) scale(-1, 1)">
+          <ellipse cx="0" cy="0" rx="8" ry="2.2" fill="#141416" opacity="0.22"/>
+          <!-- Head sitting closely on shoulders (short neck) -->
+          <circle cx="0" cy="-29.5" r="4.8" fill="#141416"/>
+          <!-- Short neck + torso -->
+          <line x1="0" y1="-26" x2="0" y2="-10.5" stroke="#141416" stroke-width="3.2" stroke-linecap="round"/>
+          <!-- Forward arm from raised shoulder line y=-23.5 -->
+          <path d="M 0 -23.5 L 8 -17 L 12 -19" fill="none" stroke="#141416" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- Back arm -->
+          <path d="M 0 -23.5 L -7 -16.5" fill="none" stroke="#141416" stroke-width="2.4" stroke-linecap="round"/>
+          <!-- Stride legs -->
+          <path d="M 0 -10.5 L 6 -1" fill="none" stroke="#141416" stroke-width="2.9" stroke-linecap="round"/>
+          <path d="M 0 -10.5 L -6 -1" fill="none" stroke="#141416" stroke-width="2.7" stroke-linecap="round"/>
+        </g>
+
+        <!-- Simple Labels: DARKNESS vs LIGHT -->
+        <text x="42" y="199" text-anchor="middle" class="svg-sans" font-size="9.5" font-weight="700" letter-spacing="0.9" fill="#EAE9E4" opacity="0.82">DARKNESS</text>
+        <text x="328" y="159" text-anchor="middle" class="svg-sans" font-size="10" font-weight="700" letter-spacing="1.1" fill="#2C2416">LIGHT</text>
+
+        <!-- Inner hairline border around framed scene -->
+        <rect x="6" y="4" width="368" height="210" rx="10" fill="none" stroke="#E2DFD7" stroke-width="1"/>
+      </g>
+    </svg>
+    <p id="stw-desc" class="sr-only">Visual showing one continuous path between light and darkness, turning 180 degrees on that same path back toward the light.</p>
+  </div>
+
+  <div class="step-strip" id="step-strip" role="group" aria-label="Steps"></div>
+  <div id="card-area"></div>
+  <div id="status" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+</main>
+
+<script>
+(function () {
+  var el = function (id) { return document.getElementById(id); };
+  var outer = el('widget');
+  var reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var animRaf = null;
+  var step = -1;
+  var pendingFocus = null;
+
+  var INTRO = {
+    cardTitle: 'Which Way Are You Facing?',
+    verse: '',
+    text: 'Every follower of Jesus drifts sometimes. Repentance is a 180-degree turn back to Him.',
+    color: '#2C2416',
+    dark: '#2C2416',
+    dotLabel: 'Start: Which Way Are You Facing?',
+    desc: 'A traveler walks left along one winding path away from the light on the right toward darkness on the left.'
+  };
+
+  var stops = [
+    {
+      cardTitle: 'Stop',
+      verse: '"If we confess our sins, he is faithful and just to forgive us our sins and to cleanse us from all unrighteousness." (1 John 1:9)',
+      text: 'Be honest with God that you are headed the wrong way. Name your sin without excuses.',
+      color: '#9B3B2A',
+      dark: '#7A2B1D',
+      dotLabel: 'Step 1: Stop',
+      desc: 'Step 1, Stop: The traveler halts at a Stop mark on the path right before stepping further into darkness.'
+    },
+    {
+      cardTitle: 'Turn',
+      verse: '"you turned to God from idols to serve the living and true God" (1 Thessalonians 1:9)',
+      text: 'Turn all the way around, away from your sin and back to Jesus.',
+      color: '#A8760A',
+      dark: '#7D5604',
+      dotLabel: 'Step 2: Turn',
+      desc: 'Step 2, Turn: On that same path, a 180-degree turn rotates the traveler away from the darkness to face the light.'
+    },
+    {
+      cardTitle: 'Walk',
+      verse: '"Repent therefore, and turn back, that your sins may be blotted out, that times of refreshing may come from the presence of the Lord" (Acts 3:19)',
+      text: 'Walk forward forgiven, with Jesus, in the new direction. You can make this turn on any day.',
+      color: '#1F684A',
+      dark: '#164E37',
+      dotLabel: 'Step 3: Walk',
+      desc: 'Step 3, Walk: Light brightens the hills and single path as the traveler walks forward toward the light.'
+    }
+  ];
+
+  var turnArcGlow = el('turn-arc-glow');
+  var turnArcLine = el('turn-arc-line');
+  var LEN_ARC = turnArcLine.getTotalLength();
+  turnArcGlow.style.strokeDasharray = LEN_ARC;
+  turnArcLine.style.strokeDasharray = LEN_ARC;
+
+  var traveler = el('traveler');
+
+  function setFade(id, mode, delayMs) {
+    var node = el(id);
+    if (!node) return;
+    node.classList.remove('is-on');
+    if (mode === 'on') node.classList.add('is-on');
+    node.style.setProperty('--fade-delay', (delayMs || 0) + 'ms');
+  }
+
+  function stopAnim() {
+    if (animRaf) {
+      cancelAnimationFrame(animRaf);
+      animRaf = null;
+    }
+  }
+
+  function setTravelerPos(x, y, scaleX) {
+    traveler.setAttribute('transform', 'translate(' + x.toFixed(1) + ', ' + y.toFixed(1) + ') scale(' + scaleX.toFixed(3) + ', 1)');
+  }
+
+  function runTween(duration, onTick, onDone) {
+    stopAnim();
+    var start = performance.now();
+    function frame(now) {
+      var raw = Math.min((now - start) / duration, 1);
+      var eased = raw < 0.5 ? 2 * raw * raw : 1 - Math.pow(-2 * raw + 2, 2) / 2;
+      onTick(eased, raw);
+      if (raw < 1) {
+        animRaf = requestAnimationFrame(frame);
+      } else {
+        animRaf = null;
+        if (onDone) onDone();
+      }
+    }
+    animRaf = requestAnimationFrame(frame);
+  }
+
+  function paintVisual(targetStep, instant, prevStep) {
+    var isInst = instant || reducedMotion;
+    outer.classList.toggle('is-instant', isInst);
+    stopAnim();
+
+    var isStart = targetStep === -1;
+    var isStop = targetStep === 0;
+    var isTurn = targetStep === 1;
+    var isWalk = targetStep === 2;
+
+    el('dark-veil').classList.toggle('is-pushed-back', isWalk);
+    el('light-wash').classList.toggle('is-on', isWalk);
+
+    setFade('drift-steps', (isStart || isStop) ? 'on' : 'off', 0);
+    setFade('stop-mark', isStop ? 'on' : 'off', 0);
+    setFade('turn-arc-group', isTurn ? 'on' : 'off', 0);
+    setFade('walk-trail', isWalk ? 'on' : 'off', isWalk && !isInst ? 120 : 0);
+
+    el('turn-arrowhead').setAttribute('opacity', isTurn ? '1' : '0');
+    turnArcGlow.style.strokeDashoffset = isTurn ? 0 : LEN_ARC;
+    turnArcLine.style.strokeDashoffset = isTurn ? 0 : LEN_ARC;
+
+    // Ground coordinates follow the single path smoothly:
+    // Start (170, 155) -> Stop (114, 166) -> Turn in place (114, 166) -> Walk forward (212, 150)
+    if (isStart) {
+      setTravelerPos(170, 155, -1);
+    } else if (isStop) {
+      if (!isInst && prevStep === -1) {
+        setTravelerPos(170, 155, -1);
+        runTween(620, function (k) {
+          var px = 170 + (114 - 170) * k;
+          var py = 155 + (166 - 155) * k;
+          setTravelerPos(px, py, -1);
+        });
+      } else {
+        setTravelerPos(114, 166, -1);
+      }
+    } else if (isTurn) {
+      if (!isInst) {
+        el('turn-arrowhead').setAttribute('opacity', '0');
+        turnArcGlow.style.strokeDashoffset = LEN_ARC;
+        turnArcLine.style.strokeDashoffset = LEN_ARC;
+        runTween(780, function (k) {
+          var dash = (LEN_ARC * (1 - k)).toFixed(1);
+          turnArcGlow.style.strokeDashoffset = dash;
+          turnArcLine.style.strokeDashoffset = dash;
+          if (k > 0.85) el('turn-arrowhead').setAttribute('opacity', Math.min((k - 0.85) / 0.15, 1).toFixed(2));
+          var flip = -1 + 2 * k;
+          if (Math.abs(flip) < 0.08) flip = flip < 0 ? -0.08 : 0.08;
+          setTravelerPos(114, 166, flip);
+        }, function () {
+          turnArcGlow.style.strokeDashoffset = 0;
+          turnArcLine.style.strokeDashoffset = 0;
+          el('turn-arrowhead').setAttribute('opacity', '1');
+          setTravelerPos(114, 166, 1);
+        });
+      } else {
+        setTravelerPos(114, 166, 1);
+      }
+    } else if (isWalk) {
+      if (!isInst && prevStep === 1) {
+        setTravelerPos(114, 166, 1);
+        runTween(720, function (k) {
+          var px = 114 + (212 - 114) * k;
+          var py = 166 + (150 - 166) * k;
+          setTravelerPos(px, py, 1);
+        });
+      } else {
+        setTravelerPos(212, 150, 1);
+      }
+    }
+
+    var stateObj = isStart ? INTRO : stops[targetStep];
+    el('stw-desc').textContent = stateObj.desc;
+  }
+
+  function makeCard(spec) {
+    var vc = document.createElement('div');
+    vc.className = 'verse-card';
+    var bar = document.createElement('div');
+    bar.className = 'verse-card-bar';
+    bar.style.background = spec.color;
+    vc.appendChild(bar);
+
+    var content = document.createElement('div');
+    content.className = 'verse-card-content';
+    content.style.setProperty('--accent-color', spec.dark || spec.color);
+
+    var title = document.createElement('h2');
+    title.className = 'verse-card-title';
+    title.style.color = spec.dark || spec.color;
+    title.textContent = spec.cardTitle;
+    content.appendChild(title);
+
+    if (spec.verse) {
+      var quote = document.createElement('p');
+      quote.className = 'verse-card-quote';
+      quote.textContent = spec.verse;
+      content.appendChild(quote);
+    }
+
+    var text = document.createElement('p');
+    text.className = spec.verse ? 'verse-card-text' : 'verse-card-text is-start';
+    text.textContent = spec.text;
+    content.appendChild(text);
+
+    vc.appendChild(content);
+    return vc;
+  }
+
+  function fitCards() {
+    var area = el('card-area');
+    var cs = getComputedStyle(area);
+    var innerW = area.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+    var m = document.createElement('div');
+    m.id = 'measure';
+    m.style.width = Math.max(innerW, 240) + 'px';
+    document.documentElement.style.setProperty('--card-h', '0px');
+    var max = 0;
+    [INTRO].concat(stops).forEach(function (spec) {
+      m.appendChild(makeCard(spec));
+    });
+    document.body.appendChild(m);
+    m.querySelectorAll('.verse-card-content').forEach(function (node) {
+      max = Math.max(max, node.offsetHeight);
+    });
+    document.body.removeChild(m);
+    document.documentElement.style.setProperty('--card-h', Math.max(max, 128) + 'px');
+  }
+
+  var strip = el('step-strip');
+  var dots = [];
+
+  function addDot(idx, label, color) {
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'step-dot';
+    btn.style.setProperty('--dot-color', color);
+    btn.setAttribute('aria-label', label);
+    btn.setAttribute('aria-pressed', 'false');
+    var fill = document.createElement('span');
+    fill.className = 'step-dot-fill';
+    btn.appendChild(fill);
+    btn.addEventListener('click', function () {
+      go(idx, false);
+    });
+    strip.appendChild(btn);
+    dots.push({ btn: btn, step: idx });
+  }
+
+  addDot(-1, INTRO.dotLabel, INTRO.color);
+  stops.forEach(function (s, i) {
+    addDot(i, s.dotLabel, s.color);
+  });
+
+  function updateDots() {
+    dots.forEach(function (d) {
+      var isCurrent = d.step === step;
+      var isPassed = d.step < step;
+      d.btn.classList.toggle('active', isCurrent);
+      d.btn.classList.toggle('passed', isPassed);
+      d.btn.setAttribute('aria-pressed', isCurrent ? 'true' : 'false');
+    });
+  }
+
+  function makeBtn(label, control, cls, onClick) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = cls;
+    b.setAttribute('data-control', control);
+    b.textContent = label;
+    b.addEventListener('click', onClick);
+    return b;
+  }
+
+  function applyFocus() {
+    if (!pendingFocus) return;
+    var target = document.querySelector('[data-control="' + pendingFocus + '"]');
+    pendingFocus = null;
+    if (target) target.focus();
+  }
+
+  function go(nextStep, instant, focusControl) {
+    var prevStep = step;
+    step = nextStep;
+    pendingFocus = focusControl || null;
+
+    var spec = step === -1 ? INTRO : stops[step];
+    document.documentElement.style.setProperty('--step-color', spec.color);
+    document.documentElement.style.setProperty('--step-dark', spec.dark || spec.color);
+
+    paintVisual(step, instant, prevStep);
+
+    var cardArea = el('card-area');
+    cardArea.innerHTML = '';
+    cardArea.appendChild(makeCard(spec));
+
+    var nav = document.createElement('div');
+    nav.className = 'nav-bar';
+
+    if (step === -1) {
+      var count0 = document.createElement('span');
+      count0.className = 'step-count';
+      count0.textContent = 'Ready';
+      nav.appendChild(count0);
+      nav.appendChild(makeBtn('Begin \u2192', 'begin', 'nav-btn primary begin-btn single-begin', function () {
+        go(0, false, 'next');
+      }));
+      el('status').textContent = INTRO.cardTitle;
+    } else {
+      nav.appendChild(makeBtn('\u2190 Back', 'back', 'nav-btn', function () {
+        go(step - 1, false, step === 0 ? 'begin' : 'back');
+      }));
+      var count = document.createElement('span');
+      count.className = 'step-count';
+      count.textContent = (step + 1) + ' of ' + stops.length;
+      nav.appendChild(count);
+      if (step < stops.length - 1) {
+        nav.appendChild(makeBtn('Next \u2192', 'next', 'nav-btn primary', function () {
+          go(step + 1, false, 'next');
+        }));
+      } else {
+        nav.appendChild(makeBtn('\u21BB Start Over', 'restart', 'nav-btn primary', function () {
+          go(-1, false, 'begin');
+        }));
+      }
+      el('status').textContent = 'Step ' + (step + 1) + ' of ' + stops.length + ': ' + spec.cardTitle;
+    }
+
+    cardArea.appendChild(nav);
+    updateDots();
+    applyFocus();
+  }
+
+  go(-1, true, null);
+  fitCards();
+
+  var resizeTimer = null;
+  var lastWidth = window.innerWidth;
+  window.addEventListener('resize', function () {
+    if (window.innerWidth === lastWidth) return;
+    lastWidth = window.innerWidth;
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(fitCards, 150);
+  });
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(fitCards);
+  }
+})();
+</script>
+</body>
+</html>
