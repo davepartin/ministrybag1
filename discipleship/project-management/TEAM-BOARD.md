@@ -1,5 +1,28 @@
 # Growing Together Team Board
 
+## 101-07 interim box removed: November 15, 2026
+
+Dave explicitly directed that the stop-turn-walk widget replace The 180: Stop, Turn, Walk box. WIDGET-101-07-REMOVE-BOX removes only that box. One approved widget remains immediately after Repentance has three simple steps: Stop, Turn, Walk. All other #249 wording, active/retired questions, reading keys, approved widget bytes and B&W shepherd artwork remain unchanged. Text stays Silver.
+
+This supersedes the earlier #251 integration note retaining the box under the then-current no-prose-change guardrail. The three-step teaching now appears only in the widget. Verification and final preview/live evidence are recorded on the follow-up PR for codex/10107-remove-interim-box. Evidence: [Codex log](logs/2026-11-15-WIDGET-101-07-REMOVE-BOX-codex.md).
+
+## 101-07 approved widget placed: November 15, 2026
+
+Dave approved PR #251 at exact 53d2d60543a471dd98d027f8cc4d52e8322d82ea. WIDGET-101-07-THE-180 DONE: stop-turn-walk.html remains byte-identical, title Repentance is 180 Degrees / 101-07. The iframe registration and approved standalone browser test are unchanged. One widget block is added immediately after the Stop, Turn, Walk setup in the current repentance section, before its existing teaching box. Phone heights measured 498.8px (375) and 507.4px (390); initial height is 510px with automatic iframe sizing.
+
+All current approved #249 prose, Scripture, eight active questions, retired 7-3/7-hand objects and answers, and John 19-21 reading and PR #248 four-frame B&W shepherd art remain untouched. Index, saved-answer code and all unrelated lessons/widgets/art remain unchanged. Text stays Silver; component approval only. Approved PR #249 landed during integration and is preserved from main 97bb120. The widget follows its three-step setup; the existing interim box remains under this no-prose-change scope. Questions 7-3 and 7-hand remain retired, with their saved responses retained.
+
+Core QA, export/storage/assets/images/iframe checks pass. Approved standalone browser test: 265 assertions unchanged. Separate embedded check: 212 assertions across 375/390/1280 and reduced motion, stable --card-h, fitting controls, real pointer activation with no scroll jump (within 1px rounding), all answers, edit/reload/revisit/Email. Exact-head Firebase preview and live evidence are recorded on PR #251. Evidence: [Codex integration log](logs/2026-11-15-WIDGET-101-07-THE-180-codex.md).
+
+## 101-07 Repentance is 180 Degrees widget (REVIEW): November 15, 2026
+
+- **Task / Branch:** `WIDGET-101-07-THE-180` on `gemini/widget-101-07-stop-turn-walk` (stopped at `REVIEW` for Dave's visual approval and Codex placement in `101-07`).
+- **Changes:** Built standalone Studio Wash widget [stop-turn-walk.html](../widgets/stop-turn-walk.html) (`Repentance is 180 Degrees` / `101-07`) leaving all lesson JSON (`data/*.json`) untouched:
+  - Visualizes one continuous winding footpath (no dotted lines) across mostly black-and-white rolling hills with slight accent color, stretching from `LIGHT` (and subtle hillside cross) on the right toward `DARKNESS` on the left (no sun, stars, trees, grass, or Jesus figure): Start walks leftward toward `DARKNESS` (`Which Way Are You Facing?`), Step 1 `Stop` halts on the trail (`1 John 1:9` ESV), Step 2 `180°` turns around in place on the same path back toward `LIGHT` (`1 Thessalonians 1:9` ESV), and Step 3 `Walk` brightens the trail as the short-necked black traveler walks forward toward `LIGHT` (`Acts 3:19` ESV).
+  - Exact requested wording preserved with zero forbidden author words outside verbatim Scripture quotes and zero em dashes, Studio Wash `#2C2416` `.title-bar`, wordless 4-dot `.step-strip`, locked `--card-h`, `#E0A526` `:focus-visible`, `<svg role="img" aria-label>` + `.sr-only` `#stw-desc`, `prefers-reduced-motion: reduce`, idle-silent rAF, and zero `localStorage`.
+  - Registered `'stop-turn-walk.html': 'Repentance is 180 Degrees'` in `discipleship/scripts/widget-iframe.js` and added Playwright test `discipleship/scripts/widget_101_07_stop_turn_walk_browser_check.js`.
+- **Evidence:** [Gemini handoff log](logs/2026-11-15-WIDGET-101-07-THE-180-gemini.md).
+
 ## 202-10 Baptism widget: Dave approved, Codex integration, November 15, 2026
 
 - **Task / Branch:** `WIDGET-202-10-BAPTISM` DONE, PR #246 on `gemini/widget-202-10-baptism`; Codex integration branch `codex/review-246`. Dave explicitly approved only the widget and placement at exact `3c3b32827cc419d856e5407eb928f7356133be22`. Widget, 202-10 JSON, iframe helper and submitted browser test remain byte-identical to that approval. Whole-lesson Gold is not inferred.
