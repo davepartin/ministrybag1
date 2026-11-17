@@ -1274,6 +1274,54 @@
             margin-bottom: 32px;
         }
 
+        /* In-lesson jump links: a phrase in an intro paragraph that scrolls to its section */
+        .lesson-jump {
+            color: var(--accent);
+            font-weight: 600;
+            text-decoration: none;
+            background-image: linear-gradient(transparent 60%, rgba(216, 243, 220, 0.95) 60%);
+            border-radius: 2px;
+            padding: 0 1px;
+            -webkit-tap-highlight-color: transparent;
+            transition: background-size 0.2s ease, color 0.2s ease;
+        }
+        .lesson-jump::after {
+            content: '\2193';
+            display: inline-block;
+            margin-left: 2px;
+            font-size: 0.78em;
+            font-weight: 700;
+            opacity: 0.65;
+            transform: translateY(-1px);
+        }
+        .lesson-jump:hover,
+        .lesson-jump:active {
+            color: var(--accent-hover);
+            background-image: linear-gradient(transparent 0%, rgba(216, 243, 220, 0.95) 0%);
+        }
+        .lesson-jump:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+        }
+        .lesson-jump-target {
+            scroll-margin-top: calc(var(--save-status-height, 0px) + 104px);
+        }
+        .lesson-jump-target:focus {
+            outline: none;
+        }
+        .lesson-jump-target.is-arrived {
+            animation: lessonJumpArrive 1.8s ease-out;
+            border-radius: 6px;
+        }
+        @keyframes lessonJumpArrive {
+            0%, 25% { background-color: rgba(216, 243, 220, 0.95); box-shadow: 0 0 0 6px rgba(216, 243, 220, 0.95); }
+            100% { background-color: rgba(216, 243, 220, 0); box-shadow: 0 0 0 6px rgba(216, 243, 220, 0); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .lesson-jump { transition: none; }
+            .lesson-jump-target.is-arrived { animation: none; }
+        }
+
         /* Content blocks */
         .block-heading {
             font-size: 1.2rem;
@@ -2588,6 +2636,8 @@
            PRINT / SAVE AS PDF
            ============================================ */
         @media print {
+            .lesson-jump { color: inherit; font-weight: inherit; background: none; padding: 0; }
+            .lesson-jump::after { content: none; }
 
             body.printing .lesson-topbar,
             body.printing .toc-panel,
@@ -4298,10 +4348,11 @@
                                 if (b.icon) {
                                     iconHTML = `<img ${GrowingTogetherLessonImages.attributes(b.icon, BUILD_VERSION, '105px')} class="heading-float-icon" alt="">`;
                                 }
+                                const headingAnchor = lessonJumpAnchorAttrs(b.anchor);
                                 if (b.subheading) {
-                                    html += `${iconHTML}<h4 class="block-subheading">${b.text}</h4>`;
+                                    html += `${iconHTML}<h4 class="block-subheading${headingAnchor.cls}"${headingAnchor.attrs}>${b.text}</h4>`;
                                 } else {
-                                    html += `${iconHTML}<h3 class="block-heading">${b.text}</h3>`;
+                                    html += `${iconHTML}<h3 class="block-heading${headingAnchor.cls}"${headingAnchor.attrs}>${b.text}</h3>`;
                                 }
                                 break;
 
@@ -4496,8 +4547,9 @@
                                 </div>`;
                                 break;
 
-                            case 'parable':
-                                html += `<div class="block-parable">`;
+                            case 'parable': {
+                                const parableAnchor = lessonJumpAnchorAttrs(b.anchor);
+                                html += `<div class="block-parable${parableAnchor.cls}"${parableAnchor.attrs}>`;
                                 if (b.image) {
                                     html += `<img ${GrowingTogetherLessonImages.attributes(b.image, BUILD_VERSION)} alt="${b.alt || b.title}">`;
                                 }
@@ -4508,6 +4560,7 @@
                                     </div>
                                 </div>`;
                                 break;
+                            }
 
                             case 'widget': {
                                 const widgetId = `widget-${currentSeries}-${sessionNum}-${blockIdx}`;
@@ -6694,6 +6747,30 @@
         // HASH ROUTING - Browser back/forward support
         // Handles: #101-4 (course-lesson), #tree, #about, # (home)
         // ============================================
+        // In-lesson jump links. A lesson block may carry an "anchor" (lowercase letters,
+        // digits, hyphens). Lesson text links to it with
+        // <a class="lesson-jump" href="#jump-ANCHOR">phrase</a>. Clicks scroll to the
+        // section without changing the address bar, which the lesson router owns.
+        function lessonJumpAnchorAttrs(anchor) {
+            if (typeof anchor !== 'string' || !/^[a-z0-9-]+$/.test(anchor)) return { cls: '', attrs: '' };
+            return { cls: ' lesson-jump-target', attrs: ` id="jump-${anchor}" tabindex="-1"` };
+        }
+
+        document.addEventListener('click', (event) => {
+            const link = event.target.closest && event.target.closest('a.lesson-jump');
+            if (!link) return;
+            event.preventDefault();
+            const targetId = (link.getAttribute('href') || '').replace(/^#/, '');
+            const target = targetId ? document.getElementById(targetId) : null;
+            if (!target || !target.classList.contains('lesson-jump-target')) return;
+            const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            target.scrollIntoView({ behavior: reduceMotion ? 'instant' : 'smooth', block: 'start' });
+            target.focus({ preventScroll: true });
+            target.classList.remove('is-arrived');
+            void target.offsetWidth;
+            target.classList.add('is-arrived');
+        });
+
         window.addEventListener('hashchange', async () => {
             if (_suppressHashNav) return;
 
