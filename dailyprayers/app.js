@@ -302,7 +302,7 @@
       $('lesson-link').href = home.href + '#101-3';
       document.querySelector('.wordmark').href = home.href;
       const appsLink = $('growing-apps-link');
-      if (appsLink) appsLink.href = home.href + '#growing-apps';
+      if (appsLink) appsLink.href = new URL('../', location.href).href;
       const migration = $('ministrybag-move');
       if (migration) migration.hidden = false;
     }

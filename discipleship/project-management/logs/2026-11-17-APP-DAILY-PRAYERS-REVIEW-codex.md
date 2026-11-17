@@ -39,3 +39,15 @@ Phone/desktop home and editor screenshots inspected; synthetic data only. Exact-
 ## Dave navigation refinement
 
 Dave requested renaming the home browse control to Browse All Lessons, placing Your Growing Apps immediately below it, and opening a separate single-page app list with a full-width Your Daily Prayers button. Replace the inline home app section with this hub. Keep the small collection ready for 3-6 apps without shipping placeholders. App/lesson data preservation and same-origin return links remain in force.
+
+## Final navigation layout, replacing the inline section
+
+Dave refined the home navigation to Browse All Lessons followed immediately by Your Growing Apps, with a separate page of full-width app buttons. Implemented this at tools/index.html and tools/apps.css, sharing the existing app's brand styles/logo. The sole available button reads Your Daily Prayers. The hub returns to courses, and Daily Prayers returns to this hub or 101-03 on the same site. No fake future apps are shipped. A test temporarily adds six rows to confirm they fit 375x667, 390x844 and 1280x800 screens, then removes them.
+
+Removed the inline home card/section and custom growing-apps hash helper from the previous trial. All main-app script blocks now match origin/main exactly; only the home-control labels/link and matching-button CSS differ. Prayer lesson URL, protected baseline/content, actual prayer generator/storage and old MinistryBag compatibility copies remain as already documented. Changed the app's Growing Apps return target/label and regenerated mirrors.
+
+Final local checks exit 0: foundation; export186; storage64; assets144; images1543; iframe32; mirror parity; new hub/round-trip168; existing all-37 lesson navigation964; existing Daily Prayers294 across both canonical and legacy paths. The first local browser launch needed the local server restarted after environment startup. A concurrent prayer-suite attempt also timed out waiting for a local page load; rerunning that suite on its own passed all294 without changing the app or assertions. Screenshots inspected for the matching home controls and compact app page. Main-app script equality, app/test syntax and whitespace checks pass.
+
+The final hub test covers keyboard home entry, exact control ordering/labels, matching width/height/44px targets, separate same-origin hub, full-width app button, six-row capacity, shared logo, no sideways overflow, old prayer/unknown metadata and eight lesson answers retained through popup/return navigation, and no page exceptions. Reduced motion is included.
+
+Final exact-head Firebase preview and hosted checks are posted on PR #261. APP-DAILY-PRAYERS remains REVIEW; no publishing approval is inferred for this new navigation layout.

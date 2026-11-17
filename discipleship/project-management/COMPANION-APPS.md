@@ -11,7 +11,7 @@ node discipleship/scripts/build_daily_prayers.js
 node discipleship/scripts/build_daily_prayers.js --check
 ```
 
-Keeping the established MinistryBag address on its original origin is important: existing browser prayers remain accessible there. Do not redirect it to a new origin and claim the prayers will follow. Browser storage is separate for MinistryBag, Growing Together and every preview URL. Growing Together is the primary entry: the home page has a Growing Apps section at index.html#growing-apps, and 101-03 links directly to tools/daily-prayers/. Only that tool URL changes in the lesson; its wording and questions are unchanged. The app returns to the home app section and prayer lesson on the same origin, including preview sites. The MinistryBag logo remains an attribution link; the legacy address remains available for earlier saved prayers.
+Keeping the established MinistryBag address on its original origin is important: existing browser prayers remain accessible there. Do not redirect it to a new origin and claim the prayers will follow. Browser storage is separate for MinistryBag, Growing Together and every preview URL. Growing Together is the primary entry: the home page has Browse All Lessons followed immediately by Your Growing Apps, which opens the separate tools/ page. That page lists compact full-width app buttons, starting with Your Daily Prayers. Lesson 101-03 links directly to tools/daily-prayers/. Only that tool URL changes in the lesson; its wording and questions are unchanged. The app returns to the separate Your Growing Apps page and prayer lesson on the same origin, including preview sites. The MinistryBag logo remains an attribution link; the legacy address remains available for earlier saved prayers.
 
 The app keeps the original `lordsPrayerApp` and `lordsPrayerApp_generated` keys and prayer wording. Loading does not rewrite either store. It opens an existing generated prayer verbatim; a saved editing preference reopens a draft. Edits save locally on input. Create Your Daily Prayer combines the selected growth areas, names and requests into the generated reading copy. Unknown legacy metadata is retained. Unreadable records remain untouched and can be downloaded as a raw recovery file.
 
@@ -22,6 +22,10 @@ There is no account synchronization in this version. The interface explicitly sa
 ## Moving existing MinistryBag prayers
 
 The two domains cannot read one another's browser storage. After both updated addresses are deployed, open the old MinistryBag app, expand Keep a copy or move to another device, and choose Save a copy. In Growing Together Daily Prayers, expand the same tools and choose Restore a copy. Review and confirm the import. The copy includes the draft and generated prayer; the original remains on MinistryBag. The canonical app explains these steps inside its backup tools. No names or requests travel through the home page, a URL, or analytics.
+
+## Your Growing Apps page
+
+Maintain the small collection in tools/index.html, using one app-button anchor per ready app. The page shares Daily Prayers base styling and logo, with compact spacing in tools/apps.css. The layout is designed for 3-6 full-width buttons on one page; a six-row synthetic layout is checked on common phone and laptop screens. Do not ship placeholder app links. Keep app names personal and clear, beginning with Your Daily Prayers. Return to courses through the breadcrumb or Growing Together wordmark. No SPA routing changes are needed for this static hub.
 
 ## Pattern for later apps
 

@@ -88,7 +88,7 @@ Three-circle logo: left circle (blue) is a seedling/pot for Starting (101), midd
 4. Verse line - "Col. 2:6,7 As you received Christ Jesus the Lord, so walk in him"
 5. Pillars - "Rooted - Built-Up - Established" - Raleway 800 weight
 6. Five course cards, equal, color-coded by series
-7. Growing Apps: same-site practice tools, starting with tools/daily-prayers/. The home section is directly reachable at index.html#growing-apps and from companion return links. Related lessons link to the same app; see project-management/COMPANION-APPS.md.
+7. Browse All Lessons and Your Growing Apps are matching stacked home controls. Your Growing Apps opens tools/index.html (tools/), a compact separate page of 3-6 app buttons, starting with Your Daily Prayers at tools/daily-prayers/. Related lessons link to the same app. See project-management/COMPANION-APPS.md.
 
 ### Typography (Google Fonts)
 - **Forum** - home page title

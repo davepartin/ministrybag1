@@ -1,12 +1,12 @@
 # Growing Together Team Board
 
-## Daily Prayers and Growing Apps preview: November 17, 2026
+## Daily Prayers and Your Growing Apps preview: November 17, 2026
 
-APP-DAILY-PRAYERS REVIEW, PR #261. Dave approved the Daily Prayers look and requested it live in the Growing Together world, accessible from home and related lessons. The preview adds a Growing Apps home section with Daily Prayers first, changes only the 101-03 tool URL to tools/daily-prayers/, and adds app return links to the same-origin lesson/home section. The growing-apps hash opens home and focuses the section. These changes supersede the older no-homepage/no-lesson-URL boundary only within this explicit assignment.
+APP-DAILY-PRAYERS REVIEW, PR #261. Dave requested two matching home controls: Browse All Lessons, then Your Growing Apps. The second opens a separate tools/ page with compact full-width app buttons, starting with Your Daily Prayers. The temporary inline home app section and its custom hash routing are removed; main-app scripts now match current main exactly. A synthetic six-button layout fits the tested phone/laptop screens, with only the ready app shipped.
 
-All 101-03 wording, Scripture, questions/IDs, readings, art and approved widget are preserved. Baseline/status note the URL-only change; text remains Silver. No edits to Dave's separate 201-01 or PR #282 branches. Existing prayer generation wording and storage keys remain unchanged; MinistryBag keeps its old address and generated app copy. Backup tools explain how to move an old prayer by Save a copy/Restore a copy, without redirecting or claiming cross-domain/account sync.
+Daily Prayers remains on the same site with return links to the separate app hub and prayer lesson. Only the 101-03 tool URL changes; protected wording, questions/IDs, reading, art and widget remain unchanged. MinistryBag keeps the old address/data with Save a copy/Restore a copy migration; no redirect or account sync is implied. No 201-01 or #282 branch edits, other apps or Firebase configuration changes.
 
-Core QA, 294 two-address prayer checks, 140 same-site round-trip checks and 964 existing lesson-navigation checks pass. Review the new hub/navigation on the PR preview before publishing. No Weekly Connection Time or broader homepage redesign is included. [Current log](logs/2026-11-17-APP-DAILY-PRAYERS-REVIEW-codex.md).
+Core QA, mirror parity, 294 existing prayer, 168 hub/navigation and 964 lesson-navigation browser checks pass locally. The new hub/navigation preview awaits Dave's review; no merge or live change. [Current log](logs/2026-11-17-APP-DAILY-PRAYERS-REVIEW-codex.md).
 
 ## Daily Prayers companion ready for review: November 16, 2026
 
