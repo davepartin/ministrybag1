@@ -1274,34 +1274,55 @@
             margin-bottom: 32px;
         }
 
-        /* In-lesson jump links: a phrase in an intro paragraph that scrolls to its section */
+        /* In-lesson jump links: phrases in a lesson's summary point to numbered sections.
+           Each linked phrase ends in a numbered blue circle; the section it points to
+           starts with the same numbered circle. */
         .lesson-jump {
-            color: var(--accent);
-            font-weight: 600;
+            color: inherit;
             text-decoration: none;
-            background-image: linear-gradient(transparent 60%, rgba(216, 243, 220, 0.95) 60%);
-            border-radius: 2px;
-            padding: 0 1px;
             -webkit-tap-highlight-color: transparent;
-            transition: background-size 0.2s ease, color 0.2s ease;
+            border-radius: 3px;
         }
-        .lesson-jump::after {
-            content: '\2193';
-            display: inline-block;
-            margin-left: 2px;
-            font-size: 0.78em;
-            font-weight: 700;
-            opacity: 0.65;
-            transform: translateY(-1px);
-        }
-        .lesson-jump:hover,
-        .lesson-jump:active {
-            color: var(--accent-hover);
-            background-image: linear-gradient(transparent 0%, rgba(216, 243, 220, 0.95) 0%);
+        .lesson-jump:hover {
+            text-decoration: underline;
+            text-decoration-color: rgba(43, 90, 131, 0.45);
+            text-underline-offset: 4px;
         }
         .lesson-jump:focus-visible {
-            outline: 2px solid var(--accent);
+            outline: 2px solid var(--blue-heading);
             outline-offset: 2px;
+        }
+        .lesson-jump-tail {
+            white-space: nowrap;
+        }
+        .lesson-jump-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 1.35em;
+            height: 1.35em;
+            margin-left: 4px;
+            border-radius: 50%;
+            background: var(--blue-heading);
+            color: #FFFFFF;
+            font-size: 0.7em;
+            font-weight: 700;
+            line-height: 1;
+            font-variant-numeric: tabular-nums;
+            vertical-align: 0.18em;
+            transition: transform 0.15s ease, background-color 0.15s ease;
+        }
+        .lesson-jump:hover .lesson-jump-num,
+        .lesson-jump:active .lesson-jump-num {
+            background: #1F4566;
+            transform: scale(1.08);
+        }
+        .lesson-jump-num.is-section {
+            width: 1.45em;
+            height: 1.45em;
+            margin: 0 10px 0 0;
+            font-size: 0.78em;
+            vertical-align: 0.14em;
         }
         .lesson-jump-target {
             scroll-margin-top: calc(var(--save-status-height, 0px) + 104px);
@@ -1314,11 +1335,11 @@
             border-radius: 6px;
         }
         @keyframes lessonJumpArrive {
-            0%, 25% { background-color: rgba(216, 243, 220, 0.95); box-shadow: 0 0 0 6px rgba(216, 243, 220, 0.95); }
-            100% { background-color: rgba(216, 243, 220, 0); box-shadow: 0 0 0 6px rgba(216, 243, 220, 0); }
+            0%, 25% { background-color: rgba(43, 90, 131, 0.10); box-shadow: 0 0 0 8px rgba(43, 90, 131, 0.10); }
+            100% { background-color: rgba(43, 90, 131, 0); box-shadow: 0 0 0 8px rgba(43, 90, 131, 0); }
         }
         @media (prefers-reduced-motion: reduce) {
-            .lesson-jump { transition: none; }
+            .lesson-jump-num { transition: none; }
             .lesson-jump-target.is-arrived { animation: none; }
         }
 
@@ -2636,8 +2657,7 @@
            PRINT / SAVE AS PDF
            ============================================ */
         @media print {
-            .lesson-jump { color: inherit; font-weight: inherit; background: none; padding: 0; }
-            .lesson-jump::after { content: none; }
+            .lesson-jump-num { display: none; }
 
             body.printing .lesson-topbar,
             body.printing .toc-panel,
@@ -4674,6 +4694,7 @@
 
 
                 div.innerHTML = html;
+                decorateLessonJumps(div);
                 container.appendChild(div);
             });
 
@@ -6754,6 +6775,37 @@
         function lessonJumpAnchorAttrs(anchor) {
             if (typeof anchor !== 'string' || !/^[a-z0-9-]+$/.test(anchor)) return { cls: '', attrs: '' };
             return { cls: ' lesson-jump-target', attrs: ` id="jump-${anchor}" tabindex="-1"` };
+        }
+
+        // Number a lesson's jump links in reading order and put the same numbered
+        // circle at the start of each section they point to.
+        function decorateLessonJumps(root) {
+            let count = 0;
+            root.querySelectorAll('a.lesson-jump').forEach((link) => {
+                const targetId = (link.getAttribute('href') || '').replace(/^#/, '');
+                if (!/^jump-[a-z0-9-]+$/.test(targetId)) return;
+                const target = root.querySelector('#' + targetId);
+                if (!target || link.querySelector('.lesson-jump-num')) return;
+                count += 1;
+                const makeNum = (extra) => {
+                    const num = document.createElement('span');
+                    num.className = 'lesson-jump-num' + (extra ? ' ' + extra : '');
+                    num.setAttribute('aria-hidden', 'true');
+                    num.textContent = String(count);
+                    return num;
+                };
+                // Keep the last word and its number together so the circle never wraps alone.
+                const text = link.textContent;
+                const cut = text.lastIndexOf(' ') + 1;
+                const tail = document.createElement('span');
+                tail.className = 'lesson-jump-tail';
+                tail.textContent = text.slice(cut);
+                tail.appendChild(makeNum());
+                link.textContent = text.slice(0, cut);
+                link.appendChild(tail);
+                const titleHost = target.querySelector('.block-parable-title') || target;
+                titleHost.insertBefore(makeNum('is-section'), titleHost.firstChild);
+            });
         }
 
         document.addEventListener('click', (event) => {
