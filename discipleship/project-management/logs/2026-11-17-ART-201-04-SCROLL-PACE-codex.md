@@ -29,3 +29,9 @@ Final current stops: [0.10, 0.20, 0.30, 0.40, 0.50, 0.60]. Earlier 95 percent sc
 Final verification counts and exact-head preview evidence are posted on PR #274. Still REVIEW, no merge or live timing change.
 
 Current local validation: foundation QA, export 186, storage 64, assets 144, images 1525, updated normal-scroll/visible-finish browser regression 103 and existing sequence browser checks 61 all exit 0. The new finish assertion passes at 375x812, 390x844 and 1280x800, with static reduced motion also checked.
+
+## Dave approval and integration
+
+Dave explicitly approved the 10 percent opening hold, five equal 10 percent dissolves, 60 percent visible finish and normal scrolling, and requested merge to main. Approved lesson source: b1779da116d6f87ed5f18858a9e800918c8904fc. Mark ART-201-04-SCROLL-PACE DONE; no whole-lesson Gold inferred.
+
+Merged current main feecd32 (#279 roof marker artwork). Only the three tracking-document top inserts conflicted; preserved both 201-04 and 202-09 sections. The image guide merged normally. Approved 201-04 JSON remains byte-identical to b1779da, and shared runtime remains byte-identical to current main. No generated map conflict or manual map merge. Current 202-09 approved artwork/delivery/map/JSON/widget and the older roof PNGs are retained. Final-head QA/preview and automatic merge/live evidence is posted on PR #274.

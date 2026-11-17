@@ -1,10 +1,18 @@
 # Running task board
 
+
 ## 201-04 four-soils timing, November 17, 2026
 
 | Task | Status | Owner / branch / date | Scope |
 |---|---|---|---|
-| ART-201-04-SCROLL-PACE | REVIEW | Codex / codex/20104-soils-scroll-timing / 2026-11-17 | Normal upward scrolling, 10 percent opening hold and five equal 10 percent dissolves, ending at 60 percent so the entire final picture is visible below the header. Only six timing stops change. Preserve approved prose, art, widget, questions and answers. Updated PR #274 at REVIEW. |
+| ART-201-04-SCROLL-PACE | DONE | Codex / codex/20104-soils-scroll-timing / 2026-11-17 | Normal upward scrolling, 10 percent opening hold and five equal 10 percent dissolves, ending at 60 percent so the entire final picture is visible below the header. Only six timing stops change. Preserve approved prose, art, widget, questions and answers. Dave approved b1779da; Codex integration and live evidence on PR #274. |
+
+## 202-09 approved roof artwork integration, November 17, 2026
+
+| Task | Status | Owner / branch / date | Scope |
+|---|---|---|---|
+| ART-202-09-MARKER | DONE | Codex / gemini/202-09-story-art (integration worktree codex/review-279) / 2026-11-17 | Dave approved exact c053695 on PR #279; preserve lesson prose/IDs/widget, 202-03/04 and older artwork; verify, merge and check live. |
+
 
 ## 201-04 roots clarity, November 16, 2026
 
