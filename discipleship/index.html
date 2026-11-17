@@ -1346,6 +1346,40 @@
             .lesson-jump-target.is-arrived { animation: none; }
         }
 
+        /* Course opener: the welcome heading on a course's first lesson */
+        .course-welcome {
+            text-align: center;
+            margin: 8px 0 24px;
+        }
+        .course-welcome-eyebrow {
+            display: inline-block;
+            margin-bottom: 8px;
+            padding: 4px 12px;
+            border-radius: 999px;
+            background: var(--accent-light);
+            color: var(--accent);
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+        .course-welcome-title {
+            margin: 0;
+            font-size: 1.7rem;
+            font-weight: 800;
+            line-height: 1.2;
+            color: var(--blue-heading);
+        }
+        .course-welcome-title::after {
+            content: '';
+            display: block;
+            width: 56px;
+            height: 3px;
+            margin: 14px auto 0;
+            border-radius: 2px;
+            background: var(--accent);
+        }
+
         /* Content blocks */
         .block-heading {
             font-size: 1.2rem;
@@ -4373,7 +4407,10 @@
                                     iconHTML = `<img ${GrowingTogetherLessonImages.attributes(b.icon, BUILD_VERSION, '105px')} class="heading-float-icon" alt="">`;
                                 }
                                 const headingAnchor = lessonJumpAnchorAttrs(b.anchor);
-                                if (b.subheading) {
+                                if (b.variant === 'course-welcome') {
+                                    const eyebrow = b.eyebrow ? `<div class="course-welcome-eyebrow">${b.eyebrow}</div>` : '';
+                                    html += `<div class="course-welcome">${eyebrow}<h2 class="course-welcome-title${headingAnchor.cls}"${headingAnchor.attrs}>${b.text}</h2></div>`;
+                                } else if (b.subheading) {
                                     html += `${iconHTML}<h4 class="block-subheading${headingAnchor.cls}"${headingAnchor.attrs}>${b.text}</h4>`;
                                 } else {
                                     html += `${iconHTML}<h3 class="block-heading${headingAnchor.cls}"${headingAnchor.attrs}>${b.text}</h3>`;
