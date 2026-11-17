@@ -107,3 +107,4 @@ November 17: PR for FLOW-101-01-02 (branch claude/101-01-02-flow). In 101-01 the
 November 17: Dave approved merge of PR #280 (101-01 question flow, 101-02 D bridge). Protect this wording. Still open, offered to Dave and not yet approved: the 101-01 "Your Story So Far" line "The exercise below will help you..." (suggested "This exercise will help you...").
 
 November 17: PR for BELOW-101-01 (branch claude/101-01-below-line) makes the one-line "below" fix in 101-01, as Dave approved in chat. Awaiting Dave's review.
+November 17: Dave approved merge of PR #281, the 101-01 "below" line. Protect this wording.
