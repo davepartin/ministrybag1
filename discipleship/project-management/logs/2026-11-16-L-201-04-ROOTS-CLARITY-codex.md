@@ -1,6 +1,6 @@
 # L-201-04-ROOTS-CLARITY: Codex
 
-Date: November 16, 2026 (Dave's timezone). Branch: codex/201-04-roots-clarity. Base: cbaea1361cf1a438a7c95607cf73ba73173cf9f5. Status: REVIEW; not merged or live.
+Date: November 16, 2026 (Dave's timezone). Branch: codex/201-04-roots-clarity. Base: cbaea1361cf1a438a7c95607cf73ba73173cf9f5. Status: DONE after Dave approved exact lesson wording at 6014827 in chat on November 16. Codex integration is PR #273.
 
 ## Assignment and editorial choices
 
@@ -28,3 +28,9 @@ Pinned dependencies installed with npm ci, exit 0.
 - Structured base comparison and git diff --check: exit 0.
 
 No subjective grade or whole-lesson approval is assigned by passing these checks. Widget content/design is unchanged; this packet clarifies the surrounding lesson. Final wording belongs to Dave. Firebase preview evidence will be appended after the PR deploys.
+
+## Dave approval and integration
+
+Dave: "you did a great job with 201-04, i approve". The approved lesson JSON remains byte-identical to 6014827291fed8160fdd827e9721ff2fbb4fe613. Only task, board, handoff and this log are updated for integration. Protect this wording; this does not assign whole-lesson Gold.
+
+The implementation-head Firebase Action 43986722958 passed. Exact hosted JSON and unchanged widget matched local bytes with HTTP 200. Both preview browser checks passed (61 sequence and 57 lesson/answer checks). Final documentation-head preview and production deployment evidence will be posted on PR #273, avoiding another documentation-only deployment cycle.

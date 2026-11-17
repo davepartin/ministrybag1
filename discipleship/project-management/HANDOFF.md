@@ -2,9 +2,9 @@
 
 ## 201-04 roots clarity draft: November 16, 2026
 
-L-201-04-ROOTS-CLARITY is at REVIEW on codex/201-04-roots-clarity. Dave assigned this focused follow-up to the 201 course review. The lesson now distinguishes a heart receiving God's Word, Christ supplying life, and five habits helping the believer depend on Him. Question 4.2 stays diagnostic; 4.3 now asks for a specific practice and time. The practice paragraph gives examples and a gracious restart instead of another self-scoring exercise.
+L-201-04-ROOTS-CLARITY is DONE. Dave approved the exact lesson revision at 6014827 on November 16, 2026; Codex integrates PR #273 from codex/201-04-roots-clarity. Dave assigned this focused follow-up to the 201 course review. The lesson now distinguishes a heart receiving God's Word, Christ supplying life, and five habits helping the believer depend on Him. Question 4.2 stays diagnostic; 4.3 now asks for a specific practice and time. The practice paragraph gives examples and a gracious restart instead of another self-scoring exercise.
 
-Only the description and eight existing text/question fields change. All six IDs, Scripture, block order, artwork/sequence, deep-roots.html and saved-answer code remain unchanged. No Gold or final wording approval is inferred. Required QA/export/storage/assets/images and 61 sequence plus 57 direct lesson/answer browser checks pass locally. Preview and full evidence: [Codex log](logs/2026-11-16-L-201-04-ROOTS-CLARITY-codex.md). Stop for Dave's wording review before merging.
+Only the description and eight existing text/question fields change. All six IDs, Scripture, block order, artwork/sequence, deep-roots.html and saved-answer code remain unchanged. No Gold or final wording approval is inferred. Required QA/export/storage/assets/images and 61 sequence plus 57 direct lesson/answer browser checks pass locally. Preview and full evidence: [Codex log](logs/2026-11-16-L-201-04-ROOTS-CLARITY-codex.md). Protect this approved wording. Approval covers this revision; no whole-lesson Gold is inferred. Final preview/live evidence is on PR #273.
 
 
 ## 101-03 approved voice revision: November 16, 2026
