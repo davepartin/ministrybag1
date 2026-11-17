@@ -1,5 +1,9 @@
 # Growing Together Team Board
 
+## Daily Prayers working review: November 17, 2026
+
+Dave asked to work together on PR #261 and chose a walkthrough from the beginning. Refreshed against current main efbd2b4; both document histories preserved. App-source and legacy delivery bytes are unchanged from b181bd1, including Create Your Daily Prayer, 640px content width, MinistryBag satchel and removed hero eyebrow. Core QA, mirror parity and 294 local browser checks pass. The refreshed preview is ready for Dave's visual/wording review. APP-DAILY-PRAYERS remains REVIEW; no merge/publishing approval. No 201-01, PR #282, lesson or widget changes. [Review log](logs/2026-11-17-APP-DAILY-PRAYERS-REVIEW-codex.md).
+
 
 ## Daily Prayers companion ready for review: November 16, 2026
 

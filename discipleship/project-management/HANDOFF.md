@@ -2,7 +2,7 @@
 
 ## Daily Prayers working review: November 17, 2026
 
-Dave asked to work together on PR #261 while separately editing 201-01 and PR #282. Codex is refreshing Daily Prayers against current main, preserving the app and legacy prayers, and preparing a current preview for collaborative review. No lesson, 201-01 or jump-link edits are in this packet; no publishing approval yet. Both histories in HANDOFF/TASKS/TEAM-BOARD are retained when resolving old append conflicts.
+Dave asked to work together on PR #261 while separately editing 201-01 and PR #282. Daily Prayers is refreshed against current main efbd2b4, preserving the app and legacy prayers. Dave chose a walkthrough from the beginning; current preview is ready for collaborative review. No lesson, 201-01 or jump-link edits are in this packet; no publishing approval yet. Both histories in HANDOFF/TASKS/TEAM-BOARD are retained. Local QA and 294 browser checks pass; no app-source changes in this refresh. [Current review log](logs/2026-11-17-APP-DAILY-PRAYERS-REVIEW-codex.md).
 
 
 ## Daily Prayers companion ready for review: November 16, 2026
