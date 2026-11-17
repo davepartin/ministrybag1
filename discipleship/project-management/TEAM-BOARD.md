@@ -1,5 +1,25 @@
 # Growing Together Team Board
 
+## 101-07 B&W widget refinement integrated: November 17, 2026
+
+WIDGET-101-07-BW-REFINE DONE, PR #254. Dave approved exact a93a67350290bbe7520e2af8fb0c0c29650b8953 for stop-turn-walk.html and both approved standalone/embedded browser scripts. All three remain byte-identical. The B&W scene, straight arms, white turn/stop lines, removed road dots, closer Walk endpoint and shorter approved slide copy are preserved.
+
+Current main was merged normally; only TASKS/TEAM-BOARD append conflicts needed resolution, and both histories are retained. Current 101-07 JSON, active/retired question objects/IDs, reading plan, widget placement, shepherd art, shared index and saved-answer implementation remain unchanged. Baseline/status reflect this component approval only; text stays Silver. Final checks, exact-head preview, merge and live deployment evidence are on PR #254. [Codex log](logs/2026-11-17-WIDGET-101-07-BW-REFINE-codex.md).
+
+
+
+## 101-07 Repentance is 180 Degrees B&W visual polish (DONE): November 17, 2026
+
+- **Task / Branch:** `WIDGET-101-07-BW-REFINE` on `gemini/widget-101-07-bw-refine` (Dave approved exact `a93a673`; Codex integrates PR #254; lesson JSON `data/101-07.json` untouched).
+- **Changes:** Applied Dave's visual polish to [stop-turn-walk.html](../widgets/stop-turn-walk.html) (`Repentance is 180 Degrees` / `101-07`):
+  - Replaced the traveler's bent elbow with normal straight 2-arm stick-man geometry (`#t-arm-f` & `#t-arm-b`, no bent elbow).
+  - Removed all 4 dots on the road (`#drift-steps` & `#walk-trail` deleted; zero dotted road lines).
+  - Converted the entire SVG scene (`#turn-svg`) to black and white (`DARKNESS` left -> `LIGHT` right, charcoal hillside cross, crisp white `#stop-line` in Step 1, B&W `STOP` badge and B&W `180°` turn arc/badge).
+  - Moved the Step 3 `Walk` ending position forward (`translate(274, 140)`) closer to the cross.
+  - Updated slide copy to tighter verses and wording: Start `Which Way Are You Going?`, Step 1 `Stop` (`Psalm 32:5` snippet), Step 2 `Turn` (`Acts 3:19` snippet, `Turn away from your sin and back toward God.`), Step 3 `Walk` (`1 John 1:7` snippet, `Walk forward forgiven into the light.`).
+  - Updated [widget_101_07_stop_turn_walk_browser_check.js](../scripts/widget_101_07_stop_turn_walk_browser_check.js) and [stop_turn_walk_embedded_browser_check.js](../scripts/stop_turn_walk_embedded_browser_check.js) to verify the updated copy, straight arms, removed road dots, white stop line, B&W elements, and Step 3 position `x >= 270`.
+- **Evidence:** [Gemini handoff log](logs/2026-11-16-WIDGET-101-07-BW-REFINE-gemini.md).
+
 
 ## 201-04 visible-finish timing preview: November 17, 2026
 
@@ -90,6 +110,7 @@ Dave approved PR #252 at 169a7d54c50689e814ae0ff5455421f6172147bd. SUPPER-202-10
 The two-ordinances.html placeholder embed is removed; its file stays on disk. Baptism picture remains in its approved section, unchanged from 3c3b328. TOC subtitle/tool now say Baptism picture. All prose, Scripture, seven question objects/IDs, readings, saved-answer code, index, other lessons and existing artwork remain unchanged. This supersedes older notes that the bread-and-cup files are missing or the Lord's Supper placeholder remains active. No new Gold stage is assigned.
 
 Current main e35a32a was merged normally, preserving Dave's latest 101-03/101-07 edits and both task records. Repository checks pass: export 186, storage 64, assets 139, images 1485, asset-validator 8, iframe 32, foundation. Browser checks pass: Baptism 112, integration/answers 112, both dissolves 128 across mobile/desktop/reduced motion. Exact-head preview and live deployment evidence are recorded on PR #252. Evidence: [Codex integration log](logs/2026-11-16-SUPPER-202-10-codex.md).
+
 
 ## 101-07 interim box removed: November 15, 2026
 

@@ -333,58 +333,58 @@ button:focus-visible {
   <div class="stage">
     <svg id="turn-svg" viewBox="0 0 380 218" width="100%" role="img" aria-label="Repentance is 180 Degrees" aria-describedby="stw-desc">
       <defs>
-        <!-- Simple black-and-white gradient sky: deep charcoal darkness left -> clean bright light right -->
+        <!-- Black-and-white gradient sky: deep charcoal darkness left -> crisp white light right -->
         <linearGradient id="skyGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stop-color="#1E1E20"/>
-          <stop offset="30%" stop-color="#48484B"/>
-          <stop offset="58%" stop-color="#C6C5C1"/>
-          <stop offset="82%" stop-color="#F5F4F0"/>
-          <stop offset="100%" stop-color="#FCFBF7"/>
+          <stop offset="0%" stop-color="#18181A"/>
+          <stop offset="30%" stop-color="#48484A"/>
+          <stop offset="58%" stop-color="#C6C6C8"/>
+          <stop offset="82%" stop-color="#F5F5F5"/>
+          <stop offset="100%" stop-color="#FFFFFF"/>
         </linearGradient>
 
         <!-- Slight distant hill: dark charcoal left -> light silver right -->
         <linearGradient id="backHillGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stop-color="#2D2D30"/>
-          <stop offset="45%" stop-color="#767678"/>
-          <stop offset="80%" stop-color="#D8D7D2"/>
-          <stop offset="100%" stop-color="#EFECE4"/>
+          <stop offset="0%" stop-color="#28282B"/>
+          <stop offset="45%" stop-color="#747477"/>
+          <stop offset="80%" stop-color="#DCDCDC"/>
+          <stop offset="100%" stop-color="#F2F2F2"/>
         </linearGradient>
 
-        <!-- Foreground gentle hills: dark grey left -> bright off-white right -->
+        <!-- Foreground gentle hills: dark grey left -> bright white right -->
         <linearGradient id="meadowGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stop-color="#363639"/>
-          <stop offset="36%" stop-color="#848380"/>
-          <stop offset="68%" stop-color="#DCDBD6"/>
-          <stop offset="100%" stop-color="#F7F5EE"/>
+          <stop offset="0%" stop-color="#323235"/>
+          <stop offset="36%" stop-color="#848487"/>
+          <stop offset="68%" stop-color="#E0E0E0"/>
+          <stop offset="100%" stop-color="#FBFBFB"/>
         </linearGradient>
 
-        <!-- One single winding path in simple black-and-white tones -->
+        <!-- One single winding path in pure black-and-white tones -->
         <linearGradient id="singlePathGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stop-color="#4E4E52"/>
-          <stop offset="34%" stop-color="#9A9994"/>
-          <stop offset="68%" stop-color="#DDDCD7"/>
-          <stop offset="100%" stop-color="#F5F3EC"/>
+          <stop offset="0%" stop-color="#4C4C4F"/>
+          <stop offset="34%" stop-color="#9A9A9D"/>
+          <stop offset="68%" stop-color="#E0E0E2"/>
+          <stop offset="100%" stop-color="#F8F8F8"/>
         </linearGradient>
 
-        <!-- Subtle warm light halo behind the right-side cross (only slight color) -->
+        <!-- Clean white halo behind the right-side cross -->
         <radialGradient id="lightGlowGrad" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stop-color="#FFFDF5" stop-opacity="0.9"/>
-          <stop offset="50%" stop-color="#FCF2D6" stop-opacity="0.34"/>
-          <stop offset="100%" stop-color="#FCF2D6" stop-opacity="0"/>
+          <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.95"/>
+          <stop offset="55%" stop-color="#F5F5F5" stop-opacity="0.35"/>
+          <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
         </radialGradient>
 
         <!-- Step 3 brightening wash flowing back from the light side across the hills -->
         <linearGradient id="lightFloodGrad" x1="100%" y1="0%" x2="12%" y2="15%">
-          <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.52"/>
-          <stop offset="60%" stop-color="#F6F4EA" stop-opacity="0.28"/>
-          <stop offset="100%" stop-color="#F6F4EA" stop-opacity="0"/>
+          <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.54"/>
+          <stop offset="60%" stop-color="#F5F5F5" stop-opacity="0.28"/>
+          <stop offset="100%" stop-color="#F5F5F5" stop-opacity="0"/>
         </linearGradient>
 
         <!-- Left darkness veil (eases slightly on Walk) -->
         <linearGradient id="darkMaskGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stop-color="#141416" stop-opacity="0.48"/>
-          <stop offset="60%" stop-color="#222225" stop-opacity="0.18"/>
-          <stop offset="100%" stop-color="#222225" stop-opacity="0"/>
+          <stop offset="0%" stop-color="#121214" stop-opacity="0.5"/>
+          <stop offset="60%" stop-color="#202022" stop-opacity="0.18"/>
+          <stop offset="100%" stop-color="#202022" stop-opacity="0"/>
         </linearGradient>
 
         <clipPath id="stageClip">
@@ -399,7 +399,7 @@ button:focus-visible {
         <!-- Slight distant hills (no stars, no sun, no trees, no grass) -->
         <path d="M 6 126 Q 74 108 142 124 Q 214 140 284 114 Q 336 96 374 108 L 374 166 L 6 166 Z" fill="url(#backHillGrad)"/>
 
-        <!-- Subtle soft light glow on right side (no sun orb) -->
+        <!-- Clean white light glow on right side (no sun orb) -->
         <circle cx="328" cy="96" r="88" fill="url(#lightGlowGrad)"/>
 
         <!-- Slight foreground hills -->
@@ -408,82 +408,60 @@ button:focus-visible {
         <!-- Step 3 soft light wash pushing darkness back -->
         <rect id="light-wash" class="light-wash" x="6" y="4" width="368" height="210" fill="url(#lightFloodGrad)"/>
 
-        <!-- Restrained Cross on the right hill (minimal slight warm accent) -->
+        <!-- Clean Black-and-White Cross on the right hill -->
         <g id="hill-cross" transform="translate(328, 126)">
-          <rect x="-3" y="-44" width="6" height="46" rx="1.6" fill="#6E5A44" stroke="#3D3226" stroke-width="1.2"/>
-          <rect x="-15" y="-31" width="30" height="5.5" rx="1.6" fill="#6E5A44" stroke="#3D3226" stroke-width="1.2"/>
+          <rect x="-3" y="-44" width="6" height="46" rx="1.6" fill="#2A2A2D" stroke="#141416" stroke-width="1.2"/>
+          <rect x="-15" y="-31" width="30" height="5.5" rx="1.6" fill="#2A2A2D" stroke="#141416" stroke-width="1.2"/>
         </g>
 
         <!-- Left darkness veil -->
         <rect id="dark-veil" class="dark-veil" x="6" y="4" width="210" height="210" fill="url(#darkMaskGrad)"/>
 
-        <!-- ONE CONTINUOUS WINDING PATH (no dotted lines) -->
+        <!-- ONE CONTINUOUS WINDING PATH (no dotted lines, no road dots) -->
         <g id="single-path">
           <path d="M 6 170 C 66 159 124 148 188 140 C 254 132 314 127 374 125 L 374 139 C 314 143 254 152 192 164 C 128 176 70 190 6 204 Z"
                 fill="url(#singlePathGrad)"/>
           <path d="M 6 170 C 66 159 124 148 188 140 C 254 132 314 127 374 125"
-                fill="none" stroke="#4D4C49" stroke-width="1.5" stroke-linecap="round" opacity="0.72"/>
+                fill="none" stroke="#48484A" stroke-width="1.5" stroke-linecap="round" opacity="0.72"/>
           <path d="M 6 204 C 70 190 128 176 192 164 C 254 152 314 143 374 139"
-                fill="none" stroke="#4D4C49" stroke-width="1.7" stroke-linecap="round" opacity="0.78"/>
+                fill="none" stroke="#48484A" stroke-width="1.7" stroke-linecap="round" opacity="0.78"/>
         </g>
 
-        <!-- Subtle footprint pairs showing drift away (Start & Step 1) -->
-        <g id="drift-steps" class="fade-part" fill="#595854" opacity="0.34">
-          <ellipse cx="238" cy="144" rx="2.2" ry="0.95" transform="rotate(-10 238 144)"/>
-          <ellipse cx="232" cy="148" rx="2.2" ry="0.95" transform="rotate(-10 232 148)"/>
-          <ellipse cx="206" cy="148" rx="2.2" ry="0.95" transform="rotate(-8 206 148)"/>
-          <ellipse cx="200" cy="153" rx="2.2" ry="0.95" transform="rotate(-8 200 153)"/>
-        </g>
-
-        <!-- Step 1 STOP bar & halt mark right on the path (slight crimson color) -->
+        <!-- Step 1 STOP bar & halt mark right on the path (white stop line, black & white badge) -->
         <g id="stop-mark" class="fade-part">
-          <path d="M 88 153 L 94 182" stroke="#9B3B2A" stroke-width="3" stroke-linecap="round"/>
-          <rect x="64" y="96" width="54" height="22" rx="11" fill="#FAF8F6" stroke="#9B3B2A" stroke-width="1.6"/>
-          <text x="91" y="111" text-anchor="middle" class="svg-sans" font-size="11" font-weight="800" letter-spacing="0.8" fill="#7A2B1D">STOP</text>
+          <path id="stop-line" d="M 88 153 L 94 182" stroke="#FFFFFF" stroke-width="3.2" stroke-linecap="round"/>
+          <rect x="64" y="96" width="54" height="22" rx="11" fill="#FFFFFF" stroke="#18181A" stroke-width="1.6"/>
+          <text x="91" y="111" text-anchor="middle" class="svg-sans" font-size="11" font-weight="800" letter-spacing="0.8" fill="#18181A">STOP</text>
         </g>
 
-        <!-- Step 2 180-degree sweeping rotational arrow on the same path (slight gold color) -->
+        <!-- Step 2 180-degree sweeping rotational arrow on the same path (single white line & arrow) -->
         <g id="turn-arc-group" class="fade-part">
-          <path id="turn-arc-glow" d="M 80 126 C 72 86 154 86 146 124"
-                fill="none" stroke="#F8F5EE" stroke-width="8.5" stroke-linecap="round" opacity="0.88"/>
           <path id="turn-arc-line" d="M 80 126 C 72 86 154 86 146 124"
-                fill="none" stroke="#A8760A" stroke-width="2.5" stroke-linecap="round"/>
+                fill="none" stroke="#FFFFFF" stroke-width="2.8" stroke-linecap="round"/>
           <polyline id="turn-arrowhead" points="139,119 146,125 153,118"
-                    fill="none" stroke="#A8760A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-          <rect x="92" y="64" width="44" height="22" rx="11" fill="#FDF9EC" stroke="#A8760A" stroke-width="1.5"/>
-          <text x="114" y="79" text-anchor="middle" class="svg-sans" font-size="11.5" font-weight="800" letter-spacing="0.4" fill="#7D5604">180°</text>
+                    fill="none" stroke="#FFFFFF" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect x="92" y="64" width="44" height="22" rx="11" fill="#FFFFFF" stroke="#18181A" stroke-width="1.5"/>
+          <text x="114" y="79" text-anchor="middle" class="svg-sans" font-size="11.5" font-weight="800" letter-spacing="0.4" fill="#18181A">180°</text>
         </g>
 
-        <!-- Step 3 Return footsteps on the same path (slight green tint) -->
-        <g id="walk-trail" class="fade-part" fill="#1F684A" opacity="0.34">
-          <ellipse cx="136" cy="161" rx="2.3" ry="0.95" transform="rotate(-11 136 161)"/>
-          <ellipse cx="143" cy="164" rx="2.3" ry="0.95" transform="rotate(-11 143 164)"/>
-          <ellipse cx="164" cy="156" rx="2.3" ry="0.95" transform="rotate(-10 164 156)"/>
-          <ellipse cx="171" cy="159" rx="2.3" ry="0.95" transform="rotate(-10 171 159)"/>
-        </g>
-
-        <!-- Continuous Traveler Character on the ONE path (short natural neck, crisp black) -->
+        <!-- Continuous Traveler Character on the ONE path (short neck, normal 2 straight arms with no bent elbow, crisp black) -->
         <g id="traveler" transform="translate(170, 155) scale(-1, 1)">
           <ellipse cx="0" cy="0" rx="8" ry="2.2" fill="#141416" opacity="0.22"/>
-          <!-- Head sitting closely on shoulders (short neck) -->
           <circle cx="0" cy="-29.5" r="4.8" fill="#141416"/>
-          <!-- Short neck + torso -->
           <line x1="0" y1="-26" x2="0" y2="-10.5" stroke="#141416" stroke-width="3.2" stroke-linecap="round"/>
-          <!-- Forward arm from raised shoulder line y=-23.5 -->
-          <path d="M 0 -23.5 L 8 -17 L 12 -19" fill="none" stroke="#141416" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-          <!-- Back arm -->
-          <path d="M 0 -23.5 L -7 -16.5" fill="none" stroke="#141416" stroke-width="2.4" stroke-linecap="round"/>
-          <!-- Stride legs -->
+          <!-- Normal straight arms (no bent elbow) -->
+          <path id="t-arm-f" d="M 0 -23.5 L 7.5 -16" fill="none" stroke="#141416" stroke-width="2.5" stroke-linecap="round"/>
+          <path id="t-arm-b" d="M 0 -23.5 L -7 -16" fill="none" stroke="#141416" stroke-width="2.4" stroke-linecap="round"/>
           <path d="M 0 -10.5 L 6 -1" fill="none" stroke="#141416" stroke-width="2.9" stroke-linecap="round"/>
           <path d="M 0 -10.5 L -6 -1" fill="none" stroke="#141416" stroke-width="2.7" stroke-linecap="round"/>
         </g>
 
         <!-- Simple Labels: DARKNESS vs LIGHT -->
-        <text x="42" y="199" text-anchor="middle" class="svg-sans" font-size="9.5" font-weight="700" letter-spacing="0.9" fill="#EAE9E4" opacity="0.82">DARKNESS</text>
-        <text x="328" y="159" text-anchor="middle" class="svg-sans" font-size="10" font-weight="700" letter-spacing="1.1" fill="#2C2416">LIGHT</text>
+        <text x="42" y="199" text-anchor="middle" class="svg-sans" font-size="9.5" font-weight="700" letter-spacing="0.9" fill="#FFFFFF" opacity="0.88">DARKNESS</text>
+        <text x="328" y="159" text-anchor="middle" class="svg-sans" font-size="10" font-weight="700" letter-spacing="1.1" fill="#141416">LIGHT</text>
 
         <!-- Inner hairline border around framed scene -->
-        <rect x="6" y="4" width="368" height="210" rx="10" fill="none" stroke="#E2DFD7" stroke-width="1"/>
+        <rect x="6" y="4" width="368" height="210" rx="10" fill="none" stroke="#D8D8DA" stroke-width="1"/>
       </g>
     </svg>
     <p id="stw-desc" class="sr-only">Visual showing one continuous path between light and darkness, turning 180 degrees on that same path back toward the light.</p>
@@ -504,20 +482,20 @@ button:focus-visible {
   var pendingFocus = null;
 
   var INTRO = {
-    cardTitle: 'Which Way Are You Facing?',
+    cardTitle: 'Which Way Are You Going?',
     verse: '',
     text: 'Every follower of Jesus drifts sometimes. Repentance is a 180-degree turn back to Him.',
     color: '#2C2416',
     dark: '#2C2416',
-    dotLabel: 'Start: Which Way Are You Facing?',
+    dotLabel: 'Start: Which Way Are You Going?',
     desc: 'A traveler walks left along one winding path away from the light on the right toward darkness on the left.'
   };
 
   var stops = [
     {
       cardTitle: 'Stop',
-      verse: '"If we confess our sins, he is faithful and just to forgive us our sins and to cleanse us from all unrighteousness." (1 John 1:9)',
-      text: 'Be honest with God that you are headed the wrong way. Name your sin without excuses.',
+      verse: '"I acknowledged my sin to you, and I did not cover my iniquity; I said, \'I will confess my sins to the LORD\'..." (Psalm 32:5)',
+      text: 'Stop heading into the dark. Admit your sin to God.',
       color: '#9B3B2A',
       dark: '#7A2B1D',
       dotLabel: 'Step 1: Stop',
@@ -525,8 +503,8 @@ button:focus-visible {
     },
     {
       cardTitle: 'Turn',
-      verse: '"you turned to God from idols to serve the living and true God" (1 Thessalonians 1:9)',
-      text: 'Turn all the way around, away from your sin and back to Jesus.',
+      verse: '"Repent therefore, and turn back, that your sins may be wiped out..." (Acts 3:19)',
+      text: 'Turn away from your sin and back toward God.',
       color: '#A8760A',
       dark: '#7D5604',
       dotLabel: 'Step 2: Turn',
@@ -534,8 +512,8 @@ button:focus-visible {
     },
     {
       cardTitle: 'Walk',
-      verse: '"Repent therefore, and turn back, that your sins may be blotted out, that times of refreshing may come from the presence of the Lord" (Acts 3:19)',
-      text: 'Walk forward forgiven, with Jesus, in the new direction. You can make this turn on any day.',
+      verse: '"...walk in the light, as he is in the light... and the blood of Jesus his Son cleanses us from all sin." (1 John 1:7)',
+      text: 'Walk forward forgiven into the light.',
       color: '#1F684A',
       dark: '#164E37',
       dotLabel: 'Step 3: Walk',
@@ -543,10 +521,8 @@ button:focus-visible {
     }
   ];
 
-  var turnArcGlow = el('turn-arc-glow');
   var turnArcLine = el('turn-arc-line');
   var LEN_ARC = turnArcLine.getTotalLength();
-  turnArcGlow.style.strokeDasharray = LEN_ARC;
   turnArcLine.style.strokeDasharray = LEN_ARC;
 
   var traveler = el('traveler');
@@ -600,17 +576,14 @@ button:focus-visible {
     el('dark-veil').classList.toggle('is-pushed-back', isWalk);
     el('light-wash').classList.toggle('is-on', isWalk);
 
-    setFade('drift-steps', (isStart || isStop) ? 'on' : 'off', 0);
     setFade('stop-mark', isStop ? 'on' : 'off', 0);
     setFade('turn-arc-group', isTurn ? 'on' : 'off', 0);
-    setFade('walk-trail', isWalk ? 'on' : 'off', isWalk && !isInst ? 120 : 0);
 
     el('turn-arrowhead').setAttribute('opacity', isTurn ? '1' : '0');
-    turnArcGlow.style.strokeDashoffset = isTurn ? 0 : LEN_ARC;
     turnArcLine.style.strokeDashoffset = isTurn ? 0 : LEN_ARC;
 
     // Ground coordinates follow the single path smoothly:
-    // Start (170, 155) -> Stop (114, 166) -> Turn in place (114, 166) -> Walk forward (212, 150)
+    // Start (170, 155) -> Stop (114, 166) -> Turn in place (114, 166) -> Walk closer to cross (274, 140)
     if (isStart) {
       setTravelerPos(170, 155, -1);
     } else if (isStop) {
@@ -627,18 +600,15 @@ button:focus-visible {
     } else if (isTurn) {
       if (!isInst) {
         el('turn-arrowhead').setAttribute('opacity', '0');
-        turnArcGlow.style.strokeDashoffset = LEN_ARC;
         turnArcLine.style.strokeDashoffset = LEN_ARC;
         runTween(780, function (k) {
           var dash = (LEN_ARC * (1 - k)).toFixed(1);
-          turnArcGlow.style.strokeDashoffset = dash;
           turnArcLine.style.strokeDashoffset = dash;
           if (k > 0.85) el('turn-arrowhead').setAttribute('opacity', Math.min((k - 0.85) / 0.15, 1).toFixed(2));
           var flip = -1 + 2 * k;
           if (Math.abs(flip) < 0.08) flip = flip < 0 ? -0.08 : 0.08;
           setTravelerPos(114, 166, flip);
         }, function () {
-          turnArcGlow.style.strokeDashoffset = 0;
           turnArcLine.style.strokeDashoffset = 0;
           el('turn-arrowhead').setAttribute('opacity', '1');
           setTravelerPos(114, 166, 1);
@@ -649,13 +619,13 @@ button:focus-visible {
     } else if (isWalk) {
       if (!isInst && prevStep === 1) {
         setTravelerPos(114, 166, 1);
-        runTween(720, function (k) {
-          var px = 114 + (212 - 114) * k;
-          var py = 166 + (150 - 166) * k;
+        runTween(760, function (k) {
+          var px = 114 + (274 - 114) * k;
+          var py = 166 + (140 - 166) * k;
           setTravelerPos(px, py, 1);
         });
       } else {
-        setTravelerPos(212, 150, 1);
+        setTravelerPos(274, 140, 1);
       }
     }
 

@@ -20,7 +20,7 @@ Stages describe the text review, independently of widget and image approval. Gol
 | 101-04 | The Bible | Silver: Dave edits protected | Yes: Read, Discover, Respond (#229, 21bb29b) | Yes: Nicodemus oil-lamp dissolve (#263, b52e4f4) |
 | 101-05 | The Church | Silver: Dave edits protected | Yes: compact potluck serving buttons (#232, b83efe3) | Yes: Aspen Grove separate-to-connected roots dissolve |
 | 101-06 | Sharing Jesus with Others | Silver: earlier Dave edits protected | Yes: BLESS Rhythms (#233, 7949607) | Yes: Woman at the Well sunlit well dissolve |
-| 101-07 | When You Drift | Silver | Yes: Repentance is 180 Degrees (#251, 53d2d60) | Yes: four-frame shepherd sequence; B&W frame 4 approved (#248, ae5c9d4) |
+| 101-07 | When You Drift | Silver | Yes: Repentance is 180 Degrees; B&W refinement (#254, a93a673), original component #251 retained in approval history | Yes: four-frame shepherd sequence; B&W frame 4 approved (#248, ae5c9d4) |
 
 101-01 remains Silver with Dave edits protected. Dave has now explicitly approved the whole 101-02 lesson, its A-B-C-D widget and its greenhouse image sequence Gold (November14). Preserve the exact recorded text, questions, readings, widget and images; new edits require his specific direction. The record does not treat partial paragraph edits as approval of unseen paragraphs. Existing specific approvals remain in force even on Silver lessons.
 
@@ -105,6 +105,9 @@ November 17: Dave approved merge of PR #278, the 101-04 and 101-07 review senten
 
 November 17: PR for FLOW-101-01-02 (branch claude/101-01-02-flow). In 101-01 the three opening questions are spread to the sections they belong to (IDs kept, wording unchanged). In 101-02, Dave approved reopening one sentence for the D-for-Discipleship bridge. Awaiting Dave's review. Dave decided the 101-03 practice may keep linking to the Daily Prayers site for now.
 November 17: Dave approved merge of PR #280 (101-01 question flow, 101-02 D bridge). Protect this wording. Still open, offered to Dave and not yet approved: the 101-01 "Your Story So Far" line "The exercise below will help you..." (suggested "This exercise will help you...").
+
+
+November 17: Dave approved PR #254 at a93a67350290bbe7520e2af8fb0c0c29650b8953 for the B&W stop-turn-walk refinement. The exact HTML and two browser scripts are preserved. Only the widget component fingerprint/approval changes; current 101-07 JSON, retired/active answers, John readings and shepherd sequence remain unchanged. Text stays Silver; no whole-lesson Gold is inferred.
 
 November 17: PR for BELOW-101-01 (branch claude/101-01-below-line) makes the one-line "below" fix in 101-01, as Dave approved in chat. Awaiting Dave's review.
 November 17: Dave approved merge of PR #281, the 101-01 "below" line. Protect this wording.
