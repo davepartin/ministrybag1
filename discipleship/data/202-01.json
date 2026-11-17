@@ -5,15 +5,11 @@
   "courseLogo": {
     "src": "images/202-3circles-logo.png",
     "alt": "Growing Together Discipleship Series: Growing Up in Discipleship highlighted.",
-    "width": "60%"
+    "width": "60%",
+    "eyebrow": "Course 202",
+    "title": "Welcome to Growing Up"
   },
   "blocks": [
-    {
-      "type": "heading",
-      "text": "Welcome to Growing Up",
-      "variant": "course-welcome",
-      "eyebrow": "Course 202"
-    },
     {
       "type": "text",
       "text": "Growing Deep gave you the foundations of life with God: the Father who runs toward you, the Son who covers you, and the Spirit who guides you. Now in <strong>Growing Up</strong>, that love starts to reach the people around you."

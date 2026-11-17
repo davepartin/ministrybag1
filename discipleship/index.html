@@ -1349,12 +1349,15 @@
         /* Course opener: the course logo above a course's first lesson title */
         .course-logo {
             text-align: center;
-            margin: 4px 0 20px;
+            margin: 4px 0 28px;
         }
         .course-logo img {
             display: inline-block;
             max-width: 100%;
             height: auto;
+        }
+        .course-welcome-under-logo {
+            margin: 14px 0 8px;
         }
 
         /* Course opener: the welcome heading on a course's first lesson */
@@ -4406,7 +4409,10 @@
                     : '';
                 if (data.courseLogo && typeof data.courseLogo.src === 'string') {
                     const logoWidth = /^\d{1,3}%$/.test(data.courseLogo.width || '') ? data.courseLogo.width : '60%';
-                    html += `<div class="course-logo"><img ${GrowingTogetherLessonImages.attributes(data.courseLogo.src, BUILD_VERSION)} alt="${data.courseLogo.alt || ''}" style="width: ${logoWidth};"></div>`;
+                    const logoEyebrow = data.courseLogo.eyebrow ? `<div class="course-welcome-eyebrow">${data.courseLogo.eyebrow}</div>` : '';
+                    const logoTitle = data.courseLogo.title ? `<h2 class="course-welcome-title">${data.courseLogo.title}</h2>` : '';
+                    const logoWelcome = (logoEyebrow || logoTitle) ? `<div class="course-welcome course-welcome-under-logo">${logoEyebrow}${logoTitle}</div>` : '';
+                    html += `<div class="course-logo"><img ${GrowingTogetherLessonImages.attributes(data.courseLogo.src, BUILD_VERSION)} alt="${data.courseLogo.alt || ''}" style="width: ${logoWidth};">${logoWelcome}</div>`;
                 }
                 html += `<div class="session-title-row">${versionTag}<h1 class="session-title">Lesson ${sessionNum}: ${h1Title}</h1></div>`;
                 if (data.description) {
