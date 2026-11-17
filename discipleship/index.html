@@ -1278,15 +1278,18 @@
            Each linked phrase ends in a numbered blue circle; the section it points to
            starts with the same numbered circle. */
         .lesson-jump {
-            color: inherit;
-            text-decoration: none;
+            color: var(--blue-heading);
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
+            text-decoration-color: rgba(43, 90, 131, 0.4);
+            text-underline-offset: 4px;
             -webkit-tap-highlight-color: transparent;
             border-radius: 3px;
         }
-        .lesson-jump:hover {
-            text-decoration: underline;
-            text-decoration-color: rgba(43, 90, 131, 0.45);
-            text-underline-offset: 4px;
+        .lesson-jump:hover,
+        .lesson-jump:active {
+            color: #1F4566;
+            text-decoration-color: rgba(31, 69, 102, 0.85);
         }
         .lesson-jump:focus-visible {
             outline: 2px solid var(--blue-heading);
@@ -2658,6 +2661,7 @@
            ============================================ */
         @media print {
             .lesson-jump-num { display: none; }
+            .lesson-jump { color: inherit; text-decoration: none; }
 
             body.printing .lesson-topbar,
             body.printing .toc-panel,
