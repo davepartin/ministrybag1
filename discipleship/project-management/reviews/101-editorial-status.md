@@ -102,3 +102,6 @@ November 17: Dave approved merge of PR #276, the three-part 101-06 cleanup. Prot
 
 November 17: PR for REVIEW-LINES-101 (branch claude/101-review-lines) changes one sentence in each of the 101-04 and 101-07 reviews, as Dave approved in chat. Awaiting Dave's review.
 November 17: Dave approved merge of PR #278, the 101-04 and 101-07 review sentences. Protect this wording.
+
+November 17: PR for FLOW-101-01-02 (branch claude/101-01-02-flow). In 101-01 the three opening questions are spread to the sections they belong to (IDs kept, wording unchanged). In 101-02, Dave approved reopening one sentence for the D-for-Discipleship bridge. Awaiting Dave's review. Dave decided the 101-03 practice may keep linking to the Daily Prayers site for now.
+November 17: Dave approved merge of PR #280 (101-01 question flow, 101-02 D bridge). Protect this wording. Still open, offered to Dave and not yet approved: the 101-01 "Your Story So Far" line "The exercise below will help you..." (suggested "This exercise will help you...").
