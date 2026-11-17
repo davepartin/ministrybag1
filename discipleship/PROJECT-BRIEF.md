@@ -132,7 +132,7 @@ discipleship/
 - Home screen shows five equal course cards, each color-coded
 - Tapping a course loads its JSON files and takes over the full screen
 - Home page dropdowns, the Tree view, and the lesson TOC read titles and subtitles from `curriculum-toc.csv`
-- Sticky top bar with back navigation, course name (first word highlighted in course accent color), lesson counter, and progress bar
+- Sticky top bar with back navigation, course name (first word highlighted in course accent color), lesson counter, and progress bar. Pilot exception: 202-01 uses a single 49px row with Back, lesson code/title and Menu, with no progress strip. Other lessons retain the existing header until Dave reviews this live pilot.
 - "All Lessons" button opens a table of contents with a course header and completion checkmarks
 - Sticky bottom bar with Previous/Next navigation and lesson number
 - Textareas auto-grow as the user types (no placeholder text)

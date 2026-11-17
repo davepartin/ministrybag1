@@ -1031,6 +1031,43 @@
             background: #FCEAE8;
         }
 
+        /* One-lesson compact-header pilot, requested by Dave for 202-01. */
+        .compact-lesson-label { display: none; }
+        .lesson-topbar.is-compact {
+            padding: 2px 12px;
+            padding-top: max(env(safe-area-inset-top), 2px);
+        }
+        .lesson-topbar.is-compact .topbar-course-name-row,
+        .lesson-topbar.is-compact .topbar-lesson-subtitle,
+        .lesson-topbar.is-compact .progress-track { display: none; }
+        .lesson-topbar.is-compact .topbar-row-1 { gap: 6px; }
+        .lesson-topbar.is-compact .back-btn,
+        .lesson-topbar.is-compact .toc-menu-btn {
+            width: 44px;
+            min-width: 44px;
+            height: 44px;
+            padding: 4px;
+        }
+        .lesson-topbar.is-compact .compact-lesson-label {
+            display: flex;
+            align-items: baseline;
+            justify-content: center;
+            gap: 6px;
+            width: 100%;
+            min-width: 0;
+            margin: 0;
+            color: var(--accent);
+            font-size: 14px;
+            line-height: 1.2;
+            font-weight: 700;
+        }
+        .compact-lesson-code { flex-shrink: 0; font-size: 12px; }
+        .compact-lesson-topic {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
         /* Progress bar */
         .progress-track {
             height: 4px;
@@ -3619,6 +3656,7 @@
                         <span style="font-size: 1.5rem; line-height: 1;">&#8249;</span>
                     </button>
                     <div class="topbar-course-name">
+                        <h2 class="compact-lesson-label" id="compact-lesson-label"><span class="compact-lesson-code"></span><span class="compact-lesson-topic"></span></h2>
                         <div class="topbar-course-name-row">
                             <div id="topbar-series-badge" class="topbar-series-badge"></div>
                             <h2 id="topbar-series-name">Starting in Discipleship</h2>
@@ -5127,6 +5165,13 @@
                 const topicTitle = (currentSeriesLessonMeta[currentSession] && currentSeriesLessonMeta[currentSession].title) ||
                     (sessionData[currentSession] ? sessionData[currentSession].title.replace(/^Lesson\s+\d+:\s*/i, '') : '');
                 lessonSubtitleEl.textContent = topicTitle ? `${ordinal}. ${topicTitle}` : '';
+                const compactHeader = currentSeries === '202' && Number(currentSession) === 1;
+                document.querySelector('.lesson-topbar').classList.toggle('is-compact', compactHeader);
+                const compactLabel = document.getElementById('compact-lesson-label');
+                compactLabel.querySelector('.compact-lesson-code').textContent = `${currentSeries}-${String(currentSession).padStart(2, '0')} ·`;
+                compactLabel.querySelector('.compact-lesson-topic').textContent = topicTitle;
+                compactLabel.title = `${currentSeries}-${String(currentSession).padStart(2, '0')} ${topicTitle}`;
+
             }
 
             const pct = totalSessions > 0 ? (ordinal / totalSessions) * 100 : 0;
