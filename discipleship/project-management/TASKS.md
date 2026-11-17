@@ -1,5 +1,11 @@
 # Running task board
 
+## 201-04 roots clarity, November 16, 2026
+
+| Task | Status | Owner / branch / date | Scope |
+|---|---|---|---|
+| L-201-04-ROOTS-CLARITY | ACTIVE | Codex / codex/201-04-roots-clarity / 2026-11-16 | Dave assigned: distinguish the receptive heart, practices and life in Christ; make question 4.3 an action plan rather than repeating 4.2. Preserve Scripture, IDs/answers, widget and art. Stop at REVIEW. |
+
 ## November 12 integration checkpoint
 
 Dave authorized assembling working drafts on main before later individual lesson editing. Main now includes #181, #186, #188, #189, #190, #191, #192, #193, #194, #195, #196 and #197. The current publishing table in TEAM-BOARD and logs/2026-11-12-INTEGRATE-PIECES-codex.md own the integration evidence. Older REVIEW rows below still require Dave's editorial/visual gates; they do not mean these technical pieces are waiting to be merged. No grade or final pastoral approval is implied.
