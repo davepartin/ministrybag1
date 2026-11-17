@@ -40,6 +40,8 @@ Every lesson should hit these eight goals. The slots below are designed to make 
   - 201 Trinity arc (201.01 Father, 201.02 Son, 201.03 Spirit)
   - 201 Bible arc (201.05 map, 201.06 road trip, 201.07 skill)
   - 202 Love Others arc (202.01 neighbors, 202.02 family, 202.03 church family)
+  - 202 Trust God arc (202.05 pain, 202.06 praise, 202.07 possessions)
+  - 202 Covenant arc (202.08 the vow, 202.09 bought with a price, 202.10 the new covenant table)
   - 203 BLESS arc (203.02 Begin, 203.03 Listen and Eat, 203.04 Serve, 203.05 Share)
 
 ### 2. Parable block - the key picture and the story hook
