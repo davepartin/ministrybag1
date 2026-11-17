@@ -1,5 +1,11 @@
 # Running task board
 
+## 202-09 approved roof artwork integration, November 17, 2026
+
+| Task | Status | Owner / branch / date | Scope |
+|---|---|---|---|
+| ART-202-09-MARKER | DONE | Codex / gemini/202-09-story-art (integration worktree codex/review-279) / 2026-11-17 | Dave approved exact c053695 on PR #279; preserve lesson prose/IDs/widget, 202-03/04 and older artwork; verify, merge and check live. |
+
 ## 201-04 roots clarity, November 16, 2026
 
 | Task | Status | Owner / branch / date | Scope |

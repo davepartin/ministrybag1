@@ -1,5 +1,12 @@
 # Dave's decision and approval queue
 
+## 202-09 approved roof marker artwork: November 17, 2026
+
+ART-202-09-MARKER DONE, PR #279. Dave approved c053695840939c50bc48e67803b8ec463b4e7d77: the 1280x720 rough marker roof B&W/color pair, four optimized WebP deliveries, generated asset map and framed touchNext image block with imageDissolveOnEntry. All approved submission bytes are preserved exactly. Older 202.09-david-roof PNGs remain on disk unchanged.
+
+Only the opening image block changes in 202-09. Every prose/Scripture block, question object/ID, reading key and starting-gun.html byte remains unchanged. 202-03, 202-04 and shared index.html also remain exact main. Image approval only; no whole-lesson Gold inferred. Core QA, required lesson/widget/image browser tests and focused dissolve/answer checks are tracked in [the Codex log](logs/2026-11-17-ART-202-09-MARKER-codex.md). Final exact-head preview, merge and live deployment evidence are posted on PR #279.
+
+
 ## 101-04 Nicodemus lamp artwork approved: November 16, 2026
 
 Dave approved PR #263 at b52e4f4ab59024193484e23eff0ad99d90904bae: the 1280x720 darker-to-lighter clay oil-lamp pair, four optimized 640/1280 WebP copies, generated image map, and touchNext placement immediately before Questions in the Night. Preserve these approved bytes. Older notes describing 101-04 story art as missing are superseded.

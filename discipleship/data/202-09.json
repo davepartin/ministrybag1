@@ -13,11 +13,12 @@
     },
     {
       "type": "image",
-      "imageBw": "images/202.09-david-roof-bw.png",
-      "imageColor": "images/202.09-david-roof-color.png",
-      "alt": "King David, fully clothed, alone on his palace roof overlooking the city, with his royal robe and crown set aside",
+      "imageBw": "images/202-09-story-bw.jpg",
+      "imageColor": "images/202-09-story-color.jpg",
+      "alt": "King David, fully clothed, standing at his stone palace parapet overlooking Jerusalem at dusk with his royal cloak and crown set aside on a bench",
       "frame": true,
-      "touchNext": true
+      "touchNext": true,
+      "imageDissolveOnEntry": true
     },
     {
       "type": "parable",
