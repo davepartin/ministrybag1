@@ -98,12 +98,16 @@ const JOBS = [
         const svg = document.querySelector('.rdr-svg');
         const book = document.querySelector('#bible-open-part rect').getBoundingClientRect();
         const stage = document.querySelector('.stage').getBoundingClientRect();
+        const closed = document.getElementById('bible-closed').getBoundingClientRect();
+        const open = document.getElementById('bible-open-part').getBoundingClientRect();
         return { viewHeight: svg.viewBox.baseVal.height, scale: document.getElementById('bible-art').transform.baseVal.consolidate().matrix.a,
           bookRight: book.right - stage.left, width: stage.width, widgetHeight: document.getElementById('widget').getBoundingClientRect().height,
+          closedRight: closed.right, openRight: open.right, closedLeft: closed.left, openLeft: open.left,
           stageHeight: stage.height, svgWidth: svg.getBoundingClientRect().width };
       });
       check(`${tag}: diagram is 30 percent shorter`, layout.viewHeight === 116 && layout.stageHeight <= layout.svgWidth * 166 / 440 * 0.72 + 7);
       check(`${tag}: Bible is half size and stays on left`, layout.scale === 0.5 && layout.bookRight < layout.width * 0.25);
+      check(`${tag}: closed book is right-aligned and leaves room to open left`, Math.abs(layout.closedRight - layout.openRight) < 2 && layout.closedLeft > layout.openLeft + 15);
       if (job.width < 560) {
         const topbarHeight = await page.locator('.lesson-topbar').evaluate(e => e.getBoundingClientRect().height);
         check(`${tag}: complete widget fits below phone header`, layout.widgetHeight <= job.height - topbarHeight - 16);
