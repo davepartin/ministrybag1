@@ -1983,6 +1983,33 @@
             line-height: 1.5;
         }
 
+        .growing-apps {
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border-light);
+        }
+
+        .growing-apps h2 { margin: 0 0 6px; font-size: 1.4rem; scroll-margin-top: 20px; }
+        .growing-apps > p { margin: 0 0 16px; color: var(--text-secondary); }
+        .growing-app-card {
+            display: block;
+            padding: 20px;
+            color: var(--text-primary);
+            text-decoration: none;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-top: 3px solid #1E6FA0;
+            border-radius: var(--radius);
+        }
+        .growing-app-card:focus-visible, #growing-apps-heading:focus-visible {
+            outline: 3px solid #1E6FA0;
+            outline-offset: 4px;
+        }
+        .growing-app-label { color: #1E6FA0; font-size: 0.75rem; font-weight: 600; }
+        .growing-app-card h3 { margin: 6px 0; font-size: 1.2rem; }
+        .growing-app-card p { margin: 0 0 12px; color: var(--text-secondary); }
+        .growing-app-action { color: #1E6FA0; font-weight: 600; }
+
         .home-footer {
             border-top: 1px solid var(--border-light);
             margin: 24px 20px 0;
@@ -3377,6 +3404,16 @@
                     <p class="home-backup-status backup-preview-status" id="home-backup-preview-status" hidden></p>
                 </details>
             </div>
+            <section class="growing-apps" aria-labelledby="growing-apps-heading">
+                <h2 id="growing-apps-heading" tabindex="-1">Growing Apps</h2>
+                <p>Simple tools to help you put what you are learning into practice.</p>
+                <a class="growing-app-card" id="daily-prayers-app-link" href="tools/daily-prayers/">
+                    <span class="growing-app-label">101-03 · Prayer</span>
+                    <h3>Daily Prayers</h3>
+                    <p>Build a personal prayer for yourself and the people on your heart, then return to it each day.</p>
+                    <span class="growing-app-action">Open Daily Prayers <span aria-hidden="true">&#8594;</span></span>
+                </a>
+            </section>
             <footer class="home-footer">
                 <a class="home-about-link" id="home-about-link" href="#about"
                     onclick="event.preventDefault(); openAbout()">About Growing Together</a>
@@ -6690,6 +6727,12 @@
             openExportPreview();
         }
 
+        function focusGrowingApps() {
+            const heading = document.getElementById('growing-apps-heading');
+            heading.scrollIntoView({ block: 'start', behavior: 'instant' });
+            heading.focus({ preventScroll: true });
+        }
+
         // ============================================
         // HASH ROUTING - Browser back/forward support
         // Handles: #101-4 (course-lesson), #tree, #about, # (home)
@@ -6700,15 +6743,18 @@
             const hash = location.hash.slice(1);
 
             // Home
-            if (!hash) {
+            if (!hash || hash === 'growing-apps') {
                 const returningFromAbout = document.getElementById('about-view').classList.contains('active');
                 document.getElementById('about-view').classList.remove('active');
                 document.getElementById('tree-view').classList.remove('active');
                 document.getElementById('lesson-view').classList.remove('active');
                 document.getElementById('home-view').classList.remove('hidden');
                 document.getElementById('toc-panel').classList.remove('open');
-                window.scrollTo({ top: 0 });
-                if (returningFromAbout) document.getElementById('home-about-link').focus();
+                if (hash === 'growing-apps') focusGrowingApps();
+                else {
+                    window.scrollTo({ top: 0 });
+                    if (returningFromAbout) document.getElementById('home-about-link').focus();
+                }
                 return;
             }
 
@@ -6762,6 +6808,11 @@
         (async function handleInitialHash() {
             const hash = location.hash.slice(1);
             if (!hash) return;
+
+            if (hash === 'growing-apps') {
+                requestAnimationFrame(focusGrowingApps);
+                return;
+            }
 
             if (hash === 'about') {
                 _suppressHashNav = true;

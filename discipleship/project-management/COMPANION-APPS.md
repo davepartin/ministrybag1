@@ -11,13 +11,17 @@ node discipleship/scripts/build_daily_prayers.js
 node discipleship/scripts/build_daily_prayers.js --check
 ```
 
-Keeping the established MinistryBag address on its original origin is important: existing browser prayers remain accessible there. Do not redirect it to a new origin and claim the prayers will follow. Browser storage is separate for MinistryBag, Growing Together and every preview URL. The existing 101-03 link still points to MinistryBag; lesson wording and questions are unchanged in this packet.
+Keeping the established MinistryBag address on its original origin is important: existing browser prayers remain accessible there. Do not redirect it to a new origin and claim the prayers will follow. Browser storage is separate for MinistryBag, Growing Together and every preview URL. Growing Together is the primary entry: the home page has a Growing Apps section at index.html#growing-apps, and 101-03 links directly to tools/daily-prayers/. Only that tool URL changes in the lesson; its wording and questions are unchanged. The app returns to the home app section and prayer lesson on the same origin, including preview sites. The MinistryBag logo remains an attribution link; the legacy address remains available for earlier saved prayers.
 
 The app keeps the original `lordsPrayerApp` and `lordsPrayerApp_generated` keys and prayer wording. Loading does not rewrite either store. It opens an existing generated prayer verbatim; a saved editing preference reopens a draft. Edits save locally on input. Create Your Daily Prayer combines the selected growth areas, names and requests into the generated reading copy. Unknown legacy metadata is retained. Unreadable records remain untouched and can be downloaded as a raw recovery file.
 
 Save a copy downloads a versioned JSON file with both the current draft and reading copy. Restore a copy validates that file and asks before replacing prayers. A recovery copy is saved before replacement, and failed writes attempt rollback. Copies contain personal prayer information; the app sends no names or requests to a server. Copy, Email and Print remain explicit user actions. Email opens the person's email application; it does not send automatically.
 
 There is no account synchronization in this version. The interface explicitly says prayers are saved in this browser on this device. Saved copies can move prayers between browsers or origins. Clearing browser data can remove local prayers and recovery copies. Recovery JSON for unreadable data preserves the raw stores for diagnosis; it is not a normal import file.
+
+## Moving existing MinistryBag prayers
+
+The two domains cannot read one another's browser storage. After both updated addresses are deployed, open the old MinistryBag app, expand Keep a copy or move to another device, and choose Save a copy. In Growing Together Daily Prayers, expand the same tools and choose Restore a copy. Review and confirm the import. The copy includes the draft and generated prayer; the original remains on MinistryBag. The canonical app explains these steps inside its backup tools. No names or requests travel through the home page, a URL, or analytics.
 
 ## Pattern for later apps
 

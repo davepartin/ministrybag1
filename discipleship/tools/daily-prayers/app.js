@@ -296,7 +296,15 @@
     $('lords-prayer').textContent = LORDS_DISPLAY;
     $('church-prayer').textContent = CHURCH;
     $('print-lords').textContent = LORDS_EMAIL;
-    if (location.pathname.includes('/tools/daily-prayers/')) $('lesson-link').href = new URL('../../index.html#101-3', location.href).href;
+    if (location.pathname.includes('/tools/daily-prayers/')) {
+      const home = new URL('../../index.html', location.href);
+      $('lesson-link').href = home.href + '#101-3';
+      document.querySelector('.wordmark').href = home.href;
+      const appsLink = $('growing-apps-link');
+      if (appsLink) appsLink.href = home.href + '#growing-apps';
+      const migration = $('ministrybag-move');
+      if (migration) migration.hidden = false;
+    }
     let raw = null, generated = null, view = null;
     try { raw = localStorage.getItem(DATA_KEY); generated = localStorage.getItem(PRAYER_KEY); view = localStorage.getItem(VIEW_KEY); }
     catch (_) {

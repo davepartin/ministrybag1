@@ -111,3 +111,5 @@ November 17: Dave approved PR #254 at a93a67350290bbe7520e2af8fb0c0c29650b8953 f
 
 November 17: PR for BELOW-101-01 (branch claude/101-01-below-line) makes the one-line "below" fix in 101-01, as Dave approved in chat. Awaiting Dave's review.
 November 17: Dave approved merge of PR #281, the 101-01 "below" line. Protect this wording.
+
+November 17: Dave approved the Daily Prayers look and requested same-site Growing Apps access from home and related lessons (PR #261). In 101-03 only the tool URL changes from ministrybag.com/dailyprayers/ to tools/daily-prayers/. Every paragraph, question/ID, reading, image and approved Lord's Prayer widget stays unchanged. Baseline fingerprints reflect this navigation-only change; text remains Silver.

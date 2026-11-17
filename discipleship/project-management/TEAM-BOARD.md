@@ -1,9 +1,12 @@
 # Growing Together Team Board
 
-## Daily Prayers working review: November 17, 2026
+## Daily Prayers and Growing Apps preview: November 17, 2026
 
-Dave asked to work together on PR #261 and chose a walkthrough from the beginning. Refreshed against current main efbd2b4; both document histories preserved. App-source and legacy delivery bytes are unchanged from b181bd1, including Create Your Daily Prayer, 640px content width, MinistryBag satchel and removed hero eyebrow. Core QA, mirror parity and 294 local browser checks pass. The refreshed preview is ready for Dave's visual/wording review. APP-DAILY-PRAYERS remains REVIEW; no merge/publishing approval. No 201-01, PR #282, lesson or widget changes. [Review log](logs/2026-11-17-APP-DAILY-PRAYERS-REVIEW-codex.md).
+APP-DAILY-PRAYERS REVIEW, PR #261. Dave approved the Daily Prayers look and requested it live in the Growing Together world, accessible from home and related lessons. The preview adds a Growing Apps home section with Daily Prayers first, changes only the 101-03 tool URL to tools/daily-prayers/, and adds app return links to the same-origin lesson/home section. The growing-apps hash opens home and focuses the section. These changes supersede the older no-homepage/no-lesson-URL boundary only within this explicit assignment.
 
+All 101-03 wording, Scripture, questions/IDs, readings, art and approved widget are preserved. Baseline/status note the URL-only change; text remains Silver. No edits to Dave's separate 201-01 or PR #282 branches. Existing prayer generation wording and storage keys remain unchanged; MinistryBag keeps its old address and generated app copy. Backup tools explain how to move an old prayer by Save a copy/Restore a copy, without redirecting or claiming cross-domain/account sync.
+
+Core QA, 294 two-address prayer checks, 140 same-site round-trip checks and 964 existing lesson-navigation checks pass. Review the new hub/navigation on the PR preview before publishing. No Weekly Connection Time or broader homepage redesign is included. [Current log](logs/2026-11-17-APP-DAILY-PRAYERS-REVIEW-codex.md).
 
 ## Daily Prayers companion ready for review: November 16, 2026
 
