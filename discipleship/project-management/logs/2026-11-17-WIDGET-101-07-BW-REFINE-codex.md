@@ -34,3 +34,5 @@ All approved browser script bytes are retained, including their assertions. Chec
 Exact final-head Firebase preview checks, hosted widget byte comparison, browser counts, merge SHA and automatic live deployment/smoke evidence are posted on PR #254. Task/board/handoff and baseline/status reflect Dave's approved component. No Firebase settings/workflows/manual deployment changes.
 
 Mobile Walk-step screenshot inspected before final integration. The approved scripts pass unchanged; the direct count is 273, using the actual output rather than the older PR description count.
+
+Concurrent main update: #281 landed during final preview checks. GitHub rejected the first merge attempt because both tasks appended to 101-editorial-status.md. Merged main 320e9f7 normally and retained both status histories. The approved three files and current 101-07 JSON remain exact. Refreshed final preview before retrying merge.
