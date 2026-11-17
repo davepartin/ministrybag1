@@ -1,5 +1,12 @@
 # Resume here
 
+## 101-07 B&W widget refinement integrated: November 17, 2026
+
+WIDGET-101-07-BW-REFINE DONE, PR #254. Dave approved exact a93a67350290bbe7520e2af8fb0c0c29650b8953 for stop-turn-walk.html and both approved standalone/embedded browser scripts. All three remain byte-identical. The B&W scene, straight arms, white turn/stop lines, removed road dots, closer Walk endpoint and shorter approved slide copy are preserved.
+
+Current main was merged normally; only TASKS/TEAM-BOARD append conflicts needed resolution, and both histories are retained. Current 101-07 JSON, active/retired question objects/IDs, reading plan, widget placement, shepherd art, shared index and saved-answer implementation remain unchanged. Baseline/status reflect this component approval only; text stays Silver. Final checks, exact-head preview, merge and live deployment evidence are on PR #254. [Codex log](logs/2026-11-17-WIDGET-101-07-BW-REFINE-codex.md).
+
+
 
 ## 201-04 visible-finish timing preview: November 17, 2026
 

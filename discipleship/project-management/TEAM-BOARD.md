@@ -1,9 +1,16 @@
 # Growing Together Team Board
 
+## 101-07 B&W widget refinement integrated: November 17, 2026
 
-## 101-07 Repentance is 180 Degrees B&W visual polish (REVIEW): November 16, 2026
+WIDGET-101-07-BW-REFINE DONE, PR #254. Dave approved exact a93a67350290bbe7520e2af8fb0c0c29650b8953 for stop-turn-walk.html and both approved standalone/embedded browser scripts. All three remain byte-identical. The B&W scene, straight arms, white turn/stop lines, removed road dots, closer Walk endpoint and shorter approved slide copy are preserved.
 
-- **Task / Branch:** `WIDGET-101-07-BW-REFINE` on `gemini/widget-101-07-bw-refine` (stopped at `REVIEW` for Dave's visual approval and Codex integration; lesson JSON `data/101-07.json` untouched).
+Current main was merged normally; only TASKS/TEAM-BOARD append conflicts needed resolution, and both histories are retained. Current 101-07 JSON, active/retired question objects/IDs, reading plan, widget placement, shepherd art, shared index and saved-answer implementation remain unchanged. Baseline/status reflect this component approval only; text stays Silver. Final checks, exact-head preview, merge and live deployment evidence are on PR #254. [Codex log](logs/2026-11-17-WIDGET-101-07-BW-REFINE-codex.md).
+
+
+
+## 101-07 Repentance is 180 Degrees B&W visual polish (DONE): November 17, 2026
+
+- **Task / Branch:** `WIDGET-101-07-BW-REFINE` on `gemini/widget-101-07-bw-refine` (Dave approved exact `a93a673`; Codex integrates PR #254; lesson JSON `data/101-07.json` untouched).
 - **Changes:** Applied Dave's visual polish to [stop-turn-walk.html](../widgets/stop-turn-walk.html) (`Repentance is 180 Degrees` / `101-07`):
   - Replaced the traveler's bent elbow with normal straight 2-arm stick-man geometry (`#t-arm-f` & `#t-arm-b`, no bent elbow).
   - Removed all 4 dots on the road (`#drift-steps` & `#walk-trail` deleted; zero dotted road lines).
