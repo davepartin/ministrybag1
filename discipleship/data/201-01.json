@@ -38,7 +38,7 @@
     {
       "type": "question",
       "id": "201-01-1",
-      "text": "1.1 - When you picture the Father running toward you, not waiting for your speech or for you to clean up, what stirs inside you?",
+      "text": "1.1 - When you picture the Father running toward you before you have cleaned yourself up, how does that affect you?",
       "height": "tall"
     },
     {
@@ -91,7 +91,7 @@
     },
     {
       "type": "text",
-      "text": "This is the Greatest Commandment, and it is shaped like a cross for a reason. The vertical beam is the love between God and you, His coming down and your responding up. The horizontal beam is where that love overflows into the people God has placed near you. You cannot get to the horizontal without first receiving the vertical. Which means the whole Christian life begins not with what you do for God, but with what He has already done for you."
+      "text": "This is the Greatest Commandment, and it is shaped like a cross for a reason. The vertical beam is the love between God and you, His coming down and your responding up. The horizontal beam is where that love overflows to the people God has placed near you, and it reaches in two directions. In Growing Up (202), you will follow one arm home, learning what it means to belong and to love your family and your church family. In Growing Out (203), you will follow the other arm to people who do not yet follow Jesus. But you cannot reach out until you have first received, so Growing Deep starts here."
     },
     {
       "type": "text",
@@ -99,14 +99,14 @@
     },
     {
       "type": "question",
-      "id": "201-01-2",
-      "text": "1.2 - Where do you tend to picture God more like a boss watching your performance than a Father watching the road?",
+      "id": "201-01-4",
+      "text": "1.2 - How would your obedience this week look different if it came from gratitude instead of fear?",
       "height": "tall"
     },
     {
       "type": "question",
-      "id": "201-01-3",
-      "text": "1.3 - In your own words, how would you explain to a friend where God's love begins and where it goes?",
+      "id": "201-01-5",
+      "text": "1.3 - Where do you feel most stuck right now: receiving God's love, loving Him back, or loving the people around you?",
       "height": "tall"
     },
     {
@@ -163,6 +163,20 @@
       "id": "201-01-prayer",
       "text": "What is a prayer request for this week?",
       "height": "short"
+    }
+  ],
+  "retiredQuestions": [
+    {
+      "type": "question",
+      "id": "201-01-2",
+      "text": "1.2 - Where do you tend to picture God more like a boss watching your performance than a Father watching the road?",
+      "height": "tall"
+    },
+    {
+      "type": "question",
+      "id": "201-01-3",
+      "text": "1.3 - In your own words, how would you explain to a friend where God's love begins and where it goes?",
+      "height": "tall"
     }
   ]
 }
