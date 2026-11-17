@@ -1,5 +1,9 @@
 # Growing Together - Project State
 
+## 202-09 roof marker artwork: November 17, 2026
+
+Dave approved PR #279 at c053695. ART-202-09-MARKER replaces the roof illustration with the 1280x720 marker pair and four optimized deliveries; framed touchNext entry dissolve finishes while centered. Older PNGs remain unchanged on disk. All lesson wording, Scripture, question/answer identity, readings, widget bytes and 202-03/04 remain unchanged. Image approval only. Integration and deployment evidence: [Codex log](project-management/logs/2026-11-17-ART-202-09-MARKER-codex.md) and PR #279.
+
 ## Course 101 story art integrated: November 16, 2026
 
 ART-101-03-05-06 DONE, PR #268. Dave asked Codex to merge Gemini's completed art at 17684f32bb846bda53cc91fd0ffb45ec777bb751: the new 101-03 pre-dawn prayer pair before Teach Us to Pray, revised individual roots in 101-05 aspen-bw.png with the existing color layer preserved, and the 101-06 sunlit well/terracotta reveal with its B&W layer preserved. All three use imageDissolveOnEntry so full light appears while the complete image is visible. Approved art/delivery/map bytes are unchanged from Gemini's submission.
