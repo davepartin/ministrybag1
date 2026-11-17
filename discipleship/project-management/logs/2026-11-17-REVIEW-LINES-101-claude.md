@@ -1,7 +1,7 @@
 # REVIEW-LINES-101: 101-04 and 101-07 review paragraphs
 Date: 2026-11-17
 Agent: Claude
-Status: REVIEW
+Status: DONE (Dave approved merge of PR #278, 2026-11-17)
 Branch: claude/101-review-lines
 
 From the saved 101 course review, approved by Dave in chat on November 17 ("ok, yes this making things clear and not overly repeated is great work").
