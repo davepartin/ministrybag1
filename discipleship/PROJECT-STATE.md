@@ -1,5 +1,10 @@
 # Growing Together - Project State
 
+## 101-04 compact widget approved for integration: November 17, 2026
+
+Dave approved PR #262 at exact 6a4c1e7977719842941e72a3cee339c67899c2f6 and said to merge. Preserve these widget bytes: half-size Bible, closed cover aligned right within its opening footprint, wipe opening left, 30 percent shorter diagram, dimmed Ready passage and simpler Ready card. This is component approval only; 101-04 text stays Silver. All lesson JSON, questions/IDs/answers, readings, approved oil-lamp art, placement and shared runtime remain unchanged. Core QA and 248 focused browser checks pass. Approved component hash/status are recorded. Final exact-head preview, merge and live verification are on PR #262. [Integration log](project-management/logs/2026-11-17-WIDGET-101-04-RDR-POLISH-codex.md).
+
+
 ## 202-09 roof marker artwork: November 17, 2026
 
 Dave approved PR #279 at c053695. ART-202-09-MARKER replaces the roof illustration with the 1280x720 marker pair and four optimized deliveries; framed touchNext entry dissolve finishes while centered. Older PNGs remain unchanged on disk. All lesson wording, Scripture, question/answer identity, readings, widget bytes and 202-03/04 remain unchanged. Image approval only. Integration and deployment evidence: [Codex log](project-management/logs/2026-11-17-ART-202-09-MARKER-codex.md) and PR #279.

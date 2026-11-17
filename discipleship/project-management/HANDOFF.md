@@ -1,5 +1,22 @@
 # Resume here
 
+## 101-04 compact widget approved for integration: November 17, 2026
+
+Dave approved PR #262 at exact 6a4c1e7977719842941e72a3cee339c67899c2f6 and said to merge. Preserve these widget bytes: half-size Bible, closed cover aligned right within its opening footprint, wipe opening left, 30 percent shorter diagram, dimmed Ready passage and simpler Ready card. This is component approval only; 101-04 text stays Silver. All lesson JSON, questions/IDs/answers, readings, approved oil-lamp art, placement and shared runtime remain unchanged. Core QA and 248 focused browser checks pass. Approved component hash/status are recorded. Final exact-head preview, merge and live verification are on PR #262. [Integration log](logs/2026-11-17-WIDGET-101-04-RDR-POLISH-codex.md).
+
+
+## 101-04 compact Bible layout follow-up: November 17, 2026
+
+PR #262 remains REVIEW. At Dave's request, the Bible area stays on the left at half its prior size. The closed cover is aligned against the open book's right edge, leaving room to open left; the opening wipe travels right to left. The diagram viewBox height is 116 instead of 166, a 30 percent reduction. Teaching-card and Scripture fonts remain unchanged. Browser coverage includes a 375x667 phone, full-widget fit below the lesson header, wipe direction, fixed card sizing and saved answers. No lesson JSON, artwork, shared runtime or historical approval fingerprints change. Preview awaits Dave's visual approval before merge. Evidence: [Codex log](logs/2026-11-17-WIDGET-101-04-RDR-POLISH-codex.md).
+
+
+## 101-04 widget-polish preview refreshed: November 17, 2026
+
+WIDGET-101-04-RDR-POLISH REVIEW, PR #262. Dave requested a fresh preview to decide whether to merge. Merged current main normally, preserving both TASKS/TEAM-BOARD histories. The proposed read-discover-respond.html remains exact Gemini 69fff4eb3e59013db323bb74366f3efefc414917: closed Bible on Ready, opening on Read Slowly, dim passage/John 1 watermark at Ready, and shorter opening card.
+
+Current 101-04 JSON is byte-identical to main: protected wording, eight questions, retired answer, John readings, approved lamp artwork and widget placement remain intact. Shared index/iframe helper and all other lessons/widgets/art are unchanged. No new widget/art/whole-lesson approval inferred; current baseline remains untouched until Dave approves. Core QA, export186/storage64/assets144/images1543/iframe32 and 230 embedded RDR checks pass locally. Final exact-head preview evidence and links are on PR #262. [Codex log](logs/2026-11-17-WIDGET-101-04-RDR-POLISH-codex.md).
+
+
 ## 101-07 B&W widget refinement integrated: November 17, 2026
 
 WIDGET-101-07-BW-REFINE DONE, PR #254. Dave approved exact a93a67350290bbe7520e2af8fb0c0c29650b8953 for stop-turn-walk.html and both approved standalone/embedded browser scripts. All three remain byte-identical. The B&W scene, straight arms, white turn/stop lines, removed road dots, closer Walk endpoint and shorter approved slide copy are preserved.
