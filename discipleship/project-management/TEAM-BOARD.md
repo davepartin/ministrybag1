@@ -1,5 +1,10 @@
 # Growing Together Team Board
 
+## 101-04 compact widget approved for integration: November 17, 2026
+
+Dave approved PR #262 at exact 6a4c1e7977719842941e72a3cee339c67899c2f6 and said to merge. Preserve these widget bytes: half-size Bible, closed cover aligned right within its opening footprint, wipe opening left, 30 percent shorter diagram, dimmed Ready passage and simpler Ready card. This is component approval only; 101-04 text stays Silver. All lesson JSON, questions/IDs/answers, readings, approved oil-lamp art, placement and shared runtime remain unchanged. Core QA and 248 focused browser checks pass. Approved component hash/status are recorded. Final exact-head preview, merge and live verification are on PR #262. [Integration log](logs/2026-11-17-WIDGET-101-04-RDR-POLISH-codex.md).
+
+
 ## 101-04 compact Bible layout follow-up: November 17, 2026
 
 PR #262 remains REVIEW. At Dave's request, the Bible area stays on the left at half its prior size. The closed cover is aligned against the open book's right edge, leaving room to open left; the opening wipe travels right to left. The diagram viewBox height is 116 instead of 166, a 30 percent reduction. Teaching-card and Scripture fonts remain unchanged. Browser coverage includes a 375x667 phone, full-widget fit below the lesson header, wipe direction, fixed card sizing and saved answers. No lesson JSON, artwork, shared runtime or historical approval fingerprints change. Preview awaits Dave's visual approval before merge. Evidence: [Codex log](logs/2026-11-17-WIDGET-101-04-RDR-POLISH-codex.md).
