@@ -1338,7 +1338,7 @@
             border-top: 1px solid var(--border-light, #E6E2D8);
         }
         .lesson-contents-label {
-            flex: 0 0 58px;
+            flex: 0 0 70px;
             color: var(--accent);
             font-size: 0.72rem;
             font-weight: 700;
@@ -1353,12 +1353,6 @@
             text-decoration-thickness: 1px;
             text-decoration-color: rgba(43, 90, 131, 0.35);
             text-underline-offset: 4px;
-        }
-        .lesson-contents-arrow {
-            flex: 0 0 auto;
-            color: var(--blue-heading);
-            opacity: 0.6;
-            font-weight: 700;
         }
         .lesson-contents-row:hover,
         .lesson-contents-row:active {
@@ -4499,7 +4493,7 @@
                 if (Array.isArray(data.contents) && data.contents.length) {
                     const rows = data.contents
                         .filter(item => item && /^[a-z0-9-]+$/.test(item.anchor || '') && item.title)
-                        .map(item => `<a class="lesson-contents-row" href="#jump-${item.anchor}"><span class="lesson-contents-label">${item.label || ''}</span><span class="lesson-contents-title">${item.title}</span><span class="lesson-contents-arrow" aria-hidden="true">\u2193</span></a>`)
+                        .map(item => `<a class="lesson-contents-row" href="#jump-${item.anchor}"><span class="lesson-contents-label">${item.label || ''}</span><span class="lesson-contents-title">${item.title}</span></a>`)
                         .join('');
                     if (rows) html += `<nav class="lesson-contents" aria-label="In this lesson">${rows}</nav>`;
                 }
