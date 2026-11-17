@@ -1,7 +1,24 @@
 {
   "id": "1",
   "title": "Lesson 1: Loving Your Neighbors",
-  "description": "Jesus said <a class=\"lesson-jump\" href=\"#jump-second-like-first\">the second great commandment is like the first</a>: <a class=\"lesson-jump\" href=\"#jump-as-yourself\">love your neighbor as yourself</a>. Through <a class=\"lesson-jump\" href=\"#jump-good-samaritan\">the Good Samaritan</a>, you will see how Jesus <a class=\"lesson-jump\" href=\"#jump-who-is-my-neighbor\">turned the question around</a>, from who counts as my neighbor to whom I will move toward, and how <a class=\"lesson-jump\" href=\"#jump-crossed-over\">He crossed the road to you first</a>.",
+  "description": "Jesus said the second great commandment is like the first: love your neighbor as yourself. Through the Good Samaritan, you will see how Jesus turned the question around, from who counts as my neighbor to whom I will move toward, and how He crossed the road to you first.",
+  "contents": [
+    {
+      "label": "Verse",
+      "title": "Luke 10:25-37",
+      "anchor": "story"
+    },
+    {
+      "label": "Study",
+      "title": "The Second Is Like the First",
+      "anchor": "teaching"
+    },
+    {
+      "label": "Diagram",
+      "title": "The Greatest Commandment",
+      "anchor": "picture"
+    }
+  ],
   "courseLogo": {
     "src": "images/202-3circles-logo.png",
     "alt": "Growing Together Discipleship Series: Growing Up in Discipleship highlighted.",
@@ -39,13 +56,13 @@
         0.64
       ],
       "alt": "A Samaritan kneeling beside a wounded stranger while a priest and a Levite walk away up the road",
-      "touchNext": true
+      "touchNext": true,
+      "anchor": "story"
     },
     {
       "type": "parable",
       "title": "The Good Samaritan",
-      "text": "A religious law teacher once stood up to test Jesus. \"What shall I do to inherit eternal life?\" Jesus asked him what the Law said, and the man answered with the two great commandments: love God with everything you are, and love your neighbor as yourself. Jesus told him he had answered correctly. But the man wanted to justify himself, so he asked, \"And who is my neighbor?\" Jesus answered with a story.<br><br>A traveler on the lonely road from Jerusalem to Jericho was attacked, stripped, beaten, and left half dead.<br><br>A priest came by, saw him, and passed by on the other side. Then a Levite, a temple worker, did the same. These were not evil men. They had important religious work waiting for them, and they kept walking.<br><br>Then a Samaritan came. Jews and Samaritans had despised each other for centuries, so a Jewish audience would have expected the Samaritan to be the villain, not the hero. Instead, he saw the man, had compassion, and went to him. He knelt in the dirt beside someone who, by every cultural standard, was his enemy. He poured oil and wine on the wounds, lifted the man onto his own animal, carried him to an inn, and paid for his care out of his own pocket.<br><br>Then Jesus asked, <em>\"Which of these three, do you think, proved to be a neighbor to the man who fell among the robbers?\"</em> The law teacher said, \"The one who showed him mercy.\" And Jesus said, <em>\"You go, and do likewise.\"</em> (Luke 10:25-37)",
-      "anchor": "good-samaritan"
+      "text": "A religious law teacher once stood up to test Jesus. \"What shall I do to inherit eternal life?\" Jesus asked him what the Law said, and the man answered with the two great commandments: love God with everything you are, and love your neighbor as yourself. Jesus told him he had answered correctly. But the man wanted to justify himself, so he asked, \"And who is my neighbor?\" Jesus answered with a story.<br><br>A traveler on the lonely road from Jerusalem to Jericho was attacked, stripped, beaten, and left half dead.<br><br>A priest came by, saw him, and passed by on the other side. Then a Levite, a temple worker, did the same. These were not evil men. They had important religious work waiting for them, and they kept walking.<br><br>Then a Samaritan came. Jews and Samaritans had despised each other for centuries, so a Jewish audience would have expected the Samaritan to be the villain, not the hero. Instead, he saw the man, had compassion, and went to him. He knelt in the dirt beside someone who, by every cultural standard, was his enemy. He poured oil and wine on the wounds, lifted the man onto his own animal, carried him to an inn, and paid for his care out of his own pocket.<br><br>Then Jesus asked, <em>\"Which of these three, do you think, proved to be a neighbor to the man who fell among the robbers?\"</em> The law teacher said, \"The one who showed him mercy.\" And Jesus said, <em>\"You go, and do likewise.\"</em> (Luke 10:25-37)"
     },
     {
       "type": "text",
@@ -60,7 +77,7 @@
     {
       "type": "heading",
       "text": "The Second Is Like the First",
-      "anchor": "second-like-first"
+      "anchor": "teaching"
     },
     {
       "type": "text",
@@ -75,7 +92,8 @@
       "type": "widget",
       "src": "widgets/great-command-v5-202.html",
       "title": "The Greatest Commandment: Growing Up",
-      "height": "560px"
+      "height": "560px",
+      "anchor": "picture"
     },
     {
       "type": "text",
@@ -83,8 +101,7 @@
     },
     {
       "type": "heading",
-      "text": "Love Your Neighbor as Yourself",
-      "anchor": "as-yourself"
+      "text": "Love Your Neighbor as Yourself"
     },
     {
       "type": "text",
@@ -120,8 +137,7 @@
     },
     {
       "type": "heading",
-      "text": "Who Is My Neighbor?",
-      "anchor": "who-is-my-neighbor"
+      "text": "Who Is My Neighbor?"
     },
     {
       "type": "text",
@@ -143,8 +159,7 @@
     },
     {
       "type": "heading",
-      "text": "The One Who Crossed Over to You",
-      "anchor": "crossed-over"
+      "text": "The One Who Crossed Over to You"
     },
     {
       "type": "text",

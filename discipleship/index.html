@@ -1274,58 +1274,67 @@
             margin-bottom: 32px;
         }
 
-        /* In-lesson jump links: phrases in a lesson's summary point to numbered sections.
-           Each linked phrase ends in a numbered blue circle; the section it points to
-           starts with the same numbered circle. */
+        /* In this lesson: a small list of links under a lesson's summary.
+           Each row jumps to a part of the lesson without changing the address bar. */
+        .lesson-contents {
+            margin: -12px 0 32px;
+            border: 1px solid var(--border-light, #E6E2D8);
+            border-radius: 12px;
+            background: var(--surface, #FFFFFF);
+            overflow: hidden;
+        }
+        .lesson-contents-row {
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            padding: 11px 14px;
+            text-decoration: none;
+            color: inherit;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .lesson-contents-row + .lesson-contents-row {
+            border-top: 1px solid var(--border-light, #E6E2D8);
+        }
+        .lesson-contents-label {
+            flex: 0 0 64px;
+            color: var(--accent);
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+        .lesson-contents-title {
+            flex: 1 1 auto;
+            color: var(--blue-heading);
+            font-weight: 600;
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
+            text-decoration-color: rgba(43, 90, 131, 0.35);
+            text-underline-offset: 4px;
+        }
+        .lesson-contents-arrow {
+            flex: 0 0 auto;
+            color: var(--blue-heading);
+            opacity: 0.6;
+            font-weight: 700;
+        }
+        .lesson-contents-row:hover,
+        .lesson-contents-row:active {
+            background: rgba(43, 90, 131, 0.06);
+        }
+        .lesson-contents-row:hover .lesson-contents-title {
+            text-decoration-color: rgba(43, 90, 131, 0.8);
+        }
+        .lesson-contents-row:focus-visible {
+            outline: 2px solid var(--blue-heading);
+            outline-offset: -2px;
+        }
         .lesson-jump {
             color: var(--blue-heading);
             text-decoration: underline;
             text-decoration-thickness: 1px;
             text-decoration-color: rgba(43, 90, 131, 0.4);
             text-underline-offset: 4px;
-            -webkit-tap-highlight-color: transparent;
-            border-radius: 3px;
-        }
-        .lesson-jump:hover,
-        .lesson-jump:active {
-            color: #1F4566;
-            text-decoration-color: rgba(31, 69, 102, 0.85);
-        }
-        .lesson-jump:focus-visible {
-            outline: 2px solid var(--blue-heading);
-            outline-offset: 2px;
-        }
-        .lesson-jump-tail {
-            white-space: nowrap;
-        }
-        .lesson-jump-num {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 1.35em;
-            height: 1.35em;
-            margin-left: 4px;
-            border-radius: 50%;
-            background: var(--blue-heading);
-            color: #FFFFFF;
-            font-size: 0.7em;
-            font-weight: 700;
-            line-height: 1;
-            font-variant-numeric: tabular-nums;
-            vertical-align: 0.18em;
-            transition: transform 0.15s ease, background-color 0.15s ease;
-        }
-        .lesson-jump:hover .lesson-jump-num,
-        .lesson-jump:active .lesson-jump-num {
-            background: #1F4566;
-            transform: scale(1.08);
-        }
-        .lesson-jump-num.is-section {
-            width: 1.45em;
-            height: 1.45em;
-            margin: 0 10px 0 0;
-            font-size: 0.78em;
-            vertical-align: 0.14em;
         }
         .lesson-jump-target {
             scroll-margin-top: calc(var(--save-status-height, 0px) + 104px);
@@ -1342,7 +1351,6 @@
             100% { background-color: rgba(43, 90, 131, 0); box-shadow: 0 0 0 8px rgba(43, 90, 131, 0); }
         }
         @media (prefers-reduced-motion: reduce) {
-            .lesson-jump-num { transition: none; }
             .lesson-jump-target.is-arrived { animation: none; }
         }
 
@@ -2708,8 +2716,7 @@
            PRINT / SAVE AS PDF
            ============================================ */
         @media print {
-            .lesson-jump-num { display: none; }
-            .lesson-jump { color: inherit; text-decoration: none; }
+            .lesson-contents { display: none; }
 
             body.printing .lesson-topbar,
             body.printing .toc-panel,
@@ -4418,6 +4425,13 @@
                 if (data.description) {
                     html += `<p class="session-description">${data.description}</p>`;
                 }
+                if (Array.isArray(data.contents) && data.contents.length) {
+                    const rows = data.contents
+                        .filter(item => item && /^[a-z0-9-]+$/.test(item.anchor || '') && item.title)
+                        .map(item => `<a class="lesson-contents-row" href="#jump-${item.anchor}"><span class="lesson-contents-label">${item.label || ''}</span><span class="lesson-contents-title">${item.title}</span><span class="lesson-contents-arrow" aria-hidden="true">\u2193</span></a>`)
+                        .join('');
+                    if (rows) html += `<nav class="lesson-contents" aria-label="In this lesson">${rows}</nav>`;
+                }
 
                 if (data.blocks) {
                     data.blocks.forEach((b, blockIdx) => {
@@ -4453,10 +4467,11 @@
                             case 'image':
                                 const imgStyle = b.width ? `style="width: ${b.width}; max-width: 100%; height: auto;"` : '';
                                 const imageClasses = `block-image${b.touchNext ? ' block-image-touch-next' : ''}`;
+                                const imageAnchor = lessonJumpAnchorAttrs(b.anchor);
                                 if (Array.isArray(b.imageSequence) && b.imageSequence.length) {
                                     const dissolveClasses = `block-image-dissolve${b.frame ? ' block-image-dissolve-framed' : ''}`;
                                     const sequenceStops = Array.isArray(b.imageSequenceStops) ? ` data-sequence-stops="${b.imageSequenceStops.join(',')}"` : '';
-                                    html += `<div class="${imageClasses}">
+                                    html += `<div class="${imageClasses}${imageAnchor.cls}"${imageAnchor.attrs}>
                                         <div class="${dissolveClasses}" data-parable-dissolve data-parable-sequence${sequenceStops}>`;
                                     b.imageSequence.forEach((src, frameIdx) => {
                                         html += `<img class="parable-sequence-frame" ${GrowingTogetherLessonImages.attributes(src, BUILD_VERSION)} alt="${frameIdx === 0 ? (b.alt || '') : ''}" aria-hidden="${frameIdx === 0 ? 'false' : 'true'}">`;
@@ -4466,14 +4481,14 @@
                                 } else if (b.imageBw && b.imageColor) {
                                     const dissolveClasses = `block-image-dissolve${b.frame ? ' block-image-dissolve-framed' : ''}`;
                                     const dissolveOnEntry = b.imageDissolveOnEntry === true ? ' data-dissolve-on-entry' : '';
-                                    html += `<div class="${imageClasses}">
+                                    html += `<div class="${imageClasses}${imageAnchor.cls}"${imageAnchor.attrs}>
                                         <div class="${dissolveClasses}" data-parable-dissolve${dissolveOnEntry}>
                                             <img class="parable-img-color" ${GrowingTogetherLessonImages.attributes(b.imageColor, BUILD_VERSION)} alt="${b.alt || ''}">
                                             <img class="parable-img-bw" ${GrowingTogetherLessonImages.attributes(b.imageBw, BUILD_VERSION)} alt="" aria-hidden="true" style="opacity:1;">
                                         </div>
                                     </div>`;
                                 } else {
-                                    html += `<div class="${imageClasses}"><img ${GrowingTogetherLessonImages.attributes(b.src, BUILD_VERSION)} alt="${b.alt || ''}" ${imgStyle} onerror="this.style.display='none'"></div>`;
+                                    html += `<div class="${imageClasses}${imageAnchor.cls}"${imageAnchor.attrs}><img ${GrowingTogetherLessonImages.attributes(b.src, BUILD_VERSION)} alt="${b.alt || ''}" ${imgStyle} onerror="this.style.display='none'"></div>`;
                                 }
                                 break;
 
@@ -4653,7 +4668,8 @@
                                 const widgetTitleAttr = widgetIframeApi
                                     ? widgetIframeApi.escapeAttr(widgetTitle)
                                     : String(widgetTitle).replace(/"/g, '&quot;');
-                                html += `<div class="block-widget">
+                                const widgetAnchor = lessonJumpAnchorAttrs(b.anchor);
+                                html += `<div class="block-widget${widgetAnchor.cls}"${widgetAnchor.attrs}>
                                     <iframe id="${widgetId}" class="gt-widget-frame" src="${b.src}?v=${BUILD_VERSION}"
                                         title="${widgetTitleAttr}"
                                         style="width: 100%; border: none; overflow: hidden; height: ${widgetHeight};"
@@ -4756,7 +4772,6 @@
 
 
                 div.innerHTML = html;
-                decorateLessonJumps(div);
                 container.appendChild(div);
             });
 
@@ -6830,48 +6845,19 @@
         // HASH ROUTING - Browser back/forward support
         // Handles: #101-4 (course-lesson), #tree, #about, # (home)
         // ============================================
-        // In-lesson jump links. A lesson block may carry an "anchor" (lowercase letters,
-        // digits, hyphens). Lesson text links to it with
-        // <a class="lesson-jump" href="#jump-ANCHOR">phrase</a>. Clicks scroll to the
-        // section without changing the address bar, which the lesson router owns.
+        // In-lesson jump links. A heading, parable, image or widget block may carry an
+        // "anchor" (lowercase letters, digits, hyphens). A lesson's "contents" list
+        // ({label, title, anchor}) renders under the summary as links to those anchors,
+        // and lesson text may also use <a class="lesson-jump" href="#jump-ANCHOR">.
+        // Clicks scroll to the section without changing the address bar, which the
+        // lesson router owns.
         function lessonJumpAnchorAttrs(anchor) {
             if (typeof anchor !== 'string' || !/^[a-z0-9-]+$/.test(anchor)) return { cls: '', attrs: '' };
             return { cls: ' lesson-jump-target', attrs: ` id="jump-${anchor}" tabindex="-1"` };
         }
 
-        // Number a lesson's jump links in reading order and put the same numbered
-        // circle at the start of each section they point to.
-        function decorateLessonJumps(root) {
-            let count = 0;
-            root.querySelectorAll('a.lesson-jump').forEach((link) => {
-                const targetId = (link.getAttribute('href') || '').replace(/^#/, '');
-                if (!/^jump-[a-z0-9-]+$/.test(targetId)) return;
-                const target = root.querySelector('#' + targetId);
-                if (!target || link.querySelector('.lesson-jump-num')) return;
-                count += 1;
-                const makeNum = (extra) => {
-                    const num = document.createElement('span');
-                    num.className = 'lesson-jump-num' + (extra ? ' ' + extra : '');
-                    num.setAttribute('aria-hidden', 'true');
-                    num.textContent = String(count);
-                    return num;
-                };
-                // Keep the last word and its number together so the circle never wraps alone.
-                const text = link.textContent;
-                const cut = text.lastIndexOf(' ') + 1;
-                const tail = document.createElement('span');
-                tail.className = 'lesson-jump-tail';
-                tail.textContent = text.slice(cut);
-                tail.appendChild(makeNum());
-                link.textContent = text.slice(0, cut);
-                link.appendChild(tail);
-                const titleHost = target.querySelector('.block-parable-title') || target;
-                titleHost.insertBefore(makeNum('is-section'), titleHost.firstChild);
-            });
-        }
-
         document.addEventListener('click', (event) => {
-            const link = event.target.closest && event.target.closest('a.lesson-jump');
+            const link = event.target.closest && event.target.closest('a.lesson-jump, a.lesson-contents-row');
             if (!link) return;
             event.preventDefault();
             const targetId = (link.getAttribute('href') || '').replace(/^#/, '');
