@@ -96,3 +96,6 @@ November 16: Dave approved merge of PR #269 at 65cc110, the exact eight-block vo
 
 November 17: PR for VOICE-101-05 (branch claude/101-05-church) applies Dave's six approved parts for 101-05. The aspen art and dissolve, every verse, and the checklist items and indexes are unchanged. The teach-it question 5-hand is retired, and 5-4 is renumbered 5.3. Awaiting Dave's review.
 November 17: Dave approved merge of PR #275, the six-part 101-05 revision. Protect this wording. Aspen art, verses and checklist items and indexes are unchanged.
+
+November 17: PR for CLEANUP-101-06 (branch claude/101-06-cleanup) applies Dave's three approved parts for 101-06. The BLESS widget, woman-at-the-well art, verses and earlier Dave edits are unchanged. All question IDs are kept. Awaiting Dave's review.
+November 17: Dave approved merge of PR #276, the three-part 101-06 cleanup. Protect this wording. BLESS widget, art and verses unchanged.
