@@ -93,3 +93,5 @@ PR #268 integration preserves the approved #266 Lord's Prayer widget and its com
 November 16: Dave approved the exact Lord's Prayer hint follow-up in PR #270 at 23660ca: Choose a line to see its step alongside MATTHEW 6:9-13. The current widget hash records that approved follow-up. Lesson JSON, all other widget behavior/copy, artwork and the new #271 B&W hold remain unchanged. Component-only approval; text stays Silver.
 
 November 16: Dave approved merge of PR #269 at 65cc110, the exact eight-block voice revision for 101-03: second-person What Is Prayer, the Matthew 6:9-13 / Luke 11:2-4 introduction and six step explanations. Protect this wording. All headings, quoted prayer lines, practice, review, questions/readings, dawn art, #270 hint and #271 hold remain unchanged. Text remains Silver; this approval does not infer whole-lesson Gold.
+
+November 17: PR for VOICE-101-05 (branch claude/101-05-church) applies Dave's six approved parts for 101-05. The aspen art and dissolve, every verse, and the checklist items and indexes are unchanged. The teach-it question 5-hand is retired, and 5-4 is renumbered 5.3. Awaiting Dave's review.
