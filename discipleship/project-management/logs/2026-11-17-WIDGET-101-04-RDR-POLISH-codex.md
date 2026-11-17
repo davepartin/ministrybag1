@@ -30,3 +30,7 @@ Exact-head Firebase Action/status, hosted-byte comparison and browser rerun evid
 ## Dave visual follow-up
 
 Dave requests a left-anchored Bible at half the previous width, a right-to-left opening wipe, and a top diagram about 30 percent shorter so the complete widget fits on a phone. Implementing on the same PR; lesson JSON, artwork, wording and historical approvals remain untouched.
+
+Implemented half-scale Bible artwork (labels remain readable), left placement, fixed-right-edge reveal expanding left, and compact rows with undistorted text. Diagram height 166 to 116 (30.1 percent shorter). Card and Scripture styles and all wording are unchanged. Only the widget, its focused browser checks and coordination records change. Main still 70c977d; JSON/index/iframe helper compare byte-identical to main. No approval baseline changes.
+
+Core rerun passes: foundation; export 186; storage 64; assets 144; images 1543; iframe 32. Updated browser coverage verifies compact geometry, half-scale left placement, actual animated wipe direction and complete-widget fit below the phone header at 375x667 and 390x844, alongside prior behavior and answer checks. Screenshots inspected at Ready/Read. Exact-head preview verification follows after push.

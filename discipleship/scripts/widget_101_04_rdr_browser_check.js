@@ -22,7 +22,7 @@ const seed = Object.fromEntries(questions.map((q, i) => ['question-101-' + q.id,
 seed['question-202-unrelated'] = 'SYN-rdr-other-course';
 
 const JOBS = [
-  { width: 375, height: 812, reducedMotion: 'no-preference' },
+  { width: 375, height: 667, reducedMotion: 'no-preference' },
   { width: 390, height: 844, reducedMotion: 'no-preference' },
   { width: 1280, height: 800, reducedMotion: 'no-preference' },
   { width: 390, height: 844, reducedMotion: 'reduce' }
@@ -94,6 +94,21 @@ const JOBS = [
         return block.previousElementSibling.textContent.startsWith('Here is a simple way to listen to God in any passage') && block.nextElementSibling.textContent.includes('Try It: Nicodemus Meets Jesus');
       }));
 
+      const layout = await frame.evaluate(() => {
+        const svg = document.querySelector('.rdr-svg');
+        const book = document.querySelector('#bible-open-part rect').getBoundingClientRect();
+        const stage = document.querySelector('.stage').getBoundingClientRect();
+        return { viewHeight: svg.viewBox.baseVal.height, scale: document.getElementById('bible-art').transform.baseVal.consolidate().matrix.a,
+          bookRight: book.right - stage.left, width: stage.width, widgetHeight: document.getElementById('widget').getBoundingClientRect().height,
+          stageHeight: stage.height, svgWidth: svg.getBoundingClientRect().width };
+      });
+      check(`${tag}: diagram is 30 percent shorter`, layout.viewHeight === 116 && layout.stageHeight <= layout.svgWidth * 166 / 440 * 0.72 + 7);
+      check(`${tag}: Bible is half size and stays on left`, layout.scale === 0.5 && layout.bookRight < layout.width * 0.25);
+      if (job.width < 560) {
+        const topbarHeight = await page.locator('.lesson-topbar').evaluate(e => e.getBoundingClientRect().height);
+        check(`${tag}: complete widget fits below phone header`, layout.widgetHeight <= job.height - topbarHeight - 16);
+      }
+
       const cardHeight = await frame.locator('#card-content').evaluate(e => e.getBoundingClientRect().height);
       const stepCount = await frame.locator('.step-dot').count();
       check(`${tag}: six study steps present`, stepCount === 6);
@@ -103,6 +118,14 @@ const JOBS = [
         const dur = Number(await frame.locator('#widget').getAttribute('data-step-dur')) || 0;
         if (job.reducedMotion === 'reduce') {
           check(`${tag}: reduced motion instant step ${s}`, dur === 0 && await frame.locator('#widget').evaluate(e => e.classList.contains('is-instant')));
+        }
+        if (s === 1 && dur) {
+          const sample = () => frame.locator('#clip-bible-rect').evaluate(e => ({ x: Number(e.getAttribute('x')), width: Number(e.getAttribute('width')) }));
+          await page.waitForTimeout(70);
+          const before = await sample();
+          await page.waitForTimeout(110);
+          const after = await sample();
+          check(`${tag}: opening wipe travels right to left`, after.x < before.x && after.width > before.width && Math.abs(after.x + after.width - 132) < 0.01);
         }
         if (dur) await page.waitForTimeout(dur + 80);
 

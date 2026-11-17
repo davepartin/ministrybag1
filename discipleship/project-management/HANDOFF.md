@@ -1,5 +1,10 @@
 # Resume here
 
+## 101-04 compact Bible layout follow-up: November 17, 2026
+
+PR #262 remains REVIEW. At Dave's request, the Bible is half its prior size and anchored left; the opening wipe travels right to left. The diagram viewBox height is 116 instead of 166, a 30 percent reduction. Teaching-card and Scripture fonts remain unchanged. Browser coverage includes a 375x667 phone, full-widget fit below the lesson header, wipe direction, fixed card sizing and saved answers. No lesson JSON, artwork, shared runtime or historical approval fingerprints change. Preview awaits Dave's visual approval before merge. Evidence: [Codex log](logs/2026-11-17-WIDGET-101-04-RDR-POLISH-codex.md).
+
+
 ## 101-04 widget-polish preview refreshed: November 17, 2026
 
 WIDGET-101-04-RDR-POLISH REVIEW, PR #262. Dave requested a fresh preview to decide whether to merge. Merged current main normally, preserving both TASKS/TEAM-BOARD histories. The proposed read-discover-respond.html remains exact Gemini 69fff4eb3e59013db323bb74366f3efefc414917: closed Bible on Ready, opening on Read Slowly, dim passage/John 1 watermark at Ready, and shorter opening card.
