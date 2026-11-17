@@ -4,7 +4,7 @@
 
 | Task | Status | Owner / branch / date | Scope |
 |---|---|---|---|
-| ART-201-04-SCROLL-PACE | ACTIVE | Codex / codex/20104-soils-scroll-timing / 2026-11-17 | Dave requested a slower start and transitions for the opening four-soils sequence. Preserve approved prose, art, five-roots widget, questions and answers; preview a paced scroll treatment only for this sequence. |
+| ART-201-04-SCROLL-PACE | REVIEW | Codex / codex/20104-soils-scroll-timing / 2026-11-17 | Dave requested a slower start and transitions for the opening four-soils sequence. Preserve approved prose, art, five-roots widget, questions and answers; preview a paced scroll treatment only for this sequence. |
 
 ## 201-04 roots clarity, November 16, 2026
 

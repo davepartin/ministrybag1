@@ -59,6 +59,15 @@ async function waitForSequence(page) {
 async function setSequenceProgress(page, targetProgress) {
     await page.evaluate(function (progress) {
         var el = document.querySelector('#session-4.active [data-parable-sequence]');
+        var paced = el.parentElement;
+        if (paced.hasAttribute('data-sequence-paced-active')) {
+            var wrapperRect = paced.getBoundingClientRect();
+            var pin = parseFloat(paced.style.getPropertyValue('--sequence-pin-top'));
+            var travel = wrapperRect.height - el.getBoundingClientRect().height;
+            var last = Math.max.apply(Math, el.dataset.sequenceStops.split(',').map(Number));
+            window.scrollTo({ top: wrapperRect.top + window.scrollY - pin + travel * (0.20 + 0.70 * progress / last), behavior: 'instant' });
+            return;
+        }
         var topbar = document.querySelector('.lesson-topbar');
         var viewportHeight = window.innerHeight || document.documentElement.clientHeight || 1;
         var contentTop = topbar ? topbar.getBoundingClientRect().bottom : 0;

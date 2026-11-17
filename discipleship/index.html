@@ -1348,6 +1348,17 @@
             background: #111;
         }
 
+        /* Opt-in pacing keeps a story sequence visible during a longer scroll. */
+        .block-image[data-sequence-paced-active] > .block-image-dissolve {
+            position: sticky;
+            top: var(--sequence-pin-top);
+        }
+
+        @media print {
+            .block-image[data-sequence-paced] { height: auto !important; }
+            .block-image[data-sequence-paced] > .block-image-dissolve { position: relative; top: auto; }
+        }
+
         .block-image-dissolve.block-image-dissolve-framed {
             border: 1px solid var(--verse-border);
         }
@@ -4323,7 +4334,8 @@
                                 if (Array.isArray(b.imageSequence) && b.imageSequence.length) {
                                     const dissolveClasses = `block-image-dissolve${b.frame ? ' block-image-dissolve-framed' : ''}`;
                                     const sequenceStops = Array.isArray(b.imageSequenceStops) ? ` data-sequence-stops="${b.imageSequenceStops.join(',')}"` : '';
-                                    html += `<div class="${imageClasses}">
+                                    const sequencePace = b.imageSequencePaced === true ? ' data-sequence-paced' : '';
+                                    html += `<div class="${imageClasses}"${sequencePace}>
                                         <div class="${dissolveClasses}" data-parable-dissolve data-parable-sequence${sequenceStops}>`;
                                     b.imageSequence.forEach((src, frameIdx) => {
                                         html += `<img class="parable-sequence-frame" ${GrowingTogetherLessonImages.attributes(src, BUILD_VERSION)} alt="${frameIdx === 0 ? (b.alt || '') : ''}" aria-hidden="${frameIdx === 0 ? 'false' : 'true'}">`;
@@ -4715,6 +4727,25 @@
                         const stops = parsedStops.length === sequenceFrames.length
                             ? parsedStops
                             : sequenceFrames.map((_, idx) => idx / Math.max(sequenceFrames.length - 1, 1));
+
+                        const wrapper = el.parentElement;
+                        if (wrapper.hasAttribute('data-sequence-paced') && rect.height > 0) {
+                            const pinTop = contentTop + Math.max((visibleHeight - rect.height) / 2, 16);
+                            const travel = Math.max(600, Math.round(visibleHeight * 1.2));
+                            const height = `${rect.height + travel}px`;
+                            const top = `${pinTop}px`;
+                            if (wrapper.style.height !== height) wrapper.style.height = height;
+                            if (wrapper.style.getPropertyValue('--sequence-pin-top') !== top) {
+                                wrapper.style.setProperty('--sequence-pin-top', top);
+                            }
+                            if (!wrapper.hasAttribute('data-sequence-paced-active')) {
+                                wrapper.setAttribute('data-sequence-paced-active', '');
+                            }
+                            // Hold the opening for 20%, reveal over 70%, then hold the ending.
+                            const rawProgress = (pinTop - wrapper.getBoundingClientRect().top) / travel;
+                            const reveal = Math.max(0, Math.min(1, (rawProgress - 0.20) / 0.70));
+                            progress = reveal >= 1 ? 1 : reveal * stops[stops.length - 1];
+                        }
 
                         let segment = 0;
                         for (let idx = 0; idx < stops.length - 1; idx += 1) {

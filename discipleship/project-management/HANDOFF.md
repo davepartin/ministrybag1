@@ -1,5 +1,12 @@
 # Resume here
 
+## 201-04 slower four-soils preview: November 17, 2026
+
+ART-201-04-SCROLL-PACE is at REVIEW on codex/20104-soils-scroll-timing. Dave clarified that the opening four-soils scroll illustration starts and switches too fast, not the five-roots Begin/Next widget. The trial keeps this sequence centered while normal scrolling runs through a longer section: opening held for 20 percent, transitions over 70 percent, ending held for 10 percent. This gives transitions about twice the previous scroll room while keeping the entire picture visible. No autoplay or scroll interception; reverse scrolling works normally. Reduced motion and print have no added scroll section.
+
+Only this sequence opts in via imageSequencePaced. All six approved source/delivery images, existing stops, Dave-approved #273 wording, Scripture, six question IDs/answers and deep-roots.html remain unchanged. Other sequences and two-image dissolves retain their timing. This is a timing/layout preview, not a new art or copy approval. Do not merge until Dave reviews the pacing. Evidence: [Codex log](logs/2026-11-17-ART-201-04-SCROLL-PACE-codex.md).
+
+
 ## 201-04 roots clarity draft: November 16, 2026
 
 L-201-04-ROOTS-CLARITY is DONE. Dave approved the exact lesson revision at 6014827 on November 16, 2026; Codex integrates PR #273 from codex/201-04-roots-clarity. Dave assigned this focused follow-up to the 201 course review. The lesson now distinguishes a heart receiving God's Word, Christ supplying life, and five habits helping the believer depend on Him. Question 4.2 stays diagnostic; 4.3 now asks for a specific practice and time. The practice paragraph gives examples and a gracious restart instead of another self-scoring exercise.
