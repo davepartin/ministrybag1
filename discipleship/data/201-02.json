@@ -52,7 +52,7 @@
     },
     {
       "type": "text",
-      "text": "Then He went to the cross in your place. By faith, His perfect life is counted as yours, and your sin is counted to Him. The robe of righteousness is not you doing your best. It is Christ's own life covering you."
+      "text": "Then He went to the cross in your place. The robe of righteousness is not you doing your best. It is Christ's own life covering you."
     },
     {
       "type": "heading",
@@ -73,7 +73,7 @@
     },
     {
       "type": "text",
-      "text": "Here is the exchange. Your sin lands on Jesus, and His righteousness becomes yours. This is the truth beneath the robe: Christ takes what is yours so you can receive what is His."
+      "text": "Christ takes what is yours so you can receive what is His."
     },
     {
       "type": "widget",
@@ -82,8 +82,8 @@
     },
     {
       "type": "question",
-      "id": "201-02-4",
-      "text": "2.2 - Explain the Great Exchange in your own words, as if you were telling a friend what happened at the cross.",
+      "id": "201-02-5",
+      "text": "2.2 - Which is harder for you to believe: that your sin was placed on Jesus, or that His righteousness is now yours and why?",
       "height": "tall"
     },
     {
@@ -179,6 +179,14 @@
       "id": "201-02-prayer",
       "text": "What is a prayer request for this week?",
       "height": "short"
+    }
+  ],
+  "retiredQuestions": [
+    {
+      "type": "question",
+      "id": "201-02-4",
+      "text": "2.2 - Explain the Great Exchange in your own words, as if you were telling a friend what happened at the cross.",
+      "height": "tall"
     }
   ]
 }
