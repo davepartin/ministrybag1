@@ -95,3 +95,4 @@ November 16: Dave approved the exact Lord's Prayer hint follow-up in PR #270 at 
 November 16: Dave approved merge of PR #269 at 65cc110, the exact eight-block voice revision for 101-03: second-person What Is Prayer, the Matthew 6:9-13 / Luke 11:2-4 introduction and six step explanations. Protect this wording. All headings, quoted prayer lines, practice, review, questions/readings, dawn art, #270 hint and #271 hold remain unchanged. Text remains Silver; this approval does not infer whole-lesson Gold.
 
 November 17: PR for VOICE-101-05 (branch claude/101-05-church) applies Dave's six approved parts for 101-05. The aspen art and dissolve, every verse, and the checklist items and indexes are unchanged. The teach-it question 5-hand is retired, and 5-4 is renumbered 5.3. Awaiting Dave's review.
+November 17: Dave approved merge of PR #275, the six-part 101-05 revision. Protect this wording. Aspen art, verses and checklist items and indexes are unchanged.
