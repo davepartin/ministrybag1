@@ -113,6 +113,9 @@ function scanLessonDir(dataDir, rootDir) {
         var raw = fs.readFileSync(path.join(dataDir, name), 'utf8');
         var data = JSON.parse(raw);
         refs = refs.concat(collectAssetRefs(data.blocks, name));
+        if (data.courseLogo && typeof data.courseLogo === 'object') {
+            addStringRef(refs, name + ' courseLogo', 'src', data.courseLogo.src);
+        }
     });
     return {
         refs: refs,

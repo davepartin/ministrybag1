@@ -2,14 +2,12 @@
   "id": "1",
   "title": "Lesson 1: Loving Your Neighbors",
   "description": "Jesus said <a class=\"lesson-jump\" href=\"#jump-second-like-first\">the second great commandment is like the first</a>: <a class=\"lesson-jump\" href=\"#jump-as-yourself\">love your neighbor as yourself</a>. Through <a class=\"lesson-jump\" href=\"#jump-good-samaritan\">the Good Samaritan</a>, you will see how Jesus <a class=\"lesson-jump\" href=\"#jump-who-is-my-neighbor\">turned the question around</a>, from who counts as my neighbor to whom I will move toward, and how <a class=\"lesson-jump\" href=\"#jump-crossed-over\">He crossed the road to you first</a>.",
+  "courseLogo": {
+    "src": "images/202-3circles-logo.png",
+    "alt": "Growing Together Discipleship Series: Growing Up in Discipleship highlighted.",
+    "width": "60%"
+  },
   "blocks": [
-    {
-      "type": "image",
-      "src": "images/202-3circles-logo.png",
-      "alt": "Growing Together Discipleship Series: Growing Up in Discipleship highlighted.",
-      "width": "60%",
-      "align": "center"
-    },
     {
       "type": "heading",
       "text": "Welcome to Growing Up",

@@ -1346,6 +1346,17 @@
             .lesson-jump-target.is-arrived { animation: none; }
         }
 
+        /* Course opener: the course logo above a course's first lesson title */
+        .course-logo {
+            text-align: center;
+            margin: 4px 0 20px;
+        }
+        .course-logo img {
+            display: inline-block;
+            max-width: 100%;
+            height: auto;
+        }
+
         /* Course opener: the welcome heading on a course's first lesson */
         .course-welcome {
             text-align: center;
@@ -4393,6 +4404,10 @@
                 const versionTag = data.version
                     ? `<span class="lesson-version-tag">${lessonId} · ${data.version}</span>`
                     : '';
+                if (data.courseLogo && typeof data.courseLogo.src === 'string') {
+                    const logoWidth = /^\d{1,3}%$/.test(data.courseLogo.width || '') ? data.courseLogo.width : '60%';
+                    html += `<div class="course-logo"><img ${GrowingTogetherLessonImages.attributes(data.courseLogo.src, BUILD_VERSION)} alt="${data.courseLogo.alt || ''}" style="width: ${logoWidth};"></div>`;
+                }
                 html += `<div class="session-title-row">${versionTag}<h1 class="session-title">Lesson ${sessionNum}: ${h1Title}</h1></div>`;
                 if (data.description) {
                     html += `<p class="session-description">${data.description}</p>`;
