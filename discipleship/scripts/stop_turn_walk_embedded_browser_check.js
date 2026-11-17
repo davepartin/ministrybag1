@@ -51,7 +51,7 @@ let checks=0;const ck=(label,ok)=>{assert.ok(ok,label);checks++;};
     await activate('[data-control="next"]','Walk');
     await activate('[data-control="back"]','Turn');
     await activate('.step-dot:last-child','Walk');
-    await activate('[data-control="restart"]','Which Way Are You Facing?');
+    await activate('[data-control="restart"]','Which Way Are You Going?');
     ck('page fits',await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
     ck('iframe fits',await frame.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
     for(const q of questions)ck('current answer retained '+q.id,await lesson.locator('#question-101-'+q.id).inputValue()===seed['question-101-'+q.id]);

@@ -91,7 +91,7 @@ const JOBS = [
       }
       check(`${tag}: approved placement`, await frameEl.evaluate(el => {
         const block = el.closest('.block-widget');
-        return block.previousElementSibling.textContent.startsWith('These questions give you a place to begin') && block.nextElementSibling.textContent.includes('Try It: Nicodemus Meets Jesus');
+        return block.previousElementSibling.textContent.startsWith('Here is a simple way to listen to God in any passage') && block.nextElementSibling.textContent.includes('Try It: Nicodemus Meets Jesus');
       }));
 
       const cardHeight = await frame.locator('#card-content').evaluate(e => e.getBoundingClientRect().height);
