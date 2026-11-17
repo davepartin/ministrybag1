@@ -76,11 +76,11 @@
     },
     {
       "type": "text",
-      "text": "Many people walk into church with a mindset they do not even realize they have: the restaurant mindset. You show up, professionals serve you, and if the experience was good, maybe you come back next week. But the church was never meant to be a restaurant. It is a potluck. At a potluck, everyone brings something to share. Everyone contributes, and nobody sits in the corner waiting to be served."
+      "text": "Many people walk into church with a mindset they do not even realize they have: the restaurant mindset. You show up, professionals serve you, and if the experience was good, maybe you come back next week. But the church was never meant to be a restaurant. It is a potluck. At a potluck, everyone brings something to share, and nobody sits in the corner waiting to be served."
     },
     {
       "type": "text",
-      "text": "When everyone brings what they have, the whole family is fed. When only a few contribute and everyone else consumes, the table gets thin and the few get exhausted. God designed the church so that every member has something to offer. Your gifts, your time, your prayers, your encouragement, your honesty, all of it is needed at the table."
+      "text": "When everyone brings what they have, the whole family is fed. When only a few contribute and everyone else consumes, the table gets thin and the few get exhausted. God gave every member something to offer. You do not serve to earn your place at the table. You serve because you already have one. Your gifts, your time, your prayers, and your encouragement are all needed."
     },
     {
       "type": "verse",
@@ -88,15 +88,9 @@
       "text": "Now you are the body of Christ and individually members of it."
     },
     {
-      "type": "question",
-      "id": "5-hand",
-      "text": "5.3 - If a friend said church is just a building, how would you explain the potluck to them?",
-      "height": "tall"
-    },
-    {
       "type": "checklist",
       "id": "service-interests",
-      "prompt": "Check the areas where you could see yourself getting involved in church?",
+      "prompt": "Check the areas where you could see yourself serving.",
       "items": [
         "Welcome Team",
         "Kids Ministry",
@@ -213,6 +207,14 @@
       "id": "5-prayer",
       "text": "What is a prayer request for this week?",
       "height": "short"
+    }
+  ],
+  "retiredQuestions": [
+    {
+      "type": "question",
+      "id": "5-hand",
+      "text": "5.3 - If a friend said church is just a building, how would you explain the potluck to them?",
+      "height": "tall"
     }
   ]
 }
