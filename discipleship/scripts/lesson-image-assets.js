@@ -570,6 +570,36 @@
             }
         ]
     },
+    "images/202-09-story-bw.jpg": {
+        "width": 1280,
+        "height": 720,
+        "sourceHash": "84a5886dad916541782d59371671610498d95d4d6b51a731270a9fc46b41d32c",
+        "variants": [
+            {
+                "src": "images/optimized/202-09-story-bw-640.webp",
+                "width": 640
+            },
+            {
+                "src": "images/optimized/202-09-story-bw-1280.webp",
+                "width": 1280
+            }
+        ]
+    },
+    "images/202-09-story-color.jpg": {
+        "width": 1280,
+        "height": 720,
+        "sourceHash": "eb188ab750c45fdbce8a0384f146aa091ad4429e41953350b5902daccb597fa0",
+        "variants": [
+            {
+                "src": "images/optimized/202-09-story-color-640.webp",
+                "width": 640
+            },
+            {
+                "src": "images/optimized/202-09-story-color-1280.webp",
+                "width": 1280
+            }
+        ]
+    },
     "images/202-10-bread-cup-bw.jpg": {
         "width": 1152,
         "height": 864,

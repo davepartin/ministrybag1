@@ -99,3 +99,6 @@ November 17: Dave approved merge of PR #275, the six-part 101-05 revision. Prote
 
 November 17: PR for CLEANUP-101-06 (branch claude/101-06-cleanup) applies Dave's three approved parts for 101-06. The BLESS widget, woman-at-the-well art, verses and earlier Dave edits are unchanged. All question IDs are kept. Awaiting Dave's review.
 November 17: Dave approved merge of PR #276, the three-part 101-06 cleanup. Protect this wording. BLESS widget, art and verses unchanged.
+
+November 17: PR for REVIEW-LINES-101 (branch claude/101-review-lines) changes one sentence in each of the 101-04 and 101-07 reviews, as Dave approved in chat. Awaiting Dave's review.
+November 17: Dave approved merge of PR #278, the 101-04 and 101-07 review sentences. Protect this wording.
