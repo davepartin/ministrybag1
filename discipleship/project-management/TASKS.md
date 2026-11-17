@@ -1,5 +1,11 @@
 # Running task board
 
+## Compact headers across all lessons, November 17, 2026
+
+| Task | Status | Owner / branch / date | Scope |
+|---|---|---|---|---|
+| UI-COMPACT-HEADERS-ALL | BLOCKED | Codex / codex/compact-headers-all / 2026-11-17 | Dave approved the compact 202-01 header and requests rollout to every lesson. Same 49px identity row, Back/Menu and no progress strip. Preserve lesson/widget/art/answer data. Preparing through GitHub connector because execution workspace disconnected; QA/browser verification and merge wait for restored workspace access. |
+
 ## Compact lesson header pilot, November 17, 2026
 
 | Task | Status | Owner / branch / date | Scope |
