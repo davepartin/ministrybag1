@@ -1276,8 +1276,11 @@
 
         /* In this lesson: a small list of links under a lesson's summary.
            Each row jumps to a part of the lesson without changing the address bar. */
+        .session-description.has-contents {
+            margin-bottom: 12px;
+        }
         .lesson-contents {
-            margin: -12px 0 32px;
+            margin: 0 0 20px;
             border: 1px solid var(--border-light, #E6E2D8);
             border-radius: 12px;
             background: var(--surface, #FFFFFF);
@@ -1286,8 +1289,10 @@
         .lesson-contents-row {
             display: flex;
             align-items: baseline;
-            gap: 12px;
-            padding: 11px 14px;
+            gap: 10px;
+            padding: 6px 12px;
+            font-size: 0.95rem;
+            line-height: 1.35;
             text-decoration: none;
             color: inherit;
             -webkit-tap-highlight-color: transparent;
@@ -1296,7 +1301,7 @@
             border-top: 1px solid var(--border-light, #E6E2D8);
         }
         .lesson-contents-label {
-            flex: 0 0 64px;
+            flex: 0 0 58px;
             color: var(--accent);
             font-size: 0.72rem;
             font-weight: 700;
@@ -1354,10 +1359,31 @@
             .lesson-jump-target.is-arrived { animation: none; }
         }
 
+        /* Compact spacing, turned on per lesson with "class": "lesson-compact" */
+        .lesson-compact .session-description,
+        .lesson-compact .block-text {
+            line-height: 1.55;
+        }
+        .lesson-compact .block-text {
+            margin-bottom: 10px;
+        }
+        .lesson-compact .course-logo {
+            margin-bottom: 12px;
+        }
+        .lesson-compact .course-welcome-under-logo {
+            margin-top: 2px;
+        }
+        .lesson-compact .lesson-contents {
+            margin-bottom: 14px;
+        }
+        .lesson-compact .block-image {
+            margin-top: 2px;
+        }
+
         /* Course opener: the course logo above a course's first lesson title */
         .course-logo {
             text-align: center;
-            margin: 4px 0 28px;
+            margin: 0 0 16px;
         }
         .course-logo img {
             display: inline-block;
@@ -1365,7 +1391,13 @@
             height: auto;
         }
         .course-welcome-under-logo {
-            margin: 14px 0 8px;
+            margin: 8px 0 0;
+        }
+        .course-welcome-under-logo .course-welcome-eyebrow {
+            margin-bottom: 4px;
+        }
+        .course-welcome-under-logo .course-welcome-title::after {
+            margin-top: 8px;
         }
 
         /* Course opener: the welcome heading on a course's first lesson */
@@ -4423,7 +4455,8 @@
                 }
                 html += `<div class="session-title-row">${versionTag}<h1 class="session-title">Lesson ${sessionNum}: ${h1Title}</h1></div>`;
                 if (data.description) {
-                    html += `<p class="session-description">${data.description}</p>`;
+                    const descriptionClass = Array.isArray(data.contents) && data.contents.length ? ' has-contents' : '';
+                    html += `<p class="session-description${descriptionClass}">${data.description}</p>`;
                 }
                 if (Array.isArray(data.contents) && data.contents.length) {
                     const rows = data.contents
