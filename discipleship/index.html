@@ -1031,15 +1031,14 @@
             background: #FCEAE8;
         }
 
-        /* One-lesson compact-header pilot, requested by Dave for 202-01. */
+        /* Compact lesson identity: approved by Dave for every course. */
         .compact-lesson-label { display: none; }
         .lesson-topbar.is-compact {
             padding: 2px 12px;
             padding-top: max(env(safe-area-inset-top), 2px);
         }
         .lesson-topbar.is-compact .topbar-course-name-row,
-        .lesson-topbar.is-compact .topbar-lesson-subtitle,
-        .lesson-topbar.is-compact .progress-track { display: none; }
+        .lesson-topbar.is-compact .topbar-lesson-subtitle { display: none; }
         .lesson-topbar.is-compact .topbar-row-1 { gap: 6px; }
         .lesson-topbar.is-compact .back-btn,
         .lesson-topbar.is-compact .toc-menu-btn {
@@ -1066,23 +1065,6 @@
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
-        }
-
-        /* Progress bar */
-        .progress-track {
-            height: 4px;
-            background: var(--border-light);
-            width: 100%;
-            margin-top: 8px;
-            border-radius: 4px;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: var(--accent);
-            border-radius: 3px;
-            transition: width 0.4s ease;
         }
 
         /* TOC (Table of Contents) */
@@ -3649,7 +3631,7 @@
              ============================ -->
         <div class="lesson-view" id="lesson-view">
             <!-- Top bar -->
-            <div class="lesson-topbar">
+            <div class="lesson-topbar is-compact">
                 <!-- Row 1: Back · Course Name · Menu -->
                 <div class="topbar-row-1">
                     <button class="back-btn" onclick="goHome()" aria-label="Back to courses">
@@ -3670,10 +3652,6 @@
                 <div class="topbar-row-2">
                     <div class="topbar-lesson-title" id="topbar-lesson-title">Welcome. Let's Start Growing.</div>
                     <div class="topbar-lesson-count" id="topbar-session-label">1 of 7</div>
-                </div>
-                <!-- Progress bar -->
-                <div class="progress-track">
-                    <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
                 </div>
             </div>
 
@@ -5141,7 +5119,6 @@
             const nextBtn = document.getElementById('next-btn');
             const numLabel = document.getElementById('nav-session-num');
             const topLabel = document.getElementById('topbar-session-label');
-            const progressFill = document.getElementById('progress-fill');
 
             const currentIndex = loadedSessionNums.indexOf(currentSession);
             const isLastLesson = currentIndex >= totalSessions - 1;
@@ -5165,8 +5142,6 @@
                 const topicTitle = (currentSeriesLessonMeta[currentSession] && currentSeriesLessonMeta[currentSession].title) ||
                     (sessionData[currentSession] ? sessionData[currentSession].title.replace(/^Lesson\s+\d+:\s*/i, '') : '');
                 lessonSubtitleEl.textContent = topicTitle ? `${ordinal}. ${topicTitle}` : '';
-                const compactHeader = currentSeries === '202' && Number(currentSession) === 1;
-                document.querySelector('.lesson-topbar').classList.toggle('is-compact', compactHeader);
                 const compactLabel = document.getElementById('compact-lesson-label');
                 compactLabel.querySelector('.compact-lesson-code').textContent = `${currentSeries}-${String(currentSession).padStart(2, '0')} ·`;
                 compactLabel.querySelector('.compact-lesson-topic').textContent = topicTitle;
@@ -5174,8 +5149,6 @@
 
             }
 
-            const pct = totalSessions > 0 ? (ordinal / totalSessions) * 100 : 0;
-            progressFill.style.width = pct + '%';
         }
 
         // ============================================
