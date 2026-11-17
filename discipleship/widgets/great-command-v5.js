@@ -149,7 +149,7 @@
       title: 'The Greatest Commandment',
       courseTag: '202-01',
       regionLabel: 'Interactive cross drawing for 202 Loving Your Neighbors (Version 5)',
-      intro: { text: 'One love, pointed in two directions.', hint: 'Tap Begin to draw it' },
+      intro: { text: 'One love, pointed in two directions.' },
       svgTitle: 'The Greatest Commandment Cross (Growing Up - Studio Wash)',
       steps: [
         {
@@ -389,8 +389,7 @@
     '.stage-intro { position: absolute; inset: 0; z-index: 5; display: flex; align-items: center; justify-content: center; padding: 18px; pointer-events: none; opacity: 1; }',
     '.stage-intro.is-hidden { opacity: 0; }',
     '.stage-intro-card { max-width: 290px; padding: 16px 20px 14px; border: 1px solid #E6DECF; border-radius: 14px; background: #FFFFFF; box-shadow: 0 10px 28px rgba(44, 36, 22, 0.10); text-align: center; }',
-    '.stage-intro-text { margin: 0 0 8px; font: 600 17px/1.3 Georgia, \'Times New Roman\', serif; color: #2C2416; }',
-    '.stage-intro-hint { margin: 0; font: 700 10.5px/1 system-ui, -apple-system, sans-serif; letter-spacing: 0.9px; text-transform: uppercase; color: #75664A; }',
+    '.stage-intro-text { margin: 0; font: 600 17px/1.3 Georgia, \'Times New Roman\', serif; color: #2C2416; }',
     '@media (prefers-reduced-motion: no-preference) {',
     '  .stage-intro { transition: opacity 0.55s ease; }',
     '  .stage-intro-card { transition: transform 0.55s ease; }',
@@ -1145,7 +1144,6 @@
       introEl = el('div', { 'class': 'stage-intro' });
       var introCard = el('div', { 'class': 'stage-intro-card' });
       introCard.appendChild(el('p', { 'class': 'stage-intro-text' }, CONFIG.intro.text));
-      introCard.appendChild(el('p', { 'class': 'stage-intro-hint' }, CONFIG.intro.hint));
       introEl.appendChild(introCard);
       stage.appendChild(introEl);
     }
