@@ -26,3 +26,7 @@ Inspected Ready and Read Slowly mobile screenshots. Ready has the closed Bible a
 ## Preview and next action
 
 Exact-head Firebase Action/status, hosted-byte comparison and browser rerun evidence will be posted on PR #262. Provide direct widget and embedded #101-4 links. Stop for Dave's visual decision; this request does not authorize merging the still-unapproved polish. No manual deploy, hosting change or real learner-data access.
+
+## Dave visual follow-up
+
+Dave requests a left-anchored Bible at half the previous width, a right-to-left opening wipe, and a top diagram about 30 percent shorter so the complete widget fits on a phone. Implementing on the same PR; lesson JSON, artwork, wording and historical approvals remain untouched.
