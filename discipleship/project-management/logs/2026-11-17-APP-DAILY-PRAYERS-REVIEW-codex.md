@@ -28,3 +28,7 @@ First-time editor screenshots inspected at 390 and 1280. The new preview at 648e
 ## Walkthrough start
 
 Open /tools/daily-prayers/index.html. New visitors start in the editor. Returning visitors with a generated prayer may start in the reading view; Edit my prayers returns to the editor. Start with Pray for myself, select one or two growth areas and optionally add a specific request. The following sections cover family/others, church, and people to know Jesus; Create Your Daily Prayer assembles the reading view. These are review instructions, not new app copy or a publishing decision.
+
+## Authorized same-site integration
+
+Dave: "the app looks great" and requested the app live in the Growing Together domain, with Growing Apps access from the home page and related lessons. This authorizes expanding this packet to a home-page Growing Apps section, the 101-03 tool URL only, and companion return navigation. Approved 101-03 wording/questions/readings/art/widget remain protected. Start with Daily Prayers; no new Weekly Connection Time implementation or lesson changes. Preserve old MinistryBag storage/origin and provide the existing save/restore route for moving prayers. No redirect, automatic cross-origin migration or account synchronization is implied. New hub/navigation preview remains for Dave's review before publishing.
