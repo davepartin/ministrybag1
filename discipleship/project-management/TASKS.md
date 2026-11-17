@@ -4,7 +4,7 @@
 
 | Task | Status | Owner / branch / date | Scope |
 |---|---|---|---|
-| L-201-04-ROOTS-CLARITY | ACTIVE | Codex / codex/201-04-roots-clarity / 2026-11-16 | Dave assigned: distinguish the receptive heart, practices and life in Christ; make question 4.3 an action plan rather than repeating 4.2. Preserve Scripture, IDs/answers, widget and art. Stop at REVIEW. |
+| L-201-04-ROOTS-CLARITY | REVIEW | Codex / codex/201-04-roots-clarity / 2026-11-16 | Dave assigned: distinguish the receptive heart, practices and life in Christ; make question 4.3 an action plan rather than repeating 4.2. Preserve Scripture, IDs/answers, widget and art. Stop at REVIEW. |
 
 ## November 12 integration checkpoint
 

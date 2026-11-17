@@ -1,5 +1,12 @@
 # Growing Together Team Board
 
+## 201-04 roots clarity draft: November 16, 2026
+
+L-201-04-ROOTS-CLARITY is at REVIEW on codex/201-04-roots-clarity. Dave assigned this focused follow-up to the 201 course review. The lesson now distinguishes a heart receiving God's Word, Christ supplying life, and five habits helping the believer depend on Him. Question 4.2 stays diagnostic; 4.3 now asks for a specific practice and time. The practice paragraph gives examples and a gracious restart instead of another self-scoring exercise.
+
+Only the description and eight existing text/question fields change. All six IDs, Scripture, block order, artwork/sequence, deep-roots.html and saved-answer code remain unchanged. No Gold or final wording approval is inferred. Required QA/export/storage/assets/images and 61 sequence plus 57 direct lesson/answer browser checks pass locally. Preview and full evidence: [Codex log](logs/2026-11-16-L-201-04-ROOTS-CLARITY-codex.md). Stop for Dave's wording review before merging.
+
+
 ## 101-03 approved voice revision: November 16, 2026
 
 VOICE-101-03 DONE, PR #269. Dave approved Claude's exact 65cc11013e4cbc0c1a59ca57f6ba1dc944b9aae8 revision: eight text blocks covering What Is Prayer, the shorter Matthew/Luke introduction, and the six step explanations in second person. Heading names and quoted prayer lines remain unchanged. Protect this wording; text stays Silver until Dave confirms whole-lesson Gold.
