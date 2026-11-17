@@ -1,5 +1,23 @@
 # Growing Together - Project State
 
+## 202-09 roof marker artwork: November 17, 2026
+
+Dave approved PR #279 at c053695. ART-202-09-MARKER replaces the roof illustration with the 1280x720 marker pair and four optimized deliveries; framed touchNext entry dissolve finishes while centered. Older PNGs remain unchanged on disk. All lesson wording, Scripture, question/answer identity, readings, widget bytes and 202-03/04 remain unchanged. Image approval only. Integration and deployment evidence: [Codex log](project-management/logs/2026-11-17-ART-202-09-MARKER-codex.md) and PR #279.
+
+## Course 101 story art integrated: November 16, 2026
+
+ART-101-03-05-06 DONE, PR #268. Dave asked Codex to merge Gemini's completed art at 17684f32bb846bda53cc91fd0ffb45ec777bb751: the new 101-03 pre-dawn prayer pair before Teach Us to Pray, revised individual roots in 101-05 aspen-bw.png with the existing color layer preserved, and the 101-06 sunlit well/terracotta reveal with its B&W layer preserved. All three use imageDissolveOnEntry so full light appears while the complete image is visible. Approved art/delivery/map bytes are unchanged from Gemini's submission.
+
+Current main #266 Lord's Prayer widget and approval records are retained. Merge conflicts were confined to editorial baseline/status; both widget and new art records are preserved. No lesson prose, Scripture, question/answer identity, reading, existing widget or runtime index changes. All three texts stay Silver; image approval does not grant whole-lesson Gold. Local checks include repository QA, 464 four-lesson reveal checks, 225 Lord's Prayer widget checks, 128 lamp checks and 64 delivery checks. Final preview/live evidence is on PR #268. Evidence: [Codex log](project-management/logs/2026-11-16-ART-101-03-05-06-codex.md).
+
+## 101-04 Nicodemus lamp artwork approved: November 16, 2026
+
+Dave approved PR #263 at b52e4f4ab59024193484e23eff0ad99d90904bae: the 1280x720 darker-to-lighter clay oil-lamp pair, four optimized 640/1280 WebP copies, generated image map, and touchNext placement immediately before Questions in the Night. Preserve these approved bytes. Older notes describing 101-04 story art as missing are superseded.
+
+Current main 0b4a799 (#259) is preserved: all prose, Scripture, eight active questions, retired 4-6, John 10-12 and Read, Discover, Respond widget are unchanged. In particular, do not restore the retired share section/question or duplicate Discovery Questions box. All unrelated lessons, index, saved-answer code and existing art stay unchanged. Image approval only; text remains Silver with Dave edits protected. The 101 status and baseline now record the current protected content and exact approved image hashes.
+
+Core QA, asset/image/export/storage/iframe checks and targeted widget/dissolve browser verification are recorded in the integration log. Final exact-head Firebase preview, merge and production deployment evidence are on PR #263. Evidence: [Codex integration log](project-management/logs/2026-11-16-ART-101-04-LAMP-codex.md).
+
 ## 202-10 Lord's Supper update approved: November 16, 2026
 
 Dave approved PR #252 at 169a7d54c50689e814ae0ff5455421f6172147bd. SUPPER-202-10 DONE: the approved 1152x864 (4:3) bread-and-cup B&W/color pair and four 640/1152 WebP copies are added as a framed, touchNext dissolve immediately after The Lord's Supper: The Table You Return To. Both source JPGs, delivery copies, lesson placement and generated image map remain byte-identical to the approved PR. The existing opening Last Supper pair is retained.

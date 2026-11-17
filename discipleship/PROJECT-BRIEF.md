@@ -156,7 +156,7 @@ An optional top-level `retiredQuestions` array preserves the original question o
 - `list` - ordered items with left accent border
 - `box` - warm-toned reflection/activity box with `title` and `content` array
 - `question` - textarea with auto-save (`id`, `text`, optional `height`: "short" or "tall")
-- `image` - in-lesson image block: supports static `src`, B&W-to-color scroll dissolve (`imageBw` + `imageColor`), or multi-frame scroll animation (`imageSequence` + `imageSequenceStops`), with `alt` and optional `touchNext: true` (fuses the bottom of the image onto a following `parable` card) and `frame: true`. See `story-image.md` for full details and live exemplars (`data/201-01.json` and `data/201-03.json`).
+- `image` - in-lesson image block: supports static `src`, B&W-to-color scroll dissolve (`imageBw` + `imageColor`), or multi-frame scroll animation (`imageSequence` + `imageSequenceStops`), with `alt` and optional `imageDissolveOnEntry: true` for a two-layer pair that should fully reveal while centered in view, `touchNext: true` (fuses the bottom of the image onto a following `parable` card) and `frame: true`. See `story-image.md` for full details and live exemplars (`data/201-01.json` and `data/201-03.json`).
 - `commitment` - yes/no radio buttons
 - `bible_reading` - expandable chapter cards with bundled World English Bible text, completion checkbox, notes
 - `stepper` - step-by-step interactive element

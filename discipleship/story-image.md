@@ -105,6 +105,12 @@ The scroll engine measures `progress` from `0` to `1` as the top of the image bl
 
 Important rule for stops: **Finish the final stop around `0.40` to `0.65`, not at `1.0`.** At `progress = 1.0`, the top of the image is already 22% above the top bar. Ending the last stop around `0.50` to `0.60` ensures the learner sees the final arrival frame while the whole picture is still on screen with the parable card visible beneath it.
 
+### 201-04 timing: opening hold, balanced dissolves, visible finish
+
+Dave wants the four-soils image to keep scrolling upward normally and finish before it leaves the visible area. Its stops are `[0.10, 0.20, 0.30, 0.40, 0.50, 0.60]`: hold the first frame through 10 percent, then five equal 10 percent cross-dissolves. The final frame completes at 60 percent, while the whole image remains below the lesson header. There is no pinning, added scroll section or shared-engine change. Reduced motion shows the final static frame.
+
+The existing engine places the image top at `contentTop + visibleHeight * (0.40 - 0.62 * progress)`. At 95 percent, the phone header hid roughly 61 percent of the image; at 80 percent it would still hide 31 percent. At 60 percent the image top is 2.8 percent of visible height below the header, about 21px on a 390x844 phone. This replaces the rejected 20/15 percent schedule and pinned trial.
+
 ### Proven Stop Presets by Frame Count
 
 - **2 frames (`203-05` Blind Man):** `[0, 0.4]`
@@ -151,6 +157,10 @@ Optional field: `"frame": true` adds a 1px border (`.block-image-dissolve-framed
 - The **black-and-white image** (`parable-img-bw`, `z-index: 2`, `position: absolute; inset: 0`) sits on top at `opacity: 1`.
 - Scrolling from `40%` down the visible area to `-22%` above the top bar reduces `bwImg.style.opacity` from `1` to `0`, revealing the color image underneath.
 
+### Earlier completion for an approved pair
+
+Optional `imageDissolveOnEntry: true` on a two-layer image starts at 100% B&W when the image enters 90% down the visible area below the fixed lesson header (or at its initial `scrollY = 0` position if it is already visible on load), holds 100% B&W for the first 20% of scroll travel so the learner sees the monochrome/dark state first, and completes the color reveal when centered in that area before scrolling off the top. A taller-than-viewport image completes at the header edge. Reduced motion still shows the static lighter layer. Per Dave's direction, this opt-in is enabled on the `101-03`, `101-04`, `101-05`, `101-06`, and `202-09` two-layer dissolves; all other pair and sequence timings remain unchanged. Do not apply it broadly to approved artwork without direction.
+
 ### Art Prompts for Charcoal Pairs or Sequences
 
 - **B&W Base / Sequence Frame Prompt:** `[Describe scene] in a 3:2 or 16:9 wide aspect ratio. A rough black and white charcoal sketch, dynamic and expressive linework, loose and energetic pencil strokes, high contrast lighting with deep shadows, storyboard concept art style, emotional and evocative body language, heavy cross-hatching, warm grayscale monochromatic palette.`
@@ -165,10 +175,10 @@ Optional field: `"frame": true` adds a 1px border (`.block-image-dissolve-framed
 |--------|-----------------|-----------------|------------------|-----------------------|
 | 101-01 | Course Opener | Static diagram | `images/3-circles-coral.png`, `images/201.01-peaks-and-valleys.png` | Course opener (exception) |
 | 101-02 | The Greenhouse | **4-Frame Sequence** | `greenhouse-seq-1.jpg` .. `4.jpg` (stops `[0, 0.18, 0.34, 0.5]`) | Live (`touchNext: true`) |
-| 101-03 | Teach Us to Pray | None | - | Needs story art |
-| 101-04 | The Bible | None | - | Needs parable + story art |
-| 101-05 | The Aspen Grove | B&W -> Color | `aspen-bw.png` -> `aspen-color.png` | Live (`touchNext: true`) |
-| 101-06 | The Woman at the Well | B&W -> Color | `woman-well-bw.png` -> `woman-well-color.png` | Live (`touchNext: true`) |
+| 101-03 | Teach Us to Pray | B&W -> Color | `101-03-prayer-bw.jpg` -> `101-03-prayer-color.jpg` (`1280x720`, 16:9) | Live (`touchNext: true`, `imageDissolveOnEntry: true`) |
+| 101-04 | Questions in the Night | B&W -> Color | `101-04-nicodemus-bw.jpg` -> `101-04-nicodemus-color.jpg` (`1280x720`, 16:9) | Live (`touchNext: true`, `imageDissolveOnEntry: true`) |
+| 101-05 | The Aspen Grove | B&W -> Color | `aspen-bw.png` -> `aspen-color.png` (`1400x788`) | Live (`touchNext: true`, `imageDissolveOnEntry: true`) |
+| 101-06 | The Woman at the Well | B&W -> Color | `woman-well-bw.png` -> `woman-well-color.png` (`1400x610`) | Live (`touchNext: true`, `imageDissolveOnEntry: true`) |
 | 101-07 | The Shepherd Who Comes Looking | **4-Frame Sequence** | `101-07-story-seq-1.jpg` .. `4.jpg` (stops `[0, 0.18, 0.34, 0.5]`) | Live (`touchNext: true`); frame 4 B&W per Dave / PR #248 |
 | 201-01 | The Running Father | **5-Frame Sequence** | `running-father-seq-1.jpg` .. `5.jpg` (stops `[0, 0.16, 0.3, 0.44, 0.58]`) | **Benchmark sequence** |
 | 201-02 | The Family Robe | **3-Frame Sequence** | `robe-down.jpg`, `robe-mid.jpg`, `robe-up.jpg` (stops `[0, 0.25, 0.45]`) | Live sequence |
@@ -188,7 +198,7 @@ Optional field: `"frame": true` adds a 1px border (`.block-image-dissolve-framed
 | 202-06 | Songs at Midnight | **5-Frame Sequence** | `202-06-paul-silas-seq-1.jpg` .. `5.jpg` (stops `[0, 0.16, 0.3, 0.44, 0.58]`) | Live (`touchNext: true`) |
 | 202-07 | Two Small Coins | **4-Frame Sequence** | `202-07-two-coins-seq-1.jpg` .. `4.jpg` (stops `[0, 0.18, 0.34, 0.5]`) | Live (`touchNext: true`) |
 | 202-08 | The Marble and the Chisel | B&W -> Color | `202.08-marble-chisel-bw.jpg` -> `202.08-marble-chisel-color.jpg` | Live (`touchNext: true`, `frame: true`) |
-| 202-09 | The View from the Roof | B&W -> Color | `202.09-david-roof-bw.png` -> `202.09-david-roof-color.png` | Live (`touchNext: true`, `frame: true`) |
+| 202-09 | The View from the Roof | B&W -> Color | `202-09-story-bw.jpg` -> `202-09-story-color.jpg` (`1280x720`, 16:9; earlier `202.09-david-roof-*.png` kept unused) | Live (`touchNext: true`, `frame: true`, `imageDissolveOnEntry: true`) |
 | 202-10 | The Table He Longed For; bread and cup | Two B&W -> Color pairs | Existing `last-supper-bw.jpg` -> `last-supper-color.jpg`; approved `202-10-bread-cup-bw.jpg` -> `202-10-bread-cup-color.jpg` (1152x864, 4:3) | Live (`touchNext: true`, `frame: true`); bread/cup approved PR #252, 169a7d5 |
 | 203-01 | On the Mountain | Logo only | `203-3circle-logo.png` | Needs story art if parable kept |
 | 203-02 | A Prayer Before the Answer | None | - | PR #240 sequence reverted per Dave / PR #248; no new art assigned |

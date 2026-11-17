@@ -1,5 +1,10 @@
 # Resume here
 
+## Daily Prayers working review: November 17, 2026
+
+Dave asked to work together on PR #261 while separately editing 201-01 and PR #282. Codex is refreshing Daily Prayers against current main, preserving the app and legacy prayers, and preparing a current preview for collaborative review. No lesson, 201-01 or jump-link edits are in this packet; no publishing approval yet. Both histories in HANDOFF/TASKS/TEAM-BOARD are retained when resolving old append conflicts.
+
+
 ## Daily Prayers companion ready for review: November 16, 2026
 
 APP-DAILY-PRAYERS REVIEW. Dave asked Codex to polish Daily Prayers as the model for companion apps. One authored app in tools/daily-prayers/ now provides a warm paper reading view, four native editing sections, input autosave, Undo, accessible phone/keyboard controls, and explicit save/restore copies. Original prayer wording and both legacy browser-storage keys are preserved. Opening old prayers does not rewrite them. Malformed data, blocked storage and restore failures are handled without silently replacing an existing prayer list.
@@ -13,6 +18,80 @@ Repository QA and 270 synthetic browser assertions pass across both hosted paths
 PR #261 now uses Create Your Daily Prayer for the generation action, matches Growing Together's 640px content width in a single column, and shows the existing MinistryBag satchel beside its header link. The existing logo is copied byte-identically, not redesigned. Source and legacy delivery copies stay synchronized.
 
 [COMPANION-APPS.md](COMPANION-APPS.md#proposed-aaa-rollout-november-16) maps the common visual family, a future MinistryBag discovery-page pass, and Weekly Connection Time as an optional married-couples practice link after Keeping the Vow in 202-08. Weekly Connection Time already has seven useful moments; preserve its content and connection_time_ data keys, add truthful storage-error handling and a return-to-lesson link in its own bounded packet. No homepage, Weekly Connection Time or 202-08 changes are included here. Dave's new design review remains pending.
+
+## 101-07 B&W widget refinement integrated: November 17, 2026
+
+WIDGET-101-07-BW-REFINE DONE, PR #254. Dave approved exact a93a67350290bbe7520e2af8fb0c0c29650b8953 for stop-turn-walk.html and both approved standalone/embedded browser scripts. All three remain byte-identical. The B&W scene, straight arms, white turn/stop lines, removed road dots, closer Walk endpoint and shorter approved slide copy are preserved.
+
+Current main was merged normally; only TASKS/TEAM-BOARD append conflicts needed resolution, and both histories are retained. Current 101-07 JSON, active/retired question objects/IDs, reading plan, widget placement, shepherd art, shared index and saved-answer implementation remain unchanged. Baseline/status reflect this component approval only; text stays Silver. Final checks, exact-head preview, merge and live deployment evidence are on PR #254. [Codex log](logs/2026-11-17-WIDGET-101-07-BW-REFINE-codex.md).
+
+
+
+## 201-04 visible-finish timing preview: November 17, 2026
+
+ART-201-04-SCROLL-PACE is DONE on PR #274. Dave approved exact b1779da on November 17; Codex integrates the approved timing without any visual or wording change. The image scrolls upward normally. Dave found that the 95 percent finish was already partly off screen and requested an earlier, balanced finish with a shorter opening hold. Measured phone geometry shows that 80 percent still hides 31 percent behind the header. Stops are now [0.10, 0.20, 0.30, 0.40, 0.50, 0.60]: 10 percent initial hold, five equal 10 percent dissolves, final image complete about 21px below the header on a 390x844 phone. Physical browser checks require the entire final frame visible at completion.
+
+No pinning, added height or shared-engine changes. Approved #273 prose, Scripture, image bytes/order, six question objects/IDs/answers, and five-roots widget remain unchanged. Latest main through #278 is preserved. The earlier pinned and 20/15 percent timing previews are superseded. Evidence: [Codex log](logs/2026-11-17-ART-201-04-SCROLL-PACE-codex.md).
+
+## 202-09 approved roof marker artwork: November 17, 2026
+
+ART-202-09-MARKER DONE, PR #279. Dave approved c053695840939c50bc48e67803b8ec463b4e7d77: the 1280x720 rough marker roof B&W/color pair, four optimized WebP deliveries, generated asset map and framed touchNext image block with imageDissolveOnEntry. All approved submission bytes are preserved exactly. Older 202.09-david-roof PNGs remain on disk unchanged.
+
+Only the opening image block changes in 202-09. Every prose/Scripture block, question object/ID, reading key and starting-gun.html byte remains unchanged. 202-03, 202-04 and shared index.html also remain exact main. Image approval only; no whole-lesson Gold inferred. Core QA, required lesson/widget/image browser tests and focused dissolve/answer checks are tracked in [the Codex log](logs/2026-11-17-ART-202-09-MARKER-codex.md). Final exact-head preview, merge and live deployment evidence are posted on PR #279.
+
+
+
+## 201-04 roots clarity draft: November 16, 2026
+
+L-201-04-ROOTS-CLARITY is DONE. Dave approved the exact lesson revision at 6014827 on November 16, 2026; Codex integrates PR #273 from codex/201-04-roots-clarity. Dave assigned this focused follow-up to the 201 course review. The lesson now distinguishes a heart receiving God's Word, Christ supplying life, and five habits helping the believer depend on Him. Question 4.2 stays diagnostic; 4.3 now asks for a specific practice and time. The practice paragraph gives examples and a gracious restart instead of another self-scoring exercise.
+
+Only the description and eight existing text/question fields change. All six IDs, Scripture, block order, artwork/sequence, deep-roots.html and saved-answer code remain unchanged. No Gold or final wording approval is inferred. Required QA/export/storage/assets/images and 61 sequence plus 57 direct lesson/answer browser checks pass locally. Preview and full evidence: [Codex log](logs/2026-11-16-L-201-04-ROOTS-CLARITY-codex.md). Protect this approved wording. Approval covers this revision; no whole-lesson Gold is inferred. Final preview/live evidence is on PR #273.
+
+
+## 101-03 approved voice revision: November 16, 2026
+
+VOICE-101-03 DONE, PR #269. Dave approved Claude's exact 65cc11013e4cbc0c1a59ca57f6ba1dc944b9aae8 revision: eight text blocks covering What Is Prayer, the shorter Matthew/Luke introduction, and the six step explanations in second person. Heading names and quoted prayer lines remain unchanged. Protect this wording; text stays Silver until Dave confirms whole-lesson Gold.
+
+Current #270 hint and #271 B&W hold were merged normally and remain exact. Questions/IDs, John 7-9, practice/review, art/story, widget/tool and saved-answer code are unchanged. Required QA, 225 widget and 464 story checks pass. Baseline/status record the approved wording; final preview/live evidence is on #269. [Codex integration log](logs/2026-11-16-VOICE-101-03-codex.md).
+
+## Lord's Prayer hint follow-up: November 16, 2026
+
+WIDGET-101-03-HINT DONE, PR #270. Dave approved 23660ca21721469d2aad15d692b69d64a3e97c60: Choose a line to see its step alongside MATTHEW 6:9-13. The submitted widget bytes are preserved exactly. Current #271 entry-hold timing and both board histories are retained. Only the board append conflicted during the normal merge; no runtime conflict or reversion.
+
+Lesson JSON, other widget copy/behavior, Scripture, questions/IDs, readings, story artwork and saved-answer logic remain unchanged. Text stays Silver. Required QA and all 225 unchanged widget browser checks pass. Baseline hash records the approved hint version. Final preview/live evidence on PR #270; [Codex log](logs/2026-11-16-WIDGET-101-03-HINT-codex.md).
+
+## Entry dissolve B&W hold: November 16, 2026
+
+ART-101-ENTRY-HOLD DONE, PR #271. Dave approved b5aa6f52d8c869610e5c29a40659b754ca8255be. The submitted runtime and image-guide bytes are preserved: entry reveals open fully B&W at scroll zero, hold for the first 20 percent of their travel, and finish fully colored while centered below the fixed header. This applies to the existing 101-03/04/05/06 entry pairs. Reduced motion still shows the static final image; other pairs/sequences retain existing timing.
+
+All lesson JSON, approved images/deliveries, widgets, IDs/readings and saved-answer implementation are unchanged. Foundation QA, export/storage/assets/images/iframe, image-delivery 64, lamp 128 and dedicated hold/reverse/resize 216 checks pass. The hold regression fails on the previous runtime. Preview, merge and live evidence are on PR #271; [Codex log](logs/2026-11-16-ART-101-ENTRY-HOLD-codex.md).
+
+## Course 101 story art integrated: November 16, 2026
+
+ART-101-03-05-06 DONE, PR #268. Dave asked Codex to merge Gemini's completed art at 17684f32bb846bda53cc91fd0ffb45ec777bb751: the new 101-03 pre-dawn prayer pair before Teach Us to Pray, revised individual roots in 101-05 aspen-bw.png with the existing color layer preserved, and the 101-06 sunlit well/terracotta reveal with its B&W layer preserved. All three use imageDissolveOnEntry so full light appears while the complete image is visible. Approved art/delivery/map bytes are unchanged from Gemini's submission.
+
+Current main #266 Lord's Prayer widget and approval records are retained. Merge conflicts were confined to editorial baseline/status; both widget and new art records are preserved. No lesson prose, Scripture, question/answer identity, reading, existing widget or runtime index changes. All three texts stay Silver; image approval does not grant whole-lesson Gold. Local checks include repository QA, 464 four-lesson reveal checks, 225 Lord's Prayer widget checks, 128 lamp checks and 64 delivery checks. Final preview/live evidence is on PR #268. Evidence: [Codex log](logs/2026-11-16-ART-101-03-05-06-codex.md).
+
+## 101-03 Lord's Prayer widget approved: November 16, 2026
+
+WIDGET-101-03-LORDS-PRAYER DONE. Dave approved PR #266 at 3542e12bc85b2d8793e4402d04b744737b9ebdca. Exact lords-prayer.html bytes, title The Lord's Prayer, iframe registration and placement are preserved. Only the static The Lord's Prayer verse block becomes a widget; every other lesson field, all eight questions/IDs, John 7-9, six-step teaching and Daily Prayers tool remain unchanged. Text stays Silver with Dave edits protected; no image or whole-lesson Gold is inferred.
+
+Current main #267 course-review documentation is merged normally and preserved alongside both task/board histories. Foundation/export/storage/assets/images/iframe and all 225 browser checks pass on phone, desktop and reduced motion. Exact-head preview and production evidence are on PR #266. Baseline/status record this widget approval. Evidence: [Codex integration log](logs/2026-11-16-WIDGET-101-03-LORDS-PRAYER-codex.md).
+
+## 101-04 lamp timing correction: November 16, 2026
+
+Dave requested full light sooner while the image is still on screen. ART-101-04-LAMP-TIMING enables imageDissolveOnEntry only on the Nicodemus pair: fade begins on entry and completes with the image centered below the lesson header. All approved source/delivery artwork, placement, prose, Scripture, eight active questions, retired 4-6, John readings and widget bytes are unchanged. Text stays Silver. Other image/sequence timings keep their existing behavior. Baseline and image documentation record this timing-only update.
+
+The physical visibility regression fails on the old timing. Phone/desktop/short-screen/reduced-motion and legacy dissolve checks are recorded in [the timing log](logs/2026-11-16-ART-101-04-LAMP-TIMING-codex.md). Final preview, merge and production evidence are on the codex/10104-lamp-timing PR.
+
+## 101-04 Nicodemus lamp artwork approved: November 16, 2026
+
+Dave approved PR #263 at b52e4f4ab59024193484e23eff0ad99d90904bae: the 1280x720 darker-to-lighter clay oil-lamp pair, four optimized 640/1280 WebP copies, generated image map, and touchNext placement immediately before Questions in the Night. Preserve these approved bytes. Older notes describing 101-04 story art as missing are superseded.
+
+Current main 0b4a799 (#259) is preserved: all prose, Scripture, eight active questions, retired 4-6, John 10-12 and Read, Discover, Respond widget are unchanged. In particular, do not restore the retired share section/question or duplicate Discovery Questions box. All unrelated lessons, index, saved-answer code and existing art stay unchanged. Image approval only; text remains Silver with Dave edits protected. The 101 status and baseline now record the current protected content and exact approved image hashes.
+
+Core QA, asset/image/export/storage/iframe checks and targeted widget/dissolve browser verification are recorded in the integration log. Final exact-head Firebase preview, merge and production deployment evidence are on PR #263. Evidence: [Codex integration log](logs/2026-11-16-ART-101-04-LAMP-codex.md).
+
 
 ## 202-10 Lord's Supper update approved: November 16, 2026
 
