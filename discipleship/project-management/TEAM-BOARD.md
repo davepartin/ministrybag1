@@ -1,5 +1,12 @@
 # Growing Together Team Board
 
+## 101-04 widget-polish preview refreshed: November 17, 2026
+
+WIDGET-101-04-RDR-POLISH REVIEW, PR #262. Dave requested a fresh preview to decide whether to merge. Merged current main normally, preserving both TASKS/TEAM-BOARD histories. The proposed read-discover-respond.html remains exact Gemini 69fff4eb3e59013db323bb74366f3efefc414917: closed Bible on Ready, opening on Read Slowly, dim passage/John 1 watermark at Ready, and shorter opening card.
+
+Current 101-04 JSON is byte-identical to main: protected wording, eight questions, retired answer, John readings, approved lamp artwork and widget placement remain intact. Shared index/iframe helper and all other lessons/widgets/art are unchanged. No new widget/art/whole-lesson approval inferred; current baseline remains untouched until Dave approves. Core QA, export186/storage64/assets144/images1543/iframe32 and 230 embedded RDR checks pass locally. Final exact-head preview evidence and links are on PR #262. [Codex log](logs/2026-11-17-WIDGET-101-04-RDR-POLISH-codex.md).
+
+
 
 ## 101-04 Read, Discover, Respond polish (REVIEW): November 16, 2026
 
