@@ -1,16 +1,24 @@
 {
   "id": "3",
   "title": "Lesson 3: Prayer",
-  "description": "Prayer is a child talking with a Father who loves to listen. This lesson walks through the six-step pattern Jesus gave in the Lord's Prayer and helps you build your own daily prayers.",
+  "description": "Prayer is talking with a Father who loves to listen. This lesson walks through the six-step pattern Jesus gave in the Lord's Prayer and helps you build your own daily prayers.",
   "blocks": [
     {
       "type": "text",
-      "text": "In the last lesson you saw that God gave you new life and adopted you into His family. Children talk with their father. That is what prayer is, and in this lesson you will learn the pattern Jesus gave for it."
+      "text": "In the last lesson you saw that God gave you new life and adopted you into His family. Sons and daughters talk with their father. That is what prayer is, and in this lesson you will learn the pattern Jesus gave for it."
+    },
+    {
+      "type": "image",
+      "imageBw": "images/101-03-prayer-bw.jpg",
+      "imageColor": "images/101-03-prayer-color.jpg",
+      "alt": "A disciple watches from the pre-dawn shadow as first light breaks over the valley onto Jesus praying beside an olive tree",
+      "touchNext": true,
+      "imageDissolveOnEntry": true
     },
     {
       "type": "parable",
       "title": "Teach Us to Pray",
-      "text": "The disciples watched Jesus pray. He got up while it was still dark and went to quiet places to talk with His Father (Mark 1:35). Before He chose the twelve, He prayed all night (Luke 6:12). Prayer was not a duty He squeezed in. It was the air He breathed.<br><br>One day, when He finished praying, one of His disciples asked Him for help: <em>\"Lord, teach us to pray, as John taught his disciples\"</em> (Luke 11:1).<br><br>They did not ask Jesus how to preach or how to do miracles. They asked Him how to pray. And the very first word He gave them was <strong>Father</strong> (Luke 11:2)."
+      "text": "The disciples watched Jesus pray. He got up while it was still dark and went to quiet places to talk with His Father (Mark 1:35). Before the day began, Jesus brought it to His Father, ready to do whatever His Father wanted. Prayer displayed His close relationship with the Father.<br><br>One day, when He finished praying, one of His disciples asked Him for help: <em>\"Lord, teach us to pray, as John taught his disciples\"</em> (Luke 11:1)."
     },
     {
       "type": "heading",
@@ -18,7 +26,7 @@
     },
     {
       "type": "text",
-      "text": "Even the disciples had to learn to pray, so you can too. Prayer is a conversation: talking with and listening to God. Prayer displays our dependence on a powerful and loving Father. Because of Jesus, you do not come to God as a stranger hoping He will notice you. You come as His child. <strong>Prayer is a child talking with a Father who loves to listen.</strong>"
+      "text": "Even the disciples had to learn to pray, so you can too. Prayer is a conversation: talking with God and listening to Him. It shows that you depend on a powerful and loving Father. Because of Jesus, you do not come to God as a stranger hoping He will notice you. You come as His child. <strong>Prayer is talking with a Father who loves to listen.</strong>"
     },
     {
       "type": "verse",
@@ -37,12 +45,13 @@
     },
     {
       "type": "text",
-      "text": "Jesus taught us to pray in the Lord's Prayer, giving us a pattern to follow. Read the prayer below. This is the familiar wording many Christians pray, and it is the same wording the Daily Prayers tool uses at the end of this lesson. You can read Jesus' words for yourself in Matthew 6:9-13."
+      "text": "Jesus gave His disciples a pattern for prayer. You can find it in Matthew 6:9-13 and Luke 11:2-4."
     },
     {
-      "type": "verse",
-      "reference": "The Lord's Prayer (traditional wording, from Matthew 6:9-13)",
-      "text": "Our Father, who is in heaven,<br>\nHoly is your name,<br>\nyour kingdom come, your will be done<br>\non earth as it is in heaven.<br>\nGive us this day our daily bread.<br>\nForgive us our sins, as we forgive those who sin against us.<br>\nAnd lead us not into temptation, but deliver us from evil.<br>\nFor yours is the kingdom, and the power, and the glory forever, Amen."
+      "type": "widget",
+      "src": "widgets/lords-prayer.html",
+      "title": "The Lord's Prayer",
+      "height": "460px"
     },
     {
       "type": "text",
@@ -58,7 +67,7 @@
     },
     {
       "type": "text",
-      "text": "God has adopted us as His children and loves for us to call Him our Father. Starting prayer by acknowledging our relationship with God is powerful for us and delights Him."
+      "text": "God adopted you as His child, and He loves to hear you call Him Father. Starting with who He is to you sets the tone for everything else you pray."
     },
     {
       "type": "question",
@@ -76,7 +85,7 @@
     },
     {
       "type": "text",
-      "text": "When we proclaim who He is, we worship Him by reminding ourselves how powerful and great our God is. He is love, grace, and forgiveness. Try naming one thing that is true about Him: He is faithful, He is holy, He is near."
+      "text": "Before you ask for anything, tell God what is true about Him. Try naming one thing: He is faithful, He is holy, He is near."
     },
     {
       "type": "subheading",
@@ -88,12 +97,12 @@
     },
     {
       "type": "text",
-      "text": "Part of being a child of God is caring about what He cares about. We acknowledge His wisdom and sovereignty when we pray His agenda first."
+      "text": "Children care about what their Father cares about. Before your own list, pray for His kingdom to come and His will to be done in your home, your city, and the world."
     },
     {
       "type": "question",
       "id": "3-4",
-      "text": "3.3 - What is one thing God cares about and one need of your own you will pray for this week?",
+      "text": "3.3 - What is one thing God cares about you can pray for?",
       "data_question": "3.3 - God's agenda"
     },
     {
@@ -106,12 +115,12 @@
     },
     {
       "type": "text",
-      "text": "God promises to supply all our needs. He wants us to come to Him with our problems, needs, and desires and to trust Him to provide."
+      "text": "God invites you to bring Him your needs, big and small, and to trust Him to provide. Nothing is too small to pray about."
     },
     {
       "type": "question",
       "id": "3-hand",
-      "text": "3.4 - How would you explain the pattern Jesus gave to a friend who has never prayed?",
+      "text": "3.4 - What are some needs you can ask God for today?",
       "height": "tall"
     },
     {
@@ -124,7 +133,7 @@
     },
     {
       "type": "text",
-      "text": "Through Jesus, God has offered us complete forgiveness. When we receive His forgiveness, our hearts are more prepared to forgive others as well."
+      "text": "Through Jesus, God has forgiven you completely. When you receive His forgiveness, it becomes easier to forgive the people who have hurt you."
     },
     {
       "type": "subheading",
@@ -136,7 +145,7 @@
     },
     {
       "type": "text",
-      "text": "We have an enemy trying to steal, kill, and destroy. As we pray, we take our stand against the enemy and fight from victory through Jesus."
+      "text": "There is real evil in the world, and an enemy who wants to pull you away from God. Ask your Father to keep you from temptation and protect you. You pray from a safe place, because Jesus has already won."
     },
     {
       "type": "heading",
@@ -163,7 +172,7 @@
     },
     {
       "type": "text",
-      "text": "Prayer is a child talking with a Father who loves to listen. Jesus gave His disciples, and you, a pattern that touches every part of life: connect with your Father, worship His name, pray His agenda first, depend on Him, forgive and be forgiven, and stand against the enemy. Start putting that pattern into practice this week."
+      "text": "Prayer is talking with a Father who loves to listen. Jesus gave His disciples, and you, a pattern that touches every part of life: connect with your Father, worship His name, pray His agenda first, depend on Him, forgive and be forgiven, and stand against the enemy. Start putting that pattern into practice this week."
     },
     {
       "type": "text",

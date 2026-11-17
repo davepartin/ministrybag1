@@ -5,7 +5,7 @@
   "blocks": [
     {
       "type": "text",
-      "text": "You have spent this course growing up: loving your neighbors, your family, and your church family, serving with your gifts, standing firm, worshiping, giving, and guarding your heart. The last lesson of Growing Up ends at a table."
+      "text": "You have spent this course growing up: loving your neighbors, your family, and your church family, serving with your gifts, standing firm, worshiping, giving, honoring marriage, and guarding your heart. The last lesson of Growing Up ends at a table. It is the table of the new covenant, the promise Jesus sealed with His own blood."
     },
     {
       "type": "image",
@@ -82,6 +82,10 @@
       "text": "If you have trusted Jesus and have never been baptized, hear this as an invitation and not a demand. You do not need to become a better Christian first. The doorway is for beginners."
     },
     {
+      "type": "text",
+      "text": "Maybe you were baptized as a baby. That was a gift of love from parents who wanted you to belong to God. In the New Testament, though, baptism comes after a person believes, as their own first step of faith. If you have trusted Jesus since then, the invitation is open to you too."
+    },
+    {
       "type": "question",
       "id": "202-10-2",
       "text": "10.2 - What is one honest reason you have not been baptized, or one thing that day still means to you?",
@@ -90,6 +94,14 @@
     {
       "type": "heading",
       "text": "The Lord's Supper: The Table You Return To"
+    },
+    {
+      "type": "image",
+      "imageBw": "images/202-10-bread-cup-bw.jpg",
+      "imageColor": "images/202-10-bread-cup-color.jpg",
+      "alt": "A loaf of bread broken in two with crumbs beside a simple first-century cup of wine on a weathered wooden table",
+      "frame": true,
+      "touchNext": true
     },
     {
       "type": "text",
@@ -105,12 +117,16 @@
       "text": "The meal looks back to the cross, and it looks forward to the day you eat with Jesus face to face. It also looks around. One loaf is shared by many people, which is a quiet reminder that you were saved into a household. This is not something you do alone in your kitchen."
     },
     {
+      "type": "text",
+      "text": "The Supper is the family meal for those who have trusted Jesus and been baptized. If that is not you yet, you are still welcome in the room, and the doorway is open."
+    },
+    {
       "type": "heading",
       "text": "Come Ready"
     },
     {
       "type": "text",
-      "text": "Paul told the Corinthians to examine themselves before they ate, and he warned that taking the meal carelessly brought real consequences. That sounds harsh until you see what it protects."
+      "text": "Paul told the Corinthians to examine themselves before they ate, and he warned that taking the meal carelessly brought real consequences (1 Corinthians 11:27-32). That sounds harsh until you see what it protects."
     },
     {
       "type": "text",
@@ -127,11 +143,6 @@
       "height": "tall"
     },
     {
-      "type": "widget",
-      "src": "widgets/two-ordinances.html",
-      "height": "640px"
-    },
-    {
       "type": "heading",
       "text": "Two Gifts That Preach"
     },
@@ -143,6 +154,20 @@
       "type": "question",
       "id": "202-10-4",
       "text": "10.4 - Who has been watching you follow Jesus lately?",
+      "height": "tall"
+    },
+    {
+      "type": "heading",
+      "text": "This Week's Practice"
+    },
+    {
+      "type": "text",
+      "text": "Take one step toward one of the two gifts this week. If you have not been baptized, tell a pastor you would like to talk about it. If you have, take ten quiet minutes before the next Lord's Supper to come ready."
+    },
+    {
+      "type": "question",
+      "id": "202-10-hand",
+      "text": "10.5 - How would you explain the doorway and the table to a friend who is new to church?",
       "height": "tall"
     },
     {
