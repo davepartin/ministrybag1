@@ -89,7 +89,7 @@ async function readSequenceState(page) {
         var parable = session && session.querySelector('.block-parable');
         var imageWrap = el && el.closest('.block-image');
         var imageBlocks = session ? Array.prototype.slice.call(session.querySelectorAll('.block-image')) : [];
-        var logoWrap = imageBlocks[0] || null;
+        var logoWrap = session ? session.querySelector('.course-logo') : null;
         var logoImg = logoWrap ? logoWrap.querySelector('img') : null;
         var topbar = document.querySelector('.lesson-topbar');
         var viewportHeight = window.innerHeight || document.documentElement.clientHeight || 1;
@@ -121,6 +121,7 @@ async function readSequenceState(page) {
             stops: el ? el.getAttribute('data-sequence-stops') : '',
             touchNext: !!(imageWrap && imageWrap.classList.contains('block-image-touch-next')),
             logoTouchNext: !!(logoWrap && logoWrap.classList.contains('block-image-touch-next')),
+            logoAboveTitle: !!(logoWrap && session.querySelector('.session-title') && (logoWrap.compareDocumentPosition(session.querySelector('.session-title')) & Node.DOCUMENT_POSITION_FOLLOWING)),
             hasBwPair: !!(session && session.querySelector('.parable-img-bw, .parable-img-color')),
             imageBlockCount: imageBlocks.length,
             logoHasSequence: !!(logoWrap && logoWrap.querySelector('[data-parable-sequence]')),
@@ -170,7 +171,8 @@ function srcMatches(src, expected) {
         assert(width + ': sequence stops are 0,0.08,0.16,0.24,0.32,0.4,0.64', rest.stops === STOPS.join(','), rest.stops);
         assert(width + ': story image keeps touchNext', rest.touchNext);
         assert(width + ': course logo is not joined to the parable', rest.logoTouchNext === false);
-        assert(width + ': two image blocks remain (logo plus sequence)', rest.imageBlockCount === 2, String(rest.imageBlockCount));
+        assert(width + ': one image block remains (the sequence; the logo sits above the title)', rest.imageBlockCount === 1, String(rest.imageBlockCount));
+        assert(width + ': course logo sits above the lesson title', rest.logoAboveTitle === true);
         assert(width + ': course logo is not a sequence', rest.logoHasSequence === false);
         assert(
             width + ': course logo still uses 202-3circles-logo.png',
