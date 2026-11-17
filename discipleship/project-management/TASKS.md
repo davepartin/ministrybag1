@@ -1,5 +1,11 @@
 # Running task board
 
+## Compact lesson header pilot, November 17, 2026
+
+| Task | Status | Owner / branch / date | Scope |
+|---|---|---|---|
+| UI-202-01-COMPACT-HEADER | DONE | Codex / codex/compact-lesson-header / 2026-11-17 | Dave requests implementation and merge of one live pilot on 202-01: one row with Back, lesson code/title and menu; remove progress track, reduce height about half. 49px vs 85px (42 percent shorter), 44px touch targets. Other lessons retain current headers. Verified: core QA, 89 header, 964 navigation and 95 story checks. All lesson/widget/art/answer data unchanged. Dave authorized merge; final PR/live evidence in logs/2026-11-17-UI-202-01-COMPACT-HEADER-codex.md. |
+
 
 ## 201-04 four-soils timing, November 17, 2026
 

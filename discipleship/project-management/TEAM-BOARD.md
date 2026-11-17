@@ -1,5 +1,10 @@
 # Growing Together Team Board
 
+## Compact header live pilot: 202-01, November 17, 2026
+
+Dave requested implementation and merge of a one-lesson pilot. UI-202-01-COMPACT-HEADER uses one 49px row: Back, 202-01 and Loving Your Neighbors, then Menu. The course/title second row and progress strip are hidden only for 202-01, saving 42 percent of header height. Both controls retain 44px tap targets. Other lessons keep their existing headers. All lesson JSON, approved widgets/art and saved-answer logic remain untouched. Test 202-01 on the live site; compare 202-02 before deciding on a series rollout. Core QA, 89 header checks, 964 navigation checks and 95 story-scroll checks pass. Final PR, hosted verification and deployment evidence: [Codex log](logs/2026-11-17-UI-202-01-COMPACT-HEADER-codex.md).
+
+
 ## 101-04 compact widget approved for integration: November 17, 2026
 
 Dave approved PR #262 at exact 6a4c1e7977719842941e72a3cee339c67899c2f6 and said to merge. Preserve these widget bytes: half-size Bible, closed cover aligned right within its opening footprint, wipe opening left, 30 percent shorter diagram, dimmed Ready passage and simpler Ready card. This is component approval only; 101-04 text stays Silver. All lesson JSON, questions/IDs/answers, readings, approved oil-lamp art, placement and shared runtime remain unchanged. Core QA and 248 focused browser checks pass. Approved component hash/status are recorded. Final exact-head preview, merge and live verification are on PR #262. [Integration log](logs/2026-11-17-WIDGET-101-04-RDR-POLISH-codex.md).
