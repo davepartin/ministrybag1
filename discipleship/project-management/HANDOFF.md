@@ -1,5 +1,15 @@
 # Resume here
 
+## Compact header standard across every lesson, November 17, 2026
+
+Dave approved the 202-01 pilot and requested the same style throughout the app. UI-COMPACT-HEADERS-ALL, PR #286, applies the existing 49px row to every lesson: Back, course/lesson code and title, then Menu. The progress strip and unused update code are removed. All 47 lesson identities pass, with 44px controls, sticky placement, long-title truncation, no horizontal overflow and saved answers preserved. Core QA, 283 header checks, 964 navigation checks, 95 Samaritan/128 lamp/103 soils checks and 387 all-course image checks pass. No lesson JSON, approved widget/artwork, question/reading identity or saved-answer logic changes. The execution blocker below is resolved; the former single-lesson pilot limitation is superseded. Final exact-head preview, merge and live evidence: [Codex log](logs/2026-11-17-UI-COMPACT-HEADERS-ALL-codex.md) and PR #286.
+
+
+## Compact lesson headers: rollout blocked on workspace verification
+
+Dave approved the 202-01 header and requested the same style across the app. UI-COMPACT-HEADERS-ALL is BLOCKED only on execution access: the workspace disconnected before implementation/tests could run. Changes are prepared through GitHub on codex/compact-headers-all: every lesson uses the existing approved 49px header, and the unused progress DOM/styles/update code are removed. No lesson JSON, widget/art bytes, question IDs or saved-answer implementation changes. Expanded browser coverage checks every lesson identity plus narrow/desktop/reduced-motion controls and synthetic answer survival. Static inline-JavaScript and test-script syntax checks pass in the orchestration runtime; repository QA and browser checks have NOT run. Do not merge until those checks and the exact-head preview are verified after workspace access returns. Log: logs/2026-11-17-UI-COMPACT-HEADERS-ALL-codex.md.
+
+
 ## Compact header live pilot: 202-01, November 17, 2026
 
 Dave requested implementation and merge of a one-lesson pilot. UI-202-01-COMPACT-HEADER uses one 49px row: Back, 202-01 and Loving Your Neighbors, then Menu. The course/title second row and progress strip are hidden only for 202-01, saving 42 percent of header height. Both controls retain 44px tap targets. Other lessons keep their existing headers. All lesson JSON, approved widgets/art and saved-answer logic remain untouched. Test 202-01 on the live site; compare 202-02 before deciding on a series rollout. Core QA, 89 header checks, 964 navigation checks and 95 story-scroll checks pass. Final PR, hosted verification and deployment evidence: [Codex log](logs/2026-11-17-UI-202-01-COMPACT-HEADER-codex.md).

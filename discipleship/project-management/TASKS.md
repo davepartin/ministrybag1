@@ -1,5 +1,11 @@
 # Running task board
 
+## Compact headers across all lessons, November 17, 2026
+
+| Task | Status | Owner / branch / date | Scope |
+|---|---|---|---|---|
+| UI-COMPACT-HEADERS-ALL | DONE | Codex / codex/compact-headers-all / 2026-11-17 | Dave approved the compact 202-01 header and requests rollout to every lesson. Same 49px identity row, Back/Menu and no progress strip. Preserve lesson/widget/art/answer data. Verified: core QA, all 47 headers (283 checks), navigation964, sequence95/lamp128/soils103/all-course images387. PR #286; final preview/merge/live evidence in logs/2026-11-17-UI-COMPACT-HEADERS-ALL-codex.md. |
+
 ## Compact lesson header pilot, November 17, 2026
 
 | Task | Status | Owner / branch / date | Scope |
