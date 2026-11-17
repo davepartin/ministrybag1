@@ -4,7 +4,7 @@
 
 | Task | Status | Owner / branch / date | Scope |
 |---|---|---|---|
-| ART-201-04-SCROLL-PACE | REVIEW | Codex / codex/20104-soils-scroll-timing / 2026-11-17 | Corrected after Dave rejected pinning: normal upward scrolling, 20 percent opening hold and five 15 percent dissolves. Only six timing stops change. Preserve approved prose, art, five-roots widget, questions and answers. Updated PR #274 at REVIEW. |
+| ART-201-04-SCROLL-PACE | REVIEW | Codex / codex/20104-soils-scroll-timing / 2026-11-17 | Normal upward scrolling, 10 percent opening hold and five equal 10 percent dissolves, ending at 60 percent so the entire final picture is visible below the header. Only six timing stops change. Preserve approved prose, art, widget, questions and answers. Updated PR #274 at REVIEW. |
 
 ## 201-04 roots clarity, November 16, 2026
 

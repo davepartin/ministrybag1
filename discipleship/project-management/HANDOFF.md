@@ -1,10 +1,10 @@
 # Resume here
 
-## 201-04 normal-scroll timing preview: November 17, 2026
+## 201-04 visible-finish timing preview: November 17, 2026
 
-ART-201-04-SCROLL-PACE is at REVIEW on PR #274. Dave rejected the pinned trial: the picture must keep scrolling upward like every other lesson. That trial is removed completely. The shared index.html now matches current main exactly. Only the six timing stops change to [0.20, 0.35, 0.50, 0.65, 0.80, 0.95]: hold the first frame through 20 percent, then dissolve through the remaining five over 15 percent each. No sticky positioning, extra scroll section or new image flag.
+ART-201-04-SCROLL-PACE remains at REVIEW on PR #274. The image scrolls upward normally. Dave found that the 95 percent finish was already partly off screen and requested an earlier, balanced finish with a shorter opening hold. Measured phone geometry shows that 80 percent still hides 31 percent behind the header. Stops are now [0.10, 0.20, 0.30, 0.40, 0.50, 0.60]: 10 percent initial hold, five equal 10 percent dissolves, final image complete about 21px below the header on a 390x844 phone. Physical browser checks require the entire final frame visible at completion.
 
-Dave-approved #273 wording, source/delivery artwork, frame order, questions/IDs/answers, and deep-roots.html are unchanged. Latest main #275/#276 wording is preserved. Review the updated PR #274 preview; the earlier pinned preview is superseded. Evidence: [Codex log](logs/2026-11-17-ART-201-04-SCROLL-PACE-codex.md).
+No pinning, added height or shared-engine changes. Approved #273 prose, Scripture, image bytes/order, six question objects/IDs/answers, and five-roots widget remain unchanged. Latest main through #278 is preserved. The earlier pinned and 20/15 percent timing previews are superseded. Evidence: [Codex log](logs/2026-11-17-ART-201-04-SCROLL-PACE-codex.md).
 
 ## 201-04 roots clarity draft: November 16, 2026
 

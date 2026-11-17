@@ -105,9 +105,11 @@ The scroll engine measures `progress` from `0` to `1` as the top of the image bl
 
 Important rule for stops: **Finish the final stop around `0.40` to `0.65`, not at `1.0`.** At `progress = 1.0`, the top of the image is already 22% above the top bar. Ending the last stop around `0.50` to `0.60` ensures the learner sees the final arrival frame while the whole picture is still on screen with the parable card visible beneath it.
 
-### 201-04 timing exception: opening hold, normal scrolling
+### 201-04 timing: opening hold, balanced dissolves, visible finish
 
-Dave requested that the four-soils image continue moving up the page normally, hold the first frame for the initial 20 percent of sequence progress, then dissolve through the five remaining frames over 15 percent each. Its stops are `[0.20, 0.35, 0.50, 0.65, 0.80, 0.95]`. This deliberately finishes later than the usual early-completion presets above; the picture continues upward throughout, and its upper portion may have passed behind the top bar by the last frame. No pinning, sticky positioning, added scroll section, or shared-engine change. Reduced motion continues to show the final static frame.
+Dave wants the four-soils image to keep scrolling upward normally and finish before it leaves the visible area. Its stops are `[0.10, 0.20, 0.30, 0.40, 0.50, 0.60]`: hold the first frame through 10 percent, then five equal 10 percent cross-dissolves. The final frame completes at 60 percent, while the whole image remains below the lesson header. There is no pinning, added scroll section or shared-engine change. Reduced motion shows the final static frame.
+
+The existing engine places the image top at `contentTop + visibleHeight * (0.40 - 0.62 * progress)`. At 95 percent, the phone header hid roughly 61 percent of the image; at 80 percent it would still hide 31 percent. At 60 percent the image top is 2.8 percent of visible height below the header, about 21px on a 390x844 phone. This replaces the rejected 20/15 percent schedule and pinned trial.
 
 ### Proven Stop Presets by Frame Count
 

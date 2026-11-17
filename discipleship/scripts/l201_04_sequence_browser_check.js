@@ -27,10 +27,10 @@ var QUESTION_IDS = [
     '201-04-step',
     '201-04-prayer'
 ];
-var STOPS = [0.2, 0.35, 0.5, 0.65, 0.8, 0.95];
+var STOPS = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6];
 var LAST_STOP = STOPS[STOPS.length - 1];
-var AFTER_LAST = 0.98;
-var SAMPLE_PROGRESS = [0, 0.1, 0.2, 0.275, 0.35, 0.425, 0.5, 0.575, 0.65, 0.725, 0.8, 0.875, 0.95, 0.98, 1];
+var AFTER_LAST = 0.65;
+var SAMPLE_PROGRESS = [0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.8];
 var failed = 0;
 var passed = 0;
 
@@ -151,7 +151,7 @@ function srcMatches(src, expected) {
 
         var rest = await readSequenceState(page);
         assert(width + ': six sequence frames render', rest.frameCount === 6, String(rest.frameCount));
-        assert(width + ': sequence stops are 0.2,0.35,0.5,0.65,0.8,0.95', rest.stops === STOPS.join(','), rest.stops);
+        assert(width + ': sequence stops are 0.1,0.2,0.3,0.4,0.5,0.6', rest.stops === STOPS.join(','), rest.stops);
         assert(width + ': image keeps touchNext', rest.touchNext);
         assert(width + ': old bw/color pair is not rendered', rest.hasBwPair === false);
         FRAMES.forEach(function (expected, idx) {
