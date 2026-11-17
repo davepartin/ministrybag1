@@ -1,5 +1,12 @@
 # Resume here
 
+## 202-09 approved roof marker artwork: November 17, 2026
+
+ART-202-09-MARKER DONE, PR #279. Dave approved c053695840939c50bc48e67803b8ec463b4e7d77: the 1280x720 rough marker roof B&W/color pair, four optimized WebP deliveries, generated asset map and framed touchNext image block with imageDissolveOnEntry. All approved submission bytes are preserved exactly. Older 202.09-david-roof PNGs remain on disk unchanged.
+
+Only the opening image block changes in 202-09. Every prose/Scripture block, question object/ID, reading key and starting-gun.html byte remains unchanged. 202-03, 202-04 and shared index.html also remain exact main. Image approval only; no whole-lesson Gold inferred. Core QA, required lesson/widget/image browser tests and focused dissolve/answer checks are tracked in [the Codex log](logs/2026-11-17-ART-202-09-MARKER-codex.md). Final exact-head preview, merge and live deployment evidence are posted on PR #279.
+
+
 ## 201-04 roots clarity draft: November 16, 2026
 
 L-201-04-ROOTS-CLARITY is DONE. Dave approved the exact lesson revision at 6014827 on November 16, 2026; Codex integrates PR #273 from codex/201-04-roots-clarity. Dave assigned this focused follow-up to the 201 course review. The lesson now distinguishes a heart receiving God's Word, Christ supplying life, and five habits helping the believer depend on Him. Question 4.2 stays diagnostic; 4.3 now asks for a specific practice and time. The practice paragraph gives examples and a gracious restart instead of another self-scoring exercise.
