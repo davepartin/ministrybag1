@@ -111,3 +111,5 @@ November 17: Dave approved PR #254 at a93a67350290bbe7520e2af8fb0c0c29650b8953 f
 
 November 17: PR for BELOW-101-01 (branch claude/101-01-below-line) makes the one-line "below" fix in 101-01, as Dave approved in chat. Awaiting Dave's review.
 November 17: Dave approved merge of PR #281, the 101-01 "below" line. Protect this wording.
+
+November 17: Course grade recorded in [2026-11-17-101-course-grade.md](2026-11-17-101-course-grade.md): AAA, all seven lessons. Dave: the series logo is 101-01's intended image; 7.2 stays. Waiting only on Gemini widget polish PRs #254 and #262, which Dave is reviewing.
