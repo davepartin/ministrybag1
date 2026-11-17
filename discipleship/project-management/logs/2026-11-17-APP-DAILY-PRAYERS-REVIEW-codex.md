@@ -35,3 +35,7 @@ Pinned npm ci exit 0. Actual exits from discipleship are 0:
 The new navigation test seeds the existing response migration markers so it checks a stable current answer store; core storage tests cover migration itself. Its initialization skips opaque about:blank frames and waits for actual heading focus after return navigation. No production storage code was changed to satisfy the fixture.
 
 Phone/desktop home and editor screenshots inspected; synthetic data only. Exact-head Firebase preview and hosted verification evidence are posted on PR #261. No live change until review and merge.
+
+## Dave navigation refinement
+
+Dave requested renaming the home browse control to Browse All Lessons, placing Your Growing Apps immediately below it, and opening a separate single-page app list with a full-width Your Daily Prayers button. Replace the inline home app section with this hub. Keep the small collection ready for 3-6 apps without shipping placeholders. App/lesson data preservation and same-origin return links remain in force.
