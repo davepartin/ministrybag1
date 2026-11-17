@@ -27,10 +27,10 @@ var QUESTION_IDS = [
     '201-04-step',
     '201-04-prayer'
 ];
-var STOPS = [0, 0.14, 0.27, 0.4, 0.53, 0.66];
+var STOPS = [0.2, 0.35, 0.5, 0.65, 0.8, 0.95];
 var LAST_STOP = STOPS[STOPS.length - 1];
-var AFTER_LAST = 0.71;
-var SAMPLE_PROGRESS = [0, 0.07, 0.14, 0.205, 0.27, 0.335, 0.4, 0.465, 0.53, 0.595, 0.66, 0.71, 0.8];
+var AFTER_LAST = 0.98;
+var SAMPLE_PROGRESS = [0, 0.1, 0.2, 0.275, 0.35, 0.425, 0.5, 0.575, 0.65, 0.725, 0.8, 0.875, 0.95, 0.98, 1];
 var failed = 0;
 var passed = 0;
 
@@ -59,15 +59,6 @@ async function waitForSequence(page) {
 async function setSequenceProgress(page, targetProgress) {
     await page.evaluate(function (progress) {
         var el = document.querySelector('#session-4.active [data-parable-sequence]');
-        var paced = el.parentElement;
-        if (paced.hasAttribute('data-sequence-paced-active')) {
-            var wrapperRect = paced.getBoundingClientRect();
-            var pin = parseFloat(paced.style.getPropertyValue('--sequence-pin-top'));
-            var travel = wrapperRect.height - el.getBoundingClientRect().height;
-            var last = Math.max.apply(Math, el.dataset.sequenceStops.split(',').map(Number));
-            window.scrollTo({ top: wrapperRect.top + window.scrollY - pin + travel * (0.20 + 0.70 * progress / last), behavior: 'instant' });
-            return;
-        }
         var topbar = document.querySelector('.lesson-topbar');
         var viewportHeight = window.innerHeight || document.documentElement.clientHeight || 1;
         var contentTop = topbar ? topbar.getBoundingClientRect().bottom : 0;
@@ -160,7 +151,7 @@ function srcMatches(src, expected) {
 
         var rest = await readSequenceState(page);
         assert(width + ': six sequence frames render', rest.frameCount === 6, String(rest.frameCount));
-        assert(width + ': sequence stops are 0,0.14,0.27,0.4,0.53,0.66', rest.stops === STOPS.join(','), rest.stops);
+        assert(width + ': sequence stops are 0.2,0.35,0.5,0.65,0.8,0.95', rest.stops === STOPS.join(','), rest.stops);
         assert(width + ': image keeps touchNext', rest.touchNext);
         assert(width + ': old bw/color pair is not rendered', rest.hasBwPair === false);
         FRAMES.forEach(function (expected, idx) {

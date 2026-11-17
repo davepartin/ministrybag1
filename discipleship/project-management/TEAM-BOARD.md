@@ -1,11 +1,10 @@
 # Growing Together Team Board
 
-## 201-04 slower four-soils preview: November 17, 2026
+## 201-04 normal-scroll timing preview: November 17, 2026
 
-ART-201-04-SCROLL-PACE is at REVIEW on codex/20104-soils-scroll-timing. Dave clarified that the opening four-soils scroll illustration starts and switches too fast, not the five-roots Begin/Next widget. The trial keeps this sequence centered while normal scrolling runs through a longer section: opening held for 20 percent, transitions over 70 percent, ending held for 10 percent. This gives transitions about twice the previous scroll room while keeping the entire picture visible. No autoplay or scroll interception; reverse scrolling works normally. Reduced motion and print have no added scroll section.
+ART-201-04-SCROLL-PACE is at REVIEW on PR #274. Dave rejected the pinned trial: the picture must keep scrolling upward like every other lesson. That trial is removed completely. The shared index.html now matches current main exactly. Only the six timing stops change to [0.20, 0.35, 0.50, 0.65, 0.80, 0.95]: hold the first frame through 20 percent, then dissolve through the remaining five over 15 percent each. No sticky positioning, extra scroll section or new image flag.
 
-Only this sequence opts in via imageSequencePaced. All six approved source/delivery images, existing stops, Dave-approved #273 wording, Scripture, six question IDs/answers and deep-roots.html remain unchanged. Other sequences and two-image dissolves retain their timing. This is a timing/layout preview, not a new art or copy approval. Do not merge until Dave reviews the pacing. Evidence: [Codex log](logs/2026-11-17-ART-201-04-SCROLL-PACE-codex.md).
-
+Dave-approved #273 wording, source/delivery artwork, frame order, questions/IDs/answers, and deep-roots.html are unchanged. Latest main #275/#276 wording is preserved. Review the updated PR #274 preview; the earlier pinned preview is superseded. Evidence: [Codex log](logs/2026-11-17-ART-201-04-SCROLL-PACE-codex.md).
 
 ## 201-04 roots clarity draft: November 16, 2026
 

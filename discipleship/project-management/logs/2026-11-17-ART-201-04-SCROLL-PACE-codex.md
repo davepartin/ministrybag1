@@ -1,33 +1,21 @@
 # ART-201-04-SCROLL-PACE: Codex
 
-Date: November 17, 2026. Branch: codex/20104-soils-scroll-timing. Base: a9e43536be413e171d803161d05ef978f82283c8. Status: REVIEW, no merge/live change.
+Date: November 17, 2026. Branch: codex/20104-soils-scroll-timing. Current base: 17c7f4f (main including #275/#276). Status: REVIEW, no merge/live timing change.
 
-## Request and diagnosis
+## Dave's correction and final implementation
 
-Dave: "201-04 widget starts too fast and switches too fast, take a look at it for me". Asked which component; Dave clarified "Opening four-soils scroll illustration". The five-roots widget is manual and remains unchanged. The six story frames previously completed across 66 percent of a 62-percent-viewport scroll range, about 300px on a phone. Extending the stops alone would finish after most of the image had left the screen.
+Dave clarified that the opening four-soils illustration starts and switches too fast. The first trial pinned the picture in the viewport. Dave rejected that behavior: "i still want the image to scroll up the page like all the other lessons" and proposed a 20 percent opening hold followed by 15 percent per frame, with dissolves.
 
-## Trial behavior
+Removed the pinned trial completely, including its shared engine/CSS, image flag and extra scroll section. index.html now matches current main byte-for-byte. The only lesson change is imageSequenceStops from [0, 0.14, 0.27, 0.40, 0.53, 0.66] to [0.20, 0.35, 0.50, 0.65, 0.80, 0.95]. The first frame holds through 20 percent of the existing scroll-progress range; five transitions each receive 15 percent; the last frame stays after 95 percent. The image moves up with the page throughout. There is no timer, pinning, added height, autoplay or scroll interception.
 
-Added opt-in imageSequencePaced on this sequence only. The picture stays centered below the lesson header during an ordinary scroll section of at least 600px, or 1.2 times the available viewport height. The opening holds for 20 percent of travel; the existing stops play over 70 percent; the ending holds for the last 10 percent. Then the image rejoins the story in normal document flow. No automatic advance, wheel/touch interception, forced scroll or added controls. Reverse scroll rewinds. The picture remains entirely visible, including a short 390x568 viewport. Reduced motion keeps the final static frame with no extra travel; print removes the spacer.
+This requested schedule finishes later than the usual early-completion preset. The upper image may pass behind the lesson header by the last frame; normal document flow is preserved as Dave requested. Reduced motion remains the static final frame. Source art, six delivery frames/order, approved #273 wording, Scripture, all six questions/IDs/answers, and five-roots widget remain unchanged.
 
-Preserved every approved source image, delivery copy, frame order/stop, widget byte, question ID/object, Scripture and #273 lesson wording. Compared full lesson JSON to main after removing the new boolean flag: exact equality. Shared renderer/engine changes are opt-in; legacy sequences/pairs keep their existing timing. Updated the existing 201-04 browser helper to target the paced scroll coordinates without removing any assertions. New physical browser regression checks holds, slower travel, every frame, visibility, reversal, normal release, attachment to parable, resize, print and reduced motion. It fails on old main with "longer scroll travel enabled".
+Merged current main normally, preserving Claude's #275 101-05 and #276 101-06 changes. No unrelated lesson changes in this PR's final diff. Updated story-image.md with this lesson's explicit timing exception.
 
 ## Verification
 
-All actual exit 0 unless noted:
+Required foundation/export/storage/assets/images checks exit 0: export 186, storage 64, assets 144, images 1525. Structured comparison confirms that only six timing stops change in 201-04.json; shared index.html matches main exactly. git diff --check passes.
 
-- npm ci.
-- bash scripts/qa_foundation.sh: all foundation suites.
-- node scripts/test_lesson_export.js: 186.
-- node scripts/test_answer_storage.js: 64.
-- node scripts/check_lesson_assets.js: 144.
-- node scripts/test_lesson_images.js: 1525.
-- node scripts/soils_201_04_pacing_browser_check.js: 154 at 375x812, 390x844, 1280x800, 390x568 and reduced motion.
-- NODE_OPTIONS=--require=/workspace/scratch/chrome-shim.cjs L20104_BASE_URL=http://127.0.0.1:8845/index.html node scripts/l201_04_sequence_browser_check.js: all 61 assertions retained/pass.
-- Scratch roots lesson/answer smoke: 57, six answers restore, edit/reload preserves 4.3, other answers retained, original root widget fits, no horizontal overflow/page errors.
-- GT_CHROMIUM_PATH=/usr/bin/chromium LP_BASE_URL=http://127.0.0.1:8845/index.html node scripts/widget_101_03_lords_prayer_browser_check.js: 225.
-- GT_CHROMIUM_PATH=/usr/bin/chromium ENTRY_HOLD_BASE_URL=http://127.0.0.1:8845/index.html node scripts/entry_dissolve_hold_browser_check.js: 216 unchanged two-layer entry/hold checks.
-- NODE_OPTIONS=--require=/workspace/scratch/chrome-shim.cjs L20101_BASE_URL=http://127.0.0.1:8845/index.html node scripts/l201_01_sequence_browser_check.js: 58 unchanged legacy-sequence checks.
-- Structured preservation comparison and git diff --check: pass.
+The 201-04 sequence browser test retains all 61 assertions, with its expected stops and sampling points updated to the new timing. The dedicated normal-scroll test verifies the initial 20 percent hold, five halfway dissolves, image top moving by the same distance as page scroll, no pinning/extra section, all six frames, reversal, no overflow/page errors, and reduced motion. Scratch lesson/answer smoke checks all six restored answers, editing/reloading question 4.3, retained other responses, and unchanged root widget fit.
 
-Inspected the mobile screenshot with the full picture centered and unobscured. Final exact-head Firebase preview and any remaining regression results will be posted on the PR. This visual pacing change is awaiting Dave's review; no whole-lesson Gold or art replacement.
+Final local counts, exact-head preview deployment and hosted browser evidence are posted on PR #274. This corrected preview supersedes the rejected 60af8c5 pinned preview. No whole-lesson Gold or fresh artwork approval is inferred.

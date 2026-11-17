@@ -1,85 +1,77 @@
 #!/usr/bin/env node
 'use strict';
-// Physical scroll regression for the opt-in 201-04 sequence; no real answers used.
+// 201-04 normal scrolling: 20% opening hold, five 15% dissolves, no pinning.
 const assert = require('node:assert/strict');
 const { chromium } = require('playwright');
 const BASE = process.env.SOILS_BASE_URL || 'http://127.0.0.1:8845/index.html';
 (async () => {
-    const browser = await chromium.launch({ headless: true, executablePath: process.env.GT_CHROMIUM_PATH || '/usr/bin/chromium' });
+    const browser = await chromium.launch({ headless: true, ...(process.env.GT_CHROMIUM_PATH ? { executablePath: process.env.GT_CHROMIUM_PATH } : { channel: 'chrome' }) });
     let passed = 0;
     const check = (value, label) => { assert(value, label); passed++; };
     for (const job of [
         { width: 375, height: 812 }, { width: 390, height: 844 },
-        { width: 1280, height: 800 }, { width: 390, height: 568 },
-        { width: 390, height: 844, reducedMotion: 'reduce' }
+        { width: 1280, height: 800 }, { width: 390, height: 844, reducedMotion: 'reduce' }
     ]) {
         const ctx = await browser.newContext({ viewport: { width: job.width, height: job.height }, reducedMotion: job.reducedMotion || 'no-preference' });
         const page = await ctx.newPage(), errors = [];
-        page.on('pageerror', e => errors.push(e.message));
+        page.on('pageerror', error => errors.push(error.message));
         await page.goto(`${BASE}#201-4`, { waitUntil: 'networkidle' });
         await page.locator('#session-4.active [data-parable-sequence]').waitFor();
-        await page.evaluate(() => document.fonts.ready);
         const state = () => page.evaluate(() => {
             const e = document.querySelector('#session-4.active [data-parable-sequence]');
             const w = e.parentElement, r = e.getBoundingClientRect(), wr = w.getBoundingClientRect();
-            return { top: r.top, bottom: r.bottom, height: r.height, wrapperHeight: wr.height,
-                docTop: wr.top + scrollY, pin: parseFloat(w.style.getPropertyValue('--sequence-pin-top')),
-                travel: wr.height - r.height, scrollY, bar: document.querySelector('.lesson-topbar').getBoundingClientRect().bottom,
-                viewport: innerHeight, opacity: [...e.querySelectorAll('img')].map(i => +getComputedStyle(i).opacity),
-                loaded: [...e.querySelectorAll('img')].every(i => i.complete && i.naturalWidth > 0),
-                active: w.hasAttribute('data-sequence-paced-active'), overflow: document.documentElement.scrollWidth > innerWidth,
-                parableTop: w.nextElementSibling.getBoundingClientRect().top };
+            const bar = document.querySelector('.lesson-topbar').getBoundingClientRect().bottom;
+            return { top: r.top, docTop: r.top + scrollY, height: r.height, wrapperHeight: wr.height,
+                y: scrollY, bar, viewport: innerHeight, stops: e.dataset.sequenceStops,
+                position: getComputedStyle(e).position,
+                opacity: [...e.querySelectorAll('img')].map(i => +getComputedStyle(i).opacity),
+                loaded: [...e.querySelectorAll('img')].length === 6 && [...e.querySelectorAll('img')].every(i => i.complete && i.naturalWidth > 0),
+                paced: w.hasAttribute('data-sequence-paced') || w.hasAttribute('data-sequence-paced-active'),
+                overflow: document.documentElement.scrollWidth > innerWidth,
+                parableTop: w.nextElementSibling.getBoundingClientRect().top, bottom: r.bottom };
         });
-        let initial = await state();
-        check(initial.loaded, 'six images load');
+        const initial = await state();
+        check(initial.loaded, 'six approved frames load');
+        check(initial.stops === '0.2,0.35,0.5,0.65,0.8,0.95', 'requested 20% hold and 15% stops');
+        check(!initial.paced && initial.position === 'relative', 'no sticky or paced treatment');
+        check(Math.abs(initial.wrapperHeight - initial.height) < 2, 'no extra scroll section');
         check(!initial.overflow, 'no horizontal overflow');
-        check(await page.locator('#session-4.active .question-textarea').count() === 6, 'six questions retained');
+        const at = async progress => {
+            const s = await state();
+            const visible = s.viewport - s.bar;
+            const y = s.docTop - (s.bar + visible * 0.40 - progress * visible * 0.62);
+            await page.evaluate(y => scrollTo({ top: Math.round(y), behavior: 'instant' }), y);
+            await page.waitForTimeout(100);
+            return state();
+        };
         if (job.reducedMotion) {
-            check(initial.opacity[5] === 1 && initial.opacity.slice(0, 5).every(v => v === 0), 'reduced motion final frame');
-            check(!initial.active && Math.abs(initial.wrapperHeight - initial.height) < 2, 'reduced motion no extra scroll');
+            check(initial.opacity[5] === 1 && initial.opacity.slice(0, 5).every(v => v === 0), 'reduced motion final static frame');
         } else {
-            check(initial.scrollY === 0 && initial.opacity[0] === 1 && initial.opacity.slice(1).every(v => v === 0), 'initial frame held at page top');
-            check(initial.travel >= 600, 'longer scroll travel enabled');
-            const scrollTo = async fraction => {
-                const s = await state();
-                await page.evaluate(y => window.scrollTo({ top: Math.round(y), behavior: 'instant' }), s.docTop - s.pin + s.travel * fraction);
-                await page.waitForTimeout(100);
-                return state();
-            };
-            for (const f of [0.02, 0.10, 0.19]) {
-                const s = await scrollTo(f);
-                check(s.opacity[0] === 1 && s.opacity.slice(1).every(v => v === 0), 'opening holds during first 20 percent');
-                check(s.top >= s.bar && s.bottom <= s.viewport, 'entire image visible while held');
+            check(initial.y === 0 && initial.opacity[0] === 1 && initial.opacity.slice(1).every(v => v === 0), 'page opens on first frame');
+            let previous = initial;
+            for (const progress of [0, 0.10, 0.19]) {
+                const s = await at(progress);
+                check(s.opacity[0] === 1 && s.opacity.slice(1).every(v => v === 0), 'opening holds through first 20 percent');
+                check(Math.abs((previous.top - s.top) - (s.y - previous.y)) < 2, 'image moves up with scroll during hold');
+                previous = s;
             }
-            let previous = -1;
-            for (let i = 0; i < 6; i++) {
-                const s = await scrollTo(0.20 + ([0, 0.14, 0.27, 0.4, 0.53, 0.66][i] / 0.66) * 0.70 + 0.002);
-                const dominant = s.opacity.reduce((best, v, idx, a) => v >= a[best] ? idx : best, 0);
-                check(dominant === i && dominant >= previous, 'all frames advance in order'); previous = dominant;
-                check(s.top >= s.bar - 1 && s.bottom <= s.viewport + 1, 'entire image visible through every frame');
-                check(Math.abs(s.wrapperHeight - initial.wrapperHeight) < 2, 'stable sequence section height');
+            for (let i = 0; i < 5; i++) {
+                const s = await at(0.20 + i * 0.15 + 0.075);
+                check(s.opacity[i] === 1 && Math.abs(s.opacity[i + 1] - 0.5) < 0.025, 'each 15 percent interval cross-dissolves smoothly');
+                check(Math.abs((previous.top - s.top) - (s.y - previous.y)) < 2, 'image continues scrolling through every dissolve');
+                check(Math.abs(s.wrapperHeight - initial.height) < 2, 'no added height through transitions');
+                previous = s;
             }
-            // All transitions now span 70% of travel rather than 66% of the old 62%-viewport range.
-            check(initial.travel * 0.70 > (initial.viewport - initial.bar) * 0.62 * 0.66 * 1.8, 'frame transitions have at least 80 percent more scroll room');
-            const end = await scrollTo(0.98);
-            check(end.opacity[5] === 1 && end.opacity.slice(0, 5).every(v => v === 0), 'ending frame holds before release');
-            const reverse = await scrollTo(0.10);
-            check(reverse.opacity[0] === 1 && reverse.opacity.slice(1).every(v => v === 0), 'reverse scroll restores opening');
-            const released = await scrollTo(1.15);
-            check(released.top < initial.pin && released.opacity[5] === 1, 'normal scrolling resumes after sequence');
-            check(Math.abs(released.parableTop - released.bottom) < 2, 'image stays joined to story after release');
-            await page.setViewportSize({ width: job.width, height: job.height - 50 });
-            await page.waitForTimeout(150);
-            const resized = await scrollTo(0.5);
-            check(resized.top >= resized.bar - 1 && resized.bottom <= resized.viewport + 1, 'viewport resize keeps picture visible');
-            await page.emulateMedia({ media: 'print' });
-            const printed = await state();
-            check(Math.abs(printed.wrapperHeight - printed.height) < 2, 'print has no extra scroll spacer');
+            const end = await at(0.98);
+            check(end.opacity[5] === 1 && end.opacity.slice(0, 5).every(v => v === 0), 'final frame reached after 95 percent');
+            check(Math.abs(end.parableTop - end.bottom) < 2, 'image remains joined to story');
+            const reverse = await at(0.10);
+            check(reverse.opacity[0] === 1 && reverse.opacity.slice(1).every(v => v === 0), 'reverse scroll restores first frame');
         }
         check(errors.length === 0, 'no page exceptions: ' + errors.join(';'));
-        console.log('PASS', job.width, job.height, job.reducedMotion || 'normal');
+        console.log('PASS', job.width, job.reducedMotion || 'normal');
         await ctx.close();
     }
     await browser.close();
-    console.log(`${passed} soils pacing checks passed.`);
+    console.log(`${passed} normal-scroll soils pacing checks passed.`);
 })().catch(error => { console.error(error); process.exit(1); });

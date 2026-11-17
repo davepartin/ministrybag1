@@ -105,11 +105,9 @@ The scroll engine measures `progress` from `0` to `1` as the top of the image bl
 
 Important rule for stops: **Finish the final stop around `0.40` to `0.65`, not at `1.0`.** At `progress = 1.0`, the top of the image is already 22% above the top bar. Ending the last stop around `0.50` to `0.60` ensures the learner sees the final arrival frame while the whole picture is still on screen with the parable card visible beneath it.
 
-### Opt-in paced sequence (201-04)
+### 201-04 timing exception: opening hold, normal scrolling
 
-Set `imageSequencePaced: true` on an image-sequence block to keep the picture centered below the lesson header while the reader scrolls through its frames. The scroll section uses at least 600px of travel, or 1.2 times the visible content height on taller screens. The first 20 percent holds the opening frame; the next 70 percent runs the existing stops in order; the last 10 percent holds the ending before the picture rejoins normal document flow. No autoplay, wheel interception, or forced scroll is used. Reverse scrolling reverses the sequence.
-
-Only 201-04 currently opts in. Approved image files, stops and lesson text remain unchanged. Other sequences and all B&W/color pairs retain their previous timing. Reduced motion shows the final frame without the extra scroll section; print removes the extra section height. Keep the picture fully visible below the top bar while pinned.
+Dave requested that the four-soils image continue moving up the page normally, hold the first frame for the initial 20 percent of sequence progress, then dissolve through the five remaining frames over 15 percent each. Its stops are `[0.20, 0.35, 0.50, 0.65, 0.80, 0.95]`. This deliberately finishes later than the usual early-completion presets above; the picture continues upward throughout, and its upper portion may have passed behind the top bar by the last frame. No pinning, sticky positioning, added scroll section, or shared-engine change. Reduced motion continues to show the final static frame.
 
 ### Proven Stop Presets by Frame Count
 
