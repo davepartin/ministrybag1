@@ -2,6 +2,23 @@
   "id": "5",
   "title": "Lesson 5: Overview of the Bible",
   "description": "The longest song in the Bible is a love song about God's Word. This lesson gives you the Bible's framework: a library of 66 books where every shelf points to Jesus.",
+  "contents": [
+    {
+      "label": "Story",
+      "title": "Psalm 119",
+      "anchor": "story"
+    },
+    {
+      "label": "Study",
+      "title": "A Library of Books",
+      "anchor": "study"
+    },
+    {
+      "label": "Diagram",
+      "title": "Bible Bookshelf",
+      "anchor": "diagram"
+    }
+  ],
   "blocks": [
     {
       "type": "text",
@@ -18,7 +35,8 @@
         0.4
       ],
       "alt": "A traveler holds a small clay oil lamp near his sandaled feet at night as the flame lights the next stone step on the path",
-      "touchNext": true
+      "touchNext": true,
+      "anchor": "story"
     },
     {
       "type": "parable",
@@ -37,7 +55,8 @@
     },
     {
       "type": "heading",
-      "text": "A Library, Not a Single Book"
+      "text": "A Library, Not a Single Book",
+      "anchor": "study"
     },
     {
       "type": "text",
@@ -76,7 +95,8 @@
       "type": "widget",
       "src": "widgets/bible-bookshelf2.html",
       "height": "600px",
-      "title": "Bible Bookshelf"
+      "title": "Bible Bookshelf",
+      "anchor": "diagram"
     },
     {
       "type": "question",

@@ -3,6 +3,23 @@
   "version": "v03",
   "title": "Lesson 7: How to Study the Bible",
   "description": "You have the framework and you know the story. Now it is time to learn the skill. This lesson teaches the OIA method, Observe, Interpret, Apply, and then puts you to work with your Bible open to Psalm 23.",
+  "contents": [
+    {
+      "label": "Story",
+      "title": "Acts 8:26-40",
+      "anchor": "story"
+    },
+    {
+      "label": "Study",
+      "title": "Three Steps",
+      "anchor": "study"
+    },
+    {
+      "label": "Diagram",
+      "title": "The OIA Method",
+      "anchor": "diagram"
+    }
+  ],
   "blocks": [
     {
       "type": "text",
@@ -17,7 +34,8 @@
       "imageBw": "images/philip-eunich-bw2.png",
       "imageColor": "images/philip-eunich-color2.png",
       "alt": "Philip running alongside the Ethiopian's chariot to explain the Scriptures",
-      "touchNext": true
+      "touchNext": true,
+      "anchor": "story"
     },
     {
       "type": "parable",
@@ -30,7 +48,8 @@
     },
     {
       "type": "heading",
-      "text": "Three Steps: Observe, Interpret, Apply"
+      "text": "Three Steps: Observe, Interpret, Apply",
+      "anchor": "study"
     },
     {
       "type": "text",
@@ -44,7 +63,8 @@
       "type": "widget",
       "src": "widgets/oia-method.html",
       "title": "Observe, Interpret, Apply",
-      "height": "600px"
+      "height": "600px",
+      "anchor": "diagram"
     },
     {
       "type": "subheading",
