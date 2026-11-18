@@ -2,6 +2,23 @@
   "id": "5",
   "title": "Lesson 5: BLESS - Share Your Story and the Gospel",
   "description": "Sharing the gospel is telling the story of Jesus and how He has changed your story. After praying, listening, eating, and serving, the bridge of relationship is built. This lesson gives you three stories to hold in every faith conversation, theirs, yours, and His, and a simple picture you can draw on a napkin to share the gospel anywhere.",
+  "contents": [
+    {
+      "label": "Story",
+      "title": "John 9",
+      "anchor": "story"
+    },
+    {
+      "label": "Study",
+      "title": "From Bridge to Crossing",
+      "anchor": "study"
+    },
+    {
+      "label": "Diagram",
+      "title": "The 3 Circles",
+      "anchor": "diagram"
+    }
+  ],
   "blocks": [
     {
       "type": "text",
@@ -18,7 +35,8 @@
         0.4
       ],
       "alt": "A man who had been blind from birth, with his eyes open after being healed by Jesus",
-      "touchNext": true
+      "touchNext": true,
+      "anchor": "story"
     },
     {
       "type": "parable",
@@ -31,7 +49,8 @@
     },
     {
       "type": "heading",
-      "text": "From Bridge to Crossing"
+      "text": "From Bridge to Crossing",
+      "anchor": "study"
     },
     {
       "type": "text",
@@ -110,12 +129,13 @@
     },
     {
       "type": "text",
-      "text": "The 3 Circles is a simple gospel picture many Christians use in ordinary conversations. Go through it slowly, one step at a time. By the end you will be most of the way to drawing it from memory."
+      "text": "The 3 Circles is a simple gospel picture many Christians use in ordinary conversations. Go through it one step at a time. By the end you will be most of the way to drawing it from memory."
     },
     {
       "type": "widget",
       "src": "widgets/three-circles.html",
-      "height": "560px"
+      "height": "560px",
+      "anchor": "diagram"
     },
     {
       "type": "heading",

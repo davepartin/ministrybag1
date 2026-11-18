@@ -2,6 +2,23 @@
   "id": "10",
   "title": "Lesson 10: Repentance and the Learning Circle",
   "description": "Everyone drifts, whether through obvious rebellion or quiet self-righteousness. Through the prodigal son and the Learning Circle, this lesson walks you through the lifelong rhythm of repenting and believing, and shows you a Father who is not waiting to punish you but running to welcome you home.",
+  "contents": [
+    {
+      "label": "Story",
+      "title": "Luke 15:11-32",
+      "anchor": "story"
+    },
+    {
+      "label": "Study",
+      "title": "Repent and Believe",
+      "anchor": "study"
+    },
+    {
+      "label": "Diagram",
+      "title": "The Learning Circle",
+      "anchor": "diagram"
+    }
+  ],
   "blocks": [
     {
       "type": "text",
@@ -12,7 +29,8 @@
       "imageBw": "images/prodigal-son-two-brothers-bw.jpg",
       "imageColor": "images/prodigal-son-two-brothers-color.jpg",
       "alt": "Two brothers and the father in the parable of the prodigal son",
-      "touchNext": true
+      "touchNext": true,
+      "anchor": "story"
     },
     {
       "type": "parable",
@@ -27,7 +45,8 @@
     },
     {
       "type": "heading",
-      "text": "Repent and Believe"
+      "text": "Repent and Believe",
+      "anchor": "study"
     },
     {
       "type": "text",
@@ -53,7 +72,8 @@
     {
       "type": "widget",
       "src": "widgets/learning-circle2.html",
-      "height": "600px"
+      "height": "600px",
+      "anchor": "diagram"
     },
     {
       "type": "heading",

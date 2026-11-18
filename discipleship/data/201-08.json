@@ -1,7 +1,24 @@
 {
   "id": "8",
   "title": "Lesson 8: The Grace and Mercy Cycle",
-  "description": "Four words explain what God did for you at the cross: <strong>Mercy, Justified, Righteous, and Grace.</strong> Through Jesus' story of a forgiven servant and a diagram you build step by step, you will see how these four realities work together in a cycle that starts with God's love and flows through you to others.",
+  "description": "Four words explain what God did for you at the cross: <strong>Mercy, Justified, Righteous, and Grace.</strong> Through Jesus' story of a forgiven servant, you will see how these four realities work together in a cycle that starts with God's love and flows through you to others.",
+  "contents": [
+    {
+      "label": "Story",
+      "title": "Matthew 18:21-35",
+      "anchor": "story"
+    },
+    {
+      "label": "Study",
+      "title": "Grace and Mercy",
+      "anchor": "study"
+    },
+    {
+      "label": "Diagram",
+      "title": "Grace and Mercy Cycle",
+      "anchor": "diagram"
+    }
+  ],
   "blocks": [
     {
       "type": "text",
@@ -13,7 +30,8 @@
       "imageColor": "images/kings-mercy-color.jpg",
       "alt": "A king showing mercy to a kneeling servant whose impossible debt has been forgiven",
       "frame": true,
-      "touchNext": true
+      "touchNext": true,
+      "anchor": "story"
     },
     {
       "type": "parable",
@@ -22,7 +40,7 @@
     },
     {
       "type": "text",
-      "text": "The servant heard the words of release, but mercy never reached his heart. It stopped with him. Jesus' ending is sobering, and we should not soften it: forgiving others does not earn God's forgiveness, but a heart that stubbornly refuses to forgive shows it has never truly received His. Canceled debt is meant to turn debtors into merciful people."
+      "text": "The servant heard the words of release, but mercy never reached his heart. It stopped with him. Jesus' ending is sobering, and it should not be softened: forgiving others does not earn God's forgiveness, but a heart that stubbornly refuses to forgive shows it has never truly received His. Canceled debt is meant to turn debtors into merciful people."
     },
     {
       "type": "question",
@@ -32,7 +50,8 @@
     },
     {
       "type": "heading",
-      "text": "The Grace and Mercy Cycle"
+      "text": "The Grace and Mercy Cycle",
+      "anchor": "study"
     },
     {
       "type": "text",
@@ -49,18 +68,13 @@
     },
     {
       "type": "text",
-      "text": "Four words show what God did for you: <strong>Mercy, Justified, Righteous, and Grace.</strong> These are connected truths about God's gift, not steps you perform to earn it. Follow the cycle slowly and notice how what Jesus gives you is meant to move through you."
+      "text": "Four words show what God did for you: <strong>Mercy, Justified, Righteous, and Grace.</strong> These are connected truths about God's gift, not steps you perform to earn it. What Jesus gives you is meant to move through you."
     },
     {
       "type": "widget",
       "src": "widgets/grace-diagram.html",
-      "height": "520px"
-    },
-    {
-      "type": "question",
-      "id": "201-08-2",
-      "text": "8.2 - Which part of the cycle helps you most to understand God's mercy toward you?",
-      "height": "tall"
+      "height": "520px",
+      "anchor": "diagram"
     },
     {
       "type": "heading",
@@ -89,12 +103,18 @@
     },
     {
       "type": "text",
-      "text": "<strong>The cycle.</strong> This is where Jesus' parable presses hardest. The forgiven servant should have become a forgiving servant. The mercy he received should have shaped the mercy he gave. This is how the cycle works. Consider the diagram: when the arrow reaches Grace, it does not stop. It points back toward Mercy. Those who have received mercy become people who show mercy. Those who have been given grace become people who give grace."
+      "text": "<strong>The cycle.</strong> The forgiven servant should have become a forgiving servant. The mercy he received should have formed the mercy he gave. When the cycle reaches Grace, it does not stop. It turns back toward Mercy. Those who have received mercy become people who show mercy. Those who have been given grace become people who give grace."
     },
     {
       "type": "verse",
       "reference": "Ephesians 4:32",
       "text": "Be kind to one another, tenderhearted, forgiving one another, as God in Christ forgave you."
+    },
+    {
+      "type": "question",
+      "id": "201-08-2",
+      "text": "8.2 - Which part of the cycle helps you most to understand God's mercy toward you?",
+      "height": "tall"
     },
     {
       "type": "heading",

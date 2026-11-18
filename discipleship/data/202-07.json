@@ -2,6 +2,23 @@
   "id": "7",
   "title": "Lesson 7: Giving & Generosity",
   "description": "God has entrusted you with time, talents, and treasure. Through the widow's two coins and Jesus' generous grace, learn how caring for what belongs to God can become a life of glad generosity.",
+  "contents": [
+    {
+      "label": "Story",
+      "title": "Mark 12:41-44",
+      "anchor": "story"
+    },
+    {
+      "label": "Study",
+      "title": "A Gift Before a Response",
+      "anchor": "study"
+    },
+    {
+      "label": "Diagram",
+      "title": "Time, Talents, Treasure",
+      "anchor": "diagram"
+    }
+  ],
   "blocks": [
     {
       "type": "text",
@@ -22,7 +39,8 @@
         0.5
       ],
       "alt": "A poor widow drops two small coins into the temple offering chest while Jesus and His disciples watch from the steps and rich men carry heavy bags of money",
-      "touchNext": true
+      "touchNext": true,
+      "anchor": "story"
     },
     {
       "type": "parable",
@@ -31,7 +49,8 @@
     },
     {
       "type": "heading",
-      "text": "A Gift Before a Response"
+      "text": "A Gift Before a Response",
+      "anchor": "study"
     },
     {
       "type": "text",
@@ -94,7 +113,8 @@
       "type": "widget",
       "src": "widgets/stewardship-three-ts.html",
       "height": "540px",
-      "title": "Time, Talents, Treasure"
+      "title": "Time, Talents, Treasure",
+      "anchor": "diagram"
     },
     {
       "type": "text",

@@ -199,6 +199,21 @@
             }
         ]
     },
+    "images/201-3circles-logo.png": {
+        "width": 1216,
+        "height": 458,
+        "sourceHash": "17372c53b35e7adfc76e602a17f858c18bb4cc746a5f883ca529cfa405589d6a",
+        "variants": [
+            {
+                "src": "images/optimized/201-3circles-logo-640.webp",
+                "width": 640
+            },
+            {
+                "src": "images/optimized/201-3circles-logo-1216.webp",
+                "width": 1216
+            }
+        ]
+    },
     "images/201-growing-logo.png": {
         "width": 452,
         "height": 452,
@@ -802,6 +817,21 @@
             },
             {
                 "src": "images/optimized/202.09-david-roof-color-1280.webp",
+                "width": 1280
+            }
+        ]
+    },
+    "images/203-01-love-moves-out.png": {
+        "width": 1280,
+        "height": 1203,
+        "sourceHash": "a47e9741fd2653034c2baa9fd05c91eeceeb04e2483bd3f7a5cb128d2baae814",
+        "variants": [
+            {
+                "src": "images/optimized/203-01-love-moves-out-640.webp",
+                "width": 640
+            },
+            {
+                "src": "images/optimized/203-01-love-moves-out-1280.webp",
                 "width": 1280
             }
         ]

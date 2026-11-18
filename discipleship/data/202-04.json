@@ -2,6 +2,23 @@
   "id": "4",
   "title": "Lesson 4: Discovering Your Gifts",
   "description": "Jesus gave Apostles, Prophets, Evangelists, Shepherds, and Teachers to equip all His people for ministry. Through five farmers working one field, you will notice how God may have wired you to strengthen His Church.",
+  "contents": [
+    {
+      "label": "Story",
+      "title": "The Five Farmers",
+      "anchor": "story"
+    },
+    {
+      "label": "Study",
+      "title": "Equipped for Ministry",
+      "anchor": "study"
+    },
+    {
+      "label": "Diagram",
+      "title": "Five Farmers, One Field",
+      "anchor": "diagram"
+    }
+  ],
   "blocks": [
     {
       "type": "text",
@@ -12,7 +29,8 @@
       "imageBw": "images/Farmer-bw.jpeg",
       "imageColor": "images/Farmer-color.jpg",
       "alt": "A farmer standing in a wide field, tools at hand, ready for the work the field needs",
-      "touchNext": true
+      "touchNext": true,
+      "anchor": "story"
     },
     {
       "type": "parable",
@@ -25,7 +43,8 @@
     },
     {
       "type": "heading",
-      "text": "Equipped for the Work of Ministry"
+      "text": "Equipped for the Work of Ministry",
+      "anchor": "study"
     },
     {
       "type": "verse",
@@ -57,7 +76,8 @@
     {
       "type": "widget",
       "src": "widgets/five-gardeners.html",
-      "height": "540px"
+      "height": "540px",
+      "anchor": "diagram"
     },
     {
       "type": "text",
