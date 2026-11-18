@@ -731,36 +731,6 @@
             }
         ]
     },
-    "images/202.08-abram-covenant-bw.png": {
-        "width": 1672,
-        "height": 941,
-        "sourceHash": "8797adac4aceb6cddd24b22f8461b7d040eb44648ac14ab95f5e965e36399eff",
-        "variants": [
-            {
-                "src": "images/optimized/202.08-abram-covenant-bw-640.webp",
-                "width": 640
-            },
-            {
-                "src": "images/optimized/202.08-abram-covenant-bw-1280.webp",
-                "width": 1280
-            }
-        ]
-    },
-    "images/202.08-abram-covenant-color.png": {
-        "width": 1672,
-        "height": 941,
-        "sourceHash": "d4c65d755c16dc55c7282c6919d90d044cbb1aaa50911f2fc39302347beb9418",
-        "variants": [
-            {
-                "src": "images/optimized/202.08-abram-covenant-color-640.webp",
-                "width": 640
-            },
-            {
-                "src": "images/optimized/202.08-abram-covenant-color-1280.webp",
-                "width": 1280
-            }
-        ]
-    },
     "images/202.08-marble-chisel-bw.jpg": {
         "width": 1672,
         "height": 941,
