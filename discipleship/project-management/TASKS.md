@@ -4,7 +4,7 @@
 
 | Task | Status | Owner / branch / date | Scope |
 |---|---|---|---|
-| UI-FOCUS-MODALITY | ACTIVE | Codex / codex/focus-input-modality / 2026-11-18 | Dave finds gold selection/focus outlines distracting on phones. Hide focus rings for touch/mouse, retain a quieter blue keyboard cue across the app/apps and embedded same-origin widgets. Preserve checked/selected states, native focus, lesson/widget/art bytes and saved data; publish after targeted verification. |
+| UI-FOCUS-MODALITY | DONE | Codex / PR #311 / 2026-11-18 | Merged at07654c5. Touch/mouse focus outlines hidden; keyboard navigation retains a2px blue cue across lessons/apps and embedded same-origin widgets. Final foundation,117 preview and117 production focus checks passed; approved widget/content/art bytes and saved-data logic preserved. See logs/2026-11-18-UI-FOCUS-MODALITY-codex.md. |
 
 
 ## Daily Prayers reference placement, November 18, 2026

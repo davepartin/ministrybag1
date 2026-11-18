@@ -1,6 +1,6 @@
 # Resume here
 
-Input-focus cleanup: UI-FOCUS-MODALITY ACTIVE. Dave requested removing distracting phone focus rings. Shared policy hides pointer/touch outlines and keeps a2px blue keyboard cue across lessons/apps and embedded same-origin widgets, without modifying approved widget bytes or saved data. Foundation,117 new input-mode,57 existing accessibility and964 navigation checks pass. Publish after final-head checks; log: logs/2026-11-18-UI-FOCUS-MODALITY-codex.md.
+Input-focus cleanup DONE, November 18: PR #311 merged at07654c5 and Firebase production verified. Pointer/touch outlines are hidden; keyboard navigation retains a2px blue cue, including same-origin embedded widgets. Final foundation,117 preview and117 live input-mode checks pass; no approved widget bytes, lesson wording, artwork or saved-data logic changed. Log: logs/2026-11-18-UI-FOCUS-MODALITY-codex.md.
 
 Daily Prayers reference placement DONE, November 18: PR #310 merged atcc45ef1. The Lord's Prayer dropdown is above the personal prayer and matches its paper background/type/spacing.294 app checks,320/390/1280 order/style/print checks and live390px saved-prayer/style checks pass. Source/legacy synchronized and production verified; log: logs/2026-11-18-PRAYERS-LORDS-TOP-codex.md.
 
