@@ -78,6 +78,7 @@ ENG-006 (backup, preview, confirmed restore) and SEC-001 (credential) are DONE a
 
 | Check | ID | Status | Owner | Depends on | Scope and acceptance evidence |
 |---|---|---|---|---|---|
+| [ ] | BRAND-001 | IN_PROGRESS | Cursor / cursor/brand-001-logo-icons / 2026-11-18 | Dave approved new brand direction | New Growing Together logo, app icon, favicons, and link-preview card. Replace the home-page clip-art circles with hand-authored SVGs; add apple-touch-icon, favicons, site.webmanifest, and Open Graph tags scoped to growingtogetherdiscipleship.com. Keep 101-01 and other lesson logos. Stop at REVIEW. |
 
 | [x] | WIDGET-101-04-RDR-POLISH | DONE | Codex integration / gemini/widget-101-04-rdr-polish / 2026-11-17 | Dave approved exact 6a4c1e7 and requested merge | PR #262 approved compact Bible polish. Exact widget bytes preserved; all lesson JSON/prose/questions/readings/art/runtime unchanged. Core QA and 248 browser checks pass. Component approval/baseline updated; text stays Silver. Final merge/live evidence on PR #262 and logs/2026-11-17-WIDGET-101-04-RDR-POLISH-codex.md. |
 
