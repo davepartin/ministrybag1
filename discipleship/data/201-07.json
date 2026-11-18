@@ -57,7 +57,7 @@
     },
     {
       "type": "text",
-      "text": "Try the three steps on a psalm you may already know by heart."
+      "text": "Here are the three steps on a psalm you may already know by heart."
     },
     {
       "type": "widget",
@@ -72,7 +72,7 @@
     },
     {
       "type": "text",
-      "text": "Read the passage more than once. Who is speaking? What is happening? What words repeat? What surprises you? Do not interpret yet. Just notice. The last two lessons help here: know what kind of book you are reading, and where the passage sits in the Bible's story."
+      "text": "Start with what is on the page. Who is speaking? What is happening? What words repeat? What surprises you? Do not interpret yet. The last two lessons help here: know what kind of book you are reading, and where the passage sits in the Bible's story."
     },
     {
       "type": "subheading",
@@ -97,7 +97,7 @@
     },
     {
       "type": "text",
-      "text": "Notice the word \"worker.\" Good Bible study takes effort, but it is the effort of a child who wants to know a Father, not a hired hand working for a wage. When you rightly handle the Word of truth, the Bible stops being a confusing book you feel guilty about and becomes a living conversation with the God who loves you."
+      "text": "Paul uses the word \"worker.\" Good Bible study takes effort, but it is the effort of a child who wants to know a Father, not a hired hand working for a wage. When you rightly handle the Word of truth, the Bible stops being a confusing book you feel guilty about and becomes a living conversation with the God who loves you."
     },
     {
       "type": "question",
@@ -111,7 +111,7 @@
     },
     {
       "type": "text",
-      "text": "Now it is your turn. Here is the whole psalm. Slow down and walk through it with OIA."
+      "text": "Now it is your turn. Here is the whole psalm. Walk through it with OIA."
     },
     {
       "type": "image",
@@ -134,7 +134,7 @@
     {
       "type": "question",
       "id": "201-07-2",
-      "text": "7.2 - Read Psalm 23. What do you notice that the walkthrough did not point out?",
+      "text": "7.2 - Read Psalm 23. What do you notice that this lesson did not point out?",
       "height": "tall"
     },
     {
@@ -188,13 +188,7 @@
     },
     {
       "type": "text",
-      "text": "Pick a short passage this week and walk through it with OIA on your own. A few verses are enough. Try Luke 15:1-7, where Jesus tells of a shepherd who leaves the ninety-nine to find one lost sheep, or choose your own. Open your Bible, slow down, and see what God shows you."
-    },
-    {
-      "type": "question",
-      "id": "201-07-5",
-      "text": "7.5 - Write down which passage you will study with OIA this week, and when.",
-      "height": "tall"
+      "text": "Pick a short passage this week and walk through it with OIA on your own. A few verses are enough. Try Luke 15:1-7, where Jesus tells of a shepherd who leaves the ninety-nine to find one lost sheep, or choose your own. Open your Bible and see what God shows you."
     },
     {
       "type": "heading",
@@ -206,7 +200,7 @@
     },
     {
       "type": "text",
-      "text": "You also have two tools that work together. The Three Discovery Questions from the Starting course are your daily bread, simple enough to use every time you read. OIA is your weekly feast, for when you want to slow down and dig into a passage with care. Use both, and the Word of God will come alive in your hands."
+      "text": "You also have two tools that work together. The Three Discovery Questions from the Starting course are your daily bread, simple enough to use every time you read. OIA is your weekly feast, for when you want to dig into a passage with care. Use both, and the Word of God will come alive in your hands."
     },
     {
       "type": "text",
@@ -237,6 +231,14 @@
     {
       "type": "text",
       "text": "This lesson draws on the inductive study method taught in <em>Living by the Book</em> by Howard G. Hendricks and William D. Hendricks."
+    }
+  ],
+  "retiredQuestions": [
+    {
+      "type": "question",
+      "id": "201-07-5",
+      "text": "7.5 - Write down which passage you will study with OIA this week, and when.",
+      "height": "tall"
     }
   ]
 }
