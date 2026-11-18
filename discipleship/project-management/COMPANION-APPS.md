@@ -115,3 +115,8 @@ When an older record has no explicit category, attempts > 0 displays Learning; o
 Dave explicitly removed the bonus record-management interface. Do not reintroduce Heart52 download, backup, restore, reset or past-record controls from older notes. Automatic category saving remains; existing stored labels/history are not erased. Heart52 now has one compact row immediately above the card: square radio controls assign exactly one category, while separate adjacent word links open category decks. One checked square stays visible through both flip faces. On an empty deck no card is selected and the squares are disabled, while the word links remain usable.
 
 The former lower Mark this verse segment, duplicated Your decks panel, practiced totals and review-dashboard entry are removed. Position text moves into the existing below-card navigation; routine save notifications remain unobtrusive, and actual storage failures show a plain warning without download instructions. Opening preference is one small setting. The simpler interface supersedes earlier Heart52 backup/copy UI requirements; other apps' controls stay untouched.
+
+
+## Published, November 18, 2026
+
+Dave authorized all3 app PRs: #261 merged at9c4f3d5, #288 ata7e00fb and #296 at8793a4c. The homepage Your Growing Apps button and https://growingtogetherdiscipleship.com/tools/ are live with Daily Prayers, Weekly Connection Time and Heart52. Former preview-only/dependency warnings above are historical. The latest simplified blue Heart52 UI remains in force; no record-management extras should be restored. Production workflows and saved-data safeguards are verified. Evidence: logs/2026-11-18-APPS-PUBLISH-THREE-codex.md.

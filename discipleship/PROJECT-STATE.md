@@ -1,5 +1,12 @@
 # Growing Together - Project State
 
+## Growing Apps published, November 18, 2026
+
+DONE: Dave authorized publishing #261, #288 and #296. All3 merged in order and Firebase production is verified at8793a4c. The homepage now has Your Growing Apps under Browse All Lessons. [Open the live apps page](https://growingtogetherdiscipleship.com/tools/): Your Daily Prayers, Your Weekly Connection Time and Your Heart52. These are live, not preview-only; no further merge/approval is pending for these versions.
+
+Current lesson voice/contents, questions/IDs, readings, approved widgets and story art are preserved. Only the authorized101-03 URL,202-08/201-05 tool cards and101-04 hint change. Heart52 keeps the blue theme and simple above-card category row, with no backup/record-management UI. Live hub340, Daily147, Weekly314 and Heart136 browser checks pass. All data used for verification was synthetic. Lesson review stages are unchanged. [Publication evidence](project-management/logs/2026-11-18-APPS-PUBLISH-THREE-codex.md).
+
+
 ## Heart52 flip-card redesign, November 18, 2026
 
 APP-HEART52 REVIEW, PR #296. Dave requested a full new look with the verse as the hero. The forest/sage/ivory app opens on a topic/first-two-word flip card, with large Scripture on the reverse, a continuous All 52 reference view and a simple yearly path. First visitors see the current week; returning visitors can resume or choose weekly startup. Original ESV selections/audio and all lessons/other apps remain unchanged. New preferences preserve existing progress and portable copies. Core QA, 1769 learning/storage/calendar checks, 674 existing app, 486 new card/calendar and 340 hub/lesson checks pass. New preview replaces the earlier app design; Dave's visual review remains pending, nothing merged or live. Still stacked on #288 then #261. [Redesign log](project-management/logs/2026-11-18-APP-HEART52-REDESIGN-codex.md).

@@ -1,5 +1,12 @@
 # Growing Together Team Board
 
+## Growing Apps published, November 18, 2026
+
+DONE: Dave authorized publishing #261, #288 and #296. All3 merged in order and Firebase production is verified at8793a4c. The homepage now has Your Growing Apps under Browse All Lessons. [Open the live apps page](https://growingtogetherdiscipleship.com/tools/): Your Daily Prayers, Your Weekly Connection Time and Your Heart52. These are live, not preview-only; no further merge/approval is pending for these versions.
+
+Current lesson voice/contents, questions/IDs, readings, approved widgets and story art are preserved. Only the authorized101-03 URL,202-08/201-05 tool cards and101-04 hint change. Heart52 keeps the blue theme and simple above-card category row, with no backup/record-management UI. Live hub340, Daily147, Weekly314 and Heart136 browser checks pass. All data used for verification was synthetic. Lesson review stages are unchanged. [Publication evidence](logs/2026-11-18-APPS-PUBLISH-THREE-codex.md).
+
+
 Three-app publication checkpoint: #261 and #288 are merged; the live apps page shows Daily Prayers and Weekly Connection Time. #296 is retargeted/refreshed onto a7e00fb, preserving approved681aebe Heart52 bytes, current lesson voice/contents and both prior apps. Only tracking history conflicted; both sides retained. Finish #296 checks/merge and verify all3 production apps, then mark publication DONE. Dave authorized publishing these versions.
 
 Three-app publication checkpoint: #261 merged at9c4f3d5; the apps button is verified live. #288 is retargeted/refreshed onto that main with approved6416cf4 app bytes unchanged. Tracking conflicts retained both histories;202-08 preserves all current text except its authorized added tool card. Next merge #288 after final checks, then #296. Dave authorized publication; no further design approval is pending for these app versions.
