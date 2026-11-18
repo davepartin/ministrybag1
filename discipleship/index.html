@@ -4558,14 +4558,16 @@
                                 html += `</div>`;
                                 break;
 
-                            case 'box':
-                                html += `<div class="block-box">
+                            case 'box': {
+                                const boxAnchor = lessonJumpAnchorAttrs(b.anchor);
+                                html += `<div class="block-box${boxAnchor.cls}"${boxAnchor.attrs}>
                                     <div class="box-title">${b.title}</div>`;
                                 b.content.forEach(item => {
                                     html += `<p>${item}</p>`;
                                 });
                                 html += `</div>`;
                                 break;
+                            }
 
                             case 'question':
                                 const heightClass = b.height === 'tall' ? 'tall' : b.height === 'short' ? 'short' : '';
@@ -6898,7 +6900,7 @@
         // HASH ROUTING - Browser back/forward support
         // Handles: #101-4 (course-lesson), #tree, #about, # (home)
         // ============================================
-        // In-lesson jump links. A heading, parable, image or widget block may carry an
+        // In-lesson jump links. A heading, parable, image, widget or box block may carry an
         // "anchor" (lowercase letters, digits, hyphens). A lesson's "contents" list
         // ({label, title, anchor}) renders under the summary as links to those anchors,
         // and lesson text may also use <a class="lesson-jump" href="#jump-ANCHOR">.
