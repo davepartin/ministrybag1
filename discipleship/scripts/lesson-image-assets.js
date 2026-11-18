@@ -821,6 +821,21 @@
             }
         ]
     },
+    "images/203-01-love-moves-out.png": {
+        "width": 1280,
+        "height": 1203,
+        "sourceHash": "a47e9741fd2653034c2baa9fd05c91eeceeb04e2483bd3f7a5cb128d2baae814",
+        "variants": [
+            {
+                "src": "images/optimized/203-01-love-moves-out-640.webp",
+                "width": 640
+            },
+            {
+                "src": "images/optimized/203-01-love-moves-out-1280.webp",
+                "width": 1280
+            }
+        ]
+    },
     "images/203-02-bless-logo.png": {
         "width": 1301,
         "height": 539,
