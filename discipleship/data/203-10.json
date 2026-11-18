@@ -2,6 +2,23 @@
   "id": "10",
   "title": "Lesson 10: Your Calling - Putting It All Together",
   "description": "You were made for more than a seat in the crowd. This final lesson of Growing Out brings together everything you have learned and helps you see where God has shaped you to serve.",
+  "contents": [
+    {
+      "label": "Story",
+      "title": "1 Corinthians 12",
+      "anchor": "story"
+    },
+    {
+      "label": "Study",
+      "title": "Called First to Jesus",
+      "anchor": "study"
+    },
+    {
+      "label": "Diagram",
+      "title": "Your SHAPE",
+      "anchor": "diagram"
+    }
+  ],
   "blocks": [
     {
       "type": "text",
@@ -10,7 +27,8 @@
     {
       "type": "parable",
       "title": "A Place for Every Part",
-      "text": "Imagine a body trying to walk with only one foot doing all the work. Or a hand deciding it has no value because it cannot see. Paul used this picture to describe the church. Some believers felt unimportant; others acted as though they needed no one. Paul answered that God arranged the parts of the body as He chose, and every part matters (1 Corinthians 12:14-27).<br><br>A hand does not have to become an eye to be useful. It belongs to the body and serves alongside the other parts. In the same way, God gives His people different gifts so they can care for one another and build up the church. The question is not whether you have the most visible role. It is how you can love and serve the people God has placed around you."
+      "text": "Imagine a body trying to walk with only one foot doing all the work. Or a hand deciding it has no value because it cannot see. Paul used this picture to describe the church. Some believers felt unimportant; others acted as though they needed no one. Paul answered that God arranged the parts of the body as He chose, and every part matters (1 Corinthians 12:14-27).<br><br>A hand does not have to become an eye to be useful. It belongs to the body and serves alongside the other parts. In the same way, God gives His people different gifts so they can care for one another and build up the church. The question is not whether you have the most visible role. It is how you can love and serve the people God has placed around you.",
+      "anchor": "story"
     },
     {
       "type": "text",
@@ -24,7 +42,8 @@
     },
     {
       "type": "heading",
-      "text": "Called First to Jesus"
+      "text": "Called First to Jesus",
+      "anchor": "study"
     },
     {
       "type": "text",
@@ -50,7 +69,8 @@
     {
       "type": "widget",
       "src": "widgets/shape.html",
-      "height": "580px"
+      "height": "580px",
+      "anchor": "diagram"
     },
     {
       "type": "text",
