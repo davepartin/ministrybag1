@@ -3,7 +3,7 @@ Date: 2026-11-18
 Agent / reviewer: Cursor Grok 4.6
 Status: REVIEW
 Branch: cursor/101-polish-880d
-Base commit: 236d9bc
+Base commit: 236d9bc, then merged origin/main 6299e71 with a regular merge commit. Conflicts were only TASKS.md and HANDOFF.md; both histories kept. 101-06 lost its in-lesson BLESS credit line from main's CREDITS-ALL; polish wording and the 6-4 stub remain. 101-06 baseline hashes refreshed after that merge.
 Scope / files reserved: discipleship/ only. Lesson JSON for 101-02 through 101-07, curriculum-toc.csv, export and storage tests, 101 editorial baseline/status, TASKS, HANDOFF, this log.
 
 ## Changes and decisions
@@ -45,9 +45,17 @@ Checks not run and why:
 
 Known baseline failures distinguished from new regressions: none. All listed suites exited 0.
 
+Post-merge re-run from discipleship/ after merging origin/main 6299e71:
+- node scripts/test_answer_storage.js: exit 0, 73 passed.
+- node scripts/test_lesson_export.js: exit 0, 212 passed.
+- node scripts/test_lesson_assets.js: exit 0, 8 passed.
+- node scripts/test_widget_iframe.js: exit 0, 32 passed.
+- node scripts/test_lesson_images.js: exit 0, 1557 passed.
+- bash scripts/qa_foundation.sh: exit 0, all foundation suites passed.
+
 ## Handoff
 Changed files: data/101-02.json through data/101-07.json, curriculum-toc.csv, scripts/test_answer_storage.js, scripts/test_lesson_export.js, reviews/101-editorial-baseline.json, reviews/101-editorial-status.md, TASKS.md, HANDOFF.md, this log.
 Remaining work / next command: Dave reviews the preview and decides whether to merge.
 Blocker and unblock action, if any: none
-Commit / PR / GitHub sync state: pending after this log is included in the commit
+Commit / PR / GitHub sync state: regular merge of origin/main into cursor/101-polish-880d; PR #314 left at REVIEW, not merged.
 Pastoral approval evidence, if applicable: Dave approved these exact edits in chat on 2026-11-18. Whole-lesson Gold is not claimed.

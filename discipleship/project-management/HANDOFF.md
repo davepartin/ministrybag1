@@ -2,6 +2,8 @@
 
 101-POLISH REVIEW, November 18: Dave-approved 101 wording and metadata fixes on cursor/101-polish-880d. Lord's Prayer wording untouched. Saved-answer IDs kept. Stop at REVIEW, do not merge. Evidence: logs/2026-11-18-101-POLISH-cursor.md.
 
+Input-focus cleanup DONE, November 18: PR #311 merged at07654c5 and Firebase production verified. Pointer/touch outlines are hidden; keyboard navigation retains a2px blue cue, including same-origin embedded widgets. Final foundation,117 preview and117 live input-mode checks pass; no approved widget bytes, lesson wording, artwork or saved-data logic changed. Log: logs/2026-11-18-UI-FOCUS-MODALITY-codex.md.
+
 Daily Prayers reference placement DONE, November 18: PR #310 merged atcc45ef1. The Lord's Prayer dropdown is above the personal prayer and matches its paper background/type/spacing.294 app checks,320/390/1280 order/style/print checks and live390px saved-prayer/style checks pass. Source/legacy synchronized and production verified; log: logs/2026-11-18-PRAYERS-LORDS-TOP-codex.md.
 
 Heart52 card cleanup DONE, November 18: PR #306 merged at82103f2. Bring it to mind is removed, topic/reference spacing balanced, and live HTML/CSS verified against source after successful Firebase deployment. Keywords, verse/category behavior and all other apps/lessons remain intact. Evidence: logs/2026-11-18-HEART52-CLEAN-CARD-codex.md.
