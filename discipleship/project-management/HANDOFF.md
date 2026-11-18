@@ -1,5 +1,29 @@
 # Resume here
 
+Three-app publication, November 18: Dave explicitly authorized merging #261, #288 and #296 and publishing Your Growing Apps. APPS-PUBLISH-THREE ACTIVE. Daily Prayers is refreshed cleanly onto current main with reviewed app bytes unchanged and only its authorized tool URL/home controls added. Merge/check each in order, preserve latest lesson work and verify production. Evidence: logs/2026-11-18-APPS-PUBLISH-THREE-codex.md.
+
+## Daily Prayers and Your Growing Apps preview: November 17, 2026
+
+APP-DAILY-PRAYERS REVIEW, PR #261. Dave requested two matching home controls: Browse All Lessons, then Your Growing Apps. The second opens a separate tools/ page with compact full-width app buttons, starting with Your Daily Prayers. The temporary inline home app section and its custom hash routing are removed; main-app scripts now match current main exactly. A synthetic six-button layout fits the tested phone/laptop screens, with only the ready app shipped.
+
+Daily Prayers remains on the same site with return links to the separate app hub and prayer lesson. Only the 101-03 tool URL changes; protected wording, questions/IDs, reading, art and widget remain unchanged. MinistryBag keeps the old address/data with Save a copy/Restore a copy migration; no redirect or account sync is implied. No 201-01 or #282 branch edits, other apps or Firebase configuration changes.
+
+Core QA, mirror parity, 294 existing prayer, 168 hub/navigation and 964 lesson-navigation browser checks pass locally. The new hub/navigation preview awaits Dave's review; no merge or live change. [Current log](logs/2026-11-17-APP-DAILY-PRAYERS-REVIEW-codex.md).
+
+## Daily Prayers companion ready for review: November 16, 2026
+
+APP-DAILY-PRAYERS REVIEW. Dave asked Codex to polish Daily Prayers as the model for companion apps. One authored app in tools/daily-prayers/ now provides a warm paper reading view, four native editing sections, input autosave, Undo, accessible phone/keyboard controls, and explicit save/restore copies. Original prayer wording and both legacy browser-storage keys are preserved. Opening old prayers does not rewrite them. Malformed data, blocked storage and restore failures are handled without silently replacing an existing prayer list.
+
+Generated root dailyprayers/ delivery copies preserve the MinistryBag address and origin. Growing Together can serve the same app at /tools/daily-prayers/. Browser data does not travel between origins or sync with accounts; the interface states that and offers portable copies. The existing 101-03 app link and every lesson JSON, index.html, question, reading, Gold file, widget and image remain unchanged. No Firebase configuration or publishing workflow changes are included.
+
+Repository QA and 270 synthetic browser assertions pass across both hosted paths, including 320/375/390/1280 layouts, reduced motion, keyboard, legacy output, autosave/reload, copy/email/print, backup cancellation/restore/rollback and storage failure. A fresh visual design and UI wording await Dave's review; this packet is not merged or published. Preview evidence is on the codex/daily-prayers-companion PR. Pattern: [Companion apps](COMPANION-APPS.md). Evidence: [Codex log](logs/2026-11-16-APP-DAILY-PRAYERS-codex.md).
+
+### Dave follow-up: companion app family
+
+PR #261 now uses Create Your Daily Prayer for the generation action, matches Growing Together's 640px content width in a single column, and shows the existing MinistryBag satchel beside its header link. The existing logo is copied byte-identically, not redesigned. Source and legacy delivery copies stay synchronized.
+
+[COMPANION-APPS.md](COMPANION-APPS.md#proposed-aaa-rollout-november-16) maps the common visual family, a future MinistryBag discovery-page pass, and Weekly Connection Time as an optional married-couples practice link after Keeping the Vow in 202-08. Weekly Connection Time already has seven useful moments; preserve its content and connection_time_ data keys, add truthful storage-error handling and a return-to-lesson link in its own bounded packet. No homepage, Weekly Connection Time or 202-08 changes are included here. Dave's new design review remains pending.
+
 ## Compact header standard across every lesson, November 17, 2026
 
 Dave approved the 202-01 pilot and requested the same style throughout the app. UI-COMPACT-HEADERS-ALL, PR #286, applies the existing 49px row to every lesson: Back, course/lesson code and title, then Menu. The progress strip and unused update code are removed. All 47 lesson identities pass, with 44px controls, sticky placement, long-title truncation, no horizontal overflow and saved answers preserved. Core QA, 283 header checks, 964 navigation checks, 95 Samaritan/128 lamp/103 soils checks and 387 all-course image checks pass. No lesson JSON, approved widget/artwork, question/reading identity or saved-answer logic changes. The execution blocker below is resolved; the former single-lesson pilot limitation is superseded. Final exact-head preview, merge and live evidence: [Codex log](logs/2026-11-17-UI-COMPACT-HEADERS-ALL-codex.md) and PR #286.
@@ -104,6 +128,7 @@ Dave approved PR #263 at b52e4f4ab59024193484e23eff0ad99d90904bae: the 1280x720 
 Current main 0b4a799 (#259) is preserved: all prose, Scripture, eight active questions, retired 4-6, John 10-12 and Read, Discover, Respond widget are unchanged. In particular, do not restore the retired share section/question or duplicate Discovery Questions box. All unrelated lessons, index, saved-answer code and existing art stay unchanged. Image approval only; text remains Silver with Dave edits protected. The 101 status and baseline now record the current protected content and exact approved image hashes.
 
 Core QA, asset/image/export/storage/iframe checks and targeted widget/dissolve browser verification are recorded in the integration log. Final exact-head Firebase preview, merge and production deployment evidence are on PR #263. Evidence: [Codex integration log](logs/2026-11-16-ART-101-04-LAMP-codex.md).
+
 
 ## 202-10 Lord's Supper update approved: November 16, 2026
 

@@ -103,8 +103,8 @@
       "stage": "Silver",
       "dave_edits_protected": true,
       "full_personal_review": "unrecorded",
-      "lesson_sha256": "105b1a535d20e9b9fee5230e2153af33268851322933172b7c5cc073c7b91b9a",
-      "non_visual_content_sha256": "dcbedac9c8d8b4eb76dac602dd63a05d0ff9279d18d2ed84c7e29533b9c67499",
+      "lesson_sha256": "0fe0c141864f0c8ce64f04d456227edb08d51ffa88aad08c271fe08bfd56d24f",
+      "non_visual_content_sha256": "39b420057b19f9854b526ce4d691f31239f80212227416817ff302a1cd85ae8e",
       "visual_blocks": [
         {
           "type": "image",
@@ -158,6 +158,14 @@
         "source": "65cc11013e4cbc0c1a59ca57f6ba1dc944b9aae8",
         "pr": 269,
         "scope": "Eight text blocks only: second-person What Is Prayer, shorter two-address introduction and six step explanations. All headings, quoted lines, questions/readings, practice/review, art/story/widgets/tools unchanged. Specific wording approval; text Silver."
+      },
+      "tool_link_update": {
+        "date": "2026-11-17",
+        "pr": 261,
+        "source": "Dave requested Daily Prayers live within Growing Together, reachable from home and lessons.",
+        "old_url": "https://ministrybag.com/dailyprayers/",
+        "new_url": "tools/daily-prayers/",
+        "scope": "Only the tool URL changes. All approved wording, questions/IDs, readings, artwork and Lord's Prayer widget remain unchanged. Specific navigation approval, text stays Silver."
       }
     },
     {
