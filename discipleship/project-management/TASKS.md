@@ -4,7 +4,7 @@
 
 | Task | Status | Owner / branch / date | Scope |
 |---|---|---|---|
-| APP-HEART52 | REVIEW | Codex / codex/heart52-companion / 2026-11-17 | Bring original Heart52 into Growing Apps, retain its 52-passage collection/logo/legacy URL, improve recall and review using the newer repo version where useful. Main tool link in 201-05 and short optional hint in 101-04. Preserve all existing lesson copy/IDs/widgets/art and app data. Based on Weekly Connection Time PR #288; PR #296; new app preview/review before publication. |
+| APP-HEART52 | ACTIVE | Codex / codex/heart52-companion / 2026-11-17 | Bring original Heart52 into Growing Apps, retain its 52-passage collection/logo/legacy URL, improve recall and review using the newer repo version where useful. Main tool link in 201-05 and short optional hint in 101-04. Preserve all existing lesson copy/IDs/widgets/art and app data. Based on Weekly Connection Time PR #288; PR #296; November 18 redesign requested: phone-first flip cards, verse-first typography, all-passage reference view and a simple yearly path. ESV stays the single edition for this pass. New preview/review before publication. |
 
 ## Weekly Connection Time companion, November 17, 2026
 
