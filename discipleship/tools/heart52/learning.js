@@ -32,5 +32,11 @@ function validateProgress(value,legacy=false){
  }
  const copy=JSON.parse(JSON.stringify(value));copy.version=1;return copy;
 }
-return {tokens,compareRecall,shuffled,phraseChunks,localDay,reviewDay,dueDay,isDue,freshProgress,validateProgress};
+// A 52-part local-calendar plan: Jan 1 begins week 1; week 52 includes year-end days.
+function calendarWeek(now=new Date()){const day=Math.floor((Date.UTC(now.getFullYear(),now.getMonth(),now.getDate())-Date.UTC(now.getFullYear(),0,1))/86400000);return Math.min(52,Math.floor(day/7)+1);}
+function calendarRange(number,year=new Date().getFullYear()){
+ if(!Number.isInteger(number)||number<1||number>52||!Number.isInteger(year)||year<1900||year>2200)throw Error('Choose a valid calendar week.');
+ return {start:new Date(year,0,1+(number-1)*7,12),end:number===52?new Date(year,11,31,12):new Date(year,0,number*7,12)};
+}
+return {calendarWeek,calendarRange,tokens,compareRecall,shuffled,phraseChunks,localDay,reviewDay,dueDay,isDue,freshProgress,validateProgress};
 });

@@ -38,4 +38,15 @@ backing=memory({[S.KEY]:'{broken',...foreign});api=S.create({getStorage:()=>back
 ck(api.replace(progress),'confirmed replacement can recover malformed storage');ck(backing.getItem(S.RECOVERY)==='{broken','malformed original is retained during replacement');
 const statuses=[];api=S.create({getStorage:()=>{throw Error('blocked');},notify:s=>statuses.push(s)});api.load();ck(!api.save(progress)&&statuses.at(-1).kind==='error','blocked reads stay usable but unsaved');
 backing=memory({[S.KEY]:JSON.stringify(progress),...foreign});api=S.create({getStorage:()=>backing});api.load();const originalWrite=backing.setItem,oldSnapshot=JSON.stringify([...backing.map].sort());backing.setItem=(key,value)=>{if(key===S.KEY&&String(value).includes('SYN fail'))throw Error('quota');originalWrite(key,value);};ck(!api.replace({...progress,futureMetadata:{note:'SYN fail'}}),'partial restore failure is reported');ck(JSON.stringify([...backing.map].sort())===oldSnapshot,'failed restore rolls back data and recovery');
-console.log(passed+' Heart52 content, learning and storage checks passed.');
+// Calendar uses local dates and covers all 365/366 days without a 53rd passage.
+for(const year of [2024,2025,2026,2028]){
+ const days=(Date.UTC(year+1,0,1)-Date.UTC(year,0,1))/86400000;
+ for(let day=0;day<days;day++){
+  const d=new Date(year,0,day+1,12),number=L.calendarWeek(d),range=L.calendarRange(number,year);
+  ck(number>=1&&number<=52&&d>=range.start&&d<=range.end,'calendar coverage '+year+' '+day);
+ }
+ ck(L.calendarWeek(new Date(year,11,31,23,59))===52,'year end stays in passage52');
+ ck(L.calendarRange(52,year).end.getDate()===31,'last week covers December31');
+}
+
+console.log(passed+' Heart52 content, learning, calendar and storage checks passed.');

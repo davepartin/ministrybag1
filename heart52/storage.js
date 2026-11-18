@@ -37,7 +37,7 @@ function create({getStorage=()=>globalThis.localStorage,notify=()=>{}}={}){
   }
  }
  function recovery(){try{return getStorage().getItem(RECOVERY);}catch(_){return null;}}
- return {load,save,replace,recovery,raw:()=>badRaw};
+ return {load,save,replace,recovery,hasProgress:()=>{try{return getStorage().getItem(KEY)!==null||legacyRaw!==null;}catch(_){return false;}},raw:()=>badRaw};
 }
 return {KEY,RECOVERY,LEGACY,create};
 });

@@ -91,3 +91,8 @@ Read & Listen, gradual word hints, phrase ordering, concealed recall and optiona
 Save/restore copies, recovery downloads and truthful storage-failure notices follow the companion family. Browser/device storage is separate across MinistryBag, previews and Growing Together; no Firebase/account sync or automatic cross-origin transfer. Root Heart52 remains available, without a forced redirect. 201-05 has one optional tool card; 101-04 has one short optional link. Every existing paragraph, question/ID, reading, widget and image stays intact. Claude's held 201-05 rewrite PR #292 is separate; carry the small optional tool card forward when it is approved.
 
 New Heart52 UI is REVIEW, not approved for publication. Dependency order: Daily Prayers #261, Weekly Connection Time #288, then Heart52 PR #296. Do not merge the held 201-05 rewrite to satisfy this task.
+
+
+## Heart52 visual direction superseded, November 18, 2026
+
+Dave requested a full redesign after seeing the first preview. PR #296 now uses a verse-first forest/sage/ivory card deck, a new small wordmark, All 52 continuous reading and a 52-week local-calendar path. The former large original-logo library landing is superseded, not a second app. Original assets remain on disk and all 52 ESV strings/audio remain exact. Optional progress.heart52Settings metadata stores hint/start preferences. Existing device-only storage, compatibility, copies/recovery and source-to-legacy build remain in force. New UI still needs Dave's review. Evidence: logs/2026-11-18-APP-HEART52-REDESIGN-codex.md.

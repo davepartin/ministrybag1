@@ -25,14 +25,53 @@ function routeHash(number,nextMode='read',focus='workspace-heading'){
 }
 function stopMedia(){mediaGeneration++;if(audio){audio.pause();audio.removeAttribute('src');audio.load();audio=null;}window.speechSynthesis?.cancel();deviceVoice=false;}
 function resetPractice(){hideLevel=0;hideOrder=[];revealed=new Set();recallText='';scored=false;grade=null;revealedAnswer=false;rated=false;}
+let deckWeek=0,flipped=false;
+function settings(){const s=progress.heart52Settings;return {start:s?.start==='calendar'?'calendar':'resume',hint:s?.hint==='words'?'words':'topic'};}
+function changeSettings(key,value){progress.heart52Settings={...progress.heart52Settings,...settings(),[key]:value};save();}
+function setCardFace(reveal){
+ flipped=reveal;const verse=verses[deckWeek-1];$('memory-card').setAttribute('aria-pressed',String(reveal));
+ $('card-front').setAttribute('aria-hidden',String(reveal));$('card-front').inert=reveal;
+ $('card-back').setAttribute('aria-hidden',String(!reveal));$('card-back').inert=!reveal;
+ $('memory-card').setAttribute('aria-label',reveal?verse.text+' '+verse.reference+'. Turn card back.':'Reveal '+verse.reference+'. '+$('card-hint').textContent);
+}
+function renderCard(){
+ const v=verses[deckWeek-1],s=settings(),current=L.calendarWeek(),range=L.calendarRange(deckWeek),fmt=d=>d.toLocaleDateString(undefined,{month:'short',day:'numeric'});
+ $('card-hint').textContent=s.hint==='words'?L.tokens(v.text).slice(0,2).map(t=>t.text).join(' ')+'…':v.theme;
+ $('card-front-reference').textContent=v.reference;$('card-back-reference').textContent=v.reference;$('card-verse').textContent=v.text;$('card-theme').textContent=v.theme;
+ $('deck-position').textContent='VERSE '+String(deckWeek).padStart(2,'0')+' / 52';$('hint-choice').value=s.hint;$('start-choice').value=s.start;
+ $('continue-link').href='#week-'+deckWeek;$('deck-previous').disabled=deckWeek===1;$('deck-next').disabled=deckWeek===52;
+ $('opening-label').textContent=deckWeek===current?'YOUR VERSE FOR THIS WEEK':'ONE PASSAGE. CARRIED WITH YOU.';
+ $('opening-note').textContent=deckWeek===current?fmt(range.start)+' – '+fmt(range.end)+'. Read it. Recall it. Return to it.':'Pick up here, or choose this week’s verse. Your pace is welcome.';
+ $('this-week').textContent=deckWeek===current?'This week · '+current:'This week’s verse';setCardFace(false);
+}
+function showDeck(number){location.hash='#card-'+number;}
+function renderCalendar(){
+ const year=Number($('calendar-year').value),now=new Date(),current=L.calendarWeek(now),fmt=d=>d.toLocaleDateString(undefined,{month:'short',day:'numeric'});
+ $('calendar-grid').replaceChildren();$('calendar-note').textContent=year===now.getFullYear()?'This is week '+current+'. A little each week adds up.':'Your 52 passages for '+year+'. No deadlines, just a path.';
+ for(const v of verses){
+  const r=L.calendarRange(v.week,year),link=element('a','calendar-week');link.href='#card-'+v.week;link.setAttribute('aria-label','Week '+v.week+', '+fmt(r.start)+' to '+fmt(r.end)+': '+v.reference);
+  if(year===now.getFullYear()&&v.week===current)link.setAttribute('aria-current','date');if(entry(v.week).attempts>0)link.classList.add('is-practiced');if(v.week===deckWeek)link.classList.add('is-selected');
+  link.append(element('span','calendar-number',String(v.week).padStart(2,'0')),element('span','calendar-date',fmt(r.start)));$('calendar-grid').append(link);
+ }
+}
+function renderHome(initial){
+ const hash=location.hash,card=hash.match(/^#card-([1-9][0-9]?)$/),explicit=card&&Number(card[1])<=52?Number(card[1]):0;
+ if(explicit){deckWeek=explicit;if(progress.currentWeek!==deckWeek){progress.currentWeek=deckWeek;if(!initial)save();}}
+ if(!deckWeek)deckWeek=settings().start==='calendar'||!persistence.hasProgress()?L.calendarWeek():progress.currentWeek;
+ progress.currentWeek=deckWeek;
+ const view=hash==='#all'?'all':hash==='#year'?'year':'today';
+ for(const name of ['today','all','year']){$(name+'-view').hidden=name!==view;const nav=$('nav-'+name);if(name===view)nav.setAttribute('aria-current','page');else nav.removeAttribute('aria-current');}
+ message('');renderLibrary();renderCard();if(view==='year')renderCalendar();
+ if(!initial){window.scrollTo({top:0,behavior:'instant'});if(focusAfter){const target=$(focusAfter);focusAfter=null;target?.focus({preventScroll:true});}}
+}
 function route(initial=false){
  stopMedia();const match=location.hash.match(/^#week-([0-9]{1,2})(?:\/(read|listen|practice|play|review|recall))?$/);
  const next=match?Number(match[1]):0;
- if(!next||next>52){week=0;reviewQueue=[];reviewing=false;$('library-view').hidden=false;$('passage-view').hidden=true;renderLibrary();document.title='Heart52 | Growing Together';
+ if(!next||next>52){week=0;reviewQueue=[];reviewing=false;$('library-view').hidden=false;$('passage-view').hidden=true;renderHome(initial);document.title='Heart52 | Growing Together';
   if(location.hash==='#copies'){$('copies').open=true;requestAnimationFrame(()=>$('copies').scrollIntoView());}return;
  }
  if(next!==week){resetPractice();if(!initial)window.scrollTo({top:0,behavior:'instant'});}
- week=next;mode=({listen:'read',play:'practice',review:'recall'})[match[2]]||match[2]||'read';
+ week=next;deckWeek=next;mode=({listen:'read',play:'practice',review:'recall'})[match[2]]||match[2]||'read';
  if(progress.currentWeek!==week){progress.currentWeek=week;if(!initial)save();}
  $('library-view').hidden=true;$('passage-view').hidden=false;
  const verse=verses[week-1];$('passage-number').textContent='Passage '+week+' of 52';$('passage-theme').textContent=verse.theme;$('passage-heading').textContent=verse.reference;
@@ -43,9 +82,6 @@ function route(initial=false){
  if(focusAfter){const target=$(focusAfter);focusAfter=null;if(target){target.tabIndex=target.tagName==='BUTTON'?target.tabIndex:-1;target.focus({preventScroll:true});}}
 }
 function renderLibrary(){
- const current=verses[Math.max(0,Math.min(51,progress.currentWeek-1))];
- $('continue-reference').textContent=current.reference;$('continue-theme').textContent=current.theme+' · Passage '+current.week;
- $('continue-link').href='#week-'+current.week;
  const practiced=verses.filter(v=>entry(v.week).attempts>0),due=practiced.filter(v=>L.isDue(entry(v.week)));
  $('progress-count').textContent=practiced.length+' of 52 practiced · '+due.length+' ready for review';
  $('start-review').disabled=practiced.length===0;$('start-review').textContent=due.length?'Review '+Math.min(due.length,5)+' due passage'+(Math.min(due.length,5)===1?'':'s'):'Review practiced passages';
@@ -57,10 +93,10 @@ function renderList(){
  const found=verses.filter(v=>(!theme||v.theme===theme)&&(!query||[v.week,v.reference,v.theme,v.text].join(' ').toLocaleLowerCase().includes(query)));
  $('verse-list').replaceChildren();$('filter-count').textContent=found.length+' passage'+(found.length===1?'':'s')+' shown';
  for(const v of found){
-  const link=element('a','verse-link');link.href='#week-'+v.week;
-  const text=element('div');text.append(element('span','week','PASSAGE '+v.week),element('h3','',v.reference),element('span','theme',v.theme));link.append(text);
-  if(L.isDue(entry(v.week)))link.append(element('span','due','Review ready'));else link.append(element('span','muted','→'));
-  $('verse-list').append(link);
+  const article=element('article','reference-entry'),heading=element('div','reference-heading'),link=element('a','verse-link');link.href='#card-'+v.week;
+  link.append(element('span','week','VERSE '+String(v.week).padStart(2,'0')),element('h3','',v.reference));heading.append(link,element('span','topic-label',v.theme));
+  const quote=element('p','reference-text',v.text),practice=element('a','reference-practice','Practice this verse →');practice.href='#week-'+v.week;
+  article.append(heading,quote,practice);$('verse-list').append(article);
  }
  if(!found.length)$('verse-list').append(element('p','muted','No passages match yet. Try another word or theme.'));
 }
@@ -176,6 +212,14 @@ function download(value,name,raw=false){const url=URL.createObjectURL(new Blob([
 let pendingRestore=null;
 function cancelRestore(){pendingRestore=null;$('restore-dialog').close();}
 function bindStatic(){
+ $('memory-card').onclick=()=>setCardFace(!flipped);
+ $('memory-card').onkeydown=e=>{if(e.key==='ArrowRight'&&deckWeek<52){e.preventDefault();showDeck(deckWeek+1);}else if(e.key==='ArrowLeft'&&deckWeek>1){e.preventDefault();showDeck(deckWeek-1);}};
+ $('deck-previous').onclick=()=>{if(deckWeek>1)showDeck(deckWeek-1);};$('deck-next').onclick=()=>{if(deckWeek<52)showDeck(deckWeek+1);};
+ $('hint-choice').onchange=e=>{changeSettings('hint',e.target.value);renderCard();};$('start-choice').onchange=e=>{changeSettings('start',e.target.value);};
+ $('this-week').onclick=()=>showDeck(L.calendarWeek());
+ $('open-settings').onclick=()=>{$('opening-settings').open=!$('opening-settings').open;if($('opening-settings').open){$('opening-settings').scrollIntoView({block:'center',behavior:'instant'});$('start-choice').focus({preventScroll:true});}};
+ $('calendar-year').onchange=renderCalendar;$('calendar-today').onclick=()=>{$('calendar-year').value=String(new Date().getFullYear());renderCalendar();const current=$('calendar-grid').querySelector('[aria-current=date]');current?.scrollIntoView({block:'center',behavior:'instant'});current?.focus({preventScroll:true});};
+
  $('search').oninput=renderList;$('theme-filter').onchange=renderList;$('week-jump').onchange=e=>{const n=Number(e.target.value);if(n){reviewing=false;resetPractice();routeHash(n,'read','passage-heading');}e.target.value='';};
  $('start-review').onclick=startReview;$('previous-passage').onclick=()=>{reviewing=false;routeHash(week-1,'read','passage-heading');};$('next-passage').onclick=()=>{reviewing=false;routeHash(week+1,'read','passage-heading');};
  for(const button of document.querySelectorAll('[data-mode]')){
@@ -192,8 +236,8 @@ function bindStatic(){
   catch(_){pendingRestore=null;$('copy-status').textContent='That file is not a valid Heart52 copy. Your current progress has not changed.';}
  };
  $('cancel-restore').onclick=cancelRestore;$('restore-dialog').addEventListener('cancel',()=>{pendingRestore=null;});
- $('confirm-restore').onclick=()=>{if(!pendingRestore)return;const next=pendingRestore;if(!persistence.replace(next)){cancelRestore();return;}progress=next;cancelRestore();reviewQueue=[];reviewing=false;resetPractice();$('previous-copy').hidden=false;$('stored-copy').hidden=true;$('copy-status').textContent='Progress restored. Your previous copy is available below.';location.hash='';route(false);};
- $('reset-progress').onclick=()=>{if(!window.confirm('Reset Heart52 progress in this browser? Save a copy first if you want to keep it. Other apps are unchanged.'))return;const next=L.freshProgress();if(!persistence.replace(next,{reset:true}))return;progress=next;resetPractice();reviewQueue=[];reviewing=false;$('previous-copy').hidden=true;$('stored-copy').hidden=true;location.hash='';route(false);};
+ $('confirm-restore').onclick=()=>{if(!pendingRestore)return;const next=pendingRestore;if(!persistence.replace(next)){cancelRestore();return;}progress=next;deckWeek=0;cancelRestore();reviewQueue=[];reviewing=false;resetPractice();$('previous-copy').hidden=false;$('stored-copy').hidden=true;$('copy-status').textContent='Progress restored. Your previous copy is available below.';location.hash='';route(false);};
+ $('reset-progress').onclick=()=>{if(!window.confirm('Reset Heart52 progress in this browser? Save a copy first if you want to keep it. Other apps are unchanged.'))return;const next=L.freshProgress();if(!persistence.replace(next,{reset:true}))return;progress=next;deckWeek=0;resetPractice();reviewQueue=[];reviewing=false;$('previous-copy').hidden=true;$('stored-copy').hidden=true;location.hash='';route(false);};
  $('retry-load').onclick=()=>location.reload();
  $('migration-note').hidden=!/\/tools\/heart52(?:\/|$)/.test(location.pathname);
 }
@@ -203,6 +247,7 @@ async function init(){
   const response=await fetch('data/verses.json');if(!response.ok)throw Error('Library unavailable');const list=await response.json();
   if(!Array.isArray(list)||list.length!==52||new Set(list.map(v=>v.reference)).size!==52||list.some((v,i)=>v.week!==i+1||typeof v.reference!=='string'||!v.reference.trim()||typeof v.theme!=='string'||!v.theme.trim()||typeof v.text!=='string'||!v.text.trim()||v.translation!=='ESV'||v.audio!=='assets/audio/week-'+String(i+1).padStart(2,'0')+'.mp3'))throw Error('Invalid collection');
   verses=list;
+  const year=new Date().getFullYear();for(const y of [year-1,year,year+1]){const o=element('option','',String(y));o.value=String(y);$('calendar-year').append(o);}$('calendar-year').value=String(year);
   for(const theme of [...new Set(verses.map(v=>v.theme))].sort()){const option=element('option','',theme);option.value=theme;$('theme-filter').append(option);}
   for(const v of verses){const option=element('option','',v.week+' · '+v.reference);option.value=String(v.week);$('week-jump').append(option);}
   $('boot').hidden=true;route(true);

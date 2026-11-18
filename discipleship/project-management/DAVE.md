@@ -1,5 +1,10 @@
 # Dave's decision and approval queue
 
+## Heart52 flip-card redesign, November 18, 2026
+
+APP-HEART52 REVIEW, PR #296. Dave requested a full new look with the verse as the hero. The forest/sage/ivory app opens on a topic/first-two-word flip card, with large Scripture on the reverse, a continuous All 52 reference view and a simple yearly path. First visitors see the current week; returning visitors can resume or choose weekly startup. Original ESV selections/audio and all lessons/other apps remain unchanged. New preferences preserve existing progress and portable copies. Core QA, 1769 learning/storage/calendar checks, 674 existing app, 486 new card/calendar and 340 hub/lesson checks pass. New preview replaces the earlier app design; Dave's visual review remains pending, nothing merged or live. Still stacked on #288 then #261. [Redesign log](logs/2026-11-18-APP-HEART52-REDESIGN-codex.md).
+
+
 ## Heart52 companion preview, November 17, 2026
 
 APP-HEART52 is REVIEW on PR #296. [Try Heart52](https://growing-together-discipleship--pr296-codex-heart52-com-dl8mm33z.web.app/tools/heart52/). It retains your original 52 passages/logo and adds audio, fewer-word hints, phrase ordering, concealed recall and gentle reviews. A third button joins Your Growing Apps; 201-05 and 101-04 link to it without changing existing teaching/questions/art/widgets. Progress stays on the current device, with portable copies. New UI awaits your review; no merge/publication yet. Dependencies #261 and #288 remain separate review packets. Claude's held 201-05 rewrite #292 is untouched. [Evidence](logs/2026-11-17-APP-HEART52-codex.md).

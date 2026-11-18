@@ -8,3 +8,94 @@ main,.tool-footer{width:100%;max-width:640px;margin:auto;padding:18px 20px 28px}
 @media(max-width:360px){.header-inner,main,.tool-footer{padding-left:15px;padding-right:15px}.wordmark{font-size:17px}.ministry-link{gap:5px}.ministry-link img{width:27px;height:21px}.breadcrumb{font-size:11px}.breadcrumb span{font-size:8px}.passage-bottom{flex-wrap:wrap}.mode-tabs button{font-size:11px}.paper-card{padding-left:14px;padding-right:14px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
 @media print{.site-header,.breadcrumb,.save-status,.notice,.mode-tabs,.actions,.audio-controls,.passage-nav,.passage-bottom,.tool-footer,.review-choices,.game,dialog{display:none!important}main{max-width:none;padding:0}.paper-card{padding:0;border:0}body{background:white}.scripture{font-size:13pt}}
+/* Heart52: the passage is the hero. Quiet surfaces, generous type, one clear next step. */
+:root{--ink:#203B33;--muted:#65746B;--paper:#F5F6F0;--surface:#FFFEF8;--line:#DCE2D6;--blue:#234E40;--blue-dark:#153B2E;--wash:#E8EEE3;--green:#315D40;--gold:#B78633;--danger:#9A3738;background:var(--paper)}
+body{background:var(--paper)}
+.site-header{position:static;background:transparent;color:var(--muted);border-bottom:1px solid var(--line)}
+.header-inner{max-width:640px;min-height:44px;padding:6px 22px;gap:12px}
+.wordmark,.header-apps{font-size:12px;font-weight:550;letter-spacing:0;color:var(--muted);text-decoration:none;min-height:32px;display:inline-flex;align-items:center;gap:7px}
+main,.tool-footer{max-width:640px;padding:20px 22px 28px}
+.app-brand{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:0 0 22px}
+.heart-wordmark{display:flex;gap:9px;align-items:center;color:var(--ink);text-decoration:none;font:500 27px/1 Georgia,serif;letter-spacing:-1.3px;min-height:40px}
+.heart-wordmark svg{color:#54715D}.brand-number{color:#77835B;font-size:24px;letter-spacing:-1px;margin-left:1px}
+.edition-label{font-size:8px;letter-spacing:.14em;font-weight:650;color:var(--muted)}
+.save-status{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;padding:0;margin:0}
+.view-nav{display:grid;grid-template-columns:repeat(3,1fr);padding:4px;border:1px solid var(--line);border-radius:14px;background:#EAEDE4;gap:4px;margin-bottom:26px}
+.view-nav a{color:var(--muted);text-align:center;text-decoration:none;font-size:13px;font-weight:600;min-height:42px;display:flex;align-items:center;justify-content:center;border-radius:10px}
+.view-nav a[aria-current=page]{background:var(--surface);color:var(--ink);box-shadow:0 1px 3px #203B3310}
+.today-heading{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.eyebrow{font-size:9px;letter-spacing:.14em;color:#62715B;line-height:1.5;font-weight:650;margin:0 0 8px}
+.today-heading h1,.collection-heading h1{font:400 clamp(29px,5.8vw,36px)/1.12 Georgia,serif;letter-spacing:-.8px;margin:0 0 4px}
+.icon-button{width:44px;height:44px;flex:none;border:1px solid var(--line);border-radius:50%;background:transparent;color:var(--ink);font-size:20px;display:inline-flex;align-items:center;justify-content:center}
+.icon-button:hover{background:var(--wash)}.icon-button:disabled{opacity:.35}
+#open-settings{font-size:22px;border:0;color:var(--muted)}
+.opening-note{font-size:12px;color:var(--muted);margin:9px 0 22px;line-height:1.5}
+.card-topline{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 3px 10px;font-size:10px;font-weight:600;letter-spacing:.09em;color:var(--muted);text-transform:uppercase}
+.edition-pill{font-size:9px;letter-spacing:.1em;padding:4px 8px;border:1px solid #CBD4C3;border-radius:5px;line-height:1}
+.memory-card{display:block;position:relative;width:100%;padding:0;border:0;background:transparent;color:var(--ink);perspective:1200px;text-align:center;border-radius:22px;isolation:isolate}
+.card-inner{display:grid;transform-style:preserve-3d;transition:transform .55s cubic-bezier(.2,.7,.2,1);border-radius:inherit}
+.memory-card[aria-pressed=true] .card-inner{transform:rotateY(180deg)}
+.card-face{grid-area:1/1;display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:0;min-height:350px;padding:30px 26px 24px;border:1px solid #CCD6C2;border-radius:22px;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow-wrap:break-word;background:#E6ECD9;box-shadow:0 5px 18px #1C3B2907}
+.card-back{transform:rotateY(180deg);background:#FFFEF6;border-color:#D8DDCD;text-align:left;align-items:stretch}
+.card-kicker{display:block;font-size:9px;font-weight:600;letter-spacing:.17em;line-height:1.5;color:#657459;text-transform:uppercase}
+.card-front .card-kicker{margin:auto 0 24px}
+.card-hint{display:block;font:400 clamp(32px,7.8vw,44px)/1.16 Georgia,serif;letter-spacing:-.8px;max-width:430px;text-wrap:balance}
+.card-rule{display:block;width:30px;height:1px;background:#AFBE99;margin:25px 0 17px}
+.card-reference{font-size:13px;color:#49634A;line-height:1.5}
+.card-invitation{display:block;font-size:10px;font-weight:500;letter-spacing:.02em;color:#5F7259;margin:28px 0 0;line-height:1.6}
+.card-front .card-invitation{margin-top:auto;padding-top:27px}.card-invitation>span{font-size:15px;vertical-align:-1px;margin-right:4px}
+.verse-words{display:block;font:400 clamp(24px,6.9vw,32px)/1.46 Georgia,serif;letter-spacing:-.4px;margin:21px 0 23px;white-space:normal}
+.card-source{display:flex;justify-content:space-between;gap:12px;font-size:12px;font-weight:600;color:#54684C}
+.card-source>span+span{font-size:10px;letter-spacing:.08em;font-weight:450}
+.card-back .card-invitation{text-align:center;margin-top:auto;padding-top:20px}
+.card-toolbar{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:15px 0 18px}
+.hint-choice{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:11px;font-weight:450}
+.hint-choice select{margin:0;width:auto;min-height:44px;border:0;background:transparent;font-size:12px;color:var(--ink);padding:7px 20px 7px 3px}
+.button{background:var(--blue);border-color:var(--blue);border-radius:12px;min-height:48px;padding:12px 18px;font-size:14px;font-weight:550}
+.button.secondary{border-color:#C9D4C3;color:var(--ink)}
+.deck-actions{display:flex;gap:16px;align-items:center;justify-content:space-between}
+.deck-actions .button{flex:1;justify-content:space-between;text-align:left}
+.deck-actions .text-button{font-size:11px;text-decoration:none;padding-inline:0;white-space:nowrap}
+.quiet-progress{display:flex;gap:12px;align-items:center;justify-content:space-between;margin:21px 0 0;padding-top:18px;border-top:1px solid var(--line)}
+#progress-count{font-size:11px;font-weight:450;color:var(--muted);line-height:1.5;margin:0}
+.quiet-progress .text-button{font-size:11px;min-height:44px;text-decoration:none;text-align:right;padding:0}
+#review-note{font-size:11px;line-height:1.5;margin:0 0 22px;max-width:370px}
+.small{font-size:12px;line-height:1.6}.settings-card{padding:17px 0;border-block:1px solid var(--line);margin-top:10px}
+.settings-card summary{font-size:12px;font-weight:500;min-height:30px;color:var(--muted)}
+.settings-card label{margin-top:16px}.settings-card p{font-size:12px;color:var(--muted);margin:14px 0 0}
+.collection-heading{margin:28px 0 26px}.collection-heading p.muted{font-size:13px;line-height:1.6;margin:12px 0 0}
+.filters{grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:9px}.filters input,.filters select{font-size:12px;margin:0;padding:12px 10px;background:var(--surface);border-color:var(--line)}
+.jump-label{font-size:11px;font-weight:450;color:var(--muted);margin:14px 0}
+.jump-label select{font-size:13px;background:transparent;border-color:var(--line)}
+.verse-list{gap:0}
+.reference-entry{padding:28px 0;border-top:1px solid var(--line)}
+.reference-heading{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.verse-link{padding:0;border:0;border-radius:0;min-height:44px;background:none;display:block}
+.verse-link .week{font-size:9px;color:#71816A;letter-spacing:.12em}.verse-link h3{font-size:14px;line-height:1.4;margin:5px 0 0;font-weight:600}
+.reference-entry .topic-label{font-size:10px;text-align:right;color:var(--muted);max-width:45%;line-height:1.5}
+.reference-text{font:400 24px/1.62 Georgia,serif;letter-spacing:-.2px;margin:16px 0 12px;color:var(--ink);overflow-wrap:break-word}
+.reference-entry .reference-practice{font-size:11px;text-decoration:none;display:inline-flex;align-items:center;min-height:44px;gap:10px;color:#516644}
+.year-toolbar{display:flex;align-items:end;justify-content:space-between;gap:16px}.year-toolbar label{max-width:130px;font-size:12px;font-weight:500}.year-toolbar select{background:var(--surface);border-color:var(--line);min-width:100px;font-size:14px}.year-toolbar button{font-size:12px}
+#calendar-note{margin:16px 0 20px}.calendar-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px}
+.calendar-week{position:relative;min-height:90px;padding:13px 9px;border:1px solid var(--line);border-radius:12px;background:var(--surface);color:var(--ink);text-align:left;text-decoration:none;display:flex;flex-direction:column;gap:6px}
+.calendar-week .calendar-number{font:400 24px/1 Georgia,serif}.calendar-date{font-size:9px;color:var(--muted);line-height:1.4}
+.calendar-week[aria-current=date]{background:#E6ECD9;border-color:#728964}.calendar-week.is-practiced:after{content:'•';position:absolute;right:8px;top:6px;color:#648346;font-size:15px}.calendar-week.is-selected{outline:1px solid #779063;outline-offset:1px}
+.calendar-explainer{margin:24px 0 0}
+.passage-nav{font-size:12px;margin-bottom:20px}.passage-card{padding:24px;background:var(--surface);border-radius:20px}.passage-heading h1{font:400 30px/1.2 Georgia,serif;letter-spacing:-.5px}.passage-heading{margin-bottom:18px}.mode-tabs{margin-bottom:26px;background:#EDF0E7;border-color:var(--line)}.mode-tabs button{font-size:12px}.mode-tabs button[aria-selected=true]{color:var(--ink)}
+#workspace h2{font:400 27px/1.22 Georgia,serif;letter-spacing:-.4px}.scripture{font-size:28px;line-height:1.55;margin:24px 0 28px;letter-spacing:-.3px}.workspace-intro{font-size:13px;line-height:1.7}
+.audio-controls{margin:24px 0}.audio-controls .button{min-height:44px;padding:10px 13px;font-size:12px}.audio-controls select{min-height:44px;font-size:13px;padding:8px}
+.passage-bottom{gap:10px}.passage-bottom button{font-size:12px;padding:10px 12px;flex:1}
+.text-button{color:var(--blue)}input,select,textarea{accent-color:var(--blue);border-color:#CED7C8}textarea{background:var(--surface)}.review-choices button{color:var(--ink);background:var(--wash);border-color:#CDD8C4}
+.tool-footer{padding-top:14px;color:var(--muted)}.tool-footer summary{font-size:11px;font-weight:450}.tool-footer p{font-size:11px;line-height:1.7}.tool-footer details{padding-bottom:18px;border-bottom:1px solid var(--line)}.footer-links{display:flex;gap:18px;flex-wrap:wrap;margin:20px 0}.footer-links a{text-decoration:none;color:var(--muted)}.tool-footer .family-credit{margin:22px 0 14px}.tool-footer .ministry-link{color:var(--muted);font-size:10px}.ministry-link img{width:25px;height:22px}.tool-footer .copyright{font-size:9px;line-height:1.6;opacity:.85}.tool-footer .actions .button{font-size:12px}
+@media(min-width:580px){.calendar-grid{grid-template-columns:repeat(6,minmax(0,1fr))}.card-face{min-height:400px;padding:40px}.verse-words{font-size:35px;line-height:1.5}.card-hint{font-size:47px}.edition-label{font-size:9px}.app-brand{margin-top:6px;margin-bottom:26px}}
+@media(max-width:359px){main,.tool-footer{padding-inline:16px}.header-inner{padding-inline:16px}.edition-label{font-size:7px;letter-spacing:.09em}.heart-wordmark{font-size:25px}.card-face{padding:25px 21px;min-height:330px}.card-hint{font-size:31px}.verse-words{font-size:24px}.deck-actions{gap:10px}.deck-actions .button{font-size:12px;padding-inline:13px}.deck-actions .text-button{font-size:10px}.calendar-grid{gap:7px}.calendar-week{padding:12px 7px}.calendar-date{font-size:8px}}
+@media(prefers-reduced-motion:reduce){.card-inner{transition:none}.memory-card[aria-pressed=true] .card-inner{transform:none}.card-back{transform:none}.card-face[aria-hidden=true]{visibility:hidden}.memory-card .card-face[aria-hidden=false]{visibility:visible}}
+@media print{.site-header,.view-nav,.filters,.jump-label,.reference-practice,.app-brand,.save-status,.tool-footer,.today-heading,.card-toolbar,.deck-actions,.quiet-progress,.settings-card{display:none!important}.reference-entry{break-inside:avoid}.reference-text{font-size:15pt}#all-view{display:block!important}.memory-card{perspective:none}.card-inner{transform:none!important}.card-front{visibility:hidden}.card-back{visibility:visible;transform:none;box-shadow:none}}
+/* The concealed card is compact; revealing a longer passage lets the card grow. */
+.card-inner{display:block;position:relative}.card-front{position:relative;min-height:300px}.card-back{position:absolute;inset:0;width:100%;height:100%;overflow:hidden;visibility:hidden}
+.memory-card[aria-pressed=true] .card-front{position:absolute;inset:0;width:100%;height:100%;overflow:hidden}
+.memory-card[aria-pressed=true] .card-back{position:relative;inset:auto;height:auto;overflow:visible;visibility:visible}
+.today-heading .eyebrow{display:none}.today-heading h1{font-size:30px}.opening-note{margin:1px 0 17px;font-size:11px}.view-nav{margin-bottom:18px}.app-brand{margin-bottom:18px}#open-settings svg{width:20px;height:20px}
+@media(min-width:580px){.card-front{min-height:340px}}
+@media(max-width:359px){.card-front{min-height:285px}.today-heading h1{font-size:27px}.card-hint{font-size:30px}.view-nav{margin-bottom:14px}.opening-note{font-size:10px}.app-brand{margin-bottom:14px}}
+@media(prefers-reduced-motion:reduce){.memory-card[aria-pressed=true] .card-front{visibility:hidden}}

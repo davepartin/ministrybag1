@@ -26,9 +26,10 @@ async function getDownload(page,id,json=true){const [file]=await Promise.all([pa
    await p.goto(address,{waitUntil:'networkidle'});await p.locator('#library-view').waitFor({state:'visible'});
    ck(await p.locator('.verse-link').count()===52,'all52 choices');ck(await p.evaluate(key=>localStorage.getItem(key),S.KEY)===JSON.stringify(initial),'opening does not rewrite saved progress');
    ck(await p.locator('main').evaluate(e=>e.getBoundingClientRect().width<=640),'shared bounded page width');
-   ck(await p.locator('.heart-logo').evaluate(e=>e.complete&&e.naturalWidth>0),'original Heart52 logo loads');
+   ck(await p.locator('.heart-wordmark svg').evaluate(e=>e.getBoundingClientRect().width>0),'new Heart52 wordmark renders');
+   await p.locator('#nav-all').click();
    await p.locator('#search').fill('John 3:16');ck(await p.locator('.verse-link').count()===1,'reference search');await p.locator('#search').fill('zzzz-no-passage');ck(await p.locator('.verse-link').count()===0,'empty filter result');await p.locator('#search').fill('');
-   await p.locator('#theme-filter').selectOption("God's Word");ck(await p.locator('.verse-link').count()===verses.filter(v=>v.theme==="God's Word").length,'theme filter');await p.locator('#theme-filter').selectOption('');
+   await p.locator('#theme-filter').selectOption("God's Word");ck(await p.locator('.verse-link').count()===verses.filter(v=>v.theme==="God's Word").length,'theme filter');await p.locator('#theme-filter').selectOption('');await p.locator('#nav-today').click();
    if(process.env.HEART52_SHOTS&&address===paths[0]&&width===1280){fs.mkdirSync(process.env.HEART52_SHOTS,{recursive:true});await p.screenshot({path:process.env.HEART52_SHOTS+'/library-laptop.png'});}
    await p.locator('#continue-link').click();await p.locator('#verse-text').waitFor();ck(await p.locator('#verse-text').textContent()===verses[0].text,'read exact original quotation');
    ck(audioRequests.length===0,'recordings are not preloaded');
@@ -99,6 +100,7 @@ async function getDownload(page,id,json=true){const [file]=await Promise.all([pa
     await p.locator('#continue-link').click();await p.locator('#audio-toggle').click();await p.waitForFunction(()=>document.getElementById('audio-toggle').textContent==='Use device voice');ck(!await p.evaluate(()=>Boolean(window.__spoken)),'missing recording does not start speech automatically');await p.locator('#audio-toggle').click();ck(await p.evaluate(()=>window.__spoken)===verses[0].text,'device fallback speaks the original text');
    }else{
     if(scenario==='quota')await p.evaluate(()=>window.__denyWrites=true);
+    await p.evaluate(()=>{location.hash='card-1';});await p.waitForFunction(()=>document.getElementById('card-front-reference').textContent==='Psalm 119:11');
     await p.locator('#continue-link').click();await p.locator('#tab-recall').click();await p.locator('#recall-input').fill(verses[0].text);await p.locator('#check-recall').click();ck(await p.locator('#storage-notice').isVisible()&&(await p.locator('#save-status').textContent()).includes('not saved'),'failure does not claim a save '+scenario);
     await p.locator('#copies summary').click();const copy=await getDownload(p,'#save-copy');ck(copy.progress.verses[1].attempts===1,'unsaved practice can be downloaded '+scenario);
     if(scenario==='blocked')ck(await p.evaluate(key=>window.__readOriginal(key),S.KEY)===JSON.stringify(initial),'blocked reads cannot overwrite unread progress');
