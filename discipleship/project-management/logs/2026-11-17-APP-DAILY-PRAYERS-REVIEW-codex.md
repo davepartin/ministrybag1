@@ -51,3 +51,7 @@ Final local checks exit 0: foundation; export186; storage64; assets144; images15
 The final hub test covers keyboard home entry, exact control ordering/labels, matching width/height/44px targets, separate same-origin hub, full-width app button, six-row capacity, shared logo, no sideways overflow, old prayer/unknown metadata and eight lesson answers retained through popup/return navigation, and no page exceptions. Reduced motion is included.
 
 Final exact-head Firebase preview and hosted checks are posted on PR #261. APP-DAILY-PRAYERS remains REVIEW; no publishing approval is inferred for this new navigation layout.
+
+## Dependency refresh for Weekly Connection Time
+
+Dave requests the marriage companion app and shared Growing Apps setup. Merged current main a6bb93f into the Daily Prayers foundation normally. Three documentation append conflicts (HANDOFF, TEAM-BOARD, 101 status) retain both histories. Daily Prayers authored and legacy delivery bytes remain exact cf32777. Existing shared application scripts remain exact current main, including all compact headers and lesson navigation. No merge/publication is inferred; this refresh supports a separate dependent Weekly Connection Time PR. Final checks are recorded on PR #261.

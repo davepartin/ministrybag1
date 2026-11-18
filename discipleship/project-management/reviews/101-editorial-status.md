@@ -17,7 +17,7 @@ Stages describe the text review, independently of widget and image approval. Gol
 | 101-01 | Welcome. Let's Start Growing. | Silver: Dave-edited, protected | Gold: Peaks and Valleys V2 | Gold: course logo |
 | 101-02 | Salvation and Baptism | Gold: whole lesson approved and protected | Gold: A-B-C-D road to cross | Gold: greenhouse sequence |
 | 101-03 | Prayer | Silver: Dave edits protected | Yes: The Lord's Prayer (#266, 3542e12) | Yes: Teach Us to Pray dawn dissolve (`101-03-prayer-bw/color.jpg`) |
-| 101-04 | The Bible | Silver: Dave edits protected | Yes: Read, Discover, Respond (#229, 21bb29b) | Yes: Nicodemus oil-lamp dissolve (#263, b52e4f4) |
+| 101-04 | The Bible | Silver: Dave edits protected | Yes: Read, Discover, Respond compact polish (#262, 6a4c1e7) | Yes: Nicodemus oil-lamp dissolve (#263, b52e4f4) |
 | 101-05 | The Church | Silver: Dave edits protected | Yes: compact potluck serving buttons (#232, b83efe3) | Yes: Aspen Grove separate-to-connected roots dissolve |
 | 101-06 | Sharing Jesus with Others | Silver: earlier Dave edits protected | Yes: BLESS Rhythms (#233, 7949607) | Yes: Woman at the Well sunlit well dissolve |
 | 101-07 | When You Drift | Silver | Yes: Repentance is 180 Degrees; B&W refinement (#254, a93a673), original component #251 retained in approval history | Yes: four-frame shepherd sequence; B&W frame 4 approved (#248, ae5c9d4) |
@@ -113,3 +113,5 @@ November 17: PR for BELOW-101-01 (branch claude/101-01-below-line) makes the one
 November 17: Dave approved merge of PR #281, the 101-01 "below" line. Protect this wording.
 
 November 17: Dave approved the Daily Prayers look and requested same-site Growing Apps access from home and related lessons (PR #261). In 101-03 only the tool URL changes from ministrybag.com/dailyprayers/ to tools/daily-prayers/. Every paragraph, question/ID, reading, image and approved Lord's Prayer widget stays unchanged. Baseline fingerprints reflect this navigation-only change; text remains Silver.
+
+November 17: Dave explicitly approved and requested merge of PR #262 at 6a4c1e7. Protect the compact widget HTML: half-size Bible, closed cover right-aligned so it opens left, right-to-left wipe, and 30 percent shorter diagram. Ready passage dimming and shorter Ready card are approved too. This supersedes the initial #229 widget bytes only. All 101-04 lesson wording, questions/readings, oil-lamp artwork and placement are unchanged; whole lesson stays Silver.

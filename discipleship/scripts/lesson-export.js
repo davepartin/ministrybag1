@@ -169,7 +169,8 @@
 
     // The summary is the lesson's own description, so there is one source of truth.
     function lessonSummary(courseId, lessonNum, lessonData) {
-        return stripHtml(lessonData && lessonData.description || '');
+        // Inline links become plain text; drop the space stripHtml leaves before punctuation.
+        return stripHtml(lessonData && lessonData.description || '').replace(/\s+([,.;:!?])/g, '$1');
     }
 
     var CLOSING_LABELS = { key: 'Key thing', step: "This week's step", devos: 'Daily devotions', prayer: 'Prayer request' };

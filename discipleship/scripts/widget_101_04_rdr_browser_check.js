@@ -13,6 +13,8 @@ const { chromium } = require('playwright');
 
 const ROOT = path.resolve(__dirname, '..');
 const BASE = process.env.RDR_BASE_URL || 'http://127.0.0.1:8798/index.html';
+const SCREENSHOT_DIR = process.env.RDR_SCREENSHOT_DIR || '';
+if (SCREENSHOT_DIR) fs.mkdirSync(SCREENSHOT_DIR, { recursive: true });
 const lesson = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', '101-04.json'), 'utf8'));
 
 const questions = lesson.blocks.filter(b => b.type === 'question');
@@ -20,7 +22,7 @@ const seed = Object.fromEntries(questions.map((q, i) => ['question-101-' + q.id,
 seed['question-202-unrelated'] = 'SYN-rdr-other-course';
 
 const JOBS = [
-  { width: 375, height: 812, reducedMotion: 'no-preference' },
+  { width: 375, height: 667, reducedMotion: 'no-preference' },
   { width: 390, height: 844, reducedMotion: 'no-preference' },
   { width: 1280, height: 800, reducedMotion: 'no-preference' },
   { width: 390, height: 844, reducedMotion: 'reduce' }
@@ -92,6 +94,25 @@ const JOBS = [
         return block.previousElementSibling.textContent.startsWith('Here is a simple way to listen to God in any passage') && block.nextElementSibling.textContent.includes('Try It: Nicodemus Meets Jesus');
       }));
 
+      const layout = await frame.evaluate(() => {
+        const svg = document.querySelector('.rdr-svg');
+        const book = document.querySelector('#bible-open-part rect').getBoundingClientRect();
+        const stage = document.querySelector('.stage').getBoundingClientRect();
+        const closed = document.getElementById('bible-closed').getBoundingClientRect();
+        const open = document.getElementById('bible-open-part').getBoundingClientRect();
+        return { viewHeight: svg.viewBox.baseVal.height, scale: document.getElementById('bible-art').transform.baseVal.consolidate().matrix.a,
+          bookRight: book.right - stage.left, width: stage.width, widgetHeight: document.getElementById('widget').getBoundingClientRect().height,
+          closedRight: closed.right, openRight: open.right, closedLeft: closed.left, openLeft: open.left,
+          stageHeight: stage.height, svgWidth: svg.getBoundingClientRect().width };
+      });
+      check(`${tag}: diagram is 30 percent shorter`, layout.viewHeight === 116 && layout.stageHeight <= layout.svgWidth * 166 / 440 * 0.72 + 7);
+      check(`${tag}: Bible is half size and stays on left`, layout.scale === 0.5 && layout.bookRight < layout.width * 0.25);
+      check(`${tag}: closed book is right-aligned and leaves room to open left`, Math.abs(layout.closedRight - layout.openRight) < 2 && layout.closedLeft > layout.openLeft + 15);
+      if (job.width < 560) {
+        const topbarHeight = await page.locator('.lesson-topbar').evaluate(e => e.getBoundingClientRect().height);
+        check(`${tag}: complete widget fits below phone header`, layout.widgetHeight <= job.height - topbarHeight - 16);
+      }
+
       const cardHeight = await frame.locator('#card-content').evaluate(e => e.getBoundingClientRect().height);
       const stepCount = await frame.locator('.step-dot').count();
       check(`${tag}: six study steps present`, stepCount === 6);
@@ -101,6 +122,14 @@ const JOBS = [
         const dur = Number(await frame.locator('#widget').getAttribute('data-step-dur')) || 0;
         if (job.reducedMotion === 'reduce') {
           check(`${tag}: reduced motion instant step ${s}`, dur === 0 && await frame.locator('#widget').evaluate(e => e.classList.contains('is-instant')));
+        }
+        if (s === 1 && dur) {
+          const sample = () => frame.locator('#clip-bible-rect').evaluate(e => ({ x: Number(e.getAttribute('x')), width: Number(e.getAttribute('width')) }));
+          await page.waitForTimeout(70);
+          const before = await sample();
+          await page.waitForTimeout(110);
+          const after = await sample();
+          check(`${tag}: opening wipe travels right to left`, after.x < before.x && after.width > before.width && Math.abs(after.x + after.width - 132) < 0.01);
         }
         if (dur) await page.waitForTimeout(dur + 80);
 
@@ -113,6 +142,28 @@ const JOBS = [
         check(`${tag}: zero horizontal overflow step ${s}`,
           await frame.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1) &&
           await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1));
+
+        if (s === 0 || s === 1) {
+          const vis = await frame.evaluate(() => {
+            const c = getComputedStyle(document.getElementById('bible-closed')).opacity;
+            const o = getComputedStyle(document.getElementById('bible-open-part')).opacity;
+            const wm = getComputedStyle(document.getElementById('passage-watermark')).opacity;
+            const pt = getComputedStyle(document.getElementById('passage-text')).opacity;
+            const dim = document.getElementById('passage-box').classList.contains('is-dim');
+            return { c: Number(c), o: Number(o), wm: Number(wm), pt: Number(pt), dim };
+          });
+          if (s === 0) {
+            check(`${tag}: step 0 closed Bible + dimmed watermarked passage`,
+              vis.c === 1 && vis.o === 0 && vis.dim && vis.wm === 1 && vis.pt <= 0.25);
+          } else {
+            check(`${tag}: step 1 open Bible + foreground passage`,
+              vis.c === 0 && vis.o === 1 && !vis.dim && vis.wm === 0 && vis.pt === 1);
+          }
+        }
+
+        if (SCREENSHOT_DIR && tag === '390/no-preference' && [0, 1, 2, 5].includes(s)) {
+          await frameEl.screenshot({ path: path.join(SCREENSHOT_DIR, `step-${s}.png`) });
+        }
       }
 
       const gaps = await frame.evaluate(() => [1, 2, 3].map(i => {

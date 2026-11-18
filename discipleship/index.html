@@ -1044,21 +1044,40 @@
             background: #FCEAE8;
         }
 
-        /* Progress bar */
-        .progress-track {
-            height: 4px;
-            background: var(--border-light);
-            width: 100%;
-            margin-top: 8px;
-            border-radius: 4px;
-            overflow: hidden;
+        /* Compact lesson identity: approved by Dave for every course. */
+        .compact-lesson-label { display: none; }
+        .lesson-topbar.is-compact {
+            padding: 2px 12px;
+            padding-top: max(env(safe-area-inset-top), 2px);
         }
-
-        .progress-fill {
-            height: 100%;
-            background: var(--accent);
-            border-radius: 3px;
-            transition: width 0.4s ease;
+        .lesson-topbar.is-compact .topbar-course-name-row,
+        .lesson-topbar.is-compact .topbar-lesson-subtitle { display: none; }
+        .lesson-topbar.is-compact .topbar-row-1 { gap: 6px; }
+        .lesson-topbar.is-compact .back-btn,
+        .lesson-topbar.is-compact .toc-menu-btn {
+            width: 44px;
+            min-width: 44px;
+            height: 44px;
+            padding: 4px;
+        }
+        .lesson-topbar.is-compact .compact-lesson-label {
+            display: flex;
+            align-items: baseline;
+            justify-content: center;
+            gap: 6px;
+            width: 100%;
+            min-width: 0;
+            margin: 0;
+            color: var(--accent);
+            font-size: 14px;
+            line-height: 1.2;
+            font-weight: 700;
+        }
+        .compact-lesson-code { flex-shrink: 0; font-size: 12px; }
+        .compact-lesson-topic {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
 
         /* TOC (Table of Contents) */
@@ -1285,6 +1304,166 @@
             color: var(--text-primary);
             line-height: 1.75;
             margin-bottom: 32px;
+        }
+
+        /* In this lesson: a small list of links under a lesson's summary.
+           Each row jumps to a part of the lesson without changing the address bar. */
+        .session-description.has-contents {
+            margin-bottom: 12px;
+        }
+        .lesson-contents {
+            margin: 0 0 20px;
+            border: 1px solid var(--border-light, #E6E2D8);
+            border-radius: 12px;
+            background: var(--surface, #FFFFFF);
+            overflow: hidden;
+        }
+        .lesson-contents-row {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            padding: 6px 12px;
+            font-size: 0.95rem;
+            line-height: 1.35;
+            text-decoration: none;
+            color: inherit;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .lesson-contents-row + .lesson-contents-row {
+            border-top: 1px solid var(--border-light, #E6E2D8);
+        }
+        .lesson-contents-label {
+            flex: 0 0 58px;
+            color: var(--accent);
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+        .lesson-contents-title {
+            flex: 1 1 auto;
+            color: var(--blue-heading);
+            font-weight: 600;
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
+            text-decoration-color: rgba(43, 90, 131, 0.35);
+            text-underline-offset: 4px;
+        }
+        .lesson-contents-arrow {
+            flex: 0 0 auto;
+            color: var(--blue-heading);
+            opacity: 0.6;
+            font-weight: 700;
+        }
+        .lesson-contents-row:hover,
+        .lesson-contents-row:active {
+            background: rgba(43, 90, 131, 0.06);
+        }
+        .lesson-contents-row:hover .lesson-contents-title {
+            text-decoration-color: rgba(43, 90, 131, 0.8);
+        }
+        .lesson-contents-row:focus-visible {
+            outline: 2px solid var(--blue-heading);
+            outline-offset: -2px;
+        }
+        .lesson-jump {
+            color: var(--blue-heading);
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
+            text-decoration-color: rgba(43, 90, 131, 0.4);
+            text-underline-offset: 4px;
+        }
+        .lesson-jump-target {
+            scroll-margin-top: calc(var(--save-status-height, 0px) + 104px);
+        }
+        .lesson-jump-target:focus {
+            outline: none;
+        }
+        .lesson-jump-target.is-arrived {
+            animation: lessonJumpArrive 1.8s ease-out;
+            border-radius: 6px;
+        }
+        @keyframes lessonJumpArrive {
+            0%, 25% { background-color: rgba(43, 90, 131, 0.10); box-shadow: 0 0 0 8px rgba(43, 90, 131, 0.10); }
+            100% { background-color: rgba(43, 90, 131, 0); box-shadow: 0 0 0 8px rgba(43, 90, 131, 0); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .lesson-jump-target.is-arrived { animation: none; }
+        }
+
+        /* Compact spacing, turned on per lesson with "class": "lesson-compact" */
+        .lesson-compact .session-description,
+        .lesson-compact .block-text {
+            line-height: 1.55;
+        }
+        .lesson-compact .block-text {
+            margin-bottom: 10px;
+        }
+        .lesson-compact .course-logo {
+            margin-bottom: 12px;
+        }
+        .lesson-compact .course-welcome-under-logo {
+            margin-top: 2px;
+        }
+        .lesson-compact .lesson-contents {
+            margin-bottom: 14px;
+        }
+        .lesson-compact .block-image {
+            margin-top: 2px;
+        }
+
+        /* Course opener: the course logo above a course's first lesson title */
+        .course-logo {
+            text-align: center;
+            margin: 0 0 16px;
+        }
+        .course-logo img {
+            display: inline-block;
+            max-width: 100%;
+            height: auto;
+        }
+        .course-welcome-under-logo {
+            margin: 8px 0 0;
+        }
+        .course-welcome-under-logo .course-welcome-eyebrow {
+            margin-bottom: 4px;
+        }
+        .course-welcome-under-logo .course-welcome-title::after {
+            margin-top: 8px;
+        }
+
+        /* Course opener: the welcome heading on a course's first lesson */
+        .course-welcome {
+            text-align: center;
+            margin: 8px 0 24px;
+        }
+        .course-welcome-eyebrow {
+            display: inline-block;
+            margin-bottom: 8px;
+            padding: 4px 12px;
+            border-radius: 999px;
+            background: var(--accent-light);
+            color: var(--accent);
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+        .course-welcome-title {
+            margin: 0;
+            font-size: 1.7rem;
+            font-weight: 800;
+            line-height: 1.2;
+            color: var(--blue-heading);
+        }
+        .course-welcome-title::after {
+            content: '';
+            display: block;
+            width: 56px;
+            height: 3px;
+            margin: 14px auto 0;
+            border-radius: 2px;
+            background: var(--accent);
         }
 
         /* Content blocks */
@@ -2601,6 +2780,7 @@
            PRINT / SAVE AS PDF
            ============================================ */
         @media print {
+            .lesson-contents { display: none; }
 
             body.printing .lesson-topbar,
             body.printing .toc-panel,
@@ -3465,13 +3645,14 @@
              ============================ -->
         <div class="lesson-view" id="lesson-view">
             <!-- Top bar -->
-            <div class="lesson-topbar">
+            <div class="lesson-topbar is-compact">
                 <!-- Row 1: Back · Course Name · Menu -->
                 <div class="topbar-row-1">
                     <button class="back-btn" onclick="goHome()" aria-label="Back to courses">
                         <span style="font-size: 1.5rem; line-height: 1;">&#8249;</span>
                     </button>
                     <div class="topbar-course-name">
+                        <h2 class="compact-lesson-label" id="compact-lesson-label"><span class="compact-lesson-code"></span><span class="compact-lesson-topic"></span></h2>
                         <div class="topbar-course-name-row">
                             <div id="topbar-series-badge" class="topbar-series-badge"></div>
                             <h2 id="topbar-series-name">Starting in Discipleship</h2>
@@ -3485,10 +3666,6 @@
                 <div class="topbar-row-2">
                     <div class="topbar-lesson-title" id="topbar-lesson-title">Welcome. Let's Start Growing.</div>
                     <div class="topbar-lesson-count" id="topbar-session-label">1 of 7</div>
-                </div>
-                <!-- Progress bar -->
-                <div class="progress-track">
-                    <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
                 </div>
             </div>
 
@@ -4299,9 +4476,24 @@
                 const versionTag = data.version
                     ? `<span class="lesson-version-tag">${lessonId} · ${data.version}</span>`
                     : '';
+                if (data.courseLogo && typeof data.courseLogo.src === 'string') {
+                    const logoWidth = /^\d{1,3}%$/.test(data.courseLogo.width || '') ? data.courseLogo.width : '60%';
+                    const logoEyebrow = data.courseLogo.eyebrow ? `<div class="course-welcome-eyebrow">${data.courseLogo.eyebrow}</div>` : '';
+                    const logoTitle = data.courseLogo.title ? `<h2 class="course-welcome-title">${data.courseLogo.title}</h2>` : '';
+                    const logoWelcome = (logoEyebrow || logoTitle) ? `<div class="course-welcome course-welcome-under-logo">${logoEyebrow}${logoTitle}</div>` : '';
+                    html += `<div class="course-logo"><img ${GrowingTogetherLessonImages.attributes(data.courseLogo.src, BUILD_VERSION)} alt="${data.courseLogo.alt || ''}" style="width: ${logoWidth};">${logoWelcome}</div>`;
+                }
                 html += `<div class="session-title-row">${versionTag}<h1 class="session-title">Lesson ${sessionNum}: ${h1Title}</h1></div>`;
                 if (data.description) {
-                    html += `<p class="session-description">${data.description}</p>`;
+                    const descriptionClass = Array.isArray(data.contents) && data.contents.length ? ' has-contents' : '';
+                    html += `<p class="session-description${descriptionClass}">${data.description}</p>`;
+                }
+                if (Array.isArray(data.contents) && data.contents.length) {
+                    const rows = data.contents
+                        .filter(item => item && /^[a-z0-9-]+$/.test(item.anchor || '') && item.title)
+                        .map(item => `<a class="lesson-contents-row" href="#jump-${item.anchor}"><span class="lesson-contents-label">${item.label || ''}</span><span class="lesson-contents-title">${item.title}</span><span class="lesson-contents-arrow" aria-hidden="true">\u2193</span></a>`)
+                        .join('');
+                    if (rows) html += `<nav class="lesson-contents" aria-label="In this lesson">${rows}</nav>`;
                 }
 
                 if (data.blocks) {
@@ -4312,10 +4504,14 @@
                                 if (b.icon) {
                                     iconHTML = `<img ${GrowingTogetherLessonImages.attributes(b.icon, BUILD_VERSION, '105px')} class="heading-float-icon" alt="">`;
                                 }
-                                if (b.subheading) {
-                                    html += `${iconHTML}<h4 class="block-subheading">${b.text}</h4>`;
+                                const headingAnchor = lessonJumpAnchorAttrs(b.anchor);
+                                if (b.variant === 'course-welcome') {
+                                    const eyebrow = b.eyebrow ? `<div class="course-welcome-eyebrow">${b.eyebrow}</div>` : '';
+                                    html += `<div class="course-welcome">${eyebrow}<h2 class="course-welcome-title${headingAnchor.cls}"${headingAnchor.attrs}>${b.text}</h2></div>`;
+                                } else if (b.subheading) {
+                                    html += `${iconHTML}<h4 class="block-subheading${headingAnchor.cls}"${headingAnchor.attrs}>${b.text}</h4>`;
                                 } else {
-                                    html += `${iconHTML}<h3 class="block-heading">${b.text}</h3>`;
+                                    html += `${iconHTML}<h3 class="block-heading${headingAnchor.cls}"${headingAnchor.attrs}>${b.text}</h3>`;
                                 }
                                 break;
 
@@ -4334,10 +4530,11 @@
                             case 'image':
                                 const imgStyle = b.width ? `style="width: ${b.width}; max-width: 100%; height: auto;"` : '';
                                 const imageClasses = `block-image${b.touchNext ? ' block-image-touch-next' : ''}`;
+                                const imageAnchor = lessonJumpAnchorAttrs(b.anchor);
                                 if (Array.isArray(b.imageSequence) && b.imageSequence.length) {
                                     const dissolveClasses = `block-image-dissolve${b.frame ? ' block-image-dissolve-framed' : ''}`;
                                     const sequenceStops = Array.isArray(b.imageSequenceStops) ? ` data-sequence-stops="${b.imageSequenceStops.join(',')}"` : '';
-                                    html += `<div class="${imageClasses}">
+                                    html += `<div class="${imageClasses}${imageAnchor.cls}"${imageAnchor.attrs}>
                                         <div class="${dissolveClasses}" data-parable-dissolve data-parable-sequence${sequenceStops}>`;
                                     b.imageSequence.forEach((src, frameIdx) => {
                                         html += `<img class="parable-sequence-frame" ${GrowingTogetherLessonImages.attributes(src, BUILD_VERSION)} alt="${frameIdx === 0 ? (b.alt || '') : ''}" aria-hidden="${frameIdx === 0 ? 'false' : 'true'}">`;
@@ -4347,14 +4544,14 @@
                                 } else if (b.imageBw && b.imageColor) {
                                     const dissolveClasses = `block-image-dissolve${b.frame ? ' block-image-dissolve-framed' : ''}`;
                                     const dissolveOnEntry = b.imageDissolveOnEntry === true ? ' data-dissolve-on-entry' : '';
-                                    html += `<div class="${imageClasses}">
+                                    html += `<div class="${imageClasses}${imageAnchor.cls}"${imageAnchor.attrs}>
                                         <div class="${dissolveClasses}" data-parable-dissolve${dissolveOnEntry}>
                                             <img class="parable-img-color" ${GrowingTogetherLessonImages.attributes(b.imageColor, BUILD_VERSION)} alt="${b.alt || ''}">
                                             <img class="parable-img-bw" ${GrowingTogetherLessonImages.attributes(b.imageBw, BUILD_VERSION)} alt="" aria-hidden="true" style="opacity:1;">
                                         </div>
                                     </div>`;
                                 } else {
-                                    html += `<div class="${imageClasses}"><img ${GrowingTogetherLessonImages.attributes(b.src, BUILD_VERSION)} alt="${b.alt || ''}" ${imgStyle} onerror="this.style.display='none'"></div>`;
+                                    html += `<div class="${imageClasses}${imageAnchor.cls}"${imageAnchor.attrs}><img ${GrowingTogetherLessonImages.attributes(b.src, BUILD_VERSION)} alt="${b.alt || ''}" ${imgStyle} onerror="this.style.display='none'"></div>`;
                                 }
                                 break;
 
@@ -4510,8 +4707,9 @@
                                 </div>`;
                                 break;
 
-                            case 'parable':
-                                html += `<div class="block-parable">`;
+                            case 'parable': {
+                                const parableAnchor = lessonJumpAnchorAttrs(b.anchor);
+                                html += `<div class="block-parable${parableAnchor.cls}"${parableAnchor.attrs}>`;
                                 if (b.image) {
                                     html += `<img ${GrowingTogetherLessonImages.attributes(b.image, BUILD_VERSION)} alt="${b.alt || b.title}">`;
                                 }
@@ -4522,6 +4720,7 @@
                                     </div>
                                 </div>`;
                                 break;
+                            }
 
                             case 'widget': {
                                 const widgetId = `widget-${currentSeries}-${sessionNum}-${blockIdx}`;
@@ -4532,7 +4731,8 @@
                                 const widgetTitleAttr = widgetIframeApi
                                     ? widgetIframeApi.escapeAttr(widgetTitle)
                                     : String(widgetTitle).replace(/"/g, '&quot;');
-                                html += `<div class="block-widget">
+                                const widgetAnchor = lessonJumpAnchorAttrs(b.anchor);
+                                html += `<div class="block-widget${widgetAnchor.cls}"${widgetAnchor.attrs}>
                                     <iframe id="${widgetId}" class="gt-widget-frame" src="${b.src}?v=${BUILD_VERSION}"
                                         title="${widgetTitleAttr}"
                                         style="width: 100%; border: none; overflow: hidden; height: ${widgetHeight};"
@@ -4933,7 +5133,6 @@
             const nextBtn = document.getElementById('next-btn');
             const numLabel = document.getElementById('nav-session-num');
             const topLabel = document.getElementById('topbar-session-label');
-            const progressFill = document.getElementById('progress-fill');
 
             const currentIndex = loadedSessionNums.indexOf(currentSession);
             const isLastLesson = currentIndex >= totalSessions - 1;
@@ -4957,10 +5156,13 @@
                 const topicTitle = (currentSeriesLessonMeta[currentSession] && currentSeriesLessonMeta[currentSession].title) ||
                     (sessionData[currentSession] ? sessionData[currentSession].title.replace(/^Lesson\s+\d+:\s*/i, '') : '');
                 lessonSubtitleEl.textContent = topicTitle ? `${ordinal}. ${topicTitle}` : '';
+                const compactLabel = document.getElementById('compact-lesson-label');
+                compactLabel.querySelector('.compact-lesson-code').textContent = `${currentSeries}-${String(currentSession).padStart(2, '0')} ·`;
+                compactLabel.querySelector('.compact-lesson-topic').textContent = topicTitle;
+                compactLabel.title = `${currentSeries}-${String(currentSession).padStart(2, '0')} ${topicTitle}`;
+
             }
 
-            const pct = totalSessions > 0 ? (ordinal / totalSessions) * 100 : 0;
-            progressFill.style.width = pct + '%';
         }
 
         // ============================================
@@ -6708,6 +6910,32 @@
         // HASH ROUTING - Browser back/forward support
         // Handles: #101-4 (course-lesson), #tree, #about, # (home)
         // ============================================
+        // In-lesson jump links. A heading, parable, image or widget block may carry an
+        // "anchor" (lowercase letters, digits, hyphens). A lesson's "contents" list
+        // ({label, title, anchor}) renders under the summary as links to those anchors,
+        // and lesson text may also use <a class="lesson-jump" href="#jump-ANCHOR">.
+        // Clicks scroll to the section without changing the address bar, which the
+        // lesson router owns.
+        function lessonJumpAnchorAttrs(anchor) {
+            if (typeof anchor !== 'string' || !/^[a-z0-9-]+$/.test(anchor)) return { cls: '', attrs: '' };
+            return { cls: ' lesson-jump-target', attrs: ` id="jump-${anchor}" tabindex="-1"` };
+        }
+
+        document.addEventListener('click', (event) => {
+            const link = event.target.closest && event.target.closest('a.lesson-jump, a.lesson-contents-row');
+            if (!link) return;
+            event.preventDefault();
+            const targetId = (link.getAttribute('href') || '').replace(/^#/, '');
+            const target = targetId ? document.getElementById(targetId) : null;
+            if (!target || !target.classList.contains('lesson-jump-target')) return;
+            const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            target.scrollIntoView({ behavior: reduceMotion ? 'instant' : 'smooth', block: 'start' });
+            target.focus({ preventScroll: true });
+            target.classList.remove('is-arrived');
+            void target.offsetWidth;
+            target.classList.add('is-arrived');
+        });
+
         window.addEventListener('hashchange', async () => {
             if (_suppressHashNav) return;
 
