@@ -1,5 +1,7 @@
 # Resume here
 
+Input-focus cleanup: UI-FOCUS-MODALITY ACTIVE. Dave requested removing distracting phone focus rings. Shared policy hides pointer/touch outlines and keeps a2px blue keyboard cue across lessons/apps and embedded same-origin widgets, without modifying approved widget bytes or saved data. Foundation,117 new input-mode,57 existing accessibility and964 navigation checks pass. Publish after final-head checks; log: logs/2026-11-18-UI-FOCUS-MODALITY-codex.md.
+
 Daily Prayers reference placement DONE, November 18: PR #310 merged atcc45ef1. The Lord's Prayer dropdown is above the personal prayer and matches its paper background/type/spacing.294 app checks,320/390/1280 order/style/print checks and live390px saved-prayer/style checks pass. Source/legacy synchronized and production verified; log: logs/2026-11-18-PRAYERS-LORDS-TOP-codex.md.
 
 Heart52 card cleanup DONE, November 18: PR #306 merged at82103f2. Bring it to mind is removed, topic/reference spacing balanced, and live HTML/CSS verified against source after successful Firebase deployment. Keywords, verse/category behavior and all other apps/lessons remain intact. Evidence: logs/2026-11-18-HEART52-CLEAN-CARD-codex.md.

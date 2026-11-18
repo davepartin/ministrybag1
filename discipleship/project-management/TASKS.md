@@ -1,5 +1,12 @@
 # Running task board
 
+## Pointer focus cleanup, November 18, 2026
+
+| Task | Status | Owner / branch / date | Scope |
+|---|---|---|---|
+| UI-FOCUS-MODALITY | ACTIVE | Codex / codex/focus-input-modality / 2026-11-18 | Dave finds gold selection/focus outlines distracting on phones. Hide focus rings for touch/mouse, retain a quieter blue keyboard cue across the app/apps and embedded same-origin widgets. Preserve checked/selected states, native focus, lesson/widget/art bytes and saved data; publish after targeted verification. |
+
+
 ## Daily Prayers reference placement, November 18, 2026
 
 | Task | Status | Owner / branch / date | Scope |
