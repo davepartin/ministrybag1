@@ -71,7 +71,7 @@ If a lesson title, order, or browse subtitle changes, update `curriculum-toc.csv
 ## Visual System: The Tree Infographic
 
 ### Brand Logo
-Three-circle logo: left circle (blue) is a seedling/pot for Starting (101), middle circle (three green bands) is a full tree for Growing (201/202/203), right circle (pink/rose) is a community of trees for Leading (301).
+Hand-authored SVG at `images/brand/gt-logo.svg`. Three horizontally overlapping translucent circles: blue sprout (`#8AB0D6`), sage young tree (`#93BD8E`), coral orchard (`#F0928A`). Charcoal line icons. Transparent background. The app icon is `images/brand/gt-app-icon.svg` (navy rounded square, triangular Venn, white sprout). Course lesson logos (101-01 and the Growing openers) stay on their approved artwork until Dave assigns a change.
 
 ### Design Guidelines for Tree Images
 - Warm, hand-drawn feel with earth tones and soft greens and browns
@@ -84,7 +84,7 @@ Three-circle logo: left circle (blue) is a seedling/pot for Starting (101), midd
 ### Layout (top to bottom)
 1. "Growing Together" - Forum bold serif, 1.65rem
 2. "Discipleship Series" - Raleway 300 weight, 0.68rem, wide letter-spacing
-3. Logo image (three circles) - 580px, centered
+3. Logo image (`images/brand/gt-logo.svg`) - 540px, centered, 92% max on a phone
 4. Verse line - "Col. 2:6,7 As you received Christ Jesus the Lord, so walk in him"
 5. Pillars - "Rooted - Built-Up - Established" - Raleway 800 weight
 6. Five course cards, equal, color-coded by series

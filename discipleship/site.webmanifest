@@ -1,0 +1,21 @@
+{
+  "name": "Growing Together Discipleship",
+  "short_name": "Growing Together",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#F8F6F1",
+  "theme_color": "#18263F",
+  "icons": [
+    {
+      "src": "images/brand/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "images/brand/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
