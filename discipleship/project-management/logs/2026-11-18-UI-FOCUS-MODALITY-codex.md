@@ -20,3 +20,5 @@ Authoritative source: scripts/focus-modality.js. Existing companion builders dis
 - Test fixes: the original collection's actual first two words were retained rather than assuming another translation's wording; the synthetic seed was limited to top-level HTTP(S) documents so the intentionally opaque frame did not throw a sessionStorage error. No production storage access was added.
 
 Dave's request authorizes this behavior change; no new visual design or lesson wording is introduced. Merge/live evidence follows on the PR. ACTIVE until production verification.
+
+Integration refresh: current main236d9bc added approved203-03/203-04 voice/TOC work during implementation. Merged it cleanly; the shared runtime and app changes are unchanged, and all current-main lesson/widget/image files remain exact. Recheck foundation and targeted focus behavior on this final integrated head before merge.
