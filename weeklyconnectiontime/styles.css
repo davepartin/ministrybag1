@@ -1,3 +1,4 @@
+/* Generated from discipleship/tools/weekly-connection-time/styles.css. Edit the source, then run node discipleship/scripts/build_weekly_connection.js. */
 :root {
   --ink: #153a42;
   --ink-dark: #0e2d34;
@@ -1252,3 +1253,76 @@ textarea:focus {
   from { opacity: 0.6; }
   to { opacity: 1; }
 }
+
+/* Growing Together companion family: the same reading width as Daily Prayers. */
+:root { --content-width:640px; --ink:#2C2416; --ink-dark:#2C2416; --ink-soft:#716A5E; --paper:#FFFEFA; --canvas:#F6F4EE; --sand:#E5E0D5; --sand-light:#F8F6F1; --coral:#2A5B7C; --coral-dark:#1E435C; --sans:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; --serif:Georgia,serif; }
+:focus-visible { outline:3px solid #E0A526; outline-offset:4px; }
+.skip-link { position:absolute; top:-80px; left:12px; padding:12px; background:white; z-index:100; }
+.skip-link:focus { top:8px; }
+.site-header { background:#2C2416; color:#FAF8F3; border:0; backdrop-filter:none; }
+.header-inner { max-width:var(--content-width); margin:auto; min-height:64px; padding:10px 20px; display:flex; align-items:center; justify-content:space-between; gap:12px; }
+.wordmark { color:inherit; text-decoration:none; font-size:20px; font-weight:700; line-height:1.15; }
+.wordmark span { display:block; margin-top:4px; font-size:8px; font-weight:500; letter-spacing:.15em; }
+.ministry-link { display:flex; align-items:center; gap:7px; color:inherit; text-decoration:none; font-size:12px; white-space:nowrap; }
+.ministry-link img { width:34px; height:26px; }
+main { width:100%; max-width:var(--content-width); padding:18px 20px 28px; margin:auto; }
+.breadcrumb { display:flex; justify-content:space-between; align-items:center; gap:10px; margin-bottom:16px; font-size:12px; }
+.breadcrumb a { color:#2A5B7C; text-decoration:none; }
+.breadcrumb span { color:var(--ink-soft); font-size:9px; white-space:nowrap; }
+.save-status { display:flex; justify-content:flex-end; gap:7px; color:var(--ink-soft); font-size:12px; margin:0 0 10px; }
+.storage-error { padding:12px 14px; border:1px solid #8B1A2B; border-radius:10px; color:#8B1A2B; background:#FFF7F4; }
+.welcome-screen { padding:0; background:none; overflow:visible; }
+.welcome-screen::before,.welcome-screen::after { display:none; }
+.welcome-inner { width:100%; max-width:none; margin:0; padding:18px 0; display:block; }
+.welcome-copy h1,.summary-hero h1 { font-family:var(--sans); font-size:clamp(32px,7vw,44px); line-height:1.12; letter-spacing:-.035em; font-weight:650; }
+.welcome-lede { max-width:none; font-size:17px; }
+.welcome-card { width:100%; max-width:none; margin:28px 0 0; padding:24px; }
+.welcome-card h2 { font-size:24px; }
+.welcome-card-art img { width:82px; height:82px; }
+.conversation-screen { padding:0; }
+.conversation-layout { display:block; width:100%; max-width:none; margin:0; }
+.step-sidebar { display:none; }
+.step-stage { width:100%; max-width:none; padding:10px 0 0; margin:0; }
+.mobile-progress { display:block; margin-bottom:22px; }
+.mobile-progress-copy { display:flex; justify-content:space-between; gap:12px; font-size:13px; margin-bottom:8px; }
+.mobile-progress .progress-track { height:3px; }
+.step-heading { margin-bottom:24px; }
+.step-heading h2 { font-size:28px; line-height:1.2; }
+.step-heading p { font-size:16px; }
+.field-grid { grid-template-columns:minmax(0,1fr); }
+input,textarea { max-width:100%; }
+.step-actions { gap:12px; }
+.step-actions button { min-height:46px; }
+.summary-screen { padding:0; }
+.summary-shell { width:100%; max-width:none; margin:0; }
+.summary-hero { padding-top:16px; }
+.summary-grid { grid-template-columns:minmax(0,1fr); }
+.summary-item,.summary-item:nth-child(even),.summary-item-wide { grid-column:auto; border-right:0; padding:20px 0; }
+.summary-paper { padding:24px; }
+.summary-actions { display:flex; flex-wrap:wrap; gap:10px; }
+.site-footer { width:100%; max-width:var(--content-width); padding:0 20px 30px; margin:auto; text-align:left; color:var(--ink-soft); }
+.site-footer>a { color:#2A5B7C; }
+.site-footer details { margin:22px 0; padding:18px 0; border-block:1px solid var(--sand); }
+.site-footer summary { cursor:pointer; font-weight:650; color:var(--ink); }
+.copy-actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:14px; }
+.copy-actions button { min-height:44px; }
+dialog { max-width:min(440px,calc(100% - 32px)); padding:24px; border:1px solid var(--sand); border-radius:14px; color:var(--ink); background:var(--paper); }
+dialog::backdrop { background:rgba(44,36,22,.45); }
+dialog h2 { font-size:24px; }
+@media(max-width:360px) { .header-inner,main,.site-footer { padding-left:15px; padding-right:15px; } .wordmark{font-size:17px;} .ministry-link{gap:5px;} .ministry-link img{width:27px;height:21px;} .breadcrumb{font-size:11px;} .breadcrumb span{font-size:8px;} }
+@media print { .site-header,.breadcrumb,.save-status,.storage-error,.site-footer,dialog {display:none!important;} main{max-width:none;padding:0;} body{background:white;} .summary-paper{padding:0;border:0;box-shadow:none;} }
+
+.primary-button,.secondary-button { text-decoration:none; }
+.site-footer { display:block; background:transparent; font-size:14px; }
+.site-footer a { color:#2A5B7C; }
+.site-footer details p { margin:12px 0; line-height:1.6; }
+.save-status > span:last-child { display:inline; }
+
+/* Give the conversation the same comfortable interior as the other paper cards. */
+.conversation-screen,.conversation-layout { min-height:0; background:transparent; }
+.step-stage { min-height:0; padding:24px; background:var(--paper); border:1px solid var(--sand); border-radius:16px; }
+@media(max-width:640px) {
+  .step-stage { padding:20px 16px 96px; }
+  body:has(#conversationScreen:not([hidden])) .site-footer { padding-bottom:calc(100px + env(safe-area-inset-bottom)); }
+}
+@media print { .step-stage { padding:0; border:0; } }

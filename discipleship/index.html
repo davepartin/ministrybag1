@@ -427,7 +427,20 @@
             font-family: var(--font);
             width: 100%;
             letter-spacing: 0.01em;
+            line-height: 1.4;
             transition: background var(--transition), color var(--transition);
+        }
+
+        .home-tree-btn-link {
+            display: block;
+            box-sizing: border-box;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .home-tree-btn-link:focus-visible {
+            outline: 3px solid #1E6FA0;
+            outline-offset: 3px;
         }
 
         .home-tree-btn:active {
@@ -3541,7 +3554,8 @@
             </div>
 
             <div class="home-tree-btn-wrap">
-                <button class="home-tree-btn" onclick="openTree()">Browse All Courses and Lessons</button>
+                <button class="home-tree-btn" onclick="openTree()">Browse All Lessons</button>
+                <a class="home-tree-btn home-tree-btn-link" id="home-growing-apps-link" href="tools/">Your Growing Apps</a>
                 <div class="home-account" id="home-account" hidden>
                     <p class="home-account-status" id="home-account-status" aria-live="polite" hidden></p>
                     <button type="button" class="home-backup-btn" id="home-account-signin">Sign in</button>

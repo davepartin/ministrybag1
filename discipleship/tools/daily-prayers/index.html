@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#2C2416">
+  <meta name="description" content="Make a little room for prayer. Build personal daily prayers for yourself, family, church and the people on your heart.">
+  <title>Daily Prayers | Growing Together</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./app.css">
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to my prayers</a>
+  <header class="site-header"><div class="header-inner"><a href="https://growingtogetherdiscipleship.com/" class="wordmark">Growing Together<span>COMPANION TOOLS</span></a><a href="https://ministrybag.com/" class="ministry-link"><img src="./ministrybagsatchel1.svg" width="34" height="26" alt="">MinistryBag</a></div></header>
+  <main id="main" tabindex="-1">
+    <nav class="breadcrumb" aria-label="Related lesson"><a id="lesson-link" href="https://growingtogetherdiscipleship.com/index.html#101-3"><span aria-hidden="true">←</span> The prayer lesson</a><span class="lesson-tag">101-03 · PRAYER</span></nav>
+    <div class="hero"><h1>Daily Prayers</h1><p>Bring the people and needs on your heart to your Father.</p></div>
+    <div id="save-error" class="notice error" role="alert" hidden></div>
+    <div id="app-message" class="notice" role="status" hidden></div>
+    <div id="undo-notice" class="notice" hidden><span id="undo-label"></span><button id="undo-remove" class="text-button" type="button">Undo</button></div>
+    <p id="boot" class="boot" role="status">Opening your prayers…</p>
+
+    <section id="read-view" hidden aria-labelledby="read-heading">
+      <div class="view-heading"><div><div class="eyebrow">RETURN TO THESE EACH DAY</div><h2 id="read-heading" tabindex="-1">My Daily Prayers</h2></div><button id="edit-prayers" class="button primary" type="button">Edit my prayers</button></div>
+      <div class="reading-layout">
+        <details class="reference prayer-paper" id="lords-reference"><summary>The Lord’s Prayer</summary><p class="reference-intro">A pattern to return to.</p><p id="lords-prayer" class="prayer-content"></p></details>
+        <article class="prayer-paper" aria-label="Your personal daily prayers"><div class="paper-mark" aria-hidden="true">✦</div><div id="prayer-content" class="prayer-content"></div><div class="print-only" id="print-lords"></div><div class="paper-footer">GROWING TOGETHER · DAILY PRAYERS</div></article>
+        <aside class="reading-aside"><div class="quiet-note"><span class="small-line" aria-hidden="true"></span><p>You can pray these words slowly, add your own, and pause with the names on your heart.</p></div></aside>
+      </div>
+      <div class="reading-actions" aria-label="Use your prayers"><button id="copy-prayers" class="button secondary" type="button">Copy prayers</button><a id="email-prayers" class="button secondary" href="mailto:">Email prayers</a><button id="print-prayers" class="button secondary" type="button">Print</button><span id="copy-status" class="subtle" role="status"></span></div>
+    </section>
+
+    <section id="edit-view" hidden aria-labelledby="edit-heading">
+      <div class="view-heading"><div><div class="eyebrow">MAKE IT PERSONAL</div><h2 id="edit-heading" tabindex="-1">Build your daily prayers</h2><p class="subtle">Add the people and needs on your heart. You can change them any time.</p></div></div>
+      <form id="prayer-form">
+        <details class="editor-section" id="myself-section" open><summary><span class="section-number">01</span><span>Pray for myself<small>A heart that keeps growing</small></span><span class="expand-mark" aria-hidden="true">+</span></summary><div class="section-content"><p class="prayer-starter">Create in me a clean heart, O God, and renew a right spirit within me. Help me grow in:</p><div id="personal-attrs" class="attribute-buttons" role="group" aria-label="Growth areas for myself"></div><label for="personalCustom">A specific prayer request <span class="optional">(optional)</span></label><textarea id="personalCustom" rows="3"></textarea></div></details>
+        <details class="editor-section" id="family-section"><summary><span class="section-number">02</span><span>Pray for family and others<small>The people you walk beside</small></span><span class="expand-mark" aria-hidden="true">+</span></summary><div class="section-content"><div id="family-members"></div><button id="add-family" class="button add-button" type="button">+ Add another person</button></div></details>
+        <details class="editor-section" id="church-section"><summary><span class="section-number">03</span><span>Pray for my church<small>Growing and serving together</small></span><span class="expand-mark" aria-hidden="true">+</span></summary><div class="section-content"><p id="church-prayer" class="prayer-starter"></p><label for="churchCustom">Specific church prayer requests <span class="optional">(optional)</span></label><textarea id="churchCustom" rows="3"></textarea></div></details>
+        <details class="editor-section" id="people-section"><summary><span class="section-number">04</span><span>Pray for people to know Jesus<small>Keep their names on your heart</small></span><span class="expand-mark" aria-hidden="true">+</span></summary><div class="section-content"><div id="people-names"></div><button id="add-person" class="button add-button" type="button">+ Add another person</button><label for="lostCustom">A specific prayer request <span class="optional">(optional)</span></label><textarea id="lostCustom" rows="3"></textarea><p id="people-preview" class="prayer-starter preview"></p></div></details>
+        <div class="editor-finish"><div><span class="save-dot" aria-hidden="true"></span><span id="draft-status" role="status">Your draft saves in this browser.</span></div><button id="read-prayers" class="button primary" type="submit">Create Your Daily Prayer <span aria-hidden="true">→</span></button></div>
+      </form>
+    </section>
+
+    <footer class="tool-footer"><p id="save-status" role="status">Saved in this browser, on this device.</p><details id="copy-tools" class="copy-tools"><summary>Keep a copy or move to another device</summary><p>Save a copy to keep your prayers or bring them to another browser. Prayers do not sync between devices yet.</p><p id="ministrybag-move" hidden>Moving from MinistryBag? <a href="https://ministrybag.com/dailyprayers/#copy-tools" target="_blank" rel="noopener noreferrer">Open your old prayers</a>, choose Save a copy, then use Restore a copy here.</p><div class="backup-actions"><button id="download-copy" class="button secondary" type="button">Save a copy</button><button id="choose-copy" class="button secondary" type="button">Restore a copy</button><button id="download-previous" class="text-button" type="button" hidden>Download the copy from before your last restore</button></div><input id="backup-file" type="file" accept=".json,application/json" hidden><p id="backup-status" class="subtle" role="status"></p></details><p class="footer-links"><a id="growing-apps-link" href="https://growingtogetherdiscipleship.com/tools/">Your Growing Apps</a></p><p class="footer-links">A Growing Together companion, available through <a href="https://ministrybag.com/">MinistryBag</a>.</p></footer>
+    <noscript><p>This tool needs JavaScript to open and save your personal prayers.</p></noscript>
+  </main>
+  <dialog id="restore-dialog" aria-labelledby="restore-heading"><h2 id="restore-heading">Restore these prayers?</h2><p id="restore-description"></p><p>This replaces the prayers in this browser. Your current prayers will be kept as a recovery copy.</p><div class="dialog-actions"><button id="cancel-restore" class="button secondary" type="button">Cancel</button><button id="confirm-restore" class="button primary" type="button">Restore prayers</button></div></dialog>
+</body>
+</html>
