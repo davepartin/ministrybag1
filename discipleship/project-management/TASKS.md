@@ -4,7 +4,7 @@
 
 | Task | Status | Owner / branch / date | Scope |
 |---|---|---|---|
-| HEART52-CLEAN-CARD | ACTIVE | Codex / codex/heart52-remove-kicker / 2026-11-18 | Dave requested removing Bring it to mind from the card. Keep the topic/reference/verse, category controls, blue theme and saved data intact; synchronize the legacy copy and publish this exact cleanup. |
+| HEART52-CLEAN-CARD | DONE | Codex / codex/heart52-remove-kicker / 2026-11-18 | Dave requested removing Bring it to mind from the card. Keep the topic/reference/verse, category controls, blue theme and saved data intact; Source/legacy synchronized; PR #306 merged at82103f2 and verified live. |
 
 
 ## Publish the three Growing Apps, November 18, 2026

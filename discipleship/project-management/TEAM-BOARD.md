@@ -1,5 +1,7 @@
 # Growing Together Team Board
 
+Heart52 card cleanup DONE, November 18: #306 merged at82103f2 and verified live. Removed Bring it to mind and its unused spacing; other card content, labels and all lessons remain unchanged. Log: logs/2026-11-18-HEART52-CLEAN-CARD-codex.md.
+
 ## Growing Apps published, November 18, 2026
 
 DONE: Dave authorized publishing #261, #288 and #296. All3 merged in order and Firebase production is verified at8793a4c. The homepage now has Your Growing Apps under Browse All Lessons. [Open the live apps page](https://growingtogetherdiscipleship.com/tools/): Your Daily Prayers, Your Weekly Connection Time and Your Heart52. These are live, not preview-only; no further merge/approval is pending for these versions.

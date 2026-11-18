@@ -1,6 +1,6 @@
 # Resume here
 
-Heart52 card cleanup: Dave requested removing Bring it to mind. HEART52-CLEAN-CARD ACTIVE on codex/heart52-remove-kicker; front label removed, spacing balanced, source/legacy synchronized. Targeted375/390/1280 checks pass; publish this exact deletion and verify live. See logs/2026-11-18-HEART52-CLEAN-CARD-codex.md.
+Heart52 card cleanup DONE, November 18: PR #306 merged at82103f2. Bring it to mind is removed, topic/reference spacing balanced, and live HTML/CSS verified against source after successful Firebase deployment. Keywords, verse/category behavior and all other apps/lessons remain intact. Evidence: logs/2026-11-18-HEART52-CLEAN-CARD-codex.md.
 
 ## Growing Apps published, November 18, 2026
 
