@@ -30,7 +30,6 @@ Dave drew much of the art himself before the bots arrived. **Before generating a
 | `running-father-bw3.jpeg`, `running-father-color3.jpeg` | Running father (201-01) | Finished pair. Replaced by the five-frame sequence. |
 | `203-03-emmaus-table-bw.jpg`, `203-03-emmaus-table-color.jpg` | Stay with Us (203-03) | Heavy charcoal pair from #171. Replaced by the four-frame bread sequence. Files stay in the folder unused. |
 | `house-rock-1.png`, `house-rock-2.jpg`, `house-rock-3.jpg` | Two builders (202-02) | Earlier frames. Replaced by the storm sequence in #135. |
-| `202.08-abram-covenant-bw.png`, `202.08-abram-covenant-color.png` | Abram's covenant (202-08) | Finished pair, unused; 202-08 uses the marble and chisel pair. |
 | `boy-and-tree.png` (+ bw, color) | Boy and tree | Unused. Ask Dave. |
 | `201.06-country-road.jpg`, `201.06-golden-sunrise.jpg`, `202.04-library-bookshelf.jpg`, `202.04-open-bible.jpg`, `aspen-grove.jpg`, `Farmer-color3.jpg` | Photos and earlier variants | Unused. Not the sketch look; keep as references only. |
 
