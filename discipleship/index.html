@@ -2078,6 +2078,22 @@
             background: var(--bg);
         }
 
+        /* Small "Credits" link under all lesson buttons; opens the credits list on the About page. */
+        .lesson-credits {
+            max-width: var(--max-w);
+            margin: 0 auto;
+            padding: 0 20px max(env(safe-area-inset-bottom), 20px);
+            font-size: 0.75rem;
+            line-height: 1.5;
+            text-align: center;
+        }
+
+        .lesson-credits-link {
+            color: var(--text-secondary);
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+
         .bottom-nav-inner {
             max-width: var(--max-w);
             margin: 0 auto;
@@ -2309,6 +2325,25 @@
         .about-content .about-small {
             font-size: 0.85rem;
             color: var(--text-secondary);
+        }
+
+        .about-credits-heading {
+            font-size: 0.95rem;
+            margin: 18px 0 6px;
+        }
+
+        .about-credit {
+            margin: 0 0 10px;
+            scroll-margin-top: 72px;
+        }
+
+        .about-credit-lesson {
+            font-size: 0.85rem;
+            margin: 0 0 2px;
+        }
+
+        .about-credit .about-small {
+            margin: 0;
         }
 
         .about-acknowledgments {
@@ -3618,10 +3653,11 @@
                     personal project, not an official publication of Send Network, Cru, or Young Life.</p>
 
                 <details class="about-acknowledgments" id="about-acknowledgments">
-                    <summary>Acknowledgments</summary>
+                    <summary>Acknowledgments and Credits</summary>
                     <p class="about-small">I'm grateful for the pastors, friends, and fellow believers who have helped
                         me follow Jesus and taught me to walk alongside others. This study carries the influence of
                         many faithful people, and I thank God for them.</p>
+                    <div class="about-credits" id="about-credits"></div>
                     <p class="esv-footnote">Unless otherwise noted, Scripture quotations are from the ESV&reg; Bible (The Holy Bible, English Standard
                         Version&reg;), copyright &copy; 2001 by Crossway, a publishing ministry of Good News Publishers. Used by
                         permission. All rights reserved. Weekly Gospel of John readings are from the World English Bible, which is in the public
@@ -3697,6 +3733,8 @@
                     <button class="nav-btn nav-btn-next" id="next-btn" onclick="nextSession()">Next &#8250;</button>
                 </div>
             </div>
+            <p class="lesson-credits"><a class="lesson-credits-link" id="lesson-credits-link" href="#about"
+                onclick="event.preventDefault(); openCredits()">Credits</a></p>
         </div>
     </div>
 
@@ -4067,6 +4105,7 @@
             const about = document.getElementById('about-view');
             about.classList.add('active');
             GrowingTogetherLessonImages.activate(about);
+            renderAboutCredits();
             window.scrollTo({ top: 0, behavior: 'instant' });
             if (!_suppressHashNav) pushHash('about');
             document.getElementById('about-heading').focus({ preventScroll: true });
@@ -5131,6 +5170,41 @@
             if (idx > 0) {
                 showSession(loadedSessionNums[idx - 1]);
             }
+        }
+
+        // Lesson credits live in one place, credits.json, and show on the About page
+        // under Acknowledgments and Credits. Each lesson has a small Credits link to them.
+        let aboutCreditsPromise = null;
+
+        function renderAboutCredits() {
+            if (aboutCreditsPromise) return aboutCreditsPromise;
+            const box = document.getElementById('about-credits');
+            if (!box) return Promise.resolve();
+            aboutCreditsPromise = fetch(`credits.json?v=${BUILD_VERSION}`)
+                .then(res => { if (!res.ok) throw new Error(String(res.status)); return res.json(); })
+                .then(data => {
+                    const rows = (data && Array.isArray(data.lessons) ? data.lessons : [])
+                        .filter(row => row && /^[0-9]{3}-[0-9]{2}$/.test(row.lesson) && Array.isArray(row.credits) && row.credits.length)
+                        .map(row => `<div class="about-credit" id="credit-${row.lesson}"><h4 class="about-credit-lesson">${row.lesson.replace('-', '.')} ${row.title || ''}</h4><p class="about-small">${row.credits.join(' ')}</p></div>`);
+                    box.innerHTML = rows.length ? `<h3 class="about-credits-heading">Lesson Credits</h3>${rows.join('')}` : '';
+                })
+                .catch(err => {
+                    aboutCreditsPromise = null;
+                    console.warn('Could not load lesson credits', err);
+                });
+            return aboutCreditsPromise;
+        }
+
+        async function openCredits() {
+            const lessonId = `${currentSeries}-${String(currentSession).padStart(2, '0')}`;
+            openAbout();
+            const details = document.getElementById('about-acknowledgments');
+            if (details) details.open = true;
+            await renderAboutCredits();
+            // Let the About route settle (it scrolls to the top) before moving to the credit.
+            await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+            const target = document.getElementById(`credit-${lessonId}`) || document.getElementById('about-acknowledgments');
+            if (target) target.scrollIntoView({ block: 'start', behavior: 'instant' });
         }
 
         function updateNav() {
