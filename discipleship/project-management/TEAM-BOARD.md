@@ -1,5 +1,49 @@
 # Growing Together Team Board
 
+## Compact header standard across every lesson, November 17, 2026
+
+Dave approved the 202-01 pilot and requested the same style throughout the app. UI-COMPACT-HEADERS-ALL, PR #286, applies the existing 49px row to every lesson: Back, course/lesson code and title, then Menu. The progress strip and unused update code are removed. All 47 lesson identities pass, with 44px controls, sticky placement, long-title truncation, no horizontal overflow and saved answers preserved. Core QA, 283 header checks, 964 navigation checks, 95 Samaritan/128 lamp/103 soils checks and 387 all-course image checks pass. No lesson JSON, approved widget/artwork, question/reading identity or saved-answer logic changes. The execution blocker below is resolved; the former single-lesson pilot limitation is superseded. Final exact-head preview, merge and live evidence: [Codex log](logs/2026-11-17-UI-COMPACT-HEADERS-ALL-codex.md) and PR #286.
+
+
+## Compact lesson headers: rollout blocked on workspace verification
+
+Dave approved the 202-01 header and requested the same style across the app. UI-COMPACT-HEADERS-ALL is BLOCKED only on execution access: the workspace disconnected before implementation/tests could run. Changes are prepared through GitHub on codex/compact-headers-all: every lesson uses the existing approved 49px header, and the unused progress DOM/styles/update code are removed. No lesson JSON, widget/art bytes, question IDs or saved-answer implementation changes. Expanded browser coverage checks every lesson identity plus narrow/desktop/reduced-motion controls and synthetic answer survival. Static inline-JavaScript and test-script syntax checks pass in the orchestration runtime; repository QA and browser checks have NOT run. Do not merge until those checks and the exact-head preview are verified after workspace access returns. Log: logs/2026-11-17-UI-COMPACT-HEADERS-ALL-codex.md.
+
+
+## Compact header live pilot: 202-01, November 17, 2026
+
+Dave requested implementation and merge of a one-lesson pilot. UI-202-01-COMPACT-HEADER uses one 49px row: Back, 202-01 and Loving Your Neighbors, then Menu. The course/title second row and progress strip are hidden only for 202-01, saving 42 percent of header height. Both controls retain 44px tap targets. Other lessons keep their existing headers. All lesson JSON, approved widgets/art and saved-answer logic remain untouched. Test 202-01 on the live site; compare 202-02 before deciding on a series rollout. Core QA, 89 header checks, 964 navigation checks and 95 story-scroll checks pass. Final PR, hosted verification and deployment evidence: [Codex log](logs/2026-11-17-UI-202-01-COMPACT-HEADER-codex.md).
+
+
+## 101-04 compact widget approved for integration: November 17, 2026
+
+Dave approved PR #262 at exact 6a4c1e7977719842941e72a3cee339c67899c2f6 and said to merge. Preserve these widget bytes: half-size Bible, closed cover aligned right within its opening footprint, wipe opening left, 30 percent shorter diagram, dimmed Ready passage and simpler Ready card. This is component approval only; 101-04 text stays Silver. All lesson JSON, questions/IDs/answers, readings, approved oil-lamp art, placement and shared runtime remain unchanged. Core QA and 248 focused browser checks pass. Approved component hash/status are recorded. Final exact-head preview, merge and live verification are on PR #262. [Integration log](logs/2026-11-17-WIDGET-101-04-RDR-POLISH-codex.md).
+
+
+## 101-04 compact Bible layout follow-up: November 17, 2026
+
+PR #262 remains REVIEW. At Dave's request, the Bible area stays on the left at half its prior size. The closed cover is aligned against the open book's right edge, leaving room to open left; the opening wipe travels right to left. The diagram viewBox height is 116 instead of 166, a 30 percent reduction. Teaching-card and Scripture fonts remain unchanged. Browser coverage includes a 375x667 phone, full-widget fit below the lesson header, wipe direction, fixed card sizing and saved answers. No lesson JSON, artwork, shared runtime or historical approval fingerprints change. Preview awaits Dave's visual approval before merge. Evidence: [Codex log](logs/2026-11-17-WIDGET-101-04-RDR-POLISH-codex.md).
+
+
+## 101-04 widget-polish preview refreshed: November 17, 2026
+
+WIDGET-101-04-RDR-POLISH REVIEW, PR #262. Dave requested a fresh preview to decide whether to merge. Merged current main normally, preserving both TASKS/TEAM-BOARD histories. The proposed read-discover-respond.html remains exact Gemini 69fff4eb3e59013db323bb74366f3efefc414917: closed Bible on Ready, opening on Read Slowly, dim passage/John 1 watermark at Ready, and shorter opening card.
+
+Current 101-04 JSON is byte-identical to main: protected wording, eight questions, retired answer, John readings, approved lamp artwork and widget placement remain intact. Shared index/iframe helper and all other lessons/widgets/art are unchanged. No new widget/art/whole-lesson approval inferred; current baseline remains untouched until Dave approves. Core QA, export186/storage64/assets144/images1543/iframe32 and 230 embedded RDR checks pass locally. Final exact-head preview evidence and links are on PR #262. [Codex log](logs/2026-11-17-WIDGET-101-04-RDR-POLISH-codex.md).
+
+
+
+## 101-04 Read, Discover, Respond polish (REVIEW): November 16, 2026
+
+- **Task / Branch:** `WIDGET-101-04-RDR-POLISH` on `gemini/widget-101-04-rdr-polish` (stopped at `REVIEW`; do not merge without Dave's go-ahead; `data/101-04.json` and all unrelated files untouched).
+- **Changes:** Updated [read-discover-respond.html](../widgets/read-discover-respond.html) and [widget_101_04_rdr_browser_check.js](../scripts/widget_101_04_rdr_browser_check.js):
+  - Step 0 (`Ready`) shows a closed Bible (`#bible-closed`) on the left side of the diagram instead of repeating the already-open spread; advancing to Step 1 (`Read Slowly`) hides the closed cover and unfolds `#bible-open-part` rightward (`clip-bible-rect` width `50 -> 114`).
+  - Step 0 (`Ready`) keeps `#passage-box` crisp white while dimming `.passage-meta` (`0.22`) and `.passage-text` (`0.14`, `#7C7468`) beneath a centered `John 1:11-12` watermark (`.passage-watermark`); advancing to Step 1 fades the watermark out and brings the worked-example passage cleanly to the forefront (`opacity: 1`).
+  - Simplified `STEPS[0]` card copy (`Open any passage with three simple movements: read it well, notice what it says, and respond.` / `Step through John 1:11-12 to see how the rhythm works.`) to remove overlap with Step 1 (`Listen Before Answering`).
+  - Preserved locked `--card-h` (`166px` mobile / `147px` desktop), `prefers-reduced-motion: reduce`, keyboard navigation, zero idle DOM mutations, zero `localStorage` writes, and zero em dashes.
+- **Verification:** `qa_foundation.sh`, `test_lesson_export.js` (`186`), `test_answer_storage.js` (`64`), `check_lesson_assets.js` (`139`), `test_widget_iframe.js` (`32`), and `widget_101_04_rdr_browser_check.js` (`234`) all pass (`exit 0`), plus visual inspection of `390x844` captures across Steps 0, 1, 2, and 5.
+- **Evidence:** [Gemini handoff log](logs/2026-11-16-WIDGET-101-04-RDR-POLISH-gemini.md).
+
 ## 101-07 B&W widget refinement integrated: November 17, 2026
 
 WIDGET-101-07-BW-REFINE DONE, PR #254. Dave approved exact a93a67350290bbe7520e2af8fb0c0c29650b8953 for stop-turn-walk.html and both approved standalone/embedded browser scripts. All three remain byte-identical. The B&W scene, straight arms, white turn/stop lines, removed road dots, closer Walk endpoint and shorter approved slide copy are preserved.
@@ -102,6 +146,7 @@ Dave approved PR #263 at b52e4f4ab59024193484e23eff0ad99d90904bae: the 1280x720 
 Current main 0b4a799 (#259) is preserved: all prose, Scripture, eight active questions, retired 4-6, John 10-12 and Read, Discover, Respond widget are unchanged. In particular, do not restore the retired share section/question or duplicate Discovery Questions box. All unrelated lessons, index, saved-answer code and existing art stay unchanged. Image approval only; text remains Silver with Dave edits protected. The 101 status and baseline now record the current protected content and exact approved image hashes.
 
 Core QA, asset/image/export/storage/iframe checks and targeted widget/dissolve browser verification are recorded in the integration log. Final exact-head Firebase preview, merge and production deployment evidence are on PR #263. Evidence: [Codex integration log](logs/2026-11-16-ART-101-04-LAMP-codex.md).
+
 
 ## 202-10 Lord's Supper update approved: November 16, 2026
 

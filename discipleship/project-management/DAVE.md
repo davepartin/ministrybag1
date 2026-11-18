@@ -1,5 +1,10 @@
 # Dave's decision and approval queue
 
+## 101-04 compact widget approved for integration: November 17, 2026
+
+Dave approved PR #262 at exact 6a4c1e7977719842941e72a3cee339c67899c2f6 and said to merge. Preserve these widget bytes: half-size Bible, closed cover aligned right within its opening footprint, wipe opening left, 30 percent shorter diagram, dimmed Ready passage and simpler Ready card. This is component approval only; 101-04 text stays Silver. All lesson JSON, questions/IDs/answers, readings, approved oil-lamp art, placement and shared runtime remain unchanged. Core QA and 248 focused browser checks pass. Approved component hash/status are recorded. Final exact-head preview, merge and live verification are on PR #262. [Integration log](logs/2026-11-17-WIDGET-101-04-RDR-POLISH-codex.md).
+
+
 ## 202-09 approved roof marker artwork: November 17, 2026
 
 ART-202-09-MARKER DONE, PR #279. Dave approved c053695840939c50bc48e67803b8ec463b4e7d77: the 1280x720 rough marker roof B&W/color pair, four optimized WebP deliveries, generated asset map and framed touchNext image block with imageDissolveOnEntry. All approved submission bytes are preserved exactly. Older 202.09-david-roof PNGs remain on disk unchanged.
