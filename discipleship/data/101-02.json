@@ -179,5 +179,13 @@
       "text": "What is a prayer request for this week?",
       "height": "short"
     }
+  ],
+  "retiredQuestions": [
+    {
+      "type": "question",
+      "id": "2-4",
+      "text": "2.4 - Why is it important for a Christian to be baptized?",
+      "data_question": "2.4 - Importance of baptism"
+    }
   ]
 }

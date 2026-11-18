@@ -149,7 +149,7 @@
     {
       "type": "question",
       "id": "5-4",
-      "text": "5.3 - What is your church family like right now, or what is one step toward finding one this week?",
+      "text": "5.3 - What is your church family like right now?",
       "data_question": "5.3 - Where are you planted"
     },
     {
@@ -210,6 +210,12 @@
     }
   ],
   "retiredQuestions": [
+    {
+      "type": "question",
+      "id": "5-2",
+      "text": "5.2 - Imagine a community who loves each other unconditionally, not based on what they do but based on who God says they are. Describe what these relationships would be like.",
+      "data_question": "5.2 - Unconditional love community"
+    },
     {
       "type": "question",
       "id": "5-hand",
