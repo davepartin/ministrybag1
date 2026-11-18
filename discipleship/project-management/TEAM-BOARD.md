@@ -1,5 +1,7 @@
 # Growing Together Team Board
 
+Heart52 compact-header follow-up, November 18: PR #296 restores the original website logo and removes 51-53 percent of the space above the card (card top now 144px). Card text, keywords and enlarged references remain intact. 498 card/calendar/startup checks and original-logo/global-preferences checks pass. REVIEW, not live; evidence in the redesign log.
+
 Heart52 follow-up, November 18: Dave requested larger Scripture references while keeping the keywords. PR #296 now uses 24-30px front references and 22-28px reverse references. 486 browser checks and all52-reference phone/laptop checks pass. Preview remains REVIEW, no publication. See the redesign log's larger-addresses section.
 
 ## Heart52 flip-card redesign, November 18, 2026

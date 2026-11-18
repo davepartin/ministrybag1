@@ -35,3 +35,12 @@ This is a continuation of PR #296, targeting codex/weekly-connection-companion (
 Dave liked the keywords and requested larger references. Front reference increases from 13px to a responsive 24-30px serif; reverse reference from 12px to 22-28px. Both use the main ink color. Topic hints, all verse text, layout/behavior, saved progress, lesson files and other apps stay unchanged. Source CSS and generated legacy CSS only, plus coordination notes.
 
 Verification: all 486 card/reference/calendar/startup browser checks pass across 320/375/390/648/1280 and reduced motion. A separate focused browser pass checked all 52 front references and unchanged keywords at 320/390/1280, minimum front24px/reverse22px and no card overflow. The 390px John10:10 front screenshot was inspected. Build mirror parity and git diff --check pass. Updated exact-head Firebase preview/check results will be recorded on PR #296. Status remains REVIEW; no merge or live publication.
+
+
+## Dave follow-up: remove stacked headers and restore original logo
+
+Dave requested at least half the space above the card removed and his website logo restored. One 48px header now contains Back, the original unmodified heart52logo1.svg, Apps and preferences. The view selector is the only other navigation row. The repeated tagline, visible hero headline and date sentence are removed from the opening layout; accessible heading/date context remain. Preferences are in the common footer so the header settings control works from all views. Card faces, keywords, large references, passage text, app logic/storage, all lessons and other app sources are untouched.
+
+Measured card top (CSS px) before -> after: 320 wide 291 -> 144; 375/390 wide 300.5 -> 144; 648/1280 wide 306.5 -> 144. This removes 51-53 percent of pre-card space. Original SVG bytes are unchanged; no generated artwork or recoloring. Source/legacy HTML and CSS are synchronized.
+
+Verification: 498 existing/extended card/calendar/startup checks pass across six viewport/motion cases, including the explicit half-height criterion and original-logo load. Global preferences from All52 open visibly with keyboard focus. Mirror parity, protected-file diff guard and git diff --check pass. Phone screenshot inspected. Existing general browser test's wordmark selector now checks the original img instead of the removed custom SVG. Final-head preview/hosting evidence is recorded on PR #296; status remains REVIEW, not published.

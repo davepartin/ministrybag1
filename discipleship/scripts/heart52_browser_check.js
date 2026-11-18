@@ -26,7 +26,7 @@ async function getDownload(page,id,json=true){const [file]=await Promise.all([pa
    await p.goto(address,{waitUntil:'networkidle'});await p.locator('#library-view').waitFor({state:'visible'});
    ck(await p.locator('.verse-link').count()===52,'all52 choices');ck(await p.evaluate(key=>localStorage.getItem(key),S.KEY)===JSON.stringify(initial),'opening does not rewrite saved progress');
    ck(await p.locator('main').evaluate(e=>e.getBoundingClientRect().width<=640),'shared bounded page width');
-   ck(await p.locator('.heart-wordmark svg').evaluate(e=>e.getBoundingClientRect().width>0),'new Heart52 wordmark renders');
+   ck(await p.locator('.heart-wordmark img').evaluate(e=>e.complete&&e.naturalWidth>0),'original Heart52 logo loads');
    await p.locator('#nav-all').click();
    await p.locator('#search').fill('John 3:16');ck(await p.locator('.verse-link').count()===1,'reference search');await p.locator('#search').fill('zzzz-no-passage');ck(await p.locator('.verse-link').count()===0,'empty filter result');await p.locator('#search').fill('');
    await p.locator('#theme-filter').selectOption("God's Word");ck(await p.locator('.verse-link').count()===verses.filter(v=>v.theme==="God's Word").length,'theme filter');await p.locator('#theme-filter').selectOption('');await p.locator('#nav-today').click();

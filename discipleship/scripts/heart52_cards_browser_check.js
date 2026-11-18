@@ -16,7 +16,7 @@ let passed=0;const ck=(v,m)=>{assert.ok(v,m);passed++;};
  ck(await p.locator('#card-back').getAttribute('aria-hidden')==='true'&&await p.locator('#card-back').evaluate(e=>e.inert),'concealed text is excluded from assistive view');
  ck(!(await p.locator('#memory-card').getAttribute('aria-label')).includes(source.text),'answer does not leak into the front accessible name');
  ck(await p.locator('#card-hint').textContent()===source.theme,'topic hint');
- const card=await p.locator('#memory-card').boundingBox();ck(card.y>=0&&card.y+card.height<=h-12,'whole opening card fits the phone/laptop viewport '+w);
+ const card=await p.locator('#memory-card').boundingBox();const oldTop={320:291,375:300.5,390:300.5,648:306.5,1280:306.5}[w];ck(card.y<=oldTop/2,'at least half the old header space removed');ck(await p.locator('.heart-logo').evaluate(e=>e.complete&&e.naturalWidth>0),'original logo loads');ck(card.y>=0&&card.y+card.height<=h-12,'whole opening card fits the phone/laptop viewport '+w);
  await p.locator('#memory-card').focus();await p.keyboard.press('Space');ck(await p.locator('#memory-card').getAttribute('aria-pressed')==='true','keyboard reveals card');
  ck(await p.locator('#card-verse').textContent()===source.text,'exact original passage on reverse');
  ck(await p.locator('#card-front').getAttribute('aria-hidden')==='true'&&!(await p.locator('#card-back').evaluate(e=>e.inert)),'reverse alone is accessible');
