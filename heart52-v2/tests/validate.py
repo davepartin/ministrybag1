@@ -8,7 +8,10 @@ ROOT = Path(__file__).resolve().parents[1]
 verses = json.loads((ROOT / "data/verses.json").read_text(encoding="utf-8"))
 source = (ROOT.parent / "heart52/index.html").read_text(encoding="utf-8")
 block = re.search(r"const verses = \[(.*?)\n\s*\];", source, re.S)
-canonical = re.findall(r'\{\s*reference:\s*"([^"]+)",\s*theme:\s*"([^"]+)",\s*text:\s*"([^"]+)"\s*\}', block.group(1))
+if block:
+    canonical = re.findall(r'{\s*reference:\s*"([^\"]+)",\s*theme:\s*"([^\"]+)",\s*text:\s*"([^\"]+)"\s*}', block.group(1))
+else:
+    canonical = [(v["reference"], v["theme"], v["text"]) for v in json.loads((ROOT.parent / "heart52/data/verses.json").read_text(encoding="utf-8"))]
 assert len(verses) == 52
 assert len(canonical) == 52
 assert len({v["week"] for v in verses}) == 52
