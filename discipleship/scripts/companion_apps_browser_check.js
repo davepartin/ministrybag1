@@ -6,11 +6,12 @@ const fs = require('node:fs');
 const { chromium } = require('playwright');
 const fixture = require('./fixtures/daily-prayers-legacy.json');
 const lesson = require('../data/101-03.json');
+const marriageQuestions = require('../data/202-08.json').blocks.filter(b => b.type === 'question');
 const BASE = process.env.COMPANION_BASE_URL || 'http://127.0.0.1:8849/discipleship/index.html';
 const SHOTS = process.env.COMPANION_SCREENSHOTS;
 const questions = lesson.blocks.filter(b => b.type === 'question');
 const seed = {
-    answers: JSON.stringify({ ...Object.fromEntries(questions.map((q, i) => ['question-101-' + q.id, 'SYN-hub-answer-' + i])), __gtAmbiguousSharedAnswers: { version: 1, items: {} }, __gtSharedKeyMigrationV1: true }),
+    answers: JSON.stringify({ ...Object.fromEntries(questions.map((q, i) => ['question-101-' + q.id, 'SYN-hub-answer-' + i])), ...Object.fromEntries(marriageQuestions.map((q,i) => ['question-202-' + q.id, 'SYN-marriage-answer-' + i])), __gtAmbiguousSharedAnswers: { version: 1, items: {} }, __gtSharedKeyMigrationV1: true }),
     data: JSON.stringify({ ...fixture.data, futureField: 'SYN-preserve-metadata' }),
     prayer: 'SYN-existing-prayer: keep these words exactly.'
 };
@@ -64,7 +65,8 @@ const seed = {
         await page.evaluate(() => document.fonts.ready);
         check((await page.locator('h1').textContent()).trim() === 'Your Growing Apps', 'dedicated apps-page heading');
         check(new URL(page.url()).pathname === hub.pathname, 'hub is a separate page');
-        check(await page.locator('.app-button').count() === 1, 'only the available app ships');
+        check(await page.locator('.app-button').count() === 2, 'only the two available apps ship');
+        check(await page.locator('#weekly-connection-app-link').evaluate(el => el.href) === new URL('weekly-connection-time/', hub).href, 'marriage companion joins the same-site app list');
         const appLink = page.locator('#daily-prayers-app-link');
         check((await appLink.textContent()).trim().startsWith('Your Daily Prayers'), 'personal app button label');
         check(await appLink.evaluate(el => el.href) === app.href, 'app opens on this site');
@@ -75,7 +77,7 @@ const seed = {
         // Test six rows without adding fake apps to the shipped page.
         const fit = await page.evaluate(() => {
             const original = document.querySelector('.app-button');
-            for (let i = 2; i <= 6; i++) {
+            for (let i = original.parentElement.children.length + 1; i <= 6; i++) {
                 const row = original.cloneNode(true); row.removeAttribute('id'); row.dataset.fitSample = 'true'; row.querySelector('span').textContent = 'Example App ' + i; original.parentElement.appendChild(row);
             }
             const fits = document.documentElement.scrollHeight <= innerHeight + 1;
@@ -109,6 +111,26 @@ const seed = {
         await popup.locator('.breadcrumb a').click(); await popup.locator('#home-view').waitFor({ state: 'visible' });
         check((await popup.locator('#home-growing-apps-link').textContent()).trim() === 'Your Growing Apps', 'hub returns to courses');
         await intact(popup);
+        await popup.locator('#home-growing-apps-link').click();
+        await popup.locator('#weekly-connection-app-link').click();
+        await popup.locator('#welcomeScreen').waitFor({state:'visible'});
+        check(new URL(popup.url()).origin === main.origin && new URL(popup.url()).pathname === new URL('weekly-connection-time/', hub).pathname, 'weekly companion stays on the same site');
+        check(await popup.locator('#lesson-link').evaluate(el=>el.href) === main.href+'#202-8', 'weekly companion returns to marriage lesson');
+        await intact(popup);
+        await popup.locator('#lesson-link').click();
+        await popup.locator('#session-8.active').waitFor();
+        for (const q of marriageQuestions) check(await popup.locator('#question-202-'+q.id).inputValue() === JSON.parse(seed.answers)['question-202-'+q.id], 'saved marriage answer restores: '+q.id);
+        const marriageTool = popup.locator('#session-8.active .block-tool-btn[href="tools/weekly-connection-time/"]');
+        check(await marriageTool.count()===1, 'marriage practice links to the local companion');
+        const weeklyPagePromise = ctx.waitForEvent('page');await marriageTool.click();
+        const weeklyPage = await weeklyPagePromise;watch(weeklyPage);await weeklyPage.waitForLoadState('networkidle');
+        await weeklyPage.locator('#welcomeScreen').waitFor({state:'visible'});
+        check(new URL(weeklyPage.url()).origin === main.origin, 'lesson opens same-origin Weekly Connection Time');
+        await intact(weeklyPage);
+        await weeklyPage.locator('#growing-apps-link').click();
+        await weeklyPage.locator('.apps-hub h1').waitFor();
+        check(await weeklyPage.locator('.app-button').count()===2, 'weekly companion returns to both apps');
+        await intact(weeklyPage);
         check(errors.length === 0, 'no page exceptions: ' + errors.join(';'));
         console.log('PASS', job.width, job.reducedMotion || 'normal');
         await ctx.close();

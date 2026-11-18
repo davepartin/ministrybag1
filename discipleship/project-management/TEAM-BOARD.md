@@ -1,6 +1,20 @@
 # Growing Together Team Board
 
+Three-app publication checkpoint: #261 merged at9c4f3d5; the apps button is verified live. #288 is retargeted/refreshed onto that main with approved6416cf4 app bytes unchanged. Tracking conflicts retained both histories;202-08 preserves all current text except its authorized added tool card. Next merge #288 after final checks, then #296. Dave authorized publication; no further design approval is pending for these app versions.
+
 Three-app publication, November 18: Dave explicitly authorized merging #261, #288 and #296 and publishing Your Growing Apps. APPS-PUBLISH-THREE ACTIVE. Daily Prayers is refreshed cleanly onto current main with reviewed app bytes unchanged and only its authorized tool URL/home controls added. Merge/check each in order, preserve latest lesson work and verify production. Evidence: logs/2026-11-18-APPS-PUBLISH-THREE-codex.md.
+
+## Weekly Connection Time laptop margins, November 17, 2026
+
+Dave requested Chrome laptop margin fixes on PR #288. The conversation card now has 24px laptop padding, 16px phone side padding and clear space above fixed phone controls. Centered 640px page width, questions/storage/links and lesson content remain unchanged. Layout180 and app618 checks pass locally; updated preview awaits Dave's review. Task APP-WEEKLY-CONNECTION remains REVIEW. Evidence: [task log](logs/2026-11-17-APP-WEEKLY-CONNECTION-codex.md).
+
+
+## Weekly Connection Time companion ready for review, November 17, 2026
+
+APP-WEEKLY-CONNECTION REVIEW. Dave requested the existing MinistryBag marriage app inside Growing Together, following Daily Prayers. Authored source is tools/weekly-connection-time/; the established MinistryBag weeklyconnectiontime/ address receives generated delivery copies. The seven conversation steps, twelve field IDs, original prompts and connection_time_ keys are preserved. The companion matches the 640px warm-paper/brown-header family, links back to 202-08 and Your Growing Apps, and adds portable save/restore copies, recovery and truthful storage-failure handling. Answers stay in the current browser/device; no Firebase/account sync or cross-origin automatic migration.
+
+The apps page now has Your Daily Prayers and Your Weekly Connection Time. 202-08 gains one optional married-couples tool card after its practice paragraph; all existing prose, Scripture, questions/IDs, readings, approved triangle and story art remain unchanged. Core QA, 618 canonical/legacy app checks and 244 app-hub/lesson-navigation checks pass. The two-app and synthetic six-row layouts fit phone screens. New design awaits Dave's visual review; nothing is merged or live. This is a separate dependent PR based on refreshed Daily Prayers PR #261 (7feaa2d). Merge #261 first after review, retarget this PR to main and verify before integration. [Task log](logs/2026-11-17-APP-WEEKLY-CONNECTION-codex.md).
+
 
 ## Daily Prayers and Your Growing Apps preview: November 17, 2026
 

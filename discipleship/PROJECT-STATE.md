@@ -1,5 +1,12 @@
 # Growing Together - Project State
 
+## Weekly Connection Time companion ready for review, November 17, 2026
+
+APP-WEEKLY-CONNECTION REVIEW. Dave requested the existing MinistryBag marriage app inside Growing Together, following Daily Prayers. Authored source is tools/weekly-connection-time/; the established MinistryBag weeklyconnectiontime/ address receives generated delivery copies. The seven conversation steps, twelve field IDs, original prompts and connection_time_ keys are preserved. The companion matches the 640px warm-paper/brown-header family, links back to 202-08 and Your Growing Apps, and adds portable save/restore copies, recovery and truthful storage-failure handling. Answers stay in the current browser/device; no Firebase/account sync or cross-origin automatic migration.
+
+The apps page now has Your Daily Prayers and Your Weekly Connection Time. 202-08 gains one optional married-couples tool card after its practice paragraph; all existing prose, Scripture, questions/IDs, readings, approved triangle and story art remain unchanged. Core QA, 618 canonical/legacy app checks and 244 app-hub/lesson-navigation checks pass. The two-app and synthetic six-row layouts fit phone screens. New design awaits Dave's visual review; nothing is merged or live. This is a separate dependent PR based on refreshed Daily Prayers PR #261 (7feaa2d). Merge #261 first after review, retarget this PR to main and verify before integration. [Task log](project-management/logs/2026-11-17-APP-WEEKLY-CONNECTION-codex.md).
+
+
 ## Compact header standard across every lesson, November 17, 2026
 
 Dave approved the 202-01 pilot and requested the same style throughout the app. UI-COMPACT-HEADERS-ALL, PR #286, applies the existing 49px row to every lesson: Back, course/lesson code and title, then Menu. The progress strip and unused update code are removed. All 47 lesson identities pass, with 44px controls, sticky placement, long-title truncation, no horizontal overflow and saved answers preserved. Core QA, 283 header checks, 964 navigation checks, 95 Samaritan/128 lamp/103 soils checks and 387 all-course image checks pass. No lesson JSON, approved widget/artwork, question/reading identity or saved-answer logic changes. The execution blocker below is resolved; the former single-lesson pilot limitation is superseded. Final exact-head preview, merge and live evidence: [Codex log](project-management/logs/2026-11-17-UI-COMPACT-HEADERS-ALL-codex.md) and PR #286.
