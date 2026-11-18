@@ -10,12 +10,12 @@
     },
     {
       "label": "Study",
-      "title": "The Spirit and Jesus",
+      "title": "Five Things He Does",
       "anchor": "study"
     },
     {
       "label": "Diagram",
-      "title": "The Spirit, the GUIDE",
+      "title": "GUIDE",
       "anchor": "diagram"
     }
   ],
@@ -48,7 +48,8 @@
     },
     {
       "type": "heading",
-      "text": "GUIDE: Five Things the Spirit Does"
+      "text": "GUIDE: Five Things the Spirit Does",
+      "anchor": "study"
     },
     {
       "type": "text",
@@ -88,8 +89,7 @@
     },
     {
       "type": "heading",
-      "text": "The Spirit and Jesus",
-      "anchor": "study"
+      "text": "The Spirit and Jesus"
     },
     {
       "type": "text",
