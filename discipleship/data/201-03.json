@@ -2,6 +2,23 @@
   "id": "3",
   "title": "Lesson 3: The Guiding of the Holy Spirit",
   "description": "The Holy Spirit can feel mysterious, but Jesus promised Him as a Helper who is with you forever. From the pillar of cloud and fire that led Israel to the Spirit who lives inside every believer, God has always guided His people. GUIDE names five things He does in your life.",
+  "contents": [
+    {
+      "label": "Story",
+      "title": "Exodus 13:21-22",
+      "anchor": "story"
+    },
+    {
+      "label": "Study",
+      "title": "What the Spirit Does",
+      "anchor": "study"
+    },
+    {
+      "label": "Diagram",
+      "title": "The Spirit, the GUIDE",
+      "anchor": "diagram"
+    }
+  ],
   "blocks": [
     {
       "type": "text",
@@ -12,7 +29,8 @@
       "imageBw": "images/pillar-fire-bw.png",
       "imageColor": "images/pillar-fire-color.png",
       "alt": "Israel gathered in the wilderness at night as the pillar of fire rises before them",
-      "touchNext": true
+      "touchNext": true,
+      "anchor": "story"
     },
     {
       "type": "parable",
@@ -30,7 +48,8 @@
     },
     {
       "type": "heading",
-      "text": "GUIDE: Five Things the Spirit Does"
+      "text": "GUIDE: Five Things the Spirit Does",
+      "anchor": "study"
     },
     {
       "type": "text",
@@ -39,7 +58,8 @@
     {
       "type": "widget",
       "src": "widgets/guide-spirit2.html",
-      "height": "620px"
+      "height": "620px",
+      "anchor": "diagram"
     },
     {
       "type": "text",

@@ -2,6 +2,23 @@
   "id": "8",
   "title": "Lesson 8: The Grace and Mercy Cycle",
   "description": "Four words explain what God did for you at the cross: <strong>Mercy, Justified, Righteous, and Grace.</strong> Through Jesus' story of a forgiven servant and a diagram you build step by step, you will see how these four realities work together in a cycle that starts with God's love and flows through you to others.",
+  "contents": [
+    {
+      "label": "Story",
+      "title": "Matthew 18:21-35",
+      "anchor": "story"
+    },
+    {
+      "label": "Study",
+      "title": "Grace and Mercy",
+      "anchor": "study"
+    },
+    {
+      "label": "Diagram",
+      "title": "Grace and Mercy Cycle",
+      "anchor": "diagram"
+    }
+  ],
   "blocks": [
     {
       "type": "text",
@@ -13,7 +30,8 @@
       "imageColor": "images/kings-mercy-color.jpg",
       "alt": "A king showing mercy to a kneeling servant whose impossible debt has been forgiven",
       "frame": true,
-      "touchNext": true
+      "touchNext": true,
+      "anchor": "story"
     },
     {
       "type": "parable",
@@ -32,7 +50,8 @@
     },
     {
       "type": "heading",
-      "text": "The Grace and Mercy Cycle"
+      "text": "The Grace and Mercy Cycle",
+      "anchor": "study"
     },
     {
       "type": "text",
@@ -54,7 +73,8 @@
     {
       "type": "widget",
       "src": "widgets/grace-diagram.html",
-      "height": "520px"
+      "height": "520px",
+      "anchor": "diagram"
     },
     {
       "type": "question",
