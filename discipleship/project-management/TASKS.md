@@ -1,5 +1,12 @@
 # Running task board
 
+## Publish the three Growing Apps, November 18, 2026
+
+| Task | Status | Owner / branch / date | Scope |
+|---|---|---|---|
+| APPS-PUBLISH-THREE | ACTIVE | Codex / codex/daily-prayers-companion then codex/weekly-connection-companion then codex/heart52-companion / 2026-11-18 | Dave explicitly requested merging #261, #288 and #296 in order and publishing Your Growing Apps. Preserve reviewed app bytes, current lesson edits/IDs/art/widgets and existing saved data; resolve integration against latest main, verify each final head and production. |
+
+
 ## Compact headers across all lessons, November 17, 2026
 
 | Task | Status | Owner / branch / date | Scope |
