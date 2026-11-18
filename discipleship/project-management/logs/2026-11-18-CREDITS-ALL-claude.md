@@ -1,7 +1,7 @@
 # CREDITS-ALL, step 1: one credits page, a small Credits link on every lesson
 Date: 2026-11-18
 Agent: Claude
-Status: REVIEW
+Status: DONE (Dave approved merge of PR #309, 2026-11-18)
 Branch: claude/credits-bottom
 
 Dave in chat on November 18: credits should not sit on each lesson. "we can just have a small credits word at the bottom of each page that takes a person to the credits master page that has the lesson number and then this data on it... you can even put it on the page that i have for me the designer on the about page we can have acknowledgements and credits there at the bottom." (Earlier: "the writer of this Growing Together series isn't taking credit. It's passing it on to so many giants before me.")
