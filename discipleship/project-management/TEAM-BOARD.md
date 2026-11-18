@@ -1,5 +1,7 @@
 # Growing Together Team Board
 
+Heart52 follow-up, November 18: Dave requested larger Scripture references while keeping the keywords. PR #296 now uses 24-30px front references and 22-28px reverse references. 486 browser checks and all52-reference phone/laptop checks pass. Preview remains REVIEW, no publication. See the redesign log's larger-addresses section.
+
 ## Heart52 flip-card redesign, November 18, 2026
 
 APP-HEART52 REVIEW, PR #296. Dave requested a full new look with the verse as the hero. The forest/sage/ivory app opens on a topic/first-two-word flip card, with large Scripture on the reverse, a continuous All 52 reference view and a simple yearly path. First visitors see the current week; returning visitors can resume or choose weekly startup. Original ESV selections/audio and all lessons/other apps remain unchanged. New preferences preserve existing progress and portable copies. Core QA, 1769 learning/storage/calendar checks, 674 existing app, 486 new card/calendar and 340 hub/lesson checks pass. New preview replaces the earlier app design; Dave's visual review remains pending, nothing merged or live. Still stacked on #288 then #261. [Redesign log](logs/2026-11-18-APP-HEART52-REDESIGN-codex.md).

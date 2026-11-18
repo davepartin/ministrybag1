@@ -28,3 +28,10 @@ Read/listen, hints, phrase ordering, concealed typed/spoken recall, gentle revie
 ## Review and integration
 
 This is a continuation of PR #296, targeting codex/weekly-connection-companion (#288), itself based on Daily Prayers #261. The preview includes the companion family but does not imply those dependencies were merged. New design and UI copy await Dave's review; no new lesson wording approval or Gold stage inferred. Held 201-05 rewrite #292 remains separate and untouched. Merge approved dependencies, retarget and verify current main before final integration. Hosted preview evidence will be posted on PR #296 after deployment; no live deployment is performed here.
+
+
+## Dave follow-up: larger Scripture addresses
+
+Dave liked the keywords and requested larger references. Front reference increases from 13px to a responsive 24-30px serif; reverse reference from 12px to 22-28px. Both use the main ink color. Topic hints, all verse text, layout/behavior, saved progress, lesson files and other apps stay unchanged. Source CSS and generated legacy CSS only, plus coordination notes.
+
+Verification: all 486 card/reference/calendar/startup browser checks pass across 320/375/390/648/1280 and reduced motion. A separate focused browser pass checked all 52 front references and unchanged keywords at 320/390/1280, minimum front24px/reverse22px and no card overflow. The 390px John10:10 front screenshot was inspected. Build mirror parity and git diff --check pass. Updated exact-head Firebase preview/check results will be recorded on PR #296. Status remains REVIEW; no merge or live publication.

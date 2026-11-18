@@ -41,11 +41,12 @@ main,.tool-footer{max-width:640px;padding:20px 22px 28px}
 .card-front .card-kicker{margin:auto 0 24px}
 .card-hint{display:block;font:400 clamp(32px,7.8vw,44px)/1.16 Georgia,serif;letter-spacing:-.8px;max-width:430px;text-wrap:balance}
 .card-rule{display:block;width:30px;height:1px;background:#AFBE99;margin:25px 0 17px}
-.card-reference{font-size:13px;color:#49634A;line-height:1.5}
+.card-reference{font:500 clamp(24px,6vw,30px)/1.3 Georgia,serif;color:var(--ink);letter-spacing:-.3px}
 .card-invitation{display:block;font-size:10px;font-weight:500;letter-spacing:.02em;color:#5F7259;margin:28px 0 0;line-height:1.6}
 .card-front .card-invitation{margin-top:auto;padding-top:27px}.card-invitation>span{font-size:15px;vertical-align:-1px;margin-right:4px}
 .verse-words{display:block;font:400 clamp(24px,6.9vw,32px)/1.46 Georgia,serif;letter-spacing:-.4px;margin:21px 0 23px;white-space:normal}
 .card-source{display:flex;justify-content:space-between;gap:12px;font-size:12px;font-weight:600;color:#54684C}
+.card-source>span:first-child{font:500 clamp(22px,5.5vw,28px)/1.3 Georgia,serif;color:var(--ink);letter-spacing:-.3px}
 .card-source>span+span{font-size:10px;letter-spacing:.08em;font-weight:450}
 .card-back .card-invitation{text-align:center;margin-top:auto;padding-top:20px}
 .card-toolbar{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:15px 0 18px}
