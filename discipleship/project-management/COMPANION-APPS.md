@@ -108,3 +108,10 @@ Dave's direction: companion apps may have distinct theme colors while retaining 
 Each verse can be marked Not started, Learning or Memorized using the controls below the card. Your decks opens a category with counts and scoped previous/next navigation; All 52 also supports a progress filter. The compact pre-card area stays 144px. Status is an optional per-verse learningStatus value (new/learning/memorized) in the existing progress record. Copies/restores preserve it; invalid values are rejected safely.
 
 When an older record has no explicit category, attempts > 0 displays Learning; otherwise Not started. This fallback does not write migration data or infer Memorized from a score or old mastery value. Explicit learner choices override that fallback, including returning a practiced verse to Not started. Practice scores preserve an explicit category. Changing a category does not invent an attempt, accuracy score or review date. Progress remains device-only, with existing portable copies/recovery.
+
+
+## Heart52 simplicity override, November 18, 2026
+
+Dave explicitly removed the bonus record-management interface. Do not reintroduce Heart52 download, backup, restore, reset or past-record controls from older notes. Automatic category saving remains; existing stored labels/history are not erased. Heart52 now has one compact row immediately above the card: square radio controls assign exactly one category, while separate adjacent word links open category decks. One checked square stays visible through both flip faces. On an empty deck no card is selected and the squares are disabled, while the word links remain usable.
+
+The former lower Mark this verse segment, duplicated Your decks panel, practiced totals and review-dashboard entry are removed. Position text moves into the existing below-card navigation; routine save notifications remain unobtrusive, and actual storage failures show a plain warning without download instructions. Opening preference is one small setting. The simpler interface supersedes earlier Heart52 backup/copy UI requirements; other apps' controls stay untouched.

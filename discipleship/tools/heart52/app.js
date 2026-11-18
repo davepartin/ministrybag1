@@ -6,11 +6,9 @@ let verses=[],week=0,mode='read',focusAfter=null,reviewQueue=[],reviewing=false;
 let hideLevel=0,hideOrder=[],revealed=new Set(),recallText='',scored=false,grade=null,revealedAnswer=false,rated=false;
 let audio=null,rate=1,loop=false,deviceVoice=false,mediaGeneration=0;
 const persistence=Heart52Storage.create({notify:status=>{
- $('save-status').textContent=status.kind==='error'?'Progress not saved':status.text;
- $('storage-notice').hidden=!['error','legacy'].includes(status.kind);
- $('storage-notice').classList.toggle('quiet',status.kind==='legacy');
- $('storage-notice').setAttribute('role',status.kind==='error'?'alert':'status');
- $('storage-notice').textContent=status.text;$('stored-copy').hidden=!status.rawAvailable;
+ $('save-status').textContent=status.kind==='error'?'Changes not saved':'Saved on this device';
+ $('storage-notice').hidden=status.kind!=='error';$('storage-notice').setAttribute('role','alert');
+ $('storage-notice').textContent=status.kind==='error'?'This browser could not save your changes. They may be lost when you leave this page.':'';
 }});
 let progress=persistence.load();
 function message(text){$('app-message').textContent=text;$('app-message').hidden=!text;}
@@ -30,15 +28,15 @@ function deckMembers(){return verses.filter(v=>activeDeck==='all'||L.learningSta
 function cardAddress(number){return activeDeck==='all'?'#card-'+number:'#deck-'+activeDeck+'/'+number;}
 function renderCategories(){
  for(const key of L.LEARNING_STATES){const count=verses.filter(v=>L.learningStatus(entry(v.week))===key).length,link=$('deck-'+key+'-link');link.querySelector('span').textContent=count;link.setAttribute('aria-label',CATEGORY_NAMES[key]+', '+count+' verses');if(activeDeck===key)link.setAttribute('aria-current','page');else link.removeAttribute('aria-current');}
- const state=L.learningStatus(entry(deckWeek));for(const button of document.querySelectorAll('[data-learning-status]'))button.setAttribute('aria-pressed',String(button.dataset.learningStatus===state));
- $('card-category').setAttribute('aria-label','Learning category for '+verses[deckWeek-1].reference);$('all-cards-link').hidden=activeDeck==='all';
+ const state=L.learningStatus(entry(deckWeek));for(const input of document.querySelectorAll('[data-learning-status]')){input.checked=Boolean(deckMembers().length)&&input.dataset.learningStatus===state;input.disabled=!deckMembers().length;}
+ $('card-category').setAttribute('aria-label',deckMembers().length?'Learning category for '+verses[deckWeek-1].reference:'Choose a learning deck');
 }
 function setLearningStatus(state){
  if(!L.LEARNING_STATES.includes(state)||!deckMembers().length)return;const selected=deckWeek,wasFlipped=flipped;
  if(L.learningStatus(entry(selected))===state&&entry(selected).learningStatus===state)return;
  progress.verses[selected]={...entry(selected),learningStatus:state};const saved=save();renderHome(false,true);
  if(deckWeek===selected&&!$('deck-content').hidden)setCardFace(wasFlipped);
- $('category-message').hidden=false;$('category-message').textContent=verses[selected-1].reference+' marked '+CATEGORY_NAMES[state]+'.'+(saved?'':' This change is only on this page; save a copy before leaving.');
+ $('category-message').hidden=false;$('category-message').textContent=verses[selected-1].reference+' marked '+CATEGORY_NAMES[state]+'.'+(saved?'':' This change could not be saved on this device.');
 }
 function settings(){const s=progress.heart52Settings;return {start:s?.start==='calendar'?'calendar':'resume',hint:s?.hint==='words'?'words':'topic'};}
 function changeSettings(key,value){progress.heart52Settings={...progress.heart52Settings,...settings(),[key]:value};save();}
@@ -90,7 +88,7 @@ function route(initial=false){
  stopMedia();const match=location.hash.match(/^#week-([0-9]{1,2})(?:\/(read|listen|practice|play|review|recall))?$/);
  const next=match?Number(match[1]):0;
  if(!next||next>52){week=0;reviewQueue=[];reviewing=false;$('library-view').hidden=false;$('passage-view').hidden=true;renderHome(initial);document.title='Heart52 | Growing Together';
-  if(location.hash==='#copies'){$('copies').open=true;requestAnimationFrame(()=>$('copies').scrollIntoView());}return;
+  return;
  }
  if(next!==week){resetPractice();if(!initial)window.scrollTo({top:0,behavior:'instant'});}
  week=next;deckWeek=next;mode=({listen:'read',play:'practice',review:'recall'})[match[2]]||match[2]||'read';
@@ -103,13 +101,7 @@ function route(initial=false){
  ({read:renderRead,practice:renderPractice,recall:renderRecall})[mode]();
  if(focusAfter){const target=$(focusAfter);focusAfter=null;if(target){target.tabIndex=target.tagName==='BUTTON'?target.tabIndex:-1;target.focus({preventScroll:true});}}
 }
-function renderLibrary(){
- const practiced=verses.filter(v=>entry(v.week).attempts>0),due=practiced.filter(v=>L.isDue(entry(v.week)));
- $('progress-count').textContent=practiced.length+' of 52 practiced · '+due.length+' ready for review';
- $('start-review').disabled=practiced.length===0;$('start-review').textContent=due.length?'Review '+Math.min(due.length,5)+' due passage'+(Math.min(due.length,5)===1?'':'s'):'Review practiced passages';
- $('review-note').textContent=due.length?'Return to a few familiar passages before learning another.':'Choose a passage below. Your progress will still be here when you come back.';
- renderList();
-}
+function renderLibrary(){renderList();}
 function renderList(){
  const query=$('search').value.toLocaleLowerCase().trim(),theme=$('theme-filter').value,category=$('status-filter').value;
  const found=verses.filter(v=>(category==='all'||L.learningStatus(entry(v.week))===category)&&(!theme||v.theme===theme)&&(!query||[v.week,v.reference,v.theme,v.text].join(' ').toLocaleLowerCase().includes(query)));
@@ -223,21 +215,11 @@ function showRecallResult(){
  else{$('recall-feedback').textContent='Compare the passage with what you said aloud.';$('recall-help').textContent='Read it again, then try once more with the answer hidden.';}
  revealCanonical(grade);
 }
-function startReview(){
- const practiced=verses.filter(v=>entry(v.week).attempts>0),due=practiced.filter(v=>L.isDue(entry(v.week)));
- reviewQueue=(due.length?due:practiced).sort((a,b)=>(L.dueDay(entry(a.week).nextReview)||'').localeCompare(L.dueDay(entry(b.week).nextReview)||'')).slice(0,5).map(v=>v.week);
- if(!reviewQueue.length){message('Choose a passage to practice first. Your review list will grow as you learn.');return;}
- reviewing=true;resetPractice();message('A short review: '+reviewQueue.length+' passage'+(reviewQueue.length===1?'':'s')+'.');routeHash(reviewQueue[0],'recall');
-}
-function copyData(){return {app:'growing-together.heart52',formatVersion:1,progress:L.validateProgress(progress)};}
-function download(value,name,raw=false){const url=URL.createObjectURL(new Blob([raw?value:JSON.stringify(value,null,2)],{type:raw?'text/plain':'application/json'}));const link=element('a');link.href=url;link.download=name;document.body.append(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);}
-let pendingRestore=null;
-function cancelRestore(){pendingRestore=null;$('restore-dialog').close();}
 function bindStatic(){
  $('memory-card').onclick=()=>setCardFace(!flipped);
  $('memory-card').onkeydown=e=>{if(e.key==='ArrowRight'){e.preventDefault();moveDeck(1);}else if(e.key==='ArrowLeft'){e.preventDefault();moveDeck(-1);}};
  $('deck-previous').onclick=()=>moveDeck(-1);$('deck-next').onclick=()=>moveDeck(1);
- for(const button of document.querySelectorAll('[data-learning-status]'))button.onclick=()=>setLearningStatus(button.dataset.learningStatus);
+ for(const input of document.querySelectorAll('[data-learning-status]'))input.onchange=()=>{if(input.checked)setLearningStatus(input.dataset.learningStatus);};
  $('status-filter').onchange=renderList;
  $('hint-choice').onchange=e=>{changeSettings('hint',e.target.value);renderCard();};$('start-choice').onchange=e=>{changeSettings('start',e.target.value);};
  $('this-week').onclick=()=>{activeDeck='all';showDeck(L.calendarWeek());};
@@ -245,25 +227,13 @@ function bindStatic(){
  $('calendar-year').onchange=renderCalendar;$('calendar-today').onclick=()=>{$('calendar-year').value=String(new Date().getFullYear());renderCalendar();const current=$('calendar-grid').querySelector('[aria-current=date]');current?.scrollIntoView({block:'center',behavior:'instant'});current?.focus({preventScroll:true});};
 
  $('search').oninput=renderList;$('theme-filter').onchange=renderList;$('week-jump').onchange=e=>{const n=Number(e.target.value);if(n){reviewing=false;resetPractice();routeHash(n,'read','passage-heading');}e.target.value='';};
- $('start-review').onclick=startReview;$('previous-passage').onclick=()=>{reviewing=false;routeHash(week-1,'read','passage-heading');};$('next-passage').onclick=()=>{reviewing=false;routeHash(week+1,'read','passage-heading');};
+ $('previous-passage').onclick=()=>{reviewing=false;routeHash(week-1,'read','passage-heading');};$('next-passage').onclick=()=>{reviewing=false;routeHash(week+1,'read','passage-heading');};
  for(const button of document.querySelectorAll('[data-mode]')){
   button.onclick=()=>routeHash(week,button.dataset.mode,'tab-'+button.dataset.mode);
   button.onkeydown=e=>{const i=MODES.indexOf(mode),n=e.key==='ArrowRight'?(i+1)%3:e.key==='ArrowLeft'?(i+2)%3:e.key==='Home'?0:e.key==='End'?2:-1;if(n>=0){e.preventDefault();routeHash(week,MODES[n],'tab-'+MODES[n]);}};
  }
  window.addEventListener('hashchange',()=>{if(verses.length)route(false);});window.addEventListener('pagehide',stopMedia);
- $('save-copy').onclick=()=>download(copyData(),'heart52-progress.json');$('restore-copy').onclick=()=>$('copy-file').click();
- $('stored-copy').onclick=()=>{const raw=persistence.raw();if(raw!==null)download(raw,'heart52-stored-data.txt',true);};
- $('previous-copy').hidden=!persistence.recovery();$('previous-copy').onclick=()=>{const raw=persistence.recovery();if(raw===null)return;try{const parsed=JSON.parse(raw),checked=L.validateProgress(parsed,parsed.version===2);download({app:'growing-together.heart52',formatVersion:1,progress:checked},'heart52-previous-progress.json');}catch(_){download(raw,'heart52-previous-data.txt',true);}};
- $('copy-file').onchange=async e=>{
-  const file=e.target.files[0];e.target.value='';if(!file)return;
-  try{if(file.size>2*1024*1024)throw Error('Too large');const value=JSON.parse(await file.text());if(value.app!=='growing-together.heart52'||value.formatVersion!==1)throw Error('Wrong app');pendingRestore=L.validateProgress(value.progress);$('restore-dialog').showModal();}
-  catch(_){pendingRestore=null;$('copy-status').textContent='That file is not a valid Heart52 copy. Your current progress has not changed.';}
- };
- $('cancel-restore').onclick=cancelRestore;$('restore-dialog').addEventListener('cancel',()=>{pendingRestore=null;});
- $('confirm-restore').onclick=()=>{if(!pendingRestore)return;const next=pendingRestore;if(!persistence.replace(next)){cancelRestore();return;}progress=next;deckWeek=0;cancelRestore();reviewQueue=[];reviewing=false;resetPractice();$('previous-copy').hidden=false;$('stored-copy').hidden=true;$('copy-status').textContent='Progress restored. Your previous copy is available below.';location.hash='';route(false);};
- $('reset-progress').onclick=()=>{if(!window.confirm('Reset Heart52 progress in this browser? Save a copy first if you want to keep it. Other apps are unchanged.'))return;const next=L.freshProgress();if(!persistence.replace(next,{reset:true}))return;progress=next;deckWeek=0;resetPractice();reviewQueue=[];reviewing=false;$('previous-copy').hidden=true;$('stored-copy').hidden=true;location.hash='';route(false);};
  $('retry-load').onclick=()=>location.reload();
- $('migration-note').hidden=!/\/tools\/heart52(?:\/|$)/.test(location.pathname);
 }
 async function init(){
  bindStatic();

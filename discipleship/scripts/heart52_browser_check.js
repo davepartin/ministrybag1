@@ -9,9 +9,6 @@ const foreign={lordsPrayerApp:'SYN foreign prayer',connection_time_affirmation:'
 let checks=0;function ck(value,label){assert.ok(value,label);checks++;}
 async function data(page){return page.evaluate(key=>JSON.parse(localStorage.getItem(key)),S.KEY);}
 async function snapshot(page){return page.evaluate(()=>Object.fromEntries(Object.keys(localStorage).sort().map(key=>[key,localStorage.getItem(key)])));}
-async function upload(page,value){await page.locator('#copy-file').setInputFiles({name:'synthetic-heart52.json',mimeType:'application/json',buffer:Buffer.from(typeof value==='string'?value:JSON.stringify(value))});}
-async function confirmCopy(page,value){await upload(page,value);await page.locator('#restore-dialog').waitFor({state:'visible'});await page.locator('#confirm-restore').click();await page.locator('#restore-dialog').waitFor({state:'hidden'});}
-async function getDownload(page,id,json=true){const [file]=await Promise.all([page.waitForEvent('download'),page.locator(id).click()]);const text=fs.readFileSync(await file.path(),'utf8');return json?JSON.parse(text):text;}
 (async()=>{
  const browser=await chromium.launch({headless:true,executablePath:process.env.GT_CHROMIUM_PATH||'/usr/bin/chromium'});
  try{
@@ -54,19 +51,15 @@ async function getDownload(page,id,json=true){const [file]=await Promise.all([pa
    const day=await p.evaluate(()=>[new Date().getFullYear(),new Date().getMonth(),new Date().getDate()]);ck((Date.parse(saved.verses[1].nextReview+'T00:00:00Z')-Date.UTC(...day))/86400000===14,'two-week interval uses local calendar');
    await p.locator('#tab-read').click();await p.locator('#tab-read').focus();await p.keyboard.press('ArrowRight');await p.waitForFunction(()=>document.getElementById('tab-practice').getAttribute('aria-selected')==='true');ck(await p.locator('#tab-practice').evaluate(e=>e===document.activeElement),'keyboard tabs work');
    await p.locator('#begin-recall').click();ck(!(await p.locator('#answer-panel').isVisible()),'new recall from practice starts concealed');
-   await p.locator('#back-library').click();await p.locator('#start-review').click();await p.waitForFunction(()=>document.getElementById('passage-heading').textContent==='John 3:16');ck(!(await p.locator('#answer-panel').isVisible()),'due review does not show its answer');
+   await p.evaluate(()=>{location.hash='week-2/recall';});await p.waitForFunction(()=>document.getElementById('passage-heading').textContent==='John 3:16');ck(!(await p.locator('#answer-panel').isVisible()),'opening recall does not show its answer');
    await p.locator('#reveal-answer').click();await p.locator('[data-confidence="1"]').click();ck((await data(p)).verses[2].accuracy===null&&(await data(p)).verses[2].attempts===3,'spoken recall is not a fabricated typed score');
-   await p.locator('#next-review').click();await p.waitForFunction(()=>document.getElementById('passage-heading').textContent==='Romans 3:23');await p.locator('#reveal-answer').click();await p.locator('[data-confidence="2"]').click();await p.locator('#finish-review').click();await p.locator('#library-view').waitFor({state:'visible'});
+   await p.locator('#finish-review').click();await p.locator('#library-view').waitFor({state:'visible'});
    if(address===paths[0]&&width===390&&motion==='no-preference'){
     for(const v of verses){await p.evaluate(number=>{location.hash='week-'+number;},v.week);await p.waitForFunction(reference=>document.getElementById('passage-heading').textContent===reference,v.reference);ck(await p.locator('#verse-text').textContent()===v.text,'render original passage '+v.week);ck(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'passage fits '+v.week);}
     ck(await p.locator('#next-passage').isDisabled(),'passage52 is a stable endpoint');await p.locator('#back-library').click();
    }
-   await p.locator('#copies summary').click();const copy=await getDownload(p,'#save-copy');ck(copy.app==='growing-together.heart52'&&copy.progress.futureMetadata.note==='SYN preserve metadata','portable progress and metadata');
-   const before=await snapshot(p);await upload(p,'broken json');await p.waitForFunction(()=>document.getElementById('copy-status').textContent.includes('not a valid'));ck(JSON.stringify(await snapshot(p))===JSON.stringify(before),'invalid import is inert');
-   const replacement={...copy,progress:{...copy.progress,currentWeek:52,futureMetadata:{note:'SYN restored metadata'}}};await upload(p,replacement);await p.locator('#restore-dialog').waitFor({state:'visible'});await p.locator('#cancel-restore').click();ck(JSON.stringify(await snapshot(p))===JSON.stringify(before),'cancel import is inert');
-   await confirmCopy(p,replacement);ck((await data(p)).currentWeek===52,'confirmed copy restores position');const recovery=await getDownload(p,'#previous-copy');ck(recovery.app==='growing-together.heart52'&&recovery.progress.futureMetadata.note==='SYN preserve metadata','recovery is a portable restorable copy');await confirmCopy(p,recovery);ck((await data(p)).futureMetadata.note==='SYN preserve metadata','recovery round trip');
-   await p.reload({waitUntil:'networkidle'});ck((await data(p)).verses[1].attempts===2,'progress survives reload');
-   await p.locator('#copies summary').click();p.once('dialog',d=>d.dismiss());await p.locator('#reset-progress').click();ck((await data(p)).verses[1].attempts===2,'cancel reset preserves progress');p.once('dialog',d=>d.accept());await p.locator('#reset-progress').click();ck(Object.keys((await data(p)).verses).length===0&&await p.evaluate(key=>localStorage.getItem(key)===null,S.RECOVERY),'reset is scoped');
+   await p.reload({waitUntil:'networkidle'});ck((await data(p)).verses[1].attempts===2,'progress survives reload');ck((await data(p)).futureMetadata.note==='SYN preserve metadata','old metadata survives');
+   ck(await p.locator('#copies,#save-copy,#restore-copy,#reset-progress,#copy-file,#restore-dialog').count()===0,'record-management UI removed');
    for(const [key,value]of Object.entries(foreign))ck(await p.evaluate(key=>localStorage.getItem(key),key)===value,'foreign data retained '+key);
    ck(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'no horizontal overflow');ck(errors.length===0,'no console/page errors: '+errors.join(';'));
    if(process.env.HEART52_SHOTS&&address===paths[0]&&width===390&&motion==='no-preference'){
@@ -76,7 +69,7 @@ async function getDownload(page,id,json=true){const [file]=await Promise.all([pa
   }finally{await ctx.close();}
  }
  // Failure and compatibility cases are isolated from all real user data.
- for(const scenario of ['legacy','corrupt','blocked','quota','restore-rollback','library-failure','audio-fallback']){
+ for(const scenario of ['legacy','corrupt','blocked','quota','library-failure','audio-fallback']){
   const ctx=await browser.newContext({viewport:{width:390,height:844},timezoneId:'America/Chicago'});
   try{
    await ctx.addInitScript(({scenario,progress,key,legacy,foreign})=>{
@@ -84,7 +77,7 @@ async function getDownload(page,id,json=true){const [file]=await Promise.all([pa
     if(scenario==='legacy')localStorage.setItem(legacy,JSON.stringify({...progress,version:2,streak:7}));else localStorage.setItem(key,scenario==='corrupt'?'{malformed':JSON.stringify(progress));
     const get=Storage.prototype.getItem,set=Storage.prototype.setItem;window.__readOriginal=name=>get.call(localStorage,name);
     Storage.prototype.getItem=function(name){if(scenario==='blocked')throw new DOMException('blocked','SecurityError');return get.call(this,name);};
-    Storage.prototype.setItem=function(name,value){if(window.__denyWrites||(scenario==='restore-rollback'&&name===key&&String(value).includes('SYN fail')))throw new DOMException('full','QuotaExceededError');return set.call(this,name,value);};
+    Storage.prototype.setItem=function(name,value){if(window.__denyWrites)throw new DOMException('full','QuotaExceededError');return set.call(this,name,value);};
     if(scenario==='audio-fallback')Object.defineProperty(window,'speechSynthesis',{value:{speaking:false,cancel(){window.__cancelled=true;},speak(u){window.__spoken=u.text;}}});
    },{scenario,progress:initial,key:S.KEY,legacy:S.LEGACY,foreign});
    if(scenario==='library-failure')await ctx.route('**/data/verses.json',r=>r.fulfill({contentType:'application/json',body:'[]'}));
@@ -94,17 +87,15 @@ async function getDownload(page,id,json=true){const [file]=await Promise.all([pa
     ck(await p.locator('#load-error').isVisible()&&await p.locator('#library-view').isHidden(),'failed library is explained');ck(await p.evaluate(key=>localStorage.getItem(key),S.KEY)===JSON.stringify(initial),'failed load preserves progress');await ctx.unroute('**/data/verses.json');await p.locator('#retry-load').click();await p.locator('#library-view').waitFor({state:'visible'});ck(await p.locator('.verse-link').count()===52,'retry recovers library');
    }else if(scenario==='legacy'){
     ck(await p.evaluate(key=>localStorage.getItem(key),S.KEY)===null,'v2 opening does not create a new record');const raw=await p.evaluate(key=>localStorage.getItem(key),S.LEGACY);await p.locator('#continue-link').click();await p.locator('#tab-recall').click();await p.locator('#reveal-answer').click();await p.locator('[data-confidence="3"]').click();ck((await data(p)).verses[1].attempts===1,'v2 progress continues into new app');ck(await p.evaluate(key=>localStorage.getItem(key),S.LEGACY)===raw,'v2 original remains exact');
-   }else if(scenario==='restore-rollback'){
-    await p.locator('#copies summary').click();const before=await snapshot(p);await confirmCopy(p,{app:'growing-together.heart52',formatVersion:1,progress:{...initial,futureMetadata:{note:'SYN fail'}}});ck(JSON.stringify(await snapshot(p))===JSON.stringify(before),'failed restore rolls back data and recovery');ck(await p.locator('#storage-notice').isVisible(),'restore failure reported');
    }else if(scenario==='audio-fallback'){
     await p.locator('#continue-link').click();await p.locator('#audio-toggle').click();await p.waitForFunction(()=>document.getElementById('audio-toggle').textContent==='Use device voice');ck(!await p.evaluate(()=>Boolean(window.__spoken)),'missing recording does not start speech automatically');await p.locator('#audio-toggle').click();ck(await p.evaluate(()=>window.__spoken)===verses[0].text,'device fallback speaks the original text');
    }else{
     if(scenario==='quota')await p.evaluate(()=>window.__denyWrites=true);
     await p.evaluate(()=>{location.hash='card-1';});await p.waitForFunction(()=>document.getElementById('card-front-reference').textContent==='Psalm 119:11');
     await p.locator('#continue-link').click();await p.locator('#tab-recall').click();await p.locator('#recall-input').fill(verses[0].text);await p.locator('#check-recall').click();ck(await p.locator('#storage-notice').isVisible()&&(await p.locator('#save-status').textContent()).includes('not saved'),'failure does not claim a save '+scenario);
-    await p.locator('#copies summary').click();const copy=await getDownload(p,'#save-copy');ck(copy.progress.verses[1].attempts===1,'unsaved practice can be downloaded '+scenario);
+    ck(await p.locator('#copies,#save-copy,#restore-copy,#reset-progress').count()===0,'errors do not expose removed management controls');
     if(scenario==='blocked')ck(await p.evaluate(key=>window.__readOriginal(key),S.KEY)===JSON.stringify(initial),'blocked reads cannot overwrite unread progress');
-    if(scenario==='corrupt')ck(await getDownload(p,'#stored-copy',false)==='{malformed','corrupt stored data remains downloadable exactly');
+    if(scenario==='corrupt')ck(await p.evaluate(key=>window.__readOriginal(key),S.KEY)==='{malformed','corrupt stored data stays unchanged');
     if(scenario==='quota'){await p.evaluate(()=>window.__denyWrites=false);await p.locator('[data-confidence="2"]').click();ck((await data(p)).verses[1].attempts===1,'later save keeps unsaved practice');}
    }
    ck(errors.length===0,'no page errors on '+scenario);console.log('PASS compatibility',scenario);
