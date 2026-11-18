@@ -2,7 +2,7 @@
 
 ## Heart52 companion ready for review, November 17, 2026
 
-APP-HEART52 REVIEW. The original 52 passages and Heart52 logo now have a companion-family app at tools/heart52/, with lazy audio, gradual word hints, phrase ordering, concealed recall and gentle local-calendar reviews. Progress stays on the device, with non-destructive v2 compatibility, portable copies and recovery. Your Growing Apps has a third button; 201-05 gains one optional tool card and 101-04 one short optional link. Existing lesson prose/questions/readings/images/widgets and both other app sources remain intact. New UI awaits Dave's review, nothing merged or live. Based on #288, which depends on #261. Claude's held 201-05 rewrite #292 is untouched. [Task log](logs/2026-11-17-APP-HEART52-codex.md).
+APP-HEART52 REVIEW, PR #296. The original 52 passages and Heart52 logo now have a companion-family app at tools/heart52/, with lazy audio, gradual word hints, phrase ordering, concealed recall and gentle local-calendar reviews. Progress stays on the device, with non-destructive v2 compatibility, portable copies and recovery. Your Growing Apps has a third button; 201-05 gains one optional tool card and 101-04 one short optional link. Existing lesson prose/questions/readings/images/widgets and both other app sources remain intact. New UI awaits Dave's review, nothing merged or live. Based on #288, which depends on #261. Claude's held 201-05 rewrite #292 is untouched. [Task log](logs/2026-11-17-APP-HEART52-codex.md).
 
 
 

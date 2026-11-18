@@ -1,6 +1,6 @@
 # APP-HEART52: Growing Together companion
 
-Date: November 17, 2026 (Dave's local date). Owner: Codex. Branch: codex/heart52-companion. Status: REVIEW, pending hosted preview and Dave's new UI review.
+Date: November 17, 2026 (Dave's local date). Owner: Codex. Branch: codex/heart52-companion. PR: #296, targeting codex/weekly-connection-companion. Status: REVIEW, pending hosted preview and Dave's new UI review.
 
 ## Scope and result
 
