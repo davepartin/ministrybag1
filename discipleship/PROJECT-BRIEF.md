@@ -71,7 +71,7 @@ If a lesson title, order, or browse subtitle changes, update `curriculum-toc.csv
 ## Visual System: The Tree Infographic
 
 ### Brand Logo
-Hand-authored SVG at `images/brand/gt-logo.svg`. Three horizontally overlapping translucent circles (blue sprout, banded sage tree, coral orchard) with thin charcoal line icons. The middle circle is split into even thirds that are the tree: darkest green canopy (Growing Out), medium trunk (Growing Up), lightest roots (Growing Deep). The canopy is one closed scalloped crown inside the circle. Labels are Inter Medium converted to paths. Transparent background. The app icon is `images/brand/gt-app-icon.svg` (navy rounded square, triangular Venn, white sprout with two pointed veined leaves, no words). Course lesson logos (101-01 and the Growing openers) stay on their approved artwork until Dave assigns a change.
+Hand-authored SVG at `images/brand/gt-logo.svg`. Three horizontally overlapping translucent circles (blue sprout, banded sage tree, coral orchard) with thin charcoal line icons. The middle circle is split into even thirds that are the tree: darkest green canopy (Growing Out), medium trunk (Growing Up), lightest roots (Growing Deep). The canopy is one closed scalloped crown that fills the top band and dips into the middle. Crown, trunk, and roots are separate closed paths. Labels are Inter Medium converted to paths. Transparent background. The app icon is `images/brand/gt-app-icon.svg` (navy rounded square, triangular Venn, white sprout with two pointed veined leaves, no words). Course lesson logos (101-01 and the Growing openers) stay on their approved artwork until Dave assigns a change.
 
 ### Design Guidelines for Tree Images
 - Warm, hand-drawn feel with earth tones and soft greens and browns
