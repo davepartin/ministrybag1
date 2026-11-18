@@ -7,7 +7,8 @@ const target = path.resolve(__dirname, '../../weeklyconnectiontime');
 const check = process.argv.includes('--check');
 if (!check) fs.mkdirSync(target, {recursive:true});
 for (const file of ['index.html','styles.css','app.js','weeklyconnectiontimelogo.png','ministrybagsatchel1.svg','og.png']) {
- const original = fs.readFileSync(path.join(source,file));
+ let original = fs.readFileSync(path.join(source,file));
+ if (file.endsWith('.html')) original = Buffer.from(original.toString('utf8').replace('href="../../index.html"','href="https://growingtogetherdiscipleship.com/index.html"').replace('href="../../index.html#202-8"','href="https://growingtogetherdiscipleship.com/index.html#202-8"').replace('href="../"','href="https://growingtogetherdiscipleship.com/tools/"'));
  const marker = file.endsWith('.html') ? '<!-- Generated from discipleship/tools/weekly-connection-time/index.html. Edit that source, then run node discipleship/scripts/build_weekly_connection.js. -->\n' : /[.](js|css)$/.test(file) ? '/* Generated from discipleship/tools/weekly-connection-time/'+file+'. Edit the source, then run node discipleship/scripts/build_weekly_connection.js. */\n' : '';
  const content = Buffer.concat([Buffer.from(marker), original]);
  if (check) {

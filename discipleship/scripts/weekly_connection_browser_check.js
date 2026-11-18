@@ -81,6 +81,18 @@ async function download(page,id){const [file]=await Promise.all([page.waitForEve
    console.log('PASS',new URL(address).pathname,width,motion);
   }finally{await ctx.close();}
  }
+ // Navigation must already be correct before the app script loads.
+ for(const address of paths){
+  const ctx=await browser.newContext({javaScriptEnabled:false});
+  try{
+   const p=await ctx.newPage();await p.goto(address);
+   const canonical=address.includes('/tools/weekly-connection-time/');
+   ck(await p.locator('#lesson-link').getAttribute('href')===(canonical?'../../index.html#202-8':'https://growingtogetherdiscipleship.com/index.html#202-8'),'native lesson return works without script');
+   ck(await p.locator('#growing-apps-link').getAttribute('href')===(canonical?'../':'https://growingtogetherdiscipleship.com/tools/'),'native hub return works without script');
+   ck(await p.locator('#growing-home').getAttribute('href')===(canonical?'../../index.html':'https://growingtogetherdiscipleship.com/index.html'),'native course return works without script');
+   ck(await p.locator('noscript').isVisible(),'script requirement is explained');
+  }finally{await ctx.close();}
+ }
  // Actual blocked-storage and partial-write behavior, with synthetic values only.
  for(const mode of ['blocked','quota','restore-rollback']){
   const ctx=await browser.newContext({viewport:{width:390,height:844}});
