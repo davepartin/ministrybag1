@@ -199,6 +199,21 @@
             }
         ]
     },
+    "images/201-3circles-logo.png": {
+        "width": 1216,
+        "height": 458,
+        "sourceHash": "17372c53b35e7adfc76e602a17f858c18bb4cc746a5f883ca529cfa405589d6a",
+        "variants": [
+            {
+                "src": "images/optimized/201-3circles-logo-640.webp",
+                "width": 640
+            },
+            {
+                "src": "images/optimized/201-3circles-logo-1216.webp",
+                "width": 1216
+            }
+        ]
+    },
     "images/201-growing-logo.png": {
         "width": 452,
         "height": 452,
