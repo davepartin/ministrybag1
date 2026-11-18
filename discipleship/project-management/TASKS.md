@@ -17,7 +17,7 @@
 
 | Task | Status | Owner / branch / date | Scope |
 |---|---|---|---|
-| APP-WEEKLY-CONNECTION | REVIEW | Codex / codex/weekly-connection-companion / 2026-11-17 | Bring existing marriage conversation app into Growing Together, match the companion family, add to Your Growing Apps and optional 202-08 practice. Preserve original questions/storage keys, established MinistryBag URL, all lesson copy/IDs/widgets/art. Dependency: refreshed Daily Prayers/apps hub PR #261. Implementation verified: core QA, 618 app checks across both routes, 244 app/lesson navigation checks, 180 laptop/phone margin checks, mirror parity and unchanged protected lesson blocks. Dependent preview/review before publication; see logs/2026-11-17-APP-WEEKLY-CONNECTION-codex.md. |
+| APP-WEEKLY-CONNECTION | DONE | Codex / codex/weekly-connection-companion / 2026-11-17 | Bring existing marriage conversation app into Growing Together, match the companion family, add to Your Growing Apps and optional 202-08 practice. Preserve original questions/storage keys, established MinistryBag URL, all lesson copy/IDs/widgets/art. Dependency: refreshed Daily Prayers/apps hub PR #261. Implementation verified: core QA, 618 app checks across both routes, 244 app/lesson navigation checks, 180 laptop/phone margin checks, mirror parity and unchanged protected lesson blocks. Dependent preview/review before publication; see logs/2026-11-17-APP-WEEKLY-CONNECTION-codex.md. |
 
 ## Compact headers across all lessons, November 17, 2026
 

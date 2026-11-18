@@ -22,3 +22,16 @@ PR #261 merged at9c4f3d5795983dda067fd7f8898a6bc94fd71213 from reviewed head dde
 Retargeted #288 to main and merged current main9c4f3d5 into the branch. Conflicts affected only HANDOFF/TASKS/TEAM-BOARD additions; retained both histories and the publication claim. No lesson or app conflict. Approved canonical/legacy app bytes remain exact6416cf4, including laptop margins and phone fixed-control spacing. Every current-main lesson JSON matches after removing the one authorized202-08 tool card. Newer contents, questions, readings, story image and triangle remain unchanged. Daily Prayers and the current homepage are inherited from merged main.
 
 Foundation/export186/storage64/assets145/images1560/iframe32, mirror parity, protected-file and whitespace guards pass. Final app/hub/layout and hosted results are recorded on PR #288 before merge. Publication remains ACTIVE until all3 apps are integrated and checked live.
+
+
+## Phase 2 merged and live
+
+PR #288 merged ata7e00fb5c005fd613cee7ecafa8a546db6c5364c from reviewed head292d3c82eade2c1bd4db754fa31a8e7d1d1d19a3. Local Weekly618, layout180 and hub244 pass; hosted hub244 passes. Exact preview homepage/hub/app HTML/JS/CSS and202-08 match source. All3 PR checks passed (run44338917844). Production apps hub returns200 and shows Daily Prayers and Weekly Connection Time.
+
+## Phase 3: Heart52, PR #296
+
+Retargeted #296 to main and merged published foundations ata7e00fb. Conflicts were only added tracking history in HANDOFF/TASKS/TEAM-BOARD and101-editorial-status; retained both histories, including the latest101 course-grade note. No lesson/app conflict. Current201-05 voice/contents changes merge cleanly: the only addition is its authorized Heart52 tool card. Current101-04 gains only its authorized optional link. Every other lesson JSON is identical to main; all questions/readings/art/widgets remain intact. Historical held-lesson notes do not undo already approved edits on current main.
+
+Heart52 canonical and legacy source remain byte-identical to approved681aebe: original logo, blue theme, compact category row above the card, square controls for assignment and separate category links for deck navigation, with no backup/record-management UI. Daily/Weekly app sources, their root delivery copies, shared index.html, widgets and image assets match current main exactly. Source/legacy mirrors and protected-file/whitespace guards pass.
+
+Foundation/export186/storage64/assets145/images1560/iframe32 and unit1780 pass. Card/calendar, general app, category, hub and final hosted checks are recorded on PR #296 before merge. Final production verification and tracking completion follow the third merge.

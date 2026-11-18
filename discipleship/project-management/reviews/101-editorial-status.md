@@ -119,3 +119,5 @@ November 17: Course grade recorded in [2026-11-17-101-course-grade.md](2026-11-1
 
 
 November 17: Dave requested a short Heart52 hint in 101-04. One optional linked sentence is added after This Week's Practice. All existing text, questions/IDs, John readings, approved lamp art and widget remain unchanged. This addition awaits review with the new companion; whole-lesson text remains Silver.
+
+November 18: Dave explicitly authorized publication of #261/#288/#296. The previously requested101-04 Heart52 hint is approved as part of that companion integration; existing prose/questions/John readings/lamp/widget and lesson stage remain unchanged. Current-main course-grade history is retained.

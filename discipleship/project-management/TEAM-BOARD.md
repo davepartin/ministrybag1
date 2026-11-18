@@ -1,5 +1,7 @@
 # Growing Together Team Board
 
+Three-app publication checkpoint: #261 and #288 are merged; the live apps page shows Daily Prayers and Weekly Connection Time. #296 is retargeted/refreshed onto a7e00fb, preserving approved681aebe Heart52 bytes, current lesson voice/contents and both prior apps. Only tracking history conflicted; both sides retained. Finish #296 checks/merge and verify all3 production apps, then mark publication DONE. Dave authorized publishing these versions.
+
 Three-app publication checkpoint: #261 merged at9c4f3d5; the apps button is verified live. #288 is retargeted/refreshed onto that main with approved6416cf4 app bytes unchanged. Tracking conflicts retained both histories;202-08 preserves all current text except its authorized added tool card. Next merge #288 after final checks, then #296. Dave authorized publication; no further design approval is pending for these app versions.
 
 Three-app publication, November 18: Dave explicitly authorized merging #261, #288 and #296 and publishing Your Growing Apps. APPS-PUBLISH-THREE ACTIVE. Daily Prayers is refreshed cleanly onto current main with reviewed app bytes unchanged and only its authorized tool URL/home controls added. Merge/check each in order, preserve latest lesson work and verify production. Evidence: logs/2026-11-18-APPS-PUBLISH-THREE-codex.md.
