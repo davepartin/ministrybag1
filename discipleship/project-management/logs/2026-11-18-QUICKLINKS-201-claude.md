@@ -1,7 +1,7 @@
 # QUICKLINKS-201: two quick-link fixes
 Date: 2026-11-18
 Agent: Claude
-Status: REVIEW
+Status: DONE (Dave approved merge of PR #297, 2026-11-18)
 Branch: claude/201-quick-links
 
 Dave in chat on November 18: the Story / Study / Diagram quick links were a code idea, labels are kept short so each fits on one line, and this Claude conversation has final authority. Dave: "1 Story, 4 Movements is short; i trust you that you know which link we should use, you can make that change if the links can be better."
