@@ -1,5 +1,7 @@
 # Growing Together Team Board
 
+Heart52 learning categories, November 18: PR #296 now has saved Not started/Learning/Memorized labels, clear controls below each card, counted quick decks with scoped navigation, and an All 52 progress filter. Old practice history displays Learning without rewriting data or assuming Memorized. Copies/recovery preserve choices; practice preserves explicit labels. Compact blue design and all lessons remain intact. Core QA,1780 unit,498 card,674 general app and120 category browser checks pass. REVIEW, not live; see the redesign log.
+
 Heart52 blue-theme follow-up, November 18: Dave assigned blue to the memory app and supports distinct companion-app palettes. PR #296 now uses navy verse text, pale blue cards and deeper blue controls, preserving the original logo and compact layout. Other apps and all lesson/data/storage files are untouched. Color-review evidence is in the redesign log.
 
 Heart52 compact-header follow-up, November 18: PR #296 restores the original website logo and removes 51-53 percent of the space above the card (card top now 144px). Card text, keywords and enlarged references remain intact. 498 card/calendar/startup checks and original-logo/global-preferences checks pass. REVIEW, not live; evidence in the redesign log.

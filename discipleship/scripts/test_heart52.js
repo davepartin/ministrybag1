@@ -49,4 +49,15 @@ for(const year of [2024,2025,2026,2028]){
  ck(L.calendarRange(52,year).end.getDate()===31,'last week covers December31');
 }
 
+// Categories are learner choices, independent from scores and review schedules.
+ck(L.learningStatus() === 'new','missing progress is not started');
+ck(L.learningStatus({attempts:3,mastery:100}) === 'learning','old practice history implies learning, never memorized');
+ck(L.learningStatus({attempts:9,learningStatus:'new'}) === 'new','explicit not started overrides old history');
+for(const state of L.LEARNING_STATES){
+ const tagged={...progress,verses:{'2':{...progress.verses[2],learningStatus:state}}};const checked=L.validateProgress(tagged);
+ ck(checked.verses[2].learningStatus===state&&checked.verses[2].attempts===1&&checked.verses[2].nextReview===progress.verses[2].nextReview,'category preserves practice record '+state);
+ backing=memory();api=S.create({getStorage:()=>backing});ck(api.save(tagged)&&api.load().verses[2].learningStatus===state,'category persists '+state);
+}
+assert.throws(()=>L.validateProgress({...progress,verses:{'2':{...progress.verses[2],learningStatus:'invented'}}}));passed++;
+ck(L.validateProgress({...legacy,verses:{'2':{...legacy.verses[2],learningStatus:'memorized'}}},true).verses[2].learningStatus==='memorized','tag survives legacy conversion');
 console.log(passed+' Heart52 content, learning, calendar and storage checks passed.');

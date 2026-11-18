@@ -101,3 +101,10 @@ Dave requested a full redesign after seeing the first preview. PR #296 now uses 
 ## App color identity, November 18, 2026
 
 Dave's direction: companion apps may have distinct theme colors while retaining shared compact navigation, readable type, phone widths and familiar controls. Heart52, the memory app, owns the blue palette: navy verse text, pale blue card fronts, near-white backs and medium/deep blue actions. The original blue website logo remains unchanged. Other app palettes can be chosen in their own review; this packet only recolors Heart52.
+
+
+## Heart52 learning categories, November 18, 2026
+
+Each verse can be marked Not started, Learning or Memorized using the controls below the card. Your decks opens a category with counts and scoped previous/next navigation; All 52 also supports a progress filter. The compact pre-card area stays 144px. Status is an optional per-verse learningStatus value (new/learning/memorized) in the existing progress record. Copies/restores preserve it; invalid values are rejected safely.
+
+When an older record has no explicit category, attempts > 0 displays Learning; otherwise Not started. This fallback does not write migration data or infer Memorized from a score or old mastery value. Explicit learner choices override that fallback, including returning a practiced verse to Not started. Practice scores preserve an explicit category. Changing a category does not invent an attempt, accuracy score or review date. Progress remains device-only, with existing portable copies/recovery.

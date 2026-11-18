@@ -23,12 +23,15 @@ function reviewDay(confidence,now=new Date()){
 }
 function dueDay(value){if(!value)return null;if(/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(value))return value;const date=new Date(value);return Number.isFinite(date.getTime())?localDay(date):null;}
 function isDue(entry,now=new Date()){return Boolean(entry&&entry.attempts>0&&(!entry.nextReview||dueDay(entry.nextReview)<=localDay(now)));}
+const LEARNING_STATES=['new','learning','memorized'];
+function learningStatus(entry){return LEARNING_STATES.includes(entry?.learningStatus)?entry.learningStatus:entry?.attempts>0?'learning':'new';}
 function freshProgress(){return {version:1,currentWeek:1,verses:{}};}
 function validDate(value){if(value===null||value===undefined)return true;if(typeof value!=='string')return false;if(/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(value)){const d=new Date(value+'T12:00:00');return Number.isFinite(d.getTime())&&localDay(d)===value;}return Number.isFinite(Date.parse(value));}
 function validateProgress(value,legacy=false){
  if(!value||typeof value!=='object'||Array.isArray(value)||value.version!==(legacy?2:1)||!Number.isInteger(value.currentWeek)||value.currentWeek<1||value.currentWeek>52||!value.verses||typeof value.verses!=='object'||Array.isArray(value.verses))throw Error('This progress record cannot be opened.');
  for(const [key,e]of Object.entries(value.verses)){
   if(!/^[1-9][0-9]?$/.test(key)||Number(key)>52||!e||typeof e!=='object'||Array.isArray(e)||!Number.isSafeInteger(e.attempts)||e.attempts<0||e.attempts>1000000||!(e.accuracy===null||Number.isFinite(e.accuracy)&&e.accuracy>=0&&e.accuracy<=100)||!Number.isInteger(e.confidence)||e.confidence<0||e.confidence>4||!validDate(e.lastPracticed)||!validDate(e.nextReview))throw Error('This progress record contains an invalid passage.');
+  if(e.learningStatus!==undefined&&!LEARNING_STATES.includes(e.learningStatus))throw Error('This passage has an invalid learning category.');
  }
  const copy=JSON.parse(JSON.stringify(value));copy.version=1;return copy;
 }
@@ -38,5 +41,5 @@ function calendarRange(number,year=new Date().getFullYear()){
  if(!Number.isInteger(number)||number<1||number>52||!Number.isInteger(year)||year<1900||year>2200)throw Error('Choose a valid calendar week.');
  return {start:new Date(year,0,1+(number-1)*7,12),end:number===52?new Date(year,11,31,12):new Date(year,0,number*7,12)};
 }
-return {calendarWeek,calendarRange,tokens,compareRecall,shuffled,phraseChunks,localDay,reviewDay,dueDay,isDue,freshProgress,validateProgress};
+return {LEARNING_STATES,learningStatus,calendarWeek,calendarRange,tokens,compareRecall,shuffled,phraseChunks,localDay,reviewDay,dueDay,isDue,freshProgress,validateProgress};
 });
