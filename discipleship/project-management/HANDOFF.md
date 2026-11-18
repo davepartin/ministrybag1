@@ -1,5 +1,7 @@
 # Resume here
 
+Three-app publication, November 18: Dave explicitly authorized merging #261, #288 and #296 and publishing Your Growing Apps. APPS-PUBLISH-THREE ACTIVE. Daily Prayers is refreshed cleanly onto current main with reviewed app bytes unchanged and only its authorized tool URL/home controls added. Merge/check each in order, preserve latest lesson work and verify production. Evidence: logs/2026-11-18-APPS-PUBLISH-THREE-codex.md.
+
 ## Weekly Connection Time laptop margins, November 17, 2026
 
 Dave requested Chrome laptop margin fixes on PR #288. The conversation card now has 24px laptop padding, 16px phone side padding and clear space above fixed phone controls. Centered 640px page width, questions/storage/links and lesson content remain unchanged. Layout180 and app618 checks pass locally; updated preview awaits Dave's review. Task APP-WEEKLY-CONNECTION remains REVIEW. Evidence: [task log](logs/2026-11-17-APP-WEEKLY-CONNECTION-codex.md).

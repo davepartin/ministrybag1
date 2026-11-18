@@ -2,6 +2,23 @@
   "id": "8",
   "title": "Lesson 8: Marriage and Relationships",
   "description": "Marriage is one of God's good gifts, and it works best when two people understand the love that holds it together. This lesson looks at covenant love, the love God gives first.",
+  "contents": [
+    {
+      "label": "Story",
+      "title": "Marble and Chisel",
+      "anchor": "story"
+    },
+    {
+      "label": "Study",
+      "title": "Covenant Love",
+      "anchor": "study"
+    },
+    {
+      "label": "Diagram",
+      "title": "Closer to God Triangle",
+      "anchor": "diagram"
+    }
+  ],
   "blocks": [
     {
       "type": "text",
@@ -13,7 +30,8 @@
       "imageColor": "images/202.08-marble-chisel-color.jpg",
       "alt": "A husband handing his wife a chisel beside a rough block of marble, where a figure is beginning to emerge from the stone",
       "frame": true,
-      "touchNext": true
+      "touchNext": true,
+      "anchor": "story"
     },
     {
       "type": "parable",
@@ -36,7 +54,8 @@
     },
     {
       "type": "heading",
-      "text": "Covenant Love Starts with God"
+      "text": "Covenant Love Starts with God",
+      "anchor": "study"
     },
     {
       "type": "text",
@@ -61,7 +80,8 @@
     {
       "type": "widget",
       "src": "widgets/covenant-triangle.html",
-      "height": "560px"
+      "height": "560px",
+      "anchor": "diagram"
     },
     {
       "type": "text",

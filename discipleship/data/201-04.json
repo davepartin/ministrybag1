@@ -2,6 +2,23 @@
   "id": "4",
   "title": "Lesson 4: Growing Deep Roots in Jesus",
   "description": "The name of this course is Growing Deep, and this is the lesson where the name comes to life. A gospel heart welcomes God's Word, and a growing believer draws life from Christ. Five ordinary habits help you stay rooted in Him, because roots grow down before fruit grows up.",
+  "contents": [
+    {
+      "label": "Story",
+      "title": "Mark 4:3-9",
+      "anchor": "story"
+    },
+    {
+      "label": "Study",
+      "title": "A Gospel Heart",
+      "anchor": "study"
+    },
+    {
+      "label": "Diagram",
+      "title": "Roots of Discipline",
+      "anchor": "diagram"
+    }
+  ],
   "blocks": [
     {
       "type": "text",
@@ -26,7 +43,8 @@
         0.6
       ],
       "alt": "Four side-by-side windows of hard path, rocky ground, thorny ground, and good soil progressing together: birds take the seed, the sun scorches the shallow sprouts, thorns wrap and choke the plant, and good soil grows grain that multiplies",
-      "touchNext": true
+      "touchNext": true,
+      "anchor": "story"
     },
     {
       "type": "parable",
@@ -44,7 +62,7 @@
     },
     {
       "type": "text",
-      "text": "That is why this parable works like a mirror. Which soil am I right now? Is my heart hard, shallow, crowded, or open? You cannot make yourself good soil by trying harder. But the Sower keeps sowing, and God has promised to take out a heart of stone and give a heart of flesh (Ezekiel 36:26). <strong>When the gospel softens a heart, that heart becomes good soil.</strong> Call it a gospel heart: a heart that has received Jesus and keeps receiving His Word."
+      "text": "That is why this parable works like a mirror. You cannot make yourself good soil by trying harder. But the Sower keeps sowing, and God has promised to take out a heart of stone and give a heart of flesh (Ezekiel 36:26). <strong>When the gospel softens a heart, that heart becomes good soil.</strong> Call it a gospel heart: a heart that has received Jesus and keeps receiving His Word."
     },
     {
       "type": "question",
@@ -54,7 +72,8 @@
     },
     {
       "type": "heading",
-      "text": "A Gospel Heart"
+      "text": "A Gospel Heart",
+      "anchor": "study"
     },
     {
       "type": "text",
@@ -67,19 +86,15 @@
     },
     {
       "type": "text",
-      "text": "Notice how it starts: <em>as you received</em>. You did not earn Christ. You received Him as a gift by faith, and you keep walking the same way, trusting Him day after day and <em>abounding in thanksgiving</em>, not exhausted from striving. Paul picks his words: <em>rooted</em> in Him, <em>built up</em> in Him, <em>established</em> in Him."
+      "text": "It starts with <em>as you received</em>. You did not earn Christ. You received Him as a gift by faith, and you keep walking the same way, trusting Him day after day and <em>abounding in thanksgiving</em>, not exhausted from striving."
     },
     {
       "type": "text",
-      "text": "These pictures teach two connected truths: a gospel heart welcomes God's Word, and a growing believer draws life from Christ. Your heart receives His Word; Jesus is the One who gives you life. The five roots in the picture below represent habits that help you keep turning to Him and trusting what He says."
+      "text": "So the two pictures teach two connected truths: a gospel heart welcomes God's Word, and a growing believer draws life from Christ."
     },
     {
       "type": "text",
-      "text": "Here is the one thing to carry out of this lesson: <strong>roots before fruit.</strong> Stay rooted in Jesus, and trust Him to grow the fruit in His time."
-    },
-    {
-      "type": "text",
-      "text": "The world measures a tree by what it sees above the ground. God measures it by what is happening underneath. Root work is slow, hidden, and unglamorous. But when the heat comes, it is the reason the tree is still standing."
+      "text": "The world measures a tree by what it sees above the ground. God measures it by what is happening underneath. Root work is slow, hidden, and unglamorous, but when the heat comes, it is the reason the tree is still standing. <strong>Roots before fruit.</strong> Stay rooted in Jesus, and trust Him to grow the fruit in His time."
     },
     {
       "type": "heading",
@@ -92,31 +107,32 @@
     {
       "type": "widget",
       "src": "widgets/deep-roots.html",
-      "height": "620px"
+      "height": "620px",
+      "anchor": "diagram"
     },
     {
       "type": "text",
-      "text": "<strong>Prayer.</strong> Prayer is honest conversation with God, talking and listening. The Father has run toward you, and prayer is how you keep walking down the road home. Paul tells believers to keep <em>\"praying at all times in the Spirit\"</em> (Ephesians 6:18). You do not need fancy words. Start with five quiet minutes in the morning, naming where you need Him."
+      "text": "<strong>Prayer.</strong> Prayer is honest conversation with God, talking and listening (Ephesians 6:18). The Father has run toward you, and prayer is how you keep walking down the road home. You do not need fancy words."
     },
     {
       "type": "text",
-      "text": "<strong>The Word.</strong> The Bible is God's voice to you. The Psalmist says, <em>\"I have stored up your word in my heart, that I might not sin against you\"</em> (Psalm 119:11). A small amount each day, done faithfully, will form you more than a giant amount done once in a while. Pick one Gospel and read one chapter a day."
+      "text": "<strong>The Word.</strong> The Bible is God's voice to you (Psalm 119:11). A small amount each day, done faithfully, will form you more than a giant amount done once in a while."
     },
     {
       "type": "text",
-      "text": "<strong>Fellowship.</strong> You were not designed to follow Jesus alone. <em>\"Let us consider how to stir up one another to love and good works, not neglecting to meet together... but encouraging one another\"</em> (Hebrews 10:24-25). Find a church where you can be known, and one or two believers you can be honest with. Roots that grow tangled with other roots are the ones that survive the storm."
+      "text": "<strong>Fellowship.</strong> You were not designed to follow Jesus alone (Hebrews 10:24-25). Find a church where you can be known, and one or two believers you can be honest with. Roots that grow tangled with other roots are the ones that survive the storm."
     },
     {
       "type": "text",
-      "text": "<strong>Stewardship.</strong> Your time, your talents, and your treasure already belong to God. They are gifts to steward, not possessions to clutch. <em>\"God loves a cheerful giver\"</em> (2 Corinthians 9:7). Stewardship is how you stop pretending you are the owner. Generosity is the soil where greed dies."
+      "text": "<strong>Stewardship.</strong> Your time, your talents, and your treasure already belong to God (2 Corinthians 9:7). They are gifts to steward, not possessions to clutch. Generosity is the soil where greed dies."
     },
     {
       "type": "text",
-      "text": "<strong>Fighting Sin.</strong> The Christian life includes a real fight against the pull of your old self. Peter says to <em>\"abstain from the passions of the flesh, which wage war against your soul\"</em> (1 Peter 2:11). Grace does not excuse sin. Grace kills it. You fight sin not by trying harder, but by running to Jesus faster."
+      "text": "<strong>Fighting Sin.</strong> The Christian life includes a real fight against the pull of your old self (1 Peter 2:11). Grace does not excuse sin. Grace kills it. You fight sin not by trying harder, but by running to Jesus faster."
     },
     {
       "type": "text",
-      "text": "Each root returns later in the series, with prayer threading through them all. This lesson is the high view, so that none of them gets quietly dropped. Paul shows what holds all five together:"
+      "text": "Each root returns later in the series. Paul shows what holds all five together:"
     },
     {
       "type": "verse",
@@ -143,7 +159,7 @@
     },
     {
       "type": "text",
-      "text": "No one may see how often you prayed or stayed faithful in a quiet hour. But the fruit will show: a steadiness under pressure, a kindness that outlasts a bad day, a love for people who are hard to love. In lesson 9 you will look closely at that fruit."
+      "text": "No one may see how often you prayed or stayed faithful in a quiet hour. But the fruit will show: a steadiness under pressure, a kindness that outlasts a bad day, a love for people who are hard to love. In Lesson 9 you will look closely at that fruit."
     },
     {
       "type": "question",
@@ -165,7 +181,7 @@
     },
     {
       "type": "text",
-      "text": "A gospel heart welcomes God's Word, and a growing believer stays rooted in Christ. As you received Him by faith, you keep walking in Him the same way. Prayer, the Word, fellowship, stewardship, and fighting sin help you depend on Jesus in daily life. They do not earn God's love; they are your response to it. Roots before fruit: Jesus supplies the life, and He grows the fruit in His time."
+      "text": "A gospel heart welcomes God's Word, and a growing believer stays rooted in Christ. As you received Him by faith, you keep walking in Him the same way. Prayer, the Word, fellowship, stewardship, and fighting sin help you depend on Jesus in daily life. They do not earn God's love. They are your response to it. Roots before fruit: Jesus supplies the life, and He grows the fruit in His time."
     },
     {
       "type": "text",

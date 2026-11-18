@@ -31,25 +31,13 @@ function ck(label,ok){checks++;assert.ok(ok,label);}
     ck(tag+' approved text renders',await lesson.evaluate((el,data)=>{
      const norm=s=>s.replace(/\s+/g,' ').trim();return data.blocks.filter(b=>['text','verse','parable'].includes(b.type)).every(b=>{const d=document.createElement('div');d.innerHTML=b.text;return norm(el.textContent).includes(norm(d.textContent));});
     },data));
-    ck(tag+' both current widgets',await lesson.locator('iframe').count()===2);
+    ck(tag+' one widget, the Greatest Commandment',await lesson.locator('iframe').count()===1);
+    ck(tag+' Love Moves Out circles picture loads',await lesson.locator('img[alt^="Circles moving outward"]').evaluate(img=>{img.scrollIntoView();return true;})&&await lesson.locator('img[alt^="Circles moving outward"]').count()===1);
     const before=await page.evaluate(()=>localStorage.getItem('christianFoundationsResponses'));
     const crossHost=lesson.locator('iframe[src*="great-command-v5-203.html"]');
     await crossHost.scrollIntoViewIfNeeded();const cross=await(await crossHost.elementHandle()).contentFrame();await cross.locator('#next-btn').waitFor();
     await cross.locator('#next-btn').focus();await page.keyboard.press('Enter');await page.waitForTimeout(motion==='reduce'?50:700);
     ck(tag+' cross begins by keyboard',await cross.locator('.step-dot[aria-pressed="true"]').getAttribute('data-step')==='1');
-    const mapHost=lesson.locator('iframe[src*="personal-ministry-map.html"]');
-    await mapHost.scrollIntoViewIfNeeded();const map=await(await mapHost.elementHandle()).contentFrame();await map.locator('[data-control="begin"]').waitFor();
-    await map.locator('[data-control="overview"]').click();ck(tag+' whole map',await map.locator('[data-control="return"]').count()===1);await map.locator('[data-control="return"]').click();
-    await map.locator('[data-control="begin"]').focus();await page.keyboard.press('Space');
-    let ended=false;
-    for(let i=0;i<10;i++){
-     await page.waitForTimeout(250);
-     ck(tag+' map frame fits '+i,await mapHost.evaluate(e=>e.clientHeight)>=await map.evaluate(()=>Math.max(document.body.scrollHeight,document.documentElement.scrollHeight))-1);
-     ck(tag+' map/page width fits '+i,await map.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)&&await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
-     if(await map.locator('[data-control="restart"]').count()){ended=true;await map.locator('[data-control="restart"]').click();break;}
-     await map.locator('[data-control="next"]').click();
-    }
-    ck(tag+' map completes and restarts',ended&&await map.locator('[data-control="begin"]').count()===1);
     ck(tag+' widgets preserve all answers',await page.evaluate(()=>localStorage.getItem('christianFoundationsResponses'))===before);
     const editKey='question-203-'+active[0].id;
     await lesson.locator('#'+editKey).fill('SYN-edited-current');await page.reload({waitUntil:'domcontentloaded'});await lesson.locator('#'+editKey).waitFor();

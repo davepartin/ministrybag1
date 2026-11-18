@@ -1312,6 +1312,7 @@
             margin-bottom: 12px;
         }
         .lesson-contents {
+            container-type: inline-size;
             margin: 0 0 20px;
             border: 1px solid var(--border-light, #E6E2D8);
             border-radius: 12px;
@@ -1323,7 +1324,7 @@
             align-items: baseline;
             gap: 10px;
             padding: 6px 12px;
-            font-size: 0.95rem;
+            font-size: clamp(0.8rem, 4.6cqi, 0.95rem);
             line-height: 1.35;
             text-decoration: none;
             color: inherit;
@@ -1333,7 +1334,7 @@
             border-top: 1px solid var(--border-light, #E6E2D8);
         }
         .lesson-contents-label {
-            flex: 0 0 58px;
+            flex: 0 0 70px;
             color: var(--accent);
             font-size: 0.72rem;
             font-weight: 700;
@@ -1342,6 +1343,10 @@
         }
         .lesson-contents-title {
             flex: 1 1 auto;
+            min-width: 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
             color: var(--blue-heading);
             font-weight: 600;
             text-decoration: underline;
@@ -1399,12 +1404,6 @@
         .lesson-compact .block-text {
             margin-bottom: 10px;
         }
-        .lesson-compact .course-logo {
-            margin-bottom: 12px;
-        }
-        .lesson-compact .course-welcome-under-logo {
-            margin-top: 2px;
-        }
         .lesson-compact .lesson-contents {
             margin-bottom: 14px;
         }
@@ -1415,7 +1414,7 @@
         /* Course opener: the course logo above a course's first lesson title */
         .course-logo {
             text-align: center;
-            margin: 0 0 16px;
+            margin: 0 0 12px;
         }
         .course-logo img {
             display: inline-block;
@@ -1423,7 +1422,10 @@
             height: auto;
         }
         .course-welcome-under-logo {
-            margin: 8px 0 0;
+            margin: 2px 0 0;
+        }
+        .course-welcome-under-logo .course-welcome-title {
+            font-size: clamp(1.15rem, 6vw, 1.7rem);
         }
         .course-welcome-under-logo .course-welcome-eyebrow {
             margin-bottom: 4px;
@@ -4570,14 +4572,16 @@
                                 html += `</div>`;
                                 break;
 
-                            case 'box':
-                                html += `<div class="block-box">
+                            case 'box': {
+                                const boxAnchor = lessonJumpAnchorAttrs(b.anchor);
+                                html += `<div class="block-box${boxAnchor.cls}"${boxAnchor.attrs}>
                                     <div class="box-title">${b.title}</div>`;
                                 b.content.forEach(item => {
                                     html += `<p>${item}</p>`;
                                 });
                                 html += `</div>`;
                                 break;
+                            }
 
                             case 'question':
                                 const heightClass = b.height === 'tall' ? 'tall' : b.height === 'short' ? 'short' : '';
@@ -6910,7 +6914,7 @@
         // HASH ROUTING - Browser back/forward support
         // Handles: #101-4 (course-lesson), #tree, #about, # (home)
         // ============================================
-        // In-lesson jump links. A heading, parable, image or widget block may carry an
+        // In-lesson jump links. A heading, parable, image, widget or box block may carry an
         // "anchor" (lowercase letters, digits, hyphens). A lesson's "contents" list
         // ({label, title, anchor}) renders under the summary as links to those anchors,
         // and lesson text may also use <a class="lesson-jump" href="#jump-ANCHOR">.
@@ -6918,16 +6922,21 @@
         // lesson router owns.
         function lessonJumpAnchorAttrs(anchor) {
             if (typeof anchor !== 'string' || !/^[a-z0-9-]+$/.test(anchor)) return { cls: '', attrs: '' };
-            return { cls: ' lesson-jump-target', attrs: ` id="jump-${anchor}" tabindex="-1"` };
+            return { cls: ' lesson-jump-target', attrs: ` data-jump="${anchor}" tabindex="-1"` };
         }
 
         document.addEventListener('click', (event) => {
             const link = event.target.closest && event.target.closest('a.lesson-jump, a.lesson-contents-row');
             if (!link) return;
             event.preventDefault();
-            const targetId = (link.getAttribute('href') || '').replace(/^#/, '');
-            const target = targetId ? document.getElementById(targetId) : null;
-            if (!target || !target.classList.contains('lesson-jump-target')) return;
+            // Every lesson in a course is on the page at once, so look only inside
+            // the lesson that holds the link.
+            const anchor = (link.getAttribute('href') || '').replace(/^#jump-/, '');
+            const lesson = link.closest('.session');
+            const target = lesson && /^[a-z0-9-]+$/.test(anchor)
+                ? lesson.querySelector(`.lesson-jump-target[data-jump="${anchor}"]`)
+                : null;
+            if (!target) return;
             const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
             target.scrollIntoView({ behavior: reduceMotion ? 'instant' : 'smooth', block: 'start' });
             target.focus({ preventScroll: true });
