@@ -4,7 +4,7 @@
 
 | Task | Status | Owner / branch / date | Scope |
 |---|---|---|---|
-| PRAYERS-LORDS-TOP | ACTIVE | Codex / codex/daily-prayers-lords-reference / 2026-11-18 | Dave requested moving the Lord's Prayer dropdown above the personal prayer and matching its paper/background/type. Preserve all prayer wording, generated/saved prayers and app behavior; synchronize legacy delivery and publish the exact requested presentation change. |
+| PRAYERS-LORDS-TOP | DONE | Codex / codex/daily-prayers-lords-reference / 2026-11-18 | Dave requested moving the Lord's Prayer dropdown above the personal prayer and matching its paper/background/type. Preserve all prayer wording, generated/saved prayers and app behavior; Source/legacy synchronized; PR #310 merged atcc45ef1 and verified live. |
 
 
 ## Heart52 card cleanup, November 18, 2026

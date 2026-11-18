@@ -1,6 +1,6 @@
 # Resume here
 
-Daily Prayers reference placement: PRAYERS-LORDS-TOP ACTIVE. Dave requested the Lord's Prayer dropdown above the personal prayer and matching its paper/type. Source and legacy HTML/CSS updated;294 app checks and320/390/1280 style/order/print checks pass. Publish this exact layout change; evidence in logs/2026-11-18-PRAYERS-LORDS-TOP-codex.md.
+Daily Prayers reference placement DONE, November 18: PR #310 merged atcc45ef1. The Lord's Prayer dropdown is above the personal prayer and matches its paper background/type/spacing.294 app checks,320/390/1280 order/style/print checks and live390px saved-prayer/style checks pass. Source/legacy synchronized and production verified; log: logs/2026-11-18-PRAYERS-LORDS-TOP-codex.md.
 
 Heart52 card cleanup DONE, November 18: PR #306 merged at82103f2. Bring it to mind is removed, topic/reference spacing balanced, and live HTML/CSS verified against source after successful Firebase deployment. Keywords, verse/category behavior and all other apps/lessons remain intact. Evidence: logs/2026-11-18-HEART52-CLEAN-CARD-codex.md.
 
