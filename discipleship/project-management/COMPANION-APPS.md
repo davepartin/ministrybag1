@@ -96,3 +96,8 @@ New Heart52 UI is REVIEW, not approved for publication. Dependency order: Daily 
 ## Heart52 visual direction superseded, November 18, 2026
 
 Dave requested a full redesign after seeing the first preview. PR #296 now uses a verse-first forest/sage/ivory card deck, a new small wordmark, All 52 continuous reading and a 52-week local-calendar path. The former large original-logo library landing is superseded, not a second app. Original assets remain on disk and all 52 ESV strings/audio remain exact. Optional progress.heart52Settings metadata stores hint/start preferences. Existing device-only storage, compatibility, copies/recovery and source-to-legacy build remain in force. New UI still needs Dave's review. Evidence: logs/2026-11-18-APP-HEART52-REDESIGN-codex.md.
+
+
+## App color identity, November 18, 2026
+
+Dave's direction: companion apps may have distinct theme colors while retaining shared compact navigation, readable type, phone widths and familiar controls. Heart52, the memory app, owns the blue palette: navy verse text, pale blue card fronts, near-white backs and medium/deep blue actions. The original blue website logo remains unchanged. Other app palettes can be chosen in their own review; this packet only recolors Heart52.

@@ -44,3 +44,12 @@ Dave requested at least half the space above the card removed and his website lo
 Measured card top (CSS px) before -> after: 320 wide 291 -> 144; 375/390 wide 300.5 -> 144; 648/1280 wide 306.5 -> 144. This removes 51-53 percent of pre-card space. Original SVG bytes are unchanged; no generated artwork or recoloring. Source/legacy HTML and CSS are synchronized.
 
 Verification: 498 existing/extended card/calendar/startup checks pass across six viewport/motion cases, including the explicit half-height criterion and original-logo load. Global preferences from All52 open visibly with keyboard focus. Mirror parity, protected-file diff guard and git diff --check pass. Phone screenshot inspected. Existing general browser test's wordmark selector now checks the original img instead of the removed custom SVG. Final-head preview/hosting evidence is recorded on PR #296; status remains REVIEW, not published.
+
+
+## Dave follow-up: blue identity for the memory app
+
+Dave approved the compact direction and requested different blues for Heart52, with distinct colors for each companion app as a family direction. Heart52 now uses navy ink #173B56, pale blue card fronts #E1EFFB, near-white reverse #FCFEFF and primary blue #236B9E. Calendar, hints, tabs, links and borders use matching blues. The browser theme-color matches. Original logo, compact 144px pre-card layout, large reference sizes, all words/data/audio/storage and other app sources are unchanged. Existing amber focus and missed-word markers, plus red error feedback, retain their functional roles.
+
+Authored CSS and browser-theme metadata are mirrored to the legacy MinistryBag delivery. Measured contrast: verse/front 9.99:1, verse/back 11.56:1, button text 5.72:1, muted page text 4.66:1; checked smaller card labels remain at least 4.5:1. Protected-file diff, mirror parity and git diff --check pass. Hosted visual and final browser evidence will be recorded on PR #296. This is color review only; no publication or whole-lesson approval is inferred.
+
+Blue-theme verification: all 498 card/reference/calendar/startup checks pass at 320/375/390/648/1280 and reduced motion. Phone verse and laptop verse/calendar screenshots inspected; shared layout/type and original logo remain unchanged. Final-head hosting evidence follows on PR #296.
