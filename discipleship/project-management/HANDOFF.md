@@ -1,5 +1,7 @@
 # Resume here
 
+Heart52 card cleanup: Dave requested removing Bring it to mind. HEART52-CLEAN-CARD ACTIVE on codex/heart52-remove-kicker; front label removed, spacing balanced, source/legacy synchronized. Targeted375/390/1280 checks pass; publish this exact deletion and verify live. See logs/2026-11-18-HEART52-CLEAN-CARD-codex.md.
+
 ## Growing Apps published, November 18, 2026
 
 DONE: Dave authorized publishing #261, #288 and #296. All3 merged in order and Firebase production is verified at8793a4c. The homepage now has Your Growing Apps under Browse All Lessons. [Open the live apps page](https://growingtogetherdiscipleship.com/tools/): Your Daily Prayers, Your Weekly Connection Time and Your Heart52. These are live, not preview-only; no further merge/approval is pending for these versions.

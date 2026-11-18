@@ -1,5 +1,12 @@
 # Running task board
 
+## Heart52 card cleanup, November 18, 2026
+
+| Task | Status | Owner / branch / date | Scope |
+|---|---|---|---|
+| HEART52-CLEAN-CARD | ACTIVE | Codex / codex/heart52-remove-kicker / 2026-11-18 | Dave requested removing Bring it to mind from the card. Keep the topic/reference/verse, category controls, blue theme and saved data intact; synchronize the legacy copy and publish this exact cleanup. |
+
+
 ## Publish the three Growing Apps, November 18, 2026
 
 | Task | Status | Owner / branch / date | Scope |
