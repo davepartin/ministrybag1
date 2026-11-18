@@ -1,5 +1,11 @@
 # Running task board
 
+## Weekly Connection Time companion, November 17, 2026
+
+| Task | Status | Owner / branch / date | Scope |
+|---|---|---|---|
+| APP-WEEKLY-CONNECTION | ACTIVE | Codex / codex/weekly-connection-companion / 2026-11-17 | Bring existing marriage conversation app into Growing Together, match the companion family, add to Your Growing Apps and optional 202-08 practice. Preserve original questions/storage keys, established MinistryBag URL, all lesson copy/IDs/widgets/art. Dependency: refreshed Daily Prayers/apps hub PR #261. Preview/review before publication. |
+
 ## Compact headers across all lessons, November 17, 2026
 
 | Task | Status | Owner / branch / date | Scope |
