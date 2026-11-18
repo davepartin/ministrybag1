@@ -1,5 +1,24 @@
 # Running task board
 
+## Publish the three Growing Apps, November 18, 2026
+
+| Task | Status | Owner / branch / date | Scope |
+|---|---|---|---|
+| APPS-PUBLISH-THREE | DONE | Codex / main / 2026-11-18 | #261, #288 and #296 merged in order. Homepage Your Growing Apps button and all3 apps verified live; production hub340, Daily147, Weekly314 and Heart136 checks passed. Evidence: logs/2026-11-18-APPS-PUBLISH-THREE-codex.md. |
+
+
+## Heart52 companion integration, November 17, 2026
+
+| Task | Status | Owner / branch / date | Scope |
+|---|---|---|---|
+| APP-HEART52 | DONE | Codex / main / 2026-11-18 | #296 merged at8793a4c. Blue memory app live at tools/heart52/: original52 ESV selections/logo, flip cards, above-card category squares and separate deck links, automatic local labels, no record-management UI. Authorized101-04 hint and201-05 tool card integrated with latest main; no lesson wording/ID/art/widget changes. Production136 category checks pass. |
+
+## Weekly Connection Time companion, November 17, 2026
+
+| Task | Status | Owner / branch / date | Scope |
+|---|---|---|---|
+| APP-WEEKLY-CONNECTION | DONE | Codex / main / 2026-11-18 | #288 merged ata7e00fb. Live at tools/weekly-connection-time/ and linked from202-08. Reviewed app/margins and original field/storage keys retained. Local618 app/180 layout/244 hub and production314 app checks pass. |
+
 ## Compact headers across all lessons, November 17, 2026
 
 | Task | Status | Owner / branch / date | Scope |
@@ -380,6 +399,9 @@ Plan and standard: [reviews/2026-11-11-series-review.md](reviews/2026-11-11-seri
 | [x] | WIDGET-101-07-THE-180 | DONE | Codex / codex/review-251 (PR #251) / 2026-11-15 | Dave approved exact 53d2d60 and authorized placement in PR #251 | Built standalone 101-07 repentance widget `widgets/stop-turn-walk.html` (`Repentance is 180 Degrees` / `101-07`) showing one continuous winding footpath across mostly black-and-white rolling hills with slight color between `DARKNESS` on the left and `LIGHT` on the right (no dotted lines, sun, stars, trees, grass, or Jesus figure; shorter neck on traveler) with exact copy (`Which Way Are You Facing?`, `Stop` / 1 John 1:9, `Turn` / 1 Thessalonians 1:9, `Walk` / Acts 3:19), registered `'stop-turn-walk.html': 'Repentance is 180 Degrees'` in `scripts/widget-iframe.js`, and added `scripts/widget_101_07_stop_turn_walk_browser_check.js`. Codex added only the widget block after the current #249 Stop, Turn, Walk setup, before its retained teaching box, with measured 510px initial height. All current main blocks/active and retired questions/readings and approved B&W story art unchanged; text remains Silver. Core QA plus 265 approved and 212 embedded browser assertions pass. Exact-head preview/live evidence on PR #251. Logs: `project-management/logs/2026-11-15-WIDGET-101-07-THE-180-codex.md` and Gemini handoff. |
 
 | [x] | WIDGET-101-07-REMOVE-BOX | DONE | Codex / codex/10107-remove-interim-box / 2026-11-15 | Dave explicitly requested replacing the interim box with the already-integrated widget | Removed only The 180: Stop, Turn, Walk box; one approved widget remains immediately after setup. All other content/art/active and retired answers unchanged. QA and 212 embedded checks pass; preview/live evidence on the follow-up PR. logs/2026-11-15-WIDGET-101-07-REMOVE-BOX-codex.md. |
+
+
+| [x] | APP-DAILY-PRAYERS | DONE | Codex / main / 2026-11-18 | Dave authorized publishing all3 companion apps | #261 merged at9c4f3d5. Daily Prayers, homepage Your Growing Apps and separate tools/ hub are live. Approved prayer wording/source/legacy keys preserved;101-03 tool URL updated. Local294 prayer/168 hub and production147 prayer checks pass. Publication log: logs/2026-11-18-APPS-PUBLISH-THREE-codex.md. |
 
 
 | [x] | WIDGET-101-07-BW-REFINE | DONE | Codex integration (Gemini implementation) / gemini/widget-101-07-bw-refine / 2026-11-17 | Dave requested B&W polish and shorter slide copy/verses | Updated `widgets/stop-turn-walk.html` (`Repentance is 180 Degrees` / `101-07`) with normal straight 2-arm silhouette (no bent elbow), removed all 4 road dots, pure black-and-white SVG scene with white `#stop-line`, Step 3 traveler ending closer to the cross (`x=274`), and shorter slide copy (`Which Way Are You Going?`, `Stop` / `Psalm 32:5`, `Turn` / `Acts 3:19`, `Walk` / `1 John 1:7`). Updated `scripts/widget_101_07_stop_turn_walk_browser_check.js` and `scripts/stop_turn_walk_embedded_browser_check.js`; all `101-07` lesson JSON/copy/IDs/art untouched. Log: `project-management/logs/2026-11-16-WIDGET-101-07-BW-REFINE-gemini.md`. |

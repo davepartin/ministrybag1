@@ -1,3 +1,4 @@
+/* Generated from discipleship/tools/weekly-connection-time/app.js. Edit the source, then run node discipleship/scripts/build_weekly_connection.js. */
 const STORAGE_PREFIX = "connection_time_";
 const STEP_KEY = `${STORAGE_PREFIX}current_step`;
 const FIELD_IDS = [
@@ -64,15 +65,45 @@ const elements = {
   finishButton: document.getElementById("finishButton")
 };
 
+
+// Storage stays on the current origin. Failed reads never authorize overwriting it.
+let storageReadFailed = false;
+const pendingWrites = new Map();
+const RECOVERY_KEY = "connection_time_restore_recovery_v1";
+function storageError() {
+  const message = storageReadFailed ? "Saved answers could not be opened in this browser. Changes stay on this page; save a copy before leaving." : "This browser could not save your latest changes. They remain on this page. Save a copy before leaving.";
+  const error = document.getElementById("saveError");
+  error.textContent = message; error.hidden = false;
+  document.querySelector("#saveStatus span:last-child").textContent = "Not saved";
+}
+function readStored(key) {
+  try { return localStorage.getItem(key); }
+  catch (_) { storageReadFailed = true; storageError(); return null; }
+}
+function writeStored(key, value) {
+  pendingWrites.set(key, String(value));
+  if (storageReadFailed) { storageError(); return false; }
+  try {
+    for (const [name, text] of pendingWrites) { localStorage.setItem(name, text); pendingWrites.delete(name); }
+    document.getElementById("saveError").hidden = true;
+    return true;
+  } catch (_) { storageError(); return false; }
+}
+function removeStored(key) {
+  if (storageReadFailed) { storageError(); return false; }
+  try { localStorage.removeItem(key); return true; }
+  catch (_) { storageError(); return false; }
+}
+
 let currentStep = 0;
 let saveTimer;
 
 function hasSavedAnswers() {
-  return FIELD_IDS.some((id) => Boolean(localStorage.getItem(`${STORAGE_PREFIX}${id}`)?.trim()));
+  return FIELD_IDS.some((id) => Boolean(readStored(`${STORAGE_PREFIX}${id}`)?.trim()));
 }
 
 function savedStep() {
-  const value = Number.parseInt(localStorage.getItem(STEP_KEY), 10);
+  const value = Number.parseInt(readStored(STEP_KEY), 10);
   return Number.isInteger(value) && value >= 0 && value < STEP_NAMES.length ? value : 0;
 }
 
@@ -89,7 +120,7 @@ function updateWelcomeState() {
 function loadAnswers() {
   FIELD_IDS.forEach((id) => {
     const input = document.getElementById(id);
-    const value = localStorage.getItem(`${STORAGE_PREFIX}${id}`);
+    const value = readStored(`${STORAGE_PREFIX}${id}`);
     if (value !== null) input.value = value;
   });
   currentStep = savedStep();
@@ -97,11 +128,13 @@ function loadAnswers() {
 }
 
 function showSavedStatus() {
+  if (storageReadFailed || pendingWrites.size) { storageError(); return; }
   window.clearTimeout(saveTimer);
   elements.saveStatus.classList.add("is-saving");
   elements.saveStatus.querySelector("span:last-child").textContent = "Saving…";
 
   saveTimer = window.setTimeout(() => {
+    if (storageReadFailed || pendingWrites.size) { storageError(); return; }
     elements.saveStatus.classList.remove("is-saving");
     elements.saveStatus.querySelector("span:last-child").textContent = "Saved on this device";
   }, 450);
@@ -109,7 +142,7 @@ function showSavedStatus() {
 
 function saveField(event) {
   const { id, value } = event.target;
-  localStorage.setItem(`${STORAGE_PREFIX}${id}`, value);
+  writeStored(`${STORAGE_PREFIX}${id}`, value);
   showSavedStatus();
   updateWelcomeState();
 }
@@ -123,7 +156,7 @@ function showOnly(screen) {
 }
 
 function renderStep(options = {}) {
-  const { focus = false } = options;
+  const { focus = false, persist = true } = options;
   elements.stepPanels.forEach((panel, index) => {
     panel.hidden = index !== currentStep;
   });
@@ -140,7 +173,7 @@ function renderStep(options = {}) {
   elements.stepCounter.textContent = `Part ${currentStep + 1} of ${STEP_NAMES.length}`;
   elements.mobileStepName.textContent = STEP_NAMES[currentStep];
   elements.progressBar.style.width = `${((currentStep + 1) / STEP_NAMES.length) * 100}%`;
-  localStorage.setItem(STEP_KEY, String(currentStep));
+  if (persist) writeStored(STEP_KEY, String(currentStep));
 
   if (focus) {
     const heading = elements.stepPanels[currentStep].querySelector("h2");
@@ -210,8 +243,8 @@ function buildPlainTextSummary() {
   const sections = [
     ["OUR REGULAR RHYTHM", fieldValue("connectionTime") || EMPTY_LABELS.connectionTime],
     ["AFFIRMATION", fieldValue("affirmation") || EMPTY_LABELS.affirmation],
-    ["LOOKING BACK — HIGH", fieldValue("highPoint") || EMPTY_LABELS.highPoint],
-    ["LOOKING BACK — LOW", fieldValue("lowPoint") || EMPTY_LABELS.lowPoint],
+    ["LOOKING BACK  -  HIGH", fieldValue("highPoint") || EMPTY_LABELS.highPoint],
+    ["LOOKING BACK  -  LOW", fieldValue("lowPoint") || EMPTY_LABELS.lowPoint],
     ["DREAMS AND GOALS", fieldValue("dreams") || EMPTY_LABELS.dreams],
     ["HOW I CAN SERVE", fieldValue("service") || EMPTY_LABELS.service],
     ["NEXT DATE NIGHT", fieldValue("dateNight") || EMPTY_LABELS.dateNight],
@@ -228,7 +261,7 @@ function buildPlainTextSummary() {
   }
 
   return [
-    `WEEKLY CONNECTION TIME — ${date}`,
+    `WEEKLY CONNECTION TIME  -  ${date}`,
     "",
     ...sections.flatMap(([title, value]) => [title, value, ""])
   ].join("\n").trim();
@@ -255,24 +288,20 @@ function emailSummary() {
     day: "numeric",
     year: "numeric"
   }).format(new Date());
-  const subject = encodeURIComponent(`Weekly Connection Time — ${date}`);
+  const subject = encodeURIComponent(`Weekly Connection Time  -  ${date}`);
   const body = encodeURIComponent(buildPlainTextSummary());
-  window.location.href = `mailto:?subject=${subject}&body=${body}`;
+  elements.emailButton.href = `mailto:?subject=${subject}&body=${body}`;
 }
 
 function clearAnswers(options = {}) {
   const { returnHome = true } = options;
-  const confirmed = window.confirm("Clear every answer from this weekly check-in? This cannot be undone.");
-  if (!confirmed) return;
-
-  FIELD_IDS.forEach((id) => {
-    localStorage.removeItem(`${STORAGE_PREFIX}${id}`);
-    document.getElementById(id).value = "";
-  });
-  localStorage.removeItem(STEP_KEY);
+  if (!window.confirm("Clear every answer from this weekly check-in? This cannot be undone.")) return;
+  if (!persistTransaction(Object.fromEntries(FIELD_IDS.map(id => [id, null])), null, false)) return;
+  FIELD_IDS.forEach(id => { document.getElementById(id).value = ""; });
   currentStep = 0;
   updateWelcomeState();
-
+  showSavedStatus();
+  document.getElementById("previousCopy").hidden = true;
   if (returnHome) showOnly("welcome");
 }
 
@@ -291,7 +320,7 @@ function applyPrompt(event) {
     input.value += prompt;
   }
 
-  localStorage.setItem(`${STORAGE_PREFIX}${input.id}`, input.value);
+  writeStored(`${STORAGE_PREFIX}${input.id}`, input.value);
   input.focus();
   input.setSelectionRange(input.value.length, input.value.length);
   showSavedStatus();
@@ -322,4 +351,82 @@ elements.editButton.addEventListener("click", () => {
 elements.finishButton.addEventListener("click", () => clearAnswers());
 
 loadAnswers();
-renderStep();
+renderStep({ persist: false });
+
+
+// Keep the canonical app on Growing Together; retain the established MinistryBag route.
+const canonicalApp = /\/tools\/weekly-connection-time(?:\/|$)/.test(location.pathname);
+if (canonicalApp) {
+  document.getElementById("growing-home").href = "../../index.html";
+  document.getElementById("lesson-link").href = "../../index.html#202-8";
+  document.getElementById("growing-apps-link").href = "../";
+  document.getElementById("migration-note").hidden = false;
+}
+function portableCopy() {
+  return { app: "growing-together.weekly-connection-time", version: 1, step: currentStep,
+    answers: Object.fromEntries(FIELD_IDS.map(id => [id, document.getElementById(id).value])) };
+}
+function downloadCopy(value, filename) {
+  const url = URL.createObjectURL(new Blob([JSON.stringify(value, null, 2)], { type: "application/json" }));
+  const link = document.createElement("a"); link.href = url; link.download = filename;
+  document.body.appendChild(link); link.click(); link.remove(); setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+function validateCopy(value) {
+  if (!value || value.app !== "growing-together.weekly-connection-time" || value.version !== 1 || !Number.isInteger(value.step) || value.step < 0 || value.step >= STEP_NAMES.length || !value.answers || typeof value.answers !== "object" || Array.isArray(value.answers) || FIELD_IDS.some(id => typeof value.answers[id] !== "string") || Object.keys(value.answers).some(id => !FIELD_IDS.includes(id))) throw new Error("Choose a Weekly Connection Time copy saved by this app.");
+  return value;
+}
+function persistTransaction(answers, step, recovery) {
+  if (storageReadFailed) { storageError(); return false; }
+  const keys = FIELD_IDS.map(id => STORAGE_PREFIX + id).concat(STEP_KEY, RECOVERY_KEY);
+  const before = new Map(); let writing = false;
+  try {
+    keys.forEach(key => before.set(key, localStorage.getItem(key)));
+    writing = true;
+    if (recovery) localStorage.setItem(RECOVERY_KEY, JSON.stringify(portableCopy()));
+    else if (step === null) localStorage.removeItem(RECOVERY_KEY);
+    FIELD_IDS.forEach(id => {
+      if (answers[id] === null) localStorage.removeItem(STORAGE_PREFIX + id);
+      else localStorage.setItem(STORAGE_PREFIX + id, answers[id]);
+    });
+    if (step === null) localStorage.removeItem(STEP_KEY);
+    else localStorage.setItem(STEP_KEY, String(step));
+    pendingWrites.clear(); document.getElementById("saveError").hidden = true;
+    return true;
+  } catch (_) {
+    if (writing) for (const [key, value] of before) {
+      try { if (value === null) localStorage.removeItem(key); else localStorage.setItem(key, value); } catch (_) { /* Keep the current screen available for a portable copy. */ }
+    }
+    storageError(); return false;
+  }
+}
+const previousCopy = document.getElementById("previousCopy");
+previousCopy.hidden = !readStored(RECOVERY_KEY);
+previousCopy.addEventListener("click", () => {
+  try { downloadCopy(validateCopy(JSON.parse(readStored(RECOVERY_KEY))), "weekly-connection-previous.json"); }
+  catch (_) { document.getElementById("copyStatus").textContent = "No readable recovery copy is available."; }
+});
+document.getElementById("saveCopy").addEventListener("click", () => downloadCopy(portableCopy(), "weekly-connection-time.json"));
+document.getElementById("restoreCopy").addEventListener("click", () => document.getElementById("copyFile").click());
+let pendingCopy = null;
+const restoreDialog = document.getElementById("restoreDialog");
+document.getElementById("copyFile").addEventListener("change", async event => {
+  const file = event.target.files[0]; event.target.value = ""; if (!file) return;
+  try {
+    if (file.size > 2 * 1024 * 1024) throw new Error("Choose a copy smaller than 2 MB.");
+    pendingCopy = validateCopy(JSON.parse(await file.text()));
+    restoreDialog.showModal();
+  } catch (_) { pendingCopy = null; document.getElementById("copyStatus").textContent = "That file is not a valid Weekly Connection Time copy. Your answers have not changed."; }
+});
+function cancelRestore() { pendingCopy = null; restoreDialog.close(); }
+document.getElementById("cancelRestore").addEventListener("click", cancelRestore);
+restoreDialog.addEventListener("cancel", () => { pendingCopy = null; });
+document.getElementById("confirmRestore").addEventListener("click", () => {
+  if (!pendingCopy) return;
+  if (!persistTransaction(pendingCopy.answers, pendingCopy.step, true)) { cancelRestore(); return; }
+  const copy = pendingCopy; cancelRestore();
+  FIELD_IDS.forEach(id => { document.getElementById(id).value = copy.answers[id]; });
+  currentStep = copy.step; updateWelcomeState(); showOnly("welcome"); showSavedStatus();
+  previousCopy.hidden = false;
+  document.getElementById("copyStatus").textContent = "Check-in restored. Your previous check-in is available as a recovery copy.";
+});
+document.getElementById("connectionForm").addEventListener("submit", event => event.preventDefault());

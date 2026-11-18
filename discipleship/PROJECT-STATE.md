@@ -1,5 +1,30 @@
 # Growing Together - Project State
 
+## Growing Apps published, November 18, 2026
+
+DONE: Dave authorized publishing #261, #288 and #296. All3 merged in order and Firebase production is verified at8793a4c. The homepage now has Your Growing Apps under Browse All Lessons. [Open the live apps page](https://growingtogetherdiscipleship.com/tools/): Your Daily Prayers, Your Weekly Connection Time and Your Heart52. These are live, not preview-only; no further merge/approval is pending for these versions.
+
+Current lesson voice/contents, questions/IDs, readings, approved widgets and story art are preserved. Only the authorized101-03 URL,202-08/201-05 tool cards and101-04 hint change. Heart52 keeps the blue theme and simple above-card category row, with no backup/record-management UI. Live hub340, Daily147, Weekly314 and Heart136 browser checks pass. All data used for verification was synthetic. Lesson review stages are unchanged. [Publication evidence](project-management/logs/2026-11-18-APPS-PUBLISH-THREE-codex.md).
+
+
+## Heart52 flip-card redesign, November 18, 2026
+
+APP-HEART52 REVIEW, PR #296. Dave requested a full new look with the verse as the hero. The forest/sage/ivory app opens on a topic/first-two-word flip card, with large Scripture on the reverse, a continuous All 52 reference view and a simple yearly path. First visitors see the current week; returning visitors can resume or choose weekly startup. Original ESV selections/audio and all lessons/other apps remain unchanged. New preferences preserve existing progress and portable copies. Core QA, 1769 learning/storage/calendar checks, 674 existing app, 486 new card/calendar and 340 hub/lesson checks pass. New preview replaces the earlier app design; Dave's visual review remains pending, nothing merged or live. Still stacked on #288 then #261. [Redesign log](project-management/logs/2026-11-18-APP-HEART52-REDESIGN-codex.md).
+
+
+## Heart52 companion ready for review, November 17, 2026
+
+APP-HEART52 REVIEW, PR #296. The original 52 passages and Heart52 logo now have a companion-family app at tools/heart52/, with lazy audio, gradual word hints, phrase ordering, concealed recall and gentle local-calendar reviews. Progress stays on the device, with non-destructive v2 compatibility, portable copies and recovery. Your Growing Apps has a third button; 201-05 gains one optional tool card and 101-04 one short optional link. Existing lesson prose/questions/readings/images/widgets and both other app sources remain intact. New UI awaits Dave's review, nothing merged or live. Based on #288, which depends on #261. Claude's held 201-05 rewrite #292 is untouched. [Task log](project-management/logs/2026-11-17-APP-HEART52-codex.md).
+
+
+
+## Weekly Connection Time companion ready for review, November 17, 2026
+
+APP-WEEKLY-CONNECTION REVIEW. Dave requested the existing MinistryBag marriage app inside Growing Together, following Daily Prayers. Authored source is tools/weekly-connection-time/; the established MinistryBag weeklyconnectiontime/ address receives generated delivery copies. The seven conversation steps, twelve field IDs, original prompts and connection_time_ keys are preserved. The companion matches the 640px warm-paper/brown-header family, links back to 202-08 and Your Growing Apps, and adds portable save/restore copies, recovery and truthful storage-failure handling. Answers stay in the current browser/device; no Firebase/account sync or cross-origin automatic migration.
+
+The apps page now has Your Daily Prayers and Your Weekly Connection Time. 202-08 gains one optional married-couples tool card after its practice paragraph; all existing prose, Scripture, questions/IDs, readings, approved triangle and story art remain unchanged. Core QA, 618 canonical/legacy app checks and 244 app-hub/lesson-navigation checks pass. The two-app and synthetic six-row layouts fit phone screens. New design awaits Dave's visual review; nothing is merged or live. This is a separate dependent PR based on refreshed Daily Prayers PR #261 (7feaa2d). Merge #261 first after review, retarget this PR to main and verify before integration. [Task log](project-management/logs/2026-11-17-APP-WEEKLY-CONNECTION-codex.md).
+
+
 ## Compact header standard across every lesson, November 17, 2026
 
 Dave approved the 202-01 pilot and requested the same style throughout the app. UI-COMPACT-HEADERS-ALL, PR #286, applies the existing 49px row to every lesson: Back, course/lesson code and title, then Menu. The progress strip and unused update code are removed. All 47 lesson identities pass, with 44px controls, sticky placement, long-title truncation, no horizontal overflow and saved answers preserved. Core QA, 283 header checks, 964 navigation checks, 95 Samaritan/128 lamp/103 soils checks and 387 all-course image checks pass. No lesson JSON, approved widget/artwork, question/reading identity or saved-answer logic changes. The execution blocker below is resolved; the former single-lesson pilot limitation is superseded. Final exact-head preview, merge and live evidence: [Codex log](project-management/logs/2026-11-17-UI-COMPACT-HEADERS-ALL-codex.md) and PR #286.
