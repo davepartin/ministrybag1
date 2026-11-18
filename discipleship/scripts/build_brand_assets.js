@@ -4,8 +4,8 @@
  * 1200x630 link-preview card. Run from discipleship/:
  *   node scripts/build_brand_assets.js
  *
- * Uses Playwright so mix-blend-mode and type match the live page. Sharp is
- * used only to resize PNG buffers and pack favicon.ico.
+ * Uses Playwright so translucent fills and baked type match the live page.
+ * Sharp is used only to resize PNG buffers and pack favicon.ico.
  */
 'use strict';
 
@@ -95,10 +95,10 @@ function ogHtml() {
         '<style>' +
         'html,body{margin:0;}' +
         '#card{width:1200px;height:630px;background:#F8F6F1;display:flex;flex-direction:column;' +
-        'align-items:center;justify-content:center;box-sizing:border-box;padding:72px 96px 80px;}' +
-        '#mark{width:820px;height:auto;display:block;}' +
+        'align-items:center;justify-content:center;box-sizing:border-box;padding:48px 56px 56px;}' +
+        '#mark{width:980px;height:auto;display:block;}' +
         '#mark svg{width:100%;height:auto;display:block;}' +
-        'h1{margin:48px 0 0;font-family:Forum,Georgia,serif;font-weight:400;font-size:54px;' +
+        'h1{margin:28px 0 0;font-family:Forum,Georgia,serif;font-weight:400;font-size:52px;' +
         'letter-spacing:0.04em;color:#2A2F36;text-align:center;line-height:1.15;}' +
         'p{margin:10px 0 0;font-family:Raleway,Helvetica,sans-serif;font-weight:300;font-size:18px;' +
         'letter-spacing:0.36em;text-transform:uppercase;color:#2A2F36;text-align:center;}' +
