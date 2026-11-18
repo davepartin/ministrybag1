@@ -2,22 +2,40 @@
   "id": "3",
   "title": "Lesson 3: The Guiding of the Holy Spirit",
   "description": "The Holy Spirit can feel mysterious, but Jesus promised Him as a Helper who is with you forever. From the pillar of cloud and fire that led Israel to the Spirit who lives inside every believer, God has always guided His people. GUIDE names five things He does in your life.",
+  "contents": [
+    {
+      "label": "Story",
+      "title": "Exodus 13:21-22",
+      "anchor": "story"
+    },
+    {
+      "label": "Study",
+      "title": "Five Things He Does",
+      "anchor": "study"
+    },
+    {
+      "label": "Diagram",
+      "title": "GUIDE",
+      "anchor": "diagram"
+    }
+  ],
   "blocks": [
     {
       "type": "text",
-      "text": "God reveals Himself as the Trinity. Lesson 1 showed you the Father's love, a love that came before you ever knew His name. Lesson 2 showed you the identity Jesus gives, secured at the cross. Now this lesson turns to <strong>God the Holy Spirit</strong>. He is not a vague force or a warm feeling. He is God Himself, given to guide you, and He has walked with you from the moment you believed. Before the teaching, a picture from the wilderness."
+      "text": "Lesson 1 showed you the Father's love, a love that came before you ever knew His name. Lesson 2 showed you the identity the Son gives, secured at the cross. Now this lesson turns to the third Person of the Trinity, <strong>God the Holy Spirit</strong>. He is not a vague force or a warm feeling. He is God Himself, given to guide you, and He has walked with you from the moment you believed."
     },
     {
       "type": "image",
       "imageBw": "images/pillar-fire-bw.png",
       "imageColor": "images/pillar-fire-color.png",
       "alt": "Israel gathered in the wilderness at night as the pillar of fire rises before them",
-      "touchNext": true
+      "touchNext": true,
+      "anchor": "story"
     },
     {
       "type": "parable",
       "title": "The Pillar in the Wilderness",
-      "text": "In Exodus 13, God rescued His people from Pharaoh. Israel walked out of Egypt with an unknown wilderness ahead. God did not hand Moses a map. He went before them, a pillar of cloud by day and a pillar of fire by night. When the pillar moved, they moved. When it stayed, they stayed.<br><br><em>\"By day the LORD went ahead of them in a pillar of cloud to <strong>GUIDE</strong> them on their way and by night in a pillar of fire to give them light, so that they could travel by day or night.\" (Exodus 13:21 NIV)</em><br><br>They did not need the whole route. They only needed to follow the Presence in front of them."
+      "text": "In Exodus, God rescued His people from Pharaoh. Israel walked out of Egypt with an unknown wilderness ahead. God did not hand Moses a map. He went before them, a pillar of cloud by day and a pillar of fire by night. When the pillar moved, they moved. When it stayed, they stayed.<br><br><em>\"By day the LORD went ahead of them in a pillar of cloud to <strong>GUIDE</strong> them on their way and by night in a pillar of fire to give them light, so that they could travel by day or night.\" (Exodus 13:21 NIV)</em><br><br>They did not need the whole route. They only needed to follow the Presence in front of them."
     },
     {
       "type": "text",
@@ -30,16 +48,18 @@
     },
     {
       "type": "heading",
-      "text": "GUIDE: Five Things the Spirit Does"
+      "text": "GUIDE: Five Things the Spirit Does",
+      "anchor": "study"
     },
     {
       "type": "text",
-      "text": "Anyone who has hiked an unfamiliar trail knows the feeling. The path narrows, the fog rolls in, and the next marker is nowhere in sight. You do not need more information; you need a guide. The Holy Spirit is your <strong>G-U-I-D-E</strong> and way to remember five things He does in your life. Each phrase uses one letter of GUIDE plus a word that starts with S."
+      "text": "Anyone who has hiked an unfamiliar trail knows the feeling. The path narrows, the fog rolls in, and the next marker is nowhere in sight. You do not need more information. You need a guide. The letters of <strong>GUIDE</strong> name five things the Holy Spirit does in your life, and each one pairs with a word that starts with S."
     },
     {
       "type": "widget",
       "src": "widgets/guide-spirit2.html",
-      "height": "620px"
+      "height": "620px",
+      "anchor": "diagram"
     },
     {
       "type": "text",
@@ -55,7 +75,7 @@
     },
     {
       "type": "text",
-      "text": "<strong>D - Directs Steps.</strong> \"All who are led by the Spirit of God are sons of God\" (Romans 8:14). He leads like a friendly guide walking you through life. He does not overpower your will but nudges when you are taking a wrong turn. The Spirit also provides a peace when you are walking in step with Him. He never leads you against the Word He inspired, and He often confirms His lead through mature believers who know you."
+      "text": "<strong>D - Directs Steps.</strong> \"All who are led by the Spirit of God are sons of God\" (Romans 8:14). He leads like a guide walking beside you. He does not overpower your will, but He nudges you when you are taking a wrong turn and gives you peace when you are walking in step with Him. He never leads you against the Word He inspired, and He often confirms His lead through mature believers who know you."
     },
     {
       "type": "text",
@@ -73,7 +93,7 @@
     },
     {
       "type": "text",
-      "text": "Watch for all three Persons of the Trinity in one moment at the Jordan."
+      "text": "At the Jordan, all three Persons of the Trinity appear in one moment."
     },
     {
       "type": "verse",
@@ -82,12 +102,12 @@
     },
     {
       "type": "text",
-      "text": "The Son stands in the river, the Father speaks from heaven, and the Spirit descends like a dove and rests on Jesus. Then, before the celebration had ended, that same Spirit led Jesus into the wilderness to be tempted (Matthew 4:1). Jesus walked through hunger and testing with the Spirit as His Guide. <strong>If Jesus needed the Spirit, how much more do you.</strong> When the path fogs over, you are not alone."
+      "text": "The Son stands in the river, the Father speaks from heaven, and the Spirit descends like a dove and rests on Jesus. Then that same Spirit led Jesus into the wilderness to be tempted (Matthew 4:1). Jesus walked through hunger and testing with the Spirit as His Guide. <strong>If Jesus depended on the Spirit, how much more do you need Him?</strong> When the path fogs over, you are not alone."
     },
     {
       "type": "question",
-      "id": "201-03-2",
-      "text": "3.2 - When in your life have you felt this nudge to change or this peace in step with the Spirit?",
+      "id": "201-03-wilderness",
+      "text": "3.2 - Where does life feel like a wilderness right now, and what difference does it make that the Spirit is with you there?",
       "height": "tall"
     },
     {
@@ -96,7 +116,7 @@
     },
     {
       "type": "text",
-      "text": "One truth has to settle deep. <strong>The Holy Spirit is not an addition to the Christian life. He is a key to living the Christian life.</strong> Without Him, following Jesus collapses into willpower and performance. Jesus promised, \"I will not leave you as orphans; I will come to you\" (John 14:18), and He came back to us by the Spirit. With Him, the page comes alive, sin loses its taste, and worship catches fire."
+      "text": "<strong>The Holy Spirit is not an addition to the Christian life. He is a key to living the Christian life.</strong> Without Him, following Jesus collapses into willpower and performance. Jesus promised, \"I will not leave you as orphans; I will come to you\" (John 14:18), and He came to you by the Spirit. With Him, the Bible comes alive, sin loses its taste, and worship is an authentic response."
     },
     {
       "type": "text",
@@ -105,7 +125,7 @@
     {
       "type": "question",
       "id": "201-03-3",
-      "text": "3.3 - Write a few sentence prayer starting with \"Holy Spirit, guide me in ...\"",
+      "text": "3.3 - Write a short prayer that begins, \"Holy Spirit, guide me in...\"",
       "height": "tall"
     },
     {
@@ -115,12 +135,6 @@
     {
       "type": "text",
       "text": "Each morning this week, pray one simple sentence before the day begins: <em>Holy Spirit, guide me today.</em> Then, when a decision comes, walk it through three questions. What does Scripture say? What do mature believers I trust say? Where is there a settled peace?"
-    },
-    {
-      "type": "question",
-      "id": "201-03-hand",
-      "text": "3.4 - How would you explain the Holy Spirit to someone?",
-      "height": "tall"
     },
     {
       "type": "heading",
@@ -155,6 +169,20 @@
       "id": "201-03-prayer",
       "text": "What is a prayer request for this week?",
       "height": "short"
+    }
+  ],
+  "retiredQuestions": [
+    {
+      "type": "question",
+      "id": "201-03-2",
+      "text": "3.2 - When in your life have you felt this nudge to change or this peace in step with the Spirit?",
+      "height": "tall"
+    },
+    {
+      "type": "question",
+      "id": "201-03-hand",
+      "text": "3.4 - How would you explain the Holy Spirit to someone?",
+      "height": "tall"
     }
   ]
 }

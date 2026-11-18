@@ -2,6 +2,23 @@
   "id": "2",
   "title": "Lesson 2: Loving Your Family at Home",
   "description": "Your family is your first neighbors. With Jesus as the cornerstone, this lesson looks at loving the people closest to you in your real roles and through the hard, holy work of forgiveness at home.",
+  "contents": [
+    {
+      "label": "Story",
+      "title": "Matthew 7:24-27",
+      "anchor": "story"
+    },
+    {
+      "label": "Study",
+      "title": "Jesus the Cornerstone",
+      "anchor": "study"
+    },
+    {
+      "label": "Diagram",
+      "title": "Building a Life",
+      "anchor": "diagram"
+    }
+  ],
   "blocks": [
     {
       "type": "text",
@@ -28,7 +45,8 @@
         0.72
       ],
       "alt": "Two houses built on different ground as a storm gathers, then the sand house tipping and falling into the water while the rock house stands, and finally calm reveals the rock house still standing",
-      "touchNext": true
+      "touchNext": true,
+      "anchor": "story"
     },
     {
       "type": "parable",
@@ -41,7 +59,8 @@
     },
     {
       "type": "heading",
-      "text": "Jesus Is the Cornerstone"
+      "text": "Jesus Is the Cornerstone",
+      "anchor": "study"
     },
     {
       "type": "text",
@@ -63,7 +82,8 @@
     {
       "type": "widget",
       "src": "widgets/cornerstone.html",
-      "height": "490px"
+      "height": "490px",
+      "anchor": "diagram"
     },
     {
       "type": "question",
@@ -115,13 +135,13 @@
       "title": "The Three R's of Forgiveness at Home",
       "content": [
         "<strong>Remember God's mercy.</strong> Before you look at their debt, look at yours. The King canceled what you could never repay (Matthew 18:27). Mercy means He spared you the judgment you deserved, and that mercy is now larger in your heart than anything they owe you.",
-        "<strong>Relay grace.</strong> The arrow does not stop with you. Say it out loud: \"I forgive you,\" or \"I was wrong. Will you forgive me?\" Grace is a gift they did not earn, given because you were given one first (Ephesians 4:32).",
+        "<strong>Relay grace.</strong> The arrow does not stop with you. Tell them: \"I forgive you,\" or \"I was wrong. Will you forgive me?\" Grace is a gift they did not earn, given because you were given one first (Ephesians 4:32).",
         "<strong>Repair the relationship.</strong> Forgiveness releases the debt; repair rebuilds what it broke. Take one small step toward each other, confess plainly, make a plan, and let trust grow back at its own pace."
       ]
     },
     {
       "type": "text",
-      "text": "A family that keeps walking the three R's is telling the gospel out loud, one apology at a time."
+      "text": "A family that keeps walking the three R's is telling the gospel, one apology at a time."
     },
     {
       "type": "question",

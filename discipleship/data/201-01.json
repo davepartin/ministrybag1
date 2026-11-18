@@ -2,10 +2,34 @@
   "id": "1",
   "title": "Lesson 1: Loving God",
   "description": "The Father runs toward you first. This lesson introduces the Greatest Commandment as a response to God's initiating love: receive His love, then respond with your whole self.",
+  "contents": [
+    {
+      "label": "Story",
+      "title": "Luke 15:11-24",
+      "anchor": "story"
+    },
+    {
+      "label": "Study",
+      "title": "Because He Loved First",
+      "anchor": "study"
+    },
+    {
+      "label": "Diagram",
+      "title": "Greatest Commandment",
+      "anchor": "diagram"
+    }
+  ],
+  "courseLogo": {
+    "src": "images/201-3circles-logo.png",
+    "alt": "Growing Together Discipleship Series: Growing Deep in Discipleship highlighted.",
+    "width": "60%",
+    "eyebrow": "Course 201",
+    "title": "Welcome to Growing Deep"
+  },
   "blocks": [
     {
       "type": "text",
-      "text": "Welcome to Growing Deep. In the 101 Starting Course, you took your first steps with Jesus. Now you begin three Growing courses: <strong>Growing Deep</strong> (201), <strong>Growing Up</strong> (202), and <strong>Growing Out</strong> (203). Growing Deep begins with your most important relationship, the one between you and God, and it begins with a father on a road."
+      "text": "In the 101 Starting Course, you took your first steps with Jesus. Now you begin three Growing courses: <strong>Growing Deep</strong> (201), <strong>Growing Up</strong> (202), and <strong>Growing Out</strong> (203). Growing Deep begins with your most important relationship, the one between you and God, and it begins with a father on a road."
     },
     {
       "type": "image",
@@ -24,7 +48,8 @@
         0.58
       ],
       "alt": "A father running down the road toward his returning son until he reaches him",
-      "touchNext": true
+      "touchNext": true,
+      "anchor": "story"
     },
     {
       "type": "parable",
@@ -43,7 +68,8 @@
     },
     {
       "type": "heading",
-      "text": "Because He Loved First"
+      "text": "Because He Loved First",
+      "anchor": "study"
     },
     {
       "type": "text",
@@ -73,7 +99,7 @@
     },
     {
       "type": "text",
-      "text": "Read that short verse again. Say this line until it sinks all the way in: <em>I do not love God to make Him love me. I love God because He loved me first.</em> That single confession is the hinge the whole Christian life swings on. Every morning, every act of obedience, every return from drifting begins there."
+      "text": "This is the confession the whole Christian life swings on: <em>I do not love God to make Him love me. I love God because He loved me first.</em> Every morning, every act of obedience, every return from drifting begins there."
     },
     {
       "type": "text",
@@ -87,7 +113,8 @@
       "type": "widget",
       "src": "widgets/great-command-v5-201.html",
       "title": "The Greatest Commandment: Growing Deep",
-      "height": "520px"
+      "height": "520px",
+      "anchor": "diagram"
     },
     {
       "type": "text",
@@ -128,7 +155,7 @@
     },
     {
       "type": "text",
-      "text": "Each morning this week, before you check your phone, say this line out loud and sit with it for one minute: <em>I do not love God to make Him love me. I love God because He loved me first.</em> You do not need to write a paragraph or feel something profound. Just let the Father's love be the first thing that shapes your morning, before the noise rushes in. And somewhere this week, read the full story in Luke 15:11-32, this time with your eyes on the Father."
+      "text": "Each morning this week, before you check your phone, start with this truth: <em>I do not love God to make Him love me. I love God because He loved me first.</em> And sometime this week, read the full story in Luke 15:11-32."
     },
     {
       "type": "heading",

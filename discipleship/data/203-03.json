@@ -2,6 +2,23 @@
   "id": "3",
   "title": "Lesson 3: BLESS - Listen and Eat - Show Hospitality",
   "description": "The second and third BLESS rhythms: listening that helps people feel known, and an open table that welcomes strangers the way God welcomed you.",
+  "contents": [
+    {
+      "label": "Story",
+      "title": "Luke 24:13-35",
+      "anchor": "story"
+    },
+    {
+      "label": "Study",
+      "title": "Listen",
+      "anchor": "study"
+    },
+    {
+      "label": "Diagram",
+      "title": "The Open Table",
+      "anchor": "diagram"
+    }
+  ],
   "blocks": [
     {
       "type": "text",
@@ -22,7 +39,8 @@
         0.5
       ],
       "alt": "Jesus sits at a low table with two travelers at Emmaus and breaks a round loaf of bread in his hands",
-      "touchNext": true
+      "touchNext": true,
+      "anchor": "story"
     },
     {
       "type": "parable",
@@ -42,7 +60,8 @@
     {
       "type": "heading",
       "text": "Listen: Help Someone Feel Known",
-      "icon": "images/bless-2listen.png"
+      "icon": "images/bless-2listen.png",
+      "anchor": "study"
     },
     {
       "type": "text",
@@ -100,7 +119,8 @@
       "content": [
         "<strong>Hospitality is</strong> a seat at your table, your full attention, an unhurried conversation, room for people who are not like you, and a simple meal, even takeout on paper plates, shared gladly.",
         "<strong>Hospitality is not</strong> a perfect house, a fancy menu, a performance, a sales pitch, or a dinner saved for the friends who will invite you back."
-      ]
+      ],
+      "anchor": "diagram"
     },
     {
       "type": "question",
