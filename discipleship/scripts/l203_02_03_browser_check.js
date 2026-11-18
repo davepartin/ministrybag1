@@ -15,7 +15,7 @@ var SHOTS = process.env.GT_SHOT_DIR || '';
 var LESSONS = [
     {
         hash: '#203-2',
-        story: 'A Prayer Before the Answer',
+        story: 'Blessed to Be a Blessing',
         tool: 'Their Life, Their Heart, My Part',
         link: 'ministrybag.com/dailyprayers',
         ids: ['203-02-story', '203-02-1', '203-02-rhythm', '203-02-7', '203-02-key', '203-02-step', '203-02-prayer'],
