@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 'use strict';
-// One-lesson pilot: actual controls, viewport geometry and synthetic saved answers.
+// Shared compact headers: controls, all lesson identities and synthetic saved answers.
 const { chromium } = require('playwright');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
@@ -46,22 +46,40 @@ function check(label, value) { assert.ok(value, label); passed++; }
     check('menu opens',await page.locator('#toc-panel').evaluate(e=>e.classList.contains('open')));
     await page.locator('#toc-item-2').click();
     await page.waitForFunction(()=>location.hash==='#202-2');
-    check('other lesson keeps original header',!(await bar.evaluate(e=>e.classList.contains('is-compact'))) && await page.locator('.progress-track').isVisible());
-    const original=await bar.evaluate(e=>e.getBoundingClientRect().height);
-    check('pilot saves at least 30 percent height',compact<=original*.7);
+    check('next lesson keeps compact header',await bar.evaluate(e=>e.classList.contains('is-compact')) && await page.locator('.progress-track').count()===0);
+    check('next lesson identity updates',await page.locator('.compact-lesson-code').textContent()==='202-02 ·');
+    check('next lesson retains 49px height',await bar.evaluate(e=>e.getBoundingClientRect().height)===compact);
     await page.locator('#toc-toggle-btn').click();await page.locator('#toc-item-1').click();
     await page.waitForFunction(()=>location.hash==='#202-1');
-    check('pilot restored on return',await bar.evaluate(e=>e.classList.contains('is-compact')));
+    check('lesson identity restored on return',await bar.evaluate(e=>e.classList.contains('is-compact')));
     check('answer survives navigation',await page.locator('#question-202-202-01-1').inputValue()==='SYN-header-answer');
     await page.reload({waitUntil:'networkidle'});
     check('answer survives reload',await page.locator('#question-202-202-01-1').inputValue()==='SYN-header-answer');
     if(shot && width===390 && motion==='no-preference') {
      fs.mkdirSync(shot,{recursive:true});await page.screenshot({path:path.join(shot,'202-01-compact.png')});
     }
+    if(width===390 && motion==='no-preference') {
+     const files=fs.readdirSync(path.join(__dirname,'../data')).filter(f=>/^[0-9]{3}-[0-9]{2}[.]json$/.test(f)).sort();
+     check('all core lesson files discovered',files.length>=37);
+     for(const file of files) {
+      const [course,number]=file.replace('.json','').split('-');
+      await page.evaluate(async ({course,number})=>{
+       if(currentSeries!==course) await openSeries(course);
+       showSession(Number(number));
+      },{course,number});
+      const code=course+'-'+number+' ·';
+      await page.waitForFunction(code=>document.querySelector('.compact-lesson-code').textContent===code,code);
+      check(file+': correct code',await page.locator('.compact-lesson-code').textContent()===code);
+      check(file+': nonempty complete title available',await page.locator('#compact-lesson-label').evaluate(e=>e.title.length>8 && e.querySelector('.compact-lesson-topic').textContent.trim().length>0));
+      check(file+': compact height',await bar.evaluate(e=>e.getBoundingClientRect().height)<=50);
+      check(file+': no horizontal overflow',await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+     }
+     console.log('PASS every lesson identity: '+files.length);
+    }
     await page.locator('.lesson-topbar .back-btn').focus();await page.keyboard.press('Enter');
     check('back returns home',await page.locator('#home-view').isVisible() && !(await page.locator('#lesson-view').evaluate(e=>e.classList.contains('active'))));
     check('no console/page errors',errors.length===0);
-    console.log(`PASS ${width}/${motion}: header ${original}px -> ${compact}px`);
+    console.log(`PASS ${width}/${motion}: header ${compact}px`);
    } finally {await ctx.close();}
   }
  } finally {await browser.close();}
