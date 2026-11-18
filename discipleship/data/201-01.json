@@ -2,10 +2,17 @@
   "id": "1",
   "title": "Lesson 1: Loving God",
   "description": "The Father runs toward you first. This lesson introduces the Greatest Commandment as a response to God's initiating love: receive His love, then respond with your whole self.",
+  "courseLogo": {
+    "src": "images/201-3circles-logo.png",
+    "alt": "Growing Together Discipleship Series: Growing Deep in Discipleship highlighted.",
+    "width": "60%",
+    "eyebrow": "Course 201",
+    "title": "Welcome to Growing Deep"
+  },
   "blocks": [
     {
       "type": "text",
-      "text": "Welcome to Growing Deep. In the 101 Starting Course, you took your first steps with Jesus. Now you begin three Growing courses: <strong>Growing Deep</strong> (201), <strong>Growing Up</strong> (202), and <strong>Growing Out</strong> (203). Growing Deep begins with your most important relationship, the one between you and God, and it begins with a father on a road."
+      "text": "In the 101 Starting Course, you took your first steps with Jesus. Now you begin three Growing courses: <strong>Growing Deep</strong> (201), <strong>Growing Up</strong> (202), and <strong>Growing Out</strong> (203). Growing Deep begins with your most important relationship, the one between you and God, and it begins with a father on a road."
     },
     {
       "type": "image",

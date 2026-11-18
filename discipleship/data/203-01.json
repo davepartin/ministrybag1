@@ -2,19 +2,17 @@
   "id": "1",
   "title": "Lesson 1: The Great Commission - Your Personal Ministry",
   "description": "Four friends carried a man to Jesus, and Jesus saw their faith. This lesson opens Growing Out by showing that God grows your faith for the faith of others, and that your personal ministry begins with the names already in your life.",
+  "courseLogo": {
+    "src": "images/203-3circle-logo.png",
+    "alt": "Growing Together Discipleship Series: Starting in Discipleship, Growing Out with the Gospel, and Leading in Discipleship",
+    "width": "60%",
+    "eyebrow": "Course 203",
+    "title": "Welcome to Growing Out"
+  },
   "blocks": [
-    {
-      "type": "heading",
-      "text": "Welcome to Growing Out"
-    },
     {
       "type": "text",
       "text": "The 200-level path has three connected courses. <strong>Growing Deep</strong> (201) was about loving God. <strong>Growing Up</strong> (202) was about loving the people God has placed beside you. Now in <strong>Growing Out</strong> (203), the branches begin to bear fruit, as that love reaches people who do not yet know Jesus."
-    },
-    {
-      "type": "image",
-      "src": "images/203-3circle-logo.png",
-      "alt": "Growing Together Discipleship Series: Starting in Discipleship, Growing Out with the Gospel, and Leading in Discipleship"
     },
     {
       "type": "widget",
