@@ -132,12 +132,12 @@
     },
     {
       "type": "text",
-      "text": "Followers of Jesus live between Redemption and Restoration. He has won the victory, but we are still waiting for Him to return and make all things new. Life holds both breathtaking goodness and deep pain, and neither gets the last word. The last word belongs to the One who said, \"Behold, I am making all things new.\""
+      "text": "Followers of Jesus live between Redemption and Restoration. He has won the victory, but you are still waiting for Him to return and make all things new. Life holds both breathtaking goodness and deep pain, and neither gets the last word. The last word belongs to the One who said, \"Behold, I am making all things new.\""
     },
     {
       "type": "question",
-      "id": "201-06-4",
-      "text": "6.4 - In two minutes, how would you tell a friend the Bible's four-movement story and where your life fits?",
+      "id": "201-06-mystory",
+      "text": "6.4 - Where do you see Creation, Fall, Redemption, and Restoration in your own story?",
       "height": "tall"
     },
     {
@@ -157,7 +157,7 @@
     },
     {
       "type": "text",
-      "text": "Take what you wrote in question 6.4 out into the week. First, walk one Bible story you already know through the four movements. Then find one real person this week, a family member, a coworker, or a friend over coffee, and tell them the storyline of the whole Bible in two or three minutes."
+      "text": "This week, walk one Bible story you already know through the four movements. Then tell one person, a family member, a coworker, or a friend over coffee, the storyline of the whole Bible in two or three minutes."
     },
     {
       "type": "heading",
@@ -165,7 +165,7 @@
     },
     {
       "type": "text",
-      "text": "Two travelers on the road to Emmaus thought their story had ended at the cross, until Jesus opened the Scriptures and showed them it was all about Him. You have walked the same road: Creation, Fall, Redemption, and Restoration. <strong>The whole Bible is one story, Creation, Fall, Redemption, and Restoration, and Jesus is at the center of it.</strong> Carry this one sentence with you: <em>The same line runs through the Bible, and the same line runs through me.</em>"
+      "text": "Two travelers on the road to Emmaus thought their story had ended at the cross, until Jesus opened the Scriptures and showed them it was all about Him. You have walked the same road: Creation, Fall, Redemption, and Restoration. <strong>The whole Bible is one story, Creation, Fall, Redemption, and Restoration, and Jesus is at the center of it. The same line runs through the Bible, and the same line runs through your life.</strong>"
     },
     {
       "type": "text",
@@ -196,6 +196,14 @@
     {
       "type": "text",
       "text": "This lesson draws on the Creation, Fall, Redemption, Restoration framework widely used in gospel-centered Bible teaching."
+    }
+  ],
+  "retiredQuestions": [
+    {
+      "type": "question",
+      "id": "201-06-4",
+      "text": "6.4 - In two minutes, how would you tell a friend the Bible's four-movement story and where your life fits?",
+      "height": "tall"
     }
   ]
 }
