@@ -25,8 +25,9 @@
     <section id="read-view" hidden aria-labelledby="read-heading">
       <div class="view-heading"><div><div class="eyebrow">RETURN TO THESE EACH DAY</div><h2 id="read-heading" tabindex="-1">My Daily Prayers</h2></div><button id="edit-prayers" class="button primary" type="button">Edit my prayers</button></div>
       <div class="reading-layout">
+        <details class="reference prayer-paper" id="lords-reference"><summary>The Lord’s Prayer</summary><p class="reference-intro">A pattern to return to.</p><p id="lords-prayer" class="prayer-content"></p></details>
         <article class="prayer-paper" aria-label="Your personal daily prayers"><div class="paper-mark" aria-hidden="true">✦</div><div id="prayer-content" class="prayer-content"></div><div class="print-only" id="print-lords"></div><div class="paper-footer">GROWING TOGETHER · DAILY PRAYERS</div></article>
-        <aside class="reading-aside"><details class="reference" id="lords-reference"><summary>The Lord’s Prayer</summary><p class="reference-intro">A pattern to return to.</p><p id="lords-prayer" class="scripture"></p></details><div class="quiet-note"><span class="small-line" aria-hidden="true"></span><p>You can pray these words slowly, add your own, and pause with the names on your heart.</p></div></aside>
+        <aside class="reading-aside"><div class="quiet-note"><span class="small-line" aria-hidden="true"></span><p>You can pray these words slowly, add your own, and pause with the names on your heart.</p></div></aside>
       </div>
       <div class="reading-actions" aria-label="Use your prayers"><button id="copy-prayers" class="button secondary" type="button">Copy prayers</button><a id="email-prayers" class="button secondary" href="mailto:">Email prayers</a><button id="print-prayers" class="button secondary" type="button">Print</button><span id="copy-status" class="subtle" role="status"></span></div>
     </section>
