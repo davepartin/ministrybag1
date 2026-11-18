@@ -78,7 +78,7 @@ ENG-006 (backup, preview, confirmed restore) and SEC-001 (credential) are DONE a
 
 | Check | ID | Status | Owner | Depends on | Scope and acceptance evidence |
 |---|---|---|---|---|---|
-| [ ] | BRAND-001 | REVIEW | Cursor / cursor/brand-001-logo-icons / 2026-11-18 | Dave approved new brand direction | Coordinator list pass: Growing Out fully inside the top band; 8 even-lobe crown; one charcoal trunk splitting into 3 inner limbs; 6 fruit; curved forked roots inside 60% width; filled almond sprout (same on app icon, centered in the overlap); orchard forks and larger center crown. Checks and preview in logs/2026-11-18-BRAND-001-cursor.md. Stop at REVIEW. |
+| [ ] | BRAND-001 | REVIEW | Cursor / cursor/brand-001-logo-icons / 2026-11-18 | Dave approved new brand direction | Coordinator 11:19 list: crown ~70% width, centered in the top band, lobes in green-only; Growing Up left of the trunk in the middle band; trunk forks into 3 limbs with sub-forks at the crown base; sprout almonds at 45 degrees; app icon sprout ~40% height on the triple-overlap. Checks and preview in logs/2026-11-18-BRAND-001-cursor.md. Stop at REVIEW. |
 
 | [x] | WIDGET-101-04-RDR-POLISH | DONE | Codex integration / gemini/widget-101-04-rdr-polish / 2026-11-17 | Dave approved exact 6a4c1e7 and requested merge | PR #262 approved compact Bible polish. Exact widget bytes preserved; all lesson JSON/prose/questions/readings/art/runtime unchanged. Core QA and 248 browser checks pass. Component approval/baseline updated; text stays Silver. Final merge/live evidence on PR #262 and logs/2026-11-17-WIDGET-101-04-RDR-POLISH-codex.md. |
 
