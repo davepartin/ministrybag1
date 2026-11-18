@@ -1,5 +1,7 @@
 # Growing Together Team Board
 
+Three-app publication, November 18: Dave explicitly authorized merging #261, #288 and #296 and publishing Your Growing Apps. APPS-PUBLISH-THREE ACTIVE. Daily Prayers is refreshed cleanly onto current main with reviewed app bytes unchanged and only its authorized tool URL/home controls added. Merge/check each in order, preserve latest lesson work and verify production. Evidence: logs/2026-11-18-APPS-PUBLISH-THREE-codex.md.
+
 ## Daily Prayers and Your Growing Apps preview: November 17, 2026
 
 APP-DAILY-PRAYERS REVIEW, PR #261. Dave requested two matching home controls: Browse All Lessons, then Your Growing Apps. The second opens a separate tools/ page with compact full-width app buttons, starting with Your Daily Prayers. The temporary inline home app section and its custom hash routing are removed; main-app scripts now match current main exactly. A synthetic six-button layout fits the tested phone/laptop screens, with only the ready app shipped.
