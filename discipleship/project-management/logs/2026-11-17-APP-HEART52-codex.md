@@ -30,7 +30,12 @@ Claude's 201-05 voice rewrite PR #292 (b46d4e4) explicitly says hold/do not merg
 - HEART52_LEGACY_URL=http://127.0.0.1:8854/heart52/ node scripts/heart52_browser_check.js: 674 browser checks passed across canonical and legacy paths, 320/375/390/648-at-2x/1280 and reduced motion, all 52 rendered passages, actual audio, hints/phrase order/recall, review dates, keyboard, reload/copies/reset and seven failure/compatibility scenarios.
 - GT_CHROMIUM_PATH=/usr/bin/chromium COMPANION_BASE_URL=http://127.0.0.1:8854/discipleship/index.html node scripts/companion_apps_browser_check.js: 340 checks passed for all three apps, synthetic six-row layout, both new lesson links and preserved synthetic lesson/prayer answers.
 - Phone practice/recall and laptop library screenshots inspected. No horizontal overflow or page errors in the app suite.
-- Hosted preview evidence follows after the PR deploy.
+- Exact-head Firebase preview at 3156c54118fd91e59082ab0ebed75c20ca42d1b4: all three PR checks passed (hosting run 44235489248). PR is OPEN/MERGEABLE/CLEAN against Weekly Connection Time base.
+- Preview: https://growing-together-discipleship--pr296-codex-heart52-com-dl8mm33z.web.app/tools/heart52/
+- Hosted Heart52 browser suite: 404 checks passed, including real narration, all 52 rendered passages, six viewport/motion combinations and seven compatibility/failure scenarios.
+- HTTP 200 and byte parity verified for app HTML/JS/CSS/data, first/last MP3s, hub HTML and both lesson JSONs. No live deployment performed.
+- Hosted hub/lesson-navigation suite: all 340 checks passed at 375/390/1280 and reduced motion, including both new lesson links and preserved answers.
+- This final documentation update does not change the tested app, lessons, hub or runtime.
 
 The check packet helper's extra iframe command was initially passed without its node prefix and exited 127; the explicit node scripts/test_widget_iframe.js rerun passed all 32. The keyboard browser test initially assumed the inactive Read tab changed the current mode on focus; corrected it to select Read before testing ArrowRight. No product shortcut was taken.
 
