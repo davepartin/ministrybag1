@@ -12,6 +12,11 @@
       "label": "Study",
       "title": "Listen",
       "anchor": "study"
+    },
+    {
+      "label": "Diagram",
+      "title": "The Open Table",
+      "anchor": "diagram"
     }
   ],
   "blocks": [
@@ -114,7 +119,8 @@
       "content": [
         "<strong>Hospitality is</strong> a seat at your table, your full attention, an unhurried conversation, room for people who are not like you, and a simple meal, even takeout on paper plates, shared gladly.",
         "<strong>Hospitality is not</strong> a perfect house, a fancy menu, a performance, a sales pitch, or a dinner saved for the friends who will invite you back."
-      ]
+      ],
+      "anchor": "diagram"
     },
     {
       "type": "question",

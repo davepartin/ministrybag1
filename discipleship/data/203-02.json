@@ -12,6 +12,11 @@
       "label": "Study",
       "title": "Why Prayer Comes First",
       "anchor": "study"
+    },
+    {
+      "label": "Diagram",
+      "title": "Prayer Card",
+      "anchor": "diagram"
     }
   ],
   "blocks": [
@@ -85,7 +90,8 @@
         "<strong>Their life.</strong> Pray for what they are carrying right now: health, family, work, money, a hard decision. Pray the way you would want a friend to pray for you.",
         "<strong>Their heart.</strong> Pray that God would draw them to Himself and open their eyes to Jesus. Only He can do that (John 6:44), so ask Him boldly.",
         "<strong>My part.</strong> Pray that God would open a door, give you eyes to notice it, and give you the courage and kindness to walk through it."
-      ]
+      ],
+      "anchor": "diagram"
     },
     {
       "type": "text",

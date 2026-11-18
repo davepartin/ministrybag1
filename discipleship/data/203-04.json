@@ -12,6 +12,11 @@
       "label": "Study",
       "title": "Greatness, Upside Down",
       "anchor": "study"
+    },
+    {
+      "label": "Diagram",
+      "title": "Time, Talents, Treasure",
+      "anchor": "diagram"
     }
   ],
   "blocks": [
@@ -111,7 +116,8 @@
         "<strong>Time.</strong> Hours given to people who can never pay you back: an afternoon helping someone move, a ride to the doctor, an unhurried talk on the porch.",
         "<strong>Talents.</strong> The skills God built into you, used for someone outside your circle: fixing a car, tutoring a student, cooking a meal, untangling a form.",
         "<strong>Treasure.</strong> Your money, your home, your tools, and your stuff: a small bill paid quietly, a borrowed truck, a spare room for a hard season."
-      ]
+      ],
+      "anchor": "diagram"
     },
     {
       "type": "text",
