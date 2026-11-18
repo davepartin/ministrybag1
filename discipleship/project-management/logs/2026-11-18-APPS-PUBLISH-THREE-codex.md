@@ -11,3 +11,14 @@ Foundation QA, export186, storage64, asset145 and image1560 checks pass. Widget 
 ## Remaining order
 
 After #261 passes final-head checks and merges, retarget #288 to main and merge current main into its branch. Preserve reviewed Weekly Connection Time bytes, and apply only its 202-08 tool card to the newest lesson. Then retarget #296 to main and preserve the latest simplified blue Heart52 UI at 681aebe while integrating the newest 201-05 text and approved 101-04 link. Do not resurrect any removed Heart52 backup/record interface. Verify the final homepage hub and all three apps on production before marking the publication task DONE.
+
+
+## Phase 1 merged and live
+
+PR #261 merged at9c4f3d5795983dda067fd7f8898a6bc94fd71213 from reviewed head ddebf945ba5d34baef1a2f8cee888a4e8ff0b5ad. All3 PR checks passed, hosted hub168 and local prayer294/hub168 pass. Exact deployed preview homepage/hub/app HTML/JS/CSS and101-03 JSON match source. Main hosting run44338525621 succeeded; custom-domain root, cache-busted root and default Firebase host all return200 with Your Growing Apps present. No manual deployment/config changes.
+
+## Phase 2: Weekly Connection Time, PR #288
+
+Retargeted #288 to main and merged current main9c4f3d5 into the branch. Conflicts affected only HANDOFF/TASKS/TEAM-BOARD additions; retained both histories and the publication claim. No lesson or app conflict. Approved canonical/legacy app bytes remain exact6416cf4, including laptop margins and phone fixed-control spacing. Every current-main lesson JSON matches after removing the one authorized202-08 tool card. Newer contents, questions, readings, story image and triangle remain unchanged. Daily Prayers and the current homepage are inherited from merged main.
+
+Foundation/export186/storage64/assets145/images1560/iframe32, mirror parity, protected-file and whitespace guards pass. Final app/hub/layout and hosted results are recorded on PR #288 before merge. Publication remains ACTIVE until all3 apps are integrated and checked live.
