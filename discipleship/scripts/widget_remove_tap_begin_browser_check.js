@@ -11,7 +11,7 @@ const specs = [
  ['guide-spirit2.html','201-03','Each stop shows one steady work of the Holy Spirit in the life of a believer.'],
  ['mission-map.html','203-09','Where does God want you on mission, and who is with you?'],
  ['oia-method.html','201-07','Three questions, asked in order.'],
- ['personal-ministry-map.html','203-01','Who has God already placed around you?'],
+ ['personal-ministry-map.html',null,'Who has God already placed around you?'],
  ['three-spaces.html','203-06','Where does your week actually happen?']
 ];
 let checks=0,cases=0;
@@ -55,7 +55,8 @@ const forbidden=/tap\s+begin|begin the walk/i;
    }
   }
   // Each active embedding: current answers, real edit/reload and iframe geometry.
-  // cross-the-road remains on disk but main retired its embed in PR #202.
+  // cross-the-road and personal-ministry-map remain on disk; their lesson embeds were retired
+  // (202-01 in PR #202, 203-01 in the 2026-11-18 rewrite).
   for(const [file,lessonId,hook] of specs.filter(s=>s[1])){
    const data=require('../data/'+lessonId+'.json'),course=lessonId.slice(0,3),session=Number(lessonId.slice(4));
    const questions=data.blocks.filter(b=>b.type==='question');
