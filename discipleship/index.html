@@ -2078,6 +2078,21 @@
             background: var(--bg);
         }
 
+        /* Small acknowledgments under all lesson buttons (lesson JSON "credits"). */
+        .lesson-credits {
+            max-width: var(--max-w);
+            margin: 0 auto;
+            padding: 0 20px max(env(safe-area-inset-bottom), 20px);
+            font-size: 0.7rem;
+            line-height: 1.5;
+            color: var(--text-secondary);
+            text-align: center;
+        }
+
+        .lesson-credits-label {
+            font-weight: 600;
+        }
+
         .bottom-nav-inner {
             max-width: var(--max-w);
             margin: 0 auto;
@@ -3696,6 +3711,7 @@
                     <button class="nav-btn nav-btn-next" id="next-btn" onclick="nextSession()">Next &#8250;</button>
                 </div>
             </div>
+            <p class="lesson-credits" id="lesson-credits" hidden></p>
         </div>
     </div>
 
@@ -5132,6 +5148,20 @@
             }
         }
 
+        // Acknowledgments for the current lesson, shown in small type below every button.
+        function updateLessonCredits() {
+            const el = document.getElementById('lesson-credits');
+            if (!el) return;
+            const lesson = sessionData[currentSession];
+            const credits = lesson && Array.isArray(lesson.credits)
+                ? lesson.credits.filter(c => typeof c === 'string' && c.trim())
+                : [];
+            el.innerHTML = credits.length
+                ? `<span class="lesson-credits-label">Acknowledgments.</span> ${credits.join(' ')}`
+                : '';
+            el.hidden = !credits.length;
+        }
+
         function updateNav() {
             const prevBtn = document.getElementById('prev-btn');
             const nextBtn = document.getElementById('next-btn');
@@ -5149,6 +5179,8 @@
                 ? (nextCourse ? `Go to ${nextCourse.id} ${nextCourse.name}` : 'Back to courses')
                 : 'Next lesson \u203A';
             nextBtn.onclick = nextSession;
+
+            updateLessonCredits();
 
             const ordinal = currentIndex > -1 ? currentIndex + 1 : 1;
             numLabel.textContent = `${ordinal} / ${totalSessions}`;
