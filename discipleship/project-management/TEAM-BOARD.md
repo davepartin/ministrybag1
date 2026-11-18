@@ -1,5 +1,7 @@
 # Growing Together Team Board
 
+Daily Prayers reference placement DONE, November 18: #310 merged atcc45ef1 and verified live. Lord's Prayer dropdown now precedes the personal prayer and shares its paper/type/spacing; no prayer wording or stored-data logic changes. Evidence: logs/2026-11-18-PRAYERS-LORDS-TOP-codex.md.
+
 Heart52 card cleanup DONE, November 18: #306 merged at82103f2 and verified live. Removed Bring it to mind and its unused spacing; other card content, labels and all lessons remain unchanged. Log: logs/2026-11-18-HEART52-CLEAN-CARD-codex.md.
 
 ## Growing Apps published, November 18, 2026
