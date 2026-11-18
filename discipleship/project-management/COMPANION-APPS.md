@@ -80,3 +80,38 @@ REVIEW: Dave requested this app as the next companion. Its maintained source is 
 Twelve existing fields and all seven conversation steps are retained. The shared apps hub has a second full-width button, and 202-08 has an optional tool card within the practice section. Styling matches the existing 640px companion family. Blocked reads prevent overwriting unread data; failed writes retain the current screen, display Not saved and permit downloads. Restore validates a versioned copy, requires confirmation, keeps a previous-check-in recovery copy, and rolls back partial writes on failure. Confirmed clearing removes only the app's known fields/step/recovery; unknown keys and other app/lesson stores remain intact.
 
 Browser verification: `WEEKLY_BASE_URL=http://127.0.0.1:8853/discipleship WEEKLY_LEGACY_URL=http://127.0.0.1:8853/weeklyconnectiontime/ node scripts/weekly_connection_browser_check.js` and `COMPANION_BASE_URL=http://127.0.0.1:8853/discipleship/index.html node scripts/companion_apps_browser_check.js`. Use system Chromium. New app styling and its short optional lesson-card wording await Dave's review. This packet is dependent on Daily Prayers/apps hub PR #261 and does not publish or merge either PR implicitly.
+
+
+## Heart52, November 17, 2026
+
+Authored source: `tools/heart52/`. Run `node scripts/build_heart52.js` from discipleship (or `node discipleship/scripts/build_heart52.js` from the repository root) after source edits; `--check` verifies the generated MinistryBag `heart52/` delivery. Do not edit generated files independently. Original logo, all 52 passage references/themes/text, and the existing v2 MP3 recordings are preserved. The original inline app had no persistent progress; valid `heart52-v2-progress` records are read without changing the old key. The new browser key is `heart52-progress-v1`.
+
+Read & Listen, gradual word hints, phrase ordering, concealed recall and optional 1/3/7/14-day reviews form one small practice flow. Capitalization and punctuation are not graded. Self-reported spoken practice has no invented typed score. There is no streak penalty or automatic claim of mastery. Review dates use the learner's local calendar. Audio is requested only after a learner chooses Listen; failed recordings offer explicit device-voice fallback where supported.
+
+Save/restore copies, recovery downloads and truthful storage-failure notices follow the companion family. Browser/device storage is separate across MinistryBag, previews and Growing Together; no Firebase/account sync or automatic cross-origin transfer. Root Heart52 remains available, without a forced redirect. 201-05 has one optional tool card; 101-04 has one short optional link. Every existing paragraph, question/ID, reading, widget and image stays intact. Claude's held 201-05 rewrite PR #292 is separate; carry the small optional tool card forward when it is approved.
+
+New Heart52 UI is REVIEW, not approved for publication. Dependency order: Daily Prayers #261, Weekly Connection Time #288, then Heart52 PR #296. Do not merge the held 201-05 rewrite to satisfy this task.
+
+
+## Heart52 visual direction superseded, November 18, 2026
+
+Dave requested a full redesign after seeing the first preview. PR #296 now uses a verse-first forest/sage/ivory card deck, a new small wordmark, All 52 continuous reading and a 52-week local-calendar path. The former large original-logo library landing is superseded, not a second app. Original assets remain on disk and all 52 ESV strings/audio remain exact. Optional progress.heart52Settings metadata stores hint/start preferences. Existing device-only storage, compatibility, copies/recovery and source-to-legacy build remain in force. New UI still needs Dave's review. Evidence: logs/2026-11-18-APP-HEART52-REDESIGN-codex.md.
+
+
+## App color identity, November 18, 2026
+
+Dave's direction: companion apps may have distinct theme colors while retaining shared compact navigation, readable type, phone widths and familiar controls. Heart52, the memory app, owns the blue palette: navy verse text, pale blue card fronts, near-white backs and medium/deep blue actions. The original blue website logo remains unchanged. Other app palettes can be chosen in their own review; this packet only recolors Heart52.
+
+
+## Heart52 learning categories, November 18, 2026
+
+Each verse can be marked Not started, Learning or Memorized using the controls below the card. Your decks opens a category with counts and scoped previous/next navigation; All 52 also supports a progress filter. The compact pre-card area stays 144px. Status is an optional per-verse learningStatus value (new/learning/memorized) in the existing progress record. Copies/restores preserve it; invalid values are rejected safely.
+
+When an older record has no explicit category, attempts > 0 displays Learning; otherwise Not started. This fallback does not write migration data or infer Memorized from a score or old mastery value. Explicit learner choices override that fallback, including returning a practiced verse to Not started. Practice scores preserve an explicit category. Changing a category does not invent an attempt, accuracy score or review date. Progress remains device-only, with existing portable copies/recovery.
+
+
+## Heart52 simplicity override, November 18, 2026
+
+Dave explicitly removed the bonus record-management interface. Do not reintroduce Heart52 download, backup, restore, reset or past-record controls from older notes. Automatic category saving remains; existing stored labels/history are not erased. Heart52 now has one compact row immediately above the card: square radio controls assign exactly one category, while separate adjacent word links open category decks. One checked square stays visible through both flip faces. On an empty deck no card is selected and the squares are disabled, while the word links remain usable.
+
+The former lower Mark this verse segment, duplicated Your decks panel, practiced totals and review-dashboard entry are removed. Position text moves into the existing below-card navigation; routine save notifications remain unobtrusive, and actual storage failures show a plain warning without download instructions. Opening preference is one small setting. The simpler interface supersedes earlier Heart52 backup/copy UI requirements; other apps' controls stay untouched.

@@ -6,12 +6,13 @@ const fs = require('node:fs');
 const { chromium } = require('playwright');
 const fixture = require('./fixtures/daily-prayers-legacy.json');
 const lesson = require('../data/101-03.json');
+const memoryLessons = ['101-04','201-05'].map(id=>({id,questions:require('../data/'+id+'.json').blocks.filter(b=>b.type==='question')}));
 const marriageQuestions = require('../data/202-08.json').blocks.filter(b => b.type === 'question');
 const BASE = process.env.COMPANION_BASE_URL || 'http://127.0.0.1:8849/discipleship/index.html';
 const SHOTS = process.env.COMPANION_SCREENSHOTS;
 const questions = lesson.blocks.filter(b => b.type === 'question');
 const seed = {
-    answers: JSON.stringify({ ...Object.fromEntries(questions.map((q, i) => ['question-101-' + q.id, 'SYN-hub-answer-' + i])), ...Object.fromEntries(marriageQuestions.map((q,i) => ['question-202-' + q.id, 'SYN-marriage-answer-' + i])), __gtAmbiguousSharedAnswers: { version: 1, items: {} }, __gtSharedKeyMigrationV1: true }),
+    answers: JSON.stringify({ ...Object.fromEntries(questions.map((q, i) => ['question-101-' + q.id, 'SYN-hub-answer-' + i])), ...Object.fromEntries(marriageQuestions.map((q,i) => ['question-202-' + q.id, 'SYN-marriage-answer-' + i])), ...Object.fromEntries(memoryLessons.flatMap(l=>l.questions.map((q,i)=>['question-'+l.id.slice(0,3)+'-'+q.id,'SYN-memory-answer-'+l.id+'-'+i]))), __gtAmbiguousSharedAnswers: { version: 1, items: {} }, __gtSharedKeyMigrationV1: true }),
     data: JSON.stringify({ ...fixture.data, futureField: 'SYN-preserve-metadata' }),
     prayer: 'SYN-existing-prayer: keep these words exactly.'
 };
@@ -65,7 +66,7 @@ const seed = {
         await page.evaluate(() => document.fonts.ready);
         check((await page.locator('h1').textContent()).trim() === 'Your Growing Apps', 'dedicated apps-page heading');
         check(new URL(page.url()).pathname === hub.pathname, 'hub is a separate page');
-        check(await page.locator('.app-button').count() === 2, 'only the two available apps ship');
+        check(await page.locator('.app-button').count() === 3, 'only the three available apps ship');
         check(await page.locator('#weekly-connection-app-link').evaluate(el => el.href) === new URL('weekly-connection-time/', hub).href, 'marriage companion joins the same-site app list');
         const appLink = page.locator('#daily-prayers-app-link');
         check((await appLink.textContent()).trim().startsWith('Your Daily Prayers'), 'personal app button label');
@@ -129,8 +130,20 @@ const seed = {
         await intact(weeklyPage);
         await weeklyPage.locator('#growing-apps-link').click();
         await weeklyPage.locator('.apps-hub h1').waitFor();
-        check(await weeklyPage.locator('.app-button').count()===2, 'weekly companion returns to both apps');
+        check(await weeklyPage.locator('.app-button').count()===3, 'weekly companion returns to all three apps');
         await intact(weeklyPage);
+        await weeklyPage.locator('#heart52-app-link').click();
+        await weeklyPage.locator('#library-view').waitFor({state:'visible'});
+        check(new URL(weeklyPage.url()).pathname===new URL('heart52/',hub).pathname,'hub opens same-site Heart52');
+        check(await weeklyPage.locator('.verse-link').count()===52,'Heart52 library loads');
+        for(const l of memoryLessons){
+            await weeklyPage.goto(main.href+'#'+l.id.slice(0,3)+'-'+Number(l.id.slice(4)),{waitUntil:'networkidle'});
+            const section=weeklyPage.locator('#session-'+Number(l.id.slice(4))+'.active');await section.waitFor();
+            for(const q of l.questions)check(await section.locator('#question-'+l.id.slice(0,3)+'-'+q.id).inputValue()===JSON.parse(seed.answers)['question-'+l.id.slice(0,3)+'-'+q.id],'preserve memory lesson answer '+l.id+' '+q.id);
+            const memoryLink=section.locator('a[href="tools/heart52/"]');check(await memoryLink.count()===1,'single optional Heart52 link '+l.id);
+            const opening=ctx.waitForEvent('page');await memoryLink.click();const memory=await opening;watch(memory);await memory.waitForLoadState('networkidle');await memory.locator('#library-view').waitFor({state:'visible'});
+            check(new URL(memory.url()).pathname===new URL('heart52/',hub).pathname,'lesson opens canonical Heart52 '+l.id);await intact(memory);await memory.close();
+        }
         check(errors.length === 0, 'no page exceptions: ' + errors.join(';'));
         console.log('PASS', job.width, job.reducedMotion || 'normal');
         await ctx.close();

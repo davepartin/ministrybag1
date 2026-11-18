@@ -1,8 +1,30 @@
 # Growing Together Team Board
 
+Three-app publication checkpoint: #261 and #288 are merged; the live apps page shows Daily Prayers and Weekly Connection Time. #296 is retargeted/refreshed onto a7e00fb, preserving approved681aebe Heart52 bytes, current lesson voice/contents and both prior apps. Only tracking history conflicted; both sides retained. Finish #296 checks/merge and verify all3 production apps, then mark publication DONE. Dave authorized publishing these versions.
+
 Three-app publication checkpoint: #261 merged at9c4f3d5; the apps button is verified live. #288 is retargeted/refreshed onto that main with approved6416cf4 app bytes unchanged. Tracking conflicts retained both histories;202-08 preserves all current text except its authorized added tool card. Next merge #288 after final checks, then #296. Dave authorized publication; no further design approval is pending for these app versions.
 
 Three-app publication, November 18: Dave explicitly authorized merging #261, #288 and #296 and publishing Your Growing Apps. APPS-PUBLISH-THREE ACTIVE. Daily Prayers is refreshed cleanly onto current main with reviewed app bytes unchanged and only its authorized tool URL/home controls added. Merge/check each in order, preserve latest lesson work and verify production. Evidence: logs/2026-11-18-APPS-PUBLISH-THREE-codex.md.
+
+Heart52 simplicity follow-up, November 18: PR #296 has one tight category row above the card. Square controls assign a verse, adjacent word links open decks; one check stays visible through flips. Download/backup/restore/reset/records UI, duplicate deck panel and progress-summary dashboard are removed per Dave. Automatic label saving remains; no existing data erased. Core QA,1780 unit,498 card,599 general app and136 simplified-category browser checks pass. REVIEW, not live; latest redesign-log section supersedes earlier backup UI directions.
+
+Heart52 learning categories, November 18: PR #296 now has saved Not started/Learning/Memorized labels, clear controls below each card, counted quick decks with scoped navigation, and an All 52 progress filter. Old practice history displays Learning without rewriting data or assuming Memorized. Copies/recovery preserve choices; practice preserves explicit labels. Compact blue design and all lessons remain intact. Core QA,1780 unit,498 card,674 general app and120 category browser checks pass. REVIEW, not live; see the redesign log.
+
+Heart52 blue-theme follow-up, November 18: Dave assigned blue to the memory app and supports distinct companion-app palettes. PR #296 now uses navy verse text, pale blue cards and deeper blue controls, preserving the original logo and compact layout. Other apps and all lesson/data/storage files are untouched. Color-review evidence is in the redesign log.
+
+Heart52 compact-header follow-up, November 18: PR #296 restores the original website logo and removes 51-53 percent of the space above the card (card top now 144px). Card text, keywords and enlarged references remain intact. 498 card/calendar/startup checks and original-logo/global-preferences checks pass. REVIEW, not live; evidence in the redesign log.
+
+Heart52 follow-up, November 18: Dave requested larger Scripture references while keeping the keywords. PR #296 now uses 24-30px front references and 22-28px reverse references. 486 browser checks and all52-reference phone/laptop checks pass. Preview remains REVIEW, no publication. See the redesign log's larger-addresses section.
+
+## Heart52 flip-card redesign, November 18, 2026
+
+APP-HEART52 REVIEW, PR #296. Dave requested a full new look with the verse as the hero. The forest/sage/ivory app opens on a topic/first-two-word flip card, with large Scripture on the reverse, a continuous All 52 reference view and a simple yearly path. First visitors see the current week; returning visitors can resume or choose weekly startup. Original ESV selections/audio and all lessons/other apps remain unchanged. New preferences preserve existing progress and portable copies. Core QA, 1769 learning/storage/calendar checks, 674 existing app, 486 new card/calendar and 340 hub/lesson checks pass. New preview replaces the earlier app design; Dave's visual review remains pending, nothing merged or live. Still stacked on #288 then #261. [Redesign log](logs/2026-11-18-APP-HEART52-REDESIGN-codex.md).
+
+
+## Heart52 companion ready for review, November 17, 2026
+
+APP-HEART52 REVIEW, PR #296. The original 52 passages and Heart52 logo now have a companion-family app at tools/heart52/, with lazy audio, gradual word hints, phrase ordering, concealed recall and gentle local-calendar reviews. Progress stays on the device, with non-destructive v2 compatibility, portable copies and recovery. Your Growing Apps has a third button; 201-05 gains one optional tool card and 101-04 one short optional link. Existing lesson prose/questions/readings/images/widgets and both other app sources remain intact. New UI awaits Dave's review, nothing merged or live. Based on #288, which depends on #261. Claude's held 201-05 rewrite #292 is untouched. [Task log](logs/2026-11-17-APP-HEART52-codex.md).
+
 
 ## Weekly Connection Time laptop margins, November 17, 2026
 

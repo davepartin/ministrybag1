@@ -7,11 +7,17 @@
 | APPS-PUBLISH-THREE | ACTIVE | Codex / codex/daily-prayers-companion then codex/weekly-connection-companion then codex/heart52-companion / 2026-11-18 | Dave explicitly requested merging #261, #288 and #296 in order and publishing Your Growing Apps. Preserve reviewed app bytes, current lesson edits/IDs/art/widgets and existing saved data; resolve integration against latest main, verify each final head and production. |
 
 
+## Heart52 companion integration, November 17, 2026
+
+| Task | Status | Owner / branch / date | Scope |
+|---|---|---|---|
+| APP-HEART52 | REVIEW | Codex / codex/heart52-companion / 2026-11-18 | Bring original Heart52 into Growing Apps, retain its 52-passage collection/logo/legacy URL, improve recall and review using the newer repo version where useful. Main tool link in 201-05 and short optional hint in 101-04. Preserve all existing lesson copy/IDs/widgets/art and app data. Based on Weekly Connection Time PR #288; PR #296; November 18 redesign requested: phone-first flip cards, verse-first typography, all-passage reference view and a simple yearly path. ESV stays the single edition for this pass. Scripture references enlarged on both card faces at Dave's request; keywords unchanged. Original website logo restored; pre-card space reduced 51-53 percent. Heart52 is assigned a blue theme; other apps retain their current palettes. Manual Not started/Learning/Memorized categories and filtered decks added. Latest: square single-choice controls above card; adjacent category words open decks. Duplicate panels and all download/record-management UI removed at Dave's instruction. New preview/review before publication. |
+
 ## Weekly Connection Time companion, November 17, 2026
 
 | Task | Status | Owner / branch / date | Scope |
 |---|---|---|---|
-| APP-WEEKLY-CONNECTION | REVIEW | Codex / codex/weekly-connection-companion / 2026-11-17 | Bring existing marriage conversation app into Growing Together, match the companion family, add to Your Growing Apps and optional 202-08 practice. Preserve original questions/storage keys, established MinistryBag URL, all lesson copy/IDs/widgets/art. Dependency: refreshed Daily Prayers/apps hub PR #261. Implementation verified: core QA, 618 app checks across both routes, 244 app/lesson navigation checks, 180 laptop/phone margin checks, mirror parity and unchanged protected lesson blocks. Dependent preview/review before publication; see logs/2026-11-17-APP-WEEKLY-CONNECTION-codex.md. |
+| APP-WEEKLY-CONNECTION | DONE | Codex / codex/weekly-connection-companion / 2026-11-17 | Bring existing marriage conversation app into Growing Together, match the companion family, add to Your Growing Apps and optional 202-08 practice. Preserve original questions/storage keys, established MinistryBag URL, all lesson copy/IDs/widgets/art. Dependency: refreshed Daily Prayers/apps hub PR #261. Implementation verified: core QA, 618 app checks across both routes, 244 app/lesson navigation checks, 180 laptop/phone margin checks, mirror parity and unchanged protected lesson blocks. Dependent preview/review before publication; see logs/2026-11-17-APP-WEEKLY-CONNECTION-codex.md. |
 
 ## Compact headers across all lessons, November 17, 2026
 
