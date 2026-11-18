@@ -2,6 +2,23 @@
   "id": "8",
   "title": "Lesson 8: How to Disciple Others",
   "description": "Someone once helped you follow Jesus. This lesson shows how to walk alongside another person the way Jesus walked with His disciples, so that what you have received keeps being passed on.",
+  "contents": [
+    {
+      "label": "Story",
+      "title": "Paul and Timothy",
+      "anchor": "story"
+    },
+    {
+      "label": "Study",
+      "title": "Called to Make Disciples",
+      "anchor": "study"
+    },
+    {
+      "label": "Diagram",
+      "title": "Make Space",
+      "anchor": "diagram"
+    }
+  ],
   "blocks": [
     {
       "type": "text",
@@ -11,7 +28,8 @@
       "type": "image",
       "src": "images/203.08-paul-timothy-bw.jpg",
       "alt": "An older Paul works with his hands on tent cloth and rope while a young Timothy sits close beside him, listening",
-      "touchNext": true
+      "touchNext": true,
+      "anchor": "story"
     },
     {
       "type": "parable",
@@ -35,7 +53,8 @@
     },
     {
       "type": "heading",
-      "text": "Jesus Calls Ordinary People to Make Disciples"
+      "text": "Jesus Calls Ordinary People to Make Disciples",
+      "anchor": "study"
     },
     {
       "type": "text",
@@ -61,7 +80,8 @@
       "type": "widget",
       "src": "widgets/spaces-tables.html",
       "title": "Make Space",
-      "height": "640px"
+      "height": "640px",
+      "anchor": "diagram"
     },
     {
       "type": "heading",

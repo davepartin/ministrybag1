@@ -2,6 +2,23 @@
   "id": "1",
   "title": "Lesson 1: The Great Commission - Your Personal Ministry",
   "description": "Four friends carried a man to Jesus, and Jesus saw their faith. This lesson opens Growing Out by showing that God grows your faith for the faith of others, and that your personal ministry begins with the names already in your life.",
+  "contents": [
+    {
+      "label": "Story",
+      "title": "Mark 2:1-12",
+      "anchor": "story"
+    },
+    {
+      "label": "Study",
+      "title": "Think Beyond Your Tree",
+      "anchor": "study"
+    },
+    {
+      "label": "Diagram",
+      "title": "Personal Ministry Map",
+      "anchor": "diagram"
+    }
+  ],
   "courseLogo": {
     "src": "images/203-3circle-logo.png",
     "alt": "Growing Together Discipleship Series: Starting in Discipleship, Growing Out with the Gospel, and Leading in Discipleship",
@@ -23,7 +40,8 @@
     {
       "type": "parable",
       "title": "Four Friends and a Roof",
-      "text": "Jesus was teaching in a house in Capernaum, and the crowd was so thick that no one else could get near the door. Then four men arrived, carrying a paralyzed man on a mat. He could not walk to Jesus, and now his friends could not carry him through the crowd.<br><br>They did not turn around and go home. They climbed onto the roof, dug an opening through it, and lowered the man down on his mat until he lay right in front of Jesus.<br><br>What happened next begins with a surprising phrase: <em>\"And when Jesus saw their faith, he said to the paralytic, 'Son, your sins are forgiven'\"</em> (Mark 2:5). Then, so everyone would know He has authority to forgive sins, Jesus told the man to get up. He stood, picked up his mat, and walked out in front of them all. The whole crowd gave glory to God and said, <em>\"We never saw anything like this!\"</em> (Mark 2:12)."
+      "text": "Jesus was teaching in a house in Capernaum, and the crowd was so thick that no one else could get near the door. Then four men arrived, carrying a paralyzed man on a mat. He could not walk to Jesus, and now his friends could not carry him through the crowd.<br><br>They did not turn around and go home. They climbed onto the roof, dug an opening through it, and lowered the man down on his mat until he lay right in front of Jesus.<br><br>What happened next begins with a surprising phrase: <em>\"And when Jesus saw their faith, he said to the paralytic, 'Son, your sins are forgiven'\"</em> (Mark 2:5). Then, so everyone would know He has authority to forgive sins, Jesus told the man to get up. He stood, picked up his mat, and walked out in front of them all. The whole crowd gave glory to God and said, <em>\"We never saw anything like this!\"</em> (Mark 2:12).",
+      "anchor": "story"
     },
     {
       "type": "text",
@@ -41,7 +59,8 @@
     },
     {
       "type": "heading",
-      "text": "Think Beyond Your Tree"
+      "text": "Think Beyond Your Tree",
+      "anchor": "study"
     },
     {
       "type": "text",
@@ -103,7 +122,8 @@
       "type": "widget",
       "src": "widgets/personal-ministry-map.html",
       "title": "Your Personal Ministry Map",
-      "height": "600px"
+      "height": "600px",
+      "anchor": "diagram"
     },
     {
       "type": "text",

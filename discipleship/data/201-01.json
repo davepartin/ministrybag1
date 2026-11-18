@@ -2,6 +2,23 @@
   "id": "1",
   "title": "Lesson 1: Loving God",
   "description": "The Father runs toward you first. This lesson introduces the Greatest Commandment as a response to God's initiating love: receive His love, then respond with your whole self.",
+  "contents": [
+    {
+      "label": "Story",
+      "title": "Luke 15:11-24",
+      "anchor": "story"
+    },
+    {
+      "label": "Study",
+      "title": "Because He Loved First",
+      "anchor": "study"
+    },
+    {
+      "label": "Diagram",
+      "title": "Greatest Commandment",
+      "anchor": "diagram"
+    }
+  ],
   "courseLogo": {
     "src": "images/201-3circles-logo.png",
     "alt": "Growing Together Discipleship Series: Growing Deep in Discipleship highlighted.",
@@ -31,7 +48,8 @@
         0.58
       ],
       "alt": "A father running down the road toward his returning son until he reaches him",
-      "touchNext": true
+      "touchNext": true,
+      "anchor": "story"
     },
     {
       "type": "parable",
@@ -50,7 +68,8 @@
     },
     {
       "type": "heading",
-      "text": "Because He Loved First"
+      "text": "Because He Loved First",
+      "anchor": "study"
     },
     {
       "type": "text",
@@ -94,7 +113,8 @@
       "type": "widget",
       "src": "widgets/great-command-v5-201.html",
       "title": "The Greatest Commandment: Growing Deep",
-      "height": "520px"
+      "height": "520px",
+      "anchor": "diagram"
     },
     {
       "type": "text",

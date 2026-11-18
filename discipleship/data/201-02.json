@@ -2,6 +2,23 @@
   "id": "2",
   "title": "Lesson 2: New Identity in Jesus",
   "description": "Lesson 1 was about the Father running toward you. This lesson is about what He does when you arrive. He gives you a new identity in Jesus, an identity not built out of what you have done but received the moment you decide to come home.",
+  "contents": [
+    {
+      "label": "Story",
+      "title": "Luke 15:20-24",
+      "anchor": "story"
+    },
+    {
+      "label": "Study",
+      "title": "Put On Christ",
+      "anchor": "study"
+    },
+    {
+      "label": "Diagram",
+      "title": "The Great Exchange",
+      "anchor": "diagram"
+    }
+  ],
   "blocks": [
     {
       "type": "text",
@@ -20,7 +37,8 @@
         0.45
       ],
       "alt": "A father gently placing a robe over his returning son as the son's head lifts from shame toward his father",
-      "touchNext": true
+      "touchNext": true,
+      "anchor": "story"
     },
     {
       "type": "parable",
@@ -35,7 +53,8 @@
     },
     {
       "type": "heading",
-      "text": "Put On Christ"
+      "text": "Put On Christ",
+      "anchor": "study"
     },
     {
       "type": "text",
@@ -78,7 +97,8 @@
     {
       "type": "widget",
       "src": "widgets/great-exchange3.html",
-      "height": "560px"
+      "height": "560px",
+      "anchor": "diagram"
     },
     {
       "type": "question",
