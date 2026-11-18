@@ -165,6 +165,13 @@
       "text": "Go first once this week. Pick the person closest to you, a spouse, a family member, or a friend, and do one thing before it is returned: forgive something small, say <em>I was wrong</em>, or give up a comfort for their good."
     },
     {
+      "type": "tool",
+      "title": "Weekly Connection Time",
+      "description": "If you are married, set aside twenty minutes together this week. Use these guided questions to listen, encourage one another, plan, and pray.",
+      "url": "tools/weekly-connection-time/",
+      "buttonText": "Open Weekly Connection Time"
+    },
+    {
       "type": "question",
       "id": "202-08-hand",
       "text": "8.4 - How would you explain to a friend the difference between a contract and a vow?",

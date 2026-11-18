@@ -1,5 +1,22 @@
 # Dave's decision and approval queue
 
+## Growing Apps published, November 18, 2026
+
+DONE: Dave authorized publishing #261, #288 and #296. All3 merged in order and Firebase production is verified at8793a4c. The homepage now has Your Growing Apps under Browse All Lessons. [Open the live apps page](https://growingtogetherdiscipleship.com/tools/): Your Daily Prayers, Your Weekly Connection Time and Your Heart52. These are live, not preview-only; no further merge/approval is pending for these versions.
+
+Current lesson voice/contents, questions/IDs, readings, approved widgets and story art are preserved. Only the authorized101-03 URL,202-08/201-05 tool cards and101-04 hint change. Heart52 keeps the blue theme and simple above-card category row, with no backup/record-management UI. Live hub340, Daily147, Weekly314 and Heart136 browser checks pass. All data used for verification was synthetic. Lesson review stages are unchanged. [Publication evidence](logs/2026-11-18-APPS-PUBLISH-THREE-codex.md).
+
+
+## Heart52 flip-card redesign, November 18, 2026
+
+APP-HEART52 REVIEW, PR #296. Dave requested a full new look with the verse as the hero. The forest/sage/ivory app opens on a topic/first-two-word flip card, with large Scripture on the reverse, a continuous All 52 reference view and a simple yearly path. First visitors see the current week; returning visitors can resume or choose weekly startup. Original ESV selections/audio and all lessons/other apps remain unchanged. New preferences preserve existing progress and portable copies. Core QA, 1769 learning/storage/calendar checks, 674 existing app, 486 new card/calendar and 340 hub/lesson checks pass. New preview replaces the earlier app design; Dave's visual review remains pending, nothing merged or live. Still stacked on #288 then #261. [Redesign log](logs/2026-11-18-APP-HEART52-REDESIGN-codex.md).
+
+
+## Heart52 companion preview, November 17, 2026
+
+APP-HEART52 is REVIEW on PR #296. [Try Heart52](https://growing-together-discipleship--pr296-codex-heart52-com-dl8mm33z.web.app/tools/heart52/). It retains your original 52 passages/logo and adds audio, fewer-word hints, phrase ordering, concealed recall and gentle reviews. A third button joins Your Growing Apps; 201-05 and 101-04 link to it without changing existing teaching/questions/art/widgets. Progress stays on the current device, with portable copies. New UI awaits your review; no merge/publication yet. Dependencies #261 and #288 remain separate review packets. Claude's held 201-05 rewrite #292 is untouched. [Evidence](logs/2026-11-17-APP-HEART52-codex.md).
+
+
 ## 101-04 compact widget approved for integration: November 17, 2026
 
 Dave approved PR #262 at exact 6a4c1e7977719842941e72a3cee339c67899c2f6 and said to merge. Preserve these widget bytes: half-size Bible, closed cover aligned right within its opening footprint, wipe opening left, 30 percent shorter diagram, dimmed Ready passage and simpler Ready card. This is component approval only; 101-04 text stays Silver. All lesson JSON, questions/IDs/answers, readings, approved oil-lamp art, placement and shared runtime remain unchanged. Core QA and 248 focused browser checks pass. Approved component hash/status are recorded. Final exact-head preview, merge and live verification are on PR #262. [Integration log](logs/2026-11-17-WIDGET-101-04-RDR-POLISH-codex.md).

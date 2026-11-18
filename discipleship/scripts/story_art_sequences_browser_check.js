@@ -325,7 +325,7 @@ async function readSequenceState(page, cfg) {
                     return wrap && wrap.classList.contains('block-image-touch-next') && wrap.nextElementSibling && wrap.nextElementSibling.textContent.includes('Four Generations');
                 }));
             } else {
-                assert(staticTag + 'prayer story retained', (await active.innerText()).includes('A Prayer Before the Answer'));
+                assert(staticTag + 'prayer story retained', (await active.innerText()).includes('Blessed to Be a Blessing'));
             }
             await staticPage.close();
         }

@@ -103,8 +103,8 @@
       "stage": "Silver",
       "dave_edits_protected": true,
       "full_personal_review": "unrecorded",
-      "lesson_sha256": "105b1a535d20e9b9fee5230e2153af33268851322933172b7c5cc073c7b91b9a",
-      "non_visual_content_sha256": "dcbedac9c8d8b4eb76dac602dd63a05d0ff9279d18d2ed84c7e29533b9c67499",
+      "lesson_sha256": "0fe0c141864f0c8ce64f04d456227edb08d51ffa88aad08c271fe08bfd56d24f",
+      "non_visual_content_sha256": "39b420057b19f9854b526ce4d691f31239f80212227416817ff302a1cd85ae8e",
       "visual_blocks": [
         {
           "type": "image",
@@ -158,6 +158,14 @@
         "source": "65cc11013e4cbc0c1a59ca57f6ba1dc944b9aae8",
         "pr": 269,
         "scope": "Eight text blocks only: second-person What Is Prayer, shorter two-address introduction and six step explanations. All headings, quoted lines, questions/readings, practice/review, art/story/widgets/tools unchanged. Specific wording approval; text Silver."
+      },
+      "tool_link_update": {
+        "date": "2026-11-17",
+        "pr": 261,
+        "source": "Dave requested Daily Prayers live within Growing Together, reachable from home and lessons.",
+        "old_url": "https://ministrybag.com/dailyprayers/",
+        "new_url": "tools/daily-prayers/",
+        "scope": "Only the tool URL changes. All approved wording, questions/IDs, readings, artwork and Lord's Prayer widget remain unchanged. Specific navigation approval, text stays Silver."
       }
     },
     {
@@ -166,8 +174,8 @@
       "stage": "Silver",
       "dave_edits_protected": true,
       "full_personal_review": "unrecorded",
-      "lesson_sha256": "0965a0e7589c3a251f5bade8394311464be0dd9e52ea4fa90a9f4d63af22b78b",
-      "non_visual_content_sha256": "68614506e139cf948586c6b9a6ea0b54e1b7504f52502974486cb1defbd550de",
+      "lesson_sha256": "0daee90693a49e2cf9b1ca02cad97e66e695172f0eb1ffa91414c74d841478ac",
+      "non_visual_content_sha256": "a49fffd129f0b8819b014bc798ef6f910b9d1d95ad1137482238632d33d24070",
       "visual_blocks": [
         {
           "type": "image",
@@ -220,6 +228,11 @@
         "pr": 229,
         "widget": "Approved: Read, Discover, Respond",
         "scope": "Widget only, exact HTML bytes. Whole lesson remains Silver; separate image approval is recorded in image_approval."
+      },
+      "heart52_hint_update": {
+        "date": "2026-11-17",
+        "source": "Dave explicit Heart52 integration request",
+        "scope": "One optional Heart52 link after the practice paragraph. All existing lesson wording, questions/IDs, John readings, artwork and approved widget remain untouched. Text stays Silver."
       }
     },
     {

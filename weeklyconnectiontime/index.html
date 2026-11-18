@@ -1,50 +1,40 @@
+<!-- Generated from discipleship/tools/weekly-connection-time/index.html. Edit that source, then run node discipleship/scripts/build_weekly_connection.js. -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Weekly Connection Time | Ministry Bag</title>
+  <title>Weekly Connection Time | Growing Together</title>
   <meta name="description" content="A simple, guided weekly conversation to help married couples celebrate, listen, plan, pray, and grow closer.">
-  <meta name="theme-color" content="#163c45">
-  <link rel="canonical" href="https://ministrybag.com/weeklyconnectiontime/">
+  <meta name="theme-color" content="#2C2416">
+  <link rel="canonical" href="https://growingtogetherdiscipleship.com/tools/weekly-connection-time/">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Weekly Connection Time | Ministry Bag">
+  <meta property="og:title" content="Weekly Connection Time | Growing Together">
   <meta property="og:description" content="Slow down. Catch up. Grow closer with a guided weekly marriage conversation.">
-  <meta property="og:url" content="https://ministrybag.com/weeklyconnectiontime/">
-  <meta property="og:image" content="https://ministrybag.com/weeklyconnectiontime/og.png">
+  <meta property="og:url" content="https://growingtogetherdiscipleship.com/tools/weekly-connection-time/">
+  <meta property="og:image" content="https://growingtogetherdiscipleship.com/tools/weekly-connection-time/og.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Weekly Connection Time | Ministry Bag">
+  <meta name="twitter:title" content="Weekly Connection Time | Growing Together">
   <meta name="twitter:description" content="Slow down. Catch up. Grow closer with a guided weekly marriage conversation.">
-  <meta name="twitter:image" content="https://ministrybag.com/weeklyconnectiontime/og.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;1,6..72,400&display=swap" rel="stylesheet">
+  <meta name="twitter:image" content="https://growingtogetherdiscipleship.com/tools/weekly-connection-time/og.png">
+  <link rel="icon" href="data:,">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header class="site-header">
-    <div class="site-header-inner">
-      <a class="brand" href="https://ministrybag.com/" aria-label="Ministry Bag home">
-        <img src="ministrybagsatchel1.svg" alt="" width="36" height="36">
-        <span>
-          <span class="brand-kicker">Ministry Bag</span>
-          <span class="brand-name">Weekly Connection Time</span>
-        </span>
-      </a>
-      <div class="save-status" id="saveStatus" aria-live="polite">
-        <span class="save-dot" aria-hidden="true"></span>
-        <span>Saved on this device</span>
-      </div>
-    </div>
-  </header>
+  <a class="skip-link" href="#main">Skip to your conversation</a>
+  <header class="site-header"><div class="header-inner"><a id="growing-home" href="https://growingtogetherdiscipleship.com/index.html" class="wordmark">Growing Together<span>COMPANION TOOLS</span></a><a href="https://ministrybag.com/" class="ministry-link"><img src="ministrybagsatchel1.svg" width="34" height="26" alt="">MinistryBag</a></div></header>
 
-  <main>
+  <main id="main">
+    <noscript><p class="storage-error">This conversation tool needs JavaScript to open and save your check-in.</p></noscript>
+    <nav class="breadcrumb" aria-label="Related lesson"><a id="lesson-link" href="https://growingtogetherdiscipleship.com/index.html#202-8">&#8592; The marriage lesson</a><span>202-08 · MARRIAGE</span></nav>
+    <div class="save-status" id="saveStatus" role="status"><span class="save-dot" aria-hidden="true"></span><span>Saved on this device</span></div>
+    <p id="saveError" class="storage-error" role="alert" hidden></p>
     <section class="welcome-screen" id="welcomeScreen" aria-labelledby="welcomeTitle">
       <div class="welcome-inner">
         <div class="welcome-copy">
-          <p class="eyebrow">A weekly marriage rhythm</p>
+          <p class="eyebrow">Weekly Connection Time</p>
           <h1 id="welcomeTitle">Slow down.<br><em>Catch up.</em> Grow closer.</h1>
           <p class="welcome-lede">A simple guided conversation to help you celebrate the week, listen well, plan together, and pray for one another.</p>
           <div class="welcome-actions">
@@ -266,7 +256,7 @@
           <p id="summaryDate"></p>
           <div class="summary-actions">
             <button class="primary-button" id="copyButton" type="button"><span>Copy summary</span><span aria-hidden="true">□</span></button>
-            <button class="secondary-button" id="emailButton" type="button"><span>Email</span><span aria-hidden="true">↗</span></button>
+            <a class="secondary-button" id="emailButton" href="mailto:"><span>Email</span><span aria-hidden="true">↗</span></a>
             <button class="secondary-button" id="printButton" type="button"><span>Print</span><span aria-hidden="true">⌁</span></button>
           </div>
         </header>
@@ -341,8 +331,10 @@
 
   <footer class="site-footer">
     <p>Connection grows one honest conversation at a time.</p>
-    <a href="https://ministrybag.com/">More tools from Ministry Bag</a>
+    <details id="copy-tools"><summary>Keep a copy or move to another device</summary><p>Your answers stay in this browser on this device. They do not sync between websites or devices.</p><p id="migration-note" hidden>Moving from MinistryBag? <a href="https://ministrybag.com/weeklyconnectiontime/#copy-tools" target="_blank" rel="noopener noreferrer">Open your old check-in</a>, save a copy there, then restore it here.</p><div class="copy-actions"><button id="saveCopy" class="secondary-button" type="button">Save a copy</button><button id="restoreCopy" class="secondary-button" type="button">Restore a copy</button><button id="previousCopy" class="text-button" type="button" hidden>Download previous check-in</button></div><input id="copyFile" type="file" accept=".json,application/json" hidden><p id="copyStatus" role="status"></p></details>
+    <a id="growing-apps-link" href="https://growingtogetherdiscipleship.com/tools/">Your Growing Apps</a>
   </footer>
+  <dialog id="restoreDialog" aria-labelledby="restoreTitle"><h2 id="restoreTitle">Restore this check-in?</h2><p>This replaces your answers in this browser. Your current check-in will be kept as a recovery copy.</p><div class="copy-actions"><button id="cancelRestore" class="secondary-button" type="button">Cancel</button><button id="confirmRestore" class="primary-button" type="button">Restore check-in</button></div></dialog>
 
   <script src="app.js"></script>
 </body>
