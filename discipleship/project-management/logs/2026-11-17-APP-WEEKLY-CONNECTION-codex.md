@@ -36,3 +36,11 @@ Local results are actual, not prior-PR claims. Final dependent PR number, exact-
 ## Native navigation hardening
 
 The first hosted hub run caught a startup race: the welcome markup was visible before the script rewrote production return links for the preview. Corrected authored HTML to native relative course/lesson/hub links. The mirror builder substitutes absolute Growing Together links only in the legacy MinistryBag HTML. Return links now work before JavaScript, including with scripts disabled; a noscript notice explains the interactive requirement. The latest local app suite passes 618 checks across both routes, including eight new native-link/no-script assertions; the full integration hub suite passes 244 again. App script/questions/storage behavior are unchanged by this fix. The initial hosted app-only run passed 310; hosted navigation evidence before the fix is superseded by the final-head rerun on PR #288.
+
+## Dave laptop-margin follow-up
+
+Dave reviewed the Chrome laptop preview and requested more comfortable margins in the conversation panel. Claiming the same packet for a CSS-only layout follow-up. Preserve all questions, field/storage behavior, routes and lesson content. Verify both a 1280px laptop and 648 CSS pixels at 2x density (matching the supplied screenshot), plus phone layouts.
+
+Implemented 24px conversation-card padding on laptops and 16px side padding on phones, with a defined paper-card edge. Removed minimum heights inherited from the old desktop-sidebar layout. Kept extra phone bottom space so fixed Back/Continue controls do not cover the last fields or footer return link. Page width remains centered at 640px. The heading focus ring stays accessible inside the new insets. Only CSS/layout tests and coordination records change; all JS/data/questions remain exact prior head.
+
+Local verification passes: weekly_connection_layout_browser_check.js 180 physical layout assertions at 375/390/648@2x/1280/1440 and reduced motion, all seven steps; weekly_connection_browser_check.js 618 app assertions across canonical and legacy routes; build_weekly_connection.js --check and git diff --check pass. Laptop 1280 and zoom-equivalent 648@2x Celebrate screenshots inspected. Final exact-head preview evidence and links are on PR #288. Status returns to REVIEW, not published.

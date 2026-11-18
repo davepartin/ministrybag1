@@ -1317,3 +1317,12 @@ dialog h2 { font-size:24px; }
 .site-footer a { color:#2A5B7C; }
 .site-footer details p { margin:12px 0; line-height:1.6; }
 .save-status > span:last-child { display:inline; }
+
+/* Give the conversation the same comfortable interior as the other paper cards. */
+.conversation-screen,.conversation-layout { min-height:0; background:transparent; }
+.step-stage { min-height:0; padding:24px; background:var(--paper); border:1px solid var(--sand); border-radius:16px; }
+@media(max-width:640px) {
+  .step-stage { padding:20px 16px 96px; }
+  body:has(#conversationScreen:not([hidden])) .site-footer { padding-bottom:calc(100px + env(safe-area-inset-bottom)); }
+}
+@media print { .step-stage { padding:0; border:0; } }

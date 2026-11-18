@@ -1,5 +1,10 @@
 # Resume here
 
+## Weekly Connection Time laptop margins, November 17, 2026
+
+Dave requested Chrome laptop margin fixes on PR #288. The conversation card now has 24px laptop padding, 16px phone side padding and clear space above fixed phone controls. Centered 640px page width, questions/storage/links and lesson content remain unchanged. Layout180 and app618 checks pass locally; updated preview awaits Dave's review. Task APP-WEEKLY-CONNECTION remains REVIEW. Evidence: [task log](logs/2026-11-17-APP-WEEKLY-CONNECTION-codex.md).
+
+
 ## Weekly Connection Time companion ready for review, November 17, 2026
 
 APP-WEEKLY-CONNECTION REVIEW. Dave requested the existing MinistryBag marriage app inside Growing Together, following Daily Prayers. Authored source is tools/weekly-connection-time/; the established MinistryBag weeklyconnectiontime/ address receives generated delivery copies. The seven conversation steps, twelve field IDs, original prompts and connection_time_ keys are preserved. The companion matches the 640px warm-paper/brown-header family, links back to 202-08 and Your Growing Apps, and adds portable save/restore copies, recovery and truthful storage-failure handling. Answers stay in the current browser/device; no Firebase/account sync or cross-origin automatic migration.
