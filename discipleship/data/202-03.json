@@ -2,6 +2,23 @@
   "id": "3",
   "title": "Lesson 3: Loving Your Church Family",
   "description": "God did not save you to follow Jesus alone. Through the early church in Acts 2, you will see that mercy makes you part of a family, and that family life is lived out in the New Testament one anothers.",
+  "contents": [
+    {
+      "label": "Story",
+      "title": "Acts 2",
+      "anchor": "story"
+    },
+    {
+      "label": "Study",
+      "title": "Now God's People",
+      "anchor": "study"
+    },
+    {
+      "label": "Diagram",
+      "title": "One Another",
+      "anchor": "diagram"
+    }
+  ],
   "blocks": [
     {
       "type": "text",
@@ -22,7 +39,8 @@
         0.5
       ],
       "alt": "Early believers welcoming a newcomer to a shared table and breaking bread together with glad and generous hearts",
-      "touchNext": true
+      "touchNext": true,
+      "anchor": "story"
     },
     {
       "type": "parable",
@@ -41,7 +59,8 @@
     },
     {
       "type": "heading",
-      "text": "Once Not a People, Now God's People"
+      "text": "Once Not a People, Now God's People",
+      "anchor": "study"
     },
     {
       "type": "text",
@@ -83,7 +102,8 @@
       "type": "widget",
       "src": "widgets/one-another.html",
       "title": "One Another",
-      "height": "620px"
+      "height": "620px",
+      "anchor": "diagram"
     },
     {
       "type": "text",

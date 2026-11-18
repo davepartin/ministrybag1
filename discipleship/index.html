@@ -1299,6 +1299,7 @@
             margin-bottom: 12px;
         }
         .lesson-contents {
+            container-type: inline-size;
             margin: 0 0 20px;
             border: 1px solid var(--border-light, #E6E2D8);
             border-radius: 12px;
@@ -1310,7 +1311,7 @@
             align-items: baseline;
             gap: 10px;
             padding: 6px 12px;
-            font-size: 0.95rem;
+            font-size: clamp(0.8rem, 4.6cqi, 0.95rem);
             line-height: 1.35;
             text-decoration: none;
             color: inherit;
@@ -1329,6 +1330,10 @@
         }
         .lesson-contents-title {
             flex: 1 1 auto;
+            min-width: 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
             color: var(--blue-heading);
             font-weight: 600;
             text-decoration: underline;
@@ -6904,16 +6909,21 @@
         // lesson router owns.
         function lessonJumpAnchorAttrs(anchor) {
             if (typeof anchor !== 'string' || !/^[a-z0-9-]+$/.test(anchor)) return { cls: '', attrs: '' };
-            return { cls: ' lesson-jump-target', attrs: ` id="jump-${anchor}" tabindex="-1"` };
+            return { cls: ' lesson-jump-target', attrs: ` data-jump="${anchor}" tabindex="-1"` };
         }
 
         document.addEventListener('click', (event) => {
             const link = event.target.closest && event.target.closest('a.lesson-jump, a.lesson-contents-row');
             if (!link) return;
             event.preventDefault();
-            const targetId = (link.getAttribute('href') || '').replace(/^#/, '');
-            const target = targetId ? document.getElementById(targetId) : null;
-            if (!target || !target.classList.contains('lesson-jump-target')) return;
+            // Every lesson in a course is on the page at once, so look only inside
+            // the lesson that holds the link.
+            const anchor = (link.getAttribute('href') || '').replace(/^#jump-/, '');
+            const lesson = link.closest('.session');
+            const target = lesson && /^[a-z0-9-]+$/.test(anchor)
+                ? lesson.querySelector(`.lesson-jump-target[data-jump="${anchor}"]`)
+                : null;
+            if (!target) return;
             const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
             target.scrollIntoView({ behavior: reduceMotion ? 'instant' : 'smooth', block: 'start' });
             target.focus({ preventScroll: true });

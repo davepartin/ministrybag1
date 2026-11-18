@@ -2,6 +2,23 @@
   "id": "9",
   "title": "Lesson 9: Fighting for Purity",
   "description": "Your eyes, your mind, and your body are worth guarding, and temptation will come for each of them.",
+  "contents": [
+    {
+      "label": "Story",
+      "title": "2 Samuel 11-12",
+      "anchor": "story"
+    },
+    {
+      "label": "Study",
+      "title": "At First Thought",
+      "anchor": "study"
+    },
+    {
+      "label": "Diagram",
+      "title": "RUN from Sin",
+      "anchor": "diagram"
+    }
+  ],
   "blocks": [
     {
       "type": "text",
@@ -18,7 +35,8 @@
       "alt": "King David, fully clothed, standing at his stone palace parapet overlooking Jerusalem at dusk with his royal cloak and crown set aside on a bench",
       "frame": true,
       "touchNext": true,
-      "imageDissolveOnEntry": true
+      "imageDissolveOnEntry": true,
+      "anchor": "story"
     },
     {
       "type": "parable",
@@ -37,7 +55,8 @@
     },
     {
       "type": "heading",
-      "text": "At First Thought"
+      "text": "At First Thought",
+      "anchor": "study"
     },
     {
       "type": "text",
@@ -59,7 +78,8 @@
     {
       "type": "widget",
       "src": "widgets/starting-gun.html",
-      "height": "580px"
+      "height": "580px",
+      "anchor": "diagram"
     },
     {
       "type": "heading",

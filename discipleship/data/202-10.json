@@ -2,6 +2,23 @@
   "id": "10",
   "title": "Lesson 10: Baptism and the Lord's Supper",
   "description": "Jesus left His church two gifts, and He gave them to a room full of people who were about to fail Him. This lesson looks at what those two gifts are for and why a church shares them together.",
+  "contents": [
+    {
+      "label": "Story",
+      "title": "Luke 22:14-20",
+      "anchor": "story"
+    },
+    {
+      "label": "Study",
+      "title": "Baptism: The Doorway",
+      "anchor": "study"
+    },
+    {
+      "label": "Diagram",
+      "title": "The Baptism Picture",
+      "anchor": "diagram"
+    }
+  ],
   "blocks": [
     {
       "type": "text",
@@ -13,7 +30,8 @@
       "imageColor": "images/last-supper-color.jpg",
       "alt": "Jesus breaking bread at the Passover table, surrounded by His disciples in an upper room",
       "frame": true,
-      "touchNext": true
+      "touchNext": true,
+      "anchor": "story"
     },
     {
       "type": "parable",
@@ -45,7 +63,8 @@
     },
     {
       "type": "heading",
-      "text": "Baptism: The Doorway You Walk Through Once"
+      "text": "Baptism: The Doorway You Walk Through Once",
+      "anchor": "study"
     },
     {
       "type": "text",
@@ -67,7 +86,8 @@
     {
       "type": "widget",
       "src": "widgets/baptism-picture.html",
-      "height": "600px"
+      "height": "600px",
+      "anchor": "diagram"
     },
     {
       "type": "text",
