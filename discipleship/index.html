@@ -1391,12 +1391,6 @@
         .lesson-compact .block-text {
             margin-bottom: 10px;
         }
-        .lesson-compact .course-logo {
-            margin-bottom: 12px;
-        }
-        .lesson-compact .course-welcome-under-logo {
-            margin-top: 2px;
-        }
         .lesson-compact .lesson-contents {
             margin-bottom: 14px;
         }
@@ -1407,7 +1401,7 @@
         /* Course opener: the course logo above a course's first lesson title */
         .course-logo {
             text-align: center;
-            margin: 0 0 16px;
+            margin: 0 0 12px;
         }
         .course-logo img {
             display: inline-block;
@@ -1415,7 +1409,10 @@
             height: auto;
         }
         .course-welcome-under-logo {
-            margin: 8px 0 0;
+            margin: 2px 0 0;
+        }
+        .course-welcome-under-logo .course-welcome-title {
+            font-size: clamp(1.15rem, 6vw, 1.7rem);
         }
         .course-welcome-under-logo .course-welcome-eyebrow {
             margin-bottom: 4px;

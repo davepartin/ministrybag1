@@ -2,6 +2,18 @@
   "id": "4",
   "title": "Lesson 4: BLESS - Serve with Loving Sacrifice",
   "description": "Praying, listening, and eating have built the bridge. Now it is time to care with action for someone else's good. Jesus came not to be served but to serve, and He calls His followers into the same posture. This lesson shows you how to serve from freedom rather than for approval, with the time, talents, and treasure you already have.",
+  "contents": [
+    {
+      "label": "Story",
+      "title": "John 13:1-17",
+      "anchor": "story"
+    },
+    {
+      "label": "Study",
+      "title": "Greatness, Upside Down",
+      "anchor": "study"
+    }
+  ],
   "blocks": [
     {
       "type": "text",
@@ -12,7 +24,8 @@
       "imageBw": "images/jesus-washing-feet-bw.png",
       "imageColor": "images/jesus-washing-feet-color.png",
       "alt": "Jesus kneeling with a basin and a towel, washing the feet of His disciples at the Last Supper",
-      "touchNext": true
+      "touchNext": true,
+      "anchor": "story"
     },
     {
       "type": "parable",
@@ -25,7 +38,8 @@
     },
     {
       "type": "heading",
-      "text": "Greatness, Upside Down"
+      "text": "Greatness, Upside Down",
+      "anchor": "study"
     },
     {
       "type": "text",

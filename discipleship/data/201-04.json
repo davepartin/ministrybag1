@@ -2,6 +2,23 @@
   "id": "4",
   "title": "Lesson 4: Growing Deep Roots in Jesus",
   "description": "The name of this course is Growing Deep, and this is the lesson where the name comes to life. A gospel heart welcomes God's Word, and a growing believer draws life from Christ. Five ordinary habits help you stay rooted in Him, because roots grow down before fruit grows up.",
+  "contents": [
+    {
+      "label": "Story",
+      "title": "Mark 4:3-9",
+      "anchor": "story"
+    },
+    {
+      "label": "Study",
+      "title": "A Gospel Heart",
+      "anchor": "study"
+    },
+    {
+      "label": "Diagram",
+      "title": "Roots of Discipline",
+      "anchor": "diagram"
+    }
+  ],
   "blocks": [
     {
       "type": "text",
@@ -26,7 +43,8 @@
         0.6
       ],
       "alt": "Four side-by-side windows of hard path, rocky ground, thorny ground, and good soil progressing together: birds take the seed, the sun scorches the shallow sprouts, thorns wrap and choke the plant, and good soil grows grain that multiplies",
-      "touchNext": true
+      "touchNext": true,
+      "anchor": "story"
     },
     {
       "type": "parable",
@@ -54,7 +72,8 @@
     },
     {
       "type": "heading",
-      "text": "A Gospel Heart"
+      "text": "A Gospel Heart",
+      "anchor": "study"
     },
     {
       "type": "text",
@@ -92,7 +111,8 @@
     {
       "type": "widget",
       "src": "widgets/deep-roots.html",
-      "height": "620px"
+      "height": "620px",
+      "anchor": "diagram"
     },
     {
       "type": "text",
