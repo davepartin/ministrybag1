@@ -5,7 +5,7 @@
       .sprout {
         fill: none;
         stroke: #FFFFFF;
-        stroke-width: 5.25;
+        stroke-width: 5.2;
         stroke-linecap: round;
         stroke-linejoin: round;
       }
@@ -18,10 +18,10 @@
     <circle cx="256" cy="178" r="110" fill="#7DB6E6" fill-opacity="0.72"/>
   </g>
   <g class="sprout">
-    <line x1="256" y1="292" x2="256" y2="242"/>
-    <path d="M254 246 Q216 238 200 186 Q246 226 254 246 Z"/>
-    <path d="M248 232 L214 198"/>
-    <path d="M258 242 Q296 232 314 180 Q266 222 258 242 Z"/>
-    <path d="M266 228 L300 194"/>
+    <line x1="256" y1="304" x2="256" y2="244"/>
+    <path d="M256 250 C230 238 206 214 194 186 C190 174 204 168 216 178 C234 194 254 232 256 250 Z"/>
+    <path d="M246 236 L210 198"/>
+    <path d="M256 246 C282 234 306 210 320 182 C324 170 310 164 298 174 C280 190 258 228 256 246 Z"/>
+    <path d="M266 232 L304 194"/>
   </g>
 </svg>
