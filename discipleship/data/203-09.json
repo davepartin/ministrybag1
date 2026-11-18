@@ -2,6 +2,23 @@
   "id": "9",
   "title": "Lesson 9: Church Planting - Missions - Ministry Partners",
   "description": "Priscilla and Aquila had day jobs, an open home, and friends in God's mission. This lesson looks at who God puts beside you in His work, from your own church to the ends of the earth.",
+  "contents": [
+    {
+      "label": "Story",
+      "title": "Acts 18",
+      "anchor": "story"
+    },
+    {
+      "label": "Study",
+      "title": "Your Church, Your City",
+      "anchor": "study"
+    },
+    {
+      "label": "Diagram",
+      "title": "Your Mission Map",
+      "anchor": "diagram"
+    }
+  ],
   "blocks": [
     {
       "type": "text",
@@ -12,7 +29,8 @@
       "imageBw": "images/203-09-tentmakers-bw.jpg",
       "imageColor": "images/203-09-tentmakers-color.jpg",
       "alt": "Priscilla, Aquila, and Paul work side by side in an open Corinth shop, stitching and cutting tent cloth as people pass in the street",
-      "touchNext": true
+      "touchNext": true,
+      "anchor": "story"
     },
     {
       "type": "parable",
@@ -40,11 +58,13 @@
     {
       "type": "widget",
       "src": "widgets/mission-map.html",
-      "height": "600px"
+      "height": "600px",
+      "anchor": "diagram"
     },
     {
       "type": "heading",
-      "text": "Your Church and Your City"
+      "text": "Your Church and Your City",
+      "anchor": "study"
     },
     {
       "type": "text",
