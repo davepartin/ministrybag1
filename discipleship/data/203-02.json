@@ -31,10 +31,18 @@
       "width": "70%"
     },
     {
+      "type": "image",
+      "imageBw": "images/203-02-abraham-bw.jpg",
+      "imageColor": "images/203-02-abraham-color.jpg",
+      "alt": "Abraham looking up with an outstretched hand beneath a vast starry night sky as the stars brighten above him",
+      "touchNext": true,
+      "imageDissolveOnEntry": true,
+      "anchor": "story"
+    },
+    {
       "type": "parable",
       "title": "Blessed to Be a Blessing",
-      "text": "Long before there was a church, a Bible, or a single follower of Jesus, God spoke to a man named Abram. He was seventy-five years old, living in Haran with his wife Sarai, and they had no children. God told him to leave everything familiar: <em>\"Go from your country and your kindred and your father's house to the land that I will show you\"</em> (Genesis 12:1).<br><br>Then God made him a promise that would shape the rest of the Bible: <em>\"I will make of you a great nation, and I will bless you and make your name great, so that you will be a blessing... and in you all the families of the earth shall be blessed\"</em> (Genesis 12:2-3).<br><br>Abram had nothing to offer God. No land, no children, no great name. God simply chose to bless him, and the blessing came with a purpose. <em>\"So Abram went, as the LORD had told him\"</em> (Genesis 12:4).",
-      "anchor": "story"
+      "text": "Long before there was a church, a Bible, or a single follower of Jesus, God spoke to a man named Abram. He was seventy-five years old, living in Haran with his wife Sarai, and they had no children. God told him to leave everything familiar: <em>\"Go from your country and your kindred and your father's house to the land that I will show you\"</em> (Genesis 12:1).<br><br>Then God made him a promise that would shape the rest of the Bible: <em>\"I will make of you a great nation, and I will bless you and make your name great, so that you will be a blessing... and in you all the families of the earth shall be blessed\"</em> (Genesis 12:2-3).<br><br>Abram had nothing to offer God. No land, no children, no great name. God simply chose to bless him, and the blessing came with a purpose. <em>\"So Abram went, as the LORD had told him\"</em> (Genesis 12:4)."
     },
     {
       "type": "text",

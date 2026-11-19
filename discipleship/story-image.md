@@ -158,7 +158,7 @@ Optional field: `"frame": true` adds a 1px border (`.block-image-dissolve-framed
 
 ### Earlier completion for an approved pair
 
-Optional `imageDissolveOnEntry: true` on a two-layer image starts at 100% B&W when the image enters 90% down the visible area below the fixed lesson header (or at its initial `scrollY = 0` position if it is already visible on load), holds 100% B&W for the first 20% of scroll travel so the learner sees the monochrome/dark state first, and completes the color reveal when centered in that area before scrolling off the top. A taller-than-viewport image completes at the header edge. Reduced motion still shows the static lighter layer. Per Dave's direction, this opt-in is enabled on the `101-03`, `101-04`, `101-05`, `101-06`, and `202-09` two-layer dissolves; all other pair and sequence timings remain unchanged. Do not apply it broadly to approved artwork without direction.
+Optional `imageDissolveOnEntry: true` on a two-layer image starts at 100% B&W when the image enters 90% down the visible area below the fixed lesson header (or at its initial `scrollY = 0` position if it is already visible on load), holds 100% B&W for the first 20% of scroll travel so the learner sees the monochrome/dark state first, and completes the color reveal when centered in that area before scrolling off the top. A taller-than-viewport image completes at the header edge. Reduced motion still shows the static lighter layer. Per Dave's direction, this opt-in is enabled on the `101-03`, `101-04`, `101-05`, `101-06`, `202-09`, and `203-02` two-layer dissolves; all other pair and sequence timings remain unchanged. Do not apply it broadly to approved artwork without direction.
 
 ### Art Prompts for Charcoal Pairs or Sequences
 
@@ -200,7 +200,7 @@ Optional `imageDissolveOnEntry: true` on a two-layer image starts at 100% B&W wh
 | 202-09 | The View from the Roof | B&W -> Color | `202-09-story-bw.jpg` -> `202-09-story-color.jpg` (`1280x720`, 16:9; earlier `202.09-david-roof-*.png` kept unused) | Live (`touchNext: true`, `frame: true`, `imageDissolveOnEntry: true`) |
 | 202-10 | The Table He Longed For; bread and cup | Two B&W -> Color pairs | Existing `last-supper-bw.jpg` -> `last-supper-color.jpg`; approved `202-10-bread-cup-bw.jpg` -> `202-10-bread-cup-color.jpg` (1152x864, 4:3) | Live (`touchNext: true`, `frame: true`); bread/cup approved PR #252, 169a7d5 |
 | 203-01 | On the Mountain | Logo only | `203-3circle-logo.png` | Needs story art if parable kept |
-| 203-02 | A Prayer Before the Answer | None | - | PR #240 sequence reverted per Dave / PR #248; no new art assigned |
+| 203-02 | Blessed to Be a Blessing | Darker -> Brighter Stars | `203-02-abraham-bw.jpg` -> `203-02-abraham-color.jpg` (`1280x720`, 16:9) | Live (`touchNext: true`, `imageDissolveOnEntry: true`) |
 | 203-03 | Stay with Us | **4-Frame Sequence** | `emmaus-bread-seq-1.jpg` .. `4.jpg` (stops `[0, 0.18, 0.34, 0.5]`) | Live (`touchNext: true`); old dissolve pair stays unused |
 | 203-04 | The Towel and the Basin | B&W -> Color | `jesus-washing-feet-bw.png` -> `jesus-washing-feet-color.png` | Live (`touchNext: true`) |
 | 203-05 | I Was Blind, Now I See | **2-Frame Sequence** | `blind-1-closedeyes.jpg`, `blind-2-openeyes.jpg` (stops `[0, 0.4]`) | Live sequence |
