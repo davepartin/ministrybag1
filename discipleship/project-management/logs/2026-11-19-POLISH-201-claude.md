@@ -1,7 +1,7 @@
 # POLISH-201: Growing Deep, second pass from the Gemini review
 Date: 2026-11-19
 Agent: Claude
-Status: REVIEW
+Status: DONE (Dave approved merge of PR #320, 2026-11-19)
 Branch: claude/201-polish
 
 Dave asked for a lesson-by-lesson look at a Gemini review of 201, with his principle: no practice for formula's sake (a closing question that already gives a next step is enough), but no lesson without application; add only what makes the lesson clearly better. Claude's test for each suggestion: would a new believer and their mentor clearly miss it? Dave approved each lesson in chat.
