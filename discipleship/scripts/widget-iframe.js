@@ -27,6 +27,7 @@
         'fruit-of-spirit.html': 'The Fruit of the Spirit',
         'grace-diagram.html': 'The Grace and Mercy Cycle',
         'great-command.html': 'The Great Command',
+        'great-commission.html': 'The Great Commission',
         'great-exchange3.html': 'The Great Exchange',
         'guide-spirit2.html': 'The GUIDE of the Holy Spirit',
         'learning-circle2.html': 'The Learning Circle',
