@@ -516,7 +516,7 @@ button:focus-visible {
       heading: 'You, Loved by God',
       verse: '"We love because he first loved us."',
       ref: '1 John 4:19',
-      note: 'Every circle starts here in Growing Deep. Before God sends you anywhere, He anchors you in His love.',
+      note: 'Every circle starts here in 201 Course: Growing Deep. Before God sends you anywhere, He anchors you in His love.',
       accent: '#1F684A',
       accentDark: '#164E37',
       countLabel: 'Step 1 of 6',
@@ -528,7 +528,7 @@ button:focus-visible {
       heading: 'Home and Church',
       verse: '"So then, as we have opportunity, let us do good to everyone, and especially to those who are of the household of faith."',
       ref: 'Galatians 6:10',
-      note: 'Growing Up begins close to home. God shapes His love in your family and church first so it can overflow outward.',
+      note: '202 Course: Growing Up begins close to home. God shapes His love in your family and church first so it can overflow outward.',
       accent: '#287053',
       accentDark: '#164E37',
       countLabel: 'Step 2 of 6',
@@ -552,7 +552,7 @@ button:focus-visible {
       heading: 'Neighborhood and City',
       verse: '"and in all Judea and Samaria"',
       ref: 'Acts 1:8',
-      note: 'Like Judea and Samaria, God\'s plan pushes love into your neighborhood, your city, and across lines to people unlike you.',
+      note: 'Like Judea and Samaria, God\'s plan pushes love into your neighborhood, your city, and often to people different than you.',
       accent: '#4A8E6F',
       accentDark: '#235942',
       countLabel: 'Step 4 of 6',
@@ -564,7 +564,7 @@ button:focus-visible {
       heading: 'The World',
       verse: '"and to the end of the earth."',
       ref: 'Acts 1:8',
-      note: 'God\'s heart reaches to the end of the earth. The same love that starts in you reaches every nation as you pray, give, and go.',
+      note: 'God\'s heart reaches to the end of the earth. The same love that starts in you reaches to every nation as you pray, give, and go.',
       accent: '#5E987D',
       accentDark: '#2C5C47',
       countLabel: 'Step 5 of 6',
@@ -576,7 +576,7 @@ button:focus-visible {
       heading: 'Go and Make Disciples',
       verse: '"Go therefore and make disciples of all nations, baptizing them in the name of the Father and of the Son and of the Holy Spirit, teaching them to observe all that I have commanded you. And behold, I am with you always, to the end of the age."',
       ref: 'Matthew 28:19-20',
-      note: 'Love comes down, goes up, and reaches out, starting at your own front door.',
+      note: '',
       accent: '#1F684A',
       accentDark: '#164E37',
       countLabel: 'Step 6 of 6',
@@ -852,6 +852,7 @@ button:focus-visible {
     cardVerseText.textContent = s.verse;
     cardRef.textContent = s.ref;
     cardNote.textContent = s.note;
+    cardNote.hidden = !s.note;
 
     svgTitle.textContent = s.title;
     svgDesc.textContent = s.desc;
@@ -916,7 +917,10 @@ button:focus-visible {
       if (h) h.textContent = STEPS[i].heading;
       if (v) v.textContent = STEPS[i].verse;
       if (r) r.textContent = STEPS[i].ref;
-      if (n) n.textContent = STEPS[i].note;
+      if (n) {
+        n.textContent = STEPS[i].note;
+        n.hidden = !STEPS[i].note;
+      }
       var measured = Math.ceil(clone.getBoundingClientRect().height);
       if (measured > maxH) maxH = measured;
     }
