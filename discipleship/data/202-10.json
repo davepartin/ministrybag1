@@ -4,11 +4,6 @@
   "description": "Jesus left His church two gifts, and He gave them to a room full of people who were about to fail Him. This lesson looks at what those two gifts are for and why a church shares them together.",
   "contents": [
     {
-      "label": "Story",
-      "title": "Luke 22:14-20",
-      "anchor": "story"
-    },
-    {
       "label": "Study",
       "title": "Baptism: The Doorway",
       "anchor": "study"
@@ -17,49 +12,17 @@
       "label": "Diagram",
       "title": "The Baptism Picture",
       "anchor": "diagram"
+    },
+    {
+      "label": "Story",
+      "title": "Luke 22:14-20",
+      "anchor": "story"
     }
   ],
   "blocks": [
     {
       "type": "text",
       "text": "You have spent this course growing up: loving your neighbors, your family, and your church family, serving with your gifts, standing firm, worshiping, giving, honoring marriage, and guarding your heart. The last lesson of Growing Up ends at a table. It is the table of the new covenant, the promise Jesus sealed with His own blood."
-    },
-    {
-      "type": "image",
-      "imageBw": "images/last-supper-bw.jpg",
-      "imageColor": "images/last-supper-color.jpg",
-      "alt": "Jesus breaking bread at the Passover table, surrounded by His disciples in an upper room",
-      "frame": true,
-      "touchNext": true,
-      "anchor": "story"
-    },
-    {
-      "type": "parable",
-      "title": "The Table He Longed For",
-      "text": "On the night before the cross, Jesus gathered His closest friends around a Passover table in a borrowed upstairs room. He told them how much the meal meant to Him."
-    },
-    {
-      "type": "verse",
-      "reference": "Luke 22:15",
-      "text": "And he said to them, \"I have earnestly desired to eat this Passover with you before I suffer.\""
-    },
-    {
-      "type": "text",
-      "text": "Then He took the bread, gave thanks, broke it, and handed it to them. \"This is my body, which is given for you.\" He lifted the cup. \"This cup that is poured out for you is the new covenant in my blood.\""
-    },
-    {
-      "type": "text",
-      "text": "Look around that table. Judas would betray Him before midnight. Peter would deny Him three times before sunrise. The rest would scatter into the dark. Jesus knew every bit of it, and He still longed to eat with them."
-    },
-    {
-      "type": "text",
-      "text": "Both of the gifts in this lesson come from a Savior who wanted you at the table before you ever got it right."
-    },
-    {
-      "type": "question",
-      "id": "202-10-1",
-      "text": "10.1 - How does it change things to know Jesus wanted them at the table knowing they would fail Him that night?",
-      "height": "tall"
     },
     {
       "type": "heading",
@@ -108,7 +71,7 @@
     {
       "type": "question",
       "id": "202-10-2",
-      "text": "10.2 - What is one honest reason you have not been baptized, or one thing that day still means to you?",
+      "text": "10.1 - What is one honest reason you have not been baptized, or one thing that day still means to you?",
       "height": "tall"
     },
     {
@@ -121,7 +84,30 @@
       "imageColor": "images/202-10-bread-cup-color.jpg",
       "alt": "A loaf of bread broken in two with crumbs beside a simple first-century cup of wine on a weathered wooden table",
       "frame": true,
-      "touchNext": true
+      "touchNext": true,
+      "anchor": "story"
+    },
+    {
+      "type": "parable",
+      "title": "The Table He Longed For",
+      "text": "On the night before the cross, Jesus gathered His closest friends around a Passover table in a borrowed upstairs room. He told them how much the meal meant to Him."
+    },
+    {
+      "type": "verse",
+      "reference": "Luke 22:15",
+      "text": "And he said to them, \"I have earnestly desired to eat this Passover with you before I suffer.\""
+    },
+    {
+      "type": "text",
+      "text": "Then He took the bread, gave thanks, broke it, and handed it to them. \"This is my body, which is given for you.\" He lifted the cup. \"This cup that is poured out for you is the new covenant in my blood.\""
+    },
+    {
+      "type": "text",
+      "text": "Look around that table. Judas would betray Him before midnight. Peter would deny Him three times before sunrise. The rest would scatter into the dark. Jesus knew every bit of it, and He still longed to eat with them."
+    },
+    {
+      "type": "text",
+      "text": "Both of the gifts in this lesson come from a Savior who wanted you at the table before you ever got it right."
     },
     {
       "type": "text",
@@ -139,6 +125,12 @@
     {
       "type": "text",
       "text": "The Supper is the family meal for those who have trusted Jesus and been baptized. If that is not you yet, you are still welcome in the room, and the doorway is open."
+    },
+    {
+      "type": "question",
+      "id": "202-10-1",
+      "text": "10.2 - How does it change things to know Jesus wanted them at the table knowing they would fail Him that night?",
+      "height": "tall"
     },
     {
       "type": "heading",

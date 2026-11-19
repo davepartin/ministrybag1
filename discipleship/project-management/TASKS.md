@@ -1,5 +1,9 @@
 # Running task board
 
+| Task | Status | Owner / branch / date | Scope |
+|---|---|---|---|
+| FLOW-202-10-BAPTISM-FIRST | ACTIVE | Codex / PR #260 / 2026-11-18 | Dave approved baptism/widget first, then bread-and-cup image immediately above the Bible story. Preserve all newer lesson copy, questions/IDs, widget bytes and image files. Final integration QA then merge/live. |
+
 ## 101 polish, November 18, 2026
 
 | Task | Status | Owner / branch / date | Scope |
