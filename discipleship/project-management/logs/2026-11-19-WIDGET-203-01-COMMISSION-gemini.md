@@ -9,17 +9,19 @@
 
 Built one standalone, self-contained Studio Wash widget (`discipleship/widgets/great-commission-203.html`) and its Playwright verification script (`discipleship/scripts/widget_203_01_commission_browser_check.js`) off `origin/main` (`b365d2a`), leaving `data/203-01.json`, `index.html`, existing scripts, images, and Firebase config untouched for Claude's later placement.
 
-## Implementation Summary
+## Implementation Summary (Revised per Dave's Review)
 
 - **Title bar:** `The Great Commission` with lesson tag `203-01` (`#2C2416` Studio Wash chrome).
-- **Concentric circles (`viewBox="0 0 440 318"`, `cx=220, cy=160`):**
-  - Center (`r=40`): Down gold (`#A8760A` / `#FCF2D6`) + thin Up green inner hairline (`#1F684A`, `r=37`), labeled `You` / `loved by God` with muted `Growing Deep` caption.
-  - Ring 1 (`r=66`): Belong blue (`#2A5B7C` / `#E2EEF6`), labeled `Home and Church` with muted `Growing Up` caption.
-  - Ring 2 (`r=95`): Go purple (`#5F4684` / `#EDE7F6`), labeled `Your Jerusalem` / `work, school, neighborhood` with muted `Growing Out` caption.
-  - Ring 3 (`r=124`): lighter Go purple wash (`#6E5792`), labeled `Judea and Samaria` / `your region, and people unlike you`.
-  - Ring 4 (`r=152`): dashed Go purple outer ring (`#7E68A1`, lightest wash) with symmetric Studio Wash double-chevron outward watermarks on the active ring.
-- **Inline SVG Eastern Hemisphere Globe (Step 5 and Final):** Simplified hand-drawn-feeling orthographic projection of Europe, Africa, the Middle East, India, Asia, and Russia with subtle spherical graticule arcs behind the translucent concentric rings (`0.20` wash / `0.32` faint ink) and a small gold dot marking Jerusalem (`220, 174.9`) beneath the center of the circles.
-- **Final Step (Step 6):** Crisp Deep Crimson (`#8B1A2B`) double-hairline cross traced at the upper bullseye (no glow).
+- **Forest/Sage Green concentric circles (`viewBox="0 0 440 314"`, `cx=220, cy=158`):**
+  - Center (`r=38`): deep forest green (`#1F684A` fill, `#164E37` contour) with crisp white `You` / `loved by God`.
+  - Ring 1 (`r=65`): rich sage wash (`#9EC8AF`, `#236649` contour), minimal bottom label `Home & Church`.
+  - Ring 2 (`r=93`): medium sage wash (`#BBDAC7`, `#357A5A` contour), minimal bottom label `Your Jerusalem`.
+  - Ring 3 (`r=121`): light sage wash (`#CFE6D8`, `#518F70` contour), minimal bottom label `Judea & Samaria`.
+  - Ring 4 (`r=149`): pale sage wash (`#DCEEE3`) with dashed outer contour (`#7EA38F`), minimal bottom label `End of the Earth`.
+  - All ring subheadings and `Growing Deep` / `Growing Up` / `Growing Out` course captions removed from the circles and placed cleanly in the description card below.
+- **Upward Outward Arrows (Steps 2-6):** Two diagonal forest-green arrows (`#2A6B4F`) radiating up-left (`-135°`) and up-right (`-45°`) from the center circle out to the edge of each active ring.
+- **Inline SVG Eastern Hemisphere Globe (Step 5 and Final):** Simplified orthographic projection of Europe, Africa, the Middle East, India, Asia, and Russia with subtle spherical graticule arcs fading in behind the translucent sage rings and a small gold dot marking Jerusalem (`220, 180.2`) beneath the center of the circles.
+- **Final Step (Step 6):** Crisp Deep Crimson (`#8B1A2B`) double-hairline cross with clean `#FFFDF8` under-stroke for high contrast on the deep forest-green center (no glow).
 - **Motion & Accessibility:** Each forward ring draws symmetrically via `stroke-dashoffset` at `185 px/s` then washes in softly; Back and non-adjacent jumps redraw instantly; `prefers-reduced-motion: reduce` shows each finished drawing with zero animation; native `<button>` controls (`>= 44px` tall, `>= 28x28` wordless dots), `3px solid #E0A526` `:focus-visible`, `aria-live="polite"` card, dynamic SVG `<title>` / `<desc>`, width-only `fitCardHeight()`, zero `localStorage`, zero idle DOM mutations, zero em dashes, and zero forbidden words (`tap`, `click`, `widget`, `diagram`) in visible copy.
 
 ## Verification
@@ -27,6 +29,6 @@ Built one standalone, self-contained Studio Wash widget (`discipleship/widgets/g
 - `bash scripts/qa_foundation.sh`: exit `0`
 - `node scripts/test_lesson_export.js`: exit `0` (`212 check(s) passed`)
 - `node scripts/test_answer_storage.js`: exit `0` (`73 check(s) passed`)
-- `node scripts/check_lesson_assets.js`: exit `0` (`148` references OK)
-- `node scripts/widget_203_01_commission_browser_check.js`: exit `0` (`213` checks across `375x812`, `390x844`, `1280x800`, and `390/reduce`; `card=145px`, `widget=544px` at `375px`, `555px` at `390px`, `590px` at `1280px`)
+- `node scripts/check_lesson_assets.js`: exit `0` (`147` references OK)
+- `node scripts/widget_203_01_commission_browser_check.js`: exit `0` (`213` checks across `375x812`, `390x844`, `1280x800`, and `390/reduce`; `card=145px`, `widget=541px` at `375px`, `552px` at `390px`, `586px` at `1280px`)
 - Visually inspected `390x844` screenshots across Steps `0` through `6`.

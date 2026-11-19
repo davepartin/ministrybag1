@@ -10,21 +10,13 @@
   --muted: #6E6559;
   --tray: #F6F4EE;
   --border: #EBE5D9;
-  --gold: #A8760A;
-  --gold-dark: #7D5604;
-  --gold-wash: #FCF2D6;
   --green: #1F684A;
-  --blue: #2A5B7C;
-  --blue-dark: #1E435C;
-  --blue-wash: #E2EEF6;
-  --purple: #5F4684;
-  --purple-dark: #473366;
-  --purple-wash: #EDE7F6;
+  --green-dark: #164E37;
   --crimson: #8B1A2B;
   --crimson-dark: #6D1422;
   --step-color: #2C2416;
   --step-dark: #2C2416;
-  --card-h: 138px;
+  --card-h: 134px;
 }
 
 *, *::before, *::after {
@@ -111,57 +103,29 @@ body {
   opacity: 1;
 }
 
-.chev-group {
-  opacity: 0;
-  pointer-events: none;
-}
-
-.chev-group.is-active {
-  opacity: 1;
-}
-
-.chev-group.is-soft {
-  opacity: 0.45;
-}
-
 .ring-label {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  font-size: 13.5px;
+  font-size: 12.5px;
   font-weight: 700;
   letter-spacing: 0.1px;
   paint-order: stroke;
   stroke-linejoin: round;
-  stroke-width: 3.2px;
+  stroke-width: 3px;
 }
 
-.ring-label-center {
-  font-size: 14.8px;
-}
-
-.ring-sub {
+.center-you {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  font-size: 8.8px;
-  font-weight: 600;
-  fill: #5C5347;
-  paint-order: stroke;
-  stroke-linejoin: round;
-  stroke-width: 2.8px;
-}
-
-.course-caption {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  font-size: 8.4px;
-  font-weight: 600;
-  letter-spacing: 0.3px;
-  fill: #7B7366;
-  paint-order: stroke;
-  stroke-linejoin: round;
-  stroke-width: 2.4px;
-}
-
-.course-caption-center {
-  font-size: 7.6px;
+  font-size: 18px;
+  font-weight: 700;
+  fill: #FFFFFF;
   letter-spacing: 0.2px;
+}
+
+.center-sub {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 9.6px;
+  font-weight: 500;
+  fill: #E6F3EC;
 }
 
 .step-strip {
@@ -307,9 +271,6 @@ button:focus-visible {
   .widget-outer:not(.is-instant) .globe-fade {
     transition: opacity 0.65s ease;
   }
-  .widget-outer:not(.is-instant) .chev-group {
-    transition: opacity 0.35s ease;
-  }
   .widget-outer .step-dot-fill {
     transition: background-color 0.22s ease, border-color 0.22s ease, transform 0.22s ease;
   }
@@ -337,171 +298,145 @@ button:focus-visible {
   </header>
 
   <div class="stage">
-    <svg class="gc-svg" id="gc-svg" viewBox="0 0 440 318" width="100%" role="img" aria-labelledby="svg-title svg-desc">
+    <svg class="gc-svg" id="gc-svg" viewBox="0 0 440 314" width="100%" role="img" aria-labelledby="svg-title svg-desc">
       <title id="svg-title">The Great Commission</title>
       <desc id="svg-desc">Clean white stage ready for the circles of the Great Commission to unfold from the center outward.</desc>
 
       <defs>
         <clipPath id="globe-clip">
-          <circle cx="220" cy="160" r="150" />
+          <circle cx="220" cy="158" r="147" />
         </clipPath>
         <mask id="mask-ring-4">
-          <rect x="0" y="0" width="440" height="318" fill="#000000" />
-          <path id="mask-r4-left" d="M220,8 A152,152 0 0,0 220,312" fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" />
-          <path id="mask-r4-right" d="M220,8 A152,152 0 0,1 220,312" fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" />
+          <rect x="0" y="0" width="440" height="314" fill="#000000" />
+          <path id="mask-r4-left" d="M220,9 A149,149 0 0,0 220,307" fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" />
+          <path id="mask-r4-right" d="M220,9 A149,149 0 0,1 220,307" fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" />
         </mask>
       </defs>
 
       <!-- Inline SVG Eastern Hemisphere Globe centered near Jerusalem (fades in on Step 5) -->
       <g id="globe-layer" class="fade-part globe-fade" clip-path="url(#globe-clip)">
-        <circle cx="220" cy="160" r="150" fill="#F2EFE8" fill-opacity="0.34" />
+        <circle cx="220" cy="158" r="147" fill="#F2F6F3" fill-opacity="0.45" />
         <!-- Subtle spherical latitude and longitude arcs -->
-        <g fill="none" stroke="#7A7060" stroke-width="0.7" opacity="0.18">
-          <path d="M102.1,252.7 L107.3,258.8 L113.3,264.6 L120.2,270.1 L127.8,275.2 L136.2,279.9 L145.1,284.1 L154.7,287.8 L164.7,291.1 L175.1,293.7 L185.9,295.8 L197.0,297.3 L208.2,298.3 L219.5,298.6 L230.9,298.3 L242.1,297.4 L253.2,296.0 L264.0,293.9 L274.5,291.3 L284.6,288.1 L294.1,284.4 L303.2,280.3 L311.5,275.6 L319.2,270.5 L326.2,265.1 L332.3,259.3 L337.5,253.2" />
-          <path d="M70.0,159.7 L70.5,167.6 L72.2,175.5 L75.0,183.3 L78.9,190.9 L83.8,198.3 L89.8,205.4 L96.8,212.1 L104.8,218.5 L113.6,224.3 L123.2,229.7 L133.5,234.6 L144.5,238.9 L156.1,242.6 L168.2,245.7 L180.7,248.1 L193.4,249.9 L206.4,250.9 L219.5,251.3 L232.6,251.0 L245.5,250.0 L258.3,248.3 L270.8,245.9 L282.9,242.9 L294.5,239.2 L305.6,235.0 L316.0,230.2 L325.7,224.8 L334.6,218.9 L342.6,212.6 L349.6,205.9 L355.7,198.9 L360.8,191.5 L364.8,183.9 L367.6,176.2 L369.4,168.3 L370.0,160.3" />
-          <path d="M90.6,93.3 L90.1,100.2 L90.6,107.1 L92.0,114.0 L94.4,120.7 L97.8,127.3 L102.1,133.7 L107.3,139.8 L113.3,145.6 L120.2,151.1 L127.8,156.2 L136.2,160.9 L145.1,165.1 L154.7,168.8 L164.7,172.1 L175.1,174.7 L185.9,176.8 L197.0,178.3 L208.2,179.3 L219.5,179.6 L230.9,179.3 L242.1,178.4 L253.2,177.0 L264.0,174.9 L274.5,172.3 L284.6,169.1 L294.1,165.4 L303.2,161.3 L311.5,156.6 L319.2,151.5 L326.2,146.1 L332.3,140.3 L337.5,134.2 L341.9,127.8 L345.4,121.2 L347.9,114.5 L349.4,107.7 L349.9,100.8 L349.4,93.9 L348.0,87.0 L345.6,80.3 L342.2,73.7 L337.9,67.3" />
-          <path d="M145.3,52.8 L145.0,56.8 L145.3,60.8 L146.1,64.7 L147.5,68.6 L149.4,72.4 L151.9,76.1 L154.9,79.6 L158.4,83.0 L162.4,86.2 L166.8,89.1 L171.6,91.8 L176.8,94.2 L182.3,96.4 L188.1,98.3 L194.1,99.8 L200.3,101.0 L206.7,101.9 L213.2,102.4 L219.7,102.6 L226.3,102.4 L232.8,101.9 L239.2,101.1 L245.4,99.9 L251.5,98.4 L257.3,96.6 L262.8,94.4 L268.0,92.0 L272.8,89.3 L277.3,86.4 L281.3,83.3 L284.8,79.9 L287.9,76.4 L290.4,72.7 L292.4,68.9 L293.8,65.0 L294.7,61.1 L295.0,57.1 L294.7,53.1 L293.9,49.2 L292.5,45.3 L290.6,41.5 L288.1,37.8 L285.1,34.2 L281.6,30.9" />
-          <path d="M131.7,281.3 L125.6,276.1 L120.2,270.1 L115.6,263.3 L111.7,255.6 L108.7,247.3 L106.5,238.2 L105.2,228.6 L104.8,218.5 L105.2,207.9 L106.5,196.9 L108.7,185.7 L111.7,174.2 L115.6,162.7 L120.2,151.1 L125.6,139.6 L131.7,128.3 L138.5,117.2 L145.9,106.4 L153.9,96.0 L162.4,86.2 L171.3,76.8 L180.6,68.2 L190.2,60.2 L200.0,53.0" />
-          <path d="M178.9,304.3 L174.8,302.6 L171.1,299.8 L167.7,295.9 L164.7,291.1 L162.1,285.2 L160.0,278.3 L158.3,270.6 L157.1,262.0 L156.4,252.7 L156.1,242.6 L156.4,231.9 L157.1,220.7 L158.3,209.0 L160.0,196.9 L162.1,184.6 L164.7,172.1 L167.7,159.4 L171.1,146.8 L174.8,134.3 L178.9,121.9 L183.4,109.9 L188.1,98.3 L193.0,87.1 L198.2,76.4 L203.5,66.4 L208.9,57.2" />
-          <path d="M220.0,309.9 L220.0,58.7" />
-          <path d="M260.4,304.4 L264.5,302.8 L268.2,300.0 L271.5,296.2 L274.5,291.3 L277.0,285.4 L279.1,278.6 L280.8,270.9 L282.0,262.3 L282.7,252.9 L282.9,242.9 L282.7,232.2 L282.0,221.0 L280.8,209.3 L279.1,197.2 L277.0,184.8 L274.5,172.3 L271.5,159.6 L268.2,147.0 L264.5,134.5 L260.4,122.1 L256.1,110.1 L251.5,98.4 L246.6,87.2 L241.5,76.5 L236.3,66.5 L230.9,57.2" />
-          <path d="M307.8,281.6 L313.8,276.5 L319.2,270.5 L323.8,263.7 L327.7,256.1 L330.7,247.7 L332.8,238.7 L334.1,229.1 L334.6,218.9 L334.1,208.3 L332.8,197.4 L330.7,186.1 L327.7,174.7 L323.8,163.1 L319.2,151.5 L313.8,140.0 L307.8,128.7 L301.0,117.5 L293.6,106.7 L285.7,96.3 L277.3,86.4 L268.4,77.1 L259.2,68.3 L249.7,60.3 L239.9,53.0" />
-          <path d="M356.0,223.2 L359.8,213.9 L362.6,204.2 L364.2,194.2 L364.8,183.9 L364.2,173.5 L362.6,162.9 L359.8,152.3 L356.0,141.8 L351.2,131.4 L345.4,121.2 L338.6,111.4 L330.9,101.8 L322.4,92.8 L313.0,84.2 L303.0,76.3 L292.4,68.9 L281.2,62.3 L269.5,56.4 L257.5,51.2 L245.1,47.0" />
+        <g fill="none" stroke="#4D6A5B" stroke-width="0.7" opacity="0.16">
+          <path d="M109.5,255.0 L115.5,261.1 L122.2,266.8 L129.7,272.1 L137.8,277.0 L146.6,281.5 L156.0,285.3 L165.8,288.7 L176.0,291.5 L186.6,293.7 L197.5,295.3 L208.5,296.2 L219.6,296.6 L230.7,296.3 L241.7,295.4 L252.5,293.8 L263.1,291.7 L273.4,288.9 L283.3,285.6 L292.7,281.8 L301.5,277.4 L309.7,272.6 L317.2,267.3 L324.0,261.5 L330.0,255.5" />
+          <path d="M73.0,157.7 L73.5,166.0 L75.1,174.2 L77.9,182.4 L81.7,190.3 L86.6,198.0 L92.4,205.4 L99.3,212.5 L107.1,219.1 L115.7,225.3 L125.1,230.9 L135.3,236.0 L146.1,240.5 L157.4,244.4 L169.2,247.6 L181.5,250.1 L194.0,252.0 L206.7,253.1 L219.5,253.5 L232.3,253.1 L245.0,252.1 L257.6,250.3 L269.8,247.8 L281.7,244.7 L293.1,240.8 L303.9,236.4 L314.1,231.3 L323.6,225.7 L332.3,219.6 L340.1,213.0 L347.0,206.0 L353.0,198.6 L358.0,191.0 L361.9,183.0 L364.7,174.9 L366.4,166.7 L367.0,158.3" />
+          <path d="M93.2,94.6 L92.7,101.8 L93.1,109.0 L94.6,116.2 L96.9,123.2 L100.2,130.1 L104.4,136.8 L109.5,143.2 L115.5,149.3 L122.2,155.0 L129.7,160.4 L137.8,165.3 L146.6,169.7 L156.0,173.6 L165.8,176.9 L176.0,179.7 L186.6,181.9 L197.5,183.5 L208.5,184.4 L219.6,184.8 L230.7,184.5 L241.7,183.6 L252.5,182.0 L263.1,179.9 L273.4,177.2 L283.3,173.9 L292.7,170.0 L301.5,165.6 L309.7,160.8 L317.2,155.5 L324.0,149.8 L330.0,143.7 L335.2,137.3 L339.5,130.7 L342.9,123.8 L345.3,116.8 L346.8,109.6 L347.3,102.4 L346.9,95.2 L345.4,88.0 L343.1,81.0 L339.8,74.1 L335.6,67.4 L330.5,61.0" />
+          <path d="M146.8,56.9 L146.5,61.0 L146.8,65.2 L147.6,69.3 L148.9,73.4 L150.8,77.4 L153.3,81.2 L156.2,84.9 L159.6,88.4 L163.5,91.8 L167.8,94.8 L172.6,97.7 L177.6,100.2 L183.0,102.5 L188.7,104.4 L194.6,106.0 L200.7,107.3 L207.0,108.2 L213.3,108.7 L219.7,108.9 L226.2,108.8 L232.5,108.2 L238.8,107.3 L244.9,106.1 L250.8,104.5 L256.5,102.6 L261.9,100.4 L267.0,97.9 L271.8,95.1 L276.1,92.0 L280.1,88.7 L283.5,85.2 L286.5,81.5 L289.0,77.7 L290.9,73.7 L292.3,69.6 L293.2,65.5 L293.5,61.4 L293.2,57.2 L292.4,53.1 L291.1,49.0 L289.2,45.0 L286.7,41.2 L283.8,37.5 L280.4,34.0" />
+          <path d="M127.5,272.2 L122.2,266.8 L117.6,260.6 L113.9,253.7 L110.9,246.0 L108.8,237.6 L107.5,228.6 L107.1,219.1 L107.5,209.1 L108.8,198.8 L110.9,188.1 L113.9,177.2 L117.6,166.1 L122.2,155.0 L127.5,143.9 L133.5,133.0 L140.1,122.2 L147.4,111.7 L155.2,101.5 L163.5,91.8 L172.3,82.5 L181.4,73.9 L190.8,65.8 L200.4,58.5" />
+          <path d="M175.7,298.1 L172.1,296.0 L168.7,292.9 L165.8,288.7 L163.3,283.5 L161.2,277.4 L159.5,270.4 L158.4,262.5 L157.6,253.8 L157.4,244.4 L157.6,234.3 L158.4,223.7 L159.5,212.5 L161.2,200.9 L163.3,189.0 L165.8,176.9 L168.7,164.6 L172.1,152.3 L175.7,140.0 L179.8,127.9 L184.1,116.0 L188.7,104.4 L193.5,93.2 L198.6,82.5 L203.8,72.4 L209.1,62.9" />
+          <path d="M220.0,305.0 L220.0,64.5" />
+          <path d="M263.6,298.3 L267.2,296.2 L270.5,293.1 L273.4,288.9 L275.9,283.8 L277.9,277.7 L279.6,270.6 L280.7,262.8 L281.4,254.1 L281.7,244.7 L281.4,234.6 L280.7,223.9 L279.6,212.8 L277.9,201.2 L275.9,189.3 L273.4,177.2 L270.5,164.9 L267.2,152.5 L263.6,140.2 L259.6,128.1 L255.4,116.1 L250.8,104.5 L246.1,93.3 L241.1,82.6 L236.0,72.5 L230.7,63.0" />
+          <path d="M312.0,272.6 L317.2,267.3 L321.8,261.1 L325.5,254.1 L328.5,246.5 L330.6,238.1 L331.9,229.1 L332.3,219.6 L331.9,209.6 L330.6,199.3 L328.5,188.6 L325.5,177.7 L321.8,166.6 L317.2,155.5 L312.0,144.4 L306.0,133.4 L299.4,122.5 L292.2,112.0 L284.4,101.8 L276.1,92.0 L267.5,82.7 L258.4,74.0 L249.1,66.0 L239.5,58.6" />
+          <path d="M357.0,211.1 L359.7,202.1 L361.3,192.7 L361.9,183.0 L361.3,173.2 L359.7,163.2 L357.0,153.2 L353.3,143.3 L348.6,133.4 L342.9,123.8 L336.2,114.4 L328.7,105.3 L320.3,96.7 L311.2,88.5 L301.4,80.8 L290.9,73.7 L280.0,67.3 L268.5,61.5 L256.7,56.5 L244.6,52.3" />
         </g>
 
         <!-- Hand-drawn-feeling simplified landmasses: Africa, Europe, Middle East, Asia, Russia -->
-        <g fill="#7D7260" fill-opacity="0.20" stroke="#5C5142" stroke-opacity="0.32" stroke-width="1.1" stroke-linejoin="round" stroke-linecap="round">
+        <g fill="#4E6B5C" fill-opacity="0.18" stroke="#355244" stroke-opacity="0.30" stroke-width="1.1" stroke-linejoin="round" stroke-linecap="round">
           <!-- Africa -->
-          <path d="M140.7,146.5 L156.0,150.6 L170.1,154.1 L169.1,163.9 L178.9,172.3 L191.1,171.0 L208.1,176.1 L214.0,176.4 L216.7,186.0 L225.7,205.0 L240.6,222.3 L260.7,221.5 L253.1,239.4 L236.5,253.8 L233.6,271.1 L219.5,285.8 L214.4,294.2 L198.0,301.2 L187.7,300.3 L182.8,298.0 L170.4,283.7 L165.4,268.5 L160.7,253.9 L155.1,234.2 L137.2,224.2 L118.6,216.9 L107.3,197.5 L104.7,183.4 L109.3,169.6 L122.0,158.4 L134.7,150.0 Z" />
+          <path d="M142.3,151.3 L157.3,155.7 L171.1,159.5 L170.1,169.0 L179.7,177.4 L191.7,176.3 L208.4,181.4 L214.1,181.7 L216.8,191.0 L225.5,209.4 L240.2,225.9 L259.9,224.9 L252.5,242.0 L236.1,255.8 L233.4,271.8 L219.5,285.3 L214.5,292.7 L198.5,298.5 L188.4,297.4 L183.5,295.4 L171.4,282.6 L166.5,268.7 L161.8,255.0 L156.4,236.4 L138.8,226.3 L120.7,218.6 L109.6,199.4 L107.0,185.7 L111.6,172.6 L124.0,162.3 L136.4,154.5 Z" />
           <!-- Madagascar -->
-          <path d="M255.7,271.7 L257.4,276.8 L247.8,291.3 L241.2,292.4 L242.2,284.0 L249.6,277.1 Z" />
+          <path d="M255.0,272.1 L256.7,276.7 L247.2,289.9 L240.8,291.0 L241.7,283.5 L249.0,277.2 Z" />
           <!-- Europe, Russia, Middle East, India, and Asia -->
-          <path d="M140.7,146.0 L136.8,140.8 L143.2,126.6 L155.0,131.2 L156.4,117.7 L167.5,115.8 L179.9,112.9 L186.5,103.7 L183.2,111.2 L195.0,113.9 L205.9,103.0 L209.0,89.0 L198.6,100.2 L187.9,109.8 L188.2,99.6 L182.8,95.3 L194.0,87.3 L211.1,77.8 L217.1,80.5 L225.0,87.2 L238.6,80.8 L247.0,68.5 L252.6,52.0 L263.9,45.8 L266.2,36.0 L265.3,27.1 L279.3,29.0 L295.7,36.2 L304.5,52.7 L328.9,70.9 L342.6,86.8 L338.2,88.2 L334.4,89.8 L342.3,99.2 L348.4,103.1 L355.9,130.8 L353.1,145.7 L361.0,159.9 L358.2,171.1 L352.5,169.3 L356.5,183.0 L359.3,189.6 L352.7,184.1 L346.2,168.2 L335.7,162.4 L330.4,168.3 L322.2,190.4 L319.9,210.1 L310.8,197.9 L297.1,184.6 L290.5,179.9 L271.4,185.0 L249.9,178.0 L254.7,185.8 L269.8,189.3 L277.7,191.2 L264.0,209.6 L243.6,221.5 L238.3,214.3 L229.2,199.9 L219.1,184.8 L219.3,180.9 L217.8,176.4 L220.7,169.7 L221.7,161.8 L207.0,162.2 L201.9,153.9 L207.8,150.4 L195.9,150.6 L193.7,159.5 L189.1,149.6 L181.1,134.6 L186.3,149.0 L180.5,154.0 L172.3,135.2 L165.3,136.2 L158.7,138.7 L147.6,146.5 Z" />
+          <path d="M142.3,150.8 L138.4,145.6 L144.8,131.7 L156.3,136.6 L157.7,123.2 L168.6,121.6 L180.7,118.9 L187.2,109.9 L183.9,117.2 L195.5,120.1 L206.1,109.3 L209.2,95.2 L199.0,106.4 L188.5,115.9 L188.8,105.7 L183.6,101.3 L194.5,93.5 L211.3,84.0 L217.1,86.7 L224.9,93.4 L238.2,86.9 L246.5,74.4 L252.0,57.4 L263.0,50.7 L265.2,40.3 L264.4,30.6 L278.1,31.9 L294.2,38.8 L302.8,56.2 L326.8,73.5 L340.2,88.7 L335.8,90.8 L332.1,92.8 L339.8,101.7 L345.8,105.0 L353.2,132.4 L350.4,147.5 L358.2,160.5 L355.4,171.8 L349.9,170.7 L353.7,183.5 L356.5,189.4 L350.0,184.9 L343.6,170.2 L333.4,165.2 L328.2,171.4 L320.2,193.2 L317.9,212.2 L309.0,200.9 L295.6,188.5 L289.1,184.2 L270.3,189.6 L249.3,183.1 L254.0,190.7 L268.8,193.8 L276.5,195.4 L263.1,213.4 L243.2,225.1 L238.0,218.2 L229.0,204.4 L219.1,189.8 L219.3,186.0 L217.8,181.7 L220.6,175.1 L221.6,167.5 L207.2,167.8 L202.3,159.7 L208.0,156.3 L196.4,156.4 L194.2,165.1 L189.8,155.3 L181.9,140.4 L186.9,154.8 L181.2,159.6 L173.3,140.9 L166.4,141.8 L159.9,144.1 L149.0,151.5 Z" />
           <!-- British Isles, Iceland, Japan, Sri Lanka -->
-          <path d="M157.8,113.1 L167.9,114.0 L169.1,103.3 L171.3,95.9 L166.9,96.5 L164.6,106.9 Z" />
-          <path d="M165.0,76.8 L171.1,78.3 L173.3,74.3 L167.5,70.9 L164.4,74.4 Z" />
-          <path d="M347.3,90.6 L341.6,79.1 L336.1,69.5 L328.4,62.6 L321.8,55.6 L326.9,62.4 L339.0,75.6 L344.5,87.3 Z" />
-          <path d="M324.6,204.0 L328.1,206.7 L326.0,211.4 L324.4,208.9 Z" />
+          <path d="M159.0,118.7 L169.0,119.8 L170.1,109.2 L172.3,101.8 L168.0,102.3 L165.7,112.6 Z" />
+          <path d="M166.1,82.3 L172.1,84.0 L174.3,80.0 L168.5,76.4 L165.5,79.9 Z" />
+          <path d="M344.8,92.1 L339.2,80.6 L333.8,70.9 L326.3,64.5 L319.8,57.7 L324.8,64.5 L336.6,77.2 L342.1,89.0 Z" />
+          <path d="M322.5,206.1 L325.9,208.4 L323.9,213.1 L322.3,210.8 Z" />
         </g>
       </g>
 
-      <!-- Ring 4: The End of the Earth (dashed outer purple ring, lightest wash) -->
-      <path id="wash-4" class="fade-part" fill="#EDE7F6" fill-opacity="0.26" fill-rule="evenodd"
-        d="M220,8 A152,152 0 1,0 220,312 A152,152 0 1,0 220,8 Z M220,36 A124,124 0 1,1 220,284 A124,124 0 1,1 220,36 Z" />
-      <circle id="ring-4-dashed" cx="220" cy="160" r="152" fill="none" stroke="#7E68A1" stroke-width="1.8" stroke-dasharray="6.5 4.5" mask="url(#mask-ring-4)" />
+      <!-- Ring 4: End of the Earth (dashed outer sage-green ring, lightest wash) -->
+      <path id="wash-4" class="fade-part" fill="#DCEEE3" fill-opacity="0.24" fill-rule="evenodd"
+        d="M220,9 A149,149 0 1,0 220,307 A149,149 0 1,0 220,9 Z M220,37 A121,121 0 1,1 220,279 A121,121 0 1,1 220,37 Z" />
+      <circle id="ring-4-dashed" cx="220" cy="158" r="149" fill="none" stroke="#7EA38F" stroke-width="1.9" stroke-dasharray="6.5 4.8" mask="url(#mask-ring-4)" />
 
-      <!-- Ring 3: Judea and Samaria (medium-light purple ring) -->
-      <path id="wash-3" class="fade-part" fill="#EDE7F6" fill-opacity="0.44" fill-rule="evenodd"
-        d="M220,36 A124,124 0 1,0 220,284 A124,124 0 1,0 220,36 Z M220,65 A95,95 0 1,1 220,255 A95,95 0 1,1 220,65 Z" />
-      <g id="contour-3" fill="none" stroke="#6E5792" stroke-width="1.65" stroke-linecap="round">
-        <path id="arc-3-left" d="M220,36 A124,124 0 0,0 220,284" />
-        <path id="arc-3-right" d="M220,36 A124,124 0 0,1 220,284" />
+      <!-- Ring 3: Judea & Samaria (pale sage wash) -->
+      <path id="wash-3" class="fade-part" fill="#CFE6D8" fill-opacity="0.42" fill-rule="evenodd"
+        d="M220,37 A121,121 0 1,0 220,279 A121,121 0 1,0 220,37 Z M220,65 A93,93 0 1,1 220,251 A93,93 0 1,1 220,65 Z" />
+      <g id="contour-3" fill="none" stroke="#518F70" stroke-width="1.7" stroke-linecap="round">
+        <path id="arc-3-left" d="M220,37 A121,121 0 0,0 220,279" />
+        <path id="arc-3-right" d="M220,37 A121,121 0 0,1 220,279" />
       </g>
 
-      <!-- Ring 2: Your Jerusalem (Go purple ring) -->
-      <path id="wash-2" class="fade-part" fill="#EDE7F6" fill-opacity="0.62" fill-rule="evenodd"
-        d="M220,65 A95,95 0 1,0 220,255 A95,95 0 1,0 220,65 Z M220,94 A66,66 0 1,1 220,226 A66,66 0 1,1 220,94 Z" />
-      <g id="contour-2" fill="none" stroke="#5F4684" stroke-width="1.8" stroke-linecap="round">
-        <path id="arc-2-left" d="M220,65 A95,95 0 0,0 220,255" />
-        <path id="arc-2-right" d="M220,65 A95,95 0 0,1 220,255" />
+      <!-- Ring 2: Your Jerusalem (soft sage wash) -->
+      <path id="wash-2" class="fade-part" fill="#BBDAC7" fill-opacity="0.54" fill-rule="evenodd"
+        d="M220,65 A93,93 0 1,0 220,251 A93,93 0 1,0 220,65 Z M220,93 A65,65 0 1,1 220,223 A65,65 0 1,1 220,93 Z" />
+      <g id="contour-2" fill="none" stroke="#357A5A" stroke-width="1.8" stroke-linecap="round">
+        <path id="arc-2-left" d="M220,65 A93,93 0 0,0 220,251" />
+        <path id="arc-2-right" d="M220,65 A93,93 0 0,1 220,251" />
       </g>
 
-      <!-- Ring 1: Home and Church (Belong blue ring) -->
-      <path id="wash-1" class="fade-part" fill="#E2EEF6" fill-opacity="0.72" fill-rule="evenodd"
-        d="M220,94 A66,66 0 1,0 220,226 A66,66 0 1,0 220,94 Z M220,120 A40,40 0 1,1 220,200 A40,40 0 1,1 220,120 Z" />
-      <g id="contour-1" fill="none" stroke="#2A5B7C" stroke-width="1.85" stroke-linecap="round">
-        <path id="arc-1-left" d="M220,94 A66,66 0 0,0 220,226" />
-        <path id="arc-1-right" d="M220,94 A66,66 0 0,1 220,226" />
+      <!-- Ring 1: Home & Church (richer sage wash) -->
+      <path id="wash-1" class="fade-part" fill="#9EC8AF" fill-opacity="0.68" fill-rule="evenodd"
+        d="M220,93 A65,65 0 1,0 220,223 A65,65 0 1,0 220,93 Z M220,120 A38,38 0 1,1 220,196 A38,38 0 1,1 220,120 Z" />
+      <g id="contour-1" fill="none" stroke="#236649" stroke-width="1.9" stroke-linecap="round">
+        <path id="arc-1-left" d="M220,93 A65,65 0 0,0 220,223" />
+        <path id="arc-1-right" d="M220,93 A65,65 0 0,1 220,223" />
       </g>
 
-      <!-- Center: You, loved by God (Down gold + thin Up green inner hairline) -->
-      <circle id="wash-0" class="fade-part" cx="220" cy="160" r="40" fill="#FCF2D6" fill-opacity="0.86" />
-      <g id="contour-0-green" fill="none" stroke="#1F684A" stroke-width="1.2" stroke-linecap="round">
-        <path id="arc-0g-left" d="M220,123 A37,37 0 0,0 220,197" />
-        <path id="arc-0g-right" d="M220,123 A37,37 0 0,1 220,197" />
+      <!-- Center: You, loved by God (Deep Forest Green bullseye matching reference palette) -->
+      <circle id="wash-0" class="fade-part" cx="220" cy="158" r="38" fill="#1F684A" fill-opacity="0.96" />
+      <g id="contour-0" fill="none" stroke="#164E37" stroke-width="2" stroke-linecap="round">
+        <path id="arc-0-left" d="M220,120 A38,38 0 0,0 220,196" />
+        <path id="arc-0-right" d="M220,120 A38,38 0 0,1 220,196" />
       </g>
-      <g id="contour-0" fill="none" stroke="#A8760A" stroke-width="2" stroke-linecap="round">
-        <path id="arc-0-left" d="M220,120 A40,40 0 0,0 220,200" />
-        <path id="arc-0-right" d="M220,120 A40,40 0 0,1 220,200" />
+
+      <!-- Outward diagonal arrows radiating up-left and up-right from the center -->
+      <g id="outward-arrows" class="fade-part" fill="#2A6B4F" stroke="#2A6B4F" stroke-linecap="round" stroke-linejoin="round">
+        <line id="arrow-left-shaft" x1="196" y1="134" x2="174" y2="112" stroke-width="2.2" />
+        <polygon id="arrow-left-head" points="0,0 10.5,3 3,10.5" stroke="none" transform="translate(174,112)" />
+        <line id="arrow-right-shaft" x1="244" y1="134" x2="266" y2="112" stroke-width="2.2" />
+        <polygon id="arrow-right-head" points="0,0 -3,10.5 -10.5,3" stroke="none" transform="translate(266,112)" />
       </g>
 
       <!-- Gold dot marking Jerusalem under the center of the circles (Step 5 and Final) -->
       <g id="jerusalem-dot" class="fade-part globe-fade">
-        <circle cx="220" cy="174.9" r="4.6" fill="#A8760A" fill-opacity="0.22" />
-        <circle cx="220" cy="174.9" r="2.9" fill="#A8760A" stroke="#FFFDF8" stroke-width="1.1" />
+        <circle cx="220" cy="180.2" r="5" fill="#E0A526" fill-opacity="0.32" />
+        <circle cx="220" cy="180.2" r="3" fill="#E0A526" stroke="#FFFFFF" stroke-width="1.2" />
       </g>
 
-      <!-- Studio Wash outward double-chevron watermarks (left and right of active ring) -->
-      <g id="chev-1" class="chev-group" fill="none" stroke="#2A5B7C" stroke-linecap="round" stroke-linejoin="round">
-        <polyline points="168,155 163,160 168,165" stroke-width="2.6" opacity="0.55" />
-        <polyline points="174,156 169.5,160 174,164" stroke-width="2.1" opacity="0.26" />
-        <polyline points="272,155 277,160 272,165" stroke-width="2.6" opacity="0.55" />
-        <polyline points="266,156 270.5,160 266,164" stroke-width="2.1" opacity="0.26" />
-      </g>
-      <g id="chev-2" class="chev-group" fill="none" stroke="#5F4684" stroke-linecap="round" stroke-linejoin="round">
-        <polyline points="140,155 135,160 140,165" stroke-width="2.6" opacity="0.55" />
-        <polyline points="146,156 141.5,160 146,164" stroke-width="2.1" opacity="0.26" />
-        <polyline points="300,155 305,160 300,165" stroke-width="2.6" opacity="0.55" />
-        <polyline points="294,156 298.5,160 294,164" stroke-width="2.1" opacity="0.26" />
-      </g>
-      <g id="chev-3" class="chev-group" fill="none" stroke="#5F4684" stroke-linecap="round" stroke-linejoin="round">
-        <polyline points="111,155 106,160 111,165" stroke-width="2.6" opacity="0.55" />
-        <polyline points="117,156 112.5,160 117,164" stroke-width="2.1" opacity="0.26" />
-        <polyline points="329,155 334,160 329,165" stroke-width="2.6" opacity="0.55" />
-        <polyline points="323,156 327.5,160 323,164" stroke-width="2.1" opacity="0.26" />
-      </g>
-      <g id="chev-4" class="chev-group" fill="none" stroke="#5F4684" stroke-linecap="round" stroke-linejoin="round">
-        <polyline points="83,155 78,160 83,165" stroke-width="2.6" opacity="0.55" />
-        <polyline points="89,156 84.5,160 89,164" stroke-width="2.1" opacity="0.26" />
-        <polyline points="357,155 362,160 357,165" stroke-width="2.6" opacity="0.55" />
-        <polyline points="351,156 355.5,160 351,164" stroke-width="2.1" opacity="0.26" />
-      </g>
-
-      <!-- Labels anchored cleanly inside the top of each ring -->
+      <!-- Clean minimal labels at center and stacked neatly toward the bottom of each ring -->
       <g id="lbl-0" class="fade-part" text-anchor="middle">
-        <text class="ring-label ring-label-center" x="220" y="154" fill="#7D5604" stroke="#FCF2D6">You</text>
-        <text class="ring-sub" x="220" y="164.5" stroke="#FCF2D6">loved by God</text>
-        <text class="course-caption course-caption-center" x="220" y="185" stroke="#FCF2D6">Growing Deep</text>
+        <text class="center-you" x="220" y="159">You</text>
+        <text class="center-sub" x="220" y="171">loved by God</text>
       </g>
 
       <g id="lbl-1" class="fade-part" text-anchor="middle">
-        <text class="ring-label" x="220" y="111" fill="#1E435C" stroke="#E8F1F8">Home and Church</text>
-        <text class="course-caption" x="220" y="216" stroke="#E8F1F8">Growing Up</text>
+        <text class="ring-label" x="220" y="212" fill="#164E37" stroke="#BAD9C6">Home &amp; Church</text>
       </g>
 
       <g id="lbl-2" class="fade-part" text-anchor="middle">
-        <text class="ring-label" x="220" y="79" fill="#473366" stroke="#F1ECF8">Your Jerusalem</text>
-        <text class="ring-sub" x="220" y="89.5" stroke="#F1ECF8">work, school, neighborhood</text>
-        <text class="course-caption" x="220" y="244" stroke="#F1ECF8">Growing Out</text>
+        <text class="ring-label" x="220" y="240" fill="#1A543C" stroke="#D2E6DA">Your Jerusalem</text>
       </g>
 
       <g id="lbl-3" class="fade-part" text-anchor="middle">
-        <text class="ring-label" x="220" y="50" fill="#473366" stroke="#F6F3FB">Judea and Samaria</text>
-        <text class="ring-sub" x="220" y="60.5" stroke="#F6F3FB">your region, and people unlike you</text>
+        <text class="ring-label" x="220" y="268" fill="#285843" stroke="#E4F1E9">Judea &amp; Samaria</text>
       </g>
 
       <g id="lbl-4" class="fade-part" text-anchor="middle">
-        <text class="ring-label" x="220" y="22" fill="#473366" stroke="#FFFFFF">The End of the Earth</text>
-        <text class="ring-sub" x="220" y="32" stroke="#FFFFFF">the nations</text>
+        <text class="ring-label" x="220" y="296" fill="#466859" stroke="#F4FAF6">End of the Earth</text>
       </g>
 
-      <!-- Final step: crisp Deep Crimson double-hairline cross at the bullseye (no glow) -->
+      <!-- Final step: crisp Deep Crimson double-hairline cross at the upper bullseye (no glow) -->
       <g id="final-cross" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path id="cross-backing" stroke="#FFFDF8" stroke-width="3.6" opacity="0"
+          d="M218.4,126.5 L221.6,126.5 L221.6,130.3 L225.7,130.3 L225.7,133.2 L221.6,133.2 L221.6,140.2 L218.4,140.2 L218.4,133.2 L214.3,133.2 L214.3,130.3 L218.4,130.3 Z" />
         <path id="cross-outer" stroke="#8B1A2B" stroke-width="2"
-          d="M218.3,126.5 L221.7,126.5 L221.7,130.5 L226.0,130.5 L226.0,133.6 L221.7,133.6 L221.7,140.8 L218.3,140.8 L218.3,133.6 L214.0,133.6 L214.0,130.5 L218.3,130.5 Z" />
+          d="M218.4,126.5 L221.6,126.5 L221.6,130.3 L225.7,130.3 L225.7,133.2 L221.6,133.2 L221.6,140.2 L218.4,140.2 L218.4,133.2 L214.3,133.2 L214.3,130.3 L218.4,130.3 Z" />
         <path id="cross-inner" stroke="#8B1A2B" stroke-width="0.9" opacity="0.45"
-          d="M219.2,127.5 L220.8,127.5 L220.8,131.4 L225.0,131.4 L225.0,132.7 L220.8,132.7 L220.8,139.8 L219.2,139.8 L219.2,132.7 L215.0,132.7 L215.0,131.4 L219.2,131.4 Z" />
+          d="M219.3,127.4 L220.7,127.4 L220.7,131.2 L224.7,131.2 L224.7,132.3 L220.7,132.3 L220.7,139.2 L219.3,139.2 L219.3,132.3 L215.3,132.3 L215.3,131.2 L219.3,131.2 Z" />
       </g>
     </svg>
   </div>
 
   <div class="step-strip" role="group" aria-label="Mission steps">
     <button type="button" class="step-dot active" data-step="0" aria-label="Start: The Great Commission" aria-pressed="true" style="--dot-color: #2C2416;"><span class="step-dot-fill"></span></button>
-    <button type="button" class="step-dot" data-step="1" aria-label="Step 1: You, Loved by God" aria-pressed="false" style="--dot-color: #A8760A;"><span class="step-dot-fill"></span></button>
-    <button type="button" class="step-dot" data-step="2" aria-label="Step 2: Home and Church" aria-pressed="false" style="--dot-color: #2A5B7C;"><span class="step-dot-fill"></span></button>
-    <button type="button" class="step-dot" data-step="3" aria-label="Step 3: Your Jerusalem" aria-pressed="false" style="--dot-color: #5F4684;"><span class="step-dot-fill"></span></button>
-    <button type="button" class="step-dot" data-step="4" aria-label="Step 4: Judea and Samaria" aria-pressed="false" style="--dot-color: #5F4684;"><span class="step-dot-fill"></span></button>
-    <button type="button" class="step-dot" data-step="5" aria-label="Step 5: The End of the Earth" aria-pressed="false" style="--dot-color: #5F4684;"><span class="step-dot-fill"></span></button>
+    <button type="button" class="step-dot" data-step="1" aria-label="Step 1: You, Loved by God" aria-pressed="false" style="--dot-color: #1F684A;"><span class="step-dot-fill"></span></button>
+    <button type="button" class="step-dot" data-step="2" aria-label="Step 2: Home and Church" aria-pressed="false" style="--dot-color: #287053;"><span class="step-dot-fill"></span></button>
+    <button type="button" class="step-dot" data-step="3" aria-label="Step 3: Your Jerusalem" aria-pressed="false" style="--dot-color: #357E5F;"><span class="step-dot-fill"></span></button>
+    <button type="button" class="step-dot" data-step="4" aria-label="Step 4: Judea and Samaria" aria-pressed="false" style="--dot-color: #4A8E6F;"><span class="step-dot-fill"></span></button>
+    <button type="button" class="step-dot" data-step="5" aria-label="Step 5: The End of the Earth" aria-pressed="false" style="--dot-color: #5E987D;"><span class="step-dot-fill"></span></button>
     <button type="button" class="step-dot" data-step="6" aria-label="Step 6: Go and Make Disciples" aria-pressed="false" style="--dot-color: #8B1A2B;"><span class="step-dot-fill"></span></button>
   </div>
 
@@ -546,61 +481,61 @@ button:focus-visible {
       heading: 'You, Loved by God',
       verse: '"We love because he first loved us."',
       ref: '1 John 4:19',
-      note: 'Every circle starts here. Before you go anywhere, you are loved.',
-      accent: '#A8760A',
-      accentDark: '#7D5604',
+      note: 'Every circle starts here in Growing Deep. Before you go anywhere, you are loved.',
+      accent: '#1F684A',
+      accentDark: '#164E37',
       countLabel: 'Step 1 of 6',
       nextLabel: 'Next \u2192',
       title: 'Step 1: You, Loved by God',
-      desc: 'A gold center circle with a thin green inner hairline labeled You, loved by God, and Growing Deep.'
+      desc: 'A deep forest green center circle labeled You, loved by God.'
     },
     {
       heading: 'Home and Church',
       verse: '"So then, as we have opportunity, let us do good to everyone, and especially to those who are of the household of faith."',
       ref: 'Galatians 6:10',
-      note: 'Love reaches first to the people closest to you: your home and your church family.',
-      accent: '#2A5B7C',
-      accentDark: '#1E435C',
+      note: 'Growing Up begins close to home. Love reaches first to your family and your church family.',
+      accent: '#287053',
+      accentDark: '#164E37',
       countLabel: 'Step 2 of 6',
       nextLabel: 'Next \u2192',
       title: 'Step 2: Home and Church',
-      desc: 'A blue ring grows around the gold center, labeled Home and Church and Growing Up, with outward chevrons.'
+      desc: 'A sage green ring grows around the center labeled Home and Church at the bottom, with two arrows reaching upward and outward.'
     },
     {
       heading: 'Your Jerusalem',
       verse: '"You will be my witnesses in Jerusalem"',
       ref: 'Acts 1:8',
-      note: 'Jerusalem was the city where the disciples already lived. Your Jerusalem is the place you already are: work, school, and your neighborhood.',
-      accent: '#5F4684',
-      accentDark: '#473366',
+      note: 'Growing Out begins where you already are: work, school, and your neighborhood.',
+      accent: '#357E5F',
+      accentDark: '#1A543C',
       countLabel: 'Step 3 of 6',
       nextLabel: 'Next \u2192',
       title: 'Step 3: Your Jerusalem',
-      desc: 'A purple ring grows around Home and Church, labeled Your Jerusalem (work, school, neighborhood) and Growing Out.'
+      desc: 'A lighter sage ring expands outward labeled Your Jerusalem, with the two upward arrows extending to its edge.'
     },
     {
       heading: 'Judea and Samaria',
       verse: '"and in all Judea and Samaria"',
       ref: 'Acts 1:8',
       note: 'Judea was the region around them. Samaria was full of people they had learned to avoid. Love keeps going, even across those lines.',
-      accent: '#5F4684',
-      accentDark: '#473366',
+      accent: '#4A8E6F',
+      accentDark: '#235942',
       countLabel: 'Step 4 of 6',
       nextLabel: 'Next \u2192',
       title: 'Step 4: Judea and Samaria',
-      desc: 'A lighter purple ring expands outward, labeled Judea and Samaria: your region, and people unlike you.'
+      desc: 'A softer sage ring expands outward labeled Judea and Samaria, with the two upward arrows reaching further out.'
     },
     {
       heading: 'The End of the Earth',
       verse: '"and to the end of the earth."',
       ref: 'Acts 1:8',
       note: 'The same love reaches every nation. You can pray, give, and go.',
-      accent: '#5F4684',
-      accentDark: '#473366',
+      accent: '#5E987D',
+      accentDark: '#2C5C47',
       countLabel: 'Step 5 of 6',
       nextLabel: 'Next \u2192',
       title: 'Step 5: The End of the Earth',
-      desc: 'A dashed outer ring labeled The End of the Earth (the nations) opens as a faint globe of Europe, Africa, and Asia fades in behind it with a gold dot marking Jerusalem near the center.'
+      desc: 'A dashed outer ring labeled End of the Earth opens as a faint Eastern Hemisphere globe fades in behind it with a gold dot marking Jerusalem beneath the center.'
     },
     {
       heading: 'Go and Make Disciples',
@@ -612,11 +547,16 @@ button:focus-visible {
       countLabel: 'Step 6 of 6',
       nextLabel: 'Start Over',
       title: 'Step 6: Go and Make Disciples',
-      desc: 'All concentric mission circles and the Eastern Hemisphere globe with Jerusalem marked in gold, crowned by a small crimson double-hairline cross at the center bullseye.'
+      desc: 'All concentric forest-green mission circles, upward outward arrows, and the Eastern Hemisphere globe with Jerusalem marked in gold, crowned by a small crimson double-hairline cross at the center.'
     }
   ];
 
-  var CONTOUR_SPEED = 185; // px per second per Studio Wash guide
+  var CONTOUR_SPEED = 185; // px per second
+  var CX = 220;
+  var CY = 158;
+  var DIAG = Math.SQRT1_2;
+  var ARROW_START_R = 34;
+  var ARROW_RADII = [0, 0, 65, 93, 121, 149, 149];
 
   var widget = document.getElementById('widget');
   var svgTitle = document.getElementById('svg-title');
@@ -634,53 +574,49 @@ button:focus-visible {
 
   var globeLayer = document.getElementById('globe-layer');
   var jerusalemDot = document.getElementById('jerusalem-dot');
+  var outwardArrows = document.getElementById('outward-arrows');
+  var arrowLeftShaft = document.getElementById('arrow-left-shaft');
+  var arrowLeftHead = document.getElementById('arrow-left-head');
+  var arrowRightShaft = document.getElementById('arrow-right-shaft');
+  var arrowRightHead = document.getElementById('arrow-right-head');
+  var crossBacking = document.getElementById('cross-backing');
   var crossOuter = document.getElementById('cross-outer');
   var crossInner = document.getElementById('cross-inner');
 
   var RINGS = [
     {
       step: 1,
-      paths: [
-        document.getElementById('arc-0-left'),
-        document.getElementById('arc-0-right'),
-        document.getElementById('arc-0g-left'),
-        document.getElementById('arc-0g-right')
-      ],
+      paths: [document.getElementById('arc-0-left'), document.getElementById('arc-0-right')],
       wash: document.getElementById('wash-0'),
-      label: document.getElementById('lbl-0'),
-      chev: null
+      label: document.getElementById('lbl-0')
     },
     {
       step: 2,
       paths: [document.getElementById('arc-1-left'), document.getElementById('arc-1-right')],
       wash: document.getElementById('wash-1'),
-      label: document.getElementById('lbl-1'),
-      chev: document.getElementById('chev-1')
+      label: document.getElementById('lbl-1')
     },
     {
       step: 3,
       paths: [document.getElementById('arc-2-left'), document.getElementById('arc-2-right')],
       wash: document.getElementById('wash-2'),
-      label: document.getElementById('lbl-2'),
-      chev: document.getElementById('chev-2')
+      label: document.getElementById('lbl-2')
     },
     {
       step: 4,
       paths: [document.getElementById('arc-3-left'), document.getElementById('arc-3-right')],
       wash: document.getElementById('wash-3'),
-      label: document.getElementById('lbl-3'),
-      chev: document.getElementById('chev-3')
+      label: document.getElementById('lbl-3')
     },
     {
       step: 5,
       paths: [document.getElementById('mask-r4-left'), document.getElementById('mask-r4-right')],
       wash: document.getElementById('wash-4'),
-      label: document.getElementById('lbl-4'),
-      chev: document.getElementById('chev-4')
+      label: document.getElementById('lbl-4')
     }
   ];
 
-  var CROSS_PATHS = [crossOuter, crossInner];
+  var CROSS_PATHS = [crossBacking, crossOuter, crossInner];
 
   function pathLen(el) {
     try {
@@ -713,6 +649,31 @@ button:focus-visible {
     }
   }
 
+  function setArrowsRadius(radius) {
+    if (radius <= ARROW_START_R) {
+      outwardArrows.classList.remove('is-visible');
+      return;
+    }
+    var tipD = radius * DIAG;
+    var shaftD = Math.max(ARROW_START_R, radius - 5) * DIAG;
+    var lxTip = (CX - tipD).toFixed(1);
+    var rxTip = (CX + tipD).toFixed(1);
+    var yTip = (CY - tipD).toFixed(1);
+    var lxShaft = (CX - shaftD).toFixed(1);
+    var rxShaft = (CX + shaftD).toFixed(1);
+    var yShaft = (CY - shaftD).toFixed(1);
+
+    arrowLeftShaft.setAttribute('x2', lxShaft);
+    arrowLeftShaft.setAttribute('y2', yShaft);
+    arrowLeftHead.setAttribute('transform', 'translate(' + lxTip + ',' + yTip + ')');
+
+    arrowRightShaft.setAttribute('x2', rxShaft);
+    arrowRightShaft.setAttribute('y2', yShaft);
+    arrowRightHead.setAttribute('transform', 'translate(' + rxTip + ',' + yTip + ')');
+
+    outwardArrows.classList.add('is-visible');
+  }
+
   function setPathProgress(el, len, progress) {
     var clamped = Math.max(0, Math.min(1, progress));
     if (clamped <= 0) {
@@ -722,11 +683,11 @@ button:focus-visible {
     } else if (clamped >= 1) {
       el.style.strokeDasharray = 'none';
       el.style.strokeDashoffset = '0';
-      el.style.opacity = '';
+      el.style.opacity = (el === crossBacking) ? '0.94' : '';
     } else {
       el.style.strokeDasharray = String(len);
       el.style.strokeDashoffset = String((1 - clamped) * len);
-      el.style.opacity = '';
+      el.style.opacity = (el === crossBacking) ? '0.94' : '';
     }
   }
 
@@ -747,13 +708,13 @@ button:focus-visible {
         ring.wash.classList.remove('is-visible');
         ring.label.classList.remove('is-visible');
       }
-      if (ring.chev) {
-        var activeChev = (idx === ring.step && !isAnimating);
-        var softChev = (idx === 6 && ring.step === 5);
-        ring.chev.classList.toggle('is-active', activeChev);
-        ring.chev.classList.toggle('is-soft', softChev);
-      }
     });
+
+    if (animatingStep >= 2 && animatingStep <= 5) {
+      setArrowsRadius(ARROW_RADII[animatingStep - 1]);
+    } else {
+      setArrowsRadius(ARROW_RADII[idx]);
+    }
 
     var showGlobe = idx >= 5 && animatingStep !== 5;
     globeLayer.classList.toggle('is-visible', showGlobe);
@@ -771,6 +732,9 @@ button:focus-visible {
       var ring = RINGS[idx - 1];
       var drawMs = Math.max(420, Math.round((ring.maxLen / CONTOUR_SPEED) * 1000));
       var washTrigger = 0.65;
+      var fromArrowR = idx === 2 ? ARROW_START_R : ARROW_RADII[idx - 1];
+      var toArrowR = ARROW_RADII[idx];
+
       widget.setAttribute('data-step-dur', String(drawMs));
       applyStaticParts(idx, idx);
 
@@ -783,11 +747,13 @@ button:focus-visible {
         for (var i = 0; i < ring.paths.length; i++) {
           setPathProgress(ring.paths[i], ring.lens[i], eased);
         }
+        if (idx >= 2) {
+          setArrowsRadius(fromArrowR + (toArrowR - fromArrowR) * eased);
+        }
         if (!washed && t >= washTrigger) {
           washed = true;
           ring.wash.classList.add('is-visible');
           ring.label.classList.add('is-visible');
-          if (ring.chev) ring.chev.classList.add('is-active');
           if (idx === 5) {
             globeLayer.classList.add('is-visible');
             jerusalemDot.classList.add('is-visible');
@@ -800,6 +766,7 @@ button:focus-visible {
           for (var k = 0; k < ring.paths.length; k++) {
             setPathProgress(ring.paths[k], ring.lens[k], 1);
           }
+          if (idx >= 2) setArrowsRadius(toArrowR);
         }
       }
       activeRaf = requestAnimationFrame(frameRing);
