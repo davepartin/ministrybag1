@@ -22,7 +22,7 @@
   "blocks": [
     {
       "type": "text",
-      "text": "In the last lesson, you saw that worship is a response to God's worth. You have brought God your pain and your praise. Now you bring Him your possessions, along with your calendar and your skills. Generosity begins with receiving what God gives, then learning to use it for His purposes."
+      "text": "In the last lesson, you saw that worship is your whole life reflecting God's glory. You have brought God your pain and your praise. Now you bring Him your possessions, along with your calendar and your skills. Generosity begins with receiving what God gives, then learning to use it for His purposes."
     },
     {
       "type": "image",
@@ -45,7 +45,7 @@
     {
       "type": "parable",
       "title": "Two Small Coins",
-      "text": "Jesus sat across from the temple offering box and watched people give. Many rich people put in large amounts. Then a poor widow came and put in two small copper coins, worth about a penny.<br><br>Jesus called His disciples to notice her. Her gift was small beside the others, but He knew what it cost her. He said she had put in more than those giving from their abundance, because she had given all she had to live on (Mark 12:41-44).<br><br>Jesus saw the woman as well as the coins. The crowd saw almost nothing drop into the box. He saw a woman who trusted God with all she had."
+      "text": "Jesus sat across from the temple offering box and watched people give. Many rich people put in large amounts. Then a poor widow came and put in two small copper coins, worth about a penny.<br><br>Jesus called His disciples to notice her. Her gift was small beside the others, but He knew what it cost her. Then He said, <em>\"Truly, I say to you, this poor widow has put in more than all those who are contributing to the offering box. For they all contributed out of their abundance, but she out of her poverty has put in everything she had, all she had to live on\"</em> (Mark 12:43-44).<br><br>Jesus saw the woman as well as the coins. The crowd saw almost nothing drop into the box. He saw a woman who trusted God with all she had."
     },
     {
       "type": "heading",
@@ -63,7 +63,7 @@
     },
     {
       "type": "text",
-      "text": "Those riches are found in belonging to Jesus: forgiveness, adoption into God's family, and life with Him. This is not a promise that following Him will fill your bank account. He gave Himself to bring you to God, and you cannot buy that gift or repay it. You can receive His grace and let it shape what you do with what He has placed in your hands."
+      "text": "Those riches are found in belonging to Jesus: forgiveness, adoption into God's family, and life with Him. This is not a promise that following Him will fill your bank account. He gave Himself to bring you to God, and you cannot buy that gift or repay it. You can receive His grace and let it shape what you do with what He has placed in your hands. <strong>When you give, you reflect the God who gave first.</strong>"
     },
     {
       "type": "text",
@@ -76,8 +76,8 @@
     },
     {
       "type": "question",
-      "id": "202-07-1",
-      "text": "7.1 - What do you think it means \"to serve\" or to \"be devoted to\" money?",
+      "id": "202-07-heart",
+      "text": "7.1 - How does the way you spend money show where your heart is?",
       "height": "short"
     },
     {
@@ -179,19 +179,11 @@
     },
     {
       "type": "heading",
-      "text": "A Picture You Can Pass On"
-    },
-    {
-      "type": "text",
-      "text": "Remember the three Ts: time, talents, treasure. You can sketch three Ts into a stool and use the picture to explain that your whole life belongs to God. The goal is not equal amounts of giving in each area. It is learning to hold each part of life open to Him."
-    },
-    {
-      "type": "heading",
       "text": "A Next Step with Your Treasure"
     },
     {
       "type": "text",
-      "text": "The three Ts hold the whole picture. For the money you share, the Generosity Ladder can help you name a practical next step."
+      "text": "For the money you share, the Generosity Ladder can help you name a practical next step."
     },
     {
       "type": "box",
@@ -206,20 +198,6 @@
       "type": "question",
       "id": "202-07-4",
       "text": "7.4 - Which rung will you step onto this month, and what first amount or percentage will you give?",
-      "height": "tall"
-    },
-    {
-      "type": "heading",
-      "text": "This Week's Practice"
-    },
-    {
-      "type": "text",
-      "text": "Choose one specific act of generosity with your time, talents, or treasure. Name who it will help and when you will do it. Start small enough to follow through, and offer it as a response to God's grace rather than a way to earn His love."
-    },
-    {
-      "type": "question",
-      "id": "202-07-hand",
-      "text": "7.5 - How would you use the three Ts to explain to a friend that your whole life belongs to God?",
       "height": "tall"
     },
     {
@@ -255,6 +233,20 @@
       "id": "202-07-prayer",
       "text": "What is a prayer request for this week?",
       "height": "short"
+    }
+  ],
+  "retiredQuestions": [
+    {
+      "type": "question",
+      "id": "202-07-1",
+      "text": "7.1 - What do you think it means \"to serve\" or to \"be devoted to\" money?",
+      "height": "short"
+    },
+    {
+      "type": "question",
+      "id": "202-07-hand",
+      "text": "7.5 - How would you use the three Ts to explain to a friend that your whole life belongs to God?",
+      "height": "tall"
     }
   ]
 }
