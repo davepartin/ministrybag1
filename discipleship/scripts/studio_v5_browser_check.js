@@ -16,7 +16,9 @@ function ck(label,value){checks++;assert.ok(value,label)}
 const courses=['201','202','203'],expectedFinal={'201':'The Cross Holds It All','202':'Love in Everyday Life','203':'Make Disciples Where You Are'};
 const data=Object.fromEntries(courses.map(c=>[c,JSON.parse(fs.readFileSync(path.join(ROOT,'data',c+'-01.json'),'utf8'))]));
 const seed=Object.fromEntries(courses.map(c=>['question-'+c+'-'+data[c].blocks.find(b=>b.type==='question').id,'SYN-v5-'+c]));
-const jobs=courses.flatMap(course=>[375,390,1280].flatMap(width=>['reduce','no-preference'].map(motion=>({course,width,motion}))));
+// 203-01 now uses the Great Commission circles (great-commission-203.html), checked by
+// rewrite_203_01_browser_check.js and widget_203_01_commission_browser_check.js.
+const jobs=courses.filter(c=>c!=='203').flatMap(course=>[375,390,1280].flatMap(width=>['reduce','no-preference'].map(motion=>({course,width,motion}))));
 (async()=>{const browser=await chromium.launch({headless:true,...(process.env.GT_CHROMIUM_PATH?{executablePath:process.env.GT_CHROMIUM_PATH}:{channel:'chrome'})});
 async function run({course,width,motion}){const tag=course+'/'+width+'/'+motion;const context=await browser.newContext({viewport:{width,height:844},reducedMotion:motion});try{
  await context.route('**/scripts/account.js',r=>r.fulfill({body:'',contentType:'text/javascript'}));
@@ -59,5 +61,5 @@ async function run({course,width,motion}){const tag=course+'/'+width+'/'+motion;
  ck(tag+' no widget HTTP or page errors',errors.length===0&&httpErrors.length===0);
  console.log('PASS '+tag+' '+num+' states; card '+cardHeight+'px');
  }finally{await context.close()}}
- let cursor=0;await Promise.all([0,1,2].map(async()=>{while(cursor<jobs.length){const j=jobs[cursor++];try{await run(j)}catch(e){failures.push(j.course+'/'+j.width+'/'+j.motion+': '+e.stack);console.error('FAIL '+failures[failures.length-1])}}}));await browser.close();if(failures.length)throw Error(failures.join('\n'));console.log(checks+' Studio Wash integration checks passed across18 cases');
+ let cursor=0;await Promise.all([0,1,2].map(async()=>{while(cursor<jobs.length){const j=jobs[cursor++];try{await run(j)}catch(e){failures.push(j.course+'/'+j.width+'/'+j.motion+': '+e.stack);console.error('FAIL '+failures[failures.length-1])}}}));await browser.close();if(failures.length)throw Error(failures.join('\n'));console.log(checks+' Studio Wash integration checks passed across 12 cases');
 })().catch(e=>{console.error(e);process.exitCode=1});
