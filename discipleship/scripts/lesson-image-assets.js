@@ -806,6 +806,51 @@
             }
         ]
     },
+    "images/203-01-roof-drop-seq-1.jpg": {
+        "width": 1792,
+        "height": 1008,
+        "sourceHash": "86940e675d124b3d2bf7224d8b30792d70da2737a903ce7cfee2f4698e2cf44f",
+        "variants": [
+            {
+                "src": "images/optimized/203-01-roof-drop-seq-1-640.webp",
+                "width": 640
+            },
+            {
+                "src": "images/optimized/203-01-roof-drop-seq-1-1280.webp",
+                "width": 1280
+            }
+        ]
+    },
+    "images/203-01-roof-drop-seq-2.jpg": {
+        "width": 1792,
+        "height": 1008,
+        "sourceHash": "53597af63b0c1216c7caf654c79adbc528f0b10ce2e4acd2d3e9ed401f9445a3",
+        "variants": [
+            {
+                "src": "images/optimized/203-01-roof-drop-seq-2-640.webp",
+                "width": 640
+            },
+            {
+                "src": "images/optimized/203-01-roof-drop-seq-2-1280.webp",
+                "width": 1280
+            }
+        ]
+    },
+    "images/203-01-roof-drop-seq-3.jpg": {
+        "width": 1792,
+        "height": 1008,
+        "sourceHash": "dc12fb5349163be5d5c2062ee8e5f79a5ae188a319fb083dba58ebb01451dafe",
+        "variants": [
+            {
+                "src": "images/optimized/203-01-roof-drop-seq-3-640.webp",
+                "width": 640
+            },
+            {
+                "src": "images/optimized/203-01-roof-drop-seq-3-1280.webp",
+                "width": 1280
+            }
+        ]
+    },
     "images/203-02-bless-logo.png": {
         "width": 1301,
         "height": 539,
