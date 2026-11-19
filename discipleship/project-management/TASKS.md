@@ -1,5 +1,9 @@
 # Running task board
 
+| Task | Status | Owner / date | Scope |
+|---|---|---|---|
+| BRIEF-203-10-UPDATE | DONE | Codex / 2026-11-19 | Save Dave's voice-session direction, approved wording and Gemini widget prompt in a discoverable GitHub handoff note. Documentation only; no lesson/widget implementation or publication. Handoff: reviews/2026-11-19-203-10-update-handoff.md. |
+
 | Task | Status | Owner / branch / date | Scope |
 |---|---|---|---|
 | WIDGET-203-01-COMMISSION | REVIEW | Gemini / gemini/widget-203-01-great-commission / 2026-11-19 | Built standalone Great Commission concentric-circles widget (`widgets/great-commission-203.html`, `552px` at `390px` wide) in forest/sage green palette with crisp black everyday bottom ring labels (`Home & Church`, `Work & School`, `Neighborhood & City`, `The World`), solid outer ring, upward-left and upward-right outward arrows, Acts 1:8 mission explanation in the description card, blue-ocean and green-land Earth globe slowly fading in over 3s after a 1s pause on Step 5, and dark-green multiplying dots growing ring-by-ring every 1s on Step 6, plus Playwright check (`scripts/widget_203_01_commission_browser_check.js`, 241 checks). No lesson JSON, `index.html`, or other scripts edited. Stop at REVIEW for Dave's approval and Claude's 203-01 integration. Evidence: logs/2026-11-19-WIDGET-203-01-COMMISSION-gemini.md. |
