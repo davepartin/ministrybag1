@@ -26,6 +26,21 @@
       "anchor": "story"
     },
     {
+      "type": "image",
+      "imageSequence": [
+        "images/202-06-moses-veil-seq-1.jpg",
+        "images/202-06-moses-veil-seq-1.jpg",
+        "images/202-06-moses-veil-seq-2.jpg"
+      ],
+      "imageSequenceStops": [
+        0,
+        0.42,
+        0.8
+      ],
+      "alt": "Moses coming down Mount Sinai with the stone tablets, his face shining so brightly the whole scene is washed in light, then lowering a veil over his face so the mountain path and the camp below come into view",
+      "touchNext": true
+    },
+    {
       "type": "text",
       "text": "Centuries later, Paul looked back at that veil and saw something better. The glow on Moses' face faded, and he had to cover it. But everyone who belongs to Jesus stands before God with nothing covering their face:"
     },
