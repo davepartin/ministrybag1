@@ -1,5 +1,9 @@
 # Running task board
 
+| Task | Status | Owner / date | Scope |
+|---|---|---|---|
+| BRIEF-203-10-UPDATE | DONE | Codex / 2026-11-19 | Save Dave's voice-session direction, approved wording and Gemini widget prompt in a discoverable GitHub handoff note. Documentation only; no lesson/widget implementation or publication. Handoff: reviews/2026-11-19-203-10-update-handoff.md. |
+
 | Task | Status | Owner / branch / date | Scope |
 |---|---|---|---|
 | FLOW-202-10-BAPTISM-FIRST | DONE | Codex / PR #260 / 2026-11-18 | Dave approved baptism/widget first, then bread-and-cup image immediately above the Bible story. Preserve all newer lesson copy, questions/IDs, widget bytes and image files. Merged PR #260 at b4451a3. Core QA,112 widget,114 integration and45 layout checks passed; preview/live verified. Log: logs/2026-11-18-FLOW-202-10-BAPTISM-FIRST-codex.md. |
