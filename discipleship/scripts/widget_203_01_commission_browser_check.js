@@ -19,9 +19,9 @@ const EXPECTED_HEADINGS = [
   'The Great Commission',
   'You, Loved by God',
   'Home and Church',
-  'Your Jerusalem',
-  'Judea and Samaria',
-  'The End of the Earth',
+  'Work and School',
+  'Neighborhood and City',
+  'The World',
   'Go and Make Disciples'
 ];
 

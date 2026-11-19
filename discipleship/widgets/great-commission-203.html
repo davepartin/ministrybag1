@@ -103,6 +103,12 @@ body {
   opacity: 1;
 }
 
+.gc-svg.globe-active #wash-1 { fill-opacity: 0.20; }
+.gc-svg.globe-active #wash-2 { fill-opacity: 0.13; }
+.gc-svg.globe-active #wash-3 { fill-opacity: 0.09; }
+.gc-svg.globe-active #wash-4 { fill-opacity: 0.05; }
+.gc-svg.globe-active .ring-label { stroke: #EAF5FC; stroke-opacity: 0.92; }
+
 .ring-label {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   font-size: 12.5px;
@@ -266,10 +272,13 @@ button:focus-visible {
 
 @media (prefers-reduced-motion: no-preference) {
   .widget-outer:not(.is-instant) .fade-part {
-    transition: opacity 0.44s ease;
+    transition: opacity 0.44s ease, fill-opacity 0.65s ease;
   }
   .widget-outer:not(.is-instant) .globe-fade {
     transition: opacity 0.65s ease;
+  }
+  .widget-outer:not(.is-instant) .ring-label {
+    transition: stroke 0.55s ease;
   }
   .widget-outer .step-dot-fill {
     transition: background-color 0.22s ease, border-color 0.22s ease, transform 0.22s ease;
@@ -315,9 +324,9 @@ button:focus-visible {
 
       <!-- Inline SVG Eastern Hemisphere Globe centered near Jerusalem (fades in on Step 5) -->
       <g id="globe-layer" class="fade-part globe-fade" clip-path="url(#globe-clip)">
-        <circle cx="220" cy="158" r="147" fill="#F2F6F3" fill-opacity="0.45" />
+        <circle cx="220" cy="158" r="147" fill="#CBE7F8" fill-opacity="0.82" />
         <!-- Subtle spherical latitude and longitude arcs -->
-        <g fill="none" stroke="#4D6A5B" stroke-width="0.7" opacity="0.16">
+        <g fill="none" stroke="#3F7FA8" stroke-width="0.7" opacity="0.22">
           <path d="M109.5,255.0 L115.5,261.1 L122.2,266.8 L129.7,272.1 L137.8,277.0 L146.6,281.5 L156.0,285.3 L165.8,288.7 L176.0,291.5 L186.6,293.7 L197.5,295.3 L208.5,296.2 L219.6,296.6 L230.7,296.3 L241.7,295.4 L252.5,293.8 L263.1,291.7 L273.4,288.9 L283.3,285.6 L292.7,281.8 L301.5,277.4 L309.7,272.6 L317.2,267.3 L324.0,261.5 L330.0,255.5" />
           <path d="M73.0,157.7 L73.5,166.0 L75.1,174.2 L77.9,182.4 L81.7,190.3 L86.6,198.0 L92.4,205.4 L99.3,212.5 L107.1,219.1 L115.7,225.3 L125.1,230.9 L135.3,236.0 L146.1,240.5 L157.4,244.4 L169.2,247.6 L181.5,250.1 L194.0,252.0 L206.7,253.1 L219.5,253.5 L232.3,253.1 L245.0,252.1 L257.6,250.3 L269.8,247.8 L281.7,244.7 L293.1,240.8 L303.9,236.4 L314.1,231.3 L323.6,225.7 L332.3,219.6 L340.1,213.0 L347.0,206.0 L353.0,198.6 L358.0,191.0 L361.9,183.0 L364.7,174.9 L366.4,166.7 L367.0,158.3" />
           <path d="M93.2,94.6 L92.7,101.8 L93.1,109.0 L94.6,116.2 L96.9,123.2 L100.2,130.1 L104.4,136.8 L109.5,143.2 L115.5,149.3 L122.2,155.0 L129.7,160.4 L137.8,165.3 L146.6,169.7 L156.0,173.6 L165.8,176.9 L176.0,179.7 L186.6,181.9 L197.5,183.5 L208.5,184.4 L219.6,184.8 L230.7,184.5 L241.7,183.6 L252.5,182.0 L263.1,179.9 L273.4,177.2 L283.3,173.9 L292.7,170.0 L301.5,165.6 L309.7,160.8 L317.2,155.5 L324.0,149.8 L330.0,143.7 L335.2,137.3 L339.5,130.7 L342.9,123.8 L345.3,116.8 L346.8,109.6 L347.3,102.4 L346.9,95.2 L345.4,88.0 L343.1,81.0 L339.8,74.1 L335.6,67.4 L330.5,61.0" />
@@ -331,7 +340,7 @@ button:focus-visible {
         </g>
 
         <!-- Hand-drawn-feeling simplified landmasses: Africa, Europe, Middle East, Asia, Russia -->
-        <g fill="#4E6B5C" fill-opacity="0.18" stroke="#355244" stroke-opacity="0.30" stroke-width="1.1" stroke-linejoin="round" stroke-linecap="round">
+        <g fill="#7BB48F" fill-opacity="0.62" stroke="#3B7455" stroke-opacity="0.48" stroke-width="1.1" stroke-linejoin="round" stroke-linecap="round">
           <!-- Africa -->
           <path d="M142.3,151.3 L157.3,155.7 L171.1,159.5 L170.1,169.0 L179.7,177.4 L191.7,176.3 L208.4,181.4 L214.1,181.7 L216.8,191.0 L225.5,209.4 L240.2,225.9 L259.9,224.9 L252.5,242.0 L236.1,255.8 L233.4,271.8 L219.5,285.3 L214.5,292.7 L198.5,298.5 L188.4,297.4 L183.5,295.4 L171.4,282.6 L166.5,268.7 L161.8,255.0 L156.4,236.4 L138.8,226.3 L120.7,218.6 L109.6,199.4 L107.0,185.7 L111.6,172.6 L124.0,162.3 L136.4,154.5 Z" />
           <!-- Madagascar -->
@@ -407,15 +416,15 @@ button:focus-visible {
       </g>
 
       <g id="lbl-2" class="fade-part" text-anchor="middle">
-        <text class="ring-label" x="220" y="240" fill="#1A543C" stroke="#D2E6DA">Your Jerusalem</text>
+        <text class="ring-label" x="220" y="240" fill="#1A543C" stroke="#D2E6DA">Work &amp; School</text>
       </g>
 
       <g id="lbl-3" class="fade-part" text-anchor="middle">
-        <text class="ring-label" x="220" y="268" fill="#285843" stroke="#E4F1E9">Judea &amp; Samaria</text>
+        <text class="ring-label" x="220" y="268" fill="#23553F" stroke="#E4F1E9">Neighborhood &amp; City</text>
       </g>
 
       <g id="lbl-4" class="fade-part" text-anchor="middle">
-        <text class="ring-label" x="220" y="296" fill="#466859" stroke="#F4FAF6">End of the Earth</text>
+        <text class="ring-label" x="220" y="296" fill="#2F5D4B" stroke="#F4FAF6">The World</text>
       </g>
 
       <!-- Final step: crisp Deep Crimson double-hairline cross at the upper bullseye (no glow) -->
@@ -434,9 +443,9 @@ button:focus-visible {
     <button type="button" class="step-dot active" data-step="0" aria-label="Start: The Great Commission" aria-pressed="true" style="--dot-color: #2C2416;"><span class="step-dot-fill"></span></button>
     <button type="button" class="step-dot" data-step="1" aria-label="Step 1: You, Loved by God" aria-pressed="false" style="--dot-color: #1F684A;"><span class="step-dot-fill"></span></button>
     <button type="button" class="step-dot" data-step="2" aria-label="Step 2: Home and Church" aria-pressed="false" style="--dot-color: #287053;"><span class="step-dot-fill"></span></button>
-    <button type="button" class="step-dot" data-step="3" aria-label="Step 3: Your Jerusalem" aria-pressed="false" style="--dot-color: #357E5F;"><span class="step-dot-fill"></span></button>
-    <button type="button" class="step-dot" data-step="4" aria-label="Step 4: Judea and Samaria" aria-pressed="false" style="--dot-color: #4A8E6F;"><span class="step-dot-fill"></span></button>
-    <button type="button" class="step-dot" data-step="5" aria-label="Step 5: The End of the Earth" aria-pressed="false" style="--dot-color: #5E987D;"><span class="step-dot-fill"></span></button>
+    <button type="button" class="step-dot" data-step="3" aria-label="Step 3: Work and School" aria-pressed="false" style="--dot-color: #357E5F;"><span class="step-dot-fill"></span></button>
+    <button type="button" class="step-dot" data-step="4" aria-label="Step 4: Neighborhood and City" aria-pressed="false" style="--dot-color: #4A8E6F;"><span class="step-dot-fill"></span></button>
+    <button type="button" class="step-dot" data-step="5" aria-label="Step 5: The World" aria-pressed="false" style="--dot-color: #5E987D;"><span class="step-dot-fill"></span></button>
     <button type="button" class="step-dot" data-step="6" aria-label="Step 6: Go and Make Disciples" aria-pressed="false" style="--dot-color: #8B1A2B;"><span class="step-dot-fill"></span></button>
   </div>
 
@@ -469,7 +478,7 @@ button:focus-visible {
       heading: 'The Great Commission',
       verse: '"All authority in heaven and on earth has been given to me."',
       ref: 'Matthew 28:18',
-      note: 'Before Jesus returned to the Father, He gave His followers one mission and showed them where it would go.',
+      note: 'Before Jesus returned to the Father, He gave His followers one mission and showed how God\'s love moves outward.',
       accent: '#2C2416',
       accentDark: '#2C2416',
       countLabel: 'Ready',
@@ -481,7 +490,7 @@ button:focus-visible {
       heading: 'You, Loved by God',
       verse: '"We love because he first loved us."',
       ref: '1 John 4:19',
-      note: 'Every circle starts here in Growing Deep. Before you go anywhere, you are loved.',
+      note: 'Every circle starts here in Growing Deep. Before God sends you anywhere, He anchors you in His love.',
       accent: '#1F684A',
       accentDark: '#164E37',
       countLabel: 'Step 1 of 6',
@@ -493,7 +502,7 @@ button:focus-visible {
       heading: 'Home and Church',
       verse: '"So then, as we have opportunity, let us do good to everyone, and especially to those who are of the household of faith."',
       ref: 'Galatians 6:10',
-      note: 'Growing Up begins close to home. Love reaches first to your family and your church family.',
+      note: 'Growing Up begins close to home. God shapes His love in your family and church first so it can overflow outward.',
       accent: '#287053',
       accentDark: '#164E37',
       countLabel: 'Step 2 of 6',
@@ -502,40 +511,40 @@ button:focus-visible {
       desc: 'A sage green ring grows around the center labeled Home and Church at the bottom, with two arrows reaching upward and outward.'
     },
     {
-      heading: 'Your Jerusalem',
+      heading: 'Work and School',
       verse: '"You will be my witnesses in Jerusalem"',
       ref: 'Acts 1:8',
-      note: 'Growing Out begins where you already are: work, school, and your neighborhood.',
+      note: 'Growing Out starts in your Jerusalem: the coworkers, classmates, and friends right where God placed you each week.',
       accent: '#357E5F',
       accentDark: '#1A543C',
       countLabel: 'Step 3 of 6',
       nextLabel: 'Next \u2192',
-      title: 'Step 3: Your Jerusalem',
-      desc: 'A lighter sage ring expands outward labeled Your Jerusalem, with the two upward arrows extending to its edge.'
+      title: 'Step 3: Work and School',
+      desc: 'A lighter sage ring expands outward labeled Work and School, with the two upward arrows extending to its edge.'
     },
     {
-      heading: 'Judea and Samaria',
+      heading: 'Neighborhood and City',
       verse: '"and in all Judea and Samaria"',
       ref: 'Acts 1:8',
-      note: 'Judea was the region around them. Samaria was full of people they had learned to avoid. Love keeps going, even across those lines.',
+      note: 'Like Judea and Samaria, God\'s plan pushes love into your neighborhood, your city, and across lines to people unlike you.',
       accent: '#4A8E6F',
       accentDark: '#235942',
       countLabel: 'Step 4 of 6',
       nextLabel: 'Next \u2192',
-      title: 'Step 4: Judea and Samaria',
-      desc: 'A softer sage ring expands outward labeled Judea and Samaria, with the two upward arrows reaching further out.'
+      title: 'Step 4: Neighborhood and City',
+      desc: 'A softer sage ring expands outward labeled Neighborhood and City, with the two upward arrows reaching further out.'
     },
     {
-      heading: 'The End of the Earth',
+      heading: 'The World',
       verse: '"and to the end of the earth."',
       ref: 'Acts 1:8',
-      note: 'The same love reaches every nation. You can pray, give, and go.',
+      note: 'God\'s heart reaches to the end of the earth. The same love that starts in you reaches every nation as you pray, give, and go.',
       accent: '#5E987D',
       accentDark: '#2C5C47',
       countLabel: 'Step 5 of 6',
       nextLabel: 'Next \u2192',
-      title: 'Step 5: The End of the Earth',
-      desc: 'A dashed outer ring labeled End of the Earth opens as a faint Eastern Hemisphere globe fades in behind it with a gold dot marking Jerusalem beneath the center.'
+      title: 'Step 5: The World',
+      desc: 'A dashed outer ring labeled The World opens as a blue-ocean and green-land Eastern Hemisphere globe fades in behind the rings with a gold dot marking Jerusalem beneath the center.'
     },
     {
       heading: 'Go and Make Disciples',
@@ -547,7 +556,7 @@ button:focus-visible {
       countLabel: 'Step 6 of 6',
       nextLabel: 'Start Over',
       title: 'Step 6: Go and Make Disciples',
-      desc: 'All concentric forest-green mission circles, upward outward arrows, and the Eastern Hemisphere globe with Jerusalem marked in gold, crowned by a small crimson double-hairline cross at the center.'
+      desc: 'All concentric forest-green mission circles, upward outward arrows, and the blue-and-green Eastern Hemisphere globe with Jerusalem marked in gold, crowned by a small crimson double-hairline cross at the center.'
     }
   ];
 
@@ -559,6 +568,7 @@ button:focus-visible {
   var ARROW_RADII = [0, 0, 65, 93, 121, 149, 149];
 
   var widget = document.getElementById('widget');
+  var stageSvg = document.getElementById('gc-svg');
   var svgTitle = document.getElementById('svg-title');
   var svgDesc = document.getElementById('svg-desc');
   var cardContent = document.getElementById('card-content');
@@ -719,6 +729,7 @@ button:focus-visible {
     var showGlobe = idx >= 5 && animatingStep !== 5;
     globeLayer.classList.toggle('is-visible', showGlobe);
     jerusalemDot.classList.toggle('is-visible', showGlobe);
+    stageSvg.classList.toggle('globe-active', showGlobe);
 
     var showCross = idx >= 6 && animatingStep !== 6;
     for (var c = 0; c < CROSS_PATHS.length; c++) {
@@ -757,6 +768,7 @@ button:focus-visible {
           if (idx === 5) {
             globeLayer.classList.add('is-visible');
             jerusalemDot.classList.add('is-visible');
+            stageSvg.classList.add('globe-active');
           }
         }
         if (t < 1) {
