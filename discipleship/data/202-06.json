@@ -1,164 +1,139 @@
 {
   "id": "6",
   "title": "Lesson 6: Worship and the Glory of God",
-  "description": "Worship is gladly reflecting back to God the radiance of His worth. Through Paul and Silas singing at midnight, this lesson explores what it means to worship God in spirit and truth, not only on Sunday but with your whole life.",
+  "description": "Moses saw God's glory, worshiped, and came down the mountain with a face that shone. This lesson walks the whole story: created in God's image to reflect His glory, falling short, pursued and saved through Jesus, and now, with unveiled faces, sent to point others to Him.",
   "contents": [
     {
       "label": "Story",
-      "title": "Acts 16:16-34",
+      "title": "Exodus 34:29-35",
       "anchor": "story"
     },
     {
       "label": "Study",
-      "title": "What Worship Is",
+      "title": "Why You Were Made",
       "anchor": "study"
-    },
-    {
-      "label": "Diagram",
-      "title": "Reflecting God's Worth",
-      "anchor": "diagram"
     }
   ],
   "blocks": [
     {
       "type": "text",
-      "text": "In the last lesson, you learned to bring your pain to God and to trust that He is with you in the valley. You trusted Him with your pain, and now you bring Him your praise. Sometimes the most surprising thing that rises out of a valley is a song. This lesson is about worship, and it begins in a prison at midnight."
-    },
-    {
-      "type": "image",
-      "imageSequence": [
-        "images/202-06-paul-silas-seq-1.jpg",
-        "images/202-06-paul-silas-seq-2.jpg",
-        "images/202-06-paul-silas-seq-3.jpg",
-        "images/202-06-paul-silas-seq-4.jpg",
-        "images/202-06-paul-silas-seq-5.jpg"
-      ],
-      "imageSequenceStops": [
-        0,
-        0.16,
-        0.3,
-        0.44,
-        0.58
-      ],
-      "alt": "Paul and Silas pray and sing in a prison as their chains loosen and fall to the floor",
-      "touchNext": true,
-      "anchor": "story"
+      "text": "In the last lesson, you learned to trust God in the hard places. This lesson lifts your eyes. Before you can understand worship, you need to see the One who is worthy of it, and it begins with a man who asked to see God's glory."
     },
     {
       "type": "parable",
-      "title": "Songs at Midnight",
-      "text": "In the city of Philippi, Paul and Silas set a slave girl free from a spirit that had been used to tell fortunes. Her owners saw their income disappear, so they dragged the two men before the city officials. A crowd joined the attack. Paul and Silas were stripped, beaten with rods, and thrown into the inner prison with their feet fastened in the stocks.<br><br>Bruised and bleeding in the dark, they did something no one expected. <em>\"About midnight Paul and Silas were praying and singing hymns to God, and the prisoners were listening to them\"</em> (Acts 16:25).<br><br>Suddenly an earthquake shook the prison. The doors flew open and everyone's chains came loose. The jailer woke, saw the open doors, and drew his sword to kill himself, sure that his prisoners had escaped. Paul shouted, <em>\"Do not harm yourself, for we are all here.\"</em> The jailer rushed in, trembling, and fell down before them. <em>\"Sirs, what must I do to be saved?\"</em> They told him, <em>\"Believe in the Lord Jesus, and you will be saved, you and your household.\"</em><br><br>That same night the jailer washed their wounds, and he and his family were baptized. He set food before them, and he <em>\"rejoiced along with his entire household that he had believed in God\"</em> (Acts 16:34)."
+      "title": "A Face That Shone",
+      "text": "While Moses was on Mount Sinai receiving God's law, the people below grew tired of waiting. They melted their gold into a calf and bowed down to it. Moses pleaded with God for them, and then he asked for something bold:<br><br><em>\"Please show me your glory.\" (Exodus 33:18)</em><br><br>God placed Moses in a cleft of the rock and covered him with His hand while His glory passed by. As He passed, God proclaimed His own name, to people who had just broken His heart:<br><br><em>\"The LORD, the LORD, a God merciful and gracious, slow to anger, and abounding in steadfast love and faithfulness...\" And Moses quickly bowed his head toward the earth and worshiped. (Exodus 34:6, 8)</em><br><br>Then Moses came down the mountain, and something had happened that he did not even know about. <em>\"Moses did not know that the skin of his face shone because he had been talking with God\"</em> (Exodus 34:29). The people saw it and were afraid to come near, so Moses put a veil over his face. Whenever he went back in to speak with the LORD, he took the veil off.<br><br>The light on Moses' face was not his own. It was the reflection of God.",
+      "anchor": "story"
     },
     {
       "type": "text",
-      "text": "The prisoners were listening. Of course they were. They had never seen anything like it: beaten men singing, people in chains praising. Paul and Silas did not worship because their circumstances were good. They worshiped because their God was good. Worship that only happens when things go well declares your comfort. Worship that rises from a dungeon at midnight declares God's worth, and the whole world is listening for it."
+      "text": "Centuries later, Paul looked back at that veil and saw something better. The glow on Moses' face faded, and he had to cover it. But everyone who belongs to Jesus stands before God with nothing covering their face:"
+    },
+    {
+      "type": "verse",
+      "reference": "2 Corinthians 3:18",
+      "text": "And we all, with unveiled face, beholding the glory of the Lord, are being transformed into the same image from one degree of glory to another. For this comes from the Lord who is the Spirit."
+    },
+    {
+      "type": "text",
+      "text": "Moses saw God's glory, bowed in worship, and carried that glory back to the people on his face. <strong>That is the whole story of worship in one picture, and it is your story too.</strong>"
     },
     {
       "type": "question",
-      "id": "201-05-4",
-      "text": "6.1 - What would it look like for you to worship God in a hard place, not because things are good but because He is?",
+      "id": "202-06-awe",
+      "text": "6.1 - What about who God is fills you with the most awe?",
       "height": "tall"
     },
     {
       "type": "heading",
-      "text": "What Worship Actually Is",
+      "text": "What Is God's Glory?"
+    },
+    {
+      "type": "text",
+      "text": "God's glory is the greatness and beauty of who He is, all His perfect qualities shining together: His holiness, power, wisdom, justice, faithfulness, goodness, and love. Creation gives you glimpses of it every day."
+    },
+    {
+      "type": "verse",
+      "reference": "Psalm 19:1",
+      "text": "The heavens declare the glory of God, and the sky above proclaims his handiwork."
+    },
+    {
+      "type": "heading",
+      "text": "Why You Were Made",
       "anchor": "study"
     },
     {
       "type": "text",
-      "text": "Most people think of worship as a style of music, or the part of a church service where someone plays guitar. But that is like saying eating is what happens in a restaurant. It might happen there, but eating is so much larger than that."
+      "text": "The Bible tells one story about God's glory, and you are in it."
     },
     {
       "type": "text",
-      "text": "Put simply, <em>worship is gladly reflecting back to God the radiance of His worth.</em> God is the sun, and you are the mirror. Worship does not start with you. It starts with God's worth, shining on you, and it ends with that worth reflected back to Him with joy."
+      "text": "<strong>Made to reflect Him.</strong> God created people in His own image (Genesis 1:27). The moon has no light of its own, but it shines by reflecting the sun. You were made to reflect God's glory in the same way. God calls His people those <em>\"whom I created for my glory\"</em> (Isaiah 43:7)."
     },
     {
       "type": "text",
-      "text": "Jesus said this to a Samaritan woman at a well, who wanted to argue about which mountain was the right place to worship:"
+      "text": "<strong>Falling short.</strong> But people turned away. At Mount Sinai, Israel <em>\"exchanged the glory of God for the image of an ox that eats grass\"</em> (Psalm 106:20), and every heart does the same in its own way. <em>\"All have sinned and fall short of the glory of God\"</em> (Romans 3:23). The mirror turned away from the light."
+    },
+    {
+      "type": "text",
+      "text": "<strong>Pursued by God.</strong> God did not leave it there. He came after His people, and He sent His Son. Jesus showed the Father's glory perfectly. <em>\"We have seen his glory... full of grace and truth\"</em> (John 1:14). On the night before the cross, He prayed, <em>\"I glorified you on earth, having accomplished the work that you gave me to do\"</em> (John 17:4). At the cross you see all of God's glory at once: a God holy enough to judge sin and loving enough to take that judgment Himself. <strong>The most amazing thing about God is not only how great He is, but that a God this great loves sinners like you.</strong>"
+    },
+    {
+      "type": "text",
+      "text": "<strong>Saved to shine.</strong> You studied this in Growing Deep: you are saved by grace through faith, and <em>\"we are his workmanship, created in Christ Jesus for good works\"</em> (Ephesians 2:10). God saved you to turn you back toward the light, so your life reflects Him again. That is why Jesus could say this:"
     },
     {
       "type": "verse",
-      "reference": "John 4:23-24",
-      "text": "But the hour is coming, and is now here, when the true worshipers will worship the Father in spirit and truth, for the Father is seeking such people to worship him. God is spirit, and those who worship him must worship in spirit and truth."
+      "reference": "Matthew 5:16",
+      "text": "In the same way, let your light shine before others, so that they may see your good works and give glory to your Father who is in heaven."
     },
     {
       "type": "text",
-      "text": "Jesus moved the question from a place to a person. Worship <strong>in spirit</strong> comes from a heart the Holy Spirit has made alive, not from the right mountain or the right ritual. Worship <strong>in truth</strong> sees God as He really is, and Jesus is the truth (John 14:6). In Him the Father is fully seen. Worship that is only emotional without truth becomes manipulation. Worship that is only doctrinal without heart becomes a lecture. God wants both."
-    },
-    {
-      "type": "text",
-      "text": "And notice the most surprising line: <em>the Father is seeking such people.</em> He sought out a Samaritan woman with a broken past. He sought out a jailer in Philippi. He is seeking you. Worship is not you trying to get God's attention. It is your response to a God who came looking for you first."
-    },
-    {
-      "type": "widget",
-      "src": "widgets/mirror-angles.html",
-      "height": "640px",
-      "title": "God Is the Sun. You Are the Mirror.",
-      "anchor": "diagram"
+      "text": "Your good works are not meant to make people admire you. They are meant to make people look up and see your Father."
     },
     {
       "type": "question",
-      "id": "201-05-1",
-      "text": "6.2 - How would you explain to a friend what worship is?",
+      "id": "202-06-reflect",
+      "text": "6.2 - How does knowing you were made to reflect God's glory change the way you see your ordinary life?",
       "height": "tall"
     },
     {
       "type": "heading",
-      "text": "See, Bow, Receive, Go"
+      "text": "Worship Is a Response"
     },
     {
       "type": "text",
-      "text": "Isaiah caught a glimpse of God's worth once. In a vision he saw the Lord, high and lifted up, with the train of His robe filling the temple. Seraphim called out, <em>\"Holy, holy, holy is the LORD of hosts; the whole earth is full of his glory!\"</em> The doorposts shook. Isaiah fell apart: <em>\"Woe is me! For I am lost; for I am a man of unclean lips.\"</em> Then a burning coal from the altar touched his lips, and his guilt was taken away. When God asked, <em>\"Whom shall I send, and who will go for us?\"</em> Isaiah answered, <em>\"Here I am! Send me.\"</em> (Isaiah 6:1-8)"
+      "text": "No one had to teach you to jump out of your seat when your team scored the winning point. You saw something amazing, and you responded. Worship works the same way. It is not a feeling you work up. It is your whole-hearted response to seeing how glorious God is."
     },
     {
       "type": "text",
-      "text": "That is the shape of true worship. You see God clearly, you feel your own need, you receive His grace, and you respond with your life. Notice the order: grace comes before the sending. Worship is not a feeling you work up. It is an encounter that changes what you do next."
-    },
-    {
-      "type": "question",
-      "id": "201-05-2",
-      "text": "6.3 - When have you seen God so clearly that it changed what you did next?",
-      "height": "tall"
+      "text": "And God is not looking for grudging praise. He is honored most when He is your greatest joy. <em>\"In your presence there is fullness of joy\"</em> (Psalm 16:11). That is why the church sings together. Many voices, one set of words, and the Holy Spirit uniting very different people around one great God (Colossians 3:16). On the weeks your own faith runs low, other voices carry the song. Those are sweet times. Love them, and show up for them."
     },
     {
       "type": "heading",
-      "text": "Worship Is a Posture, Not an Event"
+      "text": "Until the Whole Earth Sees"
     },
     {
       "type": "text",
-      "text": "After eleven chapters on the grace of God in the gospel, Paul turns to how you live, and he starts with worship:"
+      "text": "You cannot add one ounce of beauty to God. When the Bible tells you to magnify Him, it means helping others see how great He already is."
     },
     {
       "type": "verse",
-      "reference": "Romans 12:1",
-      "text": "I appeal to you therefore, brothers, by the mercies of God, to present your bodies as a living sacrifice, holy and acceptable to God, which is your spiritual worship."
+      "reference": "Psalm 34:3",
+      "text": "Oh, magnify the LORD with me, and let us exalt his name together!"
     },
     {
       "type": "text",
-      "text": "Notice where Paul begins: <em>by the mercies of God.</em> You do not offer your life to earn His mercy. You offer it because you have already received it. Jesus was the one true sacrifice, given once for all. Because He died for you, you can live for Him."
+      "text": "A telescope does not make a star bigger. From far away the star looks like a tiny speck, and a telescope shows it as big as it really is. Many people around you think God is small. Your life of worship lifts Him up so they can see Him as He is."
     },
     {
       "type": "text",
-      "text": "And Paul says worship is presenting your <em>body</em>, your whole self. Your commute. Your workday. Your kitchen table. Your parenting. The way you handle money, anger, time, and relationships. Worship is not a donation of one hour on Sunday. It is a life laid on the altar every hour of every day. When you ask, <em>Is what I am about to do reflecting God's worth, or am I reaching for a counterfeit?</em>, that is worship thinking."
+      "text": "That is why the gospel goes to the nations. As John Piper put it, <strong>\"Missions exists because worship doesn't.\"</strong> There are still people and places that have never seen how glorious God is, and God has promised that <em>\"the earth will be filled with the knowledge of the glory of the LORD as the waters cover the sea\"</em> (Habakkuk 2:14). Worship and mission belong together. You see His glory, and you point others to it."
     },
     {
       "type": "question",
-      "id": "201-05-3",
-      "text": "6.4 - Looking at an ordinary week, what does your life say you value most?",
-      "height": "tall"
-    },
-    {
-      "type": "heading",
-      "text": "Why You Need the Gathered Church"
-    },
-    {
-      "type": "text",
-      "text": "Paul and Silas did not sing alone. Personal worship is real, but God designed worship to be shared with His people gathered together. When your faith runs low, other people's faith helps carry you. Their voices carry the song when you cannot find the words. When you stand in a room full of people who have tasted and seen that the Lord is good, it strengthens what you know but may be struggling to feel. You need the body, and the body needs you."
-    },
-    {
-      "type": "question",
-      "id": "201-05-5",
-      "text": "6.5 - What has the gathered church given you that you could not have gotten on your own?",
+      "id": "202-06-small",
+      "text": "6.3 - Who in your life thinks God is small, and how could your life help them see Him as He really is?",
       "height": "tall"
     },
     {
@@ -167,7 +142,7 @@
     },
     {
       "type": "text",
-      "text": "Pick one ordinary task you do every day, like making coffee, commuting, or cooking dinner. During that task, turn your attention toward God. Speak to Him, listen to a Psalm read aloud, or name one thing about who He is. Not a performance. Not an obligation. Just a turning toward the One who sought you first."
+      "text": "Each day this week, write down one glimpse of God's glory you see, in creation, in Scripture, or in something He has done for you, and thank Him for it. Then go sing with your church family this Sunday."
     },
     {
       "type": "heading",
@@ -175,7 +150,7 @@
     },
     {
       "type": "text",
-      "text": "Paul and Silas sang at midnight, because God was good when their night was not. <strong>Worship is gladly reflecting back to God the radiance of His worth.</strong> It is offered in spirit, from a heart the Holy Spirit has made alive, and in truth, seeing God as He is revealed in Jesus. Like Isaiah, you see God, receive His grace, and answer, \"Here I am.\" And by the mercies of God, your whole life becomes your worship."
+      "text": "Moses asked to see God's glory, worshiped, and came down the mountain with a face that shone. You were made to reflect that glory. Everyone has fallen short of it, but God pursued you and sent Jesus, who glorified the Father and saved you by grace. Now you are created in Christ for good works that point others to your Father. <strong>Worship is seeing how glorious God is and pointing your whole life toward Him,</strong> in song with His people, in your everyday life, and all the way to the nations."
     },
     {
       "type": "text",
@@ -202,6 +177,38 @@
       "id": "201-05-prayer",
       "text": "What is a prayer request for this week?",
       "height": "short"
+    }
+  ],
+  "retiredQuestions": [
+    {
+      "type": "question",
+      "id": "201-05-4",
+      "text": "6.1 - What would it look like for you to worship God in a hard place, not because things are good but because He is?",
+      "height": "tall"
+    },
+    {
+      "type": "question",
+      "id": "201-05-1",
+      "text": "6.2 - How would you explain to a friend what worship is?",
+      "height": "tall"
+    },
+    {
+      "type": "question",
+      "id": "201-05-2",
+      "text": "6.3 - When have you seen God so clearly that it changed what you did next?",
+      "height": "tall"
+    },
+    {
+      "type": "question",
+      "id": "201-05-3",
+      "text": "6.4 - Looking at an ordinary week, what does your life say you value most?",
+      "height": "tall"
+    },
+    {
+      "type": "question",
+      "id": "201-05-5",
+      "text": "6.5 - What has the gathered church given you that you could not have gotten on your own?",
+      "height": "tall"
     }
   ]
 }
