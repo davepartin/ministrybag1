@@ -15,7 +15,7 @@
     },
     {
       "label": "Diagram",
-      "title": "The Great Commission",
+      "title": "Greatest Commandment",
       "anchor": "diagram"
     }
   ],
@@ -85,10 +85,17 @@
     },
     {
       "type": "widget",
-      "src": "widgets/great-commission.html",
-      "title": "The Great Commission",
+      "src": "widgets/great-command-v5-203.html",
+      "title": "The Greatest Commandment: Growing Out",
       "height": "560px",
       "anchor": "diagram"
+    },
+    {
+      "type": "image",
+      "src": "images/203-01-love-moves-out.png",
+      "alt": "Circles moving outward from You, loved by God, to Home, then Work and School, then Neighborhood, then The World, with arrows pointing out.",
+      "width": "80%",
+      "align": "center"
     },
     {
       "type": "text",
