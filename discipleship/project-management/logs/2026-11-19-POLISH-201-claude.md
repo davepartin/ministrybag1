@@ -7,7 +7,7 @@ Branch: claude/201-polish
 Dave asked for a lesson-by-lesson look at a Gemini review of 201, with his principle: no practice for formula's sake (a closing question that already gives a next step is enough), but no lesson without application; add only what makes the lesson clearly better. Claude's test for each suggestion: would a new believer and their mentor clearly miss it? Dave approved each lesson in chat.
 
 Applied:
-- 201-01: "There is one God in three Persons: the Father, the Son, and the Holy Spirit. This is called the Trinity." before "The Father loves you..."; John 14:15 after the boss-or-Father paragraph ("Love comes first, and obedience follows.").
+- 201-01: "There is one God in three Persons: the Father, the Son, and the Holy Spirit. This is called the Trinity." before the Father/Son/Spirit lines; Dave added that the Father is Creator: "The Father, the Creator of the universe, loves you."; John 14:15 after the boss-or-Father paragraph ("Love comes first, and obedience follows.").
 - 201-02: Romans 8:1 inside the proud-or-afraid paragraph (no new callout).
 - 201-03: D adds conviction vs. condemnation (Romans 8:1; John 16:8 not used because it concerns the world); G adds "He also gives you power to tell others about Jesus (Acts 1:8)."
 - 201-04: Psalm 1:3 in the tree paragraph before "Roots before fruit."; Daily Prayers card (same as 101-03) after the practice; "The order matters: mercy first, then offering." (was "Notice the order").
