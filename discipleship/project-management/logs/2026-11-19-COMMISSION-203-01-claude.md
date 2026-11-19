@@ -1,7 +1,7 @@
 # COMMISSION-203-01: the Great Commission circles in 203-01
 Date: 2026-11-19
 Agent: Claude
-Status: REVIEW
+Status: DONE (Dave approved merge of PR #328, 2026-11-19)
 Branch: claude/203-01-commission (built on Gemini's gemini/widget-203-01-great-commission, PR #324, merged with main)
 
 Dave in chat on November 19: use Gemini's approved Great Commission widget (widgets/great-commission-203.html) in 203-01, remove the Greatest Commandment widget and the circles picture, introduce personal ministry well, and rewrite as needed so the lesson connects with the widget without repeating it.
