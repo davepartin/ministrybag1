@@ -2,17 +2,35 @@
   "id": "9",
   "title": "Lesson 9: Church Planting - Missions - Ministry Partners",
   "description": "Priscilla and Aquila had day jobs, an open home, and friends in God's mission. This lesson looks at who God puts beside you in His work, from your own church to the ends of the earth.",
+  "contents": [
+    {
+      "label": "Story",
+      "title": "Acts 18",
+      "anchor": "story"
+    },
+    {
+      "label": "Study",
+      "title": "Your Church, Your City",
+      "anchor": "study"
+    },
+    {
+      "label": "Diagram",
+      "title": "Your Mission Map",
+      "anchor": "diagram"
+    }
+  ],
   "blocks": [
     {
       "type": "text",
-      "text": "In the last lesson, you learned how to disciple others, pouring into a few who will teach others also (2 Timothy 2:2). That is how the mission grows, one life at a time. Back in Lesson 1, you drew your Personal Ministry Map: the people around you at home, at work and school, and in your neighborhood. That was your Jerusalem. Now the map moves out, with your church as home base, to your city, new churches, and the nations, and you will see who is on it with you."
+      "text": "In the last lesson, you learned how to disciple others, pouring into a few who will teach others also (2 Timothy 2:2). That is how the mission grows, one life at a time. Back in Lesson 1, you wrote the names on your map: the people around you at home, at work and school, and in your neighborhood. That was your Jerusalem. Now the map moves out, with your church as home base, to your city, new churches, and the nations, and you will see who is on it with you."
     },
     {
       "type": "image",
       "imageBw": "images/203-09-tentmakers-bw.jpg",
       "imageColor": "images/203-09-tentmakers-color.jpg",
       "alt": "Priscilla, Aquila, and Paul work side by side in an open Corinth shop, stitching and cutting tent cloth as people pass in the street",
-      "touchNext": true
+      "touchNext": true,
+      "anchor": "story"
     },
     {
       "type": "parable",
@@ -40,11 +58,13 @@
     {
       "type": "widget",
       "src": "widgets/mission-map.html",
-      "height": "600px"
+      "height": "600px",
+      "anchor": "diagram"
     },
     {
       "type": "heading",
-      "text": "Your Church and Your City"
+      "text": "Your Church and Your City",
+      "anchor": "study"
     },
     {
       "type": "text",
@@ -129,7 +149,7 @@
     },
     {
       "type": "text",
-      "text": "In the next lesson, you will put it all together, discover how God has shaped you to serve, and find your place on a team in your church."
+      "text": "In the next lesson, the last of Growing Together, you will see what genuine love looks like and look back at all God has done in you."
     },
     {
       "type": "heading",
@@ -152,10 +172,6 @@
       "id": "203-09-prayer",
       "text": "What is a prayer request for this week?",
       "height": "short"
-    },
-    {
-      "type": "text",
-      "text": "This lesson draws on \"Why Plant Churches\" by Tim Keller and <em>Let the Nations Be Glad</em> by John Piper."
     }
   ]
 }

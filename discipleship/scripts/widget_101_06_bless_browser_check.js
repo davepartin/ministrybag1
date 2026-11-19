@@ -47,7 +47,7 @@ function ck(label, ok) { checks++; assert.ok(ok, label); }
     await page.waitForTimeout(250);
     ck(tag + ' one widget in approved position', await frameEl.count() === 1 && await frameEl.evaluate(e => {
      const block = e.closest('.block-widget');
-     return block.previousElementSibling.textContent.endsWith('Tap through below for a first taste.') && block.nextElementSibling.textContent.includes('6.2 -');
+     return block.previousElementSibling.textContent.endsWith('Here is a first taste.') && block.nextElementSibling.textContent.includes('6.2 -');
     }));
     ck(tag + ' approved title and tag', await frame.locator('h1').textContent() === 'BLESS Rhythms' && await frame.locator('.course-tag').textContent() === '101-06');
     ck(tag + ' question count', await lesson.locator('.question-textarea').count() === questions.length);

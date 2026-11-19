@@ -1,26 +1,55 @@
 {
   "id": "1",
-  "title": "Lesson 1: The Great Commission - Your Personal Ministry",
-  "description": "Four friends carried a man to Jesus, and Jesus saw their faith. This lesson opens Growing Out by showing that God grows your faith for the faith of others, and that your personal ministry begins with the names already in your life.",
-  "blocks": [
+  "title": "Lesson 1: Your Personal Ministry",
+  "description": "Four friends carried a man to Jesus, and Jesus saw their faith. This lesson opens Growing Out by showing that the love God poured into you keeps moving out, and that your personal ministry begins with the people already in your life.",
+  "contents": [
     {
-      "type": "heading",
-      "text": "Welcome to Growing Out"
+      "label": "Story",
+      "title": "Mark 2:1-12",
+      "anchor": "story"
     },
+    {
+      "label": "Study",
+      "title": "Loved First, Then Sent",
+      "anchor": "study"
+    },
+    {
+      "label": "Diagram",
+      "title": "Greatest Commandment",
+      "anchor": "diagram"
+    }
+  ],
+  "courseLogo": {
+    "src": "images/203-3circle-logo.png",
+    "alt": "Growing Together Discipleship Series: Starting in Discipleship, Growing Out with the Gospel, and Leading in Discipleship",
+    "width": "60%",
+    "eyebrow": "Course 203",
+    "title": "Welcome to Growing Out"
+  },
+  "blocks": [
     {
       "type": "text",
       "text": "The 200-level path has three connected courses. <strong>Growing Deep</strong> (201) was about loving God. <strong>Growing Up</strong> (202) was about loving the people God has placed beside you. Now in <strong>Growing Out</strong> (203), the branches begin to bear fruit, as that love reaches people who do not yet know Jesus."
     },
     {
       "type": "image",
-      "src": "images/203-3circle-logo.png",
-      "alt": "Growing Together Discipleship Series: Starting in Discipleship, Growing Out with the Gospel, and Leading in Discipleship"
-    },
-    {
-      "type": "widget",
-      "src": "widgets/great-command-v5-203.html",
-      "title": "The Greatest Commandment: Growing Out",
-      "height": "560px"
+      "imageSequence": [
+        "images/203-01-roof-drop-seq-1.jpg",
+        "images/203-01-roof-drop-seq-1.jpg",
+        "images/203-01-roof-drop-seq-2.jpg",
+        "images/203-01-roof-drop-seq-2.jpg",
+        "images/203-01-roof-drop-seq-3.jpg"
+      ],
+      "imageSequenceStops": [
+        0,
+        0.08,
+        0.16,
+        0.24,
+        0.8
+      ],
+      "alt": "Looking down through a hole in the roof as four friends lower a paralyzed man on a mat, first high with the shadow far below, then closer, then landing beside Jesus",
+      "touchNext": true,
+      "anchor": "story"
     },
     {
       "type": "parable",
@@ -29,7 +58,11 @@
     },
     {
       "type": "text",
-      "text": "Read that phrase again: Jesus saw <em>their</em> faith. Mark does not give the four men's names, but they believed Jesus could help, and their faith went to work for a man who could not get there by himself. They could not heal him, and they could not forgive him. What they could do was carry him to the One who can."
+      "text": "Notice that phrase: Jesus saw <em>their</em> faith. Mark does not give the four men's names, but they believed Jesus could help, and their faith went to work for a man who could not get there by himself. They could not heal him, and they could not forgive him. What they could do was carry him to the One who can."
+    },
+    {
+      "type": "text",
+      "text": "Before you carry anyone, remember where you started. You were the one on the mat. You could not get to Jesus in your own strength, and someone carried you: a parent who prayed, a friend who invited you, a church that kept the door open. And Jesus did far more than meet you there. He carried your sin to the cross and said to you what He said to that man: your sins are forgiven. <strong>Carried people become carriers.</strong>"
     },
     {
       "type": "text",
@@ -43,19 +76,34 @@
     },
     {
       "type": "heading",
-      "text": "Think Beyond Your Tree"
+      "text": "Loved First, Then Sent",
+      "anchor": "study"
     },
     {
       "type": "text",
-      "text": "Most of what you have learned so far has been about your own growth: deeper roots, a stronger trunk, wider branches. Those are good gifts, and God is not finished growing you. But notice something about a fruit tree. It does not eat its own fruit. The fruit is for someone else, and inside the fruit is the seed of another tree."
+      "text": "You have already walked most of this road. In Growing Deep, you saw the love that comes down: the Father who runs toward you, the Son who covers you, and the Spirit who guides you. In Growing Up, that love reached your neighbors, your family, and your church family. Growing Out is the same love, still moving, now reaching people who do not yet know Jesus. Step through the picture one more time and watch where it goes."
+    },
+    {
+      "type": "widget",
+      "src": "widgets/great-command-v5-203.html",
+      "title": "The Greatest Commandment: Growing Out",
+      "height": "560px",
+      "anchor": "diagram"
+    },
+    {
+      "type": "image",
+      "src": "images/203-01-love-moves-out.png",
+      "alt": "Circles moving outward from You, loved by God, to Home, then Work and School, then Neighborhood, then The World, with arrows pointing out.",
+      "width": "80%",
+      "align": "center"
     },
     {
       "type": "text",
-      "text": "The same is true of what God is growing in you. Your patience helps someone feel safe. Your generosity lifts someone's burden. Your words help someone understand the good news. So add a new question to your growth: <em>Who is being helped by what God is growing in me?</em> <strong>Think beyond your tree, and pray for the orchard.</strong>"
+      "text": "Love moves out the way this picture does. It starts with the people closest to you and keeps going. You do not start at the edge. You start at your own front door."
     },
     {
       "type": "text",
-      "text": "This is not a way to earn anything. You are already a loved child of God, and a tree does not strain to make fruit. It stays rooted, and the fruit comes. Personal ministry is not a sales pitch or a quota. It is the overflow of a heart Jesus has rescued."
+      "text": "A fruit tree does not eat its own fruit. What God is growing in you is for someone else: your patience helps someone feel safe, your generosity lifts a burden, and your words help someone understand the good news."
     },
     {
       "type": "question",
@@ -86,7 +134,7 @@
     },
     {
       "type": "text",
-      "text": "So where do you go? Just before Jesus returned to the Father, He drew the map."
+      "text": "So where do you go? Just before Jesus returned to the Father, He drew the same circles."
     },
     {
       "type": "verse",
@@ -102,14 +150,8 @@
       "text": "The four friends did not carry a crowd. They carried one man. Loving your neighbor becomes real when your neighbor has a name and a face: the people in your home, the people beside you at work or school, and the people in your neighborhood and everywhere else you keep showing up. <strong>Love has names.</strong>"
     },
     {
-      "type": "widget",
-      "src": "widgets/personal-ministry-map.html",
-      "title": "Your Personal Ministry Map",
-      "height": "600px"
-    },
-    {
       "type": "text",
-      "text": "One question sits underneath your map: <em>Does everyone who knows me know the good news of Jesus?</em> That is not asking whether you have preached at everyone. It is asking whether the people in your regular life have seen enough of your faith and heard enough of your story to know what you believe and why."
+      "text": "One question sits underneath every circle: <em>Does everyone who knows me know the good news of Jesus?</em> That is not asking whether you have preached at everyone. It is asking whether the people in your regular life have seen enough of your faith and heard enough of your story to know what you believe and why."
     },
     {
       "type": "question",
@@ -118,16 +160,39 @@
       "height": "tall"
     },
     {
+      "type": "text",
+      "text": "Now look over your names and ask one more question: <strong>Who's your one?</strong> Choose one person God is placing on your heart, maybe the name you wrote for 1.1. Through the rest of this course you will pray for your one, listen to your one, eat with your one, serve your one, and share your story with your one."
+    },
+    {
+      "type": "heading",
+      "text": "A Life, Not a Project"
+    },
+    {
+      "type": "text",
+      "text": "Here is what personal ministry is not. It is not a program you sign up for, a class you pass, or a project you finish and check off. It is a lifestyle of love, lived on an ordinary Tuesday with the people already in your circles."
+    },
+    {
+      "type": "text",
+      "text": "But a lifestyle still needs something to hold on to. Athletes have drills and musicians have scales. Followers of Jesus have rhythms they can practice until love for their neighbors becomes second nature. That is what the rest of this course gives you: <strong>BLESS</strong>, five simple rhythms for loving your one and the other names on your map."
+    },
+    {
+      "type": "box",
+      "title": "The BLESS Rhythms",
+      "content": [
+        "<strong>Begin with prayer.</strong> Talk to God about people before you talk to people about God.",
+        "<strong>Listen.</strong> Ask good questions and help someone feel known.",
+        "<strong>Eat.</strong> Open your table and share a meal.",
+        "<strong>Serve.</strong> Meet a need you have noticed, expecting nothing back.",
+        "<strong>Story.</strong> Share your story and the story of Jesus."
+      ]
+    },
+    {
       "type": "heading",
       "text": "You Carry, Jesus Heals"
     },
     {
       "type": "text",
       "text": "If this feels like a lot, go back to the roof. The four friends did not heal anyone. Their part was to bring their friend close to Jesus, and what happened next was His part. It is the same for you. You cannot change anyone's heart, and God does not ask you to. He asks you to love people and bring them near. His Spirit lives in you to give you words and open doors, and the results belong to Him. <strong>Your part is to carry. His part is to heal.</strong>"
-    },
-    {
-      "type": "text",
-      "text": "You will not have to guess how. In the next four lessons, you will learn the BLESS rhythms, a simple way to love the people on your map: <strong>B</strong>egin with prayer, <strong>L</strong>isten, <strong>E</strong>at, <strong>S</strong>erve, and <strong>S</strong>tory. Share your life, and share the good news."
     },
     {
       "type": "question",
@@ -141,7 +206,7 @@
     },
     {
       "type": "text",
-      "text": "Choose one name from your map, the person God is placing on your heart, and pray for them by name each day this week. It took four friends to carry one man, so tell one Christian friend the name you chose and ask them to pray with you."
+      "text": "Pray for your one by name each day this week. It took four friends to carry one man, so tell one Christian friend who your one is and ask them to pray with you."
     },
     {
       "type": "heading",
@@ -149,11 +214,11 @@
     },
     {
       "type": "text",
-      "text": "Four friends carried a man to Jesus, and Jesus saw their faith. God grows your faith so He can work through you for the faith of others. That is your personal ministry: loving the people God has placed in your life and helping them know and follow Jesus. He sends ordinary, unfinished people with His authority and His presence, and He starts them with the people they already know. Think beyond your tree, pray for the orchard, and remember that <strong>love has names.</strong>"
+      "text": "Four friends carried a man to Jesus, and Jesus saw their faith. Before you ever carry anyone, you were the one on the mat, and Jesus carried you. Now the love that came down to you keeps moving out: to your home, your work and school, your neighborhood, and the ends of the earth. That is your personal ministry, loving the people God has placed in your life and helping them know and follow Jesus. It is not a project but a lifestyle of love, and BLESS gives you rhythms to practice it. <strong>You carry. Jesus heals.</strong>"
     },
     {
       "type": "text",
-      "text": "In the next lesson, you will begin the BLESS rhythms where every one of them starts, with prayer for the names on your map."
+      "text": "In the next lesson, you will begin the BLESS rhythms where every one of them starts, with prayer for your one, and you will see why you are blessed to be a blessing."
     },
     {
       "type": "heading",

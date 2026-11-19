@@ -144,10 +144,16 @@ body {
 
 @media (prefers-reduced-motion: no-preference) {
   .widget-outer:not(.is-instant) .bible-group,
+  .widget-outer:not(.is-instant) .bible-closed,
+  .widget-outer:not(.is-instant) .bible-open-part,
+  .widget-outer:not(.is-instant) .bible-labels,
   .widget-outer:not(.is-instant) .lane-group,
   .widget-outer:not(.is-instant) .stem-path,
   .widget-outer:not(.is-instant) .finish-frame,
-  .widget-outer:not(.is-instant) .passage-box {
+  .widget-outer:not(.is-instant) .passage-box,
+  .widget-outer:not(.is-instant) .passage-meta,
+  .widget-outer:not(.is-instant) .passage-text,
+  .widget-outer:not(.is-instant) .passage-watermark {
     transition: opacity 0.34s ease;
   }
   .widget-outer:not(.is-instant) .hl {
@@ -170,14 +176,43 @@ body {
 }
 
 .passage-box {
+  position: relative;
+  overflow: hidden;
   background: #FFFFFF;
   border: 1px solid #E6DFD1;
   border-radius: 10px;
   padding: 8px 11px 9px;
 }
 
-.passage-box.is-dim {
-  opacity: 0.62;
+.passage-watermark {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.passage-watermark span {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 23px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: rgba(44, 36, 22, 0.52);
+}
+
+.passage-box.is-dim .passage-meta {
+  opacity: 0.22;
+}
+
+.passage-box.is-dim .passage-text {
+  opacity: 0.14;
+  color: #7C7468;
+}
+
+.passage-box.is-dim .passage-watermark {
+  opacity: 1;
 }
 
 .passage-meta {
@@ -394,7 +429,7 @@ button:focus-visible {
   </div>
 
   <div class="stage">
-    <svg class="rdr-svg" viewBox="0 0 440 166" width="100%" role="img" aria-labelledby="svg-title svg-desc">
+    <svg class="rdr-svg" viewBox="0 0 440 116" width="100%" role="img" aria-labelledby="svg-title svg-desc">
       <title id="svg-title">Read, Discover, Respond</title>
       <desc id="svg-desc">Diagram showing an open Bible labeled Read connected to the Three Discovery Questions: 1 About God, 2 About People, and 3 Respond.</desc>
       <defs>
@@ -413,36 +448,57 @@ button:focus-visible {
       </defs>
 
       <!-- Resting dotted connector ghosts so empty lanes stay grounded -->
-      <path d="M126,87 C142,87 142,34 158,34" fill="none" stroke="#E5DEC9" stroke-width="1.5" stroke-dasharray="3 3" />
-      <path d="M126,87 L158,83" fill="none" stroke="#E5DEC9" stroke-width="1.5" stroke-dasharray="3 3" />
-      <path d="M126,87 C142,87 142,132 158,132" fill="none" stroke="#E5DEC9" stroke-width="1.5" stroke-dasharray="3 3" />
+      <path d="M74,64 C120,64 130,24 158,24" fill="none" stroke="#E5DEC9" stroke-width="1.5" stroke-dasharray="3 3" />
+      <path d="M74,64 L158,58" fill="none" stroke="#E5DEC9" stroke-width="1.5" stroke-dasharray="3 3" />
+      <path d="M74,64 C120,64 130,92 158,92" fill="none" stroke="#E5DEC9" stroke-width="1.5" stroke-dasharray="3 3" />
 
       <!-- Resting ghost outlines for the three lanes -->
-      <rect x="158" y="15" width="264" height="38" rx="10" fill="#FCFAF5" stroke="#E8E1D4" stroke-width="1.3" />
-      <rect x="158" y="64" width="264" height="38" rx="10" fill="#FCFAF5" stroke="#E8E1D4" stroke-width="1.3" />
-      <rect x="158" y="113" width="264" height="38" rx="10" fill="#FCFAF5" stroke="#E8E1D4" stroke-width="1.3" />
+      <rect x="158" y="10.5" width="264" height="27" rx="10" fill="#FCFAF5" stroke="#E8E1D4" stroke-width="1.3" />
+      <rect x="158" y="44.5" width="264" height="27" rx="10" fill="#FCFAF5" stroke="#E8E1D4" stroke-width="1.3" />
+      <rect x="158" y="78.5" width="264" height="27" rx="10" fill="#FCFAF5" stroke="#E8E1D4" stroke-width="1.3" />
 
       <!-- Final double-hairline completion frame -->
       <g class="finish-frame" id="finish-frame" opacity="0">
-        <rect id="finish-outer" x="10" y="6" width="420" height="154" rx="14" fill="none" stroke="#8B1A2B" stroke-width="2.4" stroke-opacity="0.72" />
-        <rect x="14" y="10" width="412" height="146" rx="11" fill="none" stroke="#8B1A2B" stroke-width="1" stroke-opacity="0.34" />
+        <rect id="finish-outer" x="10" y="6" width="420" height="104" rx="14" fill="none" stroke="#8B1A2B" stroke-width="2.4" stroke-opacity="0.72" />
+        <rect x="14" y="10" width="412" height="96" rx="11" fill="none" stroke="#8B1A2B" stroke-width="1" stroke-opacity="0.34" />
       </g>
 
       <!-- Stem connectors (animated via stroke-dashoffset) -->
-      <path id="stem-1" class="stem-path" d="M126,87 C142,87 142,34 158,34" fill="none" stroke="#A8760A" stroke-width="2.4" stroke-linecap="round" />
-      <path id="stem-2" class="stem-path" d="M126,87 L158,83" fill="none" stroke="#2A5B7C" stroke-width="2.4" stroke-linecap="round" />
-      <path id="stem-3" class="stem-path" d="M126,87 C142,87 142,132 158,132" fill="none" stroke="#1F684A" stroke-width="2.4" stroke-linecap="round" />
+      <path id="stem-1" class="stem-path" d="M74,64 C120,64 130,24 158,24" fill="none" stroke="#A8760A" stroke-width="2.4" stroke-linecap="round" />
+      <path id="stem-2" class="stem-path" d="M74,64 L158,58" fill="none" stroke="#2A5B7C" stroke-width="2.4" stroke-linecap="round" />
+      <path id="stem-3" class="stem-path" d="M74,64 C120,64 130,92 158,92" fill="none" stroke="#1F684A" stroke-width="2.4" stroke-linecap="round" />
 
-      <!-- Left Emblem: Open Bible (Read) -->
+      <!-- Left Emblem: Bible (Closed on Ready, Open on Read+) -->
       <g id="bible-group" class="bible-group svg-hit" data-jump="1">
-        <text class="svg-label-caps" x="74" y="27" text-anchor="middle">READ</text>
-        <text class="svg-sub" x="74" y="41" text-anchor="middle">Slowly, twice</text>
-        <g clip-path="url(#clip-bible)">
-          <!-- Cover backplate -->
-          <rect x="22" y="54" width="104" height="72" rx="6" fill="#F2ECE0" stroke="#2C2416" stroke-width="1.8" />
-          <!-- Left and right arched pages -->
-          <path d="M27,57 Q50,51 74,60 L74,121 Q50,113 27,119 Z" fill="#FFFDF8" stroke="#2C2416" stroke-width="1.6" stroke-linejoin="round" />
-          <path d="M121,57 Q98,51 74,60 L74,121 Q98,113 121,119 Z" fill="#FFFDF8" stroke="#2C2416" stroke-width="1.6" stroke-linejoin="round" />
+        <g id="bible-labels" class="bible-labels">
+          <text class="svg-label-caps" x="48" y="23" text-anchor="middle">READ</text>
+          <text class="svg-sub" x="48" y="36" text-anchor="middle">Slowly, twice</text>
+        </g>
+        <!-- Closed cover shares the open book right edge, leaving space to open left. -->
+        <g id="bible-art" transform="translate(11 20.5) scale(0.5)">
+        <g id="bible-closed" class="bible-closed" transform="translate(53 0)">
+          <!-- Back cover edge -->
+          <rect x="27" y="57" width="46" height="68" rx="4" fill="#DDD3C2" stroke="#2C2416" stroke-width="1.4" />
+          <!-- Page fore-edges -->
+          <rect x="66" y="57" width="6" height="66" rx="1.5" fill="#FFFDF8" stroke="#2C2416" stroke-width="1.3" />
+          <line x1="69" y1="60" x2="69" y2="120" stroke="#CBBFA8" stroke-width="1" />
+          <!-- Front cover + spine -->
+          <rect x="24" y="54" width="43" height="70" rx="4.5" fill="#F2ECE0" stroke="#2C2416" stroke-width="1.8" />
+          <rect x="24" y="54" width="8.5" height="70" rx="3" fill="#5C5142" stroke="#2C2416" stroke-width="1.6" />
+          <!-- Cover emblem / title lines -->
+          <line x1="48" y1="74" x2="48" y2="90" stroke="#5C5142" stroke-width="1.8" stroke-linecap="round" />
+          <line x1="42" y1="80" x2="54" y2="80" stroke="#5C5142" stroke-width="1.8" stroke-linecap="round" />
+          <line x1="39" y1="100" x2="57" y2="100" stroke="#B7AC99" stroke-width="1.4" stroke-linecap="round" />
+          <!-- Ribbon bookmark -->
+          <path d="M44,124 L44,135 L47,131.5 L50,135 L50,124 Z" fill="#8B1A2B" />
+        </g>
+        <g id="bible-open-part" class="bible-open-part">
+          <g clip-path="url(#clip-bible)">
+            <!-- Cover backplate -->
+            <rect x="22" y="54" width="104" height="72" rx="6" fill="#F2ECE0" stroke="#2C2416" stroke-width="1.8" />
+            <!-- Left and right arched pages -->
+            <path d="M27,57 Q50,51 74,60 L74,121 Q50,113 27,119 Z" fill="#FFFDF8" stroke="#2C2416" stroke-width="1.6" stroke-linejoin="round" />
+            <path d="M121,57 Q98,51 74,60 L74,121 Q98,113 121,119 Z" fill="#FFFDF8" stroke="#2C2416" stroke-width="1.6" stroke-linejoin="round" />
           <!-- Subtle text lines on pages -->
           <line x1="34" y1="69" x2="65" y2="70" stroke="#A69C8E" stroke-width="1.6" stroke-linecap="round" />
           <line x1="34" y1="78" x2="65" y2="79" stroke="#A69C8E" stroke-width="1.6" stroke-linecap="round" />
@@ -456,14 +512,16 @@ button:focus-visible {
           <line x1="83" y1="97" x2="114" y2="96" stroke="#A69C8E" stroke-width="1.6" stroke-linecap="round" />
           <line x1="83" y1="106" x2="108" y2="105" stroke="#A69C8E" stroke-width="1.6" stroke-linecap="round" />
           <!-- Ribbon marker -->
-          <path d="M71,120 L71,134 L74,130.5 L77,134 L77,120 Z" fill="#8B1A2B" />
+            <path d="M71,120 L71,134 L74,130.5 L77,134 L77,120 Z" fill="#8B1A2B" />
+          </g>
+          <circle cx="126" cy="87" r="3" fill="#2C2416" />
         </g>
-        <circle cx="126" cy="87" r="3" fill="#2C2416" />
+      </g>
       </g>
 
       <!-- Lane 1: About God (Gold) -->
-      <g id="lane-1" class="lane-group svg-hit" data-jump="2" clip-path="url(#clip-lane-1)">
-        <rect x="159" y="15" width="262" height="38" rx="10" fill="#FCF2D6" stroke="#A8760A" stroke-width="1.6" />
+      <g id="lane-1" transform="translate(0 -10)" class="lane-group svg-hit" data-jump="2" clip-path="url(#clip-lane-1)">
+        <rect x="159" y="20.5" width="262" height="27" rx="10" fill="#FCF2D6" stroke="#A8760A" stroke-width="1.6" />
         <circle cx="178" cy="34" r="11" fill="#A8760A" />
         <text class="lane-num" x="178" y="38.5" text-anchor="middle">1</text>
         <text class="lane-title" x="196" y="38.5" fill="#7D5604">About God</text>
@@ -473,8 +531,8 @@ button:focus-visible {
       </g>
 
       <!-- Lane 2: About People (Harbour Blue) -->
-      <g id="lane-2" class="lane-group svg-hit" data-jump="3" clip-path="url(#clip-lane-2)">
-        <rect x="159" y="64" width="262" height="38" rx="10" fill="#E2EEF6" stroke="#2A5B7C" stroke-width="1.6" />
+      <g id="lane-2" transform="translate(0 -25)" class="lane-group svg-hit" data-jump="3" clip-path="url(#clip-lane-2)">
+        <rect x="159" y="69.5" width="262" height="27" rx="10" fill="#E2EEF6" stroke="#2A5B7C" stroke-width="1.6" />
         <circle cx="178" cy="83" r="11" fill="#2A5B7C" />
         <text class="lane-num" x="178" y="87.5" text-anchor="middle">2</text>
         <text class="lane-title" x="196" y="87.5" fill="#1E435C">About People</text>
@@ -484,8 +542,8 @@ button:focus-visible {
       </g>
 
       <!-- Lane 3: Respond (Sage Green) -->
-      <g id="lane-3" class="lane-group svg-hit" data-jump="4" clip-path="url(#clip-lane-3)">
-        <rect x="159" y="113" width="262" height="38" rx="10" fill="#E1F1E9" stroke="#1F684A" stroke-width="1.6" />
+      <g id="lane-3" transform="translate(0 -40)" class="lane-group svg-hit" data-jump="4" clip-path="url(#clip-lane-3)">
+        <rect x="159" y="118.5" width="262" height="27" rx="10" fill="#E1F1E9" stroke="#1F684A" stroke-width="1.6" />
         <circle cx="178" cy="132" r="11" fill="#1F684A" />
         <text class="lane-num" x="178" y="136.5" text-anchor="middle">3</text>
         <text class="lane-title" x="196" y="136.5" fill="#164E37">Respond</text>
@@ -498,6 +556,7 @@ button:focus-visible {
 
   <div class="passage-band">
     <div class="passage-box" id="passage-box">
+      <div class="passage-watermark" id="passage-watermark" aria-hidden="true"><span>John 1:11-12</span></div>
       <div class="passage-meta">
         <span class="passage-kicker">Worked Example</span>
         <span class="passage-ref">John 1:11-12</span>
@@ -545,10 +604,11 @@ button:focus-visible {
       color: '#2C2416',
       kicker: 'Bible Study Rhythm',
       heading: 'Read, Discover, Respond',
-      body: 'Choose a short passage and read it slowly, more than once if you need to. Notice who is speaking and what is happening.',
-      example: 'Then ask three questions to pay attention to God, people, and your response.',
-      desc: 'Overview showing an open Bible labeled Read connected to the Three Discovery Questions: 1 About God, 2 About People, and 3 Respond.',
-      bibleOpacity: 0.92,
+      body: 'Open any passage with three simple movements: read it well, notice what it says, and respond.',
+      example: 'Step through John 1:11-12 to see how the rhythm works.',
+      desc: 'Overview showing a closed Bible on the left and the Three Discovery Questions: 1 About God, 2 About People, and 3 Respond.',
+      closedBible: true,
+      bibleOpacity: 0.96,
       lanes: [0.22, 0.22, 0.22],
       stems: [0, 0, 0],
       frameOpacity: 0,
@@ -561,7 +621,7 @@ button:focus-visible {
       color: '#5C5142',
       kicker: 'Step 1 \u00b7 Read Slowly',
       heading: 'Listen Before Answering',
-      body: 'Read the verses aloud or twice through. Notice who is speaking and what is happening before trying to summarize.',
+      body: 'Read the verses. Notice who is speaking and what is happening before trying to summarize.',
       example: 'John 1:11-12: John tells how Jesus came into His own world and how people responded.',
       desc: 'Open Bible highlighted cleanly in step 1 while the sample passage John 1:11-12 appears unhighlighted for slow reading.',
       bibleOpacity: 1,
@@ -695,6 +755,7 @@ button:focus-visible {
   }
 
   function clearClipSweeps() {
+    clipBibleRect.setAttribute('x', '18');
     clipBibleRect.setAttribute('width', '114');
     clipLaneRects.forEach(function (rect) { rect.setAttribute('width', '268'); });
     stemEls.forEach(function (el) { el.style.strokeDasharray = 'none'; el.style.strokeDashoffset = '0'; });
@@ -753,6 +814,12 @@ button:focus-visible {
     widget.style.setProperty('--step-color', step.color);
 
     bibleGroup.style.opacity = String(step.bibleOpacity);
+    var bibleClosedEl = document.getElementById('bible-closed');
+    var bibleOpenEl = document.getElementById('bible-open-part');
+    var bibleLabelsEl = document.getElementById('bible-labels');
+    if (bibleClosedEl) bibleClosedEl.style.opacity = step.closedBible ? '1' : '0';
+    if (bibleOpenEl) bibleOpenEl.style.opacity = step.closedBible ? '0' : '1';
+    if (bibleLabelsEl) bibleLabelsEl.style.opacity = step.closedBible ? '0.45' : '1';
     laneEls.forEach(function (el, i) { el.style.opacity = String(step.lanes[i]); });
     stemEls.forEach(function (el, i) { el.style.opacity = String(step.stems[i]); });
     finishFrame.style.opacity = String(step.frameOpacity);
@@ -787,6 +854,7 @@ button:focus-visible {
     var totalDur = 0;
 
     if (step.animateBible) {
+      clipBibleRect.setAttribute('x', '132');
       clipBibleRect.setAttribute('width', '0');
       totalDur = 420;
     } else if (step.animateStem || step.animateLane) {
@@ -812,6 +880,8 @@ button:focus-visible {
       var t = Math.min(elapsed / totalDur, 1);
 
       if (step.animateBible) {
+        // Keep the right edge fixed while the reveal opens toward the left.
+        clipBibleRect.setAttribute('x', String(132 - 114 * t));
         clipBibleRect.setAttribute('width', String(114 * t));
       } else if (step.animateStem || step.animateLane) {
         var stemT = Math.min(elapsed / 240, 1);

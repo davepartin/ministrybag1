@@ -88,6 +88,7 @@ Three-circle logo: left circle (blue) is a seedling/pot for Starting (101), midd
 4. Verse line - "Col. 2:6,7 As you received Christ Jesus the Lord, so walk in him"
 5. Pillars - "Rooted - Built-Up - Established" - Raleway 800 weight
 6. Five course cards, equal, color-coded by series
+7. Browse All Lessons and Your Growing Apps are matching stacked home controls. Your Growing Apps opens tools/index.html (tools/), a compact separate page of 3-6 app buttons, starting with Your Daily Prayers at tools/daily-prayers/. Related lessons link to the same app. See project-management/COMPANION-APPS.md.
 
 ### Typography (Google Fonts)
 - **Forum** - home page title
@@ -132,7 +133,7 @@ discipleship/
 - Home screen shows five equal course cards, each color-coded
 - Tapping a course loads its JSON files and takes over the full screen
 - Home page dropdowns, the Tree view, and the lesson TOC read titles and subtitles from `curriculum-toc.csv`
-- Sticky top bar with back navigation, course name (first word highlighted in course accent color), lesson counter, and progress bar
+- Every lesson uses a compact 49px sticky header with Back, zero-padded course/lesson code and lesson title, and Menu. Dave approved the 202-01 pilot and requested this design across every course. The progress strip is removed. Both controls retain 44px touch targets; longer titles truncate on narrow screens with the full title available.
 - "All Lessons" button opens a table of contents with a course header and completion checkmarks
 - Sticky bottom bar with Previous/Next navigation and lesson number
 - Textareas auto-grow as the user types (no placeholder text)
@@ -156,7 +157,7 @@ An optional top-level `retiredQuestions` array preserves the original question o
 - `list` - ordered items with left accent border
 - `box` - warm-toned reflection/activity box with `title` and `content` array
 - `question` - textarea with auto-save (`id`, `text`, optional `height`: "short" or "tall")
-- `image` - in-lesson image block: supports static `src`, B&W-to-color scroll dissolve (`imageBw` + `imageColor`), or multi-frame scroll animation (`imageSequence` + `imageSequenceStops`), with `alt` and optional `touchNext: true` (fuses the bottom of the image onto a following `parable` card) and `frame: true`. See `story-image.md` for full details and live exemplars (`data/201-01.json` and `data/201-03.json`).
+- `image` - in-lesson image block: supports static `src`, B&W-to-color scroll dissolve (`imageBw` + `imageColor`), or multi-frame scroll animation (`imageSequence` + `imageSequenceStops`), with `alt` and optional `imageDissolveOnEntry: true` for a two-layer pair that should fully reveal while centered in view, `touchNext: true` (fuses the bottom of the image onto a following `parable` card) and `frame: true`. See `story-image.md` for full details and live exemplars (`data/201-01.json` and `data/201-03.json`).
 - `commitment` - yes/no radio buttons
 - `bible_reading` - expandable chapter cards with bundled World English Bible text, completion checkbox, notes
 - `stepper` - step-by-step interactive element

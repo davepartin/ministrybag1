@@ -1,11 +1,28 @@
 {
   "id": "3",
   "title": "Lesson 3: BLESS - Listen and Eat - Show Hospitality",
-  "description": "The second and third BLESS rhythms: listening that helps people feel known, and an open table that welcomes strangers the way God welcomed you.",
+  "description": "The second and third BLESS rhythms. Jesus listened and pulled up a chair for you, so you can listen to your one until they feel known and open your table the way God welcomed you.",
+  "contents": [
+    {
+      "label": "Story",
+      "title": "Luke 24:13-35",
+      "anchor": "story"
+    },
+    {
+      "label": "Study",
+      "title": "Jesus Pulled Up a Chair",
+      "anchor": "study"
+    },
+    {
+      "label": "Diagram",
+      "title": "The Open Table",
+      "anchor": "diagram"
+    }
+  ],
   "blocks": [
     {
       "type": "text",
-      "text": "In Lesson 2 you began with prayer and wrote three to five names on your prayer card. The next two rhythms belong together: <strong>L</strong>isten and <strong>E</strong>at. Listening helps someone feel known, and an open table gives listening room to happen. Together they make up much of what the Bible calls hospitality."
+      "text": "In Lesson 2 you saw that you are blessed to be a blessing, and you began to pray for your one. The next two rhythms belong together: <strong>Listen</strong> and <strong>Eat</strong>. Listening helps someone feel known, and a shared table gives listening room to grow into friendship."
     },
     {
       "type": "image",
@@ -22,16 +39,17 @@
         0.5
       ],
       "alt": "Jesus sits at a low table with two travelers at Emmaus and breaks a round loaf of bread in his hands",
-      "touchNext": true
+      "touchNext": true,
+      "anchor": "story"
     },
     {
       "type": "parable",
       "title": "Stay with Us",
-      "text": "On the Sunday Jesus rose, two of His followers walked from Jerusalem toward a village called Emmaus, about seven miles away. They were heartbroken. Their hopes had died on a cross. As they talked, <em>\"Jesus himself drew near and went with them. But their eyes were kept from recognizing him\"</em> (Luke 24:15-16).<br><br>Jesus knew everything that had happened. He had lived it. Yet He started with a question: <em>\"What is this conversation that you are holding with each other as you walk?\"</em> They stood still, looking sad, and Jesus asked again, <em>\"What things?\"</em> (Luke 24:17-19). Then He let them pour out the whole story of their grief and confusion.<br><br>Only after listening did Jesus open the Scriptures to them. When they reached the village, they urged their traveling companion, <em>\"Stay with us, for it is toward evening and the day is now far spent\"</em> (Luke 24:29). So the stranger sat down at their table. <em>\"He took the bread and blessed and broke it and gave it to them. And their eyes were opened, and they recognized him\"</em> (Luke 24:30-31)."
+      "text": "On the Sunday Jesus rose, two of His followers walked toward a village called Emmaus, heartbroken. Their hopes had died on a cross. <em>\"Jesus himself drew near and went with them. But their eyes were kept from recognizing him\"</em> (Luke 24:15-16).<br><br>Jesus knew everything that had happened. He had lived it. Yet He asked, <em>\"What is this conversation that you are holding with each other as you walk?\"</em> and then, <em>\"What things?\"</em> (Luke 24:17-19), and He let them pour out the whole sad story.<br><br>At the village they urged Him, <em>\"Stay with us\"</em> (Luke 24:29). So the stranger sat down at their table. <em>\"He took the bread and blessed and broke it and gave it to them. And their eyes were opened, and they recognized him\"</em> (Luke 24:30-31)."
     },
     {
       "type": "text",
-      "text": "Look at what happened on that road. The risen Lord asked questions and listened to a sad story He already knew. Then a simple meal became the place where two friends recognized Him. Afterward they said, <em>\"Did not our hearts burn within us while he talked to us on the road, while he opened to us the Scriptures?\"</em> (Luke 24:32). <strong>Listening opened their hearts, and the table opened their eyes.</strong>"
+      "text": "The risen Lord asked questions and listened to a story He already knew. Then a simple meal became the place where two friends recognized Him. <strong>Listening opened their hearts, and the table opened their eyes.</strong>"
     },
     {
       "type": "question",
@@ -41,8 +59,25 @@
     },
     {
       "type": "heading",
-      "text": "Listen: Help Someone Feel Known",
-      "icon": "images/bless-2listen.png"
+      "text": "Jesus Pulled Up a Chair for You",
+      "anchor": "study"
+    },
+    {
+      "type": "text",
+      "text": "Before you ever listen to your one or set a place for them, remember who set a place for you. Jesus was famous for the people He ate with, so famous that His critics complained about it."
+    },
+    {
+      "type": "verse",
+      "reference": "Luke 15:1-2",
+      "text": "Now the tax collectors and sinners were all drawing near to hear him. And the Pharisees and the scribes grumbled, saying, \"This man receives sinners and eats with them.\""
+    },
+    {
+      "type": "text",
+      "text": "You were one of those sinners. Paul says you were once a stranger <em>\"having no hope and without God in the world\"</em>, until Christ brought you near by His blood (Ephesians 2:12-13). Jesus listened to you, welcomed you, and pulled out a chair for you at His table. One day you will sit at His feast, the <em>\"marriage supper of the Lamb\"</em> (Revelation 19:9). <strong>Welcomed people learn to welcome others.</strong>"
+    },
+    {
+      "type": "heading",
+      "text": "Listen to Your One"
     },
     {
       "type": "text",
@@ -69,26 +104,20 @@
     {
       "type": "question",
       "id": "203-03-listen",
-      "text": "3.2 - What open question could you ask one name from your prayer card this week?",
+      "text": "3.2 - What open question could you ask your one this week?",
       "height": "tall"
     },
     {
       "type": "heading",
-      "text": "Eat: The Table Jesus Set",
-      "icon": "images/bless-3eat.png"
+      "text": "Eat with Your One"
     },
     {
       "type": "text",
       "text": "Jesus ate His way through the Gospels. He ate with tax collectors and religious leaders, with fishermen and friends, and even with the man who would betray Him. He was at the table with the wrong people so often that His critics called Him <em>\"a friend of tax collectors and sinners\"</em> (Luke 7:34). It described His mission."
     },
     {
-      "type": "verse",
-      "reference": "Luke 15:1-2",
-      "text": "Now the tax collectors and sinners were all drawing near to hear him. And the Pharisees and the scribes grumbled, saying, \"This man receives sinners and eats with them.\""
-    },
-    {
       "type": "text",
-      "text": "The New Testament word for hospitality, <em>philoxenia</em>, means <strong>love of strangers.</strong> It reaches past friends, easy people, and people who will invite you back. <em>\"Do not neglect to show hospitality to strangers\"</em> (Hebrews 13:2). Paul tells believers to <em>\"seek to show hospitality\"</em> (Romans 12:13). Seeking means you go looking for chances to welcome people instead of waiting until the house is clean."
+      "text": "The Bible's word for hospitality means love of strangers. It reaches past friends, easy people, and people who will invite you back. <em>\"Seek to show hospitality\"</em> (Romans 12:13). Seeking means you go looking for chances to welcome people instead of waiting until the house is clean."
     },
     {
       "type": "text",
@@ -100,7 +129,8 @@
       "content": [
         "<strong>Hospitality is</strong> a seat at your table, your full attention, an unhurried conversation, room for people who are not like you, and a simple meal, even takeout on paper plates, shared gladly.",
         "<strong>Hospitality is not</strong> a perfect house, a fancy menu, a performance, a sales pitch, or a dinner saved for the friends who will invite you back."
-      ]
+      ],
+      "anchor": "diagram"
     },
     {
       "type": "question",
@@ -114,34 +144,25 @@
     },
     {
       "type": "text",
-      "text": "Hospitality does not have to start with a dinner party. Invite a coworker to lunch. Ask a neighbor over for coffee. Add one more seat to a meal you were already going to have. And let others host you too. When Jesus sent His disciples out, He told them to stay in the homes that welcomed them, <em>\"eating and drinking what they provide\"</em> (Luke 10:7). Sometimes the best way to open your table is to sit gladly at someone else's."
+      "text": "Opening your table does not have to start with a dinner party. Invite your one to lunch or coffee. Add one more seat to a meal you were already going to have. Let others host you too. Jesus once invited Himself to dinner at the house of a man nobody wanted to eat with: <em>\"Zacchaeus, hurry and come down, for I must stay at your house today\"</em> (Luke 19:5). Sometimes the best way to open a table is to sit gladly at someone else's."
     },
     {
       "type": "text",
-      "text": "Then bring the Listen rhythm to the table. Put your phone away. Ask, ask again, and remember. A meal gives a conversation time to go deeper than a wave across the yard ever could. Opening your table takes some courage, because people may say no or the talk may feel awkward at first. But you do not go alone. The Jesus who drew near on the Emmaus road has promised to be with you always (Matthew 28:20)."
+      "text": "Then bring the Listen rhythm to the table. Put your phone away. Ask, ask again, and remember. A meal gives a conversation time to go deeper than a wave across the yard ever could. People may say no, and the talk may feel awkward at first, but you do not go alone. The Jesus who drew near on the Emmaus road has promised to be with you always (Matthew 28:20)."
     },
     {
       "type": "question",
       "id": "203-03-6",
-      "text": "3.4 - Who will you invite to your table in the next 30 days, and when?",
+      "text": "3.4 - When will you invite your one to your table, or to coffee, in the next 30 days?",
       "height": "tall"
     },
     {
       "type": "heading",
-      "text": "Why You Welcome Strangers"
+      "text": "This Week's Practice"
     },
     {
       "type": "text",
-      "text": "Here is the deepest reason for hospitality: <strong>God welcomed you first.</strong> Paul reminds believers that they were once <em>\"strangers to the covenants of promise, having no hope and without God in the world\"</em>, until Christ brought them near by His blood (Ephesians 2:12-13). You were the outsider, and Jesus pulled out a chair for you. Welcomed people learn to welcome others."
-    },
-    {
-      "type": "verse",
-      "reference": "1 Peter 4:9-10",
-      "text": "Show hospitality to one another without grumbling. As each has received a gift, use it to serve one another, as good stewards of God's varied grace."
-    },
-    {
-      "type": "text",
-      "text": "Every open table is a small picture of a bigger one. Scripture describes the end of the story as a feast: <em>\"Blessed are those who are invited to the marriage supper of the Lamb\"</em> (Revelation 19:9). When you listen well and set an extra place, you give your neighbors a taste of the welcome Jesus offers them. If your door has mostly stayed closed, you do not need guilt, only a beginning. One good question and one empty chair are enough to start."
+      "text": "Ask your one an open question this week, then ask again. Write down what you hear, and pray about it with your prayer card. Before the month is over, invite your one to a simple meal or a cup of coffee, and listen more than you talk."
     },
     {
       "type": "heading",
@@ -149,11 +170,11 @@
     },
     {
       "type": "text",
-      "text": "On the road to Emmaus, Jesus listened to two grieving friends, and they recognized Him at the table. Listening helps people feel known, and the table gives listening room to grow into friendship. Ask, ask again, and remember. Open your table to strangers, not to impress them but to welcome them, because in Christ, God welcomed you first."
+      "text": "On the road to Emmaus, Jesus listened to two grieving friends, and they recognized Him at the table. He has pulled up a chair for you too, so you are blessed to be a blessing. Listen to your one until they feel known: <strong>ask, ask again, and remember</strong>. Then open your table, not to impress them but to welcome them, because in Christ, God welcomed you first."
     },
     {
       "type": "text",
-      "text": "In the next lesson, you will learn the fourth rhythm, Serve, and see how Jesus showed the way when He knelt to wash His disciples' feet."
+      "text": "In the next lesson, you will learn the fourth rhythm, Serve, and see how Jesus knelt to wash His disciples' feet."
     },
     {
       "type": "heading",
@@ -176,10 +197,6 @@
       "id": "203-03-prayer",
       "text": "What is a prayer request for this week?",
       "height": "short"
-    },
-    {
-      "type": "text",
-      "text": "The BLESS rhythms are adapted from <em>BLESS: 5 Everyday Ways to Love Your Neighbor and Change the World</em> by Dave Ferguson and Jon Ferguson. This lesson also draws on writing about hospitality by David Mathis and Matt Chandler."
     }
   ]
 }

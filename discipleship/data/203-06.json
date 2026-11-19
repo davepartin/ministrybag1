@@ -2,6 +2,23 @@
   "id": "6",
   "title": "Lesson 6: Faith at Work and School - Your Second Space",
   "description": "Most of your waking hours happen at work or school, your 2nd Space. Through Daniel's life in Babylon, you will see that your work matters to God and what it looks like to live faithfully in the place where most of your week happens.",
+  "contents": [
+    {
+      "label": "Story",
+      "title": "Daniel 1 and 6",
+      "anchor": "story"
+    },
+    {
+      "label": "Study",
+      "title": "Your Work Matters",
+      "anchor": "study"
+    },
+    {
+      "label": "Diagram",
+      "title": "Your Three Spaces",
+      "anchor": "diagram"
+    }
+  ],
   "blocks": [
     {
       "type": "text",
@@ -12,7 +29,8 @@
       "imageBw": "images/203-06-daniel-window-bw.jpg",
       "imageColor": "images/203-06-daniel-window-color.jpg",
       "alt": "Daniel kneeling in prayer at his open window toward Jerusalem while jealous officials watch from the doorway",
-      "touchNext": true
+      "touchNext": true,
+      "anchor": "story"
     },
     {
       "type": "parable",
@@ -40,11 +58,13 @@
     {
       "type": "widget",
       "src": "widgets/three-spaces.html",
-      "height": "580px"
+      "height": "580px",
+      "anchor": "diagram"
     },
     {
       "type": "heading",
-      "text": "Your Work Matters to God"
+      "text": "Your Work Matters to God",
+      "anchor": "study"
     },
     {
       "type": "text",
@@ -151,10 +171,6 @@
       "id": "203-06-prayer",
       "text": "What is a prayer request for this week?",
       "height": "short"
-    },
-    {
-      "type": "text",
-      "text": "This lesson draws on <em>Every Good Endeavor</em> by Tim Keller and <em>Don't Waste Your Life</em> by John Piper."
     }
   ]
 }

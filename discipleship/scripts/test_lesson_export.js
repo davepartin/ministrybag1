@@ -366,6 +366,48 @@ var serviceField = exporter.collectLessonExportFields('101', serviceLesson).find
 serviceField.retiredItemIndexes.push(0);
 assert('export descriptor does not mutate lesson retirement metadata', !serviceLesson.blocks.find(b => b.type === 'checklist').retiredItemIndexes.includes(0));
 
+// Orphaned 101 IDs keep their original prompts so earlier synthetic answers export.
+var orphaned101 = [
+    { file: '101-02.json', num: 2, id: '2-4', prompt: '2.4 - Why is it important for a Christian to be baptized?' },
+    { file: '101-03.json', num: 3, id: '3-3', prompt: '3.3 - What are some names and attributes of God you can proclaim in your prayers to honor Him?' },
+    { file: '101-04.json', num: 4, id: '4-2', prompt: '4.2 - When is the best time each day for you to spend in God\'s Word? Which format do you prefer for engaging with the Bible such as a physical book, an app, or an audio version?' },
+    { file: '101-05.json', num: 5, id: '5-2', prompt: '5.2 - Imagine a community who loves each other unconditionally, not based on what they do but based on who God says they are. Describe what these relationships would be like.' },
+    { file: '101-06.json', num: 6, id: '6-4', prompt: '6.4 - How can you add praying for the lost to your daily devotional time?' },
+    { file: '101-07.json', num: 7, id: '7-2', prompt: '7.2 - How does knowing that God already loves you change the way you think about repentance?' },
+    { file: '101-07.json', num: 7, id: '7-4', prompt: '7.4 - What areas of weakness do you need to guard against? What is one practical step you can take to "starve the flesh and feed the Spirit"?' },
+    { file: '101-07.json', num: 7, id: '7-5', prompt: '7.5 - What encourages you most about God\'s response when we come back to Him after failure?' }
+];
+orphaned101.forEach(function (item) {
+    var lesson = readLesson(item.file);
+    var retired = lesson.retiredQuestions || [];
+    var runtimeId = 'question-101-' + item.id;
+    var synthetic = 'SYN-orphaned-' + item.id;
+    assert(item.id + ' is reserved in retiredQuestions and not reused as an active field',
+        retired.some(function (q) { return q.type === 'question' && q.id === item.id && q.text === item.prompt; }) &&
+        !lesson.blocks.some(function (b) { return b.id === item.id; }));
+    var exported = exporter.buildExport({
+        courseId: '101',
+        currentLessonNum: item.num,
+        lessons: [{ num: item.num, data: lesson }],
+        responses: { [runtimeId]: synthetic }
+    });
+    assert(item.id + ' earlier synthetic answer exports under its original prompt',
+        exported.body.includes('Earlier saved responses') &&
+        exported.body.includes(item.prompt + '\n' + synthetic) &&
+        exported.includedIds.filter(function (id) { return id === runtimeId; }).length === 1);
+    assert(item.id + ' blank synthetic answer creates no retired placeholder',
+        !exporter.buildExport({
+            courseId: '101',
+            currentLessonNum: item.num,
+            lessons: [{ num: item.num, data: lesson }],
+            responses: { [runtimeId]: '   ' }
+        }).body.includes('Earlier saved responses'));
+});
+assert('101-03 keeps active question ID 3-4 after retiring 3-3',
+    readLesson('101-03.json').blocks.some(function (b) { return b.type === 'question' && b.id === '3-4'; }));
+assert('101-05 keeps active question ID 5-4 after retiring 5-2',
+    readLesson('101-05.json').blocks.some(function (b) { return b.type === 'question' && b.id === '5-4'; }));
+
 if (failed) {
     console.error('\n' + failed + ' check(s) failed, ' + passed + ' passed.');
     process.exit(1);

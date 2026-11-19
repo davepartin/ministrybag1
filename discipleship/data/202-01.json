@@ -1,24 +1,40 @@
 {
   "id": "1",
   "title": "Lesson 1: Loving Your Neighbors",
+  "class": "lesson-compact",
   "description": "Jesus said the second great commandment is like the first: love your neighbor as yourself. Through the Good Samaritan, you will see how Jesus turned the question around, from who counts as my neighbor to whom I will move toward, and how He crossed the road to you first.",
+  "contents": [
+    {
+      "label": "Story",
+      "title": "Luke 10:25-37",
+      "anchor": "story"
+    },
+    {
+      "label": "Study",
+      "title": "Loving Your Neighbor",
+      "anchor": "study"
+    },
+    {
+      "label": "Diagram",
+      "title": "Greatest Commandment",
+      "anchor": "diagram"
+    }
+  ],
+  "courseLogo": {
+    "src": "images/202-3circles-logo.png",
+    "alt": "Growing Together Discipleship Series: Growing Up in Discipleship highlighted.",
+    "width": "60%",
+    "eyebrow": "Course 202",
+    "title": "Welcome to Growing Up"
+  },
   "blocks": [
     {
       "type": "text",
-      "text": "Growing Deep gave you the foundations of life with God: the Father who runs toward you, the Son who covers you, and the Spirit who guides you. Now in <strong>Growing Up</strong>, that love starts to reach the people around you, beginning with the person God has placed right next to you."
+      "text": "Growing Deep gave you the foundations of life with God: the Father who runs toward you, the Son who covers you, and the Spirit who guides you. Now in <strong>Growing Up</strong>, that love starts to reach the people around you."
     },
     {
-      "type": "image",
-      "src": "images/202-3circles-logo.png",
-      "alt": "Growing Together Discipleship Series: Growing Up in Discipleship highlighted.",
-      "width": "100%",
-      "align": "center"
-    },
-    {
-      "type": "widget",
-      "src": "widgets/great-command-v5-202.html",
-      "title": "The Greatest Commandment: Growing Up",
-      "height": "560px"
+      "type": "text",
+      "text": "These ten lessons follow that love into real life. You will start with the people closest to you: your neighbors, your family at home, and your church family. Then you will learn to serve with your gifts, trust God in suffering, worship Him, give freely, honor marriage, and guard your heart. The last lesson ends at a table Jesus set for you. It all begins on a road, with a man who stopped."
     },
     {
       "type": "image",
@@ -41,7 +57,8 @@
         0.64
       ],
       "alt": "A Samaritan kneeling beside a wounded stranger while a priest and a Levite walk away up the road",
-      "touchNext": true
+      "touchNext": true,
+      "anchor": "story"
     },
     {
       "type": "parable",
@@ -60,7 +77,8 @@
     },
     {
       "type": "heading",
-      "text": "The Second Is Like the First"
+      "text": "The Second Is Like the First",
+      "anchor": "study"
     },
     {
       "type": "text",
@@ -70,6 +88,13 @@
       "type": "verse",
       "reference": "Matthew 22:37-39",
       "text": "And he said to him, \"You shall love the Lord your God with all your heart and with all your soul and with all your mind. This is the great and first commandment. And a second is like it: You shall love your neighbor as yourself.\""
+    },
+    {
+      "type": "widget",
+      "src": "widgets/great-command-v5-202.html",
+      "title": "The Greatest Commandment: Growing Up",
+      "height": "560px",
+      "anchor": "diagram"
     },
     {
       "type": "text",
@@ -139,7 +164,7 @@
     },
     {
       "type": "text",
-      "text": "Jesus told this story to teach a proud man how to love, but it also points past itself to Jesus. Before you can love like the Samaritan, you need to see that the Samaritan in the story is Jesus, and the man on the side of the road is you. While you were still bruised by shame, still bleeding from your own choices, still left for dead by sin, Jesus crossed over. He did not pass by or hurry off to more important religious work. He came down the road, knelt in the dust beside you, and bound up the wounds you could not bind up yourself."
+      "text": "Jesus told this story to teach a proud man how to love, but it also points past itself to Jesus. Before you can love like the Samaritan, you need to see that you were once the man on the side of the road, and Jesus did for you what the Samaritan did for him. While you were still bruised by shame, still bleeding from your own choices, still left for dead by sin, Jesus crossed over. He did not pass by or hurry off to more important religious work. He came down the road, knelt in the dust beside you, and bound up the wounds you could not bind up yourself."
     },
     {
       "type": "text",
@@ -170,7 +195,7 @@
     },
     {
       "type": "text",
-      "text": "Then read Luke 10:25-37 slowly, twice. Once as the priest who passes by, asking the Lord for courage to stop. Once as the wounded man on the road, letting it sink in that Jesus has already stopped for you."
+      "text": "Then read Luke 10:25-37 from two places in the story. First as the priest who passes by, asking the Lord for courage to stop. Then as the wounded man on the road, remembering that Jesus has already stopped for you."
     },
     {
       "type": "heading",

@@ -2,10 +2,27 @@
   "id": "6",
   "title": "Lesson 6: Worship and the Glory of God",
   "description": "Worship is gladly reflecting back to God the radiance of His worth. Through Paul and Silas singing at midnight, this lesson explores what it means to worship God in spirit and truth, not only on Sunday but with your whole life.",
+  "contents": [
+    {
+      "label": "Story",
+      "title": "Acts 16:16-34",
+      "anchor": "story"
+    },
+    {
+      "label": "Study",
+      "title": "What Worship Is",
+      "anchor": "study"
+    },
+    {
+      "label": "Diagram",
+      "title": "Reflecting God's Worth",
+      "anchor": "diagram"
+    }
+  ],
   "blocks": [
     {
       "type": "text",
-      "text": "In the last lesson, you learned to bring your pain to God and to trust that He is with you in the valley. Sometimes the most surprising thing that rises out of a valley is a song. This lesson is about worship, and it begins in a prison at midnight."
+      "text": "In the last lesson, you learned to bring your pain to God and to trust that He is with you in the valley. You trusted Him with your pain, and now you bring Him your praise. Sometimes the most surprising thing that rises out of a valley is a song. This lesson is about worship, and it begins in a prison at midnight."
     },
     {
       "type": "image",
@@ -24,7 +41,8 @@
         0.58
       ],
       "alt": "Paul and Silas pray and sing in a prison as their chains loosen and fall to the floor",
-      "touchNext": true
+      "touchNext": true,
+      "anchor": "story"
     },
     {
       "type": "parable",
@@ -33,7 +51,7 @@
     },
     {
       "type": "text",
-      "text": "The prisoners were listening. Of course they were. They had never seen anything like it: beaten men singing, people in chains praising. Paul and Silas did not worship because their circumstances were good. They worshiped because their God was good. Worship that only happens when things go well declares our comfort. Worship that rises from a dungeon at midnight declares God's worth, and the whole world is listening for it."
+      "text": "The prisoners were listening. Of course they were. They had never seen anything like it: beaten men singing, people in chains praising. Paul and Silas did not worship because their circumstances were good. They worshiped because their God was good. Worship that only happens when things go well declares your comfort. Worship that rises from a dungeon at midnight declares God's worth, and the whole world is listening for it."
     },
     {
       "type": "question",
@@ -43,7 +61,8 @@
     },
     {
       "type": "heading",
-      "text": "What Worship Actually Is"
+      "text": "What Worship Actually Is",
+      "anchor": "study"
     },
     {
       "type": "text",
@@ -74,12 +93,13 @@
       "type": "widget",
       "src": "widgets/mirror-angles.html",
       "height": "640px",
-      "title": "God Is the Sun. You Are the Mirror."
+      "title": "God Is the Sun. You Are the Mirror.",
+      "anchor": "diagram"
     },
     {
       "type": "question",
       "id": "201-05-1",
-      "text": "6.2 - In your own words, what is worship?",
+      "text": "6.2 - How would you explain to a friend what worship is?",
       "height": "tall"
     },
     {
@@ -88,7 +108,7 @@
     },
     {
       "type": "text",
-      "text": "Isaiah caught a glimpse of God's worth once. In a vision he saw the Lord, high and lifted up, with the train of His robe filling the temple. Seraphim called out, <em>\"Holy, holy, holy is the LORD of hosts; the whole earth is full of his glory!\"</em> The doorposts shook. Isaiah fell apart: <em>\"Woe is me! For I am lost; for I am a man of unclean lips.\"</em> Then a burning coal from the altar touched his lips, and his guilt was taken away. When God asked, <em>\"Whom shall I send, and who will go for us?\"</em> Isaiah answered, <em>\"Here I am! Send me.\"</em>"
+      "text": "Isaiah caught a glimpse of God's worth once. In a vision he saw the Lord, high and lifted up, with the train of His robe filling the temple. Seraphim called out, <em>\"Holy, holy, holy is the LORD of hosts; the whole earth is full of his glory!\"</em> The doorposts shook. Isaiah fell apart: <em>\"Woe is me! For I am lost; for I am a man of unclean lips.\"</em> Then a burning coal from the altar touched his lips, and his guilt was taken away. When God asked, <em>\"Whom shall I send, and who will go for us?\"</em> Isaiah answered, <em>\"Here I am! Send me.\"</em> (Isaiah 6:1-8)"
     },
     {
       "type": "text",
@@ -106,7 +126,7 @@
     },
     {
       "type": "text",
-      "text": "After eleven chapters on the grace of God in the gospel, Paul turns to how we live, and he starts with worship:"
+      "text": "After eleven chapters on the grace of God in the gospel, Paul turns to how you live, and he starts with worship:"
     },
     {
       "type": "verse",
@@ -133,16 +153,7 @@
     },
     {
       "type": "text",
-      "text": "Paul and Silas did not sing alone. Personal worship is real, but God designed worship to be shared with His people gathered together."
-    },
-    {
-      "type": "verse",
-      "reference": "Hebrews 10:24-25",
-      "text": "And let us consider how to stir up one another to love and good works, not neglecting to meet together, as is the habit of some, but encouraging one another, and all the more as you see the Day drawing near."
-    },
-    {
-      "type": "text",
-      "text": "When your faith runs low, other people's faith helps carry you. Their voices carry the song when you cannot find the words. When you stand in a room full of people who have tasted and seen that the Lord is good, it strengthens what you know but may be struggling to feel. You need the body, and the body needs you."
+      "text": "Paul and Silas did not sing alone. Personal worship is real, but God designed worship to be shared with His people gathered together. When your faith runs low, other people's faith helps carry you. Their voices carry the song when you cannot find the words. When you stand in a room full of people who have tasted and seen that the Lord is good, it strengthens what you know but may be struggling to feel. You need the body, and the body needs you."
     },
     {
       "type": "question",
@@ -157,10 +168,6 @@
     {
       "type": "text",
       "text": "Pick one ordinary task you do every day, like making coffee, commuting, or cooking dinner. During that task, turn your attention toward God. Speak to Him, listen to a Psalm read aloud, or name one thing about who He is. Not a performance. Not an obligation. Just a turning toward the One who sought you first."
-    },
-    {
-      "type": "text",
-      "text": "Also this week, read Psalm 95 and Psalm 96 out loud. Notice the words they use for God's character, and let one of them become your song for the week."
     },
     {
       "type": "heading",
@@ -195,10 +202,6 @@
       "id": "201-05-prayer",
       "text": "What is a prayer request for this week?",
       "height": "short"
-    },
-    {
-      "type": "text",
-      "text": "The definition of worship in this lesson is retold from John Piper's teaching on worship and the glory of God."
     }
   ]
 }

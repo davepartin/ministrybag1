@@ -2,10 +2,27 @@
   "id": "9",
   "title": "Lesson 9: Fighting for Purity",
   "description": "Your eyes, your mind, and your body are worth guarding, and temptation will come for each of them.",
+  "contents": [
+    {
+      "label": "Story",
+      "title": "2 Samuel 11-12",
+      "anchor": "story"
+    },
+    {
+      "label": "Study",
+      "title": "At First Thought",
+      "anchor": "study"
+    },
+    {
+      "label": "Diagram",
+      "title": "RUN from Sin",
+      "anchor": "diagram"
+    }
+  ],
   "blocks": [
     {
       "type": "text",
-      "text": "In the last lesson, you saw that as two people draw near to God, they draw near to each other. Temptation pulls the opposite way, away from God and away from the people you love. This lesson is about purity, which means guarding your body, your eyes, and your mind, whether you are married or single."
+      "text": "In the last lesson, you saw that as two people draw near to God, they draw near to each other. Temptation pulls the opposite way, away from God and away from the people you love. This lesson is about purity, which means guarding your body, your eyes, and your mind, whether you are married or single. You guard them because of the covenant: you were bought with a price."
     },
     {
       "type": "text",
@@ -13,11 +30,13 @@
     },
     {
       "type": "image",
-      "imageBw": "images/202.09-david-roof-bw.png",
-      "imageColor": "images/202.09-david-roof-color.png",
-      "alt": "King David, fully clothed, alone on his palace roof overlooking the city, with his royal robe and crown set aside",
+      "imageBw": "images/202-09-story-bw.jpg",
+      "imageColor": "images/202-09-story-color.jpg",
+      "alt": "King David, fully clothed, standing at his stone palace parapet overlooking Jerusalem at dusk with his royal cloak and crown set aside on a bench",
       "frame": true,
-      "touchNext": true
+      "touchNext": true,
+      "imageDissolveOnEntry": true,
+      "anchor": "story"
     },
     {
       "type": "parable",
@@ -26,17 +45,18 @@
     },
     {
       "type": "text",
-      "text": "Years earlier, Joseph faced the same moment as a slave in Potiphar's house, with nothing and no power, and he ran. David had everything and stayed."
+      "text": "Centuries earlier, Joseph faced the same moment as a slave in Potiphar's house, with nothing and no power, and he ran. David had everything and stayed."
     },
     {
       "type": "question",
       "id": "202-09-pattern",
-      "text": "9.1 - When you experience temptation, what are the common patterns that help you run away and the patterns when you tend to fall into sin?",
+      "text": "9.1 - When temptation comes, what helps you run, and what tends to make you stay?",
       "height": "tall"
     },
     {
       "type": "heading",
-      "text": "At First Thought"
+      "text": "At First Thought",
+      "anchor": "study"
     },
     {
       "type": "text",
@@ -49,7 +69,7 @@
     },
     {
       "type": "text",
-      "text": "A passing thought is not a sin. Jesus Himself was tempted. A tempting thought is a knock at the door. Lust is opening the door and letting it stay."
+      "text": "Jesus names a man's look here, but women fight this battle too. A passing thought is not a sin. Jesus Himself was tempted. A tempting thought is a knock at the door. Lust is opening the door and letting it stay."
     },
     {
       "type": "text",
@@ -58,7 +78,8 @@
     {
       "type": "widget",
       "src": "widgets/starting-gun.html",
-      "height": "580px"
+      "height": "580px",
+      "anchor": "diagram"
     },
     {
       "type": "heading",
@@ -66,7 +87,7 @@
     },
     {
       "type": "text",
-      "text": "Paul wrote to young Christians in Corinth, a city full of sexual temptation. He told them to RUN."
+      "text": "Sex is God's good gift, made for a husband and wife inside the covenant of marriage. Sexual immorality is taking that gift outside the covenant: sleeping together before marriage, an affair, or pornography. Paul wrote to young Christians in Corinth, a city full of that temptation, and he told them to RUN."
     },
     {
       "type": "verse",
@@ -97,7 +118,7 @@
     {
       "type": "question",
       "id": "202-09-permission",
-      "text": "9.2 - What are ways you can allow God's forgiveness to not only heal your past decisions but help empower you to run?",
+      "text": "9.2 - How can God's forgiveness heal your past and also give you strength to run?",
       "height": "tall"
     },
     {
@@ -147,12 +168,26 @@
     },
     {
       "type": "text",
-      "text": "Repentance is turning back to God. <strong>Repent</strong> by <strong>reflecting</strong> honestly on what pulled you away, and let <strong>remorse</strong> lead you to confess your sin. Then trust that God forgives you. Next, make a <strong>plan</strong> that will help you fight sin and ask someone to walk along with you."
+      "text": "Repentance is turning back to God, and you already know the way home. In Growing Deep you walked the Learning Circle: <strong>reflect</strong> honestly on what pulled you away, let <strong>remorse</strong> lead you to confess your sin, and trust that God forgives you. Then make a <strong>plan</strong> that will help you fight sin, and ask someone to walk along with you."
     },
     {
       "type": "question",
       "id": "202-09-help",
       "text": "9.4 - Who could be your Nathan, and how would you invite them into this part of your life?",
+      "height": "tall"
+    },
+    {
+      "type": "heading",
+      "text": "This Week's Practice"
+    },
+    {
+      "type": "text",
+      "text": "Set the one boundary you named in 9.3, and tell your Nathan about it this week. A boundary someone else knows about is much harder to cross in secret."
+    },
+    {
+      "type": "question",
+      "id": "202-09-hand",
+      "text": "9.5 - How would you teach a friend to RUN: Remember the Cross, United with God, Need others?",
       "height": "tall"
     },
     {

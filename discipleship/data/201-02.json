@@ -2,10 +2,27 @@
   "id": "2",
   "title": "Lesson 2: New Identity in Jesus",
   "description": "Lesson 1 was about the Father running toward you. This lesson is about what He does when you arrive. He gives you a new identity in Jesus, an identity not built out of what you have done but received the moment you decide to come home.",
+  "contents": [
+    {
+      "label": "Story",
+      "title": "Luke 15:20-24",
+      "anchor": "story"
+    },
+    {
+      "label": "Study",
+      "title": "Put On Christ",
+      "anchor": "study"
+    },
+    {
+      "label": "Diagram",
+      "title": "The Great Exchange",
+      "anchor": "diagram"
+    }
+  ],
   "blocks": [
     {
       "type": "text",
-      "text": "In the last lesson, you watched the Father run down the road to welcome His son home. This lesson looks at what He did next, and what it says about who you are. Who am I? Most people answer with their skills, accomplishments, or what other people think about them. All of those answers can change tomorrow, but the gospel gives you one that never will. Your identity in Jesus is a gift, not earned by what you do but received by faith in what Jesus has already done."
+      "text": "In the last lesson, you watched the Father run down the road to welcome His son home. This lesson looks at what He did next, and what it says about who you are. Most people answer the question \"Who am I?\" with their skills, accomplishments, or what other people think about them. All of those answers can change tomorrow, but the gospel gives you one that never will. Your identity in Jesus is a gift, not earned by what you do but received by faith in what Jesus has already done."
     },
     {
       "type": "image",
@@ -20,12 +37,13 @@
         0.45
       ],
       "alt": "A father gently placing a robe over his returning son as the son's head lifts from shame toward his father",
-      "touchNext": true
+      "touchNext": true,
+      "anchor": "story"
     },
     {
       "type": "parable",
       "title": "The Family Robe",
-      "text": "Picture the prodigal son standing in the road near his home, his clothes still stained from feeding pigs and his rehearsed speech ready. He is feeling guilty for his selfish decisions, and he knows he has no right to ask anything of his father.<br><br>But before the son can finish his speech, the father has already run to him and pulled him close. While the boy is still trembling in his father's arms, the father calls an order to the servants: <em>\"Bring quickly the best robe, and put it on him\"</em> (Luke 15:22).<br><br>The robe was not a reward for a well-planned apology. It was an announcement spoken over the son: you are home, you are mine, you are a son. The robe covered the decisions of the past without pretending there wasn't a wrong, and it declared that the father's grace was stronger than the son's guilt."
+      "text": "Picture the prodigal son standing in the road near his home, his clothes still stained from feeding pigs and his rehearsed speech ready. He is feeling guilty for his selfish decisions, and he knows he has no right to ask anything of his father.<br><br>But before the son can finish his speech, the father has already run to him and pulled him close. While the boy is still trembling in his father's arms, the father calls an order to the servants: <em>\"Bring quickly the best robe, and put it on him\"</em> (Luke 15:22).<br><br>The robe was not a reward for a well-planned apology. It was an announcement spoken over the son: you are home, you are mine, you are a son. The robe covered the past without pretending nothing had gone wrong, and it declared that the father's grace was stronger than the son's guilt."
     },
     {
       "type": "question",
@@ -35,7 +53,8 @@
     },
     {
       "type": "heading",
-      "text": "Put On Christ"
+      "text": "Put On Christ",
+      "anchor": "study"
     },
     {
       "type": "text",
@@ -52,7 +71,7 @@
     },
     {
       "type": "text",
-      "text": "Then He went to the cross in your place. By faith, His perfect life is counted as yours, and your sin is counted to Him. The robe of righteousness is not you doing your best. It is Christ's own life covering you."
+      "text": "Then He went to the cross in your place. The robe of righteousness is not you doing your best. It is Christ's own life covering you."
     },
     {
       "type": "heading",
@@ -73,17 +92,18 @@
     },
     {
       "type": "text",
-      "text": "Here is the exchange. Your sin lands on Jesus, and His righteousness becomes yours. This is the truth beneath the robe: Christ takes what is yours so you can receive what is His."
+      "text": "Christ takes what is yours so you can receive what is His."
     },
     {
       "type": "widget",
       "src": "widgets/great-exchange3.html",
-      "height": "560px"
+      "height": "560px",
+      "anchor": "diagram"
     },
     {
       "type": "question",
-      "id": "201-02-4",
-      "text": "2.2 - Explain the Great Exchange in your own words, as if you were telling a friend what happened at the cross.",
+      "id": "201-02-5",
+      "text": "2.2 - Which is harder for you to believe: that your sin was placed on Jesus, or that His righteousness is now yours and why?",
       "height": "tall"
     },
     {
@@ -113,7 +133,7 @@
     },
     {
       "type": "text",
-      "text": "Paul does not just say you have been cleaned up. He says you have been made new. Your standing with God is not because of what you have done, but because of how you are covered."
+      "text": "The robe covers you, but God does more than cover you. He makes you new."
     },
     {
       "type": "verse",
@@ -144,7 +164,7 @@
     },
     {
       "type": "text",
-      "text": "Also this week, read Galatians 2:20 and Galatians 3:27 slowly. Let the two phrases stay with you: <em>crucified with Christ</em> and <em>put on Christ.</em> The old life went to the cross. The robe of Christ's life now covers you."
+      "text": "Also this week, let two phrases from Galatians 2:20 and 3:27 stay with you: <em>crucified with Christ</em> and <em>put on Christ.</em>"
     },
     {
       "type": "heading",
@@ -152,7 +172,7 @@
     },
     {
       "type": "text",
-      "text": "God does not leave you standing in the clothes of your old life. In Jesus, you have put on Christ: His perfect life covers you, your old self has been crucified with Him, and His life now lives in you. The robe of righteousness frees you from earning status with God and sends you into the week as a loved child."
+      "text": "God does not leave you standing in the clothes of your old life. In Jesus, you have put on Christ: His perfect life covers you, your old self has been crucified with Him, and Christ now lives in you. The robe of righteousness frees you from earning status with God and sends you into the week as a loved child."
     },
     {
       "type": "text",
@@ -179,6 +199,14 @@
       "id": "201-02-prayer",
       "text": "What is a prayer request for this week?",
       "height": "short"
+    }
+  ],
+  "retiredQuestions": [
+    {
+      "type": "question",
+      "id": "201-02-4",
+      "text": "2.2 - Explain the Great Exchange in your own words, as if you were telling a friend what happened at the cross.",
+      "height": "tall"
     }
   ]
 }

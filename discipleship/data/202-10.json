@@ -2,14 +2,32 @@
   "id": "10",
   "title": "Lesson 10: Baptism and the Lord's Supper",
   "description": "Jesus left His church two gifts, and He gave them to a room full of people who were about to fail Him. This lesson looks at what those two gifts are for and why a church shares them together.",
+  "contents": [
+    {
+      "label": "Study",
+      "title": "Baptism: The Doorway",
+      "anchor": "study"
+    },
+    {
+      "label": "Diagram",
+      "title": "The Baptism Picture",
+      "anchor": "diagram"
+    },
+    {
+      "label": "Story",
+      "title": "Luke 22:14-20",
+      "anchor": "story"
+    }
+  ],
   "blocks": [
     {
       "type": "text",
-      "text": "You have spent this course growing up: loving your neighbors, your family, and your church family, serving with your gifts, standing firm, worshiping, giving, and guarding your heart. In this final lesson of Growing Up, we look at the two gifts Jesus left His church: a doorway you walk through once, and a table you return to for the rest of your life."
+      "text": "You have spent this course growing up: loving your neighbors, your family, and your church family, serving with your gifts, standing firm, worshiping, giving, honoring marriage, and guarding your heart. The last lesson of Growing Up ends at a table. It is the table of the new covenant, the promise Jesus sealed with His own blood."
     },
     {
       "type": "heading",
-      "text": "Baptism: The Doorway You Walk Through Once"
+      "text": "Baptism: The Doorway You Walk Through Once",
+      "anchor": "study"
     },
     {
       "type": "text",
@@ -22,7 +40,7 @@
     },
     {
       "type": "text",
-      "text": "Going under, your old life is buried with Christ. Rising up, you walk in His new life. Your whole body says out loud what your heart already believes: I belong to Jesus now."
+      "text": "Going under, your old life is buried with Christ. Rising up, you walk in His new life. Your whole body shows what your heart already believes: I belong to Jesus now."
     },
     {
       "type": "text",
@@ -31,7 +49,8 @@
     {
       "type": "widget",
       "src": "widgets/baptism-picture.html",
-      "height": "600px"
+      "height": "600px",
+      "anchor": "diagram"
     },
     {
       "type": "text",
@@ -44,6 +63,10 @@
     {
       "type": "text",
       "text": "If you have trusted Jesus and have never been baptized, hear this as an invitation and not a demand. You do not need to become a better Christian first. The doorway is for beginners."
+    },
+    {
+      "type": "text",
+      "text": "Maybe you were baptized as a baby. That was a gift of love from parents who wanted you to belong to God. In the New Testament, though, baptism comes after a person believes, as their own first step of faith. If you have trusted Jesus since then, the invitation is open to you too."
     },
     {
       "type": "question",
@@ -61,7 +84,8 @@
       "imageColor": "images/202-10-bread-cup-color.jpg",
       "alt": "A loaf of bread broken in two with crumbs beside a simple first-century cup of wine on a weathered wooden table",
       "frame": true,
-      "touchNext": true
+      "touchNext": true,
+      "anchor": "story"
     },
     {
       "type": "parable",
@@ -99,6 +123,10 @@
       "text": "The meal looks back to the cross, and it looks forward to the day you eat with Jesus face to face. It also looks around. One loaf is shared by many people, which is a quiet reminder that you were saved into a household. This is not something you do alone in your kitchen."
     },
     {
+      "type": "text",
+      "text": "The Supper is the family meal for those who have trusted Jesus and been baptized. If that is not you yet, you are still welcome in the room, and the doorway is open."
+    },
+    {
       "type": "question",
       "id": "202-10-1",
       "text": "10.2 - How does it change things to know Jesus wanted them at the table knowing they would fail Him that night?",
@@ -110,7 +138,7 @@
     },
     {
       "type": "text",
-      "text": "Paul told the Corinthians to examine themselves before they ate, and he warned that taking the meal carelessly brought real consequences. That sounds harsh until you see what it protects."
+      "text": "Paul told the Corinthians to examine themselves before they ate, and he warned that taking the meal carelessly brought real consequences (1 Corinthians 11:27-32). That sounds harsh until you see what it protects."
     },
     {
       "type": "text",
@@ -138,6 +166,20 @@
       "type": "question",
       "id": "202-10-4",
       "text": "10.4 - Who has been watching you follow Jesus lately?",
+      "height": "tall"
+    },
+    {
+      "type": "heading",
+      "text": "This Week's Practice"
+    },
+    {
+      "type": "text",
+      "text": "Take one step toward one of the two gifts this week. If you have not been baptized, tell a pastor you would like to talk about it. If you have, take ten quiet minutes before the next Lord's Supper to come ready."
+    },
+    {
+      "type": "question",
+      "id": "202-10-hand",
+      "text": "10.5 - How would you explain the doorway and the table to a friend who is new to church?",
       "height": "tall"
     },
     {

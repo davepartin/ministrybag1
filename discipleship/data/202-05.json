@@ -2,17 +2,35 @@
   "id": "5",
   "title": "Lesson 5: Suffering and Trials",
   "description": "When life gets hard, you are often holding one jagged piece of a picture you cannot see. Through Joseph's story, this lesson shows your Creator, who sees the whole of it, stays near in the valley, and can be trusted when you do not know why.",
+  "contents": [
+    {
+      "label": "Story",
+      "title": "Genesis 37-50",
+      "anchor": "story"
+    },
+    {
+      "label": "Study",
+      "title": "Suffering Is Real",
+      "anchor": "study"
+    },
+    {
+      "label": "Diagram",
+      "title": "Trust the Creator",
+      "anchor": "diagram"
+    }
+  ],
   "blocks": [
     {
       "type": "text",
-      "text": "In the last lesson, you began to notice the gifts Jesus has placed in you. Those gifts get used in a broken world, where hard seasons come. This lesson is about suffering: what God is doing in it, who is with you in it, and how to trust Him when you cannot see the whole picture."
+      "text": "In the last lesson, you began to notice the gifts Jesus has placed in you. Those gifts get used in a broken world, where hard seasons come. The next three lessons are about trusting God with your pain, your praise, and your possessions. This lesson is about suffering: what God is doing in it, who is with you in it, and how to trust Him when you cannot see the whole picture."
     },
     {
       "type": "image",
       "imageBw": "images/202-05-joseph-pit-palace-bw.jpg",
       "imageColor": "images/202-05-joseph-pit-palace-color.jpg",
       "alt": "Dark prison bars on the left opening to Joseph in the sunlit Egyptian granary welcoming his bowed brothers beside sacks of grain",
-      "touchNext": true
+      "touchNext": true,
+      "anchor": "story"
     },
     {
       "type": "parable",
@@ -31,7 +49,8 @@
     },
     {
       "type": "heading",
-      "text": "Suffering Is Real"
+      "text": "Suffering Is Real",
+      "anchor": "study"
     },
     {
       "type": "text",
@@ -73,7 +92,8 @@
       "type": "widget",
       "src": "widgets/trust-the-artist.html",
       "height": "600px",
-      "title": "Trust the Creator"
+      "title": "Trust the Creator",
+      "anchor": "diagram"
     },
     {
       "type": "text",
@@ -136,11 +156,17 @@
     },
     {
       "type": "text",
-      "text": "This week, pray Psalm 13, 42, or 88 out loud. Each one is a lament, an honest prayer of pain, and even Psalm 88, which ends in the dark, is still a prayer."
+      "text": "This week, pray Psalm 13, 42, or 88. Each one is a lament, an honest prayer of pain, and even Psalm 88, which ends in the dark, is still a prayer."
     },
     {
       "type": "text",
       "text": "Then write down one honest thing you have been carrying quietly and need to bring to God. Beneath it, write: <em>The LORD is near to the brokenhearted</em> (Psalm 34:18). If you can, add: <em>I trust the Creator.</em> You may not feel it yet, and that is all right."
+    },
+    {
+      "type": "question",
+      "id": "202-05-hand",
+      "text": "5.5 - How would you explain to a friend what it means to trust the Creator when you cannot see the whole picture?",
+      "height": "tall"
     },
     {
       "type": "heading",
@@ -175,10 +201,6 @@
       "id": "202-05-prayer",
       "text": "What is a prayer request for this week?",
       "height": "short"
-    },
-    {
-      "type": "text",
-      "text": "The mosaic picture in this lesson draws on <em>Desiring God</em> by John Piper."
     }
   ],
   "retiredQuestions": [

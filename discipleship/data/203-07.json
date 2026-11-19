@@ -2,6 +2,23 @@
   "id": "7",
   "title": "Lesson 7: Spiritual Warfare and Putting on the Armor of God",
   "description": "The Christian life is not a stroll through a quiet park. It is a battle, and you are already in it. This lesson will help you understand the real enemy you face, the armor God has given you, and how to stand firm every single day.",
+  "contents": [
+    {
+      "label": "Story",
+      "title": "Luke 10:1-20",
+      "anchor": "story"
+    },
+    {
+      "label": "Study",
+      "title": "Dress for the Battle",
+      "anchor": "study"
+    },
+    {
+      "label": "Diagram",
+      "title": "Armor of God",
+      "anchor": "diagram"
+    }
+  ],
   "blocks": [
     {
       "type": "text",
@@ -26,7 +43,8 @@
         0.5
       ],
       "alt": "Jesus, in the foreground, sends His followers out two by two as they walk farther down a long road toward the villages",
-      "touchNext": true
+      "touchNext": true,
+      "anchor": "story"
     },
     {
       "type": "parable",
@@ -50,7 +68,8 @@
     },
     {
       "type": "heading",
-      "text": "Dress for the Battle You Are Already In"
+      "text": "Dress for the Battle You Are Already In",
+      "anchor": "study"
     },
     {
       "type": "text",
@@ -68,7 +87,8 @@
     {
       "type": "widget",
       "src": "widgets/armor-of-god.html",
-      "height": "600px"
+      "height": "600px",
+      "anchor": "diagram"
     },
     {
       "type": "heading",

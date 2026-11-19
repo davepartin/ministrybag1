@@ -2,6 +2,23 @@
   "id": "10",
   "title": "Lesson 10: Repentance and the Learning Circle",
   "description": "Everyone drifts, whether through obvious rebellion or quiet self-righteousness. Through the prodigal son and the Learning Circle, this lesson walks you through the lifelong rhythm of repenting and believing, and shows you a Father who is not waiting to punish you but running to welcome you home.",
+  "contents": [
+    {
+      "label": "Story",
+      "title": "Luke 15:11-32",
+      "anchor": "story"
+    },
+    {
+      "label": "Study",
+      "title": "Repent and Believe",
+      "anchor": "study"
+    },
+    {
+      "label": "Diagram",
+      "title": "The Learning Circle",
+      "anchor": "diagram"
+    }
+  ],
   "blocks": [
     {
       "type": "text",
@@ -12,12 +29,13 @@
       "imageBw": "images/prodigal-son-two-brothers-bw.jpg",
       "imageColor": "images/prodigal-son-two-brothers-color.jpg",
       "alt": "Two brothers and the father in the parable of the prodigal son",
-      "touchNext": true
+      "touchNext": true,
+      "anchor": "story"
     },
     {
       "type": "parable",
       "title": "Coming to His Senses",
-      "text": "In the first two lessons of Growing Deep, you saw the father's welcome and the son's new identity. Now return to the pigpen to look at another part of his journey: the moment he comes to his senses and begins to turn toward home. Picture him there, knees in the dirt, watching the pigs eat better than he does. Then Scripture puts the moment in one quiet line:<br><br><em>\"When he came to his senses, he said, 'How many of my father's hired servants have food to spare, and here I am starving to death!'\" (Luke 15:17 NIV)</em><br><br>This is the turn of the whole story, before the father runs and before the robe goes on his shoulders. Just a son in the mud, finally awake, remembering who his father is. The pigpen did not save him, but it did wake him.<br><br>When he came home, his older brother stood outside the celebration, hardened in pride and convinced he had earned what the Father freely gave. Both sons were wayward in their own way, one in obvious rebellion, the other in quiet self-righteousness. The same Father waits for both.<br><br>Every drift from God turns at this same place. A quiet pause, an honest look, a remembering of who your Father is. That is where the walk home begins."
+      "text": "In the first two lessons of Growing Deep, you saw the father's welcome and the son's new identity. Now the story goes back to the pigpen, to another part of his journey: the moment he comes to his senses and begins to turn toward home. He is on his knees in the dirt, watching the pigs eat better than he does. Then Scripture puts the moment in one quiet line:<br><br><em>\"When he came to his senses, he said, 'How many of my father's hired servants have food to spare, and here I am starving to death!'\" (Luke 15:17 NIV)</em><br><br>This is the turn of the whole story, before the father runs and before the robe goes on his shoulders. Just a son in the mud, finally awake, remembering who his father is. The pigpen did not save him, but it did wake him.<br><br>When he came home, his older brother stood outside the celebration, hardened in pride and convinced he had earned what the Father freely gave. Both sons were wayward in their own way, one in obvious rebellion, the other in quiet self-righteousness. The same Father waits for both.<br><br>Every drift from God turns at this same place. A quiet pause, an honest look, a remembering of who your Father is. That is where the walk home begins."
     },
     {
       "type": "question",
@@ -27,7 +45,8 @@
     },
     {
       "type": "heading",
-      "text": "Repent and Believe"
+      "text": "Repent and Believe",
+      "anchor": "study"
     },
     {
       "type": "text",
@@ -48,12 +67,13 @@
     },
     {
       "type": "text",
-      "text": "So what do you do when you realize you have drifted? You can keep going like nothing happened, or you can stop and turn back. The Learning Circle is a simple, biblical rhythm for that turn, from drifting off to coming home."
+      "text": "<strong>We all drift.</strong> The question is what you do when you realize it. You can keep going like nothing happened, or you can stop and turn back. The Learning Circle is a simple, biblical rhythm for that turn, from drifting off to coming home."
     },
     {
       "type": "widget",
       "src": "widgets/learning-circle2.html",
-      "height": "600px"
+      "height": "600px",
+      "anchor": "diagram"
     },
     {
       "type": "heading",
@@ -104,22 +124,16 @@
     },
     {
       "type": "text",
-      "text": "<strong>3) Plan.</strong> Now repentance gets practical. Jesus said, \"Neither do I condemn you; go, and from now on sin no more\" (John 8:11). Notice the order: mercy first, then the call. And He never meant for you to go alone. Think of clear steps: Who can keep you accountable? What one change can you make? What is your first move tomorrow?<br><br><strong>4) Obey.</strong> You walk it out. Humility shows up when you change, when you ask for help, when you trust that He is stronger than your mess. You do not earn grace. You receive it and let it move your feet."
+      "text": "<strong>3) Plan.</strong> Now repentance gets practical. Jesus said, \"Neither do I condemn you; go, and from now on sin no more\" (John 8:11). The order matters: mercy first, then the call. And He never meant for you to go alone. Think of clear steps: Who can keep you accountable? What one change can you make? What is your first move tomorrow?<br><br><strong>4) Obey.</strong> You walk it out. Humility shows up when you change, when you ask for help, when you trust that He is stronger than your mess. You do not earn grace. You receive it and let it move your feet."
     },
     {
       "type": "text",
-      "text": "<strong>Finally, you return to the path,</strong> not at the same spot but further along. The prodigal did not just get home; he learned his Father's character of love and acceptance. You grow too, as you see where pride was hiding and where truth sets you free. Each turn through the circle brings you closer to the Father's heart. You no longer want to take advantage of His forgiveness like a spoiled child. You worship Him and want to please Him."
+      "text": "<strong>Finally, you return to the path,</strong> not at the same spot but further along. The prodigal did not just get home. He learned his Father's character of love and acceptance. You grow too, as you see where pride was hiding and where truth sets you free. Each turn through the circle brings you closer to the Father's heart. You no longer want to take advantage of His forgiveness like a spoiled child. You worship Him and want to please Him."
     },
     {
       "type": "question",
       "id": "201-10-3",
       "text": "10.2 - Using the Learning Circle, consider one struggle and write out your process of getting back on the path.",
-      "height": "tall"
-    },
-    {
-      "type": "question",
-      "id": "201-10-hand",
-      "text": "10.3 - How would you walk a struggling friend around the Learning Circle?",
       "height": "tall"
     },
     {
@@ -137,7 +151,7 @@
     },
     {
       "type": "text",
-      "text": "His kindness draws you back. Your failures do not disqualify you; they show your need for Him. Returning helps you trust His love rather than rely on willpower. Remember the Father from the first lesson, running down the road. When you remember who He is, <strong>repentance stops feeling like crawling back to a boss and starts feeling like coming home to a Father who is already running to meet you.</strong>"
+      "text": "His kindness draws you back. Your failures do not disqualify you. They show your need for Him. Returning helps you trust His love rather than rely on willpower. Remember the Father from the first lesson, running down the road. When you remember who He is, <strong>repentance stops feeling like crawling back to a boss and starts feeling like coming home to a Father who is already running to meet you.</strong>"
     },
     {
       "type": "heading",
@@ -145,7 +159,7 @@
     },
     {
       "type": "text",
-      "text": "As Growing Deep wraps up, remember how far you have come. In Starting (101), you took your first steps with Jesus. These ten lessons in Growing Deep (201) have been about the vertical relationship between you and God: the Father's love, your identity in Christ, the Spirit's guidance, His Word, His grace, and now learning to turn back when you wander."
+      "text": "As Growing Deep wraps up, remember how far you have come. In the 101 Starting Course, you took your first steps with Jesus. These ten lessons in Growing Deep (201) have been about the vertical relationship between you and God: the Father's love, your identity in Christ, the Spirit's guidance, His Word, His grace, and now learning to turn back when you wander."
     },
     {
       "type": "text",
@@ -157,7 +171,7 @@
     },
     {
       "type": "text",
-      "text": "Repent and believe is one movement, and it lasts a whole life. Whether you drift like the younger son in rebellion or like the older son in pride, the Learning Circle walks you home: notice the drift, reflect, feel godly remorse, trust His forgiveness, then plan and obey. You do not earn grace on the way back. The Father's kindness leads you to repentance, and He is already running to meet you."
+      "text": "Repent and believe is one movement, and it lasts a whole life. We all drift, some like the younger son in rebellion and some like the older son in pride, and the Learning Circle walks you home: notice the drift, reflect, feel godly remorse, trust His forgiveness, then plan and obey. You do not earn grace on the way back. The Father's kindness leads you to repentance, and He is already running to meet you."
     },
     {
       "type": "text",
@@ -184,10 +198,6 @@
       "id": "201-10-prayer",
       "text": "What is a prayer request for this week?",
       "height": "short"
-    },
-    {
-      "type": "text",
-      "text": "This lesson draws on the Learning Circle from 3DM Ministries. The line about the whole life of a believer being one of repentance is retold from the first of Martin Luther's 95 Theses."
     }
   ],
   "retiredQuestions": [
@@ -195,6 +205,12 @@
       "type": "question",
       "id": "201-10-2",
       "text": "10.2 - As you walked through the Learning Circle, which step is hardest for you?",
+      "height": "tall"
+    },
+    {
+      "type": "question",
+      "id": "201-10-hand",
+      "text": "10.3 - How would you walk a struggling friend around the Learning Circle?",
       "height": "tall"
     }
   ]

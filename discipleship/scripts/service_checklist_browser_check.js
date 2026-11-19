@@ -36,14 +36,14 @@ function ck(label, ok) { checks++; assert.ok(ok, label); }
         for (const i of [11, 14, 18, 19]) ck(width + ' retired selected but hidden ' + i, await checklist.locator('[data-index="' + i + '"]').evaluate(e => e.hidden && e.classList.contains('selected') && getComputedStyle(e).display === 'none'));
         ck(width + ' old index 15 still Outreach', await checklist.locator('[data-index="15"]').evaluate(e => e.textContent === 'Outreach Events' && e.classList.contains('selected')));
         ck(width + ' new Teaching not inherited from old combined choice', !await checklist.locator('[data-index="20"]').evaluate(e => e.classList.contains('selected')));
-        ck(width + ' question answer restored', await lesson.locator('#' + qkey).inputValue() === 'SYN-potluck-answer');
-        ck(width + ' teaching precedes question then checklist', await lesson.evaluate((el, qkey) => {
+        ck(width + ' retired 5-hand question not rendered', await lesson.locator('#' + qkey).count() === 0);
+        ck(width + ' teaching precedes checklist', await lesson.evaluate(el => {
           const heading = [...el.querySelectorAll('h2,h3,h4')].find(e => e.textContent.includes('The Potluck, Not the Restaurant'));
-          const q = el.querySelector('#' + qkey), grid = el.querySelector('#checklist-101-service-interests');
+          const grid = el.querySelector('#checklist-101-service-interests');
           const following = (a,b) => !!(a.compareDocumentPosition(b) & Node.DOCUMENT_POSITION_FOLLOWING);
-          const middle = document.createRange(); middle.setStartAfter(heading); middle.setEndBefore(q);
-          return following(heading,q) && following(q,grid) && middle.toString().includes('At a potluck, everyone brings something') && middle.toString().includes('1 Corinthians 12:27');
-        }, qkey));
+          const middle = document.createRange(); middle.setStartAfter(heading); middle.setEndBefore(grid);
+          return following(heading,grid) && middle.toString().includes('At a potluck, everyone brings something') && middle.toString().includes('1 Corinthians 12:27');
+        }));
         for (const i of [20, 21, 22, 27, 28]) await checklist.locator('[data-index="' + i + '"]').click();
         await page.reload(); await checklist.waitFor();
         ck(width + ' exact old and new indexes survive reload', await page.evaluate(key => JSON.stringify(JSON.parse(localStorage.getItem('christianFoundationsResponses'))[key]), key) === '[11,14,15,18,19,20,21,22,27,28]');
@@ -53,10 +53,9 @@ function ck(label, ok) { checks++; assert.ok(ok, label); }
         ck(width + ' Space selects native Other button', await other.getAttribute('aria-pressed') === 'true');
         await page.keyboard.press('Enter');
         ck(width + ' Enter deselects native Other button', await other.getAttribute('aria-pressed') === 'false');
-        await lesson.locator('#' + qkey).fill('SYN-potluck-edited');
         await page.locator('#email-lesson-btn').click();
         const outgoing = await page.locator('#export-preview-text').textContent();
-        for (const label of ["Men's / Women's Ministry (earlier selection)", "Men's Ministry, Women's Ministry", 'Teaching / Bible Study (earlier selection)', 'First Impressions (earlier selection)', 'Financial Giving (earlier selection)', 'Outreach Events', 'Teaching, Discipleship Group, Cleaning Team', 'SYN-potluck-edited']) ck(width + ' Email retains ' + label, outgoing.includes(label));
+        for (const label of ["Men's / Women's Ministry (earlier selection)", "Men's Ministry, Women's Ministry", 'Teaching / Bible Study (earlier selection)', 'First Impressions (earlier selection)', 'Financial Giving (earlier selection)', 'Outreach Events', 'Teaching, Discipleship Group, Cleaning Team', 'SYN-potluck-answer']) ck(width + ' Email retains ' + label, outgoing.includes(label));
         ck(width + ' Email excludes other course', !outgoing.includes('SYN-other-course'));
         await page.keyboard.press('Escape');
         await page.goto(base + '#101-2');

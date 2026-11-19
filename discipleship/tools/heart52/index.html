@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#236B9E"><meta name="description" content="Heart52: read, listen, practice and remember 52 Bible passages, at your own pace.">
+  <link rel="canonical" href="https://growingtogetherdiscipleship.com/tools/heart52/">
+  <meta property="og:title" content="Heart52 | Growing Together"><meta property="og:description" content="Carry God's Word with you, one passage at a time."><meta property="og:type" content="website">
+  <title>Heart52 | Growing Together</title><link rel="icon" href="data:,"><link rel="stylesheet" href="styles.css">
+  <script defer src="learning.js"></script><script defer src="storage.js"></script><script defer src="app.js"></script>
+  <script src="focus-modality.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to Heart52</a>
+  <header class="site-header"><div class="header-inner"><a id="growing-home" class="wordmark" href="../../index.html" aria-label="Back to Growing Together" title="Growing Together">&#8592;</a><a href="#" class="heart-wordmark" aria-label="Heart52 home"><img class="heart-logo" src="heart52logo1.svg" width="110" height="38" alt="Heart52"></a><div class="header-tools"><a id="growing-apps-link" class="header-apps" href="../">Apps</a><button id="open-settings" class="icon-button" type="button" aria-label="Opening and hint preferences"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 7h16M4 17h16"/><circle cx="9" cy="7" r="3" fill="var(--paper)"/><circle cx="16" cy="17" r="3" fill="var(--paper)"/></svg></button></div></div></header>
+  <main id="main">
+    <p id="save-status" class="save-status" role="status">Progress saves in this browser on this device.</p>
+    <p id="storage-notice" class="notice" role="alert" hidden></p>
+    <p id="boot" role="status">Opening your 52 passages…</p>
+    <div id="load-error" class="notice" role="alert" hidden><h1>Heart52 could not open yet.</h1><p>The passage library did not load. Your saved progress has not been reset.</p><button id="retry-load" class="button" type="button">Try again</button></div>
+    <noscript><p class="notice">Heart52 needs JavaScript to open the passage library and save practice progress. The lesson links still work.</p></noscript>
+    <section id="library-view" hidden aria-label="Heart52 memory collection">
+      <nav class="view-nav" aria-label="Heart52 views"><a id="nav-today" href="#">Your verse</a><a id="nav-all" href="#all">All 52</a><a id="nav-year" href="#year">The year</a></nav>
+      <div id="today-view">
+        <div class="sr-only"><p id="opening-label"></p><h1 id="library-heading">Hide it in your heart.</h1></div>
+        <p id="opening-note" class="sr-only"></p>
+        <fieldset id="card-category" class="card-category category-row"><legend class="sr-only">Choose one category for this verse. Check a box to assign it; select a category word to open that deck.</legend><div class="category-options"><div class="category-choice"><label class="category-check" title="Mark this verse Not started"><input type="radio" name="verse-category" id="category-new" data-learning-status="new" value="new" aria-label="Mark this verse Not started"></label><a id="deck-new-link" href="#deck-new" title="Open Not started verses">Not started<span class="sr-only category-count"></span></a></div><div class="category-choice"><label class="category-check" title="Mark this verse Learning"><input type="radio" name="verse-category" id="category-learning" data-learning-status="learning" value="learning" aria-label="Mark this verse Learning"></label><a id="deck-learning-link" href="#deck-learning" title="Open Learning verses">Learning<span class="sr-only category-count"></span></a></div><div class="category-choice"><label class="category-check" title="Mark this verse Memorized"><input type="radio" name="verse-category" id="category-memorized" data-learning-status="memorized" value="memorized" aria-label="Mark this verse Memorized"></label><a id="deck-memorized-link" href="#deck-memorized" title="Open Memorized verses">Memorized<span class="sr-only category-count"></span></a></div></div></fieldset>
+        <section id="deck-empty" class="empty-deck" hidden><h2 id="empty-deck-title"></h2><p id="empty-deck-help"></p><a class="button secondary" href="#">Browse all verses</a></section>
+        <div id="deck-content">
+
+        <button id="memory-card" class="memory-card" type="button" aria-pressed="false" aria-label="Reveal passage">
+          <span class="card-inner"><span id="card-front" class="card-face card-front"><span id="card-hint" class="card-hint"></span><span class="card-rule" aria-hidden="true"></span><span id="card-front-reference" class="card-reference"></span><span class="card-invitation"><span aria-hidden="true">&#8635;</span> Tap to reveal</span></span>
+          <span id="card-back" class="card-face card-back" aria-hidden="true" inert><span id="card-theme" class="card-kicker"></span><span id="card-verse" class="verse-words"></span><span class="card-source"><span id="card-back-reference"></span><span>ESV</span></span><span class="card-invitation"><span aria-hidden="true">&#8635;</span> Tap to turn back</span></span></span>
+        </button>
+        <div class="card-toolbar"><button id="deck-previous" class="icon-button" type="button" aria-label="Previous verse">&#8592;</button><div class="card-center"><span id="deck-position" class="card-position"></span><label class="hint-choice"><span class="sr-only">Hint</span> <select id="hint-choice" aria-label="Card hint"><option value="topic">Topic</option><option value="words">First two words</option></select></label></div><button id="deck-next" class="icon-button" type="button" aria-label="Next verse">&#8594;</button></div>
+
+        <div class="deck-actions"><a id="continue-link" class="button" href="#week-1">Practice &amp; listen <span aria-hidden="true">&#8594;</span></a><button id="this-week" class="text-button" type="button">This week's verse</button></div>
+        </div>
+        <p id="category-message" class="sr-only" role="status" hidden></p>
+
+
+
+      </div>
+      <div id="all-view" hidden><header class="collection-heading"><p class="eyebrow">THE WHOLE COLLECTION</p><h1>Words to live with.</h1><p class="muted">All 52 passages, here to read and return to.</p></header><div class="filters"><label><span class="sr-only">Find a passage</span><input id="search" type="search" placeholder="Find a verse, topic, or phrase"></label><label><span class="sr-only">Theme</span><select id="theme-filter"><option value="">All topics</option></select></label></div><label class="progress-filter-label">Progress<select id="status-filter"><option value="all">All progress</option><option value="new">Not started</option><option value="learning">Learning</option><option value="memorized">Memorized</option></select></label><label class="jump-label">Go straight to a verse<select id="week-jump"><option value="">Choose a passage</option></select></label><p id="filter-count" class="muted small" role="status"></p><div id="verse-list" class="verse-list"></div></div>
+      <div id="year-view" hidden><header class="collection-heading"><p class="eyebrow">52 SMALL BEGINNINGS</p><h1>A year in the Word.</h1><p class="muted">A passage to carry with you each week. Begin anywhere.</p></header><div class="year-toolbar"><label>Year<select id="calendar-year"></select></label><button id="calendar-today" class="text-button" type="button">Back to this week</button></div><p id="calendar-note" class="small muted"></p><div id="calendar-grid" class="calendar-grid"></div><p class="small muted calendar-explainer">This simple 52-week plan starts January 1. Week 52 includes the year's remaining days. You can practice any passage at any time.</p></div>
+    </section>
+    <section id="passage-view" hidden aria-labelledby="passage-heading">
+      <div class="passage-nav"><a href="#" id="back-library">&#8592; Your verse</a><span id="passage-number"></span></div>
+      <article class="paper-card passage-card"><header class="passage-heading"><p class="eyebrow" id="passage-theme"></p><h1 id="passage-heading" tabindex="-1"></h1><p class="translation">English Standard Version (ESV)</p></header>
+        <div class="mode-tabs" role="tablist" aria-label="Memory practice"><button id="tab-read" role="tab" aria-controls="workspace" data-mode="read" type="button">Read &amp; Listen</button><button id="tab-practice" role="tab" aria-controls="workspace" data-mode="practice" type="button">Practice</button><button id="tab-recall" role="tab" aria-controls="workspace" data-mode="recall" type="button">Recall</button></div>
+        <div id="workspace" role="tabpanel"></div>
+      </article>
+      <div class="passage-bottom"><button id="previous-passage" class="button secondary" type="button">&#8592; Previous passage</button><button id="next-passage" class="button secondary" type="button">Next passage &#8594;</button></div>
+    </section>
+    <p id="app-message" class="notice quiet" role="status" hidden></p>
+  </main>
+  <footer class="tool-footer">
+    <details id="opening-settings" class="settings-card"><summary>Opening preference</summary><label>When Heart52 opens<select id="start-choice"><option value="resume">Pick up where I left off</option><option value="calendar">Show this week's verse</option></select></label></details>
+
+    <p class="footer-links"><a id="lesson-link" href="../../index.html#201-5">The Bible overview lesson</a> <a id="bible-start-link" href="../../index.html#101-4">The introductory Bible lesson</a></p>
+    <p class="family-credit"><a class="ministry-link" href="https://ministrybag.com/"><img src="ministrybagsatchel1.svg" width="25" height="22" alt=""> A Growing Together companion · MinistryBag</a></p>
+    <p class="copyright">Scripture selections are from the ESV® Bible, copyright © 2001 by Crossway. Used by permission. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

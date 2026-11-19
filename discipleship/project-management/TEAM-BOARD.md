@@ -1,5 +1,228 @@
 # Growing Together Team Board
 
+101-POLISH DONE, November 18: Dave authorized merging PR #314 with the existing101-04 subtitle. Merged44c3585 and verified live after Firebase run44447075061. Final foundation/export212/storage73/assets145/images1539/iframe32 passed;32 preview and32 production phone/laptop checks passed. Approved widgets/artwork/runtime and unrelated lessons unchanged. [Integration evidence](logs/2026-11-18-101-POLISH-codex.md).
+
+Input-focus cleanup DONE, November 18: PR #311 merged at07654c5. Gold outlines no longer appear after touch/mouse input; keyboard navigation keeps a small blue cue across lessons, apps and embedded same-origin widgets. Firebase run44417943372 and Pages run44417942222 passed.117 preview and117 production checks passed, with exact deployed helper/HTML bytes verified. Approved widget/content/art bytes and saved data remain intact. [Evidence](logs/2026-11-18-UI-FOCUS-MODALITY-codex.md).
+
+Daily Prayers reference placement DONE, November 18: #310 merged atcc45ef1 and verified live. Lord's Prayer dropdown now precedes the personal prayer and shares its paper/type/spacing; no prayer wording or stored-data logic changes. Evidence: logs/2026-11-18-PRAYERS-LORDS-TOP-codex.md.
+
+Heart52 card cleanup DONE, November 18: #306 merged at82103f2 and verified live. Removed Bring it to mind and its unused spacing; other card content, labels and all lessons remain unchanged. Log: logs/2026-11-18-HEART52-CLEAN-CARD-codex.md.
+
+## Growing Apps published, November 18, 2026
+
+DONE: Dave authorized publishing #261, #288 and #296. All3 merged in order and Firebase production is verified at8793a4c. The homepage now has Your Growing Apps under Browse All Lessons. [Open the live apps page](https://growingtogetherdiscipleship.com/tools/): Your Daily Prayers, Your Weekly Connection Time and Your Heart52. These are live, not preview-only; no further merge/approval is pending for these versions.
+
+Current lesson voice/contents, questions/IDs, readings, approved widgets and story art are preserved. Only the authorized101-03 URL,202-08/201-05 tool cards and101-04 hint change. Heart52 keeps the blue theme and simple above-card category row, with no backup/record-management UI. Live hub340, Daily147, Weekly314 and Heart136 browser checks pass. All data used for verification was synthetic. Lesson review stages are unchanged. [Publication evidence](logs/2026-11-18-APPS-PUBLISH-THREE-codex.md).
+
+
+Three-app publication checkpoint: #261 and #288 are merged; the live apps page shows Daily Prayers and Weekly Connection Time. #296 is retargeted/refreshed onto a7e00fb, preserving approved681aebe Heart52 bytes, current lesson voice/contents and both prior apps. Only tracking history conflicted; both sides retained. Finish #296 checks/merge and verify all3 production apps, then mark publication DONE. Dave authorized publishing these versions.
+
+Three-app publication checkpoint: #261 merged at9c4f3d5; the apps button is verified live. #288 is retargeted/refreshed onto that main with approved6416cf4 app bytes unchanged. Tracking conflicts retained both histories;202-08 preserves all current text except its authorized added tool card. Next merge #288 after final checks, then #296. Dave authorized publication; no further design approval is pending for these app versions.
+
+Three-app publication, November 18: Dave explicitly authorized merging #261, #288 and #296 and publishing Your Growing Apps. APPS-PUBLISH-THREE ACTIVE. Daily Prayers is refreshed cleanly onto current main with reviewed app bytes unchanged and only its authorized tool URL/home controls added. Merge/check each in order, preserve latest lesson work and verify production. Evidence: logs/2026-11-18-APPS-PUBLISH-THREE-codex.md.
+
+Heart52 simplicity follow-up, November 18: PR #296 has one tight category row above the card. Square controls assign a verse, adjacent word links open decks; one check stays visible through flips. Download/backup/restore/reset/records UI, duplicate deck panel and progress-summary dashboard are removed per Dave. Automatic label saving remains; no existing data erased. Core QA,1780 unit,498 card,599 general app and136 simplified-category browser checks pass. REVIEW, not live; latest redesign-log section supersedes earlier backup UI directions.
+
+Heart52 learning categories, November 18: PR #296 now has saved Not started/Learning/Memorized labels, clear controls below each card, counted quick decks with scoped navigation, and an All 52 progress filter. Old practice history displays Learning without rewriting data or assuming Memorized. Copies/recovery preserve choices; practice preserves explicit labels. Compact blue design and all lessons remain intact. Core QA,1780 unit,498 card,674 general app and120 category browser checks pass. REVIEW, not live; see the redesign log.
+
+Heart52 blue-theme follow-up, November 18: Dave assigned blue to the memory app and supports distinct companion-app palettes. PR #296 now uses navy verse text, pale blue cards and deeper blue controls, preserving the original logo and compact layout. Other apps and all lesson/data/storage files are untouched. Color-review evidence is in the redesign log.
+
+Heart52 compact-header follow-up, November 18: PR #296 restores the original website logo and removes 51-53 percent of the space above the card (card top now 144px). Card text, keywords and enlarged references remain intact. 498 card/calendar/startup checks and original-logo/global-preferences checks pass. REVIEW, not live; evidence in the redesign log.
+
+Heart52 follow-up, November 18: Dave requested larger Scripture references while keeping the keywords. PR #296 now uses 24-30px front references and 22-28px reverse references. 486 browser checks and all52-reference phone/laptop checks pass. Preview remains REVIEW, no publication. See the redesign log's larger-addresses section.
+
+## Heart52 flip-card redesign, November 18, 2026
+
+APP-HEART52 REVIEW, PR #296. Dave requested a full new look with the verse as the hero. The forest/sage/ivory app opens on a topic/first-two-word flip card, with large Scripture on the reverse, a continuous All 52 reference view and a simple yearly path. First visitors see the current week; returning visitors can resume or choose weekly startup. Original ESV selections/audio and all lessons/other apps remain unchanged. New preferences preserve existing progress and portable copies. Core QA, 1769 learning/storage/calendar checks, 674 existing app, 486 new card/calendar and 340 hub/lesson checks pass. New preview replaces the earlier app design; Dave's visual review remains pending, nothing merged or live. Still stacked on #288 then #261. [Redesign log](logs/2026-11-18-APP-HEART52-REDESIGN-codex.md).
+
+
+## Heart52 companion ready for review, November 17, 2026
+
+APP-HEART52 REVIEW, PR #296. The original 52 passages and Heart52 logo now have a companion-family app at tools/heart52/, with lazy audio, gradual word hints, phrase ordering, concealed recall and gentle local-calendar reviews. Progress stays on the device, with non-destructive v2 compatibility, portable copies and recovery. Your Growing Apps has a third button; 201-05 gains one optional tool card and 101-04 one short optional link. Existing lesson prose/questions/readings/images/widgets and both other app sources remain intact. New UI awaits Dave's review, nothing merged or live. Based on #288, which depends on #261. Claude's held 201-05 rewrite #292 is untouched. [Task log](logs/2026-11-17-APP-HEART52-codex.md).
+
+
+## Weekly Connection Time laptop margins, November 17, 2026
+
+Dave requested Chrome laptop margin fixes on PR #288. The conversation card now has 24px laptop padding, 16px phone side padding and clear space above fixed phone controls. Centered 640px page width, questions/storage/links and lesson content remain unchanged. Layout180 and app618 checks pass locally; updated preview awaits Dave's review. Task APP-WEEKLY-CONNECTION remains REVIEW. Evidence: [task log](logs/2026-11-17-APP-WEEKLY-CONNECTION-codex.md).
+
+
+## Weekly Connection Time companion ready for review, November 17, 2026
+
+APP-WEEKLY-CONNECTION REVIEW. Dave requested the existing MinistryBag marriage app inside Growing Together, following Daily Prayers. Authored source is tools/weekly-connection-time/; the established MinistryBag weeklyconnectiontime/ address receives generated delivery copies. The seven conversation steps, twelve field IDs, original prompts and connection_time_ keys are preserved. The companion matches the 640px warm-paper/brown-header family, links back to 202-08 and Your Growing Apps, and adds portable save/restore copies, recovery and truthful storage-failure handling. Answers stay in the current browser/device; no Firebase/account sync or cross-origin automatic migration.
+
+The apps page now has Your Daily Prayers and Your Weekly Connection Time. 202-08 gains one optional married-couples tool card after its practice paragraph; all existing prose, Scripture, questions/IDs, readings, approved triangle and story art remain unchanged. Core QA, 618 canonical/legacy app checks and 244 app-hub/lesson-navigation checks pass. The two-app and synthetic six-row layouts fit phone screens. New design awaits Dave's visual review; nothing is merged or live. This is a separate dependent PR based on refreshed Daily Prayers PR #261 (7feaa2d). Merge #261 first after review, retarget this PR to main and verify before integration. [Task log](logs/2026-11-17-APP-WEEKLY-CONNECTION-codex.md).
+
+
+## Daily Prayers and Your Growing Apps preview: November 17, 2026
+
+APP-DAILY-PRAYERS REVIEW, PR #261. Dave requested two matching home controls: Browse All Lessons, then Your Growing Apps. The second opens a separate tools/ page with compact full-width app buttons, starting with Your Daily Prayers. The temporary inline home app section and its custom hash routing are removed; main-app scripts now match current main exactly. A synthetic six-button layout fits the tested phone/laptop screens, with only the ready app shipped.
+
+Daily Prayers remains on the same site with return links to the separate app hub and prayer lesson. Only the 101-03 tool URL changes; protected wording, questions/IDs, reading, art and widget remain unchanged. MinistryBag keeps the old address/data with Save a copy/Restore a copy migration; no redirect or account sync is implied. No 201-01 or #282 branch edits, other apps or Firebase configuration changes.
+
+Core QA, mirror parity, 294 existing prayer, 168 hub/navigation and 964 lesson-navigation browser checks pass locally. The new hub/navigation preview awaits Dave's review; no merge or live change. [Current log](logs/2026-11-17-APP-DAILY-PRAYERS-REVIEW-codex.md).
+
+## Daily Prayers companion ready for review: November 16, 2026
+
+APP-DAILY-PRAYERS REVIEW. Dave asked Codex to polish Daily Prayers as the model for companion apps. One authored app in tools/daily-prayers/ now provides a warm paper reading view, four native editing sections, input autosave, Undo, accessible phone/keyboard controls, and explicit save/restore copies. Original prayer wording and both legacy browser-storage keys are preserved. Opening old prayers does not rewrite them. Malformed data, blocked storage and restore failures are handled without silently replacing an existing prayer list.
+
+Generated root dailyprayers/ delivery copies preserve the MinistryBag address and origin. Growing Together can serve the same app at /tools/daily-prayers/. Browser data does not travel between origins or sync with accounts; the interface states that and offers portable copies. The existing 101-03 app link and every lesson JSON, index.html, question, reading, Gold file, widget and image remain unchanged. No Firebase configuration or publishing workflow changes are included.
+
+Repository QA and 270 synthetic browser assertions pass across both hosted paths, including 320/375/390/1280 layouts, reduced motion, keyboard, legacy output, autosave/reload, copy/email/print, backup cancellation/restore/rollback and storage failure. A fresh visual design and UI wording await Dave's review; this packet is not merged or published. Preview evidence is on the codex/daily-prayers-companion PR. Pattern: [Companion apps](COMPANION-APPS.md). Evidence: [Codex log](logs/2026-11-16-APP-DAILY-PRAYERS-codex.md).
+
+### Dave follow-up: companion app family
+
+PR #261 now uses Create Your Daily Prayer for the generation action, matches Growing Together's 640px content width in a single column, and shows the existing MinistryBag satchel beside its header link. The existing logo is copied byte-identically, not redesigned. Source and legacy delivery copies stay synchronized.
+
+[COMPANION-APPS.md](COMPANION-APPS.md#proposed-aaa-rollout-november-16) maps the common visual family, a future MinistryBag discovery-page pass, and Weekly Connection Time as an optional married-couples practice link after Keeping the Vow in 202-08. Weekly Connection Time already has seven useful moments; preserve its content and connection_time_ data keys, add truthful storage-error handling and a return-to-lesson link in its own bounded packet. No homepage, Weekly Connection Time or 202-08 changes are included here. Dave's new design review remains pending.
+
+## Compact header standard across every lesson, November 17, 2026
+
+Dave approved the 202-01 pilot and requested the same style throughout the app. UI-COMPACT-HEADERS-ALL, PR #286, applies the existing 49px row to every lesson: Back, course/lesson code and title, then Menu. The progress strip and unused update code are removed. All 47 lesson identities pass, with 44px controls, sticky placement, long-title truncation, no horizontal overflow and saved answers preserved. Core QA, 283 header checks, 964 navigation checks, 95 Samaritan/128 lamp/103 soils checks and 387 all-course image checks pass. No lesson JSON, approved widget/artwork, question/reading identity or saved-answer logic changes. The execution blocker below is resolved; the former single-lesson pilot limitation is superseded. Final exact-head preview, merge and live evidence: [Codex log](logs/2026-11-17-UI-COMPACT-HEADERS-ALL-codex.md) and PR #286.
+
+
+## Compact lesson headers: rollout blocked on workspace verification
+
+Dave approved the 202-01 header and requested the same style across the app. UI-COMPACT-HEADERS-ALL is BLOCKED only on execution access: the workspace disconnected before implementation/tests could run. Changes are prepared through GitHub on codex/compact-headers-all: every lesson uses the existing approved 49px header, and the unused progress DOM/styles/update code are removed. No lesson JSON, widget/art bytes, question IDs or saved-answer implementation changes. Expanded browser coverage checks every lesson identity plus narrow/desktop/reduced-motion controls and synthetic answer survival. Static inline-JavaScript and test-script syntax checks pass in the orchestration runtime; repository QA and browser checks have NOT run. Do not merge until those checks and the exact-head preview are verified after workspace access returns. Log: logs/2026-11-17-UI-COMPACT-HEADERS-ALL-codex.md.
+
+
+## Compact header live pilot: 202-01, November 17, 2026
+
+Dave requested implementation and merge of a one-lesson pilot. UI-202-01-COMPACT-HEADER uses one 49px row: Back, 202-01 and Loving Your Neighbors, then Menu. The course/title second row and progress strip are hidden only for 202-01, saving 42 percent of header height. Both controls retain 44px tap targets. Other lessons keep their existing headers. All lesson JSON, approved widgets/art and saved-answer logic remain untouched. Test 202-01 on the live site; compare 202-02 before deciding on a series rollout. Core QA, 89 header checks, 964 navigation checks and 95 story-scroll checks pass. Final PR, hosted verification and deployment evidence: [Codex log](logs/2026-11-17-UI-202-01-COMPACT-HEADER-codex.md).
+
+
+## 101-04 compact widget approved for integration: November 17, 2026
+
+Dave approved PR #262 at exact 6a4c1e7977719842941e72a3cee339c67899c2f6 and said to merge. Preserve these widget bytes: half-size Bible, closed cover aligned right within its opening footprint, wipe opening left, 30 percent shorter diagram, dimmed Ready passage and simpler Ready card. This is component approval only; 101-04 text stays Silver. All lesson JSON, questions/IDs/answers, readings, approved oil-lamp art, placement and shared runtime remain unchanged. Core QA and 248 focused browser checks pass. Approved component hash/status are recorded. Final exact-head preview, merge and live verification are on PR #262. [Integration log](logs/2026-11-17-WIDGET-101-04-RDR-POLISH-codex.md).
+
+
+## 101-04 compact Bible layout follow-up: November 17, 2026
+
+PR #262 remains REVIEW. At Dave's request, the Bible area stays on the left at half its prior size. The closed cover is aligned against the open book's right edge, leaving room to open left; the opening wipe travels right to left. The diagram viewBox height is 116 instead of 166, a 30 percent reduction. Teaching-card and Scripture fonts remain unchanged. Browser coverage includes a 375x667 phone, full-widget fit below the lesson header, wipe direction, fixed card sizing and saved answers. No lesson JSON, artwork, shared runtime or historical approval fingerprints change. Preview awaits Dave's visual approval before merge. Evidence: [Codex log](logs/2026-11-17-WIDGET-101-04-RDR-POLISH-codex.md).
+
+
+## 101-04 widget-polish preview refreshed: November 17, 2026
+
+WIDGET-101-04-RDR-POLISH REVIEW, PR #262. Dave requested a fresh preview to decide whether to merge. Merged current main normally, preserving both TASKS/TEAM-BOARD histories. The proposed read-discover-respond.html remains exact Gemini 69fff4eb3e59013db323bb74366f3efefc414917: closed Bible on Ready, opening on Read Slowly, dim passage/John 1 watermark at Ready, and shorter opening card.
+
+Current 101-04 JSON is byte-identical to main: protected wording, eight questions, retired answer, John readings, approved lamp artwork and widget placement remain intact. Shared index/iframe helper and all other lessons/widgets/art are unchanged. No new widget/art/whole-lesson approval inferred; current baseline remains untouched until Dave approves. Core QA, export186/storage64/assets144/images1543/iframe32 and 230 embedded RDR checks pass locally. Final exact-head preview evidence and links are on PR #262. [Codex log](logs/2026-11-17-WIDGET-101-04-RDR-POLISH-codex.md).
+
+
+
+## 101-04 Read, Discover, Respond polish (REVIEW): November 16, 2026
+
+- **Task / Branch:** `WIDGET-101-04-RDR-POLISH` on `gemini/widget-101-04-rdr-polish` (stopped at `REVIEW`; do not merge without Dave's go-ahead; `data/101-04.json` and all unrelated files untouched).
+- **Changes:** Updated [read-discover-respond.html](../widgets/read-discover-respond.html) and [widget_101_04_rdr_browser_check.js](../scripts/widget_101_04_rdr_browser_check.js):
+  - Step 0 (`Ready`) shows a closed Bible (`#bible-closed`) on the left side of the diagram instead of repeating the already-open spread; advancing to Step 1 (`Read Slowly`) hides the closed cover and unfolds `#bible-open-part` rightward (`clip-bible-rect` width `50 -> 114`).
+  - Step 0 (`Ready`) keeps `#passage-box` crisp white while dimming `.passage-meta` (`0.22`) and `.passage-text` (`0.14`, `#7C7468`) beneath a centered `John 1:11-12` watermark (`.passage-watermark`); advancing to Step 1 fades the watermark out and brings the worked-example passage cleanly to the forefront (`opacity: 1`).
+  - Simplified `STEPS[0]` card copy (`Open any passage with three simple movements: read it well, notice what it says, and respond.` / `Step through John 1:11-12 to see how the rhythm works.`) to remove overlap with Step 1 (`Listen Before Answering`).
+  - Preserved locked `--card-h` (`166px` mobile / `147px` desktop), `prefers-reduced-motion: reduce`, keyboard navigation, zero idle DOM mutations, zero `localStorage` writes, and zero em dashes.
+- **Verification:** `qa_foundation.sh`, `test_lesson_export.js` (`186`), `test_answer_storage.js` (`64`), `check_lesson_assets.js` (`139`), `test_widget_iframe.js` (`32`), and `widget_101_04_rdr_browser_check.js` (`234`) all pass (`exit 0`), plus visual inspection of `390x844` captures across Steps 0, 1, 2, and 5.
+- **Evidence:** [Gemini handoff log](logs/2026-11-16-WIDGET-101-04-RDR-POLISH-gemini.md).
+
+## 101-07 B&W widget refinement integrated: November 17, 2026
+
+WIDGET-101-07-BW-REFINE DONE, PR #254. Dave approved exact a93a67350290bbe7520e2af8fb0c0c29650b8953 for stop-turn-walk.html and both approved standalone/embedded browser scripts. All three remain byte-identical. The B&W scene, straight arms, white turn/stop lines, removed road dots, closer Walk endpoint and shorter approved slide copy are preserved.
+
+Current main was merged normally; only TASKS/TEAM-BOARD append conflicts needed resolution, and both histories are retained. Current 101-07 JSON, active/retired question objects/IDs, reading plan, widget placement, shepherd art, shared index and saved-answer implementation remain unchanged. Baseline/status reflect this component approval only; text stays Silver. Final checks, exact-head preview, merge and live deployment evidence are on PR #254. [Codex log](logs/2026-11-17-WIDGET-101-07-BW-REFINE-codex.md).
+
+
+
+## 101-07 Repentance is 180 Degrees B&W visual polish (DONE): November 17, 2026
+
+- **Task / Branch:** `WIDGET-101-07-BW-REFINE` on `gemini/widget-101-07-bw-refine` (Dave approved exact `a93a673`; Codex integrates PR #254; lesson JSON `data/101-07.json` untouched).
+- **Changes:** Applied Dave's visual polish to [stop-turn-walk.html](../widgets/stop-turn-walk.html) (`Repentance is 180 Degrees` / `101-07`):
+  - Replaced the traveler's bent elbow with normal straight 2-arm stick-man geometry (`#t-arm-f` & `#t-arm-b`, no bent elbow).
+  - Removed all 4 dots on the road (`#drift-steps` & `#walk-trail` deleted; zero dotted road lines).
+  - Converted the entire SVG scene (`#turn-svg`) to black and white (`DARKNESS` left -> `LIGHT` right, charcoal hillside cross, crisp white `#stop-line` in Step 1, B&W `STOP` badge and B&W `180°` turn arc/badge).
+  - Moved the Step 3 `Walk` ending position forward (`translate(274, 140)`) closer to the cross.
+  - Updated slide copy to tighter verses and wording: Start `Which Way Are You Going?`, Step 1 `Stop` (`Psalm 32:5` snippet), Step 2 `Turn` (`Acts 3:19` snippet, `Turn away from your sin and back toward God.`), Step 3 `Walk` (`1 John 1:7` snippet, `Walk forward forgiven into the light.`).
+  - Updated [widget_101_07_stop_turn_walk_browser_check.js](../scripts/widget_101_07_stop_turn_walk_browser_check.js) and [stop_turn_walk_embedded_browser_check.js](../scripts/stop_turn_walk_embedded_browser_check.js) to verify the updated copy, straight arms, removed road dots, white stop line, B&W elements, and Step 3 position `x >= 270`.
+- **Evidence:** [Gemini handoff log](logs/2026-11-16-WIDGET-101-07-BW-REFINE-gemini.md).
+
+
+## 201-04 visible-finish timing preview: November 17, 2026
+
+ART-201-04-SCROLL-PACE is DONE on PR #274. Dave approved exact b1779da on November 17; Codex integrates the approved timing without any visual or wording change. The image scrolls upward normally. Dave found that the 95 percent finish was already partly off screen and requested an earlier, balanced finish with a shorter opening hold. Measured phone geometry shows that 80 percent still hides 31 percent behind the header. Stops are now [0.10, 0.20, 0.30, 0.40, 0.50, 0.60]: 10 percent initial hold, five equal 10 percent dissolves, final image complete about 21px below the header on a 390x844 phone. Physical browser checks require the entire final frame visible at completion.
+
+No pinning, added height or shared-engine changes. Approved #273 prose, Scripture, image bytes/order, six question objects/IDs/answers, and five-roots widget remain unchanged. Latest main through #278 is preserved. The earlier pinned and 20/15 percent timing previews are superseded. Evidence: [Codex log](logs/2026-11-17-ART-201-04-SCROLL-PACE-codex.md).
+
+## 202-09 approved roof marker artwork: November 17, 2026
+
+ART-202-09-MARKER DONE, PR #279. Dave approved c053695840939c50bc48e67803b8ec463b4e7d77: the 1280x720 rough marker roof B&W/color pair, four optimized WebP deliveries, generated asset map and framed touchNext image block with imageDissolveOnEntry. All approved submission bytes are preserved exactly. Older 202.09-david-roof PNGs remain on disk unchanged.
+
+Only the opening image block changes in 202-09. Every prose/Scripture block, question object/ID, reading key and starting-gun.html byte remains unchanged. 202-03, 202-04 and shared index.html also remain exact main. Image approval only; no whole-lesson Gold inferred. Core QA, required lesson/widget/image browser tests and focused dissolve/answer checks are tracked in [the Codex log](logs/2026-11-17-ART-202-09-MARKER-codex.md). Final exact-head preview, merge and live deployment evidence are posted on PR #279.
+
+
+
+## 201-04 roots clarity draft: November 16, 2026
+
+L-201-04-ROOTS-CLARITY is DONE. Dave approved the exact lesson revision at 6014827 on November 16, 2026; Codex integrates PR #273 from codex/201-04-roots-clarity. Dave assigned this focused follow-up to the 201 course review. The lesson now distinguishes a heart receiving God's Word, Christ supplying life, and five habits helping the believer depend on Him. Question 4.2 stays diagnostic; 4.3 now asks for a specific practice and time. The practice paragraph gives examples and a gracious restart instead of another self-scoring exercise.
+
+Only the description and eight existing text/question fields change. All six IDs, Scripture, block order, artwork/sequence, deep-roots.html and saved-answer code remain unchanged. No Gold or final wording approval is inferred. Required QA/export/storage/assets/images and 61 sequence plus 57 direct lesson/answer browser checks pass locally. Preview and full evidence: [Codex log](logs/2026-11-16-L-201-04-ROOTS-CLARITY-codex.md). Protect this approved wording. Approval covers this revision; no whole-lesson Gold is inferred. Final preview/live evidence is on PR #273.
+
+
+## 101-03 approved voice revision: November 16, 2026
+
+VOICE-101-03 DONE, PR #269. Dave approved Claude's exact 65cc11013e4cbc0c1a59ca57f6ba1dc944b9aae8 revision: eight text blocks covering What Is Prayer, the shorter Matthew/Luke introduction, and the six step explanations in second person. Heading names and quoted prayer lines remain unchanged. Protect this wording; text stays Silver until Dave confirms whole-lesson Gold.
+
+Current #270 hint and #271 B&W hold were merged normally and remain exact. Questions/IDs, John 7-9, practice/review, art/story, widget/tool and saved-answer code are unchanged. Required QA, 225 widget and 464 story checks pass. Baseline/status record the approved wording; final preview/live evidence is on #269. [Codex integration log](logs/2026-11-16-VOICE-101-03-codex.md).
+
+## Lord's Prayer hint follow-up: November 16, 2026
+
+WIDGET-101-03-HINT DONE, PR #270. Dave approved 23660ca21721469d2aad15d692b69d64a3e97c60: Choose a line to see its step alongside MATTHEW 6:9-13. The submitted widget bytes are preserved exactly. Current #271 entry-hold timing and both board histories are retained. Only the board append conflicted during the normal merge; no runtime conflict or reversion.
+
+Lesson JSON, other widget copy/behavior, Scripture, questions/IDs, readings, story artwork and saved-answer logic remain unchanged. Text stays Silver. Required QA and all 225 unchanged widget browser checks pass. Baseline hash records the approved hint version. Final preview/live evidence on PR #270; [Codex log](logs/2026-11-16-WIDGET-101-03-HINT-codex.md).
+
+## 101-03 Lord's Prayer hint polish (DONE): November 16, 2026
+
+- **Task / Branch:** `WIDGET-101-03-HINT` on `gemini/widget-101-03-hint` (Dave approved exact `23660ca`; Codex integration and live evidence on PR `#270`, follow-up to `#266`).
+- **Changes:** Updated only [lords-prayer.html](../widgets/lords-prayer.html) header cue so mobile and desktop both read `Choose a line to see its step` alongside `MATTHEW 6:9-13`, replacing `Click any line` / `.tap-hint`. Leaves `discipleship/data/101-03.json`, `widget-iframe.js`, `index.html`, story art, and all unrelated files untouched.
+- **Verification:** `qa_foundation.sh`, `test_lesson_export.js` (`186`), `test_answer_storage.js` (`64`), `check_lesson_assets.js` (`144`), `test_widget_iframe.js` (`32`), and embedded `#101-3` browser check (`225` checks across `375x812`, `390x844`, `1280x800`, and `390/reduce`; `500px` phone / `520px` desktop) exit `0`, plus screenshot inspection of `step-0.png` and `step-1.png`.
+- **Evidence:** [Gemini handoff log](logs/2026-11-16-WIDGET-101-03-HINT-gemini.md).
+
+## Entry dissolve B&W hold: November 16, 2026
+
+ART-101-ENTRY-HOLD DONE, PR #271. Dave approved b5aa6f52d8c869610e5c29a40659b754ca8255be. The submitted runtime and image-guide bytes are preserved: entry reveals open fully B&W at scroll zero, hold for the first 20 percent of their travel, and finish fully colored while centered below the fixed header. This applies to the existing 101-03/04/05/06 entry pairs. Reduced motion still shows the static final image; other pairs/sequences retain existing timing.
+
+All lesson JSON, approved images/deliveries, widgets, IDs/readings and saved-answer implementation are unchanged. Foundation QA, export/storage/assets/images/iframe, image-delivery 64, lamp 128 and dedicated hold/reverse/resize 216 checks pass. The hold regression fails on the previous runtime. Preview, merge and live evidence are on PR #271; [Codex log](logs/2026-11-16-ART-101-ENTRY-HOLD-codex.md).
+
+## Course 101 story art integrated: November 16, 2026
+
+ART-101-03-05-06 DONE, PR #268. Dave asked Codex to merge Gemini's completed art at 17684f32bb846bda53cc91fd0ffb45ec777bb751: the new 101-03 pre-dawn prayer pair before Teach Us to Pray, revised individual roots in 101-05 aspen-bw.png with the existing color layer preserved, and the 101-06 sunlit well/terracotta reveal with its B&W layer preserved. All three use imageDissolveOnEntry so full light appears while the complete image is visible. Approved art/delivery/map bytes are unchanged from Gemini's submission.
+
+Current main #266 Lord's Prayer widget and approval records are retained. Merge conflicts were confined to editorial baseline/status; both widget and new art records are preserved. No lesson prose, Scripture, question/answer identity, reading, existing widget or runtime index changes. All three texts stay Silver; image approval does not grant whole-lesson Gold. Local checks include repository QA, 464 four-lesson reveal checks, 225 Lord's Prayer widget checks, 128 lamp checks and 64 delivery checks. Final preview/live evidence is on PR #268. Evidence: [Codex log](logs/2026-11-16-ART-101-03-05-06-codex.md).
+
+## 101-03 Lord's Prayer widget approved: November 16, 2026
+
+WIDGET-101-03-LORDS-PRAYER DONE. Dave approved PR #266 at 3542e12bc85b2d8793e4402d04b744737b9ebdca. Exact lords-prayer.html bytes, title The Lord's Prayer, iframe registration and placement are preserved. Only the static The Lord's Prayer verse block becomes a widget; every other lesson field, all eight questions/IDs, John 7-9, six-step teaching and Daily Prayers tool remain unchanged. Text stays Silver with Dave edits protected; no image or whole-lesson Gold is inferred.
+
+Current main #267 course-review documentation is merged normally and preserved alongside both task/board histories. Foundation/export/storage/assets/images/iframe and all 225 browser checks pass on phone, desktop and reduced motion. Exact-head preview and production evidence are on PR #266. Baseline/status record this widget approval. Evidence: [Codex integration log](logs/2026-11-16-WIDGET-101-03-LORDS-PRAYER-codex.md).
+
+## 101-03 The Lord's Prayer widget (DONE): November 16, 2026
+
+- **Task / Branch:** `WIDGET-101-03-LORDS-PRAYER` on `gemini/widget-101-03-lords-prayer` (Dave approved exact `3542e12`; Codex integration and final live evidence are recorded on PR #266).
+- **Changes:** Built [lords-prayer.html](../widgets/lords-prayer.html), registered `'lords-prayer.html': "The Lord's Prayer"` in [widget-iframe.js](../scripts/widget-iframe.js), replaced only the static `"The Lord's Prayer"` verse block in `discipleship/data/101-03.json` with `{ "type": "widget", "src": "widgets/lords-prayer.html", "title": "The Lord's Prayer", "height": "460px" }`, and added [widget_101_03_lords_prayer_browser_check.js](../scripts/widget_101_03_lords_prayer_browser_check.js):
+  - All 7 prayer lines (`Our Father, who is in heaven,` through `For yours is the kingdom, and the power, and the glory forever, Amen.`, grouping `your kingdom come, your will be done / on earth as it is in heaven.` together) render as native `<details name="lords-prayer">` / `<summary>` exclusive accordion rows with numbered pills, rotating chevrons, and a `Click any line` pill cue (plus `HTMLDetailsElement` exclusivity fallback).
+  - Clicking any prayer line (or stepping with `Begin`/`Next`/`Back`) highlights the Scripture line cleanly (soft Studio Wash fill + underline marker matching `read-discover-respond.html`) and pushes lines below down to pop open the matching sans-serif Step Heading drawer directly underneath that line (`Connect Relationally`, `Worship His Name`, `Pray His Agenda First`, `Depend on Him for Everything`, `Forgive and Be Forgiven`, `Engage in Spiritual Warfare`, and `Return the Glory to God`), closing automatically when another line is selected.
+  - `505px` height on `375`/`390` phones (`525px` on desktop), `>= 24x24px` interactive targets, `:focus-visible` outlines, `prefers-reduced-motion: reduce` support, zero idle DOM mutations, zero `localStorage` writes, and zero em dashes.
+- **Verification:** `qa_foundation.sh`, `test_lesson_export.js` (`186`), `test_answer_storage.js` (`64`), `check_lesson_assets.js` (`142`), `test_widget_iframe.js` (`32`), and embedded `#101-3` browser check (`225` checks across `375x812`, `390x844`, `1280x800`, and `390/reduce`) exit `0`, plus visual screenshot inspection of Steps `0`, `1`, `3`, and `7`.
+- **Evidence:** [Gemini handoff log](logs/2026-11-16-WIDGET-101-03-LORDS-PRAYER-gemini.md).
+
+## 101-04 lamp timing correction: November 16, 2026
+
+Dave requested full light sooner while the image is still on screen. ART-101-04-LAMP-TIMING enables imageDissolveOnEntry only on the Nicodemus pair: fade begins on entry and completes with the image centered below the lesson header. All approved source/delivery artwork, placement, prose, Scripture, eight active questions, retired 4-6, John readings and widget bytes are unchanged. Text stays Silver. Other image/sequence timings keep their existing behavior. Baseline and image documentation record this timing-only update.
+
+The physical visibility regression fails on the old timing. Phone/desktop/short-screen/reduced-motion and legacy dissolve checks are recorded in [the timing log](logs/2026-11-16-ART-101-04-LAMP-TIMING-codex.md). Final preview, merge and production evidence are on the codex/10104-lamp-timing PR.
+
+## 101-04 Nicodemus lamp artwork approved: November 16, 2026
+
+Dave approved PR #263 at b52e4f4ab59024193484e23eff0ad99d90904bae: the 1280x720 darker-to-lighter clay oil-lamp pair, four optimized 640/1280 WebP copies, generated image map, and touchNext placement immediately before Questions in the Night. Preserve these approved bytes. Older notes describing 101-04 story art as missing are superseded.
+
+Current main 0b4a799 (#259) is preserved: all prose, Scripture, eight active questions, retired 4-6, John 10-12 and Read, Discover, Respond widget are unchanged. In particular, do not restore the retired share section/question or duplicate Discovery Questions box. All unrelated lessons, index, saved-answer code and existing art stay unchanged. Image approval only; text remains Silver with Dave edits protected. The 101 status and baseline now record the current protected content and exact approved image hashes.
+
+Core QA, asset/image/export/storage/iframe checks and targeted widget/dissolve browser verification are recorded in the integration log. Final exact-head Firebase preview, merge and production deployment evidence are on PR #263. Evidence: [Codex integration log](logs/2026-11-16-ART-101-04-LAMP-codex.md).
+
+
 ## 202-10 Lord's Supper update approved: November 16, 2026
 
 Dave approved PR #252 at 169a7d54c50689e814ae0ff5455421f6172147bd. SUPPER-202-10 DONE: the approved 1152x864 (4:3) bread-and-cup B&W/color pair and four 640/1152 WebP copies are added as a framed, touchNext dissolve immediately after The Lord's Supper: The Table You Return To. Both source JPGs, delivery copies, lesson placement and generated image map remain byte-identical to the approved PR. The existing opening Last Supper pair is retained.
@@ -7,6 +230,7 @@ Dave approved PR #252 at 169a7d54c50689e814ae0ff5455421f6172147bd. SUPPER-202-10
 The two-ordinances.html placeholder embed is removed; its file stays on disk. Baptism picture remains in its approved section, unchanged from 3c3b328. TOC subtitle/tool now say Baptism picture. All prose, Scripture, seven question objects/IDs, readings, saved-answer code, index, other lessons and existing artwork remain unchanged. This supersedes older notes that the bread-and-cup files are missing or the Lord's Supper placeholder remains active. No new Gold stage is assigned.
 
 Current main e35a32a was merged normally, preserving Dave's latest 101-03/101-07 edits and both task records. Repository checks pass: export 186, storage 64, assets 139, images 1485, asset-validator 8, iframe 32, foundation. Browser checks pass: Baptism 112, integration/answers 112, both dissolves 128 across mobile/desktop/reduced motion. Exact-head preview and live deployment evidence are recorded on PR #252. Evidence: [Codex integration log](logs/2026-11-16-SUPPER-202-10-codex.md).
+
 
 ## 101-07 interim box removed: November 15, 2026
 

@@ -1,0 +1,5 @@
+# FLOW-202-10-BAPTISM-FIRST
+
+Dave explicitly approved PR #260 arrangement on November18: baptism first with widget, then bread/cup directly above the Lord's Supper Bible story. Integrating old5b86117 onto main d2b6c9c. Status ACTIVE.
+
+Resolve lesson conflict from current main, moving existing blocks only. Preserve every current-main prose and Scripture block, all8 question IDs including newer202-10-hand, all readings and the newer Supper eligibility paragraph. Only visible numbering10.1/10.2 swaps to follow order; stored IDs stay attached to their original prompts. Current course welcome and covenant wording retained exactly. Move story anchor to bread/cup image and order lesson contents links to follow baptism/widget/story. Remove only the old Last Supper image block; source and optimized image files stay byte-identical on disk. Reconcile story-image.md from latest main, changing only202-10 row, preserving newer203-01 roof-drop sequence and other image records. No widget/runtime/artwork modifications. Final checks and publication evidence follow.
