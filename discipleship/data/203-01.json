@@ -36,18 +36,14 @@
       "imageSequence": [
         "images/203-01-roof-drop-seq-1.jpg",
         "images/203-01-roof-drop-seq-1.jpg",
-        "images/203-01-roof-drop-seq-2.jpg",
-        "images/203-01-roof-drop-seq-2.jpg",
-        "images/203-01-roof-drop-seq-3.jpg"
+        "images/203-01-roof-drop-seq-2.jpg"
       ],
       "imageSequenceStops": [
         0,
-        0.08,
         0.16,
-        0.24,
         0.8
       ],
-      "alt": "Looking down through a hole in the roof as four friends lower a paralyzed man on a mat, first high with the shadow far below, then closer, then landing beside Jesus",
+      "alt": "Looking down through a hole in the roof as friends lower a paralyzed man on a mat, first high above the floor, then settling beside Jesus",
       "touchNext": true,
       "anchor": "story"
     },
