@@ -1,0 +1,1440 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reflect His Glory</title>
+<style>
+:root {
+  --ink: #2C2416;
+  --muted: #6E6559;
+  --tray: #F6F4EE;
+  --border: #EBE5D9;
+  --gold: #A8760A;
+  --gold-btn: #8E6206;
+  --gold-dark: #7D5604;
+  --gold-wash: #FCF2D6;
+  --gold-ray: #C48F10;
+  --blue: #2A5B7C;
+  --blue-dark: #1E435C;
+  --blue-wash: #E2EEF6;
+  --crimson: #8B1A2B;
+  --crimson-dark: #6D1422;
+  --dim-amber: #7A633C;
+  --dim-amber-dark: #5C492A;
+  --dim-grey: #625B52;
+  --dim-grey-dark: #453F38;
+  --step-color: #2C2416;
+  --step-dark: #2C2416;
+  --card-h: 132px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: Georgia, Cambria, serif;
+  background: #F8F6F1;
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+.widget-outer {
+  background: #FFFFFF;
+  border-radius: 0;
+  overflow: hidden;
+  max-width: 100%;
+  width: 100%;
+  margin: 0;
+  position: relative;
+}
+
+@media (min-width: 560px) {
+  body {
+    padding: 16px;
+    background: #F8F6F1;
+  }
+  .widget-outer {
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(44, 36, 22, 0.08);
+    border: 1px solid #EBE5D9;
+    max-width: 460px;
+    margin: 0 auto;
+  }
+}
+
+.title-bar {
+  background: #2C2416;
+  padding: 8px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.title-bar h1 {
+  font: 600 17px/1.15 system-ui, -apple-system, sans-serif;
+  color: #FAF8F3;
+  letter-spacing: 0.2px;
+  margin: 0;
+}
+
+.course-tag {
+  font: 600 11px/1 system-ui, -apple-system, sans-serif;
+  letter-spacing: 0.9px;
+  text-transform: uppercase;
+  color: #E5DEC9;
+  white-space: nowrap;
+}
+
+.stage {
+  background: #FFFFFF;
+  padding: 2px 4px;
+  border-bottom: 1px solid var(--border);
+}
+
+.glory-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.scene-layer {
+  opacity: 0;
+}
+
+.scene-layer.is-visible {
+  opacity: 1;
+}
+
+.fig-pose {
+  opacity: 0;
+}
+
+.fig-pose.is-visible {
+  opacity: 1;
+}
+
+.step-strip {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 12px 4px;
+  background: var(--tray);
+  border-bottom: 1px solid var(--border);
+}
+
+.step-dot {
+  appearance: none;
+  min-width: 28px;
+  min-height: 28px;
+  padding: 4px;
+  border: none;
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.step-dot-fill {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 2.5px solid var(--dot-color, var(--ink));
+  background: #FFFFFF;
+  display: block;
+}
+
+.step-dot.passed .step-dot-fill {
+  background: color-mix(in srgb, var(--dot-color, var(--ink)) 22%, #FFFFFF);
+}
+
+.step-dot.active .step-dot-fill {
+  background: var(--dot-color, var(--ink));
+  transform: scale(1.12);
+}
+
+.card-area {
+  background: var(--tray);
+  padding: 6px 12px 9px;
+}
+
+.verse-card {
+  background: #FFFFFF;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #EBE5D9;
+  box-shadow: 0 2px 10px rgba(44, 36, 22, 0.05);
+}
+
+.verse-card-bar {
+  height: 4px;
+  background: var(--step-color);
+}
+
+.verse-card-content {
+  padding: 9px 13px;
+  min-height: var(--card-h, 132px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 4px;
+}
+
+.card-heading {
+  font: 700 15px/1.2 system-ui, -apple-system, sans-serif;
+  color: var(--step-dark);
+  margin: 0;
+}
+
+.card-quote {
+  font: 12.8px/1.34 Georgia, Cambria, serif;
+  color: #2C2416;
+  margin: 0;
+}
+
+.card-ref {
+  font: 600 11.5px/1.2 system-ui, -apple-system, sans-serif;
+  color: var(--muted);
+  margin-left: 4px;
+  white-space: nowrap;
+}
+
+.card-note {
+  font: 12.2px/1.34 system-ui, -apple-system, sans-serif;
+  color: #4A4238;
+  margin: 0;
+}
+
+.nav-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-top: 7px;
+}
+
+.nav-btn {
+  min-height: 44px;
+  min-width: 96px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1.5px solid #D4CFC4;
+  background: #FFFFFF;
+  color: var(--ink);
+  font: 700 13.5px/1 system-ui, -apple-system, sans-serif;
+  cursor: pointer;
+}
+
+.nav-btn.primary {
+  background: var(--step-color);
+  border-color: var(--step-color);
+  color: #FFFFFF;
+}
+
+.nav-btn:disabled {
+  opacity: 0.36;
+  cursor: default;
+}
+
+.step-count {
+  font: 600 12px system-ui, -apple-system, sans-serif;
+  color: var(--muted);
+}
+
+button:focus-visible {
+  outline: 3px solid #E0A526;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .widget-outer:not(.is-instant) .scene-layer {
+    transition: opacity 0.3s ease;
+  }
+  .widget-outer:not(.is-instant) .fig-pose {
+    transition: opacity 0.25s ease;
+  }
+  .widget-outer .step-dot-fill {
+    transition: background-color 0.22s ease, border-color 0.22s ease, transform 0.22s ease;
+  }
+  .widget-outer .nav-btn.primary,
+  .widget-outer .verse-card-bar,
+  .widget-outer .card-heading {
+    transition: background-color 0.24s ease, border-color 0.24s ease, color 0.24s ease;
+  }
+}
+
+@media (max-width: 395px) {
+  .card-area {
+    padding: 6px 10px 8px;
+  }
+  .verse-card-content {
+    padding: 8px 11px;
+  }
+  .card-heading {
+    font-size: 14.5px;
+  }
+  .card-quote {
+    font-size: 12.4px;
+  }
+  .card-note {
+    font-size: 11.8px;
+  }
+}
+
+@media (forced-colors: active) {
+  .step-dot-fill {
+    border-color: ButtonText;
+    background: Canvas;
+  }
+  .step-dot.active .step-dot-fill {
+    background: Highlight;
+    border-color: Highlight;
+  }
+  .nav-btn.primary {
+    border: 2px solid Highlight;
+  }
+}
+</style>
+</head>
+<body>
+<main class="widget-outer" id="scene-root" aria-label="Reflect His Glory"></main>
+
+<script>
+(function () {
+  'use strict';
+
+  var SVG_NS = 'http://www.w3.org/2000/svg';
+  var RAY_SPEED = 185; // px per second per Studio Wash pacing
+
+  var COLORS = {
+    ink: '#2C2416',
+    muted: '#6E6559',
+    gold: '#A8760A',
+    goldBtn: '#8E6206',
+    goldDark: '#7D5604',
+    goldWash: '#FCF2D6',
+    goldRay: '#C48F10',
+    blue: '#2A5B7C',
+    blueDark: '#1E435C',
+    crimson: '#8B1A2B',
+    crimsonDark: '#6D1422',
+    dimAmber: '#7A633C',
+    dimAmberDark: '#5C492A',
+    dimGrey: '#625B52',
+    dimGreyDark: '#453F38',
+    neutralWash: '#F3F0E9',
+    softWarmWash: '#FBF3DF',
+    mirrorOuter: '#7E8A96',
+    mirrorDark: '#4C5661'
+  };
+
+  var STEPS = [
+    {
+      id: 'start',
+      dotLabel: 'Start: Reflect His Glory',
+      color: COLORS.ink,
+      dark: COLORS.ink,
+      heading: 'Reflect His Glory',
+      verse: '"The heavens declare the glory of God, and the sky above proclaims his handiwork."',
+      ref: 'Psalm 19:1',
+      line: 'Everyone wants to shine. The question is whose light it is.',
+      desc: 'Clean white stage ready for the scene to begin.'
+    },
+    {
+      id: 'look-at-me',
+      dotLabel: 'Step 1: Look at Me',
+      color: COLORS.dimAmber,
+      dark: COLORS.dimAmberDark,
+      heading: 'Look at Me',
+      verse: '"For they loved the glory that comes from man more than the glory that comes from God."',
+      ref: 'John 12:43',
+      line: 'Every heart starts out wanting to be seen, hoping to give people joy and hope, and to get the credit.',
+      desc: 'A center figure stands with a small dim glow while three other figures face inward and arrows of attention point toward the center figure.'
+    },
+    {
+      id: 'light-runs-out',
+      dotLabel: 'Step 2: The Light Runs Out',
+      color: COLORS.dimGrey,
+      dark: COLORS.dimGreyDark,
+      heading: 'The Light Runs Out',
+      verse: '"They have forsaken me, the fountain of living waters, and hewed out cisterns for themselves, broken cisterns that can hold no water."',
+      ref: 'Jeremiah 2:13',
+      line: 'No one can give people the joy only God gives. Your own light runs out.',
+      desc: 'The small self-made glow flickers and fades away, and the other figures turn away still empty.'
+    },
+    {
+      id: 'turn-to-light',
+      dotLabel: 'Step 3: Turn to the Light',
+      color: COLORS.goldBtn,
+      dark: COLORS.goldDark,
+      heading: 'Turn to the Light',
+      verse: '"For God, who said, \'Let light shine out of darkness,\' has shone in our hearts to give the light of the knowledge of the glory of God in the face of Jesus Christ."',
+      ref: '2 Corinthians 4:6',
+      line: 'When you give your life to God, you receive the light you could never make yourself.',
+      desc: 'A radiant gold sun appears at the top center and shines a straight beam down onto the center figure, who turns upward and fills with warm gold light.'
+    },
+    {
+      id: 'made-to-reflect',
+      dotLabel: 'Step 4: Made to Reflect',
+      color: COLORS.blue,
+      dark: COLORS.blueDark,
+      heading: 'Made to Reflect',
+      verse: '"In the same way, let your light shine before others, so that they may see your good works and give glory to your Father who is in heaven."',
+      ref: 'Matthew 5:16',
+      line: 'You are the mirror, not the light. When people see your good works, the light points them up to your Father.',
+      desc: 'The center figure holds a 45-degree mirror catching the sun ray from above and reflecting it sideways to the three other figures, whose sight lines follow the light up to the sun.'
+    },
+    {
+      id: 'joy-that-lasts',
+      dotLabel: 'Step 5: Joy That Lasts',
+      color: COLORS.crimson,
+      dark: COLORS.crimsonDark,
+      heading: 'Joy That Lasts',
+      verse: '"You make known to me the path of life; in your presence there is fullness of joy; at your right hand are pleasures forevermore."',
+      ref: 'Psalm 16:11',
+      line: 'God gets the glory, and everyone who sees Him finds the joy that lasts forever.',
+      desc: 'All four figures face up toward the golden sun sharing a soft gold wash inside a crisp double-hairline frame.'
+    }
+  ];
+
+  // Geometry constants on 440 x 264 canvas
+  var GEO = {
+    sunX: 192,
+    sunY: 52,
+    sunR: 19,
+    centerX: 104,
+    groundY: 238,
+    mirrorX: 150,
+    mirrorY: 162,
+    others: [256, 314, 372]
+  };
+
+  function el(tag, attrs, parent) {
+    var node = document.createElement(tag);
+    if (attrs) {
+      Object.keys(attrs).forEach(function (k) {
+        if (k === 'text') node.textContent = attrs[k];
+        else if (k === 'class') node.className = attrs[k];
+        else node.setAttribute(k, attrs[k]);
+      });
+    }
+    if (parent) parent.appendChild(node);
+    return node;
+  }
+
+  function svgEl(tag, attrs, parent) {
+    var node = document.createElementNS(SVG_NS, tag);
+    if (attrs) {
+      Object.keys(attrs).forEach(function (k) {
+        if (k === 'text') node.textContent = attrs[k];
+        else node.setAttribute(k, attrs[k]);
+      });
+    }
+    if (parent) parent.appendChild(node);
+    return node;
+  }
+
+  function lineLen(x1, y1, x2, y2) {
+    return Math.hypot(x2 - x1, y2 - y1);
+  }
+
+  function buildArrowHeadPath(x1, y1, x2, y2, size) {
+    var angle = Math.atan2(y2 - y1, x2 - x1);
+    var spread = 0.52;
+    var ax = x2 - size * Math.cos(angle - spread);
+    var ay = y2 - size * Math.sin(angle - spread);
+    var bx = x2 - size * Math.cos(angle + spread);
+    var by = y2 - size * Math.sin(angle + spread);
+    return 'M ' + ax.toFixed(1) + ' ' + ay.toFixed(1) +
+           ' L ' + x2.toFixed(1) + ' ' + y2.toFixed(1) +
+           ' L ' + bx.toFixed(1) + ' ' + by.toFixed(1);
+  }
+
+  function drawRoundedPerson(parent, opts) {
+    var g = svgEl('g', {
+      class: opts.cls || '',
+      transform: 'translate(' + opts.x + ',' + opts.groundY + ')'
+    }, parent);
+
+    var s = opts.scale || 1;
+    var tilt = opts.tilt || 0;
+    var droop = opts.droop || 0;
+    var fill = opts.fill || COLORS.neutralWash;
+    var stroke = opts.stroke || COLORS.ink;
+    var headDx = opts.headDx || 0;
+    var headDy = opts.headDy || 0;
+
+    var inner = svgEl('g', {
+      transform: 'translate(0,' + droop + ') rotate(' + tilt + ' 0 0) scale(' + s + ')'
+    }, g);
+
+    // Friendly rounded body silhouette (shoulders & robe/torso)
+    svgEl('path', {
+      d: 'M -15 0 L -15 -34 C -15 -47 -8 -53 0 -53 C 8 -53 15 -47 15 -34 L 15 0 Z',
+      fill: fill,
+      stroke: stroke,
+      'stroke-width': '1.75',
+      'stroke-linejoin': 'round'
+    }, inner);
+
+    // Optional arms path
+    if (opts.arms) {
+      svgEl('path', {
+        d: opts.arms,
+        fill: 'none',
+        stroke: stroke,
+        'stroke-width': '2',
+        'stroke-linecap': 'round',
+        'stroke-linejoin': 'round'
+      }, inner);
+    }
+
+    // Rounded friendly head (minimal directional cue via subtle gaze dot/arc, no detailed face)
+    var hx = headDx;
+    var hy = -66 + headDy;
+    svgEl('circle', {
+      cx: hx,
+      cy: hy,
+      r: '11.5',
+      fill: fill,
+      stroke: stroke,
+      'stroke-width': '1.75'
+    }, inner);
+
+    // Subtle directional facing cue on head rim (shows left / away-right / up-left / up-right clearly)
+    if (opts.face === 'left') {
+      svgEl('circle', { cx: hx - 4.8, cy: hy - 0.5, r: '1.45', fill: stroke }, inner);
+    } else if (opts.face === 'right') {
+      svgEl('circle', { cx: hx + 4.8, cy: hy - 0.5, r: '1.45', fill: stroke }, inner);
+    } else if (opts.face === 'up-right') {
+      svgEl('circle', { cx: hx + 3.8, cy: hy - 4.0, r: '1.45', fill: stroke }, inner);
+    } else if (opts.face === 'up-left') {
+      svgEl('circle', { cx: hx - 3.8, cy: hy - 4.0, r: '1.45', fill: stroke }, inner);
+    } else if (opts.face === 'down') {
+      svgEl('circle', { cx: hx + 1.8, cy: hy + 3.2, r: '1.35', fill: stroke, opacity: '0.7' }, inner);
+    }
+
+    return g;
+  }
+
+  function buildStage(parent) {
+    var stage = el('div', { class: 'stage' }, parent);
+    var svg = svgEl('svg', {
+      class: 'glory-svg',
+      viewBox: '0 0 440 264',
+      width: '100%',
+      role: 'img',
+      'aria-labelledby': 'glory-svg-title glory-svg-desc'
+    }, stage);
+
+    var svgTitle = svgEl('title', { id: 'glory-svg-title', text: 'Reflect His Glory' }, svg);
+    var svgDesc = svgEl('desc', { id: 'glory-svg-desc', text: STEPS[0].desc }, svg);
+
+    // Subtle ground baseline (visible on steps 1..5)
+    var groundLayer = svgEl('g', { id: 'layer-ground', class: 'scene-layer' }, svg);
+    svgEl('line', {
+      x1: 32,
+      y1: GEO.groundY,
+      x2: 408,
+      y2: GEO.groundY,
+      stroke: '#E4DDD0',
+      'stroke-width': '1.3',
+      'stroke-linecap': 'round'
+    }, groundLayer);
+
+    // Step 5 climax crisp double-hairline frame (zero fuzzy glow)
+    var frameLayer = svgEl('g', { id: 'layer-climax-frame', class: 'scene-layer' }, svg);
+    var outerFrame = svgEl('rect', {
+      x: 12,
+      y: 9,
+      width: 416,
+      height: 246,
+      rx: 12,
+      fill: 'none',
+      stroke: COLORS.gold,
+      'stroke-width': '3.2'
+    }, frameLayer);
+    var innerFrame = svgEl('rect', {
+      x: 17,
+      y: 14,
+      width: 406,
+      height: 236,
+      rx: 9,
+      fill: 'none',
+      stroke: COLORS.goldRay,
+      'stroke-width': '1.1',
+      opacity: '0.5'
+    }, frameLayer);
+    var framePerim = 2 * (416 + 246);
+    outerFrame.style.strokeDasharray = String(framePerim);
+    outerFrame.style.strokeDashoffset = String(framePerim);
+
+    // Step 1 & 2 small self-made glow around the center figure (clearly smaller & dimmer than God's sun)
+    var selfGlowLayer = svgEl('g', { id: 'layer-self-glow', class: 'scene-layer' }, svg);
+    var selfGlowDisc = svgEl('circle', {
+      cx: GEO.centerX,
+      cy: 186,
+      r: 36,
+      fill: '#F3E9D2',
+      stroke: '#BCA984',
+      'stroke-width': '1.4',
+      'stroke-dasharray': '4 3',
+      opacity: '0.88'
+    }, selfGlowLayer);
+    var selfGlowRays = svgEl('g', {
+      stroke: '#B9A37C',
+      'stroke-width': '1.4',
+      'stroke-linecap': 'round',
+      opacity: '0.75'
+    }, selfGlowLayer);
+    for (var sr = 0; sr < 8; sr++) {
+      var sa = (sr * 45) * Math.PI / 180;
+      svgEl('line', {
+        x1: (GEO.centerX + 40 * Math.cos(sa)).toFixed(1),
+        y1: (186 + 40 * Math.sin(sa)).toFixed(1),
+        x2: (GEO.centerX + 46 * Math.cos(sa)).toFixed(1),
+        y2: (186 + 46 * Math.sin(sa)).toFixed(1)
+      }, selfGlowRays);
+    }
+
+    // Soft translucent Studio Wash light cones behind straight rays
+    var step3Cone = svgEl('polygon', {
+      id: 'cone-step3',
+      class: 'scene-layer',
+      points: '176,68 196,74 134,186 90,172',
+      fill: COLORS.goldWash,
+      opacity: '0'
+    }, svg);
+
+    var step4IncomingCone = svgEl('polygon', {
+      id: 'cone-step4-in',
+      class: 'scene-layer',
+      points: '172,69 194,73 160,170 140,154',
+      fill: COLORS.goldWash,
+      opacity: '0'
+    }, svg);
+
+    var step4ReflectedCone = svgEl('polygon', {
+      id: 'cone-step4-out',
+      class: 'scene-layer',
+      points: '150,152 390,156 390,224 150,174',
+      fill: COLORS.goldWash,
+      opacity: '0'
+    }, svg);
+
+    // God's Sun at top center (Steps 3..5)
+    var sunLayer = svgEl('g', { id: 'layer-sun', class: 'scene-layer' }, svg);
+    // Subtle outer halo band (clean crisp fill, not fuzzy blur)
+    svgEl('circle', {
+      cx: GEO.sunX,
+      cy: GEO.sunY,
+      r: 28,
+      fill: COLORS.goldWash,
+      opacity: '0.55'
+    }, sunLayer);
+    // Crisp sunburst rays (fits comfortably inside Step 5 climax frame y=14)
+    var sunRaysG = svgEl('g', {
+      stroke: COLORS.goldRay,
+      'stroke-width': '1.75',
+      'stroke-linecap': 'round'
+    }, sunLayer);
+    for (var i = 0; i < 12; i++) {
+      var ang = (i * 30) * Math.PI / 180;
+      svgEl('line', {
+        x1: (GEO.sunX + 22.5 * Math.cos(ang)).toFixed(1),
+        y1: (GEO.sunY + 22.5 * Math.sin(ang)).toFixed(1),
+        x2: (GEO.sunX + 29 * Math.cos(ang)).toFixed(1),
+        y2: (GEO.sunY + 29 * Math.sin(ang)).toFixed(1)
+      }, sunRaysG);
+    }
+    // Main sun circle + subtle inner hairline
+    svgEl('circle', {
+      cx: GEO.sunX,
+      cy: GEO.sunY,
+      r: GEO.sunR,
+      fill: COLORS.goldWash,
+      stroke: COLORS.gold,
+      'stroke-width': '2'
+    }, sunLayer);
+    svgEl('circle', {
+      cx: GEO.sunX,
+      cy: GEO.sunY,
+      r: GEO.sunR - 4.2,
+      fill: 'none',
+      stroke: COLORS.goldRay,
+      'stroke-width': '1',
+      opacity: '0.45'
+    }, sunLayer);
+
+    // Step 1 inward attention arrows (short clean arrows pointing from each person toward the center figure)
+    var attnLayer = svgEl('g', { id: 'layer-attention', class: 'scene-layer' }, svg);
+    var attnArrows = [
+      { x1: 232, y1: 184, x2: 162, y2: 184 },
+      { x1: 292, y1: 158, x2: 244, y2: 162 },
+      { x1: 350, y1: 158, x2: 302, y2: 162 }
+    ].map(function (a) {
+      var len = lineLen(a.x1, a.y1, a.x2, a.y2);
+      var line = svgEl('line', {
+        x1: a.x1,
+        y1: a.y1,
+        x2: a.x2,
+        y2: a.y2,
+        stroke: '#8B7F6E',
+        'stroke-width': '1.6',
+        'stroke-linecap': 'round'
+      }, attnLayer);
+      line.style.strokeDasharray = String(len);
+      line.style.strokeDashoffset = String(len);
+      var head = svgEl('path', {
+        d: buildArrowHeadPath(a.x1, a.y1, a.x2, a.y2, 5.5),
+        fill: 'none',
+        stroke: '#8B7F6E',
+        'stroke-width': '1.6',
+        'stroke-linecap': 'round',
+        'stroke-linejoin': 'round'
+      }, attnLayer);
+      head.style.opacity = '0';
+      return { line: line, head: head, len: len };
+    });
+
+    // Step 2 subtle outward drift lines (beside shoulders, never near heads)
+    var awayLayer = svgEl('g', { id: 'layer-away-cues', class: 'scene-layer' }, svg);
+    GEO.others.forEach(function (ox) {
+      var xStart = ox + 17;
+      var xEnd = ox + 28;
+      svgEl('line', {
+        x1: xStart,
+        y1: 204,
+        x2: xEnd,
+        y2: 204,
+        stroke: '#A39C92',
+        'stroke-width': '1.4',
+        'stroke-linecap': 'round'
+      }, awayLayer);
+      svgEl('path', {
+        d: 'M ' + (xEnd - 4) + ' 200.5 L ' + xEnd + ' 204 L ' + (xEnd - 4) + ' 207.5',
+        fill: 'none',
+        stroke: '#A39C92',
+        'stroke-width': '1.4',
+        'stroke-linecap': 'round',
+        'stroke-linejoin': 'round'
+      }, awayLayer);
+    });
+
+    // Step 3 direct sun ray down onto the center figure (ends cleanly in front of uplifted face)
+    var ray3Layer = svgEl('g', { id: 'layer-ray-step3', class: 'scene-layer' }, svg);
+    var r3x1 = 180, r3y1 = 70, r3x2 = 122, r3y2 = 154;
+    var ray3Len = lineLen(r3x1, r3y1, r3x2, r3y2);
+    var ray3Line = svgEl('line', {
+      x1: r3x1,
+      y1: r3y1,
+      x2: r3x2,
+      y2: r3y2,
+      stroke: COLORS.goldRay,
+      'stroke-width': '3',
+      'stroke-linecap': 'round'
+    }, ray3Layer);
+    ray3Line.style.strokeDasharray = String(ray3Len);
+    ray3Line.style.strokeDashoffset = String(ray3Len);
+    var ray3Head = svgEl('path', {
+      d: buildArrowHeadPath(r3x1, r3y1, r3x2, r3y2, 8),
+      fill: 'none',
+      stroke: COLORS.gold,
+      'stroke-width': '2.4',
+      'stroke-linecap': 'round',
+      'stroke-linejoin': 'round'
+    }, ray3Layer);
+    ray3Head.style.opacity = '0';
+
+    // Step 4 & 5: Incoming sun ray -> 45-degree mirror -> sideways reflected ray -> upward sight rays to sun
+    var reflectLayer = svgEl('g', { id: 'layer-reflect-rays', class: 'scene-layer' }, svg);
+
+    // 4a: Sun -> Mirror
+    var inX1 = 182, inY1 = 72, inX2 = GEO.mirrorX, inY2 = GEO.mirrorY;
+    var inLen = lineLen(inX1, inY1, inX2, inY2);
+    var rayIn = svgEl('line', {
+      id: 'ray-sun-to-mirror',
+      x1: inX1,
+      y1: inY1,
+      x2: inX2,
+      y2: inY2,
+      stroke: COLORS.goldRay,
+      'stroke-width': '3',
+      'stroke-linecap': 'round'
+    }, reflectLayer);
+    rayIn.style.strokeDasharray = String(inLen);
+    rayIn.style.strokeDashoffset = String(inLen);
+
+    // 4b: Mirror -> Other people (clean sideways bounce shining into eye/heart level)
+    var outX1 = GEO.mirrorX, outY1 = GEO.mirrorY, outX2 = 368, outY2 = 177;
+    var outLen = lineLen(outX1, outY1, outX2, outY2);
+    var rayOut = svgEl('line', {
+      id: 'ray-mirror-to-people',
+      x1: outX1,
+      y1: outY1,
+      x2: outX2,
+      y2: outY2,
+      stroke: COLORS.goldRay,
+      'stroke-width': '3',
+      'stroke-linecap': 'round'
+    }, reflectLayer);
+    rayOut.style.strokeDasharray = String(outLen);
+    rayOut.style.strokeDashoffset = String(outLen);
+
+    // Delicate double-chevron directional watermark along the reflected beam
+    var reflectChevrons = svgEl('g', {
+      stroke: COLORS.gold,
+      'stroke-linecap': 'round',
+      'stroke-linejoin': 'round',
+      fill: 'none',
+      opacity: '0'
+    }, reflectLayer);
+    svgEl('path', {
+      d: 'M 200 160 L 207 165.5 L 200 171',
+      'stroke-width': '2.4',
+      opacity: '0.7'
+    }, reflectChevrons);
+    svgEl('path', {
+      d: 'M 192 160.5 L 198.5 165 L 192 169.5',
+      'stroke-width': '2',
+      opacity: '0.32'
+    }, reflectChevrons);
+
+    // 4c: Upward sight/glory rays from the three other figures up to three separated points below the sun
+    var upRays = [
+      { x1: 252, y1: 158, x2: 200, y2: 84 },
+      { x1: 310, y1: 158, x2: 214, y2: 78 },
+      { x1: 368, y1: 158, x2: 224, y2: 68 }
+    ].map(function (u) {
+      var len = lineLen(u.x1, u.y1, u.x2, u.y2);
+      var line = svgEl('line', {
+        x1: u.x1,
+        y1: u.y1,
+        x2: u.x2,
+        y2: u.y2,
+        stroke: COLORS.gold,
+        'stroke-width': '1.8',
+        'stroke-linecap': 'round',
+        opacity: '0.88'
+      }, reflectLayer);
+      line.style.strokeDasharray = String(len);
+      line.style.strokeDashoffset = String(len);
+      var head = svgEl('path', {
+        d: buildArrowHeadPath(u.x1, u.y1, u.x2, u.y2, 6.5),
+        fill: 'none',
+        stroke: COLORS.gold,
+        'stroke-width': '1.8',
+        'stroke-linecap': 'round',
+        'stroke-linejoin': 'round'
+      }, reflectLayer);
+      head.style.opacity = '0';
+      return { line: line, head: head, len: len };
+    });
+
+    // Center figure poses (one crisp pose shown per stage state)
+    var centerGroup = svgEl('g', { id: 'group-center-figure' }, svg);
+    var centerPoses = {
+      lookAtMe: drawRoundedPerson(centerGroup, {
+        cls: 'fig-pose',
+        x: GEO.centerX,
+        groundY: GEO.groundY,
+        scale: 1.07,
+        fill: COLORS.softWarmWash,
+        stroke: COLORS.ink,
+        face: 'right',
+        arms: 'M -14 -38 Q -24 -48 -24 -56 M 14 -38 Q 24 -48 24 -56'
+      }),
+      empty: drawRoundedPerson(centerGroup, {
+        cls: 'fig-pose',
+        x: GEO.centerX,
+        groundY: GEO.groundY,
+        scale: 1.07,
+        droop: 4,
+        tilt: -2,
+        fill: COLORS.neutralWash,
+        stroke: COLORS.ink,
+        face: 'down',
+        arms: 'M -14 -38 Q -18 -24 -16 -14 M 14 -38 Q 18 -24 16 -14'
+      }),
+      turnUp: drawRoundedPerson(centerGroup, {
+        cls: 'fig-pose',
+        x: GEO.centerX,
+        groundY: GEO.groundY,
+        scale: 1.07,
+        tilt: 3,
+        headDx: 2,
+        headDy: -2,
+        fill: COLORS.goldWash,
+        stroke: COLORS.gold,
+        face: 'up-right',
+        arms: 'M -13 -38 Q -18 -52 -10 -60 M 13 -40 Q 24 -52 29 -64'
+      }),
+      reflect: drawRoundedPerson(centerGroup, {
+        cls: 'fig-pose',
+        x: GEO.centerX,
+        groundY: GEO.groundY,
+        scale: 1.07,
+        tilt: 2,
+        headDx: 2.5,
+        headDy: -2,
+        fill: COLORS.goldWash,
+        stroke: COLORS.gold,
+        face: 'up-right',
+        // Both arms connect directly onto the back of the 45-degree mirror at (150, 162)
+        arms: 'M 11 -42 Q 24 -52 35 -74 M 13 -34 Q 29 -42 46 -62'
+      })
+    };
+
+    // 45-degree silver-grey double-hairline mirror held in the center figure's hands (Steps 4 & 5)
+    var mirrorLayer = svgEl('g', { id: 'layer-mirror', class: 'scene-layer' }, svg);
+    // Exact 45-degree segment centered at (156, 150): (140, 134) to (172, 166), dx=32, dy=32
+    var mX1 = GEO.mirrorX - 16, mY1 = GEO.mirrorY - 16;
+    var mX2 = GEO.mirrorX + 16, mY2 = GEO.mirrorY + 16;
+    // Dark slate backing line (offset down-left perpendicular to mirror surface)
+    svgEl('line', {
+      x1: mX1 - 2.6,
+      y1: mY1 + 2.6,
+      x2: mX2 - 2.6,
+      y2: mY2 + 2.6,
+      stroke: COLORS.mirrorDark,
+      'stroke-width': '2.2',
+      'stroke-linecap': 'round'
+    }, mirrorLayer);
+    // Silver-grey reflective face (double hairline: outer silver + crisp white glint)
+    svgEl('line', {
+      id: 'mirror-surface',
+      x1: mX1,
+      y1: mY1,
+      x2: mX2,
+      y2: mY2,
+      stroke: COLORS.mirrorOuter,
+      'stroke-width': '3.6',
+      'stroke-linecap': 'round'
+    }, mirrorLayer);
+    svgEl('line', {
+      x1: mX1 + 1.5,
+      y1: mY1 + 1.5,
+      x2: mX2 - 1.5,
+      y2: mY2 - 1.5,
+      stroke: '#FFFFFF',
+      'stroke-width': '1.25',
+      'stroke-linecap': 'round'
+    }, mirrorLayer);
+    // Crisp reflection point node where sun ray meets the 45-degree mirror
+    var mirrorSpark = svgEl('circle', {
+      id: 'mirror-spark',
+      cx: GEO.mirrorX + 1,
+      cy: GEO.mirrorY - 1,
+      r: '3.6',
+      fill: COLORS.goldWash,
+      stroke: COLORS.gold,
+      'stroke-width': '1.5',
+      opacity: '0'
+    }, mirrorLayer);
+
+    // Other 3 figures with 4 clear posture states (look inward, turned away empty, see reflected light & look up, full gold joy)
+    var othersGroup = svgEl('g', { id: 'group-other-figures' }, svg);
+    var otherPoses = {
+      lookIn: [],
+      turnAway: [],
+      seeLight: [],
+      fullJoy: []
+    };
+
+    GEO.others.forEach(function (ox, idx) {
+      var gy = GEO.groundY - (idx === 1 ? 2 : 0);
+      otherPoses.lookIn.push(drawRoundedPerson(othersGroup, {
+        cls: 'fig-pose',
+        x: ox,
+        groundY: gy,
+        scale: 0.94,
+        tilt: -4,
+        headDx: -2,
+        fill: COLORS.neutralWash,
+        stroke: COLORS.ink,
+        face: 'left'
+      }));
+      otherPoses.turnAway.push(drawRoundedPerson(othersGroup, {
+        cls: 'fig-pose',
+        x: ox,
+        groundY: gy,
+        scale: 0.94,
+        droop: 3,
+        tilt: 6,
+        headDx: 2.5,
+        fill: COLORS.neutralWash,
+        stroke: '#554E45',
+        face: 'right'
+      }));
+      otherPoses.seeLight.push(drawRoundedPerson(othersGroup, {
+        cls: 'fig-pose',
+        x: ox,
+        groundY: gy,
+        scale: 0.94,
+        tilt: -2,
+        headDx: -1.8,
+        headDy: -2,
+        fill: '#FAF4E4',
+        stroke: COLORS.ink,
+        face: 'up-left'
+      }));
+      otherPoses.fullJoy.push(drawRoundedPerson(othersGroup, {
+        cls: 'fig-pose',
+        x: ox,
+        groundY: gy,
+        scale: 0.94,
+        tilt: -2,
+        headDx: -2,
+        headDy: -3,
+        fill: COLORS.goldWash,
+        stroke: COLORS.gold,
+        face: 'up-left',
+        arms: 'M -13 -38 Q -22 -50 -18 -58 M 13 -38 Q 21 -48 18 -56'
+      }));
+    });
+
+    return {
+      svgTitle: svgTitle,
+      svgDesc: svgDesc,
+      groundLayer: groundLayer,
+      frameLayer: frameLayer,
+      outerFrame: outerFrame,
+      innerFrame: innerFrame,
+      framePerim: framePerim,
+      selfGlowLayer: selfGlowLayer,
+      selfGlowDisc: selfGlowDisc,
+      selfGlowRays: selfGlowRays,
+      step3Cone: step3Cone,
+      step4IncomingCone: step4IncomingCone,
+      step4ReflectedCone: step4ReflectedCone,
+      sunLayer: sunLayer,
+      attnLayer: attnLayer,
+      attnArrows: attnArrows,
+      awayLayer: awayLayer,
+      ray3Layer: ray3Layer,
+      ray3Line: ray3Line,
+      ray3Head: ray3Head,
+      ray3Len: ray3Len,
+      reflectLayer: reflectLayer,
+      rayIn: rayIn,
+      inLen: inLen,
+      rayOut: rayOut,
+      outLen: outLen,
+      reflectChevrons: reflectChevrons,
+      upRays: upRays,
+      centerPoses: centerPoses,
+      mirrorLayer: mirrorLayer,
+      mirrorSpark: mirrorSpark,
+      otherPoses: otherPoses
+    };
+  }
+
+  function init() {
+    var host = document.getElementById('scene-root');
+    if (!host) return;
+
+    var bar = el('div', { class: 'title-bar' }, host);
+    el('h1', { text: 'Reflect His Glory' }, bar);
+    el('span', { class: 'course-tag', text: '202-06' }, bar);
+
+    var bundle = buildStage(host);
+
+    var strip = el('div', { class: 'step-strip', role: 'group', 'aria-label': 'Reflect His Glory steps' }, host);
+    var dotButtons = STEPS.map(function (st, idx) {
+      var btn = el('button', {
+        type: 'button',
+        class: 'step-dot',
+        'data-step': String(idx),
+        'aria-label': st.dotLabel,
+        'aria-pressed': 'false'
+      }, strip);
+      btn.style.setProperty('--dot-color', st.color);
+      el('span', { class: 'step-dot-fill' }, btn);
+      return btn;
+    });
+
+    var cardArea = el('div', { class: 'card-area' }, host);
+    var cardBox = el('div', { class: 'verse-card' }, cardArea);
+    el('div', { class: 'verse-card-bar' }, cardBox);
+    var contentEl = el('div', {
+      id: 'card-content',
+      class: 'verse-card-content',
+      'aria-live': 'polite'
+    }, cardBox);
+    var headingEl = el('h2', { class: 'card-heading' }, contentEl);
+    var quoteWrap = el('p', { class: 'card-quote' }, contentEl);
+    var quoteTextEl = el('span', {}, quoteWrap);
+    var refEl = el('span', { class: 'card-ref' }, quoteWrap);
+    var noteEl = el('p', { class: 'card-note' }, contentEl);
+
+    var navBar = el('div', { class: 'nav-bar' }, cardArea);
+    var prevBtn = el('button', { id: 'prev-btn', type: 'button', class: 'nav-btn', text: '\u2190 Back' }, navBar);
+    var countEl = el('span', { class: 'step-count', text: 'Ready' }, navBar);
+    var nextBtn = el('button', { id: 'next-btn', type: 'button', class: 'nav-btn primary', text: 'Begin \u2192' }, navBar);
+
+    var currentStep = 0;
+    var activeRaf = null;
+    var reducedMotionQuery = window.matchMedia
+      ? window.matchMedia('(prefers-reduced-motion: reduce)')
+      : { matches: false };
+
+    function stopAnim() {
+      if (activeRaf !== null) {
+        cancelAnimationFrame(activeRaf);
+        activeRaf = null;
+      }
+    }
+
+    function setDash(node, len, progress) {
+      var t = Math.max(0, Math.min(1, progress));
+      node.style.strokeDashoffset = (len * (1 - t)).toFixed(2);
+    }
+
+    function showPose(map, activeKey) {
+      Object.keys(map).forEach(function (k) {
+        var val = map[k];
+        if (Array.isArray(val)) {
+          val.forEach(function (node) { node.classList.toggle('is-visible', k === activeKey); });
+        } else {
+          val.classList.toggle('is-visible', k === activeKey);
+        }
+      });
+    }
+
+    function applyStaticBase(stepIdx) {
+      bundle.groundLayer.classList.toggle('is-visible', stepIdx >= 1);
+      bundle.sunLayer.classList.toggle('is-visible', stepIdx >= 3);
+      bundle.mirrorLayer.classList.toggle('is-visible', stepIdx >= 4);
+      bundle.awayLayer.classList.toggle('is-visible', stepIdx === 2 || stepIdx === 3);
+      bundle.attnLayer.classList.toggle('is-visible', stepIdx === 1);
+      bundle.ray3Layer.classList.toggle('is-visible', stepIdx === 3);
+      bundle.reflectLayer.classList.toggle('is-visible', stepIdx >= 4);
+      bundle.frameLayer.classList.toggle('is-visible', stepIdx === 5);
+
+      bundle.step3Cone.style.opacity = stepIdx === 3 ? '0.45' : '0';
+      bundle.step4IncomingCone.style.opacity = stepIdx >= 4 ? '0.45' : '0';
+      bundle.step4ReflectedCone.style.opacity = stepIdx >= 4 ? '0.42' : '0';
+
+      // Center figure pose
+      if (stepIdx === 0) showPose(bundle.centerPoses, '');
+      else if (stepIdx === 1) showPose(bundle.centerPoses, 'lookAtMe');
+      else if (stepIdx === 2) showPose(bundle.centerPoses, 'empty');
+      else if (stepIdx === 3) showPose(bundle.centerPoses, 'turnUp');
+      else showPose(bundle.centerPoses, 'reflect');
+
+      // Other figures pose
+      if (stepIdx === 0) showPose(bundle.otherPoses, '');
+      else if (stepIdx === 1) showPose(bundle.otherPoses, 'lookIn');
+      else if (stepIdx === 2 || stepIdx === 3) showPose(bundle.otherPoses, 'turnAway');
+      else if (stepIdx === 4) showPose(bundle.otherPoses, 'seeLight');
+      else showPose(bundle.otherPoses, 'fullJoy');
+
+      // Self-glow resting state
+      if (stepIdx === 1) {
+        bundle.selfGlowLayer.classList.add('is-visible');
+        bundle.selfGlowLayer.style.opacity = '1';
+        bundle.selfGlowDisc.setAttribute('fill', '#F3E9D2');
+        bundle.selfGlowDisc.setAttribute('stroke', '#BCA984');
+        bundle.selfGlowDisc.setAttribute('r', '36');
+        bundle.selfGlowRays.style.opacity = '0.75';
+      } else if (stepIdx === 2) {
+        bundle.selfGlowLayer.classList.add('is-visible');
+        bundle.selfGlowLayer.style.opacity = '0.28';
+        bundle.selfGlowDisc.setAttribute('fill', '#ECEAE5');
+        bundle.selfGlowDisc.setAttribute('stroke', '#ADA79E');
+        bundle.selfGlowDisc.setAttribute('r', '26');
+        bundle.selfGlowRays.style.opacity = '0';
+      } else {
+        bundle.selfGlowLayer.classList.remove('is-visible');
+        bundle.selfGlowLayer.style.opacity = '0';
+      }
+    }
+
+    function snapStepLines(stepIdx) {
+      // Attention arrows (Step 1)
+      bundle.attnArrows.forEach(function (a) {
+        setDash(a.line, a.len, stepIdx === 1 ? 1 : 0);
+        a.head.style.opacity = stepIdx === 1 ? '1' : '0';
+      });
+      // Step 3 ray
+      setDash(bundle.ray3Line, bundle.ray3Len, stepIdx === 3 ? 1 : 0);
+      bundle.ray3Head.style.opacity = stepIdx === 3 ? '1' : '0';
+      // Step 4 & 5 rays
+      var showRef = stepIdx >= 4;
+      setDash(bundle.rayIn, bundle.inLen, showRef ? 1 : 0);
+      setDash(bundle.rayOut, bundle.outLen, showRef ? 1 : 0);
+      bundle.mirrorSpark.style.opacity = showRef ? '1' : '0';
+      bundle.reflectChevrons.style.opacity = showRef ? '1' : '0';
+      bundle.upRays.forEach(function (u) {
+        setDash(u.line, u.len, showRef ? 1 : 0);
+        u.head.style.opacity = showRef ? '1' : '0';
+      });
+      // Step 5 climax frame
+      setDash(bundle.outerFrame, bundle.framePerim, stepIdx === 5 ? 1 : 0);
+      bundle.innerFrame.style.opacity = stepIdx === 5 ? '0.5' : '0';
+    }
+
+    function runStepAnimation(stepIdx) {
+      var t0 = performance.now();
+
+      if (stepIdx === 1) {
+        var maxLen = bundle.attnArrows.reduce(function (m, a) { return Math.max(m, a.len); }, 1);
+        var dur1 = Math.round((maxLen / RAY_SPEED) * 1000);
+        host.setAttribute('data-step-dur', String(dur1));
+        bundle.attnArrows.forEach(function (a) {
+          setDash(a.line, a.len, 0);
+          a.head.style.opacity = '0';
+        });
+        var frame1 = function (now) {
+          var elapsed = now - t0;
+          var done = true;
+          bundle.attnArrows.forEach(function (a) {
+            var d = (a.len / RAY_SPEED) * 1000;
+            var p = Math.min(1, elapsed / d);
+            setDash(a.line, a.len, p);
+            a.head.style.opacity = p > 0.85 ? String(((p - 0.85) / 0.15).toFixed(2)) : '0';
+            if (p < 1) done = false;
+          });
+          if (!done) activeRaf = requestAnimationFrame(frame1);
+          else { snapStepLines(1); activeRaf = null; }
+        };
+        activeRaf = requestAnimationFrame(frame1);
+        return;
+      }
+
+      if (stepIdx === 2) {
+        // Brief flicker and fade of the small self-made glow, then stop cleanly
+        var dur2 = 520;
+        host.setAttribute('data-step-dur', String(dur2));
+        bundle.selfGlowDisc.setAttribute('fill', '#F3E9D2');
+        bundle.selfGlowDisc.setAttribute('stroke', '#BCA984');
+        var frame2 = function (now) {
+          var p = Math.min(1, (now - t0) / dur2);
+          var flicker = p < 0.55 ? (0.85 - 0.5 * p + 0.22 * Math.sin(p * 26)) : (0.55 - 0.27 * ((p - 0.55) / 0.45));
+          bundle.selfGlowLayer.style.opacity = Math.max(0.28, Math.min(1, flicker)).toFixed(2);
+          bundle.selfGlowDisc.setAttribute('r', (36 - 10 * p).toFixed(1));
+          bundle.selfGlowRays.style.opacity = Math.max(0, 0.75 * (1 - p * 1.4)).toFixed(2);
+          if (p < 1) {
+            activeRaf = requestAnimationFrame(frame2);
+          } else {
+            applyStaticBase(2);
+            snapStepLines(2);
+            activeRaf = null;
+          }
+        };
+        activeRaf = requestAnimationFrame(frame2);
+        return;
+      }
+
+      if (stepIdx === 3) {
+        var dur3 = Math.round((bundle.ray3Len / RAY_SPEED) * 1000);
+        host.setAttribute('data-step-dur', String(dur3));
+        setDash(bundle.ray3Line, bundle.ray3Len, 0);
+        bundle.ray3Head.style.opacity = '0';
+        bundle.step3Cone.style.opacity = '0';
+        var frame3 = function (now) {
+          var p = Math.min(1, (now - t0) / dur3);
+          setDash(bundle.ray3Line, bundle.ray3Len, p);
+          bundle.step3Cone.style.opacity = (0.45 * p).toFixed(2);
+          bundle.ray3Head.style.opacity = p > 0.85 ? String(((p - 0.85) / 0.15).toFixed(2)) : '0';
+          if (p < 1) activeRaf = requestAnimationFrame(frame3);
+          else { snapStepLines(3); bundle.step3Cone.style.opacity = '0.45'; activeRaf = null; }
+        };
+        activeRaf = requestAnimationFrame(frame3);
+        return;
+      }
+
+      if (stepIdx === 4) {
+        // Choreographed 185 px/s rays: sun -> mirror, then mirror -> others, then others -> sun
+        var tIn = (bundle.inLen / RAY_SPEED) * 1000;
+        var tOut = (bundle.outLen / RAY_SPEED) * 1000;
+        var maxUp = bundle.upRays.reduce(function (m, u) { return Math.max(m, u.len); }, 1);
+        var tUp = (maxUp / RAY_SPEED) * 1000;
+        var total4 = Math.round(Math.max(tIn + tOut, tIn + tOut * 0.65 + (bundle.upRays.length - 1) * 80 + tUp));
+        host.setAttribute('data-step-dur', String(total4));
+
+        setDash(bundle.rayIn, bundle.inLen, 0);
+        setDash(bundle.rayOut, bundle.outLen, 0);
+        bundle.mirrorSpark.style.opacity = '0';
+        bundle.reflectChevrons.style.opacity = '0';
+        bundle.step4IncomingCone.style.opacity = '0';
+        bundle.step4ReflectedCone.style.opacity = '0';
+        bundle.upRays.forEach(function (u) {
+          setDash(u.line, u.len, 0);
+          u.head.style.opacity = '0';
+        });
+
+        var frame4 = function (now) {
+          var elapsed = now - t0;
+          var pIn = Math.min(1, elapsed / tIn);
+          setDash(bundle.rayIn, bundle.inLen, pIn);
+          bundle.step4IncomingCone.style.opacity = (0.45 * pIn).toFixed(2);
+          bundle.mirrorSpark.style.opacity = pIn >= 0.95 ? '1' : '0';
+
+          var pOut = elapsed > tIn ? Math.min(1, (elapsed - tIn) / tOut) : 0;
+          setDash(bundle.rayOut, bundle.outLen, pOut);
+          bundle.step4ReflectedCone.style.opacity = (0.42 * pOut).toFixed(2);
+          bundle.reflectChevrons.style.opacity = pOut > 0.35 ? String(Math.min(1, (pOut - 0.35) / 0.25).toFixed(2)) : '0';
+
+          var upStart = tIn + tOut * 0.65;
+          var allUpDone = true;
+          bundle.upRays.forEach(function (u, idx) {
+            var stagger = idx * 80;
+            var d = (u.len / RAY_SPEED) * 1000;
+            var pU = elapsed > (upStart + stagger) ? Math.min(1, (elapsed - upStart - stagger) / d) : 0;
+            setDash(u.line, u.len, pU);
+            u.head.style.opacity = pU > 0.85 ? String(((pU - 0.85) / 0.15).toFixed(2)) : '0';
+            if (pU < 1) allUpDone = false;
+          });
+
+          if (pIn < 1 || pOut < 1 || !allUpDone) {
+            activeRaf = requestAnimationFrame(frame4);
+          } else {
+            snapStepLines(4);
+            bundle.step4IncomingCone.style.opacity = '0.45';
+            bundle.step4ReflectedCone.style.opacity = '0.42';
+            activeRaf = null;
+          }
+        };
+        activeRaf = requestAnimationFrame(frame4);
+        return;
+      }
+
+      if (stepIdx === 5) {
+        // Keep step 4 rays completed; draw only the new climax double-hairline frame
+        snapStepLines(4);
+        setDash(bundle.outerFrame, bundle.framePerim, 0);
+        bundle.innerFrame.style.opacity = '0';
+        var dur5 = 560;
+        host.setAttribute('data-step-dur', String(dur5));
+        var frame5 = function (now) {
+          var p = Math.min(1, (now - t0) / dur5);
+          var eased = 1 - Math.pow(1 - p, 2);
+          setDash(bundle.outerFrame, bundle.framePerim, eased);
+          bundle.innerFrame.style.opacity = (0.5 * eased).toFixed(2);
+          if (p < 1) activeRaf = requestAnimationFrame(frame5);
+          else { snapStepLines(5); activeRaf = null; }
+        };
+        activeRaf = requestAnimationFrame(frame5);
+      }
+    }
+
+    function goTo(nextIdx) {
+      stopAnim();
+      var prevIdx = currentStep;
+      var goingForwardOne = nextIdx === prevIdx + 1;
+      var instant = reducedMotionQuery.matches || !goingForwardOne || nextIdx === 0;
+
+      host.classList.toggle('is-instant', instant);
+      applyStaticBase(nextIdx);
+
+      if (instant) {
+        host.setAttribute('data-step-dur', '0');
+        snapStepLines(nextIdx);
+      } else {
+        runStepAnimation(nextIdx);
+      }
+
+      currentStep = nextIdx;
+      var step = STEPS[currentStep];
+      host.setAttribute('data-step', String(currentStep));
+      host.style.setProperty('--step-color', step.color);
+      host.style.setProperty('--step-dark', step.dark);
+      bundle.svgDesc.textContent = step.desc;
+
+      headingEl.textContent = step.heading;
+      quoteTextEl.textContent = step.verse;
+      refEl.textContent = '(' + step.ref + ')';
+      noteEl.textContent = step.line;
+
+      dotButtons.forEach(function (btn, idx) {
+        btn.classList.toggle('active', idx === currentStep);
+        btn.classList.toggle('passed', idx > 0 && idx < currentStep);
+        btn.setAttribute('aria-pressed', idx === currentStep ? 'true' : 'false');
+      });
+
+      countEl.textContent = currentStep === 0 ? 'Ready' : ('Step ' + currentStep + ' of ' + (STEPS.length - 1));
+      prevBtn.disabled = currentStep === 0;
+      if (currentStep === 0) {
+        nextBtn.textContent = 'Begin \u2192';
+      } else if (currentStep === STEPS.length - 1) {
+        nextBtn.textContent = '\u21BB Start Over';
+      } else {
+        nextBtn.textContent = 'Next \u2192';
+      }
+    }
+
+    dotButtons.forEach(function (btn, idx) {
+      btn.addEventListener('click', function () {
+        goTo(idx);
+      });
+    });
+
+    prevBtn.addEventListener('click', function () {
+      if (currentStep > 0) goTo(currentStep - 1);
+    });
+    nextBtn.addEventListener('click', function () {
+      goTo(currentStep === STEPS.length - 1 ? 0 : currentStep + 1);
+    });
+
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'ArrowRight' && currentStep < STEPS.length - 1) {
+        goTo(currentStep + 1);
+      } else if (event.key === 'ArrowLeft' && currentStep > 0) {
+        goTo(currentStep - 1);
+      }
+    });
+
+    var lastWidth = window.innerWidth;
+    var measuredWidth = 0;
+    function fitCardHeight() {
+      if (!contentEl || contentEl.clientWidth === measuredWidth) return;
+      measuredWidth = contentEl.clientWidth;
+      var keepH = headingEl.textContent;
+      var keepQ = quoteTextEl.textContent;
+      var keepR = refEl.textContent;
+      var keepN = noteEl.textContent;
+      var tallest = 0;
+      document.documentElement.style.setProperty('--card-h', '0px');
+      STEPS.forEach(function (st) {
+        headingEl.textContent = st.heading;
+        quoteTextEl.textContent = st.verse;
+        refEl.textContent = '(' + st.ref + ')';
+        noteEl.textContent = st.line;
+        tallest = Math.max(tallest, contentEl.offsetHeight);
+      });
+      headingEl.textContent = keepH;
+      quoteTextEl.textContent = keepQ;
+      refEl.textContent = keepR;
+      noteEl.textContent = keepN;
+      document.documentElement.style.setProperty('--card-h', Math.max(100, tallest) + 'px');
+    }
+
+    var resizeTimer = null;
+    window.addEventListener('resize', function () {
+      if (window.innerWidth === lastWidth) return;
+      lastWidth = window.innerWidth;
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(fitCardHeight, 120);
+    });
+
+    goTo(0);
+    fitCardHeight();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
+</body>
+</html>
