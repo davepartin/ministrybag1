@@ -107,7 +107,23 @@ body {
 .gc-svg.globe-active #wash-2 { fill-opacity: 0.13; }
 .gc-svg.globe-active #wash-3 { fill-opacity: 0.09; }
 .gc-svg.globe-active #wash-4 { fill-opacity: 0.05; }
-.gc-svg.globe-active .ring-label { stroke: #EAF5FC; stroke-opacity: 0.92; }
+.gc-svg.globe-active .ring-label { stroke: #EAF5FC; stroke-opacity: 0.94; }
+
+.mult-dot {
+  fill: #1F684A;
+  stroke: #FFFFFF;
+  stroke-width: 1.15;
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: scale(0);
+  pointer-events: none;
+}
+
+.mult-ring.is-visible .mult-dot {
+  opacity: 1;
+  transform: scale(1);
+}
 
 .ring-label {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -272,13 +288,16 @@ button:focus-visible {
 
 @media (prefers-reduced-motion: no-preference) {
   .widget-outer:not(.is-instant) .fade-part {
-    transition: opacity 0.44s ease, fill-opacity 0.65s ease;
+    transition: opacity 0.44s ease, fill-opacity 3s ease;
   }
   .widget-outer:not(.is-instant) .globe-fade {
-    transition: opacity 0.65s ease;
+    transition: opacity 3s ease;
   }
   .widget-outer:not(.is-instant) .ring-label {
-    transition: stroke 0.55s ease;
+    transition: stroke 1.8s ease;
+  }
+  .widget-outer:not(.is-instant) .mult-dot {
+    transition: opacity 0.45s ease var(--d, 0ms), transform 0.55s cubic-bezier(0.22, 1, 0.36, 1) var(--d, 0ms);
   }
   .widget-outer .step-dot-fill {
     transition: background-color 0.22s ease, border-color 0.22s ease, transform 0.22s ease;
@@ -315,11 +334,6 @@ button:focus-visible {
         <clipPath id="globe-clip">
           <circle cx="220" cy="158" r="147" />
         </clipPath>
-        <mask id="mask-ring-4">
-          <rect x="0" y="0" width="440" height="314" fill="#000000" />
-          <path id="mask-r4-left" d="M220,9 A149,149 0 0,0 220,307" fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" />
-          <path id="mask-r4-right" d="M220,9 A149,149 0 0,1 220,307" fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" />
-        </mask>
       </defs>
 
       <!-- Inline SVG Eastern Hemisphere Globe centered near Jerusalem (fades in on Step 5) -->
@@ -355,10 +369,13 @@ button:focus-visible {
         </g>
       </g>
 
-      <!-- Ring 4: End of the Earth (dashed outer sage-green ring, lightest wash) -->
+      <!-- Ring 4: The World (solid outer sage-green ring, lightest wash) -->
       <path id="wash-4" class="fade-part" fill="#DCEEE3" fill-opacity="0.24" fill-rule="evenodd"
         d="M220,9 A149,149 0 1,0 220,307 A149,149 0 1,0 220,9 Z M220,37 A121,121 0 1,1 220,279 A121,121 0 1,1 220,37 Z" />
-      <circle id="ring-4-dashed" cx="220" cy="158" r="149" fill="none" stroke="#7EA38F" stroke-width="1.9" stroke-dasharray="6.5 4.8" mask="url(#mask-ring-4)" />
+      <g id="contour-4" fill="none" stroke="#699A82" stroke-width="1.8" stroke-linecap="round">
+        <path id="arc-4-left" d="M220,9 A149,149 0 0,0 220,307" />
+        <path id="arc-4-right" d="M220,9 A149,149 0 0,1 220,307" />
+      </g>
 
       <!-- Ring 3: Judea & Samaria (pale sage wash) -->
       <path id="wash-3" class="fade-part" fill="#CFE6D8" fill-opacity="0.42" fill-rule="evenodd"
@@ -399,42 +416,80 @@ button:focus-visible {
         <polygon id="arrow-right-head" points="0,0 -3,10.5 -10.5,3" stroke="none" transform="translate(266,112)" />
       </g>
 
-      <!-- Gold dot marking Jerusalem under the center of the circles (Step 5 and Final) -->
-      <g id="jerusalem-dot" class="fade-part globe-fade">
-        <circle cx="220" cy="180.2" r="5" fill="#E0A526" fill-opacity="0.32" />
-        <circle cx="220" cy="180.2" r="3" fill="#E0A526" stroke="#FFFFFF" stroke-width="1.2" />
+      <!-- Multiplying dark-green dots growing ring by ring on the final step -->
+      <g id="mult-ring-1" class="mult-ring">
+        <circle class="mult-dot" cx="220.0" cy="106.5" r="4.8" style="--d:0ms" />
+        <circle class="mult-dot" cx="169.6" cy="147.3" r="4.8" style="--d:35ms" />
+        <circle class="mult-dot" cx="270.4" cy="147.3" r="4.8" style="--d:70ms" />
+        <circle class="mult-dot" cx="173.7" cy="180.6" r="4.8" style="--d:105ms" />
+        <circle class="mult-dot" cx="266.3" cy="180.6" r="4.8" style="--d:140ms" />
+      </g>
+      <g id="mult-ring-2" class="mult-ring">
+        <circle class="mult-dot" cx="196.1" cy="84.6" r="4.6" style="--d:0ms" />
+        <circle class="mult-dot" cx="245.0" cy="81.2" r="4.6" style="--d:35ms" />
+        <circle class="mult-dot" cx="146.8" cy="128.4" r="4.6" style="--d:70ms" />
+        <circle class="mult-dot" cx="291.6" cy="129.1" r="4.6" style="--d:105ms" />
+        <circle class="mult-dot" cx="139.6" cy="166.4" r="4.6" style="--d:140ms" />
+        <circle class="mult-dot" cx="298.6" cy="166.3" r="4.6" style="--d:175ms" />
+        <circle class="mult-dot" cx="157.5" cy="203.4" r="4.6" style="--d:210ms" />
+        <circle class="mult-dot" cx="285.4" cy="205.5" r="4.6" style="--d:245ms" />
+      </g>
+      <g id="mult-ring-3" class="mult-ring">
+        <circle class="mult-dot" cx="173.9" cy="63.4" r="4.4" style="--d:0ms" />
+        <circle class="mult-dot" cx="220.0" cy="49.2" r="4.4" style="--d:35ms" />
+        <circle class="mult-dot" cx="266.9" cy="61.8" r="4.4" style="--d:70ms" />
+        <circle class="mult-dot" cx="127.1" cy="108.6" r="4.4" style="--d:105ms" />
+        <circle class="mult-dot" cx="316.1" cy="106.9" r="4.4" style="--d:140ms" />
+        <circle class="mult-dot" cx="114.0" cy="143.1" r="4.4" style="--d:175ms" />
+        <circle class="mult-dot" cx="324.2" cy="143.4" r="4.4" style="--d:210ms" />
+        <circle class="mult-dot" cx="114.4" cy="184.3" r="4.4" style="--d:245ms" />
+        <circle class="mult-dot" cx="323.8" cy="183.9" r="4.4" style="--d:280ms" />
+        <circle class="mult-dot" cx="132.8" cy="216.8" r="4.4" style="--d:315ms" />
+        <circle class="mult-dot" cx="310.2" cy="218.8" r="4.4" style="--d:350ms" />
+        <circle class="mult-dot" cx="149.8" cy="238.8" r="4.4" style="--d:385ms" />
+        <circle class="mult-dot" cx="289.0" cy="237.4" r="4.4" style="--d:420ms" />
+      </g>
+      <g id="mult-ring-4" class="mult-ring">
+        <circle class="mult-dot" cx="153.4" cy="42.6" r="4.2" style="--d:0ms" />
+        <circle class="mult-dot" cx="196.2" cy="23.3" r="4.2" style="--d:35ms" />
+        <circle class="mult-dot" cx="243.4" cy="25.1" r="4.2" style="--d:70ms" />
+        <circle class="mult-dot" cx="286.6" cy="42.6" r="4.2" style="--d:105ms" />
+        <circle class="mult-dot" cx="101.5" cy="89.6" r="4.2" style="--d:140ms" />
+        <circle class="mult-dot" cx="336.9" cy="90.5" r="4.2" style="--d:175ms" />
+        <circle class="mult-dot" cx="90.8" cy="125.8" r="4.2" style="--d:210ms" />
+        <circle class="mult-dot" cx="352.7" cy="124.9" r="4.2" style="--d:245ms" />
+        <circle class="mult-dot" cx="85.1" cy="162.7" r="4.2" style="--d:280ms" />
+        <circle class="mult-dot" cx="353.1" cy="162.6" r="4.2" style="--d:315ms" />
+        <circle class="mult-dot" cx="89.9" cy="200.3" r="4.2" style="--d:350ms" />
+        <circle class="mult-dot" cx="348.4" cy="199.7" r="4.2" style="--d:385ms" />
+        <circle class="mult-dot" cx="109.6" cy="232.5" r="4.2" style="--d:420ms" />
+        <circle class="mult-dot" cx="333.4" cy="234.5" r="4.2" style="--d:455ms" />
+        <circle class="mult-dot" cx="133.2" cy="261.4" r="4.2" style="--d:490ms" />
+        <circle class="mult-dot" cx="305.6" cy="260.0" r="4.2" style="--d:525ms" />
+        <circle class="mult-dot" cx="157.9" cy="279.9" r="4.2" style="--d:560ms" />
+        <circle class="mult-dot" cx="281.3" cy="278.3" r="4.2" style="--d:595ms" />
       </g>
 
-      <!-- Clean minimal labels at center and stacked neatly toward the bottom of each ring -->
+      <!-- Clean minimal labels at center and crisp black text stacked neatly toward the bottom of each ring -->
       <g id="lbl-0" class="fade-part" text-anchor="middle">
-        <text class="center-you" x="220" y="159">You</text>
-        <text class="center-sub" x="220" y="171">loved by God</text>
+        <text class="center-you" x="220" y="156">You</text>
+        <text class="center-sub" x="220" y="169">loved by God</text>
       </g>
 
       <g id="lbl-1" class="fade-part" text-anchor="middle">
-        <text class="ring-label" x="220" y="212" fill="#164E37" stroke="#BAD9C6">Home &amp; Church</text>
+        <text class="ring-label" x="220" y="212" fill="#141414" stroke="#BAD9C6">Home &amp; Church</text>
       </g>
 
       <g id="lbl-2" class="fade-part" text-anchor="middle">
-        <text class="ring-label" x="220" y="240" fill="#1A543C" stroke="#D2E6DA">Work &amp; School</text>
+        <text class="ring-label" x="220" y="240" fill="#141414" stroke="#D2E6DA">Work &amp; School</text>
       </g>
 
       <g id="lbl-3" class="fade-part" text-anchor="middle">
-        <text class="ring-label" x="220" y="268" fill="#23553F" stroke="#E4F1E9">Neighborhood &amp; City</text>
+        <text class="ring-label" x="220" y="268" fill="#141414" stroke="#E4F1E9">Neighborhood &amp; City</text>
       </g>
 
       <g id="lbl-4" class="fade-part" text-anchor="middle">
-        <text class="ring-label" x="220" y="296" fill="#2F5D4B" stroke="#F4FAF6">The World</text>
-      </g>
-
-      <!-- Final step: crisp Deep Crimson double-hairline cross at the upper bullseye (no glow) -->
-      <g id="final-cross" fill="none" stroke-linecap="round" stroke-linejoin="round">
-        <path id="cross-backing" stroke="#FFFDF8" stroke-width="3.6" opacity="0"
-          d="M218.4,126.5 L221.6,126.5 L221.6,130.3 L225.7,130.3 L225.7,133.2 L221.6,133.2 L221.6,140.2 L218.4,140.2 L218.4,133.2 L214.3,133.2 L214.3,130.3 L218.4,130.3 Z" />
-        <path id="cross-outer" stroke="#8B1A2B" stroke-width="2"
-          d="M218.4,126.5 L221.6,126.5 L221.6,130.3 L225.7,130.3 L225.7,133.2 L221.6,133.2 L221.6,140.2 L218.4,140.2 L218.4,133.2 L214.3,133.2 L214.3,130.3 L218.4,130.3 Z" />
-        <path id="cross-inner" stroke="#8B1A2B" stroke-width="0.9" opacity="0.45"
-          d="M219.3,127.4 L220.7,127.4 L220.7,131.2 L224.7,131.2 L224.7,132.3 L220.7,132.3 L220.7,139.2 L219.3,139.2 L219.3,132.3 L215.3,132.3 L215.3,131.2 L219.3,131.2 Z" />
+        <text class="ring-label" x="220" y="296" fill="#141414" stroke="#F4FAF6">The World</text>
       </g>
     </svg>
   </div>
@@ -446,7 +501,7 @@ button:focus-visible {
     <button type="button" class="step-dot" data-step="3" aria-label="Step 3: Work and School" aria-pressed="false" style="--dot-color: #357E5F;"><span class="step-dot-fill"></span></button>
     <button type="button" class="step-dot" data-step="4" aria-label="Step 4: Neighborhood and City" aria-pressed="false" style="--dot-color: #4A8E6F;"><span class="step-dot-fill"></span></button>
     <button type="button" class="step-dot" data-step="5" aria-label="Step 5: The World" aria-pressed="false" style="--dot-color: #5E987D;"><span class="step-dot-fill"></span></button>
-    <button type="button" class="step-dot" data-step="6" aria-label="Step 6: Go and Make Disciples" aria-pressed="false" style="--dot-color: #8B1A2B;"><span class="step-dot-fill"></span></button>
+    <button type="button" class="step-dot" data-step="6" aria-label="Step 6: Go and Make Disciples" aria-pressed="false" style="--dot-color: #1F684A;"><span class="step-dot-fill"></span></button>
   </div>
 
   <div class="card-area">
@@ -544,19 +599,19 @@ button:focus-visible {
       countLabel: 'Step 5 of 6',
       nextLabel: 'Next \u2192',
       title: 'Step 5: The World',
-      desc: 'A dashed outer ring labeled The World opens as a blue-ocean and green-land Eastern Hemisphere globe fades in behind the rings with a gold dot marking Jerusalem beneath the center.'
+      desc: 'A solid outer ring labeled The World opens, followed after a brief pause by a blue-ocean and green-land Earth slowly emerging behind the circles.'
     },
     {
       heading: 'Go and Make Disciples',
       verse: '"Go therefore and make disciples of all nations, baptizing them in the name of the Father and of the Son and of the Holy Spirit, teaching them to observe all that I have commanded you. And behold, I am with you always, to the end of the age."',
       ref: 'Matthew 28:19-20',
       note: 'Love comes down, goes up, and reaches out, starting at your own front door.',
-      accent: '#8B1A2B',
-      accentDark: '#6D1422',
+      accent: '#1F684A',
+      accentDark: '#164E37',
       countLabel: 'Step 6 of 6',
       nextLabel: 'Start Over',
       title: 'Step 6: Go and Make Disciples',
-      desc: 'All concentric forest-green mission circles, upward outward arrows, and the blue-and-green Eastern Hemisphere globe with Jerusalem marked in gold, crowned by a small crimson double-hairline cross at the center.'
+      desc: 'Dark green dots matching the center multiply outward one circle at a time from Home and Church through Work and School and Neighborhood and City into The World over the Earth.'
     }
   ];
 
@@ -583,15 +638,17 @@ button:focus-visible {
   var measureHost = document.getElementById('measure-host');
 
   var globeLayer = document.getElementById('globe-layer');
-  var jerusalemDot = document.getElementById('jerusalem-dot');
   var outwardArrows = document.getElementById('outward-arrows');
   var arrowLeftShaft = document.getElementById('arrow-left-shaft');
   var arrowLeftHead = document.getElementById('arrow-left-head');
   var arrowRightShaft = document.getElementById('arrow-right-shaft');
   var arrowRightHead = document.getElementById('arrow-right-head');
-  var crossBacking = document.getElementById('cross-backing');
-  var crossOuter = document.getElementById('cross-outer');
-  var crossInner = document.getElementById('cross-inner');
+  var multRings = [
+    document.getElementById('mult-ring-1'),
+    document.getElementById('mult-ring-2'),
+    document.getElementById('mult-ring-3'),
+    document.getElementById('mult-ring-4')
+  ];
 
   var RINGS = [
     {
@@ -620,13 +677,11 @@ button:focus-visible {
     },
     {
       step: 5,
-      paths: [document.getElementById('mask-r4-left'), document.getElementById('mask-r4-right')],
+      paths: [document.getElementById('arc-4-left'), document.getElementById('arc-4-right')],
       wash: document.getElementById('wash-4'),
       label: document.getElementById('lbl-4')
     }
   ];
-
-  var CROSS_PATHS = [crossBacking, crossOuter, crossInner];
 
   function pathLen(el) {
     try {
@@ -640,8 +695,6 @@ button:focus-visible {
     ring.lens = ring.paths.map(pathLen);
     ring.maxLen = Math.max.apply(null, ring.lens);
   });
-  var crossLens = CROSS_PATHS.map(pathLen);
-  var crossMaxLen = Math.max.apply(null, crossLens);
 
   var reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reducedMotion) {
@@ -650,12 +703,26 @@ button:focus-visible {
 
   var currentStep = 0;
   var activeRaf = 0;
+  var activeTimers = [];
   var lastMeasuredWidth = 0;
+
+  function scheduleTimer(fn, ms) {
+    var id = setTimeout(function () {
+      var pos = activeTimers.indexOf(id);
+      if (pos !== -1) activeTimers.splice(pos, 1);
+      fn();
+    }, ms);
+    activeTimers.push(id);
+    return id;
+  }
 
   function cancelAnim() {
     if (activeRaf) {
       cancelAnimationFrame(activeRaf);
       activeRaf = 0;
+    }
+    while (activeTimers.length) {
+      clearTimeout(activeTimers.pop());
     }
   }
 
@@ -693,11 +760,11 @@ button:focus-visible {
     } else if (clamped >= 1) {
       el.style.strokeDasharray = 'none';
       el.style.strokeDashoffset = '0';
-      el.style.opacity = (el === crossBacking) ? '0.94' : '';
+      el.style.opacity = '';
     } else {
       el.style.strokeDasharray = String(len);
       el.style.strokeDashoffset = String((1 - clamped) * len);
-      el.style.opacity = (el === crossBacking) ? '0.94' : '';
+      el.style.opacity = '';
     }
   }
 
@@ -728,12 +795,11 @@ button:focus-visible {
 
     var showGlobe = idx >= 5 && animatingStep !== 5;
     globeLayer.classList.toggle('is-visible', showGlobe);
-    jerusalemDot.classList.toggle('is-visible', showGlobe);
     stageSvg.classList.toggle('globe-active', showGlobe);
 
-    var showCross = idx >= 6 && animatingStep !== 6;
-    for (var c = 0; c < CROSS_PATHS.length; c++) {
-      setPathProgress(CROSS_PATHS[c], crossLens[c], showCross ? 1 : 0);
+    var showMult = idx >= 6 && animatingStep !== 6;
+    for (var m = 0; m < multRings.length; m++) {
+      multRings[m].classList.toggle('is-visible', showMult);
     }
   }
 
@@ -745,8 +811,9 @@ button:focus-visible {
       var washTrigger = 0.65;
       var fromArrowR = idx === 2 ? ARROW_START_R : ARROW_RADII[idx - 1];
       var toArrowR = ARROW_RADII[idx];
+      var totalDur = idx === 5 ? (drawMs + 1000 + 3000) : drawMs;
 
-      widget.setAttribute('data-step-dur', String(drawMs));
+      widget.setAttribute('data-step-dur', String(totalDur));
       applyStaticParts(idx, idx);
 
       var startTime = 0;
@@ -765,11 +832,6 @@ button:focus-visible {
           washed = true;
           ring.wash.classList.add('is-visible');
           ring.label.classList.add('is-visible');
-          if (idx === 5) {
-            globeLayer.classList.add('is-visible');
-            jerusalemDot.classList.add('is-visible');
-            stageSvg.classList.add('globe-active');
-          }
         }
         if (t < 1) {
           activeRaf = requestAnimationFrame(frameRing);
@@ -779,6 +841,12 @@ button:focus-visible {
             setPathProgress(ring.paths[k], ring.lens[k], 1);
           }
           if (idx >= 2) setArrowsRadius(toArrowR);
+          if (idx === 5) {
+            scheduleTimer(function () {
+              globeLayer.classList.add('is-visible');
+              stageSvg.classList.add('globe-active');
+            }, 1000);
+          }
         }
       }
       activeRaf = requestAnimationFrame(frameRing);
@@ -786,27 +854,16 @@ button:focus-visible {
     }
 
     if (idx === 6) {
-      var crossMs = Math.max(360, Math.round((crossMaxLen / CONTOUR_SPEED) * 1000));
-      widget.setAttribute('data-step-dur', String(crossMs));
+      widget.setAttribute('data-step-dur', '4200');
       applyStaticParts(6, 6);
 
-      var t0 = 0;
-      function frameCross(now) {
-        if (!t0) t0 = now;
-        var t = Math.min(1, (now - t0) / crossMs);
-        for (var c = 0; c < CROSS_PATHS.length; c++) {
-          setPathProgress(CROSS_PATHS[c], crossLens[c], t);
-        }
-        if (t < 1) {
-          activeRaf = requestAnimationFrame(frameCross);
-        } else {
-          activeRaf = 0;
-          for (var c2 = 0; c2 < CROSS_PATHS.length; c2++) {
-            setPathProgress(CROSS_PATHS[c2], crossLens[c2], 1);
-          }
-        }
+      for (var w = 0; w < multRings.length; w++) {
+        (function (waveIdx) {
+          scheduleTimer(function () {
+            multRings[waveIdx].classList.add('is-visible');
+          }, 40 + waveIdx * 1000);
+        })(w);
       }
-      activeRaf = requestAnimationFrame(frameCross);
       return;
     }
 

@@ -125,18 +125,27 @@ const JOBS = [
           await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1));
 
         // Verify expected SVG elements are drawn/visible for each step
-        const vis = await page.evaluate(step => {
+        const vis = await page.evaluate(() => {
           const op = id => Number(getComputedStyle(document.getElementById(id)).opacity);
+          const multVisible = [1, 2, 3, 4].map(n => document.getElementById('mult-ring-' + n).classList.contains('is-visible'));
+          const dotOps = [1, 2, 3, 4].map(n => Number(getComputedStyle(document.querySelector('#mult-ring-' + n + ' .mult-dot')).opacity));
           return {
             w0: op('wash-0'), w1: op('wash-1'), w2: op('wash-2'), w3: op('wash-3'), w4: op('wash-4'),
-            globe: op('globe-layer'), jdot: op('jerusalem-dot'),
-            cross: op('cross-outer'),
-            crossOffset: Number(document.getElementById('cross-outer').style.strokeDashoffset || 0)
+            globe: op('globe-layer'),
+            globeActive: document.getElementById('gc-svg').classList.contains('globe-active'),
+            noCrossOrDot: !document.getElementById('final-cross') && !document.getElementById('jerusalem-dot'),
+            solidOuter: !!document.getElementById('arc-4-left') && !document.getElementById('ring-4-dashed'),
+            blackLabels: Array.from(document.querySelectorAll('.ring-label')).every(el => el.getAttribute('fill') === '#141414'),
+            multVisible,
+            dotOps
           };
-        }, s);
+        });
+
+        check(`${tag}: no cross/yellow dot, solid outer ring, black ring labels step ${s}`,
+          vis.noCrossOrDot && vis.solidOuter && vis.blackLabels);
 
         if (s === 0) {
-          check(`${tag}: step 0 nothing drawn`, vis.w0 === 0 && vis.globe === 0 && vis.cross === 0);
+          check(`${tag}: step 0 nothing drawn`, vis.w0 === 0 && vis.globe === 0 && !vis.multVisible.some(Boolean));
         } else if (s === 1) {
           check(`${tag}: step 1 center drawn`, vis.w0 === 1 && vis.w1 === 0);
         } else if (s === 2) {
@@ -146,9 +155,10 @@ const JOBS = [
         } else if (s === 4) {
           check(`${tag}: step 4 ring 3 drawn`, vis.w3 === 1 && vis.w4 === 0 && vis.globe === 0);
         } else if (s === 5) {
-          check(`${tag}: step 5 ring 4 + globe + Jerusalem dot drawn`, vis.w4 === 1 && vis.globe === 1 && vis.jdot === 1 && vis.cross === 0);
+          check(`${tag}: step 5 ring 4 + blue-ocean globe drawn`, vis.w4 === 1 && vis.globe === 1 && vis.globeActive && !vis.multVisible.some(Boolean));
         } else if (s === 6) {
-          check(`${tag}: step 6 full picture + globe + crimson cross drawn`, vis.w4 === 1 && vis.globe === 1 && vis.jdot === 1 && vis.cross === 1 && vis.crossOffset === 0);
+          check(`${tag}: step 6 full picture + globe + multiplying dark-green dots`,
+            vis.w4 === 1 && vis.globe === 1 && vis.globeActive && vis.multVisible.every(Boolean) && vis.dotOps.every(o => o === 1));
         }
 
         if (SCREENSHOT_DIR && tag === '390/no-preference') {
@@ -156,13 +166,15 @@ const JOBS = [
         }
       }
 
-      // Back restores prior state instantly (step 6 -> step 5 hides cross, keeps globe)
+      // Back restores prior state instantly (step 6 -> step 5 hides multiplying dots, keeps globe)
       await page.locator('#prev-btn').click();
       await page.waitForTimeout(80);
       check(`${tag}: Back from step 6 restores step 5 instantly`,
         await page.locator('#widget').getAttribute('data-step') === '5' &&
         await page.locator('#widget').getAttribute('data-step-dur') === '0' &&
-        await page.evaluate(() => Number(getComputedStyle(document.getElementById('cross-outer')).opacity) === 0 && Number(getComputedStyle(document.getElementById('globe-layer')).opacity) === 1));
+        await page.evaluate(() =>
+          !document.getElementById('mult-ring-1').classList.contains('is-visible') &&
+          Number(getComputedStyle(document.getElementById('globe-layer')).opacity) === 1));
 
       // Back from step 5 -> step 4 hides globe and ring 4
       await page.locator('#prev-btn').click();
