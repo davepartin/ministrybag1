@@ -32,10 +32,29 @@
       "text": "The 200-level path has three connected courses. <strong>Growing Deep</strong> (201) was about loving God. <strong>Growing Up</strong> (202) was about loving the people God has placed beside you. Now in <strong>Growing Out</strong> (203), the branches begin to bear fruit, as that love reaches people who do not yet know Jesus."
     },
     {
+      "type": "image",
+      "imageSequence": [
+        "images/203-01-roof-drop-seq-1.jpg",
+        "images/203-01-roof-drop-seq-1.jpg",
+        "images/203-01-roof-drop-seq-2.jpg",
+        "images/203-01-roof-drop-seq-2.jpg",
+        "images/203-01-roof-drop-seq-3.jpg"
+      ],
+      "imageSequenceStops": [
+        0,
+        0.08,
+        0.16,
+        0.24,
+        0.8
+      ],
+      "alt": "Looking down through a hole in the roof as four friends lower a paralyzed man on a mat, first high with the shadow far below, then closer, then landing beside Jesus",
+      "touchNext": true,
+      "anchor": "story"
+    },
+    {
       "type": "parable",
       "title": "Four Friends and a Roof",
-      "text": "Jesus was teaching in a house in Capernaum, and the crowd was so thick that no one else could get near the door. Then four men arrived, carrying a paralyzed man on a mat. He could not walk to Jesus, and now his friends could not carry him through the crowd.<br><br>They did not turn around and go home. They climbed onto the roof, dug an opening through it, and lowered the man down on his mat until he lay right in front of Jesus.<br><br>What happened next begins with a surprising phrase: <em>\"And when Jesus saw their faith, he said to the paralytic, 'Son, your sins are forgiven'\"</em> (Mark 2:5). Then, so everyone would know He has authority to forgive sins, Jesus told the man to get up. He stood, picked up his mat, and walked out in front of them all. The whole crowd gave glory to God and said, <em>\"We never saw anything like this!\"</em> (Mark 2:12).",
-      "anchor": "story"
+      "text": "Jesus was teaching in a house in Capernaum, and the crowd was so thick that no one else could get near the door. Then four men arrived, carrying a paralyzed man on a mat. He could not walk to Jesus, and now his friends could not carry him through the crowd.<br><br>They did not turn around and go home. They climbed onto the roof, dug an opening through it, and lowered the man down on his mat until he lay right in front of Jesus.<br><br>What happened next begins with a surprising phrase: <em>\"And when Jesus saw their faith, he said to the paralytic, 'Son, your sins are forgiven'\"</em> (Mark 2:5). Then, so everyone would know He has authority to forgive sins, Jesus told the man to get up. He stood, picked up his mat, and walked out in front of them all. The whole crowd gave glory to God and said, <em>\"We never saw anything like this!\"</em> (Mark 2:12)."
     },
     {
       "type": "text",

@@ -1,5 +1,7 @@
 # Resume here
 
+ART-203-01 REVIEW, November 19: Dave approved three Grok Imagine frames looking straight down through the roof as the paralyzed man on his mat is lowered the last few feet to land beside Jesus. Wired as a five-stop house-standard sequence (`203-01-roof-drop-seq-1.jpg` .. `3.jpg`, seq-1 and seq-2 listed twice, stops `[0, 0.08, 0.16, 0.24, 0.8]`) immediately before Four Friends and a Roof. Non-image lesson values and saved-answer IDs unchanged. Stop at REVIEW. Evidence: [task log](logs/2026-11-18-ART-203-01-grok.md).
+
 101-POLISH DONE, November 18: Dave approved PR #314, retaining Grok's101-04 subtitle exactly. Merged44c3585 after clean main refresh and final QA. Firebase deployment44447075061 succeeded;32 phone/laptop preview and32 production checks passed. New lesson/TOC bytes verified live, active IDs and saved answers preserved. Integration: logs/2026-11-18-101-POLISH-codex.md.
 
 Input-focus cleanup DONE, November 18: PR #311 merged at07654c5 and Firebase production verified. Pointer/touch outlines are hidden; keyboard navigation retains a2px blue cue, including same-origin embedded widgets. Final foundation,117 preview and117 live input-mode checks pass; no approved widget bytes, lesson wording, artwork or saved-data logic changed. Log: logs/2026-11-18-UI-FOCUS-MODALITY-codex.md.
