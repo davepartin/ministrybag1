@@ -47,8 +47,8 @@
       "stage": "Gold",
       "dave_edits_protected": true,
       "full_personal_review": "complete; Dave explicitly approved whole lesson Gold on2026-11-14",
-      "lesson_sha256": "2ed1308a10116576ef69b782f16ea7393e35d946a2add70117502999fcede812",
-      "non_visual_content_sha256": "b6d54cfe4f0cb8e2138270713834ecfa476923370f4a4872b88fdb9f02d60f07",
+      "lesson_sha256": "caf1af65d78654893f01a355cb0c5acae0eff0a8fca936981a0ed8d069cc36c2",
+      "non_visual_content_sha256": "ae067005aab0c2ef87d229bf36dc1b6182c46b72acf254be8b969fa6f379a02d",
       "visual_blocks": [
         {
           "type": "image",
@@ -95,6 +95,12 @@
           "images/greenhouse-seq-4.jpg": "1c308e3282bf7db6e20a110cbe46ab2834b3924bc31c40a98703e5f858d0d6ac",
           "widgets/romans-road3.html": "7cf01ad10a85c637d8b6840d89b80f672d0b01cd99aa4456e8bf84982a1e6413"
         }
+      },
+      "authorized_polish_update": {
+        "date": "2026-11-18",
+        "source": "Dave approved in chat 2026-11-18",
+        "task": "101-POLISH",
+        "scope": "Authorized wording, TOC metadata, and retired-ID stubs only. Lord's Prayer wording untouched. Hashes refreshed for these Dave-approved edits."
       }
     },
     {
@@ -103,8 +109,8 @@
       "stage": "Silver",
       "dave_edits_protected": true,
       "full_personal_review": "unrecorded",
-      "lesson_sha256": "0fe0c141864f0c8ce64f04d456227edb08d51ffa88aad08c271fe08bfd56d24f",
-      "non_visual_content_sha256": "39b420057b19f9854b526ce4d691f31239f80212227416817ff302a1cd85ae8e",
+      "lesson_sha256": "d14a8489a25621124bac1186436129b631806b97d5a63fd5c75c3b260c469522",
+      "non_visual_content_sha256": "82a157ea4887bb71733c7ceb2234ad7484f4540135d9402716e44e080d35da30",
       "visual_blocks": [
         {
           "type": "image",
@@ -166,6 +172,12 @@
         "old_url": "https://ministrybag.com/dailyprayers/",
         "new_url": "tools/daily-prayers/",
         "scope": "Only the tool URL changes. All approved wording, questions/IDs, readings, artwork and Lord's Prayer widget remain unchanged. Specific navigation approval, text stays Silver."
+      },
+      "authorized_polish_update": {
+        "date": "2026-11-18",
+        "source": "Dave approved in chat 2026-11-18",
+        "task": "101-POLISH",
+        "scope": "Authorized wording, TOC metadata, and retired-ID stubs only. Lord's Prayer wording untouched. Hashes refreshed for these Dave-approved edits."
       }
     },
     {
@@ -174,8 +186,8 @@
       "stage": "Silver",
       "dave_edits_protected": true,
       "full_personal_review": "unrecorded",
-      "lesson_sha256": "0daee90693a49e2cf9b1ca02cad97e66e695172f0eb1ffa91414c74d841478ac",
-      "non_visual_content_sha256": "a49fffd129f0b8819b014bc798ef6f910b9d1d95ad1137482238632d33d24070",
+      "lesson_sha256": "b06e42aa65fac3f63e24a3cde030a1ca29723350f8c041d05a68f83ba6378434",
+      "non_visual_content_sha256": "0e1a81a65db5aa2f2e722bd02f0bd1d1460794c3dee59d40f1f3cbb19419500d",
       "visual_blocks": [
         {
           "type": "image",
@@ -233,6 +245,12 @@
         "date": "2026-11-17",
         "source": "Dave explicit Heart52 integration request",
         "scope": "One optional Heart52 link after the practice paragraph. All existing lesson wording, questions/IDs, John readings, artwork and approved widget remain untouched. Text stays Silver."
+      },
+      "authorized_polish_update": {
+        "date": "2026-11-18",
+        "source": "Dave approved in chat 2026-11-18",
+        "task": "101-POLISH",
+        "scope": "Authorized wording, TOC metadata, and retired-ID stubs only. Lord's Prayer wording untouched. Hashes refreshed for these Dave-approved edits."
       }
     },
     {
@@ -241,8 +259,8 @@
       "stage": "Silver",
       "dave_edits_protected": true,
       "full_personal_review": "unrecorded",
-      "lesson_sha256": "019c92930ad64e2b709afe8ef9e29216ceef2b03b854d7def950c18607391b92",
-      "non_visual_content_sha256": "b34fbc55346873a96fd2224a7e65d987fd5c2090de0022114fa41a0cc7d577f6",
+      "lesson_sha256": "7b26805dd9f2d4b73a52f6c98c65d47d295c44ad7e39798e99f7ca9112a53756",
+      "non_visual_content_sha256": "a466edb34b3297e6f5555c49384f195b86a6eb6339ad0aa6aa920d0a79505fa3",
       "visual_blocks": [
         {
           "type": "image",
@@ -282,7 +300,13 @@
         "approved_commit": "17684f32bb846bda53cc91fd0ffb45ec777bb751"
       },
       "recorded_date": "2026-11-16",
-      "content_baseline_source": "d523897: current main lesson content and approved widgets preserved; #268 changes images/timing only"
+      "content_baseline_source": "d523897: current main lesson content and approved widgets preserved; #268 changes images/timing only",
+      "authorized_polish_update": {
+        "date": "2026-11-18",
+        "source": "Dave approved in chat 2026-11-18",
+        "task": "101-POLISH",
+        "scope": "Authorized wording, TOC metadata, and retired-ID stubs only. Lord's Prayer wording untouched. Hashes refreshed for these Dave-approved edits."
+      }
     },
     {
       "lesson": "101-06",
@@ -290,8 +314,8 @@
       "stage": "Silver",
       "dave_edits_protected": true,
       "full_personal_review": "unrecorded",
-      "lesson_sha256": "3545ad46b0cc1d16bd83b474a59a8e5920a7429320a3eae93a3af66aeb2e1f09",
-      "non_visual_content_sha256": "7a743c04e283c935c537848cdf1ae95bc51fac6d086f9d9290234d6abae4f152",
+      "lesson_sha256": "416c80d10e5d4b8b95ac359329e817155033615789a1328b190c46a4fd41ee77",
+      "non_visual_content_sha256": "c47c07e6d4e45befe4170b018b342c9360a362f5fb4e15be13697d2142fe4bd6",
       "visual_blocks": [
         {
           "type": "image",
@@ -333,7 +357,13 @@
         "approved_commit": "17684f32bb846bda53cc91fd0ffb45ec777bb751"
       },
       "recorded_date": "2026-11-16",
-      "content_baseline_source": "d523897: current main lesson content and approved widgets preserved; #268 changes images/timing only"
+      "content_baseline_source": "d523897: current main lesson content and approved widgets preserved; #268 changes images/timing only",
+      "authorized_polish_update": {
+        "date": "2026-11-18",
+        "source": "Dave approved in chat 2026-11-18",
+        "task": "101-POLISH",
+        "scope": "Authorized wording, TOC metadata, and retired-ID stubs only. Lord's Prayer wording untouched. Hashes refreshed for these Dave-approved edits."
+      }
     },
     {
       "lesson": "101-07",
@@ -341,8 +371,8 @@
       "stage": "Silver",
       "dave_edits_protected": false,
       "full_personal_review": "unrecorded",
-      "lesson_sha256": "a6ba61d0296bbaf8189a07907de0b50bfac50473cdbb990aacfc5dbbd9ad6593",
-      "non_visual_content_sha256": "0539a9c815b606eefe8d7407b18af14fd93a17cef57f5ac8f338dfecfe765f92",
+      "lesson_sha256": "046b81177973d0d3d0858b9bb3b9acd23687085bef0ae3d89a47058526bdd456",
+      "non_visual_content_sha256": "5a52f8ab168032c0c529bb13b1f9de7fcdc913d08399faa3ad2fa877b8cff0f1",
       "visual_blocks": [
         {
           "type": "image",
@@ -397,6 +427,12 @@
         "source": "53d2d60543a471dd98d027f8cc4d52e8322d82ea",
         "pr": 251,
         "scope": "Widget HTML only, with authorized insertion after current Stop, Turn, Walk setup, 510px initial height. Approved main #249 content/retired answers and art remain unchanged; text stays Silver."
+      },
+      "authorized_polish_update": {
+        "date": "2026-11-18",
+        "source": "Dave approved in chat 2026-11-18",
+        "task": "101-POLISH",
+        "scope": "Authorized wording, TOC metadata, and retired-ID stubs only. Lord's Prayer wording untouched. Hashes refreshed for these Dave-approved edits."
       }
     }
   ]

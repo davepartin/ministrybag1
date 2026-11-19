@@ -102,7 +102,7 @@
     {
       "type": "question",
       "id": "3-4",
-      "text": "3.3 - What is one thing God cares about you can pray for?",
+      "text": "3.3 - What is one thing God cares about that you can pray for?",
       "data_question": "3.3 - God's agenda"
     },
     {
@@ -221,6 +221,14 @@
       "id": "3-prayer",
       "text": "What is a prayer request for this week?",
       "height": "short"
+    }
+  ],
+  "retiredQuestions": [
+    {
+      "type": "question",
+      "id": "3-3",
+      "text": "3.3 - What are some names and attributes of God you can proclaim in your prayers to honor Him?",
+      "data_question": "3.3 - God's names and attributes"
     }
   ]
 }

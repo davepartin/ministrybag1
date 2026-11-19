@@ -53,7 +53,7 @@
     },
     {
       "type": "text",
-      "text": "A simple rhythm called BLESS helps you live on mission every day, and if you look at the well again you will see Jesus doing almost all of it. <a href=\"#203-2\" style=\"color: var(--accent); font-weight: 600;\">Growing Out, the 203 course</a>, walks through each rhythm in full. Here is a first taste."
+      "text": "A simple rhythm called BLESS helps you live out your faith every day. Look at the well again, and you will see Jesus doing almost all of it. <a href=\"#203-2\" style=\"color: var(--accent); font-weight: 600;\">Growing Out, the 203 course</a>, walks through each rhythm in full. Here is a first taste."
     },
     {
       "type": "widget",
@@ -88,7 +88,7 @@
     },
     {
       "type": "text",
-      "text": "Those beautiful feet belong to ordinary people who have been loved by God and want to share it with others. Fear is normal. The woman at the well had plenty to worry about. <strong>Remember that Jesus did not send her out trained. He sent her out known by God.</strong>"
+      "text": "Those beautiful feet belong to ordinary people who have been loved by God and want to share it with others. Fear is normal. The woman at the well had plenty to worry about. <strong>Remember that she did not go out trained. She went out known by God.</strong>"
     },
     {
       "type": "question",
@@ -159,6 +159,14 @@
       "id": "6-prayer",
       "text": "What is a prayer request for this week?",
       "height": "short"
+    }
+  ],
+  "retiredQuestions": [
+    {
+      "type": "question",
+      "id": "6-4",
+      "text": "6.4 - How can you add praying for the lost to your daily devotional time?",
+      "data_question": "6.4 - Praying for the lost"
     }
   ]
 }

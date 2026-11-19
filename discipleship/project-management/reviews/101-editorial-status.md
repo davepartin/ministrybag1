@@ -121,3 +121,5 @@ November 17: Course grade recorded in [2026-11-17-101-course-grade.md](2026-11-1
 November 17: Dave requested a short Heart52 hint in 101-04. One optional linked sentence is added after This Week's Practice. All existing text, questions/IDs, John readings, approved lamp art and widget remain unchanged. This addition awaits review with the new companion; whole-lesson text remains Silver.
 
 November 18: Dave explicitly authorized publication of #261/#288/#296. The previously requested101-04 Heart52 hint is approved as part of that companion integration; existing prose/questions/John readings/lamp/widget and lesson stage remain unchanged. Current-main course-grade history is retained.
+
+November 18: Dave approved 101-POLISH in chat, which authorizes only these wording and metadata fixes: 101-07 grammar, 101-06 well/BLESS lines, 101-03 3.3 and 101-05 5.3 wording with IDs kept, TOC title/key verse/subtitles/story, and retired stubs for 2-4, 3-3, 4-2, 5-2, 6-4, 7-2, 7-4, 7-5. Lord's Prayer wording is untouched. Fingerprints in 101-editorial-baseline.json are refreshed for these authorized edits. Stages stay as they were; this is not whole-lesson Gold.

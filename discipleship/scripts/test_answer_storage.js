@@ -325,6 +325,38 @@ storage.loadAndMigrateResponses({
 });
 assert('failed read does not trigger migration writes', failedReadWrites === 0);
 
+// Orphaned 101 IDs stay reserved and keep synthetic stored answers.
+var orphaned101Storage = [
+    { file: '101-02.json', id: '2-4' },
+    { file: '101-03.json', id: '3-3' },
+    { file: '101-04.json', id: '4-2' },
+    { file: '101-05.json', id: '5-2' },
+    { file: '101-06.json', id: '6-4' },
+    { file: '101-07.json', id: '7-2' },
+    { file: '101-07.json', id: '7-4' },
+    { file: '101-07.json', id: '7-5' }
+];
+var orphaned101Seed = {};
+orphaned101Storage.forEach(function (item) {
+    var lesson = readLesson(item.file);
+    assert(item.file + ' does not reuse retired ID ' + item.id,
+        !lesson.blocks.some(function (b) { return b.id === item.id; }) &&
+        (lesson.retiredQuestions || []).some(function (q) { return q.id === item.id; }));
+    orphaned101Seed['question-101-' + item.id] = 'SYN-keep-' + item.id;
+});
+var orphaned101Store = memoryStorage(orphaned101Seed);
+var orphaned101Loaded = storage.loadAndMigrateResponses(orphaned101Store);
+orphaned101Loaded.responses['question-101-3-4'] = 'SYN-active-3-4';
+orphaned101Loaded.responses['question-101-5-4'] = 'SYN-active-5-4';
+orphaned101Store.setItem(storage.RESPONSES_KEY, JSON.stringify(orphaned101Loaded.responses));
+var orphaned101Reloaded = storage.loadAndMigrateResponses(orphaned101Store);
+assert('orphaned 101 IDs keep synthetic answers after reload without colliding with kept active IDs',
+    orphaned101Storage.every(function (item) {
+        return orphaned101Reloaded.responses['question-101-' + item.id] === 'SYN-keep-' + item.id;
+    }) &&
+    orphaned101Reloaded.responses['question-101-3-4'] === 'SYN-active-3-4' &&
+    orphaned101Reloaded.responses['question-101-5-4'] === 'SYN-active-5-4');
+
 // --- All-course runtime uniqueness, including checklist IDs ---
 var dupes = storage.findDuplicateRuntimeIds(collectAllLessons());
 assert(

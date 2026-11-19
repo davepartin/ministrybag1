@@ -181,6 +181,12 @@
   "retiredQuestions": [
     {
       "type": "question",
+      "id": "4-2",
+      "text": "4.2 - When is the best time each day for you to spend in God's Word? Which format do you prefer for engaging with the Bible such as a physical book, an app, or an audio version?",
+      "data_question": "4.2 - Best time and format for Bible reading"
+    },
+    {
+      "type": "question",
       "id": "4-6",
       "text": "4.5 - How would you explain the Three Discovery Questions to a friend who has never read the Bible?",
       "data_question": "4.5 - Explaining Discovery Questions to a friend"
