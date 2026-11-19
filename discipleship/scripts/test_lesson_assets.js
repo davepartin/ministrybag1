@@ -34,12 +34,12 @@ assert(
 assert('live lesson tree collected asset references', live.refs.length >= 60);
 
 var has20210 = live.refs.some(function (ref) {
-    return ref.rel === 'images/last-supper-bw.jpg' || ref.rel === 'images/last-supper-color.jpg';
+    return ref.rel === 'images/202-10-bread-cup-bw.jpg' || ref.rel === 'images/202-10-bread-cup-color.jpg';
 });
 var has20304 = live.refs.some(function (ref) {
     return ref.rel === 'images/jesus-washing-feet-bw.png' || ref.rel === 'images/jesus-washing-feet-color.png';
 });
-assert('202-10 Last Supper pair is referenced', has20210);
+assert('202-10 bread-and-cup pair is referenced', has20210);
 assert('203-04 foot-washing pair is referenced', has20304);
 
 var fixtureRoot = fs.mkdtempSync(path.join(os.tmpdir(), 'gt-eng002-'));

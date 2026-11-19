@@ -1,5 +1,7 @@
 # Growing Together Team Board
 
+FLOW-202-10-BAPTISM-FIRST DONE: PR #260 merged b4451a3 with Dave's approved order: baptism/widget, then bread/cup directly above the Supper Bible story. Current-main copy and all8 question IDs preserved; original art remains on disk. Firebase run44457788117 succeeded;114 integration and45 layout checks passed on preview and production. [Evidence](logs/2026-11-18-FLOW-202-10-BAPTISM-FIRST-codex.md).
+
 101-POLISH DONE, November 18: Dave authorized merging PR #314 with the existing101-04 subtitle. Merged44c3585 and verified live after Firebase run44447075061. Final foundation/export212/storage73/assets145/images1539/iframe32 passed;32 preview and32 production phone/laptop checks passed. Approved widgets/artwork/runtime and unrelated lessons unchanged. [Integration evidence](logs/2026-11-18-101-POLISH-codex.md).
 
 Input-focus cleanup DONE, November 18: PR #311 merged at07654c5. Gold outlines no longer appear after touch/mouse input; keyboard navigation keeps a small blue cue across lessons, apps and embedded same-origin widgets. Firebase run44417943372 and Pages run44417942222 passed.117 preview and117 production checks passed, with exact deployed helper/HTML bytes verified. Approved widget/content/art bytes and saved data remain intact. [Evidence](logs/2026-11-18-UI-FOCUS-MODALITY-codex.md).
