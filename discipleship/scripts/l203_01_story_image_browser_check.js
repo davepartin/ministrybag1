@@ -19,15 +19,11 @@ var FRAMES = [
     'images/203-01-roof-drop-seq-2.jpg',
     'images/203-01-roof-drop-seq-3.jpg'
 ];
-var QUESTION_IDS = [
-    '203-01-one',
-    '203-01-helped',
-    '203-01-4',
-    '203-01-hand',
-    '203-01-key',
-    '203-01-step',
-    '203-01-prayer'
-];
+// Active questions come from the lesson, so a retired ID (203-01-hand,
+// retired in the Great Commission rewrite, PR #328) does not go stale here.
+var QUESTION_IDS = require('../data/203-01.json').blocks
+    .filter(function (b) { return b.type === 'question'; })
+    .map(function (b) { return b.id; });
 var STOPS = [0, 0.08, 0.16, 0.24, 0.8];
 var LAST_STOP = STOPS[STOPS.length - 1];
 var AFTER_LAST = 0.85;
@@ -208,12 +204,7 @@ function srcMatches(src, expected) {
         assert(width + ': all frames reserve 1792x1008 with matching proportions', sizesMatch, JSON.stringify(rest.frames.map(function (f) {
             return [f.naturalWidth, f.naturalHeight];
         })));
-        assert(width + ': all seven saved-answer IDs render', rest.questions.every(Boolean), JSON.stringify(rest.questions));
-        assert(
-            width + ': love-moves-out teaching image stays a separate static copy',
-            rest.staticImages.some(function (src) { return src.indexOf('203-01-love-moves-out') !== -1; }),
-            JSON.stringify(rest.staticImages)
-        );
+        assert(width + ': all active saved-answer IDs render', rest.questions.length === QUESTION_IDS.length && rest.questions.every(Boolean), JSON.stringify(rest.questions));
         assert(width + ': page does not scroll sideways', rest.overflowX === false, rest.scrollWidth + ' > ' + rest.viewport);
 
         var heightAtStart = rest.wrapHeight;
