@@ -25,19 +25,19 @@ function ck(label,ok){checks++;assert.ok(ok,label);}
     const page=await ctx.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
     await page.goto(base+'#203-1',{waitUntil:'domcontentloaded'});
     const lesson=page.locator('#session-1');await lesson.locator('.question-textarea').first().waitFor();
-    ck(tag+' seven active fields',await lesson.locator('.question-textarea').count()===7&&active.length===7);
+    ck(tag+' six active fields',await lesson.locator('.question-textarea').count()===6&&active.length===6);
     for(const q of active){const key='question-203-'+q.id;ck(tag+' restored '+q.id,await lesson.locator('#'+key).inputValue()===seed[key]);}
     for(const q of retired)ck(tag+' retired field absent '+q.id,await lesson.locator('#question-203-'+q.id).count()===0);
     ck(tag+' approved text renders',await lesson.evaluate((el,data)=>{
      const norm=s=>s.replace(/\s+/g,' ').trim();return data.blocks.filter(b=>['text','verse','parable'].includes(b.type)).every(b=>{const d=document.createElement('div');d.innerHTML=b.text;return norm(el.textContent).includes(norm(d.textContent));});
     },data));
-    ck(tag+' one widget, the Greatest Commandment',await lesson.locator('iframe').count()===1);
-    ck(tag+' Love Moves Out circles picture loads',await lesson.locator('img[alt^="Circles moving outward"]').evaluate(img=>{img.scrollIntoView();return true;})&&await lesson.locator('img[alt^="Circles moving outward"]').count()===1);
+    ck(tag+' one widget, the Great Commission',await lesson.locator('iframe').count()===1&&await lesson.locator('iframe[src*="great-commission-203.html"]').count()===1);
+    ck(tag+' old circles picture and cross widget removed',await lesson.locator('img[src*="203-01-love-moves-out"]').count()===0&&await lesson.locator('iframe[src*="great-command-v5-203"]').count()===0);
     const before=await page.evaluate(()=>localStorage.getItem('christianFoundationsResponses'));
-    const crossHost=lesson.locator('iframe[src*="great-command-v5-203.html"]');
+    const crossHost=lesson.locator('iframe[src*="great-commission-203.html"]');
     await crossHost.scrollIntoViewIfNeeded();const cross=await(await crossHost.elementHandle()).contentFrame();await cross.locator('#next-btn').waitFor();
     await cross.locator('#next-btn').focus();await page.keyboard.press('Enter');await page.waitForTimeout(motion==='reduce'?50:700);
-    ck(tag+' cross begins by keyboard',await cross.locator('.step-dot[aria-pressed="true"]').getAttribute('data-step')==='1');
+    ck(tag+' circles begin by keyboard',await cross.locator('.step-dot[aria-pressed="true"]').getAttribute('data-step')==='1');
     ck(tag+' widgets preserve all answers',await page.evaluate(()=>localStorage.getItem('christianFoundationsResponses'))===before);
     const editKey='question-203-'+active[0].id;
     await lesson.locator('#'+editKey).fill('SYN-edited-current');await page.reload({waitUntil:'domcontentloaded'});await lesson.locator('#'+editKey).waitFor();

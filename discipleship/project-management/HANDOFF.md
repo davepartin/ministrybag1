@@ -1,5 +1,7 @@
 # Resume here
 
+203-10 voice-session handoff saved, November19: [Approved copy and Gemini widget prompt](reviews/2026-11-19-203-10-update-handoff.md). Dave requested this single repo note for Claude/Gemini: Father's-love bookend, three concrete growth examples, inviting someone through Growing Together, Romans12 shared-table widget concept, and opened-eyes bridge. Documentation only; lesson/widget edits are not yet implemented or published by this packet.
+
 202-10 baptism-first arrangement DONE, November18: Dave approved PR #260. Merged b4451a3 and verified production after Firebase run44457788117. Baptism/widget first, then the bread-and-cup image directly joined to The Table He Longed For. All newer wording/Scripture,8 question IDs and approved widget/art files preserved; only visible10.1/10.2 order changes. Original Last Supper image files remain on disk, unused. Core QA,112 widget,114 integration and45 layout checks pass; hosted preview and production114+45 pass. Log: logs/2026-11-18-FLOW-202-10-BAPTISM-FIRST-codex.md.
 
 ART-203-01 REVIEW, November 19: Dave approved three Grok Imagine frames looking straight down through the roof as the paralyzed man on his mat is lowered the last few feet to land beside Jesus. Wired as a five-stop house-standard sequence (`203-01-roof-drop-seq-1.jpg` .. `3.jpg`, seq-1 and seq-2 listed twice, stops `[0, 0.08, 0.16, 0.24, 0.8]`) immediately before Four Friends and a Roof. Non-image lesson values and saved-answer IDs unchanged. Stop at REVIEW. Evidence: [task log](logs/2026-11-18-ART-203-01-grok.md).
