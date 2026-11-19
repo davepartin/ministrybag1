@@ -1,6 +1,6 @@
 # Resume here
 
-101-POLISH REVIEW, November 18: Dave-approved 101 wording and metadata fixes on cursor/101-polish-880d. Lord's Prayer wording untouched. Saved-answer IDs kept. Stop at REVIEW, do not merge. Evidence: logs/2026-11-18-101-POLISH-cursor.md.
+101-POLISH integration ACTIVE, November 18: Dave approved merging PR #314 with Grok's101-04 subtitle retained exactly. Codex merged current main aa940fd cleanly, preserving the203-05 rewrite and approved unused-art cleanup. Final QA/preview then merge/live verification. Original packet: logs/2026-11-18-101-POLISH-cursor.md; integration: logs/2026-11-18-101-POLISH-codex.md.
 
 Input-focus cleanup DONE, November 18: PR #311 merged at07654c5 and Firebase production verified. Pointer/touch outlines are hidden; keyboard navigation retains a2px blue cue, including same-origin embedded widgets. Final foundation,117 preview and117 live input-mode checks pass; no approved widget bytes, lesson wording, artwork or saved-data logic changed. Log: logs/2026-11-18-UI-FOCUS-MODALITY-codex.md.
 
