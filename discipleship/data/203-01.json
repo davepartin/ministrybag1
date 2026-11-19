@@ -1,7 +1,7 @@
 {
   "id": "1",
   "title": "Lesson 1: Your Personal Ministry",
-  "description": "Four friends carried a man to Jesus, and Jesus saw their faith. This lesson opens Growing Out by showing that the love God poured into you keeps moving out, and that your personal ministry begins with the people already in your life.",
+  "description": "Four friends carried a man to Jesus, and Jesus saw their faith. This lesson opens Growing Out with the Great Commission: Jesus sends ordinary people, and His love keeps moving out from the center, circle by circle. Your personal ministry begins with the people already in your life.",
   "contents": [
     {
       "label": "Story",
@@ -10,12 +10,12 @@
     },
     {
       "label": "Study",
-      "title": "Loved First, Then Sent",
+      "title": "Jesus Sends Ordinary People",
       "anchor": "study"
     },
     {
       "label": "Diagram",
-      "title": "Greatest Commandment",
+      "title": "The Great Commission",
       "anchor": "diagram"
     }
   ],
@@ -76,44 +76,8 @@
     },
     {
       "type": "heading",
-      "text": "Loved First, Then Sent",
+      "text": "Jesus Sends Ordinary People",
       "anchor": "study"
-    },
-    {
-      "type": "text",
-      "text": "You have already walked most of this road. In Growing Deep, you saw the love that comes down: the Father who runs toward you, the Son who covers you, and the Spirit who guides you. In Growing Up, that love reached your neighbors, your family, and your church family. Growing Out is the same love, still moving, now reaching people who do not yet know Jesus. Step through the picture one more time and watch where it goes."
-    },
-    {
-      "type": "widget",
-      "src": "widgets/great-command-v5-203.html",
-      "title": "The Greatest Commandment: Growing Out",
-      "height": "560px",
-      "anchor": "diagram"
-    },
-    {
-      "type": "image",
-      "src": "images/203-01-love-moves-out.png",
-      "alt": "Circles moving outward from You, loved by God, to Home, then Work and School, then Neighborhood, then The World, with arrows pointing out.",
-      "width": "80%",
-      "align": "center"
-    },
-    {
-      "type": "text",
-      "text": "Love moves out the way this picture does. It starts with the people closest to you and keeps going. You do not start at the edge. You start at your own front door."
-    },
-    {
-      "type": "text",
-      "text": "A fruit tree does not eat its own fruit. What God is growing in you is for someone else: your patience helps someone feel safe, your generosity lifts a burden, and your words help someone understand the good news."
-    },
-    {
-      "type": "question",
-      "id": "203-01-helped",
-      "text": "1.2 - Who is being helped by what God is growing in you, or who could be?",
-      "height": "tall"
-    },
-    {
-      "type": "heading",
-      "text": "Jesus Sends Ordinary People"
     },
     {
       "type": "text",
@@ -130,24 +94,40 @@
     },
     {
       "type": "heading",
+      "text": "Where the Mission Goes"
+    },
+    {
+      "type": "text",
+      "text": "Jesus did not leave His followers guessing where to begin. The mission moves out one circle at a time, and it starts at the center, with you."
+    },
+    {
+      "type": "widget",
+      "src": "widgets/great-commission-203.html",
+      "title": "The Great Commission",
+      "height": "590px",
+      "anchor": "diagram"
+    },
+    {
+      "type": "text",
+      "text": "You do not start at the edge. You start at your own front door, with the people who already know you, and love keeps moving out from there. One day your one may reach their own one. <strong>That is how the gospel fills every circle: disciples who make disciples.</strong>"
+    },
+    {
+      "type": "text",
+      "text": "A fruit tree does not eat its own fruit. What God is growing in you is for someone else: your patience helps someone feel safe, your generosity lifts a burden, and your words help someone understand the good news."
+    },
+    {
+      "type": "question",
+      "id": "203-01-helped",
+      "text": "1.2 - Who is being helped by what God is growing in you, or who could be?",
+      "height": "tall"
+    },
+    {
+      "type": "heading",
       "text": "Love Has Names"
     },
     {
       "type": "text",
-      "text": "So where do you go? Just before Jesus returned to the Father, He drew the same circles."
-    },
-    {
-      "type": "verse",
-      "reference": "Acts 1:8",
-      "text": "But you will receive power when the Holy Spirit has come upon you, and you will be my witnesses in Jerusalem and in all Judea and Samaria, and to the end of the earth."
-    },
-    {
-      "type": "text",
-      "text": "Jesus started His followers in Jerusalem, the city where they already were. The mission reaches the whole world, and you will come back to that later in this course, but it begins with the people who already know you."
-    },
-    {
-      "type": "text",
-      "text": "The four friends did not carry a crowd. They carried one man. Loving your neighbor becomes real when your neighbor has a name and a face: the people in your home, the people beside you at work or school, and the people in your neighborhood and everywhere else you keep showing up. <strong>Love has names.</strong>"
+      "text": "The four friends did not carry a crowd. They carried one man. Loving your neighbor becomes real when your neighbor has a name and a face: the people in your home and your church, the people beside you at work or school, and the people in your neighborhood and city. <strong>Love has names.</strong>"
     },
     {
       "type": "text",
@@ -156,7 +136,7 @@
     {
       "type": "question",
       "id": "203-01-4",
-      "text": "1.3 - Start your map here. Write two or three names for each circle: home, work and school, and your neighborhood.",
+      "text": "1.3 - Start your map here. Write two or three names for each circle: home and church, work and school, and your neighborhood and city.",
       "height": "tall"
     },
     {
@@ -195,12 +175,6 @@
       "text": "If this feels like a lot, go back to the roof. The four friends did not heal anyone. Their part was to bring their friend close to Jesus, and what happened next was His part. It is the same for you. You cannot change anyone's heart, and God does not ask you to. He asks you to love people and bring them near. His Spirit lives in you to give you words and open doors, and the results belong to Him. <strong>Your part is to carry. His part is to heal.</strong>"
     },
     {
-      "type": "question",
-      "id": "203-01-hand",
-      "text": "1.4 - How would you explain your personal ministry to a friend in one minute?",
-      "height": "tall"
-    },
-    {
       "type": "heading",
       "text": "This Week's Practice"
     },
@@ -214,7 +188,7 @@
     },
     {
       "type": "text",
-      "text": "Four friends carried a man to Jesus, and Jesus saw their faith. Before you ever carry anyone, you were the one on the mat, and Jesus carried you. Now the love that came down to you keeps moving out: to your home, your work and school, your neighborhood, and the ends of the earth. That is your personal ministry, loving the people God has placed in your life and helping them know and follow Jesus. It is not a project but a lifestyle of love, and BLESS gives you rhythms to practice it. <strong>You carry. Jesus heals.</strong>"
+      "text": "Four friends carried a man to Jesus, and Jesus saw their faith. Before you ever carry anyone, you were the one on the mat, and Jesus carried you. Now Jesus sends you, and His love keeps moving out from the center: to your home and church, your work and school, your neighborhood and city, and the world. That is your personal ministry, loving the people God has placed in your life and helping them know and follow Jesus. It is not a project but a lifestyle of love, and BLESS gives you rhythms to practice it. <strong>You carry. Jesus heals.</strong>"
     },
     {
       "type": "text",
@@ -260,6 +234,12 @@
       "type": "question",
       "id": "203-01-6",
       "text": "1.4 - Who is one person on your map that God is placing on your heart this week?",
+      "height": "tall"
+    },
+    {
+      "type": "question",
+      "id": "203-01-hand",
+      "text": "1.4 - How would you explain your personal ministry to a friend in one minute?",
       "height": "tall"
     }
   ]

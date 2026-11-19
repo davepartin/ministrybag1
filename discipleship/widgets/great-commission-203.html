@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Great Commission</title>
+<style>
+:root {
+  --ink: #2C2416;
+  --muted: #6E6559;
+  --tray: #F6F4EE;
+  --border: #EBE5D9;
+  --green: #1F684A;
+  --green-dark: #164E37;
+  --crimson: #8B1A2B;
+  --crimson-dark: #6D1422;
+  --step-color: #2C2416;
+  --step-dark: #2C2416;
+  --card-h: 134px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: Georgia, Cambria, serif;
+  background: #F8F6F1;
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+.widget-outer {
+  background: #FFFFFF;
+  border-radius: 0;
+  overflow: hidden;
+  box-shadow: none;
+  border: none;
+  max-width: 100%;
+  width: 100%;
+  margin: 0;
+  position: relative;
+}
+
+@media (min-width: 560px) {
+  body {
+    padding: 16px;
+    background: #F8F6F1;
+  }
+  .widget-outer {
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(44, 36, 22, 0.08);
+    border: 1px solid #EBE5D9;
+    max-width: 460px;
+    margin: 0 auto;
+  }
+}
+
+.title-bar {
+  background: #2C2416;
+  padding: 7px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.title-bar h1 {
+  font: 600 17px/1.15 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #FAF8F3;
+  letter-spacing: 0.2px;
+  margin: 0;
+}
+
+.course-tag {
+  font: 600 11px/1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  letter-spacing: 0.9px;
+  text-transform: uppercase;
+  color: #E5DEC9;
+  white-space: nowrap;
+}
+
+.stage {
+  background: #FFFFFF;
+  padding: 2px 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.gc-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.fade-part {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.fade-part.is-visible {
+  opacity: 1;
+}
+
+.gc-svg.globe-active #wash-1 { fill-opacity: 0.20; }
+.gc-svg.globe-active #wash-2 { fill-opacity: 0.13; }
+.gc-svg.globe-active #wash-3 { fill-opacity: 0.09; }
+.gc-svg.globe-active #wash-4 { fill-opacity: 0.05; }
+.gc-svg.globe-active .ring-label { stroke: #EAF5FC; stroke-opacity: 0.94; }
+
+.mult-dot {
+  fill: #1F684A;
+  stroke: #FFFFFF;
+  stroke-width: 1.15;
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: scale(0);
+  pointer-events: none;
+}
+
+.mult-ring.is-visible .mult-dot {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.ring-label {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.1px;
+  paint-order: stroke;
+  stroke-linejoin: round;
+  stroke-width: 3px;
+}
+
+.center-you {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  fill: #FFFFFF;
+  letter-spacing: 0.2px;
+}
+
+.center-sub {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 9.6px;
+  font-weight: 500;
+  fill: #E6F3EC;
+}
+
+.step-strip {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 12px 4px;
+  background: var(--tray);
+  border-bottom: 1px solid var(--border);
+}
+
+.step-dot {
+  appearance: none;
+  min-width: 28px;
+  min-height: 28px;
+  padding: 4px;
+  border: none;
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.step-dot-fill {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2.5px solid var(--dot-color, var(--ink));
+  background: #FFFFFF;
+  display: block;
+}
+
+.step-dot.passed .step-dot-fill {
+  background: color-mix(in srgb, var(--dot-color, var(--ink)) 22%, #FFFFFF);
+}
+
+.step-dot.active .step-dot-fill {
+  background: var(--dot-color, var(--ink));
+  transform: scale(1.12);
+}
+
+.card-area {
+  background: var(--tray);
+  padding: 5px 10px 7px;
+}
+
+.verse-card {
+  background: #FFFFFF;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #EBE5D9;
+  box-shadow: 0 2px 10px rgba(44, 36, 22, 0.05);
+}
+
+.verse-card-bar {
+  height: 4px;
+  background: var(--step-color);
+}
+
+.verse-card-content {
+  padding: 6px 11px;
+  min-height: var(--card-h, 134px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card-heading {
+  font: 700 14.5px/1.18 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--step-dark);
+  margin: 0 0 2px;
+}
+
+.card-verse {
+  font: 12.4px/1.3 Georgia, Cambria, serif;
+  color: #3D3426;
+  margin: 0;
+}
+
+.verse-ref {
+  font: 600 11px/1.2 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--muted);
+  white-space: nowrap;
+  margin-left: 4px;
+}
+
+.card-note {
+  display: block;
+  margin: 3px 0 0;
+  font: 11.8px/1.28 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #4A4238;
+}
+
+.nav-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.nav-btn {
+  appearance: none;
+  min-height: 44px;
+  min-width: 96px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1.5px solid #D4CFC4;
+  background: #FFFFFF;
+  color: var(--ink);
+  font: 700 13.5px/1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  cursor: pointer;
+}
+
+.nav-btn.primary {
+  background: var(--step-color);
+  border-color: var(--step-color);
+  color: #FFFFFF;
+}
+
+.nav-btn:disabled {
+  opacity: 0.36;
+  cursor: default;
+}
+
+.step-count {
+  font: 600 12px/1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--muted);
+}
+
+button:focus-visible {
+  outline: 3px solid #E0A526;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .widget-outer:not(.is-instant) .fade-part {
+    transition: opacity 0.44s ease, fill-opacity 3s ease;
+  }
+  .widget-outer:not(.is-instant) .globe-fade {
+    transition: opacity 3s ease;
+  }
+  .widget-outer:not(.is-instant) .ring-label {
+    transition: stroke 1.8s ease;
+  }
+  .widget-outer:not(.is-instant) .mult-dot {
+    transition: opacity 0.45s ease var(--d, 0ms), transform 0.55s cubic-bezier(0.22, 1, 0.36, 1) var(--d, 0ms);
+  }
+  .widget-outer .step-dot-fill {
+    transition: background-color 0.22s ease, border-color 0.22s ease, transform 0.22s ease;
+  }
+  .widget-outer .nav-btn.primary,
+  .widget-outer .verse-card-bar,
+  .widget-outer .card-heading {
+    transition: background-color 0.24s ease, border-color 0.24s ease, color 0.24s ease;
+  }
+}
+
+#measure-host {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+</style>
+</head>
+<body>
+<main class="widget-outer" id="widget" data-step="0" data-step-dur="0">
+  <header class="title-bar">
+    <h1>The Great Commission</h1>
+    <span class="course-tag">203-01</span>
+  </header>
+
+  <div class="stage">
+    <svg class="gc-svg" id="gc-svg" viewBox="0 0 440 314" width="100%" role="img" aria-labelledby="svg-title svg-desc">
+      <title id="svg-title">The Great Commission</title>
+      <desc id="svg-desc">Clean white stage ready for the circles of the Great Commission to unfold from the center outward.</desc>
+
+      <defs>
+        <clipPath id="globe-clip">
+          <circle cx="220" cy="158" r="147" />
+        </clipPath>
+      </defs>
+
+      <!-- Inline SVG Eastern Hemisphere Globe centered near Jerusalem (fades in on Step 5) -->
+      <g id="globe-layer" class="fade-part globe-fade" clip-path="url(#globe-clip)">
+        <circle cx="220" cy="158" r="147" fill="#CBE7F8" fill-opacity="0.82" />
+        <!-- Subtle spherical latitude and longitude arcs -->
+        <g fill="none" stroke="#3F7FA8" stroke-width="0.7" opacity="0.22">
+          <path d="M109.5,255.0 L115.5,261.1 L122.2,266.8 L129.7,272.1 L137.8,277.0 L146.6,281.5 L156.0,285.3 L165.8,288.7 L176.0,291.5 L186.6,293.7 L197.5,295.3 L208.5,296.2 L219.6,296.6 L230.7,296.3 L241.7,295.4 L252.5,293.8 L263.1,291.7 L273.4,288.9 L283.3,285.6 L292.7,281.8 L301.5,277.4 L309.7,272.6 L317.2,267.3 L324.0,261.5 L330.0,255.5" />
+          <path d="M73.0,157.7 L73.5,166.0 L75.1,174.2 L77.9,182.4 L81.7,190.3 L86.6,198.0 L92.4,205.4 L99.3,212.5 L107.1,219.1 L115.7,225.3 L125.1,230.9 L135.3,236.0 L146.1,240.5 L157.4,244.4 L169.2,247.6 L181.5,250.1 L194.0,252.0 L206.7,253.1 L219.5,253.5 L232.3,253.1 L245.0,252.1 L257.6,250.3 L269.8,247.8 L281.7,244.7 L293.1,240.8 L303.9,236.4 L314.1,231.3 L323.6,225.7 L332.3,219.6 L340.1,213.0 L347.0,206.0 L353.0,198.6 L358.0,191.0 L361.9,183.0 L364.7,174.9 L366.4,166.7 L367.0,158.3" />
+          <path d="M93.2,94.6 L92.7,101.8 L93.1,109.0 L94.6,116.2 L96.9,123.2 L100.2,130.1 L104.4,136.8 L109.5,143.2 L115.5,149.3 L122.2,155.0 L129.7,160.4 L137.8,165.3 L146.6,169.7 L156.0,173.6 L165.8,176.9 L176.0,179.7 L186.6,181.9 L197.5,183.5 L208.5,184.4 L219.6,184.8 L230.7,184.5 L241.7,183.6 L252.5,182.0 L263.1,179.9 L273.4,177.2 L283.3,173.9 L292.7,170.0 L301.5,165.6 L309.7,160.8 L317.2,155.5 L324.0,149.8 L330.0,143.7 L335.2,137.3 L339.5,130.7 L342.9,123.8 L345.3,116.8 L346.8,109.6 L347.3,102.4 L346.9,95.2 L345.4,88.0 L343.1,81.0 L339.8,74.1 L335.6,67.4 L330.5,61.0" />
+          <path d="M146.8,56.9 L146.5,61.0 L146.8,65.2 L147.6,69.3 L148.9,73.4 L150.8,77.4 L153.3,81.2 L156.2,84.9 L159.6,88.4 L163.5,91.8 L167.8,94.8 L172.6,97.7 L177.6,100.2 L183.0,102.5 L188.7,104.4 L194.6,106.0 L200.7,107.3 L207.0,108.2 L213.3,108.7 L219.7,108.9 L226.2,108.8 L232.5,108.2 L238.8,107.3 L244.9,106.1 L250.8,104.5 L256.5,102.6 L261.9,100.4 L267.0,97.9 L271.8,95.1 L276.1,92.0 L280.1,88.7 L283.5,85.2 L286.5,81.5 L289.0,77.7 L290.9,73.7 L292.3,69.6 L293.2,65.5 L293.5,61.4 L293.2,57.2 L292.4,53.1 L291.1,49.0 L289.2,45.0 L286.7,41.2 L283.8,37.5 L280.4,34.0" />
+          <path d="M127.5,272.2 L122.2,266.8 L117.6,260.6 L113.9,253.7 L110.9,246.0 L108.8,237.6 L107.5,228.6 L107.1,219.1 L107.5,209.1 L108.8,198.8 L110.9,188.1 L113.9,177.2 L117.6,166.1 L122.2,155.0 L127.5,143.9 L133.5,133.0 L140.1,122.2 L147.4,111.7 L155.2,101.5 L163.5,91.8 L172.3,82.5 L181.4,73.9 L190.8,65.8 L200.4,58.5" />
+          <path d="M175.7,298.1 L172.1,296.0 L168.7,292.9 L165.8,288.7 L163.3,283.5 L161.2,277.4 L159.5,270.4 L158.4,262.5 L157.6,253.8 L157.4,244.4 L157.6,234.3 L158.4,223.7 L159.5,212.5 L161.2,200.9 L163.3,189.0 L165.8,176.9 L168.7,164.6 L172.1,152.3 L175.7,140.0 L179.8,127.9 L184.1,116.0 L188.7,104.4 L193.5,93.2 L198.6,82.5 L203.8,72.4 L209.1,62.9" />
+          <path d="M220.0,305.0 L220.0,64.5" />
+          <path d="M263.6,298.3 L267.2,296.2 L270.5,293.1 L273.4,288.9 L275.9,283.8 L277.9,277.7 L279.6,270.6 L280.7,262.8 L281.4,254.1 L281.7,244.7 L281.4,234.6 L280.7,223.9 L279.6,212.8 L277.9,201.2 L275.9,189.3 L273.4,177.2 L270.5,164.9 L267.2,152.5 L263.6,140.2 L259.6,128.1 L255.4,116.1 L250.8,104.5 L246.1,93.3 L241.1,82.6 L236.0,72.5 L230.7,63.0" />
+          <path d="M312.0,272.6 L317.2,267.3 L321.8,261.1 L325.5,254.1 L328.5,246.5 L330.6,238.1 L331.9,229.1 L332.3,219.6 L331.9,209.6 L330.6,199.3 L328.5,188.6 L325.5,177.7 L321.8,166.6 L317.2,155.5 L312.0,144.4 L306.0,133.4 L299.4,122.5 L292.2,112.0 L284.4,101.8 L276.1,92.0 L267.5,82.7 L258.4,74.0 L249.1,66.0 L239.5,58.6" />
+          <path d="M357.0,211.1 L359.7,202.1 L361.3,192.7 L361.9,183.0 L361.3,173.2 L359.7,163.2 L357.0,153.2 L353.3,143.3 L348.6,133.4 L342.9,123.8 L336.2,114.4 L328.7,105.3 L320.3,96.7 L311.2,88.5 L301.4,80.8 L290.9,73.7 L280.0,67.3 L268.5,61.5 L256.7,56.5 L244.6,52.3" />
+        </g>
+
+        <!-- Hand-drawn-feeling simplified landmasses: Africa, Europe, Middle East, Asia, Russia -->
+        <g fill="#7BB48F" fill-opacity="0.62" stroke="#3B7455" stroke-opacity="0.48" stroke-width="1.1" stroke-linejoin="round" stroke-linecap="round">
+          <!-- Africa -->
+          <path d="M142.3,151.3 L157.3,155.7 L171.1,159.5 L170.1,169.0 L179.7,177.4 L191.7,176.3 L208.4,181.4 L214.1,181.7 L216.8,191.0 L225.5,209.4 L240.2,225.9 L259.9,224.9 L252.5,242.0 L236.1,255.8 L233.4,271.8 L219.5,285.3 L214.5,292.7 L198.5,298.5 L188.4,297.4 L183.5,295.4 L171.4,282.6 L166.5,268.7 L161.8,255.0 L156.4,236.4 L138.8,226.3 L120.7,218.6 L109.6,199.4 L107.0,185.7 L111.6,172.6 L124.0,162.3 L136.4,154.5 Z" />
+          <!-- Madagascar -->
+          <path d="M255.0,272.1 L256.7,276.7 L247.2,289.9 L240.8,291.0 L241.7,283.5 L249.0,277.2 Z" />
+          <!-- Europe, Russia, Middle East, India, and Asia -->
+          <path d="M142.3,150.8 L138.4,145.6 L144.8,131.7 L156.3,136.6 L157.7,123.2 L168.6,121.6 L180.7,118.9 L187.2,109.9 L183.9,117.2 L195.5,120.1 L206.1,109.3 L209.2,95.2 L199.0,106.4 L188.5,115.9 L188.8,105.7 L183.6,101.3 L194.5,93.5 L211.3,84.0 L217.1,86.7 L224.9,93.4 L238.2,86.9 L246.5,74.4 L252.0,57.4 L263.0,50.7 L265.2,40.3 L264.4,30.6 L278.1,31.9 L294.2,38.8 L302.8,56.2 L326.8,73.5 L340.2,88.7 L335.8,90.8 L332.1,92.8 L339.8,101.7 L345.8,105.0 L353.2,132.4 L350.4,147.5 L358.2,160.5 L355.4,171.8 L349.9,170.7 L353.7,183.5 L356.5,189.4 L350.0,184.9 L343.6,170.2 L333.4,165.2 L328.2,171.4 L320.2,193.2 L317.9,212.2 L309.0,200.9 L295.6,188.5 L289.1,184.2 L270.3,189.6 L249.3,183.1 L254.0,190.7 L268.8,193.8 L276.5,195.4 L263.1,213.4 L243.2,225.1 L238.0,218.2 L229.0,204.4 L219.1,189.8 L219.3,186.0 L217.8,181.7 L220.6,175.1 L221.6,167.5 L207.2,167.8 L202.3,159.7 L208.0,156.3 L196.4,156.4 L194.2,165.1 L189.8,155.3 L181.9,140.4 L186.9,154.8 L181.2,159.6 L173.3,140.9 L166.4,141.8 L159.9,144.1 L149.0,151.5 Z" />
+          <!-- British Isles, Iceland, Japan, Sri Lanka -->
+          <path d="M159.0,118.7 L169.0,119.8 L170.1,109.2 L172.3,101.8 L168.0,102.3 L165.7,112.6 Z" />
+          <path d="M166.1,82.3 L172.1,84.0 L174.3,80.0 L168.5,76.4 L165.5,79.9 Z" />
+          <path d="M344.8,92.1 L339.2,80.6 L333.8,70.9 L326.3,64.5 L319.8,57.7 L324.8,64.5 L336.6,77.2 L342.1,89.0 Z" />
+          <path d="M322.5,206.1 L325.9,208.4 L323.9,213.1 L322.3,210.8 Z" />
+        </g>
+      </g>
+
+      <!-- Ring 4: The World (solid outer sage-green ring, lightest wash) -->
+      <path id="wash-4" class="fade-part" fill="#DCEEE3" fill-opacity="0.24" fill-rule="evenodd"
+        d="M220,9 A149,149 0 1,0 220,307 A149,149 0 1,0 220,9 Z M220,37 A121,121 0 1,1 220,279 A121,121 0 1,1 220,37 Z" />
+      <g id="contour-4" fill="none" stroke="#699A82" stroke-width="1.8" stroke-linecap="round">
+        <path id="arc-4-left" d="M220,9 A149,149 0 0,0 220,307" />
+        <path id="arc-4-right" d="M220,9 A149,149 0 0,1 220,307" />
+      </g>
+
+      <!-- Ring 3: Judea & Samaria (pale sage wash) -->
+      <path id="wash-3" class="fade-part" fill="#CFE6D8" fill-opacity="0.42" fill-rule="evenodd"
+        d="M220,37 A121,121 0 1,0 220,279 A121,121 0 1,0 220,37 Z M220,65 A93,93 0 1,1 220,251 A93,93 0 1,1 220,65 Z" />
+      <g id="contour-3" fill="none" stroke="#518F70" stroke-width="1.7" stroke-linecap="round">
+        <path id="arc-3-left" d="M220,37 A121,121 0 0,0 220,279" />
+        <path id="arc-3-right" d="M220,37 A121,121 0 0,1 220,279" />
+      </g>
+
+      <!-- Ring 2: Your Jerusalem (soft sage wash) -->
+      <path id="wash-2" class="fade-part" fill="#BBDAC7" fill-opacity="0.54" fill-rule="evenodd"
+        d="M220,65 A93,93 0 1,0 220,251 A93,93 0 1,0 220,65 Z M220,93 A65,65 0 1,1 220,223 A65,65 0 1,1 220,93 Z" />
+      <g id="contour-2" fill="none" stroke="#357A5A" stroke-width="1.8" stroke-linecap="round">
+        <path id="arc-2-left" d="M220,65 A93,93 0 0,0 220,251" />
+        <path id="arc-2-right" d="M220,65 A93,93 0 0,1 220,251" />
+      </g>
+
+      <!-- Ring 1: Home & Church (richer sage wash) -->
+      <path id="wash-1" class="fade-part" fill="#9EC8AF" fill-opacity="0.68" fill-rule="evenodd"
+        d="M220,93 A65,65 0 1,0 220,223 A65,65 0 1,0 220,93 Z M220,120 A38,38 0 1,1 220,196 A38,38 0 1,1 220,120 Z" />
+      <g id="contour-1" fill="none" stroke="#236649" stroke-width="1.9" stroke-linecap="round">
+        <path id="arc-1-left" d="M220,93 A65,65 0 0,0 220,223" />
+        <path id="arc-1-right" d="M220,93 A65,65 0 0,1 220,223" />
+      </g>
+
+      <!-- Center: You, loved by God (Deep Forest Green bullseye matching reference palette) -->
+      <circle id="wash-0" class="fade-part" cx="220" cy="158" r="38" fill="#1F684A" fill-opacity="0.96" />
+      <g id="contour-0" fill="none" stroke="#164E37" stroke-width="2" stroke-linecap="round">
+        <path id="arc-0-left" d="M220,120 A38,38 0 0,0 220,196" />
+        <path id="arc-0-right" d="M220,120 A38,38 0 0,1 220,196" />
+      </g>
+
+      <!-- Outward diagonal arrows radiating up-left and up-right from the center -->
+      <g id="outward-arrows" class="fade-part" fill="#2A6B4F" stroke="#2A6B4F" stroke-linecap="round" stroke-linejoin="round">
+        <line id="arrow-left-shaft" x1="196" y1="134" x2="174" y2="112" stroke-width="2.2" />
+        <polygon id="arrow-left-head" points="0,0 10.5,3 3,10.5" stroke="none" transform="translate(174,112)" />
+        <line id="arrow-right-shaft" x1="244" y1="134" x2="266" y2="112" stroke-width="2.2" />
+        <polygon id="arrow-right-head" points="0,0 -3,10.5 -10.5,3" stroke="none" transform="translate(266,112)" />
+      </g>
+
+      <!-- Multiplying dark-green dots popping up organically (3-4 per circle) on the final step -->
+      <g id="mult-ring-1" class="mult-ring">
+        <circle class="mult-dot" cx="207.8" cy="109.0" r="5.0" style="--d:0ms" />
+        <circle class="mult-dot" cx="270.5" cy="172.5" r="5.0" style="--d:240ms" />
+        <circle class="mult-dot" cx="171.5" cy="173.8" r="5.0" style="--d:470ms" />
+      </g>
+      <g id="mult-ring-2" class="mult-ring">
+        <circle class="mult-dot" cx="251.5" cy="87.2" r="4.8" style="--d:0ms" />
+        <circle class="mult-dot" cx="143.0" cy="134.5" r="4.8" style="--d:220ms" />
+        <circle class="mult-dot" cx="284.7" cy="201.6" r="4.8" style="--d:430ms" />
+        <circle class="mult-dot" cx="148.5" cy="196.0" r="4.8" style="--d:610ms" />
+      </g>
+      <g id="mult-ring-3" class="mult-ring">
+        <circle class="mult-dot" cx="180.3" cy="59.7" r="4.6" style="--d:0ms" />
+        <circle class="mult-dot" cx="325.8" cy="131.6" r="4.6" style="--d:200ms" />
+        <circle class="mult-dot" cx="115.6" cy="169.0" r="4.6" style="--d:420ms" />
+        <circle class="mult-dot" cx="300.6" cy="230.6" r="4.6" style="--d:620ms" />
+      </g>
+      <g id="mult-ring-4" class="mult-ring">
+        <circle class="mult-dot" cx="252.4" cy="28.0" r="4.5" style="--d:0ms" />
+        <circle class="mult-dot" cx="115.1" cy="246.1" r="4.5" style="--d:210ms" />
+        <circle class="mult-dot" cx="96.2" cy="108.0" r="4.5" style="--d:430ms" />
+        <circle class="mult-dot" cx="349.3" cy="200.0" r="4.5" style="--d:620ms" />
+      </g>
+
+      <!-- Clean minimal labels at center and crisp black text stacked neatly toward the bottom of each ring -->
+      <g id="lbl-0" class="fade-part" text-anchor="middle">
+        <text class="center-you" x="220" y="156">You</text>
+        <text class="center-sub" x="220" y="169">loved by God</text>
+      </g>
+
+      <g id="lbl-1" class="fade-part" text-anchor="middle">
+        <text class="ring-label" x="220" y="212" fill="#141414" stroke="#BAD9C6">Home &amp; Church</text>
+      </g>
+
+      <g id="lbl-2" class="fade-part" text-anchor="middle">
+        <text class="ring-label" x="220" y="240" fill="#141414" stroke="#D2E6DA">Work &amp; School</text>
+      </g>
+
+      <g id="lbl-3" class="fade-part" text-anchor="middle">
+        <text class="ring-label" x="220" y="268" fill="#141414" stroke="#E4F1E9">Neighborhood &amp; City</text>
+      </g>
+
+      <g id="lbl-4" class="fade-part" text-anchor="middle">
+        <text class="ring-label" x="220" y="296" fill="#141414" stroke="#F4FAF6">The World</text>
+      </g>
+    </svg>
+  </div>
+
+  <div class="step-strip" role="group" aria-label="Mission steps">
+    <button type="button" class="step-dot active" data-step="0" aria-label="Start: The Great Commission" aria-pressed="true" style="--dot-color: #2C2416;"><span class="step-dot-fill"></span></button>
+    <button type="button" class="step-dot" data-step="1" aria-label="Step 1: You, Loved by God" aria-pressed="false" style="--dot-color: #1F684A;"><span class="step-dot-fill"></span></button>
+    <button type="button" class="step-dot" data-step="2" aria-label="Step 2: Home and Church" aria-pressed="false" style="--dot-color: #287053;"><span class="step-dot-fill"></span></button>
+    <button type="button" class="step-dot" data-step="3" aria-label="Step 3: Work and School" aria-pressed="false" style="--dot-color: #357E5F;"><span class="step-dot-fill"></span></button>
+    <button type="button" class="step-dot" data-step="4" aria-label="Step 4: Neighborhood and City" aria-pressed="false" style="--dot-color: #4A8E6F;"><span class="step-dot-fill"></span></button>
+    <button type="button" class="step-dot" data-step="5" aria-label="Step 5: The World" aria-pressed="false" style="--dot-color: #5E987D;"><span class="step-dot-fill"></span></button>
+    <button type="button" class="step-dot" data-step="6" aria-label="Step 6: Go and Make Disciples" aria-pressed="false" style="--dot-color: #1F684A;"><span class="step-dot-fill"></span></button>
+  </div>
+
+  <div class="card-area">
+    <div class="verse-card">
+      <div class="verse-card-bar"></div>
+      <div class="verse-card-content" id="card-content" aria-live="polite" aria-atomic="true">
+        <h2 class="card-heading" id="card-heading"></h2>
+        <p class="card-verse"><span id="card-verse-text"></span><span class="verse-ref" id="card-ref"></span></p>
+        <p class="card-note" id="card-note"></p>
+      </div>
+    </div>
+
+    <div class="nav-bar">
+      <button type="button" class="nav-btn secondary" id="prev-btn" disabled>&larr; Back</button>
+      <span class="step-count" id="step-count">Ready</span>
+      <button type="button" class="nav-btn primary" id="next-btn">Begin &rarr;</button>
+    </div>
+  </div>
+</main>
+
+<div id="measure-host" aria-hidden="true"></div>
+
+<script>
+(function () {
+  'use strict';
+
+  var STEPS = [
+    {
+      heading: 'The Great Commission',
+      verse: '"All authority in heaven and on earth has been given to me."',
+      ref: 'Matthew 28:18',
+      note: 'Before Jesus returned to the Father, He gave His followers one mission and showed how God\'s love moves outward.',
+      accent: '#2C2416',
+      accentDark: '#2C2416',
+      countLabel: 'Ready',
+      nextLabel: 'Begin \u2192',
+      title: 'The Great Commission: Start',
+      desc: 'Clean white stage ready for the concentric mission circles to unfold from the center outward.'
+    },
+    {
+      heading: 'You, Loved by God',
+      verse: '"We love because he first loved us."',
+      ref: '1 John 4:19',
+      note: 'Every circle starts here in 201 Course: Growing Deep. Before God sends you anywhere, He anchors you in His love.',
+      accent: '#1F684A',
+      accentDark: '#164E37',
+      countLabel: 'Step 1 of 6',
+      nextLabel: 'Next \u2192',
+      title: 'Step 1: You, Loved by God',
+      desc: 'A deep forest green center circle labeled You, loved by God.'
+    },
+    {
+      heading: 'Home and Church',
+      verse: '"So then, as we have opportunity, let us do good to everyone, and especially to those who are of the household of faith."',
+      ref: 'Galatians 6:10',
+      note: 'The 202 Course: Growing Up begins close to home. God shapes His love in your family and church first so it can overflow outward.',
+      accent: '#287053',
+      accentDark: '#164E37',
+      countLabel: 'Step 2 of 6',
+      nextLabel: 'Next \u2192',
+      title: 'Step 2: Home and Church',
+      desc: 'A sage green ring grows around the center labeled Home and Church at the bottom, with two arrows reaching upward and outward.'
+    },
+    {
+      heading: 'Work and School',
+      verse: '"You will be my witnesses in Jerusalem"',
+      ref: 'Acts 1:8',
+      note: 'This 203 Course: Growing Out starts in your Jerusalem: the coworkers, classmates, and friends right where God placed you each week.',
+      accent: '#357E5F',
+      accentDark: '#1A543C',
+      countLabel: 'Step 3 of 6',
+      nextLabel: 'Next \u2192',
+      title: 'Step 3: Work and School',
+      desc: 'A lighter sage ring expands outward labeled Work and School, with the two upward arrows extending to its edge.'
+    },
+    {
+      heading: 'Neighborhood and City',
+      verse: '"and in all Judea and Samaria"',
+      ref: 'Acts 1:8',
+      note: 'Like Judea and Samaria, God\'s plan pushes love into your neighborhood, your city, and often to people different than you.',
+      accent: '#4A8E6F',
+      accentDark: '#235942',
+      countLabel: 'Step 4 of 6',
+      nextLabel: 'Next \u2192',
+      title: 'Step 4: Neighborhood and City',
+      desc: 'A softer sage ring expands outward labeled Neighborhood and City, with the two upward arrows reaching further out.'
+    },
+    {
+      heading: 'The World',
+      verse: '"and to the end of the earth."',
+      ref: 'Acts 1:8',
+      note: 'God\'s heart reaches to the end of the earth. The same love that starts in you reaches to every nation as you pray, give, and go.',
+      accent: '#5E987D',
+      accentDark: '#2C5C47',
+      countLabel: 'Step 5 of 6',
+      nextLabel: 'Next \u2192',
+      title: 'Step 5: The World',
+      desc: 'A solid outer ring labeled The World opens, followed after a brief pause by a blue-ocean and green-land Earth slowly emerging behind the circles.'
+    },
+    {
+      heading: 'Go and Make Disciples',
+      verse: '"Go therefore and make disciples of all nations, baptizing them in the name of the Father and of the Son and of the Holy Spirit, teaching them to observe all that I have commanded you. And behold, I am with you always, to the end of the age."',
+      ref: 'Matthew 28:19-20',
+      note: '',
+      accent: '#1F684A',
+      accentDark: '#164E37',
+      countLabel: 'Step 6 of 6',
+      nextLabel: 'Start Over',
+      title: 'Step 6: Go and Make Disciples',
+      desc: 'Dark green dots matching the center multiply outward one circle at a time from Home and Church through Work and School and Neighborhood and City into The World over the Earth.'
+    }
+  ];
+
+  var CONTOUR_SPEED = 185; // px per second
+  var CX = 220;
+  var CY = 158;
+  var DIAG = Math.SQRT1_2;
+  var ARROW_START_R = 34;
+  var ARROW_RADII = [0, 0, 65, 93, 121, 149, 149];
+
+  var widget = document.getElementById('widget');
+  var stageSvg = document.getElementById('gc-svg');
+  var svgTitle = document.getElementById('svg-title');
+  var svgDesc = document.getElementById('svg-desc');
+  var cardContent = document.getElementById('card-content');
+  var cardHeading = document.getElementById('card-heading');
+  var cardVerseText = document.getElementById('card-verse-text');
+  var cardRef = document.getElementById('card-ref');
+  var cardNote = document.getElementById('card-note');
+  var prevBtn = document.getElementById('prev-btn');
+  var nextBtn = document.getElementById('next-btn');
+  var stepCount = document.getElementById('step-count');
+  var dotBtns = Array.prototype.slice.call(document.querySelectorAll('.step-dot'));
+  var measureHost = document.getElementById('measure-host');
+
+  var globeLayer = document.getElementById('globe-layer');
+  var outwardArrows = document.getElementById('outward-arrows');
+  var arrowLeftShaft = document.getElementById('arrow-left-shaft');
+  var arrowLeftHead = document.getElementById('arrow-left-head');
+  var arrowRightShaft = document.getElementById('arrow-right-shaft');
+  var arrowRightHead = document.getElementById('arrow-right-head');
+  var multRings = [
+    document.getElementById('mult-ring-1'),
+    document.getElementById('mult-ring-2'),
+    document.getElementById('mult-ring-3'),
+    document.getElementById('mult-ring-4')
+  ];
+
+  var RINGS = [
+    {
+      step: 1,
+      paths: [document.getElementById('arc-0-left'), document.getElementById('arc-0-right')],
+      wash: document.getElementById('wash-0'),
+      label: document.getElementById('lbl-0')
+    },
+    {
+      step: 2,
+      paths: [document.getElementById('arc-1-left'), document.getElementById('arc-1-right')],
+      wash: document.getElementById('wash-1'),
+      label: document.getElementById('lbl-1')
+    },
+    {
+      step: 3,
+      paths: [document.getElementById('arc-2-left'), document.getElementById('arc-2-right')],
+      wash: document.getElementById('wash-2'),
+      label: document.getElementById('lbl-2')
+    },
+    {
+      step: 4,
+      paths: [document.getElementById('arc-3-left'), document.getElementById('arc-3-right')],
+      wash: document.getElementById('wash-3'),
+      label: document.getElementById('lbl-3')
+    },
+    {
+      step: 5,
+      paths: [document.getElementById('arc-4-left'), document.getElementById('arc-4-right')],
+      wash: document.getElementById('wash-4'),
+      label: document.getElementById('lbl-4')
+    }
+  ];
+
+  function pathLen(el) {
+    try {
+      return Math.ceil(el.getTotalLength());
+    } catch (e) {
+      return 300;
+    }
+  }
+
+  RINGS.forEach(function (ring) {
+    ring.lens = ring.paths.map(pathLen);
+    ring.maxLen = Math.max.apply(null, ring.lens);
+  });
+
+  var reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reducedMotion) {
+    widget.classList.add('is-instant');
+  }
+
+  var currentStep = 0;
+  var activeRaf = 0;
+  var activeTimers = [];
+  var lastMeasuredWidth = 0;
+
+  function scheduleTimer(fn, ms) {
+    var id = setTimeout(function () {
+      var pos = activeTimers.indexOf(id);
+      if (pos !== -1) activeTimers.splice(pos, 1);
+      fn();
+    }, ms);
+    activeTimers.push(id);
+    return id;
+  }
+
+  function cancelAnim() {
+    if (activeRaf) {
+      cancelAnimationFrame(activeRaf);
+      activeRaf = 0;
+    }
+    while (activeTimers.length) {
+      clearTimeout(activeTimers.pop());
+    }
+  }
+
+  function setArrowsRadius(radius) {
+    if (radius <= ARROW_START_R) {
+      outwardArrows.classList.remove('is-visible');
+      return;
+    }
+    var tipD = radius * DIAG;
+    var shaftD = Math.max(ARROW_START_R, radius - 5) * DIAG;
+    var lxTip = (CX - tipD).toFixed(1);
+    var rxTip = (CX + tipD).toFixed(1);
+    var yTip = (CY - tipD).toFixed(1);
+    var lxShaft = (CX - shaftD).toFixed(1);
+    var rxShaft = (CX + shaftD).toFixed(1);
+    var yShaft = (CY - shaftD).toFixed(1);
+
+    arrowLeftShaft.setAttribute('x2', lxShaft);
+    arrowLeftShaft.setAttribute('y2', yShaft);
+    arrowLeftHead.setAttribute('transform', 'translate(' + lxTip + ',' + yTip + ')');
+
+    arrowRightShaft.setAttribute('x2', rxShaft);
+    arrowRightShaft.setAttribute('y2', yShaft);
+    arrowRightHead.setAttribute('transform', 'translate(' + rxTip + ',' + yTip + ')');
+
+    outwardArrows.classList.add('is-visible');
+  }
+
+  function setPathProgress(el, len, progress) {
+    var clamped = Math.max(0, Math.min(1, progress));
+    if (clamped <= 0) {
+      el.style.strokeDasharray = String(len);
+      el.style.strokeDashoffset = String(len);
+      el.style.opacity = '0';
+    } else if (clamped >= 1) {
+      el.style.strokeDasharray = 'none';
+      el.style.strokeDashoffset = '0';
+      el.style.opacity = '';
+    } else {
+      el.style.strokeDasharray = String(len);
+      el.style.strokeDashoffset = String((1 - clamped) * len);
+      el.style.opacity = '';
+    }
+  }
+
+  function applyStaticParts(idx, animatingStep) {
+    RINGS.forEach(function (ring) {
+      var shown = idx >= ring.step;
+      var isAnimating = animatingStep === ring.step;
+      if (!isAnimating) {
+        for (var i = 0; i < ring.paths.length; i++) {
+          setPathProgress(ring.paths[i], ring.lens[i], shown ? 1 : 0);
+        }
+        ring.wash.classList.toggle('is-visible', shown);
+        ring.label.classList.toggle('is-visible', shown);
+      } else {
+        for (var j = 0; j < ring.paths.length; j++) {
+          setPathProgress(ring.paths[j], ring.lens[j], 0);
+        }
+        ring.wash.classList.remove('is-visible');
+        ring.label.classList.remove('is-visible');
+      }
+    });
+
+    if (animatingStep >= 2 && animatingStep <= 5) {
+      setArrowsRadius(ARROW_RADII[animatingStep - 1]);
+    } else {
+      setArrowsRadius(ARROW_RADII[idx]);
+    }
+
+    var showGlobe = idx >= 5 && animatingStep !== 5;
+    globeLayer.classList.toggle('is-visible', showGlobe);
+    stageSvg.classList.toggle('globe-active', showGlobe);
+
+    var showMult = idx >= 6 && animatingStep !== 6;
+    for (var m = 0; m < multRings.length; m++) {
+      multRings[m].classList.toggle('is-visible', showMult);
+    }
+  }
+
+  function animateStep(idx) {
+    cancelAnim();
+    if (idx >= 1 && idx <= 5) {
+      var ring = RINGS[idx - 1];
+      var drawMs = Math.max(420, Math.round((ring.maxLen / CONTOUR_SPEED) * 1000));
+      var washTrigger = 0.65;
+      var fromArrowR = idx === 2 ? ARROW_START_R : ARROW_RADII[idx - 1];
+      var toArrowR = ARROW_RADII[idx];
+      var totalDur = idx === 5 ? (drawMs + 1000 + 3000) : drawMs;
+
+      widget.setAttribute('data-step-dur', String(totalDur));
+      applyStaticParts(idx, idx);
+
+      var startTime = 0;
+      var washed = false;
+      function frameRing(now) {
+        if (!startTime) startTime = now;
+        var t = Math.min(1, (now - startTime) / drawMs);
+        var eased = 1 - Math.pow(1 - t, 1.5);
+        for (var i = 0; i < ring.paths.length; i++) {
+          setPathProgress(ring.paths[i], ring.lens[i], eased);
+        }
+        if (idx >= 2) {
+          setArrowsRadius(fromArrowR + (toArrowR - fromArrowR) * eased);
+        }
+        if (!washed && t >= washTrigger) {
+          washed = true;
+          ring.wash.classList.add('is-visible');
+          ring.label.classList.add('is-visible');
+        }
+        if (t < 1) {
+          activeRaf = requestAnimationFrame(frameRing);
+        } else {
+          activeRaf = 0;
+          for (var k = 0; k < ring.paths.length; k++) {
+            setPathProgress(ring.paths[k], ring.lens[k], 1);
+          }
+          if (idx >= 2) setArrowsRadius(toArrowR);
+          if (idx === 5) {
+            scheduleTimer(function () {
+              globeLayer.classList.add('is-visible');
+              stageSvg.classList.add('globe-active');
+            }, 1000);
+          }
+        }
+      }
+      activeRaf = requestAnimationFrame(frameRing);
+      return;
+    }
+
+    if (idx === 6) {
+      widget.setAttribute('data-step-dur', '4300');
+      applyStaticParts(6, 6);
+
+      for (var w = 0; w < multRings.length; w++) {
+        (function (waveIdx) {
+          scheduleTimer(function () {
+            multRings[waveIdx].classList.add('is-visible');
+          }, 40 + waveIdx * 1000);
+        })(w);
+      }
+      return;
+    }
+
+    widget.setAttribute('data-step-dur', '0');
+    applyStaticParts(idx, -1);
+  }
+
+  function updateCardAndChrome(idx) {
+    var s = STEPS[idx];
+    widget.setAttribute('data-step', String(idx));
+    widget.style.setProperty('--step-color', s.accent);
+    widget.style.setProperty('--step-dark', s.accentDark);
+
+    cardHeading.textContent = s.heading;
+    cardVerseText.textContent = s.verse;
+    cardRef.textContent = s.ref;
+    cardNote.textContent = s.note;
+    cardNote.hidden = !s.note;
+
+    svgTitle.textContent = s.title;
+    svgDesc.textContent = s.desc;
+
+    stepCount.textContent = s.countLabel;
+    nextBtn.textContent = s.nextLabel;
+    prevBtn.disabled = (idx === 0);
+
+    dotBtns.forEach(function (btn, i) {
+      btn.classList.toggle('active', i === idx);
+      btn.classList.toggle('passed', i < idx);
+      btn.setAttribute('aria-pressed', i === idx ? 'true' : 'false');
+    });
+  }
+
+  function goToStep(idx, animateForward) {
+    if (idx < 0 || idx >= STEPS.length) return;
+    cancelAnim();
+    currentStep = idx;
+    updateCardAndChrome(idx);
+
+    var instant = reducedMotion || !animateForward || idx === 0;
+    if (instant) {
+      widget.classList.add('is-instant');
+      widget.setAttribute('data-step-dur', '0');
+      applyStaticParts(idx, -1);
+      if (!reducedMotion) {
+        void widget.offsetWidth;
+        widget.classList.remove('is-instant');
+      }
+    } else {
+      widget.classList.remove('is-instant');
+      animateStep(idx);
+    }
+  }
+
+  function fitCardHeight() {
+    var w = cardContent.clientWidth;
+    if (!w) return;
+    lastMeasuredWidth = w;
+    var clone = cardContent.cloneNode(true);
+    clone.removeAttribute('id');
+    clone.removeAttribute('aria-live');
+    clone.style.width = w + 'px';
+    clone.style.minHeight = '0';
+    clone.style.height = 'auto';
+
+    var h = clone.querySelector('#card-heading');
+    var v = clone.querySelector('#card-verse-text');
+    var r = clone.querySelector('#card-ref');
+    var n = clone.querySelector('#card-note');
+    if (h) h.removeAttribute('id');
+    if (v) v.removeAttribute('id');
+    if (r) r.removeAttribute('id');
+    if (n) n.removeAttribute('id');
+
+    measureHost.innerHTML = '';
+    measureHost.appendChild(clone);
+
+    var maxH = 0;
+    for (var i = 0; i < STEPS.length; i++) {
+      if (h) h.textContent = STEPS[i].heading;
+      if (v) v.textContent = STEPS[i].verse;
+      if (r) r.textContent = STEPS[i].ref;
+      if (n) {
+        n.textContent = STEPS[i].note;
+        n.hidden = !STEPS[i].note;
+      }
+      var measured = Math.ceil(clone.getBoundingClientRect().height);
+      if (measured > maxH) maxH = measured;
+    }
+    measureHost.innerHTML = '';
+    if (maxH > 0) {
+      widget.style.setProperty('--card-h', maxH + 'px');
+    }
+  }
+
+  nextBtn.addEventListener('click', function () {
+    if (currentStep < STEPS.length - 1) {
+      goToStep(currentStep + 1, true);
+    } else {
+      goToStep(0, false);
+    }
+  });
+
+  prevBtn.addEventListener('click', function () {
+    if (currentStep > 0) {
+      goToStep(currentStep - 1, false);
+    }
+  });
+
+  dotBtns.forEach(function (btn, i) {
+    btn.addEventListener('click', function () {
+      if (i === currentStep) return;
+      var forwardOne = (i === currentStep + 1);
+      goToStep(i, forwardOne);
+    });
+  });
+
+  var lastWindowWidth = window.innerWidth;
+  window.addEventListener('resize', function () {
+    var w = window.innerWidth;
+    if (w !== lastWindowWidth) {
+      lastWindowWidth = w;
+      if (cardContent.clientWidth !== lastMeasuredWidth) {
+        fitCardHeight();
+      }
+    }
+  });
+
+  fitCardHeight();
+  goToStep(0, false);
+}());
+</script>
+</body>
+</html>
