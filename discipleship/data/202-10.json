@@ -22,7 +22,7 @@
   "blocks": [
     {
       "type": "text",
-      "text": "You have spent this course growing up: loving your neighbors, your family, and your church family, serving with your gifts, standing firm, worshiping, giving, honoring marriage, and guarding your heart. The last lesson of Growing Up ends at a table. It is the table of the new covenant, the promise Jesus sealed with His own blood."
+      "text": "You have spent this course growing up: loving your neighbors, your family, and your church family, serving with your gifts, standing firm, worshiping, giving, honoring marriage, and guarding your heart. The last lesson of Growing Up looks at two gifts Jesus gave His church: a doorway you walk through once, and a table you come back to for the rest of your life."
     },
     {
       "type": "heading",
@@ -58,7 +58,7 @@
     },
     {
       "type": "text",
-      "text": "Notice too that nobody baptizes themselves. Someone lowers you into the water and someone lifts you out, and a family stands around watching. It is the front door into a people, not a private decision you make alone."
+      "text": "Nobody baptizes themselves. Someone lowers you into the water and someone lifts you out, and a family stands around watching. It is the front door into a people, not a private decision you make alone."
     },
     {
       "type": "text",
@@ -103,7 +103,7 @@
     },
     {
       "type": "text",
-      "text": "Look around that table. Judas would betray Him before midnight. Peter would deny Him three times before sunrise. The rest would scatter into the dark. Jesus knew every bit of it, and He still longed to eat with them."
+      "text": "Around that table, Judas would betray Him before midnight. Peter would deny Him three times before sunrise. The rest would scatter into the dark. Jesus knew every bit of it, and He still longed to eat with them."
     },
     {
       "type": "text",
@@ -177,12 +177,6 @@
       "text": "Take one step toward one of the two gifts this week. If you have not been baptized, tell a pastor you would like to talk about it. If you have, take ten quiet minutes before the next Lord's Supper to come ready."
     },
     {
-      "type": "question",
-      "id": "202-10-hand",
-      "text": "10.5 - How would you explain the doorway and the table to a friend who is new to church?",
-      "height": "tall"
-    },
-    {
       "type": "heading",
       "text": "Growing Out from Here"
     },
@@ -219,6 +213,14 @@
       "id": "202-10-prayer",
       "text": "What is a prayer request for this week?",
       "height": "short"
+    }
+  ],
+  "retiredQuestions": [
+    {
+      "type": "question",
+      "id": "202-10-hand",
+      "text": "10.5 - How would you explain the doorway and the table to a friend who is new to church?",
+      "height": "tall"
     }
   ]
 }
