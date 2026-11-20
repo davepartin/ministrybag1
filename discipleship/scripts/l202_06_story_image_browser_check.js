@@ -2,7 +2,7 @@
 /**
  * 202-06 Worship and the Glory of God story-image browser check.
  * Confirms the Moses veil two-frame sequence sits before A Face That
- * Shone, holds seq-1, dissolves to seq-2 at 0.91, keeps touchNext,
+ * Shone, holds seq-1, dissolves to seq-2 at 0.3, keeps touchNext,
  * honors reduced motion, and does not shift the page at phone and
  * laptop widths. Synthetic navigation only.
  */
@@ -25,10 +25,10 @@ var QUESTION_IDS = [
     '202-06-step',
     '201-05-prayer'
 ];
-var STOPS = [0, 0.34, 0.91];
+var STOPS = [0, 0.2, 0.3];
 var LAST_STOP = STOPS[STOPS.length - 1];
-var AFTER_LAST = 0.96;
-var SAMPLE_PROGRESS = [0, 0.17, 0.34, 0.625, 0.91, 0.96];
+var AFTER_LAST = 0.35;
+var SAMPLE_PROGRESS = [0, 0.1, 0.2, 0.25, 0.3, 0.35];
 var failed = 0;
 var passed = 0;
 
@@ -166,7 +166,7 @@ function srcMatches(src, expected) {
 
         var rest = await readSequenceState(page);
         assert(width + ': three sequence frames render', rest.frameCount === 3, String(rest.frameCount));
-        assert(width + ': sequence stops are 0,0.34,0.91', rest.stops === STOPS.join(','), rest.stops);
+        assert(width + ': sequence stops are 0,0.2,0.3', rest.stops === STOPS.join(','), rest.stops);
         assert(width + ': image keeps touchNext', rest.touchNext);
         assert(width + ': parable card follows the image', rest.nextIsParable);
         assert(
@@ -238,9 +238,9 @@ function srcMatches(src, expected) {
             }
             if (SAMPLE_PROGRESS[i] === LAST_STOP) {
                 var stillOnScreen = sample.wrapBottom !== null &&
-                    sample.wrapBottom > sample.contentTop + 40 &&
+                    sample.wrapBottom <= sample.viewportHeight + 1 &&
                     sample.wrapTop !== null &&
-                    sample.wrapTop < sample.viewportHeight;
+                    sample.wrapTop >= sample.contentTop - 1;
                 lastStopVisible = stillOnScreen;
                 lastStopNote = 'wrapTop=' + sample.wrapTop +
                     ' wrapBottom=' + sample.wrapBottom +
@@ -270,16 +270,16 @@ function srcMatches(src, expected) {
         assert(width + ': all three frames become dominant', Object.keys(used).length === 3, JSON.stringify(order));
         assert(width + ': last frame is nearly opaque at stop ' + LAST_STOP, lastFrameInAtStop, JSON.stringify(atLastStop));
         assert(width + ': last frame is exclusive just after stop ' + LAST_STOP, afterLastStop && afterLastStop.dominant === 2, JSON.stringify(afterLastStop));
-        assert(width + ': last frame is still on screen at the final stop', lastStopVisible, lastStopNote);
+        assert(width + ': whole final frame is visible below the header at completion', lastStopVisible, lastStopNote);
         assert(width + ': touchNext joins the parable card without layout shift', overlapShift === false && heightAtStart > 100);
-        var atHoldEnd = order.find(function (row) { return row.progress === 0.34; });
-        var midDissolve = order.find(function (row) { return row.progress === 0.625; });
+        var atHoldEnd = order.find(function (row) { return row.progress === 0.2; });
+        var midDissolve = order.find(function (row) { return row.progress === 0.25; });
         var seq1AtHold = atHoldEnd && atHoldEnd.opacities &&
             (atHoldEnd.opacities[0] >= 0.85 || atHoldEnd.opacities[1] >= 0.85) &&
             atHoldEnd.opacities[2] < 0.15;
         var seq2Mid = midDissolve && midDissolve.opacities && midDissolve.opacities[2];
-        assert(width + ': seq-1 still holds at 0.34 before the last dissolve', seq1AtHold, JSON.stringify(atHoldEnd));
-        assert(width + ': last dissolve is underway at 0.625', seq2Mid > 0.35 && seq2Mid < 0.65, JSON.stringify(midDissolve));
+        assert(width + ': seq-1 still holds at 0.2 before the last dissolve', seq1AtHold, JSON.stringify(atHoldEnd));
+        assert(width + ': last dissolve is underway at 0.25', seq2Mid > 0.35 && seq2Mid < 0.65, JSON.stringify(midDissolve));
 
         await page.close();
     }
