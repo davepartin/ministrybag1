@@ -2,7 +2,7 @@
 
 | Task | Status | Owner / date | Scope |
 |---|---|---|---|
-| RETIRE-LEGACY-PRS | DONE | Codex / 2026-11-20 | Branch codex/retire-legacy-prs. At Dave's direction, closed #325, #346, #222, #68, #28, #2 and #305 without merging. Current branding and live widgets/art retained. No open PRs remain at verification. |
+| RETIRE-LEGACY-PRS | DONE | Codex / 2026-11-20 | Branch codex/retire-legacy-prs. At Dave's direction, closed #325, #346, #222, #68, #28, #2 and #305 without merging. Current branding and live widgets/art retained. Newly opened #359 (202-03 shared-table art) remains outside this retirement request. |
 
 | Task | Status | Owner / date | Scope |
 |---|---|---|---|
