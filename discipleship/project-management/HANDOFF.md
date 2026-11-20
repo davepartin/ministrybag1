@@ -1,6 +1,6 @@
 # Resume here
 
-203-01 latest timing ACTIVE: Dave reviewed the live phone behavior and requested start30 percent, finish45 percent. Stops [0,0.3,0.45] supersede the50/64 schedule below. Timing/test only; art, copy and answer history protected. Verify and publish. Log: logs/2026-11-19-ART-203-01b-30-45-codex.md.
+203-01 LATEST TIMING DONE: Dave requested start30 percent, finish45 percent. PR #340 merged8caaf0b and Firebase44673963098 succeeded. Current stops [0,0.3,0.45] supersede all earlier schedules below.80 live phone/laptop/reduced-motion checks passed, with full image visible at finish. Art/copy/answer history untouched. Log: logs/2026-11-19-ART-203-01b-30-45-codex.md.
 
 203-01 HALF-WAY HOLD DONE: Dave requested start50 percent and merge. PR #338 mergedbd06803 and Firebase44661456480 succeeded. Latest stops [0,0.5,0.64]: longer hold, quick dissolve, approved finish unchanged.80 live phone/laptop/reduced-motion checks passed. Supersedes the26 percent start in PR #322. Art/copy/answers untouched. Log: logs/2026-11-19-ART-203-01b-HOLD50-codex.md.
 

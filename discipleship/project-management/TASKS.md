@@ -2,7 +2,7 @@
 
 | Task | Status | Owner / date | Scope |
 |---|---|---|---|
-| ART-203-01b-30-45 | ACTIVE | Codex / 2026-11-19 | Dave requests start30 percent and finish45 percent after live phone review. Timing/test only, preserve art/copy/answers, verify and publish. |
+| ART-203-01b-30-45 | DONE | Codex / 2026-11-19 | Dave requests start30 percent and finish45 percent after live phone review. PR #340 merged8caaf0b. Firebase44673963098 succeeded;80 local,80 preview and80 live story checks passed. Art/copy/answers preserved. |
 
 | Task | Status | Owner / date | Scope |
 |---|---|---|---|

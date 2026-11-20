@@ -1,5 +1,7 @@
 # Growing Together Team Board
 
+203-01 latest timing DONE: PR #340 merged8caaf0b at Dave's request. Dissolve starts30 percent and finishes45 percent, stops [0,0.3,0.45]. Firebase44673963098 succeeded;80 live story checks pass, entire picture visible at finish. Art/copy/answers preserved. [Evidence](logs/2026-11-19-ART-203-01b-30-45-codex.md).
+
 203-01 HOLD50 DONE: Dave requested start50 percent, finish64 percent and merge. PR #338 mergedbd06803; Firebase44661456480 succeeded.80 live story checks pass at375/390/1280 and reduced motion. No artwork, prose or saved-answer changes. [Latest timing evidence](logs/2026-11-19-ART-203-01b-HOLD50-codex.md).
 
 203-01 roof-drop publication DONE, November19: Dave approved the two-frame sequence and earlier finish. PR #322 merged2600793. Stops [0,0.26,0.64]; all80 live story-image checks pass at375/390/1280 and reduced motion. Current Great Commission copy/artwork and saved-answer history preserved. Firebase deployment44660866685 succeeded. [Evidence](logs/2026-11-19-ART-203-01b-TIMING-codex.md).
