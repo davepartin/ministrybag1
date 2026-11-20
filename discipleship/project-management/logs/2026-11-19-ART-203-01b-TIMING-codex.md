@@ -1,0 +1,7 @@
+# ART-203-01b-TIMING
+
+Dave requested20 percent sooner dissolve on PR #322. Interpret as an earlier transition, not faster playback: finish0.80 times0.8 equals0.64; move start0.42 to0.26 so duration remains0.38. Sequence is [high, high, low], stops [0,0.26,0.64]. Normal scrolling; no pinning or runtime change. Artwork remains exact9ec511c.
+
+Merged current main617a152 into the review branch, keeping current203-01 Great Commission wording/placement and all saved-answer IDs. HANDOFF conflict kept both histories. Removed obsolete browser assertion requiring the static love-moves-out image that main already retired; new final-frame assertion requires the entire picture visible below the header. No other lesson/widget/runtime/artwork changed in this timing follow-up. REVIEW; no main publication requested.
+
+Final local verification: foundation QA passed; export212, storage73, assets139, images1552 and iframe32 passed. Updated story browser check80 passed at375/390/1280 and reduced motion. At0.64, image tops are51.1-51.8px with header bottom49px; full bottoms240.1/248.0/389.3px remain within viewport844/844/800px. Artwork matches9ec511c exactly. All current-main lesson values outside the story-image block match exactly, including6 active question IDs and the retired203-01-hand. The older test expected7 active fields and a static circle image already retired on main; refreshed those assertions without changing learner data. Updated remaining phase sampling from old0.42/0.56/0.66 to0.26/0.40/0.50. Preview evidence follows.
