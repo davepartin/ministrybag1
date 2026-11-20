@@ -31,6 +31,7 @@
         'guide-spirit2.html': 'The GUIDE of the Holy Spirit',
         'learning-circle2.html': 'The Learning Circle',
         'lords-prayer.html': "The Lord's Prayer",
+        'marks-of-genuine-love.html': 'Marks of a True Christian',
         'oia-method.html': 'Observe, Interpret, Apply',
         'one-another.html': 'One Another',
         'personal-ministry-map.html': 'Your Personal Ministry Map',

@@ -39,9 +39,10 @@
       "text": "Paul spent eleven chapters of Romans on what God has done in Jesus. Then he turned to what that grace looks like in a real life, and he began with four words: <strong>let love be genuine</strong>. Genuine love is love without a mask, not a performance for others to watch."
     },
     {
-      "type": "verse",
-      "reference": "Romans 12:9-21",
-      "text": "Let love be genuine. Abhor what is evil; hold fast to what is good. Love one another with brotherly affection. Outdo one another in showing honor. Do not be slothful in zeal, be fervent in spirit, serve the Lord. Rejoice in hope, be patient in tribulation, be constant in prayer. Contribute to the needs of the saints and seek to show hospitality. Bless those who persecute you; bless and do not curse them. Rejoice with those who rejoice, weep with those who weep. Live in harmony with one another. Do not be haughty, but associate with the lowly. Never be wise in your own sight. Repay no one evil for evil, but give thought to do what is honorable in the sight of all. If possible, so far as it depends on you, live peaceably with all. Beloved, never avenge yourselves, but leave it to the wrath of God, for it is written, \"Vengeance is mine, I will repay, says the Lord.\" To the contrary, \"if your enemy is hungry, feed him; if he is thirsty, give him something to drink; for by so doing you will heap burning coals on his head.\" Do not be overcome by evil, but overcome evil with good."
+      "type": "widget",
+      "src": "widgets/marks-of-genuine-love.html",
+      "title": "Marks of a True Christian",
+      "height": "600px"
     },
     {
       "type": "text",
