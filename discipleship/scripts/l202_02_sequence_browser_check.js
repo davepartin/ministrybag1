@@ -29,10 +29,10 @@ var QUESTION_IDS = [
     '202-02-step',
     '202-02-prayer'
 ];
-var STOPS = [0, 0.08, 0.16, 0.24, 0.32, 0.48, 0.72];
+var STOPS = [0, 0.067, 0.133, 0.2, 0.267, 0.4, 0.6];
 var LAST_STOP = STOPS[STOPS.length - 1];
-var AFTER_LAST = 0.78;
-var SAMPLE_PROGRESS = [0, 0.04, 0.08, 0.12, 0.16, 0.2, 0.24, 0.28, 0.32, 0.4, 0.48, 0.56, 0.64, 0.72, 0.78];
+var AFTER_LAST = 0.66;
+var SAMPLE_PROGRESS = [0, 0.033, 0.067, 0.1, 0.133, 0.167, 0.2, 0.233, 0.267, 0.333, 0.4, 0.467, 0.533, 0.6, 0.66];
 var failed = 0;
 var passed = 0;
 
@@ -158,7 +158,7 @@ function srcMatches(src, expected) {
 
         var rest = await readSequenceState(page);
         assert(width + ': seven sequence frames render', rest.frameCount === 7, String(rest.frameCount));
-        assert(width + ': sequence stops are 0,0.08,0.16,0.24,0.32,0.48,0.72', rest.stops === STOPS.join(','), rest.stops);
+        assert(width + ': sequence uses the earlier-finish stops', rest.stops === STOPS.join(','), rest.stops);
         assert(width + ': image keeps touchNext', rest.touchNext);
         assert(width + ': old bw/color pair is not rendered', rest.hasBwPair === false);
         FRAMES.forEach(function (expected, idx) {
@@ -214,9 +214,9 @@ function srcMatches(src, expected) {
             if (!stackedOk) overlapShift = true;
             if (SAMPLE_PROGRESS[i] === LAST_STOP) {
                 var stillOnScreen = sample.wrapBottom !== null &&
-                    sample.wrapBottom > sample.contentTop + 40 &&
+                    sample.wrapBottom <= sample.viewportHeight + 1 &&
                     sample.wrapTop !== null &&
-                    sample.wrapTop < sample.viewportHeight;
+                    sample.wrapTop >= sample.contentTop - 1;
                 lastStopVisible = stillOnScreen;
                 lastStopNote = 'wrapTop=' + sample.wrapTop +
                     ' wrapBottom=' + sample.wrapBottom +
@@ -245,26 +245,37 @@ function srcMatches(src, expected) {
         assert(width + ': all seven frames become dominant', Object.keys(used).length === 7, JSON.stringify(order));
         assert(width + ': last frame is nearly opaque at stop ' + LAST_STOP, lastFrameInAtStop, JSON.stringify(atLastStop));
         assert(width + ': last frame is exclusive just after stop ' + LAST_STOP, afterLastStop && afterLastStop.dominant === 6, JSON.stringify(afterLastStop));
-        assert(width + ': last frame is still on screen at the final stop', lastStopVisible, lastStopNote);
+        assert(width + ': whole final frame is visible below the header at completion', lastStopVisible, lastStopNote);
         assert(width + ': sequence does not shift or overlap surrounding content', overlapShift === false);
-        var atHoldEnd = order.find(function (row) { return row.progress === 0.48; });
-        var midDissolve = order.find(function (row) { return row.progress === 0.56; });
-        var lateDissolve = order.find(function (row) { return row.progress === 0.64; });
+        var atHoldEnd = order.find(function (row) { return row.progress === 0.4; });
+        var midDissolve = order.find(function (row) { return row.progress === 0.467; });
+        var lateDissolve = order.find(function (row) { return row.progress === 0.533; });
         // Frames 5 and 6 (index 4 and 5) are both house-rock-seq-3, listed twice so
-        // it holds. 0.48 is the boundary between the two copies, so either copy
+        // it holds. 0.4 is the boundary between the two copies, so either copy
         // counts as seq-3 still holding (sub-pixel layout can tip it either way).
         var seq3AtHold = atHoldEnd && atHoldEnd.opacities && (atHoldEnd.opacities[4] + atHoldEnd.opacities[5]) >= 0.85 && atHoldEnd.opacities[6] < 0.15;
         var seq5Mid = midDissolve && midDissolve.opacities && midDissolve.opacities[6];
         var seq5Late = lateDissolve && lateDissolve.opacities && lateDissolve.opacities[6];
-        assert(width + ': seq-3 still holds at 0.48 before the last dissolve', seq3AtHold, JSON.stringify(atHoldEnd));
-        assert(width + ': last dissolve is underway at 0.56', seq5Mid > 0.2 && seq5Mid < 0.5, JSON.stringify(midDissolve));
-        assert(width + ': last dissolve is further along at 0.64', seq5Late > 0.55 && seq5Late < 0.85, JSON.stringify(lateDissolve));
+        assert(width + ': seq-3 still holds at 0.4 before the last dissolve', seq3AtHold, JSON.stringify(atHoldEnd));
+        assert(width + ': last dissolve is underway at 0.467', seq5Mid > 0.2 && seq5Mid < 0.5, JSON.stringify(midDissolve));
+        assert(width + ': last dissolve is further along at 0.533', seq5Late > 0.55 && seq5Late < 0.85, JSON.stringify(lateDissolve));
         if (width === 390) {
-            assert('390: last dissolve spans 0.24 from seq-3 to seq-5', seq5Mid < seq5Late, 'mid=' + seq5Mid + ' late=' + seq5Late);
+            assert('390: last dissolve spans 0.2 from seq-3 to seq-5', seq5Mid < seq5Late, 'mid=' + seq5Mid + ' late=' + seq5Late);
         }
 
         await page.close();
     }
+
+    var reduced = await browser.newPage({ reducedMotion: 'reduce', viewport: { width: 390, height: 844 } });
+    reduced.on('pageerror', function (err) { errors.push('reduced: ' + String(err)); });
+    await reduced.goto(BASE + '#202-2', { waitUntil: 'domcontentloaded' });
+    await waitForSequence(reduced);
+    var reducedState = await readSequenceState(reduced);
+    assert('reduced motion: final frame appears without scrolling',
+        reducedState.frames[6].opacity >= 0.95 && reducedState.frames.slice(0, 6).every(function (frame) { return frame.opacity <= 0.05; }));
+    assert('reduced motion: final delivery image is unchanged', srcMatches(reducedState.frames[6].src, FRAMES[6]));
+    assert('reduced motion: page does not scroll sideways', !reducedState.overflowX);
+    await reduced.close();
 
     assert('no page exceptions', errors.length === 0, errors.slice(0, 2).join(' | '));
     await browser.close();
