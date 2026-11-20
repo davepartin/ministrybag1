@@ -1,5 +1,7 @@
 # Resume here
 
+ART-203-01c REVIEW, November 20: Dave sent two new Grok Imagine frames for the 203-01 roof-drop sequence. Replaced seq-1 (mat still high) and seq-2 (mat landed beside Jesus) only. Sequence order, placement, and stops [0,0.3,0.45] unchanged. Lesson JSON, alt, touchNext, and saved-answer IDs unchanged. Foundation QA and 80 local story-image checks pass. Stop at REVIEW. Evidence: [task log](logs/2026-11-20-ART-203-01c-grok.md).
+
 UI-COURSE-OPENER-LOGOS DONE: PR #347 merged59cce28 and Firebase44738918915 succeeded. The201-01,202-01 and203-01 logos fill content width.46 local,46 preview and46 live phone/laptop checks pass. All other lesson values/artwork preserved. See logs/2026-11-20-UI-COURSE-OPENER-LOGOS-codex.md.
 
 ART-202-06c REVIEW, November 20: Image now sits before A Face That Shone with `touchNext` and the story jump on the picture. Sequence `[seq-1, seq-1, seq-2]`, stops `[0, 0.34, 0.91]` (dissolve starts 20 percent sooner and lasts 50 percent longer). Seq-1 is the yellow-glow frame; seq-2 is veiled. Non-image lesson values and saved-answer IDs unchanged. Merged current main into this branch to clear conflicts; stop at REVIEW pending Dave's merge of PR #332. Evidence: [task log](logs/2026-11-19-ART-202-06c-grok.md).

@@ -1,5 +1,7 @@
 # Growing Together Team Board
 
+ART-203-01c REVIEW, November 20: two new Grok Imagine roof-drop frames replace seq-1 and seq-2. Stops stay [0,0.3,0.45]. Lesson copy and saved-answer IDs unchanged. Stop at REVIEW. [Evidence](logs/2026-11-20-ART-203-01c-grok.md).
+
 UI-COURSE-OPENER-LOGOS DONE: PR #347 merged59cce28 and Firebase44738918915 succeeded. The201-01,202-01 and203-01 logos fill content width.46 local,46 preview and46 live phone/laptop checks pass. All other lesson values/artwork preserved. See logs/2026-11-20-UI-COURSE-OPENER-LOGOS-codex.md.
 
 ART-202-02-EARLY-FINISH DONE: PR #344 merged ebb5baa, production verified after Firebase44737217537. Sequence finishes at60 percent, entire picture visible below header.80 live browser checks pass. Timing only, normal scrolling/artwork/copy/answers preserved. [Evidence](logs/2026-11-20-ART-202-02-EARLY-FINISH-codex.md).

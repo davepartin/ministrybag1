@@ -839,7 +839,7 @@
     "images/203-01-roof-drop-seq-1.jpg": {
         "width": 1792,
         "height": 1008,
-        "sourceHash": "c62ab039b4b0b122fbdb1cfcd429c66b0b9e034f86f81a0abf4b385e66f83971",
+        "sourceHash": "4ae223954635f909043a0bf6dda54ef37f45c491e26d9b93e45211bfc98b6433",
         "variants": [
             {
                 "src": "images/optimized/203-01-roof-drop-seq-1-640.webp",
@@ -854,7 +854,7 @@
     "images/203-01-roof-drop-seq-2.jpg": {
         "width": 1792,
         "height": 1008,
-        "sourceHash": "da635ec0430b9d64d0f981961d1a1e14f522f14caf3abe7d2f71e58498a22ed2",
+        "sourceHash": "f431f0fd90452d51ab4c26726ea72b82213d2def83f9e31efbd4f755e602d59b",
         "variants": [
             {
                 "src": "images/optimized/203-01-roof-drop-seq-2-640.webp",
