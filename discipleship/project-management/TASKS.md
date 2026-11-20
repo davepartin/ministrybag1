@@ -2,6 +2,7 @@
 
 | Task | Status | Owner / date | Scope |
 |---|---|---|---|
+| WIDGET-203-10-MARKS | REVIEW | Gemini / gemini/widget-203-10-marks / 2026-11-20 | Built standalone 203-10 Marks of a True Christian interactive Romans 12:9-21 passage widget (`widgets/marks-of-genuine-love.html`, `586px` at `390px` wide) with 4 directional Studio Wash lenses (`1 Genuine`, `2 Up to God`, `3 Church`, `4 Outward`), interactive verse highlights across all 13 verses, and full series synthesis on Step 5, plus Playwright verification (`scripts/widget_203_10_marks_browser_check.js`, 182 checks). No lesson JSON or `index.html` edited yet pending Dave's visual review. Evidence: logs/2026-11-20-WIDGET-203-10-MARKS-gemini.md. |
 | ART-202-02-EARLY-FINISH | DONE | Codex / 2026-11-20 | PR #344 merged ebb5baa; Firebase44737217537 succeeded. Finish60 percent instead of72, entire image visible below header.80 local,80 preview and80 production browser checks pass. Artwork, copy, questions and normal scrolling preserved. |
 | WIDGET-203-10-REMOVE | DONE | Codex / 2026-11-20 | Dave requests removing the203-10 Greatest Commandment widget pending a better design. Remove embed and obsolete diagram navigation only; protect shared widget files, lesson copy and saved answers. PR #343 merged1ff1002; Firebase44736024654 succeeded.30 preview and30 live checks pass. |
 
