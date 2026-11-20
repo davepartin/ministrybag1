@@ -251,7 +251,10 @@ function srcMatches(src, expected) {
         var atHoldEnd = order.find(function (row) { return row.progress === 0.48; });
         var midDissolve = order.find(function (row) { return row.progress === 0.56; });
         var lateDissolve = order.find(function (row) { return row.progress === 0.64; });
-        var seq3AtHold = atHoldEnd && atHoldEnd.opacities && atHoldEnd.opacities[4] >= 0.85 && atHoldEnd.opacities[6] < 0.15;
+        // Frames 5 and 6 (index 4 and 5) are both house-rock-seq-3, listed twice so
+        // it holds. 0.48 is the boundary between the two copies, so either copy
+        // counts as seq-3 still holding (sub-pixel layout can tip it either way).
+        var seq3AtHold = atHoldEnd && atHoldEnd.opacities && (atHoldEnd.opacities[4] + atHoldEnd.opacities[5]) >= 0.85 && atHoldEnd.opacities[6] < 0.15;
         var seq5Mid = midDissolve && midDissolve.opacities && midDissolve.opacities[6];
         var seq5Late = lateDissolve && lateDissolve.opacities && lateDissolve.opacities[6];
         assert(width + ': seq-3 still holds at 0.48 before the last dissolve', seq3AtHold, JSON.stringify(atHoldEnd));
