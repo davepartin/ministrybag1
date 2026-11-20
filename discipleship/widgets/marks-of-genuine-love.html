@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marks of a True Christian</title>
+<style>
+:root {
+  --ink: #2C2416;
+  --muted: #6E6559;
+  --tray: #F6F4EE;
+  --border: #EBE5D9;
+  --step-color: #2C2416;
+
+  --gold-ink: #8E6206;
+  --gold-border: #C48F10;
+  --gold-wash: #FDF5DF;
+  --gold-hi: #F9E7B6;
+
+  --green-ink: #164E37;
+  --green-border: #1F684A;
+  --green-wash: #EAF5EF;
+  --green-hi: #CFEAD9;
+
+  --blue-ink: #1E435C;
+  --blue-border: #2A5B7C;
+  --blue-wash: #EAF2F8;
+  --blue-hi: #CDE2F1;
+
+  --plum-ink: #473366;
+  --plum-border: #5F4684;
+  --plum-wash: #F1ECF8;
+  --plum-hi: #DDD1F0;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: Georgia, Cambria, serif;
+  background: #F8F6F1;
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+.widget-outer {
+  background: #FFFFFF;
+  border-radius: 0;
+  overflow: hidden;
+  box-shadow: none;
+  border: none;
+  max-width: 100%;
+  width: 100%;
+  margin: 0;
+  position: relative;
+}
+
+@media (min-width: 560px) {
+  body {
+    padding: 16px;
+    background: #F8F6F1;
+  }
+  .widget-outer {
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(44, 36, 22, 0.08);
+    border: 1px solid #EBE5D9;
+    max-width: 460px;
+    margin: 0 auto;
+  }
+}
+
+.title-bar {
+  background: #2C2416;
+  padding: 6px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.title-bar h1 {
+  font: 600 16px/1.15 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #FAF8F3;
+  letter-spacing: 0.2px;
+  margin: 0;
+}
+
+.course-tag {
+  font: 600 11px/1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  letter-spacing: 0.9px;
+  text-transform: uppercase;
+  color: #E5DEC9;
+  white-space: nowrap;
+}
+
+.lens-bar {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 5px;
+  padding: 5px 10px 4px;
+  background: #FAF8F3;
+  border-bottom: 1px solid var(--border);
+}
+
+.lens-pill {
+  appearance: none;
+  border: 1.4px solid #DFD7C8;
+  background: #FFFFFF;
+  border-radius: 8px;
+  padding: 4px 4px;
+  min-height: 29px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  text-align: center;
+  color: var(--ink);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.lens-num {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #EAE3D5;
+  color: #4D4335;
+  font: 700 9.5px/15px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  text-align: center;
+  flex: 0 0 auto;
+}
+
+.lens-label {
+  font: 700 10.5px/1.1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.lens-pill[data-lens="1"].is-lit {
+  background: var(--gold-wash);
+  border-color: var(--gold-border);
+}
+.lens-pill[data-lens="1"].is-lit .lens-num {
+  background: var(--gold-border);
+  color: #FFFFFF;
+}
+.lens-pill[data-lens="1"].is-lit .lens-label {
+  color: var(--gold-ink);
+}
+
+.lens-pill[data-lens="2"].is-lit {
+  background: var(--green-wash);
+  border-color: var(--green-border);
+}
+.lens-pill[data-lens="2"].is-lit .lens-num {
+  background: var(--green-border);
+  color: #FFFFFF;
+}
+.lens-pill[data-lens="2"].is-lit .lens-label {
+  color: var(--green-ink);
+}
+
+.lens-pill[data-lens="3"].is-lit {
+  background: var(--blue-wash);
+  border-color: var(--blue-border);
+}
+.lens-pill[data-lens="3"].is-lit .lens-num {
+  background: var(--blue-border);
+  color: #FFFFFF;
+}
+.lens-pill[data-lens="3"].is-lit .lens-label {
+  color: var(--blue-ink);
+}
+
+.lens-pill[data-lens="4"].is-lit {
+  background: var(--plum-wash);
+  border-color: var(--plum-border);
+}
+.lens-pill[data-lens="4"].is-lit .lens-num {
+  background: var(--plum-border);
+  color: #FFFFFF;
+}
+.lens-pill[data-lens="4"].is-lit .lens-label {
+  color: var(--plum-ink);
+}
+
+.passage-band {
+  background: #FFFFFF;
+  padding: 5px 10px 5px;
+  border-bottom: 1px solid var(--border);
+}
+
+.passage-box {
+  background: #FFFDF9;
+  border: 1px solid #E7E0D2;
+  border-radius: 9px;
+  padding: 6px 9px 7px;
+}
+
+.passage-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 3px;
+}
+
+.passage-ref {
+  font: 700 10px/1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.passage-hint {
+  font: 600 10px/1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--muted);
+}
+
+.passage-text {
+  font: 400 11.4px/1.32 Georgia, Cambria, serif;
+  color: var(--ink);
+  margin: 0;
+}
+
+.passage-text + .passage-text {
+  margin-top: 3px;
+}
+
+.passage-text sup {
+  font: 700 8.5px/1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #7A6F60;
+  margin-right: 1px;
+}
+
+.v-seg {
+  border-radius: 3px;
+  padding: 0.5px 1.5px;
+  margin: 0 -1.5px;
+  border-bottom: 1.5px solid transparent;
+  cursor: pointer;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+.widget-outer[data-step="0"] .lead-open {
+  background-color: var(--gold-hi);
+  border-bottom: 1.5px solid var(--gold-border);
+  border-radius: 2px;
+  padding: 0.5px 2px;
+}
+
+.widget-outer.is-filtering .v-seg:not(.is-active) {
+  color: #7E7466;
+}
+
+.widget-outer.is-filtering .v-seg:not(.is-active) sup {
+  color: #9A9081;
+}
+
+.v-seg[data-group="1"].is-active {
+  background-color: var(--gold-hi);
+  border-bottom-color: var(--gold-border);
+  color: var(--ink);
+}
+
+.v-seg[data-group="2"].is-active {
+  background-color: var(--green-hi);
+  border-bottom-color: var(--green-border);
+  color: var(--ink);
+}
+
+.v-seg[data-group="3"].is-active {
+  background-color: var(--blue-hi);
+  border-bottom-color: var(--blue-border);
+  color: var(--ink);
+}
+
+.v-seg[data-group="4"].is-active {
+  background-color: var(--plum-hi);
+  border-bottom-color: var(--plum-border);
+  color: var(--ink);
+}
+
+.step-strip {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 2px 12px 2px;
+  background: var(--tray);
+  border-bottom: 1px solid var(--border);
+}
+
+.step-dot {
+  appearance: none;
+  min-width: 28px;
+  min-height: 28px;
+  padding: 4px;
+  border: none;
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.step-dot-fill {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2.5px solid var(--dot-color, var(--ink));
+  background: #FFFFFF;
+}
+
+.step-dot.passed .step-dot-fill {
+  background: rgba(31, 104, 74, 0.2);
+}
+
+.step-dot.active .step-dot-fill {
+  background: var(--dot-color, var(--ink));
+  transform: scale(1.12);
+}
+
+.card-area {
+  background: var(--tray);
+  padding: 4px 12px 7px;
+}
+
+.verse-card {
+  background: #FFFFFF;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(44, 36, 22, 0.06);
+  border: 1px solid var(--border);
+}
+
+.verse-card-bar {
+  height: 4px;
+  background: var(--step-color);
+}
+
+.verse-card-content {
+  padding: 7px 12px 8px;
+  min-height: var(--card-h, 78px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.card-kicker {
+  font: 700 9.8px/1.15 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: var(--step-color);
+  margin: 0 0 2px;
+}
+
+.card-heading {
+  font: 700 14px/1.2 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--ink);
+  margin: 0 0 2px;
+}
+
+.card-note {
+  font: 400 11.8px/1.34 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #463D2F;
+  margin: 0;
+}
+
+.nav-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-top: 5px;
+}
+
+.nav-btn {
+  appearance: none;
+  min-height: 44px;
+  min-width: 102px;
+  padding: 9px 14px;
+  border-radius: 10px;
+  font: 600 13.5px/1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  cursor: pointer;
+  border: 1.5px solid #D4CFC4;
+  background: #FFFFFF;
+  color: var(--ink);
+}
+
+.nav-btn.primary {
+  background: var(--step-color);
+  border-color: var(--step-color);
+  color: #FFFFFF;
+}
+
+.nav-btn:disabled {
+  opacity: 0.36;
+  cursor: default;
+}
+
+.step-count {
+  font: 600 12px/1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--muted);
+}
+
+button:focus-visible,
+.v-seg:focus-visible {
+  outline: 3px solid #E0A526;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .widget-outer:not(.is-instant) .v-seg,
+  .widget-outer:not(.is-instant) .lens-pill,
+  .widget-outer:not(.is-instant) .lens-num {
+    transition: background-color 0.22s ease, border-color 0.22s ease, color 0.22s ease;
+  }
+  .widget-outer .step-dot-fill {
+    transition: background-color 0.22s ease, border-color 0.22s ease, transform 0.22s ease;
+  }
+  .widget-outer .nav-btn.primary,
+  .widget-outer .verse-card-bar,
+  .widget-outer .card-kicker {
+    transition: background-color 0.24s ease, border-color 0.24s ease, color 0.24s ease;
+  }
+}
+
+#measure-host {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+</style>
+</head>
+<body>
+<main class="widget-outer" id="widget" data-step="0" data-step-dur="0">
+  <header class="title-bar">
+    <h1>Marks of a True Christian</h1>
+    <span class="course-tag">203-10</span>
+  </header>
+
+  <div class="lens-bar" role="group" aria-label="Four directions of genuine love">
+    <button type="button" class="lens-pill" data-lens="1" aria-pressed="false">
+      <span class="lens-num" aria-hidden="true">1</span><span class="lens-label">Genuine</span>
+    </button>
+    <button type="button" class="lens-pill" data-lens="2" aria-pressed="false">
+      <span class="lens-num" aria-hidden="true">2</span><span class="lens-label">Up to God</span>
+    </button>
+    <button type="button" class="lens-pill" data-lens="3" aria-pressed="false">
+      <span class="lens-num" aria-hidden="true">3</span><span class="lens-label">Church</span>
+    </button>
+    <button type="button" class="lens-pill" data-lens="4" aria-pressed="false">
+      <span class="lens-num" aria-hidden="true">4</span><span class="lens-label">Outward</span>
+    </button>
+  </div>
+
+  <section class="passage-band" aria-label="Romans 12:9-21 passage">
+    <div class="passage-box">
+      <div class="passage-meta">
+        <span class="passage-ref">Romans 12:9-21</span>
+        <span class="passage-hint" id="passage-hint">Choose a verse or step through</span>
+      </div>
+
+      <p class="passage-text">
+        <span class="v-seg" data-group="1" role="button" tabindex="0"><sup>9</sup><span class="lead-open">Let love be genuine.</span> Abhor what is evil; hold fast to what is good.</span>
+        <span class="v-seg" data-group="3" role="button" tabindex="0"><sup>10</sup>Love one another with brotherly affection. Outdo one another in showing honor.</span>
+        <span class="v-seg" data-group="2" role="button" tabindex="0"><sup>11</sup>Do not be slothful in zeal, be fervent in spirit, serve the Lord. <sup>12</sup>Rejoice in hope, be patient in tribulation, be constant in prayer.</span>
+        <span class="v-seg" data-group="3" role="button" tabindex="0"><sup>13</sup>Contribute to the needs of the saints and seek to show hospitality.</span>
+      </p>
+
+      <p class="passage-text">
+        <span class="v-seg" data-group="4" role="button" tabindex="0"><sup>14</sup>Bless those who persecute you; bless and do not curse them.</span>
+        <span class="v-seg" data-group="3" role="button" tabindex="0"><sup>15</sup>Rejoice with those who rejoice, weep with those who weep. <sup>16</sup>Live in harmony with one another. Do not be haughty, but associate with the lowly. Never be wise in your own sight.</span>
+        <span class="v-seg" data-group="4" role="button" tabindex="0"><sup>17</sup>Repay no one evil for evil, but give thought to do what is honorable in the sight of all. <sup>18</sup>If possible, so far as it depends on you, live peaceably with all. <sup>19</sup>Beloved, never avenge yourselves, but leave it to the wrath of God, for it is written, &ldquo;Vengeance is mine, I will repay, says the Lord.&rdquo; <sup>20</sup>To the contrary, &ldquo;if your enemy is hungry, feed him; if he is thirsty, give him something to drink; for by so doing you will heap burning coals on his head.&rdquo;</span>
+        <span class="v-seg" data-group="1" role="button" tabindex="0"><sup>21</sup>Do not be overcome by evil, but overcome evil with good.</span>
+      </p>
+    </div>
+  </section>
+
+  <div class="step-strip" role="group" aria-label="Passage steps">
+    <button type="button" class="step-dot active" data-step="0" aria-label="Start: Marks of a True Christian" aria-pressed="true" style="--dot-color: #2C2416;"><span class="step-dot-fill"></span></button>
+    <button type="button" class="step-dot" data-step="1" aria-label="Step 1: A Genuine Heart" aria-pressed="false" style="--dot-color: #A8760A;"><span class="step-dot-fill"></span></button>
+    <button type="button" class="step-dot" data-step="2" aria-label="Step 2: Up Toward God" aria-pressed="false" style="--dot-color: #1F684A;"><span class="step-dot-fill"></span></button>
+    <button type="button" class="step-dot" data-step="3" aria-label="Step 3: Family in Christ" aria-pressed="false" style="--dot-color: #2A5B7C;"><span class="step-dot-fill"></span></button>
+    <button type="button" class="step-dot" data-step="4" aria-label="Step 4: Out Toward Everyone, Even Enemies" aria-pressed="false" style="--dot-color: #5F4684;"><span class="step-dot-fill"></span></button>
+    <button type="button" class="step-dot" data-step="5" aria-label="Step 5: All Marks Together" aria-pressed="false" style="--dot-color: #1F684A;"><span class="step-dot-fill"></span></button>
+  </div>
+
+  <div class="card-area">
+    <div class="verse-card">
+      <div class="verse-card-bar"></div>
+      <div class="verse-card-content" id="card-content" aria-live="polite" aria-atomic="true">
+        <p class="card-kicker" id="card-kicker"></p>
+        <h2 class="card-heading" id="card-heading"></h2>
+        <p class="card-note" id="card-note"></p>
+      </div>
+    </div>
+
+    <div class="nav-bar">
+      <button type="button" class="nav-btn secondary" id="prev-btn" disabled>&larr; Back</button>
+      <span class="step-count" id="step-count">Ready</span>
+      <button type="button" class="nav-btn primary" id="next-btn">Begin &rarr;</button>
+    </div>
+  </div>
+</main>
+
+<div id="measure-host" aria-hidden="true"></div>
+
+<script>
+(function () {
+  'use strict';
+
+  var STEPS = [
+    {
+      kicker: 'Romans 12:9-21 · Lesson 30 of 30',
+      heading: 'Let Love Be Genuine',
+      note: 'After eleven chapters on God\'s mercy in Jesus, Paul gives this picture of what a true Christian life looks like in everyday relationships.',
+      accent: '#2C2416',
+      hint: 'Choose a verse or step through',
+      countLabel: 'Ready',
+      nextLabel: 'Begin \u2192',
+      groups: []
+    },
+    {
+      kicker: 'Romans 12:9, 21 · Love Comes Down First',
+      heading: '1. A Genuine Heart',
+      note: 'Because God\'s love came down to you first, your love can be real without a mask: hating evil, holding fast to what is good, and overcoming evil with good.',
+      accent: '#A8760A',
+      hint: 'Verses 9 and 21 highlighted',
+      countLabel: 'Step 1 of 5',
+      nextLabel: 'Next \u2192',
+      groups: ['1']
+    },
+    {
+      kicker: 'Romans 12:11-12 · 201 Course: Growing Deep',
+      heading: '2. Up Toward God',
+      note: 'Genuine love stays warm at the source: serving the Lord with zeal, rejoicing in hope, staying patient in tribulation, and remaining constant in prayer.',
+      accent: '#1F684A',
+      hint: 'Verses 11-12 highlighted',
+      countLabel: 'Step 2 of 5',
+      nextLabel: 'Next \u2192',
+      groups: ['2']
+    },
+    {
+      kicker: 'Romans 12:10, 13, 15-16 · The 202 Course: Growing Up',
+      heading: '3. Family in Christ',
+      note: 'In your home and church, genuine love outdoes one another in honor, shares with the saints, opens the door in hospitality, and walks in humility.',
+      accent: '#2A5B7C',
+      hint: 'Verses 10, 13, 15-16 highlighted',
+      countLabel: 'Step 3 of 5',
+      nextLabel: 'Next \u2192',
+      groups: ['3']
+    },
+    {
+      kicker: 'Romans 12:14, 17-20 · This 203 Course: Growing Out',
+      heading: '4. Out Toward Everyone, Even Enemies',
+      note: 'Jesus sends His love past those who love you back: blessing persecutors, living peaceably with all, leaving vengeance to God, and feeding an enemy.',
+      accent: '#5F4684',
+      hint: 'Verses 14, 17-20 highlighted',
+      countLabel: 'Step 4 of 5',
+      nextLabel: 'Next \u2192',
+      groups: ['4']
+    },
+    {
+      kicker: 'Romans 12:9-21 · Walking With Jesus',
+      heading: 'Love Comes Down, Goes Up, and Reaches Out',
+      note: 'Every mark in Romans 12 is Jesus\' life taking shape in you: anchored in His good love, lifted up to God in prayer, shared in the church, and carried to the world.',
+      accent: '#1F684A',
+      hint: 'All marks illuminated',
+      countLabel: 'Step 5 of 5',
+      nextLabel: 'Start Over',
+      groups: ['1', '2', '3', '4']
+    }
+  ];
+
+  var widget = document.getElementById('widget');
+  var cardContent = document.getElementById('card-content');
+  var cardKicker = document.getElementById('card-kicker');
+  var cardHeading = document.getElementById('card-heading');
+  var cardNote = document.getElementById('card-note');
+  var passageHint = document.getElementById('passage-hint');
+  var prevBtn = document.getElementById('prev-btn');
+  var nextBtn = document.getElementById('next-btn');
+  var stepCount = document.getElementById('step-count');
+  var dotBtns = Array.prototype.slice.call(document.querySelectorAll('.step-dot'));
+  var lensPills = Array.prototype.slice.call(document.querySelectorAll('.lens-pill'));
+  var verseSegs = Array.prototype.slice.call(document.querySelectorAll('.v-seg'));
+  var measureHost = document.getElementById('measure-host');
+
+  var reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reducedMotion) {
+    widget.classList.add('is-instant');
+  }
+
+  var currentStep = 0;
+  var lastMeasuredWidth = 0;
+
+  function applyStep(idx) {
+    if (idx < 0 || idx >= STEPS.length) return;
+    currentStep = idx;
+    var s = STEPS[idx];
+
+    widget.setAttribute('data-step', String(idx));
+    widget.setAttribute('data-step-dur', '0');
+    widget.style.setProperty('--step-color', s.accent);
+    widget.classList.toggle('is-filtering', idx >= 1 && idx <= 4);
+
+    cardKicker.textContent = s.kicker;
+    cardHeading.textContent = s.heading;
+    cardNote.textContent = s.note;
+    passageHint.textContent = s.hint;
+
+    stepCount.textContent = s.countLabel;
+    nextBtn.textContent = s.nextLabel;
+    prevBtn.disabled = (idx === 0);
+
+    dotBtns.forEach(function (btn, i) {
+      btn.classList.toggle('active', i === idx);
+      btn.classList.toggle('passed', i < idx);
+      btn.setAttribute('aria-pressed', i === idx ? 'true' : 'false');
+    });
+
+    lensPills.forEach(function (pill) {
+      var g = pill.getAttribute('data-lens');
+      var lit = s.groups.indexOf(g) !== -1;
+      pill.classList.toggle('is-lit', lit);
+      pill.setAttribute('aria-pressed', (idx === Number(g)) ? 'true' : 'false');
+    });
+
+    verseSegs.forEach(function (seg) {
+      var g = seg.getAttribute('data-group');
+      var active = s.groups.indexOf(g) !== -1;
+      seg.classList.toggle('is-active', active);
+    });
+  }
+
+  function fitCardHeight() {
+    var w = cardContent.clientWidth;
+    if (!w) return;
+    lastMeasuredWidth = w;
+    var clone = cardContent.cloneNode(true);
+    clone.removeAttribute('id');
+    clone.removeAttribute('aria-live');
+    clone.style.width = w + 'px';
+    clone.style.minHeight = '0';
+    clone.style.height = 'auto';
+
+    var k = clone.querySelector('#card-kicker');
+    var h = clone.querySelector('#card-heading');
+    var n = clone.querySelector('#card-note');
+    if (k) k.removeAttribute('id');
+    if (h) h.removeAttribute('id');
+    if (n) n.removeAttribute('id');
+
+    measureHost.innerHTML = '';
+    measureHost.appendChild(clone);
+
+    var maxH = 0;
+    for (var i = 0; i < STEPS.length; i++) {
+      if (k) k.textContent = STEPS[i].kicker;
+      if (h) h.textContent = STEPS[i].heading;
+      if (n) n.textContent = STEPS[i].note;
+      var measured = Math.ceil(clone.getBoundingClientRect().height);
+      if (measured > maxH) maxH = measured;
+    }
+    measureHost.innerHTML = '';
+    if (maxH > 0) {
+      widget.style.setProperty('--card-h', maxH + 'px');
+    }
+  }
+
+  nextBtn.addEventListener('click', function () {
+    if (currentStep < STEPS.length - 1) {
+      applyStep(currentStep + 1);
+    } else {
+      applyStep(0);
+    }
+  });
+
+  prevBtn.addEventListener('click', function () {
+    if (currentStep > 0) {
+      applyStep(currentStep - 1);
+    }
+  });
+
+  dotBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var target = Number(btn.getAttribute('data-step'));
+      if (target !== currentStep) {
+        applyStep(target);
+      }
+    });
+  });
+
+  lensPills.forEach(function (pill) {
+    pill.addEventListener('click', function () {
+      var target = Number(pill.getAttribute('data-lens'));
+      applyStep(target);
+    });
+  });
+
+  verseSegs.forEach(function (seg) {
+    seg.addEventListener('click', function () {
+      var target = Number(seg.getAttribute('data-group'));
+      applyStep(target);
+    });
+    seg.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        var target = Number(seg.getAttribute('data-group'));
+        applyStep(target);
+      }
+    });
+  });
+
+  window.addEventListener('resize', function () {
+    var w = cardContent.clientWidth;
+    if (w && Math.abs(w - lastMeasuredWidth) > 1) {
+      fitCardHeight();
+    }
+  });
+
+  fitCardHeight();
+  applyStep(0);
+})();
+</script>
+</body>
+</html>
