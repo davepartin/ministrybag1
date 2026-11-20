@@ -1,6 +1,6 @@
 # Resume here
 
-203-10 widget removal ACTIVE, November20: Dave requests removing the reused Greatest Commandment widget while planning a better Romans12 teaching widget. Remove embed and stale diagram/tool metadata only. Preserve all prose/Scripture, questions/answers and shared widget source. Verify/publish; new widget is a separate review task. Log: logs/2026-11-20-WIDGET-203-10-REMOVE-codex.md.
+203-10 widget removal DONE, November20: Dave requested removing the reused cross widget pending a better design. PR #343 merged1ff1002 and Firebase44736024654 succeeded. Embed, stale Diagram jump and TOC widget labels removed; all remaining lesson text, Scripture, current/retired questions and answers preserved. Shared widget file remains intact and live for other lessons.30 production phone/laptop removal/export/reload checks pass. Log: logs/2026-11-20-WIDGET-203-10-REMOVE-codex.md.
 
 203-01 LATEST TIMING DONE: Dave requested start30 percent, finish45 percent. PR #340 merged8caaf0b and Firebase44673963098 succeeded. Current stops [0,0.3,0.45] supersede all earlier schedules below.80 live phone/laptop/reduced-motion checks passed, with full image visible at finish. Art/copy/answer history untouched. Log: logs/2026-11-19-ART-203-01b-30-45-codex.md.
 

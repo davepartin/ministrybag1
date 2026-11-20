@@ -2,7 +2,7 @@
 
 | Task | Status | Owner / date | Scope |
 |---|---|---|---|
-| WIDGET-203-10-REMOVE | ACTIVE | Codex / 2026-11-20 | Dave requests removing the203-10 Greatest Commandment widget pending a better design. Remove embed and obsolete diagram navigation only; protect shared widget files, lesson copy and saved answers. Verify and publish. |
+| WIDGET-203-10-REMOVE | DONE | Codex / 2026-11-20 | Dave requests removing the203-10 Greatest Commandment widget pending a better design. Remove embed and obsolete diagram navigation only; protect shared widget files, lesson copy and saved answers. PR #343 merged1ff1002; Firebase44736024654 succeeded.30 preview and30 live checks pass. |
 
 | Task | Status | Owner / date | Scope |
 |---|---|---|---|
