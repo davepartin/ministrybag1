@@ -16,7 +16,6 @@
   --gold-btn: #8E6206;
   --gold-dark: #7D5604;
   --gold-wash: #FCF2D6;
-  --gold-ray: #C48F10;
   --blue: #2A5B7C;
   --blue-dark: #1E435C;
   --green: #1F684A;
@@ -90,7 +89,7 @@ body {
 }
 
 .stage {
-  background: #18283C;
+  background: #132236;
   padding: 0;
   border-bottom: 1px solid var(--border);
 }
@@ -246,7 +245,7 @@ button:focus-visible {
 
 @media (prefers-reduced-motion: no-preference) {
   .widget-outer:not(.is-instant) .reveal-layer {
-    transition: opacity 0.42s ease;
+    transition: opacity 0.65s ease;
   }
   .widget-outer .step-dot-fill {
     transition: background-color 0.22s ease, border-color 0.22s ease, transform 0.22s ease;
@@ -299,7 +298,6 @@ button:focus-visible {
   'use strict';
 
   var SVG_NS = 'http://www.w3.org/2000/svg';
-  var RAY_SPEED = 185; // px per second per Studio Wash pacing
 
   var COLORS = {
     night: '#233852',
@@ -308,7 +306,6 @@ button:focus-visible {
     goldBtn: '#8E6206',
     goldDark: '#7D5604',
     goldWash: '#FCF2D6',
-    goldRay: '#F0C454',
     blue: '#2A5B7C',
     blueDark: '#1E435C',
     green: '#1F684A',
@@ -326,8 +323,8 @@ button:focus-visible {
       heading: 'Reflect His Glory',
       verse: '"The heavens declare the glory of God, and the sky above proclaims his handiwork."',
       ref: 'Psalm 19:1',
-      line: 'An ordinary night rests beneath the sky. You were made to carry light that does not begin with you.',
-      desc: 'A quiet nighttime valley with rolling hills, a winding stream, a few homes, a village church, and a darkened moon resting beneath the stars.'
+      line: 'A quiet village rests under the night sky. You were made to carry light that does not begin with you.',
+      desc: 'A quiet village at night with rolling dark hills, a dark winding road, unlit homes, a village church, stars, and a quiet unlit moon high in the sky.'
     },
     {
       id: 'source',
@@ -337,8 +334,8 @@ button:focus-visible {
       heading: 'God Is the Source',
       verse: '"For with you is the fountain of life; in your light do we see light."',
       ref: 'Psalm 36:9',
-      line: 'Every ounce of true goodness and beauty begins in God. Worship starts by looking to the One who shines first.',
-      desc: 'A radiant gold sun appears in the upper-left sky, shining clear golden light across the upper heavens.'
+      line: 'Before we see Him face to face, His glory already shines beyond the hills. All true light begins in God.',
+      desc: 'A soft golden glow grows behind the distant left hills while the sun remains hidden below the horizon and the night sky stays dark.'
     },
     {
       id: 'beholding',
@@ -348,8 +345,8 @@ button:focus-visible {
       heading: 'Beholding and Being Changed',
       verse: '"And we all, with unveiled face, beholding the glory of the Lord, are being transformed into the same image from one degree of glory to another. For this comes from the Lord who is the Spirit."',
       ref: '2 Corinthians 3:18',
-      line: 'You do not manufacture light on your own. As you behold Jesus, His Spirit steadily transforms you to shine like Him.',
-      desc: 'Golden rays stream from the sun onto the moon, filling the moon with warm luminous ivory-gold light.'
+      line: 'As you behold Jesus, His Spirit steadily brightens your life with a glory you could never make on your own.',
+      desc: 'Soft light from beyond the distant hills reaches across the night sky and brightens the moon into a warm luminous ivory-gold orb.'
     },
     {
       id: 'ordinary-life',
@@ -359,8 +356,8 @@ button:focus-visible {
       heading: 'Shining in Everyday Life',
       verse: '"In the same way, let your light shine before others, so that they may see your good works and give glory to your Father who is in heaven."',
       ref: 'Matthew 5:16',
-      line: 'The light you receive reaches ordinary homes, roads, and neighbors below, pointing hearts back to your Father.',
-      desc: 'Reflected moonlight fans softly down from the moon across the hills, shimmering on the winding stream and lighting warm windows in the valley homes.'
+      line: 'Reflected light reaches ordinary roads, rooftops, and homes in the night, pointing hearts back to your Father.',
+      desc: 'Soft moonlight gently reveals the winding village road, catches the rooftops and church steeple, and warms the glowing windows of the homes below.'
     },
     {
       id: 'dawn-hope',
@@ -370,20 +367,20 @@ button:focus-visible {
       heading: 'Until Day Breaks',
       verse: '"For the earth will be filled with the knowledge of the glory of the LORD as the waters cover the sea."',
       ref: 'Habakkuk 2:14',
-      line: 'We reflect His light in the night, living in hope until Christ returns and fills the whole earth with His glory.',
-      desc: 'A warm golden dawn brightens the eastern horizon behind the hills as rising morning rays bathe the valley in light inside a crisp double-hairline frame.'
+      line: 'We carry His reflected light through the night, living in hope as the first edge of dawn promises Christ\'s return.',
+      desc: 'Just the radiant upper edge of the sun appears behind the distant hills, brightening the low horizon with the coming dawn while the moon continues to shine over the dark night sky and lit village.'
     }
   ];
 
-  // Fixed composition coordinates on 440 x 260 canvas
+  // One fixed poetic nocturne composition on 440 x 260 canvas
   var GEO = {
     W: 440,
     H: 260,
-    sunX: 74,
-    sunY: 58,
-    sunR: 20,
-    moonX: 260,
-    moonY: 76,
+    horizonSunX: 88,
+    horizonSunY: 183, // Hidden below y=172 ridge; only the top ~10px crown peeks above on Step 4
+    horizonSunR: 21,
+    moonX: 294,
+    moonY: 66,
     moonR: 24
   };
 
@@ -412,10 +409,6 @@ button:focus-visible {
     return node;
   }
 
-  function lineLen(x1, y1, x2, y2) {
-    return Math.hypot(x2 - x1, y2 - y1);
-  }
-
   function addLinearGrad(defs, id, x1, y1, x2, y2, stops) {
     var grad = svgEl('linearGradient', { id: id, x1: x1, y1: y1, x2: x2, y2: y2 }, defs);
     stops.forEach(function (s) {
@@ -438,10 +431,9 @@ button:focus-visible {
 
   function drawHouse(parent, x, y, w, h, roofH, opts) {
     var g = svgEl('g', {}, parent);
-    var wallFill = (opts && opts.wallFill) || '#1E3044';
-    var roofFill = (opts && opts.roofFill) || '#172536';
-    var stroke = (opts && opts.stroke) || '#0F1B29';
-    // Walls
+    var wallFill = (opts && opts.wallFill) || '#1A2B3F';
+    var roofFill = (opts && opts.roofFill) || '#132030';
+    var stroke = (opts && opts.stroke) || '#0C1624';
     svgEl('rect', {
       x: x,
       y: y,
@@ -452,7 +444,6 @@ button:focus-visible {
       'stroke-width': '1.2',
       'stroke-linejoin': 'round'
     }, g);
-    // Pitched roof
     svgEl('polygon', {
       points: (x - 3) + ',' + y + ' ' + (x + w / 2) + ',' + (y - roofH) + ' ' + (x + w + 3) + ',' + y,
       fill: roofFill,
@@ -471,7 +462,7 @@ button:focus-visible {
       x2: cx,
       y2: baseY - h * 0.35,
       stroke: stroke,
-      'stroke-width': '1.5',
+      'stroke-width': '1.4',
       'stroke-linecap': 'round'
     }, g);
     svgEl('ellipse', {
@@ -500,414 +491,363 @@ button:focus-visible {
     var svgDesc = svgEl('desc', { id: 'glory-svg-desc', text: STEPS[0].desc }, svg);
 
     var defs = svgEl('defs', {}, svg);
+
+    // Deep, serene night sky (stays mostly dark even at Step 4 so the moon's role remains clear)
     addLinearGrad(defs, 'sky-night', '0%', '0%', '0%', '100%', [
-      ['0%', '#15253A'],
-      ['58%', '#233A54'],
-      ['100%', '#35526E']
+      ['0%', '#0F1C2E'],
+      ['56%', '#192C44'],
+      ['100%', '#243C58']
     ]);
-    addLinearGrad(defs, 'sky-dawn-wash', '50%', '100%', '50%', '0%', [
-      ['0%', '#FFF2C2', 0.98],
-      ['22%', '#FAD47A', 0.82],
-      ['48%', '#EAAB78', 0.42],
-      ['76%', '#646F85', 0.14],
-      ['100%', '#35526E', 0]
+
+    // Step 1: Soft golden glow behind the distant left hills (sun still hidden)
+    addRadialGrad(defs, 'hidden-horizon-glow', '50%', '52%', '50%', [
+      ['0%', '#FBE094', 0.72],
+      ['38%', '#E8B364', 0.34],
+      ['72%', '#9B7558', 0.1],
+      ['100%', '#192C44', 0]
     ]);
-    addRadialGrad(defs, 'dawn-horizon-orb', '54%', '92%', '58%', [
-      ['0%', '#FFF9DF', 0.96],
-      ['36%', '#FBD983', 0.66],
-      ['68%', '#E7A778', 0.28],
-      ['100%', '#35526E', 0]
+
+    // Step 2: Subtle atmospheric veil of golden skylight reaching diagonally from hidden horizon up toward the moon
+    addRadialGrad(defs, 'sky-bridge-glow', '50%', '50%', '50%', [
+      ['0%', '#FCE8B2', 0.14],
+      ['55%', '#F4CF82', 0.06],
+      ['100%', '#192C44', 0]
     ]);
-    addRadialGrad(defs, 'sun-aura-grad', '50%', '50%', '50%', [
-      ['0%', '#FFF5D0', 0.55],
-      ['46%', '#F6CD68', 0.24],
-      ['76%', '#E4B14A', 0.08],
-      ['100%', '#15253A', 0]
+
+    // Step 2: Moon illuminated brightly from its lower-left limb (facing the hidden sun beyond the hills!)
+    addLinearGrad(defs, 'moon-lit-grad', '14%', '82%', '88%', '18%', [
+      ['0%', '#FFFDF5'],
+      ['46%', '#FCEEC6'],
+      ['82%', '#E9CB87'],
+      ['100%', '#D3B06B']
     ]);
     addRadialGrad(defs, 'moon-aura-grad', '50%', '50%', '50%', [
-      ['0%', '#FFF7DC', 0.42],
-      ['56%', '#FCE6A4', 0.16],
-      ['100%', '#233A54', 0]
-    ]);
-    addRadialGrad(defs, 'sun-disc-grad', '45%', '42%', '60%', [
-      ['0%', '#FFFBF0'],
-      ['55%', '#FCE49C'],
-      ['100%', '#E5B23E']
-    ]);
-    addLinearGrad(defs, 'moon-lit-grad', '12%', '28%', '92%', '78%', [
-      ['0%', '#FFFDF4'],
-      ['48%', '#FCF0CC'],
-      ['100%', '#E6C67D']
-    ]);
-    addLinearGrad(defs, 'sun-to-moon-wash', '0%', '30%', '100%', '65%', [
-      ['0%', '#FCF2D6', 0.24],
-      ['60%', '#FCF2D6', 0.12],
-      ['100%', '#FCF2D6', 0.04]
-    ]);
-    addLinearGrad(defs, 'moon-to-valley-wash', '50%', '0%', '50%', '100%', [
-      ['0%', '#FFF6DA', 0.24],
-      ['55%', '#FCF0CC', 0.12],
-      ['100%', '#FCF0CC', 0.02]
-    ]);
-    addLinearGrad(defs, 'river-moon-grad', '50%', '0%', '50%', '100%', [
-      ['0%', '#FBE6A9', 0.78],
-      ['100%', '#FCF2D6', 0.36]
+      ['0%', '#FFF7DC', 0.44],
+      ['48%', '#FCE6A4', 0.18],
+      ['78%', '#C5B07F', 0.05],
+      ['100%', '#192C44', 0]
     ]);
 
-    // 1) Fixed Night Sky Backdrop
+    // Step 3: Soft, wide, feathered moonlight pool bathing the night village (centered at 50%/50% so gradient fades smoothly to 0 before any edge)
+    addRadialGrad(defs, 'moonlight-pool-grad', '50%', '50%', '50%', [
+      ['0%', '#FFF8E2', 0.2],
+      ['42%', '#FCEBC0', 0.1],
+      ['76%', '#B8C4D4', 0.03],
+      ['100%', '#192C44', 0]
+    ]);
+    addLinearGrad(defs, 'road-moon-grad', '50%', '0%', '50%', '100%', [
+      ['0%', '#E9DCBC', 0.72],
+      ['55%', '#F7E7BD', 0.62],
+      ['100%', '#DFCFA8', 0.45]
+    ]);
+    addRadialGrad(defs, 'window-warm-halo', '50%', '50%', '50%', [
+      ['0%', '#FDE394', 0.55],
+      ['55%', '#F2BA59', 0.18],
+      ['100%', '#1A2B3F', 0]
+    ]);
+
+    // Step 4: Restrained dawn brightening ONLY along the low horizon (keeps upper sky dark!)
+    addRadialGrad(defs, 'dawn-edge-glow', '50%', '55%', '50%', [
+      ['0%', '#FFF7DB', 0.94],
+      ['32%', '#FAD782', 0.62],
+      ['64%', '#DE9B6B', 0.22],
+      ['100%', '#192C44', 0]
+    ]);
+    addLinearGrad(defs, 'dawn-horizon-band', '50%', '100%', '50%', '0%', [
+      ['0%', '#FBE096', 0.56],
+      ['42%', '#E3A472', 0.24],
+      ['100%', '#192C44', 0]
+    ]);
+    addRadialGrad(defs, 'rising-sun-disc', '50%', '35%', '60%', [
+      ['0%', '#FFFDF2'],
+      ['55%', '#FCE298'],
+      ['100%', '#E4AF3E']
+    ]);
+
+    // 1) Fixed Deep Night Sky
     svgEl('rect', { x: 0, y: 0, width: 440, height: 260, fill: 'url(#sky-night)' }, svg);
 
-    // 2) Step 4 Dawn Horizon Glow (pure warm sunrise bloom behind the eastern hills, zero intersecting sticks)
-    var dawnSkyLayer = svgEl('g', { id: 'layer-dawn-sky', class: 'reveal-layer' }, svg);
-    svgEl('rect', { x: 0, y: 42, width: 440, height: 158, fill: 'url(#sky-dawn-wash)' }, dawnSkyLayer);
-    svgEl('ellipse', { cx: 244, cy: 188, rx: 220, ry: 82, fill: 'url(#dawn-horizon-orb)' }, dawnSkyLayer);
-    // Two delicate curved atmospheric dawn bands hugging the distant horizon
-    var dawnArcs = [
-      'M 56 172 Q 238 140 416 170',
-      'M 94 179 Q 242 154 388 178'
-    ].map(function (d, idx) {
-      var p = svgEl('path', {
-        d: d,
-        fill: 'none',
-        stroke: '#FFF6D8',
-        'stroke-width': idx === 0 ? '1.1' : '1.4',
-        'stroke-linecap': 'round',
-        opacity: idx === 0 ? '0.42' : '0.62'
-      }, dawnSkyLayer);
-      var len = 360;
-      p.style.strokeDasharray = String(len);
-      p.style.strokeDashoffset = String(len);
-      return { line: p, len: len };
-    });
-
-    // 3) Quiet Fixed Starfield (present from Step 0, softens gently at dawn)
+    // 2) Quiet Starfield (stays visible even at Step 4 because the upper sky stays dark!)
     var starsLayer = svgEl('g', { id: 'layer-stars' }, svg);
     var starCoords = [
-      [142, 30, 1.3], [174, 46, 1.0], [206, 26, 1.4], [318, 34, 1.2],
-      [356, 26, 1.5], [388, 52, 1.1], [412, 32, 1.3], [340, 74, 1.0],
-      [398, 86, 1.2], [154, 102, 1.0], [302, 108, 1.0], [414, 114, 1.1]
+      [36, 34, 1.1], [74, 24, 1.3], [116, 48, 1.0], [154, 28, 1.4],
+      [196, 44, 1.1], [232, 24, 1.2], [354, 30, 1.4], [392, 46, 1.1],
+      [414, 28, 1.3], [364, 78, 1.0], [404, 92, 1.1], [134, 92, 1.0],
+      [212, 98, 0.95], [338, 108, 1.0]
     ];
     starCoords.forEach(function (st) {
-      svgEl('circle', { cx: st[0], cy: st[1], r: st[2], fill: '#FAF4E2', opacity: '0.68' }, starsLayer);
+      svgEl('circle', { cx: st[0], cy: st[1], r: st[2], fill: '#FAF4E2', opacity: '0.66' }, starsLayer);
     });
     // Two delicate 4-point star glints
     svgEl('path', {
-      d: 'M 356 20 L 356 32 M 350 26 L 362 26',
+      d: 'M 154 22 L 154 34 M 148 28 L 160 28',
       stroke: '#FAF4E2',
-      'stroke-width': '1',
+      'stroke-width': '0.95',
       'stroke-linecap': 'round',
-      opacity: '0.5'
+      opacity: '0.48'
     }, starsLayer);
     svgEl('path', {
-      d: 'M 206 21 L 206 31 M 201 26 L 211 26',
+      d: 'M 354 24 L 354 36 M 348 30 L 360 30',
       stroke: '#FAF4E2',
-      'stroke-width': '0.9',
+      'stroke-width': '0.95',
       'stroke-linecap': 'round',
-      opacity: '0.45'
+      opacity: '0.48'
     }, starsLayer);
 
-    // 4) Step 2: Soft Translucent Wash + Straight Golden Rays from Sun -> Moon
-    var sunToMoonLayer = svgEl('g', { id: 'layer-sun-to-moon', class: 'reveal-layer' }, svg);
-    svgEl('polygon', {
-      points: '90,41 258,53 254,99 84,75',
-      fill: 'url(#sun-to-moon-wash)'
-    }, sunToMoonLayer);
+    // 3) Step 1: Soft Golden Glow growing behind the distant left hills (sun STILL hidden!)
+    var horizonGlowLayer = svgEl('g', { id: 'layer-horizon-glow', class: 'reveal-layer' }, svg);
+    svgEl('ellipse', {
+      cx: GEO.horizonSunX,
+      cy: 176,
+      rx: 126,
+      ry: 62,
+      fill: 'url(#hidden-horizon-glow)'
+    }, horizonGlowLayer);
 
-    var sunMoonRays = [
-      { x1: 95, y1: 52, x2: 234, y2: 67 },
-      { x1: 97, y1: 60, x2: 233, y2: 76 },
-      { x1: 95, y1: 68, x2: 234, y2: 85 }
-    ].map(function (r, idx) {
-      var len = lineLen(r.x1, r.y1, r.x2, r.y2);
-      var line = svgEl('line', {
-        id: 'ray-sun-moon-' + idx,
-        x1: r.x1,
-        y1: r.y1,
-        x2: r.x2,
-        y2: r.y2,
-        stroke: idx === 1 ? '#F7D269' : '#FCF2D6',
-        'stroke-width': idx === 1 ? '2.1' : '1.1',
-        'stroke-linecap': 'round',
-        opacity: idx === 1 ? '0.9' : '0.48'
-      }, sunToMoonLayer);
-      line.style.strokeDasharray = String(len);
-      line.style.strokeDashoffset = String(len);
-      return { line: line, len: len };
-    });
+    // 4) Step 2: Feathered atmospheric skylight hint bridging hidden horizon toward the moon (no lines, no arrows)
+    var skyBridgeLayer = svgEl('g', { id: 'layer-sky-bridge', class: 'reveal-layer' }, svg);
+    svgEl('ellipse', {
+      cx: 186,
+      cy: 122,
+      rx: 155,
+      ry: 58,
+      transform: 'rotate(-27 186 122)',
+      fill: 'url(#sky-bridge-glow)'
+    }, skyBridgeLayer);
 
-    // Subtle Studio Wash double-chevron directional watermark along the Sun -> Moon beam
-    var sunMoonChevrons = svgEl('g', {
-      fill: 'none',
-      stroke: '#FCE295',
-      'stroke-linecap': 'round',
-      'stroke-linejoin': 'round',
-      opacity: '0'
-    }, sunToMoonLayer);
-    svgEl('path', { d: 'M 164 62 L 171 68 L 163 73', 'stroke-width': '2', opacity: '0.68' }, sunMoonChevrons);
-    svgEl('path', { d: 'M 156 62 L 162 67.5 L 155 72', 'stroke-width': '1.6', opacity: '0.32' }, sunMoonChevrons);
-
-    // 5) Step 3: Reflected Moonlight Wash + Soft Silk Rays fanning down from Moon -> Ordinary Landscape
-    var moonToValleyLayer = svgEl('g', { id: 'layer-moon-to-valley', class: 'reveal-layer' }, svg);
-    svgEl('polygon', {
-      points: '240,96 280,96 398,244 104,244',
-      fill: 'url(#moon-to-valley-wash)'
-    }, moonToValleyLayer);
-
-    var moonValleyRays = [
-      { x1: 247, y1: 101, x2: 146, y2: 204 },
-      { x1: 260, y1: 103, x2: 248, y2: 210 },
-      { x1: 273, y1: 101, x2: 350, y2: 204 }
-    ].map(function (r, idx) {
-      var len = lineLen(r.x1, r.y1, r.x2, r.y2);
-      var line = svgEl('line', {
-        id: 'ray-moon-valley-' + idx,
-        x1: r.x1,
-        y1: r.y1,
-        x2: r.x2,
-        y2: r.y2,
-        stroke: idx === 1 ? '#FCE6A4' : '#FFF6DC',
-        'stroke-width': idx === 1 ? '1.8' : '1.05',
-        'stroke-linecap': 'round',
-        opacity: idx === 1 ? '0.72' : '0.32'
-      }, moonToValleyLayer);
-      line.style.strokeDasharray = String(len);
-      line.style.strokeDashoffset = String(len);
-      return { line: line, len: len };
-    });
-
-    // Subtle downward double-chevron watermark on the center moonlight ray
-    var moonValleyChevrons = svgEl('g', {
-      fill: 'none',
-      stroke: '#FCE6A4',
-      'stroke-linecap': 'round',
-      'stroke-linejoin': 'round',
-      opacity: '0'
-    }, moonToValleyLayer);
-    svgEl('path', { d: 'M 248 148 L 254 155 L 261 149', 'stroke-width': '1.8', opacity: '0.62' }, moonValleyChevrons);
-    svgEl('path', { d: 'M 249 140 L 255 146 L 261 141', 'stroke-width': '1.4', opacity: '0.28' }, moonValleyChevrons);
-
-    // 6) Step 1: GOD, THE SOURCE (Radiant Gold Sun in upper-left sky with smooth radial aura)
-    var sunLayer = svgEl('g', { id: 'layer-sun', class: 'reveal-layer' }, svg);
-    svgEl('circle', { cx: GEO.sunX, cy: GEO.sunY, r: 48, fill: 'url(#sun-aura-grad)' }, sunLayer);
-    var sunRayGroup = svgEl('g', { stroke: '#F5CB5C', 'stroke-width': '1.7', 'stroke-linecap': 'round' }, sunLayer);
-    for (var i = 0; i < 12; i++) {
-      var ang = (i * 30) * Math.PI / 180;
-      svgEl('line', {
-        x1: (GEO.sunX + 23.5 * Math.cos(ang)).toFixed(1),
-        y1: (GEO.sunY + 23.5 * Math.sin(ang)).toFixed(1),
-        x2: (GEO.sunX + 31 * Math.cos(ang)).toFixed(1),
-        y2: (GEO.sunY + 31 * Math.sin(ang)).toFixed(1)
-      }, sunRayGroup);
-    }
+    // 5) Step 4: Low Dawn Horizon Glow + JUST the upper edge of the rising sun peeking behind the distant hill!
+    var dawnHorizonLayer = svgEl('g', { id: 'layer-dawn-horizon', class: 'reveal-layer' }, svg);
+    // Restrained low horizon warmth (keeps upper sky dark indigo!)
+    svgEl('rect', {
+      x: 0,
+      y: 112,
+      width: 440,
+      height: 82,
+      fill: 'url(#dawn-horizon-band)'
+    }, dawnHorizonLayer);
+    svgEl('ellipse', {
+      cx: GEO.horizonSunX,
+      cy: 174,
+      rx: 156,
+      ry: 66,
+      fill: 'url(#dawn-edge-glow)'
+    }, dawnHorizonLayer);
+    // Rising Sun upper edge (placed BEHIND the distant hills so ONLY its top ~10px crown peeks over!)
+    var sunEdgeGroup = svgEl('g', { id: 'rising-sun-edge', transform: 'translate(0, 10)' }, dawnHorizonLayer);
     svgEl('circle', {
-      cx: GEO.sunX,
-      cy: GEO.sunY,
-      r: GEO.sunR,
-      fill: 'url(#sun-disc-grad)',
-      stroke: '#C48F10',
-      'stroke-width': '1.8'
-    }, sunLayer);
-    svgEl('circle', {
-      cx: GEO.sunX,
-      cy: GEO.sunY,
-      r: GEO.sunR - 4.2,
-      fill: 'none',
-      stroke: '#FFFFFF',
-      'stroke-width': '1',
-      opacity: '0.5'
-    }, sunLayer);
+      cx: GEO.horizonSunX,
+      cy: GEO.horizonSunY,
+      r: GEO.horizonSunR,
+      fill: 'url(#rising-sun-disc)',
+      stroke: '#E4AF3E',
+      'stroke-width': '1.4'
+    }, sunEdgeGroup);
 
-    // 7) THE MOON (Fixed position at 260, 76: quiet silhouette on Steps 0-1, luminous reflected gold-ivory on Steps 2-4)
+    // 6) Step 3: Soft Feathered Moonlight Pool descending gently onto the village below (zero hard edges/triangles)
+    var moonlightPoolLayer = svgEl('g', { id: 'layer-moonlight-pool', class: 'reveal-layer' }, svg);
+    svgEl('ellipse', {
+      cx: 266,
+      cy: 174,
+      rx: 196,
+      ry: 112,
+      fill: 'url(#moonlight-pool-grad)'
+    }, moonlightPoolLayer);
+
+    // 7) THE MOON (Fixed high-right at 294, 66: quiet silhouette on Steps 0-1, luminous golden-ivory on Steps 2-4)
     var moonBaseLayer = svgEl('g', { id: 'layer-moon-base' }, svg);
     svgEl('circle', {
       cx: GEO.moonX,
       cy: GEO.moonY,
       r: GEO.moonR,
-      fill: '#223852',
-      stroke: '#6D8AA8',
-      'stroke-width': '1.5'
+      fill: '#1A2D44',
+      stroke: '#5B7898',
+      'stroke-width': '1.4'
     }, moonBaseLayer);
 
     var moonLitLayer = svgEl('g', { id: 'layer-moon-lit', class: 'reveal-layer' }, svg);
-    // Smooth warm aura (zero muddy edge)
     svgEl('circle', {
       cx: GEO.moonX,
       cy: GEO.moonY,
-      r: GEO.moonR + 18,
+      r: GEO.moonR + 24,
       fill: 'url(#moon-aura-grad)'
     }, moonLitLayer);
     svgEl('circle', {
       cx: GEO.moonX,
       cy: GEO.moonY,
-      r: GEO.moonR + 4,
+      r: GEO.moonR + 4.5,
       fill: 'none',
       stroke: '#FCE6A4',
-      'stroke-width': '1.05',
-      opacity: '0.48'
+      'stroke-width': '1',
+      opacity: '0.42'
     }, moonLitLayer);
-    // Illuminated Moon body
     svgEl('circle', {
       cx: GEO.moonX,
       cy: GEO.moonY,
       r: GEO.moonR,
       fill: 'url(#moon-lit-grad)',
       stroke: '#D9A73B',
-      'stroke-width': '1.7'
+      'stroke-width': '1.6'
     }, moonLitLayer);
-    // Subtle luminous crescent highlight on the Sun-facing left edge + delicate painterly surface washes
+    // Soft bright crescent highlight hugging the lower-left limb facing the hidden sun beyond the hills
     svgEl('path', {
-      d: 'M ' + (GEO.moonX - 4) + ' ' + (GEO.moonY - 19) + ' A 20 20 0 0 0 ' + (GEO.moonX - 4) + ' ' + (GEO.moonY + 19),
+      d: 'M ' + (GEO.moonX - 18) + ' ' + (GEO.moonY - 8) + ' A 20 20 0 0 0 ' + (GEO.moonX + 8) + ' ' + (GEO.moonY + 18),
       fill: 'none',
       stroke: '#FFFFFF',
       'stroke-width': '1.5',
       'stroke-linecap': 'round',
       opacity: '0.68'
     }, moonLitLayer);
-    svgEl('circle', { cx: GEO.moonX + 6, cy: GEO.moonY - 5, r: 5.5, fill: '#E4C072', opacity: '0.22' }, moonLitLayer);
-    svgEl('circle', { cx: GEO.moonX - 5, cy: GEO.moonY + 8, r: 4, fill: '#E4C072', opacity: '0.18' }, moonLitLayer);
+    // Delicate painterly lunar texture washes
+    svgEl('circle', { cx: GEO.moonX + 6, cy: GEO.moonY - 6, r: 5.2, fill: '#DFB96E', opacity: '0.2' }, moonLitLayer);
+    svgEl('circle', { cx: GEO.moonX - 3, cy: GEO.moonY + 7, r: 3.8, fill: '#DFB96E', opacity: '0.16' }, moonLitLayer);
 
-    // 8) FIXED ORDINARY NIGHTTIME LANDSCAPE (Rolling hills, winding stream, trees, cozy homes & chapel)
+    // 8) FIXED QUIET NIGHTTIME VILLAGE LANDSCAPE (Drawn IN FRONT of the horizon glow & rising sun!)
     var landBase = svgEl('g', { id: 'layer-landscape-base' }, svg);
 
-    // Far horizon hills (low saddle around x=240..280 where dawn rises!)
+    // Far horizon hills (saddle at x=88 is y=172, hiding the sun until Step 4's top crown peeks above!)
     svgEl('path', {
-      d: 'M 0 188 Q 78 164 156 180 Q 214 192 260 184 Q 326 172 440 186 L 440 260 L 0 260 Z',
-      fill: '#23374E',
-      stroke: '#18283A',
+      d: 'M 0 183 Q 44 176 88 172 Q 134 168 184 179 Q 256 192 336 175 Q 388 166 440 176 L 440 260 L 0 260 Z',
+      fill: '#1D3046',
+      stroke: '#122032',
       'stroke-width': '1.2'
     }, landBase);
 
     // Mid-ground left & right valley slopes
     svgEl('path', {
-      d: 'M 0 198 Q 92 186 182 204 Q 218 212 246 208 L 246 260 L 0 260 Z',
-      fill: '#1E3045',
-      stroke: '#142233',
+      d: 'M 0 198 Q 92 186 184 203 Q 222 210 250 206 L 250 260 L 0 260 Z',
+      fill: '#18283B',
+      stroke: '#101C2B',
       'stroke-width': '1.2'
     }, landBase);
     svgEl('path', {
-      d: 'M 218 212 Q 302 192 378 202 Q 412 206 440 198 L 440 260 L 218 260 Z',
-      fill: '#1C2D41',
-      stroke: '#142233',
-      'stroke-width': '1.2'
-    }, landBase);
-
-    // Foreground meadow curve
-    svgEl('path', {
-      d: 'M 0 228 Q 115 216 226 226 Q 332 235 440 220 L 440 260 L 0 260 Z',
-      fill: '#182738',
-      stroke: '#101C2A',
+      d: 'M 222 210 Q 306 191 380 201 Q 414 206 440 198 L 440 260 L 222 260 Z',
+      fill: '#162536',
+      stroke: '#101C2B',
       'stroke-width': '1.2'
     }, landBase);
 
-    // Winding quiet stream curving from the valley pass to foreground
+    // Foreground village meadow
     svgEl('path', {
-      d: 'M 244 206 C 230 216 220 224 236 234 C 254 244 258 252 246 260 L 266 260 C 276 250 270 240 250 232 C 234 225 242 216 254 206 Z',
-      fill: '#223A54',
-      stroke: '#152536',
+      d: 'M 0 227 Q 118 216 230 225 Q 334 234 440 220 L 440 260 L 0 260 Z',
+      fill: '#132030',
+      stroke: '#0C1522',
+      'stroke-width': '1.2'
+    }, landBase);
+
+    // Winding quiet village road curving gently from the valley pass down to the foreground
+    svgEl('path', {
+      d: 'M 248 205 C 234 215 224 224 239 234 C 256 244 261 252 249 260 L 269 260 C 279 250 273 240 254 232 C 238 225 246 215 258 205 Z',
+      fill: '#1D2F43',
+      stroke: '#111D2C',
       'stroke-width': '1'
     }, landBase);
 
     // Quiet countryside trees
-    drawTree(landBase, 52, 224, 24, 14, '#1B2E40', '#111E2C');
-    drawTree(landBase, 84, 218, 28, 16, '#1B2E40', '#111E2C');
-    drawTree(landBase, 168, 219, 20, 12, '#1D3246', '#111E2C');
-    drawTree(landBase, 280, 218, 22, 13, '#1D3246', '#111E2C');
-    drawTree(landBase, 332, 224, 20, 12, '#1B2E40', '#111E2C');
-    drawTree(landBase, 394, 222, 26, 15, '#1B2E40', '#111E2C');
+    drawTree(landBase, 46, 224, 24, 14, '#162738', '#0D1825');
+    drawTree(landBase, 78, 218, 28, 16, '#162738', '#0D1825');
+    drawTree(landBase, 166, 218, 20, 12, '#182A3D', '#0D1825');
+    drawTree(landBase, 282, 217, 22, 13, '#182A3D', '#0D1825');
+    drawTree(landBase, 336, 223, 20, 12, '#162738', '#0D1825');
+    drawTree(landBase, 396, 222, 26, 15, '#162738', '#0D1825');
 
-    // Ordinary neighborhood homes + small country church in the valley
-    // Left home
-    drawHouse(landBase, 114, 214, 30, 18, 12, { wallFill: '#21354B', roofFill: '#172738' });
-    // Small village church / gathering house on gentle left-center rise
-    drawHouse(landBase, 186, 204, 26, 22, 14, { wallFill: '#243A52', roofFill: '#18293B' });
-    // Simple cross finial atop roof peak
+    // Ordinary village homes + small country church
+    drawHouse(landBase, 112, 214, 30, 18, 12, { wallFill: '#1C2E42', roofFill: '#132132' });
+    drawHouse(landBase, 184, 204, 26, 22, 14, { wallFill: '#1F3349', roofFill: '#142334' });
+    // Simple church roof cross
     svgEl('path', {
-      d: 'M 199 183 L 199 190 M 196.5 185.5 L 201.5 185.5',
-      stroke: '#8FA8C2',
+      d: 'M 197 183 L 197 190 M 194.5 185.5 L 199.5 185.5',
+      stroke: '#7E97B3',
       'stroke-width': '1.2',
       'stroke-linecap': 'round'
     }, landBase);
-    // Two homes on the right slope
-    drawHouse(landBase, 294, 211, 28, 18, 11, { wallFill: '#22364C', roofFill: '#172738' });
-    drawHouse(landBase, 344, 218, 30, 17, 11, { wallFill: '#203348', roofFill: '#162535' });
+    drawHouse(landBase, 296, 211, 28, 18, 11, { wallFill: '#1D2F44', roofFill: '#132132' });
+    drawHouse(landBase, 348, 218, 30, 17, 11, { wallFill: '#1B2D40', roofFill: '#122030' });
 
     // Unlit quiet windows (base night state)
     var windowCoords = [
-      [121, 220, 5, 6], [132, 220, 5, 6],
-      [194, 211, 4, 7], [201, 211, 4, 7],
-      [301, 217, 5, 6], [311, 217, 5, 6],
-      [351, 223, 5, 5], [362, 223, 5, 5]
+      [119, 220, 5, 6], [130, 220, 5, 6],
+      [192, 211, 4, 7], [199, 211, 4, 7],
+      [303, 217, 5, 6], [313, 217, 5, 6],
+      [355, 223, 5, 5], [366, 223, 5, 5]
     ];
     windowCoords.forEach(function (w) {
-      svgEl('rect', { x: w[0], y: w[1], width: w[2], height: w[3], rx: 1, fill: '#2E465E' }, landBase);
+      svgEl('rect', { x: w[0], y: w[1], width: w[2], height: w[3], rx: 1, fill: '#263B52' }, landBase);
     });
 
-    // 9) Step 3: Reflected Moonlight Illuminating the Ordinary Landscape
-    var landMoonlit = svgEl('g', { id: 'layer-landscape-moonlit', class: 'reveal-layer' }, svg);
-    // Soft moonlit crest hairlines only on open hillside segments (never cutting across roofs)
+    // Subtle warm ridge rim on Step 1 & 2 where the hidden glow touches the distant left hill
+    var farRidgeRimStep1 = svgEl('g', { id: 'layer-far-rim-step1', class: 'reveal-layer' }, svg);
     svgEl('path', {
-      d: 'M 218 206 Q 232 208 244 208 M 256 205 Q 274 200 290 198 M 328 197 Q 354 198 378 201',
+      d: 'M 18 180 Q 54 174 88 172 Q 124 169 162 175',
       fill: 'none',
-      stroke: '#FBE8B0',
-      'stroke-width': '1.3',
-      'stroke-linecap': 'round',
-      opacity: '0.62'
-    }, landMoonlit);
-    // Warm sunlit roof highlights on homes & church
-    svgEl('path', {
-      d: 'M 111 214 L 129 202 L 147 214 M 183 204 L 199 190 L 215 204 M 291 211 L 308 200 L 325 211 M 341 218 L 359 207 L 377 218',
-      fill: 'none',
-      stroke: '#FCE6A4',
+      stroke: '#F9DC8E',
       'stroke-width': '1.4',
       'stroke-linecap': 'round',
-      'stroke-linejoin': 'round',
-      opacity: '0.82'
-    }, landMoonlit);
-    // Shimmering moonlight ribbon on the winding stream
+      opacity: '0.68'
+    }, farRidgeRimStep1);
+
+    // 9) Step 3: Moonlight gently reveals the winding road, rooftops, and warm glowing home windows!
+    var landMoonlit = svgEl('g', { id: 'layer-landscape-moonlit', class: 'reveal-layer' }, svg);
+
+    // Gentle moonlit road winding through the quiet valley
     svgEl('path', {
-      d: 'M 245 207 C 232 216 222 224 238 234 C 254 244 259 252 248 260 L 263 260 C 273 250 267 240 248 232 C 234 225 243 216 253 207 Z',
-      fill: 'url(#river-moon-grad)',
+      d: 'M 249 206 C 236 215 226 224 241 234 C 256 244 261 252 250 260 L 266 260 C 276 250 270 240 252 232 C 238 225 247 215 257 206 Z',
+      fill: 'url(#road-moon-grad)',
       opacity: '0.78'
     }, landMoonlit);
+    // Soft moonlit highlights on open hillside crests (clear of roofs)
     svgEl('path', {
-      d: 'M 240 218 L 250 218 M 234 228 L 247 228 M 248 240 L 262 240 M 252 250 L 264 250',
-      stroke: '#FFF9E5',
-      'stroke-width': '1.2',
+      d: 'M 218 206 Q 234 208 248 206 M 260 204 Q 276 199 292 197 M 332 197 Q 358 198 384 201',
+      fill: 'none',
+      stroke: '#FBE8B0',
+      'stroke-width': '1.25',
       'stroke-linecap': 'round',
-      opacity: '0.85'
+      opacity: '0.58'
     }, landMoonlit);
-    // Warm golden-amber glowing windows in the ordinary homes & church
-    windowCoords.forEach(function (w) {
-      svgEl('rect', { x: w[0], y: w[1], width: w[2], height: w[3], rx: 1, fill: '#FDE49B' }, landMoonlit);
-    });
-    // Cross finial catches the warm light
+    // Moonlit rooftops catching gentle silver-gold light (brightest on moon-facing slopes)
     svgEl('path', {
-      d: 'M 199 183 L 199 190 M 196.5 185.5 L 201.5 185.5',
-      stroke: '#FCE6A4',
+      d: 'M 109 214 L 127 202 L 145 214 M 181 204 L 197 190 L 213 204 M 293 211 L 310 200 L 327 211 M 345 218 L 363 207 L 381 218',
+      fill: 'none',
+      stroke: '#FCE8B2',
+      'stroke-width': '1.45',
+      'stroke-linecap': 'round',
+      'stroke-linejoin': 'round',
+      opacity: '0.86'
+    }, landMoonlit);
+    // Church cross catches soft moonlight
+    svgEl('path', {
+      d: 'M 197 183 L 197 190 M 194.5 185.5 L 199.5 185.5',
+      stroke: '#FCE8B2',
       'stroke-width': '1.4',
       'stroke-linecap': 'round'
     }, landMoonlit);
+    // Warm golden house windows + subtle cozy glow halos giving the village warmth and life
+    windowCoords.forEach(function (w) {
+      svgEl('circle', {
+        cx: w[0] + w[2] / 2,
+        cy: w[1] + w[3] / 2,
+        r: 7.5,
+        fill: 'url(#window-warm-halo)'
+      }, landMoonlit);
+      svgEl('rect', {
+        x: w[0],
+        y: w[1],
+        width: w[2],
+        height: w[3],
+        rx: 1,
+        fill: '#FDE69E'
+      }, landMoonlit);
+    });
 
-    // 10) Step 4: Dawn Rim-Light across the Eastern Hills + Crisp Studio Wash Double-Hairline Frame
-    var landDawnLayer = svgEl('g', { id: 'layer-landscape-dawn', class: 'reveal-layer' }, svg);
-    // Golden morning rim-light along the far horizon ridge
+    // 10) Step 4: Golden Dawn Rim along the distant ridge + Crisp Studio Wash Double-Hairline Frame
+    var landDawnRim = svgEl('g', { id: 'layer-landscape-dawn', class: 'reveal-layer' }, svg);
     svgEl('path', {
-      d: 'M 16 186 Q 82 165 156 180 Q 214 192 260 184 Q 326 172 424 185',
+      d: 'M 14 181 Q 50 175 88 172 Q 134 168 184 179 Q 256 192 336 175 Q 388 166 426 175',
       fill: 'none',
       stroke: '#FFF4CE',
-      'stroke-width': '2',
+      'stroke-width': '1.9',
       'stroke-linecap': 'round',
-      opacity: '0.92'
-    }, landDawnLayer);
-    // Warm dawn atmosphere tint gently lifting the foreground valley
-    svgEl('rect', {
-      x: 0,
-      y: 176,
-      width: 440,
-      height: 84,
-      fill: '#F9D682',
-      opacity: '0.14'
-    }, landDawnLayer);
+      opacity: '0.9'
+    }, landDawnRim);
 
     // Step 4 crisp Studio Wash double-hairline climax border (zero fuzzy glow)
     var frameLayer = svgEl('g', { id: 'layer-climax-frame', class: 'reveal-layer' }, svg);
@@ -918,8 +858,8 @@ button:focus-visible {
       height: 244,
       rx: 10,
       fill: 'none',
-      stroke: '#E2B345',
-      'stroke-width': '2.8'
+      stroke: '#D9A73B',
+      'stroke-width': '2.6'
     }, frameLayer);
     var innerFrame = svgEl('rect', {
       x: 13,
@@ -929,8 +869,8 @@ button:focus-visible {
       rx: 7,
       fill: 'none',
       stroke: '#FFF4CE',
-      'stroke-width': '1.1',
-      opacity: '0.55'
+      'stroke-width': '1',
+      opacity: '0.5'
     }, frameLayer);
     var framePerim = 2 * (424 + 244);
     outerFrame.style.strokeDasharray = String(framePerim);
@@ -939,19 +879,15 @@ button:focus-visible {
     return {
       svgTitle: svgTitle,
       svgDesc: svgDesc,
-      starsLayer: starsLayer,
-      sunLayer: sunLayer,
-      sunToMoonLayer: sunToMoonLayer,
-      sunMoonRays: sunMoonRays,
-      sunMoonChevrons: sunMoonChevrons,
+      horizonGlowLayer: horizonGlowLayer,
+      farRidgeRimStep1: farRidgeRimStep1,
+      skyBridgeLayer: skyBridgeLayer,
       moonLitLayer: moonLitLayer,
-      moonToValleyLayer: moonToValleyLayer,
-      moonValleyRays: moonValleyRays,
-      moonValleyChevrons: moonValleyChevrons,
+      moonlightPoolLayer: moonlightPoolLayer,
       landMoonlit: landMoonlit,
-      dawnSkyLayer: dawnSkyLayer,
-      dawnRays: dawnArcs,
-      landDawnLayer: landDawnLayer,
+      dawnHorizonLayer: dawnHorizonLayer,
+      sunEdgeGroup: sunEdgeGroup,
+      landDawnRim: landDawnRim,
       frameLayer: frameLayer,
       outerFrame: outerFrame,
       innerFrame: innerFrame,
@@ -1021,139 +957,57 @@ button:focus-visible {
     }
 
     function applyStaticLayers(stepIdx) {
-      bundle.sunLayer.classList.toggle('is-visible', stepIdx >= 1);
-      bundle.sunToMoonLayer.classList.toggle('is-visible', stepIdx >= 2);
+      bundle.horizonGlowLayer.classList.toggle('is-visible', stepIdx >= 1);
+      bundle.farRidgeRimStep1.classList.toggle('is-visible', stepIdx >= 1 && stepIdx < 4);
+      bundle.skyBridgeLayer.classList.toggle('is-visible', stepIdx >= 2);
       bundle.moonLitLayer.classList.toggle('is-visible', stepIdx >= 2);
-      bundle.moonToValleyLayer.classList.toggle('is-visible', stepIdx >= 3);
+      bundle.moonlightPoolLayer.classList.toggle('is-visible', stepIdx >= 3);
       bundle.landMoonlit.classList.toggle('is-visible', stepIdx >= 3);
-      bundle.dawnSkyLayer.classList.toggle('is-visible', stepIdx >= 4);
-      bundle.landDawnLayer.classList.toggle('is-visible', stepIdx >= 4);
+      bundle.dawnHorizonLayer.classList.toggle('is-visible', stepIdx >= 4);
+      bundle.landDawnRim.classList.toggle('is-visible', stepIdx >= 4);
       bundle.frameLayer.classList.toggle('is-visible', stepIdx >= 4);
-      bundle.starsLayer.style.opacity = stepIdx >= 4 ? '0.42' : '1';
     }
 
-    function snapRays(stepIdx) {
-      bundle.sunMoonRays.forEach(function (r) {
-        setDash(r.line, r.len, stepIdx >= 2 ? 1 : 0);
-      });
-      bundle.sunMoonChevrons.style.opacity = stepIdx >= 2 ? '1' : '0';
-      bundle.moonValleyRays.forEach(function (r) {
-        setDash(r.line, r.len, stepIdx >= 3 ? 1 : 0);
-      });
-      bundle.moonValleyChevrons.style.opacity = stepIdx >= 3 ? '1' : '0';
-      bundle.dawnRays.forEach(function (r) {
-        setDash(r.line, r.len, stepIdx >= 4 ? 1 : 0);
-      });
+    function snapFinalMotion(stepIdx) {
+      bundle.sunEdgeGroup.setAttribute('transform', stepIdx >= 4 ? 'translate(0, 0)' : 'translate(0, 10)');
       setDash(bundle.outerFrame, bundle.framePerim, stepIdx >= 4 ? 1 : 0);
-      bundle.innerFrame.style.opacity = stepIdx >= 4 ? '0.55' : '0';
+      bundle.innerFrame.style.opacity = stepIdx >= 4 ? '0.5' : '0';
     }
 
     function animateStep(stepIdx) {
-      var t0 = performance.now();
-
-      if (stepIdx === 1) {
-        // Sun gently enters via CSS opacity transition; no extra rAF needed
+      if (stepIdx < 4) {
+        // Steps 1, 2, 3 reveal via calm CSS opacity washes with zero idle timers
         host.setAttribute('data-step-dur', '0');
-        snapRays(1);
+        snapFinalMotion(stepIdx);
         return;
       }
 
-      if (stepIdx === 2) {
-        // Sun -> Moon golden rays draw cleanly at 185 px/s, then Moon illuminates
-        var maxLen2 = bundle.sunMoonRays.reduce(function (m, r) { return Math.max(m, r.len); }, 1);
-        var dur2 = Math.round((maxLen2 / RAY_SPEED) * 1000);
-        host.setAttribute('data-step-dur', String(dur2));
-        bundle.sunMoonRays.forEach(function (r) { setDash(r.line, r.len, 0); });
-        bundle.sunMoonChevrons.style.opacity = '0';
-        bundle.moonLitLayer.style.opacity = '0';
-        var frame2 = function (now) {
-          var elapsed = now - t0;
-          var done = true;
-          bundle.sunMoonRays.forEach(function (r) {
-            var d = (r.len / RAY_SPEED) * 1000;
-            var p = Math.min(1, elapsed / d);
-            setDash(r.line, r.len, p);
-            if (p < 1) done = false;
-          });
-          var pOverall = Math.min(1, elapsed / dur2);
-          bundle.sunMoonChevrons.style.opacity = pOverall > 0.45 ? String(Math.min(1, (pOverall - 0.45) / 0.25).toFixed(2)) : '0';
-          bundle.moonLitLayer.style.opacity = pOverall > 0.55 ? String(Math.min(1, (pOverall - 0.55) / 0.45).toFixed(2)) : '0';
-          if (!done) {
-            activeRaf = requestAnimationFrame(frame2);
-          } else {
-            bundle.moonLitLayer.style.opacity = '';
-            snapRays(2);
-            activeRaf = null;
-          }
-        };
-        activeRaf = requestAnimationFrame(frame2);
-        return;
-      }
-
-      if (stepIdx === 3) {
-        // Keep step 2 complete; draw Moon -> Ordinary Landscape reflected rays at 185 px/s
-        snapRays(2);
-        var maxLen3 = bundle.moonValleyRays.reduce(function (m, r) { return Math.max(m, r.len); }, 1);
-        var dur3 = Math.round((maxLen3 / RAY_SPEED) * 1000);
-        host.setAttribute('data-step-dur', String(dur3));
-        bundle.moonValleyRays.forEach(function (r) { setDash(r.line, r.len, 0); });
-        bundle.moonValleyChevrons.style.opacity = '0';
-        bundle.landMoonlit.style.opacity = '0';
-        var frame3 = function (now) {
-          var elapsed = now - t0;
-          var done = true;
-          bundle.moonValleyRays.forEach(function (r) {
-            var d = (r.len / RAY_SPEED) * 1000;
-            var p = Math.min(1, elapsed / d);
-            setDash(r.line, r.len, p);
-            if (p < 1) done = false;
-          });
-          var pOverall = Math.min(1, elapsed / dur3);
-          bundle.moonValleyChevrons.style.opacity = pOverall > 0.42 ? String(Math.min(1, (pOverall - 0.42) / 0.25).toFixed(2)) : '0';
-          bundle.landMoonlit.style.opacity = pOverall > 0.5 ? String(Math.min(1, (pOverall - 0.5) / 0.5).toFixed(2)) : '0';
-          if (!done) {
-            activeRaf = requestAnimationFrame(frame3);
-          } else {
-            bundle.landMoonlit.style.opacity = '';
-            snapRays(3);
-            activeRaf = null;
-          }
-        };
-        activeRaf = requestAnimationFrame(frame3);
-        return;
-      }
-
-      if (stepIdx === 4) {
-        // Keep steps 1..3 complete; draw rising dawn horizon rays + double-hairline frame
-        snapRays(3);
-        var maxLen4 = bundle.dawnRays.reduce(function (m, r) { return Math.max(m, r.len); }, 1);
-        var dur4 = Math.max(600, Math.round((maxLen4 / RAY_SPEED) * 1000));
-        host.setAttribute('data-step-dur', String(dur4));
-        bundle.dawnRays.forEach(function (r) { setDash(r.line, r.len, 0); });
-        setDash(bundle.outerFrame, bundle.framePerim, 0);
-        bundle.innerFrame.style.opacity = '0';
-        var frame4 = function (now) {
-          var p = Math.min(1, (now - t0) / dur4);
-          var eased = 1 - Math.pow(1 - p, 2);
-          bundle.dawnRays.forEach(function (r) { setDash(r.line, r.len, eased); });
-          setDash(bundle.outerFrame, bundle.framePerim, eased);
-          bundle.innerFrame.style.opacity = (0.55 * eased).toFixed(2);
-          if (p < 1) {
-            activeRaf = requestAnimationFrame(frame4);
-          } else {
-            snapRays(4);
-            activeRaf = null;
-          }
-        };
-        activeRaf = requestAnimationFrame(frame4);
-      }
+      // Step 4: Gently lift just the upper edge of the sun above the distant hill & trace climax hairline
+      var t0 = performance.now();
+      var dur = 680;
+      host.setAttribute('data-step-dur', String(dur));
+      bundle.sunEdgeGroup.setAttribute('transform', 'translate(0, 10)');
+      setDash(bundle.outerFrame, bundle.framePerim, 0);
+      bundle.innerFrame.style.opacity = '0';
+      var frame = function (now) {
+        var p = Math.min(1, (now - t0) / dur);
+        var eased = 1 - Math.pow(1 - p, 2);
+        var dy = (10 * (1 - eased)).toFixed(2);
+        bundle.sunEdgeGroup.setAttribute('transform', 'translate(0, ' + dy + ')');
+        setDash(bundle.outerFrame, bundle.framePerim, eased);
+        bundle.innerFrame.style.opacity = (0.5 * eased).toFixed(2);
+        if (p < 1) {
+          activeRaf = requestAnimationFrame(frame);
+        } else {
+          snapFinalMotion(4);
+          activeRaf = null;
+        }
+      };
+      activeRaf = requestAnimationFrame(frame);
     }
 
     function goTo(nextIdx) {
       stopAnim();
-      bundle.moonLitLayer.style.opacity = '';
-      bundle.landMoonlit.style.opacity = '';
-
       var prevIdx = currentStep;
       var goingForwardOne = nextIdx === prevIdx + 1;
       var instant = reducedMotionQuery.matches || !goingForwardOne || nextIdx === 0;
@@ -1163,7 +1017,7 @@ button:focus-visible {
 
       if (instant) {
         host.setAttribute('data-step-dur', '0');
-        snapRays(nextIdx);
+        snapFinalMotion(nextIdx);
       } else {
         animateStep(nextIdx);
       }

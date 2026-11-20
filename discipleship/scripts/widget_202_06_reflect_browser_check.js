@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * 202-06 Reflect His Glory (Sun and Moon) standalone widget browser verification.
+ * 202-06 Reflect His Glory (Sun and Moon horizon nocturne) browser verification.
  * Serve discipleship/ locally and pass REFLECT_BASE_URL
  * (default http://127.0.0.1:8776/widgets/reflect-glory-202.html).
  * Pass REFLECT_SCREENSHOT_DIR to save 390x844 screenshots of every step.
@@ -125,7 +125,7 @@ const JOBS = [
           } else if (dur > 0) {
             await page.waitForTimeout(dur + 200);
           } else {
-            await page.waitForTimeout(480);
+            await page.waitForTimeout(720);
           }
 
           const state = await page.evaluate(() => {
@@ -146,13 +146,12 @@ const JOBS = [
               cardClientH: card.clientHeight,
               docScrollW: document.documentElement.scrollWidth,
               winW: window.innerWidth,
-              sunVis: document.getElementById('layer-sun').classList.contains('is-visible'),
+              horizonGlowVis: document.getElementById('layer-horizon-glow').classList.contains('is-visible'),
               moonLitVis: document.getElementById('layer-moon-lit').classList.contains('is-visible'),
               valleyLitVis: document.getElementById('layer-landscape-moonlit').classList.contains('is-visible'),
-              dawnVis: document.getElementById('layer-dawn-sky').classList.contains('is-visible'),
+              dawnHorizonVis: document.getElementById('layer-dawn-horizon').classList.contains('is-visible'),
+              sunEdgeTransform: document.getElementById('rising-sun-edge').getAttribute('transform'),
               frameVis: document.getElementById('layer-climax-frame').classList.contains('is-visible'),
-              sunMoonOffset: Number(document.getElementById('ray-sun-moon-1').style.strokeDashoffset),
-              moonValleyOffset: Number(document.getElementById('ray-moon-valley-1').style.strokeDashoffset),
               storageWrites: window.__storageWrites
             };
           });
@@ -168,15 +167,17 @@ const JOBS = [
           check(`${tag}: step ${s} zero localStorage writes`, state.storageWrites === 0);
 
           if (s === 0) {
-            check(`${tag}: step 0 quiet night only`, !state.sunVis && !state.moonLitVis && !state.valleyLitVis && !state.dawnVis);
+            check(`${tag}: step 0 quiet village night only`, !state.horizonGlowVis && !state.moonLitVis && !state.valleyLitVis && !state.dawnHorizonVis);
           } else if (s === 1) {
-            check(`${tag}: step 1 reveals sun source`, state.sunVis && !state.moonLitVis && !state.valleyLitVis && !state.dawnVis);
+            check(`${tag}: step 1 reveals hidden horizon glow only`, state.horizonGlowVis && !state.moonLitVis && !state.valleyLitVis && !state.dawnHorizonVis);
           } else if (s === 2) {
-            check(`${tag}: step 2 illuminates moon via sun rays`, state.sunVis && state.moonLitVis && state.sunMoonOffset <= 0.1 && !state.valleyLitVis);
+            check(`${tag}: step 2 brightens moon softly`, state.horizonGlowVis && state.moonLitVis && !state.valleyLitVis && !state.dawnHorizonVis);
           } else if (s === 3) {
-            check(`${tag}: step 3 illuminates ordinary nighttime landscape`, state.sunVis && state.moonLitVis && state.valleyLitVis && state.moonValleyOffset <= 0.1 && !state.dawnVis);
+            check(`${tag}: step 3 reveals road, rooftops, and warm windows`, state.horizonGlowVis && state.moonLitVis && state.valleyLitVis && !state.dawnHorizonVis);
           } else if (s === 4) {
-            check(`${tag}: step 4 reveals dawn horizon and climax frame`, state.sunVis && state.moonLitVis && state.valleyLitVis && state.dawnVis && state.frameVis);
+            check(`${tag}: step 4 reveals upper edge of rising sun and climax frame`,
+              state.horizonGlowVis && state.moonLitVis && state.valleyLitVis && state.dawnHorizonVis &&
+              state.sunEdgeTransform === 'translate(0, 0)' && state.frameVis);
           }
 
           if (SCREENSHOT_DIR && job.width === 390 && job.reducedMotion === 'no-preference') {
@@ -192,7 +193,7 @@ const JOBS = [
         const afterBack3 = await page.evaluate(() => ({
           step: document.getElementById('scene-root').getAttribute('data-step'),
           instant: document.getElementById('scene-root').classList.contains('is-instant'),
-          dawnVis: document.getElementById('layer-dawn-sky').classList.contains('is-visible'),
+          dawnVis: document.getElementById('layer-dawn-horizon').classList.contains('is-visible'),
           valleyLitVis: document.getElementById('layer-landscape-moonlit').classList.contains('is-visible')
         }));
         check(`${tag}: Back from 4 restores step 3 instantly`,
@@ -225,5 +226,5 @@ const JOBS = [
     await browser.close();
   }
 
-  console.log(`PASS: ${passed} checks passed for Reflect His Glory sun-and-moon (375, 390, 1280, reduced motion).`);
+  console.log(`PASS: ${passed} checks passed for Reflect His Glory sun-and-moon horizon scene (375, 390, 1280, reduced motion).`);
 })();
