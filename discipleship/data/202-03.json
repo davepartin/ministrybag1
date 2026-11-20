@@ -73,7 +73,7 @@
     },
     {
       "type": "text",
-      "text": "Notice the movement. Once not a people, now God's people. Once without mercy, now full of it. The church is not mainly a building, a Sunday event, or a machine run by paid staff. It is the adopted family of God, called together by Jesus, gathered around the gospel, and sent into the world with His love. You do not join it to earn a place. Mercy gave you a place, and the local church is where that place becomes real: you are known, cared for, challenged, and given work to do."
+      "text": "Once not a people, now God's people. Once without mercy, now full of it. The church is not mainly a building, a Sunday event, or a machine run by paid staff. It is the adopted family of God, called together by Jesus, gathered around the gospel, and sent into the world with His love. You do not join it to earn a place. Mercy gave you a place, and the local church is where that place becomes real: you are known, cared for, challenged, and given work to do."
     },
     {
       "type": "question",
@@ -96,7 +96,7 @@
     },
     {
       "type": "text",
-      "text": "Notice the order: <em>just as I have loved you.</em> Jesus loves first, and His love becomes the pattern. The New Testament spells out what that looks like with a little phrase it repeats again and again: <em>one another.</em> These are not jobs for professionals. They are the ordinary life of the family. Pick one to practice this week."
+      "text": "The order matters: <em>just as I have loved you.</em> Jesus loves first, and His love becomes the pattern. The New Testament spells out what that looks like with a little phrase it repeats again and again: <em>one another.</em> These are not jobs for professionals. They are the ordinary life of the family. Pick one to practice this week."
     },
     {
       "type": "widget",
@@ -133,12 +133,6 @@
       "text": "And let us consider how to stir up one another to love and good works, not neglecting to meet together... but encouraging one another, and all the more as you see the Day drawing near."
     },
     {
-      "type": "question",
-      "id": "202-03-5",
-      "text": "3.4 - What do you most need from a church family right now?",
-      "height": "tall"
-    },
-    {
       "type": "heading",
       "text": "When Family Disagrees"
     },
@@ -161,12 +155,6 @@
     {
       "type": "text",
       "text": "Practice the one another you picked with one real person this week. Then choose one step toward belonging. Attend a Sunday gathering and introduce yourself to someone. Ask about a small group, ministry team, or membership class. Text someone from church and ask how you can pray for them. If church has been painful for you, talk with a mature Christian or trusted leader about a wise next step."
-    },
-    {
-      "type": "question",
-      "id": "202-03-hand",
-      "text": "3.5 - How would you explain to a friend why a follower of Jesus needs a church family?",
-      "height": "tall"
     },
     {
       "type": "heading",
@@ -201,6 +189,20 @@
       "id": "202-03-prayer",
       "text": "What is a prayer request for this week?",
       "height": "short"
+    }
+  ],
+  "retiredQuestions": [
+    {
+      "type": "question",
+      "id": "202-03-5",
+      "text": "3.4 - What do you most need from a church family right now?",
+      "height": "tall"
+    },
+    {
+      "type": "question",
+      "id": "202-03-hand",
+      "text": "3.5 - How would you explain to a friend why a follower of Jesus needs a church family?",
+      "height": "tall"
     }
   ]
 }
