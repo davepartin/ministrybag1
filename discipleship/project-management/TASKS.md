@@ -2,6 +2,10 @@
 
 | Task | Status | Owner / date | Scope |
 |---|---|---|---|
+| ART-203-01b-HOLD50 | ACTIVE | Codex / 2026-11-19 | Dave requests dissolve start50 percent, retaining approved finish64 percent, then merge. Only203-01 timing/test and tracking; current art, copy and answers protected. |
+
+| Task | Status | Owner / date | Scope |
+|---|---|---|---|
 | ART-203-01b-TIMING | DONE | Codex / PR #322 / 2026-11-19 | Dave requested20 percent earlier dissolve: finish0.80 to0.64, start0.42 to0.26, same0.38 duration. Dave approved and requested merge; PR #322 merged2600793. Production80 phone/laptop/reduced-motion checks pass; current lesson copy/artwork/answers preserved. |
 
 | Task | Status | Owner / date | Scope |
