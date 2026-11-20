@@ -2,7 +2,7 @@
 
 | Task | Status | Owner / date | Scope |
 |---|---|---|---|
-| ART-202-02-FALL-INTEGRATE | ACTIVE | Codex / 2026-11-20 | Review approved PR #353 c1abbad, preserve artwork/copy, refresh stale browser regression, verify and merge. |
+| ART-202-02-FALL-INTEGRATE | DONE | Codex / 2026-11-20 | PR #353 merged1f080e0; Firebase44775133154 succeeded. Approved5 frames preserved;77 local/preview/live and266 shared browser checks pass. Lesson copy/questions untouched. |
 | ART-202-06-20-30 | DONE | Codex / 2026-11-20 | PR #350 mergedcd92528; Firebase44741196843 succeeded. Dissolve starts20 percent, finishes30 percent.76 local,76 preview and76 live browser checks pass. Artwork and all other lesson values preserved. |
 | UI-COURSE-OPENER-LOGOS | DONE | Codex / 2026-11-20 | PR #347 merged59cce28; Firebase44738918915 succeeded. Three opener logos fill content width, proportions preserved. Foundation QA and46 local,46 preview,46 live browser checks pass. No other lesson values changed. |
 | ART-202-02-EARLY-FINISH | DONE | Codex / 2026-11-20 | PR #344 merged ebb5baa; Firebase44737217537 succeeded. Finish60 percent instead of72, entire image visible below header.80 local,80 preview and80 production browser checks pass. Artwork, copy, questions and normal scrolling preserved. |

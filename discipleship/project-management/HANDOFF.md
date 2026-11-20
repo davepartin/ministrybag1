@@ -1,6 +1,6 @@
 # Resume here
 
-ART-202-02-FALL-INTEGRATE ACTIVE: Codex reviewing approved PR #353 c1abbad. All5 art dimensions correct, Frames1/5 unchanged, lesson text/questions preserved. Refreshing the stale committed sequence browser check before merge. Log: logs/2026-11-20-ART-202-02-FALL-INTEGRATE-codex.md.
+ART-202-02-FALL-INTEGRATE DONE: PR #353 merged1f080e0; Firebase44775133154 succeeded. Approved5-frame calm/storm/fall/wreckage/aftermath sequence live, stops [0,0.08,0.18,0.3,0.42,0.6]. Frames1/5 and all non-image lesson content preserved.77 local,77 preview,77 production and266 shared browser checks pass. Log: logs/2026-11-20-ART-202-02-FALL-INTEGRATE-codex.md.
 
 ART-202-06-20-30 DONE: PR #350 mergedcd92528; Firebase44741196843 succeeded. Moses dissolve starts20 percent, finishes30 percent.76 local,76 preview and76 live phone/laptop/reduced-motion checks pass. Entire final picture visible. Timing only, artwork and all other lesson values preserved; supersedes the earlier34/91 schedule below. Log: logs/2026-11-20-ART-202-06-20-30-codex.md.
 
