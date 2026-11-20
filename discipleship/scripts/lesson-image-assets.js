@@ -360,6 +360,51 @@
             }
         ]
     },
+    "images/202-03-shared-table-seq-1.jpg": {
+        "width": 1792,
+        "height": 1008,
+        "sourceHash": "7530c01facf9145bacfeb009358cd185b82a9db47b6dacff17792b80ae4e80c1",
+        "variants": [
+            {
+                "src": "images/optimized/202-03-shared-table-seq-1-640.webp",
+                "width": 640
+            },
+            {
+                "src": "images/optimized/202-03-shared-table-seq-1-1280.webp",
+                "width": 1280
+            }
+        ]
+    },
+    "images/202-03-shared-table-seq-2.jpg": {
+        "width": 1792,
+        "height": 1008,
+        "sourceHash": "de3efec4e2d766fdca4ede8a46eff38d538b94a17f8aa0a97a31672be38249cf",
+        "variants": [
+            {
+                "src": "images/optimized/202-03-shared-table-seq-2-640.webp",
+                "width": 640
+            },
+            {
+                "src": "images/optimized/202-03-shared-table-seq-2-1280.webp",
+                "width": 1280
+            }
+        ]
+    },
+    "images/202-03-shared-table-seq-3.jpg": {
+        "width": 1792,
+        "height": 1008,
+        "sourceHash": "529c3e647b9dccd61c204b326cf69cd15fc233f8bd674e3cc8f1b36bbf60f233",
+        "variants": [
+            {
+                "src": "images/optimized/202-03-shared-table-seq-3-640.webp",
+                "width": 640
+            },
+            {
+                "src": "images/optimized/202-03-shared-table-seq-3-1280.webp",
+                "width": 1280
+            }
+        ]
+    },
     "images/202-05-joseph-pit-palace-bw.jpg": {
         "width": 1264,
         "height": 848,

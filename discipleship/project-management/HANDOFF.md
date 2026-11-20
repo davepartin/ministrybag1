@@ -1,5 +1,7 @@
 # Resume here
 
+ART-202-03-TABLE REVIEW, November 20: Replaced the 202-03 four-frame early-church sequence with three B&W shared-table frames (`202-03-shared-table-seq-1.jpg` .. `3.jpg`) immediately before The Early Church. Stops `[0, 0.3, 0.6]`, `touchNext` kept. Old early-church files stay on disk unused. Lesson JSON, Scripture, question/answer IDs, and saved-answer behavior unchanged except the image block. Foundation QA and 85 local story-image checks pass. Stop at REVIEW. Evidence: [task log](logs/2026-11-20-ART-202-03-TABLE-cursor.md).
+
 INTEGRATE-349-354 DONE: PR #349 merged16b2b46, PR #354 merged63ef8cc. Firebase44800501153 and44801360973 succeeded. Approved roof art and Marks widget byte-preserved;203-01 timing remains30/45.203-10 static Romans12:9-21 replaced with the approved interactive passage at Dave's explicit direction; all surrounding teaching/questions/readings unchanged.80 roof,182 standalone and132 embedded live checks pass. Log: logs/2026-11-20-INTEGRATE-349-354-codex.md.
 
 ART-203-01c REVIEW, November 20: Dave sent two new Grok Imagine frames for the 203-01 roof-drop sequence. Replaced seq-1 (mat still high) and seq-2 (mat landed beside Jesus) only. Sequence order, placement, and stops [0,0.3,0.45] unchanged. Lesson JSON, alt, touchNext, and saved-answer IDs unchanged. Foundation QA and 80 local story-image checks pass. Stop at REVIEW. Evidence: [task log](logs/2026-11-20-ART-203-01c-grok.md).
