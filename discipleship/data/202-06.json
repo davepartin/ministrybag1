@@ -12,6 +12,11 @@
       "label": "Study",
       "title": "Why You Were Made",
       "anchor": "study"
+    },
+    {
+      "label": "Diagram",
+      "title": "Reflect His Glory",
+      "anchor": "diagram"
     }
   ],
   "blocks": [
@@ -28,8 +33,8 @@
       ],
       "imageSequenceStops": [
         0,
-        0.34,
-        0.91
+        0.2,
+        0.3
       ],
       "alt": "Moses coming down Mount Sinai with the stone tablets, his face shining so brightly the whole scene is washed in light, then lowering a veil over his face so the mountain path and the camp below come into view",
       "touchNext": true,
@@ -105,6 +110,13 @@
     {
       "type": "text",
       "text": "Your good works are not meant to make people admire you. They are meant to make people look up and see your Father."
+    },
+    {
+      "type": "widget",
+      "src": "widgets/reflect-glory-202.html",
+      "title": "Reflect His Glory",
+      "height": "550px",
+      "anchor": "diagram"
     },
     {
       "type": "question",

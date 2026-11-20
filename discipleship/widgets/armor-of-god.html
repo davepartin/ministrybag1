@@ -266,6 +266,27 @@
         /* The figure starts well below the top of its 370px canvas; trim that empty band */
         .diagram-wrapper { height: 340px; overflow: hidden; }
         .diagram-container { margin-top: -34px; }
+
+        /* Growing Together header/frame: teaching and diagrams stay intact. */
+        .title-bar {
+            display: flex; align-items: center; justify-content: space-between; gap: 10px;
+            min-height: 40px; padding: 9px 12px; background: #2C2416; text-align: left;
+        }
+        .title-bar h1 {
+            flex: 1; min-width: 0; margin: 0;
+            font: 700 clamp(14px, 4.2vw, 18px)/1.2 'Trebuchet MS', 'Inter', sans-serif;
+            color: #FAF8F3; letter-spacing: 0; text-align: left;
+        }
+        .title-bar .lesson-code {
+            flex: none; font: 700 11px/1.2 'Trebuchet MS', 'Inter', sans-serif;
+            color: #E5DEC9; letter-spacing: .1em; white-space: nowrap;
+        }
+        @media (min-width: 560px) {
+            .widget-outer {
+                border: 1px solid #E7DECE; border-radius: 16px;
+                box-shadow: 0 10px 28px rgba(44, 36, 22, .08);
+            }
+        }
     </style>
 </head>
 <body>
@@ -273,6 +294,7 @@
 <div class="widget-outer">
     <div class="title-bar">
         <h1>Put on the Armor of God</h1>
+        <span class="lesson-code">203-07</span>
         <p>Dress for the battle you are already in</p>
     </div>
 

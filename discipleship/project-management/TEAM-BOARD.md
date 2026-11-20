@@ -1,6 +1,15 @@
 # Growing Together Team Board
 
 ART-203-01c REVIEW, November 20: two new Grok Imagine roof-drop frames replace seq-1 and seq-2. Stops stay [0,0.3,0.45]. Lesson copy and saved-answer IDs unchanged. Stop at REVIEW. [Evidence](logs/2026-11-20-ART-203-01c-grok.md).
+UI-203-WIDGET-FRAMES DONE: PR #358 merged9d8ff6a; Firebase44798863408 succeeded.203-05 through09 use dark compact headers, lesson codes and matching desktop frames.890 local,890 preview and359 live all-step phone/laptop checks pass. All scripts/SVGs/teaching/control content preserved exactly. Log: logs/2026-11-20-UI-203-WIDGET-FRAMES-codex.md.
+
+UI-WIDGET-OPENING-CUES DONE: PR #357 merged0b4f9fb; Firebase44797004262 succeeded.201-01 Love begins with God and203-01 His love keeps moving outward fade before drawing. All embedded widgets have subtle phone side boundaries with no added width/height.192 live opening/layout/input/reduced-motion and604 local shared-engine checks pass. Teaching, diagrams and answers preserved. Log: logs/2026-11-20-UI-WIDGET-OPENING-CUES-codex.md.
+
+ART-202-02-RAIN-HOLD DONE: PR #355 merged1d71096; Firebase44776039816 succeeded. Full storm holds18 to28 percent before collapse; later dissolves rebalance to preserve60 percent finish.83 local,83 preview and83 live phone/laptop/reduced-motion checks pass. Art/copy untouched. Log: logs/2026-11-20-ART-202-02-RAIN-HOLD-codex.md.
+
+ART-202-02-FALL-INTEGRATE DONE: PR #353 merged1f080e0; Firebase44775133154 succeeded. Approved5-frame calm/storm/fall/wreckage/aftermath sequence live, stops [0,0.08,0.18,0.3,0.42,0.6]. Frames1/5 and all non-image lesson content preserved.77 local,77 preview,77 production and266 shared browser checks pass. Log: logs/2026-11-20-ART-202-02-FALL-INTEGRATE-codex.md.
+
+ART-202-06-20-30 DONE: PR #350 mergedcd92528; Firebase44741196843 succeeded. Moses dissolve starts20 percent, finishes30 percent.76 local,76 preview and76 live phone/laptop/reduced-motion checks pass. Entire final picture visible. Timing only, artwork and all other lesson values preserved; supersedes the earlier34/91 schedule below. Log: logs/2026-11-20-ART-202-06-20-30-codex.md.
 
 UI-COURSE-OPENER-LOGOS DONE: PR #347 merged59cce28 and Firebase44738918915 succeeded. The201-01,202-01 and203-01 logos fill content width.46 local,46 preview and46 live phone/laptop checks pass. All other lesson values/artwork preserved. See logs/2026-11-20-UI-COURSE-OPENER-LOGOS-codex.md.
 

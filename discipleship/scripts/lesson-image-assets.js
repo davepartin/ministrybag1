@@ -1820,7 +1820,7 @@
     "images/house-rock-seq-2.jpg": {
         "width": 1712,
         "height": 1152,
-        "sourceHash": "6138bb1f2a48df540e557749d3ebfb2d3a7f2c7ed90db496a38d0c2821ea2813",
+        "sourceHash": "56c23152c06211512fcd116e71d6a72c741f6de0fab92ada8303d8e9b3b0e995",
         "variants": [
             {
                 "src": "images/optimized/house-rock-seq-2-640.webp",
@@ -1835,7 +1835,7 @@
     "images/house-rock-seq-3.jpg": {
         "width": 1712,
         "height": 1152,
-        "sourceHash": "8c47917ce55a120f1c8bb5245b248a4f3ad5746bd77114360a625c5a08357181",
+        "sourceHash": "55c1b54d81e955dd5eaa677f4cfb1a446afb92e29a5d1fc317e27bf71f1523eb",
         "variants": [
             {
                 "src": "images/optimized/house-rock-seq-3-640.webp",
@@ -1850,7 +1850,7 @@
     "images/house-rock-seq-4.jpg": {
         "width": 1712,
         "height": 1152,
-        "sourceHash": "242750a62ecb9fa4e5b8f0eb6a508164998c92d789dccc77790b32264238c100",
+        "sourceHash": "2e6b872e5872c9d04d8cd08c195271b5e38b8a78b73d2ddb7d7fae1d5624e916",
         "variants": [
             {
                 "src": "images/optimized/house-rock-seq-4-640.webp",

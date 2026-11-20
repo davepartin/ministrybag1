@@ -83,10 +83,23 @@ body {
 }
 
 .stage {
+  position: relative;
   background: #FFFFFF;
   padding: 2px 10px 0;
   border-bottom: 1px solid var(--border);
 }
+
+.opening-cue {
+  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+  z-index: 5; padding: 18px; pointer-events: none; opacity: 1; transition: opacity .32s ease;
+}
+.opening-cue p {
+  margin: 0; max-width: 290px; padding: 16px 20px; border: 1px solid #E6DECF;
+  border-radius: 14px; background: #FFFFFF; box-shadow: 0 10px 28px rgba(44,36,22,.10);
+  color: #2C2416; text-align: center; font: 600 17px/1.3 Georgia, 'Times New Roman', serif;
+}
+.opening-cue.is-hidden { opacity: 0; }
+@media (prefers-reduced-motion: reduce) { .opening-cue { transition: none; } }
 
 .gc-svg {
   display: block;
@@ -326,6 +339,7 @@ button:focus-visible {
   </header>
 
   <div class="stage">
+    <div class="opening-cue" id="opening-cue"><p>His love keeps moving outward.</p></div>
     <svg class="gc-svg" id="gc-svg" viewBox="0 0 440 314" width="100%" role="img" aria-labelledby="svg-title svg-desc">
       <title id="svg-title">The Great Commission</title>
       <desc id="svg-desc">Clean white stage ready for the circles of the Great Commission to unfold from the center outward.</desc>
@@ -672,6 +686,8 @@ button:focus-visible {
     widget.classList.add('is-instant');
   }
 
+  var openingCue = document.getElementById('opening-cue');
+  var introTimer = null;
   var currentStep = 0;
   var activeRaf = 0;
   var activeTimers = [];
@@ -868,10 +884,26 @@ button:focus-visible {
     });
   }
 
-  function goToStep(idx, animateForward) {
+  function goToStep(idx, animateForward, introFinished) {
+    if (introTimer !== null) {
+      if (idx !== 0) return;
+      clearTimeout(introTimer);
+      introTimer = null;
+    }
+    if (currentStep === 0 && idx > 0 && !introFinished && !reducedMotion) {
+      openingCue.classList.add('is-hidden');
+      openingCue.setAttribute('aria-hidden', 'true');
+      introTimer = setTimeout(function () {
+        introTimer = null;
+        goToStep(idx, animateForward, true);
+      }, 340);
+      return;
+    }
     if (idx < 0 || idx >= STEPS.length) return;
     cancelAnim();
     currentStep = idx;
+    openingCue.classList.toggle('is-hidden', idx !== 0);
+    openingCue.setAttribute('aria-hidden', idx === 0 ? 'false' : 'true');
     updateCardAndChrome(idx);
 
     var instant = reducedMotion || !animateForward || idx === 0;
@@ -946,7 +978,7 @@ button:focus-visible {
 
   dotBtns.forEach(function (btn, i) {
     btn.addEventListener('click', function () {
-      if (i === currentStep) return;
+      if (i === currentStep && introTimer === null) return;
       var forwardOne = (i === currentStep + 1);
       goToStep(i, forwardOne);
     });
