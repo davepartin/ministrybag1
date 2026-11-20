@@ -2,7 +2,7 @@
 
 | Task | Status | Owner / date | Scope |
 |---|---|---|---|
-| ART-203-01b-TIMING | ACTIVE | Codex / PR #322 / 2026-11-19 | Dave requested20 percent earlier dissolve: finish0.80 to0.64, start0.42 to0.26, same0.38 duration. Preserve artwork, current lesson copy and answers. Preview only. |
+| ART-203-01b-TIMING | REVIEW | Codex / PR #322 / 2026-11-19 | Dave requested20 percent earlier dissolve: finish0.80 to0.64, start0.42 to0.26, same0.38 duration. Preserve artwork, current lesson copy and answers. Preview only. |
 
 | Task | Status | Owner / date | Scope |
 |---|---|---|---|

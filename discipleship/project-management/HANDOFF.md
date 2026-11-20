@@ -1,6 +1,6 @@
 # Resume here
 
-203-01 two-frame timing update ACTIVE: Dave requested the dissolve20 percent sooner. PR #322 now holds through0.26 and dissolves to0.64, preserving the0.38 dissolve duration and normal scrolling. Current-main Great Commission copy retained. Preview and phone/laptop verification pending; do not merge yet.
+203-01 two-frame timing update REVIEW: Dave requested the dissolve20 percent sooner. PR #322 now holds through0.26 and dissolves to0.64, preserving the0.38 dissolve duration and normal scrolling. Current-main Great Commission copy retained. Core QA and80 phone/laptop/reduced-motion checks passed; entire landing frame visible below header at0.64. Updated PR #322 preview for Dave; not merged or live.
 
 ART-203-01b REVIEW, November 19: Dave approved a two-frame Grok Imagine roof-drop sequence that replaces the three-frame set in 203-01. Wired as `[seq-1, seq-1, seq-2]` with stops `[0, 0.42, 0.8]` immediately before Four Friends and a Roof (dissolve 40 percent faster than the first two-frame wiring, still landing at 0.8). Seq-3 original and optimized copies removed. Non-image lesson values and saved-answer IDs unchanged. Stop at REVIEW. Evidence: [task log](logs/2026-11-19-ART-203-01b-grok.md).
 
