@@ -37,12 +37,12 @@
       ],
       "imageSequenceStops": [
         0,
-        0.08,
-        0.16,
-        0.24,
-        0.32,
-        0.48,
-        0.72
+        0.067,
+        0.133,
+        0.2,
+        0.267,
+        0.4,
+        0.6
       ],
       "alt": "Two houses built on different ground as a storm gathers, then the sand house tipping and falling into the water while the rock house stands, and finally calm reveals the rock house still standing",
       "touchNext": true,
@@ -128,7 +128,7 @@
     },
     {
       "type": "text",
-      "text": "Notice the order. Before Paul says <em>forgive</em>, he tells you who you are: chosen, holy, and beloved. The reason you forgive is not that they deserve it, but that the Lord has forgiven you. You forgive out of the full account of His mercy, not the empty account of their apology. You already know this rhythm. In Growing Deep you walked the Grace and Mercy Cycle, where the arrow never stops at you but points back toward mercy, and the Learning Circle, which carries you home when you drift. Forgiveness at home is the same movement in three R's."
+      "text": "The order matters. Before Paul says <em>forgive</em>, he tells you who you are: chosen, holy, and beloved. The reason you forgive is not that they deserve it, but that the Lord has forgiven you. You forgive out of the full account of His mercy, not the empty account of their apology. You already know this rhythm. In Growing Deep you walked the Grace and Mercy Cycle, where the arrow never stops at you but points back toward mercy, and the Learning Circle, which carries you home when you drift. Forgiveness at home is the same movement in three R's."
     },
     {
       "type": "box",
@@ -179,12 +179,6 @@
       "text": "Choose one family relationship and one practice this week. A parent might bless a child with unhurried attention or a needed apology. A child or adult child might show honor through gratitude, care, or a wise boundary. A single adult might ask the person who is family to them how to serve them. If something is broken at home, take one of the three R's, even if it is only remembering. Then thank the Lord who forgave you first."
     },
     {
-      "type": "question",
-      "id": "202-02-hand",
-      "text": "2.4 - How would you explain the three R's to someone in your family in one minute?",
-      "height": "tall"
-    },
-    {
       "type": "heading",
       "text": "Lesson 2 Review"
     },
@@ -217,6 +211,14 @@
       "id": "202-02-prayer",
       "text": "What is a prayer request for this week?",
       "height": "short"
+    }
+  ],
+  "retiredQuestions": [
+    {
+      "type": "question",
+      "id": "202-02-hand",
+      "text": "2.4 - How would you explain the three R's to someone in your family in one minute?",
+      "height": "tall"
     }
   ]
 }

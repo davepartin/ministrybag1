@@ -839,7 +839,7 @@
     "images/203-01-roof-drop-seq-1.jpg": {
         "width": 1792,
         "height": 1008,
-        "sourceHash": "86940e675d124b3d2bf7224d8b30792d70da2737a903ce7cfee2f4698e2cf44f",
+        "sourceHash": "c62ab039b4b0b122fbdb1cfcd429c66b0b9e034f86f81a0abf4b385e66f83971",
         "variants": [
             {
                 "src": "images/optimized/203-01-roof-drop-seq-1-640.webp",
@@ -854,7 +854,7 @@
     "images/203-01-roof-drop-seq-2.jpg": {
         "width": 1792,
         "height": 1008,
-        "sourceHash": "53597af63b0c1216c7caf654c79adbc528f0b10ce2e4acd2d3e9ed401f9445a3",
+        "sourceHash": "da635ec0430b9d64d0f981961d1a1e14f522f14caf3abe7d2f71e58498a22ed2",
         "variants": [
             {
                 "src": "images/optimized/203-01-roof-drop-seq-2-640.webp",
@@ -866,17 +866,32 @@
             }
         ]
     },
-    "images/203-01-roof-drop-seq-3.jpg": {
-        "width": 1792,
-        "height": 1008,
-        "sourceHash": "dc12fb5349163be5d5c2062ee8e5f79a5ae188a319fb083dba58ebb01451dafe",
+    "images/203-02-abraham-bw.jpg": {
+        "width": 1280,
+        "height": 720,
+        "sourceHash": "02363df439e027a534b47ed62fac56ff557d32212733f0f8959a2a1b4bf62402",
         "variants": [
             {
-                "src": "images/optimized/203-01-roof-drop-seq-3-640.webp",
+                "src": "images/optimized/203-02-abraham-bw-640.webp",
                 "width": 640
             },
             {
-                "src": "images/optimized/203-01-roof-drop-seq-3-1280.webp",
+                "src": "images/optimized/203-02-abraham-bw-1280.webp",
+                "width": 1280
+            }
+        ]
+    },
+    "images/203-02-abraham-color.jpg": {
+        "width": 1280,
+        "height": 720,
+        "sourceHash": "07048cdae279bf4b6afc50e46c13d3e225c0f300805a644ff0ce40a8d5beb0ca",
+        "variants": [
+            {
+                "src": "images/optimized/203-02-abraham-color-640.webp",
+                "width": 640
+            },
+            {
+                "src": "images/optimized/203-02-abraham-color-1280.webp",
                 "width": 1280
             }
         ]
