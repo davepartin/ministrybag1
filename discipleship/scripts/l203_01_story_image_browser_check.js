@@ -2,7 +2,7 @@
 /**
  * 203-01 Four Friends and a Roof story-image browser check.
  * Confirms the two roof-drop scroll frames load with a hold on frame 1,
- * a last unique landing frame at 0.64, advance in order, keep touchNext
+ * a last unique landing frame at 0.45, advance in order, keep touchNext
  * on the parable card, honor reduced motion, and do not shift the page
  * at phone and laptop widths. Synthetic navigation only.
  */
@@ -25,10 +25,10 @@ var QUESTION_IDS = [
     '203-01-step',
     '203-01-prayer'
 ];
-var STOPS = [0, 0.5, 0.64];
+var STOPS = [0, 0.3, 0.45];
 var LAST_STOP = STOPS[STOPS.length - 1];
-var AFTER_LAST = 0.69;
-var SAMPLE_PROGRESS = [0, 0.35, 0.5, 0.55, 0.59, 0.64, 0.69];
+var AFTER_LAST = 0.5;
+var SAMPLE_PROGRESS = [0, 0.2, 0.3, 0.35, 0.4, 0.45, 0.5];
 var failed = 0;
 var passed = 0;
 
@@ -166,7 +166,7 @@ function srcMatches(src, expected) {
 
         var rest = await readSequenceState(page);
         assert(width + ': three sequence frames render', rest.frameCount === 3, String(rest.frameCount));
-        assert(width + ': sequence stops are 0,0.5,0.64', rest.stops === STOPS.join(','), rest.stops);
+        assert(width + ': sequence stops are 0,0.3,0.45', rest.stops === STOPS.join(','), rest.stops);
         assert(width + ': image keeps touchNext', rest.touchNext);
         assert(width + ': parable card follows the image', rest.nextIsParable);
         assert(
@@ -271,19 +271,19 @@ function srcMatches(src, expected) {
         assert(width + ': last frame is exclusive just after stop ' + LAST_STOP, afterLastStop && afterLastStop.dominant === 2, JSON.stringify(afterLastStop));
         assert(width + ': last frame is still on screen at the final stop', lastStopVisible, lastStopNote);
         assert(width + ': touchNext joins the parable card without layout shift', overlapShift === false && heightAtStart > 100);
-        var atHoldEnd = order.find(function (row) { return row.progress === 0.5; });
-        var midDissolve = order.find(function (row) { return row.progress === 0.55; });
-        var lateDissolve = order.find(function (row) { return row.progress === 0.59; });
+        var atHoldEnd = order.find(function (row) { return row.progress === 0.3; });
+        var midDissolve = order.find(function (row) { return row.progress === 0.35; });
+        var lateDissolve = order.find(function (row) { return row.progress === 0.4; });
         var seq1AtHold = atHoldEnd && atHoldEnd.opacities &&
             (atHoldEnd.opacities[0] >= 0.85 || atHoldEnd.opacities[1] >= 0.85) &&
             atHoldEnd.opacities[2] < 0.15;
         var seq2Mid = midDissolve && midDissolve.opacities && midDissolve.opacities[2];
         var seq2Late = lateDissolve && lateDissolve.opacities && lateDissolve.opacities[2];
-        assert(width + ': seq-1 still holds at 0.5 before the last dissolve', seq1AtHold, JSON.stringify(atHoldEnd));
-        assert(width + ': last dissolve is underway at 0.55', seq2Mid > 0.15 && seq2Mid < 0.55, JSON.stringify(midDissolve));
-        assert(width + ': last dissolve is further along at 0.59', seq2Late > 0.45 && seq2Late < 0.80, JSON.stringify(lateDissolve));
+        assert(width + ': seq-1 still holds at 0.3 before the last dissolve', seq1AtHold, JSON.stringify(atHoldEnd));
+        assert(width + ': last dissolve is underway at 0.35', seq2Mid > 0.15 && seq2Mid < 0.55, JSON.stringify(midDissolve));
+        assert(width + ': last dissolve is further along at 0.4', seq2Late > 0.45 && seq2Late < 0.80, JSON.stringify(lateDissolve));
         if (width === 390) {
-            assert('390: last dissolve spans 0.5 to 0.64 from seq-1 to seq-2', seq2Mid < seq2Late, 'mid=' + seq2Mid + ' late=' + seq2Late);
+            assert('390: last dissolve spans 0.3 to 0.45 from seq-1 to seq-2', seq2Mid < seq2Late, 'mid=' + seq2Mid + ' late=' + seq2Late);
         }
 
         await page.close();
