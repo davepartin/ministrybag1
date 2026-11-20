@@ -420,6 +420,36 @@
             }
         ]
     },
+    "images/202-06-moses-veil-seq-1.jpg": {
+        "width": 1792,
+        "height": 1008,
+        "sourceHash": "f3d79d768ae6946771172ac96ed8528d1cc0171d7a7f599dee1e642b6de382a0",
+        "variants": [
+            {
+                "src": "images/optimized/202-06-moses-veil-seq-1-640.webp",
+                "width": 640
+            },
+            {
+                "src": "images/optimized/202-06-moses-veil-seq-1-1280.webp",
+                "width": 1280
+            }
+        ]
+    },
+    "images/202-06-moses-veil-seq-2.jpg": {
+        "width": 1792,
+        "height": 1008,
+        "sourceHash": "56707dcd13b533810418f4ab53a8da792907a4cad047245927f9c7341235c057",
+        "variants": [
+            {
+                "src": "images/optimized/202-06-moses-veil-seq-2-640.webp",
+                "width": 640
+            },
+            {
+                "src": "images/optimized/202-06-moses-veil-seq-2-1280.webp",
+                "width": 1280
+            }
+        ]
+    },
     "images/202-06-paul-silas-seq-1.jpg": {
         "width": 1280,
         "height": 720,
