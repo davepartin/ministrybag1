@@ -1,6 +1,6 @@
 # Growing Together Team Board
 
-ART-202-06-20-30 ACTIVE: Dave requests Moses dissolve start20 percent, finish30 percent. Timing only; supersedes the earlier34/91 schedule below.
+ART-202-06-20-30 DONE: PR #350 mergedcd92528; Firebase44741196843 succeeded. Moses dissolve starts20 percent, finishes30 percent.76 local,76 preview and76 live phone/laptop/reduced-motion checks pass. Entire final picture visible. Timing only, artwork and all other lesson values preserved; supersedes the earlier34/91 schedule below. Log: logs/2026-11-20-ART-202-06-20-30-codex.md.
 
 UI-COURSE-OPENER-LOGOS DONE: PR #347 merged59cce28 and Firebase44738918915 succeeded. The201-01,202-01 and203-01 logos fill content width.46 local,46 preview and46 live phone/laptop checks pass. All other lesson values/artwork preserved. See logs/2026-11-20-UI-COURSE-OPENER-LOGOS-codex.md.
 
