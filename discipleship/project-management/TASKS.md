@@ -2,6 +2,7 @@
 
 | Task | Status | Owner / date | Scope |
 |---|---|---|---|
+| UI-COURSE-OPENER-LOGOS | ACTIVE | Codex / 2026-11-20 | Branch codex/course-opener-logo-width. Fill the lesson content width with the201-01,202-01 and203-01 course logos, preserving aspect ratios and all other content. |
 | ART-202-02-EARLY-FINISH | DONE | Codex / 2026-11-20 | PR #344 merged ebb5baa; Firebase44737217537 succeeded. Finish60 percent instead of72, entire image visible below header.80 local,80 preview and80 production browser checks pass. Artwork, copy, questions and normal scrolling preserved. |
 | WIDGET-203-10-REMOVE | DONE | Codex / 2026-11-20 | Dave requests removing the203-10 Greatest Commandment widget pending a better design. Remove embed and obsolete diagram navigation only; protect shared widget files, lesson copy and saved answers. PR #343 merged1ff1002; Firebase44736024654 succeeded.30 preview and30 live checks pass. |
 
