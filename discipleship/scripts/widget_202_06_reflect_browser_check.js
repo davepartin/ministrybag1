@@ -20,10 +20,10 @@ if (SCREENSHOT_DIR) fs.mkdirSync(SCREENSHOT_DIR, { recursive: true });
 
 const EXPECTED_HEADINGS = [
   'Reflect His Glory',
-  'God Is the Source',
-  'Beholding and Being Changed',
-  'Shining in Everyday Life',
-  'Until Day Breaks'
+  'Unveiled Before God',
+  'Beholding His Glory',
+  'Transformed Into His Image',
+  'From the Lord Who Is the Spirit'
 ];
 
 const JOBS = [
@@ -151,7 +151,7 @@ const JOBS = [
               valleyLitVis: document.getElementById('layer-landscape-moonlit').classList.contains('is-visible'),
               dawnHorizonVis: document.getElementById('layer-dawn-horizon').classList.contains('is-visible'),
               sunEdgeTransform: document.getElementById('rising-sun-edge').getAttribute('transform'),
-              frameVis: document.getElementById('layer-climax-frame').classList.contains('is-visible'),
+              hasBorderFrame: Boolean(document.getElementById('layer-climax-frame')),
               storageWrites: window.__storageWrites
             };
           });
@@ -175,9 +175,9 @@ const JOBS = [
           } else if (s === 3) {
             check(`${tag}: step 3 reveals road, rooftops, and warm windows`, state.horizonGlowVis && state.moonLitVis && state.valleyLitVis && !state.dawnHorizonVis);
           } else if (s === 4) {
-            check(`${tag}: step 4 reveals upper edge of rising sun and climax frame`,
+            check(`${tag}: step 4 reveals upper edge of rising sun with no yellow outer border`,
               state.horizonGlowVis && state.moonLitVis && state.valleyLitVis && state.dawnHorizonVis &&
-              state.sunEdgeTransform === 'translate(0, 0)' && state.frameVis);
+              state.sunEdgeTransform === 'translate(0, 0)' && !state.hasBorderFrame);
           }
 
           if (SCREENSHOT_DIR && job.width === 390 && job.reducedMotion === 'no-preference') {
