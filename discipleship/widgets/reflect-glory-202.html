@@ -1,0 +1,1266 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reflect His Glory</title>
+<style>
+:root {
+  --ink: #2C2416;
+  --muted: #6E6559;
+  --tray: #F6F4EE;
+  --border: #EBE5D9;
+  --night: #233852;
+  --night-dark: #19293D;
+  --gold: #A8760A;
+  --gold-btn: #8E6206;
+  --gold-dark: #7D5604;
+  --gold-wash: #FCF2D6;
+  --gold-ray: #C48F10;
+  --blue: #2A5B7C;
+  --blue-dark: #1E435C;
+  --green: #1F684A;
+  --green-dark: #164E37;
+  --crimson: #8B1A2B;
+  --crimson-dark: #6D1422;
+  --step-color: #233852;
+  --step-dark: #19293D;
+  --card-h: 132px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: Georgia, Cambria, serif;
+  background: #F8F6F1;
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+.widget-outer {
+  background: #FFFFFF;
+  border-radius: 0;
+  overflow: hidden;
+  max-width: 100%;
+  width: 100%;
+  margin: 0;
+  position: relative;
+}
+
+@media (min-width: 560px) {
+  body {
+    padding: 16px;
+    background: #F8F6F1;
+  }
+  .widget-outer {
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(44, 36, 22, 0.08);
+    border: 1px solid #EBE5D9;
+    max-width: 460px;
+    margin: 0 auto;
+  }
+}
+
+.title-bar {
+  background: #2C2416;
+  padding: 8px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.title-bar h1 {
+  font: 600 17px/1.15 system-ui, -apple-system, sans-serif;
+  color: #FAF8F3;
+  letter-spacing: 0.2px;
+  margin: 0;
+}
+
+.course-tag {
+  font: 600 11px/1 system-ui, -apple-system, sans-serif;
+  letter-spacing: 0.9px;
+  text-transform: uppercase;
+  color: #E5DEC9;
+  white-space: nowrap;
+}
+
+.stage {
+  background: #18283C;
+  padding: 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.scene-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.reveal-layer {
+  opacity: 0;
+}
+
+.reveal-layer.is-visible {
+  opacity: 1;
+}
+
+.step-strip {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 12px 4px;
+  background: var(--tray);
+  border-bottom: 1px solid var(--border);
+}
+
+.step-dot {
+  appearance: none;
+  min-width: 28px;
+  min-height: 28px;
+  padding: 4px;
+  border: none;
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.step-dot-fill {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 2.5px solid var(--dot-color, var(--ink));
+  background: #FFFFFF;
+  display: block;
+}
+
+.step-dot.passed .step-dot-fill {
+  background: color-mix(in srgb, var(--dot-color, var(--ink)) 22%, #FFFFFF);
+}
+
+.step-dot.active .step-dot-fill {
+  background: var(--dot-color, var(--ink));
+  transform: scale(1.12);
+}
+
+.card-area {
+  background: var(--tray);
+  padding: 6px 12px 9px;
+}
+
+.verse-card {
+  background: #FFFFFF;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid #EBE5D9;
+  box-shadow: 0 2px 10px rgba(44, 36, 22, 0.05);
+}
+
+.verse-card-bar {
+  height: 4px;
+  background: var(--step-color);
+}
+
+.verse-card-content {
+  padding: 9px 13px;
+  min-height: var(--card-h, 132px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 4px;
+}
+
+.card-heading {
+  font: 700 15px/1.2 system-ui, -apple-system, sans-serif;
+  color: var(--step-dark);
+  margin: 0;
+}
+
+.card-quote {
+  font: 12.8px/1.34 Georgia, Cambria, serif;
+  color: #2C2416;
+  margin: 0;
+}
+
+.card-ref {
+  font: 600 11.5px/1.2 system-ui, -apple-system, sans-serif;
+  color: var(--muted);
+  margin-left: 4px;
+  white-space: nowrap;
+}
+
+.card-note {
+  font: 12.2px/1.34 system-ui, -apple-system, sans-serif;
+  color: #4A4238;
+  margin: 0;
+}
+
+.nav-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-top: 7px;
+}
+
+.nav-btn {
+  min-height: 44px;
+  min-width: 96px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1.5px solid #D4CFC4;
+  background: #FFFFFF;
+  color: var(--ink);
+  font: 700 13.5px/1 system-ui, -apple-system, sans-serif;
+  cursor: pointer;
+}
+
+.nav-btn.primary {
+  background: var(--step-color);
+  border-color: var(--step-color);
+  color: #FFFFFF;
+}
+
+.nav-btn:disabled {
+  opacity: 0.36;
+  cursor: default;
+}
+
+.step-count {
+  font: 600 12px system-ui, -apple-system, sans-serif;
+  color: var(--muted);
+}
+
+button:focus-visible {
+  outline: 3px solid #E0A526;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .widget-outer:not(.is-instant) .reveal-layer {
+    transition: opacity 0.42s ease;
+  }
+  .widget-outer .step-dot-fill {
+    transition: background-color 0.22s ease, border-color 0.22s ease, transform 0.22s ease;
+  }
+  .widget-outer .nav-btn.primary,
+  .widget-outer .verse-card-bar,
+  .widget-outer .card-heading {
+    transition: background-color 0.24s ease, border-color 0.24s ease, color 0.24s ease;
+  }
+}
+
+@media (max-width: 395px) {
+  .card-area {
+    padding: 6px 10px 8px;
+  }
+  .verse-card-content {
+    padding: 8px 11px;
+  }
+  .card-heading {
+    font-size: 14.5px;
+  }
+  .card-quote {
+    font-size: 12.4px;
+  }
+  .card-note {
+    font-size: 11.8px;
+  }
+}
+
+@media (forced-colors: active) {
+  .step-dot-fill {
+    border-color: ButtonText;
+    background: Canvas;
+  }
+  .step-dot.active .step-dot-fill {
+    background: Highlight;
+    border-color: Highlight;
+  }
+  .nav-btn.primary {
+    border: 2px solid Highlight;
+  }
+}
+</style>
+</head>
+<body>
+<main class="widget-outer" id="scene-root" aria-label="Reflect His Glory"></main>
+
+<script>
+(function () {
+  'use strict';
+
+  var SVG_NS = 'http://www.w3.org/2000/svg';
+  var RAY_SPEED = 185; // px per second per Studio Wash pacing
+
+  var COLORS = {
+    night: '#233852',
+    nightDark: '#19293D',
+    gold: '#A8760A',
+    goldBtn: '#8E6206',
+    goldDark: '#7D5604',
+    goldWash: '#FCF2D6',
+    goldRay: '#F0C454',
+    blue: '#2A5B7C',
+    blueDark: '#1E435C',
+    green: '#1F684A',
+    greenDark: '#164E37',
+    crimson: '#8B1A2B',
+    crimsonDark: '#6D1422'
+  };
+
+  var STEPS = [
+    {
+      id: 'night',
+      dotLabel: 'Start: Reflect His Glory',
+      color: COLORS.night,
+      dark: COLORS.nightDark,
+      heading: 'Reflect His Glory',
+      verse: '"The heavens declare the glory of God, and the sky above proclaims his handiwork."',
+      ref: 'Psalm 19:1',
+      line: 'An ordinary night rests beneath the sky. You were made to carry light that does not begin with you.',
+      desc: 'A quiet nighttime valley with rolling hills, a winding stream, a few homes, a village church, and a darkened moon resting beneath the stars.'
+    },
+    {
+      id: 'source',
+      dotLabel: 'Step 1: God Is the Source',
+      color: COLORS.goldBtn,
+      dark: COLORS.goldDark,
+      heading: 'God Is the Source',
+      verse: '"For with you is the fountain of life; in your light do we see light."',
+      ref: 'Psalm 36:9',
+      line: 'Every ounce of true goodness and beauty begins in God. Worship starts by looking to the One who shines first.',
+      desc: 'A radiant gold sun appears in the upper-left sky, shining clear golden light across the upper heavens.'
+    },
+    {
+      id: 'beholding',
+      dotLabel: 'Step 2: Beholding and Being Changed',
+      color: COLORS.blue,
+      dark: COLORS.blueDark,
+      heading: 'Beholding and Being Changed',
+      verse: '"And we all, with unveiled face, beholding the glory of the Lord, are being transformed into the same image from one degree of glory to another. For this comes from the Lord who is the Spirit."',
+      ref: '2 Corinthians 3:18',
+      line: 'You do not manufacture light on your own. As you behold Jesus, His Spirit steadily transforms you to shine like Him.',
+      desc: 'Golden rays stream from the sun onto the moon, filling the moon with warm luminous ivory-gold light.'
+    },
+    {
+      id: 'ordinary-life',
+      dotLabel: 'Step 3: Shining in Everyday Life',
+      color: COLORS.green,
+      dark: COLORS.greenDark,
+      heading: 'Shining in Everyday Life',
+      verse: '"In the same way, let your light shine before others, so that they may see your good works and give glory to your Father who is in heaven."',
+      ref: 'Matthew 5:16',
+      line: 'The light you receive reaches ordinary homes, roads, and neighbors below, pointing hearts back to your Father.',
+      desc: 'Reflected moonlight fans softly down from the moon across the hills, shimmering on the winding stream and lighting warm windows in the valley homes.'
+    },
+    {
+      id: 'dawn-hope',
+      dotLabel: 'Step 4: Until Day Breaks',
+      color: COLORS.crimson,
+      dark: COLORS.crimsonDark,
+      heading: 'Until Day Breaks',
+      verse: '"For the earth will be filled with the knowledge of the glory of the LORD as the waters cover the sea."',
+      ref: 'Habakkuk 2:14',
+      line: 'We reflect His light in the night, living in hope until Christ returns and fills the whole earth with His glory.',
+      desc: 'A warm golden dawn brightens the eastern horizon behind the hills as rising morning rays bathe the valley in light inside a crisp double-hairline frame.'
+    }
+  ];
+
+  // Fixed composition coordinates on 440 x 260 canvas
+  var GEO = {
+    W: 440,
+    H: 260,
+    sunX: 74,
+    sunY: 58,
+    sunR: 20,
+    moonX: 260,
+    moonY: 76,
+    moonR: 24
+  };
+
+  function el(tag, attrs, parent) {
+    var node = document.createElement(tag);
+    if (attrs) {
+      Object.keys(attrs).forEach(function (k) {
+        if (k === 'text') node.textContent = attrs[k];
+        else if (k === 'class') node.className = attrs[k];
+        else node.setAttribute(k, attrs[k]);
+      });
+    }
+    if (parent) parent.appendChild(node);
+    return node;
+  }
+
+  function svgEl(tag, attrs, parent) {
+    var node = document.createElementNS(SVG_NS, tag);
+    if (attrs) {
+      Object.keys(attrs).forEach(function (k) {
+        if (k === 'text') node.textContent = attrs[k];
+        else node.setAttribute(k, attrs[k]);
+      });
+    }
+    if (parent) parent.appendChild(node);
+    return node;
+  }
+
+  function lineLen(x1, y1, x2, y2) {
+    return Math.hypot(x2 - x1, y2 - y1);
+  }
+
+  function addLinearGrad(defs, id, x1, y1, x2, y2, stops) {
+    var grad = svgEl('linearGradient', { id: id, x1: x1, y1: y1, x2: x2, y2: y2 }, defs);
+    stops.forEach(function (s) {
+      var attrs = { offset: s[0], 'stop-color': s[1] };
+      if (s[2] !== undefined) attrs['stop-opacity'] = String(s[2]);
+      svgEl('stop', attrs, grad);
+    });
+    return grad;
+  }
+
+  function addRadialGrad(defs, id, cx, cy, r, stops) {
+    var grad = svgEl('radialGradient', { id: id, cx: cx, cy: cy, r: r }, defs);
+    stops.forEach(function (s) {
+      var attrs = { offset: s[0], 'stop-color': s[1] };
+      if (s[2] !== undefined) attrs['stop-opacity'] = String(s[2]);
+      svgEl('stop', attrs, grad);
+    });
+    return grad;
+  }
+
+  function drawHouse(parent, x, y, w, h, roofH, opts) {
+    var g = svgEl('g', {}, parent);
+    var wallFill = (opts && opts.wallFill) || '#1E3044';
+    var roofFill = (opts && opts.roofFill) || '#172536';
+    var stroke = (opts && opts.stroke) || '#0F1B29';
+    // Walls
+    svgEl('rect', {
+      x: x,
+      y: y,
+      width: w,
+      height: h,
+      fill: wallFill,
+      stroke: stroke,
+      'stroke-width': '1.2',
+      'stroke-linejoin': 'round'
+    }, g);
+    // Pitched roof
+    svgEl('polygon', {
+      points: (x - 3) + ',' + y + ' ' + (x + w / 2) + ',' + (y - roofH) + ' ' + (x + w + 3) + ',' + y,
+      fill: roofFill,
+      stroke: stroke,
+      'stroke-width': '1.2',
+      'stroke-linejoin': 'round'
+    }, g);
+    return g;
+  }
+
+  function drawTree(parent, cx, baseY, h, w, fill, stroke) {
+    var g = svgEl('g', {}, parent);
+    svgEl('line', {
+      x1: cx,
+      y1: baseY,
+      x2: cx,
+      y2: baseY - h * 0.35,
+      stroke: stroke,
+      'stroke-width': '1.5',
+      'stroke-linecap': 'round'
+    }, g);
+    svgEl('ellipse', {
+      cx: cx,
+      cy: baseY - h * 0.62,
+      rx: w * 0.5,
+      ry: h * 0.42,
+      fill: fill,
+      stroke: stroke,
+      'stroke-width': '1.1'
+    }, g);
+    return g;
+  }
+
+  function buildStage(parent) {
+    var stage = el('div', { class: 'stage' }, parent);
+    var svg = svgEl('svg', {
+      class: 'scene-svg',
+      viewBox: '0 0 440 260',
+      width: '100%',
+      role: 'img',
+      'aria-labelledby': 'glory-svg-title glory-svg-desc'
+    }, stage);
+
+    var svgTitle = svgEl('title', { id: 'glory-svg-title', text: 'Reflect His Glory' }, svg);
+    var svgDesc = svgEl('desc', { id: 'glory-svg-desc', text: STEPS[0].desc }, svg);
+
+    var defs = svgEl('defs', {}, svg);
+    addLinearGrad(defs, 'sky-night', '0%', '0%', '0%', '100%', [
+      ['0%', '#15253A'],
+      ['58%', '#233A54'],
+      ['100%', '#35526E']
+    ]);
+    addLinearGrad(defs, 'sky-dawn-wash', '50%', '100%', '50%', '0%', [
+      ['0%', '#FFF2C2', 0.98],
+      ['22%', '#FAD47A', 0.82],
+      ['48%', '#EAAB78', 0.42],
+      ['76%', '#646F85', 0.14],
+      ['100%', '#35526E', 0]
+    ]);
+    addRadialGrad(defs, 'dawn-horizon-orb', '54%', '92%', '58%', [
+      ['0%', '#FFF9DF', 0.96],
+      ['36%', '#FBD983', 0.66],
+      ['68%', '#E7A778', 0.28],
+      ['100%', '#35526E', 0]
+    ]);
+    addRadialGrad(defs, 'sun-aura-grad', '50%', '50%', '50%', [
+      ['0%', '#FFF5D0', 0.55],
+      ['46%', '#F6CD68', 0.24],
+      ['76%', '#E4B14A', 0.08],
+      ['100%', '#15253A', 0]
+    ]);
+    addRadialGrad(defs, 'moon-aura-grad', '50%', '50%', '50%', [
+      ['0%', '#FFF7DC', 0.42],
+      ['56%', '#FCE6A4', 0.16],
+      ['100%', '#233A54', 0]
+    ]);
+    addRadialGrad(defs, 'sun-disc-grad', '45%', '42%', '60%', [
+      ['0%', '#FFFBF0'],
+      ['55%', '#FCE49C'],
+      ['100%', '#E5B23E']
+    ]);
+    addLinearGrad(defs, 'moon-lit-grad', '12%', '28%', '92%', '78%', [
+      ['0%', '#FFFDF4'],
+      ['48%', '#FCF0CC'],
+      ['100%', '#E6C67D']
+    ]);
+    addLinearGrad(defs, 'sun-to-moon-wash', '0%', '30%', '100%', '65%', [
+      ['0%', '#FCF2D6', 0.24],
+      ['60%', '#FCF2D6', 0.12],
+      ['100%', '#FCF2D6', 0.04]
+    ]);
+    addLinearGrad(defs, 'moon-to-valley-wash', '50%', '0%', '50%', '100%', [
+      ['0%', '#FFF6DA', 0.24],
+      ['55%', '#FCF0CC', 0.12],
+      ['100%', '#FCF0CC', 0.02]
+    ]);
+    addLinearGrad(defs, 'river-moon-grad', '50%', '0%', '50%', '100%', [
+      ['0%', '#FBE6A9', 0.78],
+      ['100%', '#FCF2D6', 0.36]
+    ]);
+
+    // 1) Fixed Night Sky Backdrop
+    svgEl('rect', { x: 0, y: 0, width: 440, height: 260, fill: 'url(#sky-night)' }, svg);
+
+    // 2) Step 4 Dawn Horizon Glow (pure warm sunrise bloom behind the eastern hills, zero intersecting sticks)
+    var dawnSkyLayer = svgEl('g', { id: 'layer-dawn-sky', class: 'reveal-layer' }, svg);
+    svgEl('rect', { x: 0, y: 42, width: 440, height: 158, fill: 'url(#sky-dawn-wash)' }, dawnSkyLayer);
+    svgEl('ellipse', { cx: 244, cy: 188, rx: 220, ry: 82, fill: 'url(#dawn-horizon-orb)' }, dawnSkyLayer);
+    // Two delicate curved atmospheric dawn bands hugging the distant horizon
+    var dawnArcs = [
+      'M 56 172 Q 238 140 416 170',
+      'M 94 179 Q 242 154 388 178'
+    ].map(function (d, idx) {
+      var p = svgEl('path', {
+        d: d,
+        fill: 'none',
+        stroke: '#FFF6D8',
+        'stroke-width': idx === 0 ? '1.1' : '1.4',
+        'stroke-linecap': 'round',
+        opacity: idx === 0 ? '0.42' : '0.62'
+      }, dawnSkyLayer);
+      var len = 360;
+      p.style.strokeDasharray = String(len);
+      p.style.strokeDashoffset = String(len);
+      return { line: p, len: len };
+    });
+
+    // 3) Quiet Fixed Starfield (present from Step 0, softens gently at dawn)
+    var starsLayer = svgEl('g', { id: 'layer-stars' }, svg);
+    var starCoords = [
+      [142, 30, 1.3], [174, 46, 1.0], [206, 26, 1.4], [318, 34, 1.2],
+      [356, 26, 1.5], [388, 52, 1.1], [412, 32, 1.3], [340, 74, 1.0],
+      [398, 86, 1.2], [154, 102, 1.0], [302, 108, 1.0], [414, 114, 1.1]
+    ];
+    starCoords.forEach(function (st) {
+      svgEl('circle', { cx: st[0], cy: st[1], r: st[2], fill: '#FAF4E2', opacity: '0.68' }, starsLayer);
+    });
+    // Two delicate 4-point star glints
+    svgEl('path', {
+      d: 'M 356 20 L 356 32 M 350 26 L 362 26',
+      stroke: '#FAF4E2',
+      'stroke-width': '1',
+      'stroke-linecap': 'round',
+      opacity: '0.5'
+    }, starsLayer);
+    svgEl('path', {
+      d: 'M 206 21 L 206 31 M 201 26 L 211 26',
+      stroke: '#FAF4E2',
+      'stroke-width': '0.9',
+      'stroke-linecap': 'round',
+      opacity: '0.45'
+    }, starsLayer);
+
+    // 4) Step 2: Soft Translucent Wash + Straight Golden Rays from Sun -> Moon
+    var sunToMoonLayer = svgEl('g', { id: 'layer-sun-to-moon', class: 'reveal-layer' }, svg);
+    svgEl('polygon', {
+      points: '90,41 258,53 254,99 84,75',
+      fill: 'url(#sun-to-moon-wash)'
+    }, sunToMoonLayer);
+
+    var sunMoonRays = [
+      { x1: 95, y1: 52, x2: 234, y2: 67 },
+      { x1: 97, y1: 60, x2: 233, y2: 76 },
+      { x1: 95, y1: 68, x2: 234, y2: 85 }
+    ].map(function (r, idx) {
+      var len = lineLen(r.x1, r.y1, r.x2, r.y2);
+      var line = svgEl('line', {
+        id: 'ray-sun-moon-' + idx,
+        x1: r.x1,
+        y1: r.y1,
+        x2: r.x2,
+        y2: r.y2,
+        stroke: idx === 1 ? '#F7D269' : '#FCF2D6',
+        'stroke-width': idx === 1 ? '2.1' : '1.1',
+        'stroke-linecap': 'round',
+        opacity: idx === 1 ? '0.9' : '0.48'
+      }, sunToMoonLayer);
+      line.style.strokeDasharray = String(len);
+      line.style.strokeDashoffset = String(len);
+      return { line: line, len: len };
+    });
+
+    // Subtle Studio Wash double-chevron directional watermark along the Sun -> Moon beam
+    var sunMoonChevrons = svgEl('g', {
+      fill: 'none',
+      stroke: '#FCE295',
+      'stroke-linecap': 'round',
+      'stroke-linejoin': 'round',
+      opacity: '0'
+    }, sunToMoonLayer);
+    svgEl('path', { d: 'M 164 62 L 171 68 L 163 73', 'stroke-width': '2', opacity: '0.68' }, sunMoonChevrons);
+    svgEl('path', { d: 'M 156 62 L 162 67.5 L 155 72', 'stroke-width': '1.6', opacity: '0.32' }, sunMoonChevrons);
+
+    // 5) Step 3: Reflected Moonlight Wash + Soft Silk Rays fanning down from Moon -> Ordinary Landscape
+    var moonToValleyLayer = svgEl('g', { id: 'layer-moon-to-valley', class: 'reveal-layer' }, svg);
+    svgEl('polygon', {
+      points: '240,96 280,96 398,244 104,244',
+      fill: 'url(#moon-to-valley-wash)'
+    }, moonToValleyLayer);
+
+    var moonValleyRays = [
+      { x1: 247, y1: 101, x2: 146, y2: 204 },
+      { x1: 260, y1: 103, x2: 248, y2: 210 },
+      { x1: 273, y1: 101, x2: 350, y2: 204 }
+    ].map(function (r, idx) {
+      var len = lineLen(r.x1, r.y1, r.x2, r.y2);
+      var line = svgEl('line', {
+        id: 'ray-moon-valley-' + idx,
+        x1: r.x1,
+        y1: r.y1,
+        x2: r.x2,
+        y2: r.y2,
+        stroke: idx === 1 ? '#FCE6A4' : '#FFF6DC',
+        'stroke-width': idx === 1 ? '1.8' : '1.05',
+        'stroke-linecap': 'round',
+        opacity: idx === 1 ? '0.72' : '0.32'
+      }, moonToValleyLayer);
+      line.style.strokeDasharray = String(len);
+      line.style.strokeDashoffset = String(len);
+      return { line: line, len: len };
+    });
+
+    // Subtle downward double-chevron watermark on the center moonlight ray
+    var moonValleyChevrons = svgEl('g', {
+      fill: 'none',
+      stroke: '#FCE6A4',
+      'stroke-linecap': 'round',
+      'stroke-linejoin': 'round',
+      opacity: '0'
+    }, moonToValleyLayer);
+    svgEl('path', { d: 'M 248 148 L 254 155 L 261 149', 'stroke-width': '1.8', opacity: '0.62' }, moonValleyChevrons);
+    svgEl('path', { d: 'M 249 140 L 255 146 L 261 141', 'stroke-width': '1.4', opacity: '0.28' }, moonValleyChevrons);
+
+    // 6) Step 1: GOD, THE SOURCE (Radiant Gold Sun in upper-left sky with smooth radial aura)
+    var sunLayer = svgEl('g', { id: 'layer-sun', class: 'reveal-layer' }, svg);
+    svgEl('circle', { cx: GEO.sunX, cy: GEO.sunY, r: 48, fill: 'url(#sun-aura-grad)' }, sunLayer);
+    var sunRayGroup = svgEl('g', { stroke: '#F5CB5C', 'stroke-width': '1.7', 'stroke-linecap': 'round' }, sunLayer);
+    for (var i = 0; i < 12; i++) {
+      var ang = (i * 30) * Math.PI / 180;
+      svgEl('line', {
+        x1: (GEO.sunX + 23.5 * Math.cos(ang)).toFixed(1),
+        y1: (GEO.sunY + 23.5 * Math.sin(ang)).toFixed(1),
+        x2: (GEO.sunX + 31 * Math.cos(ang)).toFixed(1),
+        y2: (GEO.sunY + 31 * Math.sin(ang)).toFixed(1)
+      }, sunRayGroup);
+    }
+    svgEl('circle', {
+      cx: GEO.sunX,
+      cy: GEO.sunY,
+      r: GEO.sunR,
+      fill: 'url(#sun-disc-grad)',
+      stroke: '#C48F10',
+      'stroke-width': '1.8'
+    }, sunLayer);
+    svgEl('circle', {
+      cx: GEO.sunX,
+      cy: GEO.sunY,
+      r: GEO.sunR - 4.2,
+      fill: 'none',
+      stroke: '#FFFFFF',
+      'stroke-width': '1',
+      opacity: '0.5'
+    }, sunLayer);
+
+    // 7) THE MOON (Fixed position at 260, 76: quiet silhouette on Steps 0-1, luminous reflected gold-ivory on Steps 2-4)
+    var moonBaseLayer = svgEl('g', { id: 'layer-moon-base' }, svg);
+    svgEl('circle', {
+      cx: GEO.moonX,
+      cy: GEO.moonY,
+      r: GEO.moonR,
+      fill: '#223852',
+      stroke: '#6D8AA8',
+      'stroke-width': '1.5'
+    }, moonBaseLayer);
+
+    var moonLitLayer = svgEl('g', { id: 'layer-moon-lit', class: 'reveal-layer' }, svg);
+    // Smooth warm aura (zero muddy edge)
+    svgEl('circle', {
+      cx: GEO.moonX,
+      cy: GEO.moonY,
+      r: GEO.moonR + 18,
+      fill: 'url(#moon-aura-grad)'
+    }, moonLitLayer);
+    svgEl('circle', {
+      cx: GEO.moonX,
+      cy: GEO.moonY,
+      r: GEO.moonR + 4,
+      fill: 'none',
+      stroke: '#FCE6A4',
+      'stroke-width': '1.05',
+      opacity: '0.48'
+    }, moonLitLayer);
+    // Illuminated Moon body
+    svgEl('circle', {
+      cx: GEO.moonX,
+      cy: GEO.moonY,
+      r: GEO.moonR,
+      fill: 'url(#moon-lit-grad)',
+      stroke: '#D9A73B',
+      'stroke-width': '1.7'
+    }, moonLitLayer);
+    // Subtle luminous crescent highlight on the Sun-facing left edge + delicate painterly surface washes
+    svgEl('path', {
+      d: 'M ' + (GEO.moonX - 4) + ' ' + (GEO.moonY - 19) + ' A 20 20 0 0 0 ' + (GEO.moonX - 4) + ' ' + (GEO.moonY + 19),
+      fill: 'none',
+      stroke: '#FFFFFF',
+      'stroke-width': '1.5',
+      'stroke-linecap': 'round',
+      opacity: '0.68'
+    }, moonLitLayer);
+    svgEl('circle', { cx: GEO.moonX + 6, cy: GEO.moonY - 5, r: 5.5, fill: '#E4C072', opacity: '0.22' }, moonLitLayer);
+    svgEl('circle', { cx: GEO.moonX - 5, cy: GEO.moonY + 8, r: 4, fill: '#E4C072', opacity: '0.18' }, moonLitLayer);
+
+    // 8) FIXED ORDINARY NIGHTTIME LANDSCAPE (Rolling hills, winding stream, trees, cozy homes & chapel)
+    var landBase = svgEl('g', { id: 'layer-landscape-base' }, svg);
+
+    // Far horizon hills (low saddle around x=240..280 where dawn rises!)
+    svgEl('path', {
+      d: 'M 0 188 Q 78 164 156 180 Q 214 192 260 184 Q 326 172 440 186 L 440 260 L 0 260 Z',
+      fill: '#23374E',
+      stroke: '#18283A',
+      'stroke-width': '1.2'
+    }, landBase);
+
+    // Mid-ground left & right valley slopes
+    svgEl('path', {
+      d: 'M 0 198 Q 92 186 182 204 Q 218 212 246 208 L 246 260 L 0 260 Z',
+      fill: '#1E3045',
+      stroke: '#142233',
+      'stroke-width': '1.2'
+    }, landBase);
+    svgEl('path', {
+      d: 'M 218 212 Q 302 192 378 202 Q 412 206 440 198 L 440 260 L 218 260 Z',
+      fill: '#1C2D41',
+      stroke: '#142233',
+      'stroke-width': '1.2'
+    }, landBase);
+
+    // Foreground meadow curve
+    svgEl('path', {
+      d: 'M 0 228 Q 115 216 226 226 Q 332 235 440 220 L 440 260 L 0 260 Z',
+      fill: '#182738',
+      stroke: '#101C2A',
+      'stroke-width': '1.2'
+    }, landBase);
+
+    // Winding quiet stream curving from the valley pass to foreground
+    svgEl('path', {
+      d: 'M 244 206 C 230 216 220 224 236 234 C 254 244 258 252 246 260 L 266 260 C 276 250 270 240 250 232 C 234 225 242 216 254 206 Z',
+      fill: '#223A54',
+      stroke: '#152536',
+      'stroke-width': '1'
+    }, landBase);
+
+    // Quiet countryside trees
+    drawTree(landBase, 52, 224, 24, 14, '#1B2E40', '#111E2C');
+    drawTree(landBase, 84, 218, 28, 16, '#1B2E40', '#111E2C');
+    drawTree(landBase, 168, 219, 20, 12, '#1D3246', '#111E2C');
+    drawTree(landBase, 280, 218, 22, 13, '#1D3246', '#111E2C');
+    drawTree(landBase, 332, 224, 20, 12, '#1B2E40', '#111E2C');
+    drawTree(landBase, 394, 222, 26, 15, '#1B2E40', '#111E2C');
+
+    // Ordinary neighborhood homes + small country church in the valley
+    // Left home
+    drawHouse(landBase, 114, 214, 30, 18, 12, { wallFill: '#21354B', roofFill: '#172738' });
+    // Small village church / gathering house on gentle left-center rise
+    drawHouse(landBase, 186, 204, 26, 22, 14, { wallFill: '#243A52', roofFill: '#18293B' });
+    // Simple cross finial atop roof peak
+    svgEl('path', {
+      d: 'M 199 183 L 199 190 M 196.5 185.5 L 201.5 185.5',
+      stroke: '#8FA8C2',
+      'stroke-width': '1.2',
+      'stroke-linecap': 'round'
+    }, landBase);
+    // Two homes on the right slope
+    drawHouse(landBase, 294, 211, 28, 18, 11, { wallFill: '#22364C', roofFill: '#172738' });
+    drawHouse(landBase, 344, 218, 30, 17, 11, { wallFill: '#203348', roofFill: '#162535' });
+
+    // Unlit quiet windows (base night state)
+    var windowCoords = [
+      [121, 220, 5, 6], [132, 220, 5, 6],
+      [194, 211, 4, 7], [201, 211, 4, 7],
+      [301, 217, 5, 6], [311, 217, 5, 6],
+      [351, 223, 5, 5], [362, 223, 5, 5]
+    ];
+    windowCoords.forEach(function (w) {
+      svgEl('rect', { x: w[0], y: w[1], width: w[2], height: w[3], rx: 1, fill: '#2E465E' }, landBase);
+    });
+
+    // 9) Step 3: Reflected Moonlight Illuminating the Ordinary Landscape
+    var landMoonlit = svgEl('g', { id: 'layer-landscape-moonlit', class: 'reveal-layer' }, svg);
+    // Soft moonlit crest hairlines only on open hillside segments (never cutting across roofs)
+    svgEl('path', {
+      d: 'M 218 206 Q 232 208 244 208 M 256 205 Q 274 200 290 198 M 328 197 Q 354 198 378 201',
+      fill: 'none',
+      stroke: '#FBE8B0',
+      'stroke-width': '1.3',
+      'stroke-linecap': 'round',
+      opacity: '0.62'
+    }, landMoonlit);
+    // Warm sunlit roof highlights on homes & church
+    svgEl('path', {
+      d: 'M 111 214 L 129 202 L 147 214 M 183 204 L 199 190 L 215 204 M 291 211 L 308 200 L 325 211 M 341 218 L 359 207 L 377 218',
+      fill: 'none',
+      stroke: '#FCE6A4',
+      'stroke-width': '1.4',
+      'stroke-linecap': 'round',
+      'stroke-linejoin': 'round',
+      opacity: '0.82'
+    }, landMoonlit);
+    // Shimmering moonlight ribbon on the winding stream
+    svgEl('path', {
+      d: 'M 245 207 C 232 216 222 224 238 234 C 254 244 259 252 248 260 L 263 260 C 273 250 267 240 248 232 C 234 225 243 216 253 207 Z',
+      fill: 'url(#river-moon-grad)',
+      opacity: '0.78'
+    }, landMoonlit);
+    svgEl('path', {
+      d: 'M 240 218 L 250 218 M 234 228 L 247 228 M 248 240 L 262 240 M 252 250 L 264 250',
+      stroke: '#FFF9E5',
+      'stroke-width': '1.2',
+      'stroke-linecap': 'round',
+      opacity: '0.85'
+    }, landMoonlit);
+    // Warm golden-amber glowing windows in the ordinary homes & church
+    windowCoords.forEach(function (w) {
+      svgEl('rect', { x: w[0], y: w[1], width: w[2], height: w[3], rx: 1, fill: '#FDE49B' }, landMoonlit);
+    });
+    // Cross finial catches the warm light
+    svgEl('path', {
+      d: 'M 199 183 L 199 190 M 196.5 185.5 L 201.5 185.5',
+      stroke: '#FCE6A4',
+      'stroke-width': '1.4',
+      'stroke-linecap': 'round'
+    }, landMoonlit);
+
+    // 10) Step 4: Dawn Rim-Light across the Eastern Hills + Crisp Studio Wash Double-Hairline Frame
+    var landDawnLayer = svgEl('g', { id: 'layer-landscape-dawn', class: 'reveal-layer' }, svg);
+    // Golden morning rim-light along the far horizon ridge
+    svgEl('path', {
+      d: 'M 16 186 Q 82 165 156 180 Q 214 192 260 184 Q 326 172 424 185',
+      fill: 'none',
+      stroke: '#FFF4CE',
+      'stroke-width': '2',
+      'stroke-linecap': 'round',
+      opacity: '0.92'
+    }, landDawnLayer);
+    // Warm dawn atmosphere tint gently lifting the foreground valley
+    svgEl('rect', {
+      x: 0,
+      y: 176,
+      width: 440,
+      height: 84,
+      fill: '#F9D682',
+      opacity: '0.14'
+    }, landDawnLayer);
+
+    // Step 4 crisp Studio Wash double-hairline climax border (zero fuzzy glow)
+    var frameLayer = svgEl('g', { id: 'layer-climax-frame', class: 'reveal-layer' }, svg);
+    var outerFrame = svgEl('rect', {
+      x: 8,
+      y: 8,
+      width: 424,
+      height: 244,
+      rx: 10,
+      fill: 'none',
+      stroke: '#E2B345',
+      'stroke-width': '2.8'
+    }, frameLayer);
+    var innerFrame = svgEl('rect', {
+      x: 13,
+      y: 13,
+      width: 414,
+      height: 234,
+      rx: 7,
+      fill: 'none',
+      stroke: '#FFF4CE',
+      'stroke-width': '1.1',
+      opacity: '0.55'
+    }, frameLayer);
+    var framePerim = 2 * (424 + 244);
+    outerFrame.style.strokeDasharray = String(framePerim);
+    outerFrame.style.strokeDashoffset = String(framePerim);
+
+    return {
+      svgTitle: svgTitle,
+      svgDesc: svgDesc,
+      starsLayer: starsLayer,
+      sunLayer: sunLayer,
+      sunToMoonLayer: sunToMoonLayer,
+      sunMoonRays: sunMoonRays,
+      sunMoonChevrons: sunMoonChevrons,
+      moonLitLayer: moonLitLayer,
+      moonToValleyLayer: moonToValleyLayer,
+      moonValleyRays: moonValleyRays,
+      moonValleyChevrons: moonValleyChevrons,
+      landMoonlit: landMoonlit,
+      dawnSkyLayer: dawnSkyLayer,
+      dawnRays: dawnArcs,
+      landDawnLayer: landDawnLayer,
+      frameLayer: frameLayer,
+      outerFrame: outerFrame,
+      innerFrame: innerFrame,
+      framePerim: framePerim
+    };
+  }
+
+  function init() {
+    var host = document.getElementById('scene-root');
+    if (!host) return;
+
+    var bar = el('div', { class: 'title-bar' }, host);
+    el('h1', { text: 'Reflect His Glory' }, bar);
+    el('span', { class: 'course-tag', text: '202-06' }, bar);
+
+    var bundle = buildStage(host);
+
+    var strip = el('div', { class: 'step-strip', role: 'group', 'aria-label': 'Reflect His Glory steps' }, host);
+    var dotButtons = STEPS.map(function (st, idx) {
+      var btn = el('button', {
+        type: 'button',
+        class: 'step-dot',
+        'data-step': String(idx),
+        'aria-label': st.dotLabel,
+        'aria-pressed': 'false'
+      }, strip);
+      btn.style.setProperty('--dot-color', st.color);
+      el('span', { class: 'step-dot-fill' }, btn);
+      return btn;
+    });
+
+    var cardArea = el('div', { class: 'card-area' }, host);
+    var cardBox = el('div', { class: 'verse-card' }, cardArea);
+    el('div', { class: 'verse-card-bar' }, cardBox);
+    var contentEl = el('div', {
+      id: 'card-content',
+      class: 'verse-card-content',
+      'aria-live': 'polite'
+    }, cardBox);
+    var headingEl = el('h2', { class: 'card-heading' }, contentEl);
+    var quoteWrap = el('p', { class: 'card-quote' }, contentEl);
+    var quoteTextEl = el('span', {}, quoteWrap);
+    var refEl = el('span', { class: 'card-ref' }, quoteWrap);
+    var noteEl = el('p', { class: 'card-note' }, contentEl);
+
+    var navBar = el('div', { class: 'nav-bar' }, cardArea);
+    var prevBtn = el('button', { id: 'prev-btn', type: 'button', class: 'nav-btn', text: '\u2190 Back' }, navBar);
+    var countEl = el('span', { class: 'step-count', text: 'Ready' }, navBar);
+    var nextBtn = el('button', { id: 'next-btn', type: 'button', class: 'nav-btn primary', text: 'Begin \u2192' }, navBar);
+
+    var currentStep = 0;
+    var activeRaf = null;
+    var reducedMotionQuery = window.matchMedia
+      ? window.matchMedia('(prefers-reduced-motion: reduce)')
+      : { matches: false };
+
+    function stopAnim() {
+      if (activeRaf !== null) {
+        cancelAnimationFrame(activeRaf);
+        activeRaf = null;
+      }
+    }
+
+    function setDash(node, len, progress) {
+      var t = Math.max(0, Math.min(1, progress));
+      node.style.strokeDashoffset = (len * (1 - t)).toFixed(2);
+    }
+
+    function applyStaticLayers(stepIdx) {
+      bundle.sunLayer.classList.toggle('is-visible', stepIdx >= 1);
+      bundle.sunToMoonLayer.classList.toggle('is-visible', stepIdx >= 2);
+      bundle.moonLitLayer.classList.toggle('is-visible', stepIdx >= 2);
+      bundle.moonToValleyLayer.classList.toggle('is-visible', stepIdx >= 3);
+      bundle.landMoonlit.classList.toggle('is-visible', stepIdx >= 3);
+      bundle.dawnSkyLayer.classList.toggle('is-visible', stepIdx >= 4);
+      bundle.landDawnLayer.classList.toggle('is-visible', stepIdx >= 4);
+      bundle.frameLayer.classList.toggle('is-visible', stepIdx >= 4);
+      bundle.starsLayer.style.opacity = stepIdx >= 4 ? '0.42' : '1';
+    }
+
+    function snapRays(stepIdx) {
+      bundle.sunMoonRays.forEach(function (r) {
+        setDash(r.line, r.len, stepIdx >= 2 ? 1 : 0);
+      });
+      bundle.sunMoonChevrons.style.opacity = stepIdx >= 2 ? '1' : '0';
+      bundle.moonValleyRays.forEach(function (r) {
+        setDash(r.line, r.len, stepIdx >= 3 ? 1 : 0);
+      });
+      bundle.moonValleyChevrons.style.opacity = stepIdx >= 3 ? '1' : '0';
+      bundle.dawnRays.forEach(function (r) {
+        setDash(r.line, r.len, stepIdx >= 4 ? 1 : 0);
+      });
+      setDash(bundle.outerFrame, bundle.framePerim, stepIdx >= 4 ? 1 : 0);
+      bundle.innerFrame.style.opacity = stepIdx >= 4 ? '0.55' : '0';
+    }
+
+    function animateStep(stepIdx) {
+      var t0 = performance.now();
+
+      if (stepIdx === 1) {
+        // Sun gently enters via CSS opacity transition; no extra rAF needed
+        host.setAttribute('data-step-dur', '0');
+        snapRays(1);
+        return;
+      }
+
+      if (stepIdx === 2) {
+        // Sun -> Moon golden rays draw cleanly at 185 px/s, then Moon illuminates
+        var maxLen2 = bundle.sunMoonRays.reduce(function (m, r) { return Math.max(m, r.len); }, 1);
+        var dur2 = Math.round((maxLen2 / RAY_SPEED) * 1000);
+        host.setAttribute('data-step-dur', String(dur2));
+        bundle.sunMoonRays.forEach(function (r) { setDash(r.line, r.len, 0); });
+        bundle.sunMoonChevrons.style.opacity = '0';
+        bundle.moonLitLayer.style.opacity = '0';
+        var frame2 = function (now) {
+          var elapsed = now - t0;
+          var done = true;
+          bundle.sunMoonRays.forEach(function (r) {
+            var d = (r.len / RAY_SPEED) * 1000;
+            var p = Math.min(1, elapsed / d);
+            setDash(r.line, r.len, p);
+            if (p < 1) done = false;
+          });
+          var pOverall = Math.min(1, elapsed / dur2);
+          bundle.sunMoonChevrons.style.opacity = pOverall > 0.45 ? String(Math.min(1, (pOverall - 0.45) / 0.25).toFixed(2)) : '0';
+          bundle.moonLitLayer.style.opacity = pOverall > 0.55 ? String(Math.min(1, (pOverall - 0.55) / 0.45).toFixed(2)) : '0';
+          if (!done) {
+            activeRaf = requestAnimationFrame(frame2);
+          } else {
+            bundle.moonLitLayer.style.opacity = '';
+            snapRays(2);
+            activeRaf = null;
+          }
+        };
+        activeRaf = requestAnimationFrame(frame2);
+        return;
+      }
+
+      if (stepIdx === 3) {
+        // Keep step 2 complete; draw Moon -> Ordinary Landscape reflected rays at 185 px/s
+        snapRays(2);
+        var maxLen3 = bundle.moonValleyRays.reduce(function (m, r) { return Math.max(m, r.len); }, 1);
+        var dur3 = Math.round((maxLen3 / RAY_SPEED) * 1000);
+        host.setAttribute('data-step-dur', String(dur3));
+        bundle.moonValleyRays.forEach(function (r) { setDash(r.line, r.len, 0); });
+        bundle.moonValleyChevrons.style.opacity = '0';
+        bundle.landMoonlit.style.opacity = '0';
+        var frame3 = function (now) {
+          var elapsed = now - t0;
+          var done = true;
+          bundle.moonValleyRays.forEach(function (r) {
+            var d = (r.len / RAY_SPEED) * 1000;
+            var p = Math.min(1, elapsed / d);
+            setDash(r.line, r.len, p);
+            if (p < 1) done = false;
+          });
+          var pOverall = Math.min(1, elapsed / dur3);
+          bundle.moonValleyChevrons.style.opacity = pOverall > 0.42 ? String(Math.min(1, (pOverall - 0.42) / 0.25).toFixed(2)) : '0';
+          bundle.landMoonlit.style.opacity = pOverall > 0.5 ? String(Math.min(1, (pOverall - 0.5) / 0.5).toFixed(2)) : '0';
+          if (!done) {
+            activeRaf = requestAnimationFrame(frame3);
+          } else {
+            bundle.landMoonlit.style.opacity = '';
+            snapRays(3);
+            activeRaf = null;
+          }
+        };
+        activeRaf = requestAnimationFrame(frame3);
+        return;
+      }
+
+      if (stepIdx === 4) {
+        // Keep steps 1..3 complete; draw rising dawn horizon rays + double-hairline frame
+        snapRays(3);
+        var maxLen4 = bundle.dawnRays.reduce(function (m, r) { return Math.max(m, r.len); }, 1);
+        var dur4 = Math.max(600, Math.round((maxLen4 / RAY_SPEED) * 1000));
+        host.setAttribute('data-step-dur', String(dur4));
+        bundle.dawnRays.forEach(function (r) { setDash(r.line, r.len, 0); });
+        setDash(bundle.outerFrame, bundle.framePerim, 0);
+        bundle.innerFrame.style.opacity = '0';
+        var frame4 = function (now) {
+          var p = Math.min(1, (now - t0) / dur4);
+          var eased = 1 - Math.pow(1 - p, 2);
+          bundle.dawnRays.forEach(function (r) { setDash(r.line, r.len, eased); });
+          setDash(bundle.outerFrame, bundle.framePerim, eased);
+          bundle.innerFrame.style.opacity = (0.55 * eased).toFixed(2);
+          if (p < 1) {
+            activeRaf = requestAnimationFrame(frame4);
+          } else {
+            snapRays(4);
+            activeRaf = null;
+          }
+        };
+        activeRaf = requestAnimationFrame(frame4);
+      }
+    }
+
+    function goTo(nextIdx) {
+      stopAnim();
+      bundle.moonLitLayer.style.opacity = '';
+      bundle.landMoonlit.style.opacity = '';
+
+      var prevIdx = currentStep;
+      var goingForwardOne = nextIdx === prevIdx + 1;
+      var instant = reducedMotionQuery.matches || !goingForwardOne || nextIdx === 0;
+
+      host.classList.toggle('is-instant', instant);
+      applyStaticLayers(nextIdx);
+
+      if (instant) {
+        host.setAttribute('data-step-dur', '0');
+        snapRays(nextIdx);
+      } else {
+        animateStep(nextIdx);
+      }
+
+      currentStep = nextIdx;
+      var step = STEPS[currentStep];
+      host.setAttribute('data-step', String(currentStep));
+      host.style.setProperty('--step-color', step.color);
+      host.style.setProperty('--step-dark', step.dark);
+      bundle.svgDesc.textContent = step.desc;
+
+      headingEl.textContent = step.heading;
+      quoteTextEl.textContent = step.verse;
+      refEl.textContent = '(' + step.ref + ')';
+      noteEl.textContent = step.line;
+
+      dotButtons.forEach(function (btn, idx) {
+        btn.classList.toggle('active', idx === currentStep);
+        btn.classList.toggle('passed', idx > 0 && idx < currentStep);
+        btn.setAttribute('aria-pressed', idx === currentStep ? 'true' : 'false');
+      });
+
+      countEl.textContent = currentStep === 0 ? 'Ready' : ('Step ' + currentStep + ' of ' + (STEPS.length - 1));
+      prevBtn.disabled = currentStep === 0;
+      if (currentStep === 0) {
+        nextBtn.textContent = 'Begin \u2192';
+      } else if (currentStep === STEPS.length - 1) {
+        nextBtn.textContent = '\u21BB Start Over';
+      } else {
+        nextBtn.textContent = 'Next \u2192';
+      }
+    }
+
+    dotButtons.forEach(function (btn, idx) {
+      btn.addEventListener('click', function () {
+        goTo(idx);
+      });
+    });
+
+    prevBtn.addEventListener('click', function () {
+      if (currentStep > 0) goTo(currentStep - 1);
+    });
+    nextBtn.addEventListener('click', function () {
+      goTo(currentStep === STEPS.length - 1 ? 0 : currentStep + 1);
+    });
+
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'ArrowRight' && currentStep < STEPS.length - 1) {
+        goTo(currentStep + 1);
+      } else if (event.key === 'ArrowLeft' && currentStep > 0) {
+        goTo(currentStep - 1);
+      }
+    });
+
+    var lastWidth = window.innerWidth;
+    var measuredWidth = 0;
+    function fitCardHeight() {
+      if (!contentEl || contentEl.clientWidth === measuredWidth) return;
+      measuredWidth = contentEl.clientWidth;
+      var keepH = headingEl.textContent;
+      var keepQ = quoteTextEl.textContent;
+      var keepR = refEl.textContent;
+      var keepN = noteEl.textContent;
+      var tallest = 0;
+      document.documentElement.style.setProperty('--card-h', '0px');
+      STEPS.forEach(function (st) {
+        headingEl.textContent = st.heading;
+        quoteTextEl.textContent = st.verse;
+        refEl.textContent = '(' + st.ref + ')';
+        noteEl.textContent = st.line;
+        tallest = Math.max(tallest, contentEl.offsetHeight);
+      });
+      headingEl.textContent = keepH;
+      quoteTextEl.textContent = keepQ;
+      refEl.textContent = keepR;
+      noteEl.textContent = keepN;
+      document.documentElement.style.setProperty('--card-h', Math.max(100, tallest) + 'px');
+    }
+
+    var resizeTimer = null;
+    window.addEventListener('resize', function () {
+      if (window.innerWidth === lastWidth) return;
+      lastWidth = window.innerWidth;
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(fitCardHeight, 120);
+    });
+
+    goTo(0);
+    fitCardHeight();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
+</body>
+</html>
