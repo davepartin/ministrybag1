@@ -118,7 +118,7 @@ The existing engine places the image top at `contentTop + visibleHeight * (0.40 
 - **5 frames (`201-01` Running Father):** `[0, 0.16, 0.3, 0.44, 0.58]`
 - **7 entries with a slow last dissolve (`202-02` Wise Builder):** `[0, 0.08, 0.16, 0.24, 0.32, 0.48, 0.72]`
 - **7 entries with 0.08 holds and a 0.24 last dissolve (`202-01` Good Samaritan):** `[0, 0.08, 0.16, 0.24, 0.32, 0.40, 0.64]`
-- **5 entries with 0.08 holds and last frame at 0.8 (`203-01` Roof Drop):** `[0, 0.08, 0.16, 0.24, 0.8]`
+- **3 entries with a 0.5 hold and last frame at 0.64 (`203-01` Roof Drop):** `[0, 0.5, 0.64]`
 
 ### How the Renderer Animates the Sequence
 
@@ -200,7 +200,7 @@ Optional `imageDissolveOnEntry: true` on a two-layer image starts at 100% B&W wh
 | 202-08 | The Marble and the Chisel | B&W -> Color | `202.08-marble-chisel-bw.jpg` -> `202.08-marble-chisel-color.jpg` | Live (`touchNext: true`, `frame: true`) |
 | 202-09 | The View from the Roof | B&W -> Color | `202-09-story-bw.jpg` -> `202-09-story-color.jpg` (`1280x720`, 16:9; earlier `202.09-david-roof-*.png` kept unused) | Live (`touchNext: true`, `frame: true`, `imageDissolveOnEntry: true`) |
 | 202-10 | The Table He Longed For | B&W -> Color | `202-10-bread-cup-bw.jpg` -> `202-10-bread-cup-color.jpg` (`1152x864`, 4:3) | Baptism/widget first; bread/cup directly above Supper story (`touchNext: true`, `frame: true`). Original Last Supper files retained unused. |
-| 203-01 | Four Friends and a Roof | **5-Stop Sequence** | `203-01-roof-drop-seq-1.jpg` .. `3.jpg` (stops `[0, 0.08, 0.16, 0.24, 0.8]`; seq-1 and seq-2 listed twice) | Live (`touchNext: true`) |
+| 203-01 | Four Friends and a Roof | **3-Stop Sequence** | `203-01-roof-drop-seq-1.jpg`, `203-01-roof-drop-seq-2.jpg` (stops `[0, 0.5, 0.64]`; seq-1 listed twice) | Live (`touchNext: true`) |
 | 203-02 | A Prayer Before the Answer | None | - | PR #240 sequence reverted per Dave / PR #248; no new art assigned |
 | 203-03 | Stay with Us | **4-Frame Sequence** | `emmaus-bread-seq-1.jpg` .. `4.jpg` (stops `[0, 0.18, 0.34, 0.5]`) | Live (`touchNext: true`); old dissolve pair stays unused |
 | 203-04 | The Towel and the Basin | B&W -> Color | `jesus-washing-feet-bw.png` -> `jesus-washing-feet-color.png` | Live (`touchNext: true`) |

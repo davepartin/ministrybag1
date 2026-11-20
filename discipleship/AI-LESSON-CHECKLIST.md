@@ -126,7 +126,7 @@ A strong lesson usually lets the learner say:
 - No em dashes anywhere. Use commas, colons, periods, or " - " instead.
 - No bullet points in lesson prose. Write in paragraphs.
 - No Augustine quotes in 201-01.
-- Self-paced language only: no "we" language, "together" framing, or group-setting assumptions.
+- Self-paced language: no "together" framing or group-setting assumptions. Use "you" for teaching, promises, application and questions; use "we" only for honest confession of something everyone struggles with (for example "We all drift"), and sparingly. Scripture quotes stay as written. (Dave, 2026-11-20; see DAVE.md.)
 - Write for the phone screen first.
 
 ## Evaluation rule
