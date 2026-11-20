@@ -363,7 +363,7 @@
     "images/202-03-shared-table-seq-1.jpg": {
         "width": 1792,
         "height": 1008,
-        "sourceHash": "7530c01facf9145bacfeb009358cd185b82a9db47b6dacff17792b80ae4e80c1",
+        "sourceHash": "529c3e647b9dccd61c204b326cf69cd15fc233f8bd674e3cc8f1b36bbf60f233",
         "variants": [
             {
                 "src": "images/optimized/202-03-shared-table-seq-1-640.webp",
@@ -393,7 +393,7 @@
     "images/202-03-shared-table-seq-3.jpg": {
         "width": 1792,
         "height": 1008,
-        "sourceHash": "529c3e647b9dccd61c204b326cf69cd15fc233f8bd674e3cc8f1b36bbf60f233",
+        "sourceHash": "7530c01facf9145bacfeb009358cd185b82a9db47b6dacff17792b80ae4e80c1",
         "variants": [
             {
                 "src": "images/optimized/202-03-shared-table-seq-3-640.webp",

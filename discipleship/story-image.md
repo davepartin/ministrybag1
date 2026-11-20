@@ -194,7 +194,7 @@ Optional `imageDissolveOnEntry: true` on a two-layer image starts at 100% B&W wh
 | 201-10 | Coming to His Senses | B&W -> Color | `prodigal-son-two-brothers-bw.jpg` -> `prodigal-son-two-brothers-color.jpg` | Live (`touchNext: true`) |
 | 202-01 | The Good Samaritan | **7-Stop Sequence** | `202-01-good-samaritan-seq-1.jpg` .. `4.jpg` (stops `[0, 0.08, 0.16, 0.24, 0.32, 0.40, 0.64]`; `good-samaritan-story.jpg` kept unused) | Live (`touchNext: true`) |
 | 202-02 | The Wise and Foolish Builders | **7-Stop Sequence** | `house-rock-seq-1.jpg` .. `5.jpg` (stops `[0, 0.08, 0.18, 0.28, 0.38, 0.48, 0.6]`; seq-1 and seq-2 listed twice) | Live sequence (`touchNext: true`) |
-| 202-03 | The Early Church | **3-Frame Sequence** | `202-03-shared-table-seq-1.jpg` .. `3.jpg` (stops `[0, 0.3, 0.6]`; `early-church-seq-1.jpg` .. `4.jpg` kept unused) | Live (`touchNext: true`) |
+| 202-03 | The Early Church | **3-Frame Sequence** | `202-03-shared-table-seq-1.jpg` .. `3.jpg` (empty chair first, full table last; stops `[0, 0.3, 0.6]`; `early-church-seq-1.jpg` .. `4.jpg` kept unused) | Live (`touchNext: true`) |
 | 202-04 | The Five Farmers in the Field | B&W -> Color | `Farmer-bw.jpeg` -> `Farmer-color.jpg` | Live (`touchNext: true`) |
 | 202-05 | The Pit, the Prison, and the Palace | B&W -> Color | `202-05-joseph-pit-palace-bw.jpg` -> `202-05-joseph-pit-palace-color.jpg` | Live (`touchNext: true`) |
 | 202-06 | A Face That Shone | **3-Stop Sequence** | `202-06-moses-veil-seq-1.jpg` (listed twice), `202-06-moses-veil-seq-2.jpg` (stops `[0, 0.2, 0.3]`). Paul/Silas files kept unused. | Live before the story card (`touchNext: true`) |
