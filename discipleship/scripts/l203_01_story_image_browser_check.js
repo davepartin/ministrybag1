@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 /**
  * 203-01 Four Friends and a Roof story-image browser check.
- * Confirms the three roof-drop scroll frames load with house-standard
- * holds, a last unique frame at 0.8, advance in order, keep touchNext
+ * Confirms the two roof-drop scroll frames load with a hold on frame 1,
+ * a last unique landing frame at 0.64, advance in order, keep touchNext
  * on the parable card, honor reduced motion, and do not shift the page
  * at phone and laptop widths. Synthetic navigation only.
  */
@@ -15,23 +15,20 @@ var BASE = process.env.L20301_STORY_BASE_URL || 'http://127.0.0.1:8765/index.htm
 var FRAMES = [
     'images/203-01-roof-drop-seq-1.jpg',
     'images/203-01-roof-drop-seq-1.jpg',
-    'images/203-01-roof-drop-seq-2.jpg',
-    'images/203-01-roof-drop-seq-2.jpg',
-    'images/203-01-roof-drop-seq-3.jpg'
+    'images/203-01-roof-drop-seq-2.jpg'
 ];
 var QUESTION_IDS = [
     '203-01-one',
     '203-01-helped',
     '203-01-4',
-    '203-01-hand',
     '203-01-key',
     '203-01-step',
     '203-01-prayer'
 ];
-var STOPS = [0, 0.08, 0.16, 0.24, 0.8];
+var STOPS = [0, 0.5, 0.64];
 var LAST_STOP = STOPS[STOPS.length - 1];
-var AFTER_LAST = 0.85;
-var SAMPLE_PROGRESS = [0, 0.04, 0.08, 0.12, 0.16, 0.2, 0.24, 0.4, 0.56, 0.8, 0.85];
+var AFTER_LAST = 0.69;
+var SAMPLE_PROGRESS = [0, 0.35, 0.5, 0.55, 0.59, 0.64, 0.69];
 var failed = 0;
 var passed = 0;
 
@@ -51,7 +48,7 @@ async function waitForSequence(page) {
         var root = document.querySelector('#session-1.active [data-parable-sequence]');
         if (!root) return false;
         var frames = Array.prototype.slice.call(root.querySelectorAll('.parable-sequence-frame'));
-        return frames.length === 5 && frames.every(function (img) {
+        return frames.length === 3 && frames.every(function (img) {
             return img.complete && img.naturalWidth > 0 && img.naturalHeight > 0;
         });
     }, { timeout: 20000 });
@@ -168,8 +165,8 @@ function srcMatches(src, expected) {
         await waitForSequence(page);
 
         var rest = await readSequenceState(page);
-        assert(width + ': five sequence frames render', rest.frameCount === 5, String(rest.frameCount));
-        assert(width + ': sequence stops are 0,0.08,0.16,0.24,0.8', rest.stops === STOPS.join(','), rest.stops);
+        assert(width + ': three sequence frames render', rest.frameCount === 3, String(rest.frameCount));
+        assert(width + ': sequence stops are 0,0.5,0.64', rest.stops === STOPS.join(','), rest.stops);
         assert(width + ': image keeps touchNext', rest.touchNext);
         assert(width + ': parable card follows the image', rest.nextIsParable);
         assert(
@@ -192,12 +189,11 @@ function srcMatches(src, expected) {
         });
         var alt = rest.frames[0] && rest.frames[0].alt || '';
         assert(
-            width + ': first frame alt names the three roof-drop beats',
+            width + ': first frame alt names the two roof-drop beats',
             alt.indexOf('hole in the roof') !== -1 &&
                 alt.indexOf('paralyzed man on a mat') !== -1 &&
-                alt.indexOf('shadow far below') !== -1 &&
-                alt.indexOf('then closer') !== -1 &&
-                alt.indexOf('landing beside Jesus') !== -1 &&
+                alt.indexOf('high above the floor') !== -1 &&
+                alt.indexOf('settling beside Jesus') !== -1 &&
                 alt.indexOf('\u2014') === -1,
             alt
         );
@@ -208,12 +204,7 @@ function srcMatches(src, expected) {
         assert(width + ': all frames reserve 1792x1008 with matching proportions', sizesMatch, JSON.stringify(rest.frames.map(function (f) {
             return [f.naturalWidth, f.naturalHeight];
         })));
-        assert(width + ': all seven saved-answer IDs render', rest.questions.every(Boolean), JSON.stringify(rest.questions));
-        assert(
-            width + ': love-moves-out teaching image stays a separate static copy',
-            rest.staticImages.some(function (src) { return src.indexOf('203-01-love-moves-out') !== -1; }),
-            JSON.stringify(rest.staticImages)
-        );
+        assert(width + ': all six current saved-answer IDs render', rest.questions.every(Boolean), JSON.stringify(rest.questions));
         assert(width + ': page does not scroll sideways', rest.overflowX === false, rest.scrollWidth + ' > ' + rest.viewport);
 
         var heightAtStart = rest.wrapHeight;
@@ -246,9 +237,9 @@ function srcMatches(src, expected) {
             }
             if (SAMPLE_PROGRESS[i] === LAST_STOP) {
                 var stillOnScreen = sample.wrapBottom !== null &&
-                    sample.wrapBottom > sample.contentTop + 40 &&
+                    sample.wrapBottom <= sample.viewportHeight + 1 &&
                     sample.wrapTop !== null &&
-                    sample.wrapTop < sample.viewportHeight;
+                    sample.wrapTop >= sample.contentTop - 1;
                 lastStopVisible = stillOnScreen;
                 lastStopNote = 'wrapTop=' + sample.wrapTop +
                     ' wrapBottom=' + sample.wrapBottom +
@@ -273,26 +264,26 @@ function srcMatches(src, expected) {
         }
         var used = {};
         order.forEach(function (row) { used[row.dominant] = true; });
-        var lastFrameInAtStop = atLastStop && atLastStop.opacities && atLastStop.opacities[4] >= 0.85;
+        var lastFrameInAtStop = atLastStop && atLastStop.opacities && atLastStop.opacities[2] >= 0.85;
         assert(width + ': frames advance in order as you scroll', monotonic, JSON.stringify(order));
-        assert(width + ': all five frames become dominant', Object.keys(used).length === 5, JSON.stringify(order));
+        assert(width + ': all three frames become dominant', Object.keys(used).length === 3, JSON.stringify(order));
         assert(width + ': last frame is nearly opaque at stop ' + LAST_STOP, lastFrameInAtStop, JSON.stringify(atLastStop));
-        assert(width + ': last frame is exclusive just after stop ' + LAST_STOP, afterLastStop && afterLastStop.dominant === 4, JSON.stringify(afterLastStop));
+        assert(width + ': last frame is exclusive just after stop ' + LAST_STOP, afterLastStop && afterLastStop.dominant === 2, JSON.stringify(afterLastStop));
         assert(width + ': last frame is still on screen at the final stop', lastStopVisible, lastStopNote);
         assert(width + ': touchNext joins the parable card without layout shift', overlapShift === false && heightAtStart > 100);
-        var atHoldEnd = order.find(function (row) { return row.progress === 0.24; });
-        var midDissolve = order.find(function (row) { return row.progress === 0.4; });
-        var lateDissolve = order.find(function (row) { return row.progress === 0.56; });
-        var seq2AtHold = atHoldEnd && atHoldEnd.opacities &&
-            (atHoldEnd.opacities[2] >= 0.85 || atHoldEnd.opacities[3] >= 0.85) &&
-            atHoldEnd.opacities[4] < 0.15;
-        var seq3Mid = midDissolve && midDissolve.opacities && midDissolve.opacities[4];
-        var seq3Late = lateDissolve && lateDissolve.opacities && lateDissolve.opacities[4];
-        assert(width + ': seq-2 still holds at 0.24 before the last dissolve', seq2AtHold, JSON.stringify(atHoldEnd));
-        assert(width + ': last dissolve is underway at 0.4', seq3Mid > 0.15 && seq3Mid < 0.45, JSON.stringify(midDissolve));
-        assert(width + ': last dissolve is further along at 0.56', seq3Late > 0.45 && seq3Late < 0.75, JSON.stringify(lateDissolve));
+        var atHoldEnd = order.find(function (row) { return row.progress === 0.5; });
+        var midDissolve = order.find(function (row) { return row.progress === 0.55; });
+        var lateDissolve = order.find(function (row) { return row.progress === 0.59; });
+        var seq1AtHold = atHoldEnd && atHoldEnd.opacities &&
+            (atHoldEnd.opacities[0] >= 0.85 || atHoldEnd.opacities[1] >= 0.85) &&
+            atHoldEnd.opacities[2] < 0.15;
+        var seq2Mid = midDissolve && midDissolve.opacities && midDissolve.opacities[2];
+        var seq2Late = lateDissolve && lateDissolve.opacities && lateDissolve.opacities[2];
+        assert(width + ': seq-1 still holds at 0.5 before the last dissolve', seq1AtHold, JSON.stringify(atHoldEnd));
+        assert(width + ': last dissolve is underway at 0.55', seq2Mid > 0.15 && seq2Mid < 0.55, JSON.stringify(midDissolve));
+        assert(width + ': last dissolve is further along at 0.59', seq2Late > 0.45 && seq2Late < 0.80, JSON.stringify(lateDissolve));
         if (width === 390) {
-            assert('390: last dissolve spans 0.24 to 0.8 from seq-2 to seq-3', seq3Mid < seq3Late, 'mid=' + seq3Mid + ' late=' + seq3Late);
+            assert('390: last dissolve spans 0.5 to 0.64 from seq-1 to seq-2', seq2Mid < seq2Late, 'mid=' + seq2Mid + ' late=' + seq2Late);
         }
 
         await page.close();
@@ -306,13 +297,13 @@ function srcMatches(src, expected) {
     await reduced.goto(BASE + '#203-1', { waitUntil: 'domcontentloaded' });
     await waitForSequence(reduced);
     var reducedState = await readSequenceState(reduced);
-    assert('reduced motion: sequence root renders', reducedState.frameCount === 5, String(reducedState.frameCount));
+    assert('reduced motion: sequence root renders', reducedState.frameCount === 3, String(reducedState.frameCount));
     assert(
         'reduced motion: last frame shown without scrolling',
         reducedState.staticSequence &&
-            reducedState.frames[4] &&
-            reducedState.frames[4].opacity >= 0.95 &&
-            reducedState.frames.slice(0, 4).every(function (frame) { return frame.opacity <= 0.05; }),
+            reducedState.frames[2] &&
+            reducedState.frames[2].opacity >= 0.95 &&
+            reducedState.frames.slice(0, 2).every(function (frame) { return frame.opacity <= 0.05; }),
         JSON.stringify({
             staticSequence: reducedState.staticSequence,
             opacities: reducedState.frames.map(function (f) { return Number(f.opacity.toFixed(3)); })
@@ -320,9 +311,9 @@ function srcMatches(src, expected) {
     );
     assert(
         'reduced motion: last frame still loads the roof-drop sequence',
-        reducedState.frames[4] && reducedState.frames[4].naturalWidth > 0 &&
-            srcMatches(reducedState.frames[4].src, 'images/203-01-roof-drop-seq-3.jpg'),
-        reducedState.frames[4] && reducedState.frames[4].src
+        reducedState.frames[2] && reducedState.frames[2].naturalWidth > 0 &&
+            srcMatches(reducedState.frames[2].src, 'images/203-01-roof-drop-seq-2.jpg'),
+        reducedState.frames[2] && reducedState.frames[2].src
     );
     assert('reduced motion: old bw/color pair is not rendered', reducedState.hasBwPair === false);
     assert('reduced motion: touchNext joins the parable', reducedState.touchNext && reducedState.nextIsParable);

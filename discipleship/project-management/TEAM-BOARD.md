@@ -1,5 +1,9 @@
 # Growing Together Team Board
 
+203-01 HOLD50 DONE: Dave requested start50 percent, finish64 percent and merge. PR #338 mergedbd06803; Firebase44661456480 succeeded.80 live story checks pass at375/390/1280 and reduced motion. No artwork, prose or saved-answer changes. [Latest timing evidence](logs/2026-11-19-ART-203-01b-HOLD50-codex.md).
+
+203-01 roof-drop publication DONE, November19: Dave approved the two-frame sequence and earlier finish. PR #322 merged2600793. Stops [0,0.26,0.64]; all80 live story-image checks pass at375/390/1280 and reduced motion. Current Great Commission copy/artwork and saved-answer history preserved. Firebase deployment44660866685 succeeded. [Evidence](logs/2026-11-19-ART-203-01b-TIMING-codex.md).
+
 FLOW-202-10-BAPTISM-FIRST DONE: PR #260 merged b4451a3 with Dave's approved order: baptism/widget, then bread/cup directly above the Supper Bible story. Current-main copy and all8 question IDs preserved; original art remains on disk. Firebase run44457788117 succeeded;114 integration and45 layout checks passed on preview and production. [Evidence](logs/2026-11-18-FLOW-202-10-BAPTISM-FIRST-codex.md).
 
 101-POLISH DONE, November 18: Dave authorized merging PR #314 with the existing101-04 subtitle. Merged44c3585 and verified live after Firebase run44447075061. Final foundation/export212/storage73/assets145/images1539/iframe32 passed;32 preview and32 production phone/laptop checks passed. Approved widgets/artwork/runtime and unrelated lessons unchanged. [Integration evidence](logs/2026-11-18-101-POLISH-codex.md).
