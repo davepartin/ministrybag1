@@ -1,6 +1,6 @@
 # Growing Together Team Board
 
-INTEGRATE-349-354 ACTIVE: PR #349 merged16b2b46 and verified live after Firebase44800501153;80 live roof-art checks pass, timing/lesson unchanged. PR #354 now replaces only static Romans12:9-21 in203-10 at Dave's explicit direction; approved widget bytes intact,182 standalone and132 embedded checks pass locally. Final preview/merge/live verification follows. Log: logs/2026-11-20-INTEGRATE-349-354-codex.md.
+INTEGRATE-349-354 DONE: PR #349 merged16b2b46, PR #354 merged63ef8cc. Firebase44800501153 and44801360973 succeeded. Approved roof art and Marks widget byte-preserved;203-01 timing remains30/45.203-10 static Romans12:9-21 replaced with the approved interactive passage at Dave's explicit direction; all surrounding teaching/questions/readings unchanged.80 roof,182 standalone and132 embedded live checks pass. Log: logs/2026-11-20-INTEGRATE-349-354-codex.md.
 
 ART-203-01c REVIEW, November 20: two new Grok Imagine roof-drop frames replace seq-1 and seq-2. Stops stay [0,0.3,0.45]. Lesson copy and saved-answer IDs unchanged. Stop at REVIEW. [Evidence](logs/2026-11-20-ART-203-01c-grok.md).
 UI-203-WIDGET-FRAMES DONE: PR #358 merged9d8ff6a; Firebase44798863408 succeeded.203-05 through09 use dark compact headers, lesson codes and matching desktop frames.890 local,890 preview and359 live all-step phone/laptop checks pass. All scripts/SVGs/teaching/control content preserved exactly. Log: logs/2026-11-20-UI-203-WIDGET-FRAMES-codex.md.
