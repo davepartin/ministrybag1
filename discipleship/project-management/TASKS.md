@@ -2,7 +2,7 @@
 
 | Task | Status | Owner / date | Scope |
 |---|---|---|---|
-| ART-203-01b-HOLD50 | ACTIVE | Codex / 2026-11-19 | Dave requests dissolve start50 percent, retaining approved finish64 percent, then merge. Only203-01 timing/test and tracking; current art, copy and answers protected. |
+| ART-203-01b-HOLD50 | DONE | Codex / 2026-11-19 | Dave requests dissolve start50 percent, retaining approved finish64 percent, then merge. PR #338 mergedbd06803; Firebase44661456480 succeeded. Core QA and80 local,80 preview,80 live story checks pass. Current art, copy and answers protected. |
 
 | Task | Status | Owner / date | Scope |
 |---|---|---|---|
