@@ -1,5 +1,7 @@
 # Resume here
 
+UI-WIDGET-OPENING-CUES ACTIVE: Approved review follow-up. New201-01/203-01 phrases fade before drawing; subtle phone side boundaries add no width/height. All other teaching/openings preserved.
+
 ART-202-02-RAIN-HOLD DONE: PR #355 merged1d71096; Firebase44776039816 succeeded. Full storm holds18 to28 percent before collapse; later dissolves rebalance to preserve60 percent finish.83 local,83 preview and83 live phone/laptop/reduced-motion checks pass. Art/copy untouched. Log: logs/2026-11-20-ART-202-02-RAIN-HOLD-codex.md.
 
 ART-202-02-FALL-INTEGRATE DONE: PR #353 merged1f080e0; Firebase44775133154 succeeded. Approved5-frame calm/storm/fall/wreckage/aftermath sequence live, stops [0,0.08,0.18,0.3,0.42,0.6]. Frames1/5 and all non-image lesson content preserved.77 local,77 preview,77 production and266 shared browser checks pass. Log: logs/2026-11-20-ART-202-02-FALL-INTEGRATE-codex.md.

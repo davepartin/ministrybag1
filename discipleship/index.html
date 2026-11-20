@@ -1213,6 +1213,16 @@
         }
 
         /* Widget blocks: full-bleed on mobile, card look on desktop */
+        @media (max-width: 559px) {
+            .block-widget { position: relative; }
+            .block-widget::after {
+                content: "";
+                position: absolute;
+                inset: 0;
+                border-inline: 1px solid #E7DECE;
+                pointer-events: none;
+            }
+        }
         .block-widget {
             margin: 24px -20px;
         }
