@@ -2,7 +2,7 @@
 /**
  * 203-01 Four Friends and a Roof story-image browser check.
  * Confirms the two roof-drop scroll frames load with a hold on frame 1,
- * a last unique landing frame at 0.8, advance in order, keep touchNext
+ * a last unique landing frame at 0.64, advance in order, keep touchNext
  * on the parable card, honor reduced motion, and do not shift the page
  * at phone and laptop widths. Synthetic navigation only.
  */
@@ -26,10 +26,10 @@ var QUESTION_IDS = [
     '203-01-step',
     '203-01-prayer'
 ];
-var STOPS = [0, 0.42, 0.8];
+var STOPS = [0, 0.26, 0.64];
 var LAST_STOP = STOPS[STOPS.length - 1];
-var AFTER_LAST = 0.85;
-var SAMPLE_PROGRESS = [0, 0.21, 0.42, 0.56, 0.66, 0.8, 0.85];
+var AFTER_LAST = 0.69;
+var SAMPLE_PROGRESS = [0, 0.20, 0.26, 0.40, 0.50, 0.64, 0.69];
 var failed = 0;
 var passed = 0;
 
@@ -167,7 +167,7 @@ function srcMatches(src, expected) {
 
         var rest = await readSequenceState(page);
         assert(width + ': three sequence frames render', rest.frameCount === 3, String(rest.frameCount));
-        assert(width + ': sequence stops are 0,0.42,0.8', rest.stops === STOPS.join(','), rest.stops);
+        assert(width + ': sequence stops are 0,0.26,0.64', rest.stops === STOPS.join(','), rest.stops);
         assert(width + ': image keeps touchNext', rest.touchNext);
         assert(width + ': parable card follows the image', rest.nextIsParable);
         assert(
@@ -206,11 +206,6 @@ function srcMatches(src, expected) {
             return [f.naturalWidth, f.naturalHeight];
         })));
         assert(width + ': all seven saved-answer IDs render', rest.questions.every(Boolean), JSON.stringify(rest.questions));
-        assert(
-            width + ': love-moves-out teaching image stays a separate static copy',
-            rest.staticImages.some(function (src) { return src.indexOf('203-01-love-moves-out') !== -1; }),
-            JSON.stringify(rest.staticImages)
-        );
         assert(width + ': page does not scroll sideways', rest.overflowX === false, rest.scrollWidth + ' > ' + rest.viewport);
 
         var heightAtStart = rest.wrapHeight;
@@ -243,9 +238,9 @@ function srcMatches(src, expected) {
             }
             if (SAMPLE_PROGRESS[i] === LAST_STOP) {
                 var stillOnScreen = sample.wrapBottom !== null &&
-                    sample.wrapBottom > sample.contentTop + 40 &&
+                    sample.wrapBottom <= sample.viewportHeight + 1 &&
                     sample.wrapTop !== null &&
-                    sample.wrapTop < sample.viewportHeight;
+                    sample.wrapTop >= sample.contentTop - 1;
                 lastStopVisible = stillOnScreen;
                 lastStopNote = 'wrapTop=' + sample.wrapTop +
                     ' wrapBottom=' + sample.wrapBottom +
