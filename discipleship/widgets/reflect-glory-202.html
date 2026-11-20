@@ -101,6 +101,14 @@ body {
   opacity: 1;
 }
 
+.stars-layer {
+  opacity: 1;
+}
+
+.stars-layer.is-faded {
+  opacity: 0.14;
+}
+
 .step-strip {
   display: flex;
   justify-content: center;
@@ -237,7 +245,8 @@ button:focus-visible {
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .widget-outer:not(.is-instant) .reveal-layer {
+  .widget-outer:not(.is-instant) .reveal-layer,
+  .widget-outer:not(.is-instant) .stars-layer {
     transition: opacity 0.65s ease;
   }
   .widget-outer .step-dot-fill {
@@ -345,7 +354,7 @@ button:focus-visible {
       verse: '"For the earth will be filled with the knowledge of the glory of the LORD as the waters cover the sea."',
       ref: 'Habakkuk 2:14',
       line: 'We reflect His glory now, looking forward to the day it fills the earth.',
-      desc: 'The upper golden curve of the sun rises behind the distant dark hill and a soft dawn spreads across the low horizon and landscape while the moon remains clear above.'
+      desc: 'The full golden sun rises over the distant hill and rests at the horizon, flooding the sky, hills, road, and village with warm morning light while the moon remains visible above.'
     }
   ];
 
@@ -354,8 +363,8 @@ button:focus-visible {
     W: 440,
     H: 260,
     horizonSunX: 88,
-    horizonSunY: 180, // Behind y=172 ridge with r=22 => ~14px upper sun edge peeking up (+35-40% more than 10px)
-    horizonSunR: 22,
+    horizonSunY: 152, // Full r=21 sun rests right at the y=172 horizon ridge (152 + 21 = 173)
+    horizonSunR: 21,
     moonX: 294,
     moonY: 66,
     moonR: 24
@@ -584,34 +593,58 @@ button:focus-visible {
       ['100%', '#24221F', 0]
     ]);
 
-    // Step 4: Low yellow-gold dawn brightening behind the distant hill (upper sky stays dark charcoal!)
-    addRadialGrad(defs, 'dawn-edge-glow', '50%', '55%', '50%', [
-      ['0%', '#FFF7D6', 0.95],
-      ['34%', '#F8D46B', 0.62],
-      ['68%', '#C79634', 0.2],
-      ['100%', '#1B1916', 0]
+    // Step 4: Full horizon sunrise bringing the whole scene to light (strict charcoal, white, and yellow palette)
+    addLinearGrad(defs, 'dawn-sky-full', '50%', '0%', '50%', '100%', [
+      ['0%', '#4E473A', 0.94],
+      ['38%', '#8D7A4F', 0.95],
+      ['74%', '#DFC276', 0.97],
+      ['100%', '#FFF5D1', 1]
     ]);
-    addLinearGrad(defs, 'dawn-horizon-band', '50%', '100%', '50%', '0%', [
-      ['0%', '#F9DB7E', 0.52],
-      ['44%', '#C89B3B', 0.2],
-      ['100%', '#1B1916', 0]
+    addRadialGrad(defs, 'dawn-edge-glow', '50%', '50%', '50%', [
+      ['0%', '#FFFFFF', 0.96],
+      ['26%', '#FFF1B5', 0.78],
+      ['56%', '#F6D068', 0.36],
+      ['100%', '#DFC276', 0]
     ]);
-    addRadialGrad(defs, 'rising-sun-disc', '50%', '35%', '60%', [
-      ['0%', '#FFFDF0'],
-      ['55%', '#FCE085'],
-      ['100%', '#E2AE32']
+    addRadialGrad(defs, 'rising-sun-disc', '50%', '45%', '58%', [
+      ['0%', '#FFFFFF'],
+      ['48%', '#FFF2B3'],
+      ['84%', '#F6CA52'],
+      ['100%', '#E0AA2A']
     ]);
-    addLinearGrad(defs, 'dawn-landscape-wash', '25%', '0%', '75%', '100%', [
-      ['0%', '#FAE08A', 0.18],
-      ['48%', '#E7BC52', 0.08],
-      ['100%', '#1B1916', 0]
+    addRadialGrad(defs, 'sun-inner-halo', '50%', '50%', '50%', [
+      ['0%', '#FFFFFF', 0.85],
+      ['56%', '#FFF6CE', 0.42],
+      ['100%', '#FFF6CE', 0]
+    ]);
+    addLinearGrad(defs, 'dawn-hill-far', '18%', '0%', '88%', '100%', [
+      ['0%', '#AE955B'],
+      ['52%', '#847350'],
+      ['100%', '#6B5F47']
+    ]);
+    addLinearGrad(defs, 'dawn-hill-mid-l', '15%', '0%', '85%', '100%', [
+      ['0%', '#8A7852'],
+      ['100%', '#665A43']
+    ]);
+    addLinearGrad(defs, 'dawn-hill-mid-r', '10%', '0%', '95%', '100%', [
+      ['0%', '#786A4D'],
+      ['100%', '#5B513E']
+    ]);
+    addLinearGrad(defs, 'dawn-meadow', '25%', '0%', '75%', '100%', [
+      ['0%', '#6A5D46'],
+      ['100%', '#494133']
+    ]);
+    addLinearGrad(defs, 'dawn-road-grad', '50%', '0%', '50%', '100%', [
+      ['0%', '#FFF5D4'],
+      ['55%', '#EFE2BA'],
+      ['100%', '#D8CBA4']
     ]);
 
     // 1) Fixed Dark Charcoal Night Sky
     svgEl('rect', { x: 0, y: 0, width: 440, height: 260, fill: 'url(#sky-night)' }, svg);
 
     // 2) Crisp White Starfield
-    var starsLayer = svgEl('g', { id: 'layer-stars' }, svg);
+    var starsLayer = svgEl('g', { id: 'layer-stars', class: 'stars-layer' }, svg);
     var starCoords = [
       [36, 34, 1.1], [74, 24, 1.3], [116, 48, 1.0], [154, 28, 1.4],
       [196, 44, 1.1], [232, 24, 1.2], [354, 30, 1.4], [392, 46, 1.1],
@@ -657,31 +690,37 @@ button:focus-visible {
       fill: 'url(#sky-bridge-glow)'
     }, skyBridgeLayer);
 
-    // 5) Step 4: Low Horizon Dawn + Rising Sun rising ~30%+ higher behind the distant left hill!
+    // 5) Step 4: Full Horizon Sunrise bringing the whole sky to warm golden light!
     var dawnHorizonLayer = svgEl('g', { id: 'layer-dawn-horizon', class: 'reveal-layer' }, svg);
     svgEl('rect', {
       x: 0,
-      y: 112,
+      y: 0,
       width: 440,
-      height: 82,
-      fill: 'url(#dawn-horizon-band)'
+      height: 204,
+      fill: 'url(#dawn-sky-full)'
     }, dawnHorizonLayer);
     svgEl('ellipse', {
       cx: GEO.horizonSunX,
-      cy: 172,
-      rx: 164,
-      ry: 70,
+      cy: GEO.horizonSunY + 4,
+      rx: 230,
+      ry: 132,
       fill: 'url(#dawn-edge-glow)'
     }, dawnHorizonLayer);
-    // Rising Sun disc behind the far charcoal hill (r=22 at y=180 => ~14px upper golden arc peeking above y=172!)
-    var sunEdgeGroup = svgEl('g', { id: 'rising-sun-edge', transform: 'translate(0, 14)' }, dawnHorizonLayer);
+    // Full glowing sun rises from behind the far ridge to rest right on the y=172 horizon
+    var sunEdgeGroup = svgEl('g', { id: 'rising-sun-edge', transform: 'translate(0, 36)' }, dawnHorizonLayer);
+    svgEl('circle', {
+      cx: GEO.horizonSunX,
+      cy: GEO.horizonSunY,
+      r: GEO.horizonSunR + 18,
+      fill: 'url(#sun-inner-halo)'
+    }, sunEdgeGroup);
     svgEl('circle', {
       cx: GEO.horizonSunX,
       cy: GEO.horizonSunY,
       r: GEO.horizonSunR,
       fill: 'url(#rising-sun-disc)',
-      stroke: '#E2AE32',
-      'stroke-width': '1.4'
+      stroke: '#E4B030',
+      'stroke-width': '1.3'
     }, sunEdgeGroup);
 
     // 6) Step 3: Soft Feathered Moonlight Pool descending gently over the charcoal village
@@ -878,24 +917,111 @@ button:focus-visible {
       }, landMoonlit);
     });
 
-    // 10) Step 4: Golden Dawn Rim along the distant charcoal ridge + subtle soft dawn warmth over the landscape
+    // 10) Step 4: Whole village & hills brought into warm morning light (charcoal, white, and yellow only)
     var landDawnRim = svgEl('g', { id: 'layer-landscape-dawn', class: 'reveal-layer' }, svg);
+    // Lit far hills
     svgEl('path', {
       d: 'M 0 183 Q 44 176 88 172 Q 134 168 184 179 Q 256 192 336 175 Q 388 166 440 176 L 440 260 L 0 260 Z',
-      fill: 'url(#dawn-landscape-wash)'
+      fill: 'url(#dawn-hill-far)',
+      stroke: '#584E3B',
+      'stroke-width': '1.1'
+    }, landDawnRim);
+    // Bright sunlit rim along the far horizon ridge
+    svgEl('path', {
+      d: 'M 0 183 Q 44 176 88 172 Q 134 168 184 179 Q 256 192 336 175 Q 388 166 440 176',
+      fill: 'none',
+      stroke: '#FFF8D8',
+      'stroke-width': '2',
+      'stroke-linecap': 'round',
+      opacity: '0.96'
+    }, landDawnRim);
+    // Lit mid-ground valley slopes
+    svgEl('path', {
+      d: 'M 0 198 Q 92 186 184 203 Q 222 210 250 206 L 250 260 L 0 260 Z',
+      fill: 'url(#dawn-hill-mid-l)',
+      stroke: '#4B4333',
+      'stroke-width': '1.1'
     }, landDawnRim);
     svgEl('path', {
-      d: 'M 10 182 Q 48 175 88 172 Q 134 168 184 179 Q 256 192 336 175 Q 388 166 430 175',
+      d: 'M 0 198 Q 92 186 184 203 Q 222 210 250 206',
       fill: 'none',
-      stroke: '#FFF4C8',
-      'stroke-width': '1.9',
-      'stroke-linecap': 'round',
-      opacity: '0.92'
+      stroke: '#FDEAA8',
+      'stroke-width': '1.3',
+      opacity: '0.68'
     }, landDawnRim);
+    svgEl('path', {
+      d: 'M 222 210 Q 306 191 380 201 Q 414 206 440 198 L 440 260 L 222 260 Z',
+      fill: 'url(#dawn-hill-mid-r)',
+      stroke: '#474032',
+      'stroke-width': '1.1'
+    }, landDawnRim);
+    svgEl('path', {
+      d: 'M 222 210 Q 306 191 380 201 Q 414 206 440 198',
+      fill: 'none',
+      stroke: '#FBE6A0',
+      'stroke-width': '1.25',
+      opacity: '0.6'
+    }, landDawnRim);
+    // Lit foreground meadow
+    svgEl('path', {
+      d: 'M 0 227 Q 118 216 230 225 Q 334 234 440 220 L 440 260 L 0 260 Z',
+      fill: 'url(#dawn-meadow)',
+      stroke: '#3A3429',
+      'stroke-width': '1.1'
+    }, landDawnRim);
+    // Sunlit winding road
+    svgEl('path', {
+      d: 'M 248 205 C 234 215 224 224 239 234 C 256 244 261 252 249 260 L 269 260 C 279 250 273 240 254 232 C 238 225 246 215 258 205 Z',
+      fill: 'url(#dawn-road-grad)',
+      stroke: '#7A6C4F',
+      'stroke-width': '0.9'
+    }, landDawnRim);
+    // Sunlit countryside trees
+    drawTree(landDawnRim, 46, 224, 24, 14, '#5A503E', '#332E25');
+    drawTree(landDawnRim, 78, 218, 28, 16, '#5F5440', '#332E25');
+    drawTree(landDawnRim, 166, 218, 20, 12, '#625642', '#332E25');
+    drawTree(landDawnRim, 282, 217, 22, 13, '#5C513E', '#332E25');
+    drawTree(landDawnRim, 336, 223, 20, 12, '#554B3A', '#332E25');
+    drawTree(landDawnRim, 396, 222, 26, 15, '#524939', '#332E25');
+    // Sunlit cozy village homes + country church (warm white walls, charcoal roofs, golden highlights)
+    drawHouse(landDawnRim, 112, 214, 30, 18, 12, { wallFill: '#F2EBDC', roofFill: '#443E34', stroke: '#2A261F' });
+    drawHouse(landDawnRim, 184, 204, 26, 22, 14, { wallFill: '#F7F1E3', roofFill: '#4A4338', stroke: '#2A261F' });
+    svgEl('path', {
+      d: 'M 197 183 L 197 190 M 194.5 185.5 L 199.5 185.5',
+      stroke: '#FFF6D0',
+      'stroke-width': '1.6',
+      'stroke-linecap': 'round'
+    }, landDawnRim);
+    drawHouse(landDawnRim, 296, 211, 28, 18, 11, { wallFill: '#EDE6D6', roofFill: '#423C32', stroke: '#2A261F' });
+    drawHouse(landDawnRim, 348, 218, 30, 17, 11, { wallFill: '#E9E1D0', roofFill: '#3F3A30', stroke: '#2A261F' });
+    // Sunlit golden roofline glints facing the morning sun
+    svgEl('path', {
+      d: 'M 109 214 L 127 202 L 145 214 M 181 204 L 197 190 L 213 204 M 293 211 L 310 200 L 327 211 M 345 218 L 363 207 L 381 218',
+      fill: 'none',
+      stroke: '#FFF5CC',
+      'stroke-width': '1.4',
+      'stroke-linecap': 'round',
+      'stroke-linejoin': 'round',
+      opacity: '0.9'
+    }, landDawnRim);
+    // Warm glowing windows in the morning village
+    windowCoords.forEach(function (w) {
+      svgEl('rect', {
+        x: w[0],
+        y: w[1],
+        width: w[2],
+        height: w[3],
+        rx: 1,
+        fill: '#FAD975',
+        stroke: '#5E533E',
+        'stroke-width': '0.6'
+      }, landDawnRim);
+    });
 
     return {
       svgTitle: svgTitle,
       svgDesc: svgDesc,
+      starsLayer: starsLayer,
       horizonGlowLayer: horizonGlowLayer,
       farRidgeRimStep1: farRidgeRimStep1,
       skyBridgeLayer: skyBridgeLayer,
@@ -965,6 +1091,8 @@ button:focus-visible {
     }
 
     function applyStaticLayers(stepIdx) {
+      // Night stars soften as morning light fills the sky on Slide 4
+      bundle.starsLayer.classList.toggle('is-faded', stepIdx >= 3);
       // Slide 0 (1 of 4): Light reaches over the hills toward a dim moon
       bundle.horizonGlowLayer.classList.toggle('is-visible', true);
       bundle.farRidgeRimStep1.classList.toggle('is-visible', stepIdx < 3);
@@ -974,13 +1102,13 @@ button:focus-visible {
       // Slide 2 (3 of 4): Moonlight reveals road, rooftops, and warm home windows
       bundle.moonlightPoolLayer.classList.toggle('is-visible', stepIdx >= 2);
       bundle.landMoonlit.classList.toggle('is-visible', stepIdx >= 2);
-      // Slide 3 (4 of 4): Upper edge of sun appears + soft dawn spreads across landscape
+      // Slide 3 (4 of 4): Full sun rises onto the horizon and brings the whole scene to light
       bundle.dawnHorizonLayer.classList.toggle('is-visible', stepIdx >= 3);
       bundle.landDawnRim.classList.toggle('is-visible', stepIdx >= 3);
     }
 
     function snapFinalMotion(stepIdx) {
-      bundle.sunEdgeGroup.setAttribute('transform', stepIdx >= 3 ? 'translate(0, 0)' : 'translate(0, 14)');
+      bundle.sunEdgeGroup.setAttribute('transform', stepIdx >= 3 ? 'translate(0, 0)' : 'translate(0, 36)');
     }
 
     function animateStep(stepIdx) {
@@ -990,15 +1118,15 @@ button:focus-visible {
         return;
       }
 
-      // Slide 4: Gently lift the upper golden curve of the sun above the distant charcoal hill
+      // Slide 4: Gently lift the full sun over the distant ridge to rest at the horizon
       var t0 = performance.now();
-      var dur = 680;
+      var dur = 760;
       host.setAttribute('data-step-dur', String(dur));
-      bundle.sunEdgeGroup.setAttribute('transform', 'translate(0, 14)');
+      bundle.sunEdgeGroup.setAttribute('transform', 'translate(0, 36)');
       var frame = function (now) {
         var p = Math.min(1, (now - t0) / dur);
         var eased = 1 - Math.pow(1 - p, 2);
-        var dy = (14 * (1 - eased)).toFixed(2);
+        var dy = (36 * (1 - eased)).toFixed(2);
         bundle.sunEdgeGroup.setAttribute('transform', 'translate(0, ' + dy + ')');
         if (p < 1) {
           activeRaf = requestAnimationFrame(frame);
