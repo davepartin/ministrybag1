@@ -119,6 +119,7 @@ The existing engine places the image top at `contentTop + visibleHeight * (0.40 
 - **7 entries with a slow last dissolve (`202-02` Wise Builder):** `[0, 0.067, 0.133, 0.2, 0.267, 0.4, 0.6]`
 - **7 entries with 0.08 holds and a 0.24 last dissolve (`202-01` Good Samaritan):** `[0, 0.08, 0.16, 0.24, 0.32, 0.40, 0.64]`
 - **3 entries with a 0.3 hold and last frame at 0.45 (`203-01` Roof Drop):** `[0, 0.3, 0.45]`
+- **3 entries with a seq-1 hold and last frame at 0.91 (`202-06` Moses veil):** `[0, 0.34, 0.91]`
 
 ### How the Renderer Animates the Sequence
 
@@ -195,7 +196,7 @@ Optional `imageDissolveOnEntry: true` on a two-layer image starts at 100% B&W wh
 | 202-03 | The Early Church | **4-Frame Sequence** | `early-church-seq-1.jpg` .. `4.jpg` (stops `[0, 0.18, 0.34, 0.5]`) | Live (`touchNext: true`) |
 | 202-04 | The Five Farmers in the Field | B&W -> Color | `Farmer-bw.jpeg` -> `Farmer-color.jpg` | Live (`touchNext: true`) |
 | 202-05 | The Pit, the Prison, and the Palace | B&W -> Color | `202-05-joseph-pit-palace-bw.jpg` -> `202-05-joseph-pit-palace-color.jpg` | Live (`touchNext: true`) |
-| 202-06 | Songs at Midnight | **5-Frame Sequence** | `202-06-paul-silas-seq-1.jpg` .. `5.jpg` (stops `[0, 0.16, 0.3, 0.44, 0.58]`) | Live (`touchNext: true`) |
+| 202-06 | A Face That Shone | **3-Stop Sequence** | `202-06-moses-veil-seq-1.jpg` (listed twice), `202-06-moses-veil-seq-2.jpg` (stops `[0, 0.34, 0.91]`). Paul/Silas files kept unused. | Live before the story card (`touchNext: true`) |
 | 202-07 | Two Small Coins | **4-Frame Sequence** | `202-07-two-coins-seq-1.jpg` .. `4.jpg` (stops `[0, 0.18, 0.34, 0.5]`) | Live (`touchNext: true`) |
 | 202-08 | The Marble and the Chisel | B&W -> Color | `202.08-marble-chisel-bw.jpg` -> `202.08-marble-chisel-color.jpg` | Live (`touchNext: true`, `frame: true`) |
 | 202-09 | The View from the Roof | B&W -> Color | `202-09-story-bw.jpg` -> `202-09-story-color.jpg` (`1280x720`, 16:9; earlier `202.09-david-roof-*.png` kept unused) | Live (`touchNext: true`, `frame: true`, `imageDissolveOnEntry: true`) |
