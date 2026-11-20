@@ -1,6 +1,6 @@
 # Resume here
 
-UI-WIDGET-OPENING-CUES ACTIVE: Approved review follow-up. New201-01/203-01 phrases fade before drawing; subtle phone side boundaries add no width/height. All other teaching/openings preserved.
+UI-WIDGET-OPENING-CUES DONE: PR #357 merged0b4f9fb; Firebase44797004262 succeeded.201-01 Love begins with God and203-01 His love keeps moving outward fade before drawing. All embedded widgets have subtle phone side boundaries with no added width/height.192 live opening/layout/input/reduced-motion and604 local shared-engine checks pass. Teaching, diagrams and answers preserved. Log: logs/2026-11-20-UI-WIDGET-OPENING-CUES-codex.md.
 
 ART-202-02-RAIN-HOLD DONE: PR #355 merged1d71096; Firebase44776039816 succeeded. Full storm holds18 to28 percent before collapse; later dissolves rebalance to preserve60 percent finish.83 local,83 preview and83 live phone/laptop/reduced-motion checks pass. Art/copy untouched. Log: logs/2026-11-20-ART-202-02-RAIN-HOLD-codex.md.
 

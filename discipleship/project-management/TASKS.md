@@ -2,7 +2,7 @@
 
 | Task | Status | Owner / date | Scope |
 |---|---|---|---|
-| UI-WIDGET-OPENING-CUES | ACTIVE | Codex / 2026-11-20 | Branch codex/widget-opening-cues. Add201-01/203-01 meaningful opening phrases and subtle phone boundaries; preserve diagrams, teaching and saved answers. |
+| UI-WIDGET-OPENING-CUES | DONE | Codex / 2026-11-20 | PR #357 merged0b4f9fb; Firebase44797004262 succeeded.201-01/203-01 opening cues fade before drawing; subtle phone side lines add no dimensions.192 live and604 shared-engine checks pass. Teaching/answers preserved. |
 | ART-202-02-RAIN-HOLD | DONE | Codex / 2026-11-20 | PR #355 merged1d71096; Firebase44776039816 succeeded. Full rain holds18-28 percent before collapse; finish60 percent.83 local/preview/live checks pass, art/copy preserved. |
 | ART-202-02-FALL-INTEGRATE | DONE | Codex / 2026-11-20 | PR #353 merged1f080e0; Firebase44775133154 succeeded. Approved5 frames preserved;77 local/preview/live and266 shared browser checks pass. Lesson copy/questions untouched. |
 | ART-202-06-20-30 | DONE | Codex / 2026-11-20 | PR #350 mergedcd92528; Firebase44741196843 succeeded. Dissolve starts20 percent, finishes30 percent.76 local,76 preview and76 live browser checks pass. Artwork and all other lesson values preserved. |
