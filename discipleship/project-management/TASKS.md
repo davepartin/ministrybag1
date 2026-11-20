@@ -2,6 +2,7 @@
 
 | Task | Status | Owner / date | Scope |
 |---|---|---|---|
+| ART-202-02-RAIN-HOLD | ACTIVE | Codex / 2026-11-20 | Branch codex/202-02-rain-hold. Add10 percentage points of full storm before collapse; retain60 percent finish and approved art/copy. |
 | ART-202-02-FALL-INTEGRATE | DONE | Codex / 2026-11-20 | PR #353 merged1f080e0; Firebase44775133154 succeeded. Approved5 frames preserved;77 local/preview/live and266 shared browser checks pass. Lesson copy/questions untouched. |
 | ART-202-06-20-30 | DONE | Codex / 2026-11-20 | PR #350 mergedcd92528; Firebase44741196843 succeeded. Dissolve starts20 percent, finishes30 percent.76 local,76 preview and76 live browser checks pass. Artwork and all other lesson values preserved. |
 | UI-COURSE-OPENER-LOGOS | DONE | Codex / 2026-11-20 | PR #347 merged59cce28; Firebase44738918915 succeeded. Three opener logos fill content width, proportions preserved. Foundation QA and46 local,46 preview,46 live browser checks pass. No other lesson values changed. |
