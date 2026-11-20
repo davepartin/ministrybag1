@@ -13,7 +13,7 @@ The lesson renderer (index.html) embeds each widget in an `<iframe>` that is:
 - Margin of `24px -20px` (negative horizontal margin so the iframe bleeds edge-to-edge past the lesson's 20px side padding)
 - Height starts at the `height` field in the lesson JSON (e.g. `"height": "640px"`). After the widget loads, `scripts/widget-iframe.js` measures the content and resizes the iframe to fit. It re-measures whenever anything inside the widget changes. Read **Measuring, Resizing and Scroll Safety** below before writing any resize code.
 
-This means the widget's HTML is responsible for all its own internal layout. There is no surrounding card or frame from the parent page.
+This means the widget's HTML is responsible for all its own internal layout. There is no surrounding card from the parent page. On phones, the parent adds subtle1px side boundaries over the iframe edges without changing layout or blocking taps. Keep the widget full-bleed; do not add a second mobile outer frame.
 
 ---
 
@@ -322,3 +322,9 @@ If you suspect this problem, the quickest diagnosis is to count mutations inside
 6. **Card content too tall** — the verse-card-content height is locked at 112px. If card text overflows, shorten the text before making the widget taller.
 7. **Growing the iframe instead of redesigning** — if a widget does not fit in 600px, the answer is never to make the iframe taller. Reduce the diagram area, tighten padding, or simplify the layout. Tall iframes break the reading experience on standard iPhones.
 8. **Refitting on every resize:** running `fitCards()` or any other measuring code on every `window` resize starts a loop with the page's own measuring and makes the lesson jump while scrolling on phones. Refit only when `window.innerWidth` changes. See **Measuring, Resizing and Scroll Safety**.
+
+## Purposeful opening states
+
+A drawing area must look intentional before Begin. If the initial stage would be empty, place one short, meaningful phrase in its center, usually3 to7 words. Do not duplicate the title or say Tap Begin.201-01 uses Love begins with God;203-01 uses His love keeps moving outward. Preserve existing recognizable scenes, passages and exploration controls instead of adding overlays everywhere.
+
+For these two new cues, Begin fades the phrase for320ms before drawing begins; reduced motion advances immediately. Back to the opening or Start Over restores the cue. The overlay reserves no space and must not change card height, iframe height or lesson scroll position. Repeated taps during the brief fade must not skip steps. Keep the teaching diagram and step order intact.

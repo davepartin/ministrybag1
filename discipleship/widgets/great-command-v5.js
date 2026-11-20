@@ -57,6 +57,7 @@
     '201': {
       title: 'The Greatest Commandment',
       courseTag: '201-01',
+      intro: { text: 'Love begins with God.' },
       regionLabel: 'Interactive cross drawing for 201 Loving God (Version 5)',
       svgTitle: 'The Greatest Commandment Cross (Growing Deep - Studio Wash)',
       steps: [
@@ -388,6 +389,8 @@
     '.cross-svg { display: block; width: 100%; height: auto; }',
     '.stage-intro { position: absolute; inset: 0; z-index: 5; display: flex; align-items: center; justify-content: center; padding: 18px; pointer-events: none; opacity: 1; }',
     '.stage-intro.is-hidden { opacity: 0; }',
+    '.has-opening-cue .stage-intro { transition: opacity 0.32s ease; }',
+    '@media (prefers-reduced-motion: reduce) { .has-opening-cue .stage-intro, .has-opening-cue .stage-intro-card { transition: none; } }',
     '.stage-intro-card { max-width: 290px; padding: 16px 20px 14px; border: 1px solid #E6DECF; border-radius: 14px; background: #FFFFFF; box-shadow: 0 10px 28px rgba(44, 36, 22, 0.10); text-align: center; }',
     '.stage-intro-text { margin: 0; font: 600 17px/1.3 Georgia, \'Times New Roman\', serif; color: #2C2416; }',
     '@media (prefers-reduced-motion: no-preference) {',
@@ -1140,6 +1143,7 @@
     stage.appendChild(bundle.svg);
     var introEl = null;
     if (CONFIG.intro) {
+      if (VERSION === '201') host.classList.add('has-opening-cue');
       stage.style.position = 'relative';
       introEl = el('div', { 'class': 'stage-intro' });
       var introCard = el('div', { 'class': 'stage-intro-card' });
@@ -1197,6 +1201,7 @@
 
     var reducedMotionQuery = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : { matches: false };
     var currentStep = 0;
+    var introTimer = null;
     var activeRaf = null;
     var SWEEP_PX_PER_SEC = 95;
     var CONTOUR_PX_PER_SEC = 185;
@@ -1290,7 +1295,21 @@
       updateLabels(draw, false);
     }
 
-    function goTo(nextIdx) {
+    function goTo(nextIdx, introFinished) {
+      if (introTimer !== null) {
+        if (nextIdx !== 0) return;
+        clearTimeout(introTimer);
+        introTimer = null;
+      }
+      if (VERSION === '201' && introEl && currentStep === 0 && nextIdx > 0 && !introFinished && !reducedMotionQuery.matches) {
+        introEl.classList.add('is-hidden');
+        introEl.setAttribute('aria-hidden', 'true');
+        introTimer = setTimeout(function () {
+          introTimer = null;
+          goTo(nextIdx, true);
+        }, 340);
+        return;
+      }
       stopActiveAnim();
       var prevDraw = CONFIG.steps[currentStep].draw || {};
       var nextStep = CONFIG.steps[nextIdx];
