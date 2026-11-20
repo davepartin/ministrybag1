@@ -1,5 +1,7 @@
 # Resume here
 
+ART-202-02-EARLY-FINISH ACTIVE, November20: Timing-only repair on codex/202-02-earlier-finish. Sequence finish moves from72 to60 percent with proportional earlier beats; all artwork, lesson copy and answers preserved. Local QA and77 phone/laptop sequence checks pass. Final reduced-motion check, exact-head preview and publication verification follow.
+
 203-10 widget removal DONE, November20: Dave requested removing the reused cross widget pending a better design. PR #343 merged1ff1002 and Firebase44736024654 succeeded. Embed, stale Diagram jump and TOC widget labels removed; all remaining lesson text, Scripture, current/retired questions and answers preserved. Shared widget file remains intact and live for other lessons.30 production phone/laptop removal/export/reload checks pass. Log: logs/2026-11-20-WIDGET-203-10-REMOVE-codex.md.
 
 203-01 LATEST TIMING DONE: Dave requested start30 percent, finish45 percent. PR #340 merged8caaf0b and Firebase44673963098 succeeded. Current stops [0,0.3,0.45] supersede all earlier schedules below.80 live phone/laptop/reduced-motion checks passed, with full image visible at finish. Art/copy/answer history untouched. Log: logs/2026-11-19-ART-203-01b-30-45-codex.md.
