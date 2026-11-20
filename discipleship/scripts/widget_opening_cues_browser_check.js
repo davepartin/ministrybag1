@@ -22,12 +22,11 @@ const BASE = process.env.GT_BASE_URL || 'http://127.0.0.1:8854/discipleship/inde
   check((await frame.locator(cue).innerText()).trim()===phrase,'meaningful opening phrase');
   check(await frame.locator(cue).evaluate(el=>getComputedStyle(el).opacity==='1'),'opening visible');
   const cardHeight=await frame.locator('#widget').evaluate(el=>el.style.getPropertyValue('--card-h'));
-  await frame.evaluate(()=>{document.querySelector('#next-btn').click();if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.querySelector('#next-btn').click();});
+  const started = await frame.evaluate(cue=>{document.querySelector('#next-btn').click();if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.querySelector('#next-btn').click();return {step:document.querySelector('.step-dot.active').getAttribute('data-step'),duration:getComputedStyle(document.querySelector(cue)).transitionDuration};},cue);
   if(motion==='no-preference'){
-   check(await frame.locator('.step-dot.active').getAttribute('data-step')==='0','drawing waits for cue fade');
-   await page.waitForTimeout(100);const opacity=await frame.locator(cue).evaluate(el=>Number(getComputedStyle(el).opacity));
-   check(opacity>0&&opacity<1,'cue fades smoothly');
-  } else check(await frame.locator('.step-dot.active').getAttribute('data-step')==='1','reduced motion advances immediately');
+   check(started.step==='0','drawing waits for cue fade');
+   check(started.duration==='0.32s','cue uses the short fade');
+  } else check(started.step==='1','reduced motion advances immediately');
   await page.waitForTimeout(500);
   check(await frame.locator(cue).getAttribute('aria-hidden')==='true','started cue hidden from accessibility tree');
   check(await frame.locator(cue).evaluate(el=>Number(getComputedStyle(el).opacity)===0),'cue fully gone');
