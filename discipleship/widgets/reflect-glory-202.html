@@ -304,59 +304,48 @@ button:focus-visible {
 
   var STEPS = [
     {
-      id: 'night',
-      dotLabel: 'Start: Reflect His Glory',
-      color: COLORS.black,
-      dark: COLORS.black,
-      heading: 'Reflect His Glory',
-      verse: '"And we all, with unveiled face, beholding the glory of the Lord, are being transformed into the same image from one degree of glory to another. For this comes from the Lord who is the Spirit."',
-      ref: '2 Corinthians 3:18',
-      line: 'A quiet village rests under a dark sky. You were made to carry light that does not begin with you.',
-      desc: 'A quiet village at night in dark charcoal tones beneath stars, with dark hills, a dark winding road, unlit homes, a small church, and a darkened cratered moon above.'
-    },
-    {
-      id: 'source',
-      dotLabel: 'Step 1: Unveiled Before God',
+      id: 'turn',
+      dotLabel: 'Slide 1: Turn Toward His Glory',
       color: COLORS.charcoal,
       dark: COLORS.charcoalDark,
-      heading: 'Unveiled Before God',
-      verse: '"And we all, with unveiled face..."',
+      heading: 'Turn Toward His Glory',
+      verse: '"We all, with unveiled faces, are looking as in a mirror at the glory of the Lord..."',
       ref: '2 Corinthians 3:18',
-      line: 'Nothing stands between you and God in Christ. Beyond the distant hills, His glory is already shining.',
-      desc: 'A soft yellow-gold glow grows behind the distant dark charcoal hills while the sun remains hidden below the horizon and the sky stays dark.'
+      line: 'Just as Moses\' face shone after being with God, worship turns our attention toward Him.',
+      desc: 'Soft yellow light reaches over the distant dark charcoal hills toward a dim cratered moon above a quiet village at night.'
     },
     {
-      id: 'beholding',
-      dotLabel: 'Step 2: Beholding His Glory',
+      id: 'changed',
+      dotLabel: 'Slide 2: Changed by His Presence',
       color: COLORS.goldBtn,
       dark: COLORS.goldDark,
-      heading: 'Beholding His Glory',
-      verse: '"...beholding the glory of the Lord..."',
+      heading: 'Changed by His Presence',
+      verse: '"...are being transformed into the same image from glory to glory..."',
       ref: '2 Corinthians 3:18',
-      line: 'As you look to the Lord, His light reaches you. You do not manufacture the glow; you receive it.',
-      desc: 'Soft yellow light from beyond the hills reaches across the dark charcoal sky and brightens the cratered moon into luminous warm yellow and white.'
+      line: 'Like a mirror receiving His light, we are changed by His Spirit to become more like Jesus.',
+      desc: 'The cratered moon brightens into luminous warm yellow and white as it receives light from the golden glow beyond the distant hills.'
     },
     {
-      id: 'ordinary-life',
-      dotLabel: 'Step 3: Transformed Into His Image',
+      id: 'reaches-others',
+      dotLabel: 'Slide 3: His Light Reaches Others',
       color: COLORS.goldBtn,
       dark: COLORS.goldDark,
-      heading: 'Transformed Into His Image',
-      verse: '"...are being transformed into the same image from one degree of glory to another."',
-      ref: '2 Corinthians 3:18',
-      line: 'Reflected light gently reveals the road and rooftops below, and warm home windows bring life into the night.',
-      desc: 'Soft moonlight gently illuminates the winding village road, rooftops, and church cross while warm yellow home windows light up across the charcoal valley.'
+      heading: 'His Light Reaches Others',
+      verse: '"Let your light shine before others, so that they may see your good works and give glory to your Father..."',
+      ref: 'Matthew 5:16',
+      line: 'What we receive in worship becomes love people can see.',
+      desc: 'Soft moonlight gently reveals the winding village road and rooftops while warm yellow lights come on inside the homes.'
     },
     {
-      id: 'dawn-hope',
-      dotLabel: 'Step 4: From the Lord Who Is the Spirit',
+      id: 'whole-earth',
+      dotLabel: 'Slide 4: The Whole Earth Filled',
       color: COLORS.goldDeep,
       dark: COLORS.goldDark,
-      heading: 'From the Lord Who Is the Spirit',
-      verse: '"...from one degree of glory to another. For this comes from the Lord who is the Spirit."',
-      ref: '2 Corinthians 3:18',
-      line: 'His Spirit carries this work forward in hope until Christ returns and dawn breaks over the whole earth.',
-      desc: 'The upper golden-yellow curve of the rising sun appears behind the distant charcoal hill, brightening the low horizon while the dark night sky and cratered moon remain clear.'
+      heading: 'The Whole Earth Filled',
+      verse: '"For the earth will be filled with the knowledge of the glory of the LORD as the waters cover the sea."',
+      ref: 'Habakkuk 2:14',
+      line: 'We reflect His glory now, looking forward to the day it fills the earth.',
+      desc: 'The upper golden curve of the sun rises behind the distant dark hill and a soft dawn spreads across the low horizon and landscape while the moon remains clear above.'
     }
   ];
 
@@ -611,6 +600,11 @@ button:focus-visible {
       ['0%', '#FFFDF0'],
       ['55%', '#FCE085'],
       ['100%', '#E2AE32']
+    ]);
+    addLinearGrad(defs, 'dawn-landscape-wash', '25%', '0%', '75%', '100%', [
+      ['0%', '#FAE08A', 0.18],
+      ['48%', '#E7BC52', 0.08],
+      ['100%', '#1B1916', 0]
     ]);
 
     // 1) Fixed Dark Charcoal Night Sky
@@ -884,8 +878,12 @@ button:focus-visible {
       }, landMoonlit);
     });
 
-    // 10) Step 4: Golden Dawn Rim along the distant charcoal ridge (no border around the slide!)
+    // 10) Step 4: Golden Dawn Rim along the distant charcoal ridge + subtle soft dawn warmth over the landscape
     var landDawnRim = svgEl('g', { id: 'layer-landscape-dawn', class: 'reveal-layer' }, svg);
+    svgEl('path', {
+      d: 'M 0 183 Q 44 176 88 172 Q 134 168 184 179 Q 256 192 336 175 Q 388 166 440 176 L 440 260 L 0 260 Z',
+      fill: 'url(#dawn-landscape-wash)'
+    }, landDawnRim);
     svgEl('path', {
       d: 'M 10 182 Q 48 175 88 172 Q 134 168 184 179 Q 256 192 336 175 Q 388 166 430 175',
       fill: 'none',
@@ -967,28 +965,32 @@ button:focus-visible {
     }
 
     function applyStaticLayers(stepIdx) {
-      bundle.horizonGlowLayer.classList.toggle('is-visible', stepIdx >= 1);
-      bundle.farRidgeRimStep1.classList.toggle('is-visible', stepIdx >= 1 && stepIdx < 4);
-      bundle.skyBridgeLayer.classList.toggle('is-visible', stepIdx >= 2);
-      bundle.moonLitLayer.classList.toggle('is-visible', stepIdx >= 2);
-      bundle.moonlightPoolLayer.classList.toggle('is-visible', stepIdx >= 3);
-      bundle.landMoonlit.classList.toggle('is-visible', stepIdx >= 3);
-      bundle.dawnHorizonLayer.classList.toggle('is-visible', stepIdx >= 4);
-      bundle.landDawnRim.classList.toggle('is-visible', stepIdx >= 4);
+      // Slide 0 (1 of 4): Light reaches over the hills toward a dim moon
+      bundle.horizonGlowLayer.classList.toggle('is-visible', true);
+      bundle.farRidgeRimStep1.classList.toggle('is-visible', stepIdx < 3);
+      bundle.skyBridgeLayer.classList.toggle('is-visible', true);
+      // Slide 1 (2 of 4): Moon brightens as it receives the light
+      bundle.moonLitLayer.classList.toggle('is-visible', stepIdx >= 1);
+      // Slide 2 (3 of 4): Moonlight reveals road, rooftops, and warm home windows
+      bundle.moonlightPoolLayer.classList.toggle('is-visible', stepIdx >= 2);
+      bundle.landMoonlit.classList.toggle('is-visible', stepIdx >= 2);
+      // Slide 3 (4 of 4): Upper edge of sun appears + soft dawn spreads across landscape
+      bundle.dawnHorizonLayer.classList.toggle('is-visible', stepIdx >= 3);
+      bundle.landDawnRim.classList.toggle('is-visible', stepIdx >= 3);
     }
 
     function snapFinalMotion(stepIdx) {
-      bundle.sunEdgeGroup.setAttribute('transform', stepIdx >= 4 ? 'translate(0, 0)' : 'translate(0, 14)');
+      bundle.sunEdgeGroup.setAttribute('transform', stepIdx >= 3 ? 'translate(0, 0)' : 'translate(0, 14)');
     }
 
     function animateStep(stepIdx) {
-      if (stepIdx < 4) {
+      if (stepIdx < 3) {
         host.setAttribute('data-step-dur', '0');
         snapFinalMotion(stepIdx);
         return;
       }
 
-      // Step 4: Gently lift the upper golden curve of the sun above the distant charcoal hill
+      // Slide 4: Gently lift the upper golden curve of the sun above the distant charcoal hill
       var t0 = performance.now();
       var dur = 680;
       host.setAttribute('data-step-dur', String(dur));
@@ -1001,7 +1003,7 @@ button:focus-visible {
         if (p < 1) {
           activeRaf = requestAnimationFrame(frame);
         } else {
-          snapFinalMotion(4);
+          snapFinalMotion(3);
           activeRaf = null;
         }
       };
@@ -1038,15 +1040,13 @@ button:focus-visible {
 
       dotButtons.forEach(function (btn, idx) {
         btn.classList.toggle('active', idx === currentStep);
-        btn.classList.toggle('passed', idx > 0 && idx < currentStep);
+        btn.classList.toggle('passed', idx < currentStep);
         btn.setAttribute('aria-pressed', idx === currentStep ? 'true' : 'false');
       });
 
-      countEl.textContent = currentStep === 0 ? 'Ready' : ('Step ' + currentStep + ' of ' + (STEPS.length - 1));
+      countEl.textContent = 'Step ' + (currentStep + 1) + ' of ' + STEPS.length;
       prevBtn.disabled = currentStep === 0;
-      if (currentStep === 0) {
-        nextBtn.textContent = 'Begin \u2192';
-      } else if (currentStep === STEPS.length - 1) {
+      if (currentStep === STEPS.length - 1) {
         nextBtn.textContent = '\u21BB Start Over';
       } else {
         nextBtn.textContent = 'Next \u2192';

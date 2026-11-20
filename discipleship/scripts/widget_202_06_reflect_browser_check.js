@@ -19,11 +19,10 @@ const SCREENSHOT_DIR = process.env.REFLECT_SCREENSHOT_DIR || '';
 if (SCREENSHOT_DIR) fs.mkdirSync(SCREENSHOT_DIR, { recursive: true });
 
 const EXPECTED_HEADINGS = [
-  'Reflect His Glory',
-  'Unveiled Before God',
-  'Beholding His Glory',
-  'Transformed Into His Image',
-  'From the Lord Who Is the Spirit'
+  'Turn Toward His Glory',
+  'Changed by His Presence',
+  'His Light Reaches Others',
+  'The Whole Earth Filled'
 ];
 
 const JOBS = [
@@ -106,7 +105,7 @@ const JOBS = [
 
         check(`${tag}: title bar reads Reflect His Glory`, chrome.title === 'Reflect His Glory');
         check(`${tag}: lesson tag reads 202-06`, chrome.courseTag === '202-06');
-        check(`${tag}: five step dots present`, chrome.dotCount === 5);
+        check(`${tag}: four step dots present`, chrome.dotCount === 4);
         check(`${tag}: all step dots >= 28x28`, chrome.dotsMinSize);
         check(`${tag}: all nav buttons >= 44px tall`, chrome.btnsMinHeight);
         check(`${tag}: card has aria-live polite`, chrome.ariaLive === 'polite');
@@ -116,7 +115,7 @@ const JOBS = [
 
         const baseCardH = chrome.cardHeight;
 
-        for (let s = 0; s < 5; s++) {
+        for (let s = 0; s < 4; s++) {
           if (s > 0) await page.locator('#next-btn').click();
           const dur = Number(await page.locator('#scene-root').getAttribute('data-step-dur')) || 0;
           if (job.reducedMotion === 'reduce') {
@@ -167,15 +166,16 @@ const JOBS = [
           check(`${tag}: step ${s} zero localStorage writes`, state.storageWrites === 0);
 
           if (s === 0) {
-            check(`${tag}: step 0 quiet village night only`, !state.horizonGlowVis && !state.moonLitVis && !state.valleyLitVis && !state.dawnHorizonVis);
+            check(`${tag}: slide 1 shows horizon light reaching over hills toward dim moon`,
+              state.horizonGlowVis && !state.moonLitVis && !state.valleyLitVis && !state.dawnHorizonVis);
           } else if (s === 1) {
-            check(`${tag}: step 1 reveals hidden horizon glow only`, state.horizonGlowVis && !state.moonLitVis && !state.valleyLitVis && !state.dawnHorizonVis);
+            check(`${tag}: slide 2 brightens moon softly while horizon source stays visible`,
+              state.horizonGlowVis && state.moonLitVis && !state.valleyLitVis && !state.dawnHorizonVis);
           } else if (s === 2) {
-            check(`${tag}: step 2 brightens moon softly`, state.horizonGlowVis && state.moonLitVis && !state.valleyLitVis && !state.dawnHorizonVis);
+            check(`${tag}: slide 3 reveals road, rooftops, and warm windows`,
+              state.horizonGlowVis && state.moonLitVis && state.valleyLitVis && !state.dawnHorizonVis);
           } else if (s === 3) {
-            check(`${tag}: step 3 reveals road, rooftops, and warm windows`, state.horizonGlowVis && state.moonLitVis && state.valleyLitVis && !state.dawnHorizonVis);
-          } else if (s === 4) {
-            check(`${tag}: step 4 reveals upper edge of rising sun with no yellow outer border`,
+            check(`${tag}: slide 4 reveals upper edge of rising sun and soft dawn with no yellow outer border`,
               state.horizonGlowVis && state.moonLitVis && state.valleyLitVis && state.dawnHorizonVis &&
               state.sunEdgeTransform === 'translate(0, 0)' && !state.hasBorderFrame);
           }
@@ -187,34 +187,34 @@ const JOBS = [
           }
         }
 
-        // Back button restores prior state instantly (step 4 -> 3 -> 2)
+        // Back button restores prior state instantly (slide 4 -> 3 -> 2)
         await page.locator('#prev-btn').click();
         await page.waitForTimeout(80);
-        const afterBack3 = await page.evaluate(() => ({
+        const afterBack2 = await page.evaluate(() => ({
           step: document.getElementById('scene-root').getAttribute('data-step'),
           instant: document.getElementById('scene-root').classList.contains('is-instant'),
           dawnVis: document.getElementById('layer-dawn-horizon').classList.contains('is-visible'),
           valleyLitVis: document.getElementById('layer-landscape-moonlit').classList.contains('is-visible')
         }));
-        check(`${tag}: Back from 4 restores step 3 instantly`,
-          afterBack3.step === '3' && afterBack3.instant && !afterBack3.dawnVis && afterBack3.valleyLitVis);
+        check(`${tag}: Back from slide 4 restores slide 3 instantly`,
+          afterBack2.step === '2' && afterBack2.instant && !afterBack2.dawnVis && afterBack2.valleyLitVis);
 
         await page.locator('#prev-btn').click();
         await page.waitForTimeout(80);
-        const afterBack2 = await page.evaluate(() => ({
+        const afterBack1 = await page.evaluate(() => ({
           step: document.getElementById('scene-root').getAttribute('data-step'),
           valleyLitVis: document.getElementById('layer-landscape-moonlit').classList.contains('is-visible'),
           moonLitVis: document.getElementById('layer-moon-lit').classList.contains('is-visible')
         }));
-        check(`${tag}: Back from 3 restores step 2 cleanly`,
-          afterBack2.step === '2' && !afterBack2.valleyLitVis && afterBack2.moonLitVis);
+        check(`${tag}: Back from slide 3 restores slide 2 cleanly`,
+          afterBack1.step === '1' && !afterBack1.valleyLitVis && afterBack1.moonLitVis);
 
-        // Start Over returns to step 0 cleanly
-        await page.locator('.step-dot[data-step="4"]').click();
+        // Start Over returns to slide 1 (step 0) cleanly
+        await page.locator('.step-dot[data-step="3"]').click();
         await page.waitForTimeout(80);
         await page.locator('#next-btn').click();
         await page.waitForTimeout(80);
-        check(`${tag}: Start Over returns to step 0`,
+        check(`${tag}: Start Over returns to slide 1`,
           await page.locator('#scene-root').getAttribute('data-step') === '0');
 
         check(`${tag}: zero page or console errors`, errors.length === 0);
