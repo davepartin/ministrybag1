@@ -1,5 +1,7 @@
 # Growing Together Team Board
 
+ART-202-03-TABLE REVIEW, November 20: three shared-table frames replace the early-church sequence before The Early Church. Stops `[0, 0.3, 0.6]`. Lesson copy and saved-answer IDs unchanged. Old files kept unused. Stop at REVIEW. [Evidence](logs/2026-11-20-ART-202-03-TABLE-cursor.md).
+
 RETIRE-LEGACY-PRS DONE, November 20: Dave retired #325 (alternative203-01 widget), #346 (redundant202-06 tracking), #222 (old202-01 placement), #68 (old planner), #28 (restore labels), #2 (denomination draft), and #305 (replacement branding). All7 closed without merging, reasons appended to each PR while preserving its original description. Keep the current Great Commission widget and the current logos/icons/site look. Dave confirms the live202-06 Moses artwork is finished. A subsequent check found newly opened PR #359 (202-03 shared-table artwork), which is outside this retirement request and remains open. No runtime files changed. Log: logs/2026-11-20-RETIRE-LEGACY-PRS-codex.md.
 
 INTEGRATE-349-354 DONE: PR #349 merged16b2b46, PR #354 merged63ef8cc. Firebase44800501153 and44801360973 succeeded. Approved roof art and Marks widget byte-preserved;203-01 timing remains30/45.203-10 static Romans12:9-21 replaced with the approved interactive passage at Dave's explicit direction; all surrounding teaching/questions/readings unchanged.80 roof,182 standalone and132 embedded live checks pass. Log: logs/2026-11-20-INTEGRATE-349-354-codex.md.

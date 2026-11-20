@@ -27,18 +27,16 @@
     {
       "type": "image",
       "imageSequence": [
-        "images/early-church-seq-1.jpg",
-        "images/early-church-seq-2.jpg",
-        "images/early-church-seq-3.jpg",
-        "images/early-church-seq-4.jpg"
+        "images/202-03-shared-table-seq-1.jpg",
+        "images/202-03-shared-table-seq-2.jpg",
+        "images/202-03-shared-table-seq-3.jpg"
       ],
       "imageSequenceStops": [
         0,
-        0.18,
-        0.34,
-        0.5
+        0.3,
+        0.6
       ],
-      "alt": "Early believers welcoming a newcomer to a shared table and breaking bread together with glad and generous hearts",
+      "alt": "Overhead ink drawing of early believers sharing bread and drink at a long table, ending with one empty chair",
       "touchNext": true,
       "anchor": "story"
     },
