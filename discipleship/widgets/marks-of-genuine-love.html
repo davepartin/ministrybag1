@@ -7,7 +7,7 @@
 <style>
 :root {
   --ink: #2C2416;
-  --muted: #6E6559;
+  --muted: #6B6153;
   --tray: #F6F4EE;
   --border: #EBE5D9;
   --step-color: #2C2416;
@@ -15,22 +15,18 @@
   --gold-ink: #8E6206;
   --gold-border: #C48F10;
   --gold-wash: #FDF5DF;
-  --gold-hi: #F9E7B6;
 
   --green-ink: #164E37;
   --green-border: #1F684A;
-  --green-wash: #EAF5EF;
-  --green-hi: #CFEAD9;
+  --green-wash: #E7F4EC;
 
   --blue-ink: #1E435C;
   --blue-border: #2A5B7C;
-  --blue-wash: #EAF2F8;
-  --blue-hi: #CDE2F1;
+  --blue-wash: #E7F1F8;
 
   --plum-ink: #473366;
   --plum-border: #5F4684;
-  --plum-wash: #F1ECF8;
-  --plum-hi: #DDD1F0;
+  --plum-wash: #F0EBF8;
 }
 
 *, *::before, *::after {
@@ -74,7 +70,7 @@ body {
 
 .title-bar {
   background: #2C2416;
-  padding: 6px 14px;
+  padding: 7px 14px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -82,7 +78,7 @@ body {
 }
 
 .title-bar h1 {
-  font: 600 16px/1.15 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font: 600 16.5px/1.15 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   color: #FAF8F3;
   letter-spacing: 0.2px;
   margin: 0;
@@ -96,193 +92,95 @@ body {
   white-space: nowrap;
 }
 
-.lens-bar {
+.tab-bar {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 5px;
-  padding: 5px 10px 4px;
+  padding: 6px 10px 5px;
   background: #FAF8F3;
   border-bottom: 1px solid var(--border);
 }
 
-.lens-pill {
+.tab-btn {
   appearance: none;
   border: 1.4px solid #DFD7C8;
   background: #FFFFFF;
   border-radius: 8px;
-  padding: 4px 4px;
-  min-height: 29px;
+  padding: 5px 3px;
+  min-height: 32px;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 4px;
   text-align: center;
-  color: var(--ink);
+  font: 700 10.5px/1.12 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #463D2F;
   -webkit-tap-highlight-color: transparent;
 }
 
-.lens-num {
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
-  background: #EAE3D5;
-  color: #4D4335;
-  font: 700 9.5px/15px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  text-align: center;
-  flex: 0 0 auto;
-}
-
-.lens-label {
-  font: 700 10.5px/1.1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  color: var(--ink);
-  white-space: nowrap;
-}
-
-.lens-pill[data-lens="1"].is-lit {
+.tab-btn[data-tab="1"].is-lit {
   background: var(--gold-wash);
   border-color: var(--gold-border);
-}
-.lens-pill[data-lens="1"].is-lit .lens-num {
-  background: var(--gold-border);
-  color: #FFFFFF;
-}
-.lens-pill[data-lens="1"].is-lit .lens-label {
   color: var(--gold-ink);
 }
 
-.lens-pill[data-lens="2"].is-lit {
+.tab-btn[data-tab="2"].is-lit {
   background: var(--green-wash);
   border-color: var(--green-border);
-}
-.lens-pill[data-lens="2"].is-lit .lens-num {
-  background: var(--green-border);
-  color: #FFFFFF;
-}
-.lens-pill[data-lens="2"].is-lit .lens-label {
   color: var(--green-ink);
 }
 
-.lens-pill[data-lens="3"].is-lit {
+.tab-btn[data-tab="3"].is-lit {
   background: var(--blue-wash);
   border-color: var(--blue-border);
-}
-.lens-pill[data-lens="3"].is-lit .lens-num {
-  background: var(--blue-border);
-  color: #FFFFFF;
-}
-.lens-pill[data-lens="3"].is-lit .lens-label {
   color: var(--blue-ink);
 }
 
-.lens-pill[data-lens="4"].is-lit {
+.tab-btn[data-tab="4"].is-lit {
   background: var(--plum-wash);
   border-color: var(--plum-border);
-}
-.lens-pill[data-lens="4"].is-lit .lens-num {
-  background: var(--plum-border);
-  color: #FFFFFF;
-}
-.lens-pill[data-lens="4"].is-lit .lens-label {
   color: var(--plum-ink);
 }
 
-.passage-band {
+.stage {
   background: #FFFFFF;
-  padding: 5px 10px 5px;
+  padding: 2px 8px 0;
   border-bottom: 1px solid var(--border);
 }
 
-.passage-box {
-  background: #FFFDF9;
-  border: 1px solid #E7E0D2;
-  border-radius: 9px;
-  padding: 6px 9px 7px;
+.table-svg {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
-.passage-meta {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 3px;
+.svg-part {
+  opacity: 0;
+  pointer-events: none;
 }
 
-.passage-ref {
-  font: 700 10px/1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  letter-spacing: 0.7px;
-  text-transform: uppercase;
-  color: var(--ink);
+.svg-part.is-shown {
+  opacity: 1;
 }
 
-.passage-hint {
-  font: 600 10px/1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  color: var(--muted);
+.svg-part.is-dim {
+  opacity: 0.32;
 }
 
-.passage-text {
-  font: 400 11.4px/1.32 Georgia, Cambria, serif;
-  color: var(--ink);
-  margin: 0;
+#fig-outsider {
+  transform: translateX(22px);
 }
 
-.passage-text + .passage-text {
-  margin-top: 3px;
+#fig-outsider.is-seated {
+  transform: translateX(0);
 }
 
-.passage-text sup {
-  font: 700 8.5px/1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  color: #7A6F60;
-  margin-right: 1px;
+#gift-plate {
+  transform: translateX(-16px);
 }
 
-.v-seg {
-  border-radius: 3px;
-  padding: 0.5px 1.5px;
-  margin: 0 -1.5px;
-  border-bottom: 1.5px solid transparent;
-  cursor: pointer;
-  -webkit-box-decoration-break: clone;
-  box-decoration-break: clone;
-}
-
-.widget-outer[data-step="0"] .lead-open {
-  background-color: var(--gold-hi);
-  border-bottom: 1.5px solid var(--gold-border);
-  border-radius: 2px;
-  padding: 0.5px 2px;
-}
-
-.widget-outer.is-filtering .v-seg:not(.is-active) {
-  color: #7E7466;
-}
-
-.widget-outer.is-filtering .v-seg:not(.is-active) sup {
-  color: #9A9081;
-}
-
-.v-seg[data-group="1"].is-active {
-  background-color: var(--gold-hi);
-  border-bottom-color: var(--gold-border);
-  color: var(--ink);
-}
-
-.v-seg[data-group="2"].is-active {
-  background-color: var(--green-hi);
-  border-bottom-color: var(--green-border);
-  color: var(--ink);
-}
-
-.v-seg[data-group="3"].is-active {
-  background-color: var(--blue-hi);
-  border-bottom-color: var(--blue-border);
-  color: var(--ink);
-}
-
-.v-seg[data-group="4"].is-active {
-  background-color: var(--plum-hi);
-  border-bottom-color: var(--plum-border);
-  color: var(--ink);
+#gift-plate.is-offered {
+  transform: translateX(0);
 }
 
 .step-strip {
@@ -290,7 +188,7 @@ body {
   justify-content: center;
   align-items: center;
   gap: 8px;
-  padding: 2px 12px 2px;
+  padding: 4px 12px 3px;
   background: var(--tray);
   border-bottom: 1px solid var(--border);
 }
@@ -310,15 +208,15 @@ body {
 }
 
 .step-dot-fill {
-  width: 14px;
-  height: 14px;
+  width: 15px;
+  height: 15px;
   border-radius: 50%;
   border: 2.5px solid var(--dot-color, var(--ink));
   background: #FFFFFF;
 }
 
 .step-dot.passed .step-dot-fill {
-  background: rgba(31, 104, 74, 0.2);
+  background: rgba(31, 104, 74, 0.22);
 }
 
 .step-dot.active .step-dot-fill {
@@ -328,14 +226,14 @@ body {
 
 .card-area {
   background: var(--tray);
-  padding: 4px 12px 7px;
+  padding: 6px 12px 8px;
 }
 
 .verse-card {
   background: #FFFFFF;
-  border-radius: 10px;
+  border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 2px 10px rgba(44, 36, 22, 0.06);
+  box-shadow: 0 2px 12px rgba(44, 36, 22, 0.06);
   border: 1px solid var(--border);
 }
 
@@ -345,31 +243,82 @@ body {
 }
 
 .verse-card-content {
-  padding: 7px 12px 8px;
-  min-height: var(--card-h, 78px);
+  padding: 10px 14px 11px;
+  min-height: var(--card-h, 198px);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
 }
 
-.card-kicker {
-  font: 700 9.8px/1.15 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  letter-spacing: 0.6px;
+.card-meta-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 3px;
+}
+
+.card-ref {
+  font: 700 11px/1.15 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  letter-spacing: 0.5px;
   text-transform: uppercase;
   color: var(--step-color);
-  margin: 0 0 2px;
+  margin: 0;
+}
+
+.card-summary-tag {
+  font: 600 10.5px/1.15 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--muted);
+  white-space: nowrap;
 }
 
 .card-heading {
-  font: 700 14px/1.2 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font: 700 16px/1.22 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   color: var(--ink);
-  margin: 0 0 2px;
+  margin: 0 0 6px;
 }
 
-.card-note {
-  font: 400 11.8px/1.34 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  color: #463D2F;
+.action-list {
+  list-style: none;
   margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4.5px;
+}
+
+.action-list li {
+  position: relative;
+  padding-left: 14px;
+  font: 400 13.5px/1.34 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #2E261A;
+}
+
+.action-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 6px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--step-color);
+}
+
+.card-lead {
+  font: 400 14px/1.48 Georgia, Cambria, serif;
+  color: #362E22;
+  margin: 2px 0 0;
+}
+
+.card-grace {
+  font: 600 13.5px/1.44 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--green-ink);
+  background: #F1F8F4;
+  border-left: 3px solid var(--green-border);
+  border-radius: 6px;
+  padding: 8px 10px;
+  margin: 10px 0 0;
 }
 
 .nav-bar {
@@ -377,16 +326,16 @@ body {
   justify-content: space-between;
   align-items: center;
   gap: 8px;
-  margin-top: 5px;
+  margin-top: 7px;
 }
 
 .nav-btn {
   appearance: none;
   min-height: 44px;
-  min-width: 102px;
-  padding: 9px 14px;
+  min-width: 104px;
+  padding: 10px 14px;
   border-radius: 10px;
-  font: 600 13.5px/1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font: 600 14px/1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   cursor: pointer;
   border: 1.5px solid #D4CFC4;
   background: #FFFFFF;
@@ -409,25 +358,91 @@ body {
   color: var(--muted);
 }
 
+.full-passage {
+  margin-top: 7px;
+  background: #FFFFFF;
+  border: 1px solid #E4DDD0;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.full-passage summary {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 12px;
+  min-height: 36px;
+  cursor: pointer;
+  font: 600 12.5px/1.2 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #463D2F;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.full-passage summary::-webkit-details-marker {
+  display: none;
+}
+
+.passage-chev {
+  width: 7px;
+  height: 7px;
+  border-right: 1.8px solid #6B6153;
+  border-bottom: 1.8px solid #6B6153;
+  transform: rotate(45deg);
+  margin-top: -2px;
+  flex: 0 0 auto;
+}
+
+.full-passage[open] .passage-chev {
+  transform: rotate(-135deg);
+  margin-top: 3px;
+}
+
+.full-passage-body {
+  padding: 9px 12px 11px;
+  border-top: 1px solid var(--border);
+  background: #FFFDF9;
+}
+
+.full-passage-body p {
+  font: 400 13px/1.52 Georgia, Cambria, serif;
+  color: var(--ink);
+  margin: 0;
+}
+
+.full-passage-body p + p {
+  margin-top: 8px;
+}
+
+.full-passage-body sup {
+  font: 700 9.5px/1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--muted);
+  margin-right: 1.5px;
+}
+
 button:focus-visible,
-.v-seg:focus-visible {
+summary:focus-visible {
   outline: 3px solid #E0A526;
   outline-offset: 2px;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .widget-outer:not(.is-instant) .v-seg,
-  .widget-outer:not(.is-instant) .lens-pill,
-  .widget-outer:not(.is-instant) .lens-num {
-    transition: background-color 0.22s ease, border-color 0.22s ease, color 0.22s ease;
+  .widget-outer:not(.is-instant) .svg-part {
+    transition: opacity 0.45s ease;
+  }
+  .widget-outer:not(.is-instant) #fig-outsider,
+  .widget-outer:not(.is-instant) #gift-plate {
+    transition: opacity 0.45s ease, transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .widget-outer:not(.is-instant) .tab-btn,
+  .widget-outer:not(.is-instant) .nav-btn.primary,
+  .widget-outer:not(.is-instant) .verse-card-bar,
+  .widget-outer:not(.is-instant) .card-ref {
+    transition: background-color 0.24s ease, border-color 0.24s ease, color 0.24s ease;
   }
   .widget-outer .step-dot-fill {
     transition: background-color 0.22s ease, border-color 0.22s ease, transform 0.22s ease;
-  }
-  .widget-outer .nav-btn.primary,
-  .widget-outer .verse-card-bar,
-  .widget-outer .card-kicker {
-    transition: background-color 0.24s ease, border-color 0.24s ease, color 0.24s ease;
   }
 }
 
@@ -447,60 +462,161 @@ button:focus-visible,
     <span class="course-tag">203-10</span>
   </header>
 
-  <div class="lens-bar" role="group" aria-label="Four directions of genuine love">
-    <button type="button" class="lens-pill" data-lens="1" aria-pressed="false">
-      <span class="lens-num" aria-hidden="true">1</span><span class="lens-label">Genuine</span>
-    </button>
-    <button type="button" class="lens-pill" data-lens="2" aria-pressed="false">
-      <span class="lens-num" aria-hidden="true">2</span><span class="lens-label">Up to God</span>
-    </button>
-    <button type="button" class="lens-pill" data-lens="3" aria-pressed="false">
-      <span class="lens-num" aria-hidden="true">3</span><span class="lens-label">Church</span>
-    </button>
-    <button type="button" class="lens-pill" data-lens="4" aria-pressed="false">
-      <span class="lens-num" aria-hidden="true">4</span><span class="lens-label">Outward</span>
-    </button>
+  <div class="tab-bar" role="group" aria-label="Four marks of a life like Jesus">
+    <button type="button" class="tab-btn" data-tab="1" aria-pressed="false">Sincere Love</button>
+    <button type="button" class="tab-btn" data-tab="2" aria-pressed="false">Faithfulness</button>
+    <button type="button" class="tab-btn" data-tab="3" aria-pressed="false">Humility</button>
+    <button type="button" class="tab-btn" data-tab="4" aria-pressed="false">Loving Enemies</button>
   </div>
 
-  <section class="passage-band" aria-label="Romans 12:9-21 passage">
-    <div class="passage-box">
-      <div class="passage-meta">
-        <span class="passage-ref">Romans 12:9-21</span>
-        <span class="passage-hint" id="passage-hint">Choose a verse or step through</span>
-      </div>
+  <div class="stage">
+    <svg class="table-svg" id="table-svg" viewBox="0 0 440 162" width="100%" role="img" aria-labelledby="svg-title svg-desc">
+      <title id="svg-title">One Growing Table</title>
+      <desc id="svg-desc">A warm open wooden table ready to welcome friends, neighbors, the grieving, and even former enemies.</desc>
 
-      <p class="passage-text">
-        <span class="v-seg" data-group="1" role="button" tabindex="0"><sup>9</sup><span class="lead-open">Let love be genuine.</span> Abhor what is evil; hold fast to what is good.</span>
-        <span class="v-seg" data-group="3" role="button" tabindex="0"><sup>10</sup>Love one another with brotherly affection. Outdo one another in showing honor.</span>
-        <span class="v-seg" data-group="2" role="button" tabindex="0"><sup>11</sup>Do not be slothful in zeal, be fervent in spirit, serve the Lord. <sup>12</sup>Rejoice in hope, be patient in tribulation, be constant in prayer.</span>
-        <span class="v-seg" data-group="3" role="button" tabindex="0"><sup>13</sup>Contribute to the needs of the saints and seek to show hospitality.</span>
-      </p>
+      <defs>
+        <linearGradient id="warm-beam" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#F7DF9E" stop-opacity="0" />
+          <stop offset="16%" stop-color="#F7DF9E" stop-opacity="0.38" />
+          <stop offset="72%" stop-color="#FCF2D6" stop-opacity="0.20" />
+          <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0" />
+        </linearGradient>
+        <linearGradient id="table-top-grad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#F7EBD5" />
+          <stop offset="100%" stop-color="#EBDBBD" />
+        </linearGradient>
+      </defs>
 
-      <p class="passage-text">
-        <span class="v-seg" data-group="4" role="button" tabindex="0"><sup>14</sup>Bless those who persecute you; bless and do not curse them.</span>
-        <span class="v-seg" data-group="3" role="button" tabindex="0"><sup>15</sup>Rejoice with those who rejoice, weep with those who weep. <sup>16</sup>Live in harmony with one another. Do not be haughty, but associate with the lowly. Never be wise in your own sight.</span>
-        <span class="v-seg" data-group="4" role="button" tabindex="0"><sup>17</sup>Repay no one evil for evil, but give thought to do what is honorable in the sight of all. <sup>18</sup>If possible, so far as it depends on you, live peaceably with all. <sup>19</sup>Beloved, never avenge yourselves, but leave it to the wrath of God, for it is written, &ldquo;Vengeance is mine, I will repay, says the Lord.&rdquo; <sup>20</sup>To the contrary, &ldquo;if your enemy is hungry, feed him; if he is thirsty, give him something to drink; for by so doing you will heap burning coals on his head.&rdquo;</span>
-        <span class="v-seg" data-group="1" role="button" tabindex="0"><sup>21</sup>Do not be overcome by evil, but overcome evil with good.</span>
-      </p>
-    </div>
-  </section>
+      <!-- Warm golden light descending gently onto the table -->
+      <polygon id="table-light" class="svg-part is-shown" points="168,11 272,11 356,144 84,144" fill="url(#warm-beam)" />
 
-  <div class="step-strip" role="group" aria-label="Passage steps">
-    <button type="button" class="step-dot active" data-step="0" aria-label="Start: Marks of a True Christian" aria-pressed="true" style="--dot-color: #2C2416;"><span class="step-dot-fill"></span></button>
-    <button type="button" class="step-dot" data-step="1" aria-label="Step 1: A Genuine Heart" aria-pressed="false" style="--dot-color: #A8760A;"><span class="step-dot-fill"></span></button>
-    <button type="button" class="step-dot" data-step="2" aria-label="Step 2: Up Toward God" aria-pressed="false" style="--dot-color: #1F684A;"><span class="step-dot-fill"></span></button>
-    <button type="button" class="step-dot" data-step="3" aria-label="Step 3: Family in Christ" aria-pressed="false" style="--dot-color: #2A5B7C;"><span class="step-dot-fill"></span></button>
-    <button type="button" class="step-dot" data-step="4" aria-label="Step 4: Out Toward Everyone, Even Enemies" aria-pressed="false" style="--dot-color: #5F4684;"><span class="step-dot-fill"></span></button>
-    <button type="button" class="step-dot" data-step="5" aria-label="Step 5: All Marks Together" aria-pressed="false" style="--dot-color: #1F684A;"><span class="step-dot-fill"></span></button>
+      <!-- Soft Studio Wash aura washes behind each active group -->
+      <ellipse id="aura-1" class="svg-part" cx="220" cy="84" rx="84" ry="48" fill="#FCF2D6" fill-opacity="0.78" />
+      <ellipse id="aura-2" class="svg-part" cx="220" cy="96" rx="64" ry="34" fill="#E1F1E9" fill-opacity="0.88" />
+      <ellipse id="aura-3" class="svg-part" cx="98" cy="92" rx="60" ry="44" fill="#E2EEF6" fill-opacity="0.88" />
+      <ellipse id="aura-4" class="svg-part" cx="348" cy="92" rx="64" ry="46" fill="#EDE7F6" fill-opacity="0.88" />
+
+      <!-- Final step crisp Studio Wash double-hairline frame -->
+      <g id="finish-frame" class="svg-part" fill="none">
+        <rect x="8" y="6" width="424" height="150" rx="14" stroke="#1F684A" stroke-width="1.8" stroke-opacity="0.45" />
+        <rect x="12" y="10" width="416" height="142" rx="11" stroke="#C48F10" stroke-width="0.9" stroke-opacity="0.4" />
+      </g>
+
+      <!-- Soft ground shadow under the table -->
+      <ellipse cx="220" cy="148" rx="178" ry="6.5" fill="#EBE3D4" fill-opacity="0.72" />
+
+      <!-- STEP 1: Making room at the same table (Sincere Love - Gold) -->
+      <g id="scene-1" class="svg-part" stroke="#2C2416" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <!-- Host seated center-left, warmly honoring across the table -->
+        <circle cx="174" cy="54" r="11.5" fill="#FBF2DA" />
+        <path d="M154,102 C154,80 162,70 174,70 C186,70 194,80 194,102 Z" fill="#F2D99B" />
+        <path d="M192,89 Q198,92 200,99" fill="none" stroke="#8E6206" stroke-width="1.6" />
+
+        <!-- Friend seated center-right, leaning warmly toward the table -->
+        <circle cx="266" cy="54" r="11.5" fill="#FBF2DA" />
+        <path d="M246,102 C246,80 254,70 266,70 C278,70 286,80 286,102 Z" fill="#F7E5B8" />
+        <path d="M248,89 Q242,92 240,99" fill="none" stroke="#8E6206" stroke-width="1.6" />
+      </g>
+
+      <!-- STEP 3: Sitting beside someone grieving (Humility - Harbour Blue) -->
+      <g id="scene-3" class="svg-part" stroke="#2C2416" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <!-- Low shared bench on the left -->
+        <rect x="46" y="122" width="84" height="6" rx="2.5" fill="#E8DCC6" />
+        <line x1="54" y1="128" x2="54" y2="146" />
+        <line x1="122" y1="128" x2="122" y2="146" />
+
+        <!-- Companion seated right beside, leaning gently with arm around shoulder -->
+        <circle cx="112" cy="61" r="10.8" fill="#E9F2F8" />
+        <path d="M97,122 L97,92 C97,79 103,74 113,74 C122,74 127,82 127,98 L127,122 Z" fill="#BDD7EA" />
+
+        <!-- Grieving friend seated at same level, head gently bowed -->
+        <circle cx="75" cy="70.5" r="10.5" fill="#E9F2F8" />
+        <path d="M56,122 L56,96 C56,84 64,80 75,80 C85,80 92,86 94,98 L94,122 Z" fill="#D8E8F4" />
+
+        <!-- Comforting arm resting softly across their shoulder -->
+        <path d="M105,82 C96,80 87,82 80,87" fill="none" stroke="#1E435C" stroke-width="2.2" />
+        <circle cx="79.5" cy="87.5" r="2.2" fill="#E9F2F8" stroke="#1E435C" stroke-width="1.3" />
+      </g>
+
+      <!-- STEP 4: Welcoming someone who stood apart (Loving Enemies - Royal Plum) -->
+      <g id="scene-4" class="svg-part" stroke="#2C2416" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <!-- Open chair ready at the right end of the table -->
+        <path d="M370,82 L370,146 M340,120 L370,120 M342,120 L342,146" fill="none" stroke="#5F4684" stroke-width="1.8" />
+      </g>
+
+      <!-- Outsider stepping inward to take the open seat -->
+      <g id="fig-outsider" class="svg-part" stroke="#2C2416" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="352" cy="59" r="11" fill="#F2ECF9" />
+        <path d="M337,119 C335,94 339,74 353,74 C365,74 370,85 369,119 Z" fill="#D5C6EC" />
+        <path d="M339,88 Q331,93 326,97" fill="none" stroke="#473366" stroke-width="1.7" />
+      </g>
+
+      <!-- THE FELLOWSHIP TABLE (Always grounded and welcoming) -->
+      <g id="table-base" stroke="#2C2416" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <!-- Table legs & stretcher -->
+        <rect x="148" y="114" width="7" height="33" rx="1.5" fill="#DFCEB0" />
+        <rect x="309" y="114" width="7" height="33" rx="1.5" fill="#DFCEB0" />
+        <line x1="155" y1="136" x2="309" y2="136" stroke="#8C7453" stroke-width="1.6" />
+        <!-- Table top surface + front edge -->
+        <path d="M132,102 L332,102 L338,111 L126,111 Z" fill="url(#table-top-grad)" />
+        <rect x="126" y="111" width="212" height="6.5" rx="2" fill="#DECBA8" />
+      </g>
+
+      <!-- STEP 2: Sharing bread & cups across the center of the table (Faithfulness - Forest Green) -->
+      <g id="scene-2" class="svg-part" stroke="#2C2416" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <!-- Warm woven table runner strip -->
+        <path d="M190,102 L254,102 L257,111 L187,111 Z" fill="#CFE8D9" stroke="#1F684A" stroke-width="1.1" />
+        <!-- Bread basket / platter -->
+        <ellipse cx="216" cy="102.5" rx="22" ry="4.8" fill="#FAF4E6" stroke="#1F684A" stroke-width="1.3" />
+        <!-- Broken warm loaf of bread (two shared halves) -->
+        <path d="M199,101 C199,91 208,87 215,91 L214,101 Z" fill="#E8B872" />
+        <path d="M218,91 C225,87 234,91 234,101 L219,101 Z" fill="#F0C786" />
+        <!-- Warm rising steam curves -->
+        <path d="M210,83 Q208,78 211,74" fill="none" stroke="#1F684A" stroke-width="1.2" opacity="0.65" />
+        <path d="M222,82 Q225,77 222,73" fill="none" stroke="#1F684A" stroke-width="1.2" opacity="0.65" />
+        <!-- Ceramic pitcher & two shared cups -->
+        <path d="M244,102 L245,87 Q249,83 253,87 L254,102 Z" fill="#D6ECDF" stroke="#1F684A" stroke-width="1.4" />
+        <path d="M253,89 Q258,90 257,95 Q256,98 253,97" fill="none" stroke="#1F684A" stroke-width="1.3" />
+        <rect x="177" y="94" width="7.5" height="8" rx="1.5" fill="#E1F1E9" stroke="#1F684A" stroke-width="1.3" />
+        <rect x="263" y="94" width="7.5" height="8" rx="1.5" fill="#E1F1E9" stroke="#1F684A" stroke-width="1.3" />
+      </g>
+
+      <!-- STEP 4: Bread & cup offered warmly to the one who stood apart -->
+      <g id="gift-plate" class="svg-part" stroke="#2C2416" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+        <ellipse cx="305" cy="102.5" rx="13" ry="3.8" fill="#FFFFFF" stroke="#5F4684" stroke-width="1.3" />
+        <path d="M298,101 C298,94 310,94 310,101 Z" fill="#EBBF7A" />
+        <rect x="320" y="93.5" width="7.5" height="8.5" rx="1.5" fill="#EDE7F6" stroke="#5F4684" stroke-width="1.3" />
+      </g>
+
+      <!-- Studio Wash double-chevron cue shown only on Step 4 while offering bread & drink -->
+      <g id="welcome-chevrons" class="svg-part" fill="none" stroke="#5F4684" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="282,91.5 286.5,95.5 282,99.5" stroke-width="1.8" opacity="0.28" />
+        <polyline points="287.5,91.5 292,95.5 287.5,99.5" stroke-width="2" opacity="0.58" />
+      </g>
+    </svg>
+  </div>
+
+  <div class="step-strip" role="group" aria-label="Lesson steps">
+    <button type="button" class="step-dot active" data-step="0" aria-label="Start: A Life Shaped by Jesus" aria-pressed="true" style="--dot-color: #2C2416;"><span class="step-dot-fill"></span></button>
+    <button type="button" class="step-dot" data-step="1" aria-label="Step 1: Love Sincerely" aria-pressed="false" style="--dot-color: #A8760A;"><span class="step-dot-fill"></span></button>
+    <button type="button" class="step-dot" data-step="2" aria-label="Step 2: Keep Following Jesus" aria-pressed="false" style="--dot-color: #1F684A;"><span class="step-dot-fill"></span></button>
+    <button type="button" class="step-dot" data-step="3" aria-label="Step 3: Share Life Humbly" aria-pressed="false" style="--dot-color: #2A5B7C;"><span class="step-dot-fill"></span></button>
+    <button type="button" class="step-dot" data-step="4" aria-label="Step 4: Love Through Conflict" aria-pressed="false" style="--dot-color: #5F4684;"><span class="step-dot-fill"></span></button>
+    <button type="button" class="step-dot" data-step="5" aria-label="Step 5: The Whole Table" aria-pressed="false" style="--dot-color: #1F684A;"><span class="step-dot-fill"></span></button>
   </div>
 
   <div class="card-area">
     <div class="verse-card">
       <div class="verse-card-bar"></div>
       <div class="verse-card-content" id="card-content" aria-live="polite" aria-atomic="true">
-        <p class="card-kicker" id="card-kicker"></p>
+        <div class="card-meta-row">
+          <p class="card-ref" id="card-ref"></p>
+          <span class="card-summary-tag" id="card-summary-tag"></span>
+        </div>
         <h2 class="card-heading" id="card-heading"></h2>
-        <p class="card-note" id="card-note"></p>
+        <p class="card-lead" id="card-lead"></p>
+        <ul class="action-list" id="action-list"></ul>
+        <p class="card-grace" id="card-grace"></p>
       </div>
     </div>
 
@@ -509,6 +625,17 @@ button:focus-visible,
       <span class="step-count" id="step-count">Ready</span>
       <button type="button" class="nav-btn primary" id="next-btn">Begin &rarr;</button>
     </div>
+
+    <details class="full-passage" id="full-passage">
+      <summary>
+        <span>Read the full passage (Romans 12:9-21)</span>
+        <span class="passage-chev" aria-hidden="true"></span>
+      </summary>
+      <div class="full-passage-body">
+        <p class="passage-text"><sup>9</sup>Let love be genuine. Abhor what is evil; hold fast to what is good. <sup>10</sup>Love one another with brotherly affection. Outdo one another in showing honor. <sup>11</sup>Do not be slothful in zeal, be fervent in spirit, serve the Lord. <sup>12</sup>Rejoice in hope, be patient in tribulation, be constant in prayer. <sup>13</sup>Contribute to the needs of the saints and seek to show hospitality.</p>
+        <p class="passage-text"><sup>14</sup>Bless those who persecute you; bless and do not curse them. <sup>15</sup>Rejoice with those who rejoice, weep with those who weep. <sup>16</sup>Live in harmony with one another. Do not be haughty, but associate with the lowly. Never be wise in your own sight. <sup>17</sup>Repay no one evil for evil, but give thought to do what is honorable in the sight of all. <sup>18</sup>If possible, so far as it depends on you, live peaceably with all. <sup>19</sup>Beloved, never avenge yourselves, but leave it to the wrath of God, for it is written, &ldquo;Vengeance is mine, I will repay, says the Lord.&rdquo; <sup>20</sup>To the contrary, &ldquo;if your enemy is hungry, feed him; if he is thirsty, give him something to drink; for by so doing you will heap burning coals on his head.&rdquo; <sup>21</sup>Do not be overcome by evil, but overcome evil with good.</p>
+      </div>
+    </details>
   </div>
 </main>
 
@@ -520,80 +647,147 @@ button:focus-visible,
 
   var STEPS = [
     {
-      kicker: 'Romans 12:9-21 · Lesson 30 of 30',
-      heading: 'Let Love Be Genuine',
-      note: 'After eleven chapters on God\'s mercy in Jesus, Paul gives this picture of what a true Christian life looks like in everyday relationships.',
+      ref: 'Romans 12:9-21',
+      summaryTag: 'Romans 12:9-21, summarized',
+      heading: 'A Life Shaped by Jesus',
+      lead: 'Paul closes this letter with a living picture of what God\'s love looks like around one table: sincere, faithful, humble, and open even to enemies.',
+      items: [],
+      grace: 'Jesus stays with you as you grow. His Spirit helps you live this way.',
       accent: '#2C2416',
-      hint: 'Choose a verse or step through',
       countLabel: 'Ready',
       nextLabel: 'Begin \u2192',
-      groups: []
+      tabs: [],
+      title: 'One Growing Table: Start',
+      desc: 'A warm, open wooden table lit from above, ready to welcome friends, the grieving, and those who stood apart.'
     },
     {
-      kicker: 'Romans 12:9, 21 · Love Comes Down First',
-      heading: '1. A Genuine Heart',
-      note: 'Because God\'s love came down to you first, your love can be real without a mask: hating evil, holding fast to what is good, and overcoming evil with good.',
+      ref: 'Romans 12:9-10',
+      summaryTag: 'Romans 12:9-21, summarized',
+      heading: '1. Love Sincerely',
+      lead: '',
+      items: [
+        'Love without pretending.',
+        'Reject evil. Hold on to good.',
+        'Love one another like family.',
+        'Take the lead in honoring others.'
+      ],
+      grace: '',
       accent: '#A8760A',
-      hint: 'Verses 9 and 21 highlighted',
       countLabel: 'Step 1 of 5',
       nextLabel: 'Next \u2192',
-      groups: ['1']
+      tabs: ['1'],
+      title: 'Step 1: Love Sincerely',
+      desc: 'Friends draw up warmly to the same wooden table, gesturing with open hands to honor one another and make room.'
     },
     {
-      kicker: 'Romans 12:11-12 · 201 Course: Growing Deep',
-      heading: '2. Up Toward God',
-      note: 'Genuine love stays warm at the source: serving the Lord with zeal, rejoicing in hope, staying patient in tribulation, and remaining constant in prayer.',
+      ref: 'Romans 12:11-13',
+      summaryTag: 'Romans 12:9-21, summarized',
+      heading: '2. Keep Following Jesus',
+      lead: '',
+      items: [
+        'Serve the Lord wholeheartedly.',
+        'Keep hoping, even when life is hard.',
+        'Be patient in trouble. Keep praying.',
+        'Share with believers in need.',
+        'Make room for others.'
+      ],
+      grace: '',
       accent: '#1F684A',
-      hint: 'Verses 11-12 highlighted',
       countLabel: 'Step 2 of 5',
       nextLabel: 'Next \u2192',
-      groups: ['2']
+      tabs: ['2'],
+      title: 'Step 2: Keep Following Jesus',
+      desc: 'A broken loaf of warm bread, a pitcher, and cups are shared across the center of the table.'
     },
     {
-      kicker: 'Romans 12:10, 13, 15-16 · The 202 Course: Growing Up',
-      heading: '3. Family in Christ',
-      note: 'In your home and church, genuine love outdoes one another in honor, shares with the saints, opens the door in hospitality, and walks in humility.',
+      ref: 'Romans 12:15-16',
+      summaryTag: 'Romans 12:9-21, summarized',
+      heading: '3. Share Life Humbly',
+      lead: '',
+      items: [
+        'Celebrate with those who celebrate.',
+        'Weep with those who weep.',
+        'Live in harmony.',
+        'Welcome people others overlook.',
+        'Stay humble and willing to learn.'
+      ],
+      grace: '',
       accent: '#2A5B7C',
-      hint: 'Verses 10, 13, 15-16 highlighted',
       countLabel: 'Step 3 of 5',
       nextLabel: 'Next \u2192',
-      groups: ['3']
+      tabs: ['3'],
+      title: 'Step 3: Share Life Humbly',
+      desc: 'Beside the left end of the table, a companion sits at the same humble level beside someone grieving, resting a gentle arm across their shoulder.'
     },
     {
-      kicker: 'Romans 12:14, 17-20 · This 203 Course: Growing Out',
-      heading: '4. Out Toward Everyone, Even Enemies',
-      note: 'Jesus sends His love past those who love you back: blessing persecutors, living peaceably with all, leaving vengeance to God, and feeding an enemy.',
+      ref: 'Romans 12:14, 17-21',
+      summaryTag: 'Romans 12:9-21, summarized',
+      heading: '4. Love Through Conflict',
+      lead: '',
+      items: [
+        'Bless those who mistreat you.',
+        'Choose what is right instead of getting even.',
+        'Do your part to live at peace.',
+        'Leave judgment with God.',
+        'Meet your enemy\'s practical needs.',
+        'Overcome evil with good.'
+      ],
+      grace: '',
       accent: '#5F4684',
-      hint: 'Verses 14, 17-20 highlighted',
       countLabel: 'Step 4 of 5',
       nextLabel: 'Next \u2192',
-      groups: ['4']
+      tabs: ['4'],
+      title: 'Step 4: Love Through Conflict',
+      desc: 'Someone who stood apart at the right edge steps forward toward an open chair as bread and drink are offered across the table.'
     },
     {
-      kicker: 'Romans 12:9-21 · Walking With Jesus',
-      heading: 'Love Comes Down, Goes Up, and Reaches Out',
-      note: 'Every mark in Romans 12 is Jesus\' life taking shape in you: anchored in His good love, lifted up to God in prayer, shared in the church, and carried to the world.',
+      ref: 'Romans 12:9-21',
+      summaryTag: 'One Growing Table',
+      heading: 'The love you have received becomes the love you give.',
+      lead: 'Around the whole table, sincere love, faithful service, humble presence, and grace toward enemies come together as one life.',
+      items: [],
+      grace: 'Jesus stays with you as you grow. His Spirit helps you live this way.',
       accent: '#1F684A',
-      hint: 'All marks illuminated',
       countLabel: 'Step 5 of 5',
       nextLabel: 'Start Over',
-      groups: ['1', '2', '3', '4']
+      tabs: ['1', '2', '3', '4'],
+      title: 'Step 5: The Whole Table',
+      desc: 'Everyone is gathered around the full wooden table together: shared bread and cups in the center, friends honoring one another, the companion beside the one who wept, and the former outsider welcomed at the feast.'
     }
   ];
 
   var widget = document.getElementById('widget');
+  var svgTitle = document.getElementById('svg-title');
+  var svgDesc = document.getElementById('svg-desc');
   var cardContent = document.getElementById('card-content');
-  var cardKicker = document.getElementById('card-kicker');
+  var cardRef = document.getElementById('card-ref');
+  var cardSummaryTag = document.getElementById('card-summary-tag');
   var cardHeading = document.getElementById('card-heading');
-  var cardNote = document.getElementById('card-note');
-  var passageHint = document.getElementById('passage-hint');
+  var cardLead = document.getElementById('card-lead');
+  var actionList = document.getElementById('action-list');
+  var cardGrace = document.getElementById('card-grace');
   var prevBtn = document.getElementById('prev-btn');
   var nextBtn = document.getElementById('next-btn');
   var stepCount = document.getElementById('step-count');
   var dotBtns = Array.prototype.slice.call(document.querySelectorAll('.step-dot'));
-  var lensPills = Array.prototype.slice.call(document.querySelectorAll('.lens-pill'));
-  var verseSegs = Array.prototype.slice.call(document.querySelectorAll('.v-seg'));
+  var tabBtns = Array.prototype.slice.call(document.querySelectorAll('.tab-btn'));
   var measureHost = document.getElementById('measure-host');
+
+  var scene1 = document.getElementById('scene-1');
+  var scene2 = document.getElementById('scene-2');
+  var scene3 = document.getElementById('scene-3');
+  var scene4 = document.getElementById('scene-4');
+  var figOutsider = document.getElementById('fig-outsider');
+  var giftPlate = document.getElementById('gift-plate');
+  var welcomeChevrons = document.getElementById('welcome-chevrons');
+  var finishFrame = document.getElementById('finish-frame');
+  var auras = [
+    null,
+    document.getElementById('aura-1'),
+    document.getElementById('aura-2'),
+    document.getElementById('aura-3'),
+    document.getElementById('aura-4')
+  ];
 
   var reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reducedMotion) {
@@ -603,20 +797,83 @@ button:focus-visible,
   var currentStep = 0;
   var lastMeasuredWidth = 0;
 
-  function applyStep(idx) {
+  function renderCardInto(refs, stepData) {
+    refs.ref.textContent = stepData.ref;
+    refs.tag.textContent = stepData.summaryTag;
+    refs.heading.textContent = stepData.heading;
+
+    refs.lead.textContent = stepData.lead;
+    refs.lead.hidden = !stepData.lead;
+
+    refs.list.innerHTML = '';
+    if (stepData.items.length) {
+      for (var i = 0; i < stepData.items.length; i++) {
+        var li = document.createElement('li');
+        li.textContent = stepData.items[i];
+        refs.list.appendChild(li);
+      }
+      refs.list.hidden = false;
+    } else {
+      refs.list.hidden = true;
+    }
+
+    refs.grace.textContent = stepData.grace;
+    refs.grace.hidden = !stepData.grace;
+  }
+
+  function setSceneState(el, shown, dimmed) {
+    el.classList.toggle('is-shown', shown && !dimmed);
+    el.classList.toggle('is-dim', shown && dimmed);
+  }
+
+  function updateVisual(idx) {
+    for (var a = 1; a <= 4; a++) {
+      auras[a].classList.toggle('is-shown', idx === a);
+    }
+
+    var allFull = idx === 5;
+    setSceneState(scene1, idx >= 1, !allFull && idx > 1);
+    setSceneState(scene2, idx >= 2, !allFull && idx > 2);
+    setSceneState(scene3, idx >= 3, !allFull && idx > 3);
+
+    var show4 = idx >= 4;
+    setSceneState(scene4, show4, false);
+    setSceneState(figOutsider, show4, false);
+    setSceneState(giftPlate, show4, false);
+    figOutsider.classList.toggle('is-seated', show4);
+    giftPlate.classList.toggle('is-offered', show4);
+    welcomeChevrons.classList.toggle('is-shown', idx === 4);
+
+    finishFrame.classList.toggle('is-shown', allFull);
+  }
+
+  function applyStep(idx, animate) {
     if (idx < 0 || idx >= STEPS.length) return;
     currentStep = idx;
     var s = STEPS[idx];
 
-    widget.setAttribute('data-step', String(idx));
-    widget.setAttribute('data-step-dur', '0');
-    widget.style.setProperty('--step-color', s.accent);
-    widget.classList.toggle('is-filtering', idx >= 1 && idx <= 4);
+    var instant = reducedMotion || !animate;
+    if (instant) {
+      widget.classList.add('is-instant');
+    } else {
+      widget.classList.remove('is-instant');
+    }
 
-    cardKicker.textContent = s.kicker;
-    cardHeading.textContent = s.heading;
-    cardNote.textContent = s.note;
-    passageHint.textContent = s.hint;
+    widget.setAttribute('data-step', String(idx));
+    widget.setAttribute('data-step-dur', instant ? '0' : (idx === 4 ? '650' : '450'));
+    widget.style.setProperty('--step-color', s.accent);
+
+    renderCardInto({
+      ref: cardRef,
+      tag: cardSummaryTag,
+      heading: cardHeading,
+      lead: cardLead,
+      list: actionList,
+      grace: cardGrace
+    }, s);
+
+    svgTitle.textContent = s.title;
+    svgDesc.textContent = s.desc;
 
     stepCount.textContent = s.countLabel;
     nextBtn.textContent = s.nextLabel;
@@ -628,24 +885,26 @@ button:focus-visible,
       btn.setAttribute('aria-pressed', i === idx ? 'true' : 'false');
     });
 
-    lensPills.forEach(function (pill) {
-      var g = pill.getAttribute('data-lens');
-      var lit = s.groups.indexOf(g) !== -1;
-      pill.classList.toggle('is-lit', lit);
-      pill.setAttribute('aria-pressed', (idx === Number(g)) ? 'true' : 'false');
+    tabBtns.forEach(function (btn) {
+      var tabId = btn.getAttribute('data-tab');
+      var lit = s.tabs.indexOf(tabId) !== -1;
+      btn.classList.toggle('is-lit', lit);
+      btn.setAttribute('aria-pressed', idx === Number(tabId) ? 'true' : 'false');
     });
 
-    verseSegs.forEach(function (seg) {
-      var g = seg.getAttribute('data-group');
-      var active = s.groups.indexOf(g) !== -1;
-      seg.classList.toggle('is-active', active);
-    });
+    updateVisual(idx);
+
+    if (instant && !reducedMotion) {
+      void widget.offsetWidth;
+      widget.classList.remove('is-instant');
+    }
   }
 
   function fitCardHeight() {
     var w = cardContent.clientWidth;
     if (!w) return;
     lastMeasuredWidth = w;
+
     var clone = cardContent.cloneNode(true);
     clone.removeAttribute('id');
     clone.removeAttribute('aria-live');
@@ -653,21 +912,24 @@ button:focus-visible,
     clone.style.minHeight = '0';
     clone.style.height = 'auto';
 
-    var k = clone.querySelector('#card-kicker');
-    var h = clone.querySelector('#card-heading');
-    var n = clone.querySelector('#card-note');
-    if (k) k.removeAttribute('id');
-    if (h) h.removeAttribute('id');
-    if (n) n.removeAttribute('id');
+    var refs = {
+      ref: clone.querySelector('#card-ref'),
+      tag: clone.querySelector('#card-summary-tag'),
+      heading: clone.querySelector('#card-heading'),
+      lead: clone.querySelector('#card-lead'),
+      list: clone.querySelector('#action-list'),
+      grace: clone.querySelector('#card-grace')
+    };
+    Object.keys(refs).forEach(function (k) {
+      if (refs[k]) refs[k].removeAttribute('id');
+    });
 
     measureHost.innerHTML = '';
     measureHost.appendChild(clone);
 
     var maxH = 0;
     for (var i = 0; i < STEPS.length; i++) {
-      if (k) k.textContent = STEPS[i].kicker;
-      if (h) h.textContent = STEPS[i].heading;
-      if (n) n.textContent = STEPS[i].note;
+      renderCardInto(refs, STEPS[i]);
       var measured = Math.ceil(clone.getBoundingClientRect().height);
       if (measured > maxH) maxH = measured;
     }
@@ -679,15 +941,15 @@ button:focus-visible,
 
   nextBtn.addEventListener('click', function () {
     if (currentStep < STEPS.length - 1) {
-      applyStep(currentStep + 1);
+      applyStep(currentStep + 1, true);
     } else {
-      applyStep(0);
+      applyStep(0, false);
     }
   });
 
   prevBtn.addEventListener('click', function () {
     if (currentStep > 0) {
-      applyStep(currentStep - 1);
+      applyStep(currentStep - 1, false);
     }
   });
 
@@ -695,29 +957,15 @@ button:focus-visible,
     btn.addEventListener('click', function () {
       var target = Number(btn.getAttribute('data-step'));
       if (target !== currentStep) {
-        applyStep(target);
+        applyStep(target, target === currentStep + 1);
       }
     });
   });
 
-  lensPills.forEach(function (pill) {
-    pill.addEventListener('click', function () {
-      var target = Number(pill.getAttribute('data-lens'));
-      applyStep(target);
-    });
-  });
-
-  verseSegs.forEach(function (seg) {
-    seg.addEventListener('click', function () {
-      var target = Number(seg.getAttribute('data-group'));
-      applyStep(target);
-    });
-    seg.addEventListener('keydown', function (e) {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        var target = Number(seg.getAttribute('data-group'));
-        applyStep(target);
-      }
+  tabBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var target = Number(btn.getAttribute('data-tab'));
+      applyStep(target, target === currentStep + 1);
     });
   });
 
@@ -729,7 +977,7 @@ button:focus-visible,
   });
 
   fitCardHeight();
-  applyStep(0);
+  applyStep(0, false);
 })();
 </script>
 </body>
