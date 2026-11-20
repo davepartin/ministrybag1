@@ -836,6 +836,36 @@
             }
         ]
     },
+    "images/203-02-abraham-bw.jpg": {
+        "width": 1280,
+        "height": 720,
+        "sourceHash": "02363df439e027a534b47ed62fac56ff557d32212733f0f8959a2a1b4bf62402",
+        "variants": [
+            {
+                "src": "images/optimized/203-02-abraham-bw-640.webp",
+                "width": 640
+            },
+            {
+                "src": "images/optimized/203-02-abraham-bw-1280.webp",
+                "width": 1280
+            }
+        ]
+    },
+    "images/203-02-abraham-color.jpg": {
+        "width": 1280,
+        "height": 720,
+        "sourceHash": "07048cdae279bf4b6afc50e46c13d3e225c0f300805a644ff0ce40a8d5beb0ca",
+        "variants": [
+            {
+                "src": "images/optimized/203-02-abraham-color-640.webp",
+                "width": 640
+            },
+            {
+                "src": "images/optimized/203-02-abraham-color-1280.webp",
+                "width": 1280
+            }
+        ]
+    },
     "images/203-02-bless-logo.png": {
         "width": 1301,
         "height": 539,
