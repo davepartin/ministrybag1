@@ -1,6 +1,6 @@
 # Resume here
 
-ART-202-06c REVIEW, November 19: Dave approved two Grok Imagine frames for lesson 202-06. Wired as a three-stop sequence (`202-06-moses-veil-seq-1.jpg` listed twice, then `seq-2.jpg`, stops `[0, 0.42, 0.8]`) immediately after A Face That Shone. Seq-1 is the washed-out shining face; seq-2 lowers the veil so the mountain path and camp come into view. Non-image lesson values and saved-answer IDs unchanged. Stop at REVIEW. Evidence: [task log](logs/2026-11-19-ART-202-06c-grok.md).
+ART-202-06c REVIEW, November 20: Dave replaced seq-1 with a yellow-glow face on Moses holding the tablets. Same filename, sequence `[seq-1, seq-1, seq-2]`, stops `[0, 0.42, 0.8]`. Seq-2 (veil down) unchanged. Scroll starts on the yellow frame and dissolves to the veiled one. Non-image lesson values and saved-answer IDs unchanged. PR #332; stop at REVIEW. Evidence: [task log](logs/2026-11-19-ART-202-06c-grok.md).
 
 203-10 voice-session handoff saved, November19: [Approved copy and Gemini widget prompt](reviews/2026-11-19-203-10-update-handoff.md). Dave requested this single repo note for Claude/Gemini: Father's-love bookend, three concrete growth examples, inviting someone through Growing Together, Romans12 shared-table widget concept, and opened-eyes bridge. Documentation only; lesson/widget edits are not yet implemented or published by this packet.
 

@@ -423,7 +423,7 @@
     "images/202-06-moses-veil-seq-1.jpg": {
         "width": 1792,
         "height": 1008,
-        "sourceHash": "b1bac42068cbb8afdd1640ece444378eb8d21845e3e5811575224ad70179d5a5",
+        "sourceHash": "f3d79d768ae6946771172ac96ed8528d1cc0171d7a7f599dee1e642b6de382a0",
         "variants": [
             {
                 "src": "images/optimized/202-06-moses-veil-seq-1-640.webp",
