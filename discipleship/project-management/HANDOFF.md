@@ -1,6 +1,6 @@
 # Resume here
 
-ART-202-06c REVIEW, November 20: Dave replaced seq-1 with a yellow-glow face on Moses holding the tablets. Same filename, sequence `[seq-1, seq-1, seq-2]`, stops `[0, 0.42, 0.8]`. Seq-2 (veil down) unchanged. Scroll starts on the yellow frame and dissolves to the veiled one. Non-image lesson values and saved-answer IDs unchanged. PR #332; stop at REVIEW. Evidence: [task log](logs/2026-11-19-ART-202-06c-grok.md).
+ART-202-06c REVIEW, November 20: Image now sits before A Face That Shone with `touchNext` and the story jump on the picture. Sequence `[seq-1, seq-1, seq-2]`, stops `[0, 0.34, 0.91]` (dissolve starts 20 percent sooner and lasts 50 percent longer). Seq-1 is the yellow-glow frame; seq-2 is veiled. Non-image lesson values and saved-answer IDs unchanged. PR #332; stop at REVIEW. Evidence: [task log](logs/2026-11-19-ART-202-06c-grok.md).
 
 203-10 voice-session handoff saved, November19: [Approved copy and Gemini widget prompt](reviews/2026-11-19-203-10-update-handoff.md). Dave requested this single repo note for Claude/Gemini: Father's-love bookend, three concrete growth examples, inviting someone through Growing Together, Romans12 shared-table widget concept, and opened-eyes bridge. Documentation only; lesson/widget edits are not yet implemented or published by this packet.
 
