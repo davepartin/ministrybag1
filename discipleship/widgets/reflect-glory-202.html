@@ -561,6 +561,13 @@ button:focus-visible {
       ['100%', '#1B1916', 0]
     ]);
 
+    // Step 1: Dim Moon (soft natural charcoal surface, no outline ring)
+    addLinearGrad(defs, 'moon-dim-grad', '14%', '82%', '88%', '18%', [
+      ['0%', '#36322C'],
+      ['55%', '#2B2823'],
+      ['100%', '#211F1B']
+    ]);
+
     // Step 2: Illuminated Moon (warm white + golden yellow, brightest on lower-left horizon-facing limb)
     addLinearGrad(defs, 'moon-lit-grad', '14%', '82%', '88%', '18%', [
       ['0%', '#FFFDF5'],
@@ -733,15 +740,13 @@ button:focus-visible {
       fill: 'url(#moonlight-pool-grad)'
     }, moonlightPoolLayer);
 
-    // 7) THE MOON (Fixed high-right at 294, 66 with richer craters!)
+    // 7) THE MOON (Fixed high-right at 294, 66 with richer craters and no outer ring lines)
     var moonBaseLayer = svgEl('g', { id: 'layer-moon-base' }, svg);
     svgEl('circle', {
       cx: GEO.moonX,
       cy: GEO.moonY,
       r: GEO.moonR,
-      fill: '#201E1B',
-      stroke: '#6C665C',
-      'stroke-width': '1.4'
+      fill: 'url(#moon-dim-grad)'
     }, moonBaseLayer);
     drawMoonCraters(moonBaseLayer, GEO.moonX, GEO.moonY, false);
 
@@ -755,19 +760,8 @@ button:focus-visible {
     svgEl('circle', {
       cx: GEO.moonX,
       cy: GEO.moonY,
-      r: GEO.moonR + 4.5,
-      fill: 'none',
-      stroke: '#FCE49A',
-      'stroke-width': '1',
-      opacity: '0.4'
-    }, moonLitLayer);
-    svgEl('circle', {
-      cx: GEO.moonX,
-      cy: GEO.moonY,
       r: GEO.moonR,
-      fill: 'url(#moon-lit-grad)',
-      stroke: '#D6A32E',
-      'stroke-width': '1.6'
+      fill: 'url(#moon-lit-grad)'
     }, moonLitLayer);
     // Rich lunar craters sculpted in warm golden-ochre & white highlights
     drawMoonCraters(moonLitLayer, GEO.moonX, GEO.moonY, true);
