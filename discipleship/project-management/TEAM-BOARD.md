@@ -1,5 +1,7 @@
 # Growing Together Team Board
 
+UI-COURSE-OPENER-LOGOS ACTIVE: Codex is widening only the201-01,202-01 and203-01 course logos from60% to100% of content width, preserving proportions and all other lesson values. See logs/2026-11-20-UI-COURSE-OPENER-LOGOS-codex.md.
+
 ART-202-02-EARLY-FINISH DONE: PR #344 merged ebb5baa, production verified after Firebase44737217537. Sequence finishes at60 percent, entire picture visible below header.80 live browser checks pass. Timing only, normal scrolling/artwork/copy/answers preserved. [Evidence](logs/2026-11-20-ART-202-02-EARLY-FINISH-codex.md).
 
 203-10 WIDGET REMOVED, November20: Dave requested removal pending a better design. PR #343 merged1ff1002; Firebase44736024654 succeeded.30 live phone/laptop checks confirm no iframe, preserved current/retired answers and exports, no overflow/page errors. Shared cross source and all other lesson content remain intact. [Evidence](logs/2026-11-20-WIDGET-203-10-REMOVE-codex.md).
