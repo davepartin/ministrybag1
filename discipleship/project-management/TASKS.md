@@ -2,6 +2,7 @@
 
 | Task | Status | Owner / date | Scope |
 |---|---|---|---|
+| UI-203-WIDGET-FRAMES | ACTIVE | Codex / 2026-11-20 | Branch codex/203-widget-frames. Header/frame-only pass for203-05 through09, retaining teaching, diagrams and interactions. |
 | UI-WIDGET-OPENING-CUES | DONE | Codex / 2026-11-20 | PR #357 merged0b4f9fb; Firebase44797004262 succeeded.201-01/203-01 opening cues fade before drawing; subtle phone side lines add no dimensions.192 live and604 shared-engine checks pass. Teaching/answers preserved. |
 | ART-202-02-RAIN-HOLD | DONE | Codex / 2026-11-20 | PR #355 merged1d71096; Firebase44776039816 succeeded. Full rain holds18-28 percent before collapse; finish60 percent.83 local/preview/live checks pass, art/copy preserved. |
 | ART-202-02-FALL-INTEGRATE | DONE | Codex / 2026-11-20 | PR #353 merged1f080e0; Firebase44775133154 succeeded. Approved5 frames preserved;77 local/preview/live and266 shared browser checks pass. Lesson copy/questions untouched. |
