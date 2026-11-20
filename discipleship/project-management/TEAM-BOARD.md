@@ -1,5 +1,7 @@
 # Growing Together Team Board
 
+203-10 WIDGET REMOVED, November20: Dave requested removal pending a better design. PR #343 merged1ff1002; Firebase44736024654 succeeded.30 live phone/laptop checks confirm no iframe, preserved current/retired answers and exports, no overflow/page errors. Shared cross source and all other lesson content remain intact. [Evidence](logs/2026-11-20-WIDGET-203-10-REMOVE-codex.md).
+
 203-01 latest timing DONE: PR #340 merged8caaf0b at Dave's request. Dissolve starts30 percent and finishes45 percent, stops [0,0.3,0.45]. Firebase44673963098 succeeded;80 live story checks pass, entire picture visible at finish. Art/copy/answers preserved. [Evidence](logs/2026-11-19-ART-203-01b-30-45-codex.md).
 
 203-01 HOLD50 DONE: Dave requested start50 percent, finish64 percent and merge. PR #338 mergedbd06803; Firebase44661456480 succeeded.80 live story checks pass at375/390/1280 and reduced motion. No artwork, prose or saved-answer changes. [Latest timing evidence](logs/2026-11-19-ART-203-01b-HOLD50-codex.md).
