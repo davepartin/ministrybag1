@@ -57,7 +57,7 @@ Look at `data/201-01.json` and `images/running-father-seq-1.jpg` through `images
 - **Identical dimensions across all frames:** Every frame in a sequence must have the exact same pixel width and height (for example, `1248x832` in `201-01`) so the container height never shifts during scroll.
 - **Locked background plate:** Keep the background environment, horizon, road, lighting, and stationary figures locked in the exact same pixel positions across every frame.
 - **Progressive subject motion:** Only the moving subject changes from frame to frame. In `201-01`, the returning son stands at the same spot down the road in all 5 frames while the father progresses from large in the foreground (`seq-1`), down the road (`seq-2`, `seq-3`, `seq-4`), to standing right beside his son with his arm reaching out (`seq-5`).
-- **Hold a beat by repeating a frame:** If a frame needs to pause on screen longer during scroll, list the same image path twice in `imageSequence` across two adjacent stops (as `202-02` does with `house-rock-seq-2.jpg`).
+- **Hold a beat by repeating a frame:** If a frame needs to pause on screen longer during scroll, list the same image path twice in `imageSequence` across two adjacent stops (as `202-02` does with `house-rock-seq-1.jpg`).
 
 ### JSON Shape (`imageSequence`)
 
@@ -116,9 +116,10 @@ The existing engine places the image top at `contentTop + visibleHeight * (0.40 
 - **3 frames (`201-02` The Family Robe):** `[0, 0.25, 0.45]`
 - **4 frames (`201-06` Creation):** `[0, 0.25, 0.4, 0.65]` (or `[0, 0.18, 0.34, 0.5]`)
 - **5 frames (`201-01` Running Father):** `[0, 0.16, 0.3, 0.44, 0.58]`
-- **7 entries with a slow last dissolve (`202-02` Wise Builder):** `[0, 0.067, 0.133, 0.2, 0.267, 0.4, 0.6]`
+- **7 entries with calm and rain holds (`202-02` Wise Builder):** `[0, 0.08, 0.18, 0.28, 0.38, 0.48, 0.6]`
 - **7 entries with 0.08 holds and a 0.24 last dissolve (`202-01` Good Samaritan):** `[0, 0.08, 0.16, 0.24, 0.32, 0.40, 0.64]`
 - **3 entries with a 0.3 hold and last frame at 0.45 (`203-01` Roof Drop):** `[0, 0.3, 0.45]`
+- **3 entries with a seq-1 hold and last frame at 0.3 (`202-06` Moses veil):** `[0, 0.2, 0.3]`
 
 ### How the Renderer Animates the Sequence
 
@@ -191,16 +192,16 @@ Optional `imageDissolveOnEntry: true` on a two-layer image starts at 100% B&W wh
 | 201-09 | The Vine and the Branches | **4-Frame Sequence** | `vine-branches-seq-1.jpg` .. `4.jpg` (stops `[0, 0.18, 0.34, 0.5]`) | Live (`touchNext: true`) |
 | 201-10 | Coming to His Senses | B&W -> Color | `prodigal-son-two-brothers-bw.jpg` -> `prodigal-son-two-brothers-color.jpg` | Live (`touchNext: true`) |
 | 202-01 | The Good Samaritan | **7-Stop Sequence** | `202-01-good-samaritan-seq-1.jpg` .. `4.jpg` (stops `[0, 0.08, 0.16, 0.24, 0.32, 0.40, 0.64]`; `good-samaritan-story.jpg` kept unused) | Live (`touchNext: true`) |
-| 202-02 | The Wise and Foolish Builders | **7-Stop Sequence** | `house-rock-seq-1.jpg` .. `3.jpg`, `5.jpg` (stops `[0, 0.067, 0.133, 0.2, 0.267, 0.4, 0.6]`; seq-4 unused) | Live sequence |
+| 202-02 | The Wise and Foolish Builders | **7-Stop Sequence** | `house-rock-seq-1.jpg` .. `5.jpg` (stops `[0, 0.08, 0.18, 0.28, 0.38, 0.48, 0.6]`; seq-1 and seq-2 listed twice) | Live sequence (`touchNext: true`) |
 | 202-03 | The Early Church | **4-Frame Sequence** | `early-church-seq-1.jpg` .. `4.jpg` (stops `[0, 0.18, 0.34, 0.5]`) | Live (`touchNext: true`) |
 | 202-04 | The Five Farmers in the Field | B&W -> Color | `Farmer-bw.jpeg` -> `Farmer-color.jpg` | Live (`touchNext: true`) |
 | 202-05 | The Pit, the Prison, and the Palace | B&W -> Color | `202-05-joseph-pit-palace-bw.jpg` -> `202-05-joseph-pit-palace-color.jpg` | Live (`touchNext: true`) |
-| 202-06 | Songs at Midnight | **5-Frame Sequence** | `202-06-paul-silas-seq-1.jpg` .. `5.jpg` (stops `[0, 0.16, 0.3, 0.44, 0.58]`) | Live (`touchNext: true`) |
+| 202-06 | A Face That Shone | **3-Stop Sequence** | `202-06-moses-veil-seq-1.jpg` (listed twice), `202-06-moses-veil-seq-2.jpg` (stops `[0, 0.2, 0.3]`). Paul/Silas files kept unused. | Live before the story card (`touchNext: true`) |
 | 202-07 | Two Small Coins | **4-Frame Sequence** | `202-07-two-coins-seq-1.jpg` .. `4.jpg` (stops `[0, 0.18, 0.34, 0.5]`) | Live (`touchNext: true`) |
 | 202-08 | The Marble and the Chisel | B&W -> Color | `202.08-marble-chisel-bw.jpg` -> `202.08-marble-chisel-color.jpg` | Live (`touchNext: true`, `frame: true`) |
 | 202-09 | The View from the Roof | B&W -> Color | `202-09-story-bw.jpg` -> `202-09-story-color.jpg` (`1280x720`, 16:9; earlier `202.09-david-roof-*.png` kept unused) | Live (`touchNext: true`, `frame: true`, `imageDissolveOnEntry: true`) |
 | 202-10 | The Table He Longed For | B&W -> Color | `202-10-bread-cup-bw.jpg` -> `202-10-bread-cup-color.jpg` (`1152x864`, 4:3) | Baptism/widget first; bread/cup directly above Supper story (`touchNext: true`, `frame: true`). Original Last Supper files retained unused. |
-| 203-01 | Four Friends and a Roof | **3-Stop Sequence** | `203-01-roof-drop-seq-1.jpg`, `203-01-roof-drop-seq-2.jpg` (stops `[0, 0.3, 0.45]`; seq-1 listed twice) | Live (`touchNext: true`) |
+| 203-01 | Four Friends and a Roof | **3-Stop Sequence** | `203-01-roof-drop-seq-1.jpg`, `203-01-roof-drop-seq-2.jpg` (stops `[0, 0.3, 0.45]`; seq-1 and seq-2 listed twice) | Live (`touchNext: true`) |
 | 203-02 | Blessed to Be a Blessing | Darker -> Brighter Stars | `203-02-abraham-bw.jpg` -> `203-02-abraham-color.jpg` (`1280x720`, 16:9; Gemini PR #318) | Live (`touchNext: true`, `imageDissolveOnEntry: true`); Dave chose it 2026-11-20 |
 | 203-03 | Stay with Us | **4-Frame Sequence** | `emmaus-bread-seq-1.jpg` .. `4.jpg` (stops `[0, 0.18, 0.34, 0.5]`) | Live (`touchNext: true`); old dissolve pair stays unused |
 | 203-04 | The Towel and the Basin | B&W -> Color | `jesus-washing-feet-bw.png` -> `jesus-washing-feet-color.png` | Live (`touchNext: true`) |
