@@ -1,5 +1,11 @@
 # Resume here
 
+ART-202-02-RAIN-HOLD DONE: PR #355 merged1d71096; Firebase44776039816 succeeded. Full storm holds18 to28 percent before collapse; later dissolves rebalance to preserve60 percent finish.83 local,83 preview and83 live phone/laptop/reduced-motion checks pass. Art/copy untouched. Log: logs/2026-11-20-ART-202-02-RAIN-HOLD-codex.md.
+
+ART-202-02-FALL-INTEGRATE DONE: PR #353 merged1f080e0; Firebase44775133154 succeeded. Approved5-frame calm/storm/fall/wreckage/aftermath sequence live, stops [0,0.08,0.18,0.3,0.42,0.6]. Frames1/5 and all non-image lesson content preserved.77 local,77 preview,77 production and266 shared browser checks pass. Log: logs/2026-11-20-ART-202-02-FALL-INTEGRATE-codex.md.
+
+ART-202-06-20-30 DONE: PR #350 mergedcd92528; Firebase44741196843 succeeded. Moses dissolve starts20 percent, finishes30 percent.76 local,76 preview and76 live phone/laptop/reduced-motion checks pass. Entire final picture visible. Timing only, artwork and all other lesson values preserved; supersedes the earlier34/91 schedule below. Log: logs/2026-11-20-ART-202-06-20-30-codex.md.
+
 UI-COURSE-OPENER-LOGOS DONE: PR #347 merged59cce28 and Firebase44738918915 succeeded. The201-01,202-01 and203-01 logos fill content width.46 local,46 preview and46 live phone/laptop checks pass. All other lesson values/artwork preserved. See logs/2026-11-20-UI-COURSE-OPENER-LOGOS-codex.md.
 
 ART-202-06c REVIEW, November 20: Image now sits before A Face That Shone with `touchNext` and the story jump on the picture. Sequence `[seq-1, seq-1, seq-2]`, stops `[0, 0.34, 0.91]` (dissolve starts 20 percent sooner and lasts 50 percent longer). Seq-1 is the yellow-glow frame; seq-2 is veiled. Non-image lesson values and saved-answer IDs unchanged. Merged current main into this branch to clear conflicts; stop at REVIEW pending Dave's merge of PR #332. Evidence: [task log](logs/2026-11-19-ART-202-06c-grok.md).
