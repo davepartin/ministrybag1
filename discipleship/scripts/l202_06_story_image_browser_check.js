@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 /**
  * 202-06 Worship and the Glory of God story-image browser check.
- * Confirms the Moses veil two-frame sequence sits before A Face That
- * Shone, holds seq-1, dissolves to seq-2 at 0.3, keeps touchNext,
+ * Confirms the Moses veil two-frame sequence sits before the Reflecting God
+ * story, holds seq-1, dissolves to seq-2 at 0.3, keeps touchNext,
  * honors reduced motion, and does not shift the page at phone and
  * laptop widths. Synthetic navigation only.
  */
@@ -20,7 +20,7 @@ var FRAMES = [
 var QUESTION_IDS = [
     '202-06-awe',
     '202-06-reflect',
-    '202-06-small',
+    '202-06-clearer',
     '201-05-key',
     '202-06-step',
     '201-05-prayer'
@@ -170,8 +170,8 @@ function srcMatches(src, expected) {
         assert(width + ': image keeps touchNext', rest.touchNext);
         assert(width + ': parable card follows the image', rest.nextIsParable);
         assert(
-            width + ': parable title is A Face That Shone',
-            rest.parableTitle && rest.parableTitle.indexOf('A Face That Shone') !== -1,
+            width + ': parable title is Reflecting God',
+            rest.parableTitle && rest.parableTitle.indexOf('Reflecting God') !== -1,
             rest.parableTitle
         );
         assert(
