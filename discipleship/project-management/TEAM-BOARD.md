@@ -1,5 +1,6 @@
 # Growing Together Team Board
 
+ART-203-01c REVIEW, November 20: two new Grok Imagine roof-drop frames replace seq-1 and seq-2. Stops stay [0,0.3,0.45]. Lesson copy and saved-answer IDs unchanged. Stop at REVIEW. [Evidence](logs/2026-11-20-ART-203-01c-grok.md).
 UI-203-WIDGET-FRAMES DONE: PR #358 merged9d8ff6a; Firebase44798863408 succeeded.203-05 through09 use dark compact headers, lesson codes and matching desktop frames.890 local,890 preview and359 live all-step phone/laptop checks pass. All scripts/SVGs/teaching/control content preserved exactly. Log: logs/2026-11-20-UI-203-WIDGET-FRAMES-codex.md.
 
 UI-WIDGET-OPENING-CUES DONE: PR #357 merged0b4f9fb; Firebase44797004262 succeeded.201-01 Love begins with God and203-01 His love keeps moving outward fade before drawing. All embedded widgets have subtle phone side boundaries with no added width/height.192 live opening/layout/input/reduced-motion and604 local shared-engine checks pass. Teaching, diagrams and answers preserved. Log: logs/2026-11-20-UI-WIDGET-OPENING-CUES-codex.md.
