@@ -15,7 +15,7 @@ Stops follow the house 3-frame example `[0, 0.3, 0.6]`. Frame 3 is fully in at 0
 1. **Lesson JSON (`data/202-03.json`)**: only the standalone image block changed.
    - Sequence: `images/202-03-shared-table-seq-1.jpg`, `-2.jpg`, `-3.jpg`
    - Stops: `[0, 0.3, 0.6]`
-   - Alt: `Overhead ink drawing of Jesus' disciples sharing bread and drink at a long table, ending with one empty chair`
+   - Alt: `Overhead ink drawing of early believers sharing bread and drink at a long table, ending with one empty chair`
    - `touchNext: true`, `anchor: "story"`
    - Saved-answer IDs stay `202-03-4`, `202-03-2`, `202-03-1`, `202-03-key`, `202-03-step`, `202-03-prayer`. Retired IDs stay `202-03-5`, `202-03-hand`.
 2. **Source frames** (already on the branch in `1daf92b`, 1792x1008 JPEG):
@@ -53,7 +53,24 @@ Local server: `python3 -m http.server 8765 --bind 127.0.0.1`. Playwright used in
 - `node scripts/test_lesson_images.js`: TEST_LESSON_IMAGES_EXIT:0 (`1619 lesson image checks passed.`)
 - `node scripts/l202_03_story_image_browser_check.js`: L202_03_STORY_IMAGE_BROWSER_CHECK_EXIT:0. 85 passed at 375, 390, and 1280, plus reduced motion. Three frames load and stay stacked, they advance in order on scroll (390 samples: dominant 0, 0, 1, 1, 2, 2, 2), last frame is opaque at stop 0.6 and exclusive by 0.7, frame 3 remains dominant at 0.8, reduced motion shows seq-3 without scrolling, `touchNext` joins the parable card, wrap height stays put (375: 188.4px, 390: 196.9px, 1280: 337.5px), the parable does not nest a second story image, all six current question IDs render, no sideways scroll, early-church files are not loaded. Entire picture remains visible below the 49px header at 0.6.
 
-No lint script is defined in `package.json`. Not run: real iPhone/Safari, unrelated widget/app browser suites, and live production. No merge and no deploy. Stop at REVIEW. Dave's personal art approval remains pending.
+No lint script is defined in `package.json`. Not run: real iPhone/Safari, unrelated widget/app browser suites, and live production. No merge of this PR to main and no production deploy. Stop at REVIEW. Dave's personal art approval remains pending.
+
+## Follow-up: merge main and alt wording
+
+Merged `origin/main` (`35452bd`) into this branch with a normal merge commit. No rebase and no force-push. Conflicts were only in `TASKS.md`, `HANDOFF.md`, and `TEAM-BOARD.md`; both ART-202-03-TABLE and RETIRE-LEGACY-PRS histories were kept. `scripts/lesson-image-assets.js` had no conflict; it was regenerated with `node scripts/build_lesson_images.js` (BUILD_EXIT:0, cached copies unchanged) rather than edited by hand.
+
+Alt text is now `Overhead ink drawing of early believers sharing bread and drink at a long table, ending with one empty chair`. The browser check looks for `early believers`.
+
+Rerun from `discipleship/`:
+- `node scripts/build_lesson_images.js`: BUILD_EXIT:0
+- `bash scripts/qa_foundation.sh`: QA_FOUNDATION_EXIT:0 (415 bundled John, 144 assets, 32 iframe, 212 export, 1619 images)
+- `node scripts/test_lesson_export.js`: TEST_LESSON_EXPORT_EXIT:0 (`212 check(s) passed.`)
+- `node scripts/test_answer_storage.js`: TEST_ANSWER_STORAGE_EXIT:0 (`73 check(s) passed.`)
+- `node scripts/check_lesson_assets.js`: CHECK_LESSON_ASSETS_EXIT:0 (`PASS: 144 src/image/imageBw/imageColor/imageSequence references resolve to files.`)
+- `node scripts/test_lesson_assets.js`: TEST_LESSON_ASSETS_EXIT:0 (`8 asset check tests passed.`)
+- `node scripts/test_widget_iframe.js`: TEST_WIDGET_IFRAME_EXIT:0 (`32 widget iframe checks passed.`)
+- `node scripts/test_lesson_images.js`: TEST_LESSON_IMAGES_EXIT:0 (`1619 lesson image checks passed.`)
+- `node scripts/l202_03_story_image_browser_check.js`: L202_03_STORY_IMAGE_BROWSER_CHECK_EXIT:0 (`85 L-202-03 story-image browser checks passed.`)
 
 ## Handoff
 Changed files:
@@ -76,6 +93,6 @@ Remaining work / next command: independent review, then Dave's personal art appr
 
 Blocker and unblock action, if any: none.
 
-Commit / PR / GitHub sync state: branch `cursor/art-202-03-shared-table-bw`. PR follows this log. Stop at REVIEW.
+Commit / PR / GitHub sync state: branch `cursor/art-202-03-shared-table-bw`, PR #359. Merged current main. Stop at REVIEW. Do not merge the PR.
 
 Pastoral approval evidence, if applicable: Dave sent the three shared-table frames and asked to wire them. No new lesson wording approval is implied.

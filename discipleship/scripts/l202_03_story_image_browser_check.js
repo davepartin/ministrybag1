@@ -204,7 +204,7 @@ function usesEarlyChurch(src) {
         var alt = rest.frames[0] && rest.frames[0].alt || '';
         assert(
             width + ': first frame alt names the shared table and empty chair',
-            alt.indexOf('disciples') !== -1 &&
+            alt.indexOf('early believers') !== -1 &&
                 alt.indexOf('long table') !== -1 &&
                 alt.indexOf('empty chair') !== -1 &&
                 alt.indexOf('\u2014') === -1,
