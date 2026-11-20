@@ -1,6 +1,6 @@
 # Resume here
 
-UI-COURSE-OPENER-LOGOS ACTIVE: Codex is widening only the201-01,202-01 and203-01 course logos from60% to100% of content width, preserving proportions and all other lesson values. See logs/2026-11-20-UI-COURSE-OPENER-LOGOS-codex.md.
+UI-COURSE-OPENER-LOGOS DONE: PR #347 merged59cce28 and Firebase44738918915 succeeded. The201-01,202-01 and203-01 logos fill content width.46 local,46 preview and46 live phone/laptop checks pass. All other lesson values/artwork preserved. See logs/2026-11-20-UI-COURSE-OPENER-LOGOS-codex.md.
 
 ART-202-06c REVIEW, November 20: Image now sits before A Face That Shone with `touchNext` and the story jump on the picture. Sequence `[seq-1, seq-1, seq-2]`, stops `[0, 0.34, 0.91]` (dissolve starts 20 percent sooner and lasts 50 percent longer). Seq-1 is the yellow-glow frame; seq-2 is veiled. Non-image lesson values and saved-answer IDs unchanged. Merged current main into this branch to clear conflicts; stop at REVIEW pending Dave's merge of PR #332. Evidence: [task log](logs/2026-11-19-ART-202-06c-grok.md).
 
