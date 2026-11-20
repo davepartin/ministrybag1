@@ -19,7 +19,7 @@ var FRAMES = [
     'images/202-07-two-coins-seq-4.jpg'
 ];
 var QUESTION_IDS = [
-    '202-07-1',
+    '202-07-heart',
     '202-07-2',
     '202-07-3',
     '202-07-4',
