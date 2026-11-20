@@ -1,6 +1,6 @@
 # Resume here
 
-ART-202-06c REVIEW, November 20: Image now sits before A Face That Shone with `touchNext` and the story jump on the picture. Sequence `[seq-1, seq-1, seq-2]`, stops `[0, 0.34, 0.91]` (dissolve starts 20 percent sooner and lasts 50 percent longer). Seq-1 is the yellow-glow frame; seq-2 is veiled. Non-image lesson values and saved-answer IDs unchanged. Merged current main into this branch to clear conflicts; stop at REVIEW pending Dave's merge of PR #332. Evidence: [task log](logs/2026-11-19-ART-202-06c-grok.md).
+ART-202-06c DONE, November 20: Dave merged PR #332 (`e3b4be3`); Firebase44738381208 succeeded. Sequence sits before A Face That Shone with `touchNext` and the story jump on the picture. Frames `[seq-1, seq-1, seq-2]`, stops `[0, 0.34, 0.91]`. Seq-1 yellow-glow; seq-2 veiled. Non-image lesson values and saved-answer IDs unchanged. Log: [task log](logs/2026-11-19-ART-202-06c-grok.md).
 
 ART-202-02-EARLY-FINISH DONE, November20: PR #344 merged ebb5baa; Firebase44737217537 succeeded. Sequence finishes at60 percent instead of72, with the entire final picture visible22px below the phone header.80 local,80 preview and80 production phone/laptop/reduced-motion checks pass. Artwork, copy and saved answers preserved. Log: logs/2026-11-20-ART-202-02-EARLY-FINISH-codex.md.
 
