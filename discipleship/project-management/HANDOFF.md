@@ -1,5 +1,7 @@
 # Resume here
 
+203-01 HALF-WAY HOLD DONE: Dave requested start50 percent and merge. PR #338 mergedbd06803 and Firebase44661456480 succeeded. Latest stops [0,0.5,0.64]: longer hold, quick dissolve, approved finish unchanged.80 live phone/laptop/reduced-motion checks passed. Supersedes the26 percent start in PR #322. Art/copy/answers untouched. Log: logs/2026-11-19-ART-203-01b-HOLD50-codex.md.
+
 203-01 two-frame roof-drop DONE: Dave approved the timing and requested merge. PR #322 merged2600793 and Firebase44660866685 succeeded. Two approved frames, stops [0,0.26,0.64], same0.38 dissolve duration; entire image visible below header at finish.80 live phone/laptop/reduced-motion checks passed. Current Great Commission copy and all answer history preserved. Log: logs/2026-11-19-ART-203-01b-TIMING-codex.md.
 
 ART-203-01b is now DONE and live via PR #322; final timing [0,0.26,0.64] supersedes the earlier0.42/0.8 preview schedule. See the current timing note above; the original Grok log remains historical evidence.
