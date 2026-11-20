@@ -2,6 +2,10 @@
 
 | Task | Status | Owner / date | Scope |
 |---|---|---|---|
+| WIDGET-203-10-REMOVE | ACTIVE | Codex / 2026-11-20 | Dave requests removing the203-10 Greatest Commandment widget pending a better design. Remove embed and obsolete diagram navigation only; protect shared widget files, lesson copy and saved answers. Verify and publish. |
+
+| Task | Status | Owner / date | Scope |
+|---|---|---|---|
 | ART-203-01b-30-45 | DONE | Codex / 2026-11-19 | Dave requests start30 percent and finish45 percent after live phone review. PR #340 merged8caaf0b. Firebase44673963098 succeeded;80 local,80 preview and80 live story checks passed. Art/copy/answers preserved. |
 
 | Task | Status | Owner / date | Scope |
