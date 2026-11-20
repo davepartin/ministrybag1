@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
  * 203-10 Marks of a True Christian (Romans 12:9-21) standalone widget browser verification.
- * Serve discipleship/ locally and pass MARKS_BASE_URL (default http://127.0.0.1:8794/widgets/marks-of-genuine-love.html).
+ * Optionally pass MARKS_BASE_URL to test a live preview URL.
  */
 'use strict';
 
@@ -16,13 +16,15 @@ const SCREENSHOT_DIR = process.env.MARKS_SCREENSHOT_DIR || '';
 if (SCREENSHOT_DIR) fs.mkdirSync(SCREENSHOT_DIR, { recursive: true });
 
 const EXPECTED_HEADINGS = [
-  'Let Love Be Genuine',
-  '1. A Genuine Heart',
-  '2. Up Toward God',
-  '3. Family in Christ',
-  '4. Out Toward Everyone, Even Enemies',
-  'Love Comes Down, Goes Up, and Reaches Out'
+  'A Life Shaped by Jesus',
+  '1. Love Sincerely',
+  '2. Keep Following Jesus',
+  '3. Share Life Humbly',
+  '4. Love Through Conflict',
+  'The love you have received becomes the love you give.'
 ];
+
+const EXPECTED_COUNTS = [0, 4, 5, 5, 6, 0];
 
 const JOBS = [
   { width: 375, height: 812, reducedMotion: 'no-preference' },
@@ -101,16 +103,20 @@ const JOBS = [
       const stepCount = await page.locator('.step-dot').count();
       check(`${tag}: six step dots present`, stepCount === 6);
 
+      const tabLabels = await page.locator('.tab-btn').allTextContents();
+      check(`${tag}: four expected tab labels`,
+        tabLabels.join('|') === 'Sincere Love|Faithfulness|Humility|Loving Enemies');
+
       const sizesOk = await page.evaluate(() => {
         const navOk = Array.from(document.querySelectorAll('.nav-btn')).every(b => b.getBoundingClientRect().height >= 44);
         const dotOk = Array.from(document.querySelectorAll('.step-dot')).every(b => {
           const r = b.getBoundingClientRect();
           return r.width >= 28 && r.height >= 28;
         });
-        const pillOk = Array.from(document.querySelectorAll('.lens-pill')).every(b => b.getBoundingClientRect().height >= 28);
-        return navOk && dotOk && pillOk;
+        const tabOk = Array.from(document.querySelectorAll('.tab-btn')).every(b => b.getBoundingClientRect().height >= 30);
+        return navOk && dotOk && tabOk;
       });
-      check(`${tag}: buttons >= 44px, dots >= 28x28, lens pills >= 28px`, sizesOk);
+      check(`${tag}: buttons >= 44px, dots >= 28x28, tabs >= 30px`, sizesOk);
 
       if (job.width === 390) {
         check(`${tag}: total widget height <= 595px (${Math.round(widgetHeight)}px)`, widgetHeight <= 595);
@@ -118,12 +124,18 @@ const JOBS = [
 
       for (let s = 0; s < stepCount; s++) {
         if (s > 0) await page.locator('#next-btn').click();
-        await page.waitForTimeout(80);
+        const dur = Number(await page.locator('#widget').getAttribute('data-step-dur')) || 0;
+        if (job.reducedMotion === 'reduce') {
+          check(`${tag}: reduced motion instant step ${s}`, dur === 0);
+        }
+        await page.waitForTimeout(dur ? dur + 200 : 80);
 
         check(`${tag}: active dot step ${s}`,
           await page.locator('.step-dot[aria-pressed="true"]').getAttribute('data-step') === String(s));
         check(`${tag}: heading matches step ${s}`,
           await page.locator('#card-heading').textContent() === EXPECTED_HEADINGS[s]);
+        check(`${tag}: bullet count matches step ${s}`,
+          await page.locator('#action-list li').count() === EXPECTED_COUNTS[s]);
         check(`${tag}: constant card height step ${s}`,
           await page.locator('#card-content').evaluate((e, h) => Math.abs(e.getBoundingClientRect().height - h) <= 1, cardHeight));
         check(`${tag}: card content fits step ${s}`,
@@ -131,21 +143,34 @@ const JOBS = [
         check(`${tag}: zero horizontal overflow step ${s}`,
           await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1));
 
-        const state = await page.evaluate(() => {
-          const activeGroups = Array.from(document.querySelectorAll('.v-seg.is-active')).map(el => el.getAttribute('data-group'));
-          const litPills = Array.from(document.querySelectorAll('.lens-pill.is-lit')).map(el => el.getAttribute('data-lens'));
-          return { activeGroups: Array.from(new Set(activeGroups)).sort(), litPills };
+        const vis = await page.evaluate(() => {
+          const cls = id => document.getElementById(id).classList;
+          return {
+            s1: cls('scene-1').contains('is-shown') || cls('scene-1').contains('is-dim'),
+            s2: cls('scene-2').contains('is-shown') || cls('scene-2').contains('is-dim'),
+            s3: cls('scene-3').contains('is-shown') || cls('scene-3').contains('is-dim'),
+            s4: cls('scene-4').contains('is-shown'),
+            s1Full: cls('scene-1').contains('is-shown'),
+            s2Full: cls('scene-2').contains('is-shown'),
+            s3Full: cls('scene-3').contains('is-shown'),
+            frame: cls('finish-frame').contains('is-shown'),
+            graceVisible: !document.getElementById('card-grace').hidden
+          };
         });
 
         if (s === 0) {
-          check(`${tag}: step 0 no group active`, state.activeGroups.length === 0 && state.litPills.length === 0);
-        } else if (s >= 1 && s <= 4) {
-          check(`${tag}: step ${s} highlights group ${s}`,
-            state.activeGroups.length === 1 && state.activeGroups[0] === String(s) &&
-            state.litPills.length === 1 && state.litPills[0] === String(s));
+          check(`${tag}: step 0 open table ready`, !vis.s1 && !vis.s2 && !vis.s3 && !vis.s4);
+        } else if (s === 1) {
+          check(`${tag}: step 1 sincere love visible`, vis.s1Full && !vis.s2);
+        } else if (s === 2) {
+          check(`${tag}: step 2 sharing bread visible`, vis.s1 && vis.s2Full && !vis.s3);
+        } else if (s === 3) {
+          check(`${tag}: step 3 sitting with grieving visible`, vis.s2 && vis.s3Full && !vis.s4);
+        } else if (s === 4) {
+          check(`${tag}: step 4 welcoming outsider visible`, vis.s3 && vis.s4 && !vis.frame);
         } else if (s === 5) {
-          check(`${tag}: step 5 illuminates all four groups`,
-            state.activeGroups.join(',') === '1,2,3,4' && state.litPills.join(',') === '1,2,3,4');
+          check(`${tag}: step 5 whole table visible with grace line`,
+            vis.s1Full && vis.s2Full && vis.s3Full && vis.s4 && vis.frame && vis.graceVisible);
         }
 
         if (SCREENSHOT_DIR && tag === '390/no-preference') {
@@ -153,29 +178,34 @@ const JOBS = [
         }
       }
 
-      // Direct interaction: clicking a verse span in the passage selects its group
-      await page.locator('.v-seg[data-group="2"]').first().click();
-      await page.waitForTimeout(60);
-      check(`${tag}: clicking verse group 2 jumps to step 2`,
+      // Direct tab jump works
+      await page.locator('.tab-btn[data-tab="3"]').click();
+      await page.waitForTimeout(80);
+      check(`${tag}: Humility tab jumps to step 3`,
+        await page.locator('#widget').getAttribute('data-step') === '3');
+
+      // Back restores step 2
+      await page.locator('#prev-btn').click();
+      await page.waitForTimeout(80);
+      check(`${tag}: Back restores step 2`,
         await page.locator('#widget').getAttribute('data-step') === '2');
 
-      // Direct interaction: clicking lens pill 4 jumps to step 4
-      await page.locator('.lens-pill[data-lens="4"]').click();
+      // Full passage disclosure opens cleanly and contains Romans 12:9-21 text
+      await page.locator('#full-passage summary').click();
       await page.waitForTimeout(60);
-      check(`${tag}: clicking lens pill 4 jumps to step 4`,
-        await page.locator('#widget').getAttribute('data-step') === '4');
-
-      // Back restores step 3
-      await page.locator('#prev-btn').click();
+      const passageOpen = await page.locator('#full-passage').evaluate(el => el.open && el.textContent.includes('Let love be genuine') && el.textContent.includes('overcome evil with good'));
+      check(`${tag}: Read the full passage opens with full Romans 12:9-21`, passageOpen);
+      if (SCREENSHOT_DIR && tag === '390/no-preference') {
+        await page.locator('#widget').screenshot({ path: path.join(SCREENSHOT_DIR, 'full-passage-open.png') });
+      }
+      await page.locator('#full-passage summary').click();
       await page.waitForTimeout(60);
-      check(`${tag}: Back from step 4 restores step 3`,
-        await page.locator('#widget').getAttribute('data-step') === '3');
 
       // Start Over from step 5 returns to step 0
       await page.locator('.step-dot[data-step="5"]').click();
-      await page.waitForTimeout(60);
+      await page.waitForTimeout(80);
       await page.locator('#next-btn').click();
-      await page.waitForTimeout(60);
+      await page.waitForTimeout(80);
       check(`${tag}: Start Over returns to step 0`,
         await page.locator('#widget').getAttribute('data-step') === '0' &&
         await page.locator('#prev-btn').isDisabled());
