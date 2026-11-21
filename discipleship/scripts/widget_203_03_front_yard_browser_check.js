@@ -98,10 +98,10 @@ function createServer() {
       dots: document.querySelectorAll('.step-dot').length,
       text: document.body.innerText
     }));
-    assert('direct ' + width + 'px header & 6 dots', direct0.h1 === 'Front Yard Life' && direct0.tag === '203-03' && direct0.dots === 6);
+    assert('direct ' + width + 'px header & 5 dots', direct0.h1 === 'Front Yard Life' && direct0.tag === '203-03' && direct0.dots === 5);
     assert('direct ' + width + 'px no overflow & no Tap Begin', !direct0.overflow && !/tap begin/i.test(direct0.text));
 
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 4; i++) {
       await page.locator('#next-btn').click();
     }
     await page.waitForTimeout(550);
@@ -118,7 +118,7 @@ function createServer() {
       nextText: document.getElementById('next-btn').textContent.trim()
     }));
     assert('direct ' + width + 'px reaches Front Yard Life finish with stable card & 1.5s delayed porch light',
-      /5\. Front Yard Life/.test(directFinal.heading) &&
+      directFinal.heading === 'Front Yard Life' &&
       directFinal.isOpen &&
       directFinal.finishOn &&
       directFinal.porchDelay === '0.95s' &&
@@ -182,15 +182,14 @@ function createServer() {
 
     const expectedHeadings = [
       'Backyard Life',
-      '1. Carry Your Chairs Out Front',
-      '2. Open Up',
-      '3. People Pop By',
-      '4. Pull Up a Chair',
-      '5. Front Yard Life'
+      'Move Into the Neighborhood',
+      'Be Quick to Listen',
+      'Make Room at the Table',
+      'Front Yard Life'
     ];
 
     let allOk = true;
-    for (let s = 0; s < 6; s++) {
+    for (let s = 0; s < 5; s++) {
       if (s > 0) {
         await frame.locator('#next-btn').click();
         await page.waitForTimeout(waitStep);
@@ -199,6 +198,7 @@ function createServer() {
         const svg = document.getElementById('fy-svg');
         return {
           heading: document.getElementById('card-heading').textContent.trim(),
+          verseRef: document.getElementById('verse-ref').textContent.trim(),
           subnote: document.getElementById('card-subnote').textContent.trim(),
           cardH: document.getElementById('card-content').getBoundingClientRect().height,
           overflow: document.documentElement.scrollWidth > window.innerWidth + 1,
@@ -216,33 +216,34 @@ function createServer() {
         };
       });
       const ok = snap.heading === expectedHeadings[s] &&
+        !/^\d+\./.test(snap.heading) &&
+        snap.verseRef.length > 0 &&
         Math.abs(snap.cardH - cardH0) < 2 &&
         !snap.overflow &&
         snap.nextH >= 44 &&
-        (s === 0 ? !snap.isMoved : (snap.isMoved && snap.frontSetup)) &&
-        (s < 2 ? !snap.isOpen : snap.isOpen) &&
-        (s !== 2 || /No porch\?/.test(snap.subnote)) &&
-        (s < 3 ? !snap.popBy : snap.popBy) &&
-        (s < 4 ? !snap.seated : snap.seated) &&
-        (s < 5 ? (!snap.finish && snap.porchOpacity === 0) : snap.finish);
+        (s === 0 ? (!snap.isMoved && !snap.isOpen) : (snap.isMoved && snap.isOpen && snap.frontSetup)) &&
+        (s !== 1 || (/John 1:14/.test(snap.verseRef) && /No front yard\?/.test(snap.subnote))) &&
+        (s < 2 ? !snap.popBy : snap.popBy) &&
+        (s < 3 ? !snap.seated : snap.seated) &&
+        (s < 4 ? (!snap.finish && snap.porchOpacity === 0) : snap.finish);
       if (!ok) {
         allOk = false;
         assert(cfg.name + ' step ' + s + ' state', false, JSON.stringify(snap));
       }
     }
-    assert(cfg.name + ' all 6 steps animate cleanly with renter note & locked card height', allOk);
+    assert(cfg.name + ' all 5 steps animate cleanly with unnumbered titles, verses & locked card height', allOk);
 
     await frame.locator('#prev-btn').click();
     await page.waitForTimeout(waitStep);
-    assert(cfg.name + ' Back returns to Step 4', (await frame.locator('#step-count').textContent()).trim() === 'Step 4 of 5');
+    assert(cfg.name + ' Back returns to Step 3', (await frame.locator('#step-count').textContent()).trim() === 'Step 3 of 4');
 
-    const lastDot = frame.locator('.step-dot').nth(5);
+    const lastDot = frame.locator('.step-dot').nth(4);
     await lastDot.focus();
     await page.keyboard.press('Enter');
     await page.waitForTimeout(waitStep);
     const kbdOutline = await lastDot.evaluate((el) => getComputedStyle(el).outlineColor);
     assert(cfg.name + ' keyboard dot selects finish with focus-modality ring',
-      (await frame.locator('#step-count').textContent()).trim() === 'Step 5 of 5' && /42,\s*111,\s*158/.test(kbdOutline),
+      (await frame.locator('#step-count').textContent()).trim() === 'Step 4 of 4' && /42,\s*111,\s*158/.test(kbdOutline),
       kbdOutline);
 
     await frame.locator('#next-btn').click();

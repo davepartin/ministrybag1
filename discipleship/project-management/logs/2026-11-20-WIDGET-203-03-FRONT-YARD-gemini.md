@@ -64,3 +64,11 @@ At Dave's direction:
 - On Step 5 (`5. Front Yard Life`), night sky + ambient glows fade in over `0.45s`, followed by a `0.50s` pause in the dark (`0.95s` total delay), and then both `#porch-bulb-lit` and `#porch-night-beam` brighten smoothly over `1.5s` (`transition: opacity 1.5s ease-in-out 0.95s` inside `@media (prefers-reduced-motion: no-preference)`), turning off promptly (`0.25s`, `0s` delay) when stepping back or restarting.
 - Real-time Playwright timing probe confirmed: Step 2 `porch=0`, Step 5 `@600ms` `sky=1, porch=0, bulb=0`, `@1650ms` `porch=0.54, bulb=0.54`, `@2600ms` `porch=1, bulb=1`.
 - Re-verified all checks (`qa_foundation.sh`, export 212, storage 73, assets 145, iframe 32, widget browser 75, L-203-02/03 browser 39) all pass.
+
+## Revision 6: 5 Unnumbered Hospitality-Posture Slides & Combined Garage/Move Step (2026-11-20)
+At Dave's direction:
+- Removed numbers from all slide titles (`Backyard Life`, `Move Into the Neighborhood`, `Be Quick to Listen`, `Make Room at the Table`, `Front Yard Life`).
+- Folded the garage door opening directly into Step 1 (`Move Into the Neighborhood`) as chairs and fire pit move out front, tightening the sequence to 5 steps (`Start` + `Steps 1-4`).
+- Added a short Bible verse excerpt and a crisp Christian hospitality posture sentence to every slide, opening Step 1 with John 1:14 (MSG): `"The Word became flesh and blood, and moved into the neighborhood."` (with Acts 2:46, James 1:19, Romans 12:13, and Luke 24:29 across the rest, plus the renter/apartment/dorm note on Step 1).
+- Preserved the evening night sky + 0.5s dark pause + 1.5s porch light warm-up choreography on the final slide.
+- Updated `scripts/widget_203_03_front_yard_browser_check.js` and `TASKS.md`; re-verified all checks (`qa_foundation.sh`, export 212, storage 73, assets 145, iframe 32, widget browser 75, L-203-02/03 browser 39) all pass.
