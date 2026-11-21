@@ -26,6 +26,7 @@
         'five-gardeners.html': 'Five Farmers, One Field',
         'fruit-of-spirit.html': 'The Fruit of the Spirit',
         'grace-diagram.html': 'The Grace and Mercy Cycle',
+        'great-command-v5-203-10.html': 'The Greatest Commandment',
         'great-command.html': 'The Great Command',
         'great-exchange3.html': 'The Great Exchange',
         'guide-spirit2.html': 'The GUIDE of the Holy Spirit',
