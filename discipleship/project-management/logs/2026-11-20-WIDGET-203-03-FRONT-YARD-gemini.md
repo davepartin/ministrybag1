@@ -57,3 +57,10 @@ At Dave's direction:
 - Replaced Step 5's highlight with an evening/night sky (`#finish-night-sky` with crescent moon and 4 soft stars above the ground line) and warm glowing lights (`#finish-night-glows`: golden porch light beam spilling into the front yard, cozy firelight halo backlighting the seated circle, and backyard string-light glows, all clipped cleanly above `y=210`), matching Luke 24:29 ("it is toward evening").
 - Updated `scripts/widget_203_03_front_yard_browser_check.js` to assert `#finish-night-sky` and `#finish-night-glows` activation on Step 5.
 - Re-verified all checks (`qa_foundation.sh`, export 212, storage 73, assets 145, iframe 32, widget browser 75, L-203-02/03 browser 39) all pass.
+
+## Revision 5: Delayed Porch Light Warm-Up on Step 5 (2026-11-20)
+At Dave's direction:
+- Kept the porch light completely OFF on Steps 0 through 4 (removed daytime `#porch-light-wash`; updated Step 2 note to match the open garage).
+- On Step 5 (`5. Front Yard Life`), night sky + ambient glows fade in over `0.45s`, followed by a `0.50s` pause in the dark (`0.95s` total delay), and then both `#porch-bulb-lit` and `#porch-night-beam` brighten smoothly over `1.5s` (`transition: opacity 1.5s ease-in-out 0.95s` inside `@media (prefers-reduced-motion: no-preference)`), turning off promptly (`0.25s`, `0s` delay) when stepping back or restarting.
+- Real-time Playwright timing probe confirmed: Step 2 `porch=0`, Step 5 `@600ms` `sky=1, porch=0, bulb=0`, `@1650ms` `porch=0.54, bulb=0.54`, `@2600ms` `porch=1, bulb=1`.
+- Re-verified all checks (`qa_foundation.sh`, export 212, storage 73, assets 145, iframe 32, widget browser 75, L-203-02/03 browser 39) all pass.

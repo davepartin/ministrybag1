@@ -109,12 +109,22 @@ function createServer() {
       heading: document.getElementById('card-heading').textContent.trim(),
       isOpen: document.getElementById('fy-svg').classList.contains('is-open'),
       finishOn: document.getElementById('finish-night-sky').classList.contains('is-on') &&
-        document.getElementById('finish-night-glows').classList.contains('is-on'),
+        document.getElementById('finish-night-ambient').classList.contains('is-on') &&
+        document.getElementById('porch-night-beam').classList.contains('is-on') &&
+        document.getElementById('porch-bulb-lit').classList.contains('is-on'),
+      porchDelay: getComputedStyle(document.getElementById('porch-night-beam')).transitionDelay,
+      porchDur: getComputedStyle(document.getElementById('porch-night-beam')).transitionDuration,
       cardH: document.getElementById('card-content').getBoundingClientRect().height,
       nextText: document.getElementById('next-btn').textContent.trim()
     }));
-    assert('direct ' + width + 'px reaches Front Yard Life finish with stable card',
-      /5\. Front Yard Life/.test(directFinal.heading) && directFinal.isOpen && directFinal.finishOn && Math.abs(directFinal.cardH - direct0.cardH) < 2 && /Start Over/.test(directFinal.nextText),
+    assert('direct ' + width + 'px reaches Front Yard Life finish with stable card & 1.5s delayed porch light',
+      /5\. Front Yard Life/.test(directFinal.heading) &&
+      directFinal.isOpen &&
+      directFinal.finishOn &&
+      directFinal.porchDelay === '0.95s' &&
+      directFinal.porchDur === '1.5s' &&
+      Math.abs(directFinal.cardH - direct0.cardH) < 2 &&
+      /Start Over/.test(directFinal.nextText),
       JSON.stringify(directFinal));
     assert('direct ' + width + 'px zero errors', errs.length === 0, errs.join('; '));
     await context.close();
@@ -198,7 +208,10 @@ function createServer() {
           popBy: document.getElementById('neighbors-pop-by').classList.contains('is-on'),
           seated: document.getElementById('pull-up-chair').classList.contains('is-on'),
           finish: document.getElementById('finish-night-sky').classList.contains('is-on') &&
-            document.getElementById('finish-night-glows').classList.contains('is-on'),
+            document.getElementById('finish-night-ambient').classList.contains('is-on') &&
+            document.getElementById('porch-night-beam').classList.contains('is-on') &&
+            document.getElementById('porch-bulb-lit').classList.contains('is-on'),
+          porchOpacity: parseFloat(getComputedStyle(document.getElementById('porch-night-beam')).opacity),
           nextH: document.getElementById('next-btn').getBoundingClientRect().height
         };
       });
@@ -211,7 +224,7 @@ function createServer() {
         (s !== 2 || /No porch\?/.test(snap.subnote)) &&
         (s < 3 ? !snap.popBy : snap.popBy) &&
         (s < 4 ? !snap.seated : snap.seated) &&
-        (s < 5 ? !snap.finish : snap.finish);
+        (s < 5 ? (!snap.finish && snap.porchOpacity === 0) : snap.finish);
       if (!ok) {
         allOk = false;
         assert(cfg.name + ' step ' + s + ' state', false, JSON.stringify(snap));

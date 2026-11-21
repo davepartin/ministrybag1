@@ -184,6 +184,18 @@ body {
   #backyard-movable {
     transition: opacity 0.45s ease, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
   }
+  #finish-night-sky,
+  #finish-night-ambient {
+    transition: opacity 0.45s ease;
+  }
+  #porch-night-beam,
+  #porch-bulb-lit {
+    transition: opacity 0.25s ease 0s;
+  }
+  #porch-night-beam.is-on,
+  #porch-bulb-lit.is-on {
+    transition: opacity 1.5s ease-in-out 0.95s;
+  }
   .step-dot-fill {
     transition: background-color 0.22s ease, border-color 0.22s ease, transform 0.22s ease;
   }
@@ -440,10 +452,7 @@ button:focus-visible {
         <circle cx="378" cy="80" r="1.1" fill="#FDF3D0" opacity="0.65"/>
       </g>
 
-      <g id="finish-night-glows" class="fy-layer" clip-path="url(#sky-area-clip)" aria-hidden="true">
-        <!-- Warm golden porch light beam spilling out into the front yard -->
-        <polygon points="268,153 262,210 318,210 278,153" fill="url(#porch-night-glow)"/>
-        <circle cx="272" cy="155" r="7" fill="#FFE89C" opacity="0.72"/>
+      <g id="finish-night-ambient" class="fy-layer" clip-path="url(#sky-area-clip)" aria-hidden="true">
         <!-- Cozy evening firelight halo backlighting the front-yard circle -->
         <circle cx="330" cy="194" r="48" fill="url(#fire-night-glow)"/>
         <!-- Soft warm glows behind the 4 backyard string lights -->
@@ -451,6 +460,12 @@ button:focus-visible {
         <circle cx="84" cy="144" r="8" fill="#FCE59C" opacity="0.45"/>
         <circle cx="122" cy="141" r="8" fill="#FCE59C" opacity="0.45"/>
         <circle cx="156" cy="134" r="7.5" fill="#FCE59C" opacity="0.42"/>
+      </g>
+
+      <!-- Step 5 delayed porch light beam (waits 0.5s after dark arrives, then warms up over 1.5s) -->
+      <g id="porch-night-beam" class="fy-layer" clip-path="url(#sky-area-clip)" aria-hidden="true">
+        <polygon points="268,153 262,210 318,210 278,153" fill="url(#porch-night-glow)"/>
+        <circle cx="272" cy="155" r="7.5" fill="#FFE89C" opacity="0.78"/>
       </g>
 
       <!-- ===================== EQUAL GROUND BANDS: BACKYARD (160) | HOME (88) | FRONT YARD (160) ===================== -->
@@ -537,15 +552,11 @@ button:focus-visible {
         </g>
         <rect x="214" y="156" width="40" height="54" fill="none" stroke="#2C2416" stroke-width="1.3"/>
 
-        <!-- Simple open front porch overhang & porch light -->
+        <!-- Simple open front porch overhang & porch bulb (stays unlit until Step 5 evening) -->
         <path d="M 264 146 L 284 151" fill="none" stroke="#524B42" stroke-width="3.6" stroke-linecap="round"/>
         <line x1="281" y1="152" x2="281" y2="210" stroke="#2C2416" stroke-width="1.4"/>
-
-        <!-- Porch light warm wash (ON at Step 2) -->
-        <g id="porch-light-wash" class="fy-layer">
-          <polygon points="269,153 262,210 292,210 276,153" fill="url(#porch-glow)"/>
-        </g>
         <circle id="porch-bulb" cx="272" cy="153" r="2.6" fill="#B5B0A6"/>
+        <circle id="porch-bulb-lit" class="fy-layer" cx="272" cy="153" r="2.9" fill="#FFF2B2"/>
 
         <!-- Dusk shadow inside closed garage & unlit porch (lifts at Step 2) -->
         <g id="front-dark-veil" pointer-events="none">
@@ -706,7 +717,7 @@ button:focus-visible {
       heading: '2. Open Up',
       verse: '',
       ref: '',
-      note: 'Roll up the garage door and turn on the porch light. Being seen is half of hospitality.',
+      note: 'Roll up the garage door and step out where neighbors can see you. Being seen is half of hospitality.',
       subnote: 'No porch? Your front yard is wherever people can see you and stop by: the apartment steps, the break room, the dorm lounge.',
       accent: '#2A5B7C',
       accentDark: '#1E435C',
@@ -719,7 +730,7 @@ button:focus-visible {
         seated: false,
         finish: false
       },
-      desc: 'The garage door rolls up and the porch light turns on with a warm golden glow.'
+      desc: 'The garage door rolls up into a warm open glow while the porch light waits for evening.'
     },
     {
       dotLabel: 'Step 3: People Pop By',
@@ -789,12 +800,12 @@ button:focus-visible {
   var svgDesc = document.getElementById('fy-svg-desc');
   var moveArc = document.getElementById('move-arc');
   var frontSetup = document.getElementById('front-setup');
-  var porchGlow = document.getElementById('porch-light-wash');
-  var porchBulb = document.getElementById('porch-bulb');
   var neighborsPop = document.getElementById('neighbors-pop-by');
   var pullUp = document.getElementById('pull-up-chair');
   var finishNightSky = document.getElementById('finish-night-sky');
-  var finishNightGlows = document.getElementById('finish-night-glows');
+  var finishNightAmbient = document.getElementById('finish-night-ambient');
+  var porchNightBeam = document.getElementById('porch-night-beam');
+  var porchBulbLit = document.getElementById('porch-bulb-lit');
 
   var stripEl = document.getElementById('step-strip');
   var cardContent = document.getElementById('card-content');
@@ -863,12 +874,12 @@ button:focus-visible {
 
     moveArc.classList.toggle('is-on', !!s.arc);
     frontSetup.classList.toggle('is-on', !!s.frontSetup);
-    porchGlow.classList.toggle('is-on', !!s.open);
-    porchBulb.setAttribute('fill', s.open ? '#F5C242' : '#B5B0A6');
     neighborsPop.classList.toggle('is-on', !!s.popBy);
     pullUp.classList.toggle('is-on', !!s.seated);
     finishNightSky.classList.toggle('is-on', !!s.finish);
-    finishNightGlows.classList.toggle('is-on', !!s.finish);
+    finishNightAmbient.classList.toggle('is-on', !!s.finish);
+    porchNightBeam.classList.toggle('is-on', !!s.finish);
+    porchBulbLit.classList.toggle('is-on', !!s.finish);
 
     svgDesc.textContent = st.desc;
   }
