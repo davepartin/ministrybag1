@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 'use strict';
 // 203-10 series finale: the Greatest Commandment cross (great-command-v5.js, version 203-10)
-// with the Welcome Home last step, its place at the end of the 203-10 lesson, and a guard that
+// with the Welcome Home loop on the last step, its place at the end of the 203-10 lesson, and a guard that
 // the 201, 202 and 203 versions of the same cross are unchanged. Synthetic navigation only.
 const assert = require('assert/strict');
 const fs = require('fs');
@@ -15,7 +15,6 @@ const wrapper = fs.readFileSync(path.join(ROOT, 'widgets/great-command-v5-203-10
 const lesson = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/203-10.json'), 'utf8'));
 const HEADINGS = ['The Greatest Commandment', "God's Love Comes Down", 'Love God With All You Are', 'Love One Another',
   'Love Everyone, Even Enemies', 'The Cross Is Love for Enemies', 'Welcome Home'];
-const HOME = [[146, 89.5], [146, 109], [163, 89.5], [163, 109], [180, 89.5], [180, 109]];
 
 let checks = 0;
 function ck(label, ok, detail) {
@@ -27,11 +26,7 @@ async function read(page) {
   return page.evaluate(() => {
     const w = document.getElementById('widget');
     const card = document.getElementById('card-content');
-    const people = Array.from(document.querySelectorAll('.welcome-person')).map(g => {
-      const m = (g.getAttribute('transform') || '').match(/translate\(([-\d.]+),([-\d.]+)\)/);
-      return { at: m ? [Number(m[1]), Number(m[2])] : null, stroke: g.querySelector('path').getAttribute('stroke') };
-    });
-    const overlay = document.querySelector('.welcome-person') ? document.querySelector('.welcome-person').parentNode : null;
+    const loop = window.GC_WELCOME_LOOP ? window.GC_WELCOME_LOOP.state() : null;
     const contour = document.querySelector('.cross-contour');
     return {
       tag: document.querySelector('.course-tag').textContent,
@@ -41,8 +36,8 @@ async function read(page) {
       cardH: Math.round(card.getBoundingClientRect().height),
       widgetH: Math.round(w.getBoundingClientRect().height),
       overflowX: document.documentElement.scrollWidth > window.innerWidth,
-      people,
-      overlayVisible: overlay ? overlay.classList.contains('is-visible') : false,
+      loop,
+      canvases: document.querySelectorAll('canvas.welcome-loop').length,
       contourDrawn: contour ? contour.style.strokeDashoffset === '0' : false,
       dots: document.querySelectorAll('.step-dot').length
     };
@@ -72,7 +67,7 @@ async function read(page) {
       let s = await read(page);
       ck(width + ': header tag reads 203-10', s.tag === '203-10', s.tag);
       ck(width + ': seven step dots', s.dots === 7);
-      ck(width + ': six welcome figures, hidden at start', s.people.length === 6 && !s.overlayVisible);
+      ck(width + ': one loop canvas, idle at start', s.canvases === 1 && s.loop && !s.loop.wanted && !s.loop.running);
       const cardH = s.cardH, widgetH = s.widgetH;
       for (let i = 1; i <= 6; i++) {
         await page.click('#next-btn');
@@ -81,14 +76,27 @@ async function read(page) {
         ck(width + ': step ' + i + ' card height steady', s.cardH === cardH, s.cardH + ' vs ' + cardH);
         ck(width + ': step ' + i + ' widget height steady', s.widgetH === widgetH, s.widgetH + ' vs ' + widgetH);
         ck(width + ': step ' + i + ' no sideways scroll', !s.overflowX);
-        await page.waitForTimeout(i === 6 ? 5400 : 3600);
+        await page.waitForTimeout(i === 6 ? 1500 : 3600);
       }
       s = await read(page);
-      ck(width + ': finale draws the crimson cross', s.contourDrawn);
-      ck(width + ': finale shows the welcome figures', s.overlayVisible);
-      ck(width + ': everyone ends in the family arm', s.people.every((p, k) => p.at && p.at[0] === HOME[k][0] && p.at[1] === HOME[k][1]),
-        JSON.stringify(s.people.map(p => p.at)));
-      ck(width + ': everyone ends blue', s.people.every(p => p.stroke === '#2a5b7c'), JSON.stringify(s.people.map(p => p.stroke)));
+      ck(width + ': finale keeps the crimson cross', s.contourDrawn);
+      ck(width + ': loop starts with church members and a crowd of seven', s.loop.running && s.loop.members === 4 && s.loop.crowd === 7,
+        JSON.stringify(s.loop));
+      const long = await page.evaluate(() => {
+        const L = window.GC_WELCOME_LOOP;
+        const seen = { crowdMin: 99, crowdMax: 0, membersMax: 0 };
+        for (let k = 0; k < 120; k++) {
+          L.advance(1);
+          const st = L.state();
+          seen.crowdMin = Math.min(seen.crowdMin, st.crowd);
+          seen.crowdMax = Math.max(seen.crowdMax, st.crowd);
+          seen.membersMax = Math.max(seen.membersMax, st.members);
+        }
+        return Object.assign(seen, L.state());
+      });
+      ck(width + ': two minutes of loop: missions keep going', long.missions >= 18, JSON.stringify(long));
+      ck(width + ': the crowd keeps filling back up', long.crowdMin >= 4 && long.crowdMax === 7, JSON.stringify(long));
+      ck(width + ': the family arm never overflows', long.membersMax <= 8, JSON.stringify(long));
       ck(width + ': last step offers Start Over', /Start Over/.test(s.next) && s.count === 'Step 6 of 6');
       if (width === 390) {
         const muts = await page.evaluate(() => new Promise(res => {
@@ -97,18 +105,18 @@ async function read(page) {
           mo.observe(document.body, { subtree: true, childList: true, attributes: true });
           setTimeout(() => { mo.disconnect(); res(n); }, 1500);
         }));
-        ck('390: stays still once the finale ends', muts === 0, muts);
+        ck('390: the loop changes nothing in the page while it runs', muts === 0, muts);
       }
       await page.click('#prev-btn');
       s = await read(page);
-      ck(width + ': Back to step 5 hides the welcome figures', s.heading === HEADINGS[5] && !s.overlayVisible && s.contourDrawn);
+      ck(width + ': Back to step 5 stops the loop', s.heading === HEADINGS[5] && !s.loop.running && !s.loop.wanted && s.contourDrawn);
       await page.click('.step-dot[data-step="2"]');
       s = await read(page);
-      ck(width + ': dot back to step 2 lands at once with no arms', s.heading === HEADINGS[2] && !s.overlayVisible && !s.contourDrawn);
+      ck(width + ': dot back to step 2 lands at once with no loop', s.heading === HEADINGS[2] && !s.loop.wanted && !s.contourDrawn);
       await page.click('.step-dot[data-step="6"]');
-      await page.waitForTimeout(5400);
+      await page.waitForTimeout(6500);
       s = await read(page);
-      ck(width + ': dot jump forward to the finale ends with everyone home', s.people.every((p, k) => p.at[0] === HOME[k][0]) && s.contourDrawn);
+      ck(width + ': dot jump forward to the finale starts the loop again', s.loop.running && s.contourDrawn, JSON.stringify([s.loop, s.contourDrawn, s.heading]));
       ck(width + ': no page errors', errors.length === 0, errors.join(' | '));
       await page.close();
     }
@@ -117,8 +125,10 @@ async function read(page) {
     const rp = await ctx.newPage();
     await rp.goto(BASE + 'widgets/great-command-v5-203-10.html', { waitUntil: 'load' });
     for (let i = 0; i < 6; i++) await rp.click('#next-btn');
+    await rp.waitForTimeout(1000);
     const rs = await read(rp);
-    ck('reduced motion: finale lands at once', rs.overlayVisible && rs.people.every((p, k) => p.at[0] === HOME[k][0]) && rs.contourDrawn);
+    ck('reduced motion: finale shows a still picture, no loop', rs.loop.wanted && !rs.loop.running && rs.loop.seconds === 0 && rs.contourDrawn,
+      JSON.stringify(rs.loop));
     await ctx.close();
 
     for (const [v, dots, tag] of [['201', 6, '201-01'], ['202', 5, '202-01'], ['203', 5, '203-01']]) {
@@ -126,8 +136,8 @@ async function read(page) {
       await vp.goto(BASE + 'widgets/great-command-v5-' + v + '.html', { waitUntil: 'load' });
       await vp.waitForTimeout(300);
       const vs = await read(vp);
-      ck(v + ' version unchanged: ' + dots + ' dots, tag ' + tag + ', no welcome figures', vs.dots === dots && vs.tag === tag && vs.people.length === 0,
-        JSON.stringify([vs.dots, vs.tag, vs.people.length]));
+      ck(v + ' version unchanged: ' + dots + ' dots, tag ' + tag + ', no loop canvas', vs.dots === dots && vs.tag === tag && vs.canvases === 0 && !vs.loop,
+        JSON.stringify([vs.dots, vs.tag, vs.canvases]));
       await vp.close();
     }
 
@@ -163,6 +173,24 @@ async function read(page) {
       setTimeout(() => { mo.disconnect(); res(n); }, 1500);
     }));
     ck('lesson: frame stays still while idle', writes === 0, writes);
+    const inner = await (await frame.elementHandle()).contentFrame();
+    for (let i = 0; i < 6; i++) await inner.click('#next-btn');
+    await lp.waitForTimeout(1200);
+    ck('lesson: loop runs on the last step', await inner.evaluate(() => window.GC_WELCOME_LOOP.state().running));
+    const loopWrites = await lp.evaluate(() => new Promise(res => {
+      const f = document.querySelector('#session-10.active iframe[src*="great-command-v5-203-10.html"]');
+      let n = 0;
+      const mo = new MutationObserver(l => { n += l.length; });
+      mo.observe(f, { attributes: true, attributeFilter: ['style'] });
+      setTimeout(() => { mo.disconnect(); res(n); }, 2000);
+    }));
+    ck('lesson: frame never re-measures while the loop runs', loopWrites === 0, loopWrites);
+    await lp.evaluate(() => window.scrollTo(0, 0));
+    await lp.waitForTimeout(1200);
+    ck('lesson: loop pauses when scrolled out of view', !(await inner.evaluate(() => window.GC_WELCOME_LOOP.state().running)));
+    await frame.scrollIntoViewIfNeeded();
+    await lp.waitForTimeout(1200);
+    ck('lesson: loop resumes when scrolled back', await inner.evaluate(() => window.GC_WELCOME_LOOP.state().running));
     ck('lesson: no page errors', lerrors.length === 0, lerrors.join(' | '));
     await lp.close();
   } finally {

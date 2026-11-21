@@ -53,17 +53,6 @@
     pad: 8
   };
 
-  // 203-10 finale: six people start outside the end of the outward arm and walk in along it,
-  // through the center of the cross, into the family arm. Two lanes so nobody crosses paths.
-  var WELCOME_PATHS = [
-    { from: [354, 89.5], to: [146, 89.5] },
-    { from: [368, 109], to: [146, 109] },
-    { from: [384, 89.5], to: [163, 89.5] },
-    { from: [398, 109], to: [163, 109] },
-    { from: [414, 89.5], to: [180, 89.5] },
-    { from: [428, 109], to: [180, 109] }
-  ];
-
   var VERSIONS = {
     '201': {
       title: 'The Greatest Commandment',
@@ -429,7 +418,7 @@
             crossContour: true,
             welcome: true
           },
-          desc: 'Six small plum figures who stood outside the end of the outward arm walk in along it, pass through the center of the cross, turn blue, and settle together in the family arm.'
+          desc: 'A loop of small figures: a church member rides the gold lane down and the green lane up, walks out along the outward arm to a crowd on the far right, and returns with one or two people, who ride the same lanes, turn from plum to blue, and take a seat in the family arm while the crowd fills back up.'
         }
       ]
     }
@@ -1207,24 +1196,6 @@
     overlay203.appendChild(arrowHeadsR2);
     svg.appendChild(overlay203);
 
-    // 8. Course 203-10 finale: people who stood outside walk in and are welcomed into the family arm
-    var overlay2310 = svgEl('g', { 'class': 'v5-overlay', 'aria-hidden': 'true' });
-    var welcomePeople = [];
-    if (VERSION === '203-10') {
-      WELCOME_PATHS.forEach(function (spec) {
-        var g = svgEl('g', { 'class': 'welcome-person' });
-        var body = svgEl('path', {
-          d: 'M -5.6 4.2 Q -5.6 -2.4 0 -2.4 Q 5.6 -2.4 5.6 4.2 Z',
-          'stroke-width': '1.3', 'stroke-linejoin': 'round'
-        });
-        var head = svgEl('circle', { cx: '0', cy: '-6.6', r: '3.6', fill: '#FFFFFF', 'stroke-width': '1.3' });
-        g.appendChild(body);
-        g.appendChild(head);
-        overlay2310.appendChild(g);
-        welcomePeople.push({ node: g, body: body, head: head, spec: spec });
-      });
-    }
-    svg.appendChild(overlay2310);
 
     return {
       svg: svg,
@@ -1238,8 +1209,7 @@
         cross: crossGroup
       },
       centerBridge: centerBridge,
-      overlays: { v202: overlay202, v203: overlay203, v2310: overlay2310 },
-      welcomePeople: welcomePeople,
+      overlays: { v202: overlay202, v203: overlay203 },
       reachPaths202: reachPaths202,
       reachDots202: reachDots202,
       reachPaths203: reachPaths203,
@@ -1260,14 +1230,311 @@
     }).join('');
   }
 
-  // Plum while outside or on the outward arm, turning blue while passing through the center of the cross.
-  function placeWelcomePerson(person, x, y) {
-    var t = Math.max(0, Math.min(1, (GEO.upXRight - x) / (GEO.upXRight - GEO.upXLeft)));
-    var stroke = mixHex(COLORS.lost, COLORS.church, t);
-    person.node.setAttribute('transform', 'translate(' + x.toFixed(1) + ',' + y.toFixed(1) + ') scale(1.25)');
-    person.body.setAttribute('fill', mixHex('#D9CCEB', '#C9DDEC', t));
-    person.body.setAttribute('stroke', stroke);
-    person.head.setAttribute('stroke', stroke);
+  // 203-10 Welcome Home loop. People are drawn on a canvas laid over the cross, so the loop can keep
+  // running without changing the page's DOM: the lesson page re-measures a widget on every DOM change,
+  // and a looping DOM animation would make the lesson jump while scrolling (see widgets/widget.md).
+  // The loop runs only on the last step, pauses while the widget is off screen, and shows a still
+  // picture when reduced motion is on.
+  //
+  // Story: a church member rides God's love down the gold lane and back up the green lane, walks out
+  // along the outward arm to the crowd on the far right, and one or two people come back with them.
+  // The newcomers ride down the gold and up the green, turn from plum to blue, and take a seat in the
+  // family arm. The crowd fills back up, and when the family arm is full the longest-seated member
+  // steps off its far end, because the family keeps growing past what the picture shows.
+  function createWelcomeLoop(stage, svg) {
+    var W = 70;          // walking speed, viewBox units per second
+    var B = 95;          // conveyor speed, the same 95 px/s as the beam sweeps
+    var MISSION_GAP = 6.5;
+    var PATTERN = [1, 2, 1, 1, 2];
+    var SEATS = [[146, 89.5], [163, 89.5], [180, 89.5], [146, 109], [163, 109], [180, 109]];
+    var SLOTS = [[362, 88], [378, 88], [394, 88], [410, 88], [370, 108], [386, 108], [402, 108]];
+    var START_MEMBERS = 4;
+
+    var canvas = document.createElement('canvas');
+    canvas.className = 'welcome-loop';
+    canvas.setAttribute('aria-hidden', 'true');
+    canvas.style.position = 'absolute';
+    canvas.style.pointerEvents = 'none';
+    stage.appendChild(canvas);
+    var ctx = canvas.getContext('2d');
+
+    var actors = [];
+    var seats = [];
+    var slots = [];
+    var timers = [];
+    var sim = 0;
+    var nextMission = 0;
+    var missionCount = 0;
+    var raf = null;
+    var lastNow = 0;
+    var wanted = false;
+    var onScreen = true;
+    var scale = 1;
+
+    function fit() {
+      var r = svg.getBoundingClientRect();
+      var sr = stage.getBoundingClientRect();
+      if (!r.width) return;
+      var dpr = window.devicePixelRatio || 1;
+      canvas.style.left = (r.left - sr.left) + 'px';
+      canvas.style.top = (r.top - sr.top) + 'px';
+      canvas.style.width = r.width + 'px';
+      canvas.style.height = r.height + 'px';
+      canvas.width = Math.round(r.width * dpr);
+      canvas.height = Math.round(r.height * dpr);
+      scale = canvas.width / GEO.W;
+      draw();
+    }
+
+    function newActor(x, y, kind) {
+      var a = { x: x, y: y, t: kind === 'member' ? 1 : 0, alpha: 1, fade: 0, kind: kind, route: [], busy: false, seat: null, slot: null, since: sim };
+      actors.push(a);
+      return a;
+    }
+
+    function reset() {
+      actors = [];
+      timers = [];
+      sim = 0;
+      nextMission = 0.8;
+      missionCount = 0;
+      seats = SEATS.map(function () { return null; });
+      slots = SLOTS.map(function () { return null; });
+      for (var i = 0; i < START_MEMBERS; i++) {
+        var m = newActor(SEATS[i][0], SEATS[i][1], 'member');
+        m.seat = i;
+        m.since = -i;
+        seats[i] = m;
+      }
+      SLOTS.forEach(function (sl, i) {
+        var a = newActor(sl[0], sl[1], 'crowd');
+        a.slot = i;
+        slots[i] = a;
+      });
+    }
+
+    function after(sec, fn) { timers.push({ at: sim + sec, fn: fn }); }
+
+    function go(a, points, done) {
+      a.route = points.map(function (pt) { return { x: pt[0], y: pt[1], v: pt[2] }; });
+      a.done = done || null;
+    }
+
+    function ride() {
+      return [[220, 98, W], [208, 98, W], [208, 248, B], [232, 248, W], [232, 98, B]];
+    }
+
+    function toSeat(i) { return [[190, SEATS[i][1], W], [SEATS[i][0], SEATS[i][1], W]]; }
+
+    function freeSeat() {
+      for (var i = 0; i < seats.length; i++) if (!seats[i]) return i;
+      return -1;
+    }
+
+    // Make room: the longest-seated member who is not on a mission steps off the far end of the arm.
+    function makeRoom() {
+      var idle = actors.filter(function (a) { return a.kind === 'member' && !a.busy && a.seat !== null; });
+      if (!idle.length) return -1;
+      idle.sort(function (p, q) { return p.since - q.since; });
+      var leaving = idle[0];
+      var seat = leaving.seat;
+      seats[seat] = null;
+      leaving.seat = null;
+      leaving.busy = true;
+      go(leaving, [[112, leaving.y, W]], function () { leaving.fade = -1.4; });
+      return seat;
+    }
+
+    function refill(i) {
+      after(2.5, function () {
+        if (slots[i]) return;
+        var a = newActor(SLOTS[i][0], SLOTS[i][1], 'crowd');
+        a.alpha = 0;
+        a.fade = 1.2;
+        a.slot = i;
+        slots[i] = a;
+      });
+    }
+
+    function launchMission() {
+      var idle = actors.filter(function (a) { return a.kind === 'member' && !a.busy && a.seat !== null && a.alpha >= 1; });
+      if (!idle.length) return;
+      idle.sort(function (p, q) { return p.since - q.since; });
+      var sender = idle[0];
+      var count = PATTERN[missionCount % PATTERN.length];
+      missionCount++;
+      sender.busy = true;
+      var homeSeat = sender.seat;
+      go(sender, [[190, sender.y, W]].concat(ride(), [[340, 98, W]]), function () {
+        var crowd = actors.filter(function (a) { return a.kind === 'crowd' && a.slot !== null && a.alpha >= 1; });
+        crowd.sort(function (p, q) { return p.x - q.x; });
+        var picks = crowd.slice(0, count);
+        picks.forEach(function (p, i) {
+          slots[p.slot] = null;
+          refill(p.slot);
+          p.slot = null;
+          p.kind = 'newcomer';
+          p.busy = true;
+          go(p, [[352, i === 0 ? 92 : 106, W]]);
+        });
+        after(0.8, function () {
+          go(sender, [[244, 98, W]].concat(ride(), toSeat(homeSeat)), function () { sender.busy = false; });
+          picks.forEach(function (p, i) {
+            after(0.45 * (i + 1), function () {
+              go(p, [[340, 98, W], [244, 98, W]].concat(ride()), function () {
+                var seat = freeSeat();
+                if (seat < 0) seat = makeRoom();
+                if (seat < 0) { p.fade = -1.4; return; }
+                seats[seat] = p;
+                p.seat = seat;
+                go(p, toSeat(seat), function () {
+                  p.kind = 'member';
+                  p.t = 1;
+                  p.busy = false;
+                  p.since = sim;
+                });
+              });
+            });
+          });
+        });
+      });
+    }
+
+    function step(dt) {
+      sim += dt;
+      var due = timers.filter(function (tm) { return tm.at <= sim; });
+      timers = timers.filter(function (tm) { return tm.at > sim; });
+      due.forEach(function (tm) { tm.fn(); });
+      if (sim >= nextMission) {
+        launchMission();
+        nextMission += MISSION_GAP;
+      }
+      actors.forEach(function (a) {
+        var budget = dt;
+        while (a.route.length && budget > 0) {
+          var tgt = a.route[0];
+          var dx = tgt.x - a.x;
+          var dy = tgt.y - a.y;
+          var dist = Math.sqrt(dx * dx + dy * dy);
+          var move = tgt.v * budget;
+          if (move >= dist) {
+            a.x = tgt.x;
+            a.y = tgt.y;
+            budget -= dist / tgt.v;
+            a.route.shift();
+          } else {
+            a.x += dx / dist * move;
+            a.y += dy / dist * move;
+            budget = 0;
+          }
+        }
+        if (!a.route.length && a.done) {
+          var cb = a.done;
+          a.done = null;
+          cb();
+        }
+        // Newcomers turn from plum to blue while they ride up the green lane.
+        if (a.kind === 'newcomer' && Math.abs(a.x - 232) < 0.5 && a.y < 248) {
+          a.t = Math.max(a.t, (248 - a.y) / 150);
+        }
+        if (a.fade) {
+          a.alpha = Math.max(0, Math.min(1, a.alpha + a.fade * dt));
+          if (a.alpha === 1 && a.fade > 0) a.fade = 0;
+        }
+      });
+      actors = actors.filter(function (a) { return !(a.fade < 0 && a.alpha === 0); });
+    }
+
+    function figure(a) {
+      if (a.alpha <= 0) return;
+      var stroke = mixHex(COLORS.lost, COLORS.church, a.t);
+      ctx.save();
+      ctx.globalAlpha = a.alpha;
+      ctx.translate(a.x * scale, a.y * scale);
+      ctx.scale(scale * 1.25, scale * 1.25);
+      ctx.lineWidth = 1.3;
+      ctx.lineJoin = 'round';
+      ctx.strokeStyle = stroke;
+      ctx.beginPath();
+      ctx.moveTo(-5.6, 4.2);
+      ctx.quadraticCurveTo(-5.6, -2.4, 0, -2.4);
+      ctx.quadraticCurveTo(5.6, -2.4, 5.6, 4.2);
+      ctx.closePath();
+      ctx.fillStyle = mixHex('#D9CCEB', '#C9DDEC', a.t);
+      ctx.fill();
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.arc(0, -6.6, 3.6, 0, Math.PI * 2);
+      ctx.fillStyle = '#FFFFFF';
+      ctx.fill();
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      if (!wanted) return;
+      actors.forEach(figure);
+    }
+
+    function frame(now) {
+      raf = null;
+      if (!wanted || !onScreen) return;
+      var dt = Math.min(0.05, Math.max(0, (now - lastNow) / 1000));
+      lastNow = now;
+      step(dt);
+      draw();
+      raf = requestAnimationFrame(frame);
+    }
+
+    function run() {
+      if (raf || !wanted || !onScreen || reduced()) return;
+      lastNow = performance.now();
+      raf = requestAnimationFrame(frame);
+    }
+
+    function reduced() {
+      return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    }
+
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) {
+        onScreen = entries[entries.length - 1].isIntersecting;
+        if (onScreen) run();
+      }).observe(canvas);
+    }
+
+    return {
+      fit: fit,
+      start: function () {
+        if (wanted) return;
+        wanted = true;
+        reset();
+        fit();
+        run();
+      },
+      stop: function () {
+        wanted = false;
+        if (raf) cancelAnimationFrame(raf);
+        raf = null;
+        draw();
+      },
+      state: function () {
+        return {
+          running: !!raf,
+          wanted: wanted,
+          crowd: actors.filter(function (a) { return a.kind === 'crowd'; }).length,
+          members: actors.filter(function (a) { return a.kind === 'member'; }).length,
+          newcomers: actors.filter(function (a) { return a.kind === 'newcomer'; }).length,
+          missions: missionCount,
+          seconds: sim
+        };
+      },
+      advance: function (seconds) {
+        for (var i = 0; i < seconds * 20; i++) step(0.05);
+        draw();
+      }
+    };
   }
 
   function measureStrokes(nodes) {
@@ -1307,6 +1574,12 @@
       stage.appendChild(introEl);
     }
     host.appendChild(stage);
+    var welcomeLoop = null;
+    if (VERSION === '203-10') {
+      stage.style.position = 'relative';
+      welcomeLoop = createWelcomeLoop(stage, bundle.svg);
+      window.GC_WELCOME_LOOP = welcomeLoop;
+    }
 
     var strip = el('div', { 'class': 'step-strip', id: 'step-strip', role: 'group', 'aria-label': 'Lesson steps' });
     var dotButtons = CONFIG.steps.map(function (st, idx) {
@@ -1426,8 +1699,6 @@
 
       bundle.overlays.v203.style.setProperty('--fade-delay', animate ? '160ms' : '0ms');
       bundle.overlays.v203.classList.toggle('is-visible', !!draw.focus203);
-      bundle.overlays.v2310.style.setProperty('--fade-delay', animate ? '160ms' : '0ms');
-      bundle.overlays.v2310.classList.toggle('is-visible', !!draw.welcome);
       var stageDelays203 = ['140ms', '600ms', '520ms', '1040ms', '960ms'];
       bundle.peopleStages203.forEach(function (grp, idx) {
         grp.style.setProperty('--fade-delay', animate ? stageDelays203[idx] : '0ms');
@@ -1448,10 +1719,6 @@
       });
       bundle.reachPaths203.forEach(function (n) {
         n.style.strokeDashoffset = draw.focus203 ? '0' : n.dataset.len;
-      });
-      bundle.welcomePeople.forEach(function (person) {
-        var at = draw.welcome ? person.spec.to : person.spec.from;
-        placeWelcomePerson(person, at[0], at[1]);
       });
       updateLabels(draw, false);
     }
@@ -1600,24 +1867,7 @@
           });
         }
 
-        var walkJobs = [];
-        if (!prevDraw.welcome && nextDraw.welcome) {
-          bundle.welcomePeople.forEach(function (person, i) {
-            var from = person.spec.from;
-            var to = person.spec.to;
-            walkJobs.push({
-              delay: 700 + i * 380,
-              dur: 2300,
-              update: function (q) {
-                var e = q < 0.5 ? 2 * q * q : 1 - Math.pow(-2 * q + 2, 2) / 2;
-                placeWelcomePerson(person, from[0] + (to[0] - from[0]) * e, from[1] + (to[1] - from[1]) * e);
-              }
-            });
-          });
-        }
-
         var totalDur = 0;
-        walkJobs.forEach(function (j) { totalDur = Math.max(totalDur, j.delay + j.dur); });
         sweepJobs.forEach(function (j) { totalDur = Math.max(totalDur, j.dur); });
         strokeJobs.forEach(function (j) { totalDur = Math.max(totalDur, (j.delay || 0) + j.dur); });
         host.dataset.stepDur = String(Math.round(totalDur));
@@ -1635,9 +1885,6 @@
               var p = Math.min(1, localElapsed / j.dur);
               j.node.style.strokeDashoffset = String(j.len * (1 - p));
             });
-            walkJobs.forEach(function (j) {
-              j.update(Math.min(1, Math.max(0, elapsed - j.delay) / j.dur));
-            });
             if (elapsed < totalDur) {
               activeRaf = requestAnimationFrame(frame);
             } else {
@@ -1651,6 +1898,10 @@
       }
 
       currentStep = nextIdx;
+      if (welcomeLoop) {
+        if (nextDraw.welcome) welcomeLoop.start();
+        else welcomeLoop.stop();
+      }
       if (introEl) {
         introEl.classList.toggle('is-hidden', currentStep !== 0);
         introEl.setAttribute('aria-hidden', currentStep !== 0 ? 'true' : 'false');
@@ -1725,7 +1976,10 @@
       if (window.innerWidth === lastWidth) return;
       lastWidth = window.innerWidth;
       clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(fitCardHeight, 120);
+      resizeTimer = setTimeout(function () {
+        fitCardHeight();
+        if (welcomeLoop) welcomeLoop.fit();
+      }, 120);
     });
 
     goTo(0);
