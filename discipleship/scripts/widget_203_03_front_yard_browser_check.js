@@ -117,8 +117,8 @@ function createServer() {
       cardH: document.getElementById('card-content').getBoundingClientRect().height,
       nextText: document.getElementById('next-btn').textContent.trim()
     }));
-    assert('direct ' + width + 'px reaches Front Yard Life finish with stable card & 1.5s delayed porch light',
-      directFinal.heading === 'Front Yard Life' &&
+    assert('direct ' + width + 'px reaches An Open Life finish with stable card & 1.5s delayed porch light',
+      directFinal.heading === 'An Open Life' &&
       directFinal.isOpen &&
       directFinal.finishOn &&
       directFinal.porchDelay === '0.95s' &&
@@ -181,11 +181,11 @@ function createServer() {
     const waitStep = cfg.reducedMotion === 'reduce' ? 50 : 520;
 
     const expectedHeadings = [
-      'Backyard Life',
-      'Move Into the Neighborhood',
-      'Be Quick to Listen',
-      'Make Room at the Table',
-      'Front Yard Life'
+      'Turned Inward',
+      'Come Near',
+      'Available',
+      'Welcoming',
+      'An Open Life'
     ];
 
     let allOk = true;
@@ -222,7 +222,7 @@ function createServer() {
         !snap.overflow &&
         snap.nextH >= 44 &&
         (s === 0 ? (!snap.isMoved && !snap.isOpen) : (snap.isMoved && snap.isOpen && snap.frontSetup)) &&
-        (s !== 1 || (/John 1:14/.test(snap.verseRef) && /No front yard\?/.test(snap.subnote))) &&
+        (s !== 1 || (/John 1:14/.test(snap.verseRef) && snap.subnote === '')) &&
         (s < 2 ? !snap.popBy : snap.popBy) &&
         (s < 3 ? !snap.seated : snap.seated) &&
         (s < 4 ? (!snap.finish && snap.porchOpacity === 0) : snap.finish);

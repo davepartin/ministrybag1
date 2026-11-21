@@ -72,3 +72,15 @@ At Dave's direction:
 - Added a short Bible verse excerpt and a crisp Christian hospitality posture sentence to every slide, opening Step 1 with John 1:14 (MSG): `"The Word became flesh and blood, and moved into the neighborhood."` (with Acts 2:46, James 1:19, Romans 12:13, and Luke 24:29 across the rest, plus the renter/apartment/dorm note on Step 1).
 - Preserved the evening night sky + 0.5s dark pause + 1.5s porch light warm-up choreography on the final slide.
 - Updated `scripts/widget_203_03_front_yard_browser_check.js` and `TASKS.md`; re-verified all checks (`qa_foundation.sh`, export 212, storage 73, assets 145, iframe 32, widget browser 75, L-203-02/03 browser 39) all pass.
+
+## Claude wording update, 2026-11-21 (Dave's direction)
+
+Dave asked Claude to update this PR's card text himself: keep the name "Front Yard Life" and the drawing, but make the teaching about a posture, not a house. Only the five cards' title, verse, line and dot labels changed in `widgets/front-yard-life.html`; the drawing, animation and layout are byte-for-byte Gemini's. The "No front yard?" subnote is removed. No credit: the front yard picture is Dave's own brainstorm and lived experience.
+
+0. Turned Inward. "And if you greet only your brothers, what more are you doing than others?" (Matthew 5:47). "It is easy to love only the people who already love you. A heart turned inward stays comfortable, but no one new gets close."
+1. Come Near. "The Word became flesh and blood, and moved into the neighborhood." (John 1:14 MSG). "Jesus did not love you from a distance. He came near. Following Him turns you outward: present, visible, and easy to find."
+2. Available. "...let every person be quick to hear, slow to speak..." (James 1:19). "An open life has room for interruptions. Slow down, ask a question, and listen until someone feels known."
+3. Welcoming. "...seek to show hospitality." (Romans 12:13). "Welcome starts in the heart before it ever reaches the table. Make room for someone new, especially someone who cannot pay you back."
+4. An Open Life. "Stay with us, for it is toward evening and the day is now far spent." (Luke 24:29). "Two friends welcomed a stranger at Emmaus and found Jesus with them. An open life makes room for people to meet Him."
+
+`scripts/widget_203_03_front_yard_browser_check.js` updated to the new headings and empty subnote. Checks: qa_foundation 0; test_lesson_export 0 (212); test_answer_storage 0 (73); check_lesson_assets 0 (145); test_answer_sync 0 (39); lesson_navigation_browser_check 0 (964); widget_203_03_front_yard_browser_check 74 of 75, the one failure a 404 on first direct load at 375 that fails identically on Gemini's commit 3263afe before this change.
