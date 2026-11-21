@@ -43,3 +43,10 @@ At Dave's request ("can it be more simple, like half the detail in the drawing")
 - Removed sky backdrop box, background neighborhood trees, house siding lines, chimney, window mullions, garage interior clutter (shelves, boxes, bike wheel), garage windows/handle, coffee mugs, double light halos, porch step stack, double arrowheads, outer finish ring, and extra strokes on figures/dog/bike.
 - Retained every storyboard element cleanly: privacy fence with 3 subtle vertical lines, latched-to-open gate, 4 string lights, simple patio table, smooth house/roof/rolling garage door/warm open garage glow, porch swing and lantern, matching Blue/Sage/Gold chairs and fire pit, dog walker + pup, kid on bike, roasting hot dogs, and final dashed circle under `Same chairs. Bigger circle.`.
 - Re-verified all checks after simplification: zero em dashes, `qa_foundation.sh`, `test_lesson_export.js` (212), `test_answer_storage.js` (73), `check_lesson_assets.js` (145), `test_widget_iframe.js` (32), `widget_203_03_front_yard_browser_check.js` (75), and `l203_02_03_browser_check.js` (39) all exit 0.
+
+## Revision 3: Equal Yards, No Swing, No Sky Pill (2026-11-20)
+At Dave's direction:
+- Removed `"Same chairs. Bigger circle."` from both the SVG sky pill and Step 5 card text.
+- Removed the porch swing and swing sitter so Step 2 opens up cleanly with the rolling garage door and glowing porch light.
+- Centered the house dead-center (`x=176..264`, peak at `x=220`) with equal `160px` Backyard (`x=16..176`) and `160px` Front Yard (`x=264..424`) zones and three balanced zone labels (`BACKYARD`, `HOME`, `FRONT YARD`) so the front yard visibly fills across steps (`viewBox="0 38 440 218"`, `489px` tall at `390px` wide).
+- Re-verified all local checks (`qa_foundation.sh`, export 212, storage 73, assets 145, iframe 32, widget browser 75, L-203-02/03 browser 39) all pass.
