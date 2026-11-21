@@ -3,11 +3,11 @@
 
   var SVG_NS = 'http://www.w3.org/2000/svg';
   var VERSION = String(window.GREAT_COMMAND_VERSION || '201');
-  if (VERSION !== '201' && VERSION !== '202' && VERSION !== '203') {
+  if (VERSION !== '201' && VERSION !== '202' && VERSION !== '203' && VERSION !== '203-10') {
     VERSION = '201';
   }
 
-  // Version 5: Editorial Studio Print & Luminous Wash (201, 202, 203)
+  // Version 5: Editorial Studio Print & Luminous Wash (201, 202, 203, and the 203-10 series finale)
   var COLORS = {
     ink: '#2C2416',
     muted: '#6E6559',
@@ -52,6 +52,17 @@
     armMidY: 98,
     pad: 8
   };
+
+  // 203-10 finale: six people start outside the end of the outward arm and walk in along it,
+  // through the center of the cross, into the family arm. Two lanes so nobody crosses paths.
+  var WELCOME_PATHS = [
+    { from: [354, 89.5], to: [146, 89.5] },
+    { from: [368, 109], to: [146, 109] },
+    { from: [384, 89.5], to: [163, 89.5] },
+    { from: [398, 109], to: [163, 109] },
+    { from: [414, 89.5], to: [180, 89.5] },
+    { from: [428, 109], to: [180, 109] }
+  ];
 
   var VERSIONS = {
     '201': {
@@ -314,6 +325,111 @@
             focus203: true
           },
           desc: 'The vertical and left beams soften into a quiet watermark, spotlighting Go above a 1 to 2 to 4 table multiplication pyramid below.'
+        }
+      ]
+    },
+    '203-10': {
+      title: 'The Greatest Commandment',
+      courseTag: '203-10',
+      intro: { text: 'One love, from the first lesson to the last.' },
+      regionLabel: 'Interactive cross drawing for 203-10, the end of Growing Together (Version 5)',
+      svgTitle: 'The Greatest Commandment Cross (Growing Together Finale - Studio Wash)',
+      steps: [
+        {
+          id: 'start',
+          pillLabel: 'Start: The Greatest Commandment',
+          heading: 'The Greatest Commandment',
+          verse: '"On these two commandments depend all the Law and the Prophets."',
+          ref: 'Matthew 22:40',
+          note: 'Growing Together began with this picture. Watch it come together one last time.',
+          accent: COLORS.ink,
+          accentDark: COLORS.ink,
+          draw: {},
+          desc: 'Clean white stage ready for the cross to take shape one last time.'
+        },
+        {
+          id: 'down',
+          pillLabel: "Step 1: God's Love Comes Down",
+          heading: "God's Love Comes Down",
+          verse: '"We love because he first loved us."',
+          ref: '1 John 4:19',
+          note: 'Everything in Growing Together starts here. God loved you before you did anything.',
+          accent: COLORS.gold,
+          accentDark: COLORS.goldDark,
+          draw: { upLeft: true, lblGod: true },
+          desc: 'A sunlit gold wash sweeps down the left half of the upright beam, labeled God loves us.'
+        },
+        {
+          id: 'up',
+          pillLabel: 'Step 2: Love God With All You Are',
+          heading: 'Love God With All You Are',
+          verse: '"And you shall love the Lord your God with all your heart and with all your soul and with all your mind and with all your strength."',
+          ref: 'Mark 12:30',
+          note: 'Growing Deep: your love goes back up to Him, not to earn His love, but because you already have it.',
+          accent: COLORS.green,
+          accentDark: COLORS.greenDark,
+          draw: { upLeft: true, lblGod: true, upRight: true, lblWe: true },
+          desc: 'A deep sage green wash sweeps up the right half of the upright beam, labeled We love God.'
+        },
+        {
+          id: 'church',
+          pillLabel: 'Step 3: Love One Another',
+          heading: 'Love One Another',
+          verse: '"By this all people will know that you are my disciples, if you have love for one another."',
+          ref: 'John 13:35',
+          note: 'Growing Up: that love takes shape in your home and your church family.',
+          accent: COLORS.church,
+          accentDark: COLORS.churchDark,
+          draw: { upLeft: true, lblGod: true, upRight: true, lblWe: true, armLeft: true, lblChurch: true },
+          desc: 'A harbour blue wash sweeps left from the center, labeled Love the Church.'
+        },
+        {
+          id: 'lost',
+          pillLabel: 'Step 4: Love Everyone, Even Enemies',
+          heading: 'Love Everyone, Even Enemies',
+          verse: '"If your enemy is hungry, feed him; if he is thirsty, give him something to drink."',
+          ref: 'Romans 12:20',
+          note: 'Growing Out: love reaches your one, your neighbors, the nations, and even people who stand against you, like the army Elisha fed.',
+          accent: COLORS.lost,
+          accentDark: COLORS.lostDark,
+          draw: {
+            upLeft: true, lblGod: true, upRight: true, lblWe: true,
+            armLeft: true, lblChurch: true, armRight: true, lblLost: true
+          },
+          desc: 'A muted plum wash sweeps right from the center, labeled Love the Lost.'
+        },
+        {
+          id: 'cross',
+          pillLabel: 'Step 5: The Cross Is Love for Enemies',
+          heading: 'The Cross Is Love for Enemies',
+          verse: '"while we were enemies we were reconciled to God by the death of his Son"',
+          ref: 'Romans 5:10',
+          note: "This is what the cross shows: Jesus loving God's enemies. That love holds every part of the cross together.",
+          accent: COLORS.deepRed,
+          accentDark: COLORS.deepRedDark,
+          draw: {
+            upLeft: true, lblGod: true, upRight: true, lblWe: true,
+            armLeft: true, lblChurch: true, armRight: true, lblLost: true,
+            crossContour: true
+          },
+          desc: 'A crimson double contour traces around the entire cross, uniting all four loves.'
+        },
+        {
+          id: 'home',
+          pillLabel: 'Step 6: Welcome Home',
+          heading: 'Welcome Home',
+          verse: '"So then you are no longer strangers and aliens, but you are fellow citizens with the saints and members of the household of God."',
+          ref: 'Ephesians 2:19',
+          note: 'Now go and tell the Jesus story. The love that reached you is still reaching, and there is room in the family for one more.',
+          accent: COLORS.church,
+          accentDark: COLORS.churchDark,
+          draw: {
+            upLeft: true, lblGod: true, upRight: true, lblWe: true,
+            armLeft: true, lblChurch: true, armRight: true, lblLost: true,
+            crossContour: true,
+            welcome: true
+          },
+          desc: 'Six small plum figures who stood outside the end of the outward arm walk in along it, pass through the center of the cross, turn blue, and settle together in the family arm.'
         }
       ]
     }
@@ -1091,6 +1207,25 @@
     overlay203.appendChild(arrowHeadsR2);
     svg.appendChild(overlay203);
 
+    // 8. Course 203-10 finale: people who stood outside walk in and are welcomed into the family arm
+    var overlay2310 = svgEl('g', { 'class': 'v5-overlay', 'aria-hidden': 'true' });
+    var welcomePeople = [];
+    if (VERSION === '203-10') {
+      WELCOME_PATHS.forEach(function (spec) {
+        var g = svgEl('g', { 'class': 'welcome-person' });
+        var body = svgEl('path', {
+          d: 'M -5.6 4.2 Q -5.6 -2.4 0 -2.4 Q 5.6 -2.4 5.6 4.2 Z',
+          'stroke-width': '1.3', 'stroke-linejoin': 'round'
+        });
+        var head = svgEl('circle', { cx: '0', cy: '-6.6', r: '3.6', fill: '#FFFFFF', 'stroke-width': '1.3' });
+        g.appendChild(body);
+        g.appendChild(head);
+        overlay2310.appendChild(g);
+        welcomePeople.push({ node: g, body: body, head: head, spec: spec });
+      });
+    }
+    svg.appendChild(overlay2310);
+
     return {
       svg: svg,
       svgDesc: svgDesc,
@@ -1103,7 +1238,8 @@
         cross: crossGroup
       },
       centerBridge: centerBridge,
-      overlays: { v202: overlay202, v203: overlay203 },
+      overlays: { v202: overlay202, v203: overlay203, v2310: overlay2310 },
+      welcomePeople: welcomePeople,
       reachPaths202: reachPaths202,
       reachDots202: reachDots202,
       reachPaths203: reachPaths203,
@@ -1113,6 +1249,25 @@
       centerSeam: centerSeam,
       labels: { lblGod: lblGod, lblWe: lblWe, lblChurch: lblChurch, lblLost: lblLost }
     };
+  }
+
+  function mixHex(a, b, t) {
+    var pa = [1, 3, 5].map(function (i) { return parseInt(a.slice(i, i + 2), 16); });
+    var pb = [1, 3, 5].map(function (i) { return parseInt(b.slice(i, i + 2), 16); });
+    return '#' + pa.map(function (v, i) {
+      var c = Math.round(v + (pb[i] - v) * t).toString(16);
+      return c.length === 1 ? '0' + c : c;
+    }).join('');
+  }
+
+  // Plum while outside or on the outward arm, turning blue while passing through the center of the cross.
+  function placeWelcomePerson(person, x, y) {
+    var t = Math.max(0, Math.min(1, (GEO.upXRight - x) / (GEO.upXRight - GEO.upXLeft)));
+    var stroke = mixHex(COLORS.lost, COLORS.church, t);
+    person.node.setAttribute('transform', 'translate(' + x.toFixed(1) + ',' + y.toFixed(1) + ') scale(1.25)');
+    person.body.setAttribute('fill', mixHex('#D9CCEB', '#C9DDEC', t));
+    person.body.setAttribute('stroke', stroke);
+    person.head.setAttribute('stroke', stroke);
   }
 
   function measureStrokes(nodes) {
@@ -1271,6 +1426,8 @@
 
       bundle.overlays.v203.style.setProperty('--fade-delay', animate ? '160ms' : '0ms');
       bundle.overlays.v203.classList.toggle('is-visible', !!draw.focus203);
+      bundle.overlays.v2310.style.setProperty('--fade-delay', animate ? '160ms' : '0ms');
+      bundle.overlays.v2310.classList.toggle('is-visible', !!draw.welcome);
       var stageDelays203 = ['140ms', '600ms', '520ms', '1040ms', '960ms'];
       bundle.peopleStages203.forEach(function (grp, idx) {
         grp.style.setProperty('--fade-delay', animate ? stageDelays203[idx] : '0ms');
@@ -1291,6 +1448,10 @@
       });
       bundle.reachPaths203.forEach(function (n) {
         n.style.strokeDashoffset = draw.focus203 ? '0' : n.dataset.len;
+      });
+      bundle.welcomePeople.forEach(function (person) {
+        var at = draw.welcome ? person.spec.to : person.spec.from;
+        placeWelcomePerson(person, at[0], at[1]);
       });
       updateLabels(draw, false);
     }
@@ -1439,7 +1600,24 @@
           });
         }
 
+        var walkJobs = [];
+        if (!prevDraw.welcome && nextDraw.welcome) {
+          bundle.welcomePeople.forEach(function (person, i) {
+            var from = person.spec.from;
+            var to = person.spec.to;
+            walkJobs.push({
+              delay: 700 + i * 380,
+              dur: 2300,
+              update: function (q) {
+                var e = q < 0.5 ? 2 * q * q : 1 - Math.pow(-2 * q + 2, 2) / 2;
+                placeWelcomePerson(person, from[0] + (to[0] - from[0]) * e, from[1] + (to[1] - from[1]) * e);
+              }
+            });
+          });
+        }
+
         var totalDur = 0;
+        walkJobs.forEach(function (j) { totalDur = Math.max(totalDur, j.delay + j.dur); });
         sweepJobs.forEach(function (j) { totalDur = Math.max(totalDur, j.dur); });
         strokeJobs.forEach(function (j) { totalDur = Math.max(totalDur, (j.delay || 0) + j.dur); });
         host.dataset.stepDur = String(Math.round(totalDur));
@@ -1456,6 +1634,9 @@
               var localElapsed = Math.max(0, elapsed - (j.delay || 0));
               var p = Math.min(1, localElapsed / j.dur);
               j.node.style.strokeDashoffset = String(j.len * (1 - p));
+            });
+            walkJobs.forEach(function (j) {
+              j.update(Math.min(1, Math.max(0, elapsed - j.delay) / j.dur));
             });
             if (elapsed < totalDur) {
               activeRaf = requestAnimationFrame(frame);
