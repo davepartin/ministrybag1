@@ -2,6 +2,7 @@
 
 | Task | Status | Owner / date | Scope |
 |---|---|---|---|
+| WIDGET-203-04-SERVE | REVIEW | Gemini / gemini/widget-203-04-serve / 2026-11-20 | Built standalone 203-04 Love Through Serving Studio Wash widget (`widgets/love-through-serving-203.html`, `203-04`) around John 13 foot washing with opening cue ("Love takes the lower place.") and 4 steps (Secure in His Love, Lay Something Aside, Climb Down, Lift Someone Up) connected by Jesus' woven towel flowing into a neighbor grocery doorway scene (no ladder/podium/staircase). Added `scripts/widget_203_04_serve_browser_check.js` (255 checks across 375/390/1280/reduced-motion, exit 0); foundation QA, export (212), storage (73), and assets (144) pass. Lesson JSON untouched pending Dave sign-off. Evidence: `logs/2026-11-20-WIDGET-203-04-SERVE-gemini.md`. |
 | ART-202-03-TABLE | REVIEW | Cursor / cursor/art-202-03-shared-table-bw / 2026-11-20 | Three shared-table frames before The Early Church, stops [0, 0.3, 0.6], touchNext kept. Old early-church files unused on disk. Lesson wording/IDs unchanged. Foundation QA and 85 local story checks pass. Stop at REVIEW. |
 
 | Task | Status | Owner / date | Scope |

@@ -1,0 +1,1491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Love Through Serving</title>
+<style>
+:root {
+  --ink: #2C2416;
+  --muted: #6E6559;
+  --tray: #F6F4EE;
+  --border: #EBE5D9;
+  --green: #1F684A;
+  --green-dark: #164E37;
+  --gold: #A8760A;
+  --gold-dark: #7D5604;
+  --blue: #2A5B7C;
+  --step-color: #2C2416;
+  --step-dark: #1E1910;
+  --card-h: 120px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: Georgia, Cambria, serif;
+  background: #F8F6F1;
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+.widget-outer {
+  background: #FFFFFF;
+  border-radius: 0;
+  overflow: hidden;
+  box-shadow: none;
+  border: none;
+  max-width: 100%;
+  width: 100%;
+  margin: 0;
+  position: relative;
+}
+
+@media (min-width: 560px) {
+  body {
+    padding: 16px;
+    background: #F8F6F1;
+  }
+  .widget-outer {
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(44, 36, 22, 0.08);
+    border: 1px solid var(--border);
+    max-width: 460px;
+    margin: 0 auto;
+  }
+}
+
+.title-bar {
+  background: #2C2416;
+  padding: 7px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.title-bar h1 {
+  font: 600 17px/1.15 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #FAF8F3;
+  letter-spacing: 0.2px;
+  margin: 0;
+}
+
+.course-tag {
+  font: 600 11px/1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  letter-spacing: 0.9px;
+  text-transform: uppercase;
+  color: #E5DEC9;
+  white-space: nowrap;
+}
+
+.stage {
+  position: relative;
+  background: #FFFFFF;
+  border-bottom: 1px solid var(--border);
+}
+
+.opening-cue {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+  padding: 18px;
+  pointer-events: none;
+  opacity: 1;
+}
+
+.opening-cue p {
+  margin: 0;
+  max-width: 300px;
+  padding: 16px 22px;
+  border: 1px solid #E6DECF;
+  border-radius: 14px;
+  background: #FFFFFF;
+  box-shadow: 0 10px 28px rgba(44, 36, 22, 0.10);
+  color: var(--ink);
+  text-align: center;
+  font: 600 17.5px/1.3 Georgia, Cambria, serif;
+}
+
+.opening-cue.is-hidden {
+  opacity: 0;
+}
+
+.scene-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.scene-layer {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.scene-layer.is-visible {
+  opacity: 1;
+}
+
+.scene-layer.is-memory {
+  opacity: 0.28;
+}
+
+.step-strip {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 12px 4px;
+  background: var(--tray);
+  border-bottom: 1px solid var(--border);
+}
+
+.step-dot {
+  appearance: none;
+  min-width: 28px;
+  min-height: 28px;
+  padding: 4px;
+  border: none;
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.step-dot-fill {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 2.5px solid var(--dot-color, var(--ink));
+  background: #FFFFFF;
+  display: block;
+}
+
+.step-dot.passed .step-dot-fill {
+  background: color-mix(in srgb, var(--dot-color, var(--ink)) 24%, #FFFFFF);
+}
+
+.step-dot.active .step-dot-fill {
+  background: var(--dot-color, var(--ink));
+  transform: scale(1.12);
+}
+
+.card-area {
+  padding: 7px 12px 9px;
+  background: var(--tray);
+}
+
+.verse-card {
+  background: #FFFFFF;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(44, 36, 22, 0.04);
+}
+
+.verse-card-bar {
+  height: 4px;
+  background: var(--step-color);
+}
+
+.verse-card-content {
+  padding: 9px 13px;
+  height: var(--card-h);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  overflow: hidden;
+}
+
+.card-heading {
+  font: 700 15px/1.22 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--step-color);
+  margin: 0 0 4px;
+}
+
+.card-quote {
+  font: 400 12.8px/1.4 Georgia, Cambria, serif;
+  color: var(--ink);
+  margin: 0 0 5px;
+}
+
+.card-ref {
+  font: 600 11.4px/1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--muted);
+  margin-left: 5px;
+  white-space: nowrap;
+}
+
+.card-note {
+  font: 400 12.3px/1.38 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #463E32;
+  margin: 0;
+}
+
+.nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.nav-btn {
+  appearance: none;
+  min-height: 44px;
+  min-width: 96px;
+  padding: 0 15px;
+  border-radius: 10px;
+  border: 1px solid #DCD4C6;
+  background: #FFFFFF;
+  color: var(--ink);
+  font: 600 13.5px/1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.nav-btn.primary {
+  background: var(--step-color);
+  border-color: var(--step-color);
+  color: #FAF8F3;
+}
+
+.nav-btn.primary:hover:not(:disabled) {
+  background: var(--step-dark);
+  border-color: var(--step-dark);
+}
+
+.nav-btn:hover:not(:disabled):not(.primary) {
+  background: #F4EFE5;
+}
+
+.nav-btn:disabled {
+  opacity: 0.36;
+  cursor: default;
+}
+
+.step-count {
+  font: 600 12px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--muted);
+}
+
+button:focus-visible {
+  outline: 3px solid #E0A526;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .widget-outer:not(.is-instant) .opening-cue {
+    transition: opacity 0.36s ease;
+  }
+  .widget-outer:not(.is-instant) .scene-layer {
+    transition: opacity 0.52s ease;
+  }
+  .widget-outer .step-dot-fill {
+    transition: background-color 0.22s ease, border-color 0.22s ease, transform 0.22s ease;
+  }
+  .widget-outer .nav-btn.primary,
+  .widget-outer .verse-card-bar,
+  .widget-outer .card-heading {
+    transition: background-color 0.24s ease, border-color 0.24s ease, color 0.24s ease;
+  }
+}
+
+@media (max-width: 395px) {
+  .card-area {
+    padding: 6px 10px 8px;
+  }
+  .verse-card-content {
+    padding: 8px 11px;
+  }
+  .card-heading {
+    font-size: 14.5px;
+  }
+  .card-quote {
+    font-size: 12.2px;
+  }
+  .card-note {
+    font-size: 11.8px;
+  }
+}
+
+@media (forced-colors: active) {
+  .step-dot-fill {
+    border-color: ButtonText;
+    background: Canvas;
+  }
+  .step-dot.active .step-dot-fill {
+    background: Highlight;
+    border-color: Highlight;
+  }
+  .nav-btn.primary {
+    border: 2px solid Highlight;
+  }
+}
+</style>
+</head>
+<body>
+<main class="widget-outer" id="scene-root" aria-label="Love Through Serving"></main>
+
+<script>
+(function () {
+  'use strict';
+
+  var SVG_NS = 'http://www.w3.org/2000/svg';
+
+  var COLORS = {
+    ink: '#2C2416',
+    inkDark: '#1C160E',
+    gold: '#A8760A',
+    goldDark: '#7D5604',
+    green: '#1F684A',
+    greenDark: '#164E37',
+    blue: '#2A5B7C',
+    blueDark: '#1E435C'
+  };
+
+  var STEPS = [
+    {
+      id: 'opening',
+      dotLabel: 'Start: Love Through Serving',
+      color: COLORS.ink,
+      dark: COLORS.inkDark,
+      heading: 'Love Through Serving',
+      quote: '"For even the Son of Man came not to be served but to serve..."',
+      ref: 'Mark 10:45',
+      note: 'Climb down to lift others up.',
+      desc: 'Opening card reading: Love takes the lower place.'
+    },
+    {
+      id: 'secure',
+      dotLabel: 'Step 1: Secure in His Love',
+      color: COLORS.gold,
+      dark: COLORS.goldDark,
+      heading: 'Secure in His Love',
+      quote: '"Jesus, knowing... that he had come from God and was going back to God, rose from supper."',
+      ref: 'John 13:3-4',
+      note: 'Jesus knew He came from God and was returning to God. He had nothing to prove.',
+      desc: 'Jesus stands calmly beside the supper table with a soft golden warmth behind Him and a small wooden stool nearby.'
+    },
+    {
+      id: 'lay-aside',
+      dotLabel: 'Step 2: Lay Something Aside',
+      color: COLORS.gold,
+      dark: COLORS.goldDark,
+      heading: 'Lay Something Aside',
+      quote: '"He laid aside his outer garments, and taking a towel, tied it around his waist."',
+      ref: 'John 13:4',
+      note: 'Love makes room to serve. Sometimes we lay aside comfort, recognition, or the need to be first.',
+      desc: 'Jesus sets His outer garment neatly on the wooden stool and wraps a woven gold-and-green banded linen towel around His waist.'
+    },
+    {
+      id: 'climb-down',
+      dotLabel: 'Step 3: Climb Down',
+      color: COLORS.blue,
+      dark: COLORS.blueDark,
+      heading: 'Climb Down',
+      quote: '"Then he poured water into a basin and began to wash the disciples\' feet..."',
+      ref: 'John 13:5',
+      note: 'The Lord takes the servant\'s place. No one is beneath His love.',
+      desc: 'With His outer garment still resting on the stool behind Him, Jesus kneels low beside a seated disciple with a water basin between them and His woven towel draped across His hands.'
+    },
+    {
+      id: 'lift-up',
+      dotLabel: 'Step 4: Lift Someone Up',
+      color: COLORS.green,
+      dark: COLORS.greenDark,
+      heading: 'Lift Someone Up',
+      quote: '"If I then, your Lord and Teacher, have washed your feet, you also ought to wash one another\'s feet."',
+      ref: 'John 13:14',
+      note: 'Follow Jesus into one practical act of love for someone in front of you.',
+      desc: 'The scene widens: Jesus\' woven towel stays visible, flowing from the softened upper-room basin into an everyday doorway where a friend carries groceries to a welcoming neighbor.'
+    }
+  ];
+
+  function el(tag, attrs, parent) {
+    var node = document.createElement(tag);
+    if (attrs) {
+      Object.keys(attrs).forEach(function (k) {
+        if (k === 'text') node.textContent = attrs[k];
+        else if (k === 'class') node.className = attrs[k];
+        else node.setAttribute(k, attrs[k]);
+      });
+    }
+    if (parent) parent.appendChild(node);
+    return node;
+  }
+
+  function svgEl(tag, attrs, parent) {
+    var node = document.createElementNS(SVG_NS, tag);
+    if (attrs) {
+      Object.keys(attrs).forEach(function (k) {
+        if (k === 'text') node.textContent = attrs[k];
+        else node.setAttribute(k, attrs[k]);
+      });
+    }
+    if (parent) parent.appendChild(node);
+    return node;
+  }
+
+  function addLinearGrad(defs, id, x1, y1, x2, y2, stops) {
+    var g = svgEl('linearGradient', { id: id, x1: x1, y1: y1, x2: x2, y2: y2 }, defs);
+    stops.forEach(function (s) {
+      var a = { offset: s[0], 'stop-color': s[1] };
+      if (s[2] !== undefined) a['stop-opacity'] = String(s[2]);
+      svgEl('stop', a, g);
+    });
+    return g;
+  }
+
+  function addRadialGrad(defs, id, cx, cy, r, stops) {
+    var g = svgEl('radialGradient', { id: id, cx: cx, cy: cy, r: r }, defs);
+    stops.forEach(function (s) {
+      var a = { offset: s[0], 'stop-color': s[1] };
+      if (s[2] !== undefined) a['stop-opacity'] = String(s[2]);
+      svgEl('stop', a, g);
+    });
+    return g;
+  }
+
+  function drawWoodenStool(parent) {
+    var g = svgEl('g', {}, parent);
+    // Legs
+    svgEl('path', {
+      d: 'M 72 194 L 66 232 M 114 194 L 120 232 M 70 214 L 116 214',
+      fill: 'none',
+      stroke: '#6D5438',
+      'stroke-width': '3.4',
+      'stroke-linecap': 'round'
+    }, g);
+    // Seat
+    svgEl('rect', {
+      x: 62,
+      y: 186,
+      width: 62,
+      height: 10,
+      rx: 4,
+      fill: '#D7C1A0',
+      stroke: '#2C2416',
+      'stroke-width': '1.6'
+    }, g);
+    return g;
+  }
+
+  function drawFoldedCloak(parent) {
+    var g = svgEl('g', {}, parent);
+    // Soft feathered Studio Wash glow behind the laid-aside garment (zero hard oval edge)
+    svgEl('ellipse', {
+      cx: 93,
+      cy: 188,
+      rx: 48,
+      ry: 32,
+      fill: 'url(#cloak-wash)'
+    }, g);
+    // Draped outer robe resting neatly on the stool
+    svgEl('path', {
+      d: 'M 65 186 C 67 174 80 170 94 171 C 108 172 120 176 122 186 L 123 206 C 117 210 109 208 106 202 L 104 194 L 74 194 L 72 213 C 66 214 61 209 62 201 Z',
+      fill: '#335245',
+      stroke: '#2C2416',
+      'stroke-width': '1.7',
+      'stroke-linejoin': 'round'
+    }, g);
+    // Soft fold shadow and warm gold hem band on the cloak
+    svgEl('path', {
+      d: 'M 74 180 Q 94 176 113 181',
+      fill: 'none',
+      stroke: '#527867',
+      'stroke-width': '1.3',
+      'stroke-linecap': 'round'
+    }, g);
+    svgEl('path', {
+      d: 'M 63 206 Q 68 209 72 208 M 108 202 Q 116 205 122 202',
+      fill: 'none',
+      stroke: '#D6A432',
+      'stroke-width': '2',
+      'stroke-linecap': 'round'
+    }, g);
+    return g;
+  }
+
+  function drawSupperTable(parent) {
+    var g = svgEl('g', {}, parent);
+    // Table shadow on floor
+    svgEl('ellipse', { cx: 344, cy: 233, rx: 66, ry: 5, fill: '#E8E0D0', opacity: '0.7' }, g);
+    // Legs
+    svgEl('path', {
+      d: 'M 294 178 L 290 232 M 392 178 L 396 232 M 293 206 L 393 206',
+      fill: 'none',
+      stroke: '#7A5E3E',
+      'stroke-width': '3.5',
+      'stroke-linecap': 'round'
+    }, g);
+    // Tabletop
+    svgEl('rect', {
+      x: 278,
+      y: 168,
+      width: 132,
+      height: 11,
+      rx: 4,
+      fill: '#DFC9A8',
+      stroke: '#2C2416',
+      'stroke-width': '1.6'
+    }, g);
+    // Quiet supper pitcher, loaf, and cup
+    svgEl('path', {
+      d: 'M 303 168 L 301 151 C 301 144 307 141 312 141 C 317 141 323 144 323 151 L 321 168 Z',
+      fill: '#EFE4D2',
+      stroke: '#2C2416',
+      'stroke-width': '1.5',
+      'stroke-linejoin': 'round'
+    }, g);
+    svgEl('path', {
+      d: 'M 322 146 C 329 146 329 157 322 158',
+      fill: 'none',
+      stroke: '#2C2416',
+      'stroke-width': '1.5',
+      'stroke-linecap': 'round'
+    }, g);
+    // Bread loaf
+    svgEl('path', {
+      d: 'M 336 168 C 336 158 345 154 354 154 C 363 154 371 158 371 168 Z',
+      fill: '#E8C98F',
+      stroke: '#2C2416',
+      'stroke-width': '1.5'
+    }, g);
+    svgEl('path', {
+      d: 'M 347 158 L 351 163 M 356 157 L 360 163',
+      stroke: '#A8760A',
+      'stroke-width': '1.2',
+      'stroke-linecap': 'round'
+    }, g);
+    // Cup
+    svgEl('path', {
+      d: 'M 380 156 L 392 156 L 390 168 L 382 168 Z',
+      fill: '#EFE4D2',
+      stroke: '#2C2416',
+      'stroke-width': '1.4',
+      'stroke-linejoin': 'round'
+    }, g);
+    return g;
+  }
+
+  function drawWaterBasin(parent, cx, cy, scale) {
+    var g = svgEl('g', {
+      transform: 'translate(' + cx + ',' + cy + ') scale(' + scale + ')'
+    }, parent);
+    // Floor shadow
+    svgEl('ellipse', { cx: 0, cy: 13, rx: 28, ry: 4.5, fill: '#DDD5C5', opacity: '0.8' }, g);
+    // Rounded earthenware bowl
+    svgEl('path', {
+      d: 'M -29 -4 C -28 11 -16 14 0 14 C 16 14 28 11 29 -4 Z',
+      fill: '#D8BD9A',
+      stroke: '#2C2416',
+      'stroke-width': '1.7',
+      'stroke-linejoin': 'round'
+    }, g);
+    // Water surface inside basin
+    svgEl('ellipse', {
+      cx: 0,
+      cy: -4,
+      rx: 29,
+      ry: 7.2,
+      fill: '#DDEEF7',
+      stroke: '#2C2416',
+      'stroke-width': '1.6'
+    }, g);
+    // Calm water ripples
+    svgEl('path', {
+      d: 'M -15 -4 Q -6 -1 4 -4 Q 12 -6 19 -3',
+      fill: 'none',
+      stroke: '#2A5B7C',
+      'stroke-width': '1.3',
+      'stroke-linecap': 'round',
+      opacity: '0.78'
+    }, g);
+    svgEl('path', {
+      d: 'M -9 -1 Q 0 1 11 -1',
+      fill: 'none',
+      stroke: '#2A5B7C',
+      'stroke-width': '1.1',
+      'stroke-linecap': 'round',
+      opacity: '0.52'
+    }, g);
+    return g;
+  }
+
+  function drawKneelingJesusAndDisciple(parent, opts) {
+    var g = svgEl('g', {}, parent);
+    var includeTowel = !opts || opts.includeTowel !== false;
+
+    // Subtle seated bench on right
+    svgEl('path', {
+      d: 'M 314 192 L 310 232 M 372 192 L 376 232',
+      stroke: '#6D5438',
+      'stroke-width': '3.4',
+      'stroke-linecap': 'round'
+    }, g);
+    svgEl('rect', {
+      x: 302,
+      y: 184,
+      width: 82,
+      height: 10,
+      rx: 4,
+      fill: '#D7C1A0',
+      stroke: '#2C2416',
+      'stroke-width': '1.6'
+    }, g);
+
+    // Seated disciple on the right bench, looking down gently
+    // Resting back leg & sandal (filled, cohesive with Studio Wash style)
+    svgEl('path', {
+      d: 'M 326 186 L 315 224 L 323 226 L 335 188 Z',
+      fill: '#EED9BE',
+      stroke: '#2C2416',
+      'stroke-width': '1.5',
+      'stroke-linejoin': 'round'
+    }, g);
+    svgEl('ellipse', {
+      cx: 314,
+      cy: 227,
+      rx: 8,
+      ry: 3.2,
+      fill: '#9A7B56',
+      stroke: '#2C2416',
+      'stroke-width': '1.3'
+    }, g);
+    // Disciple robe (soft sage-blue wash)
+    svgEl('path', {
+      d: 'M 326 125 C 338 124 352 132 355 152 L 357 185 L 310 185 C 306 174 307 156 312 142 C 315 132 320 126 326 125 Z',
+      fill: '#E2EBE7',
+      stroke: '#2C2416',
+      'stroke-width': '1.7',
+      'stroke-linejoin': 'round'
+    }, g);
+    // Seated lap & extended bare leg reaching over the basin
+    svgEl('path', {
+      d: 'M 314 176 L 284 184 L 266 211 C 263 215 256 216 250 214',
+      fill: 'none',
+      stroke: '#EED9BE',
+      'stroke-width': '10',
+      'stroke-linecap': 'round',
+      'stroke-linejoin': 'round'
+    }, g);
+    svgEl('path', {
+      d: 'M 314 172 L 281 181 L 263 209 C 260 213 255 214 249 212 M 316 181 L 288 188 L 270 214 C 266 218 258 219 250 217',
+      fill: 'none',
+      stroke: '#2C2416',
+      'stroke-width': '1.6',
+      'stroke-linecap': 'round',
+      'stroke-linejoin': 'round'
+    }, g);
+    // Disciple robe lap fold over upper leg
+    svgEl('path', {
+      d: 'M 318 166 L 282 178 L 287 192 L 336 186 Z',
+      fill: '#D5E2DC',
+      stroke: '#2C2416',
+      'stroke-width': '1.6',
+      'stroke-linejoin': 'round'
+    }, g);
+    // Disciple hands resting humbly on lap
+    svgEl('path', {
+      d: 'M 332 142 C 324 156 314 166 302 171',
+      fill: 'none',
+      stroke: '#2C2416',
+      'stroke-width': '1.8',
+      'stroke-linecap': 'round'
+    }, g);
+    svgEl('circle', { cx: 299, cy: 172, r: 4.2, fill: '#F3E0C6', stroke: '#2C2416', 'stroke-width': '1.4' }, g);
+    // Disciple head tilted downward toward Jesus
+    svgEl('circle', { cx: 328, cy: 108, r: 13, fill: '#F3E0C6', stroke: '#2C2416', 'stroke-width': '1.7' }, g);
+    // Soft hair cap
+    svgEl('path', {
+      d: 'M 319 99 C 325 93 338 95 341 105 C 342 111 339 116 334 118 C 334 109 327 104 319 103 Z',
+      fill: '#4A3E32'
+    }, g);
+
+    // Water basin centered between them
+    drawWaterBasin(g, 248, 218, 1);
+
+    // Subtle water droplets rising softly above basin
+    svgEl('path', {
+      d: 'M 244 203 Q 243 198 245 196 Q 247 198 246 203 Z',
+      fill: '#89BDD9',
+      opacity: '0.85'
+    }, g);
+    svgEl('circle', { cx: 256, cy: 201, r: 1.6, fill: '#89BDD9', opacity: '0.78' }, g);
+
+    // JESUS KNEELING LOW ON THE FLOOR
+    // Floor shadow under Jesus
+    svgEl('ellipse', { cx: 184, cy: 233, rx: 38, ry: 4.5, fill: '#E2DACB', opacity: '0.75' }, g);
+    // Kneeling cream tunic body (low, humble posture!)
+    svgEl('path', {
+      d: 'M 176 164 C 166 170 156 186 154 208 C 153 220 156 230 166 231 L 204 231 C 210 230 212 224 208 216 L 198 198 C 202 186 204 176 196 168 C 190 162 182 161 176 164 Z',
+      fill: '#FAF6EC',
+      stroke: '#2C2416',
+      'stroke-width': '1.8',
+      'stroke-linejoin': 'round'
+    }, g);
+    // Soft tunic drape lines
+    svgEl('path', {
+      d: 'M 172 184 Q 178 206 172 228 M 186 182 Q 194 204 196 226',
+      fill: 'none',
+      stroke: '#CFC3AE',
+      'stroke-width': '1.2',
+      'stroke-linecap': 'round'
+    }, g);
+    // Gentle outstretched arm & hands cradling the disciple's foot over the basin
+    svgEl('path', {
+      d: 'M 192 174 C 208 184 222 196 237 206',
+      fill: 'none',
+      stroke: '#FAF6EC',
+      'stroke-width': '11',
+      'stroke-linecap': 'round'
+    }, g);
+    svgEl('path', {
+      d: 'M 190 169 C 207 179 222 192 238 202 M 190 180 C 205 189 218 200 234 210',
+      fill: 'none',
+      stroke: '#2C2416',
+      'stroke-width': '1.6',
+      'stroke-linecap': 'round'
+    }, g);
+    // Gentle hands cradling foot
+    svgEl('ellipse', {
+      cx: 241,
+      cy: 209,
+      rx: 6.5,
+      ry: 4.5,
+      transform: 'rotate(-16 241 209)',
+      fill: '#F3E0C6',
+      stroke: '#2C2416',
+      'stroke-width': '1.4'
+    }, g);
+
+    // Jesus' head gently bowed low
+    svgEl('circle', { cx: 196, cy: 151, r: 13, fill: '#F3E0C6', stroke: '#2C2416', 'stroke-width': '1.7' }, g);
+    // Warm hair & beard contour
+    svgEl('path', {
+      d: 'M 203 141 C 195 135 183 140 182 151 C 181 158 184 164 191 165 C 188 158 189 149 197 145 Z',
+      fill: '#3C2F22'
+    }, g);
+    svgEl('path', {
+      d: 'M 197 163 C 202 164 207 161 208 156',
+      fill: 'none',
+      stroke: '#3C2F22',
+      'stroke-width': '1.8',
+      'stroke-linecap': 'round'
+    }, g);
+
+    // Signature gold-and-green banded linen towel wrapped at Jesus' waist & draped forward
+    if (includeTowel) {
+      svgEl('path', {
+        d: 'M 164 194 C 178 197 196 196 206 192 L 222 212 C 216 218 206 219 200 214 L 188 202 C 178 204 168 203 162 200 Z',
+        fill: '#FFFDF7',
+        stroke: '#2C2416',
+        'stroke-width': '1.6',
+        'stroke-linejoin': 'round'
+      }, g);
+      // Woven forest-green and gold stripe bands on the towel end
+      svgEl('path', {
+        d: 'M 202 209 L 216 205',
+        stroke: '#1F684A',
+        'stroke-width': '2.4',
+        'stroke-linecap': 'round'
+      }, g);
+      svgEl('path', {
+        d: 'M 205 213 L 219 209',
+        stroke: '#C48F10',
+        'stroke-width': '2',
+        'stroke-linecap': 'round'
+      }, g);
+    }
+
+    return g;
+  }
+
+  function buildStage(host) {
+    var stage = el('div', { class: 'stage' }, host);
+    var cue = el('div', { id: 'opening-cue', class: 'opening-cue' }, stage);
+    el('p', { text: 'Love takes the lower place.' }, cue);
+
+    var svg = svgEl('svg', {
+      id: 'serve-svg',
+      class: 'scene-svg',
+      viewBox: '0 0 440 272',
+      width: '100%',
+      role: 'img',
+      'aria-labelledby': 'serve-svg-title serve-svg-desc'
+    }, stage);
+
+    var svgTitle = svgEl('title', { id: 'serve-svg-title', text: 'Love Through Serving' }, svg);
+    var svgDesc = svgEl('desc', { id: 'serve-svg-desc', text: STEPS[0].desc }, svg);
+
+    var defs = svgEl('defs', {}, svg);
+    addRadialGrad(defs, 'identity-wash', '50%', '46%', '50%', [
+      ['0%', '#FCF2D6', 0.92],
+      ['62%', '#FDF7E6', 0.44],
+      ['100%', '#FFFFFF', 0]
+    ]);
+    addRadialGrad(defs, 'cloak-wash', '50%', '50%', '50%', [
+      ['0%', '#FCF2D6', 0.9],
+      ['60%', '#FDF7E6', 0.4],
+      ['100%', '#FFFFFF', 0]
+    ]);
+    addRadialGrad(defs, 'spark-wash', '50%', '50%', '50%', [
+      ['0%', '#E1F1E9', 0.72],
+      ['56%', '#FCF2D6', 0.42],
+      ['100%', '#FFFFFF', 0]
+    ]);
+    addLinearGrad(defs, 'floor-wash', '50%', '0%', '50%', '100%', [
+      ['0%', '#F5F0E6', 0.85],
+      ['100%', '#FFFFFF', 0]
+    ]);
+    addLinearGrad(defs, 'door-glow', '50%', '0%', '50%', '100%', [
+      ['0%', '#FCF2D6', 0.92],
+      ['100%', '#FFFDF7', 0.5]
+    ]);
+
+    // 0) Clean warm paper canvas + subtle horizon floor line
+    svgEl('rect', { x: 0, y: 0, width: 440, height: 272, fill: '#FFFFFF' }, svg);
+    var floorBase = svgEl('g', { id: 'layer-floor', class: 'scene-layer' }, svg);
+    svgEl('rect', { x: 0, y: 230, width: 440, height: 42, fill: 'url(#floor-wash)' }, floorBase);
+    svgEl('line', {
+      x1: 22,
+      y1: 231,
+      x2: 418,
+      y2: 231,
+      stroke: '#DDD4C3',
+      'stroke-width': '1.4',
+      'stroke-linecap': 'round'
+    }, floorBase);
+
+    // =========================================================================
+    // LAYER 1: STEP 1 - SECURE IN HIS LOVE (Standing beside table & empty stool)
+    // =========================================================================
+    var step1Layer = svgEl('g', { id: 'layer-step-1', class: 'scene-layer' }, svg);
+    // Soft feathered golden presence wash behind Jesus (He came from God and was returning to God)
+    svgEl('circle', { cx: 204, cy: 132, r: 92, fill: 'url(#identity-wash)' }, step1Layer);
+
+    drawWoodenStool(step1Layer);
+    drawSupperTable(step1Layer);
+
+    // Jesus standing tall, poised, wearing His outer garment over His cream tunic
+    svgEl('ellipse', { cx: 204, cy: 233, rx: 28, ry: 4.2, fill: '#E2DACB', opacity: '0.78' }, step1Layer);
+    // Sandals / feet
+    svgEl('ellipse', { cx: 195, cy: 229, rx: 6.5, ry: 3, fill: '#9A7B56', stroke: '#2C2416', 'stroke-width': '1.3' }, step1Layer);
+    svgEl('ellipse', { cx: 213, cy: 229, rx: 6.5, ry: 3, fill: '#9A7B56', stroke: '#2C2416', 'stroke-width': '1.3' }, step1Layer);
+    // Inner cream tunic visible down the center
+    svgEl('path', {
+      d: 'M 186 102 L 222 102 L 226 226 L 182 226 Z',
+      fill: '#FAF6EC',
+      stroke: '#2C2416',
+      'stroke-width': '1.6'
+    }, step1Layer);
+    // Outer garment draped cleanly over both shoulders (deep forest-charcoal with gold trim)
+    svgEl('path', {
+      d: 'M 192 98 C 180 100 171 110 169 126 L 164 218 C 171 220 182 220 188 218 L 194 128 L 198 100 Z',
+      fill: '#335245',
+      stroke: '#2C2416',
+      'stroke-width': '1.7',
+      'stroke-linejoin': 'round'
+    }, step1Layer);
+    svgEl('path', {
+      d: 'M 216 98 C 228 100 237 110 239 126 L 244 218 C 237 220 226 220 220 218 L 214 128 L 210 100 Z',
+      fill: '#335245',
+      stroke: '#2C2416',
+      'stroke-width': '1.7',
+      'stroke-linejoin': 'round'
+    }, step1Layer);
+    // Gold woven edge on the outer garment
+    svgEl('path', {
+      d: 'M 191 106 L 186 216 M 217 106 L 222 216',
+      fill: 'none',
+      stroke: '#D6A432',
+      'stroke-width': '1.7',
+      'stroke-linecap': 'round'
+    }, step1Layer);
+    // Calm open hands at waist
+    svgEl('circle', { cx: 185, cy: 158, r: 4.5, fill: '#F3E0C6', stroke: '#2C2416', 'stroke-width': '1.4' }, step1Layer);
+    svgEl('circle', { cx: 223, cy: 158, r: 4.5, fill: '#F3E0C6', stroke: '#2C2416', 'stroke-width': '1.4' }, step1Layer);
+    // Head standing tall (cy = 79)
+    svgEl('circle', { cx: 204, cy: 79, r: 13.5, fill: '#F3E0C6', stroke: '#2C2416', 'stroke-width': '1.7' }, step1Layer);
+    svgEl('path', {
+      d: 'M 191 77 C 191 64 217 64 217 77 C 218 85 215 92 210 94 C 212 85 212 75 204 73 C 196 75 196 85 198 94 C 193 92 190 85 191 77 Z',
+      fill: '#3C2F22'
+    }, step1Layer);
+    svgEl('path', {
+      d: 'M 198 91 Q 204 95 210 91',
+      fill: 'none',
+      stroke: '#3C2F22',
+      'stroke-width': '2',
+      'stroke-linecap': 'round'
+    }, step1Layer);
+
+    // =========================================================================
+    // LAYER 2: STEP 2 - LAY SOMETHING ASIDE (Cloak on stool, Jesus takes towel)
+    // =========================================================================
+    var step2Layer = svgEl('g', { id: 'layer-step-2', class: 'scene-layer' }, svg);
+    svgEl('circle', { cx: 206, cy: 138, r: 78, fill: 'url(#identity-wash)', opacity: '0.68' }, step2Layer);
+    drawWoodenStool(step2Layer);
+    drawFoldedCloak(step2Layer);
+    drawSupperTable(step2Layer);
+    // Quiet basin waiting near floor
+    drawWaterBasin(step2Layer, 250, 222, 0.84);
+
+    // Jesus in simple cream tunic, inclining gently forward as He wraps the towel
+    svgEl('ellipse', { cx: 196, cy: 233, rx: 28, ry: 4.2, fill: '#E2DACB', opacity: '0.78' }, step2Layer);
+    svgEl('ellipse', { cx: 187, cy: 229, rx: 6.5, ry: 3, fill: '#9A7B56', stroke: '#2C2416', 'stroke-width': '1.3' }, step2Layer);
+    svgEl('ellipse', { cx: 207, cy: 229, rx: 6.5, ry: 3, fill: '#9A7B56', stroke: '#2C2416', 'stroke-width': '1.3' }, step2Layer);
+    // Simple inner tunic (outer garment laid aside!)
+    svgEl('path', {
+      d: 'M 183 108 C 190 105 208 105 216 112 L 222 226 L 176 226 L 178 134 Z',
+      fill: '#FAF6EC',
+      stroke: '#2C2416',
+      'stroke-width': '1.7',
+      'stroke-linejoin': 'round'
+    }, step2Layer);
+    svgEl('path', {
+      d: 'M 192 128 L 188 224 M 208 128 L 210 224',
+      stroke: '#D2C6B2',
+      'stroke-width': '1.2',
+      'stroke-linecap': 'round'
+    }, step2Layer);
+    // Signature woven linen towel wrapped around waist & held forward in His hands
+    svgEl('path', {
+      d: 'M 177 154 C 192 158 210 158 220 153 L 236 184 C 231 190 218 190 213 185 L 204 164 C 194 166 184 165 176 162 Z',
+      fill: '#FFFDF7',
+      stroke: '#2C2416',
+      'stroke-width': '1.6',
+      'stroke-linejoin': 'round'
+    }, step2Layer);
+    // Woven forest-green and gold stripe bands on towel end
+    svgEl('path', { d: 'M 215 178 L 231 174', stroke: '#1F684A', 'stroke-width': '2.6', 'stroke-linecap': 'round' }, step2Layer);
+    svgEl('path', { d: 'M 217 183 L 233 179', stroke: '#C48F10', 'stroke-width': '2.1', 'stroke-linecap': 'round' }, step2Layer);
+    // Arms and hands tying/holding the towel
+    svgEl('path', {
+      d: 'M 182 118 C 176 134 182 148 196 156 M 214 118 C 222 134 220 148 209 156',
+      fill: 'none',
+      stroke: '#2C2416',
+      'stroke-width': '1.7',
+      'stroke-linecap': 'round'
+    }, step2Layer);
+    svgEl('circle', { cx: 196, cy: 157, r: 4.5, fill: '#F3E0C6', stroke: '#2C2416', 'stroke-width': '1.4' }, step2Layer);
+    svgEl('circle', { cx: 209, cy: 157, r: 4.5, fill: '#F3E0C6', stroke: '#2C2416', 'stroke-width': '1.4' }, step2Layer);
+    // Head gently inclined slightly lower (cy = 88)
+    svgEl('circle', { cx: 202, cy: 88, r: 13.5, fill: '#F3E0C6', stroke: '#2C2416', 'stroke-width': '1.7' }, step2Layer);
+    svgEl('path', {
+      d: 'M 209 78 C 201 72 189 77 188 88 C 187 95 190 101 197 102 C 194 95 195 85 203 82 Z',
+      fill: '#3C2F22'
+    }, step2Layer);
+    svgEl('path', {
+      d: 'M 202 100 C 207 101 212 98 214 93',
+      fill: 'none',
+      stroke: '#3C2F22',
+      'stroke-width': '1.8',
+      'stroke-linecap': 'round'
+    }, step2Layer);
+
+    // =========================================================================
+    // LAYER 3: STEP 3 - CLIMB DOWN (Jesus kneeling at the basin with disciple)
+    // =========================================================================
+    var step3Layer = svgEl('g', { id: 'layer-step-3', class: 'scene-layer' }, svg);
+    // Soft quiet blue-gold wash centering the servant act
+    svgEl('ellipse', { cx: 238, cy: 184, rx: 112, ry: 68, fill: 'url(#identity-wash)', opacity: '0.62' }, step3Layer);
+    // Laid-aside cloak on wooden stool stays quietly on the left
+    var stoolQuiet = svgEl('g', { opacity: '0.86' }, step3Layer);
+    drawWoodenStool(stoolQuiet);
+    drawFoldedCloak(stoolQuiet);
+
+    // Gentle Studio Wash downward poise curve (no ladder, no clunky arrow!)
+    svgEl('path', {
+      id: 'downward-arc',
+      d: 'M 196 86 C 182 106 182 122 192 134',
+      fill: 'none',
+      stroke: '#C48F10',
+      'stroke-width': '1.8',
+      'stroke-dasharray': '4 4',
+      'stroke-linecap': 'round',
+      opacity: '0.62'
+    }, step3Layer);
+    svgEl('path', {
+      d: 'M 186 129 L 192 135 L 197 128',
+      fill: 'none',
+      stroke: '#C48F10',
+      'stroke-width': '1.8',
+      'stroke-linecap': 'round',
+      'stroke-linejoin': 'round',
+      opacity: '0.7'
+    }, step3Layer);
+
+    drawKneelingJesusAndDisciple(step3Layer, { includeTowel: true });
+
+    // =========================================================================
+    // LAYER 4: STEP 4 - LIFT SOMEONE UP (Scene widens; towel connects to neighbor!)
+    // =========================================================================
+    var step4Layer = svgEl('g', { id: 'layer-step-4', class: 'scene-layer' }, svg);
+
+    // Soft Studio Wash glow behind the everyday act of love on the right
+    svgEl('ellipse', { cx: 318, cy: 152, rx: 112, ry: 90, fill: 'url(#spark-wash)' }, step4Layer);
+
+    // Softened memory vignette of Jesus kneeling at the basin on the left
+    var memoryScene = svgEl('g', {
+      id: 'memory-vignette',
+      transform: 'translate(-44, 52) scale(0.74)',
+      opacity: '0.32'
+    }, step4Layer);
+    drawKneelingJesusAndDisciple(memoryScene, { includeTowel: false });
+
+    // Vivid signature towel remaining right at Jesus' kneeling hands on the left!
+    var leftTowel = svgEl('g', {
+      id: 'memory-towel-vivid',
+      transform: 'translate(-44, 52) scale(0.74)'
+    }, step4Layer);
+    svgEl('path', {
+      d: 'M 164 194 C 178 197 196 196 206 192 L 222 212 C 216 218 206 219 200 214 L 188 202 C 178 204 168 203 162 200 Z',
+      fill: '#FFFDF7',
+      stroke: '#2C2416',
+      'stroke-width': '1.8',
+      'stroke-linejoin': 'round'
+    }, leftTowel);
+    svgEl('path', { d: 'M 202 209 L 216 205', stroke: '#1F684A', 'stroke-width': '2.6', 'stroke-linecap': 'round' }, leftTowel);
+    svgEl('path', { d: 'M 205 213 L 219 209', stroke: '#C48F10', 'stroke-width': '2.2', 'stroke-linecap': 'round' }, leftTowel);
+
+    // EVERYDAY SCENE (RIGHT): Carrying groceries up to a welcoming neighbor's doorway!
+    // Simple home wall & warm open doorway on the far right
+    svgEl('path', {
+      d: 'M 334 54 L 418 54 L 418 231 L 334 231 Z',
+      fill: '#F8F4EB',
+      stroke: '#D6CCB9',
+      'stroke-width': '1.4'
+    }, step4Layer);
+    // Warm sunlit open doorway interior
+    svgEl('rect', {
+      x: 346,
+      y: 74,
+      width: 56,
+      height: 144,
+      rx: 2,
+      fill: 'url(#door-glow)',
+      stroke: '#2C2416',
+      'stroke-width': '1.6'
+    }, step4Layer);
+    // Porch step
+    svgEl('rect', {
+      x: 322,
+      y: 218,
+      width: 96,
+      height: 13,
+      rx: 2,
+      fill: '#E5DCCB',
+      stroke: '#2C2416',
+      'stroke-width': '1.5'
+    }, step4Layer);
+
+    // Neighbor standing warmly in the doorway (filled Studio Wash figure, zero stick legs!)
+    // Warm trousers/hem & shoes on porch step
+    svgEl('path', {
+      d: 'M 360 194 L 359 216 L 368 216 L 370 194 Z M 374 194 L 376 216 L 385 216 L 383 194 Z',
+      fill: '#6E6559',
+      stroke: '#2C2416',
+      'stroke-width': '1.4',
+      'stroke-linejoin': 'round'
+    }, step4Layer);
+    svgEl('ellipse', { cx: 363, cy: 217, rx: 6, ry: 2.6, fill: '#2C2416' }, step4Layer);
+    svgEl('ellipse', { cx: 380, cy: 217, rx: 6, ry: 2.6, fill: '#2C2416' }, step4Layer);
+    // Warm ochre/cream cardigan coat
+    svgEl('path', {
+      d: 'M 360 132 C 366 128 380 128 386 136 L 391 198 L 354 198 Z',
+      fill: '#EFE4CE',
+      stroke: '#2C2416',
+      'stroke-width': '1.6',
+      'stroke-linejoin': 'round'
+    }, step4Layer);
+    // Neighbor sleeve & warm welcoming hand
+    svgEl('path', {
+      d: 'M 361 142 C 352 149 344 152 336 151',
+      fill: 'none',
+      stroke: '#EFE4CE',
+      'stroke-width': '7',
+      'stroke-linecap': 'round'
+    }, step4Layer);
+    svgEl('path', {
+      d: 'M 362 138 C 352 145 344 148 336 147 M 359 146 C 351 153 343 156 335 155',
+      fill: 'none',
+      stroke: '#2C2416',
+      'stroke-width': '1.5',
+      'stroke-linecap': 'round'
+    }, step4Layer);
+    svgEl('circle', { cx: 333, cy: 151, r: 4.2, fill: '#F3E0C6', stroke: '#2C2416', 'stroke-width': '1.3' }, step4Layer);
+    // Neighbor head with soft silver hair & warm smile
+    svgEl('circle', { cx: 372, cy: 115, r: 12, fill: '#F3E0C6', stroke: '#2C2416', 'stroke-width': '1.6' }, step4Layer);
+    svgEl('path', {
+      d: 'M 364 106 C 370 100 382 103 384 113 C 385 119 382 124 377 125 C 378 116 372 110 364 110 Z',
+      fill: '#9C9488'
+    }, step4Layer);
+    svgEl('path', {
+      d: 'M 363 119 Q 366 122 369 119',
+      fill: 'none',
+      stroke: '#2C2416',
+      'stroke-width': '1.2',
+      'stroke-linecap': 'round'
+    }, step4Layer);
+
+    // Helper / follower of Jesus stepping up with groceries (filled Studio Wash legs & shoes!)
+    svgEl('ellipse', { cx: 266, cy: 233, rx: 32, ry: 4, fill: '#DDD5C5', opacity: '0.75' }, step4Layer);
+    // Filled warm charcoal trousers stepping gently forward
+    svgEl('path', {
+      d: 'M 252 186 L 243 227 L 253 228 L 263 188 Z',
+      fill: '#50473C',
+      stroke: '#2C2416',
+      'stroke-width': '1.5',
+      'stroke-linejoin': 'round'
+    }, step4Layer);
+    svgEl('path', {
+      d: 'M 266 186 L 278 226 L 288 225 L 277 186 Z',
+      fill: '#5D5347',
+      stroke: '#2C2416',
+      'stroke-width': '1.5',
+      'stroke-linejoin': 'round'
+    }, step4Layer);
+    svgEl('ellipse', { cx: 250, cy: 229, rx: 7, ry: 3, fill: '#2C2416' }, step4Layer);
+    svgEl('ellipse', { cx: 286, cy: 227, rx: 7.2, ry: 3, fill: '#2C2416' }, step4Layer);
+    // Course 203 Forest Green jacket/shirt
+    svgEl('path', {
+      d: 'M 250 124 C 258 120 272 121 280 128 L 284 190 L 246 190 Z',
+      fill: '#1F684A',
+      stroke: '#2C2416',
+      'stroke-width': '1.7',
+      'stroke-linejoin': 'round'
+    }, step4Layer);
+    // Helper head facing neighbor with warmth
+    svgEl('circle', { cx: 268, cy: 107, r: 12.5, fill: '#F3E0C6', stroke: '#2C2416', 'stroke-width': '1.6' }, step4Layer);
+    svgEl('path', {
+      d: 'M 275 98 C 268 92 256 95 255 106 C 254 112 257 117 262 118 C 260 110 264 103 274 102 Z',
+      fill: '#4A3B2C'
+    }, step4Layer);
+
+    // Full brown paper grocery bag
+    svgEl('path', {
+      d: 'M 294 139 C 290 127 298 121 303 129 C 306 121 313 126 308 139 Z',
+      fill: '#3C8C66',
+      stroke: '#164E37',
+      'stroke-width': '1.3',
+      'stroke-linejoin': 'round'
+    }, step4Layer);
+    svgEl('path', {
+      d: 'M 309 139 L 316 120 C 319 117 325 119 323 125 L 318 139 Z',
+      fill: '#E5BC74',
+      stroke: '#7D5604',
+      'stroke-width': '1.3',
+      'stroke-linejoin': 'round'
+    }, step4Layer);
+    svgEl('path', {
+      d: 'M 288 138 L 323 138 L 320 180 L 291 180 Z',
+      fill: '#E3C89E',
+      stroke: '#2C2416',
+      'stroke-width': '1.6',
+      'stroke-linejoin': 'round'
+    }, step4Layer);
+    svgEl('path', {
+      d: 'M 296 139 L 297 179 M 315 139 L 314 179',
+      stroke: '#B59364',
+      'stroke-width': '1.1',
+      opacity: '0.75'
+    }, step4Layer);
+
+    // Helper sleeve cradling the grocery bag
+    svgEl('path', {
+      d: 'M 274 137 C 282 151 287 165 305 169',
+      fill: 'none',
+      stroke: '#1F684A',
+      'stroke-width': '8',
+      'stroke-linecap': 'round'
+    }, step4Layer);
+    svgEl('path', {
+      d: 'M 274 133 C 283 147 289 161 307 165 M 271 141 C 280 155 286 169 304 173',
+      fill: 'none',
+      stroke: '#2C2416',
+      'stroke-width': '1.5',
+      'stroke-linecap': 'round'
+    }, step4Layer);
+    // Woven linen kitchen/serving towel folded softly over the helper's forearm (echoing Jesus' exact towel!)
+    svgEl('path', {
+      d: 'M 279 154 C 285 152 292 155 294 161 L 292 182 C 287 185 281 184 277 181 Z',
+      fill: '#FFFDF7',
+      stroke: '#2C2416',
+      'stroke-width': '1.4',
+      'stroke-linejoin': 'round'
+    }, step4Layer);
+    svgEl('path', { d: 'M 279 175 L 291 176', stroke: '#1F684A', 'stroke-width': '2', 'stroke-linecap': 'round' }, step4Layer);
+    svgEl('path', { d: 'M 279 179 L 290 180', stroke: '#C48F10', 'stroke-width': '1.6', 'stroke-linecap': 'round' }, step4Layer);
+    svgEl('circle', { cx: 309, cy: 169, r: 4.5, fill: '#F3E0C6', stroke: '#2C2416', 'stroke-width': '1.4' }, step4Layer);
+
+    // THE SPARK: Subtle luminous golden-green woven threads sweeping gently from Jesus' towel on the left to the helper's towel on the right!
+    var towelBridge = svgEl('g', { id: 'towel-spark' }, step4Layer);
+    svgEl('path', {
+      id: 'towel-thread-green',
+      d: 'M 118 206 C 166 226 218 220 274 176',
+      fill: 'none',
+      stroke: '#1F684A',
+      'stroke-width': '2.2',
+      'stroke-linecap': 'round',
+      opacity: '0.78'
+    }, towelBridge);
+    svgEl('path', {
+      id: 'towel-thread-gold',
+      d: 'M 116 212 C 168 232 222 226 276 181',
+      fill: 'none',
+      stroke: '#C48F10',
+      'stroke-width': '1.7',
+      'stroke-linecap': 'round',
+      opacity: '0.82'
+    }, towelBridge);
+
+    return {
+      cue: cue,
+      svgTitle: svgTitle,
+      svgDesc: svgDesc,
+      floorBase: floorBase,
+      step1Layer: step1Layer,
+      step2Layer: step2Layer,
+      step3Layer: step3Layer,
+      step4Layer: step4Layer,
+      downwardArc: step3Layer.querySelector('#downward-arc'),
+      towelGreen: towelBridge.querySelector('#towel-thread-green'),
+      towelGold: towelBridge.querySelector('#towel-thread-gold')
+    };
+  }
+
+  function init() {
+    var host = document.getElementById('scene-root');
+    if (!host) return;
+
+    var bar = el('div', { class: 'title-bar' }, host);
+    el('h1', { text: 'Love Through Serving' }, bar);
+    el('span', { class: 'course-tag', text: '203-04' }, bar);
+
+    var bundle = buildStage(host);
+
+    var strip = el('div', { class: 'step-strip', role: 'group', 'aria-label': 'Love Through Serving steps' }, host);
+    var dotButtons = STEPS.map(function (st, idx) {
+      var btn = el('button', {
+        type: 'button',
+        class: 'step-dot',
+        'data-step': String(idx),
+        'aria-label': st.dotLabel,
+        'aria-pressed': 'false'
+      }, strip);
+      btn.style.setProperty('--dot-color', st.color);
+      el('span', { class: 'step-dot-fill' }, btn);
+      return btn;
+    });
+
+    var cardArea = el('div', { class: 'card-area' }, host);
+    var cardBox = el('div', { class: 'verse-card' }, cardArea);
+    el('div', { class: 'verse-card-bar' }, cardBox);
+    var contentEl = el('div', {
+      id: 'card-content',
+      class: 'verse-card-content',
+      'aria-live': 'polite'
+    }, cardBox);
+    var headingEl = el('h2', { class: 'card-heading' }, contentEl);
+    var quoteWrap = el('p', { class: 'card-quote' }, contentEl);
+    var quoteTextEl = el('span', {}, quoteWrap);
+    var refEl = el('span', { class: 'card-ref' }, quoteWrap);
+    var noteEl = el('p', { class: 'card-note' }, contentEl);
+
+    var navBar = el('div', { class: 'nav-bar' }, cardArea);
+    var prevBtn = el('button', { id: 'prev-btn', type: 'button', class: 'nav-btn', text: '\u2190 Back' }, navBar);
+    var countEl = el('span', { class: 'step-count', text: 'Ready' }, navBar);
+    var nextBtn = el('button', { id: 'next-btn', type: 'button', class: 'nav-btn primary', text: 'Begin \u2192' }, navBar);
+
+    var currentStep = 0;
+    var activeRaf = null;
+    var reducedMotionQuery = window.matchMedia
+      ? window.matchMedia('(prefers-reduced-motion: reduce)')
+      : { matches: false };
+
+    function stopAnim() {
+      if (activeRaf !== null) {
+        cancelAnimationFrame(activeRaf);
+        activeRaf = null;
+      }
+    }
+
+    function applyStaticLayers(stepIdx) {
+      bundle.cue.classList.toggle('is-hidden', stepIdx > 0);
+      bundle.floorBase.classList.toggle('is-visible', stepIdx > 0);
+      bundle.step1Layer.classList.toggle('is-visible', stepIdx === 1);
+      bundle.step2Layer.classList.toggle('is-visible', stepIdx === 2);
+      bundle.step3Layer.classList.toggle('is-visible', stepIdx === 3);
+      bundle.step4Layer.classList.toggle('is-visible', stepIdx === 4);
+    }
+
+    function snapStroke(pathEl) {
+      if (!pathEl) return;
+      pathEl.style.strokeDasharray = '';
+      pathEl.style.strokeDashoffset = '';
+    }
+
+    function snapFinalMotion() {
+      snapStroke(bundle.towelGreen);
+      snapStroke(bundle.towelGold);
+    }
+
+    function animateStep(stepIdx) {
+      if (stepIdx !== 4) {
+        host.setAttribute('data-step-dur', '0');
+        snapFinalMotion();
+        return;
+      }
+
+      // Step 4 spark: trace Jesus' woven towel threads smoothly from left to right
+      var paths = [bundle.towelGreen, bundle.towelGold].filter(Boolean);
+      var lengths = paths.map(function (p) { return p.getTotalLength(); });
+      var dur = 820;
+      host.setAttribute('data-step-dur', String(dur));
+      paths.forEach(function (p, i) {
+        p.style.strokeDasharray = String(lengths[i]);
+        p.style.strokeDashoffset = String(lengths[i]);
+      });
+
+      var t0 = performance.now();
+      var frame = function (now) {
+        var p = Math.min(1, (now - t0) / dur);
+        var eased = 1 - Math.pow(1 - p, 2);
+        paths.forEach(function (pathEl, i) {
+          pathEl.style.strokeDashoffset = String((lengths[i] * (1 - eased)).toFixed(2));
+        });
+        if (p < 1) {
+          activeRaf = requestAnimationFrame(frame);
+        } else {
+          snapFinalMotion();
+          activeRaf = null;
+        }
+      };
+      activeRaf = requestAnimationFrame(frame);
+    }
+
+    function goTo(nextIdx) {
+      stopAnim();
+      var prevIdx = currentStep;
+      var goingForwardOne = nextIdx === prevIdx + 1;
+      var instant = reducedMotionQuery.matches || !goingForwardOne || nextIdx === 0;
+
+      host.classList.toggle('is-instant', instant);
+      applyStaticLayers(nextIdx);
+
+      if (instant) {
+        host.setAttribute('data-step-dur', '0');
+        snapFinalMotion();
+      } else {
+        animateStep(nextIdx);
+      }
+
+      currentStep = nextIdx;
+      var step = STEPS[currentStep];
+      host.setAttribute('data-step', String(currentStep));
+      host.style.setProperty('--step-color', step.color);
+      host.style.setProperty('--step-dark', step.dark);
+      bundle.svgDesc.textContent = step.desc;
+
+      headingEl.textContent = step.heading;
+      quoteTextEl.textContent = step.quote;
+      refEl.textContent = '(' + step.ref + ')';
+      noteEl.textContent = step.note;
+
+      dotButtons.forEach(function (btn, idx) {
+        btn.classList.toggle('active', idx === currentStep);
+        btn.classList.toggle('passed', idx < currentStep);
+        btn.setAttribute('aria-pressed', idx === currentStep ? 'true' : 'false');
+      });
+
+      countEl.textContent = currentStep === 0 ? 'Ready' : ('Step ' + currentStep + ' of ' + (STEPS.length - 1));
+      prevBtn.disabled = currentStep === 0;
+      if (currentStep === 0) {
+        nextBtn.textContent = 'Begin \u2192';
+      } else if (currentStep === STEPS.length - 1) {
+        nextBtn.textContent = '\u21BB Start Over';
+      } else {
+        nextBtn.textContent = 'Next \u2192';
+      }
+    }
+
+    dotButtons.forEach(function (btn, idx) {
+      btn.addEventListener('click', function () {
+        goTo(idx);
+      });
+    });
+
+    prevBtn.addEventListener('click', function () {
+      if (currentStep > 0) goTo(currentStep - 1);
+    });
+    nextBtn.addEventListener('click', function () {
+      goTo(currentStep === STEPS.length - 1 ? 0 : currentStep + 1);
+    });
+
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'ArrowRight' && currentStep < STEPS.length - 1) {
+        goTo(currentStep + 1);
+      } else if (event.key === 'ArrowLeft' && currentStep > 0) {
+        goTo(currentStep - 1);
+      }
+    });
+
+    var lastWidth = window.innerWidth;
+    var measuredWidth = 0;
+    function fitCardHeight() {
+      if (!contentEl || contentEl.clientWidth === measuredWidth) return;
+      measuredWidth = contentEl.clientWidth;
+      var keepH = headingEl.textContent;
+      var keepQ = quoteTextEl.textContent;
+      var keepR = refEl.textContent;
+      var keepN = noteEl.textContent;
+      var tallest = 0;
+      document.documentElement.style.setProperty('--card-h', 'auto');
+      STEPS.forEach(function (st) {
+        headingEl.textContent = st.heading;
+        quoteTextEl.textContent = st.quote;
+        refEl.textContent = '(' + st.ref + ')';
+        noteEl.textContent = st.note;
+        tallest = Math.max(tallest, contentEl.offsetHeight);
+      });
+      headingEl.textContent = keepH;
+      quoteTextEl.textContent = keepQ;
+      refEl.textContent = keepR;
+      noteEl.textContent = keepN;
+      document.documentElement.style.setProperty('--card-h', Math.max(100, Math.ceil(tallest)) + 'px');
+    }
+
+    var resizeTimer = null;
+    window.addEventListener('resize', function () {
+      if (window.innerWidth === lastWidth) return;
+      lastWidth = window.innerWidth;
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(fitCardHeight, 120);
+    });
+
+    goTo(0);
+    fitCardHeight();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
+</body>
+</html>
