@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Open Hands</title>
+<style>
+:root {
+  --ink: #2C2416;
+  --muted: #6E6559;
+  --tray: #F6F4EE;
+  --border: #EBE5D9;
+  --step-color: #2C2416;
+  --step-dark: #2C2416;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: Georgia, Cambria, serif;
+  background: #F8F6F1;
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+.widget-outer {
+  background: #FFFFFF;
+  border-radius: 0;
+  overflow: hidden;
+  box-shadow: none;
+  border: none;
+  max-width: 100%;
+  width: 100%;
+  margin: 0;
+  position: relative;
+}
+
+@media (min-width: 560px) {
+  body {
+    padding: 16px;
+    background: #F8F6F1;
+  }
+  .widget-outer {
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(44, 36, 22, 0.08);
+    border: 1px solid #EBE5D9;
+    max-width: 460px;
+    margin: 0 auto;
+  }
+}
+
+.title-bar {
+  background: #2C2416;
+  padding: 8px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.title-bar h1 {
+  font: 600 17px/1.15 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #FAF8F3;
+  letter-spacing: 0.2px;
+  margin: 0;
+}
+
+.course-tag {
+  font: 600 11px/1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  letter-spacing: 0.9px;
+  text-transform: uppercase;
+  color: #E5DEC9;
+  white-space: nowrap;
+}
+
+.stage {
+  background: #FFFFFF;
+  padding: 2px 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.hands-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.fade-part {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.fade-part.is-visible {
+  opacity: 1;
+}
+
+.fade-part.is-soft {
+  opacity: 0.45;
+}
+
+.obj-label {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.1px;
+  paint-order: stroke;
+  stroke: #FFFFFF;
+  stroke-width: 4px;
+  stroke-linejoin: round;
+}
+
+.coin-mark {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 12.5px;
+  font-weight: 700;
+  fill: #7D5604;
+}
+
+.step-strip {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 12px 4px;
+  background: var(--tray);
+  border-bottom: 1px solid var(--border);
+}
+
+.step-dot {
+  appearance: none;
+  min-inline-size: 28px;
+  min-block-size: 28px;
+  padding: 4px;
+  border: none;
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.step-dot-fill {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2.5px solid var(--dot-color, var(--ink));
+  background: #FFFFFF;
+}
+
+.step-dot.passed .step-dot-fill {
+  background: rgba(44, 36, 22, 0.14);
+}
+
+.step-dot.active .step-dot-fill {
+  background: var(--dot-color, var(--ink));
+  transform: scale(1.12);
+}
+
+.card-area {
+  background: var(--tray);
+  padding: 6px 12px 9px;
+}
+
+.verse-card {
+  background: #FFFFFF;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(44, 36, 22, 0.06);
+  border: 1px solid var(--border);
+}
+
+.verse-card-bar {
+  height: 4px;
+  background: var(--step-color);
+}
+
+.verse-card-content {
+  padding: 9px 14px 10px;
+  min-height: var(--card-h, 118px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card-heading {
+  font: 700 15.5px/1.22 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--step-dark);
+  margin: 0 0 4px;
+}
+
+.card-verse {
+  font: 400 13.5px/1.4 Georgia, Cambria, serif;
+  color: var(--ink);
+  margin: 0 0 5px;
+}
+
+.verse-ref {
+  font: 600 11.5px/1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--muted);
+  margin-left: 4px;
+  white-space: nowrap;
+}
+
+.card-note {
+  font: 400 12.5px/1.38 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #463D2F;
+  margin: 0;
+}
+
+.nav-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-top: 7px;
+}
+
+.nav-btn {
+  appearance: none;
+  min-block-size: 44px;
+  min-inline-size: 104px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font: 600 14px/1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  cursor: pointer;
+  border: 1.5px solid #D4CFC4;
+  background: #FFFFFF;
+  color: var(--ink);
+}
+
+.nav-btn.primary {
+  background: var(--step-color);
+  border-color: var(--step-color);
+  color: #FFFFFF;
+}
+
+.nav-btn:disabled {
+  opacity: 0.36;
+  cursor: default;
+}
+
+.step-count {
+  font: 600 12px/1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--muted);
+}
+
+button:focus-visible {
+  outline: 3px solid #E0A526;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .widget-outer:not(.is-instant) .fade-part {
+    transition: opacity 0.36s ease;
+  }
+  .widget-outer .step-dot-fill {
+    transition: background-color 0.22s ease, border-color 0.22s ease, transform 0.22s ease;
+  }
+  .widget-outer .nav-btn.primary,
+  .widget-outer .verse-card-bar,
+  .widget-outer .card-heading {
+    transition: background-color 0.24s ease, border-color 0.24s ease, color 0.24s ease;
+  }
+}
+
+#measure-host {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+</style>
+</head>
+<body>
+<main class="widget-outer" id="widget" data-step="0" data-step-dur="0">
+  <header class="title-bar">
+    <h1>Open Hands</h1>
+    <span class="course-tag">202-07</span>
+  </header>
+
+  <div class="stage">
+    <svg class="hands-svg" id="hands-svg" viewBox="0 0 440 292" width="100%" role="img" aria-labelledby="svg-title svg-desc">
+      <title id="svg-title">Open Hands</title>
+      <desc id="svg-desc">Clean white stage ready to show God's open hand, your hand, and another person's hand passing on time, talents, and treasure.</desc>
+
+      <defs>
+        <mask id="mask-top-1" maskUnits="userSpaceOnUse" x="0" y="0" width="440" height="292">
+          <rect x="0" y="0" width="440" height="292" fill="#000000" />
+          <path id="mpath-top-1" d="M196,76 Q174,94 164,116" fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" />
+        </mask>
+        <mask id="mask-top-2" maskUnits="userSpaceOnUse" x="0" y="0" width="440" height="292">
+          <rect x="0" y="0" width="440" height="292" fill="#000000" />
+          <path id="mpath-top-2" d="M220,74 L220,114" fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" />
+        </mask>
+        <mask id="mask-top-3" maskUnits="userSpaceOnUse" x="0" y="0" width="440" height="292">
+          <rect x="0" y="0" width="440" height="292" fill="#000000" />
+          <path id="mpath-top-3" d="M244,74 Q266,92 276,116" fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" />
+        </mask>
+
+        <mask id="mask-bot-1" maskUnits="userSpaceOnUse" x="0" y="0" width="440" height="292">
+          <rect x="0" y="0" width="440" height="292" fill="#000000" />
+          <path id="mpath-bot-1" d="M194,166 Q172,184 162,206" fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" />
+        </mask>
+        <mask id="mask-bot-2" maskUnits="userSpaceOnUse" x="0" y="0" width="440" height="292">
+          <rect x="0" y="0" width="440" height="292" fill="#000000" />
+          <path id="mpath-bot-2" d="M220,168 L220,204" fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" />
+        </mask>
+        <mask id="mask-bot-3" maskUnits="userSpaceOnUse" x="0" y="0" width="440" height="292">
+          <rect x="0" y="0" width="440" height="292" fill="#000000" />
+          <path id="mpath-bot-3" d="M246,166 Q268,184 278,206" fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" />
+        </mask>
+      </defs>
+
+      <!-- Final step crisp Studio Wash double-hairline frame (drawn at 185 px/s, no glow) -->
+      <g id="finish-frame" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path id="frame-outer" stroke="#A8760A" stroke-width="2.4" stroke-opacity="0.72"
+          d="M22,7 L418,7 Q432,7 432,21 L432,271 Q432,285 418,285 L22,285 Q8,285 8,271 L8,21 Q8,7 22,7 Z" />
+        <path id="frame-inner" stroke="#2A5B7C" stroke-width="1" stroke-opacity="0.45"
+          d="M24,11.5 L416,11.5 Q427.5,11.5 427.5,23 L427.5,269 Q427.5,280.5 416,280.5 L24,280.5 Q12.5,280.5 12.5,269 L12.5,23 Q12.5,11.5 24,11.5 Z" />
+      </g>
+
+      <!-- Dotted flow paths: God's hand -> Your hand -->
+      <g id="paths-top" fill="none" stroke-width="2" stroke-linecap="round" stroke-dasharray="3.5 5">
+        <path id="dpath-top-1" d="M196,76 Q174,94 164,116" stroke="#1F684A" mask="url(#mask-top-1)" />
+        <path id="dpath-top-2" d="M220,74 L220,114" stroke="#5F4684" mask="url(#mask-top-2)" />
+        <path id="dpath-top-3" d="M244,74 Q266,92 276,116" stroke="#A8760A" mask="url(#mask-top-3)" />
+      </g>
+
+      <!-- Dotted flow paths: Your open hand -> Another person's hand -->
+      <g id="paths-bot" fill="none" stroke-width="2" stroke-linecap="round" stroke-dasharray="3.5 5">
+        <path id="dpath-bot-1" d="M194,166 Q172,184 162,206" stroke="#1F684A" mask="url(#mask-bot-1)" />
+        <path id="dpath-bot-2" d="M220,168 L220,204" stroke="#5F4684" mask="url(#mask-bot-2)" />
+        <path id="dpath-bot-3" d="M246,166 Q268,184 278,206" stroke="#A8760A" mask="url(#mask-bot-3)" />
+      </g>
+
+      <!-- HAND 1: God's Hand at top (Down Gold wash, crisp gold rays, palm open and tipped down) -->
+      <g id="hand-god" class="fade-part" transform="translate(0, 8)">
+        <!-- Short crisp gold rays (no glow, well inside top frame) -->
+        <g id="god-rays" fill="none" stroke="#C48F10" stroke-width="1.65" stroke-linecap="round">
+          <path id="ray-1" d="M174,23 L167,15" />
+          <path id="ray-2" d="M196,20 L194,11" />
+          <path id="ray-3" d="M220,19 L220,10" />
+          <path id="ray-4" d="M244,22 L248,13" />
+          <path id="ray-5" d="M266,29 L274,22" />
+        </g>
+
+        <!-- Soft sunlit halo wash behind palm -->
+        <ellipse cx="218" cy="48" rx="74" ry="26" fill="#FCF2D6" fill-opacity="0.52" />
+
+        <!-- Clean friendly open hand entering from upper-left, tipped downward -->
+        <path d="M114,29 L152,29 C168,26 196,24 222,29 L264,41 C271,43 272,50 264,51 L236,46 L262,53 C268,55 267,61 259,60 L232,54 L252,61 C257,63 255,69 248,67 L224,60 C216,60 207,61 200,64 L188,71 C182,74 176,68 181,62 L189,54 C178,53 166,53 152,51 L114,51 Z"
+          fill="#FCF2D6" stroke="#2C2416" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+        <!-- Cuff line & gentle gold inner accent lines -->
+        <line x1="126" y1="29" x2="126" y2="51" stroke="#A8760A" stroke-width="1.4" />
+        <path d="M192,43 Q214,42 234,46" fill="none" stroke="#A8760A" stroke-width="1.2" opacity="0.7" stroke-linecap="round" />
+        <path d="M196,51 Q214,51 230,54" fill="none" stroke="#A8760A" stroke-width="1.2" opacity="0.55" stroke-linecap="round" />
+      </g>
+
+      <!-- HAND 2A: Your Hand - Open & Cupped, Palm UP (Step 2) -->
+      <g id="hand-you-cupped" class="fade-part">
+        <path d="M326,138 L286,138 C275,137 265,132 256,127 C249,123 243,129 249,134 L258,142 C244,147 224,149 204,146 L178,139 C171,137 169,144 176,147 L199,153 L176,151 C170,151 170,158 178,159 L204,162 C232,167 262,165 286,159 L326,159 Z"
+          fill="#F4EFE4" stroke="#2C2416" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+        <line x1="314" y1="138" x2="314" y2="159" stroke="#8A7E6D" stroke-width="1.4" />
+        <path d="M204,154 Q232,157 258,152" fill="none" stroke="#8A7E6D" stroke-width="1.2" opacity="0.65" stroke-linecap="round" />
+      </g>
+
+      <!-- HAND 2B: Your Hand - Closed Fist around all three (Step 3) -->
+      <g id="hand-you-fist" class="fade-part">
+        <ellipse cx="228" cy="145" rx="54" ry="26" fill="#EFE9DC" fill-opacity="0.45" />
+        <!-- Closed rounded fist entering from right, tight and calm -->
+        <path d="M326,138 L274,138 C264,126 248,121 224,121 C201,121 189,131 189,145 C189,159 201,168 225,168 C249,168 264,164 274,159 L326,159 Z"
+          fill="#EFE9DC" stroke="#2C2416" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" />
+        <line x1="314" y1="138" x2="314" y2="159" stroke="#8A7E6D" stroke-width="1.4" />
+        <!-- Curled fingers tucked tightly into the fist -->
+        <path d="M204,123 C200,132 200,156 205,166" fill="none" stroke="#2C2416" stroke-width="1.5" stroke-linecap="round" />
+        <path d="M218,122 C215,132 215,157 219,167" fill="none" stroke="#2C2416" stroke-width="1.5" stroke-linecap="round" />
+        <path d="M232,122 C230,133 230,157 234,167" fill="none" stroke="#2C2416" stroke-width="1.5" stroke-linecap="round" />
+        <!-- Thumb wrapped snugly across the closed fingers -->
+        <path d="M254,132 C240,131 222,133 210,137 C203,139 204,149 213,149 L244,149 C252,149 258,145 258,139"
+          fill="#EAE2D1" stroke="#2C2416" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+        <!-- Very faint outline hint of the three objects trapped inside -->
+        <g opacity="0.16" fill="none" stroke="#2C2416" stroke-width="1.1">
+          <circle cx="209" cy="157" r="4.5" />
+          <line x1="224" y1="154" x2="233" y2="161" />
+          <circle cx="244" cy="157" r="4.5" />
+        </g>
+      </g>
+
+      <!-- HAND 2C: Your Hand - Open & Tipped Downward to Pass On (Step 4 & Step 5) -->
+      <g id="hand-you-giving" class="fade-part">
+        <path d="M326,129 L288,129 C272,126 244,124 218,129 L176,141 C169,143 168,150 176,151 L204,146 L178,153 C172,155 173,161 181,160 L208,154 L188,161 C183,163 185,169 192,167 L216,160 C224,160 233,161 240,164 L252,171 C258,174 264,168 259,162 L251,154 C262,153 274,153 288,151 L326,151 Z"
+          fill="#F4EFE4" stroke="#2C2416" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+        <line x1="314" y1="129" x2="314" y2="151" stroke="#8A7E6D" stroke-width="1.4" />
+        <path d="M248,143 Q226,142 206,146" fill="none" stroke="#8A7E6D" stroke-width="1.2" opacity="0.65" stroke-linecap="round" />
+        <path d="M244,151 Q226,151 210,154" fill="none" stroke="#8A7E6D" stroke-width="1.2" opacity="0.5" stroke-linecap="round" />
+      </g>
+
+      <!-- HAND 3: Another Person's Hand at bottom (Belong Blue, reaching up to receive) -->
+      <g id="hand-other" class="fade-part" transform="translate(0, -4)">
+        <ellipse cx="220" cy="252" rx="74" ry="24" fill="#E2EEF6" fill-opacity="0.55" />
+        <path d="M114,244 L154,244 C165,243 175,238 184,233 C191,229 197,235 191,240 L182,248 C196,253 216,255 236,252 L262,245 C269,243 271,250 264,253 L241,259 L264,257 C270,257 270,264 262,265 L236,268 C208,273 178,271 154,265 L114,265 Z"
+          fill="#E2EEF6" stroke="#2C2416" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+        <line x1="126" y1="244" x2="126" y2="265" stroke="#2A5B7C" stroke-width="1.4" />
+        <path d="M236,260 Q208,263 182,258" fill="none" stroke="#2A5B7C" stroke-width="1.2" opacity="0.7" stroke-linecap="round" />
+      </g>
+
+      <!-- THREE OBJECTS (positioned cleanly via JS transform along the paths) -->
+      <!-- Object 1: Clock (Time - Up Green) -->
+      <g id="obj-time" class="fade-part">
+        <line x1="0" y1="-15.5" x2="0" y2="-12.5" stroke="#1F684A" stroke-width="2.2" stroke-linecap="round" />
+        <line x1="-3.5" y1="-16" x2="3.5" y2="-16" stroke="#1F684A" stroke-width="1.8" stroke-linecap="round" />
+        <circle cx="0" cy="0" r="12.5" fill="#E1F1E9" stroke="#1F684A" stroke-width="1.9" />
+        <circle cx="0" cy="0" r="1.5" fill="#164E37" />
+        <line x1="0" y1="0" x2="0" y2="-7.2" stroke="#164E37" stroke-width="1.9" stroke-linecap="round" />
+        <line x1="0" y1="0" x2="5.5" y2="2.4" stroke="#164E37" stroke-width="1.7" stroke-linecap="round" />
+        <circle cx="0" cy="-9.5" r="0.8" fill="#1F684A" />
+        <circle cx="9.5" cy="0" r="0.8" fill="#1F684A" />
+        <circle cx="0" cy="9.5" r="0.8" fill="#1F684A" />
+        <circle cx="-9.5" cy="0" r="0.8" fill="#1F684A" />
+      </g>
+
+      <!-- Object 2: Hammer (Talents - Go Purple) -->
+      <g id="obj-talents" class="fade-part">
+        <g transform="rotate(-32)">
+          <!-- Handle -->
+          <rect x="-2.6" y="-3" width="5.2" height="17" rx="2.4" fill="#EDE7F6" stroke="#5F4684" stroke-width="1.7" />
+          <!-- Hammer head with flat strike face & curved claw -->
+          <path d="M-10.5,-10.5 L6,-10.5 C9.5,-10.5 11.5,-7.5 12,-4 L8.5,-5.5 C7.5,-6.5 6,-6.8 4.5,-6.8 L4.5,-3 L-4.5,-3 L-4.5,-6 L-10.5,-6 Z"
+            fill="#DDD2F0" stroke="#473366" stroke-width="1.7" stroke-linejoin="round" stroke-linecap="round" />
+        </g>
+      </g>
+
+      <!-- Object 3: Coin (Treasure - Down Gold) -->
+      <g id="obj-treasure" class="fade-part">
+        <circle cx="0" cy="0" r="12.5" fill="#FCF2D6" stroke="#A8760A" stroke-width="1.9" />
+        <circle cx="0" cy="0" r="9.3" fill="none" stroke="#C48F10" stroke-width="1" stroke-dasharray="2 1.6" />
+        <text class="coin-mark" x="0" y="4.5" text-anchor="middle">$</text>
+      </g>
+
+      <!-- THREE BOLD LABELS (14px system sans, weight 700, never overlapping hands or objects) -->
+      <text id="lbl-time" class="fade-part obj-label" x="128" y="114" text-anchor="end" fill="#164E37">Time</text>
+      <text id="lbl-talents" class="fade-part obj-label" x="220" y="92" text-anchor="middle" fill="#473366">Talents</text>
+      <text id="lbl-treasure" class="fade-part obj-label" x="312" y="114" text-anchor="start" fill="#7D5604">Treasure</text>
+    </svg>
+  </div>
+
+  <div class="step-strip" role="group" aria-label="Stewardship steps">
+    <button type="button" class="step-dot active" data-step="0" aria-label="Start: Open Hands" aria-pressed="true" style="--dot-color: #2C2416;"><span class="step-dot-fill"></span></button>
+    <button type="button" class="step-dot" data-step="1" aria-label="Step 1: God Gives First" aria-pressed="false" style="--dot-color: #A8760A;"><span class="step-dot-fill"></span></button>
+    <button type="button" class="step-dot" data-step="2" aria-label="Step 2: Time, Talents, Treasure" aria-pressed="false" style="--dot-color: #1F684A;"><span class="step-dot-fill"></span></button>
+    <button type="button" class="step-dot" data-step="3" aria-label="Step 3: The Closed Fist" aria-pressed="false" style="--dot-color: #5A4E3C;"><span class="step-dot-fill"></span></button>
+    <button type="button" class="step-dot" data-step="4" aria-label="Step 4: The Open Hand" aria-pressed="false" style="--dot-color: #2A5B7C;"><span class="step-dot-fill"></span></button>
+    <button type="button" class="step-dot" data-step="5" aria-label="Step 5: God Owns It All" aria-pressed="false" style="--dot-color: #A8760A;"><span class="step-dot-fill"></span></button>
+  </div>
+
+  <div class="card-area">
+    <div class="verse-card">
+      <div class="verse-card-bar"></div>
+      <div class="verse-card-content" id="card-content" aria-live="polite" aria-atomic="true">
+        <h2 class="card-heading" id="card-heading"></h2>
+        <p class="card-verse"><span id="card-verse-text"></span><span class="verse-ref" id="card-ref"></span></p>
+        <p class="card-note" id="card-note"></p>
+      </div>
+    </div>
+
+    <div class="nav-bar">
+      <button type="button" class="nav-btn secondary" id="prev-btn" disabled>&larr; Back</button>
+      <span class="step-count" id="step-count">Ready</span>
+      <button type="button" class="nav-btn primary" id="next-btn">Begin &rarr;</button>
+    </div>
+  </div>
+</main>
+
+<div id="measure-host" aria-hidden="true"></div>
+
+<script>
+(function () {
+  'use strict';
+
+  var STEPS = [
+    {
+      heading: 'Open Hands',
+      verse: '"The earth is the LORD\'s and the fullness thereof, the world and those who dwell therein."',
+      ref: 'Psalm 24:1',
+      note: 'Everything you have was placed in your hands by Someone else.',
+      accent: '#2C2416',
+      accentDark: '#2C2416',
+      countLabel: 'Ready',
+      nextLabel: 'Begin \u2192',
+      title: 'Open Hands: Start',
+      desc: 'Clean white stage ready to show God\'s open hand, your hand, and another person\'s hand.'
+    },
+    {
+      heading: 'God Gives First',
+      verse: '"Every good gift and every perfect gift is from above, coming down from the Father of lights"',
+      ref: 'James 1:17',
+      note: 'Before you ever give, God has already given to you.',
+      accent: '#A8760A',
+      accentDark: '#7D5604',
+      countLabel: 'Step 1 of 5',
+      nextLabel: 'Next \u2192',
+      title: 'Step 1: God Gives First',
+      desc: 'God\'s open hand appears at the top in sunlit gold wash with crisp gold rays, reaching downward to give.'
+    },
+    {
+      heading: 'Time, Talents, Treasure',
+      verse: '"For all things come from you, and of your own have we given you."',
+      ref: '1 Chronicles 29:14',
+      note: 'Your hours, your abilities, and your money all came from His hand. You are a steward, not an owner.',
+      accent: '#1F684A',
+      accentDark: '#164E37',
+      countLabel: 'Step 2 of 5',
+      nextLabel: 'Next \u2192',
+      title: 'Step 2: Time, Talents, Treasure',
+      desc: 'Your open cupped hand appears in the middle as a clock labeled Time, a hammer labeled Talents, and a coin labeled Treasure fall from God\'s hand into yours.'
+    },
+    {
+      heading: 'The Closed Fist',
+      verse: '"For where your treasure is, there your heart will be also."',
+      ref: 'Matthew 6:21',
+      note: 'A closed hand cannot give, and it cannot receive anything new.',
+      accent: '#5A4E3C',
+      accentDark: '#3E3528',
+      countLabel: 'Step 3 of 5',
+      nextLabel: 'Next \u2192',
+      title: 'Step 3: The Closed Fist',
+      desc: 'Your hand closes tightly into a rounded fist around the clock, hammer, and coin while their labels fade away.'
+    },
+    {
+      heading: 'The Open Hand',
+      verse: '"As each has received a gift, use it to serve one another, as good stewards of God\'s varied grace"',
+      ref: '1 Peter 4:10',
+      note: 'Your time, your talents, and your treasure all pass on to someone God loves.',
+      accent: '#2A5B7C',
+      accentDark: '#1E435C',
+      countLabel: 'Step 4 of 5',
+      nextLabel: 'Next \u2192',
+      title: 'Step 4: The Open Hand',
+      desc: 'Your hand opens again and tips downward as another person\'s hand reaches up in blue below, receiving the clock for Time, the hammer for Talents, and the coin for Treasure.'
+    },
+    {
+      heading: 'God Owns It All',
+      verse: '"It is more blessed to give than to receive."',
+      ref: 'Acts 20:35',
+      note: 'God owns it all. You get to pass it on.',
+      accent: '#A8760A',
+      accentDark: '#7D5604',
+      countLabel: 'Step 5 of 5',
+      nextLabel: 'Start Over',
+      title: 'Step 5: God Owns It All',
+      desc: 'The complete picture framed in a crisp double hairline: God\'s gold hand giving from above, your open hand passing gifts on in the middle, another person\'s blue hand receiving below, and Time, Talents, and Treasure clearly labeled along the path.'
+    }
+  ];
+
+  var SPEED = 185; // px per second for stroke-dashoffset paths
+
+  var TOP_ENDS = [
+    { x: 162, y: 118, lx: 140, ly: 123 },
+    { x: 220, y: 116, lx: 220, ly: 96 },
+    { x: 278, y: 118, lx: 300, ly: 123 }
+  ];
+
+  var BOT_ENDS = [
+    { x: 160, y: 208, lx: 138, ly: 213 },
+    { x: 220, y: 206, lx: 220, ly: 186 },
+    { x: 280, y: 208, lx: 302, ly: 213 }
+  ];
+
+  var widget = document.getElementById('widget');
+  var svgTitle = document.getElementById('svg-title');
+  var svgDesc = document.getElementById('svg-desc');
+  var cardContent = document.getElementById('card-content');
+  var cardHeading = document.getElementById('card-heading');
+  var cardVerseText = document.getElementById('card-verse-text');
+  var cardRef = document.getElementById('card-ref');
+  var cardNote = document.getElementById('card-note');
+  var prevBtn = document.getElementById('prev-btn');
+  var nextBtn = document.getElementById('next-btn');
+  var stepCount = document.getElementById('step-count');
+  var dotBtns = Array.prototype.slice.call(document.querySelectorAll('.step-dot'));
+  var measureHost = document.getElementById('measure-host');
+
+  var handGod = document.getElementById('hand-god');
+  var handCupped = document.getElementById('hand-you-cupped');
+  var handFist = document.getElementById('hand-you-fist');
+  var handGiving = document.getElementById('hand-you-giving');
+  var handOther = document.getElementById('hand-other');
+
+  var rayPaths = [1, 2, 3, 4, 5].map(function (n) { return document.getElementById('ray-' + n); });
+  var framePaths = [document.getElementById('frame-outer'), document.getElementById('frame-inner')];
+
+  var topMaskPaths = [1, 2, 3].map(function (n) { return document.getElementById('mpath-top-' + n); });
+  var botMaskPaths = [1, 2, 3].map(function (n) { return document.getElementById('mpath-bot-' + n); });
+  var topDots = document.getElementById('paths-top');
+  var botDots = document.getElementById('paths-bot');
+
+  var objs = [
+    document.getElementById('obj-time'),
+    document.getElementById('obj-talents'),
+    document.getElementById('obj-treasure')
+  ];
+  var lbls = [
+    document.getElementById('lbl-time'),
+    document.getElementById('lbl-talents'),
+    document.getElementById('lbl-treasure')
+  ];
+
+  function pathLen(el) {
+    try {
+      return Math.ceil(el.getTotalLength());
+    } catch (e) {
+      return 80;
+    }
+  }
+
+  var rayLens = rayPaths.map(pathLen);
+  var frameLens = framePaths.map(pathLen);
+  var topLens = topMaskPaths.map(pathLen);
+  var botLens = botMaskPaths.map(pathLen);
+
+  var reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reducedMotion) {
+    widget.classList.add('is-instant');
+  }
+
+  var currentStep = 0;
+  var activeRaf = 0;
+  var activeTimers = [];
+  var lastMeasuredWidth = 0;
+
+  function scheduleTimer(fn, ms) {
+    var id = setTimeout(function () {
+      var idx = activeTimers.indexOf(id);
+      if (idx !== -1) activeTimers.splice(idx, 1);
+      fn();
+    }, ms);
+    activeTimers.push(id);
+    return id;
+  }
+
+  function cancelAnim() {
+    if (activeRaf) {
+      cancelAnimationFrame(activeRaf);
+      activeRaf = 0;
+    }
+    while (activeTimers.length) {
+      clearTimeout(activeTimers.pop());
+    }
+  }
+
+  function setPathProgress(el, len, p) {
+    var c = Math.max(0, Math.min(1, p));
+    if (c <= 0) {
+      el.style.strokeDasharray = String(len);
+      el.style.strokeDashoffset = String(len);
+      el.style.opacity = '0';
+    } else if (c >= 1) {
+      el.style.strokeDasharray = 'none';
+      el.style.strokeDashoffset = '0';
+      el.style.opacity = '';
+    } else {
+      el.style.strokeDasharray = String(len);
+      el.style.strokeDashoffset = String((1 - c) * len);
+      el.style.opacity = '';
+    }
+  }
+
+  function pointOnPath(el, len, p) {
+    try {
+      return el.getPointAtLength(Math.max(0, Math.min(1, p)) * len);
+    } catch (e) {
+      return { x: 220, y: 110 };
+    }
+  }
+
+  function placeObject(i, x, y, visible) {
+    objs[i].setAttribute('transform', 'translate(' + x.toFixed(1) + ',' + y.toFixed(1) + ')');
+    objs[i].classList.toggle('is-visible', !!visible);
+  }
+
+  function placeLabel(i, x, y, visible) {
+    lbls[i].setAttribute('x', String(x));
+    lbls[i].setAttribute('y', String(y));
+    lbls[i].classList.toggle('is-visible', !!visible);
+  }
+
+  function setHands(godShown, godSoft, cupped, fist, giving, other) {
+    handGod.classList.toggle('is-visible', godShown && !godSoft);
+    handGod.classList.toggle('is-soft', godShown && godSoft);
+    handCupped.classList.toggle('is-visible', cupped);
+    handFist.classList.toggle('is-visible', fist);
+    handGiving.classList.toggle('is-visible', giving);
+    handOther.classList.toggle('is-visible', other);
+  }
+
+  function setStaticState(idx) {
+    // Reset rays and frame
+    for (var r = 0; r < rayPaths.length; r++) {
+      setPathProgress(rayPaths[r], rayLens[r], idx >= 1 ? 1 : 0);
+    }
+    for (var f = 0; f < framePaths.length; f++) {
+      setPathProgress(framePaths[f], frameLens[f], idx === 5 ? 1 : 0);
+    }
+
+    var showTopPaths = (idx === 2 || idx === 5);
+    var showBotPaths = (idx === 4 || idx === 5);
+    topDots.style.opacity = idx === 5 ? '0.68' : '1';
+    botDots.style.opacity = '1';
+
+    for (var t = 0; t < 3; t++) {
+      setPathProgress(topMaskPaths[t], topLens[t], showTopPaths ? 1 : 0);
+      setPathProgress(botMaskPaths[t], botLens[t], showBotPaths ? 1 : 0);
+    }
+
+    if (idx === 0) {
+      setHands(false, false, false, false, false, false);
+      for (var i0 = 0; i0 < 3; i0++) {
+        placeObject(i0, TOP_ENDS[i0].x, TOP_ENDS[i0].y, false);
+        placeLabel(i0, TOP_ENDS[i0].lx, TOP_ENDS[i0].ly, false);
+      }
+    } else if (idx === 1) {
+      setHands(true, false, false, false, false, false);
+      for (var i1 = 0; i1 < 3; i1++) {
+        placeObject(i1, TOP_ENDS[i1].x, TOP_ENDS[i1].y, false);
+        placeLabel(i1, TOP_ENDS[i1].lx, TOP_ENDS[i1].ly, false);
+      }
+    } else if (idx === 2) {
+      setHands(true, false, true, false, false, false);
+      for (var i2 = 0; i2 < 3; i2++) {
+        placeObject(i2, TOP_ENDS[i2].x, TOP_ENDS[i2].y, true);
+        placeLabel(i2, TOP_ENDS[i2].lx, TOP_ENDS[i2].ly, true);
+      }
+    } else if (idx === 3) {
+      setHands(true, true, false, true, false, false);
+      for (var i3 = 0; i3 < 3; i3++) {
+        placeObject(i3, 224, 145, false);
+        placeLabel(i3, TOP_ENDS[i3].lx, TOP_ENDS[i3].ly, false);
+      }
+    } else if (idx === 4) {
+      setHands(true, true, false, false, true, true);
+      for (var i4 = 0; i4 < 3; i4++) {
+        placeObject(i4, BOT_ENDS[i4].x, BOT_ENDS[i4].y, true);
+        placeLabel(i4, BOT_ENDS[i4].lx, BOT_ENDS[i4].ly, true);
+      }
+    } else if (idx === 5) {
+      setHands(true, false, false, false, true, true);
+      for (var i5 = 0; i5 < 3; i5++) {
+        placeObject(i5, BOT_ENDS[i5].x, BOT_ENDS[i5].y, true);
+        placeLabel(i5, BOT_ENDS[i5].lx, BOT_ENDS[i5].ly, true);
+      }
+    }
+  }
+
+  function animateCascade(maskPaths, lens, ends, onDone) {
+    var segDur = lens.map(function (len) { return Math.max(240, Math.round((len / SPEED) * 1000)); });
+    var stagger = 260;
+    var totalMs = Math.max(segDur[0], stagger + segDur[1], stagger * 2 + segDur[2]);
+    var t0 = 0;
+
+    function frame(now) {
+      if (!t0) t0 = now;
+      var elapsed = now - t0;
+      var allDone = true;
+
+      for (var i = 0; i < 3; i++) {
+        var local = elapsed - i * stagger;
+        if (local <= 0) {
+          allDone = false;
+          setPathProgress(maskPaths[i], lens[i], 0);
+          var sp = pointOnPath(maskPaths[i], lens[i], 0);
+          placeObject(i, sp.x, sp.y, false);
+          placeLabel(i, ends[i].lx, ends[i].ly, false);
+        } else if (local < segDur[i]) {
+          allDone = false;
+          var p = local / segDur[i];
+          var eased = 1 - Math.pow(1 - p, 1.5);
+          setPathProgress(maskPaths[i], lens[i], eased);
+          var pt = pointOnPath(maskPaths[i], lens[i], eased);
+          placeObject(i, pt.x, pt.y, true);
+          placeLabel(i, ends[i].lx, ends[i].ly, p >= 0.78);
+        } else {
+          setPathProgress(maskPaths[i], lens[i], 1);
+          placeObject(i, ends[i].x, ends[i].y, true);
+          placeLabel(i, ends[i].lx, ends[i].ly, true);
+        }
+      }
+
+      if (!allDone) {
+        activeRaf = requestAnimationFrame(frame);
+      } else {
+        activeRaf = 0;
+        if (onDone) onDone();
+      }
+    }
+
+    activeRaf = requestAnimationFrame(frame);
+    return totalMs;
+  }
+
+  function animateStep(idx) {
+    cancelAnim();
+
+    if (idx === 1) {
+      // God's hand appears + crisp gold rays draw outward
+      setStaticState(0);
+      setHands(true, false, false, false, false, false);
+      var rayDur = 360;
+      widget.setAttribute('data-step-dur', String(rayDur));
+      var t0 = 0;
+      function frameRays(now) {
+        if (!t0) t0 = now;
+        var p = Math.min(1, (now - t0) / rayDur);
+        for (var r = 0; r < rayPaths.length; r++) {
+          setPathProgress(rayPaths[r], rayLens[r], p);
+        }
+        if (p < 1) {
+          activeRaf = requestAnimationFrame(frameRays);
+        } else {
+          activeRaf = 0;
+        }
+      }
+      activeRaf = requestAnimationFrame(frameRays);
+      return;
+    }
+
+    if (idx === 2) {
+      // Cupped hand appears; clock, hammer, coin fall one at a time from God's hand
+      setStaticState(1);
+      setHands(true, false, true, false, false, false);
+      topDots.style.opacity = '1';
+      var dur2 = animateCascade(topMaskPaths, topLens, TOP_ENDS);
+      widget.setAttribute('data-step-dur', String(dur2));
+      return;
+    }
+
+    if (idx === 3) {
+      // Labels fade; objects pull into your hand as it closes into a tight fist
+      setStaticState(2);
+      var pullDur = 380;
+      widget.setAttribute('data-step-dur', String(pullDur));
+      for (var j = 0; j < 3; j++) {
+        lbls[j].classList.remove('is-visible');
+        setPathProgress(topMaskPaths[j], topLens[j], 0);
+      }
+      var startPull = 0;
+      var closed = false;
+      function frameFist(now) {
+        if (!startPull) startPull = now;
+        var p = Math.min(1, (now - startPull) / pullDur);
+        var eased = 1 - Math.pow(1 - p, 1.5);
+        for (var k = 0; k < 3; k++) {
+          var cx = TOP_ENDS[k].x + (224 - TOP_ENDS[k].x) * eased;
+          var cy = TOP_ENDS[k].y + (145 - TOP_ENDS[k].y) * eased;
+          placeObject(k, cx, cy, p < 0.72);
+        }
+        if (!closed && p >= 0.45) {
+          closed = true;
+          setHands(true, true, false, true, false, false);
+        }
+        if (p < 1) {
+          activeRaf = requestAnimationFrame(frameFist);
+        } else {
+          activeRaf = 0;
+          setStaticState(3);
+        }
+      }
+      activeRaf = requestAnimationFrame(frameFist);
+      return;
+    }
+
+    if (idx === 4) {
+      // Fist opens and tips down; other hand appears below; all 3 objects pass down
+      setStaticState(3);
+      setHands(true, true, false, false, true, true);
+      botDots.style.opacity = '1';
+      var dur4 = animateCascade(botMaskPaths, botLens, BOT_ENDS);
+      widget.setAttribute('data-step-dur', String(dur4));
+      return;
+    }
+
+    if (idx === 5) {
+      // Whole picture: restore God's full gold glow + upper dotted paths + trace double-hairline frame
+      setStaticState(4);
+      setHands(true, false, false, false, true, true);
+      topDots.style.opacity = '0.68';
+      for (var t = 0; t < 3; t++) {
+        setPathProgress(topMaskPaths[t], topLens[t], 1);
+      }
+      var maxFrameLen = Math.max(frameLens[0], frameLens[1]);
+      var frameDur = Math.max(600, Math.round((maxFrameLen / (SPEED * 2.2)) * 1000));
+      widget.setAttribute('data-step-dur', String(frameDur));
+      var ft0 = 0;
+      function frameFinish(now) {
+        if (!ft0) ft0 = now;
+        var p = Math.min(1, (now - ft0) / frameDur);
+        var eased = 1 - Math.pow(1 - p, 1.4);
+        for (var f = 0; f < framePaths.length; f++) {
+          setPathProgress(framePaths[f], frameLens[f], eased);
+        }
+        if (p < 1) {
+          activeRaf = requestAnimationFrame(frameFinish);
+        } else {
+          activeRaf = 0;
+        }
+      }
+      activeRaf = requestAnimationFrame(frameFinish);
+      return;
+    }
+
+    widget.setAttribute('data-step-dur', '0');
+    setStaticState(idx);
+  }
+
+  function updateCardAndChrome(idx) {
+    var s = STEPS[idx];
+    widget.setAttribute('data-step', String(idx));
+    widget.style.setProperty('--step-color', s.accent);
+    widget.style.setProperty('--step-dark', s.accentDark);
+
+    cardHeading.textContent = s.heading;
+    cardVerseText.textContent = s.verse;
+    cardRef.textContent = s.ref;
+    cardNote.textContent = s.note;
+
+    svgTitle.textContent = s.title;
+    svgDesc.textContent = s.desc;
+
+    stepCount.textContent = s.countLabel;
+    nextBtn.textContent = s.nextLabel;
+    prevBtn.disabled = (idx === 0);
+
+    dotBtns.forEach(function (btn, i) {
+      btn.classList.toggle('active', i === idx);
+      btn.classList.toggle('passed', i < idx);
+      btn.setAttribute('aria-pressed', i === idx ? 'true' : 'false');
+    });
+  }
+
+  function goToStep(idx, animateForward) {
+    if (idx < 0 || idx >= STEPS.length) return;
+    cancelAnim();
+    currentStep = idx;
+    updateCardAndChrome(idx);
+
+    var instant = reducedMotion || !animateForward || idx === 0;
+    if (instant) {
+      widget.classList.add('is-instant');
+      widget.setAttribute('data-step-dur', '0');
+      setStaticState(idx);
+      if (!reducedMotion) {
+        void widget.offsetWidth;
+        widget.classList.remove('is-instant');
+      }
+    } else {
+      widget.classList.remove('is-instant');
+      animateStep(idx);
+    }
+  }
+
+  function fitCardHeight() {
+    var w = cardContent.clientWidth;
+    if (!w) return;
+    lastMeasuredWidth = w;
+    var clone = cardContent.cloneNode(true);
+    clone.removeAttribute('id');
+    clone.removeAttribute('aria-live');
+    clone.style.width = w + 'px';
+    clone.style.minHeight = '0';
+    clone.style.height = 'auto';
+
+    var h = clone.querySelector('#card-heading');
+    var v = clone.querySelector('#card-verse-text');
+    var r = clone.querySelector('#card-ref');
+    var n = clone.querySelector('#card-note');
+    if (h) h.removeAttribute('id');
+    if (v) v.removeAttribute('id');
+    if (r) r.removeAttribute('id');
+    if (n) n.removeAttribute('id');
+
+    measureHost.innerHTML = '';
+    measureHost.appendChild(clone);
+
+    var maxH = 0;
+    for (var i = 0; i < STEPS.length; i++) {
+      if (h) h.textContent = STEPS[i].heading;
+      if (v) v.textContent = STEPS[i].verse;
+      if (r) r.textContent = STEPS[i].ref;
+      if (n) n.textContent = STEPS[i].note;
+      var measured = Math.ceil(clone.getBoundingClientRect().height);
+      if (measured > maxH) maxH = measured;
+    }
+    measureHost.innerHTML = '';
+    if (maxH > 0) {
+      widget.style.setProperty('--card-h', maxH + 'px');
+    }
+  }
+
+  nextBtn.addEventListener('click', function () {
+    if (currentStep < STEPS.length - 1) {
+      goToStep(currentStep + 1, true);
+    } else {
+      goToStep(0, false);
+    }
+  });
+
+  prevBtn.addEventListener('click', function () {
+    if (currentStep > 0) {
+      goToStep(currentStep - 1, false);
+    }
+  });
+
+  dotBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var target = Number(btn.getAttribute('data-step'));
+      if (target !== currentStep) {
+        goToStep(target, target === currentStep + 1);
+      }
+    });
+  });
+
+  window.addEventListener('resize', function () {
+    var w = cardContent.clientWidth;
+    if (w && Math.abs(w - lastMeasuredWidth) > 1) {
+      fitCardHeight();
+    }
+  });
+
+  fitCardHeight();
+  goToStep(0, false);
+})();
+</script>
+</body>
+</html>
