@@ -108,7 +108,8 @@ function createServer() {
     const directFinal = await page.evaluate(() => ({
       heading: document.getElementById('card-heading').textContent.trim(),
       isOpen: document.getElementById('fy-svg').classList.contains('is-open'),
-      finishOn: document.getElementById('finish-circle').classList.contains('is-on'),
+      finishOn: document.getElementById('finish-night-sky').classList.contains('is-on') &&
+        document.getElementById('finish-night-glows').classList.contains('is-on'),
       cardH: document.getElementById('card-content').getBoundingClientRect().height,
       nextText: document.getElementById('next-btn').textContent.trim()
     }));
@@ -196,7 +197,8 @@ function createServer() {
           frontSetup: document.getElementById('front-setup').classList.contains('is-on'),
           popBy: document.getElementById('neighbors-pop-by').classList.contains('is-on'),
           seated: document.getElementById('pull-up-chair').classList.contains('is-on'),
-          finish: document.getElementById('finish-circle').classList.contains('is-on'),
+          finish: document.getElementById('finish-night-sky').classList.contains('is-on') &&
+            document.getElementById('finish-night-glows').classList.contains('is-on'),
           nextH: document.getElementById('next-btn').getBoundingClientRect().height
         };
       });

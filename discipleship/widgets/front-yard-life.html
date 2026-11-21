@@ -399,18 +399,59 @@ button:focus-visible {
       <desc id="fy-svg-desc">Wide side view of a house in the center with equal backyard on the left and front yard on the right.</desc>
 
       <defs>
+        <linearGradient id="night-sky-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" stop-color="#1E2D40"/>
+          <stop offset="100%" stop-color="#3C5470"/>
+        </linearGradient>
         <radialGradient id="porch-glow" cx="50%" cy="12%" r="85%">
           <stop offset="0%" stop-color="#FCE8AE" stop-opacity="0.72"/>
           <stop offset="100%" stop-color="#FCE8AE" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="porch-night-glow" cx="42%" cy="8%" r="92%">
+          <stop offset="0%" stop-color="#FFE48A" stop-opacity="0.92"/>
+          <stop offset="48%" stop-color="#FAD470" stop-opacity="0.42"/>
+          <stop offset="100%" stop-color="#FAD470" stop-opacity="0"/>
         </radialGradient>
         <radialGradient id="fire-glow" cx="50%" cy="62%" r="60%">
           <stop offset="0%" stop-color="#FAD48B" stop-opacity="0.58"/>
           <stop offset="100%" stop-color="#FAD48B" stop-opacity="0"/>
         </radialGradient>
+        <radialGradient id="fire-night-glow" cx="50%" cy="60%" r="58%">
+          <stop offset="0%" stop-color="#FFD479" stop-opacity="0.76"/>
+          <stop offset="55%" stop-color="#F2A944" stop-opacity="0.28"/>
+          <stop offset="100%" stop-color="#F2A944" stop-opacity="0"/>
+        </radialGradient>
         <clipPath id="garage-opening-clip">
           <rect x="214" y="156" width="40" height="54" rx="1"/>
         </clipPath>
+        <clipPath id="sky-area-clip">
+          <path d="M 24 44 H 416 Q 424 44 424 52 V 210 H 16 V 52 Q 16 44 24 44 Z"/>
+        </clipPath>
       </defs>
+
+      <!-- ===================== STEP 5: EVENING NIGHT SKY & WARM GLOWS (BEHIND FIGURES, CLIPPED ABOVE GROUND) ===================== -->
+      <g id="finish-night-sky" class="fy-layer" aria-hidden="true">
+        <path d="M 24 44 H 416 Q 424 44 424 52 V 210 H 16 V 52 Q 16 44 24 44 Z" fill="url(#night-sky-grad)"/>
+        <!-- Quiet crescent moon & four soft stars -->
+        <path d="M 56 64 A 9 9 0 1 0 65 76 A 7 7 0 1 1 56 64 Z" fill="#FDF3D0" opacity="0.9"/>
+        <circle cx="116" cy="64" r="1.2" fill="#FDF3D0" opacity="0.75"/>
+        <circle cx="158" cy="76" r="1" fill="#FDF3D0" opacity="0.6"/>
+        <circle cx="312" cy="66" r="1.3" fill="#FDF3D0" opacity="0.8"/>
+        <circle cx="378" cy="80" r="1.1" fill="#FDF3D0" opacity="0.65"/>
+      </g>
+
+      <g id="finish-night-glows" class="fy-layer" clip-path="url(#sky-area-clip)" aria-hidden="true">
+        <!-- Warm golden porch light beam spilling out into the front yard -->
+        <polygon points="268,153 262,210 318,210 278,153" fill="url(#porch-night-glow)"/>
+        <circle cx="272" cy="155" r="7" fill="#FFE89C" opacity="0.72"/>
+        <!-- Cozy evening firelight halo backlighting the front-yard circle -->
+        <circle cx="330" cy="194" r="48" fill="url(#fire-night-glow)"/>
+        <!-- Soft warm glows behind the 4 backyard string lights -->
+        <circle cx="48" cy="141" r="8" fill="#FCE59C" opacity="0.45"/>
+        <circle cx="84" cy="144" r="8" fill="#FCE59C" opacity="0.45"/>
+        <circle cx="122" cy="141" r="8" fill="#FCE59C" opacity="0.45"/>
+        <circle cx="156" cy="134" r="7.5" fill="#FCE59C" opacity="0.42"/>
+      </g>
 
       <!-- ===================== EQUAL GROUND BANDS: BACKYARD (160) | HOME (88) | FRONT YARD (160) ===================== -->
       <rect x="16" y="210" width="160" height="15" rx="2" fill="#E6F1EA"/>
@@ -563,9 +604,9 @@ button:focus-visible {
 
         <!-- Minimalist kid on bike -->
         <g id="kid-bike">
-          <circle cx="406" cy="204" r="5.2" fill="none" stroke="#4A443C" stroke-width="1.4"/>
-          <circle cx="420" cy="204" r="5.2" fill="none" stroke="#4A443C" stroke-width="1.4"/>
-          <path d="M 406 204 L 413 197 L 420 204" fill="none" stroke="#2A5B7C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="406" cy="204" r="5.2" fill="none" stroke="#857C70" stroke-width="1.5"/>
+          <circle cx="420" cy="204" r="5.2" fill="none" stroke="#857C70" stroke-width="1.5"/>
+          <path d="M 406 204 L 413 197 L 420 204" fill="none" stroke="#4D88B0" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
           <circle cx="413" cy="183" r="3.6" fill="#D4A373"/>
           <rect x="409.5" y="188" width="7" height="9.5" rx="3.2" fill="#8B1A2B"/>
         </g>
@@ -581,11 +622,6 @@ button:focus-visible {
         <rect x="323.5" y="192.5" width="5" height="2.6" rx="1.3" fill="#A6462A"/>
         <line x1="349" y1="190" x2="333" y2="194" stroke="#8C7355" stroke-width="1.2" stroke-linecap="round"/>
         <rect x="331" y="192.5" width="5" height="2.6" rx="1.3" fill="#A6462A"/>
-      </g>
-
-      <!-- Step 5 (Finish): Clean hospitality circle around the filled front yard -->
-      <g id="finish-circle" class="fy-layer">
-        <ellipse cx="329" cy="193" rx="40" ry="25" fill="none" stroke="#8B1A2B" stroke-width="1.8" stroke-dasharray="4 3" opacity="0.72"/>
       </g>
 
       <!-- ===================== THREE BALANCED ZONE LABELS ===================== -->
@@ -730,7 +766,7 @@ button:focus-visible {
       heading: '5. Front Yard Life',
       verse: '"Stay with us, for it is toward evening and the day is now far spent."',
       ref: 'Luke 24:29',
-      note: 'Backyard friends and new neighbors sit together around one fire. Two friends on the road to Emmaus asked a stranger to stay, and at their table it turned out to be Jesus.',
+      note: 'Evening settles in, the porch light glows, and backyard friends and new neighbors stay around one fire. Two friends on the road to Emmaus asked a stranger to stay, and at their table it turned out to be Jesus.',
       subnote: '',
       accent: '#8B1A2B',
       accentDark: '#6D1422',
@@ -743,7 +779,7 @@ button:focus-visible {
         seated: true,
         finish: true
       },
-      desc: 'Backyard friends and new neighbors sit in one circle around one fire in the filled front yard.'
+      desc: 'Evening sky darkens with a crescent moon and stars while the porch light, open garage, string lights, and fire pit glow warmly over friends and neighbors gathered in the front yard.'
     }
   ];
 
@@ -757,7 +793,8 @@ button:focus-visible {
   var porchBulb = document.getElementById('porch-bulb');
   var neighborsPop = document.getElementById('neighbors-pop-by');
   var pullUp = document.getElementById('pull-up-chair');
-  var finishCircle = document.getElementById('finish-circle');
+  var finishNightSky = document.getElementById('finish-night-sky');
+  var finishNightGlows = document.getElementById('finish-night-glows');
 
   var stripEl = document.getElementById('step-strip');
   var cardContent = document.getElementById('card-content');
@@ -830,7 +867,8 @@ button:focus-visible {
     porchBulb.setAttribute('fill', s.open ? '#F5C242' : '#B5B0A6');
     neighborsPop.classList.toggle('is-on', !!s.popBy);
     pullUp.classList.toggle('is-on', !!s.seated);
-    finishCircle.classList.toggle('is-on', !!s.finish);
+    finishNightSky.classList.toggle('is-on', !!s.finish);
+    finishNightGlows.classList.toggle('is-on', !!s.finish);
 
     svgDesc.textContent = st.desc;
   }

@@ -50,3 +50,10 @@ At Dave's direction:
 - Removed the porch swing and swing sitter so Step 2 opens up cleanly with the rolling garage door and glowing porch light.
 - Centered the house dead-center (`x=176..264`, peak at `x=220`) with equal `160px` Backyard (`x=16..176`) and `160px` Front Yard (`x=264..424`) zones and three balanced zone labels (`BACKYARD`, `HOME`, `FRONT YARD`) so the front yard visibly fills across steps (`viewBox="0 38 440 218"`, `489px` tall at `390px` wide).
 - Re-verified all local checks (`qa_foundation.sh`, export 212, storage 73, assets 145, iframe 32, widget browser 75, L-203-02/03 browser 39) all pass.
+
+## Revision 4: Evening Night Sky & Glowing Porch Light on Step 5 (2026-11-20)
+At Dave's direction:
+- Removed the red dashed oval around the fire pit completely.
+- Replaced Step 5's highlight with an evening/night sky (`#finish-night-sky` with crescent moon and 4 soft stars above the ground line) and warm glowing lights (`#finish-night-glows`: golden porch light beam spilling into the front yard, cozy firelight halo backlighting the seated circle, and backyard string-light glows, all clipped cleanly above `y=210`), matching Luke 24:29 ("it is toward evening").
+- Updated `scripts/widget_203_03_front_yard_browser_check.js` to assert `#finish-night-sky` and `#finish-night-glows` activation on Step 5.
+- Re-verified all checks (`qa_foundation.sh`, export 212, storage 73, assets 145, iframe 32, widget browser 75, L-203-02/03 browser 39) all pass.
