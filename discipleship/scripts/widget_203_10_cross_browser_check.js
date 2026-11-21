@@ -13,8 +13,7 @@ const BASE = process.env.CROSS_20310_BASE_URL || 'http://127.0.0.1:8835/';
 const engine = fs.readFileSync(path.join(ROOT, 'widgets/great-command-v5.js'), 'utf8');
 const wrapper = fs.readFileSync(path.join(ROOT, 'widgets/great-command-v5-203-10.html'), 'utf8');
 const lesson = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/203-10.json'), 'utf8'));
-const HEADINGS = ['The Greatest Commandment', "God's Love Comes Down", 'Love God With All You Are', 'Love One Another',
-  'Love Everyone, Even Enemies', 'The Cross Is Love for Enemies', 'Welcome Home'];
+const HEADINGS = ['The Greatest Commandment', 'Love Comes Down, Goes Up, and Reaches Out', 'Welcome Home'];
 
 let checks = 0;
 function ck(label, ok, detail) {
@@ -66,17 +65,32 @@ async function read(page) {
       await page.waitForTimeout(400);
       let s = await read(page);
       ck(width + ': header tag reads 203-10', s.tag === '203-10', s.tag);
-      ck(width + ': seven step dots', s.dots === 7);
+      ck(width + ': three step dots', s.dots === 3);
       ck(width + ': one loop canvas, idle at start', s.canvases === 1 && s.loop && !s.loop.wanted && !s.loop.running);
       const cardH = s.cardH, widgetH = s.widgetH;
-      for (let i = 1; i <= 6; i++) {
+      for (let i = 1; i <= 2; i++) {
         await page.click('#next-btn');
         s = await read(page);
         ck(width + ': step ' + i + ' heading', s.heading === HEADINGS[i], s.heading);
         ck(width + ': step ' + i + ' card height steady', s.cardH === cardH, s.cardH + ' vs ' + cardH);
         ck(width + ': step ' + i + ' widget height steady', s.widgetH === widgetH, s.widgetH + ' vs ' + widgetH);
         ck(width + ': step ' + i + ' no sideways scroll', !s.overflowX);
-        await page.waitForTimeout(i === 6 ? 1500 : 3600);
+        if (i === 1) {
+          // One click: all four beams sweep together, and the crimson outline waits until they finish.
+          await page.waitForTimeout(1500);
+          const mid = await page.evaluate(() => ({
+            sweeping: document.querySelectorAll('.sweep-arrow.is-active').length,
+            contourOffset: Number(document.querySelector('.cross-contour').style.strokeDashoffset),
+            contourLen: Number(document.querySelector('.cross-contour').dataset.len)
+          }));
+          ck(width + ': one click sweeps all four beams at once', mid.sweeping === 4, JSON.stringify(mid));
+          ck(width + ': the outline waits for the beams', mid.contourOffset === mid.contourLen, JSON.stringify(mid));
+          await page.waitForTimeout(8000);
+          s = await read(page);
+          ck(width + ': then the crimson outline traces the cross', s.contourDrawn);
+        } else {
+          await page.waitForTimeout(1500);
+        }
       }
       s = await read(page);
       ck(width + ': finale keeps the crimson cross', s.contourDrawn);
@@ -97,7 +111,7 @@ async function read(page) {
       ck(width + ': two minutes of loop: missions keep going', long.missions >= 18, JSON.stringify(long));
       ck(width + ': the crowd keeps filling back up', long.crowdMin >= 4 && long.crowdMax === 7, JSON.stringify(long));
       ck(width + ': the family arm never overflows', long.membersMax <= 8, JSON.stringify(long));
-      ck(width + ': last step offers Start Over', /Start Over/.test(s.next) && s.count === 'Step 6 of 6');
+      ck(width + ': last step offers Start Over', /Start Over/.test(s.next) && s.count === 'Step 2 of 2');
       if (width === 390) {
         const muts = await page.evaluate(() => new Promise(res => {
           let n = 0;
@@ -109,12 +123,12 @@ async function read(page) {
       }
       await page.click('#prev-btn');
       s = await read(page);
-      ck(width + ': Back to step 5 stops the loop', s.heading === HEADINGS[5] && !s.loop.running && !s.loop.wanted && s.contourDrawn);
-      await page.click('.step-dot[data-step="2"]');
+      ck(width + ': Back to step 1 stops the loop', s.heading === HEADINGS[1] && !s.loop.running && !s.loop.wanted && s.contourDrawn);
+      await page.click('.step-dot[data-step="0"]');
       s = await read(page);
-      ck(width + ': dot back to step 2 lands at once with no loop', s.heading === HEADINGS[2] && !s.loop.wanted && !s.contourDrawn);
-      await page.click('.step-dot[data-step="6"]');
-      await page.waitForTimeout(6500);
+      ck(width + ': dot back to the start lands at once with no loop', s.heading === HEADINGS[0] && !s.loop.wanted && !s.contourDrawn);
+      await page.click('.step-dot[data-step="2"]');
+      await page.waitForTimeout(9500);
       s = await read(page);
       ck(width + ': dot jump forward to the finale starts the loop again', s.loop.running && s.contourDrawn, JSON.stringify([s.loop, s.contourDrawn, s.heading]));
       ck(width + ': no page errors', errors.length === 0, errors.join(' | '));
@@ -124,7 +138,7 @@ async function read(page) {
     const ctx = await browser.newContext({ viewport: { width: 390, height: 900 }, reducedMotion: 'reduce' });
     const rp = await ctx.newPage();
     await rp.goto(BASE + 'widgets/great-command-v5-203-10.html', { waitUntil: 'load' });
-    for (let i = 0; i < 6; i++) await rp.click('#next-btn');
+    for (let i = 0; i < 2; i++) await rp.click('#next-btn');
     await rp.waitForTimeout(1000);
     const rs = await read(rp);
     ck('reduced motion: finale shows a still picture, no loop', rs.loop.wanted && !rs.loop.running && rs.loop.seconds === 0 && rs.contourDrawn,
@@ -174,7 +188,7 @@ async function read(page) {
     }));
     ck('lesson: frame stays still while idle', writes === 0, writes);
     const inner = await (await frame.elementHandle()).contentFrame();
-    for (let i = 0; i < 6; i++) await inner.click('#next-btn');
+    for (let i = 0; i < 2; i++) await inner.click('#next-btn');
     await lp.waitForTimeout(1200);
     ck('lesson: loop runs on the last step', await inner.evaluate(() => window.GC_WELCOME_LOOP.state().running));
     const loopWrites = await lp.evaluate(() => new Promise(res => {

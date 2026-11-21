@@ -48,3 +48,12 @@ Dave asked for the last slide to loop: church members get on the God conveyor be
 - The loop runs only on step 6, stops on Back or any other step, pauses while the widget is off screen (IntersectionObserver), and shows a still picture (four members, crowd of seven) when reduced motion is on.
 - Card text unchanged. Step 6 description updated for screen readers.
 - Check updated: 169 checks, including two simulated minutes of looping (18 or more trips, the crowd refills to seven and never drops below four, the family arm never overflows), Back and dots stop and restart it, reduced motion still picture, no DOM changes while looping, and inside the lesson no re-measures plus pause when scrolled away and resume when scrolled back.
+
+## Update: three dots, one click for the whole cross (Dave, 2026-11-21)
+
+Dave: "I want the first series all to be together and have them all happen at the same time and when finished the cross outlines it, all this happens on one begin button click, then the 3rd dot is the animation you built, it stays as the main slide."
+
+- Version 203-10 now has three steps: Start (Matthew 22:40); Love Comes Down, Goes Up, and Reaches Out (Romans 5:10), where one click sweeps all four beams together and the crimson contour traces the cross once they finish (new step option `contourAfterSweeps`, about 9 seconds in all); and Welcome Home (Ephesians 2:19), the loop.
+- The loop starts once the cross is finished: at once when coming from step 1, or after the build when jumping straight from the start with a dot.
+- The earlier one-step-per-beam cards (God's Love Comes Down, Love God With All You Are, Love One Another, Love Everyone, Even Enemies) are gone from 203-10; the 201, 202 and 203 versions keep theirs.
+- Check updated to 117 checks: three dots, all four sweeps active together, the outline waiting for them and then drawn, and the loop checks as before.

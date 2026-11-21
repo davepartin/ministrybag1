@@ -337,81 +337,32 @@
           desc: 'Clean white stage ready for the cross to take shape one last time.'
         },
         {
-          id: 'down',
-          pillLabel: "Step 1: God's Love Comes Down",
-          heading: "God's Love Comes Down",
-          verse: '"We love because he first loved us."',
-          ref: '1 John 4:19',
-          note: 'Everything in Growing Together starts here. God loved you before you did anything.',
-          accent: COLORS.gold,
-          accentDark: COLORS.goldDark,
-          draw: { upLeft: true, lblGod: true },
-          desc: 'A sunlit gold wash sweeps down the left half of the upright beam, labeled God loves us.'
-        },
-        {
-          id: 'up',
-          pillLabel: 'Step 2: Love God With All You Are',
-          heading: 'Love God With All You Are',
-          verse: '"And you shall love the Lord your God with all your heart and with all your soul and with all your mind and with all your strength."',
-          ref: 'Mark 12:30',
-          note: 'Growing Deep: your love goes back up to Him, not to earn His love, but because you already have it.',
-          accent: COLORS.green,
-          accentDark: COLORS.greenDark,
-          draw: { upLeft: true, lblGod: true, upRight: true, lblWe: true },
-          desc: 'A deep sage green wash sweeps up the right half of the upright beam, labeled We love God.'
-        },
-        {
-          id: 'church',
-          pillLabel: 'Step 3: Love One Another',
-          heading: 'Love One Another',
-          verse: '"By this all people will know that you are my disciples, if you have love for one another."',
-          ref: 'John 13:35',
-          note: 'Growing Up: that love takes shape in your home and your church family.',
-          accent: COLORS.church,
-          accentDark: COLORS.churchDark,
-          draw: { upLeft: true, lblGod: true, upRight: true, lblWe: true, armLeft: true, lblChurch: true },
-          desc: 'A harbour blue wash sweeps left from the center, labeled Love the Church.'
-        },
-        {
-          id: 'lost',
-          pillLabel: 'Step 4: Love Everyone, Even Enemies',
-          heading: 'Love Everyone, Even Enemies',
-          verse: '"If your enemy is hungry, feed him; if he is thirsty, give him something to drink."',
-          ref: 'Romans 12:20',
-          note: 'Growing Out: love reaches your one, your neighbors, the nations, and even people who stand against you, like the army Elisha fed.',
-          accent: COLORS.lost,
-          accentDark: COLORS.lostDark,
-          draw: {
-            upLeft: true, lblGod: true, upRight: true, lblWe: true,
-            armLeft: true, lblChurch: true, armRight: true, lblLost: true
-          },
-          desc: 'A muted plum wash sweeps right from the center, labeled Love the Lost.'
-        },
-        {
           id: 'cross',
-          pillLabel: 'Step 5: The Cross Is Love for Enemies',
-          heading: 'The Cross Is Love for Enemies',
+          pillLabel: 'Step 1: Love Comes Down, Goes Up, and Reaches Out',
+          heading: 'Love Comes Down, Goes Up, and Reaches Out',
           verse: '"while we were enemies we were reconciled to God by the death of his Son"',
           ref: 'Romans 5:10',
-          note: "This is what the cross shows: Jesus loving God's enemies. That love holds every part of the cross together.",
+          note: "God's love comes down to you, your love goes up to Him, and it reaches out to the church and the world, even to enemies. The cross holds it all: Jesus loving God's enemies.",
           accent: COLORS.deepRed,
           accentDark: COLORS.deepRedDark,
+          contourAfterSweeps: true,
           draw: {
             upLeft: true, lblGod: true, upRight: true, lblWe: true,
             armLeft: true, lblChurch: true, armRight: true, lblLost: true,
             crossContour: true
           },
-          desc: 'A crimson double contour traces around the entire cross, uniting all four loves.'
+          desc: 'All four washes sweep at once: gold down, green up, blue to the left, and plum to the right. Then a crimson double contour traces around the whole cross.'
         },
         {
           id: 'home',
-          pillLabel: 'Step 6: Welcome Home',
+          pillLabel: 'Step 2: Welcome Home',
           heading: 'Welcome Home',
           verse: '"So then you are no longer strangers and aliens, but you are fellow citizens with the saints and members of the household of God."',
           ref: 'Ephesians 2:19',
           note: 'Now go and tell the Jesus story. The love that reached you is still reaching, and there is room in the family for one more.',
           accent: COLORS.church,
           accentDark: COLORS.churchDark,
+          contourAfterSweeps: true,
           draw: {
             upLeft: true, lblGod: true, upRight: true, lblWe: true,
             armLeft: true, lblChurch: true, armRight: true, lblLost: true,
@@ -1830,12 +1781,17 @@
         }
 
         if (!prevDraw.crossContour && nextDraw.crossContour) {
+          // 203-10: the beams sweep together first, then the crimson contour traces the finished cross.
+          var contourDelay = 0;
+          if (nextStep.contourAfterSweeps) {
+            sweepJobs.forEach(function (j) { contourDelay = Math.max(contourDelay, j.dur); });
+          }
           bundle.strokes.forEach(function (node) {
             var len = Number(node.dataset.len);
             strokeJobs.push({
               node: node,
               len: len,
-              delay: 0,
+              delay: contourDelay,
               dur: (len / CONTOUR_PX_PER_SEC) * 1000
             });
           });
@@ -1891,6 +1847,7 @@
               applyStateInstant(nextDraw);
               clearSweeps();
               activeRaf = null;
+              if (welcomeLoop && nextDraw.welcome) welcomeLoop.start();
             }
           };
           activeRaf = requestAnimationFrame(frame);
@@ -1899,8 +1856,10 @@
 
       currentStep = nextIdx;
       if (welcomeLoop) {
-        if (nextDraw.welcome) welcomeLoop.start();
-        else welcomeLoop.stop();
+        // The loop starts once the cross is finished: right away when nothing is drawing,
+        // otherwise when the drawing animation completes.
+        if (!nextDraw.welcome) welcomeLoop.stop();
+        else if (host.dataset.stepDur === '0') welcomeLoop.start();
       }
       if (introEl) {
         introEl.classList.toggle('is-hidden', currentStep !== 0);
