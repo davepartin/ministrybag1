@@ -1,31 +1,34 @@
-# 203-04 Love Through Serving Widget Log
+# 203-04 Who Can I Lift? Whiteboard Widget Log
 
 - **Date:** November 20, 2026
 - **Agent:** Gemini
 - **Task ID:** `WIDGET-203-04-SERVE`
-- **Branch:** `gemini/widget-203-04-serve` (branched from `origin/main` at `6689545`)
+- **Branch:** `gemini/widget-203-04-serve` (PR #365, branched from `origin/main` at `6689545`)
 - **Status:** `REVIEW` (stopped at review for Dave visual and wording approval before integrating into `data/203-04.json`)
 
 ## Summary of Changes
 
-1. **Standalone Studio Wash Widget (`discipleship/widgets/love-through-serving-203.html`):**
+1. **Standalone Whiteboard Studio Wash Widget (`discipleship/widgets/who-can-i-lift-203.html`):**
+   - Replaced the initial Love Through Serving foot-washing draft at Dave's direction with a clean, whiteboard-drawable Studio Wash diagram built around one fixed side-view scene (`viewBox="0 0 440 278"`): a ladder rising on the left toward `BEST SEATS`, a `SOLID ROCK` in the center, and `THE PIT` cut below ground on the right.
    - Self-contained single HTML file with inline CSS and JS, zero external libraries/fonts/images, zero `localStorage`, and zero em dashes (`U+2014`) or en dashes (`U+2013`).
-   - Title bar: `Love Through Serving` with right-aligned `203-04` tag (`#2C2416` dark warm charcoal header).
-   - Opening cue card on Step 0: `"Love takes the lower place."` Pressing `Begin` dissolves the phrase and unfolds one continuous Studio Wash scene across 4 steps (no ladder, podium, or staircase):
-     - **Step 0 (`Love Through Serving`, Mark 10:45):** Opening cue card `"Love takes the lower place."` Card line: `Climb down to lift others up.`
-     - **Step 1 (`Secure in His Love`, John 13:3-4):** Jesus stands calmly beside the supper table with a soft feathered golden wash behind Him and an empty wooden stool nearby. Teaching: `Jesus knew He came from God and was returning to God. He had nothing to prove.`
-     - **Step 2 (`Lay Something Aside`, John 13:4):** His outer garment rests neatly folded over the wooden stool while He takes and ties a signature ivory linen towel with woven forest-green and gold stripe bands. Teaching: `Love makes room to serve. Sometimes we lay aside comfort, recognition, or the need to be first.`
-     - **Step 3 (`Climb Down`, John 13:5):** With His garment still on the stool behind Him, Jesus kneels low beside a seated disciple with a water basin between them and His woven towel draped across His lap. Teaching: `The Lord takes the servant's place. No one is beneath His love.`
-     - **Step 4 (`Lift Someone Up`, John 13:14):** The scene widens into everyday life: the upper-room foot-washing softens on the left while Jesus' woven towel stays vivid and its golden-green threads connect across to a friend carrying a grocery bag up to a welcoming neighbor's doorway, with the matching serving towel draped over their arm. Teaching: `Follow Jesus into one practical act of love for someone in front of you.`
+   - Title bar: `Who Can I Lift?` with right-aligned `203-04` tag (`#2C2416` header).
+   - Progressive steps changing the same scene:
+     - **Start (`Who Can I Lift?`, Mark 10:43):** Ladder and Best Seats up top, Solid Rock in the middle, someone stuck in the pit below.
+     - **Step 1 (`He Lifted You First`, gold, Psalm 40:2; Mark 10:45):** Jesus climbs into the pit in warm gold and lifts the one inside up onto the Solid Rock.
+     - **Step 2 (`Everyone Wants the Best Seat`, Mark 10:37, 42):** Climbers push upward on the ladder toward the Best Seats while someone else sits stuck in the pit.
+     - **Step 3 (`Greatness Turned Over`, Mark 10:43-44):** One green servant figure leaves the ladder and climbs down into another person's pit on purpose.
+     - **Step 4 (`What's in Your Hands`, `"Who can I lift?"`):** A braided rope anchored to the rock drops into the pit, labeled with `Time`, `Strength`, `Skills`, `Money`, and `Voice` beneath `"Who can I lift?"`.
+     - **Step 5 (`Lift Up Jesus`, 2 Corinthians 4:5):** The person lifted out stands on the Solid Rock looking up to a radiant gold `JESUS` cross emblem above, while the humble servant beside the pit points upward to Him.
+     - **Step 6 (`The Last Will Be First`, James 4:10):** The ladder and Best Seats fade quietly into grey while warm golden light shines straight down onto the servant who climbed down, lifting them upward.
    - Accessibility, stability, and motion:
-     - Five wordless `<button>` step dots (`>= 28x28`), `>= 44px` navigation buttons, `:focus-visible` (`3px solid #E0A526`), `aria-live="polite"` card, and dynamic SVG `<title>` and `<desc>`.
+     - Seven wordless `<button>` step dots (`>= 28x28`), `>= 44px` navigation buttons, `:focus-visible` (`3px solid #E0A526`), `aria-live="polite"` card, and dynamic SVG `<title>` and `<desc>`.
      - Pre-measured constant `--card-h` via `fitCardHeight()`, re-measured only on `window.innerWidth` changes.
      - `Back` restores prior states instantly; `prefers-reduced-motion: reduce` snaps every step instantly with zero idle timers.
-   - Untouched scope: `data/203-04.json`, `index.html`, other `scripts/`, images, and Firebase config files were not modified yet pending Dave's visual and wording sign-off.
-2. **Playwright Verification Script (`discipleship/scripts/widget_203_04_serve_browser_check.js`):**
-   - Verifies Step 0 opening cue plus Steps 1 to 4 across `375x667`, `390x844`, `1280x800`, and `390x844` `prefers-reduced-motion: reduce`, checking every layer, instant `Back` restore, `Start Over`, constant card height, `<= 565px` height at `390px` wide, zero horizontal overflow, zero `localStorage` writes, zero forbidden words or em dashes, and zero page/console errors.
+   - Untouched scope: `data/203-04.json`, `index.html`, images, and Firebase config files untouched pending Dave's visual and wording sign-off.
+2. **Playwright Verification Script (`discipleship/scripts/widget_203_04_lift_browser_check.js`):**
+   - Verifies Start plus Steps 1 to 6 across `375x667`, `390x844`, `1280x800`, and `390x844` `prefers-reduced-motion: reduce`, checking every progressive layer, dimmed ladder and exalted servant on Step 6, instant `Back` restore, `Start Over`, constant card height, zero horizontal overflow, zero `localStorage` writes, zero forbidden words or em dashes, and zero page/console errors.
 3. **Board Update (`discipleship/project-management/TASKS.md`):**
-   - Added `WIDGET-203-04-SERVE` at `REVIEW`.
+   - Updated `WIDGET-203-04-SERVE` at `REVIEW`.
 
 ## Verification Results (Run from `discipleship/`)
 
@@ -33,5 +36,5 @@
 - `node scripts/test_lesson_export.js`: exit `0` (`212 check(s) passed`)
 - `node scripts/test_answer_storage.js`: exit `0` (`73 check(s) passed`)
 - `node scripts/check_lesson_assets.js`: exit `0` (`144` references resolve)
-- `node scripts/widget_203_04_serve_browser_check.js`: exit `0` (`255 checks passed`)
-- Visually inspected `390x844` PNG screenshots for all 5 states (`0` through `4`) confirming clean opening cue, serene Studio Wash figure proportions, clear downward movement from standing to kneeling at the basin, vivid connecting towel carrying love into the everyday grocery doorway scene, constant card height, and zero clipping or overlap.
+- `node scripts/widget_203_04_lift_browser_check.js`: exit `0` (`329 checks passed`)
+- Visually inspected `390x844` PNG screenshots for all 7 states (`0` through `6`) confirming crisp whiteboard readability, zero label collisions, clean downward-then-upward movement, clean beam landing at ground level, and constant card height.

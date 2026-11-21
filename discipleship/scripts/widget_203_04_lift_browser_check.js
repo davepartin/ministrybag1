@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 /**
- * 203-04 Love Through Serving browser verification.
- * Serve discipleship/ locally and pass SERVE_BASE_URL
- * (default http://127.0.0.1:8778/widgets/love-through-serving-203.html).
- * Pass SERVE_SCREENSHOT_DIR to save 390x844 screenshots of every step.
+ * 203-04 Who Can I Lift? whiteboard widget browser verification.
+ * Serve discipleship/ locally and pass LIFT_BASE_URL
+ * (default http://127.0.0.1:8779/widgets/who-can-i-lift-203.html).
+ * Pass LIFT_SCREENSHOT_DIR to save 390x844 screenshots of every step.
  */
 'use strict';
 
@@ -13,17 +13,19 @@ const path = require('path');
 const { chromium } = require('playwright');
 
 const ROOT = path.resolve(__dirname, '..');
-const WIDGET_PATH = path.join(ROOT, 'widgets', 'love-through-serving-203.html');
-const BASE_URL = process.env.SERVE_BASE_URL || 'http://127.0.0.1:8778/widgets/love-through-serving-203.html';
-const SCREENSHOT_DIR = process.env.SERVE_SCREENSHOT_DIR || '';
+const WIDGET_PATH = path.join(ROOT, 'widgets', 'who-can-i-lift-203.html');
+const BASE_URL = process.env.LIFT_BASE_URL || 'http://127.0.0.1:8779/widgets/who-can-i-lift-203.html';
+const SCREENSHOT_DIR = process.env.LIFT_SCREENSHOT_DIR || '';
 if (SCREENSHOT_DIR) fs.mkdirSync(SCREENSHOT_DIR, { recursive: true });
 
 const EXPECTED_HEADINGS = [
-  'Love Through Serving',
-  'Secure in His Love',
-  'Lay Something Aside',
-  'Climb Down',
-  'Lift Someone Up'
+  'Who Can I Lift?',
+  'He Lifted You First',
+  'Everyone Wants the Best Seat',
+  'Greatness Turned Over',
+  'What\'s in Your Hands',
+  'Lift Up Jesus',
+  'The Last Will Be First'
 ];
 
 const JOBS = [
@@ -90,11 +92,9 @@ const JOBS = [
           const dots = Array.from(document.querySelectorAll('.step-dot'));
           const btns = Array.from(document.querySelectorAll('.nav-btn'));
           const card = document.getElementById('card-content');
-          const cue = document.getElementById('opening-cue');
           return {
             title: h1 ? h1.textContent.trim() : '',
             courseTag: tagEl ? tagEl.textContent.trim() : '',
-            cueText: cue ? cue.textContent.trim() : '',
             dotCount: dots.length,
             dotsMinSize: dots.every(d => d.getBoundingClientRect().width >= 28 && d.getBoundingClientRect().height >= 28),
             btnsMinHeight: btns.every(b => b.getBoundingClientRect().height >= 44),
@@ -104,20 +104,19 @@ const JOBS = [
           };
         });
 
-        check(`${tag}: title bar reads Love Through Serving`, chrome.title === 'Love Through Serving');
+        check(`${tag}: title bar reads Who Can I Lift?`, chrome.title === 'Who Can I Lift?');
         check(`${tag}: lesson tag reads 203-04`, chrome.courseTag === '203-04');
-        check(`${tag}: opening cue reads Love takes the lower place.`, chrome.cueText === 'Love takes the lower place.');
-        check(`${tag}: five step dots present (start + 4 steps)`, chrome.dotCount === 5);
+        check(`${tag}: seven step dots present (start + 6 steps)`, chrome.dotCount === 7);
         check(`${tag}: all step dots >= 28x28`, chrome.dotsMinSize);
         check(`${tag}: all nav buttons >= 44px tall`, chrome.btnsMinHeight);
         check(`${tag}: card has aria-live polite`, chrome.ariaLive === 'polite');
         if (job.width === 390) {
-          check(`${tag}: widget height <= 565px at 390px wide (actual ${chrome.widgetHeight.toFixed(1)}px)`, chrome.widgetHeight <= 565.5);
+          check(`${tag}: widget height <= 580px at 390px wide (actual ${chrome.widgetHeight.toFixed(1)}px)`, chrome.widgetHeight <= 580.5);
         }
 
         const baseCardH = chrome.cardHeight;
 
-        for (let s = 0; s < 5; s++) {
+        for (let s = 0; s < 7; s++) {
           if (s > 0) await page.locator('#next-btn').click();
           const dur = Number(await page.locator('#scene-root').getAttribute('data-step-dur')) || 0;
           if (job.reducedMotion === 'reduce') {
@@ -126,7 +125,7 @@ const JOBS = [
           } else if (dur > 0) {
             await page.waitForTimeout(dur + 200);
           } else {
-            await page.waitForTimeout(580);
+            await page.waitForTimeout(520);
           }
 
           const state = await page.evaluate(() => {
@@ -134,7 +133,7 @@ const JOBS = [
             const card = document.getElementById('card-content');
             const heading = document.querySelector('.card-heading').textContent.trim();
             const cardText = card.textContent;
-            const desc = document.getElementById('serve-svg-desc').textContent.trim();
+            const desc = document.getElementById('lift-svg-desc').textContent.trim();
             const activeDot = document.querySelector('.step-dot[aria-pressed="true"]');
             return {
               dataStep: root.getAttribute('data-step'),
@@ -147,11 +146,14 @@ const JOBS = [
               cardClientH: card.clientHeight,
               docScrollW: document.documentElement.scrollWidth,
               winW: window.innerWidth,
-              cueHidden: document.getElementById('opening-cue').classList.contains('is-hidden'),
+              ladderDim: document.getElementById('layer-ladder').classList.contains('is-dim'),
               s1Vis: document.getElementById('layer-step-1').classList.contains('is-visible'),
-              s2Vis: document.getElementById('layer-step-2').classList.contains('is-visible'),
-              s3Vis: document.getElementById('layer-step-3').classList.contains('is-visible'),
-              s4Vis: document.getElementById('layer-step-4').classList.contains('is-visible'),
+              climbersVis: document.getElementById('layer-climbers').classList.contains('is-visible'),
+              servantPitVis: document.getElementById('layer-servant-pit').classList.contains('is-visible'),
+              ropeVis: document.getElementById('layer-rope').classList.contains('is-visible'),
+              jesusSkyVis: document.getElementById('layer-jesus-sky').classList.contains('is-visible'),
+              beamVis: document.getElementById('layer-finish-beam').classList.contains('is-visible'),
+              exaltedTransform: document.getElementById('exalted-figure').getAttribute('transform'),
               storageWrites: window.__storageWrites
             };
           });
@@ -166,57 +168,40 @@ const JOBS = [
           check(`${tag}: step ${s} zero horizontal overflow (${state.docScrollW}/${state.winW})`, state.docScrollW <= state.winW + 1);
           check(`${tag}: step ${s} zero localStorage writes`, state.storageWrites === 0);
 
-          if (s === 0) {
-            check(`${tag}: step 0 shows opening cue only`, !state.cueHidden && !state.s1Vis && !state.s2Vis && !state.s3Vis && !state.s4Vis);
-          } else if (s === 1) {
-            check(`${tag}: step 1 hides cue and shows standing Jesus`, state.cueHidden && state.s1Vis && !state.s2Vis && !state.s3Vis && !state.s4Vis);
-          } else if (s === 2) {
-            check(`${tag}: step 2 shows laid-aside garment and towel`, state.cueHidden && !state.s1Vis && state.s2Vis && !state.s3Vis && !state.s4Vis);
-          } else if (s === 3) {
-            check(`${tag}: step 3 shows kneeling Jesus at basin`, state.cueHidden && !state.s1Vis && !state.s2Vis && state.s3Vis && !state.s4Vis);
-          } else if (s === 4) {
-            check(`${tag}: step 4 widens into everyday scene with towel`, state.cueHidden && !state.s1Vis && !state.s2Vis && !state.s3Vis && state.s4Vis);
-          }
+          if (s === 0) check(`${tag}: step 0 ladder and pit base`, !state.s1Vis && !state.climbersVis && !state.beamVis);
+          if (s === 1) check(`${tag}: step 1 Jesus lifts you first`, state.s1Vis);
+          if (s === 2) check(`${tag}: step 2 climbers push up ladder`, state.climbersVis);
+          if (s === 3) check(`${tag}: step 3 servant climbs down into pit`, state.servantPitVis && !state.ropeVis);
+          if (s === 4) check(`${tag}: step 4 rope and gift tags visible`, state.servantPitVis && state.ropeVis);
+          if (s === 5) check(`${tag}: step 5 lifted onto rock pointing to Jesus`, state.jesusSkyVis && !state.beamVis);
+          if (s === 6) check(`${tag}: step 6 light falls on servant and ladder dims`, state.beamVis && state.ladderDim && state.exaltedTransform === 'translate(0, 0)');
 
           if (SCREENSHOT_DIR && job.width === 390 && job.reducedMotion === 'no-preference') {
             await page.locator('#scene-root').screenshot({
-              path: path.join(SCREENSHOT_DIR, `serve-step-${s}.png`)
+              path: path.join(SCREENSHOT_DIR, `lift-step-${s}.png`)
             });
           }
         }
 
-        // Back restores prior states instantly (4 -> 3 -> 2)
+        // Back restores prior step instantly (6 -> 5 -> 4)
         await page.locator('#prev-btn').click();
         await page.waitForTimeout(80);
-        const afterBack3 = await page.evaluate(() => ({
+        const afterBack5 = await page.evaluate(() => ({
           step: document.getElementById('scene-root').getAttribute('data-step'),
           instant: document.getElementById('scene-root').classList.contains('is-instant'),
-          s3Vis: document.getElementById('layer-step-3').classList.contains('is-visible'),
-          s4Vis: document.getElementById('layer-step-4').classList.contains('is-visible')
+          beamVis: document.getElementById('layer-finish-beam').classList.contains('is-visible'),
+          jesusVis: document.getElementById('layer-jesus-sky').classList.contains('is-visible')
         }));
-        check(`${tag}: Back from 4 restores step 3 instantly`,
-          afterBack3.step === '3' && afterBack3.instant && afterBack3.s3Vis && !afterBack3.s4Vis);
+        check(`${tag}: Back from 6 restores step 5 instantly`,
+          afterBack5.step === '5' && afterBack5.instant && !afterBack5.beamVis && afterBack5.jesusVis);
 
-        await page.locator('#prev-btn').click();
-        await page.waitForTimeout(80);
-        const afterBack2 = await page.evaluate(() => ({
-          step: document.getElementById('scene-root').getAttribute('data-step'),
-          s2Vis: document.getElementById('layer-step-2').classList.contains('is-visible'),
-          s3Vis: document.getElementById('layer-step-3').classList.contains('is-visible')
-        }));
-        check(`${tag}: Back from 3 restores step 2 cleanly`,
-          afterBack2.step === '2' && afterBack2.s2Vis && !afterBack2.s3Vis);
-
-        // Start Over returns to step 0 opening cue cleanly
-        await page.locator('.step-dot[data-step="4"]').click();
+        // Start Over returns to step 0
+        await page.locator('.step-dot[data-step="6"]').click();
         await page.waitForTimeout(80);
         await page.locator('#next-btn').click();
         await page.waitForTimeout(80);
-        const afterReset = await page.evaluate(() => ({
-          step: document.getElementById('scene-root').getAttribute('data-step'),
-          cueHidden: document.getElementById('opening-cue').classList.contains('is-hidden')
-        }));
-        check(`${tag}: Start Over returns to opening cue`, afterReset.step === '0' && !afterReset.cueHidden);
+        check(`${tag}: Start Over returns to step 0`,
+          await page.locator('#scene-root').getAttribute('data-step') === '0');
 
         check(`${tag}: zero page or console errors`, errors.length === 0);
       } finally {
@@ -227,5 +212,5 @@ const JOBS = [
     await browser.close();
   }
 
-  console.log(`PASS: ${passed} checks passed for Love Through Serving 203-04 (375, 390, 1280, reduced motion).`);
+  console.log(`PASS: ${passed} checks passed for Who Can I Lift? 203-04 (375, 390, 1280, reduced motion).`);
 })();
