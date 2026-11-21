@@ -24,7 +24,8 @@ const approved = [
     'You do not have to know how they will respond to take the next loving step.',
     'Growing Deep began with a Father running toward His wayward son.',
     'Keep loving, keep sharing the good news, and help another person follow Jesus.',
-    'The raids stopped at a dinner table.'
+    // The story card was reworked on main (Opened Eyes and a Table for Enemies); it quotes 2 Kings 6:23 itself.
+    'did not come again on raids into the land of Israel'
 ];
 let checks = 0;
 function ck(label, ok) { checks++; assert.ok(ok, label); }
