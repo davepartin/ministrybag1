@@ -37,3 +37,9 @@
 - `node scripts/test_widget_iframe.js`: `32 widget iframe checks passed.` (exit 0)
 - `node scripts/widget_203_03_front_yard_browser_check.js`: `Total: 75 passed, 0 failed` (exit 0)
 - `node scripts/l203_02_03_browser_check.js`: `39 L-203-02/03 browser checks passed.` (exit 0)
+
+## Revision 2: Half-Detail Drawing Simplification (2026-11-20)
+At Dave's request ("can it be more simple, like half the detail in the drawing"), simplified `discipleship/widgets/front-yard-life.html` (`viewBox="0 12 440 246"`, `496px` tall at `390px` wide):
+- Removed sky backdrop box, background neighborhood trees, house siding lines, chimney, window mullions, garage interior clutter (shelves, boxes, bike wheel), garage windows/handle, coffee mugs, double light halos, porch step stack, double arrowheads, outer finish ring, and extra strokes on figures/dog/bike.
+- Retained every storyboard element cleanly: privacy fence with 3 subtle vertical lines, latched-to-open gate, 4 string lights, simple patio table, smooth house/roof/rolling garage door/warm open garage glow, porch swing and lantern, matching Blue/Sage/Gold chairs and fire pit, dog walker + pup, kid on bike, roasting hot dogs, and final dashed circle under `Same chairs. Bigger circle.`.
+- Re-verified all checks after simplification: zero em dashes, `qa_foundation.sh`, `test_lesson_export.js` (212), `test_answer_storage.js` (73), `check_lesson_assets.js` (145), `test_widget_iframe.js` (32), `widget_203_03_front_yard_browser_check.js` (75), and `l203_02_03_browser_check.js` (39) all exit 0.
