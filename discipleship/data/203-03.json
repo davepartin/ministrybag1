@@ -133,6 +133,12 @@
       "anchor": "diagram"
     },
     {
+      "type": "widget",
+      "src": "widgets/front-yard-life.html",
+      "title": "Front Yard Life",
+      "height": "550px"
+    },
+    {
       "type": "question",
       "id": "203-03-2",
       "text": "3.3 - Where has the pressure to impress kept you from opening your home or table more freely?",

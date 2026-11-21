@@ -24,6 +24,7 @@
         'cross-the-road.html': 'Cross the Road',
         'deep-roots.html': 'Roots of Discipline',
         'five-gardeners.html': 'Five Farmers, One Field',
+        'front-yard-life.html': 'Front Yard Life',
         'fruit-of-spirit.html': 'The Fruit of the Spirit',
         'grace-diagram.html': 'The Grace and Mercy Cycle',
         'great-command.html': 'The Great Command',
