@@ -6,6 +6,10 @@
 
 | Task | Status | Owner / date | Scope |
 |---|---|---|---|
+| WIDGET-202-07-HANDS | REVIEW | Gemini / gemini/widget-202-07-open-hands / 2026-11-20 | Built standalone Open Hands Studio Wash widget (`widgets/open-hands-202.html`, `514px` at `390px` wide) for 202-07 Giving & Generosity with three distinct hands (God's gold hand with rays, your hand cupped/closed fist/open giving, another person's blue hand), three labeled objects (clock for Time, hammer for Talents, coin for Treasure) gliding along `185 px/s` dotted paths, and crisp double-hairline final frame, plus Playwright check (`scripts/widget_202_07_hands_browser_check.js`, 188 checks). Lesson JSON, `index.html`, and legacy stewardship widgets untouched. Stop at REVIEW. Evidence: logs/2026-11-20-WIDGET-202-07-HANDS-gemini.md. |
+
+| Task | Status | Owner / date | Scope |
+|---|---|---|---|
 | RETIRE-LEGACY-PRS | DONE | Codex / 2026-11-20 | Branch codex/retire-legacy-prs. At Dave's direction, closed #325, #346, #222, #68, #28, #2 and #305 without merging. Current branding and live widgets/art retained. Newly opened #359 (202-03 shared-table art) remains outside this retirement request. |
 
 | Task | Status | Owner / date | Scope |
