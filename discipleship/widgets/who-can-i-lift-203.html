@@ -1,0 +1,1379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Who Can I Lift?</title>
+<style>
+:root {
+  --ink: #2C2416;
+  --muted: #6E6559;
+  --tray: #F6F4EE;
+  --border: #EBE5D9;
+  --gold: #A8760A;
+  --gold-dark: #7D5604;
+  --green: #1F684A;
+  --green-dark: #164E37;
+  --blue: #2A5B7C;
+  --blue-dark: #1E435C;
+  --step-color: #2C2416;
+  --step-dark: #1D170E;
+  --card-h: 118px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: Georgia, Cambria, serif;
+  background: #F8F6F1;
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+.widget-outer {
+  background: #FFFFFF;
+  border-radius: 0;
+  overflow: hidden;
+  box-shadow: none;
+  border: none;
+  max-width: 100%;
+  width: 100%;
+  margin: 0;
+  position: relative;
+}
+
+@media (min-width: 560px) {
+  body {
+    padding: 16px;
+    background: #F8F6F1;
+  }
+  .widget-outer {
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(44, 36, 22, 0.08);
+    border: 1px solid var(--border);
+    max-width: 460px;
+    margin: 0 auto;
+  }
+}
+
+.title-bar {
+  background: #2C2416;
+  padding: 7px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.title-bar h1 {
+  font: 600 17px/1.15 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #FAF8F3;
+  letter-spacing: 0.2px;
+  margin: 0;
+}
+
+.course-tag {
+  font: 600 11px/1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  letter-spacing: 0.9px;
+  text-transform: uppercase;
+  color: #E5DEC9;
+  white-space: nowrap;
+}
+
+.stage {
+  position: relative;
+  background: #FFFFFF;
+  border-bottom: 1px solid var(--border);
+}
+
+.scene-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.layer {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.layer.is-visible {
+  opacity: 1;
+}
+
+.layer.is-dim {
+  opacity: 0.22;
+}
+
+.layer.is-soft {
+  opacity: 0.56;
+}
+
+.step-strip {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px 4px;
+  background: var(--tray);
+  border-bottom: 1px solid var(--border);
+}
+
+.step-dot {
+  appearance: none;
+  min-width: 28px;
+  min-height: 28px;
+  padding: 4px;
+  border: none;
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.step-dot-fill {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2.5px solid var(--dot-color, var(--ink));
+  background: #FFFFFF;
+  display: block;
+}
+
+.step-dot.passed .step-dot-fill {
+  background: color-mix(in srgb, var(--dot-color, var(--ink)) 24%, #FFFFFF);
+}
+
+.step-dot.active .step-dot-fill {
+  background: var(--dot-color, var(--ink));
+  transform: scale(1.14);
+}
+
+.card-area {
+  padding: 7px 12px 9px;
+  background: var(--tray);
+}
+
+.verse-card {
+  background: #FFFFFF;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(44, 36, 22, 0.04);
+}
+
+.verse-card-bar {
+  height: 4px;
+  background: var(--step-color);
+}
+
+.verse-card-content {
+  padding: 9px 13px;
+  height: var(--card-h);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  overflow: hidden;
+}
+
+.card-heading {
+  font: 700 15px/1.22 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--step-color);
+  margin: 0 0 4px;
+}
+
+.card-quote {
+  font: 400 12.6px/1.38 Georgia, Cambria, serif;
+  color: var(--ink);
+  margin: 0 0 5px;
+}
+
+.card-ref {
+  font: 600 11.2px/1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--muted);
+  margin-left: 5px;
+  white-space: nowrap;
+}
+
+.card-note {
+  font: 400 12.1px/1.36 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #463E32;
+  margin: 0;
+}
+
+.nav-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.nav-btn {
+  appearance: none;
+  min-height: 44px;
+  min-width: 96px;
+  padding: 0 15px;
+  border-radius: 10px;
+  border: 1px solid #DCD4C6;
+  background: #FFFFFF;
+  color: var(--ink);
+  font: 600 13.5px/1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.nav-btn.primary {
+  background: var(--step-color);
+  border-color: var(--step-color);
+  color: #FAF8F3;
+}
+
+.nav-btn.primary:hover:not(:disabled) {
+  background: var(--step-dark);
+  border-color: var(--step-dark);
+}
+
+.nav-btn:hover:not(:disabled):not(.primary) {
+  background: #F4EFE5;
+}
+
+.nav-btn:disabled {
+  opacity: 0.36;
+  cursor: default;
+}
+
+.step-count {
+  font: 600 12px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--muted);
+}
+
+button:focus-visible {
+  outline: 3px solid #E0A526;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .widget-outer:not(.is-instant) .layer {
+    transition: opacity 0.45s ease;
+  }
+  .widget-outer .step-dot-fill {
+    transition: background-color 0.22s ease, border-color 0.22s ease, transform 0.22s ease;
+  }
+  .widget-outer .nav-btn.primary,
+  .widget-outer .verse-card-bar,
+  .widget-outer .card-heading {
+    transition: background-color 0.24s ease, border-color 0.24s ease, color 0.24s ease;
+  }
+}
+
+@media (max-width: 395px) {
+  .card-area {
+    padding: 6px 10px 8px;
+  }
+  .verse-card-content {
+    padding: 8px 11px;
+  }
+  .card-heading {
+    font-size: 14.4px;
+  }
+  .card-quote {
+    font-size: 12.1px;
+  }
+  .card-note {
+    font-size: 11.7px;
+  }
+}
+
+@media (forced-colors: active) {
+  .step-dot-fill {
+    border-color: ButtonText;
+    background: Canvas;
+  }
+  .step-dot.active .step-dot-fill {
+    background: Highlight;
+    border-color: Highlight;
+  }
+  .nav-btn.primary {
+    border: 2px solid Highlight;
+  }
+}
+</style>
+</head>
+<body>
+<main class="widget-outer" id="scene-root" aria-label="Who Can I Lift?"></main>
+
+<script>
+(function () {
+  'use strict';
+
+  var SVG_NS = 'http://www.w3.org/2000/svg';
+
+  var COLORS = {
+    ink: '#2C2416',
+    inkDark: '#1C160E',
+    gold: '#A8760A',
+    goldDark: '#7D5604',
+    blue: '#2A5B7C',
+    blueDark: '#1E435C',
+    green: '#1F684A',
+    greenDark: '#164E37'
+  };
+
+  var STEPS = [
+    {
+      id: 'start',
+      dotLabel: 'Start: The Ladder and the Pit',
+      color: COLORS.ink,
+      dark: COLORS.inkDark,
+      heading: 'Who Can I Lift?',
+      quote: '"Whoever would be great among you must be your servant."',
+      ref: 'Mark 10:43',
+      note: 'Up top, a ladder toward the best seats. Below ground, a pit where someone is stuck.',
+      desc: 'Side-view whiteboard scene showing a ladder rising on the left toward the Best Seats, a solid rock in the center, and a deep pit below ground on the right with someone stuck inside.'
+    },
+    {
+      id: 'lifted-first',
+      dotLabel: 'Step 1: He Lifted You First',
+      color: COLORS.gold,
+      dark: COLORS.goldDark,
+      heading: 'He Lifted You First',
+      quote: '"He drew me up from the pit of destruction... and set my feet upon a rock."',
+      ref: 'Psalm 40:2; Mark 10:45',
+      note: 'Jesus climbed down into the pit and lifted you out onto solid ground first.',
+      desc: 'In warm gold, Jesus climbs down into the pit and lifts the person inside up onto the solid rock in the center.'
+    },
+    {
+      id: 'best-seat',
+      dotLabel: 'Step 2: Everyone Wants the Best Seat',
+      color: COLORS.blue,
+      dark: COLORS.blueDark,
+      heading: 'Everyone Wants the Best Seat',
+      quote: '"Grant us to sit, one at your right hand and one at your left, in your glory."',
+      ref: 'Mark 10:37, 42',
+      note: 'Climbers push upward for the top seats while someone below stays stuck in a hard place.',
+      desc: 'Three climbers scramble up the ladder on the left pushing toward the Best Seats, while another person sits stuck inside the pit below.'
+    },
+    {
+      id: 'greatness-turned',
+      dotLabel: 'Step 3: Greatness Turned Over',
+      color: COLORS.green,
+      dark: COLORS.greenDark,
+      heading: 'Greatness Turned Over',
+      quote: '"Whoever would be great among you must be your servant, and whoever would be first among you must be slave of all."',
+      ref: 'Mark 10:43-44',
+      note: 'One person leaves the ladder and climbs down into another person\'s pit on purpose.',
+      desc: 'A green servant figure steps off the ladder and follows a downward path into the pit to stand beside the person stuck below.'
+    },
+    {
+      id: 'in-your-hands',
+      dotLabel: 'Step 4: What\'s in Your Hands',
+      color: COLORS.green,
+      dark: COLORS.greenDark,
+      heading: 'What\'s in Your Hands',
+      quote: '"Who can I lift?"',
+      ref: '',
+      note: 'The rope you lower is made of what God gave you: time, strength, skills, money, and a voice.',
+      desc: 'A braided rope anchored to the rock drops down into the pit, labeled with time, strength, skills, money, and a voice, beneath the question Who can I lift?'
+    },
+    {
+      id: 'lift-jesus',
+      dotLabel: 'Step 5: Lift Up Jesus',
+      color: COLORS.gold,
+      dark: COLORS.goldDark,
+      heading: 'Lift Up Jesus',
+      quote: '"What we proclaim is not ourselves, but Jesus Christ as Lord, with ourselves as your servants for Jesus\' sake."',
+      ref: '2 Corinthians 4:5',
+      note: 'The person lifted out is pointed to Jesus, not to the helper.',
+      desc: 'The rescued person now stands on the solid rock looking up toward a radiant gold Jesus emblem above, while the humble green servant beside the pit points upward to Him.'
+    },
+    {
+      id: 'last-first',
+      dotLabel: 'Step 6: The Last Will Be First',
+      color: COLORS.gold,
+      dark: COLORS.goldDark,
+      heading: 'The Last Will Be First',
+      quote: '"Humble yourselves before the Lord, and he will exalt you."',
+      ref: 'James 4:10',
+      note: 'God lifts up the one who climbed down. The light falls on the servant, not on the top of the ladder.',
+      desc: 'The ladder and Best Seats fade into quiet grey on the left while warm golden light shines straight down from above onto the humble servant, lifting them upward.'
+    }
+  ];
+
+  function el(tag, attrs, parent) {
+    var node = document.createElement(tag);
+    if (attrs) {
+      Object.keys(attrs).forEach(function (k) {
+        if (k === 'text') node.textContent = attrs[k];
+        else if (k === 'class') node.className = attrs[k];
+        else node.setAttribute(k, attrs[k]);
+      });
+    }
+    if (parent) parent.appendChild(node);
+    return node;
+  }
+
+  function svgEl(tag, attrs, parent) {
+    var node = document.createElementNS(SVG_NS, tag);
+    if (attrs) {
+      Object.keys(attrs).forEach(function (k) {
+        if (k === 'text') node.textContent = attrs[k];
+        else node.setAttribute(k, attrs[k]);
+      });
+    }
+    if (parent) parent.appendChild(node);
+    return node;
+  }
+
+  function addLinearGrad(defs, id, x1, y1, x2, y2, stops) {
+    var g = svgEl('linearGradient', { id: id, x1: x1, y1: y1, x2: x2, y2: y2 }, defs);
+    stops.forEach(function (s) {
+      var a = { offset: s[0], 'stop-color': s[1] };
+      if (s[2] !== undefined) a['stop-opacity'] = String(s[2]);
+      svgEl('stop', a, g);
+    });
+    return g;
+  }
+
+  function addRadialGrad(defs, id, cx, cy, r, stops) {
+    var g = svgEl('radialGradient', { id: id, cx: cx, cy: cy, r: r }, defs);
+    stops.forEach(function (s) {
+      var a = { offset: s[0], 'stop-color': s[1] };
+      if (s[2] !== undefined) a['stop-opacity'] = String(s[2]);
+      svgEl('stop', a, g);
+    });
+    return g;
+  }
+
+  // Clean whiteboard person helper (rounded head + simple expressive torso/arms/legs)
+  function drawPerson(parent, opts) {
+    var g = svgEl('g', {}, parent);
+    var x = opts.x;
+    var y = opts.y; // feet baseline
+    var fill = opts.fill || '#FAF6EC';
+    var stroke = opts.stroke || '#2C2416';
+    var headFill = opts.headFill || '#FFFDF8';
+    var pose = opts.pose || 'stand';
+    var scale = opts.scale || 1;
+    var wrap = svgEl('g', {
+      transform: 'translate(' + x + ',' + y + ') scale(' + scale + ')'
+    }, g);
+
+    if (pose === 'stuck') {
+      // Hunched seated figure stuck in a pit
+      svgEl('path', {
+        d: 'M -9 -2 C -11 -11 -8 -19 -1 -20 C 5 -21 10 -15 11 -6 L 15 -2 L -9 -2 Z',
+        fill: fill,
+        stroke: stroke,
+        'stroke-width': '1.8',
+        'stroke-linejoin': 'round'
+      }, wrap);
+      // Knees drawn up
+      svgEl('path', {
+        d: 'M 1 -10 L 9 -13 L 13 -2',
+        fill: 'none',
+        stroke: stroke,
+        'stroke-width': '1.8',
+        'stroke-linecap': 'round',
+        'stroke-linejoin': 'round'
+      }, wrap);
+      svgEl('circle', { cx: -2, cy: -26, r: 6.2, fill: headFill, stroke: stroke, 'stroke-width': '1.8' }, wrap);
+      return g;
+    }
+
+    if (pose === 'climb') {
+      // Climber reaching eagerly upward on the ladder
+      svgEl('path', {
+        d: 'M -5 -13 L -7 0 M 5 -13 L 7 -3',
+        stroke: stroke,
+        'stroke-width': '2',
+        'stroke-linecap': 'round'
+      }, wrap);
+      svgEl('path', {
+        d: 'M -7 -29 C -7 -32 7 -32 7 -29 L 8 -13 L -8 -13 Z',
+        fill: fill,
+        stroke: stroke,
+        'stroke-width': '1.7',
+        'stroke-linejoin': 'round'
+      }, wrap);
+      // Arms reaching UP
+      svgEl('path', {
+        d: 'M -7 -27 L -13 -39 M 7 -27 L 13 -41',
+        stroke: stroke,
+        'stroke-width': '1.9',
+        'stroke-linecap': 'round'
+      }, wrap);
+      svgEl('circle', { cx: 0, cy: -37, r: 6, fill: headFill, stroke: stroke, 'stroke-width': '1.7' }, wrap);
+      return g;
+    }
+
+    if (pose === 'kneel-help') {
+      // Kneeling/crouching helper reaching right toward the stuck person
+      svgEl('path', {
+        d: 'M -10 -2 L 4 -2 L 8 -14 C 8 -22 -2 -26 -8 -21 C -12 -17 -13 -9 -10 -2 Z',
+        fill: fill,
+        stroke: stroke,
+        'stroke-width': '1.8',
+        'stroke-linejoin': 'round'
+      }, wrap);
+      svgEl('path', {
+        d: 'M 4 -18 L 19 -13',
+        stroke: stroke,
+        'stroke-width': '2',
+        'stroke-linecap': 'round'
+      }, wrap);
+      svgEl('circle', { cx: 1, cy: -30, r: 6.2, fill: headFill, stroke: stroke, 'stroke-width': '1.8' }, wrap);
+      return g;
+    }
+
+    if (pose === 'point-up-right') {
+      // Humble servant standing and pointing upward right toward Jesus
+      svgEl('path', {
+        d: 'M -4 -14 L -6 0 M 4 -14 L 6 0',
+        stroke: stroke,
+        'stroke-width': '2.1',
+        'stroke-linecap': 'round'
+      }, wrap);
+      svgEl('path', {
+        d: 'M -7 -32 C -7 -36 7 -36 7 -32 L 9 -13 L -9 -13 Z',
+        fill: fill,
+        stroke: stroke,
+        'stroke-width': '1.8',
+        'stroke-linejoin': 'round'
+      }, wrap);
+      // Arm pointing clearly upward toward Jesus
+      svgEl('path', {
+        d: 'M 7 -29 L 20 -44 M -7 -28 L -11 -18',
+        stroke: stroke,
+        'stroke-width': '2',
+        'stroke-linecap': 'round'
+      }, wrap);
+      svgEl('circle', { cx: 0, cy: -41, r: 6.5, fill: headFill, stroke: stroke, 'stroke-width': '1.8' }, wrap);
+      return g;
+    }
+
+    if (pose === 'arms-open') {
+      // Joyful lifted person or exalted servant
+      svgEl('path', {
+        d: 'M -4 -14 L -6 0 M 4 -14 L 6 0',
+        stroke: stroke,
+        'stroke-width': '2.1',
+        'stroke-linecap': 'round'
+      }, wrap);
+      svgEl('path', {
+        d: 'M -7 -32 C -7 -36 7 -36 7 -32 L 9 -13 L -9 -13 Z',
+        fill: fill,
+        stroke: stroke,
+        'stroke-width': '1.8',
+        'stroke-linejoin': 'round'
+      }, wrap);
+      svgEl('path', {
+        d: 'M -7 -29 L -16 -38 M 7 -29 L 16 -38',
+        stroke: stroke,
+        'stroke-width': '2',
+        'stroke-linecap': 'round'
+      }, wrap);
+      svgEl('circle', { cx: 0, cy: -41, r: 6.5, fill: headFill, stroke: stroke, 'stroke-width': '1.8' }, wrap);
+      return g;
+    }
+
+    // Default: calm standing figure (optionally looking right)
+    svgEl('path', {
+      d: 'M -4 -14 L -5 0 M 4 -14 L 5 0',
+      stroke: stroke,
+      'stroke-width': '2.1',
+      'stroke-linecap': 'round'
+    }, wrap);
+    svgEl('path', {
+      d: 'M -7 -32 C -7 -36 7 -36 7 -32 L 9 -13 L -9 -13 Z',
+      fill: fill,
+      stroke: stroke,
+      'stroke-width': '1.8',
+      'stroke-linejoin': 'round'
+    }, wrap);
+    svgEl('path', {
+      d: 'M -7 -28 L -12 -17 M 7 -28 L 12 -17',
+      stroke: stroke,
+      'stroke-width': '1.9',
+      'stroke-linecap': 'round'
+    }, wrap);
+    svgEl('circle', { cx: 0, cy: -41, r: 6.5, fill: headFill, stroke: stroke, 'stroke-width': '1.8' }, wrap);
+    return g;
+  }
+
+  function drawPill(parent, x, y, text) {
+    var g = svgEl('g', {}, parent);
+    var w = Math.max(44, text.length * 6.5 + 14);
+    svgEl('rect', {
+      x: x - w / 2,
+      y: y - 10,
+      width: w,
+      height: 20,
+      rx: 10,
+      fill: '#E1F1E9',
+      stroke: '#1F684A',
+      'stroke-width': '1.3'
+    }, g);
+    svgEl('text', {
+      x: x,
+      y: y + 3.8,
+      'text-anchor': 'middle',
+      fill: '#164E37',
+      'font-family': 'system-ui, -apple-system, sans-serif',
+      'font-size': '10.5',
+      'font-weight': '700',
+      text: text
+    }, g);
+    return g;
+  }
+
+  function buildStage(host) {
+    var stage = el('div', { class: 'stage' }, host);
+    var svg = svgEl('svg', {
+      id: 'lift-svg',
+      class: 'scene-svg',
+      viewBox: '0 0 440 278',
+      width: '100%',
+      role: 'img',
+      'aria-labelledby': 'lift-svg-title lift-svg-desc'
+    }, stage);
+
+    var svgTitle = svgEl('title', { id: 'lift-svg-title', text: 'Who Can I Lift?' }, svg);
+    var svgDesc = svgEl('desc', { id: 'lift-svg-desc', text: STEPS[0].desc }, svg);
+
+    var defs = svgEl('defs', {}, svg);
+    addLinearGrad(defs, 'earth-grad', '50%', '0%', '50%', '100%', [
+      ['0%', '#F4EFE5'],
+      ['100%', '#EAE1D2']
+    ]);
+    addLinearGrad(defs, 'pit-shadow', '50%', '0%', '50%', '100%', [
+      ['0%', '#E5DDCF', 0.35],
+      ['100%', '#D3C7B2', 0.85]
+    ]);
+    addRadialGrad(defs, 'gold-wash', '50%', '50%', '50%', [
+      ['0%', '#FCF2D6', 0.96],
+      ['60%', '#FDF6E3', 0.45],
+      ['100%', '#FFFFFF', 0]
+    ]);
+    addLinearGrad(defs, 'heaven-beam', '50%', '0%', '50%', '100%', [
+      ['0%', '#F9DF8B', 0.56],
+      ['58%', '#FCF2D6', 0.34],
+      ['100%', '#FCF2D6', 0.04]
+    ]);
+
+    // 0) Clean whiteboard paper background
+    svgEl('rect', { x: 0, y: 0, width: 440, height: 278, fill: '#FFFFFF' }, svg);
+
+    // =========================================================================
+    // STEP 6 LIGHT BEAM (behind ground/figures so it bathes the humble servant!)
+    // =========================================================================
+    var finishBeamLayer = svgEl('g', { id: 'layer-finish-beam', class: 'layer' }, svg);
+    svgEl('polygon', {
+      points: '228,0 302,0 326,178 204,178',
+      fill: 'url(#heaven-beam)'
+    }, finishBeamLayer);
+    // Crisp Studio Wash double-hairline rays framing the light beam cleanly to ground y=176
+    svgEl('path', {
+      d: 'M 232 4 L 210 175 M 298 4 L 320 175',
+      stroke: '#C48F10',
+      'stroke-width': '1.2',
+      opacity: '0.42'
+    }, finishBeamLayer);
+    svgEl('path', {
+      d: 'M 239 4 L 219 175 M 291 4 L 311 175',
+      stroke: '#A8760A',
+      'stroke-width': '0.8',
+      opacity: '0.28'
+    }, finishBeamLayer);
+
+    // =========================================================================
+    // FIXED BASE WHITEBOARD SCENE: GROUND, PIT, AND SOLID ROCK
+    // =========================================================================
+    var terrainLayer = svgEl('g', { id: 'layer-terrain' }, svg);
+    // Pit inner shadow fill (below ground line y=178)
+    svgEl('path', {
+      d: 'M 272 178 L 288 250 L 392 250 L 408 178 Z',
+      fill: 'url(#pit-shadow)'
+    }, terrainLayer);
+    // Cross-section earth body around the pit
+    svgEl('path', {
+      d: 'M 0 178 L 272 178 L 288 250 L 392 250 L 408 178 L 440 178 L 440 278 L 0 278 Z',
+      fill: 'url(#earth-grad)'
+    }, terrainLayer);
+    // Crisp whiteboard ground & pit contour line
+    svgEl('path', {
+      d: 'M 14 178 L 272 178 L 288 250 L 392 250 L 408 178 L 426 178',
+      fill: 'none',
+      stroke: '#2C2416',
+      'stroke-width': '2.3',
+      'stroke-linecap': 'round',
+      'stroke-linejoin': 'round'
+    }, terrainLayer);
+    // Subtle pit depth hatch marks along walls (whiteboard sketch feel)
+    svgEl('path', {
+      d: 'M 270 194 L 278 194 M 274 214 L 282 214 M 278 234 L 285 234 M 400 194 L 408 194 M 396 214 L 404 214 M 393 234 L 400 234',
+      stroke: '#9B8F7C',
+      'stroke-width': '1.2',
+      'stroke-linecap': 'round',
+      opacity: '0.7'
+    }, terrainLayer);
+    // Quiet pit label in the earth below pit floor
+    svgEl('text', {
+      x: 340,
+      y: 268,
+      'text-anchor': 'middle',
+      fill: '#7E7466',
+      'font-family': 'system-ui, -apple-system, sans-serif',
+      'font-size': '10.5',
+      'font-weight': '600',
+      'letter-spacing': '0.6',
+      text: 'THE PIT'
+    }, terrainLayer);
+
+    // Solid Rock resting on ground at center (x = 160..226, top y = 154)
+    svgEl('path', {
+      d: 'M 158 178 L 166 156 L 184 150 L 210 151 L 225 162 L 230 178 Z',
+      fill: '#E5DEC9',
+      stroke: '#2C2416',
+      'stroke-width': '2',
+      'stroke-linejoin': 'round'
+    }, terrainLayer);
+    svgEl('path', {
+      d: 'M 184 150 L 189 166 L 214 166 L 225 162 M 189 166 L 176 177',
+      fill: 'none',
+      stroke: '#9A8E7A',
+      'stroke-width': '1.2',
+      'stroke-linecap': 'round'
+    }, terrainLayer);
+    svgEl('text', {
+      x: 194,
+      y: 194,
+      'text-anchor': 'middle',
+      fill: '#7E7466',
+      'font-family': 'system-ui, -apple-system, sans-serif',
+      'font-size': '10',
+      'font-weight': '600',
+      'letter-spacing': '0.5',
+      text: 'SOLID ROCK'
+    }, terrainLayer);
+
+    // =========================================================================
+    // FIXED LADDER & BEST SEATS ON THE LEFT (Dims to shadow on Step 6!)
+    // =========================================================================
+    var ladderGroup = svgEl('g', { id: 'layer-ladder', class: 'layer is-visible' }, svg);
+    // Elevated Best Seats platform
+    svgEl('line', {
+      x1: 30,
+      y1: 52,
+      x2: 126,
+      y2: 52,
+      stroke: '#2C2416',
+      'stroke-width': '2.2',
+      'stroke-linecap': 'round'
+    }, ladderGroup);
+    // Two simple whiteboard seats on top (right and left seats!)
+    // Left chair
+    svgEl('path', {
+      d: 'M 42 32 L 42 52 M 42 43 L 58 43 L 58 52',
+      fill: 'none',
+      stroke: '#2C2416',
+      'stroke-width': '2',
+      'stroke-linecap': 'round',
+      'stroke-linejoin': 'round'
+    }, ladderGroup);
+    // Right chair
+    svgEl('path', {
+      d: 'M 114 32 L 114 52 M 114 43 L 98 43 L 98 52',
+      fill: 'none',
+      stroke: '#2C2416',
+      'stroke-width': '2',
+      'stroke-linecap': 'round',
+      'stroke-linejoin': 'round'
+    }, ladderGroup);
+    svgEl('text', {
+      x: 78,
+      y: 22,
+      'text-anchor': 'middle',
+      fill: '#6E6559',
+      'font-family': 'system-ui, -apple-system, sans-serif',
+      'font-size': '10.5',
+      'font-weight': '700',
+      'letter-spacing': '0.5',
+      text: 'BEST SEATS'
+    }, ladderGroup);
+
+    // Tall ladder rails + 6 rungs
+    svgEl('path', {
+      d: 'M 64 52 L 64 178 M 92 52 L 92 178',
+      stroke: '#2C2416',
+      'stroke-width': '2.4',
+      'stroke-linecap': 'round'
+    }, ladderGroup);
+    [68, 88, 108, 128, 148, 166].forEach(function (ry) {
+      svgEl('line', {
+        x1: 64,
+        y1: ry,
+        x2: 92,
+        y2: ry,
+        stroke: '#2C2416',
+        'stroke-width': '2'
+      }, ladderGroup);
+    });
+
+    // =========================================================================
+    // STEP 0: INITIAL STUCK PERSON IN THE PIT
+    // =========================================================================
+    var pitStuckInitial = svgEl('g', { id: 'layer-pit-stuck-0', class: 'layer is-visible' }, svg);
+    drawPerson(pitStuckInitial, { x: 342, y: 249, pose: 'stuck', fill: '#EFE9DD', stroke: '#2C2416' });
+
+    // =========================================================================
+    // STEP 1 (GOLD): HE LIFTED YOU FIRST (Jesus climbs into pit -> lifts onto Rock!)
+    // =========================================================================
+    var step1Layer = svgEl('g', { id: 'layer-step-1', class: 'layer' }, svg);
+    // Warm gold wash inside pit & around the solid rock
+    svgEl('ellipse', { cx: 332, cy: 222, rx: 52, ry: 34, fill: 'url(#gold-wash)' }, step1Layer);
+    svgEl('circle', { cx: 194, cy: 124, r: 44, fill: 'url(#gold-wash)' }, step1Layer);
+    // Jesus kneeling/reaching in the pit in warm gold
+    drawPerson(step1Layer, { x: 318, y: 249, pose: 'kneel-help', fill: '#FCF2D6', stroke: '#A8760A', headFill: '#FFFDF5' });
+    // Small gold cross gleam over Jesus in the pit
+    svgEl('path', {
+      d: 'M 319 196 L 319 208 M 314 200 L 324 200',
+      stroke: '#C48F10',
+      'stroke-width': '2',
+      'stroke-linecap': 'round'
+    }, step1Layer);
+    // Animated gold lifting arc from pit up onto the Solid Rock!
+    svgEl('path', {
+      id: 'arc-jesus-lift',
+      d: 'M 340 226 C 322 162 272 114 214 124',
+      fill: 'none',
+      stroke: '#C48F10',
+      'stroke-width': '2.6',
+      'stroke-linecap': 'round'
+    }, step1Layer);
+    svgEl('path', {
+      d: 'M 222 118 L 212 124 L 222 130',
+      fill: 'none',
+      stroke: '#C48F10',
+      'stroke-width': '2.4',
+      'stroke-linecap': 'round',
+      'stroke-linejoin': 'round'
+    }, step1Layer);
+    // You lifted out and standing secure on the Solid Rock!
+    drawPerson(step1Layer, { x: 194, y: 151, pose: 'arms-open', fill: '#FCF2D6', stroke: '#7D5604', headFill: '#FFFDF5' });
+
+    // =========================================================================
+    // STEP 2: EVERYONE WANTS THE BEST SEAT (Climbers pushing up the ladder)
+    // =========================================================================
+    var climbersLayer = svgEl('g', { id: 'layer-climbers', class: 'layer' }, svg);
+    // Three climbers scrambling up the ladder toward Best Seats
+    drawPerson(climbersLayer, { x: 78, y: 92, pose: 'climb', fill: '#E2EEF6', stroke: '#2A5B7C', scale: 0.88 });
+    drawPerson(climbersLayer, { x: 78, y: 132, pose: 'climb', fill: '#E2EEF6', stroke: '#2A5B7C', scale: 0.88 });
+    // Bottom climber (present on Step 2; on Step 3 this person leaves the ladder!)
+    var thirdClimber = svgEl('g', { id: 'layer-third-climber', class: 'layer' }, svg);
+    drawPerson(thirdClimber, { x: 78, y: 172, pose: 'climb', fill: '#E1F1E9', stroke: '#1F684A', scale: 0.88 });
+    // Crisp upward scramble chevrons beside the ladder
+    svgEl('path', {
+      d: 'M 106 116 L 112 108 L 118 116 M 106 105 L 112 97 L 118 105',
+      fill: 'none',
+      stroke: '#2A5B7C',
+      'stroke-width': '2',
+      'stroke-linecap': 'round',
+      'stroke-linejoin': 'round',
+      opacity: '0.68'
+    }, climbersLayer);
+
+    // =========================================================================
+    // STEP 3: GREATNESS TURNED OVER (Servant leaves ladder & climbs down into pit!)
+    // =========================================================================
+    var pitNeighborLayer = svgEl('g', { id: 'layer-pit-neighbor', class: 'layer' }, svg);
+    drawPerson(pitNeighborLayer, { x: 360, y: 249, pose: 'stuck', fill: '#EFE9DD', stroke: '#2C2416' });
+
+    var climbDownPathLayer = svgEl('g', { id: 'layer-climb-down-path', class: 'layer' }, svg);
+    // Animated forest-green downward curve leaving the ladder and descending into the pit!
+    svgEl('path', {
+      id: 'arc-climb-down',
+      d: 'M 96 154 C 148 116 254 128 310 212',
+      fill: 'none',
+      stroke: '#1F684A',
+      'stroke-width': '2.5',
+      'stroke-linecap': 'round'
+    }, climbDownPathLayer);
+    svgEl('path', {
+      d: 'M 301 209 L 311 214 L 312 203',
+      fill: 'none',
+      stroke: '#1F684A',
+      'stroke-width': '2.3',
+      'stroke-linecap': 'round',
+      'stroke-linejoin': 'round'
+    }, climbDownPathLayer);
+
+    var servantInPitLayer = svgEl('g', { id: 'layer-servant-pit', class: 'layer' }, svg);
+    // Green servant kneeling beside the stuck person inside the pit
+    drawPerson(servantInPitLayer, { x: 318, y: 249, pose: 'kneel-help', fill: '#E1F1E9', stroke: '#1F684A', headFill: '#FFFFFF' });
+
+    // =========================================================================
+    // STEP 4: WHAT'S IN YOUR HANDS (Braided rope + 5 gift strands + "Who can I lift?")
+    // =========================================================================
+    var ropeLayer = svgEl('g', { id: 'layer-rope', class: 'layer' }, svg);
+    // Sturdy braided rope anchored around the Rock, dropping down into the pit!
+    svgEl('path', {
+      id: 'rope-main',
+      d: 'M 224 164 C 244 164 268 170 282 184 C 294 196 312 214 334 232',
+      fill: 'none',
+      stroke: '#A8760A',
+      'stroke-width': '3.4',
+      'stroke-linecap': 'round'
+    }, ropeLayer);
+    svgEl('path', {
+      id: 'rope-weave',
+      d: 'M 224 164 C 244 164 268 170 282 184 C 294 196 312 214 334 232',
+      fill: 'none',
+      stroke: '#1F684A',
+      'stroke-width': '1.6',
+      'stroke-dasharray': '5 6',
+      'stroke-linecap': 'round'
+    }, ropeLayer);
+    // Clean connector stems from the bottom row of gift pills down toward the rope
+    svgEl('path', {
+      d: 'M 246 109 L 266 168 M 324 109 L 304 198',
+      stroke: '#1F684A',
+      'stroke-width': '1.1',
+      'stroke-dasharray': '2 4',
+      opacity: '0.5'
+    }, ropeLayer);
+    // Bold whiteboard question above the gift pills
+    svgEl('text', {
+      x: 286,
+      y: 44,
+      'text-anchor': 'middle',
+      fill: '#164E37',
+      'font-family': 'Georgia, Cambria, serif',
+      'font-size': '15.5',
+      'font-weight': '700',
+      text: '"Who can I lift?"'
+    }, ropeLayer);
+    // Five crisp non-overlapping gift pills (two neat rows in the open upper-right sky!)
+    drawPill(ropeLayer, 208, 70, 'Time');
+    drawPill(ropeLayer, 286, 70, 'Strength');
+    drawPill(ropeLayer, 360, 70, 'Skills');
+    drawPill(ropeLayer, 246, 98, 'Money');
+    drawPill(ropeLayer, 324, 98, 'Voice');
+
+    // =========================================================================
+    // STEP 5: LIFT UP JESUS (Person lifted onto Rock; servant points up to Jesus!)
+    // =========================================================================
+    var jesusSkyLayer = svgEl('g', { id: 'layer-jesus-sky', class: 'layer' }, svg);
+    // Radiant golden Jesus emblem high on the right (NOT on top of the ladder!)
+    svgEl('circle', { cx: 368, cy: 56, r: 44, fill: 'url(#gold-wash)' }, jesusSkyLayer);
+    svgEl('circle', { cx: 368, cy: 56, r: 22, fill: '#FCF2D6', stroke: '#C48F10', 'stroke-width': '1.8' }, jesusSkyLayer);
+    // Crisp cross inside gold circle
+    svgEl('path', {
+      d: 'M 368 44 L 368 68 M 360 52 L 376 52',
+      stroke: '#A8760A',
+      'stroke-width': '2.6',
+      'stroke-linecap': 'round'
+    }, jesusSkyLayer);
+    svgEl('text', {
+      x: 368,
+      y: 94,
+      'text-anchor': 'middle',
+      fill: '#7D5604',
+      'font-family': 'system-ui, -apple-system, sans-serif',
+      'font-size': '11.5',
+      'font-weight': '700',
+      'letter-spacing': '0.8',
+      text: 'JESUS'
+    }, jesusSkyLayer);
+
+    var liftedPersonLayer = svgEl('g', { id: 'layer-lifted-person', class: 'layer' }, svg);
+    // Soft green-gold lift arc from pit to Rock
+    svgEl('path', {
+      id: 'arc-neighbor-lift',
+      d: 'M 340 226 C 322 184 268 156 218 154',
+      fill: 'none',
+      stroke: '#1F684A',
+      'stroke-width': '2',
+      'stroke-dasharray': '4 4',
+      'stroke-linecap': 'round',
+      opacity: '0.68'
+    }, liftedPersonLayer);
+    // Newly lifted person standing joyfully on the Solid Rock!
+    drawPerson(liftedPersonLayer, { x: 194, y: 151, pose: 'stand', fill: '#FCF2D6', stroke: '#2C2416', headFill: '#FFFDF8' });
+    // Sightline dashed golden ray from lifted person upward toward Jesus
+    svgEl('path', {
+      id: 'ray-to-jesus',
+      d: 'M 212 114 L 338 66',
+      fill: 'none',
+      stroke: '#C48F10',
+      'stroke-width': '1.8',
+      'stroke-dasharray': '4 4',
+      'stroke-linecap': 'round',
+      opacity: '0.78'
+    }, liftedPersonLayer);
+
+    var servantPointingLayer = svgEl('g', { id: 'layer-servant-pointing', class: 'layer' }, svg);
+    // Humble green servant standing by the pit edge, pointing upward toward Jesus!
+    drawPerson(servantPointingLayer, { x: 264, y: 178, pose: 'point-up-right', fill: '#E1F1E9', stroke: '#1F684A', headFill: '#FFFFFF' });
+    svgEl('path', {
+      d: 'M 288 130 L 344 82',
+      fill: 'none',
+      stroke: '#1F684A',
+      'stroke-width': '1.8',
+      'stroke-dasharray': '4 4',
+      'stroke-linecap': 'round',
+      opacity: '0.7'
+    }, servantPointingLayer);
+
+    // =========================================================================
+    // STEP 6 (FINISH): THE LAST WILL BE FIRST (God lifts the humble servant!)
+    // =========================================================================
+    var servantExaltedLayer = svgEl('g', { id: 'layer-servant-exalted', class: 'layer' }, svg);
+    // Double-chevron upward lift marks beneath the servant (Studio Wash watermark style)
+    svgEl('path', {
+      d: 'M 254 166 L 265 156 L 276 166',
+      fill: 'none',
+      stroke: '#C48F10',
+      'stroke-width': '2.4',
+      'stroke-linecap': 'round',
+      'stroke-linejoin': 'round',
+      opacity: '0.78'
+    }, servantExaltedLayer);
+    svgEl('path', {
+      d: 'M 257 174 L 265 167 L 273 174',
+      fill: 'none',
+      stroke: '#C48F10',
+      'stroke-width': '1.8',
+      'stroke-linecap': 'round',
+      'stroke-linejoin': 'round',
+      opacity: '0.45'
+    }, servantExaltedLayer);
+    // The servant who climbed down, now gently lifted upward in God's golden light!
+    var exaltedFigureGroup = svgEl('g', { id: 'exalted-figure', transform: 'translate(0, 18)' }, servantExaltedLayer);
+    svgEl('circle', { cx: 265, cy: 118, r: 34, fill: 'url(#gold-wash)' }, exaltedFigureGroup);
+    drawPerson(exaltedFigureGroup, { x: 265, y: 146, pose: 'arms-open', fill: '#E1F1E9', stroke: '#164E37', headFill: '#FFFDF5' });
+
+    return {
+      svgTitle: svgTitle,
+      svgDesc: svgDesc,
+      ladderGroup: ladderGroup,
+      pitStuckInitial: pitStuckInitial,
+      step1Layer: step1Layer,
+      climbersLayer: climbersLayer,
+      thirdClimber: thirdClimber,
+      pitNeighborLayer: pitNeighborLayer,
+      climbDownPathLayer: climbDownPathLayer,
+      servantInPitLayer: servantInPitLayer,
+      ropeLayer: ropeLayer,
+      jesusSkyLayer: jesusSkyLayer,
+      liftedPersonLayer: liftedPersonLayer,
+      servantPointingLayer: servantPointingLayer,
+      finishBeamLayer: finishBeamLayer,
+      servantExaltedLayer: servantExaltedLayer,
+      exaltedFigureGroup: exaltedFigureGroup,
+      arcJesusLift: step1Layer.querySelector('#arc-jesus-lift'),
+      arcClimbDown: climbDownPathLayer.querySelector('#arc-climb-down'),
+      ropeMain: ropeLayer.querySelector('#rope-main'),
+      ropeWeave: ropeLayer.querySelector('#rope-weave')
+    };
+  }
+
+  function init() {
+    var host = document.getElementById('scene-root');
+    if (!host) return;
+
+    var bar = el('div', { class: 'title-bar' }, host);
+    el('h1', { text: 'Who Can I Lift?' }, bar);
+    el('span', { class: 'course-tag', text: '203-04' }, bar);
+
+    var bundle = buildStage(host);
+
+    var strip = el('div', { class: 'step-strip', role: 'group', 'aria-label': 'Who Can I Lift steps' }, host);
+    var dotButtons = STEPS.map(function (st, idx) {
+      var btn = el('button', {
+        type: 'button',
+        class: 'step-dot',
+        'data-step': String(idx),
+        'aria-label': st.dotLabel,
+        'aria-pressed': 'false'
+      }, strip);
+      btn.style.setProperty('--dot-color', st.color);
+      el('span', { class: 'step-dot-fill' }, btn);
+      return btn;
+    });
+
+    var cardArea = el('div', { class: 'card-area' }, host);
+    var cardBox = el('div', { class: 'verse-card' }, cardArea);
+    el('div', { class: 'verse-card-bar' }, cardBox);
+    var contentEl = el('div', {
+      id: 'card-content',
+      class: 'verse-card-content',
+      'aria-live': 'polite'
+    }, cardBox);
+    var headingEl = el('h2', { class: 'card-heading' }, contentEl);
+    var quoteWrap = el('p', { class: 'card-quote' }, contentEl);
+    var quoteTextEl = el('span', {}, quoteWrap);
+    var refEl = el('span', { class: 'card-ref' }, quoteWrap);
+    var noteEl = el('p', { class: 'card-note' }, contentEl);
+
+    var navBar = el('div', { class: 'nav-bar' }, cardArea);
+    var prevBtn = el('button', { id: 'prev-btn', type: 'button', class: 'nav-btn', text: '\u2190 Back' }, navBar);
+    var countEl = el('span', { class: 'step-count', text: 'Ready' }, navBar);
+    var nextBtn = el('button', { id: 'next-btn', type: 'button', class: 'nav-btn primary', text: 'Begin \u2192' }, navBar);
+
+    var currentStep = 0;
+    var activeRaf = null;
+    var reducedMotionQuery = window.matchMedia
+      ? window.matchMedia('(prefers-reduced-motion: reduce)')
+      : { matches: false };
+
+    function stopAnim() {
+      if (activeRaf !== null) {
+        cancelAnimationFrame(activeRaf);
+        activeRaf = null;
+      }
+    }
+
+    function setLayerState(node, mode) {
+      node.classList.remove('is-visible', 'is-dim', 'is-soft');
+      if (mode === 'visible') node.classList.add('is-visible');
+      else if (mode === 'dim') node.classList.add('is-dim');
+      else if (mode === 'soft') node.classList.add('is-soft');
+    }
+
+    function applyStaticLayers(stepIdx) {
+      // Ladder: clear on Steps 0..5, faded into shadow on Step 6 so light falls on the servant!
+      setLayerState(bundle.ladderGroup, stepIdx === 6 ? 'dim' : 'visible');
+
+      // Initial pit figure: Step 0 only
+      setLayerState(bundle.pitStuckInitial, stepIdx === 0 ? 'visible' : 'hidden');
+
+      // Step 1: Jesus lifts you first onto the Rock
+      setLayerState(bundle.step1Layer, stepIdx === 1 ? 'visible' : 'hidden');
+
+      // Step 2..6: Climbers pushing up the ladder (dim on Step 6!)
+      if (stepIdx === 2) setLayerState(bundle.climbersLayer, 'visible');
+      else if (stepIdx >= 3 && stepIdx <= 5) setLayerState(bundle.climbersLayer, 'soft');
+      else if (stepIdx === 6) setLayerState(bundle.climbersLayer, 'dim');
+      else setLayerState(bundle.climbersLayer, 'hidden');
+
+      // Bottom climber on ladder only on Step 2 (steps off ladder on Step 3!)
+      setLayerState(bundle.thirdClimber, stepIdx === 2 ? 'visible' : 'hidden');
+
+      // Neighbor stuck in pit: Steps 2, 3, 4 (lifted out on Step 5!)
+      setLayerState(bundle.pitNeighborLayer, (stepIdx >= 2 && stepIdx <= 4) ? 'visible' : 'hidden');
+
+      // Step 3 downward path off ladder into pit (soft reminder on Step 4)
+      if (stepIdx === 3) setLayerState(bundle.climbDownPathLayer, 'visible');
+      else if (stepIdx === 4) setLayerState(bundle.climbDownPathLayer, 'dim');
+      else setLayerState(bundle.climbDownPathLayer, 'hidden');
+
+      // Green servant kneeling inside pit: Steps 3 & 4
+      setLayerState(bundle.servantInPitLayer, (stepIdx === 3 || stepIdx === 4) ? 'visible' : 'hidden');
+
+      // Step 4: What's in Your Hands rope & gift tags
+      setLayerState(bundle.ropeLayer, stepIdx === 4 ? 'visible' : 'hidden');
+
+      // Step 5 & 6: Radiant Jesus emblem above & lifted neighbor standing on the Rock
+      setLayerState(bundle.jesusSkyLayer, stepIdx >= 5 ? 'visible' : 'hidden');
+      setLayerState(bundle.liftedPersonLayer, stepIdx === 5 ? 'visible' : (stepIdx === 6 ? 'soft' : 'hidden'));
+
+      // Step 5: Servant standing at pit edge pointing to Jesus
+      setLayerState(bundle.servantPointingLayer, stepIdx === 5 ? 'visible' : 'hidden');
+
+      // Step 6: Finish! Light falls on the humble servant and lifts them up!
+      setLayerState(bundle.finishBeamLayer, stepIdx === 6 ? 'visible' : 'hidden');
+      setLayerState(bundle.servantExaltedLayer, stepIdx === 6 ? 'visible' : 'hidden');
+    }
+
+    function clearStroke(p) {
+      if (!p) return;
+      p.style.strokeDasharray = '';
+      p.style.strokeDashoffset = '';
+    }
+
+    function snapFinalMotion(stepIdx) {
+      clearStroke(bundle.arcJesusLift);
+      clearStroke(bundle.arcClimbDown);
+      clearStroke(bundle.ropeMain);
+      clearStroke(bundle.ropeWeave);
+      bundle.exaltedFigureGroup.setAttribute('transform', stepIdx === 6 ? 'translate(0, 0)' : 'translate(0, 18)');
+    }
+
+    function tracePaths(paths, dur) {
+      var valid = paths.filter(Boolean);
+      var lens = valid.map(function (p) { return p.getTotalLength(); });
+      host.setAttribute('data-step-dur', String(dur));
+      valid.forEach(function (p, i) {
+        p.style.strokeDasharray = String(lens[i]);
+        p.style.strokeDashoffset = String(lens[i]);
+      });
+      var t0 = performance.now();
+      var frame = function (now) {
+        var prog = Math.min(1, (now - t0) / dur);
+        var eased = 1 - Math.pow(1 - prog, 2);
+        valid.forEach(function (p, i) {
+          p.style.strokeDashoffset = String((lens[i] * (1 - eased)).toFixed(2));
+        });
+        if (prog < 1) {
+          activeRaf = requestAnimationFrame(frame);
+        } else {
+          valid.forEach(clearStroke);
+          activeRaf = null;
+        }
+      };
+      activeRaf = requestAnimationFrame(frame);
+    }
+
+    function animateStep(stepIdx) {
+      snapFinalMotion(stepIdx);
+      if (stepIdx === 1) {
+        tracePaths([bundle.arcJesusLift], 680);
+      } else if (stepIdx === 3) {
+        tracePaths([bundle.arcClimbDown], 680);
+      } else if (stepIdx === 4) {
+        tracePaths([bundle.ropeMain], 620);
+      } else if (stepIdx === 6) {
+        var dur = 760;
+        host.setAttribute('data-step-dur', String(dur));
+        bundle.exaltedFigureGroup.setAttribute('transform', 'translate(0, 18)');
+        var t0 = performance.now();
+        var frame = function (now) {
+          var prog = Math.min(1, (now - t0) / dur);
+          var eased = 1 - Math.pow(1 - prog, 2);
+          var dy = (18 * (1 - eased)).toFixed(2);
+          bundle.exaltedFigureGroup.setAttribute('transform', 'translate(0, ' + dy + ')');
+          if (prog < 1) {
+            activeRaf = requestAnimationFrame(frame);
+          } else {
+            bundle.exaltedFigureGroup.setAttribute('transform', 'translate(0, 0)');
+            activeRaf = null;
+          }
+        };
+        activeRaf = requestAnimationFrame(frame);
+      } else {
+        host.setAttribute('data-step-dur', '0');
+      }
+    }
+
+    function goTo(nextIdx) {
+      stopAnim();
+      var prevIdx = currentStep;
+      var goingForwardOne = nextIdx === prevIdx + 1;
+      var instant = reducedMotionQuery.matches || !goingForwardOne || nextIdx === 0;
+
+      host.classList.toggle('is-instant', instant);
+      applyStaticLayers(nextIdx);
+
+      if (instant) {
+        host.setAttribute('data-step-dur', '0');
+        snapFinalMotion(nextIdx);
+      } else {
+        animateStep(nextIdx);
+      }
+
+      currentStep = nextIdx;
+      var step = STEPS[currentStep];
+      host.setAttribute('data-step', String(currentStep));
+      host.style.setProperty('--step-color', step.color);
+      host.style.setProperty('--step-dark', step.dark);
+      bundle.svgDesc.textContent = step.desc;
+
+      headingEl.textContent = step.heading;
+      quoteTextEl.textContent = step.quote;
+      refEl.textContent = step.ref ? ('(' + step.ref + ')') : '';
+      noteEl.textContent = step.note;
+
+      dotButtons.forEach(function (btn, idx) {
+        btn.classList.toggle('active', idx === currentStep);
+        btn.classList.toggle('passed', idx < currentStep);
+        btn.setAttribute('aria-pressed', idx === currentStep ? 'true' : 'false');
+      });
+
+      countEl.textContent = currentStep === 0 ? 'Ready' : ('Step ' + currentStep + ' of ' + (STEPS.length - 1));
+      prevBtn.disabled = currentStep === 0;
+      if (currentStep === 0) {
+        nextBtn.textContent = 'Begin \u2192';
+      } else if (currentStep === STEPS.length - 1) {
+        nextBtn.textContent = '\u21BB Start Over';
+      } else {
+        nextBtn.textContent = 'Next \u2192';
+      }
+    }
+
+    dotButtons.forEach(function (btn, idx) {
+      btn.addEventListener('click', function () {
+        goTo(idx);
+      });
+    });
+
+    prevBtn.addEventListener('click', function () {
+      if (currentStep > 0) goTo(currentStep - 1);
+    });
+    nextBtn.addEventListener('click', function () {
+      goTo(currentStep === STEPS.length - 1 ? 0 : currentStep + 1);
+    });
+
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'ArrowRight' && currentStep < STEPS.length - 1) {
+        goTo(currentStep + 1);
+      } else if (event.key === 'ArrowLeft' && currentStep > 0) {
+        goTo(currentStep - 1);
+      }
+    });
+
+    var lastWidth = window.innerWidth;
+    var measuredWidth = 0;
+    function fitCardHeight() {
+      if (!contentEl || contentEl.clientWidth === measuredWidth) return;
+      measuredWidth = contentEl.clientWidth;
+      var keepH = headingEl.textContent;
+      var keepQ = quoteTextEl.textContent;
+      var keepR = refEl.textContent;
+      var keepN = noteEl.textContent;
+      var tallest = 0;
+      document.documentElement.style.setProperty('--card-h', 'auto');
+      STEPS.forEach(function (st) {
+        headingEl.textContent = st.heading;
+        quoteTextEl.textContent = st.quote;
+        refEl.textContent = st.ref ? ('(' + st.ref + ')') : '';
+        noteEl.textContent = st.note;
+        tallest = Math.max(tallest, contentEl.offsetHeight);
+      });
+      headingEl.textContent = keepH;
+      quoteTextEl.textContent = keepQ;
+      refEl.textContent = keepR;
+      noteEl.textContent = keepN;
+      document.documentElement.style.setProperty('--card-h', Math.max(100, Math.ceil(tallest)) + 'px');
+    }
+
+    var resizeTimer = null;
+    window.addEventListener('resize', function () {
+      if (window.innerWidth === lastWidth) return;
+      lastWidth = window.innerWidth;
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(fitCardHeight, 120);
+    });
+
+    goTo(0);
+    fitCardHeight();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
+</body>
+</html>
