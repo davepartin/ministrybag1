@@ -25,12 +25,20 @@ Before committing to the final drawing, three rough whiteboard circle arrangemen
 - `discipleship/scripts/widget_203_04_climb_down_browser_check.js`: Automated Playwright verification covering standalone and embedded `#203-04` at `375px`, `390px`, `1280px`, and `390px` with `prefers-reduced-motion: reduce`, plus offscreen loop pausing, stable iframe height, zero lesson scroll jump, zero idle DOM mutations, zero widget `localStorage` writes, and active + retired synthetic answer preservation across reload and export.
 - `discipleship/project-management/TASKS.md`: Claimed and updated `WIDGET-203-04-CLIMB-DOWN` to `REVIEW`.
 
+## Dave Feedback Revision (2026-11-22: 4-3-2-1 Circle Pyramid & Flippable Side Greatness Scale)
+
+- Updated `discipleship/widgets/climb-down-lift-up.html` to a **4-3-2-1 pyramid of 10 circles with no outer triangle sides**:
+  - **Step 1 (The World's Way):** `You` starts in the **bottom row (row of 4), 3rd spot to the right** (`(300, 196)`), and climbs to the top by reaching up with a small arm to pull down and switch places with someone in Row 3, then Row 2, then Row 1, while the side **World's Scale** points UP to `GREATEST` at the top and `LEAST` at the bottom.
+  - **Step 2 (Jesus Came Down First):** At the top peak, `You` **meets Jesus** (`Jesus meets you`), and Jesus' golden path sweeps all the way down to the cross foundation below the bottom row (`Jesus came down first`).
+  - **Step 3 (Greatness Turns Over):** The side **Greatness Scale flips 180 degrees** into the upside-down **Kingdom Scale** (`GREATEST / High in Heaven` at the bottom row, `LIFTED UP` at the top, keeping all text upright via counter-rotating carriages), and `You` switches places at the top by reaching with an upward-cradling arm to lift another person into the #1 spot.
+  - **Step 4 (Climb Down to Lift Others Up):** `You` continues climbing down row by row with the lifting arm, helping people move up past `You` until `You` returns to the 3rd spot of the bottom row, anchored to Jesus' cross (`Held by Jesus`) right beside `GREATEST / High in Heaven`.
+  - **Step 5 (A Life That Builds Others Up):** From the bottom row, the whole 4-3-2-1 community lifts the rows above them with upward-cradling support palms and a calm 5.2s offscreen-pausing wave (`Others rise`).
+
 ## Verification Results (Local)
 
 - `bash scripts/qa_foundation.sh`: PASS
 - `node scripts/test_lesson_export.js`: 212 passed
 - `node scripts/test_answer_storage.js`: 73 passed
 - `node scripts/check_lesson_assets.js`: 147 references resolved
-- `node scripts/widget_203_04_climb_down_browser_check.js`: 474 passed (`standalone` + `embedded` across `375`, `390`, `1280`, `390/reduce`)
+- `node scripts/widget_203_04_climb_down_browser_check.js`: 574 passed (`standalone` + `embedded` across `375`, `390`, `1280`, `390/reduce`)
 - Em-dash audit (`U+2014`) across all modified/created files: 0 found
-- Visual inspection of `390x844` screenshots (`step-0.png` through `step-5.png` and `embedded-390-step-5.png`): confirmed clean opening cue, unobstructed upright labels, clear 180-degree flip, Step 2 outer golden arc + tether clear of all circles, Step 4 downward reach + upward lift + green support bar, and Step 5 framed community.

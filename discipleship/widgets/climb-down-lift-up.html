@@ -130,8 +130,9 @@ body {
   opacity: 1;
 }
 
+/* Left-side Greatness Spectrum (rotates 180deg around 68,121 on Step 3!) */
 #flip-group {
-  transform-origin: 220px 120px;
+  transform-origin: 68px 121px;
   transform: rotate(0deg);
 }
 
@@ -139,9 +140,37 @@ body {
   transform: rotate(180deg);
 }
 
+/* Counter-rotating badge carriages stay 100% upright while swinging 180deg */
+#spec-badge-high {
+  transform-origin: 68px 46px;
+  transform: rotate(0deg);
+}
+
+#spec-badge-low {
+  transform-origin: 68px 196px;
+  transform: rotate(0deg);
+}
+
+#spec-badge-mid {
+  transform-origin: 68px 121px;
+  transform: rotate(0deg);
+}
+
+#flip-group.is-flipped #spec-badge-high,
+#flip-group.is-flipped #spec-badge-low,
+#flip-group.is-flipped #spec-badge-mid {
+  transform: rotate(-180deg);
+}
+
+/* Circle visual states */
 .node-fill-world {
   fill: #EFEBE2;
   stroke: #8E8475;
+}
+
+.node-pulled-down {
+  fill: #E6DFD1;
+  stroke: #7A6E5D;
 }
 
 .node-you-world {
@@ -171,7 +200,7 @@ body {
 
 .wb-label {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  font-size: 12.5px;
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.1px;
   paint-order: stroke;
@@ -182,12 +211,19 @@ body {
 
 .wb-sub {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  font-size: 11px;
-  font-weight: 600;
+  font-size: 10.5px;
+  font-weight: 700;
   paint-order: stroke;
   stroke: #FFFFFF;
   stroke-width: 3.5px;
   stroke-linejoin: round;
+}
+
+.spec-pill-text {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.6px;
 }
 
 /* Calm repeating life-of-service rhythm on Step 5 (compositor-only opacity + scale, pauses offscreen) */
@@ -337,13 +373,16 @@ button:focus-visible {
     transition: opacity 0.32s ease;
   }
   .widget-outer:not(.is-instant) .fade-part {
-    transition: opacity 0.38s ease;
+    transition: opacity 0.34s ease;
   }
-  .widget-outer:not(.is-instant) #flip-group {
+  .widget-outer:not(.is-instant) #flip-group,
+  .widget-outer:not(.is-instant) #spec-badge-high,
+  .widget-outer:not(.is-instant) #spec-badge-low,
+  .widget-outer:not(.is-instant) #spec-badge-mid {
     transition: transform 0.92s cubic-bezier(0.32, 0.08, 0.24, 1);
   }
-  .widget-outer:not(.is-instant) .person-node {
-    transition: fill 0.42s ease, stroke 0.42s ease;
+  .widget-outer:not(.is-instant) .person-circle {
+    transition: fill 0.36s ease, stroke 0.36s ease;
   }
   .widget-outer .step-dot-fill {
     transition: background-color 0.22s ease, border-color 0.22s ease, transform 0.22s ease;
@@ -355,13 +394,13 @@ button:focus-visible {
   }
 
   /* Calm repeating service wave on Step 5 (5.2s cycle with ~1.8s quiet rest) */
-  .widget-outer.loop-active:not(.loop-paused) #pulse-cross {
+  .widget-outer.loop-active:not(.loop-paused) #pulse-row4 {
     animation: service-wave-1 5.2s ease-in-out infinite;
   }
-  .widget-outer.loop-active:not(.loop-paused) #pulse-mid {
+  .widget-outer.loop-active:not(.loop-paused) #pulse-row3 {
     animation: service-wave-2 5.2s ease-in-out infinite;
   }
-  .widget-outer.loop-active:not(.loop-paused) #pulse-top {
+  .widget-outer.loop-active:not(.loop-paused) #pulse-row21 {
     animation: service-wave-3 5.2s ease-in-out infinite;
   }
   .widget-outer.loop-active.loop-paused .loop-pulse {
@@ -410,123 +449,180 @@ button:focus-visible {
       <title id="svg-title">Climb Down to Lift Others Up</title>
       <desc id="svg-desc">Clean whiteboard stage with the opening question What does greatness look like?</desc>
 
-      <!-- Final step crisp Studio Wash double-hairline frame (no glow, no trophy/crown) -->
+      <!-- Step 5 crisp Studio Wash double-hairline frame -->
       <g id="finish-frame" class="fade-part" fill="none" stroke-linecap="round" stroke-linejoin="round">
         <rect x="10" y="7" width="420" height="264" rx="13" stroke="#1F684A" stroke-width="2" stroke-opacity="0.48" />
         <rect x="14.5" y="11.5" width="411" height="255" rx="9.5" stroke="#A8760A" stroke-width="0.9" stroke-opacity="0.38" />
       </g>
 
-      <!-- THE REVERSIBLE WHITEBOARD ARRANGEMENT (Rotates 180deg around 220,120 on Step 3!) -->
-      <g id="flip-group">
-        <!-- Shared triangle outline & subtle wash -->
-        <polygon id="tri-wash" class="fade-part" points="220,24 106,204 334,204" fill="#F6F3EC" fill-opacity="0.72" />
-        <polygon id="tri-outline" class="fade-part" points="220,24 106,204 334,204" fill="none" stroke="#9A9081" stroke-width="1.8" stroke-linejoin="round" />
+      <!-- LEFT SIDE: THE FLIPPABLE GREATNESS SPECTRUM (Flips 180deg on Step 3!) -->
+      <g id="spectrum-area" class="fade-part">
+        <text id="spec-mode-label" class="wb-sub" x="68" y="24" text-anchor="middle" fill="#5A4E3C">WORLD'S SCALE</text>
 
-        <!-- Step 1: Competitive climb-over stepping-stone arrow (only in upright orientation) -->
-        <g id="world-climb-arrows" fill="none" stroke="#5A4E3C" stroke-linecap="round" stroke-linejoin="round">
-          <path id="climb-arc" d="M132,166 C118,128 140,94 166,102 C178,76 196,60 205,60" stroke-width="2.1" />
-          <polyline id="climb-head" class="fade-part" points="198,54 206,60 198,66" stroke-width="2.1" />
-          <!-- Subtle downward stepping pressure cues under middle & bottom rows -->
-          <g id="press-cues" class="fade-part" stroke="#8C8173" stroke-width="1.4" opacity="0.75">
-            <polyline points="181,137 186,142 191,137" />
-            <polyline points="249,137 254,142 259,137" />
-            <polyline points="215,194 220,199 225,194" />
+        <g id="flip-group">
+          <!-- Vertical spectrum shaft + directional arrowhead -->
+          <line id="spec-shaft" x1="68" y1="67" x2="68" y2="177" stroke="#5A4E3C" stroke-width="2.8" stroke-linecap="round" />
+          <polygon id="spec-arrow" points="68,59 61,72 75,72" fill="#5A4E3C" />
+
+          <!-- Center GREATNESS badge (counter-rotates so text stays upright) -->
+          <g id="spec-badge-mid">
+            <rect x="26" y="111" width="84" height="20" rx="10" fill="#FFFFFF" stroke="#B7AEA0" stroke-width="1.3" />
+            <text class="spec-pill-text" x="68" y="124.5" text-anchor="middle" fill="#463D2F">GREATNESS</text>
+          </g>
+
+          <!-- GREATEST badge: sits at TOP (y=46) in World's Way, swings 180deg to BOTTOM (y=196) in Upside-Down Kingdom! -->
+          <g id="spec-badge-high">
+            <rect id="spec-high-rect" x="22" y="34" width="92" height="24" rx="12" fill="#5A4E3C" stroke="#2C2416" stroke-width="1.5" />
+            <text id="spec-high-txt" class="spec-pill-text" x="68" y="49.5" text-anchor="middle" fill="#FFFFFF">GREATEST</text>
+          </g>
+
+          <!-- LEAST / SERVANT end: sits at BOTTOM (y=196) in World's Way, swings 180deg to TOP (y=46) in Kingdom Way -->
+          <g id="spec-badge-low">
+            <rect id="spec-low-rect" x="24" y="184" width="88" height="24" rx="12" fill="#F6F3EC" stroke="#8E8475" stroke-width="1.4" />
+            <text id="spec-low-txt" class="spec-pill-text" x="68" y="199.5" text-anchor="middle" fill="#5A4E3C">LEAST</text>
           </g>
         </g>
 
-        <!-- Step 5: Connected upward community bonds (inside flip-group: in inverted orientation,
-             peak 220,62 is at bottom 220,178; mid 186/254,120 stays mid; base 152/220/288,178 is at top 62!) -->
-        <g id="kingdom-links" fill="none" stroke-linecap="round">
-          <!-- Servant (220,62 local -> bottom after flip) lifting middle tier (186,120 & 254,120) -->
-          <line id="link-s-1" class="fade-part" x1="220" y1="62" x2="186" y2="120" stroke="#1F684A" stroke-width="2.4" />
-          <line id="link-s-2" class="fade-part" x1="220" y1="62" x2="254" y2="120" stroke="#1F684A" stroke-width="2.4" />
-          <!-- Middle tier passing help onward to the wide upper tier (152, 220, 288, y=178 local -> top after flip) -->
-          <line id="link-m-1" class="fade-part" x1="186" y1="120" x2="152" y2="178" stroke="#2A5B7C" stroke-width="2.1" />
-          <line id="link-m-2" class="fade-part" x1="186" y1="120" x2="220" y2="178" stroke="#2A5B7C" stroke-width="2.1" />
-          <line id="link-m-3" class="fade-part" x1="254" y1="120" x2="220" y2="178" stroke="#2A5B7C" stroke-width="2.1" />
-          <line id="link-m-4" class="fade-part" x1="254" y1="120" x2="288" y2="178" stroke="#2A5B7C" stroke-width="2.1" />
-          <!-- Shared horizontal fellowship bars in the growing community -->
-          <line id="link-h-mid" class="fade-part" x1="186" y1="120" x2="254" y2="120" stroke="#2A5B7C" stroke-width="1.3" stroke-dasharray="3 4" opacity="0.65" />
-          <line id="link-h-top" class="fade-part" x1="152" y1="178" x2="288" y2="178" stroke="#5F4684" stroke-width="1.3" stroke-dasharray="3 4" opacity="0.65" />
-        </g>
-
-        <!-- SIX CIRCLES REPRESENTING PEOPLE (Exact same arrangement flips 180deg!) -->
-        <!-- Base row (becomes wide upper community after 180deg flip) -->
-        <circle id="node-b1" class="fade-part person-node node-fill-world" cx="152" cy="178" r="12.5" stroke-width="1.9" />
-        <circle id="node-b2" class="fade-part person-node node-fill-world" cx="220" cy="178" r="12.5" stroke-width="1.9" />
-        <circle id="node-b3" class="fade-part person-node node-fill-world" cx="288" cy="178" r="12.5" stroke-width="1.9" />
-
-        <!-- Middle row (stays middle tier after 180deg flip) -->
-        <circle id="node-m1" class="fade-part person-node node-fill-world" cx="186" cy="120" r="12.5" stroke-width="1.9" />
-        <circle id="node-m2" class="fade-part person-node node-fill-world" cx="254" cy="120" r="12.5" stroke-width="1.9" />
-
-        <!-- Emphasized circle: starts chasing peak (220,62), flips to servant base (220,178) -->
-        <circle id="node-you" class="fade-part person-node node-you-world" cx="220" cy="62" r="14.5" stroke-width="2.2" />
+        <!-- Upright Kingdom caption under the bottom GREATEST badge after 180deg flip -->
+        <text id="lbl-kingdom-high" class="fade-part wb-sub" x="68" y="225" text-anchor="middle" fill="#164E37">High in Heaven</text>
       </g>
 
-      <!-- UPRIGHT OVERLAY ELEMENTS (Never rotate upside down!) -->
-
-      <!-- Step 2: Jesus came down first (golden descending path from above to the lowest place + cross anchor) -->
-      <path id="jesus-down-arc" fill="none" stroke="#C48F10" stroke-width="2.4" stroke-linecap="round"
-        d="M372,24 C404,88 400,196 322,232 C288,246 258,244 240,242" />
-      <polyline id="jesus-down-head" class="fade-part" fill="none" stroke="#C48F10" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"
-        points="247,236 239,242 247,248" />
-
-      <!-- Step 2 golden supporting tether from Jesus' cross up to your peak circle (before flip) -->
-      <path id="grace-tether-up" fill="none" stroke="#C48F10" stroke-width="1.9" stroke-dasharray="4 4" stroke-linecap="round"
-        d="M236,232 C372,226 356,88 238,63" />
-      <polyline id="grace-tether-head" class="fade-part" fill="none" stroke="#C48F10" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"
-        points="246,59 238,63 244,69" />
-
-      <!-- Step 3+: Steady golden anchor stem connecting Jesus' cross foundation directly to your servant circle -->
-      <line id="anchor-stem" class="fade-part" x1="220" y1="223" x2="220" y2="194" stroke="#C48F10" stroke-width="3" stroke-linecap="round" />
-
-      <!-- Crisp Cross-Marked Anchor Foundation (Jesus came down first - Mark 10:45) -->
-      <g id="cross-anchor" class="fade-part">
-        <circle cx="220" cy="242" r="18" fill="#FCF2D6" stroke="#A8760A" stroke-width="1.8" />
-        <path d="M220,231 L220,253 M212,239 L228,239" fill="none" stroke="#8B1A2B" stroke-width="2.8" stroke-linecap="round" />
+      <!-- STEP 1 PULL-DOWN SWAP TRAILS (Shows how You pulled 3 people down from Row 3, Row 2, Row 1) -->
+      <g id="world-pull-trails" class="fade-part" fill="none" stroke="#7A6E5D" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+        <!-- Trail 1: pulled Row 3 (272,146) down into Row 4 spot 3 (300,196) -->
+        <path d="M256,154 Q252,184 281,195" stroke-dasharray="3.5 3" />
+        <polyline points="274,191 282,195 276,200" />
+        <!-- Trail 2: pulled Row 2 (300,96) down into Row 3 (272,146) -->
+        <path d="M316,104 Q320,134 291,145" stroke-dasharray="3.5 3" />
+        <polyline points="298,141 290,145 296,150" />
+        <!-- Trail 3: pulled Row 1 (272,46) down into Row 2 (300,96) -->
+        <path d="M256,54 Q252,84 281,95" stroke-dasharray="3.5 3" />
+        <polyline points="274,91 282,95 276,100" />
       </g>
 
-      <!-- Step 4: One clear act of climbing down to connect with a low/isolated circle and lifting them up -->
-      <g id="step4-action">
-        <!-- Ghost starting spot showing where the low circle began -->
-        <circle id="low-ghost" class="fade-part" cx="84" cy="212" r="12.5" fill="none" stroke="#A89F92" stroke-width="1.5" stroke-dasharray="3 3" />
-        <!-- Curved path going down/out from anchored servant (220,178) to meet the low circle (84,212) -->
-        <path id="reach-down-path" fill="none" stroke="#2A5B7C" stroke-width="2.2" stroke-linecap="round"
-          d="M204,183 C168,196 134,218 99,214" />
-        <polyline id="reach-down-head" class="fade-part" fill="none" stroke="#2A5B7C" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"
-          points="106,208 98,214 105,220" />
-        <!-- Supporting lift arc helping the connected person rise into the middle tier (186,120) -->
-        <path id="lift-up-path" fill="none" stroke="#2A5B7C" stroke-width="2.4" stroke-linecap="round"
-          d="M84,198 C86,154 120,124 170,120" />
-        <polyline id="lift-up-head" class="fade-part" fill="none" stroke="#2A5B7C" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"
-          points="163,114 171,120 163,126" />
-        <!-- The neighbor circle being connected with and lifted -->
-        <circle id="neighbor-moving" class="fade-part" cx="0" cy="0" r="12.5" fill="#E2EEF6" stroke="#2A5B7C" stroke-width="2.2" />
+      <!-- STEPS 3 & 4 LIFT-UP SWAP TRAILS (Shows how You lifted people up past you as you climbed down) -->
+      <g id="step3-lift-trail" class="fade-part" fill="none" stroke="#2A5B7C" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <!-- Lifted Row 2 (300,96) up into Row 1 top spot (272,46) -->
+        <path d="M316,88 Q320,56 291,46" />
+        <polyline points="298,42 290,46 296,52" />
+      </g>
+      <g id="low-ghost" class="fade-part" fill="none" stroke="#2A5B7C" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <!-- Lifted Row 3 (272,146) up into Row 2 (300,96) -->
+        <path id="reach-down-path" d="M256,138 Q252,106 281,96" />
+        <polyline id="reach-down-head" class="fade-part" points="274,92 282,96 276,102" />
+        <!-- Lifted Row 4 spot 3 (300,196) up into Row 3 (272,146) -->
+        <path id="lift-up-path" d="M316,188 Q320,156 291,146" />
+        <polyline id="lift-up-head" class="fade-part" points="298,142 290,146 296,152" />
       </g>
 
-      <!-- Step 5: Calm repeating compositor pulses (cross -> servant -> mid -> top; pauses offscreen) -->
+      <!-- STEP 5 COMMUNITY LIFTING BONDS (Everyone lifting the row above them in the 4-3-2-1 pyramid!) -->
+      <g id="kingdom-links" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <!-- Row 4 lifting Row 3 -->
+        <line id="link-s-1" class="fade-part" x1="188" y1="181" x2="210" y2="161" stroke="#1F684A" stroke-width="2.1" />
+        <line id="link-s-2" class="fade-part" x1="300" y1="180" x2="278" y2="161" stroke="#1F684A" stroke-width="2.4" />
+        <line id="link-m-1" class="fade-part" x1="244" y1="181" x2="222" y2="161" stroke="#1F684A" stroke-width="2.1" />
+        <line id="link-m-2" class="fade-part" x1="244" y1="181" x2="266" y2="161" stroke="#1F684A" stroke-width="2.1" />
+        <line id="link-m-3" class="fade-part" x1="300" y1="180" x2="322" y2="161" stroke="#1F684A" stroke-width="2.4" />
+        <line id="link-m-4" class="fade-part" x1="356" y1="181" x2="334" y2="161" stroke="#1F684A" stroke-width="2.1" />
+        <!-- Row 3 lifting Row 2 & Row 2 lifting Row 1 -->
+        <path id="link-h-mid" class="fade-part" d="M216,131 L238,111 M272,131 L250,111 M272,131 L294,111 M328,131 L306,111" stroke="#2A5B7C" stroke-width="2.1" />
+        <path id="link-h-top" class="fade-part" d="M244,81 L266,61 M300,81 L278,61" stroke="#5F4684" stroke-width="2.2" />
+      </g>
+
+      <!-- Upward-cradling support palms directly under lifted rows on Step 5 -->
+      <g id="peer-lift-hands" class="fade-part" fill="none" stroke-width="2.1" stroke-linecap="round">
+        <!-- Cradles under Row 3 circles -->
+        <path d="M207,163 Q216,168 225,163" stroke="#1F684A" />
+        <path d="M263,163 Q272,168 281,163" stroke="#1F684A" />
+        <path d="M319,163 Q328,168 337,163" stroke="#1F684A" />
+        <!-- Cradles under Row 2 circles -->
+        <path d="M235,113 Q244,118 253,113" stroke="#2A5B7C" />
+        <path d="M291,113 Q300,118 309,113" stroke="#2A5B7C" />
+        <!-- Cradle under Row 1 top circle -->
+        <path d="M263,63 Q272,68 281,63" stroke="#5F4684" />
+      </g>
+
+      <!-- STEP 5 CALM COMPOSITOR PULSES (Cross -> Row 4 -> Row 3 -> Row 2 & 1; pauses offscreen) -->
       <g id="service-pulses" fill="none">
-        <circle id="pulse-cross" class="loop-pulse" cx="220" cy="178" r="21" stroke="#C48F10" stroke-width="2.2" />
-        <g id="pulse-mid" class="loop-pulse">
-          <circle cx="186" cy="120" r="18" stroke="#2A5B7C" stroke-width="2" />
-          <circle cx="254" cy="120" r="18" stroke="#2A5B7C" stroke-width="2" />
+        <circle id="pulse-row4" class="loop-pulse" cx="300" cy="196" r="22" stroke="#C48F10" stroke-width="2.2" />
+        <g id="pulse-row3" class="loop-pulse">
+          <circle cx="216" cy="146" r="19" stroke="#2A5B7C" stroke-width="2" />
+          <circle cx="272" cy="146" r="19" stroke="#2A5B7C" stroke-width="2" />
+          <circle cx="328" cy="146" r="19" stroke="#2A5B7C" stroke-width="2" />
         </g>
-        <g id="pulse-top" class="loop-pulse">
-          <circle cx="152" cy="62" r="18" stroke="#5F4684" stroke-width="2" />
-          <circle cx="220" cy="62" r="18" stroke="#5F4684" stroke-width="2" />
-          <circle cx="288" cy="62" r="18" stroke="#5F4684" stroke-width="2" />
+        <g id="pulse-row21" class="loop-pulse">
+          <circle cx="244" cy="96" r="19" stroke="#5F4684" stroke-width="2" />
+          <circle cx="300" cy="96" r="19" stroke="#5F4684" stroke-width="2" />
+          <circle cx="272" cy="46" r="19" stroke="#5F4684" stroke-width="2" />
         </g>
       </g>
 
-      <!-- MINIMAL UPRIGHT LABELS (Always horizontal and readable!) -->
-      <text id="lbl-you" class="fade-part wb-label" x="220" y="66.5" text-anchor="middle" fill="#FFFFFF" style="stroke:none;">You</text>
-      <text id="lbl-world" class="fade-part wb-label" x="30" y="48" text-anchor="start" fill="#5A4E3C">How high can I get?</text>
-      <text id="lbl-jesus" class="fade-part wb-label" x="194" y="246" text-anchor="end" fill="#7D5604">Jesus came down first</text>
-      <text id="lbl-held" class="fade-part wb-sub" x="248" y="246" text-anchor="start" fill="#7D5604">Held by Jesus</text>
-      <text id="lbl-flip" class="fade-part wb-label" x="28" y="210" text-anchor="start" fill="#164E37">Greatness turns over</text>
-      <text id="lbl-help" class="fade-part wb-label" x="28" y="100" text-anchor="start" fill="#1E435C">Who can I help?</text>
-      <text id="lbl-grow" class="fade-part wb-label" x="412" y="66" text-anchor="end" fill="#473366">Others grow</text>
+      <!-- STEP 2: JESUS MEETS YOU AT THE TOP & CAME DOWN FIRST TO THE LOWEST PLACE -->
+      <!-- Golden path showing Jesus came down from the highest place to the servant foundation -->
+      <path id="jesus-down-arc" fill="none" stroke="#C48F10" stroke-width="2.4" stroke-linecap="round"
+        d="M366,46 C408,92 406,204 348,238 C334,246 322,248 317,248" />
+      <polyline id="jesus-down-head" class="fade-part" fill="none" stroke="#C48F10" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"
+        points="324,242 316,248 324,254" />
+
+      <!-- Golden reach where Jesus meets You at the top peak on Step 2 -->
+      <g id="jesus-top-meet" class="fade-part">
+        <path id="grace-tether-up" fill="none" stroke="#C48F10" stroke-width="2.4" stroke-linecap="round"
+          d="M332,46 C318,36 302,36 290,43" />
+        <polyline id="grace-tether-head" fill="none" stroke="#C48F10" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"
+          points="297,37 289,43 297,48" />
+        <circle cx="348" cy="46" r="15.5" fill="#FCF2D6" stroke="#A8760A" stroke-width="1.9" />
+        <path d="M348,37 L348,55 M341,43.5 L355,43.5" fill="none" stroke="#8B1A2B" stroke-width="2.5" stroke-linecap="round" />
+        <text class="wb-sub" x="348" y="74" text-anchor="middle" fill="#7D5604">Jesus meets you</text>
+      </g>
+
+      <!-- Steady golden anchor stem connecting Jesus' cross foundation to You in the bottom row (300,196) -->
+      <line id="anchor-stem" class="fade-part" x1="300" y1="231" x2="300" y2="213" stroke="#C48F10" stroke-width="3" stroke-linecap="round" />
+
+      <!-- Crisp Cross-Marked Anchor Foundation below Row 4, 3rd spot (Mark 10:45) -->
+      <g id="cross-anchor" class="fade-part">
+        <circle cx="300" cy="248" r="16.5" fill="#FCF2D6" stroke="#A8760A" stroke-width="1.8" />
+        <path d="M300,238 L300,258 M293,245 L307,245" fill="none" stroke="#8B1A2B" stroke-width="2.6" stroke-linecap="round" />
+      </g>
+
+      <!-- THE 4 - 3 - 2 - 1 PYRAMID OF 10 CIRCLES (NO TRIANGLE SIDES!) -->
+      <!-- 9 Peer Circles (positioned dynamically at their slot coordinates so any pair can swap smoothly!) -->
+      <g id="peers-layer" class="fade-part">
+        <g id="peer-0" class="peer-group"><circle class="person-circle node-fill-world" cx="0" cy="0" r="14.5" stroke-width="1.9" /></g>
+        <g id="peer-1" class="peer-group"><circle class="person-circle node-fill-world" cx="0" cy="0" r="14.5" stroke-width="1.9" /></g>
+        <g id="peer-2" class="peer-group"><circle class="person-circle node-fill-world" cx="0" cy="0" r="14.5" stroke-width="1.9" /></g>
+        <g id="peer-3" class="peer-group"><circle class="person-circle node-fill-world" cx="0" cy="0" r="14.5" stroke-width="1.9" /></g>
+        <g id="peer-4" class="peer-group"><circle class="person-circle node-fill-world" cx="0" cy="0" r="14.5" stroke-width="1.9" /></g>
+        <g id="peer-5" class="peer-group"><circle class="person-circle node-fill-world" cx="0" cy="0" r="14.5" stroke-width="1.9" /></g>
+        <g id="peer-6" class="peer-group"><circle class="person-circle node-fill-world" cx="0" cy="0" r="14.5" stroke-width="1.9" /></g>
+        <g id="peer-7" class="peer-group"><circle class="person-circle node-fill-world" cx="0" cy="0" r="14.5" stroke-width="1.9" /></g>
+        <g id="peer-8" class="peer-group"><circle class="person-circle node-fill-world" cx="0" cy="0" r="14.5" stroke-width="1.9" /></g>
+      </g>
+
+      <!-- HERO CIRCLE ("You" - starts in Row 4, 3rd spot to the right, with expressive reaching arms!) -->
+      <g id="hero-group" class="fade-part">
+        <!-- Arm 1 (Step 1 World's Way): Reaching arm + pull-down hook grabbing/pushing another person down -->
+        <g id="hero-arm-pull" class="fade-part" fill="none" stroke="#2C2416" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+          <path id="pull-arm-path" d="M 12,10 C 24,18 26,28 21,36" />
+          <polyline id="pull-arm-hand" points="14,34 21,37 26,31" />
+        </g>
+
+        <!-- Arm 2 (Steps 3-5 Kingdom Way): Reaching arm from shoulder + upward-cradling palm boosting a neighbor up -->
+        <g id="hero-arm-lift" class="fade-part" fill="none" stroke="#1F684A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+          <path id="lift-arm-path" d="M -13,-7 C -23,-16 -26,-24 -25,-31" />
+          <path id="lift-arm-palm" d="M -34,-33 Q -26,-28 -18,-33" />
+        </g>
+
+        <circle id="node-you" class="person-circle node-you-world" cx="0" cy="0" r="16" stroke-width="2.2" />
+        <text id="lbl-you" class="wb-label" x="0" y="4.2" text-anchor="middle" fill="#FFFFFF" style="stroke:none;">You</text>
+      </g>
+
+      <!-- MINIMAL UPRIGHT TEACHING LABELS -->
+      <text id="lbl-world" class="fade-part wb-label" x="272" y="246" text-anchor="middle" fill="#5A4E3C">Pulling others down to climb up</text>
+      <text id="lbl-jesus" class="fade-part wb-label" x="275" y="252" text-anchor="end" fill="#7D5604">Jesus came down first</text>
+      <text id="lbl-held" class="fade-part wb-sub" x="323" y="252" text-anchor="start" fill="#7D5604">Held by Jesus</text>
+      <text id="lbl-flip" class="fade-part wb-label" x="275" y="252" text-anchor="end" fill="#164E37">Switch places to lift up</text>
+      <text id="lbl-help" class="fade-part wb-label" x="380" y="122" text-anchor="middle" fill="#1E435C">Lift others up</text>
+      <text id="lbl-grow" class="fade-part wb-label" x="358" y="48" text-anchor="start" fill="#473366">Others rise</text>
     </svg>
   </div>
 
@@ -568,7 +664,7 @@ button:focus-visible {
       heading: 'Climb Down to Lift Others Up',
       verse: '"Whoever would be great among you must be your servant."',
       ref: 'Mark 10:43',
-      note: 'Two pictures of greatness use the exact same people. Watch what changes when Jesus turns greatness over.',
+      note: 'Watch what happens when you stop pulling others down to get ahead, and instead climb down to lift others up.',
       accent: '#2C2416',
       accentDark: '#2C2416',
       countLabel: 'Ready',
@@ -580,65 +676,78 @@ button:focus-visible {
       heading: '1. The World\'s Way',
       verse: '"How high can I get?"',
       ref: 'Mark 10:42',
-      note: 'In the world\'s picture of greatness, people compete to move upward. Others become stepping stones.',
+      note: 'Starting in the bottom row, you pull others down and take their spot to climb the world\'s greatness scale.',
       accent: '#5A4E3C',
       accentDark: '#3F3629',
       countLabel: 'Step 1 of 5',
       nextLabel: 'Next \u2192',
       title: 'Step 1: The World\'s Way',
-      desc: 'An upright triangle of six circles where one emphasized circle climbs over five others to reach the lone peak, labeled How high can I get?'
+      desc: 'In a 4-3-2-1 pyramid of circles, your circle starts in the 3rd spot of the bottom row and pulls people down row by row to take the top spot.'
     },
     {
       heading: '2. Jesus Came Down First',
       verse: '"Even the Son of Man came not to be served but to serve, and to give his life as a ransom for many."',
       ref: 'Mark 10:45',
-      note: 'He came to serve you first. You serve from the rescue you have already received.',
+      note: 'At the top, you meet Jesus. He left the highest place and came all the way down to the cross to serve you first.',
       accent: '#A8760A',
       accentDark: '#7D5604',
       countLabel: 'Step 2 of 5',
       nextLabel: 'Next \u2192',
       title: 'Step 2: Jesus Came Down First',
-      desc: 'A golden arc descends to a crisp cross-marked anchor below the triangle, reaching up to hold your circle before you ever serve anyone else.'
+      desc: 'At the top of the pyramid, you meet Jesus, who came all the way down to the cross at the lowest place to rescue and serve you first.'
     },
     {
       heading: '3. Greatness Turns Over',
       verse: '"Whoever would be great among you must be your servant, and whoever would be first among you must be slave of all."',
       ref: 'Mark 10:43-44',
-      note: 'The picture turns 180 degrees. Your circle moves to the lowest place, held securely by Jesus.',
+      note: 'In God\'s upside-down kingdom, the greatness scale flips. You switch places at the top and lift someone else up.',
       accent: '#1F684A',
       accentDark: '#164E37',
       countLabel: 'Step 3 of 5',
       nextLabel: 'Next \u2192',
       title: 'Step 3: Greatness Turns Over',
-      desc: 'The same triangle of six circles rotates 180 degrees into an inverted servant triangle resting directly on Jesus\' cross anchor.'
+      desc: 'The Greatness scale on the side flips 180 degrees so Greatest is at the bottom, and you switch places from the top by lifting another person up.'
     },
     {
       heading: '4. Climb Down to Lift Others Up',
       verse: '"Who can I help?"',
       ref: 'John 13:14-15',
-      note: 'Still anchored to Jesus, you move downward toward someone else, connect with them, and help them rise.',
+      note: 'Anchored to Jesus, you keep climbing down and lifting people past you until you take the servant\'s place at the bottom.',
       accent: '#2A5B7C',
       accentDark: '#1E435C',
       countLabel: 'Step 4 of 5',
       nextLabel: 'Next \u2192',
       title: 'Step 4: Climb Down to Lift Others Up',
-      desc: 'Anchored to Jesus\' cross, your servant circle reaches down along a blue curve to connect with an isolated circle and lift it into the supportive upper structure.'
+      desc: 'With open lifting arms, your circle climbs down row by row, helping others move up past you until you stand in the bottom row anchored to Jesus.'
     },
     {
       heading: '5. A Life That Builds Others Up',
       verse: '"Humble yourselves before the Lord, and he will exalt you."',
       ref: 'James 4:10',
-      note: 'Leave your own lifting to God. Connected to Jesus, your life helps others stand securely and pass His love on.',
+      note: 'In God\'s kingdom, the bottom row is high honor. Held by Jesus, you help others rise and pass His love on.',
       accent: '#1F684A',
       accentDark: '#164E37',
       countLabel: 'Step 5 of 5',
       nextLabel: 'Start Over',
       title: 'Step 5: A Life That Builds Others Up',
-      desc: 'The inverted triangle is now a strongly connected community anchored to Jesus\' cross: your servant circle supports the middle row, which in turn lifts the wide upper row as help continues through others.'
+      desc: 'Anchored to Jesus at the Greatest end of the upside-down Kingdom scale, your circle and the whole 4-3-2-1 community lift one another upward.'
     }
   ];
 
-  var SPEED = 185; // px per second for whiteboard stroke draws
+  // 10 Slots of the 4 - 3 - 2 - 1 pyramid (no triangle outline lines)
+  // 0: Row 1 top; 1..2: Row 2; 3..5: Row 3; 6..9: Row 4 (slot 8 is 3rd spot from left!)
+  var SLOTS = [
+    { x: 272, y: 46 },  // 0: Top (Row 1, spot 1)
+    { x: 244, y: 96 },  // 1: Row 2, spot 1
+    { x: 300, y: 96 },  // 2: Row 2, spot 2
+    { x: 216, y: 146 }, // 3: Row 3, spot 1
+    { x: 272, y: 146 }, // 4: Row 3, spot 2 (middle)
+    { x: 328, y: 146 }, // 5: Row 3, spot 3
+    { x: 188, y: 196 }, // 6: Row 4, spot 1
+    { x: 244, y: 196 }, // 7: Row 4, spot 2
+    { x: 300, y: 196 }, // 8: Row 4, spot 3 (3rd spot to the right - Hero's home!)
+    { x: 356, y: 196 }  // 9: Row 4, spot 4
+  ];
 
   var widget = document.getElementById('widget');
   var stage = document.getElementById('stage');
@@ -656,33 +765,50 @@ button:focus-visible {
   var dotBtns = Array.prototype.slice.call(document.querySelectorAll('.step-dot'));
   var measureHost = document.getElementById('measure-host');
 
+  var spectrumArea = document.getElementById('spectrum-area');
+  var specModeLabel = document.getElementById('spec-mode-label');
   var flipGroup = document.getElementById('flip-group');
-  var triWash = document.getElementById('tri-wash');
-  var triOutline = document.getElementById('tri-outline');
+  var specShaft = document.getElementById('spec-shaft');
+  var specArrow = document.getElementById('spec-arrow');
+  var specHighRect = document.getElementById('spec-high-rect');
+  var specLowRect = document.getElementById('spec-low-rect');
+  var specLowTxt = document.getElementById('spec-low-txt');
+  var lblKingdomHigh = document.getElementById('lbl-kingdom-high');
+
   var finishFrame = document.getElementById('finish-frame');
-
-  var climbArc = document.getElementById('climb-arc');
-  var climbHead = document.getElementById('climb-head');
-  var pressCues = document.getElementById('press-cues');
-
-  var jesusDownArc = document.getElementById('jesus-down-arc');
-  var jesusDownHead = document.getElementById('jesus-down-head');
-  var graceTetherUp = document.getElementById('grace-tether-up');
-  var graceTetherHead = document.getElementById('grace-tether-head');
-  var anchorStem = document.getElementById('anchor-stem');
-  var crossAnchor = document.getElementById('cross-anchor');
-
+  var worldPullTrails = document.getElementById('world-pull-trails');
+  var step3LiftTrail = document.getElementById('step3-lift-trail');
   var lowGhost = document.getElementById('low-ghost');
   var reachDownPath = document.getElementById('reach-down-path');
   var reachDownHead = document.getElementById('reach-down-head');
   var liftUpPath = document.getElementById('lift-up-path');
   var liftUpHead = document.getElementById('lift-up-head');
-  var neighborMoving = document.getElementById('neighbor-moving');
+  var peerLiftHands = document.getElementById('peer-lift-hands');
 
+  var jesusDownArc = document.getElementById('jesus-down-arc');
+  var jesusDownHead = document.getElementById('jesus-down-head');
+  var jesusTopMeet = document.getElementById('jesus-top-meet');
+  var anchorStem = document.getElementById('anchor-stem');
+  var crossAnchor = document.getElementById('cross-anchor');
+
+  var peersLayer = document.getElementById('peers-layer');
+  var peerGroups = [];
+  var peerCircles = [];
+  for (var pi = 0; pi < 9; pi++) {
+    var pg = document.getElementById('peer-' + pi);
+    peerGroups.push(pg);
+    peerCircles.push(pg.querySelector('circle'));
+  }
+
+  var heroGroup = document.getElementById('hero-group');
   var nodeYou = document.getElementById('node-you');
-  var midNodes = [document.getElementById('node-m1'), document.getElementById('node-m2')];
-  var baseNodes = [document.getElementById('node-b1'), document.getElementById('node-b2'), document.getElementById('node-b3')];
-  var allNodes = [nodeYou].concat(midNodes, baseNodes);
+  var lblYou = document.getElementById('lbl-you');
+  var heroArmPull = document.getElementById('hero-arm-pull');
+  var pullArmPath = document.getElementById('pull-arm-path');
+  var pullArmHand = document.getElementById('pull-arm-hand');
+  var heroArmLift = document.getElementById('hero-arm-lift');
+  var liftArmPath = document.getElementById('lift-arm-path');
+  var liftArmPalm = document.getElementById('lift-arm-palm');
 
   var kingdomLinks = [
     document.getElementById('link-s-1'),
@@ -695,7 +821,6 @@ button:focus-visible {
     document.getElementById('link-h-top')
   ];
 
-  var lblYou = document.getElementById('lbl-you');
   var lblWorld = document.getElementById('lbl-world');
   var lblJesus = document.getElementById('lbl-jesus');
   var lblHeld = document.getElementById('lbl-held');
@@ -711,9 +836,7 @@ button:focus-visible {
     }
   }
 
-  var climbLen = pathLen(climbArc);
   var jesusLen = pathLen(jesusDownArc);
-  var tetherLen = pathLen(graceTetherUp);
   var reachLen = pathLen(reachDownPath);
   var liftLen = pathLen(liftUpPath);
 
@@ -741,7 +864,6 @@ button:focus-visible {
     widget.setAttribute('data-loop-state', !shouldLoop ? 'stopped' : (paused ? 'paused' : 'running'));
   }
 
-  // Expose helper for verification checks
   window.CLIMB_DOWN_LOOP = {
     state: function () {
       return {
@@ -800,7 +922,7 @@ button:focus-visible {
       el.style.strokeDashoffset = String(len);
       el.style.opacity = '0';
     } else if (c >= 1) {
-      el.style.strokeDasharray = el === graceTetherUp ? '4 4' : 'none';
+      el.style.strokeDasharray = 'none';
       el.style.strokeDashoffset = '0';
       el.style.opacity = '';
     } else {
@@ -810,106 +932,188 @@ button:focus-visible {
     }
   }
 
-  function pointOnPath(el, len, p) {
-    try {
-      return el.getPointAtLength(Math.max(0, Math.min(1, p)) * len);
-    } catch (e) {
-      return { x: 170, y: 120 };
-    }
-  }
-
-  function setNodeStyle(el, cls) {
-    el.classList.remove('node-fill-world', 'node-you-world', 'node-you-gospel', 'node-you-servant', 'node-lifted-mid', 'node-lifted-top');
+  function setCircleStyle(el, cls) {
+    el.classList.remove(
+      'node-fill-world',
+      'node-pulled-down',
+      'node-you-world',
+      'node-you-gospel',
+      'node-you-servant',
+      'node-lifted-mid',
+      'node-lifted-top'
+    );
     el.classList.add(cls);
   }
 
+  function placeGroup(g, x, y) {
+    g.setAttribute('transform', 'translate(' + x.toFixed(1) + ',' + y.toFixed(1) + ')');
+  }
+
+  function setPullArmPose(mode) {
+    if (mode === 'up-left') {
+      // Reaching up-left to grab the person in the row above and pull them down
+      pullArmPath.setAttribute('d', 'M -10,-11 C -22,-22 -22,-34 -13,-40');
+      pullArmHand.setAttribute('points', '-19,-37 -12,-41 -11,-33');
+    } else if (mode === 'up-right') {
+      // Reaching up-right to grab the person in the row above and pull them down
+      pullArmPath.setAttribute('d', 'M 10,-11 C 22,-22 22,-34 13,-40');
+      pullArmHand.setAttribute('points', '19,-37 12,-41 11,-33');
+    } else {
+      // Settled at top: arm pressing down-right toward the person pulled down into Row 2
+      pullArmPath.setAttribute('d', 'M 12,10 C 24,18 26,28 21,36');
+      pullArmHand.setAttribute('points', '14,34 21,37 26,31');
+    }
+  }
+
+  function setLiftArmPose(mode) {
+    if (mode === 'up-right') {
+      liftArmPath.setAttribute('d', 'M 13,-7 C 23,-16 26,-24 25,-31');
+      liftArmPalm.setAttribute('d', 'M 34,-33 Q 26,-28 18,-33');
+    } else {
+      liftArmPath.setAttribute('d', 'M -13,-7 C -23,-16 -26,-24 -25,-31');
+      liftArmPalm.setAttribute('d', 'M -34,-33 Q -26,-28 -18,-33');
+    }
+  }
+  // Peer mapping at start (before any swaps):
+  // peer 0 -> slot 0 (272,46)
+  // peer 1 -> slot 1 (244,96), peer 2 -> slot 2 (300,96)
+  // peer 3 -> slot 3 (216,146), peer 4 -> slot 4 (272,146), peer 5 -> slot 5 (328,146)
+  // peer 6 -> slot 6 (188,196), peer 7 -> slot 7 (244,196), peer 8 -> slot 9 (356,196)
+  // Hero starts at slot 8 (300,196 - Row 4, 3rd spot to the right!)
+  //
+  // During Step 1 (World's Way climb: slot 8 -> 4 -> 2 -> 0):
+  // - Swap 1 (Hero 8 <-> peer 4 at slot 4): peer 4 is pulled down to slot 8; Hero takes slot 4
+  // - Swap 2 (Hero 4 <-> peer 2 at slot 2): peer 2 is pulled down to slot 4; Hero takes slot 2
+  // - Swap 3 (Hero 2 <-> peer 0 at slot 0): peer 0 is pulled down to slot 2; Hero takes slot 0
+  //
+  // During Step 3 (First Kingdom reversal swap at top: Hero 0 <-> peer 0 at slot 2):
+  // - Hero lifts peer 0 UP into slot 0 (top); Hero steps down to slot 2
+  //
+  // During Step 4 (Climb down & lift up: Hero 2 -> 4 -> 8):
+  // - Swap 2 (Hero 2 <-> peer 2 at slot 4): Hero lifts peer 2 UP into slot 2; Hero steps down to slot 4
+  // - Swap 3 (Hero 4 <-> peer 4 at slot 8): Hero lifts peer 4 UP into slot 4; Hero steps down to slot 8
+  function layoutNodesForStep(idx) {
+    var peerSlots;
+    var heroSlot;
+
+    if (idx <= 0) {
+      peerSlots = [0, 1, 2, 3, 4, 5, 6, 7, 9];
+      heroSlot = 8;
+    } else if (idx === 1 || idx === 2) {
+      // Hero climbed to top (slot 0); peer 0 pulled to slot 2, peer 2 pulled to slot 4, peer 4 pulled to slot 8
+      peerSlots = [2, 1, 4, 3, 8, 5, 6, 7, 9];
+      heroSlot = 0;
+    } else if (idx === 3) {
+      // Hero lifted peer 0 back up to slot 0 and stepped down to slot 2
+      peerSlots = [0, 1, 4, 3, 8, 5, 6, 7, 9];
+      heroSlot = 2;
+    } else {
+      // Steps 4 & 5: Hero lifted peer 2 up to slot 2 and peer 4 up to slot 4, returning to slot 8 (bottom row, 3rd spot!)
+      peerSlots = [0, 1, 2, 3, 4, 5, 6, 7, 9];
+      heroSlot = 8;
+    }
+
+    for (var i = 0; i < 9; i++) {
+      var s = SLOTS[peerSlots[i]];
+      placeGroup(peerGroups[i], s.x, s.y);
+      var c = peerCircles[i];
+      if (idx === 1 && (i === 0 || i === 2 || i === 4)) {
+        setCircleStyle(c, 'node-pulled-down');
+      } else if (idx === 3 && i === 0) {
+        setCircleStyle(c, 'node-lifted-mid');
+      } else if (idx === 4 && (i === 0 || i === 2 || i === 4)) {
+        setCircleStyle(c, 'node-lifted-mid');
+      } else if (idx === 5) {
+        if (peerSlots[i] <= 2) {
+          setCircleStyle(c, 'node-lifted-top');
+        } else {
+          setCircleStyle(c, 'node-lifted-mid');
+        }
+      } else {
+        setCircleStyle(c, 'node-fill-world');
+      }
+    }
+
+    var hs = SLOTS[heroSlot];
+    placeGroup(heroGroup, hs.x, hs.y);
+  }
+
+  function updateSpectrumAppearance(flipped) {
+    flipGroup.classList.toggle('is-flipped', flipped);
+    specModeLabel.textContent = flipped ? 'KINGDOM SCALE' : 'WORLD\'S SCALE';
+    specModeLabel.setAttribute('fill', flipped ? '#164E37' : '#5A4E3C');
+    specShaft.setAttribute('stroke', flipped ? '#1F684A' : '#5A4E3C');
+    specArrow.setAttribute('fill', flipped ? '#1F684A' : '#5A4E3C');
+    specHighRect.setAttribute('fill', flipped ? '#1F684A' : '#5A4E3C');
+    specHighRect.setAttribute('stroke', flipped ? '#164E37' : '#2C2416');
+    specLowRect.setAttribute('fill', flipped ? '#E2EEF6' : '#F6F3EC');
+    specLowRect.setAttribute('stroke', flipped ? '#2A5B7C' : '#8E8475');
+    specLowTxt.setAttribute('fill', flipped ? '#1E435C' : '#5A4E3C');
+    specLowTxt.textContent = flipped ? 'LIFTED UP' : 'LEAST';
+    lblKingdomHigh.classList.toggle('is-visible', flipped);
+  }
+
   function setStaticState(idx) {
-    var showTri = idx >= 1;
+    var showStage = idx >= 1;
     var flipped = idx >= 3;
 
-    flipGroup.classList.toggle('is-flipped', flipped);
-    triWash.classList.toggle('is-visible', showTri);
-    triOutline.classList.toggle('is-visible', showTri);
-    triWash.setAttribute('fill', flipped ? '#EAF5EF' : '#F6F3EC');
-    triOutline.setAttribute('stroke', flipped ? '#1F684A' : '#9A9081');
+    spectrumArea.classList.toggle('is-visible', showStage);
+    peersLayer.classList.toggle('is-visible', showStage);
+    heroGroup.classList.toggle('is-visible', showStage);
 
-    allNodes.forEach(function (n) {
-      n.classList.toggle('is-visible', showTri);
-    });
+    updateSpectrumAppearance(flipped);
+    layoutNodesForStep(idx);
 
-    // Style nodes for current step
+    // Hero circle & reaching arm state
     if (idx <= 1) {
-      setNodeStyle(nodeYou, 'node-you-world');
-      midNodes.forEach(function (n) { setNodeStyle(n, 'node-fill-world'); });
-      baseNodes.forEach(function (n) { setNodeStyle(n, 'node-fill-world'); });
+      setCircleStyle(nodeYou, 'node-you-world');
       lblYou.setAttribute('fill', '#FFFFFF');
+      setPullArmPose('down-press');
+      heroArmPull.classList.toggle('is-visible', idx === 1);
+      heroArmLift.classList.toggle('is-visible', false);
     } else if (idx === 2) {
-      setNodeStyle(nodeYou, 'node-you-gospel');
-      midNodes.forEach(function (n) { setNodeStyle(n, 'node-fill-world'); });
-      baseNodes.forEach(function (n) { setNodeStyle(n, 'node-fill-world'); });
+      setCircleStyle(nodeYou, 'node-you-gospel');
       lblYou.setAttribute('fill', '#7D5604');
-    } else if (idx === 3) {
-      setNodeStyle(nodeYou, 'node-you-servant');
-      midNodes.forEach(function (n) { setNodeStyle(n, 'node-fill-world'); });
-      baseNodes.forEach(function (n) { setNodeStyle(n, 'node-fill-world'); });
-      lblYou.setAttribute('fill', '#FFFFFF');
-    } else if (idx === 4) {
-      setNodeStyle(nodeYou, 'node-you-servant');
-      // After 180deg flip, m2 (local 254,120) sits on the visual LEFT (186,120) where the lifted person joins!
-      setNodeStyle(midNodes[1], 'node-lifted-mid');
-      setNodeStyle(midNodes[0], 'node-fill-world');
-      baseNodes.forEach(function (n) { setNodeStyle(n, 'node-fill-world'); });
-      lblYou.setAttribute('fill', '#FFFFFF');
+      heroArmPull.classList.toggle('is-visible', false);
+      heroArmLift.classList.toggle('is-visible', false);
     } else {
-      setNodeStyle(nodeYou, 'node-you-servant');
-      midNodes.forEach(function (n) { setNodeStyle(n, 'node-lifted-mid'); });
-      baseNodes.forEach(function (n) { setNodeStyle(n, 'node-lifted-top'); });
+      setCircleStyle(nodeYou, 'node-you-servant');
       lblYou.setAttribute('fill', '#FFFFFF');
+      setLiftArmPose('up-left');
+      heroArmPull.classList.toggle('is-visible', false);
+      heroArmLift.classList.toggle('is-visible', true);
     }
 
-    // Upright "You" label tracks nodeYou visually (62 before flip, 178 after flip)
-    lblYou.setAttribute('y', flipped ? '182.5' : '66.5');
-    lblYou.classList.toggle('is-visible', showTri);
+    // Step 1 pull-down trails
+    worldPullTrails.classList.toggle('is-visible', idx === 1);
 
-    // Step 1 competitive climb-over cues
-    var showClimb = (idx === 1 || idx === 2);
-    setPathProgress(climbArc, climbLen, showClimb ? 1 : 0);
-    climbHead.classList.toggle('is-visible', showClimb);
-    pressCues.classList.toggle('is-visible', idx === 1);
-    if (idx === 2) {
-      climbArc.style.opacity = '0.32';
-      climbHead.style.opacity = '0.32';
-    } else {
-      climbHead.style.opacity = '';
-    }
-
-    // Step 2 Jesus came down first + cross anchor
+    // Step 2 Jesus meets You at the top and came down first to the cross
+    jesusTopMeet.classList.toggle('is-visible', idx === 2);
     setPathProgress(jesusDownArc, jesusLen, idx === 2 ? 1 : 0);
     jesusDownHead.classList.toggle('is-visible', idx === 2);
-    setPathProgress(graceTetherUp, tetherLen, idx === 2 ? 1 : 0);
-    graceTetherHead.classList.toggle('is-visible', idx === 2);
     crossAnchor.classList.toggle('is-visible', idx >= 2);
-    anchorStem.classList.toggle('is-visible', idx >= 3);
+    anchorStem.classList.toggle('is-visible', idx >= 4);
 
-    // Step 4 climb down & lift one person up
+    // Step 3 & Step 4 lift-up trails
+    step3LiftTrail.classList.toggle('is-visible', idx === 3 || idx === 4);
     var showStep4 = (idx === 4);
     lowGhost.classList.toggle('is-visible', showStep4);
     setPathProgress(reachDownPath, reachLen, showStep4 ? 1 : 0);
     reachDownHead.classList.toggle('is-visible', showStep4);
     setPathProgress(liftUpPath, liftLen, showStep4 ? 1 : 0);
     liftUpHead.classList.toggle('is-visible', showStep4);
-    neighborMoving.classList.toggle('is-visible', false);
 
-    // Step 4 shows the first green support bond (link-s-2 -> visual left mid); Step 5 connects the whole structure
-    kingdomLinks.forEach(function (ln, li) {
-      ln.classList.toggle('is-visible', idx === 5 || (idx === 4 && li === 1));
+    // Step 5 shows all 8 community links + upward cradling hands + frame
+    kingdomLinks.forEach(function (ln) {
+      ln.classList.toggle('is-visible', idx === 5);
     });
+    peerLiftHands.classList.toggle('is-visible', idx === 5);
     finishFrame.classList.toggle('is-visible', idx === 5);
 
     // Upright minimal labels
     lblWorld.classList.toggle('is-visible', idx === 1);
     lblJesus.classList.toggle('is-visible', idx === 2);
-    lblHeld.classList.toggle('is-visible', idx >= 3);
+    lblHeld.classList.toggle('is-visible', idx >= 4);
     lblFlip.classList.toggle('is-visible', idx === 3);
     lblHelp.classList.toggle('is-visible', idx === 4);
     lblGrow.classList.toggle('is-visible', idx === 5);
@@ -917,69 +1121,120 @@ button:focus-visible {
     syncLoopPlayback();
   }
 
+  // Helper to interpolate a pair swap with opposing side-arc offsets so circles swing past each other
+  function interpolateSwap(fromA, toA, p, sideSign) {
+    var e = 1 - Math.pow(1 - p, 2);
+    var arc = Math.sin(Math.PI * e) * 14 * sideSign;
+    return {
+      x: fromA.x + (toA.x - fromA.x) * e + arc,
+      y: fromA.y + (toA.y - fromA.y) * e
+    };
+  }
+
   function animateStep(idx) {
     cancelAnim();
 
     if (idx === 1) {
+      // Hero starts at bottom row, 3rd spot (slot 8) and pulls down peer 4 (slot 4), peer 2 (slot 2), peer 0 (slot 0)
       setStaticState(1);
-      setPathProgress(climbArc, climbLen, 0);
-      climbHead.classList.remove('is-visible');
-      pressCues.classList.remove('is-visible');
-      var d1 = Math.max(460, Math.round((climbLen / SPEED) * 1000));
-      widget.setAttribute('data-step-dur', String(d1));
+      worldPullTrails.classList.remove('is-visible');
+      lblWorld.classList.remove('is-visible');
+
+      // Reset all 9 peers to starting slots [0,1,2,3,4,5,6,7,9] and Hero to slot 8
+      var startSlots = [0, 1, 2, 3, 4, 5, 6, 7, 9];
+      for (var i = 0; i < 9; i++) {
+        placeGroup(peerGroups[i], SLOTS[startSlots[i]].x, SLOTS[startSlots[i]].y);
+        setCircleStyle(peerCircles[i], 'node-fill-world');
+      }
+      placeGroup(heroGroup, SLOTS[8].x, SLOTS[8].y);
+      heroArmPull.classList.add('is-visible');
+      setPullArmPose('up-left');
+
+      var hopDur = 360;
+      var total1 = hopDur * 3 + 120;
+      widget.setAttribute('data-step-dur', String(total1));
+
       var t0 = 0;
       function f1(now) {
         if (!t0) t0 = now;
-        var p = Math.min(1, (now - t0) / d1);
-        var e = 1 - Math.pow(1 - p, 1.5);
-        setPathProgress(climbArc, climbLen, e);
-        if (p >= 0.82) {
-          climbHead.classList.add('is-visible');
-          pressCues.classList.add('is-visible');
+        var el = now - t0;
+
+        if (el < hopDur) {
+          // Hop 1: Hero (slot 8) pulls down peer 4 (slot 4)
+          setPullArmPose('up-left');
+          var p1 = Math.min(1, el / hopDur);
+          var hPos1 = interpolateSwap(SLOTS[8], SLOTS[4], p1, -1);
+          var pPos1 = interpolateSwap(SLOTS[4], SLOTS[8], p1, 1);
+          placeGroup(heroGroup, hPos1.x, hPos1.y);
+          placeGroup(peerGroups[4], pPos1.x, pPos1.y);
+          if (p1 >= 0.7) setCircleStyle(peerCircles[4], 'node-pulled-down');
+        } else if (el < hopDur * 2) {
+          // Hop 2: Hero (slot 4) pulls down peer 2 (slot 2)
+          placeGroup(peerGroups[4], SLOTS[8].x, SLOTS[8].y);
+          setCircleStyle(peerCircles[4], 'node-pulled-down');
+          setPullArmPose('up-right');
+          var p2 = Math.min(1, (el - hopDur) / hopDur);
+          var hPos2 = interpolateSwap(SLOTS[4], SLOTS[2], p2, 1);
+          var pPos2 = interpolateSwap(SLOTS[2], SLOTS[4], p2, -1);
+          placeGroup(heroGroup, hPos2.x, hPos2.y);
+          placeGroup(peerGroups[2], pPos2.x, pPos2.y);
+          if (p2 >= 0.7) setCircleStyle(peerCircles[2], 'node-pulled-down');
+        } else if (el < hopDur * 3) {
+          // Hop 3: Hero (slot 2) pulls down peer 0 (slot 0)
+          placeGroup(peerGroups[2], SLOTS[4].x, SLOTS[4].y);
+          setCircleStyle(peerCircles[2], 'node-pulled-down');
+          setPullArmPose('up-left');
+          var p3 = Math.min(1, (el - hopDur * 2) / hopDur);
+          var hPos3 = interpolateSwap(SLOTS[2], SLOTS[0], p3, -1);
+          var pPos3 = interpolateSwap(SLOTS[0], SLOTS[2], p3, 1);
+          placeGroup(heroGroup, hPos3.x, hPos3.y);
+          placeGroup(peerGroups[0], pPos3.x, pPos3.y);
+          if (p3 >= 0.7) setCircleStyle(peerCircles[0], 'node-pulled-down');
+        } else {
+          setStaticState(1);
+          activeRaf = 0;
+          return;
         }
-        if (p < 1) activeRaf = requestAnimationFrame(f1);
-        else { activeRaf = 0; setPathProgress(climbArc, climbLen, 1); }
+
+        activeRaf = requestAnimationFrame(f1);
       }
       activeRaf = requestAnimationFrame(f1);
       return;
     }
 
     if (idx === 2) {
+      // Hero at top meets Jesus (348,46), then Jesus' golden path sweeps down to the cross foundation (300,248)
       setStaticState(2);
       setPathProgress(jesusDownArc, jesusLen, 0);
       jesusDownHead.classList.remove('is-visible');
-      setPathProgress(graceTetherUp, tetherLen, 0);
-      graceTetherHead.classList.remove('is-visible');
       crossAnchor.classList.remove('is-visible');
       lblJesus.classList.remove('is-visible');
-      setNodeStyle(nodeYou, 'node-you-world');
+      setCircleStyle(nodeYou, 'node-you-world');
       lblYou.setAttribute('fill', '#FFFFFF');
 
-      var dDown = Math.max(520, Math.round((jesusLen / (SPEED * 1.4)) * 1000));
-      var dUp = Math.max(420, Math.round((tetherLen / (SPEED * 1.6)) * 1000));
-      var total2 = dDown + dUp;
+      var dMeet = 260;
+      var dDown = 620;
+      var total2 = dMeet + dDown;
       widget.setAttribute('data-step-dur', String(total2));
+
+      scheduleTimer(function () {
+        setCircleStyle(nodeYou, 'node-you-gospel');
+        lblYou.setAttribute('fill', '#7D5604');
+      }, 180);
 
       var t2 = 0;
       var crossShown = false;
       function f2(now) {
         if (!t2) t2 = now;
         var el = now - t2;
-        var p1 = Math.min(1, el / dDown);
-        setPathProgress(jesusDownArc, jesusLen, 1 - Math.pow(1 - p1, 1.4));
-        if (!crossShown && p1 >= 0.85) {
-          crossShown = true;
-          jesusDownHead.classList.add('is-visible');
-          crossAnchor.classList.add('is-visible');
-          lblJesus.classList.add('is-visible');
-        }
-        if (el > dDown * 0.85) {
-          var p2 = Math.min(1, (el - dDown * 0.85) / dUp);
-          setPathProgress(graceTetherUp, tetherLen, p2);
-          if (p2 >= 0.82) {
-            graceTetherHead.classList.add('is-visible');
-            setNodeStyle(nodeYou, 'node-you-gospel');
-            lblYou.setAttribute('fill', '#7D5604');
+        if (el > dMeet) {
+          var p = Math.min(1, (el - dMeet) / dDown);
+          setPathProgress(jesusDownArc, jesusLen, 1 - Math.pow(1 - p, 1.4));
+          if (!crossShown && p >= 0.84) {
+            crossShown = true;
+            jesusDownHead.classList.add('is-visible');
+            crossAnchor.classList.add('is-visible');
+            lblJesus.classList.add('is-visible');
           }
         }
         if (el < total2) activeRaf = requestAnimationFrame(f2);
@@ -990,65 +1245,106 @@ button:focus-visible {
     }
 
     if (idx === 3) {
-      // Hide upright "You" cleanly during the 180deg flip, then reappear upright at bottom!
+      // Greatness Spectrum flips 180deg AND Hero at top (slot 0) switches places with peer 0 (slot 2), lifting them to top!
       setStaticState(3);
-      lblYou.classList.remove('is-visible');
+      step3LiftTrail.classList.remove('is-visible');
       lblFlip.classList.remove('is-visible');
-      anchorStem.classList.remove('is-visible');
-      widget.setAttribute('data-step-dur', '950');
-      scheduleTimer(function () {
-        lblYou.classList.add('is-visible');
-        lblFlip.classList.add('is-visible');
-        anchorStem.classList.add('is-visible');
-      }, 660);
+      placeGroup(heroGroup, SLOTS[0].x, SLOTS[0].y);
+      placeGroup(peerGroups[0], SLOTS[2].x, SLOTS[2].y);
+      setCircleStyle(peerCircles[0], 'node-fill-world');
+
+      var dWaitFlip = 260;
+      var dSwap1 = 560;
+      var total3 = dWaitFlip + dSwap1;
+      widget.setAttribute('data-step-dur', String(total3));
+
+      var t3 = 0;
+      function f3(now) {
+        if (!t3) t3 = now;
+        var el = now - t3;
+        if (el > dWaitFlip) {
+          var p = Math.min(1, (el - dWaitFlip) / dSwap1);
+          var hPos = interpolateSwap(SLOTS[0], SLOTS[2], p, 1);
+          var pPos = interpolateSwap(SLOTS[2], SLOTS[0], p, -1);
+          placeGroup(heroGroup, hPos.x, hPos.y);
+          placeGroup(peerGroups[0], pPos.x, pPos.y);
+          if (p >= 0.65) {
+            setCircleStyle(peerCircles[0], 'node-lifted-mid');
+            step3LiftTrail.classList.add('is-visible');
+            lblFlip.classList.add('is-visible');
+          }
+        }
+        if (el < total3) activeRaf = requestAnimationFrame(f3);
+        else { activeRaf = 0; setStaticState(3); }
+      }
+      activeRaf = requestAnimationFrame(f3);
       return;
     }
 
     if (idx === 4) {
-      // Climb down along blue arc, connect with low circle, and lift it up into the middle tier
+      // Hero climbs down from Row 2 (slot 2) -> Row 3 (slot 4) -> Row 4 spot 3 (slot 8), lifting peer 2 and peer 4 UP past You!
       setStaticState(4);
-      setNodeStyle(midNodes[1], 'node-fill-world');
-      kingdomLinks[1].classList.remove('is-visible');
+      placeGroup(heroGroup, SLOTS[2].x, SLOTS[2].y);
+      placeGroup(peerGroups[2], SLOTS[4].x, SLOTS[4].y);
+      placeGroup(peerGroups[4], SLOTS[8].x, SLOTS[8].y);
+      setCircleStyle(peerCircles[2], 'node-fill-world');
+      setCircleStyle(peerCircles[4], 'node-fill-world');
       setPathProgress(reachDownPath, reachLen, 0);
       reachDownHead.classList.remove('is-visible');
       setPathProgress(liftUpPath, liftLen, 0);
       liftUpHead.classList.remove('is-visible');
-      neighborMoving.setAttribute('transform', 'translate(84,212)');
-      neighborMoving.classList.add('is-visible');
+      kingdomLinks[1].classList.remove('is-visible');
+      anchorStem.classList.remove('is-visible');
+      lblHeld.classList.remove('is-visible');
 
-      var dReach = Math.max(420, Math.round((reachLen / SPEED) * 1000));
-      var dLift = Math.max(520, Math.round((liftLen / SPEED) * 1000));
-      var total4 = dReach + 120 + dLift;
+      var dLiftA = 440;
+      var dLiftB = 460;
+      var total4 = dLiftA + dLiftB + 80;
       widget.setAttribute('data-step-dur', String(total4));
 
       var t4 = 0;
       function f4(now) {
         if (!t4) t4 = now;
         var el = now - t4;
-        if (el <= dReach) {
-          var p1 = Math.min(1, el / dReach);
-          setPathProgress(reachDownPath, reachLen, 1 - Math.pow(1 - p1, 1.4));
-          if (p1 >= 0.85) reachDownHead.classList.add('is-visible');
-        } else if (el <= dReach + 120) {
+        if (el < dLiftA) {
+          // Lift-Swap 2: Hero (slot 2) steps down to slot 4 while lifting peer 2 (slot 4) up to slot 2
+          setLiftArmPose('up-right');
+          var pA = Math.min(1, el / dLiftA);
+          var hA = interpolateSwap(SLOTS[2], SLOTS[4], pA, -1);
+          var peerA = interpolateSwap(SLOTS[4], SLOTS[2], pA, 1);
+          placeGroup(heroGroup, hA.x, hA.y);
+          placeGroup(peerGroups[2], peerA.x, peerA.y);
+          setPathProgress(reachDownPath, reachLen, pA);
+          if (pA >= 0.72) {
+            setCircleStyle(peerCircles[2], 'node-lifted-mid');
+            reachDownHead.classList.add('is-visible');
+          }
+        } else if (el < dLiftA + dLiftB) {
+          placeGroup(peerGroups[2], SLOTS[2].x, SLOTS[2].y);
+          setCircleStyle(peerCircles[2], 'node-lifted-mid');
           setPathProgress(reachDownPath, reachLen, 1);
           reachDownHead.classList.add('is-visible');
-        } else {
-          var p2 = Math.min(1, (el - dReach - 120) / dLift);
-          var e2 = 1 - Math.pow(1 - p2, 1.5);
-          setPathProgress(liftUpPath, liftLen, e2);
-          var pt = pointOnPath(liftUpPath, liftLen, e2);
-          neighborMoving.setAttribute('transform', 'translate(' + pt.x.toFixed(1) + ',' + pt.y.toFixed(1) + ')');
-          if (p2 >= 0.88) {
-            liftUpHead.classList.add('is-visible');
-          }
-        }
 
-        if (el < total4) {
-          activeRaf = requestAnimationFrame(f4);
+          // Lift-Swap 3: Hero (slot 4) steps down to slot 8 while lifting peer 4 (slot 8) up to slot 4
+          setLiftArmPose('up-left');
+          var pB = Math.min(1, (el - dLiftA) / dLiftB);
+          var hB = interpolateSwap(SLOTS[4], SLOTS[8], pB, 1);
+          var peerB = interpolateSwap(SLOTS[8], SLOTS[4], pB, -1);
+          placeGroup(heroGroup, hB.x, hB.y);
+          placeGroup(peerGroups[4], peerB.x, peerB.y);
+          setPathProgress(liftUpPath, liftLen, pB);
+          if (pB >= 0.72) {
+            setCircleStyle(peerCircles[4], 'node-lifted-mid');
+            liftUpHead.classList.add('is-visible');
+            anchorStem.classList.add('is-visible');
+            lblHeld.classList.add('is-visible');
+          }
         } else {
           activeRaf = 0;
           setStaticState(4);
+          return;
         }
+        activeRaf = requestAnimationFrame(f4);
       }
       activeRaf = requestAnimationFrame(f4);
       return;
@@ -1057,30 +1353,25 @@ button:focus-visible {
     if (idx === 5) {
       setStaticState(5);
       kingdomLinks.forEach(function (ln) { ln.classList.remove('is-visible'); });
-      baseNodes.forEach(function (n) { setNodeStyle(n, 'node-fill-world'); });
+      peerLiftHands.classList.remove('is-visible');
       finishFrame.classList.remove('is-visible');
       lblGrow.classList.remove('is-visible');
       widget.classList.remove('loop-active');
-      widget.setAttribute('data-step-dur', '760');
+      widget.setAttribute('data-step-dur', '720');
 
       scheduleTimer(function () {
-        kingdomLinks[0].classList.add('is-visible');
-        kingdomLinks[1].classList.add('is-visible');
-        kingdomLinks[6].classList.add('is-visible');
-      }, 100);
+        for (var i = 0; i < 6; i++) kingdomLinks[i].classList.add('is-visible');
+        peerLiftHands.classList.add('is-visible');
+      }, 120);
       scheduleTimer(function () {
-        kingdomLinks[2].classList.add('is-visible');
-        kingdomLinks[3].classList.add('is-visible');
-        kingdomLinks[4].classList.add('is-visible');
-        kingdomLinks[5].classList.add('is-visible');
+        kingdomLinks[6].classList.add('is-visible');
         kingdomLinks[7].classList.add('is-visible');
-        baseNodes.forEach(function (n) { setNodeStyle(n, 'node-lifted-top'); });
       }, 360);
       scheduleTimer(function () {
         finishFrame.classList.add('is-visible');
         lblGrow.classList.add('is-visible');
         syncLoopPlayback();
-      }, 640);
+      }, 580);
       return;
     }
 
