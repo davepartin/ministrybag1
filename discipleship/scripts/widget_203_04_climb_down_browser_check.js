@@ -279,33 +279,33 @@ function startStaticServer(rootDir) {
           check(`${tag}: no "${forbidden}" in step ${s} copy`, !new RegExp(`\\b${forbidden}\\b`, 'i').test(cardText));
         }
 
-        const svgState = await page.evaluate(() => ({
-          flipped: document.getElementById('flip-group').classList.contains('is-flipped'),
-          crossVis: document.getElementById('cross-anchor').classList.contains('is-visible'),
-          stemVis: document.getElementById('anchor-stem').classList.contains('is-visible'),
-          jesusTopVis: document.getElementById('jesus-top-meet').classList.contains('is-visible'),
-          pullArmVis: document.getElementById('hero-arm-pull').classList.contains('is-visible'),
-          liftArmVis: document.getElementById('hero-arm-lift').classList.contains('is-visible'),
-          heroPos: document.getElementById('hero-group').getAttribute('transform'),
-          peerCount: document.querySelectorAll('#peers-layer .peer-group').length,
-          ghostVis: document.getElementById('low-ghost').classList.contains('is-visible'),
-          linksVis: Array.from(document.querySelectorAll('#kingdom-links .is-visible')).length,
-          frameVis: document.getElementById('finish-frame').classList.contains('is-visible'),
-          loop: window.CLIMB_DOWN_LOOP.state()
-        }));
+        const svgState = await page.evaluate(() => {
+          const fills = Array.from(document.querySelectorAll('#peers-layer circle')).map(c => c.getAttribute('fill'));
+          return {
+            flipped: document.getElementById('flip-group').classList.contains('is-flipped'),
+            scaleLabel: document.getElementById('spec-mode-label').textContent.trim(),
+            highLabel: document.getElementById('spec-high-txt').textContent.trim(),
+            lowLabel: document.getElementById('spec-low-txt').textContent.trim(),
+            heroPos: document.getElementById('hero-group').getAttribute('transform'),
+            peerCount: fills.length,
+            uniquePeerColors: new Set(fills).size,
+            bandVis: document.getElementById('serving-row-band').classList.contains('is-visible'),
+            frameVis: document.getElementById('finish-frame').classList.contains('is-visible'),
+            loop: window.CLIMB_DOWN_LOOP.state()
+          };
+        });
 
-        check(`${tag}: 4-3-2-1 pyramid has 9 peers + 1 hero (10 circles total)`, svgState.peerCount === 9);
-        check(`${tag}: flip state correct on step ${s}`, svgState.flipped === (s >= 3));
-        check(`${tag}: pull-down arm visible on step 1`, svgState.pullArmVis === (s === 1));
-        check(`${tag}: lift-up arms visible on steps 3-5`, svgState.liftArmVis === (s >= 3));
-        check(`${tag}: Jesus meets You at top on step 2`, svgState.jesusTopVis === (s === 2));
+        check(`${tag}: 4-3-2-1 pyramid has 9 peers with 9 distinct colors + 1 hero`,
+          svgState.peerCount === 9 && svgState.uniquePeerColors === 9);
+        check(`${tag}: scale uses simple GREATEST and LEAST labels`,
+          svgState.highLabel === 'GREATEST' && svgState.lowLabel === 'LEAST');
+        check(`${tag}: scale flip state correct on step ${s}`,
+          svgState.flipped === (s >= 2) &&
+          svgState.scaleLabel === (s >= 2 ? 'KINGDOM SCALE' : "WORLD'S SCALE"));
         check(`${tag}: hero slot position on step ${s}`,
-          svgState.heroPos === (s <= 2 ? 'translate(272.0,46.0)' : (s === 3 ? 'translate(300.0,96.0)' : 'translate(300.0,196.0)')));
-        check(`${tag}: cross anchor visible on step ${s}`, svgState.crossVis === (s >= 2));
-        check(`${tag}: anchor stem visible on step ${s}`, svgState.stemVis === (s >= 4));
-        check(`${tag}: step 4 climb-down ghost visible iff step 4`, svgState.ghostVis === (s === 4));
-        check(`${tag}: step 5 shows all 8 links + frame`,
-          svgState.linksVis === (s === 5 ? 8 : 0) && svgState.frameVis === (s === 5));
+          svgState.heroPos === (s <= 2 ? 'translate(276.0,48.0)' : (s === 3 ? 'translate(306.0,99.0)' : 'translate(306.0,201.0)')));
+        check(`${tag}: step 5 highlights serving row band + frame`,
+          svgState.bandVis === (s === 5) && svgState.frameVis === (s === 5));
 
         if (s === 5) {
           if (job.reducedMotion === 'reduce') {

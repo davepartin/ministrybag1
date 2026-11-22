@@ -34,11 +34,19 @@ Before committing to the final drawing, three rough whiteboard circle arrangemen
   - **Step 4 (Climb Down to Lift Others Up):** `You` continues climbing down row by row with the lifting arm, helping people move up past `You` until `You` returns to the 3rd spot of the bottom row, anchored to Jesus' cross (`Held by Jesus`) right beside `GREATEST / High in Heaven`.
   - **Step 5 (A Life That Builds Others Up):** From the bottom row, the whole 4-3-2-1 community lifts the rows above them with upward-cradling support palms and a calm 5.2s offscreen-pausing wave (`Others rise`).
 
+## Dave Feedback Revision 2 (2026-11-22: Simplified Scale, 10 Distinctly Colored Dots, Zero Lingering Arrows, 30% Swap Speed)
+
+- Simplified `discipleship/widgets/climb-down-lift-up.html` per Dave's follow-up review:
+  - **No lingering arrows or extra icons:** Removed all persistent swap arrows, link lines, and Jesus diagram icons so the stage focuses cleanly on the scale and the 10 dots in the 4-3-2-1 pyramid.
+  - **Clearer Scale Wording:** Simplified the flippable left-side scale to `WORLD'S SCALE` -> `KINGDOM SCALE` with only two endpoint pills (`GREATEST` and `LEAST`) that physically flip 180 degrees so `GREATEST` is at the bottom aligned with the serving row. Replaced James 4:10 ("lifted up later by God") on Step 5 with `Matthew 23:11` (`"The greatest among you shall be your servant"`).
+  - **Distinct Dot Colors + Dark "You" Dot:** Each of the 9 other dots has its own distinct color (Amber-Gold, Sage-Teal, Sky Blue, Lavender, Coral-Terracotta, Olive-Moss, Dusty Rose, Warm Apricot, Cool Periwinkle) while the Hero dot is bold dark `#2C2416` with white `You` text so every swap is easy to follow visually.
+  - **30% Swap Speed:** Slowed each pair swap to `1200ms` (30% of the previous `360ms` speed) with smooth sine ease-in-out and a `260ms` pause between consecutive swaps.
+
 ## Verification Results (Local)
 
 - `bash scripts/qa_foundation.sh`: PASS
 - `node scripts/test_lesson_export.js`: 212 passed
 - `node scripts/test_answer_storage.js`: 73 passed
 - `node scripts/check_lesson_assets.js`: 147 references resolved
-- `node scripts/widget_203_04_climb_down_browser_check.js`: 574 passed (`standalone` + `embedded` across `375`, `390`, `1280`, `390/reduce`)
+- `node scripts/widget_203_04_climb_down_browser_check.js`: 474 passed (`standalone` + `embedded` across `375`, `390`, `1280`, `390/reduce`)
 - Em-dash audit (`U+2014`) across all modified/created files: 0 found
