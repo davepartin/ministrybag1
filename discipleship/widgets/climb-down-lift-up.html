@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Climb Down to Lift Others Up</title>
+<style>
+:root {
+  --ink: #2C2416;
+  --muted: #6E6559;
+  --tray: #F6F4EE;
+  --border: #EBE5D9;
+  --step-color: #2C2416;
+  --step-dark: #2C2416;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: Georgia, Cambria, serif;
+  background: #F8F6F1;
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+.widget-outer {
+  background: #FFFFFF;
+  border-radius: 0;
+  overflow: hidden;
+  box-shadow: none;
+  border: none;
+  max-width: 100%;
+  width: 100%;
+  margin: 0;
+  position: relative;
+}
+
+@media (min-width: 560px) {
+  body {
+    padding: 16px;
+    background: #F8F6F1;
+  }
+  .widget-outer {
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(44, 36, 22, 0.08);
+    border: 1px solid #EBE5D9;
+    max-width: 460px;
+    margin: 0 auto;
+  }
+}
+
+.title-bar {
+  background: #2C2416;
+  padding: 8px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.title-bar h1 {
+  font: 600 17px/1.15 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #FAF8F3;
+  letter-spacing: 0.2px;
+  margin: 0;
+}
+
+.course-tag {
+  font: 600 11px/1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  letter-spacing: 0.9px;
+  text-transform: uppercase;
+  color: #E5DEC9;
+  white-space: nowrap;
+}
+
+.stage {
+  position: relative;
+  background: #FFFFFF;
+  padding: 2px 10px 0;
+  border-bottom: 1px solid var(--border);
+  content-visibility: auto;
+  contain-intrinsic-size: auto none auto 246px;
+}
+
+.opening-cue {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+  padding: 18px;
+  pointer-events: none;
+  opacity: 1;
+}
+
+.opening-cue p {
+  margin: 0;
+  max-width: 290px;
+  padding: 16px 20px;
+  border: 1px solid #E6DECF;
+  border-radius: 14px;
+  background: #FFFFFF;
+  box-shadow: 0 10px 28px rgba(44, 36, 22, 0.10);
+  color: #2C2416;
+  text-align: center;
+  font: 600 17px/1.3 Georgia, 'Times New Roman', serif;
+}
+
+.opening-cue.is-hidden {
+  opacity: 0;
+}
+
+.climb-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.fade-part {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.fade-part.is-visible {
+  opacity: 1;
+}
+
+#flip-group {
+  transform-origin: 220px 120px;
+  transform: rotate(0deg);
+}
+
+#flip-group.is-flipped {
+  transform: rotate(180deg);
+}
+
+.node-fill-world {
+  fill: #EFEBE2;
+  stroke: #8E8475;
+}
+
+.node-you-world {
+  fill: #5A4E3C;
+  stroke: #2C2416;
+}
+
+.node-you-gospel {
+  fill: #FCF2D6;
+  stroke: #A8760A;
+}
+
+.node-you-servant {
+  fill: #1F684A;
+  stroke: #164E37;
+}
+
+.node-lifted-mid {
+  fill: #E2EEF6;
+  stroke: #2A5B7C;
+}
+
+.node-lifted-top {
+  fill: #EDE7F6;
+  stroke: #5F4684;
+}
+
+.wb-label {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.1px;
+  paint-order: stroke;
+  stroke: #FFFFFF;
+  stroke-width: 4px;
+  stroke-linejoin: round;
+}
+
+.wb-sub {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  paint-order: stroke;
+  stroke: #FFFFFF;
+  stroke-width: 3.5px;
+  stroke-linejoin: round;
+}
+
+/* Calm repeating life-of-service rhythm on Step 5 (compositor-only opacity + scale, pauses offscreen) */
+.loop-pulse {
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  pointer-events: none;
+}
+
+.step-strip {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 12px 4px;
+  background: var(--tray);
+  border-bottom: 1px solid var(--border);
+}
+
+.step-dot {
+  appearance: none;
+  min-inline-size: 28px;
+  min-block-size: 28px;
+  padding: 4px;
+  border: none;
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.step-dot-fill {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2.5px solid var(--dot-color, var(--ink));
+  background: #FFFFFF;
+}
+
+.step-dot.passed .step-dot-fill {
+  background: rgba(31, 104, 74, 0.18);
+}
+
+.step-dot.active .step-dot-fill {
+  background: var(--dot-color, var(--ink));
+  transform: scale(1.12);
+}
+
+.card-area {
+  background: var(--tray);
+  padding: 6px 12px 9px;
+}
+
+.verse-card {
+  background: #FFFFFF;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(44, 36, 22, 0.06);
+  border: 1px solid var(--border);
+}
+
+.verse-card-bar {
+  height: 4px;
+  background: var(--step-color);
+}
+
+.verse-card-content {
+  padding: 9px 14px 10px;
+  min-height: var(--card-h, 118px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card-heading {
+  font: 700 15.5px/1.22 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--step-dark);
+  margin: 0 0 4px;
+}
+
+.card-verse {
+  font: 400 13px/1.38 Georgia, Cambria, serif;
+  color: var(--ink);
+  margin: 0 0 4px;
+}
+
+.verse-ref {
+  font: 600 11.5px/1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--muted);
+  margin-left: 4px;
+  white-space: nowrap;
+}
+
+.card-note {
+  font: 400 12.5px/1.36 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #463D2F;
+  margin: 0;
+}
+
+.nav-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-top: 7px;
+}
+
+.nav-btn {
+  appearance: none;
+  min-block-size: 44px;
+  min-inline-size: 104px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font: 600 14px/1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  cursor: pointer;
+  border: 1.5px solid #D4CFC4;
+  background: #FFFFFF;
+  color: var(--ink);
+}
+
+.nav-btn.primary {
+  background: var(--step-color);
+  border-color: var(--step-color);
+  color: #FFFFFF;
+}
+
+.nav-btn:disabled {
+  opacity: 0.36;
+  cursor: default;
+}
+
+.step-count {
+  font: 600 12px/1 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--muted);
+}
+
+button:focus-visible {
+  outline: 3px solid #E0A526;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .opening-cue {
+    transition: opacity 0.32s ease;
+  }
+  .widget-outer:not(.is-instant) .fade-part {
+    transition: opacity 0.38s ease;
+  }
+  .widget-outer:not(.is-instant) #flip-group {
+    transition: transform 0.92s cubic-bezier(0.32, 0.08, 0.24, 1);
+  }
+  .widget-outer:not(.is-instant) .person-node {
+    transition: fill 0.42s ease, stroke 0.42s ease;
+  }
+  .widget-outer .step-dot-fill {
+    transition: background-color 0.22s ease, border-color 0.22s ease, transform 0.22s ease;
+  }
+  .widget-outer .nav-btn.primary,
+  .widget-outer .verse-card-bar,
+  .widget-outer .card-heading {
+    transition: background-color 0.24s ease, border-color 0.24s ease, color 0.24s ease;
+  }
+
+  /* Calm repeating service wave on Step 5 (5.2s cycle with ~1.8s quiet rest) */
+  .widget-outer.loop-active:not(.loop-paused) #pulse-cross {
+    animation: service-wave-1 5.2s ease-in-out infinite;
+  }
+  .widget-outer.loop-active:not(.loop-paused) #pulse-mid {
+    animation: service-wave-2 5.2s ease-in-out infinite;
+  }
+  .widget-outer.loop-active:not(.loop-paused) #pulse-top {
+    animation: service-wave-3 5.2s ease-in-out infinite;
+  }
+  .widget-outer.loop-active.loop-paused .loop-pulse {
+    animation-play-state: paused;
+  }
+}
+
+@keyframes service-wave-1 {
+  0%, 100% { opacity: 0; transform: scale(0.92); }
+  12% { opacity: 0.72; transform: scale(1.16); }
+  28%, 68% { opacity: 0; transform: scale(1.24); }
+}
+
+@keyframes service-wave-2 {
+  0%, 18%, 100% { opacity: 0; transform: scale(0.92); }
+  32% { opacity: 0.68; transform: scale(1.16); }
+  48%, 68% { opacity: 0; transform: scale(1.24); }
+}
+
+@keyframes service-wave-3 {
+  0%, 36%, 100% { opacity: 0; transform: scale(0.92); }
+  52% { opacity: 0.64; transform: scale(1.16); }
+  68% { opacity: 0; transform: scale(1.24); }
+}
+
+#measure-host {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+</style>
+</head>
+<body>
+<main class="widget-outer" id="widget" data-step="0" data-step-dur="0" data-loop-state="stopped">
+  <header class="title-bar">
+    <h1>Climb Down to Lift Others Up</h1>
+    <span class="course-tag">203-04</span>
+  </header>
+
+  <div class="stage" id="stage">
+    <div class="opening-cue" id="opening-cue" aria-hidden="false"><p>What does greatness look like?</p></div>
+
+    <svg class="climb-svg" id="climb-svg" viewBox="0 0 440 278" width="100%" role="img" aria-labelledby="svg-title svg-desc">
+      <title id="svg-title">Climb Down to Lift Others Up</title>
+      <desc id="svg-desc">Clean whiteboard stage with the opening question What does greatness look like?</desc>
+
+      <!-- Final step crisp Studio Wash double-hairline frame (no glow, no trophy/crown) -->
+      <g id="finish-frame" class="fade-part" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="10" y="7" width="420" height="264" rx="13" stroke="#1F684A" stroke-width="2" stroke-opacity="0.48" />
+        <rect x="14.5" y="11.5" width="411" height="255" rx="9.5" stroke="#A8760A" stroke-width="0.9" stroke-opacity="0.38" />
+      </g>
+
+      <!-- THE REVERSIBLE WHITEBOARD ARRANGEMENT (Rotates 180deg around 220,120 on Step 3!) -->
+      <g id="flip-group">
+        <!-- Shared triangle outline & subtle wash -->
+        <polygon id="tri-wash" class="fade-part" points="220,24 106,204 334,204" fill="#F6F3EC" fill-opacity="0.72" />
+        <polygon id="tri-outline" class="fade-part" points="220,24 106,204 334,204" fill="none" stroke="#9A9081" stroke-width="1.8" stroke-linejoin="round" />
+
+        <!-- Step 1: Competitive climb-over stepping-stone arrow (only in upright orientation) -->
+        <g id="world-climb-arrows" fill="none" stroke="#5A4E3C" stroke-linecap="round" stroke-linejoin="round">
+          <path id="climb-arc" d="M132,166 C118,128 140,94 166,102 C178,76 196,60 205,60" stroke-width="2.1" />
+          <polyline id="climb-head" class="fade-part" points="198,54 206,60 198,66" stroke-width="2.1" />
+          <!-- Subtle downward stepping pressure cues under middle & bottom rows -->
+          <g id="press-cues" class="fade-part" stroke="#8C8173" stroke-width="1.4" opacity="0.75">
+            <polyline points="181,137 186,142 191,137" />
+            <polyline points="249,137 254,142 259,137" />
+            <polyline points="215,194 220,199 225,194" />
+          </g>
+        </g>
+
+        <!-- Step 5: Connected upward community bonds (inside flip-group: in inverted orientation,
+             peak 220,62 is at bottom 220,178; mid 186/254,120 stays mid; base 152/220/288,178 is at top 62!) -->
+        <g id="kingdom-links" fill="none" stroke-linecap="round">
+          <!-- Servant (220,62 local -> bottom after flip) lifting middle tier (186,120 & 254,120) -->
+          <line id="link-s-1" class="fade-part" x1="220" y1="62" x2="186" y2="120" stroke="#1F684A" stroke-width="2.4" />
+          <line id="link-s-2" class="fade-part" x1="220" y1="62" x2="254" y2="120" stroke="#1F684A" stroke-width="2.4" />
+          <!-- Middle tier passing help onward to the wide upper tier (152, 220, 288, y=178 local -> top after flip) -->
+          <line id="link-m-1" class="fade-part" x1="186" y1="120" x2="152" y2="178" stroke="#2A5B7C" stroke-width="2.1" />
+          <line id="link-m-2" class="fade-part" x1="186" y1="120" x2="220" y2="178" stroke="#2A5B7C" stroke-width="2.1" />
+          <line id="link-m-3" class="fade-part" x1="254" y1="120" x2="220" y2="178" stroke="#2A5B7C" stroke-width="2.1" />
+          <line id="link-m-4" class="fade-part" x1="254" y1="120" x2="288" y2="178" stroke="#2A5B7C" stroke-width="2.1" />
+          <!-- Shared horizontal fellowship bars in the growing community -->
+          <line id="link-h-mid" class="fade-part" x1="186" y1="120" x2="254" y2="120" stroke="#2A5B7C" stroke-width="1.3" stroke-dasharray="3 4" opacity="0.65" />
+          <line id="link-h-top" class="fade-part" x1="152" y1="178" x2="288" y2="178" stroke="#5F4684" stroke-width="1.3" stroke-dasharray="3 4" opacity="0.65" />
+        </g>
+
+        <!-- SIX CIRCLES REPRESENTING PEOPLE (Exact same arrangement flips 180deg!) -->
+        <!-- Base row (becomes wide upper community after 180deg flip) -->
+        <circle id="node-b1" class="fade-part person-node node-fill-world" cx="152" cy="178" r="12.5" stroke-width="1.9" />
+        <circle id="node-b2" class="fade-part person-node node-fill-world" cx="220" cy="178" r="12.5" stroke-width="1.9" />
+        <circle id="node-b3" class="fade-part person-node node-fill-world" cx="288" cy="178" r="12.5" stroke-width="1.9" />
+
+        <!-- Middle row (stays middle tier after 180deg flip) -->
+        <circle id="node-m1" class="fade-part person-node node-fill-world" cx="186" cy="120" r="12.5" stroke-width="1.9" />
+        <circle id="node-m2" class="fade-part person-node node-fill-world" cx="254" cy="120" r="12.5" stroke-width="1.9" />
+
+        <!-- Emphasized circle: starts chasing peak (220,62), flips to servant base (220,178) -->
+        <circle id="node-you" class="fade-part person-node node-you-world" cx="220" cy="62" r="14.5" stroke-width="2.2" />
+      </g>
+
+      <!-- UPRIGHT OVERLAY ELEMENTS (Never rotate upside down!) -->
+
+      <!-- Step 2: Jesus came down first (golden descending path from above to the lowest place + cross anchor) -->
+      <path id="jesus-down-arc" fill="none" stroke="#C48F10" stroke-width="2.4" stroke-linecap="round"
+        d="M372,24 C404,88 400,196 322,232 C288,246 258,244 240,242" />
+      <polyline id="jesus-down-head" class="fade-part" fill="none" stroke="#C48F10" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"
+        points="247,236 239,242 247,248" />
+
+      <!-- Step 2 golden supporting tether from Jesus' cross up to your peak circle (before flip) -->
+      <path id="grace-tether-up" fill="none" stroke="#C48F10" stroke-width="1.9" stroke-dasharray="4 4" stroke-linecap="round"
+        d="M236,232 C372,226 356,88 238,63" />
+      <polyline id="grace-tether-head" class="fade-part" fill="none" stroke="#C48F10" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"
+        points="246,59 238,63 244,69" />
+
+      <!-- Step 3+: Steady golden anchor stem connecting Jesus' cross foundation directly to your servant circle -->
+      <line id="anchor-stem" class="fade-part" x1="220" y1="223" x2="220" y2="194" stroke="#C48F10" stroke-width="3" stroke-linecap="round" />
+
+      <!-- Crisp Cross-Marked Anchor Foundation (Jesus came down first - Mark 10:45) -->
+      <g id="cross-anchor" class="fade-part">
+        <circle cx="220" cy="242" r="18" fill="#FCF2D6" stroke="#A8760A" stroke-width="1.8" />
+        <path d="M220,231 L220,253 M212,239 L228,239" fill="none" stroke="#8B1A2B" stroke-width="2.8" stroke-linecap="round" />
+      </g>
+
+      <!-- Step 4: One clear act of climbing down to connect with a low/isolated circle and lifting them up -->
+      <g id="step4-action">
+        <!-- Ghost starting spot showing where the low circle began -->
+        <circle id="low-ghost" class="fade-part" cx="84" cy="212" r="12.5" fill="none" stroke="#A89F92" stroke-width="1.5" stroke-dasharray="3 3" />
+        <!-- Curved path going down/out from anchored servant (220,178) to meet the low circle (84,212) -->
+        <path id="reach-down-path" fill="none" stroke="#2A5B7C" stroke-width="2.2" stroke-linecap="round"
+          d="M204,183 C168,196 134,218 99,214" />
+        <polyline id="reach-down-head" class="fade-part" fill="none" stroke="#2A5B7C" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"
+          points="106,208 98,214 105,220" />
+        <!-- Supporting lift arc helping the connected person rise into the middle tier (186,120) -->
+        <path id="lift-up-path" fill="none" stroke="#2A5B7C" stroke-width="2.4" stroke-linecap="round"
+          d="M84,198 C86,154 120,124 170,120" />
+        <polyline id="lift-up-head" class="fade-part" fill="none" stroke="#2A5B7C" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"
+          points="163,114 171,120 163,126" />
+        <!-- The neighbor circle being connected with and lifted -->
+        <circle id="neighbor-moving" class="fade-part" cx="0" cy="0" r="12.5" fill="#E2EEF6" stroke="#2A5B7C" stroke-width="2.2" />
+      </g>
+
+      <!-- Step 5: Calm repeating compositor pulses (cross -> servant -> mid -> top; pauses offscreen) -->
+      <g id="service-pulses" fill="none">
+        <circle id="pulse-cross" class="loop-pulse" cx="220" cy="178" r="21" stroke="#C48F10" stroke-width="2.2" />
+        <g id="pulse-mid" class="loop-pulse">
+          <circle cx="186" cy="120" r="18" stroke="#2A5B7C" stroke-width="2" />
+          <circle cx="254" cy="120" r="18" stroke="#2A5B7C" stroke-width="2" />
+        </g>
+        <g id="pulse-top" class="loop-pulse">
+          <circle cx="152" cy="62" r="18" stroke="#5F4684" stroke-width="2" />
+          <circle cx="220" cy="62" r="18" stroke="#5F4684" stroke-width="2" />
+          <circle cx="288" cy="62" r="18" stroke="#5F4684" stroke-width="2" />
+        </g>
+      </g>
+
+      <!-- MINIMAL UPRIGHT LABELS (Always horizontal and readable!) -->
+      <text id="lbl-you" class="fade-part wb-label" x="220" y="66.5" text-anchor="middle" fill="#FFFFFF" style="stroke:none;">You</text>
+      <text id="lbl-world" class="fade-part wb-label" x="30" y="48" text-anchor="start" fill="#5A4E3C">How high can I get?</text>
+      <text id="lbl-jesus" class="fade-part wb-label" x="194" y="246" text-anchor="end" fill="#7D5604">Jesus came down first</text>
+      <text id="lbl-held" class="fade-part wb-sub" x="248" y="246" text-anchor="start" fill="#7D5604">Held by Jesus</text>
+      <text id="lbl-flip" class="fade-part wb-label" x="28" y="210" text-anchor="start" fill="#164E37">Greatness turns over</text>
+      <text id="lbl-help" class="fade-part wb-label" x="28" y="100" text-anchor="start" fill="#1E435C">Who can I help?</text>
+      <text id="lbl-grow" class="fade-part wb-label" x="412" y="66" text-anchor="end" fill="#473366">Others grow</text>
+    </svg>
+  </div>
+
+  <div class="step-strip" role="group" aria-label="Greatness steps">
+    <button type="button" class="step-dot active" data-step="0" aria-label="Start: What does greatness look like?" aria-pressed="true" style="--dot-color: #2C2416;"><span class="step-dot-fill"></span></button>
+    <button type="button" class="step-dot" data-step="1" aria-label="Step 1: The World's Way" aria-pressed="false" style="--dot-color: #5A4E3C;"><span class="step-dot-fill"></span></button>
+    <button type="button" class="step-dot" data-step="2" aria-label="Step 2: Jesus Came Down First" aria-pressed="false" style="--dot-color: #A8760A;"><span class="step-dot-fill"></span></button>
+    <button type="button" class="step-dot" data-step="3" aria-label="Step 3: Greatness Turns Over" aria-pressed="false" style="--dot-color: #1F684A;"><span class="step-dot-fill"></span></button>
+    <button type="button" class="step-dot" data-step="4" aria-label="Step 4: Climb Down to Lift Others Up" aria-pressed="false" style="--dot-color: #2A5B7C;"><span class="step-dot-fill"></span></button>
+    <button type="button" class="step-dot" data-step="5" aria-label="Step 5: A Life That Builds Others Up" aria-pressed="false" style="--dot-color: #1F684A;"><span class="step-dot-fill"></span></button>
+  </div>
+
+  <div class="card-area">
+    <div class="verse-card">
+      <div class="verse-card-bar"></div>
+      <div class="verse-card-content" id="card-content" aria-live="polite" aria-atomic="true">
+        <h2 class="card-heading" id="card-heading"></h2>
+        <p class="card-verse"><span id="card-verse-text"></span><span class="verse-ref" id="card-ref"></span></p>
+        <p class="card-note" id="card-note"></p>
+      </div>
+    </div>
+
+    <div class="nav-bar">
+      <button type="button" class="nav-btn secondary" id="prev-btn" disabled>&larr; Back</button>
+      <span class="step-count" id="step-count">Ready</span>
+      <button type="button" class="nav-btn primary" id="next-btn">Begin &rarr;</button>
+    </div>
+  </div>
+</main>
+
+<div id="measure-host" aria-hidden="true"></div>
+
+<script>
+(function () {
+  'use strict';
+
+  var STEPS = [
+    {
+      heading: 'Climb Down to Lift Others Up',
+      verse: '"Whoever would be great among you must be your servant."',
+      ref: 'Mark 10:43',
+      note: 'Two pictures of greatness use the exact same people. Watch what changes when Jesus turns greatness over.',
+      accent: '#2C2416',
+      accentDark: '#2C2416',
+      countLabel: 'Ready',
+      nextLabel: 'Begin \u2192',
+      title: 'Climb Down to Lift Others Up: Start',
+      desc: 'Clean whiteboard stage displaying the opening question: What does greatness look like?'
+    },
+    {
+      heading: '1. The World\'s Way',
+      verse: '"How high can I get?"',
+      ref: 'Mark 10:42',
+      note: 'In the world\'s picture of greatness, people compete to move upward. Others become stepping stones.',
+      accent: '#5A4E3C',
+      accentDark: '#3F3629',
+      countLabel: 'Step 1 of 5',
+      nextLabel: 'Next \u2192',
+      title: 'Step 1: The World\'s Way',
+      desc: 'An upright triangle of six circles where one emphasized circle climbs over five others to reach the lone peak, labeled How high can I get?'
+    },
+    {
+      heading: '2. Jesus Came Down First',
+      verse: '"Even the Son of Man came not to be served but to serve, and to give his life as a ransom for many."',
+      ref: 'Mark 10:45',
+      note: 'He came to serve you first. You serve from the rescue you have already received.',
+      accent: '#A8760A',
+      accentDark: '#7D5604',
+      countLabel: 'Step 2 of 5',
+      nextLabel: 'Next \u2192',
+      title: 'Step 2: Jesus Came Down First',
+      desc: 'A golden arc descends to a crisp cross-marked anchor below the triangle, reaching up to hold your circle before you ever serve anyone else.'
+    },
+    {
+      heading: '3. Greatness Turns Over',
+      verse: '"Whoever would be great among you must be your servant, and whoever would be first among you must be slave of all."',
+      ref: 'Mark 10:43-44',
+      note: 'The picture turns 180 degrees. Your circle moves to the lowest place, held securely by Jesus.',
+      accent: '#1F684A',
+      accentDark: '#164E37',
+      countLabel: 'Step 3 of 5',
+      nextLabel: 'Next \u2192',
+      title: 'Step 3: Greatness Turns Over',
+      desc: 'The same triangle of six circles rotates 180 degrees into an inverted servant triangle resting directly on Jesus\' cross anchor.'
+    },
+    {
+      heading: '4. Climb Down to Lift Others Up',
+      verse: '"Who can I help?"',
+      ref: 'John 13:14-15',
+      note: 'Still anchored to Jesus, you move downward toward someone else, connect with them, and help them rise.',
+      accent: '#2A5B7C',
+      accentDark: '#1E435C',
+      countLabel: 'Step 4 of 5',
+      nextLabel: 'Next \u2192',
+      title: 'Step 4: Climb Down to Lift Others Up',
+      desc: 'Anchored to Jesus\' cross, your servant circle reaches down along a blue curve to connect with an isolated circle and lift it into the supportive upper structure.'
+    },
+    {
+      heading: '5. A Life That Builds Others Up',
+      verse: '"Humble yourselves before the Lord, and he will exalt you."',
+      ref: 'James 4:10',
+      note: 'Leave your own lifting to God. Connected to Jesus, your life helps others stand securely and pass His love on.',
+      accent: '#1F684A',
+      accentDark: '#164E37',
+      countLabel: 'Step 5 of 5',
+      nextLabel: 'Start Over',
+      title: 'Step 5: A Life That Builds Others Up',
+      desc: 'The inverted triangle is now a strongly connected community anchored to Jesus\' cross: your servant circle supports the middle row, which in turn lifts the wide upper row as help continues through others.'
+    }
+  ];
+
+  var SPEED = 185; // px per second for whiteboard stroke draws
+
+  var widget = document.getElementById('widget');
+  var stage = document.getElementById('stage');
+  var openingCue = document.getElementById('opening-cue');
+  var svgTitle = document.getElementById('svg-title');
+  var svgDesc = document.getElementById('svg-desc');
+  var cardContent = document.getElementById('card-content');
+  var cardHeading = document.getElementById('card-heading');
+  var cardVerseText = document.getElementById('card-verse-text');
+  var cardRef = document.getElementById('card-ref');
+  var cardNote = document.getElementById('card-note');
+  var prevBtn = document.getElementById('prev-btn');
+  var nextBtn = document.getElementById('next-btn');
+  var stepCount = document.getElementById('step-count');
+  var dotBtns = Array.prototype.slice.call(document.querySelectorAll('.step-dot'));
+  var measureHost = document.getElementById('measure-host');
+
+  var flipGroup = document.getElementById('flip-group');
+  var triWash = document.getElementById('tri-wash');
+  var triOutline = document.getElementById('tri-outline');
+  var finishFrame = document.getElementById('finish-frame');
+
+  var climbArc = document.getElementById('climb-arc');
+  var climbHead = document.getElementById('climb-head');
+  var pressCues = document.getElementById('press-cues');
+
+  var jesusDownArc = document.getElementById('jesus-down-arc');
+  var jesusDownHead = document.getElementById('jesus-down-head');
+  var graceTetherUp = document.getElementById('grace-tether-up');
+  var graceTetherHead = document.getElementById('grace-tether-head');
+  var anchorStem = document.getElementById('anchor-stem');
+  var crossAnchor = document.getElementById('cross-anchor');
+
+  var lowGhost = document.getElementById('low-ghost');
+  var reachDownPath = document.getElementById('reach-down-path');
+  var reachDownHead = document.getElementById('reach-down-head');
+  var liftUpPath = document.getElementById('lift-up-path');
+  var liftUpHead = document.getElementById('lift-up-head');
+  var neighborMoving = document.getElementById('neighbor-moving');
+
+  var nodeYou = document.getElementById('node-you');
+  var midNodes = [document.getElementById('node-m1'), document.getElementById('node-m2')];
+  var baseNodes = [document.getElementById('node-b1'), document.getElementById('node-b2'), document.getElementById('node-b3')];
+  var allNodes = [nodeYou].concat(midNodes, baseNodes);
+
+  var kingdomLinks = [
+    document.getElementById('link-s-1'),
+    document.getElementById('link-s-2'),
+    document.getElementById('link-m-1'),
+    document.getElementById('link-m-2'),
+    document.getElementById('link-m-3'),
+    document.getElementById('link-m-4'),
+    document.getElementById('link-h-mid'),
+    document.getElementById('link-h-top')
+  ];
+
+  var lblYou = document.getElementById('lbl-you');
+  var lblWorld = document.getElementById('lbl-world');
+  var lblJesus = document.getElementById('lbl-jesus');
+  var lblHeld = document.getElementById('lbl-held');
+  var lblFlip = document.getElementById('lbl-flip');
+  var lblHelp = document.getElementById('lbl-help');
+  var lblGrow = document.getElementById('lbl-grow');
+
+  function pathLen(el) {
+    try {
+      return Math.ceil(el.getTotalLength());
+    } catch (e) {
+      return 120;
+    }
+  }
+
+  var climbLen = pathLen(climbArc);
+  var jesusLen = pathLen(jesusDownArc);
+  var tetherLen = pathLen(graceTetherUp);
+  var reachLen = pathLen(reachDownPath);
+  var liftLen = pathLen(liftUpPath);
+
+  var reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reducedMotion) {
+    widget.classList.add('is-instant');
+  }
+
+  var currentStep = 0;
+  var introTimer = null;
+  var activeRaf = 0;
+  var activeTimers = [];
+  var lastMeasuredWidth = 0;
+
+  // Offscreen pause tracking (contentvisibilityautostatechange + IntersectionObserver + visibilitychange)
+  var isOnScreen = true;
+  var isContentSkipped = false;
+  var isDocHidden = typeof document.hidden === 'boolean' ? document.hidden : false;
+
+  function syncLoopPlayback() {
+    var shouldLoop = (currentStep === 5 && !reducedMotion);
+    var paused = !shouldLoop || !isOnScreen || isContentSkipped || isDocHidden;
+    widget.classList.toggle('loop-active', shouldLoop);
+    widget.classList.toggle('loop-paused', shouldLoop && paused);
+    widget.setAttribute('data-loop-state', !shouldLoop ? 'stopped' : (paused ? 'paused' : 'running'));
+  }
+
+  // Expose helper for verification checks
+  window.CLIMB_DOWN_LOOP = {
+    state: function () {
+      return {
+        step: currentStep,
+        active: widget.classList.contains('loop-active'),
+        paused: widget.classList.contains('loop-paused'),
+        onScreen: isOnScreen,
+        skipped: isContentSkipped,
+        docHidden: isDocHidden,
+        loopState: widget.getAttribute('data-loop-state')
+      };
+    }
+  };
+
+  stage.addEventListener('contentvisibilityautostatechange', function (e) {
+    isContentSkipped = !!e.skipped;
+    syncLoopPlayback();
+  });
+
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (entries) {
+      isOnScreen = entries[entries.length - 1].isIntersecting;
+      syncLoopPlayback();
+    }, { threshold: 0.01 }).observe(stage);
+  }
+
+  document.addEventListener('visibilitychange', function () {
+    isDocHidden = !!document.hidden;
+    syncLoopPlayback();
+  });
+
+  function scheduleTimer(fn, ms) {
+    var id = setTimeout(function () {
+      var pos = activeTimers.indexOf(id);
+      if (pos !== -1) activeTimers.splice(pos, 1);
+      fn();
+    }, ms);
+    activeTimers.push(id);
+    return id;
+  }
+
+  function cancelAnim() {
+    if (activeRaf) {
+      cancelAnimationFrame(activeRaf);
+      activeRaf = 0;
+    }
+    while (activeTimers.length) {
+      clearTimeout(activeTimers.pop());
+    }
+  }
+
+  function setPathProgress(el, len, p) {
+    var c = Math.max(0, Math.min(1, p));
+    if (c <= 0) {
+      el.style.strokeDasharray = String(len);
+      el.style.strokeDashoffset = String(len);
+      el.style.opacity = '0';
+    } else if (c >= 1) {
+      el.style.strokeDasharray = el === graceTetherUp ? '4 4' : 'none';
+      el.style.strokeDashoffset = '0';
+      el.style.opacity = '';
+    } else {
+      el.style.strokeDasharray = String(len);
+      el.style.strokeDashoffset = String((1 - c) * len);
+      el.style.opacity = '';
+    }
+  }
+
+  function pointOnPath(el, len, p) {
+    try {
+      return el.getPointAtLength(Math.max(0, Math.min(1, p)) * len);
+    } catch (e) {
+      return { x: 170, y: 120 };
+    }
+  }
+
+  function setNodeStyle(el, cls) {
+    el.classList.remove('node-fill-world', 'node-you-world', 'node-you-gospel', 'node-you-servant', 'node-lifted-mid', 'node-lifted-top');
+    el.classList.add(cls);
+  }
+
+  function setStaticState(idx) {
+    var showTri = idx >= 1;
+    var flipped = idx >= 3;
+
+    flipGroup.classList.toggle('is-flipped', flipped);
+    triWash.classList.toggle('is-visible', showTri);
+    triOutline.classList.toggle('is-visible', showTri);
+    triWash.setAttribute('fill', flipped ? '#EAF5EF' : '#F6F3EC');
+    triOutline.setAttribute('stroke', flipped ? '#1F684A' : '#9A9081');
+
+    allNodes.forEach(function (n) {
+      n.classList.toggle('is-visible', showTri);
+    });
+
+    // Style nodes for current step
+    if (idx <= 1) {
+      setNodeStyle(nodeYou, 'node-you-world');
+      midNodes.forEach(function (n) { setNodeStyle(n, 'node-fill-world'); });
+      baseNodes.forEach(function (n) { setNodeStyle(n, 'node-fill-world'); });
+      lblYou.setAttribute('fill', '#FFFFFF');
+    } else if (idx === 2) {
+      setNodeStyle(nodeYou, 'node-you-gospel');
+      midNodes.forEach(function (n) { setNodeStyle(n, 'node-fill-world'); });
+      baseNodes.forEach(function (n) { setNodeStyle(n, 'node-fill-world'); });
+      lblYou.setAttribute('fill', '#7D5604');
+    } else if (idx === 3) {
+      setNodeStyle(nodeYou, 'node-you-servant');
+      midNodes.forEach(function (n) { setNodeStyle(n, 'node-fill-world'); });
+      baseNodes.forEach(function (n) { setNodeStyle(n, 'node-fill-world'); });
+      lblYou.setAttribute('fill', '#FFFFFF');
+    } else if (idx === 4) {
+      setNodeStyle(nodeYou, 'node-you-servant');
+      // After 180deg flip, m2 (local 254,120) sits on the visual LEFT (186,120) where the lifted person joins!
+      setNodeStyle(midNodes[1], 'node-lifted-mid');
+      setNodeStyle(midNodes[0], 'node-fill-world');
+      baseNodes.forEach(function (n) { setNodeStyle(n, 'node-fill-world'); });
+      lblYou.setAttribute('fill', '#FFFFFF');
+    } else {
+      setNodeStyle(nodeYou, 'node-you-servant');
+      midNodes.forEach(function (n) { setNodeStyle(n, 'node-lifted-mid'); });
+      baseNodes.forEach(function (n) { setNodeStyle(n, 'node-lifted-top'); });
+      lblYou.setAttribute('fill', '#FFFFFF');
+    }
+
+    // Upright "You" label tracks nodeYou visually (62 before flip, 178 after flip)
+    lblYou.setAttribute('y', flipped ? '182.5' : '66.5');
+    lblYou.classList.toggle('is-visible', showTri);
+
+    // Step 1 competitive climb-over cues
+    var showClimb = (idx === 1 || idx === 2);
+    setPathProgress(climbArc, climbLen, showClimb ? 1 : 0);
+    climbHead.classList.toggle('is-visible', showClimb);
+    pressCues.classList.toggle('is-visible', idx === 1);
+    if (idx === 2) {
+      climbArc.style.opacity = '0.32';
+      climbHead.style.opacity = '0.32';
+    } else {
+      climbHead.style.opacity = '';
+    }
+
+    // Step 2 Jesus came down first + cross anchor
+    setPathProgress(jesusDownArc, jesusLen, idx === 2 ? 1 : 0);
+    jesusDownHead.classList.toggle('is-visible', idx === 2);
+    setPathProgress(graceTetherUp, tetherLen, idx === 2 ? 1 : 0);
+    graceTetherHead.classList.toggle('is-visible', idx === 2);
+    crossAnchor.classList.toggle('is-visible', idx >= 2);
+    anchorStem.classList.toggle('is-visible', idx >= 3);
+
+    // Step 4 climb down & lift one person up
+    var showStep4 = (idx === 4);
+    lowGhost.classList.toggle('is-visible', showStep4);
+    setPathProgress(reachDownPath, reachLen, showStep4 ? 1 : 0);
+    reachDownHead.classList.toggle('is-visible', showStep4);
+    setPathProgress(liftUpPath, liftLen, showStep4 ? 1 : 0);
+    liftUpHead.classList.toggle('is-visible', showStep4);
+    neighborMoving.classList.toggle('is-visible', false);
+
+    // Step 4 shows the first green support bond (link-s-2 -> visual left mid); Step 5 connects the whole structure
+    kingdomLinks.forEach(function (ln, li) {
+      ln.classList.toggle('is-visible', idx === 5 || (idx === 4 && li === 1));
+    });
+    finishFrame.classList.toggle('is-visible', idx === 5);
+
+    // Upright minimal labels
+    lblWorld.classList.toggle('is-visible', idx === 1);
+    lblJesus.classList.toggle('is-visible', idx === 2);
+    lblHeld.classList.toggle('is-visible', idx >= 3);
+    lblFlip.classList.toggle('is-visible', idx === 3);
+    lblHelp.classList.toggle('is-visible', idx === 4);
+    lblGrow.classList.toggle('is-visible', idx === 5);
+
+    syncLoopPlayback();
+  }
+
+  function animateStep(idx) {
+    cancelAnim();
+
+    if (idx === 1) {
+      setStaticState(1);
+      setPathProgress(climbArc, climbLen, 0);
+      climbHead.classList.remove('is-visible');
+      pressCues.classList.remove('is-visible');
+      var d1 = Math.max(460, Math.round((climbLen / SPEED) * 1000));
+      widget.setAttribute('data-step-dur', String(d1));
+      var t0 = 0;
+      function f1(now) {
+        if (!t0) t0 = now;
+        var p = Math.min(1, (now - t0) / d1);
+        var e = 1 - Math.pow(1 - p, 1.5);
+        setPathProgress(climbArc, climbLen, e);
+        if (p >= 0.82) {
+          climbHead.classList.add('is-visible');
+          pressCues.classList.add('is-visible');
+        }
+        if (p < 1) activeRaf = requestAnimationFrame(f1);
+        else { activeRaf = 0; setPathProgress(climbArc, climbLen, 1); }
+      }
+      activeRaf = requestAnimationFrame(f1);
+      return;
+    }
+
+    if (idx === 2) {
+      setStaticState(2);
+      setPathProgress(jesusDownArc, jesusLen, 0);
+      jesusDownHead.classList.remove('is-visible');
+      setPathProgress(graceTetherUp, tetherLen, 0);
+      graceTetherHead.classList.remove('is-visible');
+      crossAnchor.classList.remove('is-visible');
+      lblJesus.classList.remove('is-visible');
+      setNodeStyle(nodeYou, 'node-you-world');
+      lblYou.setAttribute('fill', '#FFFFFF');
+
+      var dDown = Math.max(520, Math.round((jesusLen / (SPEED * 1.4)) * 1000));
+      var dUp = Math.max(420, Math.round((tetherLen / (SPEED * 1.6)) * 1000));
+      var total2 = dDown + dUp;
+      widget.setAttribute('data-step-dur', String(total2));
+
+      var t2 = 0;
+      var crossShown = false;
+      function f2(now) {
+        if (!t2) t2 = now;
+        var el = now - t2;
+        var p1 = Math.min(1, el / dDown);
+        setPathProgress(jesusDownArc, jesusLen, 1 - Math.pow(1 - p1, 1.4));
+        if (!crossShown && p1 >= 0.85) {
+          crossShown = true;
+          jesusDownHead.classList.add('is-visible');
+          crossAnchor.classList.add('is-visible');
+          lblJesus.classList.add('is-visible');
+        }
+        if (el > dDown * 0.85) {
+          var p2 = Math.min(1, (el - dDown * 0.85) / dUp);
+          setPathProgress(graceTetherUp, tetherLen, p2);
+          if (p2 >= 0.82) {
+            graceTetherHead.classList.add('is-visible');
+            setNodeStyle(nodeYou, 'node-you-gospel');
+            lblYou.setAttribute('fill', '#7D5604');
+          }
+        }
+        if (el < total2) activeRaf = requestAnimationFrame(f2);
+        else { activeRaf = 0; setStaticState(2); }
+      }
+      activeRaf = requestAnimationFrame(f2);
+      return;
+    }
+
+    if (idx === 3) {
+      // Hide upright "You" cleanly during the 180deg flip, then reappear upright at bottom!
+      setStaticState(3);
+      lblYou.classList.remove('is-visible');
+      lblFlip.classList.remove('is-visible');
+      anchorStem.classList.remove('is-visible');
+      widget.setAttribute('data-step-dur', '950');
+      scheduleTimer(function () {
+        lblYou.classList.add('is-visible');
+        lblFlip.classList.add('is-visible');
+        anchorStem.classList.add('is-visible');
+      }, 660);
+      return;
+    }
+
+    if (idx === 4) {
+      // Climb down along blue arc, connect with low circle, and lift it up into the middle tier
+      setStaticState(4);
+      setNodeStyle(midNodes[1], 'node-fill-world');
+      kingdomLinks[1].classList.remove('is-visible');
+      setPathProgress(reachDownPath, reachLen, 0);
+      reachDownHead.classList.remove('is-visible');
+      setPathProgress(liftUpPath, liftLen, 0);
+      liftUpHead.classList.remove('is-visible');
+      neighborMoving.setAttribute('transform', 'translate(84,212)');
+      neighborMoving.classList.add('is-visible');
+
+      var dReach = Math.max(420, Math.round((reachLen / SPEED) * 1000));
+      var dLift = Math.max(520, Math.round((liftLen / SPEED) * 1000));
+      var total4 = dReach + 120 + dLift;
+      widget.setAttribute('data-step-dur', String(total4));
+
+      var t4 = 0;
+      function f4(now) {
+        if (!t4) t4 = now;
+        var el = now - t4;
+        if (el <= dReach) {
+          var p1 = Math.min(1, el / dReach);
+          setPathProgress(reachDownPath, reachLen, 1 - Math.pow(1 - p1, 1.4));
+          if (p1 >= 0.85) reachDownHead.classList.add('is-visible');
+        } else if (el <= dReach + 120) {
+          setPathProgress(reachDownPath, reachLen, 1);
+          reachDownHead.classList.add('is-visible');
+        } else {
+          var p2 = Math.min(1, (el - dReach - 120) / dLift);
+          var e2 = 1 - Math.pow(1 - p2, 1.5);
+          setPathProgress(liftUpPath, liftLen, e2);
+          var pt = pointOnPath(liftUpPath, liftLen, e2);
+          neighborMoving.setAttribute('transform', 'translate(' + pt.x.toFixed(1) + ',' + pt.y.toFixed(1) + ')');
+          if (p2 >= 0.88) {
+            liftUpHead.classList.add('is-visible');
+          }
+        }
+
+        if (el < total4) {
+          activeRaf = requestAnimationFrame(f4);
+        } else {
+          activeRaf = 0;
+          setStaticState(4);
+        }
+      }
+      activeRaf = requestAnimationFrame(f4);
+      return;
+    }
+
+    if (idx === 5) {
+      setStaticState(5);
+      kingdomLinks.forEach(function (ln) { ln.classList.remove('is-visible'); });
+      baseNodes.forEach(function (n) { setNodeStyle(n, 'node-fill-world'); });
+      finishFrame.classList.remove('is-visible');
+      lblGrow.classList.remove('is-visible');
+      widget.classList.remove('loop-active');
+      widget.setAttribute('data-step-dur', '760');
+
+      scheduleTimer(function () {
+        kingdomLinks[0].classList.add('is-visible');
+        kingdomLinks[1].classList.add('is-visible');
+        kingdomLinks[6].classList.add('is-visible');
+      }, 100);
+      scheduleTimer(function () {
+        kingdomLinks[2].classList.add('is-visible');
+        kingdomLinks[3].classList.add('is-visible');
+        kingdomLinks[4].classList.add('is-visible');
+        kingdomLinks[5].classList.add('is-visible');
+        kingdomLinks[7].classList.add('is-visible');
+        baseNodes.forEach(function (n) { setNodeStyle(n, 'node-lifted-top'); });
+      }, 360);
+      scheduleTimer(function () {
+        finishFrame.classList.add('is-visible');
+        lblGrow.classList.add('is-visible');
+        syncLoopPlayback();
+      }, 640);
+      return;
+    }
+
+    widget.setAttribute('data-step-dur', '0');
+    setStaticState(idx);
+  }
+
+  function updateCardAndChrome(idx) {
+    var s = STEPS[idx];
+    widget.setAttribute('data-step', String(idx));
+    widget.style.setProperty('--step-color', s.accent);
+    widget.style.setProperty('--step-dark', s.accentDark);
+
+    cardHeading.textContent = s.heading;
+    cardVerseText.textContent = s.verse;
+    cardRef.textContent = s.ref;
+    cardNote.textContent = s.note;
+
+    svgTitle.textContent = s.title;
+    svgDesc.textContent = s.desc;
+
+    stepCount.textContent = s.countLabel;
+    nextBtn.textContent = s.nextLabel;
+    prevBtn.disabled = (idx === 0);
+
+    dotBtns.forEach(function (btn, i) {
+      btn.classList.toggle('active', i === idx);
+      btn.classList.toggle('passed', i < idx);
+      btn.setAttribute('aria-pressed', i === idx ? 'true' : 'false');
+    });
+  }
+
+  function goToStep(idx, animateForward, introFinished) {
+    if (introTimer !== null) {
+      if (idx !== 0) return;
+      clearTimeout(introTimer);
+      introTimer = null;
+    }
+    if (currentStep === 0 && idx > 0 && !introFinished && !reducedMotion) {
+      openingCue.classList.add('is-hidden');
+      openingCue.setAttribute('aria-hidden', 'true');
+      introTimer = setTimeout(function () {
+        introTimer = null;
+        goToStep(idx, animateForward, true);
+      }, 340);
+      return;
+    }
+    if (idx < 0 || idx >= STEPS.length) return;
+    cancelAnim();
+    currentStep = idx;
+    openingCue.classList.toggle('is-hidden', idx !== 0);
+    openingCue.setAttribute('aria-hidden', idx === 0 ? 'false' : 'true');
+    updateCardAndChrome(idx);
+
+    var instant = reducedMotion || !animateForward || idx === 0;
+    if (instant) {
+      widget.classList.add('is-instant');
+      widget.setAttribute('data-step-dur', '0');
+      setStaticState(idx);
+      if (!reducedMotion) {
+        void widget.offsetWidth;
+        widget.classList.remove('is-instant');
+      }
+    } else {
+      widget.classList.remove('is-instant');
+      animateStep(idx);
+    }
+  }
+
+  function fitCardHeight() {
+    var w = cardContent.clientWidth;
+    if (!w) return;
+    lastMeasuredWidth = w;
+    var clone = cardContent.cloneNode(true);
+    clone.removeAttribute('id');
+    clone.removeAttribute('aria-live');
+    clone.style.width = w + 'px';
+    clone.style.minHeight = '0';
+    clone.style.height = 'auto';
+
+    var h = clone.querySelector('#card-heading');
+    var v = clone.querySelector('#card-verse-text');
+    var r = clone.querySelector('#card-ref');
+    var n = clone.querySelector('#card-note');
+    if (h) h.removeAttribute('id');
+    if (v) v.removeAttribute('id');
+    if (r) r.removeAttribute('id');
+    if (n) n.removeAttribute('id');
+
+    measureHost.innerHTML = '';
+    measureHost.appendChild(clone);
+
+    var maxH = 0;
+    for (var i = 0; i < STEPS.length; i++) {
+      if (h) h.textContent = STEPS[i].heading;
+      if (v) v.textContent = STEPS[i].verse;
+      if (r) r.textContent = STEPS[i].ref;
+      if (n) n.textContent = STEPS[i].note;
+      var measured = Math.ceil(clone.getBoundingClientRect().height);
+      if (measured > maxH) maxH = measured;
+    }
+    measureHost.innerHTML = '';
+    if (maxH > 0) {
+      widget.style.setProperty('--card-h', maxH + 'px');
+    }
+  }
+
+  nextBtn.addEventListener('click', function () {
+    if (currentStep < STEPS.length - 1) {
+      goToStep(currentStep + 1, true);
+    } else {
+      goToStep(0, false);
+    }
+  });
+
+  prevBtn.addEventListener('click', function () {
+    if (currentStep > 0) {
+      goToStep(currentStep - 1, false);
+    }
+  });
+
+  dotBtns.forEach(function (btn, i) {
+    btn.addEventListener('click', function () {
+      if (i === currentStep && introTimer === null) return;
+      goToStep(i, i === currentStep + 1);
+    });
+  });
+
+  window.addEventListener('resize', function () {
+    var w = cardContent.clientWidth;
+    if (w && Math.abs(w - lastMeasuredWidth) > 1) {
+      fitCardHeight();
+    }
+  });
+
+  fitCardHeight();
+  goToStep(0, false, true);
+})();
+</script>
+</body>
+</html>

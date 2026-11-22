@@ -6,6 +6,10 @@
 
 | Task | Status | Owner / date | Scope |
 |---|---|---|---|
+| WIDGET-203-04-CLIMB-DOWN | REVIEW | Gemini / gemini/widget-203-04-climb-down / 2026-11-21 | Built reversible 180-degree whiteboard teaching widget (`widgets/climb-down-lift-up.html`, `516px` at `390px` wide) for 203-04 using the inverted-pyramid (`1-2-3` to `3-2-1`) circle arrangement with opening cue (`What does greatness look like?`), Jesus' cross anchor (`Mark 10:45`), 180-degree SVG-only reversal (`Mark 10:43-44`), downward reach and upward lift (`John 13:14-15`), and connected growing community (`James 4:10`) with calm offscreen-pausing CSS wave (`content-visibility: auto` + `contentvisibilityautostatechange` + `IntersectionObserver`). Embedded cleanly in `data/203-04.json` right before `What Is in Your Hands?` and registered in `scripts/widget-iframe.js`; all existing lesson prose, Scripture, questions, IDs, readings, images, and saved answers preserved unchanged. Verified: foundation QA, 212 export, 73 answer storage, 147 asset, and 474 standalone + embedded browser checks (`scripts/widget_203_04_climb_down_browser_check.js`) at 375/390/1280 and reduced motion. Stop at REVIEW. Evidence: logs/2026-11-21-WIDGET-203-04-CLIMB-DOWN-gemini.md. |
+
+| Task | Status | Owner / date | Scope |
+|---|---|---|---|
 | RETIRE-LEGACY-PRS | DONE | Codex / 2026-11-20 | Branch codex/retire-legacy-prs. At Dave's direction, closed #325, #346, #222, #68, #28, #2 and #305 without merging. Current branding and live widgets/art retained. Newly opened #359 (202-03 shared-table art) remains outside this retirement request. |
 
 | Task | Status | Owner / date | Scope |
