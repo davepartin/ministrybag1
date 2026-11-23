@@ -117,8 +117,8 @@ function createServer() {
       cardH: document.getElementById('card-content').getBoundingClientRect().height,
       nextText: document.getElementById('next-btn').textContent.trim()
     }));
-    assert('direct ' + width + 'px reaches An Open Life finish with stable card & 1.5s delayed porch light',
-      directFinal.heading === 'An Open Life' &&
+    assert('direct ' + width + 'px reaches Hospitality finish with stable card & 1.5s delayed porch light',
+      directFinal.heading === 'Hospitality' &&
       directFinal.isOpen &&
       directFinal.finishOn &&
       directFinal.porchDelay === '0.95s' &&
@@ -182,10 +182,10 @@ function createServer() {
 
     const expectedHeadings = [
       'Turned Inward',
-      'Come Near',
-      'Available',
-      'Welcoming',
-      'An Open Life'
+      'Welcomed First',
+      'Invite',
+      'Welcome',
+      'Hospitality'
     ];
 
     let allOk = true;
