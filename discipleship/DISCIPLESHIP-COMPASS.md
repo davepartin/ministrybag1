@@ -124,6 +124,8 @@ The strongest lesson voice is direct, personal, Scripture-rich, grace-filled, an
 
 This study is designed to be worked through at a person's own pace. Avoid "together" framing, "meetings" references, or anything that assumes a group setting. Write as if speaking directly to one person doing this on their own. It should still feel relational and warm, but not assume a partner or group is present. Use "you" for teaching, promises, application and questions; use "we" only for honest confession of something everyone struggles with ("We all drift"), and sparingly. Scripture quotes stay as written.
 
+The series theme is receive from God, give to others. The remember line is "What you receive, you give away." Use "give," not "respond," when teaching this rhythm.
+
 ## Writing standard
 
 Prefer: short paragraphs, direct sentences, concrete images, memorable analogies, plain speech, one clear idea at a time, smooth transitions.
