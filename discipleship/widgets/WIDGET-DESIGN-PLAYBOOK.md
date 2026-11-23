@@ -41,6 +41,7 @@ Read `discipleship/widgets/widget.md` for iframe sizing and scroll-safety rules,
 - **SVG Canvas:** `viewBox="0 0 440 278"` (keeps total mobile widget height near `505-525px` well inside the `widget.md` `560px` target), `width="100%"`, `role="img"`, with dynamic `<title>` and `<desc>` updated on every step.
 - **Wordless Step Dots:** A centered horizontal tray of color-coded circle buttons (`>= 28x28px` touch area, `16px` dot fill inside) matching each step's accent color (`aria-pressed`, `aria-label`), avoiding cluttered text pills underneath the diagram.
 - **Teaching Card:** White card with a `4px` top color bar matching `--step-color`, pre-measured on load across all steps via `fitCardHeight()` (`min-height: var(--card-h)`), re-measured **only** when `window.innerWidth` changes.
+- **Opening Screen:** If the stage starts with a drawing, show it at once with no title or verse card over it (put the verse in the first description card). Only an empty stage gets a short title card that fades on Begin. See `widgets/widget.md`.
 - **Navigation Bar:** Native `<button>` controls at `>= 44px` height: `<- Back`, `Ready` / `Step N of M`, and `Begin ->` / `Next ->` / `Start Over`.
 - **Pacing:** Sweep ribbons glide at linear `95 px/s` (revealing `clipPath` washes smoothly and exiting cleanly off edge); contours draw at `185 px/s`; cascading arcs stagger gently (`~240ms`). Never run idle DOM mutations or timers after a step finishes.
 - **Accessibility & Copy Constraints:**

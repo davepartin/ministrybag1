@@ -35,6 +35,7 @@ When building **dissolve / spotlight steps** (such as focusing on the horizontal
 ## 3. Motion, Layout, and Accessibility Rules
 
 - **Calm, consistent pacing:** Sweeping directional ribbons move at linear `95 px/s` (`viewBox="0 0 440 278"`), clipping open the soft beam wash behind them and exiting cleanly off the diagram edge. Accent contours trace smoothly via `stroke-dashoffset` at `185 px/s`.
+- **Opening screen (per `widgets/widget.md`):** a stage that starts with a drawing shows it at once with no cover card, and its opening verse lives in the first description card; only an empty stage gets a short title card that fades on Begin. No "tap to begin" wording.
 - **Navigation chrome:** Wordless color circle buttons (`>= 28x28px` touch target, `16px` dot fill inside) paired with `>= 44px` tall `Back` / `Begin ->` / `Next ->` / `Start Over` buttons and a compact `Step N of M` counter.
 - **Stable card & iframe safety (per `widgets/widget.md`):**
   - Pre-measure the tallest step card once via `fitCardHeight()` and lock `--card-h` so advancing steps never shifts height.

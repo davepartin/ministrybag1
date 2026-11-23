@@ -1,8 +1,8 @@
 # 2026-11-21 - WIDGET-203-04-CLIMB-DOWN (Gemini)
 
 - **Task:** `WIDGET-203-04-CLIMB-DOWN`
-- **Branch:** `gemini/widget-203-04-climb-down` (off `origin/main` `417564b`)
-- **Status:** `REVIEW` (not merged)
+- **Branch:** `gemini/widget-203-04-climb-down` (merged to `main` via PR #369)
+- **Status:** `DONE` (Dave approved and requested merge to `main` on 2026-11-23)
 
 ## Visual Exploration Summary (Kept Out of Learner UI)
 
