@@ -42,6 +42,12 @@ const EXPECTED_CARDS = [
     verse: '"The greatest among you shall be your servant. Whoever exalts himself will be humbled, and whoever humbles himself will be exalted."',
     ref: 'Matthew 23:11-12',
     note: 'Climbing down to lift others up displays the gospel to the world.'
+  },
+  {
+    heading: 'Well Done',
+    verse: '"Well done, good and faithful servant."',
+    ref: 'Matthew 25:21',
+    note: 'The world gives its titles to those at the top. God gives His to servants.'
   }
 ];
 
@@ -219,7 +225,7 @@ function startStaticServer(rootDir) {
       const widgetHeight = await page.locator('#widget').evaluate(e => e.getBoundingClientRect().height);
       const cardVar = await page.locator('#widget').evaluate(e => e.style.getPropertyValue('--card-h'));
       const stepCount = await page.locator('.step-dot').count();
-      check(`${tag}: four step dots present`, stepCount === 4);
+      check(`${tag}: five step dots present`, stepCount === 5);
 
       const sizesOk = await page.evaluate(() => {
         const navOk = Array.from(document.querySelectorAll('.nav-btn')).every(b => b.getBoundingClientRect().height >= 44);
@@ -315,37 +321,44 @@ function startStaticServer(rootDir) {
             scaleLabel: document.getElementById('spec-mode-label').textContent.trim(),
             highLabel: document.getElementById('spec-high-txt').textContent.trim(),
             lowLabel: document.getElementById('spec-low-txt').textContent.trim(),
+            faithfulTxt: document.getElementById('faithful-pill-txt').textContent.trim(),
+            faithfulVis: document.getElementById('faithful-servant-pill').classList.contains('is-visible'),
             heroPos: document.getElementById('hero-group').getAttribute('transform'),
             peerCount: fills.length,
             uniquePeerColors: new Set(fills).size,
             svgTexts,
             bandVis: document.getElementById('serving-row-band').classList.contains('is-visible'),
             frameVis: document.getElementById('finish-frame').classList.contains('is-visible'),
+            nextLabel: document.getElementById('next-btn').textContent.trim(),
             loop: window.CLIMB_DOWN_LOOP.state()
           };
         });
 
         check(`${tag}: 4-3-2-1 pyramid has 9 peers with 9 distinct colors + 1 hero`,
           svgState.peerCount === 9 && svgState.uniquePeerColors === 9);
-        check(`${tag}: diagram has only the 4 allowed short labels`,
-          svgState.svgTexts.length === 4 &&
+        check(`${tag}: diagram has only the 5 allowed short labels`,
+          svgState.svgTexts.length === 5 &&
           svgState.highLabel === 'GREATEST' &&
           svgState.lowLabel === 'LEAST' &&
+          svgState.faithfulTxt === 'FAITHFUL SERVANT' &&
           svgState.svgTexts.includes('You'));
         check(`${tag}: scale flip state correct on step ${s}`,
           svgState.flipped === (s >= 2) &&
           svgState.scaleLabel === (s >= 2 ? 'THE KINGDOM' : 'THE WORLD'));
         check(`${tag}: hero slot position on step ${s}`,
-          svgState.heroPos === (s <= 2 ? 'translate(276.0,49.0)' : 'translate(306.0,203.0)'));
-        check(`${tag}: step 3 highlights serving row band + frame`,
-          svgState.bandVis === (s === 3) && svgState.frameVis === (s === 3));
+          svgState.heroPos === (s <= 2 ? 'translate(276.0,46.0)' : 'translate(306.0,193.0)'));
+        check(`${tag}: serving row band + frame visible on steps 3-4`,
+          svgState.bandVis === (s >= 3) && svgState.frameVis === (s >= 3));
+        check(`${tag}: gold FAITHFUL SERVANT pill visible iff step 4`,
+          svgState.faithfulVis === (s === 4));
 
-        if (s === 3) {
+        if (s === 4) {
+          check(`${tag}: step 4 button reads Start Over`, svgState.nextLabel === 'Start Over');
           if (job.reducedMotion === 'reduce') {
-            check(`${tag}: step 3 loop stopped under reduced motion`,
+            check(`${tag}: step 4 loop stopped under reduced motion`,
               !svgState.loop.active && svgState.loop.loopState === 'stopped');
           } else {
-            check(`${tag}: step 3 loop active and running on screen`,
+            check(`${tag}: step 4 loop active and running on screen`,
               svgState.loop.active && !svgState.loop.paused && svgState.loop.loopState === 'running');
           }
         }
@@ -355,7 +368,7 @@ function startStaticServer(rootDir) {
         }
       }
 
-      // Zero idle DOM mutations on Step 3 (even while CSS loop pulses!)
+      // Zero idle DOM mutations on Step 4 (even while CSS loop pulses!)
       await page.waitForTimeout(160);
       await page.evaluate(() => {
         window.__idleMut = 0;
@@ -363,17 +376,18 @@ function startStaticServer(rootDir) {
           .observe(document.getElementById('widget'), { subtree: true, attributes: true, childList: true, characterData: true });
       });
       await page.waitForTimeout(450);
-      check(`${tag}: zero idle DOM mutations on step 3`, await page.evaluate(() => window.__idleMut) === 0);
+      check(`${tag}: zero idle DOM mutations on step 4`, await page.evaluate(() => window.__idleMut) === 0);
 
-      // Back restores step 2 instantly
+      // Back from step 4 restores step 3 instantly and removes the gold pill
       await page.locator('#prev-btn').click();
       await page.waitForTimeout(60);
-      check(`${tag}: Back restores step 2 instantly`,
-        await page.locator('#widget').getAttribute('data-step') === '2' &&
-        await page.locator('#widget').getAttribute('data-step-dur') === '0');
+      check(`${tag}: Back from step 4 restores step 3 instantly and removes gold pill`,
+        await page.locator('#widget').getAttribute('data-step') === '3' &&
+        await page.locator('#widget').getAttribute('data-step-dur') === '0' &&
+        !(await page.locator('#faithful-servant-pill').evaluate(e => e.classList.contains('is-visible'))));
 
-      // Jump to step 3 then Start Over restores step 0 & opening cue
-      await page.locator('.step-dot[data-step="3"]').click();
+      // Jump to step 4 then Start Over restores step 0 & opening cue
+      await page.locator('.step-dot[data-step="4"]').click();
       await page.waitForTimeout(60);
       await page.locator('#next-btn').click();
       await page.waitForTimeout(60);

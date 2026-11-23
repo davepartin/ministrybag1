@@ -49,11 +49,18 @@ Before committing to the final drawing, three rough whiteboard circle arrangemen
   2. **Unnumbered Headings:** Removed leading numbers from all card headings.
   3. **Diagram Labels Only:** Removed every sentence and caption from the SVG diagram, keeping only `THE WORLD` / `THE KINGDOM`, `GREATEST`, `LEAST`, and `You`.
 
+## Dave Feedback Revision 4 (2026-11-23: Final Step 4 "Well Done" & Gold FAITHFUL SERVANT Pill)
+
+- Added final Step 4 (`Start` plus 4 steps, 5 dots total) in `discipleship/widgets/climb-down-lift-up.html`:
+  - **Step 4 (`Well Done`):** `"Well done, good and faithful servant."` `Matthew 25:21` / `The world gives its titles to those at the top. God gives His to servants.`
+  - Keeps Step 3's end state stationary (`THE KINGDOM` scale flipped, `You` in the bottom serving row) and fades in a small gold `#A8760A` pill (`FAITHFUL SERVANT`) directly under the `You` dot.
+  - Step 4 button reads `Start Over`; `Back` from Step 4 removes the gold pill immediately; `prefers-reduced-motion: reduce` shows it at once; locked `--card-h` re-measured across all 5 cards.
+
 ## Verification Results (Local)
 
 - `bash scripts/qa_foundation.sh`: PASS
 - `node scripts/test_lesson_export.js`: 212 passed
 - `node scripts/test_answer_storage.js`: 73 passed
 - `node scripts/check_lesson_assets.js`: 147 references resolved
-- `node scripts/widget_203_04_climb_down_browser_check.js`: 360 passed (`standalone` + `embedded` across `375`, `390`, `1280`, `390/reduce`)
+- `node scripts/widget_203_04_climb_down_browser_check.js`: 449 passed (`standalone` + `embedded` across `375`, `390`, `1280`, `390/reduce`)
 - Em-dash audit (`U+2014`) across all modified/created files: 0 found
