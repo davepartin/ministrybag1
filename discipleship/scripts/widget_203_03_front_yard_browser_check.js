@@ -59,7 +59,7 @@ function createServer() {
   assert('front-yard-life.html never references localStorage', !/localStorage/i.test(widgetHtml));
   assert('203-03.json preserves The Open Table and Listen boxes',
     lessonData.blocks.some((b) => b.type === 'box' && b.title === 'The Open Table') &&
-    lessonData.blocks.some((b) => b.type === 'box' && b.title === 'Ask, Ask Again, Remember'));
+    lessonData.blocks.some((b) => b.type === 'box' && b.title === 'Ask, Follow Up, Remember'));
 
   const activeQuestions = lessonData.blocks.filter((b) => b.type === 'question');
   const seed = { gt_answers_v2_migrated: true };
