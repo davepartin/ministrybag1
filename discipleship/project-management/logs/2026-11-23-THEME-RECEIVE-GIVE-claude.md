@@ -1,7 +1,7 @@
 # THEME-RECEIVE-GIVE: Receive from God, give to others
 Date: 2026-11-23
 Agent: Claude
-Status: REVIEW
+Status: DONE (Dave approved merge of PR #370, 2026-11-23)
 Branch: claude/theme-receive-give
 
 Dave set a series theme in chat on November 23: receive from God, give to others, with the remember line "What you receive, you give away." "Give" replaces "respond" for this theme, because respond can mean only a feeling and give says the response is generous. Dave approved the proposed wording ("ok, use 'What you receive, you give away'").
