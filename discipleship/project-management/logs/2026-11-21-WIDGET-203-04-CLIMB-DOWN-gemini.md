@@ -66,7 +66,7 @@ Before committing to the final drawing, three rough whiteboard circle arrangemen
 
 - Removed the brown-yellow `FAITHFUL SERVANT` pill and brown-yellow `#A8760A` theme from Step 4.
 - Kept the green dashed serving-row line (`#serving-row-band`) around `GREATEST` and the bottom row, added an emphasized glow behind the bottom row and a multi-ring radial glow behind the black `You` dot, and added a pop-up in front of the upper pyramid with Jesus' words (`"Well done, good and faithful servant."` `MATTHEW 25:21`) pointing directly to the glowing `You` dot.
-- Updated Step 4's description card verse to `John 12:26` (`"If anyone serves me, the Father will honor him."`).
+- Updated Step 4's description card heading to `God Given Title - Faithful Servant` and verse to `John 12:26` (`"If anyone serves me, the Father will honor him."`).
 
 ## Verification Results (Local)
 

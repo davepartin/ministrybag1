@@ -44,7 +44,7 @@ const EXPECTED_CARDS = [
     note: 'Climbing down to lift others up displays the gospel to the world.'
   },
   {
-    heading: 'Well Done',
+    heading: 'God Given Title - Faithful Servant',
     verse: '"If anyone serves me, the Father will honor him."',
     ref: 'John 12:26',
     note: 'The world gives its titles to those at the top. God gives His to servants.'
