@@ -15,7 +15,7 @@
     },
     {
       "label": "Diagram",
-      "title": "In Your Hands",
+      "title": "Title or Towel",
       "anchor": "diagram"
     }
   ],
@@ -114,9 +114,15 @@
       "text": "The world says, go get your title. Jesus says, go get your towel. Lifting someone up usually means climbing down on purpose into a hard place with them: a hospital room, a messy kitchen, a hard conversation. In His kingdom the question is not, \"Who is serving me?\" It is, \"Who can I lift?\""
     },
     {
+      "type": "widget",
+      "src": "widgets/climb-down-lift-up.html",
+      "title": "Title or Towel",
+      "height": "550px",
+      "anchor": "diagram"
+    },
+    {
       "type": "box",
       "title": "What Is in Your Hands?",
-      "anchor": "diagram",
       "content": [
         "Whatever God has put in your hands, He put there so you could lift someone else up.",
         "<strong>Your time.</strong> An hour you would have spent on yourself. You might need to stop something, even something good, to make room.",
