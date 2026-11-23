@@ -90,3 +90,4 @@ Dave asked Claude to update this PR's card text himself: keep the name "Front Ya
 Dave set the lesson's direction on November 23: three words, invite, welcome and hospitality; God's hospitality (stranger, invited guest, adopted child); from a backyard life to a front yard life; series theme "What you receive, you give away." He is reviewing the 203-03 text part by part on this PR.
 
 - Part 1 (Dave: "add it"): after "Listening opened their hearts, and the table opened their eyes." added "And it began when two friends invited a stranger in."
+- Part 2 (Dave: "ok"): "Jesus Pulled Up a Chair for You" (Luke 15:1-2, marriage supper line) replaced by "God's Hospitality": Ephesians 2:12, invited in, welcomed and adopted, Ephesians 2:19, "A stranger, then an invited guest, then a beloved child. That is God's hospitality. What you receive, you give away: welcomed people learn to welcome others." Study quick link now "God's Hospitality".
