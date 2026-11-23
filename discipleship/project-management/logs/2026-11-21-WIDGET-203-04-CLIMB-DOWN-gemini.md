@@ -42,11 +42,18 @@ Before committing to the final drawing, three rough whiteboard circle arrangemen
   - **Distinct Dot Colors + Dark "You" Dot:** Each of the 9 other dots has its own distinct color (Amber-Gold, Sage-Teal, Sky Blue, Lavender, Coral-Terracotta, Olive-Moss, Dusty Rose, Warm Apricot, Cool Periwinkle) while the Hero dot is bold dark `#2C2416` with white `You` text so every swap is easy to follow visually.
   - **30% Swap Speed:** Slowed each pair swap to `1200ms` (30% of the previous `360ms` speed) with smooth sine ease-in-out and a `260ms` pause between consecutive swaps.
 
+## Dave Feedback Revision 3 (2026-11-23: Exact ESV Copy, Unnumbered 4-Card Flow, Diagram Labels Only)
+
+- Applied all 3 `MUST FIX` items in `discipleship/widgets/climb-down-lift-up.html`:
+  1. **Exact ESV Verses Only:** Replaced all card text with Dave's exact 4-card copy (`Title or Towel` / `Mark 10:31`, `Climbing for the Title` / `Matthew 23:6`, `Jesus Served You First` / `Mark 10:45`, `Taking Up the Towel` / `Matthew 23:11-12`).
+  2. **Unnumbered Headings:** Removed leading numbers from all card headings.
+  3. **Diagram Labels Only:** Removed every sentence and caption from the SVG diagram, keeping only `THE WORLD` / `THE KINGDOM`, `GREATEST`, `LEAST`, and `You`.
+
 ## Verification Results (Local)
 
 - `bash scripts/qa_foundation.sh`: PASS
 - `node scripts/test_lesson_export.js`: 212 passed
 - `node scripts/test_answer_storage.js`: 73 passed
 - `node scripts/check_lesson_assets.js`: 147 references resolved
-- `node scripts/widget_203_04_climb_down_browser_check.js`: 474 passed (`standalone` + `embedded` across `375`, `390`, `1280`, `390/reduce`)
+- `node scripts/widget_203_04_climb_down_browser_check.js`: 360 passed (`standalone` + `embedded` across `375`, `390`, `1280`, `390/reduce`)
 - Em-dash audit (`U+2014`) across all modified/created files: 0 found

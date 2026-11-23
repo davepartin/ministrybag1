@@ -18,13 +18,31 @@ const LESSON_FILE = path.join(ROOT, 'data', '203-04.json');
 const SCREENSHOT_DIR = process.env.CLIMB_SCREENSHOT_DIR || '';
 if (SCREENSHOT_DIR) fs.mkdirSync(SCREENSHOT_DIR, { recursive: true });
 
-const EXPECTED_HEADINGS = [
-  'Climb Down to Lift Others Up',
-  "1. The World's Way",
-  '2. Jesus Came Down First',
-  '3. Greatness Turns Over',
-  '4. Climb Down to Lift Others Up',
-  '5. A Life That Builds Others Up'
+const EXPECTED_CARDS = [
+  {
+    heading: 'Title or Towel',
+    verse: '"But many who are first will be last, and the last first."',
+    ref: 'Mark 10:31',
+    note: 'There are two ways to measure greatness.'
+  },
+  {
+    heading: 'Climbing for the Title',
+    verse: '"they love the place of honor at feasts and the best seats in the synagogues."',
+    ref: 'Matthew 23:6',
+    note: 'The world says that to climb the ladder of success, you will have to step on some people on the way up.'
+  },
+  {
+    heading: 'Jesus Served You First',
+    verse: '"For even the Son of Man came not to be served but to serve, and to give his life as a ransom for many."',
+    ref: 'Mark 10:45',
+    note: 'The King took the towel, and the scale turned over.'
+  },
+  {
+    heading: 'Taking Up the Towel',
+    verse: '"The greatest among you shall be your servant. Whoever exalts himself will be humbled, and whoever humbles himself will be exalted."',
+    ref: 'Matthew 23:11-12',
+    note: 'Climbing down to lift others up displays the gospel to the world.'
+  }
 ];
 
 const JOBS = [
@@ -201,7 +219,7 @@ function startStaticServer(rootDir) {
       const widgetHeight = await page.locator('#widget').evaluate(e => e.getBoundingClientRect().height);
       const cardVar = await page.locator('#widget').evaluate(e => e.style.getPropertyValue('--card-h'));
       const stepCount = await page.locator('.step-dot').count();
-      check(`${tag}: six step dots present`, stepCount === 6);
+      check(`${tag}: four step dots present`, stepCount === 4);
 
       const sizesOk = await page.evaluate(() => {
         const navOk = Array.from(document.querySelectorAll('.nav-btn')).every(b => b.getBoundingClientRect().height >= 44);
@@ -217,11 +235,16 @@ function startStaticServer(rootDir) {
         check(`${tag}: total widget height <= 560px (${Math.round(widgetHeight)}px)`, widgetHeight <= 560);
       }
 
-      // Opening cue visible on Step 0
+      // Opening cue visible on Step 0 + exact Step 0 card copy
       check(`${tag}: opening cue text matches`,
         (await page.locator('#opening-cue').innerText()).trim() === 'What does greatness look like?');
       check(`${tag}: opening cue visible on step 0`,
         await page.locator('#opening-cue').evaluate(e => getComputedStyle(e).opacity === '1' && e.getAttribute('aria-hidden') === 'false'));
+      check(`${tag}: step 0 card copy exact`,
+        (await page.locator('#card-heading').textContent()) === EXPECTED_CARDS[0].heading &&
+        (await page.locator('#card-verse-text').textContent()) === EXPECTED_CARDS[0].verse &&
+        (await page.locator('#card-ref').textContent()) === EXPECTED_CARDS[0].ref &&
+        (await page.locator('#card-note').textContent()) === EXPECTED_CARDS[0].note);
 
       if (SCREENSHOT_DIR && tag === 'standalone/390/no-preference') {
         await page.locator('#widget').screenshot({ path: path.join(SCREENSHOT_DIR, 'step-0.png') });
@@ -246,7 +269,7 @@ function startStaticServer(rootDir) {
         check(`${tag}: reduced motion advances immediately past opening cue`, fadeCheck.immediateStep === '1');
       }
 
-      // Walk through steps 1..5
+      // Walk through steps 1..3
       for (let s = 1; s < stepCount; s++) {
         if (s > 1) {
           await page.locator('#next-btn').click();
@@ -260,8 +283,13 @@ function startStaticServer(rootDir) {
 
         check(`${tag}: active dot step ${s}`,
           await page.locator('.step-dot[aria-pressed="true"]').getAttribute('data-step') === String(s));
-        check(`${tag}: heading matches step ${s}`,
-          await page.locator('#card-heading').textContent() === EXPECTED_HEADINGS[s]);
+        check(`${tag}: heading, ESV verse, ref, and note exact on step ${s}`,
+          (await page.locator('#card-heading').textContent()) === EXPECTED_CARDS[s].heading &&
+          (await page.locator('#card-verse-text').textContent()) === EXPECTED_CARDS[s].verse &&
+          (await page.locator('#card-ref').textContent()) === EXPECTED_CARDS[s].ref &&
+          (await page.locator('#card-note').textContent()) === EXPECTED_CARDS[s].note);
+        check(`${tag}: no leading number in heading on step ${s}`,
+          !/^\d+\./.test(await page.locator('#card-heading').textContent()));
         check(`${tag}: opening cue hidden step ${s}`,
           await page.locator('#opening-cue').evaluate(e => Number(getComputedStyle(e).opacity) === 0 && e.getAttribute('aria-hidden') === 'true'));
         check(`${tag}: constant --card-h step ${s}`,
@@ -281,6 +309,7 @@ function startStaticServer(rootDir) {
 
         const svgState = await page.evaluate(() => {
           const fills = Array.from(document.querySelectorAll('#peers-layer circle')).map(c => c.getAttribute('fill'));
+          const svgTexts = Array.from(document.querySelectorAll('#climb-svg text')).map(t => t.textContent.trim());
           return {
             flipped: document.getElementById('flip-group').classList.contains('is-flipped'),
             scaleLabel: document.getElementById('spec-mode-label').textContent.trim(),
@@ -289,6 +318,7 @@ function startStaticServer(rootDir) {
             heroPos: document.getElementById('hero-group').getAttribute('transform'),
             peerCount: fills.length,
             uniquePeerColors: new Set(fills).size,
+            svgTexts,
             bandVis: document.getElementById('serving-row-band').classList.contains('is-visible'),
             frameVis: document.getElementById('finish-frame').classList.contains('is-visible'),
             loop: window.CLIMB_DOWN_LOOP.state()
@@ -297,22 +327,25 @@ function startStaticServer(rootDir) {
 
         check(`${tag}: 4-3-2-1 pyramid has 9 peers with 9 distinct colors + 1 hero`,
           svgState.peerCount === 9 && svgState.uniquePeerColors === 9);
-        check(`${tag}: scale uses simple GREATEST and LEAST labels`,
-          svgState.highLabel === 'GREATEST' && svgState.lowLabel === 'LEAST');
+        check(`${tag}: diagram has only the 4 allowed short labels`,
+          svgState.svgTexts.length === 4 &&
+          svgState.highLabel === 'GREATEST' &&
+          svgState.lowLabel === 'LEAST' &&
+          svgState.svgTexts.includes('You'));
         check(`${tag}: scale flip state correct on step ${s}`,
           svgState.flipped === (s >= 2) &&
-          svgState.scaleLabel === (s >= 2 ? 'KINGDOM SCALE' : "WORLD'S SCALE"));
+          svgState.scaleLabel === (s >= 2 ? 'THE KINGDOM' : 'THE WORLD'));
         check(`${tag}: hero slot position on step ${s}`,
-          svgState.heroPos === (s <= 2 ? 'translate(276.0,48.0)' : (s === 3 ? 'translate(306.0,99.0)' : 'translate(306.0,201.0)')));
-        check(`${tag}: step 5 highlights serving row band + frame`,
-          svgState.bandVis === (s === 5) && svgState.frameVis === (s === 5));
+          svgState.heroPos === (s <= 2 ? 'translate(276.0,49.0)' : 'translate(306.0,203.0)'));
+        check(`${tag}: step 3 highlights serving row band + frame`,
+          svgState.bandVis === (s === 3) && svgState.frameVis === (s === 3));
 
-        if (s === 5) {
+        if (s === 3) {
           if (job.reducedMotion === 'reduce') {
-            check(`${tag}: step 5 loop stopped under reduced motion`,
+            check(`${tag}: step 3 loop stopped under reduced motion`,
               !svgState.loop.active && svgState.loop.loopState === 'stopped');
           } else {
-            check(`${tag}: step 5 loop active and running on screen`,
+            check(`${tag}: step 3 loop active and running on screen`,
               svgState.loop.active && !svgState.loop.paused && svgState.loop.loopState === 'running');
           }
         }
@@ -322,7 +355,7 @@ function startStaticServer(rootDir) {
         }
       }
 
-      // Zero idle DOM mutations on Step 5 (even while CSS loop pulses!)
+      // Zero idle DOM mutations on Step 3 (even while CSS loop pulses!)
       await page.waitForTimeout(160);
       await page.evaluate(() => {
         window.__idleMut = 0;
@@ -330,17 +363,17 @@ function startStaticServer(rootDir) {
           .observe(document.getElementById('widget'), { subtree: true, attributes: true, childList: true, characterData: true });
       });
       await page.waitForTimeout(450);
-      check(`${tag}: zero idle DOM mutations on step 5`, await page.evaluate(() => window.__idleMut) === 0);
+      check(`${tag}: zero idle DOM mutations on step 3`, await page.evaluate(() => window.__idleMut) === 0);
 
-      // Back restores step 4 instantly
+      // Back restores step 2 instantly
       await page.locator('#prev-btn').click();
       await page.waitForTimeout(60);
-      check(`${tag}: Back restores step 4 instantly`,
-        await page.locator('#widget').getAttribute('data-step') === '4' &&
+      check(`${tag}: Back restores step 2 instantly`,
+        await page.locator('#widget').getAttribute('data-step') === '2' &&
         await page.locator('#widget').getAttribute('data-step-dur') === '0');
 
-      // Jump to step 5 then Start Over restores step 0 & opening cue
-      await page.locator('.step-dot[data-step="5"]').click();
+      // Jump to step 3 then Start Over restores step 0 & opening cue
+      await page.locator('.step-dot[data-step="3"]').click();
       await page.waitForTimeout(60);
       await page.locator('#next-btn').click();
       await page.waitForTimeout(60);
@@ -437,8 +470,8 @@ function startStaticServer(rootDir) {
       }));
       const savedBefore = await page.evaluate(() => localStorage.getItem('christianFoundationsResponses'));
 
-      // Step 0 -> 5 embedded
-      for (let s = 1; s < EXPECTED_HEADINGS.length; s++) {
+      // Step 0 -> 3 embedded
+      for (let s = 1; s < EXPECTED_CARDS.length; s++) {
         await frame.locator('#next-btn').click();
         if (s === 1 && job.reducedMotion === 'no-preference') {
           await page.waitForTimeout(420);
@@ -462,23 +495,23 @@ function startStaticServer(rootDir) {
       if (SCREENSHOT_DIR && tag === 'embedded/390/no-preference') {
         await iframeEl.evaluate(el => window.scrollTo({ top: window.scrollY + el.getBoundingClientRect().top - 96, behavior: 'instant' }));
         await page.waitForTimeout(100);
-        await iframeEl.screenshot({ path: path.join(SCREENSHOT_DIR, 'embedded-390-step-5.png') });
+        await iframeEl.screenshot({ path: path.join(SCREENSHOT_DIR, 'embedded-390-step-3.png') });
       }
 
-      // Offscreen pause check on Step 5
+      // Offscreen pause check on Step 3
       if (job.reducedMotion === 'no-preference') {
         const onState = await frame.evaluate(() => window.CLIMB_DOWN_LOOP.state());
-        check(`${tag}: step 5 loop running while onscreen`, onState.active && !onState.paused);
+        check(`${tag}: step 3 loop running while onscreen`, onState.active && !onState.paused);
 
         await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }));
         await page.waitForTimeout(250);
         const offState = await frame.evaluate(() => window.CLIMB_DOWN_LOOP.state());
-        check(`${tag}: step 5 loop pauses when scrolled offscreen`, offState.active && offState.paused);
+        check(`${tag}: step 3 loop pauses when scrolled offscreen`, offState.active && offState.paused);
 
         await iframeEl.evaluate(el => window.scrollTo({ top: window.scrollY + el.getBoundingClientRect().top - 96, behavior: 'instant' }));
         await page.waitForTimeout(250);
         const backState = await frame.evaluate(() => window.CLIMB_DOWN_LOOP.state());
-        check(`${tag}: step 5 loop resumes when scrolled back onscreen`, backState.active && !backState.paused);
+        check(`${tag}: step 3 loop resumes when scrolled back onscreen`, backState.active && !backState.paused);
       }
 
       // Idle iframe style mutation check
