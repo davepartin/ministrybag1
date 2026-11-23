@@ -2,7 +2,7 @@
 
 - **Date:** 2026-11-20
 - **Branch:** `gemini/widget-203-03-front-yard` (branched from `origin/main` `6689545`)
-- **Status:** `REVIEW` (awaiting Dave's review and merge approval)
+- **Status:** `DONE` (Dave approved merge of PR #366, 2026-11-23, after Claude's wording and lesson pass below)
 
 ## Summary of Changes
 1. **`discipleship/widgets/front-yard-life.html`** (new):
