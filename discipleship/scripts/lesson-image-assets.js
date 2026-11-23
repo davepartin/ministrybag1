@@ -1166,6 +1166,36 @@
             }
         ]
     },
+    "images/203-10-dothan-sketch-1.jpg": {
+        "width": 1164,
+        "height": 782,
+        "sourceHash": "bddbe0ecc731f54e04719b492738222293d56c3f7cdabc0af745d7ccce65ad21",
+        "variants": [
+            {
+                "src": "images/optimized/203-10-dothan-sketch-1-640.webp",
+                "width": 640
+            },
+            {
+                "src": "images/optimized/203-10-dothan-sketch-1-1164.webp",
+                "width": 1164
+            }
+        ]
+    },
+    "images/203-10-dothan-sketch-2.jpg": {
+        "width": 1164,
+        "height": 782,
+        "sourceHash": "f984794be461e18b26726a32a69c651b621f7877b5c6da084f0243ce614ad84c",
+        "variants": [
+            {
+                "src": "images/optimized/203-10-dothan-sketch-2-640.webp",
+                "width": 640
+            },
+            {
+                "src": "images/optimized/203-10-dothan-sketch-2-1164.webp",
+                "width": 1164
+            }
+        ]
+    },
     "images/203-3circle-logo.png": {
         "width": 1218,
         "height": 456,
