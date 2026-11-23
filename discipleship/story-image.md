@@ -211,7 +211,7 @@ Optional `imageDissolveOnEntry: true` on a two-layer image starts at 100% B&W wh
 | 203-07 | Jesus Sends the 72 | **4-Frame Sequence** | `203-07-story-seq-1.jpg` .. `4.jpg` (stops `[0, 0.18, 0.34, 0.5]`; built from `jesus-sends-72.jpg`) | Live (`touchNext: true`) |
 | 203-08 | Four Generations | Single B&W | `203.08-paul-timothy-bw.jpg` (`touchNext: true`) | Keep static per Dave / PR #248; `ART-008` paused pending new direction |
 | 203-09 | The Tentmakers | B&W -> Color | `203-09-tentmakers-bw.jpg` -> `203-09-tentmakers-color.jpg` | Live (`touchNext: true`) |
-| 203-10 | Opened Eyes and a Table for Enemies | B&W -> B&W Reveal | `203-10-dothan-1.jpg` -> `203-10-dothan-2.jpg` (`1280x720`, 16:9) | Preview PR (`touchNext: true`, `imageDissolveOnEntry: true`) |
+| 203-10 | Opened Eyes and a Table for Enemies | B&W -> B&W Reveal | `203-10-dothan-sketch-1.jpg` -> `203-10-dothan-sketch-2.jpg` (`1164x782`, 3:2; Dave's marker drawings 2026-11-23, frame 2 adds the horses and chariots of fire on the hills; earlier `203-10-dothan-1.jpg` and `-2.jpg` kept unused) | Live (`touchNext: true`, `imageDissolveOnEntry: true`) |
 
 ---
 
