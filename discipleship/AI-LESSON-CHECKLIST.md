@@ -128,6 +128,7 @@ A strong lesson usually lets the learner say:
 - No Augustine quotes in 201-01.
 - Self-paced language: no "together" framing or group-setting assumptions. Use "you" for teaching, promises, application and questions; use "we" only for honest confession of something everyone struggles with (for example "We all drift"), and sparingly. Scripture quotes stay as written. (Dave, 2026-11-20; see DAVE.md.)
 - Series theme: receive from God, give to others. The remember line is "What you receive, you give away." Use "give," not "respond," for this theme. (Dave, 2026-11-23; see DAVE.md.)
+- Learner first: each lesson should carry one or two clear main ideas. Cut what competes with them, and decide whether each point needs a sentence, a paragraph, a widget, or a question. Write for someone learning to bless and serve, not to impress people who already know it all. (Dave, 2026-11-23; see DAVE.md.)
 - Write for the phone screen first.
 
 ## Evaluation rule
