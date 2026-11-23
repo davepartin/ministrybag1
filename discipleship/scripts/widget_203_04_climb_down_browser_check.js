@@ -155,8 +155,8 @@ function startStaticServer(rootDir) {
   check('203-04.json widget block has title Title or Towel and anchor diagram',
     !!widgetBlock && widgetBlock.title === 'Title or Towel' && widgetBlock.anchor === 'diagram');
   const handsBox = lessonData.blocks.find(b => b.type === 'box' && b.title === 'What Is in Your Hands?');
-  check('203-04.json What Is in Your Hands? box no longer has anchor diagram',
-    !!handsBox && !handsBox.anchor);
+  check('203-04.json What Is in Your Hands? box removed in the streamlined lesson (now one sentence)',
+    !handsBox);
 
   // Verify lesson-export includes active + retired 203-04 synthetic answers cleanly
   const exportSeed = {};
@@ -473,10 +473,10 @@ function startStaticServer(rootDir) {
         anchorOnWidget.tocText.includes('Title or Towel'));
 
       // Existing lesson structure & questions preserved
-      check(`${tag}: original 7 active questions preserved`,
+      check(`${tag}: all active questions rendered`,
         await lesson.locator('.question-textarea').count() === activeQuestions.length);
-      check(`${tag}: "What Is in Your Hands?" box preserved`,
-        await lesson.locator('.block-box .box-title').filter({ hasText: 'What Is in Your Hands?' }).count() === 1);
+      check(`${tag}: "What Is in Your Hands?" box removed (now one sentence)`,
+        await lesson.locator('.block-box .box-title').filter({ hasText: 'What Is in Your Hands?' }).count() === 0);
 
       for (const q of activeQuestions) {
         const key = `question-203-${q.id}`;
