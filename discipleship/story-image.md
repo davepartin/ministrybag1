@@ -161,7 +161,7 @@ Optional field: `"frame": true` adds a 1px border (`.block-image-dissolve-framed
 
 ### Earlier completion for an approved pair
 
-Optional `imageDissolveOnEntry: true` on a two-layer image starts at 100% B&W when the image enters 90% down the visible area below the fixed lesson header (or at its initial `scrollY = 0` position if it is already visible on load), holds 100% B&W for the first 20% of scroll travel so the learner sees the monochrome/dark state first, and completes the color reveal when centered in that area before scrolling off the top. A taller-than-viewport image completes at the header edge. Reduced motion still shows the static lighter layer. Per Dave's direction, this opt-in is enabled on the `101-03`, `101-04`, `101-05`, `101-06`, `202-09`, and `203-02` two-layer dissolves; all other pair and sequence timings remain unchanged. Do not apply it broadly to approved artwork without direction.
+Optional `imageDissolveOnEntry: true` on a two-layer image starts at 100% B&W when the image enters 90% down the visible area below the fixed lesson header (or at its initial `scrollY = 0` position if it is already visible on load), holds 100% B&W for the first 20% of scroll travel so the learner sees the monochrome/dark state first, and completes the color reveal when centered in that area before scrolling off the top. A taller-than-viewport image completes at the header edge. Reduced motion still shows the static lighter layer. Per Dave's direction, this opt-in is enabled on the `101-03`, `101-04`, `101-05`, `101-06`, `202-09`, `203-02`, and `203-10` two-layer dissolves; all other pair and sequence timings remain unchanged. Do not apply it broadly to approved artwork without direction.
 
 ### Art Prompts for Charcoal Pairs or Sequences
 
@@ -211,7 +211,7 @@ Optional `imageDissolveOnEntry: true` on a two-layer image starts at 100% B&W wh
 | 203-07 | Jesus Sends the 72 | **4-Frame Sequence** | `203-07-story-seq-1.jpg` .. `4.jpg` (stops `[0, 0.18, 0.34, 0.5]`; built from `jesus-sends-72.jpg`) | Live (`touchNext: true`) |
 | 203-08 | Four Generations | Single B&W | `203.08-paul-timothy-bw.jpg` (`touchNext: true`) | Keep static per Dave / PR #248; `ART-008` paused pending new direction |
 | 203-09 | The Tentmakers | B&W -> Color | `203-09-tentmakers-bw.jpg` -> `203-09-tentmakers-color.jpg` | Live (`touchNext: true`) |
-| 203-10 | A Place for Every Part | None | - | Needs body/parts story art |
+| 203-10 | Opened Eyes and a Table for Enemies | B&W -> B&W Reveal | `203-10-dothan-1.jpg` -> `203-10-dothan-2.jpg` (`1280x720`, 16:9) | Preview PR (`touchNext: true`, `imageDissolveOnEntry: true`) |
 
 ---
 

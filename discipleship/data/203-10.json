@@ -12,22 +12,35 @@
       "label": "Study",
       "title": "Genuine Love",
       "anchor": "study"
+    },
+    {
+      "label": "Diagram",
+      "title": "Greatest Commandment",
+      "anchor": "diagram"
     }
   ],
   "blocks": [
     {
       "type": "text",
-      "text": "In the last lesson, you saw who God puts beside you in His mission, from your own church to the ends of the earth. This is the last lesson of Growing Together. It looks back at what God has done in you, and it looks ahead to what He wants to do through you. It begins with a strange feast."
+      "text": "In the last lesson, you saw who God puts beside you in His mission, from your own church to the ends of the earth. This is the last lesson of Growing Together. It looks back at what God has done in you, and it looks ahead to what He wants to do through you. It begins early one morning at Dothan, with opened eyes and a surprising feast."
     },
     {
-      "type": "parable",
-      "title": "A Table for Enemies",
-      "text": "The king of Syria was at war with Israel, and every time he set a trap, the prophet Elisha warned Israel's king where the raiders were waiting. So the king of Syria sent horses, chariots, and a great army by night to surround the town where Elisha was staying.<br><br>In the morning, Elisha's servant saw the army and panicked. Elisha prayed, and God opened the servant's eyes to see the hills full of horses and chariots of fire. Then God struck the soldiers with blindness, and Elisha led the whole army into Samaria, right into the hands of Israel's king.<br><br>The king could hardly believe it. <em>\"My father, shall I strike them down? Shall I strike them down?\"</em> (2 Kings 6:21). Elisha told him no:<br><br><em>\"Set bread and water before them, that they may eat and drink and go to their master.\" So he prepared for them a great feast, and when they had eaten and drunk, he sent them away... And the Syrians did not come again on raids into the land of Israel. (2 Kings 6:22-23)</em><br><br>The enemy came to capture. They went home full. The raids stopped at a dinner table.",
+      "type": "image",
+      "imageBw": "images/203-10-dothan-1.jpg",
+      "imageColor": "images/203-10-dothan-2.jpg",
+      "alt": "Elisha and his servant on a stone terrace overlooking the Syrian army surrounding Dothan, then the servant's eyes are opened to see the mountain slopes full of God's horses and chariots of fire around Elisha",
+      "touchNext": true,
+      "imageDissolveOnEntry": true,
       "anchor": "story"
     },
     {
+      "type": "parable",
+      "title": "Opened Eyes and a Table for Enemies",
+      "text": "The king of Syria was at war with Israel, and every time he set an ambush, the prophet Elisha warned Israel's king where the raiders were waiting. Furious, the Syrian king learned that Elisha was staying in Dothan and sent horses, chariots, and a great army by night to surround the city and capture him.<br><br>Early in the morning, Elisha's servant went outside, saw the army circling Dothan on every side, and panicked. <em>\"Alas, my master! What shall we do?\"</em> he cried (2 Kings 6:15). Elisha answered calmly, <em>\"Do not be afraid, for those who are with us are more than those who are with them\"</em> (2 Kings 6:16). Then Elisha prayed, <em>\"O LORD, please open his eyes that he may see\"</em> (2 Kings 6:17). God opened the servant's eyes right there at Dothan, and he saw the mountain full of horses and chariots of fire all around Elisha. God's protection had not just arrived; it was already there before the servant could see it.<br><br>When the Syrian soldiers advanced against Elisha, he prayed again, and the LORD struck them with blindness. Elisha told them they were in the wrong city and led the whole army away from Dothan into Samaria, Israel's capital. Once they were inside Samaria, Elisha prayed for God to open their eyes, and they realized they were surrounded by Israel.<br><br>Israel's king asked Elisha, <em>\"My father, shall I strike them down? Shall I strike them down?\"</em> (2 Kings 6:21). Elisha refused and told him, <em>\"Set bread and water before them, that they may eat and drink and go to their master\"</em> (2 Kings 6:22). So the king prepared a great feast for them, and when they had eaten and drunk, he sent them home. The passage closes simply: <em>\"And the Syrians did not come again on raids into the land of Israel\"</em> (2 Kings 6:23)."
+    },
+    {
       "type": "text",
-      "text": "Centuries later, Paul pointed to the same kind of table: <em>\"If your enemy is hungry, feed him; if he is thirsty, give him something to drink\"</em> (Romans 12:20). That kind of love does not start with you. It starts with a God who set a table for you while you were still His enemy (Romans 5:10). <strong>You love because He first loved you.</strong>"
+      "text": "Notice how seeing shapes every turn of this story. At Dothan, the servant saw danger, and God helped him see that they were not alone. Later in Samaria, Israel's king saw enemies he could destroy, and Elisha called him to set a table for them. The passage does not promise that every enemy will become a friend, or suggest that you should expect to see invisible armies on the hills. Rather, it shows God's steady protection and surprising mercy. We need God's help to see both His presence and the people before us, because seeing through His mercy can change your next response from fear or revenge to love. Centuries later, Paul echoed that same table: <em>\"If your enemy is hungry, feed him; if he is thirsty, give him something to drink\"</em> (Romans 12:20). That kind of love flows from the gospel itself: <em>\"For if while we were enemies we were reconciled to God by the death of his Son, much more, now that we are reconciled, shall we be saved by his life\"</em> (Romans 5:10). God moved toward you in love while you were His enemy, and His mercy becomes the source of the mercy you show others."
     },
     {
       "type": "heading",
@@ -39,10 +52,9 @@
       "text": "Paul spent eleven chapters of Romans on what God has done in Jesus. Then he turned to what that grace looks like in a real life, and he began with four words: <strong>let love be genuine</strong>. Genuine love is love without a mask, not a performance for others to watch."
     },
     {
-      "type": "widget",
-      "src": "widgets/marks-of-genuine-love.html",
-      "title": "Marks of a True Christian",
-      "height": "600px"
+      "type": "verse",
+      "reference": "Romans 12:9-21",
+      "text": "Let love be genuine. Abhor what is evil; hold fast to what is good. Love one another with brotherly affection. Outdo one another in showing honor. Do not be slothful in zeal, be fervent in spirit, serve the Lord. Rejoice in hope, be patient in tribulation, be constant in prayer. Contribute to the needs of the saints and seek to show hospitality. Bless those who persecute you; bless and do not curse them. Rejoice with those who rejoice, weep with those who weep. Live in harmony with one another. Do not be haughty, but associate with the lowly. Never be wise in your own sight. Repay no one evil for evil, but give thought to do what is honorable in the sight of all. If possible, so far as it depends on you, live peaceably with all. Beloved, never avenge yourselves, but leave it to the wrath of God, for it is written, \"Vengeance is mine, I will repay, says the Lord.\" To the contrary, \"if your enemy is hungry, feed him; if he is thirsty, give him something to drink; for by so doing you will heap burning coals on his head.\" Do not be overcome by evil, but overcome evil with good."
     },
     {
       "type": "text",
@@ -132,6 +144,13 @@
       "type": "verse",
       "reference": "Mark 12:30-31",
       "text": "\"And you shall love the Lord your God with all your heart and with all your soul and with all your mind and with all your strength.\" The second is this: \"You shall love your neighbor as yourself.\" There is no other commandment greater than these."
+    },
+    {
+      "type": "widget",
+      "src": "widgets/great-command-v5-203-10.html",
+      "title": "The Greatest Commandment",
+      "height": "540px",
+      "anchor": "diagram"
     },
     {
       "type": "text",
