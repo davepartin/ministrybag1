@@ -120,6 +120,17 @@ If a subtitle is ever used, it must be optional and hidden on mobile by default.
 
 ---
 
+## Opening Screen (before Begin)
+
+What the reader sees when they first scroll to a widget depends on whether the stage starts with a drawing (Dave, November 2026).
+
+- **The stage starts with a drawing** (a diagram, scene, chart or set of shapes is already there): show it as soon as the reader scrolls to it. Do not cover it with a title or verse card. Any opening verse belongs in the first description card under the stage, and the Begin button starts the motion. Examples: Three Spaces (203-06), Mission Map (203-09), Make Space (203-08), Romans Road (101-02).
+- **The stage starts as a clean, empty whiteboard** (the drawing builds from nothing): show one short title card in the middle of the stage, a few words, so the reader knows something is about to happen. It fades when the reader presses Begin. Examples: the Greatest Commandment cross ("Love begins with God."), the Great Commission (203-01).
+- Never write "tap to begin" or "click to begin" anywhere. The Begin button says it.
+- Moving a verse from a cover card into the first description card must not make that card taller than the step cards; trim the note if it does, so the widget keeps one height from Start through the last step.
+
+---
+
 ## Card Area
 
 The bottom card/verse area uses:

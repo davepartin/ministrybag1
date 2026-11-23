@@ -375,12 +375,6 @@
 
     <div class="diagram-wrapper" id="diagramWrapper">
         <svg class="scene-svg" id="scene" viewBox="0 0 390 300" preserveAspectRatio="xMidYMid meet" role="img" aria-label="The 3 Circles gospel diagram"></svg>
-        <div class="intro-overlay" id="introOverlay">
-            <div class="intro-card">
-                <p class="intro-title">A Simple Way to Share Jesus</p>
-                <p class="intro-copy">Three circles tell the whole gospel: <strong>God&rsquo;s Design</strong>, <strong>Brokenness</strong>, and the <strong>Gospel</strong>.</p>
-            </div>
-        </div>
     </div>
 
     <div id="card-area"></div>
@@ -862,8 +856,7 @@
     }
 
     function render() {
-        var overlay = document.getElementById('introOverlay');
-        overlay.style.display = (step === -1) ? 'flex' : 'none';
+        // The circles are already drawn, so they show at once; the opening card carries the introduction.
         buildScene();
         buildCard();
     }

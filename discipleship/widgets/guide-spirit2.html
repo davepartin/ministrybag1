@@ -779,7 +779,7 @@
         svg.appendChild(trailLayer);
         scene.appendChild(svg);
         buildPills(scene);
-        if (step === -1) buildIntro(scene);
+        // The trail is already drawn, so it shows at once; the verse lives in the opening card.
     }
 
     function buildCard() {
@@ -802,7 +802,8 @@
 
         if (step === -1) {
             title.textContent = 'The Holy Spirit, the GUIDE';
-            text.innerHTML = 'Each stop shows one steady work of the Holy Spirit in the life of a believer.';
+            text.innerHTML = '"He will give you another Helper, to be with you forever." (John 14:16)' +
+                '<span class="card-note">Each stop shows one steady work of the Holy Spirit.</span>';
             content.appendChild(title);
             content.appendChild(text);
         } else {
