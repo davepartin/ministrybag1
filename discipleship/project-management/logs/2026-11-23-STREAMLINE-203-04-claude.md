@@ -1,7 +1,7 @@
 # STREAMLINE-203-04: Serve with Loving Sacrifice, two clean ideas
 Date: 2026-11-23
 Agent: Claude
-Status: REVIEW
+Status: DONE (Dave approved merge of PR #372, 2026-11-23)
 Branch: claude/203-04-streamline
 
 Dave asked for a higher-level evaluation of 203-04 after the Title or Towel widget (PR #369) went live: keep the learner in mind, a couple of clean ideas instead of many, and decide whether each point needs a sentence, a paragraph, a widget or a question. He approved the draft on November 23 ("cut piper, use your 4.2, write the draft", then "ok, build it").
