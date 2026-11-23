@@ -84,3 +84,9 @@ Dave asked Claude to update this PR's card text himself: keep the name "Front Ya
 4. An Open Life. "Stay with us, for it is toward evening and the day is now far spent." (Luke 24:29). "Two friends welcomed a stranger at Emmaus and found Jesus with them. An open life makes room for people to meet Him."
 
 `scripts/widget_203_03_front_yard_browser_check.js` updated to the new headings and empty subnote. Checks: qa_foundation 0; test_lesson_export 0 (212); test_answer_storage 0 (73); check_lesson_assets 0 (145); test_answer_sync 0 (39); lesson_navigation_browser_check 0 (964); widget_203_03_front_yard_browser_check 74 of 75, the one failure a 404 on first direct load at 375 that fails identically on Gemini's commit 3263afe before this change.
+
+## Claude lesson pass, part by part, 2026-11-23 (Dave's direction)
+
+Dave set the lesson's direction on November 23: three words, invite, welcome and hospitality; God's hospitality (stranger, invited guest, adopted child); from a backyard life to a front yard life; series theme "What you receive, you give away." He is reviewing the 203-03 text part by part on this PR.
+
+- Part 1 (Dave: "add it"): after "Listening opened their hearts, and the table opened their eyes." added "And it began when two friends invited a stranger in."
