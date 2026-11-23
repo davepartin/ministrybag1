@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * 203-04 Climb Down to Lift Others Up browser verification (standalone + embedded #203-04).
+ * 203-04 Title or Towel (widgets/climb-down-lift-up.html) browser verification (standalone + embedded #203-04).
  * Uses an in-process static server by default, or pass CLIMB_BASE_URL and CLIMB_LESSON_URL
  * to verify a live Firebase Hosting preview directly.
  */
@@ -49,6 +49,13 @@ const EXPECTED_CARDS = [
     ref: 'Matthew 25:21',
     note: 'The world gives its titles to those at the top. God gives His to servants.'
   }
+];
+
+const FORBIDDEN_PHRASES = [
+  'the way down',
+  'going down to someone',
+  'get down',
+  'pulling others down'
 ];
 
 const JOBS = [
@@ -100,6 +107,11 @@ function startStaticServer(rootDir) {
   if (sourceText.includes('\u2014')) {
     throw new Error('FAIL: Em dash found in widgets/climb-down-lift-up.html');
   }
+  for (const phrase of FORBIDDEN_PHRASES) {
+    if (sourceText.toLowerCase().includes(phrase)) {
+      throw new Error(`FAIL: Forbidden phrase "${phrase}" found in widgets/climb-down-lift-up.html`);
+    }
+  }
   const visibleHtml = sourceText
     .replace(/<script[\s\S]*?<\/script>/gi, '')
     .replace(/<style[\s\S]*?<\/style>/gi, '')
@@ -134,6 +146,17 @@ function startStaticServer(rootDir) {
     if (!cond) throw new Error('FAIL: ' + label);
     passed += 1;
   }
+
+  // Verify 203-04.json wiring: contents Diagram row title, widget title & anchor, and box anchor removal
+  const diagramContentEntry = (lessonData.contents || []).find(c => c.anchor === 'diagram');
+  check('203-04.json contents Diagram row title is Title or Towel',
+    !!diagramContentEntry && diagramContentEntry.label === 'Diagram' && diagramContentEntry.title === 'Title or Towel');
+  const widgetBlock = lessonData.blocks.find(b => b.type === 'widget' && b.src === 'widgets/climb-down-lift-up.html');
+  check('203-04.json widget block has title Title or Towel and anchor diagram',
+    !!widgetBlock && widgetBlock.title === 'Title or Towel' && widgetBlock.anchor === 'diagram');
+  const handsBox = lessonData.blocks.find(b => b.type === 'box' && b.title === 'What Is in Your Hands?');
+  check('203-04.json What Is in Your Hands? box no longer has anchor diagram',
+    !!handsBox && !handsBox.anchor);
 
   // Verify lesson-export includes active + retired 203-04 synthetic answers cleanly
   const exportSeed = {};
@@ -214,7 +237,7 @@ function startStaticServer(rootDir) {
           height: hr.height
         };
       });
-      check(`${tag}: approved dark header title & badge`, hdr.title === 'Climb Down to Lift Others Up' && hdr.badge === '203-04');
+      check(`${tag}: approved dark header title & badge`, hdr.title === 'Title or Towel' && hdr.badge === '203-04');
       check(`${tag}: approved dark header colors/type`,
         hdr.bg === 'rgb(44, 36, 22)' && hdr.color === 'rgb(250, 248, 243)' &&
         hdr.font === '17px' && hdr.badgeColor === 'rgb(229, 222, 201)');
@@ -241,51 +264,37 @@ function startStaticServer(rootDir) {
         check(`${tag}: total widget height <= 560px (${Math.round(widgetHeight)}px)`, widgetHeight <= 560);
       }
 
-      // Opening cue visible on Step 0 + exact Step 0 card copy
-      check(`${tag}: opening cue text matches`,
-        (await page.locator('#opening-cue').innerText()).trim() === 'What does greatness look like?');
-      check(`${tag}: opening cue visible on step 0`,
-        await page.locator('#opening-cue').evaluate(e => getComputedStyle(e).opacity === '1' && e.getAttribute('aria-hidden') === 'false'));
-      check(`${tag}: step 0 card copy exact`,
-        (await page.locator('#card-heading').textContent()) === EXPECTED_CARDS[0].heading &&
-        (await page.locator('#card-verse-text').textContent()) === EXPECTED_CARDS[0].verse &&
-        (await page.locator('#card-ref').textContent()) === EXPECTED_CARDS[0].ref &&
-        (await page.locator('#card-note').textContent()) === EXPECTED_CARDS[0].note);
+      // No intro/opening card covering the stage; full pyramid + scale visible at Start (step 0)
+      const startState = await page.evaluate(() => ({
+        hasOpeningCue: !!document.querySelector('.opening-cue, #opening-cue'),
+        specVis: document.getElementById('spectrum-area').classList.contains('is-visible') &&
+                 getComputedStyle(document.getElementById('spectrum-area')).opacity === '1',
+        peersVis: document.getElementById('peers-layer').classList.contains('is-visible') &&
+                  getComputedStyle(document.getElementById('peers-layer')).opacity === '1',
+        heroVis: document.getElementById('hero-group').classList.contains('is-visible') &&
+                 getComputedStyle(document.getElementById('hero-group')).opacity === '1',
+        heroPos: document.getElementById('hero-group').getAttribute('transform'),
+        scaleLabel: document.getElementById('spec-mode-label').textContent.trim(),
+        flipped: document.getElementById('flip-group').classList.contains('is-flipped'),
+        faithfulVis: document.getElementById('faithful-servant-pill').classList.contains('is-visible')
+      }));
+      check(`${tag}: no opening card over stage`, !startState.hasOpeningCue);
+      check(`${tag}: full pyramid and THE WORLD scale visible at Start`,
+        startState.specVis && startState.peersVis && startState.heroVis &&
+        startState.heroPos === 'translate(306.0,193.0)' &&
+        startState.scaleLabel === 'THE WORLD' && !startState.flipped && !startState.faithfulVis);
 
-      if (SCREENSHOT_DIR && tag === 'standalone/390/no-preference') {
-        await page.locator('#widget').screenshot({ path: path.join(SCREENSHOT_DIR, 'step-0.png') });
-      }
-
-      // Rapid double-tap during opening cue fade should not skip Step 1
-      const fadeCheck = await page.evaluate(() => {
-        const cue = document.getElementById('opening-cue');
-        document.getElementById('next-btn').click();
-        if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
-          document.getElementById('next-btn').click();
-        }
-        return {
-          immediateStep: document.querySelector('.step-dot.active').getAttribute('data-step'),
-          duration: getComputedStyle(cue).transitionDuration
-        };
-      });
-      if (job.reducedMotion === 'no-preference') {
-        check(`${tag}: drawing waits for 0.32s cue fade`, fadeCheck.immediateStep === '0' && fadeCheck.duration === '0.32s');
-        await page.waitForTimeout(420);
-      } else {
-        check(`${tag}: reduced motion advances immediately past opening cue`, fadeCheck.immediateStep === '1');
-      }
-
-      // Walk through steps 1..3
-      for (let s = 1; s < stepCount; s++) {
-        if (s > 1) {
+      // Walk through all 5 steps (0..4)
+      for (let s = 0; s < stepCount; s++) {
+        if (s > 0) {
           await page.locator('#next-btn').click();
+          const dur = Number(await page.locator('#widget').getAttribute('data-step-dur')) || 0;
+          if (job.reducedMotion === 'reduce') {
+            check(`${tag}: reduced motion instant step ${s}`,
+              dur === 0 && await page.locator('#widget').evaluate(e => e.classList.contains('is-instant')));
+          }
+          await page.waitForTimeout(job.reducedMotion === 'reduce' ? 60 : Math.max(220, dur + 360));
         }
-        const dur = Number(await page.locator('#widget').getAttribute('data-step-dur')) || 0;
-        if (job.reducedMotion === 'reduce') {
-          check(`${tag}: reduced motion instant step ${s}`,
-            dur === 0 && await page.locator('#widget').evaluate(e => e.classList.contains('is-instant')));
-        }
-        await page.waitForTimeout(job.reducedMotion === 'reduce' ? 60 : Math.max(220, dur + 360));
 
         check(`${tag}: active dot step ${s}`,
           await page.locator('.step-dot[aria-pressed="true"]').getAttribute('data-step') === String(s));
@@ -296,8 +305,6 @@ function startStaticServer(rootDir) {
           (await page.locator('#card-note').textContent()) === EXPECTED_CARDS[s].note);
         check(`${tag}: no leading number in heading on step ${s}`,
           !/^\d+\./.test(await page.locator('#card-heading').textContent()));
-        check(`${tag}: opening cue hidden step ${s}`,
-          await page.locator('#opening-cue').evaluate(e => Number(getComputedStyle(e).opacity) === 0 && e.getAttribute('aria-hidden') === 'true'));
         check(`${tag}: constant --card-h step ${s}`,
           await page.locator('#widget').evaluate(e => e.style.getPropertyValue('--card-h')) === cardVar);
         check(`${tag}: constant card height step ${s}`,
@@ -346,7 +353,7 @@ function startStaticServer(rootDir) {
           svgState.flipped === (s >= 2) &&
           svgState.scaleLabel === (s >= 2 ? 'THE KINGDOM' : 'THE WORLD'));
         check(`${tag}: hero slot position on step ${s}`,
-          svgState.heroPos === (s <= 2 ? 'translate(276.0,46.0)' : 'translate(306.0,193.0)'));
+          svgState.heroPos === ((s === 1 || s === 2) ? 'translate(276.0,46.0)' : 'translate(306.0,193.0)'));
         check(`${tag}: serving row band + frame visible on steps 3-4`,
           svgState.bandVis === (s >= 3) && svgState.frameVis === (s >= 3));
         check(`${tag}: gold FAITHFUL SERVANT pill visible iff step 4`,
@@ -386,25 +393,15 @@ function startStaticServer(rootDir) {
         await page.locator('#widget').getAttribute('data-step-dur') === '0' &&
         !(await page.locator('#faithful-servant-pill').evaluate(e => e.classList.contains('is-visible'))));
 
-      // Jump to step 4 then Start Over restores step 0 & opening cue
+      // Jump to step 4 then Start Over restores step 0 with full pyramid visible
       await page.locator('.step-dot[data-step="4"]').click();
       await page.waitForTimeout(60);
       await page.locator('#next-btn').click();
       await page.waitForTimeout(60);
-      check(`${tag}: Start Over restores step 0 and opening cue`,
+      check(`${tag}: Start Over restores step 0 with pyramid visible`,
         await page.locator('#widget').getAttribute('data-step') === '0' &&
         await page.locator('#prev-btn').isDisabled() &&
-        await page.locator('#opening-cue').getAttribute('aria-hidden') === 'false');
-
-      // Canceling pending opening fade via dot 0 keeps step 0 cleanly
-      if (job.reducedMotion === 'no-preference') {
-        await page.locator('#next-btn').click();
-        await page.locator('.step-dot[data-step="0"]').click();
-        await page.waitForTimeout(400);
-        check(`${tag}: return to start cancels pending cue fade`,
-          await page.locator('#widget').getAttribute('data-step') === '0' &&
-          await page.locator('#opening-cue').getAttribute('aria-hidden') === 'false');
-      }
+        await page.locator('#hero-group').getAttribute('transform') === 'translate(306.0,193.0)');
 
       check(`${tag}: zero localStorage writes`, await page.evaluate(() => window.__climbStorageWrites) === 0);
       check(`${tag}: zero page/console/HTTP errors`, errors.length === 0 && httpErrors.length === 0);
@@ -456,7 +453,23 @@ function startStaticServer(rootDir) {
       const iframeEl = lesson.locator('iframe[src*="widgets/climb-down-lift-up.html"]');
       await iframeEl.waitFor();
       check(`${tag}: single climb-down widget embedded in 203-04`, await iframeEl.count() === 1);
-      check(`${tag}: iframe title attribute set`, (await iframeEl.getAttribute('title')) === 'Climb Down to Lift Others Up');
+      check(`${tag}: iframe title attribute is Title or Towel`, (await iframeEl.getAttribute('title')) === 'Title or Towel');
+
+      // Verify anchor="diagram" moved to the widget wrapper and not on the box, and contents Diagram row title is Title or Towel
+      const anchorOnWidget = await lesson.evaluate(el => {
+        const w = el.querySelector('iframe[src*="widgets/climb-down-lift-up.html"]');
+        const wHost = w ? w.closest('.block-widget') : null;
+        const box = Array.from(el.querySelectorAll('.block-box')).find(b => b.textContent.includes('What Is in Your Hands?'));
+        const tocLink = el.querySelector('a.lesson-contents-row[href="#jump-diagram"]');
+        return {
+          widgetAnchored: !!(wHost && wHost.getAttribute('data-jump') === 'diagram'),
+          boxAnchored: !!(box && box.getAttribute('data-jump') === 'diagram'),
+          tocText: tocLink ? tocLink.textContent.replace(/\s+/g, ' ').trim() : ''
+        };
+      });
+      check(`${tag}: diagram anchor moved from box to widget block and contents row updated`,
+        anchorOnWidget.widgetAnchored && !anchorOnWidget.boxAnchored &&
+        anchorOnWidget.tocText.includes('Title or Towel'));
 
       // Existing lesson structure & questions preserved
       check(`${tag}: original 7 active questions preserved`,
@@ -484,12 +497,9 @@ function startStaticServer(rootDir) {
       }));
       const savedBefore = await page.evaluate(() => localStorage.getItem('christianFoundationsResponses'));
 
-      // Step 0 -> 3 embedded
+      // Step 0 -> 4 embedded
       for (let s = 1; s < EXPECTED_CARDS.length; s++) {
         await frame.locator('#next-btn').click();
-        if (s === 1 && job.reducedMotion === 'no-preference') {
-          await page.waitForTimeout(420);
-        }
         const dur = Number(await frame.locator('#widget').getAttribute('data-step-dur')) || 0;
         await page.waitForTimeout(job.reducedMotion === 'reduce' ? 70 : Math.max(220, dur + 360));
       }
@@ -509,23 +519,23 @@ function startStaticServer(rootDir) {
       if (SCREENSHOT_DIR && tag === 'embedded/390/no-preference') {
         await iframeEl.evaluate(el => window.scrollTo({ top: window.scrollY + el.getBoundingClientRect().top - 96, behavior: 'instant' }));
         await page.waitForTimeout(100);
-        await iframeEl.screenshot({ path: path.join(SCREENSHOT_DIR, 'embedded-390-step-3.png') });
+        await iframeEl.screenshot({ path: path.join(SCREENSHOT_DIR, 'embedded-390-step-4.png') });
       }
 
-      // Offscreen pause check on Step 3
+      // Offscreen pause check on Step 4
       if (job.reducedMotion === 'no-preference') {
         const onState = await frame.evaluate(() => window.CLIMB_DOWN_LOOP.state());
-        check(`${tag}: step 3 loop running while onscreen`, onState.active && !onState.paused);
+        check(`${tag}: step 4 loop running while onscreen`, onState.active && !onState.paused);
 
         await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }));
         await page.waitForTimeout(250);
         const offState = await frame.evaluate(() => window.CLIMB_DOWN_LOOP.state());
-        check(`${tag}: step 3 loop pauses when scrolled offscreen`, offState.active && offState.paused);
+        check(`${tag}: step 4 loop pauses when scrolled offscreen`, offState.active && offState.paused);
 
         await iframeEl.evaluate(el => window.scrollTo({ top: window.scrollY + el.getBoundingClientRect().top - 96, behavior: 'instant' }));
         await page.waitForTimeout(250);
         const backState = await frame.evaluate(() => window.CLIMB_DOWN_LOOP.state());
-        check(`${tag}: step 3 loop resumes when scrolled back onscreen`, backState.active && !backState.paused);
+        check(`${tag}: step 4 loop resumes when scrolled back onscreen`, backState.active && !backState.paused);
       }
 
       // Idle iframe style mutation check
@@ -564,7 +574,7 @@ function startStaticServer(rootDir) {
 
   await browser.close();
   if (localServer) localServer.close();
-  console.log(`${passed} 203-04 Climb Down to Lift Others Up checks passed.`);
+  console.log(`${passed} 203-04 Title or Towel checks passed.`);
 })().catch(err => {
   console.error(err);
   process.exit(1);

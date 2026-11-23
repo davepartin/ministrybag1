@@ -15,7 +15,7 @@
     },
     {
       "label": "Diagram",
-      "title": "In Your Hands",
+      "title": "Title or Towel",
       "anchor": "diagram"
     }
   ],
@@ -116,13 +116,13 @@
     {
       "type": "widget",
       "src": "widgets/climb-down-lift-up.html",
-      "title": "Climb Down to Lift Others Up",
-      "height": "550px"
+      "title": "Title or Towel",
+      "height": "550px",
+      "anchor": "diagram"
     },
     {
       "type": "box",
       "title": "What Is in Your Hands?",
-      "anchor": "diagram",
       "content": [
         "Whatever God has put in your hands, He put there so you could lift someone else up.",
         "<strong>Your time.</strong> An hour you would have spent on yourself. You might need to stop something, even something good, to make room.",

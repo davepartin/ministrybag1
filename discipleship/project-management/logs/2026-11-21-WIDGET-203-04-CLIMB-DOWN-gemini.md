@@ -56,11 +56,18 @@ Before committing to the final drawing, three rough whiteboard circle arrangemen
   - Keeps Step 3's end state stationary (`THE KINGDOM` scale flipped, `You` in the bottom serving row) and fades in a small gold `#A8760A` pill (`FAITHFUL SERVANT`) directly under the `You` dot.
   - Step 4 button reads `Start Over`; `Back` from Step 4 removes the gold pill immediately; `prefers-reduced-motion: reduce` shows it at once; locked `--card-h` re-measured across all 5 cards.
 
+## Dave Feedback Revision 5 (2026-11-23: Pyramid Visible at Start, Title Bar "Title or Towel", Diagram Anchor Move)
+
+- **Start Screen (No Overlay Card):** Removed `.opening-cue` (`"What does greatness look like?"`) so the full 4-3-2-1 pyramid of 10 colored dots and `THE WORLD` scale (`GREATEST` at top, `LEAST` at bottom) are visible immediately at Start (`step 0`), with `"You"` in the 3rd spot of the bottom row. Clicking `Begin ->` immediately starts Step 1's climbing motion.
+- **Title Bar & Registration:** Updated `<title>`, `.title-bar h1`, and `scripts/widget-iframe.js` (`KNOWN_TITLES['climb-down-lift-up.html']`) to `Title or Towel` (with `203-04` tag on the right).
+- **Lesson Wiring (`data/203-04.json`):** Updated the widget block `title` to `"Title or Towel"`, moved `"anchor": "diagram"` from the `"What Is in Your Hands?"` box to the widget block, and changed the contents `Diagram` row title to `"Title or Towel"`. No other lesson prose, Scripture, questions, IDs, or images changed.
+
 ## Verification Results (Local)
 
 - `bash scripts/qa_foundation.sh`: PASS
 - `node scripts/test_lesson_export.js`: 212 passed
 - `node scripts/test_answer_storage.js`: 73 passed
 - `node scripts/check_lesson_assets.js`: 147 references resolved
-- `node scripts/widget_203_04_climb_down_browser_check.js`: 449 passed (`standalone` + `embedded` across `375`, `390`, `1280`, `390/reduce`)
+- `node scripts/test_widget_iframe.js`: 32 passed
+- `node scripts/widget_203_04_climb_down_browser_check.js`: 497 passed (`standalone` + `embedded` across `375`, `390`, `1280`, `390/reduce`)
 - Em-dash audit (`U+2014`) across all modified/created files: 0 found

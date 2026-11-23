@@ -20,7 +20,7 @@
         'bible-bookshelf.html': 'Bible Bookshelf Widget',
         'biblical-storyline.html': 'The Biblical Storyline',
         'biblical-timeline.html': 'The Biblical Timeline',
-        'climb-down-lift-up.html': 'Climb Down to Lift Others Up',
+        'climb-down-lift-up.html': 'Title or Towel',
         'cornerstone.html': 'Five Stones of a Life of Faith',
         'cross-the-road.html': 'Cross the Road',
         'deep-roots.html': 'Roots of Discipline',

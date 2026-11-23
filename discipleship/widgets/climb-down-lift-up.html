@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Climb Down to Lift Others Up</title>
+<title>Title or Towel</title>
 <style>
 :root {
   --ink: #2C2416;
@@ -84,35 +84,6 @@ body {
   border-bottom: 1px solid var(--border);
   content-visibility: auto;
   contain-intrinsic-size: auto none auto 238px;
-}
-
-.opening-cue {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 5;
-  padding: 18px;
-  pointer-events: none;
-  opacity: 1;
-}
-
-.opening-cue p {
-  margin: 0;
-  max-width: 290px;
-  padding: 16px 20px;
-  border: 1px solid #E6DECF;
-  border-radius: 14px;
-  background: #FFFFFF;
-  box-shadow: 0 10px 28px rgba(44, 36, 22, 0.10);
-  color: #2C2416;
-  text-align: center;
-  font: 600 17px/1.3 Georgia, 'Times New Roman', serif;
-}
-
-.opening-cue.is-hidden {
-  opacity: 0;
 }
 
 .climb-svg {
@@ -328,9 +299,6 @@ button:focus-visible {
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .opening-cue {
-    transition: opacity 0.32s ease;
-  }
   .widget-outer:not(.is-instant) .fade-part {
     transition: opacity 0.36s ease;
   }
@@ -384,16 +352,14 @@ button:focus-visible {
 <body>
 <main class="widget-outer" id="widget" data-step="0" data-step-dur="0" data-loop-state="stopped">
   <header class="title-bar">
-    <h1>Climb Down to Lift Others Up</h1>
+    <h1>Title or Towel</h1>
     <span class="course-tag">203-04</span>
   </header>
 
   <div class="stage" id="stage">
-    <div class="opening-cue" id="opening-cue" aria-hidden="false"><p>What does greatness look like?</p></div>
-
     <svg class="climb-svg" id="climb-svg" viewBox="0 0 440 258" width="100%" role="img" aria-labelledby="svg-title svg-desc">
-      <title id="svg-title">Climb Down to Lift Others Up</title>
-      <desc id="svg-desc">Clean whiteboard stage with the opening question What does greatness look like?</desc>
+      <title id="svg-title">Title or Towel</title>
+      <desc id="svg-desc">A 4-3-2-1 pyramid of ten colored circles alongside THE WORLD scale, with your circle starting in the bottom row.</desc>
 
       <!-- Step 3 & Step 4 crisp Studio Wash double-hairline frame -->
       <g id="finish-frame" class="fade-part" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -407,7 +373,7 @@ button:focus-visible {
       </g>
 
       <!-- LEFT SIDE: THE FLIPPABLE SCALE (THE WORLD -> THE KINGDOM) -->
-      <g id="spectrum-area" class="fade-part">
+      <g id="spectrum-area" class="fade-part is-visible">
         <text id="spec-mode-label" class="wb-sub" x="72" y="22" text-anchor="middle" fill="#5A4E3C">THE WORLD</text>
 
         <g id="flip-group">
@@ -436,7 +402,7 @@ button:focus-visible {
       </g>
 
       <!-- RIGHT SIDE: THE 4 - 3 - 2 - 1 PYRAMID OF 10 COLORED DOTS (NO TRIANGLE SIDES, NO SENTENCES!) -->
-      <g id="peers-layer" class="fade-part">
+      <g id="peers-layer" class="fade-part is-visible">
         <!-- peer-0: starts at Row 1 top (276,46) - Warm Amber-Gold -->
         <g id="peer-0" class="peer-group"><circle cx="0" cy="0" r="15" fill="#F3D58D" stroke="#B8861B" stroke-width="2" /></g>
         <!-- peer-1: Row 2 left (246,95) - Soft Sage-Teal -->
@@ -458,7 +424,7 @@ button:focus-visible {
       </g>
 
       <!-- HERO DOT ("You" - bold dark circle with crisp white You label; starts in Row 4, 3rd spot to the right!) -->
-      <g id="hero-group" class="fade-part">
+      <g id="hero-group" class="fade-part is-visible">
         <circle id="node-you" cx="0" cy="0" r="16.5" fill="#2C2416" stroke="#151009" stroke-width="2.3" />
         <text id="lbl-you" class="wb-label" x="0" y="4.2" text-anchor="middle" fill="#FFFFFF" style="stroke:none;">You</text>
       </g>
@@ -514,7 +480,7 @@ button:focus-visible {
       countLabel: 'Ready',
       nextLabel: 'Begin \u2192',
       title: 'Title or Towel',
-      desc: 'Clean whiteboard stage displaying the opening question: What does greatness look like?'
+      desc: 'A 4-3-2-1 pyramid of ten colored circles alongside THE WORLD scale, with your circle starting in the bottom row.'
     },
     {
       heading: 'Climbing for the Title',
@@ -526,7 +492,7 @@ button:focus-visible {
       countLabel: 'Step 1 of 4',
       nextLabel: 'Next \u2192',
       title: 'Climbing for the Title',
-      desc: 'In a 4-3-2-1 pyramid of colored circles alongside THE WORLD scale, your dark circle starts in the 3rd spot of the bottom row and switches places row by row to reach the top.'
+      desc: 'In the 4-3-2-1 pyramid alongside THE WORLD scale, your circle starts in the 3rd spot of the bottom row and switches places row by row to reach the top.'
     },
     {
       heading: 'Jesus Served You First',
@@ -550,7 +516,7 @@ button:focus-visible {
       countLabel: 'Step 3 of 4',
       nextLabel: 'Next \u2192',
       title: 'Taking Up the Towel',
-      desc: 'Your circle switches places downward row by row, helping each person move up past you until you stand in the bottom serving row aligned with Greatest on THE KINGDOM scale.'
+      desc: 'Your circle climbs down row by row, helping each person lift up past you until you stand in the bottom serving row aligned with Greatest on THE KINGDOM scale.'
     },
     {
       heading: 'Well Done',
@@ -587,7 +553,6 @@ button:focus-visible {
 
   var widget = document.getElementById('widget');
   var stage = document.getElementById('stage');
-  var openingCue = document.getElementById('opening-cue');
   var svgTitle = document.getElementById('svg-title');
   var svgDesc = document.getElementById('svg-desc');
   var cardContent = document.getElementById('card-content');
@@ -628,7 +593,6 @@ button:focus-visible {
   }
 
   var currentStep = 0;
-  var introTimer = null;
   var activeRaf = 0;
   var activeTimers = [];
   var lastMeasuredWidth = 0;
@@ -696,7 +660,7 @@ button:focus-visible {
     var heroSlot;
 
     if (idx <= 0 || idx >= 3) {
-      // At Start and settled Step 3 & Step 4, Hero is in Row 4, 3rd spot (slot 8) and all 9 peers are in their natural slots
+      // At Start (step 0) and settled Step 3 & Step 4, Hero is in Row 4, 3rd spot (slot 8) and all 9 peers are in their natural slots
       peerSlots = [0, 1, 2, 3, 4, 5, 6, 7, 9];
       heroSlot = 8;
     } else {
@@ -728,12 +692,11 @@ button:focus-visible {
   }
 
   function setStaticState(idx) {
-    var showStage = idx >= 1;
     var flipped = idx >= 2;
 
-    spectrumArea.classList.toggle('is-visible', showStage);
-    peersLayer.classList.toggle('is-visible', showStage);
-    heroGroup.classList.toggle('is-visible', showStage);
+    spectrumArea.classList.add('is-visible');
+    peersLayer.classList.add('is-visible');
+    heroGroup.classList.add('is-visible');
 
     updateSpectrumAppearance(flipped);
     layoutNodesForStep(idx);
@@ -920,26 +883,10 @@ button:focus-visible {
     });
   }
 
-  function goToStep(idx, animateForward, introFinished) {
-    if (introTimer !== null) {
-      if (idx !== 0) return;
-      clearTimeout(introTimer);
-      introTimer = null;
-    }
-    if (currentStep === 0 && idx > 0 && !introFinished && !reducedMotion) {
-      openingCue.classList.add('is-hidden');
-      openingCue.setAttribute('aria-hidden', 'true');
-      introTimer = setTimeout(function () {
-        introTimer = null;
-        goToStep(idx, animateForward, true);
-      }, 340);
-      return;
-    }
+  function goToStep(idx, animateForward) {
     if (idx < 0 || idx >= STEPS.length) return;
     cancelAnim();
     currentStep = idx;
-    openingCue.classList.toggle('is-hidden', idx !== 0);
-    openingCue.setAttribute('aria-hidden', idx === 0 ? 'false' : 'true');
     updateCardAndChrome(idx);
 
     var instant = reducedMotion || !animateForward || idx === 0;
@@ -1011,7 +958,7 @@ button:focus-visible {
 
   dotBtns.forEach(function (btn, i) {
     btn.addEventListener('click', function () {
-      if (i === currentStep && introTimer === null) return;
+      if (i === currentStep) return;
       goToStep(i, i === currentStep + 1);
     });
   });
@@ -1024,7 +971,7 @@ button:focus-visible {
   });
 
   fitCardHeight();
-  goToStep(0, false, true);
+  goToStep(0, false);
 })();
 </script>
 </body>
