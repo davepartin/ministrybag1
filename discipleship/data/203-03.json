@@ -15,7 +15,7 @@
     },
     {
       "label": "Diagram",
-      "title": "The Open Table",
+      "title": "Front Yard Life",
       "anchor": "diagram"
     }
   ],
@@ -113,15 +113,28 @@
     },
     {
       "type": "heading",
-      "text": "Eat with Your One"
+      "text": "Invite, Welcome, and Hospitality"
     },
     {
       "type": "text",
-      "text": "Jesus ate His way through the Gospels. He ate with tax collectors and religious leaders, with fishermen and friends, and even with the man who would betray Him. He was at the table with the wrong people so often that His critics called Him <em>\"a friend of tax collectors and sinners\"</em> (Luke 7:34). It described His mission."
+      "text": "Jesus ate His way through the Gospels. He ate with tax collectors and religious leaders, with fishermen and friends, and even with the man who would betray Him. His critics called Him <em>\"a friend of tax collectors and sinners\"</em> (Luke 7:34). Three words describe the life He lived and the posture He gives you."
     },
     {
       "type": "text",
-      "text": "The Bible's word for hospitality means love of strangers. It reaches past friends, easy people, and people who will invite you back. <em>\"Seek to show hospitality\"</em> (Romans 12:13). Seeking means you go looking for chances to welcome people instead of waiting until the house is clean."
+      "text": "<strong>Invite.</strong> Someone has to go first, and in God's family, you do. Jesus did not wait for Zacchaeus to come to Him. He stopped under the tree and said, <em>\"Zacchaeus, hurry and come down, for I must stay at your house today\"</em> (Luke 19:5). In His story of the great banquet, the master sends his servant out <em>\"to the highways and hedges\"</em> to <em>\"compel people to come in, that my house may be filled\"</em> (Luke 14:23). A follower of Jesus does not wait to be asked. <strong>You initiate hospitality.</strong>"
+    },
+    {
+      "type": "text",
+      "text": "<strong>Welcome.</strong> Welcome is what someone feels when they arrive: you are glad they came. The old English word <em>welcome</em> meant a guest whose coming brings joy. Paul ties it straight back to the gospel:"
+    },
+    {
+      "type": "verse",
+      "reference": "Romans 15:7",
+      "text": "Therefore welcome one another as Christ has welcomed you, for the glory of God."
+    },
+    {
+      "type": "text",
+      "text": "<strong>Hospitality.</strong> The Bible's word for hospitality means love of strangers. <em>Hospitality</em> and <em>hospital</em> come from the same old word for a guest, and both are places where people are cared for. Hospitality reaches past friends, easy people, and people who will invite you back. <em>\"Seek to show hospitality\"</em> (Romans 12:13). Seeking means you go looking for chances to welcome people instead of waiting until the house is clean."
     },
     {
       "type": "text",
@@ -133,14 +146,14 @@
       "content": [
         "<strong>Hospitality is</strong> a seat at your table, your full attention, an unhurried conversation, room for people who are not like you, and a simple meal, even takeout on paper plates, shared gladly.",
         "<strong>Hospitality is not</strong> a perfect house, a fancy menu, a performance, a sales pitch, or a dinner saved for the friends who will invite you back."
-      ],
-      "anchor": "diagram"
+      ]
     },
     {
       "type": "widget",
       "src": "widgets/front-yard-life.html",
       "title": "Front Yard Life",
-      "height": "550px"
+      "height": "550px",
+      "anchor": "diagram"
     },
     {
       "type": "question",
