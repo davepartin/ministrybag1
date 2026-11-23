@@ -24,7 +24,7 @@ var LESSONS = [
     {
         hash: '#203-3',
         story: 'Stay with Us',
-        tool: 'Ask, Ask Again, Remember',
+        tool: 'Ask, Follow Up, Remember',
         ids: ['203-03-heard', '203-03-listen', '203-03-2', '203-03-6', '203-03-key', '203-03-step', '203-03-prayer'],
         retired: ['203-03-1', '203-03-3', '203-03-4', '203-03-5', '203-03-devos']
     }
