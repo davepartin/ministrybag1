@@ -45,8 +45,8 @@ const EXPECTED_CARDS = [
   },
   {
     heading: 'Well Done',
-    verse: '"Well done, good and faithful servant."',
-    ref: 'Matthew 25:21',
+    verse: '"If anyone serves me, the Father will honor him."',
+    ref: 'John 12:26',
     note: 'The world gives its titles to those at the top. God gives His to servants.'
   }
 ];
@@ -276,13 +276,13 @@ function startStaticServer(rootDir) {
         heroPos: document.getElementById('hero-group').getAttribute('transform'),
         scaleLabel: document.getElementById('spec-mode-label').textContent.trim(),
         flipped: document.getElementById('flip-group').classList.contains('is-flipped'),
-        faithfulVis: document.getElementById('faithful-servant-pill').classList.contains('is-visible')
+        popupVis: document.getElementById('well-done-popup').classList.contains('is-visible')
       }));
       check(`${tag}: no opening card over stage`, !startState.hasOpeningCue);
       check(`${tag}: full pyramid and THE WORLD scale visible at Start`,
         startState.specVis && startState.peersVis && startState.heroVis &&
-        startState.heroPos === 'translate(306.0,193.0)' &&
-        startState.scaleLabel === 'THE WORLD' && !startState.flipped && !startState.faithfulVis);
+        startState.heroPos === 'translate(306.0,203.0)' &&
+        startState.scaleLabel === 'THE WORLD' && !startState.flipped && !startState.popupVis);
 
       // Walk through all 5 steps (0..4)
       for (let s = 0; s < stepCount; s++) {
@@ -322,18 +322,19 @@ function startStaticServer(rootDir) {
 
         const svgState = await page.evaluate(() => {
           const fills = Array.from(document.querySelectorAll('#peers-layer circle')).map(c => c.getAttribute('fill'));
-          const svgTexts = Array.from(document.querySelectorAll('#climb-svg text')).map(t => t.textContent.trim());
+          const popupText = document.getElementById('well-done-popup').textContent.replace(/\s+/g, ' ').trim();
           return {
             flipped: document.getElementById('flip-group').classList.contains('is-flipped'),
             scaleLabel: document.getElementById('spec-mode-label').textContent.trim(),
             highLabel: document.getElementById('spec-high-txt').textContent.trim(),
             lowLabel: document.getElementById('spec-low-txt').textContent.trim(),
-            faithfulTxt: document.getElementById('faithful-pill-txt').textContent.trim(),
-            faithfulVis: document.getElementById('faithful-servant-pill').classList.contains('is-visible'),
+            popupText,
+            popupVis: document.getElementById('well-done-popup').classList.contains('is-visible'),
+            youGlowVis: document.getElementById('you-glow-layer').classList.contains('is-visible'),
+            rowGlowVis: document.getElementById('serving-row-glow').classList.contains('is-visible'),
             heroPos: document.getElementById('hero-group').getAttribute('transform'),
             peerCount: fills.length,
             uniquePeerColors: new Set(fills).size,
-            svgTexts,
             bandVis: document.getElementById('serving-row-band').classList.contains('is-visible'),
             frameVis: document.getElementById('finish-frame').classList.contains('is-visible'),
             nextLabel: document.getElementById('next-btn').textContent.trim(),
@@ -343,21 +344,20 @@ function startStaticServer(rootDir) {
 
         check(`${tag}: 4-3-2-1 pyramid has 9 peers with 9 distinct colors + 1 hero`,
           svgState.peerCount === 9 && svgState.uniquePeerColors === 9);
-        check(`${tag}: diagram has only the 5 allowed short labels`,
-          svgState.svgTexts.length === 5 &&
+        check(`${tag}: scale labels GREATEST and LEAST present`,
           svgState.highLabel === 'GREATEST' &&
           svgState.lowLabel === 'LEAST' &&
-          svgState.faithfulTxt === 'FAITHFUL SERVANT' &&
-          svgState.svgTexts.includes('You'));
+          svgState.popupText.includes('"Well done, good and faithful servant."') &&
+          svgState.popupText.includes('MATTHEW 25:21'));
         check(`${tag}: scale flip state correct on step ${s}`,
           svgState.flipped === (s >= 2) &&
           svgState.scaleLabel === (s >= 2 ? 'THE KINGDOM' : 'THE WORLD'));
         check(`${tag}: hero slot position on step ${s}`,
-          svgState.heroPos === ((s === 1 || s === 2) ? 'translate(276.0,46.0)' : 'translate(306.0,193.0)'));
+          svgState.heroPos === ((s === 1 || s === 2) ? 'translate(276.0,49.0)' : 'translate(306.0,203.0)'));
         check(`${tag}: serving row band + frame visible on steps 3-4`,
           svgState.bandVis === (s >= 3) && svgState.frameVis === (s >= 3));
-        check(`${tag}: gold FAITHFUL SERVANT pill visible iff step 4`,
-          svgState.faithfulVis === (s === 4));
+        check(`${tag}: Well Done pop-up and You glow visible iff step 4`,
+          svgState.popupVis === (s === 4) && svgState.youGlowVis === (s === 4) && svgState.rowGlowVis === (s === 4));
 
         if (s === 4) {
           check(`${tag}: step 4 button reads Start Over`, svgState.nextLabel === 'Start Over');
@@ -385,13 +385,14 @@ function startStaticServer(rootDir) {
       await page.waitForTimeout(450);
       check(`${tag}: zero idle DOM mutations on step 4`, await page.evaluate(() => window.__idleMut) === 0);
 
-      // Back from step 4 restores step 3 instantly and removes the gold pill
+      // Back from step 4 restores step 3 instantly and removes the pop-up & glow
       await page.locator('#prev-btn').click();
       await page.waitForTimeout(60);
-      check(`${tag}: Back from step 4 restores step 3 instantly and removes gold pill`,
+      check(`${tag}: Back from step 4 restores step 3 instantly and removes pop-up & glow`,
         await page.locator('#widget').getAttribute('data-step') === '3' &&
         await page.locator('#widget').getAttribute('data-step-dur') === '0' &&
-        !(await page.locator('#faithful-servant-pill').evaluate(e => e.classList.contains('is-visible'))));
+        !(await page.locator('#well-done-popup').evaluate(e => e.classList.contains('is-visible'))) &&
+        !(await page.locator('#you-glow-layer').evaluate(e => e.classList.contains('is-visible'))));
 
       // Jump to step 4 then Start Over restores step 0 with full pyramid visible
       await page.locator('.step-dot[data-step="4"]').click();
@@ -401,7 +402,7 @@ function startStaticServer(rootDir) {
       check(`${tag}: Start Over restores step 0 with pyramid visible`,
         await page.locator('#widget').getAttribute('data-step') === '0' &&
         await page.locator('#prev-btn').isDisabled() &&
-        await page.locator('#hero-group').getAttribute('transform') === 'translate(306.0,193.0)');
+        await page.locator('#hero-group').getAttribute('transform') === 'translate(306.0,203.0)');
 
       check(`${tag}: zero localStorage writes`, await page.evaluate(() => window.__climbStorageWrites) === 0);
       check(`${tag}: zero page/console/HTTP errors`, errors.length === 0 && httpErrors.length === 0);

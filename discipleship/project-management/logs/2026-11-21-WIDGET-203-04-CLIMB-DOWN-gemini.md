@@ -62,6 +62,12 @@ Before committing to the final drawing, three rough whiteboard circle arrangemen
 - **Title Bar & Registration:** Updated `<title>`, `.title-bar h1`, and `scripts/widget-iframe.js` (`KNOWN_TITLES['climb-down-lift-up.html']`) to `Title or Towel` (with `203-04` tag on the right).
 - **Lesson Wiring (`data/203-04.json`):** Updated the widget block `title` to `"Title or Towel"`, moved `"anchor": "diagram"` from the `"What Is in Your Hands?"` box to the widget block, and changed the contents `Diagram` row title to `"Title or Towel"`. No other lesson prose, Scripture, questions, IDs, or images changed.
 
+## Dave Feedback Revision 6 (2026-11-23: Step 4 Pop-Up with Jesus' Words, Radial Glow Behind "You", John 12:26 Card Verse)
+
+- Removed the brown-yellow `FAITHFUL SERVANT` pill and brown-yellow `#A8760A` theme from Step 4.
+- Kept the green dashed serving-row line (`#serving-row-band`) around `GREATEST` and the bottom row, added an emphasized glow behind the bottom row and a multi-ring radial glow behind the black `You` dot, and added a pop-up in front of the upper pyramid with Jesus' words (`"Well done, good and faithful servant."` `MATTHEW 25:21`) pointing directly to the glowing `You` dot.
+- Updated Step 4's description card verse to `John 12:26` (`"If anyone serves me, the Father will honor him."`).
+
 ## Verification Results (Local)
 
 - `bash scripts/qa_foundation.sh`: PASS

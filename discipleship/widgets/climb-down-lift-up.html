@@ -83,7 +83,7 @@ body {
   padding: 2px 10px 0;
   border-bottom: 1px solid var(--border);
   content-visibility: auto;
-  contain-intrinsic-size: auto none auto 238px;
+  contain-intrinsic-size: auto none auto 232px;
 }
 
 .climb-svg {
@@ -101,9 +101,13 @@ body {
   opacity: 1;
 }
 
-/* Left-side Greatness Scale (rotates 180deg around 72,119.5 when flipping from THE WORLD to THE KINGDOM) */
+.peer-group.is-dimmed {
+  opacity: 0.22;
+}
+
+/* Left-side Greatness Scale (rotates 180deg around 72,126 when flipping from THE WORLD to THE KINGDOM) */
 #flip-group {
-  transform-origin: 72px 119.5px;
+  transform-origin: 72px 126px;
   transform: rotate(0deg);
 }
 
@@ -113,12 +117,12 @@ body {
 
 /* Counter-rotating pill carriages keep GREATEST and LEAST 100% upright while swinging 180deg */
 #spec-badge-high {
-  transform-origin: 72px 46px;
+  transform-origin: 72px 49px;
   transform: rotate(0deg);
 }
 
 #spec-badge-low {
-  transform-origin: 72px 193px;
+  transform-origin: 72px 203px;
   transform: rotate(0deg);
 }
 
@@ -154,6 +158,21 @@ body {
   font-size: 11px;
   font-weight: 800;
   letter-spacing: 0.7px;
+}
+
+.popup-quote {
+  font-family: Georgia, Cambria, serif;
+  font-size: 15.5px;
+  font-weight: 700;
+  fill: #164E37;
+}
+
+.popup-ref {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.7px;
+  fill: #1F684A;
 }
 
 /* Calm repeating highlight pulse on Step 4 (compositor-only opacity + scale, pauses offscreen) */
@@ -299,8 +318,9 @@ button:focus-visible {
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .widget-outer:not(.is-instant) .fade-part {
-    transition: opacity 0.36s ease;
+  .widget-outer:not(.is-instant) .fade-part,
+  .widget-outer:not(.is-instant) .peer-group {
+    transition: opacity 0.38s ease;
   }
   .widget-outer:not(.is-instant) #flip-group,
   .widget-outer:not(.is-instant) #spec-badge-high,
@@ -316,11 +336,11 @@ button:focus-visible {
     transition: background-color 0.24s ease, border-color 0.24s ease, color 0.24s ease;
   }
 
-  /* Calm repeating highlight wave on Step 4 (5.2s cycle with quiet pause; pauses offscreen) */
+  /* Calm repeating glow wave on Step 4 (5.2s cycle with quiet pause; pauses offscreen) */
   .widget-outer.loop-active:not(.loop-paused) #pulse-you {
     animation: service-wave-1 5.2s ease-in-out infinite;
   }
-  .widget-outer.loop-active:not(.loop-paused) #pulse-scale {
+  .widget-outer.loop-active:not(.loop-paused) #pulse-you-outer {
     animation: service-wave-2 5.2s ease-in-out infinite;
   }
   .widget-outer.loop-active.loop-paused .loop-pulse {
@@ -329,15 +349,15 @@ button:focus-visible {
 }
 
 @keyframes service-wave-1 {
-  0%, 100% { opacity: 0; transform: scale(0.92); }
-  18% { opacity: 0.65; transform: scale(1.18); }
-  42%, 70% { opacity: 0; transform: scale(1.26); }
+  0%, 100% { opacity: 0.25; transform: scale(0.95); }
+  24% { opacity: 0.85; transform: scale(1.16); }
+  54%, 74% { opacity: 0.25; transform: scale(1.24); }
 }
 
 @keyframes service-wave-2 {
-  0%, 12%, 100% { opacity: 0; transform: scale(0.96); }
-  28% { opacity: 0.55; transform: scale(1.08); }
-  52%, 70% { opacity: 0; transform: scale(1.12); }
+  0%, 10%, 100% { opacity: 0.15; transform: scale(0.96); }
+  34% { opacity: 0.65; transform: scale(1.22); }
+  62%, 74% { opacity: 0.15; transform: scale(1.30); }
 }
 
 #measure-host {
@@ -357,69 +377,95 @@ button:focus-visible {
   </header>
 
   <div class="stage" id="stage">
-    <svg class="climb-svg" id="climb-svg" viewBox="0 0 440 258" width="100%" role="img" aria-labelledby="svg-title svg-desc">
+    <svg class="climb-svg" id="climb-svg" viewBox="0 0 440 250" width="100%" role="img" aria-labelledby="svg-title svg-desc">
       <title id="svg-title">Title or Towel</title>
       <desc id="svg-desc">A 4-3-2-1 pyramid of ten colored circles alongside THE WORLD scale, with your circle starting in the bottom row.</desc>
 
+      <defs>
+        <!-- Radial glow behind the black "You" dot on Step 4 -->
+        <radialGradient id="you-halo-grad" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#35A877" stop-opacity="0.62" />
+          <stop offset="48%" stop-color="#1F684A" stop-opacity="0.28" />
+          <stop offset="100%" stop-color="#1F684A" stop-opacity="0" />
+        </radialGradient>
+        <!-- Emphasized glow behind the bottom serving row on Step 4 -->
+        <linearGradient id="row-glow-grad" x1="0%" y1="50%" x2="100%" y2="50%">
+          <stop offset="0%" stop-color="#1F684A" stop-opacity="0.16" />
+          <stop offset="68%" stop-color="#288B61" stop-opacity="0.28" />
+          <stop offset="100%" stop-color="#1F684A" stop-opacity="0.14" />
+        </linearGradient>
+      </defs>
+
       <!-- Step 3 & Step 4 crisp Studio Wash double-hairline frame -->
       <g id="finish-frame" class="fade-part" fill="none" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="8" y="6" width="424" height="246" rx="13" stroke="#1F684A" stroke-width="2" stroke-opacity="0.48" />
-        <rect x="12.5" y="10.5" width="415" height="237" rx="9.5" stroke="#A8760A" stroke-width="0.9" stroke-opacity="0.38" />
+        <rect x="8" y="6" width="424" height="238" rx="13" stroke="#1F684A" stroke-width="2" stroke-opacity="0.48" />
+        <rect x="12.5" y="10.5" width="415" height="229" rx="9.5" stroke="#1F684A" stroke-width="0.9" stroke-opacity="0.28" />
       </g>
 
-      <!-- Step 3 & Step 4 gentle band connecting GREATEST at the bottom of THE KINGDOM scale to the bottom serving row -->
+      <!-- Step 4 emphasized glow behind the bottom serving row -->
+      <g id="serving-row-glow" class="fade-part">
+        <rect x="14" y="176" width="388" height="54" rx="27" fill="url(#row-glow-grad)" />
+      </g>
+
+      <!-- Step 3 & Step 4 green dashed line connecting GREATEST to the bottom serving row -->
       <g id="serving-row-band" class="fade-part">
-        <rect x="18" y="171" width="380" height="44" rx="22" fill="#EAF5EF" fill-opacity="0.85" stroke="#1F684A" stroke-width="1.5" stroke-dasharray="5 4" />
+        <rect x="18" y="181" width="380" height="44" rx="22" fill="#EAF5EF" fill-opacity="0.85" stroke="#1F684A" stroke-width="1.5" stroke-dasharray="5 4" />
+      </g>
+
+      <!-- Step 4 luminous radial glow directly behind the black "You" dot (306,203) -->
+      <g id="you-glow-layer" class="fade-part">
+        <circle cx="306" cy="203" r="46" fill="url(#you-halo-grad)" />
+        <circle cx="306" cy="203" r="24" fill="#D5F2E4" fill-opacity="0.78" stroke="#1F684A" stroke-width="1.6" stroke-opacity="0.55" />
+      </g>
+
+      <!-- STEP 4 CALM COMPOSITOR PULSES AROUND "You" (pauses offscreen) -->
+      <g id="service-pulses" fill="none">
+        <circle id="pulse-you" class="loop-pulse" cx="306" cy="203" r="23" stroke="#1F684A" stroke-width="2.4" />
+        <circle id="pulse-you-outer" class="loop-pulse" cx="306" cy="203" r="31" stroke="#288B61" stroke-width="1.6" />
       </g>
 
       <!-- LEFT SIDE: THE FLIPPABLE SCALE (THE WORLD -> THE KINGDOM) -->
       <g id="spectrum-area" class="fade-part is-visible">
-        <text id="spec-mode-label" class="wb-sub" x="72" y="22" text-anchor="middle" fill="#5A4E3C">THE WORLD</text>
+        <text id="spec-mode-label" class="wb-sub" x="72" y="24" text-anchor="middle" fill="#5A4E3C">THE WORLD</text>
 
         <g id="flip-group">
           <!-- Single clean vertical arrow shaft from LEAST to GREATEST -->
-          <line id="spec-shaft" x1="72" y1="71" x2="72" y2="174" stroke="#5A4E3C" stroke-width="3" stroke-linecap="round" />
-          <polygon id="spec-arrow" points="72,60 64,74 80,74" fill="#5A4E3C" />
+          <line id="spec-shaft" x1="72" y1="75" x2="72" y2="183" stroke="#5A4E3C" stroke-width="3" stroke-linecap="round" />
+          <polygon id="spec-arrow" points="72,64 64,78 80,78" fill="#5A4E3C" />
 
-          <!-- GREATEST pill: sits at TOP (y=46) on THE WORLD scale, swings 180deg to BOTTOM (y=193) on THE KINGDOM scale! -->
+          <!-- GREATEST pill: sits at TOP (y=49) on THE WORLD scale, swings 180deg to BOTTOM (y=203) on THE KINGDOM scale! -->
           <g id="spec-badge-high">
-            <rect id="spec-high-rect" x="24" y="33" width="96" height="26" rx="13" fill="#5A4E3C" stroke="#2C2416" stroke-width="1.5" />
-            <text id="spec-high-txt" class="spec-pill-text" x="72" y="50" text-anchor="middle" fill="#FFFFFF">GREATEST</text>
+            <rect id="spec-high-rect" x="24" y="36" width="96" height="26" rx="13" fill="#5A4E3C" stroke="#2C2416" stroke-width="1.5" />
+            <text id="spec-high-txt" class="spec-pill-text" x="72" y="53" text-anchor="middle" fill="#FFFFFF">GREATEST</text>
           </g>
 
-          <!-- LEAST pill: sits at BOTTOM (y=193) on THE WORLD scale, swings 180deg to TOP (y=46) on THE KINGDOM scale! -->
+          <!-- LEAST pill: sits at BOTTOM (y=203) on THE WORLD scale, swings 180deg to TOP (y=49) on THE KINGDOM scale! -->
           <g id="spec-badge-low">
-            <rect id="spec-low-rect" x="28" y="180" width="88" height="26" rx="13" fill="#F6F3EC" stroke="#8E8475" stroke-width="1.4" />
-            <text id="spec-low-txt" class="spec-pill-text" x="72" y="197" text-anchor="middle" fill="#5A4E3C">LEAST</text>
+            <rect id="spec-low-rect" x="28" y="190" width="88" height="26" rx="13" fill="#F6F3EC" stroke="#8E8475" stroke-width="1.4" />
+            <text id="spec-low-txt" class="spec-pill-text" x="72" y="207" text-anchor="middle" fill="#5A4E3C">LEAST</text>
           </g>
         </g>
       </g>
 
-      <!-- STEP 4 CALM COMPOSITOR PULSES (pauses offscreen) -->
-      <g id="service-pulses" fill="none">
-        <circle id="pulse-you" class="loop-pulse" cx="306" cy="193" r="22" stroke="#A8760A" stroke-width="2.2" />
-        <rect id="pulse-scale" class="loop-pulse" x="21" y="177" width="102" height="32" rx="16" stroke="#1F684A" stroke-width="2" />
-      </g>
-
       <!-- RIGHT SIDE: THE 4 - 3 - 2 - 1 PYRAMID OF 10 COLORED DOTS (NO TRIANGLE SIDES, NO SENTENCES!) -->
       <g id="peers-layer" class="fade-part is-visible">
-        <!-- peer-0: starts at Row 1 top (276,46) - Warm Amber-Gold -->
+        <!-- peer-0: starts at Row 1 top (276,49) - Warm Amber-Gold -->
         <g id="peer-0" class="peer-group"><circle cx="0" cy="0" r="15" fill="#F3D58D" stroke="#B8861B" stroke-width="2" /></g>
-        <!-- peer-1: Row 2 left (246,95) - Soft Sage-Teal -->
+        <!-- peer-1: Row 2 left (246,100) - Soft Sage-Teal -->
         <g id="peer-1" class="peer-group"><circle cx="0" cy="0" r="15" fill="#C2E0D8" stroke="#467A6D" stroke-width="2" /></g>
-        <!-- peer-2: starts at Row 2 right (306,95) - Sky Blue -->
+        <!-- peer-2: starts at Row 2 right (306,100) - Sky Blue -->
         <g id="peer-2" class="peer-group"><circle cx="0" cy="0" r="15" fill="#BDD9F2" stroke="#3B6E9C" stroke-width="2" /></g>
-        <!-- peer-3: Row 3 left (216,144) - Soft Lavender -->
+        <!-- peer-3: Row 3 left (216,151) - Soft Lavender -->
         <g id="peer-3" class="peer-group"><circle cx="0" cy="0" r="15" fill="#DCD0EC" stroke="#6E568F" stroke-width="2" /></g>
-        <!-- peer-4: starts at Row 3 middle (276,144) - Warm Coral-Terracotta -->
+        <!-- peer-4: starts at Row 3 middle (276,151) - Warm Coral-Terracotta -->
         <g id="peer-4" class="peer-group"><circle cx="0" cy="0" r="15" fill="#F2C6B6" stroke="#B55D43" stroke-width="2" /></g>
-        <!-- peer-5: Row 3 right (336,144) - Soft Olive-Moss -->
+        <!-- peer-5: Row 3 right (336,151) - Soft Olive-Moss -->
         <g id="peer-5" class="peer-group"><circle cx="0" cy="0" r="15" fill="#D5E2B8" stroke="#657C3B" stroke-width="2" /></g>
-        <!-- peer-6: Row 4, 1st spot (186,193) - Dusty Rose -->
+        <!-- peer-6: Row 4, 1st spot (186,203) - Dusty Rose -->
         <g id="peer-6" class="peer-group"><circle cx="0" cy="0" r="15" fill="#ECC8D6" stroke="#9B526E" stroke-width="2" /></g>
-        <!-- peer-7: Row 4, 2nd spot (246,193) - Warm Apricot -->
+        <!-- peer-7: Row 4, 2nd spot (246,203) - Warm Apricot -->
         <g id="peer-7" class="peer-group"><circle cx="0" cy="0" r="15" fill="#F5DEC2" stroke="#A6733A" stroke-width="2" /></g>
-        <!-- peer-8: Row 4, 4th spot (366,193) - Cool Periwinkle -->
+        <!-- peer-8: Row 4, 4th spot (366,203) - Cool Periwinkle -->
         <g id="peer-8" class="peer-group"><circle cx="0" cy="0" r="15" fill="#C8D3EE" stroke="#4D6094" stroke-width="2" /></g>
       </g>
 
@@ -429,10 +475,17 @@ button:focus-visible {
         <text id="lbl-you" class="wb-label" x="0" y="4.2" text-anchor="middle" fill="#FFFFFF" style="stroke:none;">You</text>
       </g>
 
-      <!-- STEP 4 GOLD PILL DIRECTLY UNDER "You" IN THE BOTTOM SERVING ROW (306,193) -->
-      <g id="faithful-servant-pill" class="fade-part">
-        <rect x="234" y="217" width="144" height="24" rx="12" fill="#A8760A" stroke="#7D5604" stroke-width="1.5" />
-        <text id="faithful-pill-txt" class="spec-pill-text" x="306" y="233" text-anchor="middle" fill="#FFFFFF">FAITHFUL SERVANT</text>
+      <!-- STEP 4 POP-UP IN FRONT OF THE DIAGRAM WITH JESUS' WORDS CONNECTED TO "You" -->
+      <g id="well-done-popup" class="fade-part">
+        <!-- Soft connection beam from the pop-up down to the glowing "You" dot (306,203) -->
+        <polygon points="282,126 330,126 318,181 294,181" fill="#D5F2E4" fill-opacity="0.58" />
+        <!-- Pop-up speech card floating in front of the upper pyramid, with pointer directed at "You" -->
+        <path d="M 162,32 H 398 A 14,14 0 0 1 412,46 V 112 A 14,14 0 0 1 398,126 H 320 L 306,144 L 292,126 H 162 A 14,14 0 0 1 148,112 V 46 A 14,14 0 0 1 162,32 Z"
+          fill="#FFFFFF" stroke="#1F684A" stroke-width="2.2" stroke-linejoin="round" />
+        <rect x="153" y="37" width="254" height="84" rx="10" fill="#F3FAF6" stroke="#B8DCC8" stroke-width="1" />
+        <text id="popup-line-1" class="popup-quote" x="280" y="65" text-anchor="middle">"Well done, good and</text>
+        <text id="popup-line-2" class="popup-quote" x="280" y="86" text-anchor="middle">faithful servant."</text>
+        <text id="popup-ref" class="popup-ref" x="280" y="108" text-anchor="middle">MATTHEW 25:21</text>
       </g>
     </svg>
   </div>
@@ -442,7 +495,7 @@ button:focus-visible {
     <button type="button" class="step-dot" data-step="1" aria-label="Step 1: Climbing for the Title" aria-pressed="false" style="--dot-color: #5A4E3C;"><span class="step-dot-fill"></span></button>
     <button type="button" class="step-dot" data-step="2" aria-label="Step 2: Jesus Served You First" aria-pressed="false" style="--dot-color: #A8760A;"><span class="step-dot-fill"></span></button>
     <button type="button" class="step-dot" data-step="3" aria-label="Step 3: Taking Up the Towel" aria-pressed="false" style="--dot-color: #1F684A;"><span class="step-dot-fill"></span></button>
-    <button type="button" class="step-dot" data-step="4" aria-label="Step 4: Well Done" aria-pressed="false" style="--dot-color: #A8760A;"><span class="step-dot-fill"></span></button>
+    <button type="button" class="step-dot" data-step="4" aria-label="Step 4: Well Done" aria-pressed="false" style="--dot-color: #1F684A;"><span class="step-dot-fill"></span></button>
   </div>
 
   <div class="card-area">
@@ -520,31 +573,31 @@ button:focus-visible {
     },
     {
       heading: 'Well Done',
-      verse: '"Well done, good and faithful servant."',
-      ref: 'Matthew 25:21',
+      verse: '"If anyone serves me, the Father will honor him."',
+      ref: 'John 12:26',
       note: 'The world gives its titles to those at the top. God gives His to servants.',
-      accent: '#A8760A',
-      accentDark: '#7D5604',
+      accent: '#1F684A',
+      accentDark: '#164E37',
       countLabel: 'Step 4 of 4',
       nextLabel: 'Start Over',
       title: 'Well Done',
-      desc: 'In the bottom serving row aligned with Greatest on THE KINGDOM scale, a gold FAITHFUL SERVANT pill fades in directly under your circle.'
+      desc: 'A pop-up appears in front of the pyramid with Jesus\' words from Matthew 25:21, "Well done, good and faithful servant," connected directly to a warm glow behind your circle in the bottom serving row.'
     }
   ];
 
   // 10 Slots of the 4 - 3 - 2 - 1 pyramid (no triangle outline lines)
   // 0: Row 1 top; 1..2: Row 2; 3..5: Row 3; 6..9: Row 4 (slot 8 is 3rd spot from left!)
   var SLOTS = [
-    { x: 276, y: 46 },  // 0: Top (Row 1, spot 1)
-    { x: 246, y: 95 },  // 1: Row 2, spot 1
-    { x: 306, y: 95 },  // 2: Row 2, spot 2
-    { x: 216, y: 144 }, // 3: Row 3, spot 1
-    { x: 276, y: 144 }, // 4: Row 3, spot 2 (middle)
-    { x: 336, y: 144 }, // 5: Row 3, spot 3
-    { x: 186, y: 193 }, // 6: Row 4, spot 1
-    { x: 246, y: 193 }, // 7: Row 4, spot 2
-    { x: 306, y: 193 }, // 8: Row 4, spot 3 (3rd spot to the right - Hero's home!)
-    { x: 366, y: 193 }  // 9: Row 4, spot 4
+    { x: 276, y: 49 },  // 0: Top (Row 1, spot 1)
+    { x: 246, y: 100 }, // 1: Row 2, spot 1
+    { x: 306, y: 100 }, // 2: Row 2, spot 2
+    { x: 216, y: 151 }, // 3: Row 3, spot 1
+    { x: 276, y: 151 }, // 4: Row 3, spot 2 (middle)
+    { x: 336, y: 151 }, // 5: Row 3, spot 3
+    { x: 186, y: 203 }, // 6: Row 4, spot 1
+    { x: 246, y: 203 }, // 7: Row 4, spot 2
+    { x: 306, y: 203 }, // 8: Row 4, spot 3 (3rd spot to the right - Hero's home!)
+    { x: 366, y: 203 }  // 9: Row 4, spot 4
   ];
 
   // 30% of the previous 360ms swap speed -> 1200ms per swap + 260ms pause between swaps
@@ -576,8 +629,10 @@ button:focus-visible {
   var specLowTxt = document.getElementById('spec-low-txt');
 
   var finishFrame = document.getElementById('finish-frame');
+  var servingRowGlow = document.getElementById('serving-row-glow');
   var servingRowBand = document.getElementById('serving-row-band');
-  var faithfulServantPill = document.getElementById('faithful-servant-pill');
+  var youGlowLayer = document.getElementById('you-glow-layer');
+  var wellDonePopup = document.getElementById('well-done-popup');
 
   var peersLayer = document.getElementById('peers-layer');
   var peerGroups = [];
@@ -672,6 +727,8 @@ button:focus-visible {
     for (var i = 0; i < 9; i++) {
       var s = SLOTS[peerSlots[i]];
       placeGroup(peerGroups[i], s.x, s.y);
+      // Softly dim the upper 6 dots on Step 4 when the pop-up floats in front of them, keeping the bottom serving row at 100%
+      peerGroups[i].classList.toggle('is-dimmed', idx === 4 && peerSlots[i] < 6);
     }
     var hs = SLOTS[heroSlot];
     placeGroup(heroGroup, hs.x, hs.y);
@@ -703,7 +760,9 @@ button:focus-visible {
 
     servingRowBand.classList.toggle('is-visible', idx >= 3);
     finishFrame.classList.toggle('is-visible', idx >= 3);
-    faithfulServantPill.classList.toggle('is-visible', idx === 4);
+    servingRowGlow.classList.toggle('is-visible', idx === 4);
+    youGlowLayer.classList.toggle('is-visible', idx === 4);
+    wellDonePopup.classList.toggle('is-visible', idx === 4);
 
     syncLoopPlayback();
   }
@@ -848,7 +907,7 @@ button:focus-visible {
     }
 
     if (idx === 4) {
-      // Nothing moves: keep Step 3 end state and fade in the gold FAITHFUL SERVANT pill directly under "You"
+      // Keep Step 3 bottom serving row line and fade in the pop-up with Jesus' words + glow behind "You"
       setStaticState(4);
       widget.setAttribute('data-step-dur', '400');
       return;
