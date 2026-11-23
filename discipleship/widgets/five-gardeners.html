@@ -827,7 +827,7 @@
         buildField(svg);
         scene.appendChild(svg);
 
-        buildIntro(sceneWrap);
+        // The field and the farmers are already drawn, so they show at once; the verse lives in the opening card.
     }
 
     function buildCard() {
@@ -850,7 +850,8 @@
 
         if (step === -1) {
             title.textContent = 'Five Farmers, One Field';
-            text.innerHTML = 'Jesus gave His Church five kinds of gifts so the whole body could do the work of ministry. Step through five farmers: Plower, Watcher, Planter, Waterer, Pruner. Each one is a picture of one APEST gift.';
+            text.innerHTML = '"He gave the apostles, the prophets, the evangelists, the shepherds and teachers, to equip the saints for the work of ministry." (Ephesians 4:11-12)' +
+                '<span class="card-note">Step through the five farmers. Each one is a picture of one APEST gift.</span>';
             content.appendChild(title);
             content.appendChild(text);
         } else {

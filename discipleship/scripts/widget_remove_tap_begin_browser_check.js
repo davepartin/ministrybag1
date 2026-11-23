@@ -8,7 +8,7 @@ const base = (process.env.TAP_BEGIN_BASE_URL || 'http://127.0.0.1:8818').replace
 const specs = [
  ['covenant-triangle.html','202-08','Two people, one faithful God.'],
  ['cross-the-road.html',null,'Who counts as my neighbor?'],
- ['guide-spirit2.html','201-03','Each stop shows one steady work of the Holy Spirit in the life of a believer.'],
+ ['guide-spirit2.html','201-03','Each stop shows one steady work of the Holy Spirit.'],
  ['mission-map.html','203-09','Where does God want you on mission, and who is with you?'],
  ['oia-method.html','201-07','Three questions, asked in order.'],
  ['personal-ministry-map.html',null,'Who has God already placed around you?'],

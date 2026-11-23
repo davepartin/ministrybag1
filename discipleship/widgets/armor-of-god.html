@@ -546,8 +546,8 @@ function renderDiagram() {
         addLabel(diagram, spec.labelHtml, spec.labelX, spec.labelY, s.color, isPast);
     }
 
-    // Intro overlay
-    if (step === -1) {
+    // Intro overlay: retired. The figure is already drawn, so it shows at once.
+    if (false) {
         var overlay = document.createElement('div');
         overlay.className = 'intro-overlay';
         overlay.innerHTML = '<div>' +
@@ -586,7 +586,7 @@ function renderCard() {
 
         var introText = document.createElement('p');
         introText.className = 'verse-card-text';
-        introText.innerHTML = 'God does not send you into battle empty-handed. This armor is not something you manufacture. It is something God supplies. Your job is to put it on.';
+        introText.innerHTML = '<i>"Put on the whole armor of God, that you may be able to stand."</i> (Ephesians 6:11) God supplies the armor. Your job is to put it on.';
         content.appendChild(introText);
 
     } else if (step >= steps.length) {

@@ -633,7 +633,7 @@ function renderDiagram() {
         diagram.appendChild(current);
     }
 
-    if (step === -1) {
+    if (false) { // retired cover card: the fruit is already drawn, so it shows at once
         var overlay = document.createElement('div');
         overlay.className = 'intro-overlay';
         overlay.innerHTML = '<div>' +
@@ -678,7 +678,7 @@ function renderCard() {
     if (step === -1) {
         title.textContent = 'The Fruit of the Spirit';
         title.style.color = CHARCOAL;
-        text.innerHTML = 'The Spirit does not grow nine separate fruits in us, but one whole fruit with many expressions. As Christ is formed in us, these qualities begin to grow together.';
+        text.innerHTML = '<i>"The fruit of the Spirit is love, joy, peace..."</i> (Galatians 5:22) The Spirit does not grow nine separate fruits in us, but one whole fruit with many expressions.';
     } else if (step >= fruits.length) {
         title.textContent = 'A Life Formed by the Spirit';
         title.style.color = '#D97522';

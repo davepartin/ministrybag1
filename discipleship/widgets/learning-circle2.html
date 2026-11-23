@@ -392,7 +392,7 @@ button:focus-visible {
       <circle id="turning-node" class="fade-part" cx="190" cy="126" r="6" fill="#FFFFFF" stroke="#8E8476" stroke-width="1.8"/>
 
       <!-- Intro Overlay Verse inside quiet ghost circle -->
-      <g id="intro-overlay" class="fade-part is-on" text-anchor="middle">
+      <g id="intro-overlay" class="fade-part" text-anchor="middle">
         <text class="svg-serif" x="190" y="202" font-size="17" font-style="italic" fill="#2C2416" stroke="#FFFFFF" stroke-width="4" paint-order="stroke">"Repent and Believe</text>
         <text class="svg-serif" x="190" y="226" font-size="17" font-style="italic" fill="#2C2416" stroke="#FFFFFF" stroke-width="4" paint-order="stroke">in the gospel."</text>
         <text class="svg-sans" x="190" y="250" font-size="12" font-weight="600" fill="#8C8375">Mark 1:15</text>
@@ -415,7 +415,7 @@ button:focus-visible {
     dark: INK,
     dotLabel: 'Start: Getting Back on the Path',
     cardTitle: 'Getting Back on the Path',
-    verse: 'Everyone wanders at times. Here is how the gospel turns you around: notice the drift, repent, believe, and follow Jesus again.',
+    verse: '<i>"Repent and believe in the gospel."</i> (Mark 1:15) Everyone wanders at times. Here is how the gospel turns you around: notice the drift, repent, believe, and follow Jesus again.',
     ref: '',
     desc: 'A faint path of Jesus along the top with a ghost circle below waiting to unfold step by step.'
   };
@@ -562,7 +562,7 @@ button:focus-visible {
     var believeOn = targetStep >= 4;
     var restoredOn = targetStep >= 5;
 
-    setFade('intro-overlay', isIntro, 0);
+    setFade('intro-overlay', false, 0); // retired cover verse: the circle shows at once; Mark 1:15 is in the opening card
     setFade('lbl-jesus', pathOn, targetStep === 0 && !isInst ? 160 : 0);
     setFade('lbl-away', strayOn, targetStep === 1 && !isInst ? 220 : 0);
     setFade('turning-tick', turningOn, 0);
