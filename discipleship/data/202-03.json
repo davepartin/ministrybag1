@@ -22,7 +22,7 @@
   "blocks": [
     {
       "type": "text",
-      "text": "Lesson 1 turned your love toward the neighbor in your path, and Lesson 2 brought it home to the people under your roof. Now you come to the family God gives every believer: the local church."
+      "text": "Lesson 1 turned your love toward the neighbor in your path, and Lesson 2 brought it home to the people under your roof. Now you come to the family God gives every believer: the local church. In the Starting course you learned that you already belong. This lesson is about how that family lives."
     },
     {
       "type": "image",
@@ -43,7 +43,7 @@
     {
       "type": "parable",
       "title": "The Early Church",
-      "text": "On the day of Pentecost, Jerusalem was crowded with pilgrims from every nation under heaven. Seven weeks earlier, Jesus' followers had scattered in fear on the night He was arrested. Now the Holy Spirit came upon them, and Peter stood up and preached Jesus, crucified and risen. About three thousand people were cut to the heart, repented, and were baptized that day.<br><br>That morning most of them had been strangers. They spoke different languages and came from different places. What happened next is the first picture of the church.<br><br><em>\"And they devoted themselves to the apostles' teaching and the fellowship, to the breaking of bread and the prayers... And all who believed were together and had all things in common. And they were selling their possessions and belongings and distributing the proceeds to all, as any had need. And day by day, attending the temple together and breaking bread in their homes, they received their food with glad and generous hearts, praising God and having favor with all the people. And the Lord added to their number day by day those who were being saved.\"</em> (Acts 2:42-47)"
+      "text": "On the day of Pentecost, Jerusalem was crowded with pilgrims from every nation under heaven. Seven weeks earlier, Jesus' followers had scattered in fear on the night He was arrested. Now the Holy Spirit came upon them, and Peter stood up and preached Jesus, crucified and risen. About three thousand people were cut to the heart, repented, and were baptized that day.<br><br>That morning most of them had been strangers. They spoke different languages and came from different places. What happened next is the first picture of the church.<br><br><em>\"And all who believed were together and had all things in common. And they were selling their possessions and belongings and distributing the proceeds to all, as any had need. And day by day, attending the temple together and breaking bread in their homes, they received their food with glad and generous hearts\"</em> (Acts 2:44-46)"
     },
     {
       "type": "text",
@@ -51,8 +51,8 @@
     },
     {
       "type": "question",
-      "id": "202-03-4",
-      "text": "3.1 - From Acts 2, what part of church life do you most want more of right now?",
+      "id": "202-03-family",
+      "text": "3.1 - Who in your church family has treated you like family, and what did they do?",
       "height": "tall"
     },
     {
@@ -71,7 +71,7 @@
     },
     {
       "type": "text",
-      "text": "Once not a people, now God's people. Once without mercy, now full of it. The church is not mainly a building, a Sunday event, or a machine run by paid staff. It is the adopted family of God, called together by Jesus, gathered around the gospel, and sent into the world with His love. You do not join it to earn a place. Mercy gave you a place, and the local church is where that place becomes real: you are known, cared for, challenged, and given work to do."
+      "text": "Once not a people, now God's people. Once without mercy, now full of it. <strong>The same mercy that saved you made you part of a people.</strong> The church is the adopted family of God, called together by Jesus, gathered around the gospel, and sent into the world with His love. The local church is where that family becomes real: you are known, cared for, challenged, and given work to do."
     },
     {
       "type": "question",
@@ -105,7 +105,7 @@
     },
     {
       "type": "text",
-      "text": "When believers forgive, carry burdens, and cross normal social lines, the world sees something of Jesus. Paul also pictures the church as a body where every part needs the others (1 Corinthians 12). In the next lesson you will discover the gifts Jesus gives each member to build that body up."
+      "text": "When believers forgive, carry burdens, and cross normal social lines, the world sees something of Jesus."
     },
     {
       "type": "question",
@@ -160,7 +160,7 @@
     },
     {
       "type": "text",
-      "text": "The church is not a machine, a restaurant, or a weekly event. It is the family of God, made of people who were once not a people and once had not received mercy. Like the early church in Acts 2, this family is devoted to God's Word, to prayer, to shared tables, and to one another. <strong>God has made you part of His family, so love one another the way Jesus has loved you.</strong>"
+      "text": "In Acts 2, mercy made strangers into a family, and the same mercy has made you part of God's people. That family lives out its love in the one anothers: forgiving, carrying burdens, going to each other when there is conflict, and caring for those who have been hurt. <strong>God has made you part of His family, so love one another the way Jesus has loved you.</strong>"
     },
     {
       "type": "text",
@@ -200,6 +200,12 @@
       "type": "question",
       "id": "202-03-hand",
       "text": "3.5 - How would you explain to a friend why a follower of Jesus needs a church family?",
+      "height": "tall"
+    },
+    {
+      "type": "question",
+      "id": "202-03-4",
+      "text": "3.1 - From Acts 2, what part of church life do you most want more of right now?",
       "height": "tall"
     }
   ]
