@@ -1,7 +1,7 @@
 # SERIES-FIRST-STEPS: first steps from Grok's whole-series review
 Date: 2026-11-26
 Agent: Claude
-Status: REVIEW
+Status: DONE (Dave approved merge of PR #375, 2026-11-26)
 Branch: claude/series-first-steps
 
 Source: Grok's review (PR #374) and Claude's adjustments, which Dave approved on November 26: "I like your ideas. And Groks. Let's do the first steps." Dave also decided: time, talents, and treasure (with the stool widget) stays in 202-07; no Baptist Faith and Message language; no four-week process. Recorded in DAVE.md.
