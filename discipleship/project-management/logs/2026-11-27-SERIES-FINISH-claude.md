@@ -1,7 +1,7 @@
 # SERIES-FINISH: remaining items from Grok's series review
 Date: 2026-11-27
 Agent: Claude
-Status: REVIEW
+Status: DONE (Dave approved merge of PR #378, 2026-11-27)
 Branch: claude/series-finish
 
 Dave on November 27: "Do all these things. Approve." (the remaining review items).
