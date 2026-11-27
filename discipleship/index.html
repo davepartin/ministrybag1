@@ -4071,12 +4071,14 @@
             }
         }
 
-        function openFromDropdown(seriesId, lessonNum) {
+        async function openFromDropdown(seriesId, lessonNum) {
             // Close dropdowns before navigating
             document.querySelectorAll('.level-dropdown').forEach(d => d.classList.remove('open'));
             document.querySelectorAll('.level-card').forEach(c => c.classList.remove('open'));
-            openSeries(seriesId);
-            setTimeout(() => showSession(lessonNum), 400);
+            // Wait for the course to finish loading before opening the chosen lesson.
+            // A fixed delay lost the race on slower phones and landed on lesson 1.
+            await openSeries(seriesId);
+            showSession(lessonNum);
         }
 
         function openSeries(seriesId) {
@@ -4302,10 +4304,11 @@
             container.innerHTML = html;
         }
 
-        function openTreeLesson(seriesId, lessonNum) {
+        async function openTreeLesson(seriesId, lessonNum) {
             document.getElementById('tree-view').classList.remove('active');
-            openSeries(seriesId);
-            setTimeout(() => showSession(lessonNum), 400);
+            // Wait for the course to load, then open the chosen lesson (see openFromDropdown).
+            await openSeries(seriesId);
+            showSession(lessonNum);
         }
 
         function toggleTOC() {
