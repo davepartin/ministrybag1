@@ -1,7 +1,7 @@
 # WIDGET-FIXES: 3 Circles last step and RUN button order
 Date: 2026-11-27
 Agent: Claude
-Status: REVIEW
+Status: DONE (Dave approved merge of PR #379, 2026-11-27)
 Branch: claude/widget-fixes
 
 Dave asked Claude to make the two widget fixes from Grok's series review himself (November 27), instead of waiting for Gemini.
