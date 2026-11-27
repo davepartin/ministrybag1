@@ -993,8 +993,14 @@ button:focus-visible,
         go(RUN[0], 'next', false);
       }));
     } else if (s.mode === 'stay') {
+      navEl.appendChild(makeBtn('\u2190 Back', 'back', 'nav-btn', function () {
+        if (s.idx === 0) go(TEMPTED, 'stay', false);
+        else go(STAY[s.idx - 1], 'back', false);
+      }));
+      count.textContent = 'Pit ' + (s.idx + 1) + ' of ' + STAY.length;
+      navEl.appendChild(count);
       if (s.idx < STAY.length - 1) {
-        navEl.appendChild(makeBtn('\u2190 Next', 'next', 'nav-btn danger', function () {
+        navEl.appendChild(makeBtn('Next \u2192', 'next', 'nav-btn danger', function () {
           go(STAY[s.idx + 1], 'next', false);
         }));
       } else {
@@ -1002,12 +1008,6 @@ button:focus-visible,
           go(RUN[0], 'next', false);
         }));
       }
-      count.textContent = 'Pit ' + (s.idx + 1) + ' of ' + STAY.length;
-      navEl.appendChild(count);
-      navEl.appendChild(makeBtn('Back \u2192', 'back', 'nav-btn', function () {
-        if (s.idx === 0) go(TEMPTED, 'stay', false);
-        else go(STAY[s.idx - 1], 'back', false);
-      }));
     } else {
       navEl.appendChild(makeBtn('\u2190 Back', 'back', 'nav-btn', function () {
         if (s.idx === 0) go(TEMPTED, 'run', false);

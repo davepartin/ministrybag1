@@ -467,7 +467,7 @@
             color: '#1E6FA0',
             cardTitle: 'Your Turn',
             cardSubtitle: 'Admit, believe, confess',
-            cardText: 'If you confess with your mouth that Jesus is Lord and believe in your heart that God raised him from the dead, you will be saved. <b>Romans 10:9</b>'
+            cardText: '<b>Admit</b> your sin, <b>believe</b> Jesus died and rose for you, and <b>confess</b> Him as Lord. <b>Romans 10:9</b> If you confess with your mouth that Jesus is Lord and believe in your heart that God raised him from the dead, you will be saved.'
         }
     ];
     window.gtCardStops = stops;
@@ -580,9 +580,9 @@
        Fixed paths kept comfortably inside viewBox. */
     function drawBungees(svg) {
         var bungees = [
-            'M 354 76 L 362 64 L 360 56 L 370 47 L 382 35',     // up-right
-            'M 370 96 L 378 90 L 380 96 L 398 91',              // right
-            'M 360 124 L 372 130 L 371 139 L 386 150',          // down-right
+            'M 352 74 L 358 65 L 356 58 L 363 51 L 370 43',     // up-right
+            'M 368 98 L 372 93 L 374 99 L 378 96',              // right
+            'M 358 122 L 365 128 L 364 135 L 371 142',          // down-right
             'M 320 130 L 322 142 L 318 146 L 318 160'           // down
         ];
         bungees.forEach(function (d, i) {
@@ -609,6 +609,17 @@
         tp.textContent = text;
         t.appendChild(tp);
         svg.appendChild(t);
+    }
+
+    /* A simple hand-drawn cross at the center of the cycle, from the
+       Gospel step on, so the cross stays at the heart of the picture. */
+    function drawCross(svg) {
+        [['M 194 118 L 194 184'], ['M 176 138 L 212 138']].forEach(function (d) {
+            svg.appendChild(svgEl('path', {
+                d: d[0], fill: 'none', stroke: INK, 'stroke-width': 5,
+                'stroke-linecap': 'round'
+            }));
+        });
     }
 
     function drawAbcs(svg) {
@@ -677,6 +688,10 @@
             drawBungees(scene);
         }
 
+        if (step >= 3) {
+            drawCross(scene);
+        }
+
         if (step >= 4) {
             markerStroke(scene, REPENT_PATH, { width: 4.5, markerEnd: 'arrow' });
             drawArcLabel(scene, 'repentTextPath', 'REPENT & BELIEVE', 11);
@@ -696,7 +711,6 @@
                     'stroke-dasharray': '3 4'
                 }));
             });
-            drawAbcs(scene);
         }
     }
 
